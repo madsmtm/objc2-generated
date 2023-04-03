@@ -7,21 +7,32 @@ use crate::Foundation::*;
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub enum NSTextLayoutFragmentEnumerationOptions {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSTextLayoutFragmentEnumerationOptionsNone = 0,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSTextLayoutFragmentEnumerationOptionsReverse = 1 << 0,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSTextLayoutFragmentEnumerationOptionsEstimatesSize = 1 << 1,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSTextLayoutFragmentEnumerationOptionsEnsuresLayout = 1 << 2,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSTextLayoutFragmentEnumerationOptionsEnsuresExtraLineFragment = 1 << 3,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub enum NSTextLayoutFragmentState {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSTextLayoutFragmentStateNone = 0,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSTextLayoutFragmentStateEstimatedUsageBounds = 1,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSTextLayoutFragmentStateCalculatedUsageBounds = 2,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSTextLayoutFragmentStateLayoutAvailable = 3,
     }
 );
@@ -29,6 +40,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSTextLayoutFragment")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct NSTextLayoutFragment;
 
     #[cfg(feature = "AppKit_NSTextLayoutFragment")]

@@ -7,6 +7,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Contacts_CNSaveRequest")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct CNSaveRequest;
 
     #[cfg(feature = "Contacts_CNSaveRequest")]
@@ -54,10 +55,12 @@ extern_methods!(
         pub unsafe fn deleteGroup(&self, group: &CNMutableGroup);
 
         #[cfg(feature = "Contacts_CNGroup")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(addSubgroup:toGroup:)]
         pub unsafe fn addSubgroup_toGroup(&self, subgroup: &CNGroup, group: &CNGroup);
 
         #[cfg(feature = "Contacts_CNGroup")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeSubgroup:fromGroup:)]
         pub unsafe fn removeSubgroup_fromGroup(&self, subgroup: &CNGroup, group: &CNGroup);
 

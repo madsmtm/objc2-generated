@@ -8,6 +8,7 @@ use crate::MediaPlayer::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MediaPlayer_MPMusicPlayerQueueDescriptor")]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub struct MPMusicPlayerQueueDescriptor;
 
     #[cfg(feature = "MediaPlayer_MPMusicPlayerQueueDescriptor")]
@@ -33,6 +34,7 @@ extern_methods!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MediaPlayer_MPMusicPlayerMediaItemQueueDescriptor")]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub struct MPMusicPlayerMediaItemQueueDescriptor;
 
     #[cfg(feature = "MediaPlayer_MPMusicPlayerMediaItemQueueDescriptor")]
@@ -95,6 +97,7 @@ extern_methods!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MediaPlayer_MPMusicPlayerStoreQueueDescriptor")]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub struct MPMusicPlayerStoreQueueDescriptor;
 
     #[cfg(feature = "MediaPlayer_MPMusicPlayerStoreQueueDescriptor")]
@@ -154,6 +157,7 @@ extern_methods!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MediaPlayer_MPMusicPlayerPlayParameters")]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub struct MPMusicPlayerPlayParameters;
 
     #[cfg(feature = "MediaPlayer_MPMusicPlayerPlayParameters")]
@@ -184,6 +188,7 @@ extern_methods!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MediaPlayer_MPMusicPlayerPlayParametersQueueDescriptor")]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub struct MPMusicPlayerPlayParametersQueueDescriptor;
 
     #[cfg(feature = "MediaPlayer_MPMusicPlayerPlayParametersQueueDescriptor")]

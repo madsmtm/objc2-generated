@@ -19,6 +19,7 @@ extern_static!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait ASAuthorizationProviderExtensionAuthorizationRequestHandler:
         NSObjectProtocol
     {
@@ -48,6 +49,7 @@ extern_protocol!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionAuthorizationRequest")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct ASAuthorizationProviderExtensionAuthorizationRequest;
 
     #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionAuthorizationRequest")]
@@ -92,6 +94,7 @@ extern_methods!(
         #[cfg(
             feature = "AuthenticationServices_ASAuthorizationProviderExtensionAuthorizationResult"
         )]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(completeWithAuthorizationResult:)]
         pub unsafe fn completeWithAuthorizationResult(
             &self,
@@ -142,21 +145,26 @@ extern_methods!(
         #[method_id(@__retain_semantics Other authorizationOptions)]
         pub unsafe fn authorizationOptions(&self) -> Id<NSDictionary>;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(isCallerManaged)]
         pub unsafe fn isCallerManaged(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other callerTeamIdentifier)]
         pub unsafe fn callerTeamIdentifier(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other localizedCallerDisplayName)]
         pub unsafe fn localizedCallerDisplayName(&self) -> Id<NSString>;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(isUserInterfaceEnabled)]
         pub unsafe fn isUserInterfaceEnabled(&self) -> bool;
 
         #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionLoginManager")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other loginManager)]
         pub unsafe fn loginManager(
             &self,

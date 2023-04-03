@@ -7,29 +7,48 @@ use crate::MailKit::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub enum MEMessageActionMessageColor {
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         MEMessageActionMessageColorNone = 0,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         MEMessageActionMessageColorGreen = 1,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         MEMessageActionMessageColorYellow = 2,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         MEMessageActionMessageColorOrange = 3,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         MEMessageActionMessageColorRed = 4,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         MEMessageActionMessageColorPurple = 5,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         MEMessageActionMessageColorBlue = 6,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         MEMessageActionMessageColorGray = 7,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub enum MEMessageActionFlag {
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         MEMessageActionFlagNone = 0,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         MEMessageActionFlagDefaultColor = 1,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         MEMessageActionFlagRed = 2,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         MEMessageActionFlagOrange = 3,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         MEMessageActionFlagYellow = 4,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         MEMessageActionFlagGreen = 5,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         MEMessageActionFlagBlue = 6,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         MEMessageActionFlagPurple = 7,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         MEMessageActionFlagGray = 8,
     }
 );
@@ -37,6 +56,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MailKit_MEMessageAction")]
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub struct MEMessageAction;
 
     #[cfg(feature = "MailKit_MEMessageAction")]

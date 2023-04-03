@@ -7,36 +7,52 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSLineCapStyle {
+        #[cfg(not(any(target_os = "ios")))]
         NSLineCapStyleButt = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSLineCapStyleRound = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSLineCapStyleSquare = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSLineJoinStyle {
+        #[cfg(not(any(target_os = "ios")))]
         NSLineJoinStyleMiter = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSLineJoinStyleRound = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSLineJoinStyleBevel = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSWindingRule {
+        #[cfg(not(any(target_os = "ios")))]
         NSWindingRuleNonZero = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindingRuleEvenOdd = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSBezierPathElement {
+        #[cfg(not(any(target_os = "ios")))]
         NSBezierPathElementMoveTo = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSBezierPathElementLineTo = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSBezierPathElementCurveTo = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSBezierPathElementClosePath = 3,
     }
 );
@@ -44,6 +60,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSBezierPath")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSBezierPath;
 
     #[cfg(feature = "AppKit_NSBezierPath")]
@@ -64,15 +81,19 @@ unsafe impl NSSecureCoding for NSBezierPath {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSBezierPath")]
     unsafe impl NSBezierPath {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other bezierPath)]
         pub unsafe fn bezierPath() -> Id<NSBezierPath>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other bezierPathWithRect:)]
         pub unsafe fn bezierPathWithRect(rect: NSRect) -> Id<NSBezierPath>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other bezierPathWithOvalInRect:)]
         pub unsafe fn bezierPathWithOvalInRect(rect: NSRect) -> Id<NSBezierPath>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other bezierPathWithRoundedRect:xRadius:yRadius:)]
         pub unsafe fn bezierPathWithRoundedRect_xRadius_yRadius(
             rect: NSRect,
@@ -80,63 +101,83 @@ extern_methods!(
             y_radius: CGFloat,
         ) -> Id<NSBezierPath>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(fillRect:)]
         pub unsafe fn fillRect(rect: NSRect);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(strokeRect:)]
         pub unsafe fn strokeRect(rect: NSRect);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(clipRect:)]
         pub unsafe fn clipRect(rect: NSRect);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(strokeLineFromPoint:toPoint:)]
         pub unsafe fn strokeLineFromPoint_toPoint(point1: NSPoint, point2: NSPoint);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawPackedGlyphs:atPoint:)]
         pub unsafe fn drawPackedGlyphs_atPoint(packed_glyphs: NonNull<c_char>, point: NSPoint);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(defaultMiterLimit)]
         pub unsafe fn defaultMiterLimit() -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDefaultMiterLimit:)]
         pub unsafe fn setDefaultMiterLimit(default_miter_limit: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(defaultFlatness)]
         pub unsafe fn defaultFlatness() -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDefaultFlatness:)]
         pub unsafe fn setDefaultFlatness(default_flatness: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(defaultWindingRule)]
         pub unsafe fn defaultWindingRule() -> NSWindingRule;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDefaultWindingRule:)]
         pub unsafe fn setDefaultWindingRule(default_winding_rule: NSWindingRule);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(defaultLineCapStyle)]
         pub unsafe fn defaultLineCapStyle() -> NSLineCapStyle;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDefaultLineCapStyle:)]
         pub unsafe fn setDefaultLineCapStyle(default_line_cap_style: NSLineCapStyle);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(defaultLineJoinStyle)]
         pub unsafe fn defaultLineJoinStyle() -> NSLineJoinStyle;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDefaultLineJoinStyle:)]
         pub unsafe fn setDefaultLineJoinStyle(default_line_join_style: NSLineJoinStyle);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(defaultLineWidth)]
         pub unsafe fn defaultLineWidth() -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDefaultLineWidth:)]
         pub unsafe fn setDefaultLineWidth(default_line_width: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(moveToPoint:)]
         pub unsafe fn moveToPoint(&self, point: NSPoint);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(lineToPoint:)]
         pub unsafe fn lineToPoint(&self, point: NSPoint);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(curveToPoint:controlPoint1:controlPoint2:)]
         pub unsafe fn curveToPoint_controlPoint1_controlPoint2(
             &self,
@@ -145,18 +186,23 @@ extern_methods!(
             control_point2: NSPoint,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(closePath)]
         pub unsafe fn closePath(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeAllPoints)]
         pub unsafe fn removeAllPoints(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(relativeMoveToPoint:)]
         pub unsafe fn relativeMoveToPoint(&self, point: NSPoint);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(relativeLineToPoint:)]
         pub unsafe fn relativeLineToPoint(&self, point: NSPoint);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(relativeCurveToPoint:controlPoint1:controlPoint2:)]
         pub unsafe fn relativeCurveToPoint_controlPoint1_controlPoint2(
             &self,
@@ -165,42 +211,55 @@ extern_methods!(
             control_point2: NSPoint,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(lineWidth)]
         pub unsafe fn lineWidth(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setLineWidth:)]
         pub unsafe fn setLineWidth(&self, line_width: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(lineCapStyle)]
         pub unsafe fn lineCapStyle(&self) -> NSLineCapStyle;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setLineCapStyle:)]
         pub unsafe fn setLineCapStyle(&self, line_cap_style: NSLineCapStyle);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(lineJoinStyle)]
         pub unsafe fn lineJoinStyle(&self) -> NSLineJoinStyle;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setLineJoinStyle:)]
         pub unsafe fn setLineJoinStyle(&self, line_join_style: NSLineJoinStyle);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(windingRule)]
         pub unsafe fn windingRule(&self) -> NSWindingRule;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setWindingRule:)]
         pub unsafe fn setWindingRule(&self, winding_rule: NSWindingRule);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(miterLimit)]
         pub unsafe fn miterLimit(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMiterLimit:)]
         pub unsafe fn setMiterLimit(&self, miter_limit: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(flatness)]
         pub unsafe fn flatness(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFlatness:)]
         pub unsafe fn setFlatness(&self, flatness: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(getLineDash:count:phase:)]
         pub unsafe fn getLineDash_count_phase(
             &self,
@@ -209,6 +268,7 @@ extern_methods!(
             phase: *mut CGFloat,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setLineDash:count:phase:)]
         pub unsafe fn setLineDash_count_phase(
             &self,
@@ -217,43 +277,56 @@ extern_methods!(
             phase: CGFloat,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(stroke)]
         pub unsafe fn stroke(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(fill)]
         pub unsafe fn fill(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(addClip)]
         pub unsafe fn addClip(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setClip)]
         pub unsafe fn setClip(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other bezierPathByFlatteningPath)]
         pub unsafe fn bezierPathByFlatteningPath(&self) -> Id<NSBezierPath>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other bezierPathByReversingPath)]
         pub unsafe fn bezierPathByReversingPath(&self) -> Id<NSBezierPath>;
 
         #[cfg(feature = "Foundation_NSAffineTransform")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(transformUsingAffineTransform:)]
         pub unsafe fn transformUsingAffineTransform(&self, transform: &NSAffineTransform);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isEmpty)]
         pub unsafe fn isEmpty(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(currentPoint)]
         pub unsafe fn currentPoint(&self) -> NSPoint;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(controlPointBounds)]
         pub unsafe fn controlPointBounds(&self) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(bounds)]
         pub unsafe fn bounds(&self) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(elementCount)]
         pub unsafe fn elementCount(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(elementAtIndex:associatedPoints:)]
         pub unsafe fn elementAtIndex_associatedPoints(
             &self,
@@ -261,18 +334,23 @@ extern_methods!(
             points: NSPointArray,
         ) -> NSBezierPathElement;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(elementAtIndex:)]
         pub unsafe fn elementAtIndex(&self, index: NSInteger) -> NSBezierPathElement;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAssociatedPoints:atIndex:)]
         pub unsafe fn setAssociatedPoints_atIndex(&self, points: NSPointArray, index: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(appendBezierPath:)]
         pub unsafe fn appendBezierPath(&self, path: &NSBezierPath);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(appendBezierPathWithRect:)]
         pub unsafe fn appendBezierPathWithRect(&self, rect: NSRect);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(appendBezierPathWithPoints:count:)]
         pub unsafe fn appendBezierPathWithPoints_count(
             &self,
@@ -280,9 +358,11 @@ extern_methods!(
             count: NSInteger,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(appendBezierPathWithOvalInRect:)]
         pub unsafe fn appendBezierPathWithOvalInRect(&self, rect: NSRect);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(appendBezierPathWithArcWithCenter:radius:startAngle:endAngle:clockwise:)]
         pub unsafe fn appendBezierPathWithArcWithCenter_radius_startAngle_endAngle_clockwise(
             &self,
@@ -293,6 +373,7 @@ extern_methods!(
             clockwise: bool,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(appendBezierPathWithArcWithCenter:radius:startAngle:endAngle:)]
         pub unsafe fn appendBezierPathWithArcWithCenter_radius_startAngle_endAngle(
             &self,
@@ -302,6 +383,7 @@ extern_methods!(
             end_angle: CGFloat,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(appendBezierPathWithArcFromPoint:toPoint:radius:)]
         pub unsafe fn appendBezierPathWithArcFromPoint_toPoint_radius(
             &self,
@@ -310,6 +392,7 @@ extern_methods!(
             radius: CGFloat,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(appendBezierPathWithRoundedRect:xRadius:yRadius:)]
         pub unsafe fn appendBezierPathWithRoundedRect_xRadius_yRadius(
             &self,
@@ -318,6 +401,7 @@ extern_methods!(
             y_radius: CGFloat,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(containsPoint:)]
         pub unsafe fn containsPoint(&self, point: NSPoint) -> bool;
     }
@@ -328,20 +412,24 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSBezierPath")]
     unsafe impl NSBezierPath {
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(cachesBezierPath)]
         pub unsafe fn cachesBezierPath(&self) -> bool;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCachesBezierPath:)]
         pub unsafe fn setCachesBezierPath(&self, flag: bool);
 
         #[cfg(feature = "AppKit_NSFont")]
         #[deprecated = "Use -appendBezierPathWithCGGlyph:inFont: instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(appendBezierPathWithGlyph:inFont:)]
         pub unsafe fn appendBezierPathWithGlyph_inFont(&self, glyph: NSGlyph, font: &NSFont);
 
         #[cfg(feature = "AppKit_NSFont")]
         #[deprecated = "Use -appendBezierPathWithCGGlyphs:count:inFont: instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(appendBezierPathWithGlyphs:count:inFont:)]
         pub unsafe fn appendBezierPathWithGlyphs_count_inFont(
             &self,
@@ -351,6 +439,7 @@ extern_methods!(
         );
 
         #[deprecated = "Use -appendBezierPathWithCGGlyphs:count:inFont: instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(appendBezierPathWithPackedGlyphs:)]
         pub unsafe fn appendBezierPathWithPackedGlyphs(&self, packed_glyphs: NonNull<c_char>);
     }

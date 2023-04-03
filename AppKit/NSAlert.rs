@@ -7,9 +7,13 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSAlertStyle {
+        #[cfg(not(any(target_os = "ios")))]
         NSAlertStyleWarning = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSAlertStyleInformational = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSAlertStyleCritical = 2,
     }
 );
@@ -23,6 +27,7 @@ extern_static!(NSAlertThirdButtonReturn: NSModalResponse = 1002);
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSAlert")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSAlert;
 
     #[cfg(feature = "AppKit_NSAlert")]
@@ -38,90 +43,115 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSAlert")]
     unsafe impl NSAlert {
         #[cfg(feature = "Foundation_NSError")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other alertWithError:)]
         pub unsafe fn alertWithError(error: &NSError) -> Id<NSAlert>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other messageText)]
         pub unsafe fn messageText(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMessageText:)]
         pub unsafe fn setMessageText(&self, message_text: &NSString);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other informativeText)]
         pub unsafe fn informativeText(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setInformativeText:)]
         pub unsafe fn setInformativeText(&self, informative_text: &NSString);
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other icon)]
         pub unsafe fn icon(&self) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setIcon:)]
         pub unsafe fn setIcon(&self, icon: Option<&NSImage>);
 
         #[cfg(all(feature = "AppKit_NSButton", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other addButtonWithTitle:)]
         pub unsafe fn addButtonWithTitle(&self, title: &NSString) -> Id<NSButton>;
 
         #[cfg(all(feature = "AppKit_NSButton", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other buttons)]
         pub unsafe fn buttons(&self) -> Id<NSArray<NSButton>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(showsHelp)]
         pub unsafe fn showsHelp(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setShowsHelp:)]
         pub unsafe fn setShowsHelp(&self, shows_help: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other helpAnchor)]
         pub unsafe fn helpAnchor(&self) -> Option<Id<NSHelpAnchorName>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setHelpAnchor:)]
         pub unsafe fn setHelpAnchor(&self, help_anchor: Option<&NSHelpAnchorName>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(alertStyle)]
         pub unsafe fn alertStyle(&self) -> NSAlertStyle;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAlertStyle:)]
         pub unsafe fn setAlertStyle(&self, alert_style: NSAlertStyle);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSAlertDelegate>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSAlertDelegate>>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(showsSuppressionButton)]
         pub unsafe fn showsSuppressionButton(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setShowsSuppressionButton:)]
         pub unsafe fn setShowsSuppressionButton(&self, shows_suppression_button: bool);
 
         #[cfg(feature = "AppKit_NSButton")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other suppressionButton)]
         pub unsafe fn suppressionButton(&self) -> Option<Id<NSButton>>;
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessoryView)]
         pub unsafe fn accessoryView(&self) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessoryView:)]
         pub unsafe fn setAccessoryView(&self, accessory_view: Option<&NSView>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(layout)]
         pub unsafe fn layout(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(runModal)]
         pub unsafe fn runModal(&self) -> NSModalResponse;
 
         #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(beginSheetModalForWindow:completionHandler:)]
         pub unsafe fn beginSheetModalForWindow_completionHandler(
             &self,
@@ -130,14 +160,17 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other window)]
         pub unsafe fn window(&self) -> Id<NSWindow>;
     }
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSAlertDelegate: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSAlert")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(alertShowHelp:)]
         unsafe fn alertShowHelp(&self, alert: &NSAlert) -> bool;
@@ -152,6 +185,7 @@ extern_methods!(
     unsafe impl NSAlert {
         #[cfg(feature = "AppKit_NSWindow")]
         #[deprecated = "Use -beginSheetModalForWindow:completionHandler: instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(beginSheetModalForWindow:modalDelegate:didEndSelector:contextInfo:)]
         pub unsafe fn beginSheetModalForWindow_modalDelegate_didEndSelector_contextInfo(
             &self,

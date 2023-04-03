@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSTableCellView")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSTableCellView;
 
     #[cfg(feature = "AppKit_NSTableCellView")]
@@ -44,37 +45,47 @@ unsafe impl NSUserInterfaceItemIdentification for NSTableCellView {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSTableCellView")]
     unsafe impl NSTableCellView {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other objectValue)]
         pub unsafe fn objectValue(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setObjectValue:)]
         pub unsafe fn setObjectValue(&self, object_value: Option<&Object>);
 
         #[cfg(feature = "AppKit_NSTextField")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other textField)]
         pub unsafe fn textField(&self) -> Option<Id<NSTextField>>;
 
         #[cfg(feature = "AppKit_NSTextField")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTextField:)]
         pub unsafe fn setTextField(&self, text_field: Option<&NSTextField>);
 
         #[cfg(feature = "AppKit_NSImageView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other imageView)]
         pub unsafe fn imageView(&self) -> Option<Id<NSImageView>>;
 
         #[cfg(feature = "AppKit_NSImageView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setImageView:)]
         pub unsafe fn setImageView(&self, image_view: Option<&NSImageView>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(backgroundStyle)]
         pub unsafe fn backgroundStyle(&self) -> NSBackgroundStyle;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBackgroundStyle:)]
         pub unsafe fn setBackgroundStyle(&self, background_style: NSBackgroundStyle);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rowSizeStyle)]
         pub unsafe fn rowSizeStyle(&self) -> NSTableViewRowSizeStyle;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setRowSizeStyle:)]
         pub unsafe fn setRowSizeStyle(&self, row_size_style: NSTableViewRowSizeStyle);
 
@@ -82,6 +93,7 @@ extern_methods!(
             feature = "AppKit_NSDraggingImageComponent",
             feature = "Foundation_NSArray"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other draggingImageComponents)]
         pub unsafe fn draggingImageComponents(&self) -> Id<NSArray<NSDraggingImageComponent>>;
     }
@@ -91,6 +103,7 @@ extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(feature = "AppKit_NSTableCellView")]
     unsafe impl NSTableCellView {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }

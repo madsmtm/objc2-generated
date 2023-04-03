@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_enum!(
     #[underlying(c_uint)]
     pub enum __anonymous__ {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSAttachmentCharacter = 0xFFFC,
     }
 );
@@ -15,6 +16,7 @@ extern_enum!(
 extern_protocol!(
     pub unsafe trait NSTextAttachmentContainer: NSObjectProtocol {
         #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSTextContainer"))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other imageForBounds:textContainer:characterIndex:)]
         unsafe fn imageForBounds_textContainer_characterIndex(
             &self,
@@ -24,6 +26,7 @@ extern_protocol!(
         ) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSTextContainer")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(attachmentBoundsForTextContainer:proposedLineFragment:glyphPosition:characterIndex:)]
         unsafe fn attachmentBoundsForTextContainer_proposedLineFragment_glyphPosition_characterIndex(
             &self,
@@ -44,6 +47,7 @@ extern_protocol!(
             feature = "AppKit_NSTextContainer",
             feature = "Foundation_NSDictionary"
         ))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other imageForBounds:attributes:location:textContainer:)]
         unsafe fn imageForBounds_attributes_location_textContainer(
             &self,
@@ -57,6 +61,7 @@ extern_protocol!(
             feature = "AppKit_NSTextContainer",
             feature = "Foundation_NSDictionary"
         ))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(attachmentBoundsForAttributes:location:textContainer:proposedLineFragment:position:)]
         unsafe fn attachmentBoundsForAttributes_location_textContainer_proposedLineFragment_position(
             &self,
@@ -72,6 +77,7 @@ extern_protocol!(
             feature = "AppKit_NSTextContainer",
             feature = "AppKit_NSView"
         ))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other viewProviderForParentView:location:textContainer:)]
         unsafe fn viewProviderForParentView_location_textContainer(
             &self,
@@ -87,6 +93,7 @@ extern_protocol!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSTextAttachment")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct NSTextAttachment;
 
     #[cfg(feature = "AppKit_NSTextAttachment")]
@@ -114,6 +121,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTextAttachment")]
     unsafe impl NSTextAttachment {
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Init initWithData:ofType:)]
         pub unsafe fn initWithData_ofType(
             this: Option<Allocated<Self>>,
@@ -129,32 +137,40 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSData")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other contents)]
         pub unsafe fn contents(&self) -> Option<Id<NSData>>;
 
         #[cfg(feature = "Foundation_NSData")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(setContents:)]
         pub unsafe fn setContents(&self, contents: Option<&NSData>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other fileType)]
         pub unsafe fn fileType(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(setFileType:)]
         pub unsafe fn setFileType(&self, file_type: Option<&NSString>);
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(bounds)]
         pub unsafe fn bounds(&self) -> CGRect;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(setBounds:)]
         pub unsafe fn setBounds(&self, bounds: CGRect);
 
@@ -166,42 +182,51 @@ extern_methods!(
         #[method(setFileWrapper:)]
         pub unsafe fn setFileWrapper(&self, file_wrapper: Option<&NSFileWrapper>);
 
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other attachmentCell)]
         pub unsafe fn attachmentCell(
             &self,
         ) -> Option<Id<ProtocolObject<dyn NSTextAttachmentCellProtocol>>>;
 
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(setAttachmentCell:)]
         pub unsafe fn setAttachmentCell(
             &self,
             attachment_cell: Option<&ProtocolObject<dyn NSTextAttachmentCellProtocol>>,
         );
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(lineLayoutPadding)]
         pub unsafe fn lineLayoutPadding(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(setLineLayoutPadding:)]
         pub unsafe fn setLineLayoutPadding(&self, line_layout_padding: CGFloat);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(textAttachmentViewProviderClassForFileType:)]
         pub unsafe fn textAttachmentViewProviderClassForFileType(
             file_type: &NSString,
         ) -> Option<&'static Class>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(registerTextAttachmentViewProviderClass:forFileType:)]
         pub unsafe fn registerTextAttachmentViewProviderClass_forFileType(
             text_attachment_view_provider_class: &Class,
             file_type: &NSString,
         );
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(allowsTextAttachmentView)]
         pub unsafe fn allowsTextAttachmentView(&self) -> bool;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(setAllowsTextAttachmentView:)]
         pub unsafe fn setAllowsTextAttachmentView(&self, allows_text_attachment_view: bool);
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(usesTextAttachmentView)]
         pub unsafe fn usesTextAttachmentView(&self) -> bool;
     }
@@ -212,6 +237,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSAttributedString")]
     unsafe impl NSAttributedString {
         #[cfg(feature = "AppKit_NSTextAttachment")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other attributedStringWithAttachment:)]
         pub unsafe fn attributedStringWithAttachment(
             attachment: &NSTextAttachment,
@@ -222,6 +248,7 @@ extern_methods!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSTextAttachmentViewProvider")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct NSTextAttachmentViewProvider;
 
     #[cfg(feature = "AppKit_NSTextAttachmentViewProvider")]

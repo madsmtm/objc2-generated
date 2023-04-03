@@ -8,7 +8,9 @@ use crate::UniformTypeIdentifiers::*;
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub enum NSFileProviderModifyItemOptions {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSFileProviderModifyItemMayAlreadyExist = 1 << 0,
     }
 );

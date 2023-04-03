@@ -12,6 +12,7 @@ pub type CLBeaconMinorValue = u16;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CoreLocation_CLBeaconIdentityConstraint")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct CLBeaconIdentityConstraint;
 
     #[cfg(feature = "CoreLocation_CLBeaconIdentityConstraint")]

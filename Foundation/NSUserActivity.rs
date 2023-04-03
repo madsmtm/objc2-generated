@@ -170,9 +170,11 @@ extern_methods!(
         #[method(setEligibleForPublicIndexing:)]
         pub unsafe fn setEligibleForPublicIndexing(&self, eligible_for_public_indexing: bool);
 
+        #[cfg(not(any(target_os = "macos")))]
         #[method(isEligibleForPrediction)]
         pub unsafe fn isEligibleForPrediction(&self) -> bool;
 
+        #[cfg(not(any(target_os = "macos")))]
         #[method(setEligibleForPrediction:)]
         pub unsafe fn setEligibleForPrediction(&self, eligible_for_prediction: bool);
 

@@ -8,9 +8,13 @@ use crate::UniformTypeIdentifiers::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub enum NSFileProviderDomainRemovalMode {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSFileProviderDomainRemovalModeRemoveAll = 0,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         NSFileProviderDomainRemovalModePreserveDirtyUserData = 1,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         NSFileProviderDomainRemovalModePreserveDownloadedUserData = 2,
     }
 );
@@ -18,6 +22,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "FileProvider_NSFileProviderManager")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct NSFileProviderManager;
 
     #[cfg(feature = "FileProvider_NSFileProviderManager")]
@@ -35,6 +40,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "macos")))]
         #[method_id(@__retain_semantics Other defaultManager)]
         pub unsafe fn defaultManager() -> Id<NSFileProviderManager>;
 
@@ -51,6 +57,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(getUserVisibleURLForItemIdentifier:completionHandler:)]
         pub unsafe fn getUserVisibleURLForItemIdentifier_completionHandler(
             &self,
@@ -59,6 +66,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(getIdentifierForUserVisibleFileAtURL:completionHandler:)]
         pub unsafe fn getIdentifierForUserVisibleFileAtURL_completionHandler(
             url: &NSURL,
@@ -85,18 +93,22 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other providerIdentifier)]
         pub unsafe fn providerIdentifier(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other documentStorageURL)]
         pub unsafe fn documentStorageURL(&self) -> Id<NSURL>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other temporaryDirectoryURLWithError:_)]
         pub unsafe fn temporaryDirectoryURLWithError(&self) -> Result<Id<NSURL>, Id<NSError>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method(writePlaceholderAtURL:withMetadata:error:_)]
         pub unsafe fn writePlaceholderAtURL_withMetadata_error(
             placeholder_url: &NSURL,
@@ -104,6 +116,7 @@ extern_methods!(
         ) -> Result<(), Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other placeholderURLForURL:)]
         pub unsafe fn placeholderURLForURL(url: &NSURL) -> Id<NSURL>;
 
@@ -132,6 +145,7 @@ extern_methods!(
             feature = "Foundation_NSError",
             feature = "Foundation_NSURL"
         ))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(removeDomain:mode:completionHandler:)]
         pub unsafe fn removeDomain_mode_completionHandler(
             domain: &NSFileProviderDomain,
@@ -156,6 +170,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSError")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(signalErrorResolved:completionHandler:)]
         pub unsafe fn signalErrorResolved_completionHandler(
             &self,
@@ -164,6 +179,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSProgress")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other globalProgressForKind:)]
         pub unsafe fn globalProgressForKind(
             &self,
@@ -178,6 +194,7 @@ extern_methods!(
     /// MaterializedSet
     #[cfg(feature = "FileProvider_NSFileProviderManager")]
     unsafe impl NSFileProviderManager {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other enumeratorForMaterializedItems)]
         pub unsafe fn enumeratorForMaterializedItems(
             &self,
@@ -188,6 +205,7 @@ extern_methods!(
 extern_static!(NSFileProviderPendingSetDidChange: &'static NSNotificationName);
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait NSFileProviderPendingSetEnumerator: NSFileProviderEnumerator {
         #[cfg(feature = "FileProvider_NSFileProviderDomainVersion")]
         #[method_id(@__retain_semantics Other domainVersion)]
@@ -196,6 +214,7 @@ extern_protocol!(
         #[method(refreshInterval)]
         unsafe fn refreshInterval(&self) -> NSTimeInterval;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(isMaximumSizeReached)]
         unsafe fn isMaximumSizeReached(&self) -> bool;
     }
@@ -207,6 +226,7 @@ extern_methods!(
     /// PendingSet
     #[cfg(feature = "FileProvider_NSFileProviderManager")]
     unsafe impl NSFileProviderManager {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other enumeratorForPendingItems)]
         pub unsafe fn enumeratorForPendingItems(
             &self,
@@ -223,6 +243,7 @@ extern_methods!(
             feature = "Foundation_NSError",
             feature = "Foundation_NSURL"
         ))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(importDomain:fromDirectoryAtURL:completionHandler:)]
         pub unsafe fn importDomain_fromDirectoryAtURL_completionHandler(
             domain: &NSFileProviderDomain,
@@ -231,6 +252,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSError")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(reimportItemsBelowItemWithIdentifier:completionHandler:)]
         pub unsafe fn reimportItemsBelowItemWithIdentifier_completionHandler(
             &self,
@@ -239,6 +261,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSError")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(requestModificationOfFields:forItemWithIdentifier:options:completionHandler:)]
         pub unsafe fn requestModificationOfFields_forItemWithIdentifier_options_completionHandler(
             &self,
@@ -255,6 +278,7 @@ extern_methods!(
     #[cfg(feature = "FileProvider_NSFileProviderManager")]
     unsafe impl NSFileProviderManager {
         #[cfg(feature = "Foundation_NSError")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(evictItemWithIdentifier:completionHandler:)]
         pub unsafe fn evictItemWithIdentifier_completionHandler(
             &self,
@@ -269,6 +293,7 @@ extern_methods!(
     #[cfg(feature = "FileProvider_NSFileProviderManager")]
     unsafe impl NSFileProviderManager {
         #[cfg(feature = "Foundation_NSError")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(waitForChangesOnItemsBelowItemWithIdentifier:completionHandler:)]
         pub unsafe fn waitForChangesOnItemsBelowItemWithIdentifier_completionHandler(
             &self,
@@ -283,6 +308,7 @@ extern_methods!(
     #[cfg(feature = "FileProvider_NSFileProviderManager")]
     unsafe impl NSFileProviderManager {
         #[cfg(feature = "Foundation_NSError")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(waitForStabilizationWithCompletionHandler:)]
         pub unsafe fn waitForStabilizationWithCompletionHandler(
             &self,
@@ -293,7 +319,9 @@ extern_methods!(
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub enum NSFileProviderManagerDisconnectionOptions {
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         NSFileProviderManagerDisconnectionOptionsTemporary = 1 << 0,
     }
 );
@@ -303,6 +331,7 @@ extern_methods!(
     #[cfg(feature = "FileProvider_NSFileProviderManager")]
     unsafe impl NSFileProviderManager {
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(disconnectWithReason:options:completionHandler:)]
         pub unsafe fn disconnectWithReason_options_completionHandler(
             &self,
@@ -312,6 +341,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSError")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(reconnectWithCompletionHandler:)]
         pub unsafe fn reconnectWithCompletionHandler(
             &self,
@@ -325,6 +355,7 @@ extern_methods!(
     #[cfg(feature = "FileProvider_NSFileProviderManager")]
     unsafe impl NSFileProviderManager {
         #[cfg(feature = "Foundation_NSError")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(requestDownloadForItemWithIdentifier:requestedRange:completionHandler:)]
         pub unsafe fn requestDownloadForItemWithIdentifier_requestedRange_completionHandler(
             &self,

@@ -7,34 +7,53 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSSegmentSwitchTracking {
+        #[cfg(not(any(target_os = "ios")))]
         NSSegmentSwitchTrackingSelectOne = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSSegmentSwitchTrackingSelectAny = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSSegmentSwitchTrackingMomentary = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSSegmentSwitchTrackingMomentaryAccelerator = 3,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSSegmentStyle {
+        #[cfg(not(any(target_os = "ios")))]
         NSSegmentStyleAutomatic = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSSegmentStyleRounded = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSSegmentStyleRoundRect = 3,
+        #[cfg(not(any(target_os = "ios")))]
         NSSegmentStyleTexturedSquare = 4,
+        #[cfg(not(any(target_os = "ios")))]
         NSSegmentStyleSmallSquare = 6,
+        #[cfg(not(any(target_os = "ios")))]
         NSSegmentStyleSeparated = 8,
+        #[cfg(not(any(target_os = "ios")))]
         NSSegmentStyleTexturedRounded = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSSegmentStyleCapsule = 5,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSSegmentDistribution {
+        #[cfg(not(any(target_os = "ios")))]
         NSSegmentDistributionFit = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSSegmentDistributionFill = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSSegmentDistributionFillEqually = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSSegmentDistributionFillProportionally = 3,
     }
 );
@@ -42,6 +61,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSSegmentedControl")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSSegmentedControl;
 
     #[cfg(feature = "AppKit_NSSegmentedControl")]
@@ -81,35 +101,45 @@ unsafe impl NSUserInterfaceItemIdentification for NSSegmentedControl {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSSegmentedControl")]
     unsafe impl NSSegmentedControl {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(segmentCount)]
         pub unsafe fn segmentCount(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSegmentCount:)]
         pub unsafe fn setSegmentCount(&self, segment_count: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectedSegment)]
         pub unsafe fn selectedSegment(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSelectedSegment:)]
         pub unsafe fn setSelectedSegment(&self, selected_segment: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectSegmentWithTag:)]
         pub unsafe fn selectSegmentWithTag(&self, tag: NSInteger) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setWidth:forSegment:)]
         pub unsafe fn setWidth_forSegment(&self, width: CGFloat, segment: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(widthForSegment:)]
         pub unsafe fn widthForSegment(&self, segment: NSInteger) -> CGFloat;
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setImage:forSegment:)]
         pub unsafe fn setImage_forSegment(&self, image: Option<&NSImage>, segment: NSInteger);
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other imageForSegment:)]
         pub unsafe fn imageForSegment(&self, segment: NSInteger) -> Option<Id<NSImage>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setImageScaling:forSegment:)]
         pub unsafe fn setImageScaling_forSegment(
             &self,
@@ -117,51 +147,65 @@ extern_methods!(
             segment: NSInteger,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(imageScalingForSegment:)]
         pub unsafe fn imageScalingForSegment(&self, segment: NSInteger) -> NSImageScaling;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setLabel:forSegment:)]
         pub unsafe fn setLabel_forSegment(&self, label: &NSString, segment: NSInteger);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other labelForSegment:)]
         pub unsafe fn labelForSegment(&self, segment: NSInteger) -> Option<Id<NSString>>;
 
         #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMenu:forSegment:)]
         pub unsafe fn setMenu_forSegment(&self, menu: Option<&NSMenu>, segment: NSInteger);
 
         #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other menuForSegment:)]
         pub unsafe fn menuForSegment(&self, segment: NSInteger) -> Option<Id<NSMenu>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSelected:forSegment:)]
         pub unsafe fn setSelected_forSegment(&self, selected: bool, segment: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isSelectedForSegment:)]
         pub unsafe fn isSelectedForSegment(&self, segment: NSInteger) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setEnabled:forSegment:)]
         pub unsafe fn setEnabled_forSegment(&self, enabled: bool, segment: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isEnabledForSegment:)]
         pub unsafe fn isEnabledForSegment(&self, segment: NSInteger) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setToolTip:forSegment:)]
         pub unsafe fn setToolTip_forSegment(&self, tool_tip: Option<&NSString>, segment: NSInteger);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other toolTipForSegment:)]
         pub unsafe fn toolTipForSegment(&self, segment: NSInteger) -> Option<Id<NSString>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTag:forSegment:)]
         pub unsafe fn setTag_forSegment(&self, tag: NSInteger, segment: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(tagForSegment:)]
         pub unsafe fn tagForSegment(&self, segment: NSInteger) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setShowsMenuIndicator:forSegment:)]
         pub unsafe fn setShowsMenuIndicator_forSegment(
             &self,
@@ -169,44 +213,56 @@ extern_methods!(
             segment: NSInteger,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(showsMenuIndicatorForSegment:)]
         pub unsafe fn showsMenuIndicatorForSegment(&self, segment: NSInteger) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(segmentStyle)]
         pub unsafe fn segmentStyle(&self) -> NSSegmentStyle;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSegmentStyle:)]
         pub unsafe fn setSegmentStyle(&self, segment_style: NSSegmentStyle);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isSpringLoaded)]
         pub unsafe fn isSpringLoaded(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSpringLoaded:)]
         pub unsafe fn setSpringLoaded(&self, spring_loaded: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(trackingMode)]
         pub unsafe fn trackingMode(&self) -> NSSegmentSwitchTracking;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTrackingMode:)]
         pub unsafe fn setTrackingMode(&self, tracking_mode: NSSegmentSwitchTracking);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(doubleValueForSelectedSegment)]
         pub unsafe fn doubleValueForSelectedSegment(&self) -> c_double;
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other selectedSegmentBezelColor)]
         pub unsafe fn selectedSegmentBezelColor(&self) -> Option<Id<NSColor>>;
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSelectedSegmentBezelColor:)]
         pub unsafe fn setSelectedSegmentBezelColor(
             &self,
             selected_segment_bezel_color: Option<&NSColor>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(indexOfSelectedItem)]
         pub unsafe fn indexOfSelectedItem(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAlignment:forSegment:)]
         pub unsafe fn setAlignment_forSegment(
             &self,
@@ -214,12 +270,15 @@ extern_methods!(
             segment: NSInteger,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(alignmentForSegment:)]
         pub unsafe fn alignmentForSegment(&self, segment: NSInteger) -> NSTextAlignment;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(segmentDistribution)]
         pub unsafe fn segmentDistribution(&self) -> NSSegmentDistribution;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSegmentDistribution:)]
         pub unsafe fn setSegmentDistribution(&self, segment_distribution: NSSegmentDistribution);
 
@@ -227,6 +286,7 @@ extern_methods!(
             feature = "AppKit_NSUserInterfaceCompressionOptions",
             feature = "Foundation_NSArray"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(compressWithPrioritizedCompressionOptions:)]
         pub unsafe fn compressWithPrioritizedCompressionOptions(
             &self,
@@ -237,6 +297,7 @@ extern_methods!(
             feature = "AppKit_NSUserInterfaceCompressionOptions",
             feature = "Foundation_NSArray"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(minimumSizeWithPrioritizedCompressionOptions:)]
         pub unsafe fn minimumSizeWithPrioritizedCompressionOptions(
             &self,
@@ -244,6 +305,7 @@ extern_methods!(
         ) -> NSSize;
 
         #[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other activeCompressionOptions)]
         pub unsafe fn activeCompressionOptions(&self) -> Id<NSUserInterfaceCompressionOptions>;
     }
@@ -254,6 +316,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSSegmentedControl")]
     unsafe impl NSSegmentedControl {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other segmentedControlWithLabels:trackingMode:target:action:)]
         pub unsafe fn segmentedControlWithLabels_trackingMode_target_action(
             labels: &NSArray<NSString>,
@@ -263,6 +326,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other segmentedControlWithImages:trackingMode:target:action:)]
         pub unsafe fn segmentedControlWithImages_trackingMode_target_action(
             images: &NSArray<NSImage>,
@@ -277,6 +341,7 @@ extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(feature = "AppKit_NSSegmentedControl")]
     unsafe impl NSSegmentedControl {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }

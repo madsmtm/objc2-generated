@@ -14,6 +14,7 @@ pub type NSSoundPlaybackDeviceIdentifier = NSString;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSSound")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSSound;
 
     #[cfg(feature = "AppKit_NSSound")]
@@ -40,10 +41,12 @@ unsafe impl NSSecureCoding for NSSound {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSSound")]
     unsafe impl NSSound {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other soundNamed:)]
         pub unsafe fn soundNamed(name: &NSSoundName) -> Option<Id<NSSound>>;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:byReference:)]
         pub unsafe fn initWithContentsOfURL_byReference(
             this: Option<Allocated<Self>>,
@@ -52,6 +55,7 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithContentsOfFile:byReference:)]
         pub unsafe fn initWithContentsOfFile_byReference(
             this: Option<Allocated<Self>>,
@@ -60,27 +64,33 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSData")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithData:)]
         pub unsafe fn initWithData(
             this: Option<Allocated<Self>>,
             data: &NSData,
         ) -> Option<Id<Self>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setName:)]
         pub unsafe fn setName(&self, string: Option<&NSSoundName>) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Id<NSSoundName>>;
 
         #[cfg(feature = "AppKit_NSPasteboard")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(canInitWithPasteboard:)]
         pub unsafe fn canInitWithPasteboard(pasteboard: &NSPasteboard) -> bool;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other soundUnfilteredTypes)]
         pub unsafe fn soundUnfilteredTypes() -> Id<NSArray<NSString>>;
 
         #[cfg(feature = "AppKit_NSPasteboard")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithPasteboard:)]
         pub unsafe fn initWithPasteboard(
             this: Option<Allocated<Self>>,
@@ -88,56 +98,73 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "AppKit_NSPasteboard")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(writeToPasteboard:)]
         pub unsafe fn writeToPasteboard(&self, pasteboard: &NSPasteboard);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(play)]
         pub unsafe fn play(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(pause)]
         pub unsafe fn pause(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(resume)]
         pub unsafe fn resume(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(stop)]
         pub unsafe fn stop(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isPlaying)]
         pub unsafe fn isPlaying(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSSoundDelegate>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSSoundDelegate>>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(duration)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(volume)]
         pub unsafe fn volume(&self) -> c_float;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setVolume:)]
         pub unsafe fn setVolume(&self, volume: c_float);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(currentTime)]
         pub unsafe fn currentTime(&self) -> NSTimeInterval;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCurrentTime:)]
         pub unsafe fn setCurrentTime(&self, current_time: NSTimeInterval);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(loops)]
         pub unsafe fn loops(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setLoops:)]
         pub unsafe fn setLoops(&self, loops: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other playbackDeviceIdentifier)]
         pub unsafe fn playbackDeviceIdentifier(
             &self,
         ) -> Option<Id<NSSoundPlaybackDeviceIdentifier>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPlaybackDeviceIdentifier:)]
         pub unsafe fn setPlaybackDeviceIdentifier(
             &self,
@@ -146,11 +173,13 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setChannelMapping:)]
         pub unsafe fn setChannelMapping(&self, channel_mapping: Option<&NSArray>);
 
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other channelMapping)]
         pub unsafe fn channelMapping(&self) -> Option<Id<NSArray>>;
     }
@@ -162,19 +191,23 @@ extern_methods!(
     unsafe impl NSSound {
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other soundUnfilteredFileTypes)]
         pub unsafe fn soundUnfilteredFileTypes() -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other soundUnfilteredPasteboardTypes)]
         pub unsafe fn soundUnfilteredPasteboardTypes() -> Option<Id<NSArray>>;
     }
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSSoundDelegate: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSSound")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(sound:didFinishPlaying:)]
         unsafe fn sound_didFinishPlaying(&self, sound: &NSSound, flag: bool);
@@ -188,6 +221,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSBundle")]
     unsafe impl NSBundle {
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other pathForSoundResource:)]
         pub unsafe fn pathForSoundResource(&self, name: &NSSoundName) -> Option<Id<NSString>>;
     }

@@ -8,17 +8,29 @@ extern_static!(CLSErrorCodeDomain: Option<&'static NSString>);
 
 ns_error_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub enum CLSErrorCode {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLSErrorCodeNone = 0,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLSErrorCodeClassKitUnavailable = 1,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLSErrorCodeInvalidArgument = 2,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLSErrorCodeInvalidModification = 3,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLSErrorCodeAuthorizationDenied = 4,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLSErrorCodeDatabaseInaccessible = 5,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLSErrorCodeLimits = 6,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLSErrorCodeInvalidCreate = 7,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLSErrorCodeInvalidUpdate = 8,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLSErrorCodePartialFailure = 9,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLSErrorCodeInvalidAccountCredentials = 10,
     }
 );

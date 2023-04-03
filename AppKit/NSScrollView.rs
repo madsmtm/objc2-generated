@@ -7,9 +7,13 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSScrollElasticity {
+        #[cfg(not(any(target_os = "ios")))]
         NSScrollElasticityAutomatic = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSScrollElasticityNone = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSScrollElasticityAllowed = 2,
     }
 );
@@ -17,6 +21,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSScrollView")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSScrollView;
 
     #[cfg(feature = "AppKit_NSScrollView")]
@@ -56,16 +61,19 @@ unsafe impl NSUserInterfaceItemIdentification for NSScrollView {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSScrollView")]
     unsafe impl NSScrollView {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
         ) -> Option<Id<Self>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(frameSizeForContentSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle:)]
         pub unsafe fn frameSizeForContentSize_horizontalScrollerClass_verticalScrollerClass_borderType_controlSize_scrollerStyle(
             c_size: NSSize,
@@ -76,6 +84,7 @@ extern_methods!(
             scroller_style: NSScrollerStyle,
         ) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(contentSizeForFrameSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle:)]
         pub unsafe fn contentSizeForFrameSize_horizontalScrollerClass_verticalScrollerClass_borderType_controlSize_scrollerStyle(
             f_size: NSSize,
@@ -87,6 +96,7 @@ extern_methods!(
         ) -> NSSize;
 
         #[deprecated = "Use +frameSizeForContentSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle: instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(frameSizeForContentSize:hasHorizontalScroller:hasVerticalScroller:borderType:)]
         pub unsafe fn frameSizeForContentSize_hasHorizontalScroller_hasVerticalScroller_borderType(
             c_size: NSSize,
@@ -96,6 +106,7 @@ extern_methods!(
         ) -> NSSize;
 
         #[deprecated = "+contentSizeForFrameSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle: instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(contentSizeForFrameSize:hasHorizontalScroller:hasVerticalScroller:borderType:)]
         pub unsafe fn contentSizeForFrameSize_hasHorizontalScroller_hasVerticalScroller_borderType(
             f_size: NSSize,
@@ -104,207 +115,269 @@ extern_methods!(
             r#type: NSBorderType,
         ) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(documentVisibleRect)]
         pub unsafe fn documentVisibleRect(&self) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(contentSize)]
         pub unsafe fn contentSize(&self) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other documentView)]
         pub unsafe fn documentView(&self) -> Option<Id<NSView>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDocumentView:)]
         pub unsafe fn setDocumentView(&self, document_view: Option<&NSView>);
 
         #[cfg(feature = "AppKit_NSClipView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other contentView)]
         pub unsafe fn contentView(&self) -> Id<NSClipView>;
 
         #[cfg(feature = "AppKit_NSClipView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setContentView:)]
         pub unsafe fn setContentView(&self, content_view: &NSClipView);
 
         #[cfg(feature = "AppKit_NSCursor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other documentCursor)]
         pub unsafe fn documentCursor(&self) -> Option<Id<NSCursor>>;
 
         #[cfg(feature = "AppKit_NSCursor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDocumentCursor:)]
         pub unsafe fn setDocumentCursor(&self, document_cursor: Option<&NSCursor>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(borderType)]
         pub unsafe fn borderType(&self) -> NSBorderType;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBorderType:)]
         pub unsafe fn setBorderType(&self, border_type: NSBorderType);
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Id<NSColor>;
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: &NSColor);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawsBackground)]
         pub unsafe fn drawsBackground(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDrawsBackground:)]
         pub unsafe fn setDrawsBackground(&self, draws_background: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(hasVerticalScroller)]
         pub unsafe fn hasVerticalScroller(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setHasVerticalScroller:)]
         pub unsafe fn setHasVerticalScroller(&self, has_vertical_scroller: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(hasHorizontalScroller)]
         pub unsafe fn hasHorizontalScroller(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setHasHorizontalScroller:)]
         pub unsafe fn setHasHorizontalScroller(&self, has_horizontal_scroller: bool);
 
         #[cfg(feature = "AppKit_NSScroller")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other verticalScroller)]
         pub unsafe fn verticalScroller(&self) -> Option<Id<NSScroller>>;
 
         #[cfg(feature = "AppKit_NSScroller")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setVerticalScroller:)]
         pub unsafe fn setVerticalScroller(&self, vertical_scroller: Option<&NSScroller>);
 
         #[cfg(feature = "AppKit_NSScroller")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other horizontalScroller)]
         pub unsafe fn horizontalScroller(&self) -> Option<Id<NSScroller>>;
 
         #[cfg(feature = "AppKit_NSScroller")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setHorizontalScroller:)]
         pub unsafe fn setHorizontalScroller(&self, horizontal_scroller: Option<&NSScroller>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(autohidesScrollers)]
         pub unsafe fn autohidesScrollers(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAutohidesScrollers:)]
         pub unsafe fn setAutohidesScrollers(&self, autohides_scrollers: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(horizontalLineScroll)]
         pub unsafe fn horizontalLineScroll(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setHorizontalLineScroll:)]
         pub unsafe fn setHorizontalLineScroll(&self, horizontal_line_scroll: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(verticalLineScroll)]
         pub unsafe fn verticalLineScroll(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setVerticalLineScroll:)]
         pub unsafe fn setVerticalLineScroll(&self, vertical_line_scroll: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(lineScroll)]
         pub unsafe fn lineScroll(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setLineScroll:)]
         pub unsafe fn setLineScroll(&self, line_scroll: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(horizontalPageScroll)]
         pub unsafe fn horizontalPageScroll(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setHorizontalPageScroll:)]
         pub unsafe fn setHorizontalPageScroll(&self, horizontal_page_scroll: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(verticalPageScroll)]
         pub unsafe fn verticalPageScroll(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setVerticalPageScroll:)]
         pub unsafe fn setVerticalPageScroll(&self, vertical_page_scroll: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(pageScroll)]
         pub unsafe fn pageScroll(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPageScroll:)]
         pub unsafe fn setPageScroll(&self, page_scroll: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(scrollsDynamically)]
         pub unsafe fn scrollsDynamically(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setScrollsDynamically:)]
         pub unsafe fn setScrollsDynamically(&self, scrolls_dynamically: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(tile)]
         pub unsafe fn tile(&self);
 
         #[cfg(feature = "AppKit_NSClipView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(reflectScrolledClipView:)]
         pub unsafe fn reflectScrolledClipView(&self, c_view: &NSClipView);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(scrollWheel:)]
         pub unsafe fn scrollWheel(&self, event: &NSEvent);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(scrollerStyle)]
         pub unsafe fn scrollerStyle(&self) -> NSScrollerStyle;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setScrollerStyle:)]
         pub unsafe fn setScrollerStyle(&self, scroller_style: NSScrollerStyle);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(scrollerKnobStyle)]
         pub unsafe fn scrollerKnobStyle(&self) -> NSScrollerKnobStyle;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setScrollerKnobStyle:)]
         pub unsafe fn setScrollerKnobStyle(&self, scroller_knob_style: NSScrollerKnobStyle);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(flashScrollers)]
         pub unsafe fn flashScrollers(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(horizontalScrollElasticity)]
         pub unsafe fn horizontalScrollElasticity(&self) -> NSScrollElasticity;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setHorizontalScrollElasticity:)]
         pub unsafe fn setHorizontalScrollElasticity(
             &self,
             horizontal_scroll_elasticity: NSScrollElasticity,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(verticalScrollElasticity)]
         pub unsafe fn verticalScrollElasticity(&self) -> NSScrollElasticity;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setVerticalScrollElasticity:)]
         pub unsafe fn setVerticalScrollElasticity(
             &self,
             vertical_scroll_elasticity: NSScrollElasticity,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(usesPredominantAxisScrolling)]
         pub unsafe fn usesPredominantAxisScrolling(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setUsesPredominantAxisScrolling:)]
         pub unsafe fn setUsesPredominantAxisScrolling(&self, uses_predominant_axis_scrolling: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(allowsMagnification)]
         pub unsafe fn allowsMagnification(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAllowsMagnification:)]
         pub unsafe fn setAllowsMagnification(&self, allows_magnification: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(magnification)]
         pub unsafe fn magnification(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMagnification:)]
         pub unsafe fn setMagnification(&self, magnification: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(maxMagnification)]
         pub unsafe fn maxMagnification(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMaxMagnification:)]
         pub unsafe fn setMaxMagnification(&self, max_magnification: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(minMagnification)]
         pub unsafe fn minMagnification(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMinMagnification:)]
         pub unsafe fn setMinMagnification(&self, min_magnification: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(magnifyToFitRect:)]
         pub unsafe fn magnifyToFitRect(&self, rect: NSRect);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMagnification:centeredAtPoint:)]
         pub unsafe fn setMagnification_centeredAtPoint(
             &self,
@@ -312,27 +385,34 @@ extern_methods!(
             point: NSPoint,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(addFloatingSubview:forAxis:)]
         pub unsafe fn addFloatingSubview_forAxis(&self, view: &NSView, axis: NSEventGestureAxis);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(automaticallyAdjustsContentInsets)]
         pub unsafe fn automaticallyAdjustsContentInsets(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAutomaticallyAdjustsContentInsets:)]
         pub unsafe fn setAutomaticallyAdjustsContentInsets(
             &self,
             automatically_adjusts_content_insets: bool,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(contentInsets)]
         pub unsafe fn contentInsets(&self) -> NSEdgeInsets;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setContentInsets:)]
         pub unsafe fn setContentInsets(&self, content_insets: NSEdgeInsets);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(scrollerInsets)]
         pub unsafe fn scrollerInsets(&self) -> NSEdgeInsets;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setScrollerInsets:)]
         pub unsafe fn setScrollerInsets(&self, scroller_insets: NSEdgeInsets);
     }
@@ -352,43 +432,55 @@ extern_methods!(
     /// NSRulerSupport
     #[cfg(feature = "AppKit_NSScrollView")]
     unsafe impl NSScrollView {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rulerViewClass)]
         pub unsafe fn rulerViewClass() -> Option<&'static Class>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setRulerViewClass:)]
         pub unsafe fn setRulerViewClass(ruler_view_class: Option<&Class>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rulersVisible)]
         pub unsafe fn rulersVisible(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setRulersVisible:)]
         pub unsafe fn setRulersVisible(&self, rulers_visible: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(hasHorizontalRuler)]
         pub unsafe fn hasHorizontalRuler(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setHasHorizontalRuler:)]
         pub unsafe fn setHasHorizontalRuler(&self, has_horizontal_ruler: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(hasVerticalRuler)]
         pub unsafe fn hasVerticalRuler(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setHasVerticalRuler:)]
         pub unsafe fn setHasVerticalRuler(&self, has_vertical_ruler: bool);
 
         #[cfg(feature = "AppKit_NSRulerView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other horizontalRulerView)]
         pub unsafe fn horizontalRulerView(&self) -> Option<Id<NSRulerView>>;
 
         #[cfg(feature = "AppKit_NSRulerView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setHorizontalRulerView:)]
         pub unsafe fn setHorizontalRulerView(&self, horizontal_ruler_view: Option<&NSRulerView>);
 
         #[cfg(feature = "AppKit_NSRulerView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other verticalRulerView)]
         pub unsafe fn verticalRulerView(&self) -> Option<Id<NSRulerView>>;
 
         #[cfg(feature = "AppKit_NSRulerView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setVerticalRulerView:)]
         pub unsafe fn setVerticalRulerView(&self, vertical_ruler_view: Option<&NSRulerView>);
     }
@@ -396,9 +488,13 @@ extern_methods!(
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSScrollViewFindBarPosition {
+        #[cfg(not(any(target_os = "ios")))]
         NSScrollViewFindBarPositionAboveHorizontalRuler = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSScrollViewFindBarPositionAboveContent = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSScrollViewFindBarPositionBelowContent = 2,
     }
 );
@@ -407,9 +503,11 @@ extern_methods!(
     /// NSFindBarSupport
     #[cfg(feature = "AppKit_NSScrollView")]
     unsafe impl NSScrollView {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(findBarPosition)]
         pub unsafe fn findBarPosition(&self) -> NSScrollViewFindBarPosition;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFindBarPosition:)]
         pub unsafe fn setFindBarPosition(&self, find_bar_position: NSScrollViewFindBarPosition);
     }

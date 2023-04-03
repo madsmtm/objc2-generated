@@ -63,9 +63,11 @@ extern_methods!(
         #[method(setTimeZone:)]
         pub unsafe fn setTimeZone(&self, time_zone: Option<&NSTimeZone>);
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other pointOfInterestCategory)]
         pub unsafe fn pointOfInterestCategory(&self) -> Option<Id<MKPointOfInterestCategory>>;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(setPointOfInterestCategory:)]
         pub unsafe fn setPointOfInterestCategory(
             &self,

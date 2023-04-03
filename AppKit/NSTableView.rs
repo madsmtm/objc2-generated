@@ -7,80 +7,119 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSTableViewDropOperation {
+        #[cfg(not(any(target_os = "ios")))]
         NSTableViewDropOn = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSTableViewDropAbove = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSTableViewColumnAutoresizingStyle {
+        #[cfg(not(any(target_os = "ios")))]
         NSTableViewNoColumnAutoresizing = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSTableViewUniformColumnAutoresizingStyle = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSTableViewSequentialColumnAutoresizingStyle = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSTableViewReverseSequentialColumnAutoresizingStyle = 3,
+        #[cfg(not(any(target_os = "ios")))]
         NSTableViewLastColumnOnlyAutoresizingStyle = 4,
+        #[cfg(not(any(target_os = "ios")))]
         NSTableViewFirstColumnOnlyAutoresizingStyle = 5,
     }
 );
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSTableViewGridLineStyle {
+        #[cfg(not(any(target_os = "ios")))]
         NSTableViewGridNone = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSTableViewSolidVerticalGridLineMask = 1 << 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSTableViewSolidHorizontalGridLineMask = 1 << 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSTableViewDashedHorizontalGridLineMask = 1 << 3,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSTableViewRowSizeStyle {
+        #[cfg(not(any(target_os = "ios")))]
         NSTableViewRowSizeStyleDefault = -1,
+        #[cfg(not(any(target_os = "ios")))]
         NSTableViewRowSizeStyleCustom = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSTableViewRowSizeStyleSmall = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSTableViewRowSizeStyleMedium = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSTableViewRowSizeStyleLarge = 3,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSTableViewStyle {
+        #[cfg(not(any(target_os = "ios")))]
         NSTableViewStyleAutomatic = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSTableViewStyleFullWidth = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSTableViewStyleInset = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSTableViewStyleSourceList = 3,
+        #[cfg(not(any(target_os = "ios")))]
         NSTableViewStylePlain = 4,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSTableViewSelectionHighlightStyle {
+        #[cfg(not(any(target_os = "ios")))]
         NSTableViewSelectionHighlightStyleNone = -1,
+        #[cfg(not(any(target_os = "ios")))]
         NSTableViewSelectionHighlightStyleRegular = 0,
         #[deprecated = "Set the NSTableView.style property to NSTableViewStyleSourceList instead."]
+        #[cfg(not(any(target_os = "ios")))]
         NSTableViewSelectionHighlightStyleSourceList = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSTableViewDraggingDestinationFeedbackStyle {
+        #[cfg(not(any(target_os = "ios")))]
         NSTableViewDraggingDestinationFeedbackStyleNone = -1,
+        #[cfg(not(any(target_os = "ios")))]
         NSTableViewDraggingDestinationFeedbackStyleRegular = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSTableViewDraggingDestinationFeedbackStyleSourceList = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSTableViewDraggingDestinationFeedbackStyleGap = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSTableRowActionEdge {
+        #[cfg(not(any(target_os = "ios")))]
         NSTableRowActionEdgeLeading = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSTableRowActionEdgeTrailing = 1,
     }
 );
@@ -89,13 +128,21 @@ pub type NSTableViewAutosaveName = NSString;
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSTableViewAnimationOptions {
+        #[cfg(not(any(target_os = "ios")))]
         NSTableViewAnimationEffectNone = 0x0,
+        #[cfg(not(any(target_os = "ios")))]
         NSTableViewAnimationEffectFade = 0x1,
+        #[cfg(not(any(target_os = "ios")))]
         NSTableViewAnimationEffectGap = 0x2,
+        #[cfg(not(any(target_os = "ios")))]
         NSTableViewAnimationSlideUp = 0x10,
+        #[cfg(not(any(target_os = "ios")))]
         NSTableViewAnimationSlideDown = 0x20,
+        #[cfg(not(any(target_os = "ios")))]
         NSTableViewAnimationSlideLeft = 0x30,
+        #[cfg(not(any(target_os = "ios")))]
         NSTableViewAnimationSlideRight = 0x40,
     }
 );
@@ -103,6 +150,7 @@ ns_options!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSTableView")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSTableView;
 
     #[cfg(feature = "AppKit_NSTableView")]
@@ -157,28 +205,34 @@ unsafe impl NSUserInterfaceValidations for NSTableView {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSTableView")]
     unsafe impl NSTableView {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
         ) -> Option<Id<Self>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other dataSource)]
         pub unsafe fn dataSource(&self) -> Option<Id<ProtocolObject<dyn NSTableViewDataSource>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(
             &self,
             data_source: Option<&ProtocolObject<dyn NSTableViewDataSource>>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSTableViewDelegate>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -186,55 +240,71 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSTableHeaderView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other headerView)]
         pub unsafe fn headerView(&self) -> Option<Id<NSTableHeaderView>>;
 
         #[cfg(feature = "AppKit_NSTableHeaderView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setHeaderView:)]
         pub unsafe fn setHeaderView(&self, header_view: Option<&NSTableHeaderView>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other cornerView)]
         pub unsafe fn cornerView(&self) -> Option<Id<NSView>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCornerView:)]
         pub unsafe fn setCornerView(&self, corner_view: Option<&NSView>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(allowsColumnReordering)]
         pub unsafe fn allowsColumnReordering(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAllowsColumnReordering:)]
         pub unsafe fn setAllowsColumnReordering(&self, allows_column_reordering: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(allowsColumnResizing)]
         pub unsafe fn allowsColumnResizing(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAllowsColumnResizing:)]
         pub unsafe fn setAllowsColumnResizing(&self, allows_column_resizing: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(columnAutoresizingStyle)]
         pub unsafe fn columnAutoresizingStyle(&self) -> NSTableViewColumnAutoresizingStyle;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setColumnAutoresizingStyle:)]
         pub unsafe fn setColumnAutoresizingStyle(
             &self,
             column_autoresizing_style: NSTableViewColumnAutoresizingStyle,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(gridStyleMask)]
         pub unsafe fn gridStyleMask(&self) -> NSTableViewGridLineStyle;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setGridStyleMask:)]
         pub unsafe fn setGridStyleMask(&self, grid_style_mask: NSTableViewGridLineStyle);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(intercellSpacing)]
         pub unsafe fn intercellSpacing(&self) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setIntercellSpacing:)]
         pub unsafe fn setIntercellSpacing(&self, intercell_spacing: NSSize);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(usesAlternatingRowBackgroundColors)]
         pub unsafe fn usesAlternatingRowBackgroundColors(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setUsesAlternatingRowBackgroundColors:)]
         pub unsafe fn setUsesAlternatingRowBackgroundColors(
             &self,
@@ -242,61 +312,78 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Id<NSColor>;
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: &NSColor);
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other gridColor)]
         pub unsafe fn gridColor(&self) -> Id<NSColor>;
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setGridColor:)]
         pub unsafe fn setGridColor(&self, grid_color: &NSColor);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rowSizeStyle)]
         pub unsafe fn rowSizeStyle(&self) -> NSTableViewRowSizeStyle;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setRowSizeStyle:)]
         pub unsafe fn setRowSizeStyle(&self, row_size_style: NSTableViewRowSizeStyle);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(effectiveRowSizeStyle)]
         pub unsafe fn effectiveRowSizeStyle(&self) -> NSTableViewRowSizeStyle;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rowHeight)]
         pub unsafe fn rowHeight(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setRowHeight:)]
         pub unsafe fn setRowHeight(&self, row_height: CGFloat);
 
         #[cfg(feature = "Foundation_NSIndexSet")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(noteHeightOfRowsWithIndexesChanged:)]
         pub unsafe fn noteHeightOfRowsWithIndexesChanged(&self, index_set: &NSIndexSet);
 
         #[cfg(all(feature = "AppKit_NSTableColumn", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other tableColumns)]
         pub unsafe fn tableColumns(&self) -> Id<NSArray<NSTableColumn>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(numberOfColumns)]
         pub unsafe fn numberOfColumns(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(numberOfRows)]
         pub unsafe fn numberOfRows(&self) -> NSInteger;
 
         #[cfg(feature = "AppKit_NSTableColumn")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(addTableColumn:)]
         pub unsafe fn addTableColumn(&self, table_column: &NSTableColumn);
 
         #[cfg(feature = "AppKit_NSTableColumn")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeTableColumn:)]
         pub unsafe fn removeTableColumn(&self, table_column: &NSTableColumn);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(moveColumn:toColumn:)]
         pub unsafe fn moveColumn_toColumn(&self, old_index: NSInteger, new_index: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(columnWithIdentifier:)]
         pub unsafe fn columnWithIdentifier(
             &self,
@@ -304,34 +391,43 @@ extern_methods!(
         ) -> NSInteger;
 
         #[cfg(feature = "AppKit_NSTableColumn")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other tableColumnWithIdentifier:)]
         pub unsafe fn tableColumnWithIdentifier(
             &self,
             identifier: &NSUserInterfaceItemIdentifier,
         ) -> Option<Id<NSTableColumn>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(tile)]
         pub unsafe fn tile(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(sizeToFit)]
         pub unsafe fn sizeToFit(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(sizeLastColumnToFit)]
         pub unsafe fn sizeLastColumnToFit(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(scrollRowToVisible:)]
         pub unsafe fn scrollRowToVisible(&self, row: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(scrollColumnToVisible:)]
         pub unsafe fn scrollColumnToVisible(&self, column: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(reloadData)]
         pub unsafe fn reloadData(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(noteNumberOfRowsChanged)]
         pub unsafe fn noteNumberOfRowsChanged(&self);
 
         #[cfg(feature = "Foundation_NSIndexSet")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(reloadDataForRowIndexes:columnIndexes:)]
         pub unsafe fn reloadDataForRowIndexes_columnIndexes(
             &self,
@@ -339,21 +435,27 @@ extern_methods!(
             column_indexes: &NSIndexSet,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(editedColumn)]
         pub unsafe fn editedColumn(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(editedRow)]
         pub unsafe fn editedRow(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(clickedColumn)]
         pub unsafe fn clickedColumn(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(clickedRow)]
         pub unsafe fn clickedRow(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(doubleAction)]
         pub unsafe fn doubleAction(&self) -> Option<Sel>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDoubleAction:)]
         pub unsafe fn setDoubleAction(&self, double_action: Option<Sel>);
 
@@ -361,6 +463,7 @@ extern_methods!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSSortDescriptor"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other sortDescriptors)]
         pub unsafe fn sortDescriptors(&self) -> Id<NSArray<NSSortDescriptor>>;
 
@@ -368,10 +471,12 @@ extern_methods!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSSortDescriptor"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSortDescriptors:)]
         pub unsafe fn setSortDescriptors(&self, sort_descriptors: &NSArray<NSSortDescriptor>);
 
         #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSTableColumn"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setIndicatorImage:inTableColumn:)]
         pub unsafe fn setIndicatorImage_inTableColumn(
             &self,
@@ -380,6 +485,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSTableColumn"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other indicatorImageInTableColumn:)]
         pub unsafe fn indicatorImageInTableColumn(
             &self,
@@ -387,23 +493,28 @@ extern_methods!(
         ) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSTableColumn")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other highlightedTableColumn)]
         pub unsafe fn highlightedTableColumn(&self) -> Option<Id<NSTableColumn>>;
 
         #[cfg(feature = "AppKit_NSTableColumn")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setHighlightedTableColumn:)]
         pub unsafe fn setHighlightedTableColumn(
             &self,
             highlighted_table_column: Option<&NSTableColumn>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(verticalMotionCanBeginDrag)]
         pub unsafe fn verticalMotionCanBeginDrag(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setVerticalMotionCanBeginDrag:)]
         pub unsafe fn setVerticalMotionCanBeginDrag(&self, vertical_motion_can_begin_drag: bool);
 
         #[cfg(feature = "Foundation_NSIndexSet")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(canDragRowsWithIndexes:atPoint:)]
         pub unsafe fn canDragRowsWithIndexes_atPoint(
             &self,
@@ -418,6 +529,7 @@ extern_methods!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSIndexSet"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other dragImageForRowsWithIndexes:tableColumns:event:offset:)]
         pub unsafe fn dragImageForRowsWithIndexes_tableColumns_event_offset(
             &self,
@@ -427,6 +539,7 @@ extern_methods!(
             drag_image_offset: NSPointPointer,
         ) -> Id<NSImage>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDraggingSourceOperationMask:forLocal:)]
         pub unsafe fn setDraggingSourceOperationMask_forLocal(
             &self,
@@ -434,6 +547,7 @@ extern_methods!(
             is_local: bool,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDropRow:dropOperation:)]
         pub unsafe fn setDropRow_dropOperation(
             &self,
@@ -441,31 +555,40 @@ extern_methods!(
             drop_operation: NSTableViewDropOperation,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(allowsMultipleSelection)]
         pub unsafe fn allowsMultipleSelection(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAllowsMultipleSelection:)]
         pub unsafe fn setAllowsMultipleSelection(&self, allows_multiple_selection: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(allowsEmptySelection)]
         pub unsafe fn allowsEmptySelection(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAllowsEmptySelection:)]
         pub unsafe fn setAllowsEmptySelection(&self, allows_empty_selection: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(allowsColumnSelection)]
         pub unsafe fn allowsColumnSelection(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAllowsColumnSelection:)]
         pub unsafe fn setAllowsColumnSelection(&self, allows_column_selection: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectAll:)]
         pub unsafe fn selectAll(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(deselectAll:)]
         pub unsafe fn deselectAll(&self, sender: Option<&Object>);
 
         #[cfg(feature = "Foundation_NSIndexSet")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectColumnIndexes:byExtendingSelection:)]
         pub unsafe fn selectColumnIndexes_byExtendingSelection(
             &self,
@@ -474,6 +597,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSIndexSet")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectRowIndexes:byExtendingSelection:)]
         pub unsafe fn selectRowIndexes_byExtendingSelection(
             &self,
@@ -482,107 +606,138 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSIndexSet")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other selectedColumnIndexes)]
         pub unsafe fn selectedColumnIndexes(&self) -> Id<NSIndexSet>;
 
         #[cfg(feature = "Foundation_NSIndexSet")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other selectedRowIndexes)]
         pub unsafe fn selectedRowIndexes(&self) -> Id<NSIndexSet>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(deselectColumn:)]
         pub unsafe fn deselectColumn(&self, column: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(deselectRow:)]
         pub unsafe fn deselectRow(&self, row: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectedColumn)]
         pub unsafe fn selectedColumn(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectedRow)]
         pub unsafe fn selectedRow(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isColumnSelected:)]
         pub unsafe fn isColumnSelected(&self, column: NSInteger) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isRowSelected:)]
         pub unsafe fn isRowSelected(&self, row: NSInteger) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(numberOfSelectedColumns)]
         pub unsafe fn numberOfSelectedColumns(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(numberOfSelectedRows)]
         pub unsafe fn numberOfSelectedRows(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(allowsTypeSelect)]
         pub unsafe fn allowsTypeSelect(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAllowsTypeSelect:)]
         pub unsafe fn setAllowsTypeSelect(&self, allows_type_select: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(style)]
         pub unsafe fn style(&self) -> NSTableViewStyle;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setStyle:)]
         pub unsafe fn setStyle(&self, style: NSTableViewStyle);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(effectiveStyle)]
         pub unsafe fn effectiveStyle(&self) -> NSTableViewStyle;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectionHighlightStyle)]
         pub unsafe fn selectionHighlightStyle(&self) -> NSTableViewSelectionHighlightStyle;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSelectionHighlightStyle:)]
         pub unsafe fn setSelectionHighlightStyle(
             &self,
             selection_highlight_style: NSTableViewSelectionHighlightStyle,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(draggingDestinationFeedbackStyle)]
         pub unsafe fn draggingDestinationFeedbackStyle(
             &self,
         ) -> NSTableViewDraggingDestinationFeedbackStyle;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDraggingDestinationFeedbackStyle:)]
         pub unsafe fn setDraggingDestinationFeedbackStyle(
             &self,
             dragging_destination_feedback_style: NSTableViewDraggingDestinationFeedbackStyle,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rectOfColumn:)]
         pub unsafe fn rectOfColumn(&self, column: NSInteger) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rectOfRow:)]
         pub unsafe fn rectOfRow(&self, row: NSInteger) -> NSRect;
 
         #[cfg(feature = "Foundation_NSIndexSet")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other columnIndexesInRect:)]
         pub unsafe fn columnIndexesInRect(&self, rect: NSRect) -> Id<NSIndexSet>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rowsInRect:)]
         pub unsafe fn rowsInRect(&self, rect: NSRect) -> NSRange;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(columnAtPoint:)]
         pub unsafe fn columnAtPoint(&self, point: NSPoint) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rowAtPoint:)]
         pub unsafe fn rowAtPoint(&self, point: NSPoint) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(frameOfCellAtColumn:row:)]
         pub unsafe fn frameOfCellAtColumn_row(&self, column: NSInteger, row: NSInteger) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other autosaveName)]
         pub unsafe fn autosaveName(&self) -> Option<Id<NSTableViewAutosaveName>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAutosaveName:)]
         pub unsafe fn setAutosaveName(&self, autosave_name: Option<&NSTableViewAutosaveName>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(autosaveTableColumns)]
         pub unsafe fn autosaveTableColumns(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAutosaveTableColumns:)]
         pub unsafe fn setAutosaveTableColumns(&self, autosave_table_columns: bool);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(editColumn:row:withEvent:select:)]
         pub unsafe fn editColumn_row_withEvent_select(
             &self,
@@ -592,18 +747,23 @@ extern_methods!(
             select: bool,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawRow:clipRect:)]
         pub unsafe fn drawRow_clipRect(&self, row: NSInteger, clip_rect: NSRect);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(highlightSelectionInClipRect:)]
         pub unsafe fn highlightSelectionInClipRect(&self, clip_rect: NSRect);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawGridInClipRect:)]
         pub unsafe fn drawGridInClipRect(&self, clip_rect: NSRect);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawBackgroundInClipRect:)]
         pub unsafe fn drawBackgroundInClipRect(&self, clip_rect: NSRect);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other viewAtColumn:row:makeIfNecessary:)]
         pub unsafe fn viewAtColumn_row_makeIfNecessary(
             &self,
@@ -613,6 +773,7 @@ extern_methods!(
         ) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSTableRowView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other rowViewAtRow:makeIfNecessary:)]
         pub unsafe fn rowViewAtRow_makeIfNecessary(
             &self,
@@ -620,12 +781,15 @@ extern_methods!(
             make_if_necessary: bool,
         ) -> Option<Id<NSTableRowView>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rowForView:)]
         pub unsafe fn rowForView(&self, view: &NSView) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(columnForView:)]
         pub unsafe fn columnForView(&self, view: &NSView) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other makeViewWithIdentifier:owner:)]
         pub unsafe fn makeViewWithIdentifier_owner(
             &self,
@@ -634,31 +798,39 @@ extern_methods!(
         ) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSTableRowView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(enumerateAvailableRowViewsUsingBlock:)]
         pub unsafe fn enumerateAvailableRowViewsUsingBlock(
             &self,
             handler: &Block<(NonNull<NSTableRowView>, NSInteger), ()>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(floatsGroupRows)]
         pub unsafe fn floatsGroupRows(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFloatsGroupRows:)]
         pub unsafe fn setFloatsGroupRows(&self, floats_group_rows: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rowActionsVisible)]
         pub unsafe fn rowActionsVisible(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setRowActionsVisible:)]
         pub unsafe fn setRowActionsVisible(&self, row_actions_visible: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(beginUpdates)]
         pub unsafe fn beginUpdates(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(endUpdates)]
         pub unsafe fn endUpdates(&self);
 
         #[cfg(feature = "Foundation_NSIndexSet")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(insertRowsAtIndexes:withAnimation:)]
         pub unsafe fn insertRowsAtIndexes_withAnimation(
             &self,
@@ -667,6 +839,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSIndexSet")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeRowsAtIndexes:withAnimation:)]
         pub unsafe fn removeRowsAtIndexes_withAnimation(
             &self,
@@ -674,10 +847,12 @@ extern_methods!(
             animation_options: NSTableViewAnimationOptions,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(moveRowAtIndex:toIndex:)]
         pub unsafe fn moveRowAtIndex_toIndex(&self, old_index: NSInteger, new_index: NSInteger);
 
         #[cfg(feature = "Foundation_NSIndexSet")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(hideRowsAtIndexes:withAnimation:)]
         pub unsafe fn hideRowsAtIndexes_withAnimation(
             &self,
@@ -686,6 +861,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSIndexSet")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(unhideRowsAtIndexes:withAnimation:)]
         pub unsafe fn unhideRowsAtIndexes_withAnimation(
             &self,
@@ -694,10 +870,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSIndexSet")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other hiddenRowIndexes)]
         pub unsafe fn hiddenRowIndexes(&self) -> Id<NSIndexSet>;
 
         #[cfg(feature = "AppKit_NSNib")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(registerNib:forIdentifier:)]
         pub unsafe fn registerNib_forIdentifier(
             &self,
@@ -706,49 +884,60 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "AppKit_NSNib", feature = "Foundation_NSDictionary"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other registeredNibsByIdentifier)]
         pub unsafe fn registeredNibsByIdentifier(
             &self,
         ) -> Option<Id<NSDictionary<NSUserInterfaceItemIdentifier, NSNib>>>;
 
         #[cfg(feature = "AppKit_NSTableRowView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(didAddRowView:forRow:)]
         pub unsafe fn didAddRowView_forRow(&self, row_view: &NSTableRowView, row: NSInteger);
 
         #[cfg(feature = "AppKit_NSTableRowView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(didRemoveRowView:forRow:)]
         pub unsafe fn didRemoveRowView_forRow(&self, row_view: &NSTableRowView, row: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(usesStaticContents)]
         pub unsafe fn usesStaticContents(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setUsesStaticContents:)]
         pub unsafe fn setUsesStaticContents(&self, uses_static_contents: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(userInterfaceLayoutDirection)]
         pub unsafe fn userInterfaceLayoutDirection(&self) -> NSUserInterfaceLayoutDirection;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setUserInterfaceLayoutDirection:)]
         pub unsafe fn setUserInterfaceLayoutDirection(
             &self,
             user_interface_layout_direction: NSUserInterfaceLayoutDirection,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(usesAutomaticRowHeights)]
         pub unsafe fn usesAutomaticRowHeights(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setUsesAutomaticRowHeights:)]
         pub unsafe fn setUsesAutomaticRowHeights(&self, uses_automatic_row_heights: bool);
     }
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSTableViewDelegate: NSControlTextEditingDelegate {
         #[cfg(all(
             feature = "AppKit_NSTableColumn",
             feature = "AppKit_NSTableView",
             feature = "AppKit_NSView"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other tableView:viewForTableColumn:row:)]
         unsafe fn tableView_viewForTableColumn_row(
@@ -759,6 +948,7 @@ extern_protocol!(
         ) -> Option<Id<NSView>>;
 
         #[cfg(all(feature = "AppKit_NSTableRowView", feature = "AppKit_NSTableView"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other tableView:rowViewForRow:)]
         unsafe fn tableView_rowViewForRow(
@@ -768,6 +958,7 @@ extern_protocol!(
         ) -> Option<Id<NSTableRowView>>;
 
         #[cfg(all(feature = "AppKit_NSTableRowView", feature = "AppKit_NSTableView"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(tableView:didAddRowView:forRow:)]
         unsafe fn tableView_didAddRowView_forRow(
@@ -778,6 +969,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "AppKit_NSTableRowView", feature = "AppKit_NSTableView"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(tableView:didRemoveRowView:forRow:)]
         unsafe fn tableView_didRemoveRowView_forRow(
@@ -788,6 +980,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "AppKit_NSTableColumn", feature = "AppKit_NSTableView"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(tableView:willDisplayCell:forTableColumn:row:)]
         unsafe fn tableView_willDisplayCell_forTableColumn_row(
@@ -799,6 +992,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "AppKit_NSTableColumn", feature = "AppKit_NSTableView"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(tableView:shouldEditTableColumn:row:)]
         unsafe fn tableView_shouldEditTableColumn_row(
@@ -814,6 +1008,7 @@ extern_protocol!(
             feature = "AppKit_NSTableView",
             feature = "Foundation_NSString"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other tableView:toolTipForCell:rect:tableColumn:row:mouseLocation:)]
         unsafe fn tableView_toolTipForCell_rect_tableColumn_row_mouseLocation(
@@ -827,6 +1022,7 @@ extern_protocol!(
         ) -> Id<NSString>;
 
         #[cfg(all(feature = "AppKit_NSTableColumn", feature = "AppKit_NSTableView"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(tableView:shouldShowCellExpansionForTableColumn:row:)]
         unsafe fn tableView_shouldShowCellExpansionForTableColumn_row(
@@ -841,6 +1037,7 @@ extern_protocol!(
             feature = "AppKit_NSTableColumn",
             feature = "AppKit_NSTableView"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(tableView:shouldTrackCell:forTableColumn:row:)]
         unsafe fn tableView_shouldTrackCell_forTableColumn_row(
@@ -856,6 +1053,7 @@ extern_protocol!(
             feature = "AppKit_NSTableColumn",
             feature = "AppKit_NSTableView"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other tableView:dataCellForTableColumn:row:)]
         unsafe fn tableView_dataCellForTableColumn_row(
@@ -866,11 +1064,13 @@ extern_protocol!(
         ) -> Option<Id<NSCell>>;
 
         #[cfg(feature = "AppKit_NSTableView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(selectionShouldChangeInTableView:)]
         unsafe fn selectionShouldChangeInTableView(&self, table_view: &NSTableView) -> bool;
 
         #[cfg(feature = "AppKit_NSTableView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(tableView:shouldSelectRow:)]
         unsafe fn tableView_shouldSelectRow(
@@ -880,6 +1080,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(feature = "AppKit_NSTableView", feature = "Foundation_NSIndexSet"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other tableView:selectionIndexesForProposedSelection:)]
         unsafe fn tableView_selectionIndexesForProposedSelection(
@@ -889,6 +1090,7 @@ extern_protocol!(
         ) -> Id<NSIndexSet>;
 
         #[cfg(all(feature = "AppKit_NSTableColumn", feature = "AppKit_NSTableView"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(tableView:shouldSelectTableColumn:)]
         unsafe fn tableView_shouldSelectTableColumn(
@@ -898,6 +1100,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(feature = "AppKit_NSTableColumn", feature = "AppKit_NSTableView"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(tableView:mouseDownInHeaderOfTableColumn:)]
         unsafe fn tableView_mouseDownInHeaderOfTableColumn(
@@ -907,6 +1110,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "AppKit_NSTableColumn", feature = "AppKit_NSTableView"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(tableView:didClickTableColumn:)]
         unsafe fn tableView_didClickTableColumn(
@@ -916,6 +1120,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "AppKit_NSTableColumn", feature = "AppKit_NSTableView"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(tableView:didDragTableColumn:)]
         unsafe fn tableView_didDragTableColumn(
@@ -925,6 +1130,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "AppKit_NSTableView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(tableView:heightOfRow:)]
         unsafe fn tableView_heightOfRow(&self, table_view: &NSTableView, row: NSInteger)
@@ -935,6 +1141,7 @@ extern_protocol!(
             feature = "AppKit_NSTableView",
             feature = "Foundation_NSString"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other tableView:typeSelectStringForTableColumn:row:)]
         unsafe fn tableView_typeSelectStringForTableColumn_row(
@@ -945,6 +1152,7 @@ extern_protocol!(
         ) -> Option<Id<NSString>>;
 
         #[cfg(all(feature = "AppKit_NSTableView", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(tableView:nextTypeSelectMatchFromRow:toRow:forString:)]
         unsafe fn tableView_nextTypeSelectMatchFromRow_toRow_forString(
@@ -960,6 +1168,7 @@ extern_protocol!(
             feature = "AppKit_NSTableView",
             feature = "Foundation_NSString"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(tableView:shouldTypeSelectForEvent:withCurrentSearchString:)]
         unsafe fn tableView_shouldTypeSelectForEvent_withCurrentSearchString(
@@ -970,11 +1179,13 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "AppKit_NSTableView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(tableView:isGroupRow:)]
         unsafe fn tableView_isGroupRow(&self, table_view: &NSTableView, row: NSInteger) -> bool;
 
         #[cfg(feature = "AppKit_NSTableView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(tableView:sizeToFitWidthOfColumn:)]
         unsafe fn tableView_sizeToFitWidthOfColumn(
@@ -984,6 +1195,7 @@ extern_protocol!(
         ) -> CGFloat;
 
         #[cfg(feature = "AppKit_NSTableView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(tableView:shouldReorderColumn:toColumn:)]
         unsafe fn tableView_shouldReorderColumn_toColumn(
@@ -998,6 +1210,7 @@ extern_protocol!(
             feature = "AppKit_NSTableViewRowAction",
             feature = "Foundation_NSArray"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other tableView:rowActionsForRow:edge:)]
         unsafe fn tableView_rowActionsForRow_edge(
@@ -1008,21 +1221,25 @@ extern_protocol!(
         ) -> Id<NSArray<NSTableViewRowAction>>;
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(tableViewSelectionDidChange:)]
         unsafe fn tableViewSelectionDidChange(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(tableViewColumnDidMove:)]
         unsafe fn tableViewColumnDidMove(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(tableViewColumnDidResize:)]
         unsafe fn tableViewColumnDidResize(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(tableViewSelectionIsChanging:)]
         unsafe fn tableViewSelectionIsChanging(&self, notification: &NSNotification);
@@ -1042,13 +1259,16 @@ extern_static!(NSTableViewSelectionIsChangingNotification: &'static NSNotificati
 extern_static!(NSTableViewRowViewKey: &'static NSUserInterfaceItemIdentifier);
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSTableViewDataSource: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSTableView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(numberOfRowsInTableView:)]
         unsafe fn numberOfRowsInTableView(&self, table_view: &NSTableView) -> NSInteger;
 
         #[cfg(all(feature = "AppKit_NSTableColumn", feature = "AppKit_NSTableView"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other tableView:objectValueForTableColumn:row:)]
         unsafe fn tableView_objectValueForTableColumn_row(
@@ -1059,6 +1279,7 @@ extern_protocol!(
         ) -> Option<Id<Object>>;
 
         #[cfg(all(feature = "AppKit_NSTableColumn", feature = "AppKit_NSTableView"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(tableView:setObjectValue:forTableColumn:row:)]
         unsafe fn tableView_setObjectValue_forTableColumn_row(
@@ -1074,6 +1295,7 @@ extern_protocol!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSSortDescriptor"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(tableView:sortDescriptorsDidChange:)]
         unsafe fn tableView_sortDescriptorsDidChange(
@@ -1083,6 +1305,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "AppKit_NSTableView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other tableView:pasteboardWriterForRow:)]
         unsafe fn tableView_pasteboardWriterForRow(
@@ -1096,6 +1319,7 @@ extern_protocol!(
             feature = "AppKit_NSTableView",
             feature = "Foundation_NSIndexSet"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(tableView:draggingSession:willBeginAtPoint:forRowIndexes:)]
         unsafe fn tableView_draggingSession_willBeginAtPoint_forRowIndexes(
@@ -1107,6 +1331,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "AppKit_NSDraggingSession", feature = "AppKit_NSTableView"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(tableView:draggingSession:endedAtPoint:operation:)]
         unsafe fn tableView_draggingSession_endedAtPoint_operation(
@@ -1118,6 +1343,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "AppKit_NSTableView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(tableView:updateDraggingItemsForDrag:)]
         unsafe fn tableView_updateDraggingItemsForDrag(
@@ -1132,6 +1358,7 @@ extern_protocol!(
             feature = "Foundation_NSIndexSet"
         ))]
         #[deprecated = "Use -tableView:pasteboardWriterForRow: instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(tableView:writeRowsWithIndexes:toPasteboard:)]
         unsafe fn tableView_writeRowsWithIndexes_toPasteboard(
@@ -1142,6 +1369,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "AppKit_NSTableView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(tableView:validateDrop:proposedRow:proposedDropOperation:)]
         unsafe fn tableView_validateDrop_proposedRow_proposedDropOperation(
@@ -1153,6 +1381,7 @@ extern_protocol!(
         ) -> NSDragOperation;
 
         #[cfg(feature = "AppKit_NSTableView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(tableView:acceptDrop:row:dropOperation:)]
         unsafe fn tableView_acceptDrop_row_dropOperation(
@@ -1171,6 +1400,7 @@ extern_protocol!(
             feature = "Foundation_NSURL"
         ))]
         #[deprecated = "Use NSFilePromiseReceiver objects instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other tableView:namesOfPromisedFilesDroppedAtDestination:forDraggedRowsWithIndexes:)]
         unsafe fn tableView_namesOfPromisedFilesDroppedAtDestination_forDraggedRowsWithIndexes(
@@ -1189,28 +1419,34 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTableView")]
     unsafe impl NSTableView {
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDrawsGrid:)]
         pub unsafe fn setDrawsGrid(&self, flag: bool);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawsGrid)]
         pub unsafe fn drawsGrid(&self) -> bool;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectColumn:byExtendingSelection:)]
         pub unsafe fn selectColumn_byExtendingSelection(&self, column: NSInteger, extend: bool);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectRow:byExtendingSelection:)]
         pub unsafe fn selectRow_byExtendingSelection(&self, row: NSInteger, extend: bool);
 
         #[cfg(feature = "Foundation_NSEnumerator")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other selectedColumnEnumerator)]
         pub unsafe fn selectedColumnEnumerator(&self) -> Id<NSEnumerator>;
 
         #[cfg(feature = "Foundation_NSEnumerator")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other selectedRowEnumerator)]
         pub unsafe fn selectedRowEnumerator(&self) -> Id<NSEnumerator>;
 
@@ -1220,6 +1456,7 @@ extern_methods!(
             feature = "Foundation_NSArray"
         ))]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other dragImageForRows:event:dragImageOffset:)]
         pub unsafe fn dragImageForRows_event_dragImageOffset(
             &self,
@@ -1229,19 +1466,23 @@ extern_methods!(
         ) -> Option<Id<NSImage>>;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAutoresizesAllColumnsToFit:)]
         pub unsafe fn setAutoresizesAllColumnsToFit(&self, flag: bool);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(autoresizesAllColumnsToFit)]
         pub unsafe fn autoresizesAllColumnsToFit(&self) -> bool;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(columnsInRect:)]
         pub unsafe fn columnsInRect(&self, rect: NSRect) -> NSRange;
 
         #[cfg(feature = "AppKit_NSCell")]
         #[deprecated = "Use View Based TableView and -viewAtColumn:row:"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other preparedCellAtColumn:row:)]
         pub unsafe fn preparedCellAtColumn_row(
             &self,
@@ -1251,31 +1492,37 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSText")]
         #[deprecated = "Use a View Based TableView with an NSTextField"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(textShouldBeginEditing:)]
         pub unsafe fn textShouldBeginEditing(&self, text_object: &NSText) -> bool;
 
         #[cfg(feature = "AppKit_NSText")]
         #[deprecated = "Use a View Based TableView with an NSTextField"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(textShouldEndEditing:)]
         pub unsafe fn textShouldEndEditing(&self, text_object: &NSText) -> bool;
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[deprecated = "Use a View Based TableView with an NSTextField"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(textDidBeginEditing:)]
         pub unsafe fn textDidBeginEditing(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[deprecated = "Use a View Based TableView with an NSTextField"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(textDidEndEditing:)]
         pub unsafe fn textDidEndEditing(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[deprecated = "Use a View Based TableView with an NSTextField"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(textDidChange:)]
         pub unsafe fn textDidChange(&self, notification: &NSNotification);
 
         #[cfg(feature = "AppKit_NSCell")]
         #[deprecated = "Use a View Based TableView; observe the window’s firstResponder for focus change notifications"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(shouldFocusCell:atColumn:row:)]
         pub unsafe fn shouldFocusCell_atColumn_row(
             &self,
@@ -1285,14 +1532,17 @@ extern_methods!(
         ) -> bool;
 
         #[deprecated = "Use a View Based TableView and observe the window.firstResponder"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(focusedColumn)]
         pub unsafe fn focusedColumn(&self) -> NSInteger;
 
         #[deprecated = "Use a View Based TableView; make a particular view the first responder with [window makeFirstResponder:view] to focus it."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFocusedColumn:)]
         pub unsafe fn setFocusedColumn(&self, focused_column: NSInteger);
 
         #[deprecated = "Use a View Based TableView; directly interact with a particular view as required and call -performClick: on it, if necessary"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(performClickOnCellAtColumn:row:)]
         pub unsafe fn performClickOnCellAtColumn_row(&self, column: NSInteger, row: NSInteger);
     }

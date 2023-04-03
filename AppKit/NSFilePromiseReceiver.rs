@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSFilePromiseReceiver")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSFilePromiseReceiver;
 
     #[cfg(feature = "AppKit_NSFilePromiseReceiver")]
@@ -26,14 +27,17 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSFilePromiseReceiver")]
     unsafe impl NSFilePromiseReceiver {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other readableDraggedTypes)]
         pub unsafe fn readableDraggedTypes() -> Id<NSArray<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other fileTypes)]
         pub unsafe fn fileTypes(&self) -> Id<NSArray<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other fileNames)]
         pub unsafe fn fileNames(&self) -> Id<NSArray<NSString>>;
 
@@ -43,6 +47,7 @@ extern_methods!(
             feature = "Foundation_NSOperationQueue",
             feature = "Foundation_NSURL"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(receivePromisedFilesAtDestination:options:operationQueue:reader:)]
         pub unsafe fn receivePromisedFilesAtDestination_options_operationQueue_reader(
             &self,

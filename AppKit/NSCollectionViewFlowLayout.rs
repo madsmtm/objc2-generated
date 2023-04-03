@@ -24,6 +24,7 @@ extern_static!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSCollectionViewFlowLayoutInvalidationContext")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSCollectionViewFlowLayoutInvalidationContext;
 
     #[cfg(feature = "AppKit_NSCollectionViewFlowLayoutInvalidationContext")]
@@ -39,18 +40,22 @@ unsafe impl NSObjectProtocol for NSCollectionViewFlowLayoutInvalidationContext {
 extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionViewFlowLayoutInvalidationContext")]
     unsafe impl NSCollectionViewFlowLayoutInvalidationContext {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(invalidateFlowLayoutDelegateMetrics)]
         pub unsafe fn invalidateFlowLayoutDelegateMetrics(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setInvalidateFlowLayoutDelegateMetrics:)]
         pub unsafe fn setInvalidateFlowLayoutDelegateMetrics(
             &self,
             invalidate_flow_layout_delegate_metrics: bool,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(invalidateFlowLayoutAttributes)]
         pub unsafe fn invalidateFlowLayoutAttributes(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setInvalidateFlowLayoutAttributes:)]
         pub unsafe fn setInvalidateFlowLayoutAttributes(
             &self,
@@ -60,12 +65,14 @@ extern_methods!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSCollectionViewDelegateFlowLayout: NSCollectionViewDelegate {
         #[cfg(all(
             feature = "AppKit_NSCollectionView",
             feature = "AppKit_NSCollectionViewLayout",
             feature = "Foundation_NSIndexPath"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(collectionView:layout:sizeForItemAtIndexPath:)]
         unsafe fn collectionView_layout_sizeForItemAtIndexPath(
@@ -79,6 +86,7 @@ extern_protocol!(
             feature = "AppKit_NSCollectionView",
             feature = "AppKit_NSCollectionViewLayout"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(collectionView:layout:insetForSectionAtIndex:)]
         unsafe fn collectionView_layout_insetForSectionAtIndex(
@@ -92,6 +100,7 @@ extern_protocol!(
             feature = "AppKit_NSCollectionView",
             feature = "AppKit_NSCollectionViewLayout"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(collectionView:layout:minimumLineSpacingForSectionAtIndex:)]
         unsafe fn collectionView_layout_minimumLineSpacingForSectionAtIndex(
@@ -105,6 +114,7 @@ extern_protocol!(
             feature = "AppKit_NSCollectionView",
             feature = "AppKit_NSCollectionViewLayout"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(collectionView:layout:minimumInteritemSpacingForSectionAtIndex:)]
         unsafe fn collectionView_layout_minimumInteritemSpacingForSectionAtIndex(
@@ -118,6 +128,7 @@ extern_protocol!(
             feature = "AppKit_NSCollectionView",
             feature = "AppKit_NSCollectionViewLayout"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(collectionView:layout:referenceSizeForHeaderInSection:)]
         unsafe fn collectionView_layout_referenceSizeForHeaderInSection(
@@ -131,6 +142,7 @@ extern_protocol!(
             feature = "AppKit_NSCollectionView",
             feature = "AppKit_NSCollectionViewLayout"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(collectionView:layout:referenceSizeForFooterInSection:)]
         unsafe fn collectionView_layout_referenceSizeForFooterInSection(
@@ -147,6 +159,7 @@ extern_protocol!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSCollectionViewFlowLayout")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSCollectionViewFlowLayout;
 
     #[cfg(feature = "AppKit_NSCollectionViewFlowLayout")]
@@ -165,78 +178,101 @@ unsafe impl NSObjectProtocol for NSCollectionViewFlowLayout {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionViewFlowLayout")]
     unsafe impl NSCollectionViewFlowLayout {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(minimumLineSpacing)]
         pub unsafe fn minimumLineSpacing(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMinimumLineSpacing:)]
         pub unsafe fn setMinimumLineSpacing(&self, minimum_line_spacing: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(minimumInteritemSpacing)]
         pub unsafe fn minimumInteritemSpacing(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMinimumInteritemSpacing:)]
         pub unsafe fn setMinimumInteritemSpacing(&self, minimum_interitem_spacing: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(itemSize)]
         pub unsafe fn itemSize(&self) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setItemSize:)]
         pub unsafe fn setItemSize(&self, item_size: NSSize);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(estimatedItemSize)]
         pub unsafe fn estimatedItemSize(&self) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setEstimatedItemSize:)]
         pub unsafe fn setEstimatedItemSize(&self, estimated_item_size: NSSize);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(scrollDirection)]
         pub unsafe fn scrollDirection(&self) -> NSCollectionViewScrollDirection;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setScrollDirection:)]
         pub unsafe fn setScrollDirection(&self, scroll_direction: NSCollectionViewScrollDirection);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(headerReferenceSize)]
         pub unsafe fn headerReferenceSize(&self) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setHeaderReferenceSize:)]
         pub unsafe fn setHeaderReferenceSize(&self, header_reference_size: NSSize);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(footerReferenceSize)]
         pub unsafe fn footerReferenceSize(&self) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFooterReferenceSize:)]
         pub unsafe fn setFooterReferenceSize(&self, footer_reference_size: NSSize);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(sectionInset)]
         pub unsafe fn sectionInset(&self) -> NSEdgeInsets;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSectionInset:)]
         pub unsafe fn setSectionInset(&self, section_inset: NSEdgeInsets);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(sectionHeadersPinToVisibleBounds)]
         pub unsafe fn sectionHeadersPinToVisibleBounds(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSectionHeadersPinToVisibleBounds:)]
         pub unsafe fn setSectionHeadersPinToVisibleBounds(
             &self,
             section_headers_pin_to_visible_bounds: bool,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(sectionFootersPinToVisibleBounds)]
         pub unsafe fn sectionFootersPinToVisibleBounds(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSectionFootersPinToVisibleBounds:)]
         pub unsafe fn setSectionFootersPinToVisibleBounds(
             &self,
             section_footers_pin_to_visible_bounds: bool,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(sectionAtIndexIsCollapsed:)]
         pub unsafe fn sectionAtIndexIsCollapsed(&self, section_index: NSUInteger) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(collapseSectionAtIndex:)]
         pub unsafe fn collapseSectionAtIndex(&self, section_index: NSUInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(expandSectionAtIndex:)]
         pub unsafe fn expandSectionAtIndex(&self, section_index: NSUInteger);
     }

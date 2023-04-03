@@ -8,6 +8,7 @@ use crate::Foundation::*;
 use crate::MapKit::*;
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait MKGeoJSONObject: NSObjectProtocol {}
 
     unsafe impl ProtocolType for dyn MKGeoJSONObject {}
@@ -16,6 +17,7 @@ extern_protocol!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MapKit_MKGeoJSONDecoder")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct MKGeoJSONDecoder;
 
     #[cfg(feature = "MapKit_MKGeoJSONDecoder")]
@@ -46,6 +48,7 @@ extern_methods!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MapKit_MKGeoJSONFeature")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct MKGeoJSONFeature;
 
     #[cfg(feature = "MapKit_MKGeoJSONFeature")]

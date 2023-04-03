@@ -7,6 +7,7 @@ use crate::MediaPlayer::*;
 
 extern_protocol!(
     #[deprecated = "Use CarPlay framework"]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait MPPlayableContentDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "Foundation_NSError",
@@ -14,6 +15,7 @@ extern_protocol!(
             feature = "MediaPlayer_MPPlayableContentManager"
         ))]
         #[deprecated = "Use CarPlay framework"]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method(playableContentManager:initiatePlaybackOfContentItemAtIndexPath:completionHandler:)]
         unsafe fn playableContentManager_initiatePlaybackOfContentItemAtIndexPath_completionHandler(
@@ -28,6 +30,7 @@ extern_protocol!(
             feature = "MediaPlayer_MPPlayableContentManager"
         ))]
         #[deprecated = "Use Intents framework for initiating playback queues."]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method(playableContentManager:initializePlaybackQueueWithCompletionHandler:)]
         unsafe fn playableContentManager_initializePlaybackQueueWithCompletionHandler(
@@ -42,6 +45,7 @@ extern_protocol!(
             feature = "MediaPlayer_MPPlayableContentManager"
         ))]
         #[deprecated = "Use Intents framework for initiating playback queues."]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method(playableContentManager:initializePlaybackQueueWithContentItems:completionHandler:)]
         unsafe fn playableContentManager_initializePlaybackQueueWithContentItems_completionHandler(
@@ -56,6 +60,7 @@ extern_protocol!(
             feature = "MediaPlayer_MPPlayableContentManagerContext"
         ))]
         #[deprecated = "Use CarPlay framework"]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method(playableContentManager:didUpdateContext:)]
         unsafe fn playableContentManager_didUpdateContext(

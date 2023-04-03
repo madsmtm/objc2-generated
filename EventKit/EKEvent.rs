@@ -117,6 +117,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other birthdayContactIdentifier)]
         pub unsafe fn birthdayContactIdentifier(&self) -> Option<Id<NSString>>;
 
+        #[cfg(not(any(target_os = "macos")))]
         #[method(birthdayPersonID)]
         pub unsafe fn birthdayPersonID(&self) -> NSInteger;
 

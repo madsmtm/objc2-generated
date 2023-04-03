@@ -119,18 +119,22 @@ extern_methods!(
         ) -> Id<NSMapTable<KeyType, ObjectType>>;
 
         #[deprecated = "GC no longer supported"]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other mapTableWithStrongToStrongObjects)]
         pub unsafe fn mapTableWithStrongToStrongObjects() -> Id<Object>;
 
         #[deprecated = "GC no longer supported"]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other mapTableWithWeakToStrongObjects)]
         pub unsafe fn mapTableWithWeakToStrongObjects() -> Id<Object>;
 
         #[deprecated = "GC no longer supported"]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other mapTableWithStrongToWeakObjects)]
         pub unsafe fn mapTableWithStrongToWeakObjects() -> Id<Object>;
 
         #[deprecated = "GC no longer supported"]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other mapTableWithWeakToWeakObjects)]
         pub unsafe fn mapTableWithWeakToWeakObjects() -> Id<Object>;
 

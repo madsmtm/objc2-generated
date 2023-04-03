@@ -37,6 +37,7 @@ extern_methods!(
         pub unsafe fn title(&self) -> Id<NSString>;
 
         #[cfg(all(feature = "EventKit_EKCalendar", feature = "Foundation_NSSet"))]
+        #[cfg(not(any(target_os = "macos")))]
         #[method_id(@__retain_semantics Other calendars)]
         pub unsafe fn calendars(&self) -> Id<NSSet<EKCalendar>>;
 

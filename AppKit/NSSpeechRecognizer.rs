@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSSpeechRecognizer")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSSpeechRecognizer;
 
     #[cfg(feature = "AppKit_NSSpeechRecognizer")]
@@ -22,19 +23,24 @@ unsafe impl NSObjectProtocol for NSSpeechRecognizer {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSSpeechRecognizer")]
     unsafe impl NSSpeechRecognizer {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Option<Id<Self>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(startListening)]
         pub unsafe fn startListening(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(stopListening)]
         pub unsafe fn stopListening(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self)
             -> Option<Id<ProtocolObject<dyn NSSpeechRecognizerDelegate>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -42,38 +48,48 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other commands)]
         pub unsafe fn commands(&self) -> Option<Id<NSArray<NSString>>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCommands:)]
         pub unsafe fn setCommands(&self, commands: Option<&NSArray<NSString>>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other displayedCommandsTitle)]
         pub unsafe fn displayedCommandsTitle(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDisplayedCommandsTitle:)]
         pub unsafe fn setDisplayedCommandsTitle(&self, displayed_commands_title: Option<&NSString>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(listensInForegroundOnly)]
         pub unsafe fn listensInForegroundOnly(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setListensInForegroundOnly:)]
         pub unsafe fn setListensInForegroundOnly(&self, listens_in_foreground_only: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(blocksOtherRecognizers)]
         pub unsafe fn blocksOtherRecognizers(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBlocksOtherRecognizers:)]
         pub unsafe fn setBlocksOtherRecognizers(&self, blocks_other_recognizers: bool);
     }
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSSpeechRecognizerDelegate: NSObjectProtocol {
         #[cfg(all(feature = "AppKit_NSSpeechRecognizer", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(speechRecognizer:didRecognizeCommand:)]
         unsafe fn speechRecognizer_didRecognizeCommand(

@@ -51,6 +51,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "macos")))]
     pub unsafe trait GKVoiceChatClient: NSObjectProtocol {
         #[cfg(all(
             feature = "Foundation_NSData",

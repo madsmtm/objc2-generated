@@ -8,6 +8,7 @@ use crate::MailKit::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MailKit_MEExtensionViewController")]
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub struct MEExtensionViewController;
 
     #[cfg(feature = "MailKit_MEExtensionViewController")]
@@ -42,6 +43,7 @@ extern_methods!(
     #[cfg(feature = "MailKit_MEExtensionViewController")]
     unsafe impl MEExtensionViewController {
         #[cfg(feature = "Foundation_NSBundle")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Option<Allocated<Self>>,

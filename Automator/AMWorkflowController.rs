@@ -9,6 +9,7 @@ use crate::OSAKit::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Automator_AMWorkflowController")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct AMWorkflowController;
 
     #[cfg(feature = "Automator_AMWorkflowController")]
@@ -34,76 +35,95 @@ extern_methods!(
     #[cfg(feature = "Automator_AMWorkflowController")]
     unsafe impl AMWorkflowController {
         #[cfg(feature = "Automator_AMWorkflow")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other workflow)]
         pub unsafe fn workflow(&self) -> Option<Id<AMWorkflow>>;
 
         #[cfg(feature = "Automator_AMWorkflow")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setWorkflow:)]
         pub unsafe fn setWorkflow(&self, workflow: Option<&AMWorkflow>);
 
         #[cfg(feature = "Automator_AMWorkflowView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other workflowView)]
         pub unsafe fn workflowView(&self) -> Option<Id<AMWorkflowView>>;
 
         #[cfg(feature = "Automator_AMWorkflowView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setWorkflowView:)]
         pub unsafe fn setWorkflowView(&self, workflow_view: Option<&AMWorkflowView>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Id<ProtocolObject<dyn AMWorkflowControllerDelegate>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn AMWorkflowControllerDelegate>>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(canRun)]
         pub unsafe fn canRun(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isRunning)]
         pub unsafe fn isRunning(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isPaused)]
         pub unsafe fn isPaused(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(run:)]
         pub unsafe fn run(&self, sender: &Object);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(stop:)]
         pub unsafe fn stop(&self, sender: &Object);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(pause:)]
         pub unsafe fn pause(&self, sender: &Object);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(step:)]
         pub unsafe fn step(&self, sender: &Object);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(reset:)]
         pub unsafe fn reset(&self, sender: &Object);
     }
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait AMWorkflowControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "Automator_AMWorkflowController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(workflowControllerWillRun:)]
         unsafe fn workflowControllerWillRun(&self, controller: &AMWorkflowController);
 
         #[cfg(feature = "Automator_AMWorkflowController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(workflowControllerWillStop:)]
         unsafe fn workflowControllerWillStop(&self, controller: &AMWorkflowController);
 
         #[cfg(feature = "Automator_AMWorkflowController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(workflowControllerDidRun:)]
         unsafe fn workflowControllerDidRun(&self, controller: &AMWorkflowController);
 
         #[cfg(feature = "Automator_AMWorkflowController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(workflowControllerDidStop:)]
         unsafe fn workflowControllerDidStop(&self, controller: &AMWorkflowController);
@@ -112,6 +132,7 @@ extern_protocol!(
             feature = "Automator_AMAction",
             feature = "Automator_AMWorkflowController"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(workflowController:willRunAction:)]
         unsafe fn workflowController_willRunAction(
@@ -124,6 +145,7 @@ extern_protocol!(
             feature = "Automator_AMAction",
             feature = "Automator_AMWorkflowController"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(workflowController:didRunAction:)]
         unsafe fn workflowController_didRunAction(
@@ -136,6 +158,7 @@ extern_protocol!(
             feature = "Automator_AMWorkflowController",
             feature = "Foundation_NSError"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(workflowController:didError:)]
         unsafe fn workflowController_didError(

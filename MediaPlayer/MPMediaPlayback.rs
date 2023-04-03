@@ -6,6 +6,7 @@ use crate::Foundation::*;
 use crate::MediaPlayer::*;
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait MPMediaPlayback {
         #[method(prepareToPlay)]
         unsafe fn prepareToPlay(&self);

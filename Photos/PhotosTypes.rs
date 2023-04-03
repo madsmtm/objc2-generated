@@ -19,6 +19,7 @@ ns_enum!(
     #[underlying(NSInteger)]
     pub enum PHCollectionListType {
         #[deprecated = "Will be removed in a future release"]
+        #[cfg(not(any(target_os = "macos")))]
         PHCollectionListTypeMomentList = 1,
         PHCollectionListTypeFolder = 2,
         PHCollectionListTypeSmartFolder = 3,
@@ -29,8 +30,10 @@ ns_enum!(
     #[underlying(NSInteger)]
     pub enum PHCollectionListSubtype {
         #[deprecated = "Will be removed in a future release"]
+        #[cfg(not(any(target_os = "macos")))]
         PHCollectionListSubtypeMomentListCluster = 1,
         #[deprecated = "Will be removed in a future release"]
+        #[cfg(not(any(target_os = "macos")))]
         PHCollectionListSubtypeMomentListYear = 2,
         PHCollectionListSubtypeRegularFolder = 100,
         PHCollectionListSubtypeSmartFolderEvents = 200,
@@ -58,6 +61,7 @@ ns_enum!(
         PHAssetCollectionTypeAlbum = 1,
         PHAssetCollectionTypeSmartAlbum = 2,
         #[deprecated = "Will be removed in a future release"]
+        #[cfg(not(any(target_os = "macos")))]
         PHAssetCollectionTypeMoment = 3,
     }
 );

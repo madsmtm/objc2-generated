@@ -5,17 +5,29 @@ use crate::Foundation::*;
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub enum NSAppleEventSendOptions {
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         NSAppleEventSendNoReply = 1,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         NSAppleEventSendQueueReply = 2,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         NSAppleEventSendWaitForReply = 3,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         NSAppleEventSendNeverInteract = 16,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         NSAppleEventSendCanInteract = 32,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         NSAppleEventSendAlwaysInteract = 48,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         NSAppleEventSendCanSwitchLayer = 64,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         NSAppleEventSendDontRecord = 4096,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         NSAppleEventSendDontExecute = 8192,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         NSAppleEventSendDontAnnotate = 65536,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         NSAppleEventSendDefaultOptions = 35,
     }
 );
@@ -55,6 +67,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other descriptorWithInt32:)]
         pub unsafe fn descriptorWithInt32(signed_int: i32) -> Id<NSAppleEventDescriptor>;
 
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other descriptorWithDouble:)]
         pub unsafe fn descriptorWithDouble(double_value: c_double) -> Id<NSAppleEventDescriptor>;
 
@@ -66,10 +79,12 @@ extern_methods!(
         pub unsafe fn descriptorWithString(string: &NSString) -> Id<NSAppleEventDescriptor>;
 
         #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other descriptorWithDate:)]
         pub unsafe fn descriptorWithDate(date: &NSDate) -> Id<NSAppleEventDescriptor>;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other descriptorWithFileURL:)]
         pub unsafe fn descriptorWithFileURL(file_url: &NSURL) -> Id<NSAppleEventDescriptor>;
 
@@ -79,16 +94,19 @@ extern_methods!(
         #[method_id(@__retain_semantics Other recordDescriptor)]
         pub unsafe fn recordDescriptor() -> Id<NSAppleEventDescriptor>;
 
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other currentProcessDescriptor)]
         pub unsafe fn currentProcessDescriptor() -> Id<NSAppleEventDescriptor>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other descriptorWithBundleIdentifier:)]
         pub unsafe fn descriptorWithBundleIdentifier(
             bundle_identifier: &NSString,
         ) -> Id<NSAppleEventDescriptor>;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other descriptorWithApplicationURL:)]
         pub unsafe fn descriptorWithApplicationURL(
             application_url: &NSURL,
@@ -113,6 +131,7 @@ extern_methods!(
         #[method(int32Value)]
         pub unsafe fn int32Value(&self) -> i32;
 
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(doubleValue)]
         pub unsafe fn doubleValue(&self) -> c_double;
 
@@ -124,13 +143,16 @@ extern_methods!(
         pub unsafe fn stringValue(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other dateValue)]
         pub unsafe fn dateValue(&self) -> Option<Id<NSDate>>;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other fileURLValue)]
         pub unsafe fn fileURLValue(&self) -> Option<Id<NSURL>>;
 
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(isRecordDescriptor)]
         pub unsafe fn isRecordDescriptor(&self) -> bool;
 

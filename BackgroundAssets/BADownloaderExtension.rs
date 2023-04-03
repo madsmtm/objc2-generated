@@ -5,6 +5,7 @@ use crate::BackgroundAssets::*;
 use crate::Foundation::*;
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait BADownloaderExtension: NSObjectProtocol {
         #[cfg(all(
             feature = "BackgroundAssets_BAAppExtensionInfo",

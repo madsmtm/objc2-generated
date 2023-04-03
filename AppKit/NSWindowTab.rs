@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSWindowTab")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSWindowTab;
 
     #[cfg(feature = "AppKit_NSWindowTab")]
@@ -23,34 +24,42 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSWindowTab")]
     unsafe impl NSWindowTab {
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other attributedTitle)]
         pub unsafe fn attributedTitle(&self) -> Option<Id<NSAttributedString>>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAttributedTitle:)]
         pub unsafe fn setAttributedTitle(&self, attributed_title: Option<&NSAttributedString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other toolTip)]
         pub unsafe fn toolTip(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setToolTip:)]
         pub unsafe fn setToolTip(&self, tool_tip: Option<&NSString>);
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessoryView)]
         pub unsafe fn accessoryView(&self) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessoryView:)]
         pub unsafe fn setAccessoryView(&self, accessory_view: Option<&NSView>);
     }

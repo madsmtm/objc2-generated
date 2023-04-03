@@ -7,10 +7,14 @@ use crate::LocalAuthentication::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum LAPolicy {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         LAPolicyDeviceOwnerAuthenticationWithBiometrics = 1,
         LAPolicyDeviceOwnerAuthentication = 2,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         LAPolicyDeviceOwnerAuthenticationWithWatch = 3,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         LAPolicyDeviceOwnerAuthenticationWithBiometricsOrWatch = 4,
+        #[cfg(not(any(target_os = "ios", target_os = "macos")))]
         LAPolicyDeviceOwnerAuthenticationWithWristDetection = 5,
     }
 );
@@ -31,10 +35,12 @@ ns_enum!(
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub enum LABiometryType {
         LABiometryTypeNone = 0,
         #[deprecated]
         LABiometryNone = LABiometryTypeNone,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         LABiometryTypeTouchID = 1,
         LABiometryTypeFaceID = 2,
     }
@@ -85,38 +91,47 @@ extern_methods!(
         pub unsafe fn isCredentialSet(&self, r#type: LACredentialType) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other localizedFallbackTitle)]
         pub unsafe fn localizedFallbackTitle(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(setLocalizedFallbackTitle:)]
         pub unsafe fn setLocalizedFallbackTitle(&self, localized_fallback_title: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[deprecated = "No longer supported"]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other maxBiometryFailures)]
         pub unsafe fn maxBiometryFailures(&self) -> Option<Id<NSNumber>>;
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[deprecated = "No longer supported"]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(setMaxBiometryFailures:)]
         pub unsafe fn setMaxBiometryFailures(&self, max_biometry_failures: Option<&NSNumber>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other localizedCancelTitle)]
         pub unsafe fn localizedCancelTitle(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(setLocalizedCancelTitle:)]
         pub unsafe fn setLocalizedCancelTitle(&self, localized_cancel_title: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSData")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other evaluatedPolicyDomainState)]
         pub unsafe fn evaluatedPolicyDomainState(&self) -> Option<Id<NSData>>;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(touchIDAuthenticationAllowableReuseDuration)]
         pub unsafe fn touchIDAuthenticationAllowableReuseDuration(&self) -> NSTimeInterval;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(setTouchIDAuthenticationAllowableReuseDuration:)]
         pub unsafe fn setTouchIDAuthenticationAllowableReuseDuration(
             &self,
@@ -124,10 +139,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other localizedReason)]
         pub unsafe fn localizedReason(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(setLocalizedReason:)]
         pub unsafe fn setLocalizedReason(&self, localized_reason: &NSString);
 
@@ -137,6 +154,7 @@ extern_methods!(
         #[method(setInteractionNotAllowed:)]
         pub unsafe fn setInteractionNotAllowed(&self, interaction_not_allowed: bool);
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(biometryType)]
         pub unsafe fn biometryType(&self) -> LABiometryType;
     }

@@ -8,10 +8,12 @@ extern_methods!(
     /// CLSDeepLinks
     #[cfg(feature = "Foundation_NSUserActivity")]
     unsafe impl NSUserActivity {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(isClassKitDeepLink)]
         pub unsafe fn isClassKitDeepLink(&self) -> bool;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other contextIdentifierPath)]
         pub unsafe fn contextIdentifierPath(&self) -> Option<Id<NSArray<NSString>>>;
     }

@@ -7,14 +7,23 @@ use crate::OSAKit::*;
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum OSALanguageFeatures {
+        #[cfg(not(any(target_os = "ios")))]
         OSASupportsCompiling = 0x0002,
+        #[cfg(not(any(target_os = "ios")))]
         OSASupportsGetSource = 0x0004,
+        #[cfg(not(any(target_os = "ios")))]
         OSASupportsAECoercion = 0x0008,
+        #[cfg(not(any(target_os = "ios")))]
         OSASupportsAESending = 0x0010,
+        #[cfg(not(any(target_os = "ios")))]
         OSASupportsRecording = 0x0020,
+        #[cfg(not(any(target_os = "ios")))]
         OSASupportsConvenience = 0x0040,
+        #[cfg(not(any(target_os = "ios")))]
         OSASupportsDialects = 0x0080,
+        #[cfg(not(any(target_os = "ios")))]
         OSASupportsEventHandling = 0x0100,
     }
 );
@@ -22,6 +31,7 @@ ns_options!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "OSAKit_OSALanguage")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct OSALanguage;
 
     #[cfg(feature = "OSAKit_OSALanguage")]
@@ -37,53 +47,67 @@ extern_methods!(
     #[cfg(feature = "OSAKit_OSALanguage")]
     unsafe impl OSALanguage {
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other availableLanguages)]
         pub unsafe fn availableLanguages() -> Id<NSArray<OSALanguage>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other languageForName:)]
         pub unsafe fn languageForName(name: &NSString) -> Option<Id<OSALanguage>>;
 
         #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other languageForScriptDataDescriptor:)]
         pub unsafe fn languageForScriptDataDescriptor(
             descriptor: &NSAppleEventDescriptor,
         ) -> Option<Id<OSALanguage>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other defaultLanguage)]
         pub unsafe fn defaultLanguage() -> Option<Id<OSALanguage>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDefaultLanguage:)]
         pub unsafe fn setDefaultLanguage(default_language: &OSALanguage);
 
         #[cfg(feature = "OSAKit_OSALanguageInstance")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other sharedLanguageInstance)]
         pub unsafe fn sharedLanguageInstance(&self) -> Id<OSALanguageInstance>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other info)]
         pub unsafe fn info(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other version)]
         pub unsafe fn version(&self) -> Option<Id<NSString>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(type)]
         pub unsafe fn r#type(&self) -> OSType;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(subType)]
         pub unsafe fn subType(&self) -> OSType;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(manufacturer)]
         pub unsafe fn manufacturer(&self) -> OSType;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(features)]
         pub unsafe fn features(&self) -> OSALanguageFeatures;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isThreadSafe)]
         pub unsafe fn isThreadSafe(&self) -> bool;
     }

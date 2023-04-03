@@ -116,6 +116,12 @@ unsafe impl NSObjectProtocol for NSSpecifierTest {}
 extern_methods!(
     #[cfg(feature = "Foundation_NSSpecifierTest")]
     unsafe impl NSSpecifierTest {
+        #[cfg(not(any(
+            target_os = "ios",
+            target_os = "macos",
+            target_os = "tvos",
+            target_os = "watchos"
+        )))]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 

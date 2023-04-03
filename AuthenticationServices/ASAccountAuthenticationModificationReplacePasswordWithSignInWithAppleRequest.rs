@@ -9,6 +9,7 @@ extern_class!(
     #[cfg(
         feature = "AuthenticationServices_ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest"
     )]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub struct ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest;
 
     #[cfg(

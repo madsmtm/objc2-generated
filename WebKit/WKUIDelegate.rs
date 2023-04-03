@@ -122,6 +122,7 @@ extern_protocol!(
             feature = "WebKit_WKSecurityOrigin",
             feature = "WebKit_WKWebView"
         ))]
+        #[cfg(not(any(target_os = "macos")))]
         #[optional]
         #[method(webView:requestDeviceOrientationAndMotionPermissionForOrigin:initiatedByFrame:decisionHandler:)]
         unsafe fn webView_requestDeviceOrientationAndMotionPermissionForOrigin_initiatedByFrame_decisionHandler(

@@ -37,9 +37,11 @@ ns_enum!(
 
 extern_protocol!(
     #[deprecated]
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait NSURLHandleClient {
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSURLHandle"))]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(URLHandle:resourceDataDidBecomeAvailable:)]
         unsafe fn URLHandle_resourceDataDidBecomeAvailable(
             &self,
@@ -49,21 +51,25 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSURLHandle")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(URLHandleResourceDidBeginLoading:)]
         unsafe fn URLHandleResourceDidBeginLoading(&self, sender: Option<&NSURLHandle>);
 
         #[cfg(feature = "Foundation_NSURLHandle")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(URLHandleResourceDidFinishLoading:)]
         unsafe fn URLHandleResourceDidFinishLoading(&self, sender: Option<&NSURLHandle>);
 
         #[cfg(feature = "Foundation_NSURLHandle")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(URLHandleResourceDidCancelLoading:)]
         unsafe fn URLHandleResourceDidCancelLoading(&self, sender: Option<&NSURLHandle>);
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURLHandle"))]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(URLHandle:resourceDidFailLoadingWithReason:)]
         unsafe fn URLHandle_resourceDidFailLoadingWithReason(
             &self,
@@ -93,79 +99,96 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSURLHandle")]
     unsafe impl NSURLHandle {
         #[deprecated]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(registerURLHandleClass:)]
         pub unsafe fn registerURLHandleClass(an_url_handle_subclass: Option<&Class>);
 
         #[cfg(feature = "Foundation_NSURL")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(URLHandleClassForURL:)]
         pub unsafe fn URLHandleClassForURL(an_url: Option<&NSURL>) -> Option<&'static Class>;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(status)]
         pub unsafe fn status(&self) -> NSURLHandleStatus;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other failureReason)]
         pub unsafe fn failureReason(&self) -> Option<Id<NSString>>;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(addClient:)]
         pub unsafe fn addClient(&self, client: Option<&ProtocolObject<dyn NSURLHandleClient>>);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(removeClient:)]
         pub unsafe fn removeClient(&self, client: Option<&ProtocolObject<dyn NSURLHandleClient>>);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(loadInBackground)]
         pub unsafe fn loadInBackground(&self);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(cancelLoadInBackground)]
         pub unsafe fn cancelLoadInBackground(&self);
 
         #[cfg(feature = "Foundation_NSData")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other resourceData)]
         pub unsafe fn resourceData(&self) -> Option<Id<NSData>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other availableResourceData)]
         pub unsafe fn availableResourceData(&self) -> Option<Id<NSData>>;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(expectedResourceDataSize)]
         pub unsafe fn expectedResourceDataSize(&self) -> c_longlong;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(flushCachedData)]
         pub unsafe fn flushCachedData(&self);
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(backgroundLoadDidFailWithReason:)]
         pub unsafe fn backgroundLoadDidFailWithReason(&self, reason: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSData")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(didLoadBytes:loadComplete:)]
         pub unsafe fn didLoadBytes_loadComplete(&self, new_bytes: Option<&NSData>, yorn: bool);
 
         #[cfg(feature = "Foundation_NSURL")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(canInitWithURL:)]
         pub unsafe fn canInitWithURL(an_url: Option<&NSURL>) -> bool;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other cachedHandleForURL:)]
         pub unsafe fn cachedHandleForURL(an_url: Option<&NSURL>) -> Option<Id<NSURLHandle>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Init initWithURL:cached:)]
         pub unsafe fn initWithURL_cached(
             this: Option<Allocated<Self>>,
@@ -175,11 +198,13 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other propertyForKey:)]
         pub unsafe fn propertyForKey(&self, property_key: Option<&NSString>) -> Option<Id<Object>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other propertyForKeyIfAvailable:)]
         pub unsafe fn propertyForKeyIfAvailable(
             &self,
@@ -188,6 +213,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(writeProperty:forKey:)]
         pub unsafe fn writeProperty_forKey(
             &self,
@@ -197,19 +223,23 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSData")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(writeData:)]
         pub unsafe fn writeData(&self, data: Option<&NSData>) -> bool;
 
         #[cfg(feature = "Foundation_NSData")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other loadInForeground)]
         pub unsafe fn loadInForeground(&self) -> Option<Id<NSData>>;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(beginLoadInBackground)]
         pub unsafe fn beginLoadInBackground(&self);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(endLoadInBackground)]
         pub unsafe fn endLoadInBackground(&self);
     }

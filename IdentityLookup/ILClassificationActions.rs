@@ -6,10 +6,15 @@ use crate::IdentityLookup::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub enum ILClassificationAction {
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         ILClassificationActionNone = 0,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         ILClassificationActionReportNotJunk = 1,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         ILClassificationActionReportJunk = 2,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         ILClassificationActionReportJunkAndBlockSender = 3,
     }
 );

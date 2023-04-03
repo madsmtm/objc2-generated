@@ -33,6 +33,7 @@ extern_static!(HKFHIRResourceTypeProcedure: &'static HKFHIRResourceType);
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HealthKit_HKFHIRResource")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct HKFHIRResource;
 
     #[cfg(feature = "HealthKit_HKFHIRResource")]
@@ -54,6 +55,7 @@ extern_methods!(
     #[cfg(feature = "HealthKit_HKFHIRResource")]
     unsafe impl HKFHIRResource {
         #[cfg(feature = "HealthKit_HKFHIRVersion")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other FHIRVersion)]
         pub unsafe fn FHIRVersion(&self) -> Id<HKFHIRVersion>;
 

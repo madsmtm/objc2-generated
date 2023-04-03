@@ -67,6 +67,7 @@ extern_methods!(
         ) -> Option<Id<NSFileVersion>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other addVersionOfItemAtURL:withContentsOfURL:options:error:_)]
         pub unsafe fn addVersionOfItemAtURL_withContentsOfURL_options_error(
             url: &NSURL,
@@ -75,6 +76,7 @@ extern_methods!(
         ) -> Result<Id<NSFileVersion>, Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other temporaryDirectoryURLForNewVersionOfItemAtURL:)]
         pub unsafe fn temporaryDirectoryURLForNewVersionOfItemAtURL(url: &NSURL) -> Id<NSURL>;
 
@@ -91,6 +93,7 @@ extern_methods!(
         pub unsafe fn localizedNameOfSavingComputer(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSPersonNameComponents")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other originatorNameComponents)]
         pub unsafe fn originatorNameComponents(&self) -> Option<Id<NSPersonNameComponents>>;
 
@@ -110,9 +113,11 @@ extern_methods!(
         #[method(setResolved:)]
         pub unsafe fn setResolved(&self, resolved: bool);
 
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(isDiscardable)]
         pub unsafe fn isDiscardable(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(setDiscardable:)]
         pub unsafe fn setDiscardable(&self, discardable: bool);
 

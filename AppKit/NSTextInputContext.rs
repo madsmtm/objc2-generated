@@ -10,6 +10,7 @@ pub type NSTextInputSourceIdentifier = NSString;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSTextInputContext")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSTextInputContext;
 
     #[cfg(feature = "AppKit_NSTextInputContext")]
@@ -24,64 +25,80 @@ unsafe impl NSObjectProtocol for NSTextInputContext {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextInputContext")]
     unsafe impl NSTextInputContext {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other currentInputContext)]
         pub unsafe fn currentInputContext() -> Option<Id<NSTextInputContext>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithClient:)]
         pub unsafe fn initWithClient(
             this: Option<Allocated<Self>>,
             client: &ProtocolObject<dyn NSTextInputClient>,
         ) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other client)]
         pub unsafe fn client(&self) -> Id<ProtocolObject<dyn NSTextInputClient>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(acceptsGlyphInfo)]
         pub unsafe fn acceptsGlyphInfo(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAcceptsGlyphInfo:)]
         pub unsafe fn setAcceptsGlyphInfo(&self, accepts_glyph_info: bool);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other allowedInputSourceLocales)]
         pub unsafe fn allowedInputSourceLocales(&self) -> Option<Id<NSArray<NSString>>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAllowedInputSourceLocales:)]
         pub unsafe fn setAllowedInputSourceLocales(
             &self,
             allowed_input_source_locales: Option<&NSArray<NSString>>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(activate)]
         pub unsafe fn activate(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(deactivate)]
         pub unsafe fn deactivate(&self);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(handleEvent:)]
         pub unsafe fn handleEvent(&self, event: &NSEvent) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(discardMarkedText)]
         pub unsafe fn discardMarkedText(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(invalidateCharacterCoordinates)]
         pub unsafe fn invalidateCharacterCoordinates(&self);
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other keyboardInputSources)]
         pub unsafe fn keyboardInputSources(
             &self,
         ) -> Option<Id<NSArray<NSTextInputSourceIdentifier>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other selectedKeyboardInputSource)]
         pub unsafe fn selectedKeyboardInputSource(&self)
             -> Option<Id<NSTextInputSourceIdentifier>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSelectedKeyboardInputSource:)]
         pub unsafe fn setSelectedKeyboardInputSource(
             &self,
@@ -89,6 +106,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other localizedNameForInputSource:)]
         pub unsafe fn localizedNameForInputSource(
             input_source_identifier: &NSTextInputSourceIdentifier,

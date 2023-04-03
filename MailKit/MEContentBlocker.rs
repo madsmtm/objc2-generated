@@ -6,6 +6,7 @@ use crate::Foundation::*;
 use crate::MailKit::*;
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait MEContentBlocker: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other contentRulesJSON)]

@@ -26,6 +26,7 @@ ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLStorageMode {
         MTLStorageModeShared = 0,
+        #[cfg(not(any(target_os = "ios")))]
         MTLStorageModeManaged = 1,
         MTLStorageModePrivate = 2,
         MTLStorageModeMemoryless = 3,
@@ -49,6 +50,7 @@ ns_options!(
         MTLResourceCPUCacheModeWriteCombined =
             MTLCPUCacheModeWriteCombined << MTLResourceCPUCacheModeShift,
         MTLResourceStorageModeShared = MTLStorageModeShared << MTLResourceStorageModeShift,
+        #[cfg(not(any(target_os = "ios")))]
         MTLResourceStorageModeManaged = MTLStorageModeManaged << MTLResourceStorageModeShift,
         MTLResourceStorageModePrivate = MTLStorageModePrivate << MTLResourceStorageModeShift,
         MTLResourceStorageModeMemoryless = MTLStorageModeMemoryless << MTLResourceStorageModeShift,

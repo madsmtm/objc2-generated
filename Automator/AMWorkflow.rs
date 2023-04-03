@@ -9,6 +9,7 @@ use crate::OSAKit::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Automator_AMWorkflow")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct AMWorkflow;
 
     #[cfg(feature = "Automator_AMWorkflow")]
@@ -24,16 +25,19 @@ extern_methods!(
     #[cfg(feature = "Automator_AMWorkflow")]
     unsafe impl AMWorkflow {
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other runWorkflowAtURL:withInput:error:_)]
         pub unsafe fn runWorkflowAtURL_withInput_error(
             file_url: &NSURL,
             input: Option<&Object>,
         ) -> Result<Id<Object>, Id<NSError>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:error:_)]
         pub unsafe fn initWithContentsOfURL_error(
             this: Option<Allocated<Self>>,
@@ -41,10 +45,12 @@ extern_methods!(
         ) -> Result<Id<Self>, Id<NSError>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(writeToURL:error:_)]
         pub unsafe fn writeToURL_error(&self, file_url: &NSURL) -> Result<(), Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setValue:forVariableWithName:)]
         pub unsafe fn setValue_forVariableWithName(
             &self,
@@ -53,6 +59,7 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other valueForVariableWithName:)]
         pub unsafe fn valueForVariableWithName(
             &self,
@@ -60,17 +67,21 @@ extern_methods!(
         ) -> Option<Id<Object>>;
 
         #[cfg(feature = "Automator_AMAction")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(addAction:)]
         pub unsafe fn addAction(&self, action: &AMAction);
 
         #[cfg(feature = "Automator_AMAction")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeAction:)]
         pub unsafe fn removeAction(&self, action: &AMAction);
 
         #[cfg(feature = "Automator_AMAction")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(insertAction:atIndex:)]
         pub unsafe fn insertAction_atIndex(&self, action: &AMAction, index: NSUInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(moveActionAtIndex:toIndex:)]
         pub unsafe fn moveActionAtIndex_toIndex(
             &self,
@@ -79,19 +90,24 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other fileURL)]
         pub unsafe fn fileURL(&self) -> Option<Id<NSURL>>;
 
         #[cfg(all(feature = "Automator_AMAction", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other actions)]
         pub unsafe fn actions(&self) -> Id<NSArray<AMAction>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other input)]
         pub unsafe fn input(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setInput:)]
         pub unsafe fn setInput(&self, input: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other output)]
         pub unsafe fn output(&self) -> Option<Id<Object>>;
     }

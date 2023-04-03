@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSDraggingSession")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSDraggingSession;
 
     #[cfg(feature = "AppKit_NSDraggingSession")]
@@ -22,34 +23,43 @@ unsafe impl NSObjectProtocol for NSDraggingSession {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSDraggingSession")]
     unsafe impl NSDraggingSession {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(draggingFormation)]
         pub unsafe fn draggingFormation(&self) -> NSDraggingFormation;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDraggingFormation:)]
         pub unsafe fn setDraggingFormation(&self, dragging_formation: NSDraggingFormation);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(animatesToStartingPositionsOnCancelOrFail)]
         pub unsafe fn animatesToStartingPositionsOnCancelOrFail(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAnimatesToStartingPositionsOnCancelOrFail:)]
         pub unsafe fn setAnimatesToStartingPositionsOnCancelOrFail(
             &self,
             animates_to_starting_positions_on_cancel_or_fail: bool,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(draggingLeaderIndex)]
         pub unsafe fn draggingLeaderIndex(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDraggingLeaderIndex:)]
         pub unsafe fn setDraggingLeaderIndex(&self, dragging_leader_index: NSInteger);
 
         #[cfg(feature = "AppKit_NSPasteboard")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other draggingPasteboard)]
         pub unsafe fn draggingPasteboard(&self) -> Id<NSPasteboard>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(draggingSequenceNumber)]
         pub unsafe fn draggingSequenceNumber(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(draggingLocation)]
         pub unsafe fn draggingLocation(&self) -> NSPoint;
 
@@ -59,6 +69,7 @@ extern_methods!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSDictionary"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(enumerateDraggingItemsWithOptions:forView:classes:searchOptions:usingBlock:)]
         pub unsafe fn enumerateDraggingItemsWithOptions_forView_classes_searchOptions_usingBlock(
             &self,

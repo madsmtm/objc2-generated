@@ -7,23 +7,36 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSStackViewGravity {
+        #[cfg(not(any(target_os = "ios")))]
         NSStackViewGravityTop = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSStackViewGravityLeading = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSStackViewGravityCenter = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSStackViewGravityBottom = 3,
+        #[cfg(not(any(target_os = "ios")))]
         NSStackViewGravityTrailing = 3,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSStackViewDistribution {
+        #[cfg(not(any(target_os = "ios")))]
         NSStackViewDistributionGravityAreas = -1,
+        #[cfg(not(any(target_os = "ios")))]
         NSStackViewDistributionFill = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSStackViewDistributionFillEqually = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSStackViewDistributionFillProportionally = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSStackViewDistributionEqualSpacing = 3,
+        #[cfg(not(any(target_os = "ios")))]
         NSStackViewDistributionEqualCentering = 4,
     }
 );
@@ -43,6 +56,7 @@ extern_static!(NSStackViewVisibilityPriorityNotVisible: NSStackViewVisibilityPri
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSStackView")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSStackView;
 
     #[cfg(feature = "AppKit_NSStackView")]
@@ -80,77 +94,100 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSStackView")]
     unsafe impl NSStackView {
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other stackViewWithViews:)]
         pub unsafe fn stackViewWithViews(views: &NSArray<NSView>) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSStackViewDelegate>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn NSStackViewDelegate>>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(orientation)]
         pub unsafe fn orientation(&self) -> NSUserInterfaceLayoutOrientation;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setOrientation:)]
         pub unsafe fn setOrientation(&self, orientation: NSUserInterfaceLayoutOrientation);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(alignment)]
         pub unsafe fn alignment(&self) -> NSLayoutAttribute;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAlignment:)]
         pub unsafe fn setAlignment(&self, alignment: NSLayoutAttribute);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(edgeInsets)]
         pub unsafe fn edgeInsets(&self) -> NSEdgeInsets;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setEdgeInsets:)]
         pub unsafe fn setEdgeInsets(&self, edge_insets: NSEdgeInsets);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(distribution)]
         pub unsafe fn distribution(&self) -> NSStackViewDistribution;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDistribution:)]
         pub unsafe fn setDistribution(&self, distribution: NSStackViewDistribution);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(spacing)]
         pub unsafe fn spacing(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSpacing:)]
         pub unsafe fn setSpacing(&self, spacing: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCustomSpacing:afterView:)]
         pub unsafe fn setCustomSpacing_afterView(&self, spacing: CGFloat, view: &NSView);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(customSpacingAfterView:)]
         pub unsafe fn customSpacingAfterView(&self, view: &NSView) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(detachesHiddenViews)]
         pub unsafe fn detachesHiddenViews(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDetachesHiddenViews:)]
         pub unsafe fn setDetachesHiddenViews(&self, detaches_hidden_views: bool);
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other arrangedSubviews)]
         pub unsafe fn arrangedSubviews(&self) -> Id<NSArray<NSView>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(addArrangedSubview:)]
         pub unsafe fn addArrangedSubview(&self, view: &NSView);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(insertArrangedSubview:atIndex:)]
         pub unsafe fn insertArrangedSubview_atIndex(&self, view: &NSView, index: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeArrangedSubview:)]
         pub unsafe fn removeArrangedSubview(&self, view: &NSView);
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other detachedViews)]
         pub unsafe fn detachedViews(&self) -> Id<NSArray<NSView>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setVisibilityPriority:forView:)]
         pub unsafe fn setVisibilityPriority_forView(
             &self,
@@ -158,18 +195,21 @@ extern_methods!(
             view: &NSView,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(visibilityPriorityForView:)]
         pub unsafe fn visibilityPriorityForView(
             &self,
             view: &NSView,
         ) -> NSStackViewVisibilityPriority;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(clippingResistancePriorityForOrientation:)]
         pub unsafe fn clippingResistancePriorityForOrientation(
             &self,
             orientation: NSLayoutConstraintOrientation,
         ) -> NSLayoutPriority;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setClippingResistancePriority:forOrientation:)]
         pub unsafe fn setClippingResistancePriority_forOrientation(
             &self,
@@ -177,12 +217,14 @@ extern_methods!(
             orientation: NSLayoutConstraintOrientation,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(huggingPriorityForOrientation:)]
         pub unsafe fn huggingPriorityForOrientation(
             &self,
             orientation: NSLayoutConstraintOrientation,
         ) -> NSLayoutPriority;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setHuggingPriority:forOrientation:)]
         pub unsafe fn setHuggingPriority_forOrientation(
             &self,
@@ -193,12 +235,14 @@ extern_methods!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSStackViewDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "AppKit_NSStackView",
             feature = "AppKit_NSView",
             feature = "Foundation_NSArray"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(stackView:willDetachViews:)]
         unsafe fn stackView_willDetachViews(
@@ -212,6 +256,7 @@ extern_protocol!(
             feature = "AppKit_NSView",
             feature = "Foundation_NSArray"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(stackView:didReattachViews:)]
         unsafe fn stackView_didReattachViews(
@@ -229,10 +274,12 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSStackView")]
     unsafe impl NSStackView {
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(addView:inGravity:)]
         pub unsafe fn addView_inGravity(&self, view: &NSView, gravity: NSStackViewGravity);
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(insertView:atIndex:inGravity:)]
         pub unsafe fn insertView_atIndex_inGravity(
             &self,
@@ -242,14 +289,17 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeView:)]
         pub unsafe fn removeView(&self, view: &NSView);
 
         #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other viewsInGravity:)]
         pub unsafe fn viewsInGravity(&self, gravity: NSStackViewGravity) -> Id<NSArray<NSView>>;
 
         #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setViews:inGravity:)]
         pub unsafe fn setViews_inGravity(
             &self,
@@ -258,6 +308,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other views)]
         pub unsafe fn views(&self) -> Id<NSArray<NSView>>;
     }
@@ -268,10 +319,12 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSStackView")]
     unsafe impl NSStackView {
         #[deprecated = "Set -distribution to NSStackViewDistributionEqualSpacing instead."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(hasEqualSpacing)]
         pub unsafe fn hasEqualSpacing(&self) -> bool;
 
         #[deprecated = "Set -distribution to NSStackViewDistributionEqualSpacing instead."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setHasEqualSpacing:)]
         pub unsafe fn setHasEqualSpacing(&self, has_equal_spacing: bool);
     }
@@ -281,6 +334,7 @@ extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(feature = "AppKit_NSStackView")]
     unsafe impl NSStackView {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }

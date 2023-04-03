@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSResponder")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSResponder;
 
     #[cfg(feature = "AppKit_NSResponder")]
@@ -25,29 +26,36 @@ unsafe impl NSObjectProtocol for NSResponder {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSResponder {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
         ) -> Option<Id<Self>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other nextResponder)]
         pub unsafe fn nextResponder(&self) -> Option<Id<NSResponder>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setNextResponder:)]
         pub unsafe fn setNextResponder(&self, next_responder: Option<&NSResponder>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(tryToPerform:with:)]
         pub unsafe fn tryToPerform_with(&self, action: Sel, object: Option<&Object>) -> bool;
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(performKeyEquivalent:)]
         pub unsafe fn performKeyEquivalent(&self, event: &NSEvent) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other validRequestorForSendType:returnType:)]
         pub unsafe fn validRequestorForSendType_returnType(
             &self,
@@ -56,180 +64,226 @@ extern_methods!(
         ) -> Option<Id<Object>>;
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(mouseDown:)]
         pub unsafe fn mouseDown(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rightMouseDown:)]
         pub unsafe fn rightMouseDown(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(otherMouseDown:)]
         pub unsafe fn otherMouseDown(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(mouseUp:)]
         pub unsafe fn mouseUp(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rightMouseUp:)]
         pub unsafe fn rightMouseUp(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(otherMouseUp:)]
         pub unsafe fn otherMouseUp(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(mouseMoved:)]
         pub unsafe fn mouseMoved(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(mouseDragged:)]
         pub unsafe fn mouseDragged(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(scrollWheel:)]
         pub unsafe fn scrollWheel(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rightMouseDragged:)]
         pub unsafe fn rightMouseDragged(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(otherMouseDragged:)]
         pub unsafe fn otherMouseDragged(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(mouseEntered:)]
         pub unsafe fn mouseEntered(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(mouseExited:)]
         pub unsafe fn mouseExited(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(keyDown:)]
         pub unsafe fn keyDown(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(keyUp:)]
         pub unsafe fn keyUp(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(flagsChanged:)]
         pub unsafe fn flagsChanged(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(tabletPoint:)]
         pub unsafe fn tabletPoint(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(tabletProximity:)]
         pub unsafe fn tabletProximity(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(cursorUpdate:)]
         pub unsafe fn cursorUpdate(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(magnifyWithEvent:)]
         pub unsafe fn magnifyWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rotateWithEvent:)]
         pub unsafe fn rotateWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(swipeWithEvent:)]
         pub unsafe fn swipeWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(beginGestureWithEvent:)]
         pub unsafe fn beginGestureWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(endGestureWithEvent:)]
         pub unsafe fn endGestureWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(smartMagnifyWithEvent:)]
         pub unsafe fn smartMagnifyWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(changeModeWithEvent:)]
         pub unsafe fn changeModeWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(touchesBeganWithEvent:)]
         pub unsafe fn touchesBeganWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(touchesMovedWithEvent:)]
         pub unsafe fn touchesMovedWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(touchesEndedWithEvent:)]
         pub unsafe fn touchesEndedWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(touchesCancelledWithEvent:)]
         pub unsafe fn touchesCancelledWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(quickLookWithEvent:)]
         pub unsafe fn quickLookWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(pressureChangeWithEvent:)]
         pub unsafe fn pressureChangeWithEvent(&self, event: &NSEvent);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(noResponderFor:)]
         pub unsafe fn noResponderFor(&self, event_selector: Sel);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(acceptsFirstResponder)]
         pub unsafe fn acceptsFirstResponder(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(becomeFirstResponder)]
         pub unsafe fn becomeFirstResponder(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(resignFirstResponder)]
         pub unsafe fn resignFirstResponder(&self) -> bool;
 
         #[cfg(all(feature = "AppKit_NSEvent", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(interpretKeyEvents:)]
         pub unsafe fn interpretKeyEvents(&self, event_array: &NSArray<NSEvent>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(flushBufferedKeyEvents)]
         pub unsafe fn flushBufferedKeyEvents(&self);
 
         #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other menu)]
         pub unsafe fn menu(&self) -> Option<Id<NSMenu>>;
 
         #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMenu:)]
         pub unsafe fn setMenu(&self, menu: Option<&NSMenu>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(showContextHelp:)]
         pub unsafe fn showContextHelp(&self, sender: Option<&Object>);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(helpRequested:)]
         pub unsafe fn helpRequested(&self, event_ptr: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(shouldBeTreatedAsInkEvent:)]
         pub unsafe fn shouldBeTreatedAsInkEvent(&self, event: &NSEvent) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(wantsScrollEventsForSwipeTrackingOnAxis:)]
         pub unsafe fn wantsScrollEventsForSwipeTrackingOnAxis(
             &self,
             axis: NSEventGestureAxis,
         ) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(wantsForwardedScrollEventsForAxis:)]
         pub unsafe fn wantsForwardedScrollEventsForAxis(&self, axis: NSEventGestureAxis) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other supplementalTargetForAction:sender:)]
         pub unsafe fn supplementalTargetForAction_sender(
             &self,
@@ -240,383 +294,479 @@ extern_methods!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSStandardKeyBindingResponding: NSObjectProtocol {
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(insertText:)]
         unsafe fn insertText(&self, insert_string: &Object);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(doCommandBySelector:)]
         unsafe fn doCommandBySelector(&self, selector: Sel);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(moveForward:)]
         unsafe fn moveForward(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(moveRight:)]
         unsafe fn moveRight(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(moveBackward:)]
         unsafe fn moveBackward(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(moveLeft:)]
         unsafe fn moveLeft(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(moveUp:)]
         unsafe fn moveUp(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(moveDown:)]
         unsafe fn moveDown(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(moveWordForward:)]
         unsafe fn moveWordForward(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(moveWordBackward:)]
         unsafe fn moveWordBackward(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(moveToBeginningOfLine:)]
         unsafe fn moveToBeginningOfLine(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(moveToEndOfLine:)]
         unsafe fn moveToEndOfLine(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(moveToBeginningOfParagraph:)]
         unsafe fn moveToBeginningOfParagraph(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(moveToEndOfParagraph:)]
         unsafe fn moveToEndOfParagraph(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(moveToEndOfDocument:)]
         unsafe fn moveToEndOfDocument(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(moveToBeginningOfDocument:)]
         unsafe fn moveToBeginningOfDocument(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(pageDown:)]
         unsafe fn pageDown(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(pageUp:)]
         unsafe fn pageUp(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(centerSelectionInVisibleArea:)]
         unsafe fn centerSelectionInVisibleArea(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(moveBackwardAndModifySelection:)]
         unsafe fn moveBackwardAndModifySelection(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(moveForwardAndModifySelection:)]
         unsafe fn moveForwardAndModifySelection(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(moveWordForwardAndModifySelection:)]
         unsafe fn moveWordForwardAndModifySelection(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(moveWordBackwardAndModifySelection:)]
         unsafe fn moveWordBackwardAndModifySelection(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(moveUpAndModifySelection:)]
         unsafe fn moveUpAndModifySelection(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(moveDownAndModifySelection:)]
         unsafe fn moveDownAndModifySelection(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(moveToBeginningOfLineAndModifySelection:)]
         unsafe fn moveToBeginningOfLineAndModifySelection(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(moveToEndOfLineAndModifySelection:)]
         unsafe fn moveToEndOfLineAndModifySelection(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(moveToBeginningOfParagraphAndModifySelection:)]
         unsafe fn moveToBeginningOfParagraphAndModifySelection(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(moveToEndOfParagraphAndModifySelection:)]
         unsafe fn moveToEndOfParagraphAndModifySelection(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(moveToEndOfDocumentAndModifySelection:)]
         unsafe fn moveToEndOfDocumentAndModifySelection(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(moveToBeginningOfDocumentAndModifySelection:)]
         unsafe fn moveToBeginningOfDocumentAndModifySelection(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(pageDownAndModifySelection:)]
         unsafe fn pageDownAndModifySelection(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(pageUpAndModifySelection:)]
         unsafe fn pageUpAndModifySelection(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(moveParagraphForwardAndModifySelection:)]
         unsafe fn moveParagraphForwardAndModifySelection(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(moveParagraphBackwardAndModifySelection:)]
         unsafe fn moveParagraphBackwardAndModifySelection(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(moveWordRight:)]
         unsafe fn moveWordRight(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(moveWordLeft:)]
         unsafe fn moveWordLeft(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(moveRightAndModifySelection:)]
         unsafe fn moveRightAndModifySelection(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(moveLeftAndModifySelection:)]
         unsafe fn moveLeftAndModifySelection(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(moveWordRightAndModifySelection:)]
         unsafe fn moveWordRightAndModifySelection(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(moveWordLeftAndModifySelection:)]
         unsafe fn moveWordLeftAndModifySelection(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(moveToLeftEndOfLine:)]
         unsafe fn moveToLeftEndOfLine(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(moveToRightEndOfLine:)]
         unsafe fn moveToRightEndOfLine(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(moveToLeftEndOfLineAndModifySelection:)]
         unsafe fn moveToLeftEndOfLineAndModifySelection(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(moveToRightEndOfLineAndModifySelection:)]
         unsafe fn moveToRightEndOfLineAndModifySelection(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(scrollPageUp:)]
         unsafe fn scrollPageUp(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(scrollPageDown:)]
         unsafe fn scrollPageDown(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(scrollLineUp:)]
         unsafe fn scrollLineUp(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(scrollLineDown:)]
         unsafe fn scrollLineDown(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(scrollToBeginningOfDocument:)]
         unsafe fn scrollToBeginningOfDocument(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(scrollToEndOfDocument:)]
         unsafe fn scrollToEndOfDocument(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(transpose:)]
         unsafe fn transpose(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(transposeWords:)]
         unsafe fn transposeWords(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(selectAll:)]
         unsafe fn selectAll(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(selectParagraph:)]
         unsafe fn selectParagraph(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(selectLine:)]
         unsafe fn selectLine(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(selectWord:)]
         unsafe fn selectWord(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(indent:)]
         unsafe fn indent(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(insertTab:)]
         unsafe fn insertTab(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(insertBacktab:)]
         unsafe fn insertBacktab(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(insertNewline:)]
         unsafe fn insertNewline(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(insertParagraphSeparator:)]
         unsafe fn insertParagraphSeparator(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(insertNewlineIgnoringFieldEditor:)]
         unsafe fn insertNewlineIgnoringFieldEditor(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(insertTabIgnoringFieldEditor:)]
         unsafe fn insertTabIgnoringFieldEditor(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(insertLineBreak:)]
         unsafe fn insertLineBreak(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(insertContainerBreak:)]
         unsafe fn insertContainerBreak(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(insertSingleQuoteIgnoringSubstitution:)]
         unsafe fn insertSingleQuoteIgnoringSubstitution(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(insertDoubleQuoteIgnoringSubstitution:)]
         unsafe fn insertDoubleQuoteIgnoringSubstitution(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(changeCaseOfLetter:)]
         unsafe fn changeCaseOfLetter(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(uppercaseWord:)]
         unsafe fn uppercaseWord(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(lowercaseWord:)]
         unsafe fn lowercaseWord(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(capitalizeWord:)]
         unsafe fn capitalizeWord(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(deleteForward:)]
         unsafe fn deleteForward(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(deleteBackward:)]
         unsafe fn deleteBackward(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(deleteBackwardByDecomposingPreviousCharacter:)]
         unsafe fn deleteBackwardByDecomposingPreviousCharacter(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(deleteWordForward:)]
         unsafe fn deleteWordForward(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(deleteWordBackward:)]
         unsafe fn deleteWordBackward(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(deleteToBeginningOfLine:)]
         unsafe fn deleteToBeginningOfLine(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(deleteToEndOfLine:)]
         unsafe fn deleteToEndOfLine(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(deleteToBeginningOfParagraph:)]
         unsafe fn deleteToBeginningOfParagraph(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(deleteToEndOfParagraph:)]
         unsafe fn deleteToEndOfParagraph(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(yank:)]
         unsafe fn yank(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(complete:)]
         unsafe fn complete(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(setMark:)]
         unsafe fn setMark(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(deleteToMark:)]
         unsafe fn deleteToMark(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(selectToMark:)]
         unsafe fn selectToMark(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(swapWithMark:)]
         unsafe fn swapWithMark(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(cancelOperation:)]
         unsafe fn cancelOperation(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(makeBaseWritingDirectionNatural:)]
         unsafe fn makeBaseWritingDirectionNatural(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(makeBaseWritingDirectionLeftToRight:)]
         unsafe fn makeBaseWritingDirectionLeftToRight(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(makeBaseWritingDirectionRightToLeft:)]
         unsafe fn makeBaseWritingDirectionRightToLeft(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(makeTextWritingDirectionNatural:)]
         unsafe fn makeTextWritingDirectionNatural(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(makeTextWritingDirectionLeftToRight:)]
         unsafe fn makeTextWritingDirectionLeftToRight(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(makeTextWritingDirectionRightToLeft:)]
         unsafe fn makeTextWritingDirectionRightToLeft(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(quickLookPreviewItems:)]
         unsafe fn quickLookPreviewItems(&self, sender: Option<&Object>);
@@ -639,6 +789,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSResponder {
         #[cfg(feature = "Foundation_NSUndoManager")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other undoManager)]
         pub unsafe fn undoManager(&self) -> Option<Id<NSUndoManager>>;
     }
@@ -649,6 +800,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSResponder {
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(validateProposedFirstResponder:forEvent:)]
         pub unsafe fn validateProposedFirstResponder_forEvent(
             &self,
@@ -663,6 +815,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSResponder {
         #[cfg(all(feature = "AppKit_NSWindow", feature = "Foundation_NSError"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(presentError:modalForWindow:delegate:didPresentSelector:contextInfo:)]
         pub unsafe fn presentError_modalForWindow_delegate_didPresentSelector_contextInfo(
             &self,
@@ -674,10 +827,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSError")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(presentError:)]
         pub unsafe fn presentError(&self, error: &NSError) -> bool;
 
         #[cfg(feature = "Foundation_NSError")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other willPresentError:)]
         pub unsafe fn willPresentError(&self, error: &NSError) -> Id<NSError>;
     }
@@ -687,6 +842,7 @@ extern_methods!(
     /// NSTextFinderSupport
     #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSResponder {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(performTextFinderAction:)]
         pub unsafe fn performTextFinderAction(&self, sender: Option<&Object>);
     }
@@ -696,6 +852,7 @@ extern_methods!(
     /// NSWindowTabbing
     #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSResponder {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(newWindowForTab:)]
         pub unsafe fn newWindowForTab(&self, sender: Option<&Object>);
     }
@@ -707,6 +864,7 @@ extern_methods!(
     unsafe impl NSResponder {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "This has always returned NO and had no effect on macOS"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(performMnemonic:)]
         pub unsafe fn performMnemonic(&self, string: &NSString) -> bool;
     }

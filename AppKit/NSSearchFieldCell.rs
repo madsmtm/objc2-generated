@@ -16,6 +16,7 @@ extern_static!(NSSearchFieldNoRecentsMenuItemTag: NSInteger = 1003);
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSSearchFieldCell")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSSearchFieldCell;
 
     #[cfg(feature = "AppKit_NSSearchFieldCell")]
@@ -44,14 +45,17 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSSearchFieldCell")]
     unsafe impl NSSearchFieldCell {
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initTextCell:)]
         pub unsafe fn initTextCell(this: Option<Allocated<Self>>, string: &NSString) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initImageCell:)]
         pub unsafe fn initImageCell(
             this: Option<Allocated<Self>>,
@@ -59,76 +63,97 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSButtonCell")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other searchButtonCell)]
         pub unsafe fn searchButtonCell(&self) -> Option<Id<NSButtonCell>>;
 
         #[cfg(feature = "AppKit_NSButtonCell")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSearchButtonCell:)]
         pub unsafe fn setSearchButtonCell(&self, search_button_cell: Option<&NSButtonCell>);
 
         #[cfg(feature = "AppKit_NSButtonCell")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other cancelButtonCell)]
         pub unsafe fn cancelButtonCell(&self) -> Option<Id<NSButtonCell>>;
 
         #[cfg(feature = "AppKit_NSButtonCell")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCancelButtonCell:)]
         pub unsafe fn setCancelButtonCell(&self, cancel_button_cell: Option<&NSButtonCell>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(resetSearchButtonCell)]
         pub unsafe fn resetSearchButtonCell(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(resetCancelButtonCell)]
         pub unsafe fn resetCancelButtonCell(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(searchTextRectForBounds:)]
         pub unsafe fn searchTextRectForBounds(&self, rect: NSRect) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(searchButtonRectForBounds:)]
         pub unsafe fn searchButtonRectForBounds(&self, rect: NSRect) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(cancelButtonRectForBounds:)]
         pub unsafe fn cancelButtonRectForBounds(&self, rect: NSRect) -> NSRect;
 
         #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other searchMenuTemplate)]
         pub unsafe fn searchMenuTemplate(&self) -> Option<Id<NSMenu>>;
 
         #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSearchMenuTemplate:)]
         pub unsafe fn setSearchMenuTemplate(&self, search_menu_template: Option<&NSMenu>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(sendsWholeSearchString)]
         pub unsafe fn sendsWholeSearchString(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSendsWholeSearchString:)]
         pub unsafe fn setSendsWholeSearchString(&self, sends_whole_search_string: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(maximumRecents)]
         pub unsafe fn maximumRecents(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMaximumRecents:)]
         pub unsafe fn setMaximumRecents(&self, maximum_recents: NSInteger);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other recentSearches)]
         pub unsafe fn recentSearches(&self) -> Id<NSArray<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setRecentSearches:)]
         pub unsafe fn setRecentSearches(&self, recent_searches: Option<&NSArray<NSString>>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other recentsAutosaveName)]
         pub unsafe fn recentsAutosaveName(&self) -> Option<Id<NSSearchFieldRecentsAutosaveName>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setRecentsAutosaveName:)]
         pub unsafe fn setRecentsAutosaveName(
             &self,
             recents_autosave_name: Option<&NSSearchFieldRecentsAutosaveName>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(sendsSearchStringImmediately)]
         pub unsafe fn sendsSearchStringImmediately(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSendsSearchStringImmediately:)]
         pub unsafe fn setSendsSearchStringImmediately(&self, sends_search_string_immediately: bool);
     }

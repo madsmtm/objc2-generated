@@ -11,20 +11,34 @@ extern_static!(NSAppKitVersionNumberWithDeferredWindowDisplaySupport: NSAppKitVe
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSWindowStyleMask {
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowStyleMaskBorderless = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowStyleMaskTitled = 1 << 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowStyleMaskClosable = 1 << 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowStyleMaskMiniaturizable = 1 << 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowStyleMaskResizable = 1 << 3,
         #[deprecated = "Textured window style should no longer be used"]
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowStyleMaskTexturedBackground = 1 << 8,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowStyleMaskUnifiedTitleAndToolbar = 1 << 12,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowStyleMaskFullScreen = 1 << 14,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowStyleMaskFullSizeContentView = 1 << 15,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowStyleMaskUtilityWindow = 1 << 4,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowStyleMaskDocModalWindow = 1 << 6,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowStyleMaskNonactivatingPanel = 1 << 7,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowStyleMaskHUDWindow = 1 << 13,
     }
 );
@@ -35,65 +49,100 @@ extern_static!(NSModalResponseCancel: NSModalResponse = 0);
 
 extern_enum!(
     #[underlying(c_uint)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum __anonymous__ {
+        #[cfg(not(any(target_os = "ios")))]
         NSDisplayWindowRunLoopOrdering = 600000,
+        #[cfg(not(any(target_os = "ios")))]
         NSResetCursorRectsRunLoopOrdering = 700000,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSWindowSharingType {
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowSharingNone = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowSharingReadOnly = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowSharingReadWrite = 2,
     }
 );
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSWindowCollectionBehavior {
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowCollectionBehaviorDefault = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowCollectionBehaviorCanJoinAllSpaces = 1 << 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowCollectionBehaviorMoveToActiveSpace = 1 << 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowCollectionBehaviorManaged = 1 << 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowCollectionBehaviorTransient = 1 << 3,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowCollectionBehaviorStationary = 1 << 4,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowCollectionBehaviorParticipatesInCycle = 1 << 5,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowCollectionBehaviorIgnoresCycle = 1 << 6,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowCollectionBehaviorFullScreenPrimary = 1 << 7,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowCollectionBehaviorFullScreenAuxiliary = 1 << 8,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowCollectionBehaviorFullScreenNone = 1 << 9,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowCollectionBehaviorFullScreenAllowsTiling = 1 << 11,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowCollectionBehaviorFullScreenDisallowsTiling = 1 << 12,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowCollectionBehaviorPrimary = 1 << 16,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowCollectionBehaviorAuxiliary = 1 << 17,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowCollectionBehaviorCanJoinAllApplications = 1 << 18,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSWindowAnimationBehavior {
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowAnimationBehaviorDefault = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowAnimationBehaviorNone = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowAnimationBehaviorDocumentWindow = 3,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowAnimationBehaviorUtilityWindow = 4,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowAnimationBehaviorAlertPanel = 5,
     }
 );
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSWindowNumberListOptions {
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowNumberListAllApplications = 1 << 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowNumberListAllSpaces = 1 << 4,
     }
 );
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSWindowOcclusionState {
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowOcclusionStateVisible = 1 << 1,
     }
 );
@@ -104,68 +153,101 @@ typed_extensible_enum!(
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSSelectionDirection {
+        #[cfg(not(any(target_os = "ios")))]
         NSDirectSelection = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSSelectingNext = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSSelectingPrevious = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSWindowButton {
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowCloseButton = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowMiniaturizeButton = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowZoomButton = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowToolbarButton = 3,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowDocumentIconButton = 4,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowDocumentVersionsButton = 6,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSWindowTitleVisibility {
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowTitleVisible = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowTitleHidden = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSWindowToolbarStyle {
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowToolbarStyleAutomatic = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowToolbarStyleExpanded = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowToolbarStylePreference = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowToolbarStyleUnified = 3,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowToolbarStyleUnifiedCompact = 4,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSWindowUserTabbingPreference {
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowUserTabbingPreferenceManual = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowUserTabbingPreferenceAlways = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowUserTabbingPreferenceInFullScreen = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSWindowTabbingMode {
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowTabbingModeAutomatic = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowTabbingModePreferred = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowTabbingModeDisallowed = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSTitlebarSeparatorStyle {
+        #[cfg(not(any(target_os = "ios")))]
         NSTitlebarSeparatorStyleAutomatic = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSTitlebarSeparatorStyleNone = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSTitlebarSeparatorStyleLine = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSTitlebarSeparatorStyleShadow = 3,
     }
 );
@@ -179,6 +261,7 @@ pub type NSWindowTabbingIdentifier = NSString;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSWindow")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSWindow;
 
     #[cfg(feature = "AppKit_NSWindow")]
@@ -218,12 +301,14 @@ unsafe impl NSUserInterfaceValidations for NSWindow {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSWindow")]
     unsafe impl NSWindow {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(frameRectForContentRect:styleMask:)]
         pub unsafe fn frameRectForContentRect_styleMask(
             c_rect: NSRect,
             style: NSWindowStyleMask,
         ) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(contentRectForFrameRect:styleMask:)]
         pub unsafe fn contentRectForFrameRect_styleMask(
             f_rect: NSRect,
@@ -231,21 +316,26 @@ extern_methods!(
         ) -> NSRect;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(minFrameWidthWithTitle:styleMask:)]
         pub unsafe fn minFrameWidthWithTitle_styleMask(
             title: &NSString,
             style: NSWindowStyleMask,
         ) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(defaultDepthLimit)]
         pub unsafe fn defaultDepthLimit() -> NSWindowDepth;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(frameRectForContentRect:)]
         pub unsafe fn frameRectForContentRect(&self, content_rect: NSRect) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(contentRectForFrameRect:)]
         pub unsafe fn contentRectForFrameRect(&self, frame_rect: NSRect) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer(
             this: Option<Allocated<Self>>,
@@ -256,6 +346,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSScreen")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:screen:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer_screen(
             this: Option<Allocated<Self>>,
@@ -267,46 +358,59 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other subtitle)]
         pub unsafe fn subtitle(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSubtitle:)]
         pub unsafe fn setSubtitle(&self, subtitle: &NSString);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(titleVisibility)]
         pub unsafe fn titleVisibility(&self) -> NSWindowTitleVisibility;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTitleVisibility:)]
         pub unsafe fn setTitleVisibility(&self, title_visibility: NSWindowTitleVisibility);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(titlebarAppearsTransparent)]
         pub unsafe fn titlebarAppearsTransparent(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTitlebarAppearsTransparent:)]
         pub unsafe fn setTitlebarAppearsTransparent(&self, titlebar_appears_transparent: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(toolbarStyle)]
         pub unsafe fn toolbarStyle(&self) -> NSWindowToolbarStyle;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setToolbarStyle:)]
         pub unsafe fn setToolbarStyle(&self, toolbar_style: NSWindowToolbarStyle);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(contentLayoutRect)]
         pub unsafe fn contentLayoutRect(&self) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other contentLayoutGuide)]
         pub unsafe fn contentLayoutGuide(&self) -> Option<Id<Object>>;
 
@@ -314,6 +418,7 @@ extern_methods!(
             feature = "AppKit_NSTitlebarAccessoryViewController",
             feature = "Foundation_NSArray"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other titlebarAccessoryViewControllers)]
         pub unsafe fn titlebarAccessoryViewControllers(
             &self,
@@ -323,6 +428,7 @@ extern_methods!(
             feature = "AppKit_NSTitlebarAccessoryViewController",
             feature = "Foundation_NSArray"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTitlebarAccessoryViewControllers:)]
         pub unsafe fn setTitlebarAccessoryViewControllers(
             &self,
@@ -330,6 +436,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSTitlebarAccessoryViewController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(addTitlebarAccessoryViewController:)]
         pub unsafe fn addTitlebarAccessoryViewController(
             &self,
@@ -337,6 +444,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSTitlebarAccessoryViewController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(insertTitlebarAccessoryViewController:atIndex:)]
         pub unsafe fn insertTitlebarAccessoryViewController_atIndex(
             &self,
@@ -344,59 +452,75 @@ extern_methods!(
             index: NSInteger,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeTitlebarAccessoryViewControllerAtIndex:)]
         pub unsafe fn removeTitlebarAccessoryViewControllerAtIndex(&self, index: NSInteger);
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other representedURL)]
         pub unsafe fn representedURL(&self) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setRepresentedURL:)]
         pub unsafe fn setRepresentedURL(&self, represented_url: Option<&NSURL>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other representedFilename)]
         pub unsafe fn representedFilename(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setRepresentedFilename:)]
         pub unsafe fn setRepresentedFilename(&self, represented_filename: &NSString);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTitleWithRepresentedFilename:)]
         pub unsafe fn setTitleWithRepresentedFilename(&self, filename: &NSString);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isExcludedFromWindowsMenu)]
         pub unsafe fn isExcludedFromWindowsMenu(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setExcludedFromWindowsMenu:)]
         pub unsafe fn setExcludedFromWindowsMenu(&self, excluded_from_windows_menu: bool);
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other contentView)]
         pub unsafe fn contentView(&self) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setContentView:)]
         pub unsafe fn setContentView(&self, content_view: Option<&NSView>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSWindowDelegate>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSWindowDelegate>>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(windowNumber)]
         pub unsafe fn windowNumber(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(styleMask)]
         pub unsafe fn styleMask(&self) -> NSWindowStyleMask;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setStyleMask:)]
         pub unsafe fn setStyleMask(&self, style_mask: NSWindowStyleMask);
 
         #[cfg(feature = "AppKit_NSText")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other fieldEditor:forObject:)]
         pub unsafe fn fieldEditor_forObject(
             &self,
@@ -404,10 +528,12 @@ extern_methods!(
             object: Option<&Object>,
         ) -> Option<Id<NSText>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(endEditingFor:)]
         pub unsafe fn endEditingFor(&self, object: Option<&Object>);
 
         #[cfg(feature = "AppKit_NSScreen")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(constrainFrameRect:toScreen:)]
         pub unsafe fn constrainFrameRect_toScreen(
             &self,
@@ -415,27 +541,35 @@ extern_methods!(
             screen: Option<&NSScreen>,
         ) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFrame:display:)]
         pub unsafe fn setFrame_display(&self, frame_rect: NSRect, flag: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setContentSize:)]
         pub unsafe fn setContentSize(&self, size: NSSize);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFrameOrigin:)]
         pub unsafe fn setFrameOrigin(&self, point: NSPoint);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFrameTopLeftPoint:)]
         pub unsafe fn setFrameTopLeftPoint(&self, point: NSPoint);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(cascadeTopLeftFromPoint:)]
         pub unsafe fn cascadeTopLeftFromPoint(&self, top_left_point: NSPoint) -> NSPoint;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(frame)]
         pub unsafe fn frame(&self) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(animationResizeTime:)]
         pub unsafe fn animationResizeTime(&self, new_frame: NSRect) -> NSTimeInterval;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFrame:display:animate:)]
         pub unsafe fn setFrame_display_animate(
             &self,
@@ -444,93 +578,122 @@ extern_methods!(
             animate_flag: bool,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(inLiveResize)]
         pub unsafe fn inLiveResize(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(resizeIncrements)]
         pub unsafe fn resizeIncrements(&self) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setResizeIncrements:)]
         pub unsafe fn setResizeIncrements(&self, resize_increments: NSSize);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(aspectRatio)]
         pub unsafe fn aspectRatio(&self) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAspectRatio:)]
         pub unsafe fn setAspectRatio(&self, aspect_ratio: NSSize);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(contentResizeIncrements)]
         pub unsafe fn contentResizeIncrements(&self) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setContentResizeIncrements:)]
         pub unsafe fn setContentResizeIncrements(&self, content_resize_increments: NSSize);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(contentAspectRatio)]
         pub unsafe fn contentAspectRatio(&self) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setContentAspectRatio:)]
         pub unsafe fn setContentAspectRatio(&self, content_aspect_ratio: NSSize);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(viewsNeedDisplay)]
         pub unsafe fn viewsNeedDisplay(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setViewsNeedDisplay:)]
         pub unsafe fn setViewsNeedDisplay(&self, views_need_display: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(displayIfNeeded)]
         pub unsafe fn displayIfNeeded(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(display)]
         pub unsafe fn display(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(preservesContentDuringLiveResize)]
         pub unsafe fn preservesContentDuringLiveResize(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPreservesContentDuringLiveResize:)]
         pub unsafe fn setPreservesContentDuringLiveResize(
             &self,
             preserves_content_during_live_resize: bool,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(update)]
         pub unsafe fn update(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(makeFirstResponder:)]
         pub unsafe fn makeFirstResponder(&self, responder: Option<&NSResponder>) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other firstResponder)]
         pub unsafe fn firstResponder(&self) -> Option<Id<NSResponder>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(resizeFlags)]
         pub unsafe fn resizeFlags(&self) -> NSEventModifierFlags;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(close)]
         pub unsafe fn close(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isReleasedWhenClosed)]
         pub unsafe fn isReleasedWhenClosed(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setReleasedWhenClosed:)]
         pub unsafe fn setReleasedWhenClosed(&self, released_when_closed: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(miniaturize:)]
         pub unsafe fn miniaturize(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(deminiaturize:)]
         pub unsafe fn deminiaturize(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isZoomed)]
         pub unsafe fn isZoomed(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(zoom:)]
         pub unsafe fn zoom(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isMiniaturized)]
         pub unsafe fn isMiniaturized(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(tryToPerform:with:)]
         pub unsafe fn tryToPerform_with(&self, action: Sel, object: Option<&Object>) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other validRequestorForSendType:returnType:)]
         pub unsafe fn validRequestorForSendType_returnType(
             &self,
@@ -539,13 +702,16 @@ extern_methods!(
         ) -> Option<Id<Object>>;
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Id<NSColor>;
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSColor>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setContentBorderThickness:forEdge:)]
         pub unsafe fn setContentBorderThickness_forEdge(
             &self,
@@ -553,9 +719,11 @@ extern_methods!(
             edge: NSRectEdge,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(contentBorderThicknessForEdge:)]
         pub unsafe fn contentBorderThicknessForEdge(&self, edge: NSRectEdge) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAutorecalculatesContentBorderThickness:forEdge:)]
         pub unsafe fn setAutorecalculatesContentBorderThickness_forEdge(
             &self,
@@ -563,51 +731,66 @@ extern_methods!(
             edge: NSRectEdge,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(autorecalculatesContentBorderThicknessForEdge:)]
         pub unsafe fn autorecalculatesContentBorderThicknessForEdge(
             &self,
             edge: NSRectEdge,
         ) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isMovable)]
         pub unsafe fn isMovable(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMovable:)]
         pub unsafe fn setMovable(&self, movable: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isMovableByWindowBackground)]
         pub unsafe fn isMovableByWindowBackground(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMovableByWindowBackground:)]
         pub unsafe fn setMovableByWindowBackground(&self, movable_by_window_background: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(hidesOnDeactivate)]
         pub unsafe fn hidesOnDeactivate(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setHidesOnDeactivate:)]
         pub unsafe fn setHidesOnDeactivate(&self, hides_on_deactivate: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(canHide)]
         pub unsafe fn canHide(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCanHide:)]
         pub unsafe fn setCanHide(&self, can_hide: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(center)]
         pub unsafe fn center(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(makeKeyAndOrderFront:)]
         pub unsafe fn makeKeyAndOrderFront(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(orderFront:)]
         pub unsafe fn orderFront(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(orderBack:)]
         pub unsafe fn orderBack(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(orderOut:)]
         pub unsafe fn orderOut(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(orderWindow:relativeTo:)]
         pub unsafe fn orderWindow_relativeTo(
             &self,
@@ -615,104 +798,135 @@ extern_methods!(
             other_win: NSInteger,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(orderFrontRegardless)]
         pub unsafe fn orderFrontRegardless(&self);
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other miniwindowImage)]
         pub unsafe fn miniwindowImage(&self) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMiniwindowImage:)]
         pub unsafe fn setMiniwindowImage(&self, miniwindow_image: Option<&NSImage>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other miniwindowTitle)]
         pub unsafe fn miniwindowTitle(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMiniwindowTitle:)]
         pub unsafe fn setMiniwindowTitle(&self, miniwindow_title: Option<&NSString>);
 
         #[cfg(feature = "AppKit_NSDockTile")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other dockTile)]
         pub unsafe fn dockTile(&self) -> Id<NSDockTile>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isDocumentEdited)]
         pub unsafe fn isDocumentEdited(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDocumentEdited:)]
         pub unsafe fn setDocumentEdited(&self, document_edited: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isVisible)]
         pub unsafe fn isVisible(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isKeyWindow)]
         pub unsafe fn isKeyWindow(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isMainWindow)]
         pub unsafe fn isMainWindow(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(canBecomeKeyWindow)]
         pub unsafe fn canBecomeKeyWindow(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(canBecomeMainWindow)]
         pub unsafe fn canBecomeMainWindow(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(makeKeyWindow)]
         pub unsafe fn makeKeyWindow(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(makeMainWindow)]
         pub unsafe fn makeMainWindow(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(becomeKeyWindow)]
         pub unsafe fn becomeKeyWindow(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(resignKeyWindow)]
         pub unsafe fn resignKeyWindow(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(becomeMainWindow)]
         pub unsafe fn becomeMainWindow(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(resignMainWindow)]
         pub unsafe fn resignMainWindow(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(worksWhenModal)]
         pub unsafe fn worksWhenModal(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(preventsApplicationTerminationWhenModal)]
         pub unsafe fn preventsApplicationTerminationWhenModal(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPreventsApplicationTerminationWhenModal:)]
         pub unsafe fn setPreventsApplicationTerminationWhenModal(
             &self,
             prevents_application_termination_when_modal: bool,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(convertRectToScreen:)]
         pub unsafe fn convertRectToScreen(&self, rect: NSRect) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(convertRectFromScreen:)]
         pub unsafe fn convertRectFromScreen(&self, rect: NSRect) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(convertPointToScreen:)]
         pub unsafe fn convertPointToScreen(&self, point: NSPoint) -> NSPoint;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(convertPointFromScreen:)]
         pub unsafe fn convertPointFromScreen(&self, point: NSPoint) -> NSPoint;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(convertRectToBacking:)]
         pub unsafe fn convertRectToBacking(&self, rect: NSRect) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(convertRectFromBacking:)]
         pub unsafe fn convertRectFromBacking(&self, rect: NSRect) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(convertPointToBacking:)]
         pub unsafe fn convertPointToBacking(&self, point: NSPoint) -> NSPoint;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(convertPointFromBacking:)]
         pub unsafe fn convertPointFromBacking(&self, point: NSPoint) -> NSPoint;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(backingAlignedRect:options:)]
         pub unsafe fn backingAlignedRect_options(
             &self,
@@ -720,151 +934,196 @@ extern_methods!(
             options: NSAlignmentOptions,
         ) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(backingScaleFactor)]
         pub unsafe fn backingScaleFactor(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(performClose:)]
         pub unsafe fn performClose(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(performMiniaturize:)]
         pub unsafe fn performMiniaturize(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(performZoom:)]
         pub unsafe fn performZoom(&self, sender: Option<&Object>);
 
         #[cfg(feature = "Foundation_NSData")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other dataWithEPSInsideRect:)]
         pub unsafe fn dataWithEPSInsideRect(&self, rect: NSRect) -> Id<NSData>;
 
         #[cfg(feature = "Foundation_NSData")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other dataWithPDFInsideRect:)]
         pub unsafe fn dataWithPDFInsideRect(&self, rect: NSRect) -> Id<NSData>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(print:)]
         pub unsafe fn print(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(allowsToolTipsWhenApplicationIsInactive)]
         pub unsafe fn allowsToolTipsWhenApplicationIsInactive(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAllowsToolTipsWhenApplicationIsInactive:)]
         pub unsafe fn setAllowsToolTipsWhenApplicationIsInactive(
             &self,
             allows_tool_tips_when_application_is_inactive: bool,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(backingType)]
         pub unsafe fn backingType(&self) -> NSBackingStoreType;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBackingType:)]
         pub unsafe fn setBackingType(&self, backing_type: NSBackingStoreType);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(level)]
         pub unsafe fn level(&self) -> NSWindowLevel;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setLevel:)]
         pub unsafe fn setLevel(&self, level: NSWindowLevel);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(depthLimit)]
         pub unsafe fn depthLimit(&self) -> NSWindowDepth;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDepthLimit:)]
         pub unsafe fn setDepthLimit(&self, depth_limit: NSWindowDepth);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDynamicDepthLimit:)]
         pub unsafe fn setDynamicDepthLimit(&self, flag: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(hasDynamicDepthLimit)]
         pub unsafe fn hasDynamicDepthLimit(&self) -> bool;
 
         #[cfg(feature = "AppKit_NSScreen")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other screen)]
         pub unsafe fn screen(&self) -> Option<Id<NSScreen>>;
 
         #[cfg(feature = "AppKit_NSScreen")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other deepestScreen)]
         pub unsafe fn deepestScreen(&self) -> Option<Id<NSScreen>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(hasShadow)]
         pub unsafe fn hasShadow(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setHasShadow:)]
         pub unsafe fn setHasShadow(&self, has_shadow: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(invalidateShadow)]
         pub unsafe fn invalidateShadow(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(alphaValue)]
         pub unsafe fn alphaValue(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAlphaValue:)]
         pub unsafe fn setAlphaValue(&self, alpha_value: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isOpaque)]
         pub unsafe fn isOpaque(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setOpaque:)]
         pub unsafe fn setOpaque(&self, opaque: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(sharingType)]
         pub unsafe fn sharingType(&self) -> NSWindowSharingType;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSharingType:)]
         pub unsafe fn setSharingType(&self, sharing_type: NSWindowSharingType);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(allowsConcurrentViewDrawing)]
         pub unsafe fn allowsConcurrentViewDrawing(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAllowsConcurrentViewDrawing:)]
         pub unsafe fn setAllowsConcurrentViewDrawing(&self, allows_concurrent_view_drawing: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(displaysWhenScreenProfileChanges)]
         pub unsafe fn displaysWhenScreenProfileChanges(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDisplaysWhenScreenProfileChanges:)]
         pub unsafe fn setDisplaysWhenScreenProfileChanges(
             &self,
             displays_when_screen_profile_changes: bool,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(disableScreenUpdatesUntilFlush)]
         pub unsafe fn disableScreenUpdatesUntilFlush(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(canBecomeVisibleWithoutLogin)]
         pub unsafe fn canBecomeVisibleWithoutLogin(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCanBecomeVisibleWithoutLogin:)]
         pub unsafe fn setCanBecomeVisibleWithoutLogin(
             &self,
             can_become_visible_without_login: bool,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(collectionBehavior)]
         pub unsafe fn collectionBehavior(&self) -> NSWindowCollectionBehavior;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCollectionBehavior:)]
         pub unsafe fn setCollectionBehavior(&self, collection_behavior: NSWindowCollectionBehavior);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(animationBehavior)]
         pub unsafe fn animationBehavior(&self) -> NSWindowAnimationBehavior;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAnimationBehavior:)]
         pub unsafe fn setAnimationBehavior(&self, animation_behavior: NSWindowAnimationBehavior);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isOnActiveSpace)]
         pub unsafe fn isOnActiveSpace(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(toggleFullScreen:)]
         pub unsafe fn toggleFullScreen(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other stringWithSavedFrame)]
         pub unsafe fn stringWithSavedFrame(&self) -> Id<NSWindowPersistableFrameDescriptor>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFrameFromString:)]
         pub unsafe fn setFrameFromString(&self, string: &NSWindowPersistableFrameDescriptor);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(saveFrameUsingName:)]
         pub unsafe fn saveFrameUsingName(&self, name: &NSWindowFrameAutosaveName);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFrameUsingName:force:)]
         pub unsafe fn setFrameUsingName_force(
             &self,
@@ -872,66 +1131,86 @@ extern_methods!(
             force: bool,
         ) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFrameUsingName:)]
         pub unsafe fn setFrameUsingName(&self, name: &NSWindowFrameAutosaveName) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFrameAutosaveName:)]
         pub unsafe fn setFrameAutosaveName(&self, name: &NSWindowFrameAutosaveName) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other frameAutosaveName)]
         pub unsafe fn frameAutosaveName(&self) -> Id<NSWindowFrameAutosaveName>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeFrameUsingName:)]
         pub unsafe fn removeFrameUsingName(name: &NSWindowFrameAutosaveName);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(minSize)]
         pub unsafe fn minSize(&self) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMinSize:)]
         pub unsafe fn setMinSize(&self, min_size: NSSize);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(maxSize)]
         pub unsafe fn maxSize(&self) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMaxSize:)]
         pub unsafe fn setMaxSize(&self, max_size: NSSize);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(contentMinSize)]
         pub unsafe fn contentMinSize(&self) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setContentMinSize:)]
         pub unsafe fn setContentMinSize(&self, content_min_size: NSSize);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(contentMaxSize)]
         pub unsafe fn contentMaxSize(&self) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setContentMaxSize:)]
         pub unsafe fn setContentMaxSize(&self, content_max_size: NSSize);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(minFullScreenContentSize)]
         pub unsafe fn minFullScreenContentSize(&self) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMinFullScreenContentSize:)]
         pub unsafe fn setMinFullScreenContentSize(&self, min_full_screen_content_size: NSSize);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(maxFullScreenContentSize)]
         pub unsafe fn maxFullScreenContentSize(&self) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMaxFullScreenContentSize:)]
         pub unsafe fn setMaxFullScreenContentSize(&self, max_full_screen_content_size: NSSize);
 
         #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other deviceDescription)]
         pub unsafe fn deviceDescription(&self) -> Id<NSDictionary<NSDeviceDescriptionKey, Object>>;
 
         #[cfg(feature = "AppKit_NSWindowController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other windowController)]
         pub unsafe fn windowController(&self) -> Option<Id<NSWindowController>>;
 
         #[cfg(feature = "AppKit_NSWindowController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setWindowController:)]
         pub unsafe fn setWindowController(&self, window_controller: Option<&NSWindowController>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(beginSheet:completionHandler:)]
         pub unsafe fn beginSheet_completionHandler(
             &self,
@@ -939,6 +1218,7 @@ extern_methods!(
             handler: Option<&Block<(NSModalResponse,), ()>>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(beginCriticalSheet:completionHandler:)]
         pub unsafe fn beginCriticalSheet_completionHandler(
             &self,
@@ -946,9 +1226,11 @@ extern_methods!(
             handler: Option<&Block<(NSModalResponse,), ()>>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(endSheet:)]
         pub unsafe fn endSheet(&self, sheet_window: &NSWindow);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(endSheet:returnCode:)]
         pub unsafe fn endSheet_returnCode(
             &self,
@@ -957,19 +1239,24 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other sheets)]
         pub unsafe fn sheets(&self) -> Id<NSArray<NSWindow>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other attachedSheet)]
         pub unsafe fn attachedSheet(&self) -> Option<Id<NSWindow>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isSheet)]
         pub unsafe fn isSheet(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other sheetParent)]
         pub unsafe fn sheetParent(&self) -> Option<Id<NSWindow>>;
 
         #[cfg(feature = "AppKit_NSButton")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other standardWindowButton:forStyleMask:)]
         pub unsafe fn standardWindowButton_forStyleMask(
             b: NSWindowButton,
@@ -977,9 +1264,11 @@ extern_methods!(
         ) -> Option<Id<NSButton>>;
 
         #[cfg(feature = "AppKit_NSButton")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other standardWindowButton:)]
         pub unsafe fn standardWindowButton(&self, b: NSWindowButton) -> Option<Id<NSButton>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(addChildWindow:ordered:)]
         pub unsafe fn addChildWindow_ordered(
             &self,
@@ -987,54 +1276,68 @@ extern_methods!(
             place: NSWindowOrderingMode,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeChildWindow:)]
         pub unsafe fn removeChildWindow(&self, child_win: &NSWindow);
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other childWindows)]
         pub unsafe fn childWindows(&self) -> Option<Id<NSArray<NSWindow>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other parentWindow)]
         pub unsafe fn parentWindow(&self) -> Option<Id<NSWindow>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setParentWindow:)]
         pub unsafe fn setParentWindow(&self, parent_window: Option<&NSWindow>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other appearanceSource)]
         pub unsafe fn appearanceSource(&self) -> Option<Id<NSObject>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAppearanceSource:)]
         pub unsafe fn setAppearanceSource(&self, appearance_source: Option<&NSObject>);
 
         #[cfg(feature = "AppKit_NSColorSpace")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other colorSpace)]
         pub unsafe fn colorSpace(&self) -> Option<Id<NSColorSpace>>;
 
         #[cfg(feature = "AppKit_NSColorSpace")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setColorSpace:)]
         pub unsafe fn setColorSpace(&self, color_space: Option<&NSColorSpace>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(canRepresentDisplayGamut:)]
         pub unsafe fn canRepresentDisplayGamut(&self, display_gamut: NSDisplayGamut) -> bool;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other windowNumbersWithOptions:)]
         pub unsafe fn windowNumbersWithOptions(
             options: NSWindowNumberListOptions,
         ) -> Option<Id<NSArray<NSNumber>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(windowNumberAtPoint:belowWindowWithWindowNumber:)]
         pub unsafe fn windowNumberAtPoint_belowWindowWithWindowNumber(
             point: NSPoint,
             window_number: NSInteger,
         ) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(occlusionState)]
         pub unsafe fn occlusionState(&self) -> NSWindowOcclusionState;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(titlebarSeparatorStyle)]
         pub unsafe fn titlebarSeparatorStyle(&self) -> NSTitlebarSeparatorStyle;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTitlebarSeparatorStyle:)]
         pub unsafe fn setTitlebarSeparatorStyle(
             &self,
@@ -1042,10 +1345,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other contentViewController)]
         pub unsafe fn contentViewController(&self) -> Option<Id<NSViewController>>;
 
         #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setContentViewController:)]
         pub unsafe fn setContentViewController(
             &self,
@@ -1053,128 +1358,165 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other windowWithContentViewController:)]
         pub unsafe fn windowWithContentViewController(
             content_view_controller: &NSViewController,
         ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(performWindowDragWithEvent:)]
         pub unsafe fn performWindowDragWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other initialFirstResponder)]
         pub unsafe fn initialFirstResponder(&self) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setInitialFirstResponder:)]
         pub unsafe fn setInitialFirstResponder(&self, initial_first_responder: Option<&NSView>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectNextKeyView:)]
         pub unsafe fn selectNextKeyView(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectPreviousKeyView:)]
         pub unsafe fn selectPreviousKeyView(&self, sender: Option<&Object>);
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectKeyViewFollowingView:)]
         pub unsafe fn selectKeyViewFollowingView(&self, view: &NSView);
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectKeyViewPrecedingView:)]
         pub unsafe fn selectKeyViewPrecedingView(&self, view: &NSView);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(keyViewSelectionDirection)]
         pub unsafe fn keyViewSelectionDirection(&self) -> NSSelectionDirection;
 
         #[cfg(feature = "AppKit_NSButtonCell")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other defaultButtonCell)]
         pub unsafe fn defaultButtonCell(&self) -> Option<Id<NSButtonCell>>;
 
         #[cfg(feature = "AppKit_NSButtonCell")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDefaultButtonCell:)]
         pub unsafe fn setDefaultButtonCell(&self, default_button_cell: Option<&NSButtonCell>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(disableKeyEquivalentForDefaultButtonCell)]
         pub unsafe fn disableKeyEquivalentForDefaultButtonCell(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(enableKeyEquivalentForDefaultButtonCell)]
         pub unsafe fn enableKeyEquivalentForDefaultButtonCell(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(autorecalculatesKeyViewLoop)]
         pub unsafe fn autorecalculatesKeyViewLoop(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAutorecalculatesKeyViewLoop:)]
         pub unsafe fn setAutorecalculatesKeyViewLoop(&self, autorecalculates_key_view_loop: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(recalculateKeyViewLoop)]
         pub unsafe fn recalculateKeyViewLoop(&self);
 
         #[cfg(feature = "AppKit_NSToolbar")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other toolbar)]
         pub unsafe fn toolbar(&self) -> Option<Id<NSToolbar>>;
 
         #[cfg(feature = "AppKit_NSToolbar")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setToolbar:)]
         pub unsafe fn setToolbar(&self, toolbar: Option<&NSToolbar>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(toggleToolbarShown:)]
         pub unsafe fn toggleToolbarShown(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(runToolbarCustomizationPalette:)]
         pub unsafe fn runToolbarCustomizationPalette(&self, sender: Option<&Object>);
 
         #[deprecated = "This property has no effect"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(showsToolbarButton)]
         pub unsafe fn showsToolbarButton(&self) -> bool;
 
         #[deprecated = "This property has no effect"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setShowsToolbarButton:)]
         pub unsafe fn setShowsToolbarButton(&self, shows_toolbar_button: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(allowsAutomaticWindowTabbing)]
         pub unsafe fn allowsAutomaticWindowTabbing() -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAllowsAutomaticWindowTabbing:)]
         pub unsafe fn setAllowsAutomaticWindowTabbing(allows_automatic_window_tabbing: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(userTabbingPreference)]
         pub unsafe fn userTabbingPreference() -> NSWindowUserTabbingPreference;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(tabbingMode)]
         pub unsafe fn tabbingMode(&self) -> NSWindowTabbingMode;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTabbingMode:)]
         pub unsafe fn setTabbingMode(&self, tabbing_mode: NSWindowTabbingMode);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other tabbingIdentifier)]
         pub unsafe fn tabbingIdentifier(&self) -> Id<NSWindowTabbingIdentifier>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTabbingIdentifier:)]
         pub unsafe fn setTabbingIdentifier(&self, tabbing_identifier: &NSWindowTabbingIdentifier);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectNextTab:)]
         pub unsafe fn selectNextTab(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectPreviousTab:)]
         pub unsafe fn selectPreviousTab(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(moveTabToNewWindow:)]
         pub unsafe fn moveTabToNewWindow(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(mergeAllWindows:)]
         pub unsafe fn mergeAllWindows(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(toggleTabBar:)]
         pub unsafe fn toggleTabBar(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(toggleTabOverview:)]
         pub unsafe fn toggleTabOverview(&self, sender: Option<&Object>);
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other tabbedWindows)]
         pub unsafe fn tabbedWindows(&self) -> Option<Id<NSArray<NSWindow>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(addTabbedWindow:ordered:)]
         pub unsafe fn addTabbedWindow_ordered(
             &self,
@@ -1183,13 +1525,16 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSWindowTab")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other tab)]
         pub unsafe fn tab(&self) -> Id<NSWindowTab>;
 
         #[cfg(feature = "AppKit_NSWindowTabGroup")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other tabGroup)]
         pub unsafe fn tabGroup(&self) -> Option<Id<NSWindowTabGroup>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(windowTitlebarLayoutDirection)]
         pub unsafe fn windowTitlebarLayoutDirection(&self) -> NSUserInterfaceLayoutDirection;
     }
@@ -1200,6 +1545,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSWindow")]
     unsafe impl NSWindow {
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(trackEventsMatchingMask:timeout:mode:handler:)]
         pub unsafe fn trackEventsMatchingMask_timeout_mode_handler(
             &self,
@@ -1210,10 +1556,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other nextEventMatchingMask:)]
         pub unsafe fn nextEventMatchingMask(&self, mask: NSEventMask) -> Option<Id<NSEvent>>;
 
         #[cfg(all(feature = "AppKit_NSEvent", feature = "Foundation_NSDate"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other nextEventMatchingMask:untilDate:inMode:dequeue:)]
         pub unsafe fn nextEventMatchingMask_untilDate_inMode_dequeue(
             &self,
@@ -1224,6 +1572,7 @@ extern_methods!(
         ) -> Option<Id<NSEvent>>;
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(discardEventsMatchingMask:beforeEvent:)]
         pub unsafe fn discardEventsMatchingMask_beforeEvent(
             &self,
@@ -1232,29 +1581,37 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(postEvent:atStart:)]
         pub unsafe fn postEvent_atStart(&self, event: &NSEvent, flag: bool);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(sendEvent:)]
         pub unsafe fn sendEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other currentEvent)]
         pub unsafe fn currentEvent(&self) -> Option<Id<NSEvent>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(acceptsMouseMovedEvents)]
         pub unsafe fn acceptsMouseMovedEvents(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAcceptsMouseMovedEvents:)]
         pub unsafe fn setAcceptsMouseMovedEvents(&self, accepts_mouse_moved_events: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(ignoresMouseEvents)]
         pub unsafe fn ignoresMouseEvents(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setIgnoresMouseEvents:)]
         pub unsafe fn setIgnoresMouseEvents(&self, ignores_mouse_events: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(mouseLocationOutsideOfEventStream)]
         pub unsafe fn mouseLocationOutsideOfEventStream(&self) -> NSPoint;
     }
@@ -1264,22 +1621,28 @@ extern_methods!(
     /// NSCursorRect
     #[cfg(feature = "AppKit_NSWindow")]
     unsafe impl NSWindow {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(disableCursorRects)]
         pub unsafe fn disableCursorRects(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(enableCursorRects)]
         pub unsafe fn enableCursorRects(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(discardCursorRects)]
         pub unsafe fn discardCursorRects(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(areCursorRectsEnabled)]
         pub unsafe fn areCursorRectsEnabled(&self) -> bool;
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(invalidateCursorRectsForView:)]
         pub unsafe fn invalidateCursorRectsForView(&self, view: &NSView);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(resetCursorRects)]
         pub unsafe fn resetCursorRects(&self);
     }
@@ -1294,6 +1657,7 @@ extern_methods!(
             feature = "AppKit_NSImage",
             feature = "AppKit_NSPasteboard"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(dragImage:at:offset:event:pasteboard:source:slideBack:)]
         pub unsafe fn dragImage_at_offset_event_pasteboard_source_slideBack(
             &self,
@@ -1307,9 +1671,11 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(registerForDraggedTypes:)]
         pub unsafe fn registerForDraggedTypes(&self, new_types: &NSArray<NSPasteboardType>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(unregisterDraggedTypes)]
         pub unsafe fn unregisterDraggedTypes(&self);
     }
@@ -1319,25 +1685,30 @@ extern_methods!(
     /// NSCarbonExtensions
     #[cfg(feature = "AppKit_NSWindow")]
     unsafe impl NSWindow {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithWindowRef:)]
         pub unsafe fn initWithWindowRef(
             this: Option<Allocated<Self>>,
             window_ref: NonNull<c_void>,
         ) -> Option<Id<NSWindow>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(windowRef)]
         pub unsafe fn windowRef(&self) -> NonNull<c_void>;
     }
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSWindowDelegate: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(windowShouldClose:)]
         unsafe fn windowShouldClose(&self, sender: &NSWindow) -> bool;
 
         #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other windowWillReturnFieldEditor:toObject:)]
         unsafe fn windowWillReturnFieldEditor_toObject(
@@ -1347,11 +1718,13 @@ extern_protocol!(
         ) -> Option<Id<Object>>;
 
         #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(windowWillResize:toSize:)]
         unsafe fn windowWillResize_toSize(&self, sender: &NSWindow, frame_size: NSSize) -> NSSize;
 
         #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(windowWillUseStandardFrame:defaultFrame:)]
         unsafe fn windowWillUseStandardFrame_defaultFrame(
@@ -1361,11 +1734,13 @@ extern_protocol!(
         ) -> NSRect;
 
         #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(windowShouldZoom:toFrame:)]
         unsafe fn windowShouldZoom_toFrame(&self, window: &NSWindow, new_frame: NSRect) -> bool;
 
         #[cfg(all(feature = "AppKit_NSWindow", feature = "Foundation_NSUndoManager"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other windowWillReturnUndoManager:)]
         unsafe fn windowWillReturnUndoManager(
@@ -1374,6 +1749,7 @@ extern_protocol!(
         ) -> Option<Id<NSUndoManager>>;
 
         #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(window:willPositionSheet:usingRect:)]
         unsafe fn window_willPositionSheet_usingRect(
@@ -1384,6 +1760,7 @@ extern_protocol!(
         ) -> NSRect;
 
         #[cfg(all(feature = "AppKit_NSMenu", feature = "AppKit_NSWindow"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(window:shouldPopUpDocumentPathMenu:)]
         unsafe fn window_shouldPopUpDocumentPathMenu(
@@ -1397,6 +1774,7 @@ extern_protocol!(
             feature = "AppKit_NSPasteboard",
             feature = "AppKit_NSWindow"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(window:shouldDragDocumentWithEvent:from:withPasteboard:)]
         unsafe fn window_shouldDragDocumentWithEvent_from_withPasteboard(
@@ -1408,6 +1786,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(window:willUseFullScreenContentSize:)]
         unsafe fn window_willUseFullScreenContentSize(
@@ -1417,6 +1796,7 @@ extern_protocol!(
         ) -> NSSize;
 
         #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(window:willUseFullScreenPresentationOptions:)]
         unsafe fn window_willUseFullScreenPresentationOptions(
@@ -1426,6 +1806,7 @@ extern_protocol!(
         ) -> NSApplicationPresentationOptions;
 
         #[cfg(all(feature = "AppKit_NSWindow", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other customWindowsToEnterFullScreenForWindow:)]
         unsafe fn customWindowsToEnterFullScreenForWindow(
@@ -1434,6 +1815,7 @@ extern_protocol!(
         ) -> Option<Id<NSArray<NSWindow>>>;
 
         #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(window:startCustomAnimationToEnterFullScreenWithDuration:)]
         unsafe fn window_startCustomAnimationToEnterFullScreenWithDuration(
@@ -1443,11 +1825,13 @@ extern_protocol!(
         );
 
         #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(windowDidFailToEnterFullScreen:)]
         unsafe fn windowDidFailToEnterFullScreen(&self, window: &NSWindow);
 
         #[cfg(all(feature = "AppKit_NSWindow", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other customWindowsToExitFullScreenForWindow:)]
         unsafe fn customWindowsToExitFullScreenForWindow(
@@ -1456,6 +1840,7 @@ extern_protocol!(
         ) -> Option<Id<NSArray<NSWindow>>>;
 
         #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(window:startCustomAnimationToExitFullScreenWithDuration:)]
         unsafe fn window_startCustomAnimationToExitFullScreenWithDuration(
@@ -1469,6 +1854,7 @@ extern_protocol!(
             feature = "AppKit_NSWindow",
             feature = "Foundation_NSArray"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other customWindowsToEnterFullScreenForWindow:onScreen:)]
         unsafe fn customWindowsToEnterFullScreenForWindow_onScreen(
@@ -1478,6 +1864,7 @@ extern_protocol!(
         ) -> Option<Id<NSArray<NSWindow>>>;
 
         #[cfg(all(feature = "AppKit_NSScreen", feature = "AppKit_NSWindow"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(window:startCustomAnimationToEnterFullScreenOnScreen:withDuration:)]
         unsafe fn window_startCustomAnimationToEnterFullScreenOnScreen_withDuration(
@@ -1488,11 +1875,13 @@ extern_protocol!(
         );
 
         #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(windowDidFailToExitFullScreen:)]
         unsafe fn windowDidFailToExitFullScreen(&self, window: &NSWindow);
 
         #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(window:willResizeForVersionBrowserWithMaxPreferredSize:maxAllowedSize:)]
         unsafe fn window_willResizeForVersionBrowserWithMaxPreferredSize_maxAllowedSize(
@@ -1503,156 +1892,187 @@ extern_protocol!(
         ) -> NSSize;
 
         #[cfg(all(feature = "AppKit_NSWindow", feature = "Foundation_NSCoder"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(window:willEncodeRestorableState:)]
         unsafe fn window_willEncodeRestorableState(&self, window: &NSWindow, state: &NSCoder);
 
         #[cfg(all(feature = "AppKit_NSWindow", feature = "Foundation_NSCoder"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(window:didDecodeRestorableState:)]
         unsafe fn window_didDecodeRestorableState(&self, window: &NSWindow, state: &NSCoder);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(windowDidResize:)]
         unsafe fn windowDidResize(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(windowDidExpose:)]
         unsafe fn windowDidExpose(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(windowWillMove:)]
         unsafe fn windowWillMove(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(windowDidMove:)]
         unsafe fn windowDidMove(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(windowDidBecomeKey:)]
         unsafe fn windowDidBecomeKey(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(windowDidResignKey:)]
         unsafe fn windowDidResignKey(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(windowDidBecomeMain:)]
         unsafe fn windowDidBecomeMain(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(windowDidResignMain:)]
         unsafe fn windowDidResignMain(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(windowWillClose:)]
         unsafe fn windowWillClose(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(windowWillMiniaturize:)]
         unsafe fn windowWillMiniaturize(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(windowDidMiniaturize:)]
         unsafe fn windowDidMiniaturize(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(windowDidDeminiaturize:)]
         unsafe fn windowDidDeminiaturize(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(windowDidUpdate:)]
         unsafe fn windowDidUpdate(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(windowDidChangeScreen:)]
         unsafe fn windowDidChangeScreen(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(windowDidChangeScreenProfile:)]
         unsafe fn windowDidChangeScreenProfile(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(windowDidChangeBackingProperties:)]
         unsafe fn windowDidChangeBackingProperties(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(windowWillBeginSheet:)]
         unsafe fn windowWillBeginSheet(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(windowDidEndSheet:)]
         unsafe fn windowDidEndSheet(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(windowWillStartLiveResize:)]
         unsafe fn windowWillStartLiveResize(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(windowDidEndLiveResize:)]
         unsafe fn windowDidEndLiveResize(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(windowWillEnterFullScreen:)]
         unsafe fn windowWillEnterFullScreen(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(windowDidEnterFullScreen:)]
         unsafe fn windowDidEnterFullScreen(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(windowWillExitFullScreen:)]
         unsafe fn windowWillExitFullScreen(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(windowDidExitFullScreen:)]
         unsafe fn windowDidExitFullScreen(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(windowWillEnterVersionBrowser:)]
         unsafe fn windowWillEnterVersionBrowser(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(windowDidEnterVersionBrowser:)]
         unsafe fn windowDidEnterVersionBrowser(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(windowWillExitVersionBrowser:)]
         unsafe fn windowWillExitVersionBrowser(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(windowDidExitVersionBrowser:)]
         unsafe fn windowDidExitVersionBrowser(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(windowDidChangeOcclusionState:)]
         unsafe fn windowDidChangeOcclusionState(&self, notification: &NSNotification);
@@ -1726,9 +2146,13 @@ extern_static!(NSWindowDidChangeOcclusionStateNotification: &'static NSNotificat
 ns_enum!(
     #[underlying(NSUInteger)]
     #[deprecated]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSWindowBackingLocation {
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowBackingLocationDefault = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowBackingLocationVideoMemory = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowBackingLocationMainMemory = 2,
     }
 );
@@ -1738,92 +2162,114 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSWindow")]
     unsafe impl NSWindow {
         #[deprecated = "This method shouldn’t be used as it doesn’t work in all drawing situations; instead, a subview should be used that implements the desired drawing behavior"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(cacheImageInRect:)]
         pub unsafe fn cacheImageInRect(&self, rect: NSRect);
 
         #[deprecated = "This method shouldn’t be used as it doesn’t work in all drawing situations; instead, a subview should be used that implements the desired drawing behavior"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(restoreCachedImage)]
         pub unsafe fn restoreCachedImage(&self);
 
         #[deprecated = "This method shouldn’t be used as it doesn’t work in all drawing situations; instead, a subview should be used that implements the desired drawing behavior"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(discardCachedImage)]
         pub unsafe fn discardCachedImage(&self);
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[deprecated = "This method does not do anything and should not be called."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(menuChanged:)]
         pub unsafe fn menuChanged(menu: &NSMenu);
 
         #[deprecated = "This method is unused and should not be called."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(gState)]
         pub unsafe fn gState(&self) -> NSInteger;
 
         #[deprecated = "Use -convertRectToScreen: or -convertPointToScreen: instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(convertBaseToScreen:)]
         pub unsafe fn convertBaseToScreen(&self, point: NSPoint) -> NSPoint;
 
         #[deprecated = "Use -convertRectFromScreen or -convertPointFromScreen: instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(convertScreenToBase:)]
         pub unsafe fn convertScreenToBase(&self, point: NSPoint) -> NSPoint;
 
         #[deprecated = "Use -convertRectToBacking: and -backingScaleFactor instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(userSpaceScaleFactor)]
         pub unsafe fn userSpaceScaleFactor(&self) -> CGFloat;
 
         #[deprecated = "This method does not do anything and should not be called."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(useOptimizedDrawing:)]
         pub unsafe fn useOptimizedDrawing(&self, flag: bool);
 
         #[deprecated = "This method does not do anything and should not be called."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(canStoreColor)]
         pub unsafe fn canStoreColor(&self) -> bool;
 
         #[deprecated = "Use +[NSAnimationContext runAnimationGroup:completionHandler:] to perform atomic updates across runloop invocations."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(disableFlushWindow)]
         pub unsafe fn disableFlushWindow(&self);
 
         #[deprecated = "Use +[NSAnimationContext runAnimationGroup:completionHandler:] to perform atomic updates across runloop invocations."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(enableFlushWindow)]
         pub unsafe fn enableFlushWindow(&self);
 
         #[deprecated = "Use +[NSAnimationContext runAnimationGroup:completionHandler:] to perform atomic updates across runloop invocations."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isFlushWindowDisabled)]
         pub unsafe fn isFlushWindowDisabled(&self) -> bool;
 
         #[deprecated = "Allow AppKit's automatic deferred display mechanism to take care of flushing any graphics contexts as needed."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(flushWindow)]
         pub unsafe fn flushWindow(&self);
 
         #[deprecated = "Allow AppKit's automatic deferred display mechanism to take care of flushing any graphics contexts as needed."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(flushWindowIfNeeded)]
         pub unsafe fn flushWindowIfNeeded(&self);
 
         #[deprecated = "Use +[NSAnimationContext runAnimationGroup:completionHandler:] to temporarily prevent AppKit's automatic deferred display mechanism from drawing."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isAutodisplay)]
         pub unsafe fn isAutodisplay(&self) -> bool;
 
         #[deprecated = "Use +[NSAnimationContext runAnimationGroup:completionHandler:] to temporarily prevent AppKit's automatic deferred display mechanism from drawing."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAutodisplay:)]
         pub unsafe fn setAutodisplay(&self, autodisplay: bool);
 
         #[cfg(feature = "AppKit_NSGraphicsContext")]
         #[deprecated = "Add instances of NSView to display content in a window."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other graphicsContext)]
         pub unsafe fn graphicsContext(&self) -> Option<Id<NSGraphicsContext>>;
 
         #[deprecated = "This property does not do anything and should not be used"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isOneShot)]
         pub unsafe fn isOneShot(&self) -> bool;
 
         #[deprecated = "This property does not do anything and should not be used"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setOneShot:)]
         pub unsafe fn setOneShot(&self, one_shot: bool);
 
         #[deprecated = "This property does not do anything and should not be used"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(preferredBackingLocation)]
         pub unsafe fn preferredBackingLocation(&self) -> NSWindowBackingLocation;
 
         #[deprecated = "This property does not do anything and should not be used"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPreferredBackingLocation:)]
         pub unsafe fn setPreferredBackingLocation(
             &self,
@@ -1831,12 +2277,15 @@ extern_methods!(
         );
 
         #[deprecated = "This property does not do anything and should not be used"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(backingLocation)]
         pub unsafe fn backingLocation(&self) -> NSWindowBackingLocation;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(showsResizeIndicator)]
         pub unsafe fn showsResizeIndicator(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setShowsResizeIndicator:)]
         pub unsafe fn setShowsResizeIndicator(&self, shows_resize_indicator: bool);
     }

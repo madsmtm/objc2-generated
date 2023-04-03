@@ -12,6 +12,7 @@ typed_extensible_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSAppearance")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSAppearance;
 
     #[cfg(feature = "AppKit_NSAppearance")]
@@ -32,27 +33,34 @@ unsafe impl NSSecureCoding for NSAppearance {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSAppearance")]
     unsafe impl NSAppearance {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSAppearanceName>;
 
         #[deprecated = "Use -performAsCurrentDrawingAppearance: to temporarily set the drawing appearance, or +currentDrawingAppearance to access the currently drawing appearance."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other currentAppearance)]
         pub unsafe fn currentAppearance() -> Option<Id<NSAppearance>>;
 
         #[deprecated = "Use -performAsCurrentDrawingAppearance: to temporarily set the drawing appearance, or +currentDrawingAppearance to access the currently drawing appearance."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCurrentAppearance:)]
         pub unsafe fn setCurrentAppearance(current_appearance: Option<&NSAppearance>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other currentDrawingAppearance)]
         pub unsafe fn currentDrawingAppearance() -> Id<NSAppearance>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(performAsCurrentDrawingAppearance:)]
         pub unsafe fn performAsCurrentDrawingAppearance(&self, block: &Block<(), ()>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other appearanceNamed:)]
         pub unsafe fn appearanceNamed(name: &NSAppearanceName) -> Option<Id<NSAppearance>>;
 
         #[cfg(feature = "Foundation_NSBundle")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithAppearanceNamed:bundle:)]
         pub unsafe fn initWithAppearanceNamed_bundle(
             this: Option<Allocated<Self>>,
@@ -61,16 +69,19 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
         ) -> Option<Id<Self>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(allowsVibrancy)]
         pub unsafe fn allowsVibrancy(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other bestMatchFromAppearancesWithNames:)]
         pub unsafe fn bestMatchFromAppearancesWithNames(
             &self,
@@ -98,16 +109,20 @@ extern_static!(NSAppearanceNameAccessibilityHighContrastVibrantLight: &'static N
 extern_static!(NSAppearanceNameAccessibilityHighContrastVibrantDark: &'static NSAppearanceName);
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSAppearanceCustomization: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSAppearance")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other appearance)]
         unsafe fn appearance(&self) -> Option<Id<NSAppearance>>;
 
         #[cfg(feature = "AppKit_NSAppearance")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAppearance:)]
         unsafe fn setAppearance(&self, appearance: Option<&NSAppearance>);
 
         #[cfg(feature = "AppKit_NSAppearance")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other effectiveAppearance)]
         unsafe fn effectiveAppearance(&self) -> Id<NSAppearance>;
     }

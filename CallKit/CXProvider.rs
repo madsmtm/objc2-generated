@@ -6,16 +6,23 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "macos")))]
     pub enum CXCallEndedReason {
+        #[cfg(not(any(target_os = "macos")))]
         CXCallEndedReasonFailed = 1,
+        #[cfg(not(any(target_os = "macos")))]
         CXCallEndedReasonRemoteEnded = 2,
+        #[cfg(not(any(target_os = "macos")))]
         CXCallEndedReasonUnanswered = 3,
+        #[cfg(not(any(target_os = "macos")))]
         CXCallEndedReasonAnsweredElsewhere = 4,
+        #[cfg(not(any(target_os = "macos")))]
         CXCallEndedReasonDeclinedElsewhere = 5,
     }
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "macos")))]
     pub unsafe trait CXProviderDelegate: NSObjectProtocol {
         #[cfg(feature = "CallKit_CXProvider")]
         #[method(providerDidReset:)]
@@ -144,6 +151,7 @@ extern_protocol!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CallKit_CXProvider")]
+    #[cfg(not(any(target_os = "macos")))]
     pub struct CXProvider;
 
     #[cfg(feature = "CallKit_CXProvider")]
@@ -214,6 +222,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSError"))]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method(reportNewIncomingVoIPPushPayload:completion:)]
         pub unsafe fn reportNewIncomingVoIPPushPayload_completion(
             dictionary_payload: &NSDictionary,

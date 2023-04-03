@@ -7,24 +7,38 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSGridCellPlacement {
+        #[cfg(not(any(target_os = "ios")))]
         NSGridCellPlacementInherited = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSGridCellPlacementNone = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSGridCellPlacementLeading = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSGridCellPlacementTop = NSGridCellPlacementLeading,
+        #[cfg(not(any(target_os = "ios")))]
         NSGridCellPlacementTrailing = 3,
+        #[cfg(not(any(target_os = "ios")))]
         NSGridCellPlacementBottom = NSGridCellPlacementTrailing,
+        #[cfg(not(any(target_os = "ios")))]
         NSGridCellPlacementCenter = 4,
+        #[cfg(not(any(target_os = "ios")))]
         NSGridCellPlacementFill = 5,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSGridRowAlignment {
+        #[cfg(not(any(target_os = "ios")))]
         NSGridRowAlignmentInherited = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSGridRowAlignmentNone = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSGridRowAlignmentFirstBaseline = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSGridRowAlignmentLastBaseline = 3,
     }
 );
@@ -34,6 +48,7 @@ extern_static!(NSGridViewSizeForContent: CGFloat);
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSGridView")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSGridView;
 
     #[cfg(feature = "AppKit_NSGridView")]
@@ -70,16 +85,19 @@ unsafe impl NSUserInterfaceItemIdentification for NSGridView {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSGridView")]
     unsafe impl NSGridView {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
         ) -> Option<Id<Self>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other gridViewWithNumberOfColumns:rows:)]
         pub unsafe fn gridViewWithNumberOfColumns_rows(
             column_count: NSInteger,
@@ -87,32 +105,40 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other gridViewWithViews:)]
         pub unsafe fn gridViewWithViews(rows: &NSArray<NSArray<NSView>>) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(numberOfRows)]
         pub unsafe fn numberOfRows(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(numberOfColumns)]
         pub unsafe fn numberOfColumns(&self) -> NSInteger;
 
         #[cfg(feature = "AppKit_NSGridRow")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other rowAtIndex:)]
         pub unsafe fn rowAtIndex(&self, index: NSInteger) -> Id<NSGridRow>;
 
         #[cfg(feature = "AppKit_NSGridRow")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(indexOfRow:)]
         pub unsafe fn indexOfRow(&self, row: &NSGridRow) -> NSInteger;
 
         #[cfg(feature = "AppKit_NSGridColumn")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other columnAtIndex:)]
         pub unsafe fn columnAtIndex(&self, index: NSInteger) -> Id<NSGridColumn>;
 
         #[cfg(feature = "AppKit_NSGridColumn")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(indexOfColumn:)]
         pub unsafe fn indexOfColumn(&self, column: &NSGridColumn) -> NSInteger;
 
         #[cfg(feature = "AppKit_NSGridCell")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other cellAtColumnIndex:rowIndex:)]
         pub unsafe fn cellAtColumnIndex_rowIndex(
             &self,
@@ -121,14 +147,17 @@ extern_methods!(
         ) -> Id<NSGridCell>;
 
         #[cfg(feature = "AppKit_NSGridCell")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other cellForView:)]
         pub unsafe fn cellForView(&self, view: &NSView) -> Option<Id<NSGridCell>>;
 
         #[cfg(all(feature = "AppKit_NSGridRow", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other addRowWithViews:)]
         pub unsafe fn addRowWithViews(&self, views: &NSArray<NSView>) -> Id<NSGridRow>;
 
         #[cfg(all(feature = "AppKit_NSGridRow", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other insertRowAtIndex:withViews:)]
         pub unsafe fn insertRowAtIndex_withViews(
             &self,
@@ -136,17 +165,21 @@ extern_methods!(
             views: &NSArray<NSView>,
         ) -> Id<NSGridRow>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(moveRowAtIndex:toIndex:)]
         pub unsafe fn moveRowAtIndex_toIndex(&self, from_index: NSInteger, to_index: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeRowAtIndex:)]
         pub unsafe fn removeRowAtIndex(&self, index: NSInteger);
 
         #[cfg(all(feature = "AppKit_NSGridColumn", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other addColumnWithViews:)]
         pub unsafe fn addColumnWithViews(&self, views: &NSArray<NSView>) -> Id<NSGridColumn>;
 
         #[cfg(all(feature = "AppKit_NSGridColumn", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other insertColumnAtIndex:withViews:)]
         pub unsafe fn insertColumnAtIndex_withViews(
             &self,
@@ -154,42 +187,55 @@ extern_methods!(
             views: &NSArray<NSView>,
         ) -> Id<NSGridColumn>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(moveColumnAtIndex:toIndex:)]
         pub unsafe fn moveColumnAtIndex_toIndex(&self, from_index: NSInteger, to_index: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeColumnAtIndex:)]
         pub unsafe fn removeColumnAtIndex(&self, index: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(xPlacement)]
         pub unsafe fn xPlacement(&self) -> NSGridCellPlacement;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setXPlacement:)]
         pub unsafe fn setXPlacement(&self, x_placement: NSGridCellPlacement);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(yPlacement)]
         pub unsafe fn yPlacement(&self) -> NSGridCellPlacement;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setYPlacement:)]
         pub unsafe fn setYPlacement(&self, y_placement: NSGridCellPlacement);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rowAlignment)]
         pub unsafe fn rowAlignment(&self) -> NSGridRowAlignment;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setRowAlignment:)]
         pub unsafe fn setRowAlignment(&self, row_alignment: NSGridRowAlignment);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rowSpacing)]
         pub unsafe fn rowSpacing(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setRowSpacing:)]
         pub unsafe fn setRowSpacing(&self, row_spacing: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(columnSpacing)]
         pub unsafe fn columnSpacing(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setColumnSpacing:)]
         pub unsafe fn setColumnSpacing(&self, column_spacing: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(mergeCellsInHorizontalRange:verticalRange:)]
         pub unsafe fn mergeCellsInHorizontalRange_verticalRange(
             &self,
@@ -202,6 +248,7 @@ extern_methods!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSGridRow")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSGridRow;
 
     #[cfg(feature = "AppKit_NSGridRow")]
@@ -220,52 +267,68 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSGridRow")]
     unsafe impl NSGridRow {
         #[cfg(feature = "AppKit_NSGridView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other gridView)]
         pub unsafe fn gridView(&self) -> Option<Id<NSGridView>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(numberOfCells)]
         pub unsafe fn numberOfCells(&self) -> NSInteger;
 
         #[cfg(feature = "AppKit_NSGridCell")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other cellAtIndex:)]
         pub unsafe fn cellAtIndex(&self, index: NSInteger) -> Id<NSGridCell>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(yPlacement)]
         pub unsafe fn yPlacement(&self) -> NSGridCellPlacement;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setYPlacement:)]
         pub unsafe fn setYPlacement(&self, y_placement: NSGridCellPlacement);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rowAlignment)]
         pub unsafe fn rowAlignment(&self) -> NSGridRowAlignment;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setRowAlignment:)]
         pub unsafe fn setRowAlignment(&self, row_alignment: NSGridRowAlignment);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(height)]
         pub unsafe fn height(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setHeight:)]
         pub unsafe fn setHeight(&self, height: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(topPadding)]
         pub unsafe fn topPadding(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTopPadding:)]
         pub unsafe fn setTopPadding(&self, top_padding: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(bottomPadding)]
         pub unsafe fn bottomPadding(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBottomPadding:)]
         pub unsafe fn setBottomPadding(&self, bottom_padding: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isHidden)]
         pub unsafe fn isHidden(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setHidden:)]
         pub unsafe fn setHidden(&self, hidden: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(mergeCellsInRange:)]
         pub unsafe fn mergeCellsInRange(&self, range: NSRange);
     }
@@ -274,6 +337,7 @@ extern_methods!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSGridColumn")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSGridColumn;
 
     #[cfg(feature = "AppKit_NSGridColumn")]
@@ -292,46 +356,60 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSGridColumn")]
     unsafe impl NSGridColumn {
         #[cfg(feature = "AppKit_NSGridView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other gridView)]
         pub unsafe fn gridView(&self) -> Option<Id<NSGridView>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(numberOfCells)]
         pub unsafe fn numberOfCells(&self) -> NSInteger;
 
         #[cfg(feature = "AppKit_NSGridCell")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other cellAtIndex:)]
         pub unsafe fn cellAtIndex(&self, index: NSInteger) -> Id<NSGridCell>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(xPlacement)]
         pub unsafe fn xPlacement(&self) -> NSGridCellPlacement;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setXPlacement:)]
         pub unsafe fn setXPlacement(&self, x_placement: NSGridCellPlacement);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(width)]
         pub unsafe fn width(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setWidth:)]
         pub unsafe fn setWidth(&self, width: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(leadingPadding)]
         pub unsafe fn leadingPadding(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setLeadingPadding:)]
         pub unsafe fn setLeadingPadding(&self, leading_padding: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(trailingPadding)]
         pub unsafe fn trailingPadding(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTrailingPadding:)]
         pub unsafe fn setTrailingPadding(&self, trailing_padding: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isHidden)]
         pub unsafe fn isHidden(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setHidden:)]
         pub unsafe fn setHidden(&self, hidden: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(mergeCellsInRange:)]
         pub unsafe fn mergeCellsInRange(&self, range: NSRange);
     }
@@ -340,6 +418,7 @@ extern_methods!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSGridCell")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSGridCell;
 
     #[cfg(feature = "AppKit_NSGridCell")]
@@ -358,48 +437,61 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSGridCell")]
     unsafe impl NSGridCell {
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other contentView)]
         pub unsafe fn contentView(&self) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setContentView:)]
         pub unsafe fn setContentView(&self, content_view: Option<&NSView>);
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other emptyContentView)]
         pub unsafe fn emptyContentView() -> Id<NSView>;
 
         #[cfg(feature = "AppKit_NSGridRow")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other row)]
         pub unsafe fn row(&self) -> Option<Id<NSGridRow>>;
 
         #[cfg(feature = "AppKit_NSGridColumn")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other column)]
         pub unsafe fn column(&self) -> Option<Id<NSGridColumn>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(xPlacement)]
         pub unsafe fn xPlacement(&self) -> NSGridCellPlacement;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setXPlacement:)]
         pub unsafe fn setXPlacement(&self, x_placement: NSGridCellPlacement);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(yPlacement)]
         pub unsafe fn yPlacement(&self) -> NSGridCellPlacement;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setYPlacement:)]
         pub unsafe fn setYPlacement(&self, y_placement: NSGridCellPlacement);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rowAlignment)]
         pub unsafe fn rowAlignment(&self) -> NSGridRowAlignment;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setRowAlignment:)]
         pub unsafe fn setRowAlignment(&self, row_alignment: NSGridRowAlignment);
 
         #[cfg(all(feature = "AppKit_NSLayoutConstraint", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other customPlacementConstraints)]
         pub unsafe fn customPlacementConstraints(&self) -> Id<NSArray<NSLayoutConstraint>>;
 
         #[cfg(all(feature = "AppKit_NSLayoutConstraint", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCustomPlacementConstraints:)]
         pub unsafe fn setCustomPlacementConstraints(
             &self,

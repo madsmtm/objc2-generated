@@ -26,6 +26,7 @@ extern_methods!(
     #[cfg(feature = "EventKit_EKCalendar")]
     unsafe impl EKCalendar {
         #[cfg(feature = "EventKit_EKEventStore")]
+        #[cfg(not(any(target_os = "macos")))]
         #[method_id(@__retain_semantics Other calendarWithEventStore:)]
         pub unsafe fn calendarWithEventStore(event_store: &EKEventStore) -> Id<EKCalendar>;
 

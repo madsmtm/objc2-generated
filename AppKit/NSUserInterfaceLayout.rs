@@ -7,16 +7,22 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSUserInterfaceLayoutDirection {
+        #[cfg(not(any(target_os = "ios")))]
         NSUserInterfaceLayoutDirectionLeftToRight = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSUserInterfaceLayoutDirectionRightToLeft = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSUserInterfaceLayoutOrientation {
+        #[cfg(not(any(target_os = "ios")))]
         NSUserInterfaceLayoutOrientationHorizontal = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSUserInterfaceLayoutOrientationVertical = 1,
     }
 );

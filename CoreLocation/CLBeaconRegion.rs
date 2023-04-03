@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CoreLocation_CLBeaconRegion")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct CLBeaconRegion;
 
     #[cfg(feature = "CoreLocation_CLBeaconRegion")]
@@ -30,6 +31,7 @@ extern_methods!(
     #[cfg(feature = "CoreLocation_CLBeaconRegion")]
     unsafe impl CLBeaconRegion {
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUUID"))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Init initWithUUID:identifier:)]
         pub unsafe fn initWithUUID_identifier(
             this: Option<Allocated<Self>>,
@@ -47,6 +49,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUUID"))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Init initWithUUID:major:identifier:)]
         pub unsafe fn initWithUUID_major_identifier(
             this: Option<Allocated<Self>>,
@@ -66,6 +69,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUUID"))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Init initWithUUID:major:minor:identifier:)]
         pub unsafe fn initWithUUID_major_minor_identifier(
             this: Option<Allocated<Self>>,
@@ -90,6 +94,7 @@ extern_methods!(
             feature = "CoreLocation_CLBeaconIdentityConstraint",
             feature = "Foundation_NSString"
         ))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Init initWithBeaconIdentityConstraint:identifier:)]
         pub unsafe fn initWithBeaconIdentityConstraint_identifier(
             this: Option<Allocated<Self>>,
@@ -109,10 +114,12 @@ extern_methods!(
         ) -> Id<NSMutableDictionary<NSString, Object>, Owned>;
 
         #[cfg(feature = "CoreLocation_CLBeaconIdentityConstraint")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other beaconIdentityConstraint)]
         pub unsafe fn beaconIdentityConstraint(&self) -> Id<CLBeaconIdentityConstraint>;
 
         #[cfg(feature = "Foundation_NSUUID")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other UUID)]
         pub unsafe fn UUID(&self) -> Id<NSUUID>;
 
@@ -140,6 +147,7 @@ extern_methods!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CoreLocation_CLBeacon")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct CLBeacon;
 
     #[cfg(feature = "CoreLocation_CLBeacon")]
@@ -161,10 +169,12 @@ extern_methods!(
     #[cfg(feature = "CoreLocation_CLBeacon")]
     unsafe impl CLBeacon {
         #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other timestamp)]
         pub unsafe fn timestamp(&self) -> Id<NSDate>;
 
         #[cfg(feature = "Foundation_NSUUID")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other UUID)]
         pub unsafe fn UUID(&self) -> Id<NSUUID>;
 

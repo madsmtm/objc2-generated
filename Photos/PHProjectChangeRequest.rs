@@ -9,6 +9,7 @@ use crate::PhotoKit::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PhotoKit_PHProjectChangeRequest")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct PHProjectChangeRequest;
 
     #[cfg(feature = "PhotoKit_PHProjectChangeRequest")]
@@ -25,6 +26,7 @@ extern_methods!(
     #[cfg(feature = "PhotoKit_PHProjectChangeRequest")]
     unsafe impl PHProjectChangeRequest {
         #[cfg(feature = "PhotoKit_PHProject")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithProject:)]
         pub unsafe fn initWithProject(
             this: Option<Allocated<Self>>,
@@ -32,30 +34,37 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
         #[cfg(feature = "Foundation_NSData")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other projectExtensionData)]
         pub unsafe fn projectExtensionData(&self) -> Id<NSData>;
 
         #[cfg(feature = "Foundation_NSData")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setProjectExtensionData:)]
         pub unsafe fn setProjectExtensionData(&self, project_extension_data: &NSData);
 
         #[cfg(feature = "PhotoKit_PHAsset")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setKeyAsset:)]
         pub unsafe fn setKeyAsset(&self, key_asset: Option<&PHAsset>);
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setProjectPreviewImage:)]
         pub unsafe fn setProjectPreviewImage(&self, preview_image: &NSImage);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeAssets:)]
         pub unsafe fn removeAssets(&self, assets: &ProtocolObject<dyn NSFastEnumeration>);
     }

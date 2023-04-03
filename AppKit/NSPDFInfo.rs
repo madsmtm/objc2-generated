@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSPDFInfo")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSPDFInfo;
 
     #[cfg(feature = "AppKit_NSPDFInfo")]
@@ -26,40 +27,51 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSPDFInfo")]
     unsafe impl NSPDFInfo {
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other URL)]
         pub unsafe fn URL(&self) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setURL:)]
         pub unsafe fn setURL(&self, url: Option<&NSURL>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isFileExtensionHidden)]
         pub unsafe fn isFileExtensionHidden(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFileExtensionHidden:)]
         pub unsafe fn setFileExtensionHidden(&self, file_extension_hidden: bool);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other tagNames)]
         pub unsafe fn tagNames(&self) -> Id<NSArray<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTagNames:)]
         pub unsafe fn setTagNames(&self, tag_names: &NSArray<NSString>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(orientation)]
         pub unsafe fn orientation(&self) -> NSPaperOrientation;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setOrientation:)]
         pub unsafe fn setOrientation(&self, orientation: NSPaperOrientation);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(paperSize)]
         pub unsafe fn paperSize(&self) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPaperSize:)]
         pub unsafe fn setPaperSize(&self, paper_size: NSSize);
 
         #[cfg(feature = "Foundation_NSMutableDictionary")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other attributes)]
         pub unsafe fn attributes(
             &self,

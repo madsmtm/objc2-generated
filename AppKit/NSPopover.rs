@@ -8,19 +8,26 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     #[deprecated]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSPopoverAppearance {
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         NSPopoverAppearanceMinimal = 0,
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         NSPopoverAppearanceHUD = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSPopoverBehavior {
+        #[cfg(not(any(target_os = "ios")))]
         NSPopoverBehaviorApplicationDefined = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSPopoverBehaviorTransient = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSPopoverBehaviorSemitransient = 2,
     }
 );
@@ -28,64 +35,81 @@ ns_enum!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSPopover")]
     unsafe impl NSPopover {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
         ) -> Option<Id<Self>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSPopoverDelegate>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSPopoverDelegate>>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(behavior)]
         pub unsafe fn behavior(&self) -> NSPopoverBehavior;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBehavior:)]
         pub unsafe fn setBehavior(&self, behavior: NSPopoverBehavior);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(animates)]
         pub unsafe fn animates(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAnimates:)]
         pub unsafe fn setAnimates(&self, animates: bool);
 
         #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other contentViewController)]
         pub unsafe fn contentViewController(&self) -> Option<Id<NSViewController>>;
 
         #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setContentViewController:)]
         pub unsafe fn setContentViewController(
             &self,
             content_view_controller: Option<&NSViewController>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(contentSize)]
         pub unsafe fn contentSize(&self) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setContentSize:)]
         pub unsafe fn setContentSize(&self, content_size: NSSize);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isShown)]
         pub unsafe fn isShown(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isDetached)]
         pub unsafe fn isDetached(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(positioningRect)]
         pub unsafe fn positioningRect(&self) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPositioningRect:)]
         pub unsafe fn setPositioningRect(&self, positioning_rect: NSRect);
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(showRelativeToRect:ofView:preferredEdge:)]
         pub unsafe fn showRelativeToRect_ofView_preferredEdge(
             &self,
@@ -94,9 +118,11 @@ extern_methods!(
             preferred_edge: NSRectEdge,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(performClose:)]
         pub unsafe fn performClose(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(close)]
         pub unsafe fn close(&self);
     }
@@ -121,43 +147,52 @@ extern_static!(NSPopoverWillCloseNotification: &'static NSNotificationName);
 extern_static!(NSPopoverDidCloseNotification: &'static NSNotificationName);
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSPopoverDelegate: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSPopover")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(popoverShouldClose:)]
         unsafe fn popoverShouldClose(&self, popover: &NSPopover) -> bool;
 
         #[cfg(feature = "AppKit_NSPopover")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(popoverShouldDetach:)]
         unsafe fn popoverShouldDetach(&self, popover: &NSPopover) -> bool;
 
         #[cfg(feature = "AppKit_NSPopover")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(popoverDidDetach:)]
         unsafe fn popoverDidDetach(&self, popover: &NSPopover);
 
         #[cfg(all(feature = "AppKit_NSPopover", feature = "AppKit_NSWindow"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other detachableWindowForPopover:)]
         unsafe fn detachableWindowForPopover(&self, popover: &NSPopover) -> Option<Id<NSWindow>>;
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(popoverWillShow:)]
         unsafe fn popoverWillShow(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(popoverDidShow:)]
         unsafe fn popoverDidShow(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(popoverWillClose:)]
         unsafe fn popoverWillClose(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(popoverDidClose:)]
         unsafe fn popoverDidClose(&self, notification: &NSNotification);

@@ -7,9 +7,13 @@ use crate::Foundation::*;
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub enum CKSharingParticipantAccessOption {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CKSharingParticipantAccessOptionAnyoneWithLink = 1 << 0,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CKSharingParticipantAccessOptionSpecifiedRecipientsOnly = 1 << 1,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CKSharingParticipantAccessOptionAny = CKSharingParticipantAccessOptionAnyoneWithLink
             | CKSharingParticipantAccessOptionSpecifiedRecipientsOnly,
     }
@@ -17,9 +21,13 @@ ns_options!(
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub enum CKSharingParticipantPermissionOption {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CKSharingParticipantPermissionOptionReadOnly = 1 << 0,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CKSharingParticipantPermissionOptionReadWrite = 1 << 1,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CKSharingParticipantPermissionOptionAny = CKSharingParticipantPermissionOptionReadOnly
             | CKSharingParticipantPermissionOptionReadWrite,
     }
@@ -28,6 +36,7 @@ ns_options!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CloudKit_CKAllowedSharingOptions")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct CKAllowedSharingOptions;
 
     #[cfg(feature = "CloudKit_CKAllowedSharingOptions")]

@@ -10,10 +10,12 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSUserActivity")]
     unsafe impl NSUserActivity {
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other externalMediaContentIdentifier)]
         pub unsafe fn externalMediaContentIdentifier(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method(setExternalMediaContentIdentifier:)]
         pub unsafe fn setExternalMediaContentIdentifier(
             &self,

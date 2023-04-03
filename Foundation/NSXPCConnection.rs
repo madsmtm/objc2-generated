@@ -55,6 +55,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSXPCConnection")]
     unsafe impl NSXPCConnection {
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Init initWithServiceName:)]
         pub unsafe fn initWithServiceName(
             this: Option<Allocated<Self>>,
@@ -66,6 +67,7 @@ extern_methods!(
         pub unsafe fn serviceName(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Init initWithMachServiceName:options:)]
         pub unsafe fn initWithMachServiceName_options(
             this: Option<Allocated<Self>>,
@@ -157,6 +159,7 @@ extern_methods!(
         pub unsafe fn scheduleSendBarrierBlock(&self, block: &Block<(), ()>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(setCodeSigningRequirement:)]
         pub unsafe fn setCodeSigningRequirement(&self, requirement: &NSString);
     }
@@ -186,6 +189,7 @@ extern_methods!(
         pub unsafe fn anonymousListener() -> Id<NSXPCListener>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Init initWithMachServiceName:)]
         pub unsafe fn initWithMachServiceName(
             this: Option<Allocated<Self>>,
@@ -218,6 +222,7 @@ extern_methods!(
         pub unsafe fn invalidate(&self);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(setConnectionCodeSigningRequirement:)]
         pub unsafe fn setConnectionCodeSigningRequirement(&self, requirement: &NSString);
     }

@@ -10,6 +10,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSAppleScript")]
     unsafe impl NSAppleScript {
         #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other richTextSource)]
         pub unsafe fn richTextSource(&self) -> Option<Id<NSAttributedString>>;
     }

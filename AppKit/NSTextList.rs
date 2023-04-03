@@ -8,6 +8,7 @@ use crate::Foundation::*;
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSTextListOptions {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSTextListPrependEnclosingMarker = 1 << 0,
     }
 );
@@ -53,6 +54,7 @@ extern_static!(NSTextListMarkerDecimal: &'static NSTextListMarkerFormat);
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSTextList")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct NSTextList;
 
     #[cfg(feature = "AppKit_NSTextList")]
@@ -73,6 +75,7 @@ unsafe impl NSSecureCoding for NSTextList {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextList")]
     unsafe impl NSTextList {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Init initWithMarkerFormat:options:startingItemNumber:)]
         pub unsafe fn initWithMarkerFormat_options_startingItemNumber(
             this: Option<Allocated<Self>>,
@@ -107,6 +110,7 @@ extern_methods!(
         #[method(setStartingItemNumber:)]
         pub unsafe fn setStartingItemNumber(&self, starting_item_number: NSInteger);
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(isOrdered)]
         pub unsafe fn isOrdered(&self) -> bool;
 

@@ -8,6 +8,7 @@ use crate::StoreKit::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "StoreKit_SKAdImpression")]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub struct SKAdImpression;
 
     #[cfg(feature = "StoreKit_SKAdImpression")]
@@ -61,10 +62,12 @@ extern_methods!(
         pub unsafe fn setAdCampaignIdentifier(&self, ad_campaign_identifier: &NSNumber);
 
         #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other sourceIdentifier)]
         pub unsafe fn sourceIdentifier(&self) -> Id<NSNumber>;
 
         #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method(setSourceIdentifier:)]
         pub unsafe fn setSourceIdentifier(&self, source_identifier: &NSNumber);
 

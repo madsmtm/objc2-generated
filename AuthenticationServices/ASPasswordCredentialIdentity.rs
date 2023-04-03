@@ -7,6 +7,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AuthenticationServices_ASPasswordCredentialIdentity")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct ASPasswordCredentialIdentity;
 
     #[cfg(feature = "AuthenticationServices_ASPasswordCredentialIdentity")]

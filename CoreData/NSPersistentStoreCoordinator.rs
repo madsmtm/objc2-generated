@@ -273,6 +273,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSURL"))]
         #[deprecated = "Spotlight integration is deprecated. Use CoreSpotlight integration instead."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other elementsDerivedFromExternalRecordURL:)]
         pub unsafe fn elementsDerivedFromExternalRecordURL(file_url: &NSURL) -> Id<NSDictionary>;
 
@@ -284,6 +285,7 @@ extern_methods!(
             feature = "Foundation_NSURL"
         ))]
         #[deprecated = "Spotlight integration is deprecated. Use CoreSpotlight integration instead."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other importStoreWithIdentifier:fromExternalRecordsDirectory:toURL:options:withType:error:_)]
         pub unsafe fn importStoreWithIdentifier_fromExternalRecordsDirectory_toURL_options_withType_error(
             &self,

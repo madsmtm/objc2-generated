@@ -10,6 +10,7 @@ use crate::MapKit::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MapKit_MKDirectionsResponse")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct MKDirectionsResponse;
 
     #[cfg(feature = "MapKit_MKDirectionsResponse")]
@@ -41,6 +42,7 @@ extern_methods!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MapKit_MKRoute")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct MKRoute;
 
     #[cfg(feature = "MapKit_MKRoute")]
@@ -80,9 +82,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other steps)]
         pub unsafe fn steps(&self) -> Id<NSArray<MKRouteStep>>;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(hasTolls)]
         pub unsafe fn hasTolls(&self) -> bool;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(hasHighways)]
         pub unsafe fn hasHighways(&self) -> bool;
     }
@@ -91,6 +95,7 @@ extern_methods!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MapKit_MKRouteStep")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct MKRouteStep;
 
     #[cfg(feature = "MapKit_MKRouteStep")]
@@ -128,6 +133,7 @@ extern_methods!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MapKit_MKETAResponse")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct MKETAResponse;
 
     #[cfg(feature = "MapKit_MKETAResponse")]

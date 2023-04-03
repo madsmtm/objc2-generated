@@ -26,6 +26,7 @@ extern_methods!(
         #[method(isHealthDataAvailable)]
         pub unsafe fn isHealthDataAvailable() -> bool;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(supportsHealthRecords)]
         pub unsafe fn supportsHealthRecords(&self) -> bool;
 
@@ -78,6 +79,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSError")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(handleAuthorizationForExtensionWithCompletion:)]
         pub unsafe fn handleAuthorizationForExtensionWithCompletion(
             &self,
@@ -243,21 +245,25 @@ extern_methods!(
 
         #[cfg(feature = "HealthKit_HKWorkoutSession")]
         #[deprecated = "Use HKWorkoutSession's start method"]
+        #[cfg(not(any(target_os = "ios", target_os = "macos")))]
         #[method(startWorkoutSession:)]
         pub unsafe fn startWorkoutSession(&self, workout_session: &HKWorkoutSession);
 
         #[cfg(feature = "HealthKit_HKWorkoutSession")]
         #[deprecated = "Use HKWorkoutSession's end method"]
+        #[cfg(not(any(target_os = "ios", target_os = "macos")))]
         #[method(endWorkoutSession:)]
         pub unsafe fn endWorkoutSession(&self, workout_session: &HKWorkoutSession);
 
         #[cfg(feature = "HealthKit_HKWorkoutSession")]
         #[deprecated = "Use HKWorkoutSession's pause method"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(pauseWorkoutSession:)]
         pub unsafe fn pauseWorkoutSession(&self, workout_session: &HKWorkoutSession);
 
         #[cfg(feature = "HealthKit_HKWorkoutSession")]
         #[deprecated = "Use HKWorkoutSession's resume method"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(resumeWorkoutSession:)]
         pub unsafe fn resumeWorkoutSession(&self, workout_session: &HKWorkoutSession);
 
@@ -265,6 +271,7 @@ extern_methods!(
             feature = "Foundation_NSError",
             feature = "HealthKit_HKWorkoutConfiguration"
         ))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(startWatchAppWithWorkoutConfiguration:completion:)]
         pub unsafe fn startWatchAppWithWorkoutConfiguration_completion(
             &self,
@@ -273,6 +280,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "HealthKit_HKWorkoutSession"))]
+        #[cfg(not(any(target_os = "ios", target_os = "macos")))]
         #[method(recoverActiveWorkoutSessionWithCompletion:)]
         pub unsafe fn recoverActiveWorkoutSessionWithCompletion(
             &self,

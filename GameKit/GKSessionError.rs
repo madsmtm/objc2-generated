@@ -9,22 +9,39 @@ extern_static!(GKSessionErrorDomain: &'static NSString);
 
 ns_enum!(
     #[underlying(c_int)]
+    #[cfg(not(any(target_os = "macos")))]
     pub enum GKSessionError {
+        #[cfg(not(any(target_os = "macos")))]
         GKSessionInvalidParameterError = 30500,
+        #[cfg(not(any(target_os = "macos")))]
         GKSessionPeerNotFoundError = 30501,
+        #[cfg(not(any(target_os = "macos")))]
         GKSessionDeclinedError = 30502,
+        #[cfg(not(any(target_os = "macos")))]
         GKSessionTimedOutError = 30503,
+        #[cfg(not(any(target_os = "macos")))]
         GKSessionCancelledError = 30504,
+        #[cfg(not(any(target_os = "macos")))]
         GKSessionConnectionFailedError = 30505,
+        #[cfg(not(any(target_os = "macos")))]
         GKSessionConnectionClosedError = 30506,
+        #[cfg(not(any(target_os = "macos")))]
         GKSessionDataTooBigError = 30507,
+        #[cfg(not(any(target_os = "macos")))]
         GKSessionNotConnectedError = 30508,
+        #[cfg(not(any(target_os = "macos")))]
         GKSessionCannotEnableError = 30509,
+        #[cfg(not(any(target_os = "macos")))]
         GKSessionInProgressError = 30510,
+        #[cfg(not(any(target_os = "macos")))]
         GKSessionConnectivityError = 30201,
+        #[cfg(not(any(target_os = "macos")))]
         GKSessionTransportError = 30202,
+        #[cfg(not(any(target_os = "macos")))]
         GKSessionInternalError = 30203,
+        #[cfg(not(any(target_os = "macos")))]
         GKSessionUnknownError = 30204,
+        #[cfg(not(any(target_os = "macos")))]
         GKSessionSystemError = 30205,
     }
 );

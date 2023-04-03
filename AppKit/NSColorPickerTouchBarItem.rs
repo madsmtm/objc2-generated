@@ -61,10 +61,12 @@ extern_methods!(
         pub unsafe fn setShowsAlpha(&self, shows_alpha: bool);
 
         #[cfg(all(feature = "AppKit_NSColorSpace", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other allowedColorSpaces)]
         pub unsafe fn allowedColorSpaces(&self) -> Option<Id<NSArray<NSColorSpace>>>;
 
         #[cfg(all(feature = "AppKit_NSColorSpace", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAllowedColorSpaces:)]
         pub unsafe fn setAllowedColorSpaces(
             &self,
@@ -72,10 +74,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSColorList")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other colorList)]
         pub unsafe fn colorList(&self) -> Option<Id<NSColorList>>;
 
         #[cfg(feature = "AppKit_NSColorList")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setColorList:)]
         pub unsafe fn setColorList(&self, color_list: Option<&NSColorList>);
 

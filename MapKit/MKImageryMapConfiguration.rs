@@ -10,6 +10,7 @@ use crate::MapKit::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MapKit_MKImageryMapConfiguration")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct MKImageryMapConfiguration;
 
     #[cfg(feature = "MapKit_MKImageryMapConfiguration")]

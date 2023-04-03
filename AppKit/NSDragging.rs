@@ -7,88 +7,125 @@ use crate::Foundation::*;
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSDragOperation {
+        #[cfg(not(any(target_os = "ios")))]
         NSDragOperationNone = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSDragOperationCopy = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSDragOperationLink = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSDragOperationGeneric = 4,
+        #[cfg(not(any(target_os = "ios")))]
         NSDragOperationPrivate = 8,
+        #[cfg(not(any(target_os = "ios")))]
         NSDragOperationMove = 16,
+        #[cfg(not(any(target_os = "ios")))]
         NSDragOperationDelete = 32,
+        #[cfg(not(any(target_os = "ios")))]
         NSDragOperationEvery = NSUIntegerMax as _,
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         NSDragOperationAll_Obsolete = 15,
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         NSDragOperationAll = NSDragOperationAll_Obsolete,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSDraggingFormation {
+        #[cfg(not(any(target_os = "ios")))]
         NSDraggingFormationDefault = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSDraggingFormationNone = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSDraggingFormationPile = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSDraggingFormationList = 3,
+        #[cfg(not(any(target_os = "ios")))]
         NSDraggingFormationStack = 4,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSDraggingContext {
+        #[cfg(not(any(target_os = "ios")))]
         NSDraggingContextOutsideApplication = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSDraggingContextWithinApplication = 1,
     }
 );
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSDraggingItemEnumerationOptions {
+        #[cfg(not(any(target_os = "ios")))]
         NSDraggingItemEnumerationConcurrent = NSEnumerationConcurrent,
+        #[cfg(not(any(target_os = "ios")))]
         NSDraggingItemEnumerationClearNonenumeratedImages = 1 << 16,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSSpringLoadingHighlight {
+        #[cfg(not(any(target_os = "ios")))]
         NSSpringLoadingHighlightNone = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSSpringLoadingHighlightStandard = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSSpringLoadingHighlightEmphasized = 2,
     }
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSDraggingInfo: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other draggingDestinationWindow)]
         unsafe fn draggingDestinationWindow(&self) -> Option<Id<NSWindow>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(draggingSourceOperationMask)]
         unsafe fn draggingSourceOperationMask(&self) -> NSDragOperation;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(draggingLocation)]
         unsafe fn draggingLocation(&self) -> NSPoint;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(draggedImageLocation)]
         unsafe fn draggedImageLocation(&self) -> NSPoint;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[deprecated = "Use NSDraggingItem objects instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other draggedImage)]
         unsafe fn draggedImage(&self) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSPasteboard")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other draggingPasteboard)]
         unsafe fn draggingPasteboard(&self) -> Id<NSPasteboard>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other draggingSource)]
         unsafe fn draggingSource(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(draggingSequenceNumber)]
         unsafe fn draggingSequenceNumber(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(slideDraggedImageTo:)]
         unsafe fn slideDraggedImageTo(&self, screen_point: NSPoint);
 
@@ -98,27 +135,34 @@ extern_protocol!(
             feature = "Foundation_NSURL"
         ))]
         #[deprecated = "Use NSFilePromiseReceiver objects instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other namesOfPromisedFilesDroppedAtDestination:)]
         unsafe fn namesOfPromisedFilesDroppedAtDestination(
             &self,
             drop_destination: &NSURL,
         ) -> Option<Id<NSArray<NSString>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(draggingFormation)]
         unsafe fn draggingFormation(&self) -> NSDraggingFormation;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDraggingFormation:)]
         unsafe fn setDraggingFormation(&self, dragging_formation: NSDraggingFormation);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(animatesToDestination)]
         unsafe fn animatesToDestination(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAnimatesToDestination:)]
         unsafe fn setAnimatesToDestination(&self, animates_to_destination: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(numberOfValidItemsForDrop)]
         unsafe fn numberOfValidItemsForDrop(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setNumberOfValidItemsForDrop:)]
         unsafe fn setNumberOfValidItemsForDrop(&self, number_of_valid_items_for_drop: NSInteger);
 
@@ -128,6 +172,7 @@ extern_protocol!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSDictionary"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(enumerateDraggingItemsWithOptions:forView:classes:searchOptions:usingBlock:)]
         unsafe fn enumerateDraggingItemsWithOptions_forView_classes_searchOptions_usingBlock(
             &self,
@@ -138,9 +183,11 @@ extern_protocol!(
             block: &Block<(NonNull<NSDraggingItem>, NSInteger, NonNull<Bool>), ()>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(springLoadingHighlight)]
         unsafe fn springLoadingHighlight(&self) -> NSSpringLoadingHighlight;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(resetSpringLoading)]
         unsafe fn resetSpringLoading(&self);
     }
@@ -149,7 +196,9 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSDraggingDestination: NSObjectProtocol {
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(draggingEntered:)]
         unsafe fn draggingEntered(
@@ -157,6 +206,7 @@ extern_protocol!(
             sender: &ProtocolObject<dyn NSDraggingInfo>,
         ) -> NSDragOperation;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(draggingUpdated:)]
         unsafe fn draggingUpdated(
@@ -164,10 +214,12 @@ extern_protocol!(
             sender: &ProtocolObject<dyn NSDraggingInfo>,
         ) -> NSDragOperation;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(draggingExited:)]
         unsafe fn draggingExited(&self, sender: Option<&ProtocolObject<dyn NSDraggingInfo>>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(prepareForDragOperation:)]
         unsafe fn prepareForDragOperation(
@@ -175,22 +227,27 @@ extern_protocol!(
             sender: &ProtocolObject<dyn NSDraggingInfo>,
         ) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(performDragOperation:)]
         unsafe fn performDragOperation(&self, sender: &ProtocolObject<dyn NSDraggingInfo>) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(concludeDragOperation:)]
         unsafe fn concludeDragOperation(&self, sender: Option<&ProtocolObject<dyn NSDraggingInfo>>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(draggingEnded:)]
         unsafe fn draggingEnded(&self, sender: &ProtocolObject<dyn NSDraggingInfo>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(wantsPeriodicDraggingUpdates)]
         unsafe fn wantsPeriodicDraggingUpdates(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(updateDraggingItemsForDrag:)]
         unsafe fn updateDraggingItemsForDrag(
@@ -203,8 +260,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSDraggingSource: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSDraggingSession")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(draggingSession:sourceOperationMaskForDraggingContext:)]
         unsafe fn draggingSession_sourceOperationMaskForDraggingContext(
             &self,
@@ -213,6 +272,7 @@ extern_protocol!(
         ) -> NSDragOperation;
 
         #[cfg(feature = "AppKit_NSDraggingSession")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(draggingSession:willBeginAtPoint:)]
         unsafe fn draggingSession_willBeginAtPoint(
@@ -222,6 +282,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "AppKit_NSDraggingSession")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(draggingSession:movedToPoint:)]
         unsafe fn draggingSession_movedToPoint(
@@ -231,6 +292,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "AppKit_NSDraggingSession")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(draggingSession:endedAtPoint:operation:)]
         unsafe fn draggingSession_endedAtPoint_operation(
@@ -241,6 +303,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "AppKit_NSDraggingSession")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(ignoreModifierKeysForDraggingSession:)]
         unsafe fn ignoreModifierKeysForDraggingSession(&self, session: &NSDraggingSession) -> bool;
@@ -251,16 +314,23 @@ extern_protocol!(
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSSpringLoadingOptions {
+        #[cfg(not(any(target_os = "ios")))]
         NSSpringLoadingDisabled = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSSpringLoadingEnabled = 1 << 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSSpringLoadingContinuousActivation = 1 << 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSSpringLoadingNoHover = 1 << 3,
     }
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSSpringLoadingDestination: NSObjectProtocol {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(springLoadingActivated:draggingInfo:)]
         unsafe fn springLoadingActivated_draggingInfo(
             &self,
@@ -268,12 +338,14 @@ extern_protocol!(
             dragging_info: &ProtocolObject<dyn NSDraggingInfo>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(springLoadingHighlightChanged:)]
         unsafe fn springLoadingHighlightChanged(
             &self,
             dragging_info: &ProtocolObject<dyn NSDraggingInfo>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(springLoadingEntered:)]
         unsafe fn springLoadingEntered(
@@ -281,6 +353,7 @@ extern_protocol!(
             dragging_info: &ProtocolObject<dyn NSDraggingInfo>,
         ) -> NSSpringLoadingOptions;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(springLoadingUpdated:)]
         unsafe fn springLoadingUpdated(
@@ -288,10 +361,12 @@ extern_protocol!(
             dragging_info: &ProtocolObject<dyn NSDraggingInfo>,
         ) -> NSSpringLoadingOptions;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(springLoadingExited:)]
         unsafe fn springLoadingExited(&self, dragging_info: &ProtocolObject<dyn NSDraggingInfo>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(draggingEnded:)]
         unsafe fn draggingEnded(&self, dragging_info: &ProtocolObject<dyn NSDraggingInfo>);

@@ -8,6 +8,7 @@ ns_options!(
     pub enum NSPointerFunctionsOptions {
         NSPointerFunctionsStrongMemory = 0 << 0,
         #[deprecated = "GC no longer supported"]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         NSPointerFunctionsZeroingWeakMemory = 1 << 0,
         NSPointerFunctionsOpaqueMemory = 2 << 0,
         NSPointerFunctionsMallocMemory = 3 << 0,

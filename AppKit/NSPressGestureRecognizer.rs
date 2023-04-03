@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSPressGestureRecognizer")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSPressGestureRecognizer;
 
     #[cfg(feature = "AppKit_NSPressGestureRecognizer")]
@@ -26,27 +27,35 @@ unsafe impl NSObjectProtocol for NSPressGestureRecognizer {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSPressGestureRecognizer")]
     unsafe impl NSPressGestureRecognizer {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(buttonMask)]
         pub unsafe fn buttonMask(&self) -> NSUInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setButtonMask:)]
         pub unsafe fn setButtonMask(&self, button_mask: NSUInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(minimumPressDuration)]
         pub unsafe fn minimumPressDuration(&self) -> NSTimeInterval;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMinimumPressDuration:)]
         pub unsafe fn setMinimumPressDuration(&self, minimum_press_duration: NSTimeInterval);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(allowableMovement)]
         pub unsafe fn allowableMovement(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAllowableMovement:)]
         pub unsafe fn setAllowableMovement(&self, allowable_movement: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(numberOfTouchesRequired)]
         pub unsafe fn numberOfTouchesRequired(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setNumberOfTouchesRequired:)]
         pub unsafe fn setNumberOfTouchesRequired(&self, number_of_touches_required: NSInteger);
     }
@@ -56,6 +65,7 @@ extern_methods!(
     /// Methods declared on superclass `NSGestureRecognizer`
     #[cfg(feature = "AppKit_NSPressGestureRecognizer")]
     unsafe impl NSPressGestureRecognizer {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithTarget:action:)]
         pub unsafe fn initWithTarget_action(
             this: Option<Allocated<Self>>,

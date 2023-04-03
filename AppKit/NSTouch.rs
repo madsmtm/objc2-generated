@@ -7,34 +7,49 @@ use crate::Foundation::*;
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSTouchPhase {
+        #[cfg(not(any(target_os = "ios")))]
         NSTouchPhaseBegan = 1 << 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSTouchPhaseMoved = 1 << 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSTouchPhaseStationary = 1 << 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSTouchPhaseEnded = 1 << 3,
+        #[cfg(not(any(target_os = "ios")))]
         NSTouchPhaseCancelled = 1 << 4,
+        #[cfg(not(any(target_os = "ios")))]
         NSTouchPhaseTouching = NSTouchPhaseBegan | NSTouchPhaseMoved | NSTouchPhaseStationary,
+        #[cfg(not(any(target_os = "ios")))]
         NSTouchPhaseAny = NSUIntegerMax as _,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSTouchType {
+        #[cfg(not(any(target_os = "ios")))]
         NSTouchTypeDirect = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSTouchTypeIndirect = 1,
     }
 );
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSTouchTypeMask {
+        #[cfg(not(any(target_os = "ios")))]
         NSTouchTypeMaskDirect = 1 << NSTouchTypeDirect,
+        #[cfg(not(any(target_os = "ios")))]
         NSTouchTypeMaskIndirect = 1 << NSTouchTypeIndirect,
     }
 );
 
 inline_fn!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSTouchTypeMaskFromType(r#type: NSTouchType) -> NSTouchTypeMask {
         todo!()
     }
@@ -43,6 +58,7 @@ inline_fn!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSTouch")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSTouch;
 
     #[cfg(feature = "AppKit_NSTouch")]
@@ -57,21 +73,27 @@ unsafe impl NSObjectProtocol for NSTouch {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSTouch")]
     unsafe impl NSTouch {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other identity)]
         pub unsafe fn identity(&self) -> Id<TodoProtocols>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(phase)]
         pub unsafe fn phase(&self) -> NSTouchPhase;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(normalizedPosition)]
         pub unsafe fn normalizedPosition(&self) -> NSPoint;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isResting)]
         pub unsafe fn isResting(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other device)]
         pub unsafe fn device(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(deviceSize)]
         pub unsafe fn deviceSize(&self) -> NSSize;
     }
@@ -81,14 +103,17 @@ extern_methods!(
     /// NSTouchBar
     #[cfg(feature = "AppKit_NSTouch")]
     unsafe impl NSTouch {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(type)]
         pub unsafe fn r#type(&self) -> NSTouchType;
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(locationInView:)]
         pub unsafe fn locationInView(&self, view: Option<&NSView>) -> NSPoint;
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(previousLocationInView:)]
         pub unsafe fn previousLocationInView(&self, view: Option<&NSView>) -> NSPoint;
     }

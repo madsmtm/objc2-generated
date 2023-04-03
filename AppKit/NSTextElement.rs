@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSTextElement")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct NSTextElement;
 
     #[cfg(feature = "AppKit_NSTextElement")]
@@ -49,12 +50,15 @@ extern_methods!(
         pub unsafe fn setElementRange(&self, element_range: Option<&NSTextRange>);
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other childElements)]
         pub unsafe fn childElements(&self) -> Id<NSArray<NSTextElement>>;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other parentElement)]
         pub unsafe fn parentElement(&self) -> Option<Id<NSTextElement>>;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(isRepresentedElement)]
         pub unsafe fn isRepresentedElement(&self) -> bool;
     }
@@ -63,6 +67,7 @@ extern_methods!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSTextParagraph")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct NSTextParagraph;
 
     #[cfg(feature = "AppKit_NSTextParagraph")]

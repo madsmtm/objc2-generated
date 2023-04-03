@@ -9,8 +9,11 @@ use crate::MapKit::*;
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub enum MKLocalSearchResultType {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         MKLocalSearchResultTypeAddress = 1 << 0,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         MKLocalSearchResultTypePointOfInterest = 1 << 1,
     }
 );
@@ -18,6 +21,7 @@ ns_options!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MapKit_MKLocalSearchRequest")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct MKLocalSearchRequest;
 
     #[cfg(feature = "MapKit_MKLocalSearchRequest")]
@@ -36,6 +40,7 @@ extern_methods!(
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Init initWithNaturalLanguageQuery:)]
         pub unsafe fn initWithNaturalLanguageQuery(
             this: Option<Allocated<Self>>,
@@ -43,6 +48,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Init initWithNaturalLanguageQuery:region:)]
         pub unsafe fn initWithNaturalLanguageQuery_region(
             this: Option<Allocated<Self>>,
@@ -64,17 +70,21 @@ extern_methods!(
         #[method(setRegion:)]
         pub unsafe fn setRegion(&self, region: MKCoordinateRegion);
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(resultTypes)]
         pub unsafe fn resultTypes(&self) -> MKLocalSearchResultType;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(setResultTypes:)]
         pub unsafe fn setResultTypes(&self, result_types: MKLocalSearchResultType);
 
         #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other pointOfInterestFilter)]
         pub unsafe fn pointOfInterestFilter(&self) -> Option<Id<MKPointOfInterestFilter>>;
 
         #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(setPointOfInterestFilter:)]
         pub unsafe fn setPointOfInterestFilter(
             &self,

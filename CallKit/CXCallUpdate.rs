@@ -7,6 +7,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CallKit_CXCallUpdate")]
+    #[cfg(not(any(target_os = "macos")))]
     pub struct CXCallUpdate;
 
     #[cfg(feature = "CallKit_CXCallUpdate")]

@@ -10,12 +10,16 @@ use crate::MapKit::*;
 ns_enum!(
     #[underlying(NSUInteger)]
     #[deprecated = "Use MKPinAnnotationView's pinTintColor instead"]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub enum MKPinAnnotationColor {
         #[deprecated = "Use MKPinAnnotationView's pinTintColor instead"]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         MKPinAnnotationColorRed = 0,
         #[deprecated = "Use MKPinAnnotationView's pinTintColor instead"]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         MKPinAnnotationColorGreen = 1,
         #[deprecated = "Use MKPinAnnotationView's pinTintColor instead"]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         MKPinAnnotationColorPurple = 2,
     }
 );
@@ -24,6 +28,7 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MapKit_MKPinAnnotationView")]
     #[deprecated]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct MKPinAnnotationView;
 
     #[cfg(feature = "MapKit_MKPinAnnotationView")]
@@ -114,6 +119,7 @@ extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(feature = "MapKit_MKPinAnnotationView")]
     unsafe impl MKPinAnnotationView {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }

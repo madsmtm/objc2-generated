@@ -8,6 +8,7 @@ pub type NSUserScriptTaskCompletionHandler = *mut Block<(*mut NSError,), ()>;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSUserScriptTask")]
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub struct NSUserScriptTask;
 
     #[cfg(feature = "Foundation_NSUserScriptTask")]
@@ -46,6 +47,7 @@ pub type NSUserUnixTaskCompletionHandler = *mut Block<(*mut NSError,), ()>;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSUserUnixTask")]
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub struct NSUserUnixTask;
 
     #[cfg(feature = "Foundation_NSUserUnixTask")]
@@ -101,6 +103,7 @@ pub type NSUserAppleScriptTaskCompletionHandler =
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSUserAppleScriptTask")]
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub struct NSUserAppleScriptTask;
 
     #[cfg(feature = "Foundation_NSUserAppleScriptTask")]
@@ -131,6 +134,7 @@ pub type NSUserAutomatorTaskCompletionHandler = *mut Block<(*mut Object, *mut NS
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSUserAutomatorTask")]
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub struct NSUserAutomatorTask;
 
     #[cfg(feature = "Foundation_NSUserAutomatorTask")]

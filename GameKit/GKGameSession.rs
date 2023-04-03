@@ -25,6 +25,7 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GameKit_GKGameSession")]
     #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct GKGameSession;
 
     #[cfg(feature = "GameKit_GKGameSession")]

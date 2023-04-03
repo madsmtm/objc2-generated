@@ -6,6 +6,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSURLDownload")]
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub struct NSURLDownload;
 
     #[cfg(feature = "Foundation_NSURLDownload")]
@@ -67,6 +68,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait NSURLDownloadDelegate: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSURLDownload")]
         #[optional]

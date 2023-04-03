@@ -5,6 +5,7 @@ use crate::CallKit::*;
 use crate::Foundation::*;
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "macos")))]
     pub unsafe trait CXCallObserverDelegate: NSObjectProtocol {
         #[cfg(all(feature = "CallKit_CXCall", feature = "CallKit_CXCallObserver"))]
         #[method(callObserver:callChanged:)]
@@ -17,6 +18,7 @@ extern_protocol!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CallKit_CXCallObserver")]
+    #[cfg(not(any(target_os = "macos")))]
     pub struct CXCallObserver;
 
     #[cfg(feature = "CallKit_CXCallObserver")]

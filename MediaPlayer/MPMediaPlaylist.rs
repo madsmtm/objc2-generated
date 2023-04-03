@@ -7,10 +7,15 @@ use crate::MediaPlayer::*;
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub enum MPMediaPlaylistAttribute {
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         MPMediaPlaylistAttributeNone = 0,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         MPMediaPlaylistAttributeOnTheGo = 1 << 0,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         MPMediaPlaylistAttributeSmart = 1 << 1,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         MPMediaPlaylistAttributeGenius = 1 << 2,
     }
 );
@@ -32,6 +37,7 @@ extern_static!(MPMediaPlaylistPropertyAuthorDisplayName: &'static NSString);
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MediaPlayer_MPMediaPlaylist")]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub struct MPMediaPlaylist;
 
     #[cfg(feature = "MediaPlayer_MPMediaPlaylist")]
@@ -80,6 +86,7 @@ extern_methods!(
         pub unsafe fn authorDisplayName(&self) -> Option<Id<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "macos")))]
         #[method(addItemWithProductID:completionHandler:)]
         pub unsafe fn addItemWithProductID_completionHandler(
             &self,
@@ -92,6 +99,7 @@ extern_methods!(
             feature = "Foundation_NSError",
             feature = "MediaPlayer_MPMediaItem"
         ))]
+        #[cfg(not(any(target_os = "macos")))]
         #[method(addMediaItems:completionHandler:)]
         pub unsafe fn addMediaItems_completionHandler(
             &self,
@@ -104,6 +112,7 @@ extern_methods!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MediaPlayer_MPMediaPlaylistCreationMetadata")]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub struct MPMediaPlaylistCreationMetadata;
 
     #[cfg(feature = "MediaPlayer_MPMediaPlaylistCreationMetadata")]

@@ -8,9 +8,13 @@ use crate::UniformTypeIdentifiers::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum HKWorkoutSessionState {
+        #[cfg(not(any(target_os = "ios")))]
         HKWorkoutSessionStateNotStarted = 1,
+        #[cfg(not(any(target_os = "ios")))]
         HKWorkoutSessionStateRunning = 2,
+        #[cfg(not(any(target_os = "ios")))]
         HKWorkoutSessionStateEnded = 3,
         HKWorkoutSessionStatePaused = 4,
         HKWorkoutSessionStatePrepared = 5,
@@ -21,6 +25,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HealthKit_HKWorkoutSession")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct HKWorkoutSession;
 
     #[cfg(feature = "HealthKit_HKWorkoutSession")]
@@ -156,6 +161,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait HKWorkoutSessionDelegate: NSObjectProtocol {
         #[cfg(all(feature = "Foundation_NSDate", feature = "HealthKit_HKWorkoutSession"))]
         #[method(workoutSession:didChangeToState:fromState:date:)]

@@ -7,52 +7,84 @@ use crate::Foundation::*;
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSAutoresizingMaskOptions {
+        #[cfg(not(any(target_os = "ios")))]
         NSViewNotSizable = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSViewMinXMargin = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSViewWidthSizable = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSViewMaxXMargin = 4,
+        #[cfg(not(any(target_os = "ios")))]
         NSViewMinYMargin = 8,
+        #[cfg(not(any(target_os = "ios")))]
         NSViewHeightSizable = 16,
+        #[cfg(not(any(target_os = "ios")))]
         NSViewMaxYMargin = 32,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSBorderType {
+        #[cfg(not(any(target_os = "ios")))]
         NSNoBorder = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSLineBorder = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSBezelBorder = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSGrooveBorder = 3,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSViewLayerContentsRedrawPolicy {
+        #[cfg(not(any(target_os = "ios")))]
         NSViewLayerContentsRedrawNever = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSViewLayerContentsRedrawOnSetNeedsDisplay = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSViewLayerContentsRedrawDuringViewResize = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSViewLayerContentsRedrawBeforeViewResize = 3,
+        #[cfg(not(any(target_os = "ios")))]
         NSViewLayerContentsRedrawCrossfade = 4,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSViewLayerContentsPlacement {
+        #[cfg(not(any(target_os = "ios")))]
         NSViewLayerContentsPlacementScaleAxesIndependently = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSViewLayerContentsPlacementScaleProportionallyToFit = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSViewLayerContentsPlacementScaleProportionallyToFill = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSViewLayerContentsPlacementCenter = 3,
+        #[cfg(not(any(target_os = "ios")))]
         NSViewLayerContentsPlacementTop = 4,
+        #[cfg(not(any(target_os = "ios")))]
         NSViewLayerContentsPlacementTopRight = 5,
+        #[cfg(not(any(target_os = "ios")))]
         NSViewLayerContentsPlacementRight = 6,
+        #[cfg(not(any(target_os = "ios")))]
         NSViewLayerContentsPlacementBottomRight = 7,
+        #[cfg(not(any(target_os = "ios")))]
         NSViewLayerContentsPlacementBottom = 8,
+        #[cfg(not(any(target_os = "ios")))]
         NSViewLayerContentsPlacementBottomLeft = 9,
+        #[cfg(not(any(target_os = "ios")))]
         NSViewLayerContentsPlacementLeft = 10,
+        #[cfg(not(any(target_os = "ios")))]
         NSViewLayerContentsPlacementTopLeft = 11,
     }
 );
@@ -64,6 +96,7 @@ pub type NSToolTipTag = NSInteger;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSView")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSView;
 
     #[cfg(feature = "AppKit_NSView")]
@@ -100,10 +133,12 @@ unsafe impl NSUserInterfaceItemIdentification for NSView {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSView")]
     unsafe impl NSView {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -111,38 +146,49 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other window)]
         pub unsafe fn window(&self) -> Option<Id<NSWindow>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other superview)]
         pub unsafe fn superview(&self) -> Option<Id<NSView>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other subviews)]
         pub unsafe fn subviews(&self) -> Id<NSArray<NSView>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSubviews:)]
         pub unsafe fn setSubviews(&self, subviews: &NSArray<NSView>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isDescendantOf:)]
         pub unsafe fn isDescendantOf(&self, view: &NSView) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other ancestorSharedWithView:)]
         pub unsafe fn ancestorSharedWithView(&self, view: &NSView) -> Option<Id<NSView>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other opaqueAncestor)]
         pub unsafe fn opaqueAncestor(&self) -> Option<Id<NSView>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isHidden)]
         pub unsafe fn isHidden(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setHidden:)]
         pub unsafe fn setHidden(&self, hidden: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isHiddenOrHasHiddenAncestor)]
         pub unsafe fn isHiddenOrHasHiddenAncestor(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(getRectsBeingDrawn:count:)]
         pub unsafe fn getRectsBeingDrawn_count(
             &self,
@@ -150,21 +196,27 @@ extern_methods!(
             count: *mut NSInteger,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(needsToDrawRect:)]
         pub unsafe fn needsToDrawRect(&self, rect: NSRect) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(wantsDefaultClipping)]
         pub unsafe fn wantsDefaultClipping(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(viewDidHide)]
         pub unsafe fn viewDidHide(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(viewDidUnhide)]
         pub unsafe fn viewDidUnhide(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(addSubview:)]
         pub unsafe fn addSubview(&self, view: &NSView);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(addSubview:positioned:relativeTo:)]
         pub unsafe fn addSubview_positioned_relativeTo(
             &self,
@@ -173,6 +225,7 @@ extern_methods!(
             other_view: Option<&NSView>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(sortSubviewsUsingFunction:context:)]
         pub unsafe fn sortSubviewsUsingFunction_context(
             &self,
@@ -185,126 +238,166 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(viewWillMoveToWindow:)]
         pub unsafe fn viewWillMoveToWindow(&self, new_window: Option<&NSWindow>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(viewDidMoveToWindow)]
         pub unsafe fn viewDidMoveToWindow(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(viewWillMoveToSuperview:)]
         pub unsafe fn viewWillMoveToSuperview(&self, new_superview: Option<&NSView>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(viewDidMoveToSuperview)]
         pub unsafe fn viewDidMoveToSuperview(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(didAddSubview:)]
         pub unsafe fn didAddSubview(&self, subview: &NSView);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(willRemoveSubview:)]
         pub unsafe fn willRemoveSubview(&self, subview: &NSView);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeFromSuperview)]
         pub unsafe fn removeFromSuperview(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(replaceSubview:with:)]
         pub unsafe fn replaceSubview_with(&self, old_view: &NSView, new_view: &NSView);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeFromSuperviewWithoutNeedingDisplay)]
         pub unsafe fn removeFromSuperviewWithoutNeedingDisplay(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(viewDidChangeBackingProperties)]
         pub unsafe fn viewDidChangeBackingProperties(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(postsFrameChangedNotifications)]
         pub unsafe fn postsFrameChangedNotifications(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPostsFrameChangedNotifications:)]
         pub unsafe fn setPostsFrameChangedNotifications(
             &self,
             posts_frame_changed_notifications: bool,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(resizeSubviewsWithOldSize:)]
         pub unsafe fn resizeSubviewsWithOldSize(&self, old_size: NSSize);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(resizeWithOldSuperviewSize:)]
         pub unsafe fn resizeWithOldSuperviewSize(&self, old_size: NSSize);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(autoresizesSubviews)]
         pub unsafe fn autoresizesSubviews(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAutoresizesSubviews:)]
         pub unsafe fn setAutoresizesSubviews(&self, autoresizes_subviews: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(autoresizingMask)]
         pub unsafe fn autoresizingMask(&self) -> NSAutoresizingMaskOptions;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAutoresizingMask:)]
         pub unsafe fn setAutoresizingMask(&self, autoresizing_mask: NSAutoresizingMaskOptions);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFrameOrigin:)]
         pub unsafe fn setFrameOrigin(&self, new_origin: NSPoint);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFrameSize:)]
         pub unsafe fn setFrameSize(&self, new_size: NSSize);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(frame)]
         pub unsafe fn frame(&self) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFrame:)]
         pub unsafe fn setFrame(&self, frame: NSRect);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(frameRotation)]
         pub unsafe fn frameRotation(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFrameRotation:)]
         pub unsafe fn setFrameRotation(&self, frame_rotation: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(frameCenterRotation)]
         pub unsafe fn frameCenterRotation(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFrameCenterRotation:)]
         pub unsafe fn setFrameCenterRotation(&self, frame_center_rotation: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBoundsOrigin:)]
         pub unsafe fn setBoundsOrigin(&self, new_origin: NSPoint);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBoundsSize:)]
         pub unsafe fn setBoundsSize(&self, new_size: NSSize);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(boundsRotation)]
         pub unsafe fn boundsRotation(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBoundsRotation:)]
         pub unsafe fn setBoundsRotation(&self, bounds_rotation: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(translateOriginToPoint:)]
         pub unsafe fn translateOriginToPoint(&self, translation: NSPoint);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(scaleUnitSquareToSize:)]
         pub unsafe fn scaleUnitSquareToSize(&self, new_unit_size: NSSize);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rotateByAngle:)]
         pub unsafe fn rotateByAngle(&self, angle: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(bounds)]
         pub unsafe fn bounds(&self) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBounds:)]
         pub unsafe fn setBounds(&self, bounds: NSRect);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isFlipped)]
         pub unsafe fn isFlipped(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isRotatedFromBase)]
         pub unsafe fn isRotatedFromBase(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isRotatedOrScaledFromBase)]
         pub unsafe fn isRotatedOrScaledFromBase(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isOpaque)]
         pub unsafe fn isOpaque(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(convertPoint:fromView:)]
         pub unsafe fn convertPoint_fromView(
             &self,
@@ -312,21 +405,27 @@ extern_methods!(
             view: Option<&NSView>,
         ) -> NSPoint;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(convertPoint:toView:)]
         pub unsafe fn convertPoint_toView(&self, point: NSPoint, view: Option<&NSView>) -> NSPoint;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(convertSize:fromView:)]
         pub unsafe fn convertSize_fromView(&self, size: NSSize, view: Option<&NSView>) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(convertSize:toView:)]
         pub unsafe fn convertSize_toView(&self, size: NSSize, view: Option<&NSView>) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(convertRect:fromView:)]
         pub unsafe fn convertRect_fromView(&self, rect: NSRect, view: Option<&NSView>) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(convertRect:toView:)]
         pub unsafe fn convertRect_toView(&self, rect: NSRect, view: Option<&NSView>) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(backingAlignedRect:options:)]
         pub unsafe fn backingAlignedRect_options(
             &self,
@@ -334,112 +433,146 @@ extern_methods!(
             options: NSAlignmentOptions,
         ) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(centerScanRect:)]
         pub unsafe fn centerScanRect(&self, rect: NSRect) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(convertPointToBacking:)]
         pub unsafe fn convertPointToBacking(&self, point: NSPoint) -> NSPoint;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(convertPointFromBacking:)]
         pub unsafe fn convertPointFromBacking(&self, point: NSPoint) -> NSPoint;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(convertSizeToBacking:)]
         pub unsafe fn convertSizeToBacking(&self, size: NSSize) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(convertSizeFromBacking:)]
         pub unsafe fn convertSizeFromBacking(&self, size: NSSize) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(convertRectToBacking:)]
         pub unsafe fn convertRectToBacking(&self, rect: NSRect) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(convertRectFromBacking:)]
         pub unsafe fn convertRectFromBacking(&self, rect: NSRect) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(convertPointToLayer:)]
         pub unsafe fn convertPointToLayer(&self, point: NSPoint) -> NSPoint;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(convertPointFromLayer:)]
         pub unsafe fn convertPointFromLayer(&self, point: NSPoint) -> NSPoint;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(convertSizeToLayer:)]
         pub unsafe fn convertSizeToLayer(&self, size: NSSize) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(convertSizeFromLayer:)]
         pub unsafe fn convertSizeFromLayer(&self, size: NSSize) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(convertRectToLayer:)]
         pub unsafe fn convertRectToLayer(&self, rect: NSRect) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(convertRectFromLayer:)]
         pub unsafe fn convertRectFromLayer(&self, rect: NSRect) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(canDrawConcurrently)]
         pub unsafe fn canDrawConcurrently(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCanDrawConcurrently:)]
         pub unsafe fn setCanDrawConcurrently(&self, can_draw_concurrently: bool);
 
         #[deprecated = "If a view needs display, -drawRect: or -updateLayer will be called automatically when the view is able to draw.  To check whether a view is in a window, call -window.  To check whether a view is hidden, call -isHiddenOrHasHiddenAncestor."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(canDraw)]
         pub unsafe fn canDraw(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setNeedsDisplayInRect:)]
         pub unsafe fn setNeedsDisplayInRect(&self, invalid_rect: NSRect);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(needsDisplay)]
         pub unsafe fn needsDisplay(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setNeedsDisplay:)]
         pub unsafe fn setNeedsDisplay(&self, needs_display: bool);
 
         #[deprecated = "To draw, subclass NSView and implement -drawRect:; AppKit's automatic deferred display mechanism will call -drawRect: as necessary to display the view."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(lockFocus)]
         pub unsafe fn lockFocus(&self);
 
         #[deprecated = "To draw, subclass NSView and implement -drawRect:; AppKit's automatic deferred display mechanism will call -drawRect: as necessary to display the view."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(unlockFocus)]
         pub unsafe fn unlockFocus(&self);
 
         #[deprecated = "To draw, subclass NSView and implement -drawRect:; AppKit's automatic deferred display mechanism will call -drawRect: as necessary to display the view."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(lockFocusIfCanDraw)]
         pub unsafe fn lockFocusIfCanDraw(&self) -> bool;
 
         #[cfg(feature = "AppKit_NSGraphicsContext")]
         #[deprecated = "Use -[NSView displayRectIgnoringOpacity:inContext:] to draw a view subtree into a graphics context."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(lockFocusIfCanDrawInContext:)]
         pub unsafe fn lockFocusIfCanDrawInContext(&self, context: &NSGraphicsContext) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other focusView)]
         pub unsafe fn focusView() -> Option<Id<NSView>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(visibleRect)]
         pub unsafe fn visibleRect(&self) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(display)]
         pub unsafe fn display(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(displayIfNeeded)]
         pub unsafe fn displayIfNeeded(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(displayIfNeededIgnoringOpacity)]
         pub unsafe fn displayIfNeededIgnoringOpacity(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(displayRect:)]
         pub unsafe fn displayRect(&self, rect: NSRect);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(displayIfNeededInRect:)]
         pub unsafe fn displayIfNeededInRect(&self, rect: NSRect);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(displayRectIgnoringOpacity:)]
         pub unsafe fn displayRectIgnoringOpacity(&self, rect: NSRect);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(displayIfNeededInRectIgnoringOpacity:)]
         pub unsafe fn displayIfNeededInRectIgnoringOpacity(&self, rect: NSRect);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawRect:)]
         pub unsafe fn drawRect(&self, dirty_rect: NSRect);
 
         #[cfg(feature = "AppKit_NSGraphicsContext")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(displayRectIgnoringOpacity:inContext:)]
         pub unsafe fn displayRectIgnoringOpacity_inContext(
             &self,
@@ -448,6 +581,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSBitmapImageRep")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other bitmapImageRepForCachingDisplayInRect:)]
         pub unsafe fn bitmapImageRepForCachingDisplayInRect(
             &self,
@@ -455,6 +589,7 @@ extern_methods!(
         ) -> Option<Id<NSBitmapImageRep>>;
 
         #[cfg(feature = "AppKit_NSBitmapImageRep")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(cacheDisplayInRect:toBitmapImageRep:)]
         pub unsafe fn cacheDisplayInRect_toBitmapImageRep(
             &self,
@@ -462,26 +597,33 @@ extern_methods!(
             bitmap_image_rep: &NSBitmapImageRep,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(viewWillDraw)]
         pub unsafe fn viewWillDraw(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(scrollPoint:)]
         pub unsafe fn scrollPoint(&self, point: NSPoint);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(scrollRectToVisible:)]
         pub unsafe fn scrollRectToVisible(&self, rect: NSRect) -> bool;
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(autoscroll:)]
         pub unsafe fn autoscroll(&self, event: &NSEvent) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(adjustScroll:)]
         pub unsafe fn adjustScroll(&self, new_visible: NSRect) -> NSRect;
 
         #[deprecated = "Use NSScrollView to achieve scrolling views."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(scrollRect:by:)]
         pub unsafe fn scrollRect_by(&self, rect: NSRect, delta: NSSize);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(translateRectsNeedingDisplayInRect:by:)]
         pub unsafe fn translateRectsNeedingDisplayInRect_by(
             &self,
@@ -489,121 +631,156 @@ extern_methods!(
             delta: NSSize,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other hitTest:)]
         pub unsafe fn hitTest(&self, point: NSPoint) -> Option<Id<NSView>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(mouse:inRect:)]
         pub unsafe fn mouse_inRect(&self, point: NSPoint, rect: NSRect) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other viewWithTag:)]
         pub unsafe fn viewWithTag(&self, tag: NSInteger) -> Option<Id<NSView>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(tag)]
         pub unsafe fn tag(&self) -> NSInteger;
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(performKeyEquivalent:)]
         pub unsafe fn performKeyEquivalent(&self, event: &NSEvent) -> bool;
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(acceptsFirstMouse:)]
         pub unsafe fn acceptsFirstMouse(&self, event: Option<&NSEvent>) -> bool;
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(shouldDelayWindowOrderingForEvent:)]
         pub unsafe fn shouldDelayWindowOrderingForEvent(&self, event: &NSEvent) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(needsPanelToBecomeKey)]
         pub unsafe fn needsPanelToBecomeKey(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(mouseDownCanMoveWindow)]
         pub unsafe fn mouseDownCanMoveWindow(&self) -> bool;
 
         #[deprecated = "Use allowedTouchTypes instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(acceptsTouchEvents)]
         pub unsafe fn acceptsTouchEvents(&self) -> bool;
 
         #[deprecated = "Use allowedTouchTypes instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAcceptsTouchEvents:)]
         pub unsafe fn setAcceptsTouchEvents(&self, accepts_touch_events: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(wantsRestingTouches)]
         pub unsafe fn wantsRestingTouches(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setWantsRestingTouches:)]
         pub unsafe fn setWantsRestingTouches(&self, wants_resting_touches: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(layerContentsRedrawPolicy)]
         pub unsafe fn layerContentsRedrawPolicy(&self) -> NSViewLayerContentsRedrawPolicy;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setLayerContentsRedrawPolicy:)]
         pub unsafe fn setLayerContentsRedrawPolicy(
             &self,
             layer_contents_redraw_policy: NSViewLayerContentsRedrawPolicy,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(layerContentsPlacement)]
         pub unsafe fn layerContentsPlacement(&self) -> NSViewLayerContentsPlacement;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setLayerContentsPlacement:)]
         pub unsafe fn setLayerContentsPlacement(
             &self,
             layer_contents_placement: NSViewLayerContentsPlacement,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(wantsLayer)]
         pub unsafe fn wantsLayer(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setWantsLayer:)]
         pub unsafe fn setWantsLayer(&self, wants_layer: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(wantsUpdateLayer)]
         pub unsafe fn wantsUpdateLayer(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(updateLayer)]
         pub unsafe fn updateLayer(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(canDrawSubviewsIntoLayer)]
         pub unsafe fn canDrawSubviewsIntoLayer(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCanDrawSubviewsIntoLayer:)]
         pub unsafe fn setCanDrawSubviewsIntoLayer(&self, can_draw_subviews_into_layer: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(layoutSubtreeIfNeeded)]
         pub unsafe fn layoutSubtreeIfNeeded(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(layout)]
         pub unsafe fn layout(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(needsLayout)]
         pub unsafe fn needsLayout(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setNeedsLayout:)]
         pub unsafe fn setNeedsLayout(&self, needs_layout: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(alphaValue)]
         pub unsafe fn alphaValue(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAlphaValue:)]
         pub unsafe fn setAlphaValue(&self, alpha_value: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(layerUsesCoreImageFilters)]
         pub unsafe fn layerUsesCoreImageFilters(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setLayerUsesCoreImageFilters:)]
         pub unsafe fn setLayerUsesCoreImageFilters(&self, layer_uses_core_image_filters: bool);
 
         #[cfg(feature = "AppKit_NSShadow")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other shadow)]
         pub unsafe fn shadow(&self) -> Option<Id<NSShadow>>;
 
         #[cfg(feature = "AppKit_NSShadow")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setShadow:)]
         pub unsafe fn setShadow(&self, shadow: Option<&NSShadow>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(postsBoundsChangedNotifications)]
         pub unsafe fn postsBoundsChangedNotifications(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPostsBoundsChangedNotifications:)]
         pub unsafe fn setPostsBoundsChangedNotifications(
             &self,
@@ -611,33 +788,41 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSScrollView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other enclosingScrollView)]
         pub unsafe fn enclosingScrollView(&self) -> Option<Id<NSScrollView>>;
 
         #[cfg(all(feature = "AppKit_NSEvent", feature = "AppKit_NSMenu"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other menuForEvent:)]
         pub unsafe fn menuForEvent(&self, event: &NSEvent) -> Option<Id<NSMenu>>;
 
         #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other defaultMenu)]
         pub unsafe fn defaultMenu() -> Option<Id<NSMenu>>;
 
         #[cfg(all(feature = "AppKit_NSEvent", feature = "AppKit_NSMenu"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(willOpenMenu:withEvent:)]
         pub unsafe fn willOpenMenu_withEvent(&self, menu: &NSMenu, event: &NSEvent);
 
         #[cfg(all(feature = "AppKit_NSEvent", feature = "AppKit_NSMenu"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(didCloseMenu:withEvent:)]
         pub unsafe fn didCloseMenu_withEvent(&self, menu: &NSMenu, event: Option<&NSEvent>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other toolTip)]
         pub unsafe fn toolTip(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setToolTip:)]
         pub unsafe fn setToolTip(&self, tool_tip: Option<&NSString>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(addToolTipRect:owner:userData:)]
         pub unsafe fn addToolTipRect_owner_userData(
             &self,
@@ -646,31 +831,40 @@ extern_methods!(
             data: *mut c_void,
         ) -> NSToolTipTag;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeToolTip:)]
         pub unsafe fn removeToolTip(&self, tag: NSToolTipTag);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeAllToolTips)]
         pub unsafe fn removeAllToolTips(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(viewWillStartLiveResize)]
         pub unsafe fn viewWillStartLiveResize(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(viewDidEndLiveResize)]
         pub unsafe fn viewDidEndLiveResize(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(inLiveResize)]
         pub unsafe fn inLiveResize(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(preservesContentDuringLiveResize)]
         pub unsafe fn preservesContentDuringLiveResize(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rectPreservedDuringLiveResize)]
         pub unsafe fn rectPreservedDuringLiveResize(&self) -> NSRect;
 
         #[cfg(feature = "AppKit_NSTextInputContext")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other inputContext)]
         pub unsafe fn inputContext(&self) -> Option<Id<NSTextInputContext>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rectForSmartMagnificationAtPoint:inRect:)]
         pub unsafe fn rectForSmartMagnificationAtPoint_inRect(
             &self,
@@ -678,41 +872,52 @@ extern_methods!(
             visible_rect: NSRect,
         ) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(userInterfaceLayoutDirection)]
         pub unsafe fn userInterfaceLayoutDirection(&self) -> NSUserInterfaceLayoutDirection;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setUserInterfaceLayoutDirection:)]
         pub unsafe fn setUserInterfaceLayoutDirection(
             &self,
             user_interface_layout_direction: NSUserInterfaceLayoutDirection,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(prepareForReuse)]
         pub unsafe fn prepareForReuse(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isCompatibleWithResponsiveScrolling)]
         pub unsafe fn isCompatibleWithResponsiveScrolling() -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(prepareContentInRect:)]
         pub unsafe fn prepareContentInRect(&self, rect: NSRect);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(preparedContentRect)]
         pub unsafe fn preparedContentRect(&self) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPreparedContentRect:)]
         pub unsafe fn setPreparedContentRect(&self, prepared_content_rect: NSRect);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(allowsVibrancy)]
         pub unsafe fn allowsVibrancy(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(viewDidChangeEffectiveAppearance)]
         pub unsafe fn viewDidChangeEffectiveAppearance(&self);
     }
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSViewToolTipOwner: NSObjectProtocol {
         #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other view:stringForToolTip:point:userData:)]
         unsafe fn view_stringForToolTip_point_userData(
             &self,
@@ -730,42 +935,55 @@ extern_methods!(
     /// NSKeyboardUI
     #[cfg(feature = "AppKit_NSView")]
     unsafe impl NSView {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other nextKeyView)]
         pub unsafe fn nextKeyView(&self) -> Option<Id<NSView>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setNextKeyView:)]
         pub unsafe fn setNextKeyView(&self, next_key_view: Option<&NSView>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other previousKeyView)]
         pub unsafe fn previousKeyView(&self) -> Option<Id<NSView>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other nextValidKeyView)]
         pub unsafe fn nextValidKeyView(&self) -> Option<Id<NSView>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other previousValidKeyView)]
         pub unsafe fn previousValidKeyView(&self) -> Option<Id<NSView>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(canBecomeKeyView)]
         pub unsafe fn canBecomeKeyView(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setKeyboardFocusRingNeedsDisplayInRect:)]
         pub unsafe fn setKeyboardFocusRingNeedsDisplayInRect(&self, rect: NSRect);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(focusRingType)]
         pub unsafe fn focusRingType(&self) -> NSFocusRingType;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFocusRingType:)]
         pub unsafe fn setFocusRingType(&self, focus_ring_type: NSFocusRingType);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(defaultFocusRingType)]
         pub unsafe fn defaultFocusRingType() -> NSFocusRingType;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawFocusRingMask)]
         pub unsafe fn drawFocusRingMask(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(focusRingMaskBounds)]
         pub unsafe fn focusRingMaskBounds(&self) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(noteFocusRingMaskChanged)]
         pub unsafe fn noteFocusRingMaskChanged(&self);
     }
@@ -776,6 +994,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSView")]
     unsafe impl NSView {
         #[cfg(feature = "AppKit_NSPasteboard")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(writeEPSInsideRect:toPasteboard:)]
         pub unsafe fn writeEPSInsideRect_toPasteboard(
             &self,
@@ -784,10 +1003,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSData")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other dataWithEPSInsideRect:)]
         pub unsafe fn dataWithEPSInsideRect(&self, rect: NSRect) -> Id<NSData>;
 
         #[cfg(feature = "AppKit_NSPasteboard")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(writePDFInsideRect:toPasteboard:)]
         pub unsafe fn writePDFInsideRect_toPasteboard(
             &self,
@@ -796,21 +1017,27 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSData")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other dataWithPDFInsideRect:)]
         pub unsafe fn dataWithPDFInsideRect(&self, rect: NSRect) -> Id<NSData>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(print:)]
         pub unsafe fn print(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(knowsPageRange:)]
         pub unsafe fn knowsPageRange(&self, range: NSRangePointer) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(heightAdjustLimit)]
         pub unsafe fn heightAdjustLimit(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(widthAdjustLimit)]
         pub unsafe fn widthAdjustLimit(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(adjustPageWidthNew:left:right:limit:)]
         pub unsafe fn adjustPageWidthNew_left_right_limit(
             &self,
@@ -820,6 +1047,7 @@ extern_methods!(
             right_limit: CGFloat,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(adjustPageHeightNew:top:bottom:limit:)]
         pub unsafe fn adjustPageHeightNew_top_bottom_limit(
             &self,
@@ -829,40 +1057,51 @@ extern_methods!(
             bottom_limit: CGFloat,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rectForPage:)]
         pub unsafe fn rectForPage(&self, page: NSInteger) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(locationOfPrintRect:)]
         pub unsafe fn locationOfPrintRect(&self, rect: NSRect) -> NSPoint;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawPageBorderWithSize:)]
         pub unsafe fn drawPageBorderWithSize(&self, border_size: NSSize);
 
         #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other pageHeader)]
         pub unsafe fn pageHeader(&self) -> Id<NSAttributedString>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other pageFooter)]
         pub unsafe fn pageFooter(&self) -> Id<NSAttributedString>;
 
         #[deprecated = "This is never invoked and the NSView implementation does nothing"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawSheetBorderWithSize:)]
         pub unsafe fn drawSheetBorderWithSize(&self, border_size: NSSize);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other printJobTitle)]
         pub unsafe fn printJobTitle(&self) -> Id<NSString>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(beginDocument)]
         pub unsafe fn beginDocument(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(endDocument)]
         pub unsafe fn endDocument(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(beginPageInRect:atPlacement:)]
         pub unsafe fn beginPageInRect_atPlacement(&self, rect: NSRect, location: NSPoint);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(endPage)]
         pub unsafe fn endPage(&self);
     }
@@ -878,6 +1117,7 @@ extern_methods!(
             feature = "AppKit_NSEvent",
             feature = "Foundation_NSArray"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other beginDraggingSessionWithItems:event:source:)]
         pub unsafe fn beginDraggingSessionWithItems_event_source(
             &self,
@@ -887,13 +1127,16 @@ extern_methods!(
         ) -> Id<NSDraggingSession>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other registeredDraggedTypes)]
         pub unsafe fn registeredDraggedTypes(&self) -> Id<NSArray<NSPasteboardType>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(registerForDraggedTypes:)]
         pub unsafe fn registerForDraggedTypes(&self, new_types: &NSArray<NSPasteboardType>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(unregisterDraggedTypes)]
         pub unsafe fn unregisterDraggedTypes(&self);
     }
@@ -918,6 +1161,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSView")]
     unsafe impl NSView {
         #[cfg(all(feature = "AppKit_NSScreen", feature = "Foundation_NSDictionary"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(enterFullScreenMode:withOptions:)]
         pub unsafe fn enterFullScreenMode_withOptions(
             &self,
@@ -926,12 +1170,14 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(exitFullScreenModeWithOptions:)]
         pub unsafe fn exitFullScreenModeWithOptions(
             &self,
             options: Option<&NSDictionary<NSViewFullScreenModeOptionKey, Object>>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isInFullScreenMode)]
         pub unsafe fn isInFullScreenMode(&self) -> bool;
     }
@@ -958,6 +1204,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSView")]
     unsafe impl NSView {
         #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(showDefinitionForAttributedString:atPoint:)]
         pub unsafe fn showDefinitionForAttributedString_atPoint(
             &self,
@@ -969,6 +1216,7 @@ extern_methods!(
             feature = "Foundation_NSAttributedString",
             feature = "Foundation_NSDictionary"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(showDefinitionForAttributedString:range:options:baselineOriginProvider:)]
         pub unsafe fn showDefinitionForAttributedString_range_options_baselineOriginProvider(
             &self,
@@ -984,6 +1232,7 @@ extern_methods!(
     /// NSFindIndicator
     #[cfg(feature = "AppKit_NSView")]
     unsafe impl NSView {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isDrawingFindIndicator)]
         pub unsafe fn isDrawingFindIndicator(&self) -> bool;
     }
@@ -994,10 +1243,12 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSView")]
     unsafe impl NSView {
         #[cfg(all(feature = "AppKit_NSGestureRecognizer", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other gestureRecognizers)]
         pub unsafe fn gestureRecognizers(&self) -> Id<NSArray<NSGestureRecognizer>>;
 
         #[cfg(all(feature = "AppKit_NSGestureRecognizer", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setGestureRecognizers:)]
         pub unsafe fn setGestureRecognizers(
             &self,
@@ -1005,10 +1256,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSGestureRecognizer")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(addGestureRecognizer:)]
         pub unsafe fn addGestureRecognizer(&self, gesture_recognizer: &NSGestureRecognizer);
 
         #[cfg(feature = "AppKit_NSGestureRecognizer")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeGestureRecognizer:)]
         pub unsafe fn removeGestureRecognizer(&self, gesture_recognizer: &NSGestureRecognizer);
     }
@@ -1018,9 +1271,11 @@ extern_methods!(
     /// NSTouchBar
     #[cfg(feature = "AppKit_NSView")]
     unsafe impl NSView {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(allowedTouchTypes)]
         pub unsafe fn allowedTouchTypes(&self) -> NSTouchTypeMask;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAllowedTouchTypes:)]
         pub unsafe fn setAllowedTouchTypes(&self, allowed_touch_types: NSTouchTypeMask);
     }
@@ -1030,23 +1285,29 @@ extern_methods!(
     /// NSSafeAreas
     #[cfg(feature = "AppKit_NSView")]
     unsafe impl NSView {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(safeAreaInsets)]
         pub unsafe fn safeAreaInsets(&self) -> NSEdgeInsets;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(additionalSafeAreaInsets)]
         pub unsafe fn additionalSafeAreaInsets(&self) -> NSEdgeInsets;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAdditionalSafeAreaInsets:)]
         pub unsafe fn setAdditionalSafeAreaInsets(&self, additional_safe_area_insets: NSEdgeInsets);
 
         #[cfg(feature = "AppKit_NSLayoutGuide")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other safeAreaLayoutGuide)]
         pub unsafe fn safeAreaLayoutGuide(&self) -> Id<NSLayoutGuide>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(safeAreaRect)]
         pub unsafe fn safeAreaRect(&self) -> NSRect;
 
         #[cfg(feature = "AppKit_NSLayoutGuide")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other layoutMarginsGuide)]
         pub unsafe fn layoutMarginsGuide(&self) -> Id<NSLayoutGuide>;
     }
@@ -1057,34 +1318,43 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSView")]
     unsafe impl NSView {
         #[cfg(feature = "AppKit_NSTrackingArea")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(addTrackingArea:)]
         pub unsafe fn addTrackingArea(&self, tracking_area: &NSTrackingArea);
 
         #[cfg(feature = "AppKit_NSTrackingArea")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeTrackingArea:)]
         pub unsafe fn removeTrackingArea(&self, tracking_area: &NSTrackingArea);
 
         #[cfg(all(feature = "AppKit_NSTrackingArea", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other trackingAreas)]
         pub unsafe fn trackingAreas(&self) -> Id<NSArray<NSTrackingArea>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(updateTrackingAreas)]
         pub unsafe fn updateTrackingAreas(&self);
 
         #[cfg(feature = "AppKit_NSCursor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(addCursorRect:cursor:)]
         pub unsafe fn addCursorRect_cursor(&self, rect: NSRect, object: &NSCursor);
 
         #[cfg(feature = "AppKit_NSCursor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeCursorRect:cursor:)]
         pub unsafe fn removeCursorRect_cursor(&self, rect: NSRect, object: &NSCursor);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(discardCursorRects)]
         pub unsafe fn discardCursorRects(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(resetCursorRects)]
         pub unsafe fn resetCursorRects(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(addTrackingRect:owner:userData:assumeInside:)]
         pub unsafe fn addTrackingRect_owner_userData_assumeInside(
             &self,
@@ -1094,6 +1364,7 @@ extern_methods!(
             flag: bool,
         ) -> NSTrackingRectTag;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeTrackingRect:)]
         pub unsafe fn removeTrackingRect(&self, tag: NSTrackingRectTag);
     }
@@ -1109,6 +1380,7 @@ extern_methods!(
             feature = "AppKit_NSPasteboard"
         ))]
         #[deprecated = "Use -beginDraggingSessionWithItems:event:source: instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(dragImage:at:offset:event:pasteboard:source:slideBack:)]
         pub unsafe fn dragImage_at_offset_event_pasteboard_source_slideBack(
             &self,
@@ -1123,6 +1395,7 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSEvent", feature = "Foundation_NSString"))]
         #[deprecated = "Use -beginDraggingSessionWithItems:event:source: instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(dragFile:fromRect:slideBack:event:)]
         pub unsafe fn dragFile_fromRect_slideBack_event(
             &self,
@@ -1138,6 +1411,7 @@ extern_methods!(
             feature = "Foundation_NSString"
         ))]
         #[deprecated = "Use -beginDraggingSessionWithItems:event:source: with an NSFilePromiseProvider instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(dragPromisedFilesOfTypes:fromRect:source:slideBack:event:)]
         pub unsafe fn dragPromisedFilesOfTypes_fromRect_source_slideBack_event(
             &self,
@@ -1149,51 +1423,63 @@ extern_methods!(
         ) -> bool;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(convertPointToBase:)]
         pub unsafe fn convertPointToBase(&self, point: NSPoint) -> NSPoint;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(convertPointFromBase:)]
         pub unsafe fn convertPointFromBase(&self, point: NSPoint) -> NSPoint;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(convertSizeToBase:)]
         pub unsafe fn convertSizeToBase(&self, size: NSSize) -> NSSize;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(convertSizeFromBase:)]
         pub unsafe fn convertSizeFromBase(&self, size: NSSize) -> NSSize;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(convertRectToBase:)]
         pub unsafe fn convertRectToBase(&self, rect: NSRect) -> NSRect;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(convertRectFromBase:)]
         pub unsafe fn convertRectFromBase(&self, rect: NSRect) -> NSRect;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "This has always returned NO and had no effect on macOS"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(performMnemonic:)]
         pub unsafe fn performMnemonic(&self, string: &NSString) -> bool;
 
         #[deprecated = "This method no longer does anything"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(shouldDrawColor)]
         pub unsafe fn shouldDrawColor(&self) -> bool;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(gState)]
         pub unsafe fn gState(&self) -> NSInteger;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(allocateGState)]
         pub unsafe fn allocateGState(&self);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setUpGState)]
         pub unsafe fn setUpGState(&self);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(renewGState)]
         pub unsafe fn renewGState(&self);
     }

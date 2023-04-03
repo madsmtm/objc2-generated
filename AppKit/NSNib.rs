@@ -10,6 +10,7 @@ pub type NSNibName = NSString;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSNib")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSNib;
 
     #[cfg(feature = "AppKit_NSNib")]
@@ -28,6 +29,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSNib")]
     unsafe impl NSNib {
         #[cfg(feature = "Foundation_NSBundle")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithNibNamed:bundle:)]
         pub unsafe fn initWithNibNamed_bundle(
             this: Option<Allocated<Self>>,
@@ -36,6 +38,7 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[cfg(all(feature = "Foundation_NSBundle", feature = "Foundation_NSData"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithNibData:bundle:)]
         pub unsafe fn initWithNibData_bundle(
             this: Option<Allocated<Self>>,
@@ -51,6 +54,7 @@ extern_methods!(
     unsafe impl NSNib {
         #[cfg(feature = "Foundation_NSURL")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
         pub unsafe fn initWithContentsOfURL(
             this: Option<Allocated<Self>>,
@@ -59,6 +63,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(instantiateNibWithExternalNameTable:)]
         pub unsafe fn instantiateNibWithExternalNameTable(
             &self,
@@ -67,6 +72,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(instantiateNibWithOwner:topLevelObjects:)]
         pub unsafe fn instantiateNibWithOwner_topLevelObjects(
             &self,

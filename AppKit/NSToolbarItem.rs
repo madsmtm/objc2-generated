@@ -80,10 +80,12 @@ extern_methods!(
         pub unsafe fn setToolTip(&self, tool_tip: Option<&NSString>);
 
         #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other menuFormRepresentation)]
         pub unsafe fn menuFormRepresentation(&self) -> Option<Id<NSMenuItem>>;
 
         #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMenuFormRepresentation:)]
         pub unsafe fn setMenuFormRepresentation(
             &self,
@@ -143,10 +145,12 @@ extern_methods!(
         pub unsafe fn setNavigational(&self, navigational: bool);
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other view)]
         pub unsafe fn view(&self) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setView:)]
         pub unsafe fn setView(&self, view: Option<&NSView>);
 
@@ -154,18 +158,22 @@ extern_methods!(
         pub unsafe fn isVisible(&self) -> bool;
 
         #[deprecated = "This property is no longer recommended. Instead, let the system automatically measure the size of the view using constraints."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(minSize)]
         pub unsafe fn minSize(&self) -> NSSize;
 
         #[deprecated = "This property is no longer recommended. Instead, let the system automatically measure the size of the view using constraints."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMinSize:)]
         pub unsafe fn setMinSize(&self, min_size: NSSize);
 
         #[deprecated = "This property is no longer recommended. Instead, let the system automatically measure the size of the view using constraints."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(maxSize)]
         pub unsafe fn maxSize(&self) -> NSSize;
 
         #[deprecated = "This property is no longer recommended. Instead, let the system automatically measure the size of the view using constraints."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMaxSize:)]
         pub unsafe fn setMaxSize(&self, max_size: NSSize);
 
@@ -187,6 +195,7 @@ extern_methods!(
         #[method(setAutovalidates:)]
         pub unsafe fn setAutovalidates(&self, autovalidates: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(allowsDuplicatesInToolbar)]
         pub unsafe fn allowsDuplicatesInToolbar(&self) -> bool;
     }

@@ -6,10 +6,15 @@ use crate::LocalAuthentication::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub enum LARightState {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         LARightStateUnknown = 0,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         LARightStateAuthorizing = 1,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         LARightStateAuthorized = 2,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         LARightStateNotAuthorized = 3,
     }
 );
@@ -17,6 +22,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "LocalAuthentication_LARight")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct LARight;
 
     #[cfg(feature = "LocalAuthentication_LARight")]

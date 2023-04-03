@@ -9,6 +9,7 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSMovie")]
     #[deprecated]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSMovie;
 
     #[cfg(feature = "AppKit_NSMovie")]
@@ -27,6 +28,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSMovie")]
     unsafe impl NSMovie {
         #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -34,6 +36,7 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[deprecated = "As of macOS 10.15 this method always returns nil."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Option<Id<Self>>;
     }

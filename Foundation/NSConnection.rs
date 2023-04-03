@@ -34,6 +34,7 @@ extern_methods!(
         pub unsafe fn allConnections() -> Id<NSArray<NSConnection>>;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other defaultConnection)]
         pub unsafe fn defaultConnection() -> Id<NSConnection>;
 

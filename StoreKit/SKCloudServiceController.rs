@@ -81,6 +81,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[deprecated]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method(requestPersonalizationTokenForClientToken:withCompletionHandler:)]
         pub unsafe fn requestPersonalizationTokenForClientToken_withCompletionHandler(
             &self,

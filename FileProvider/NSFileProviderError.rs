@@ -16,26 +16,47 @@ extern_static!(NSFileProviderErrorNonExistentItemIdentifierKey: &'static NSError
 
 ns_error_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub enum NSFileProviderErrorCode {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSFileProviderErrorNotAuthenticated = -1000,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSFileProviderErrorFilenameCollision = -1001,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSFileProviderErrorSyncAnchorExpired = -1002,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSFileProviderErrorPageExpired = NSFileProviderErrorSyncAnchorExpired,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSFileProviderErrorInsufficientQuota = -1003,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSFileProviderErrorServerUnreachable = -1004,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSFileProviderErrorNoSuchItem = -1005,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSFileProviderErrorDeletionRejected = -1006,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSFileProviderErrorDirectoryNotEmpty = -1007,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSFileProviderErrorProviderNotFound = -2001,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         NSFileProviderErrorProviderTranslocated = -2002,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         NSFileProviderErrorOlderExtensionVersionRunning = -2003,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         NSFileProviderErrorNewerExtensionVersionFound = -2004,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSFileProviderErrorCannotSynchronize = -2005,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSFileProviderErrorNonEvictableChildren = -2006,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSFileProviderErrorUnsyncedEdits = -2007,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSFileProviderErrorNonEvictable = -2008,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         NSFileProviderErrorVersionNoLongerAvailable = -2009,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSFileProviderErrorExcludedFromSync = -2010,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSFileProviderErrorDomainDisabled = -2011,
     }
 );
@@ -44,16 +65,19 @@ extern_methods!(
     /// NSFileProviderError
     #[cfg(feature = "Foundation_NSError")]
     unsafe impl NSError {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other fileProviderErrorForCollisionWithItem:)]
         pub unsafe fn fileProviderErrorForCollisionWithItem(
             existing_item: &NSFileProviderItem,
         ) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other fileProviderErrorForNonExistentItemWithIdentifier:)]
         pub unsafe fn fileProviderErrorForNonExistentItemWithIdentifier(
             item_identifier: &NSFileProviderItemIdentifier,
         ) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other fileProviderErrorForRejectedDeletionOfItem:)]
         pub unsafe fn fileProviderErrorForRejectedDeletionOfItem(
             updated_version: &NSFileProviderItem,

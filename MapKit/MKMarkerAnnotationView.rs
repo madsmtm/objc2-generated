@@ -10,6 +10,7 @@ use crate::MapKit::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MapKit_MKMarkerAnnotationView")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct MKMarkerAnnotationView;
 
     #[cfg(feature = "MapKit_MKMarkerAnnotationView")]
@@ -124,6 +125,7 @@ extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(feature = "MapKit_MKMarkerAnnotationView")]
     unsafe impl MKMarkerAnnotationView {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }

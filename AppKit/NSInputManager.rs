@@ -6,33 +6,41 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSTextInput {
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(insertText:)]
         unsafe fn insertText(&self, string: Option<&Object>);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(doCommandBySelector:)]
         unsafe fn doCommandBySelector(&self, selector: Option<Sel>);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMarkedText:selectedRange:)]
         unsafe fn setMarkedText_selectedRange(&self, string: Option<&Object>, sel_range: NSRange);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(unmarkText)]
         unsafe fn unmarkText(&self);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(hasMarkedText)]
         unsafe fn hasMarkedText(&self) -> bool;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(conversationIdentifier)]
         unsafe fn conversationIdentifier(&self) -> NSInteger;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other attributedSubstringFromRange:)]
         unsafe fn attributedSubstringFromRange(
             &self,
@@ -40,23 +48,28 @@ extern_protocol!(
         ) -> Option<Id<NSAttributedString>>;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(markedRange)]
         unsafe fn markedRange(&self) -> NSRange;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectedRange)]
         unsafe fn selectedRange(&self) -> NSRange;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(firstRectForCharacterRange:)]
         unsafe fn firstRectForCharacterRange(&self, range: NSRange) -> NSRect;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(characterIndexForPoint:)]
         unsafe fn characterIndexForPoint(&self, point: NSPoint) -> NSUInteger;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other validAttributesForMarkedText)]
         unsafe fn validAttributesForMarkedText(&self) -> Option<Id<NSArray>>;
     }
@@ -68,6 +81,7 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSInputManager")]
     #[deprecated = "Use NSTextInputContext instead"]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSInputManager;
 
     #[cfg(feature = "AppKit_NSInputManager")]
@@ -86,19 +100,23 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSInputManager")]
     unsafe impl NSInputManager {
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other currentInputManager)]
         pub unsafe fn currentInputManager() -> Option<Id<NSInputManager>>;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(cycleToNextInputLanguage:)]
         pub unsafe fn cycleToNextInputLanguage(sender: Option<&Object>);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(cycleToNextInputServerInLanguage:)]
         pub unsafe fn cycleToNextInputServerInLanguage(sender: Option<&Object>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithName:host:)]
         pub unsafe fn initWithName_host(
             this: Option<Allocated<Self>>,
@@ -108,14 +126,17 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other localizedInputManagerName)]
         pub unsafe fn localizedInputManagerName(&self) -> Option<Id<NSString>>;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(markedTextAbandoned:)]
         pub unsafe fn markedTextAbandoned(&self, cli: Option<&Object>);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(markedTextSelectionChanged:client:)]
         pub unsafe fn markedTextSelectionChanged_client(
             &self,
@@ -124,34 +145,41 @@ extern_methods!(
         );
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(wantsToInterpretAllKeystrokes)]
         pub unsafe fn wantsToInterpretAllKeystrokes(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other language)]
         pub unsafe fn language(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSInputServer")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other server)]
         pub unsafe fn server(&self) -> Option<Id<NSInputServer>>;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(wantsToHandleMouseEvents)]
         pub unsafe fn wantsToHandleMouseEvents(&self) -> bool;
 
         #[cfg(feature = "AppKit_NSEvent")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(handleMouseEvent:)]
         pub unsafe fn handleMouseEvent(&self, mouse_event: Option<&NSEvent>) -> bool;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(wantsToDelayTextChangeNotifications)]
         pub unsafe fn wantsToDelayTextChangeNotifications(&self) -> bool;
     }

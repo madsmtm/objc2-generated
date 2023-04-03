@@ -106,12 +106,14 @@ extern_methods!(
         pub unsafe fn setScriptErrorNumber(&self, script_error_number: NSInteger);
 
         #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other scriptErrorOffendingObjectDescriptor)]
         pub unsafe fn scriptErrorOffendingObjectDescriptor(
             &self,
         ) -> Option<Id<NSAppleEventDescriptor>>;
 
         #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(setScriptErrorOffendingObjectDescriptor:)]
         pub unsafe fn setScriptErrorOffendingObjectDescriptor(
             &self,
@@ -119,12 +121,14 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other scriptErrorExpectedTypeDescriptor)]
         pub unsafe fn scriptErrorExpectedTypeDescriptor(
             &self,
         ) -> Option<Id<NSAppleEventDescriptor>>;
 
         #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(setScriptErrorExpectedTypeDescriptor:)]
         pub unsafe fn setScriptErrorExpectedTypeDescriptor(
             &self,

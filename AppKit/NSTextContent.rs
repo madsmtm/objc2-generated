@@ -16,10 +16,13 @@ extern_static!(NSTextContentTypePassword: &'static NSTextContentType);
 extern_static!(NSTextContentTypeOneTimeCode: &'static NSTextContentType);
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSTextContent {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other contentType)]
         unsafe fn contentType(&self) -> Option<Id<NSTextContentType>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setContentType:)]
         unsafe fn setContentType(&self, content_type: Option<&NSTextContentType>);
     }

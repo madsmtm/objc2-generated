@@ -196,6 +196,7 @@ extern_methods!(
             feature = "Foundation_NSURLSessionStreamTask"
         ))]
         #[deprecated = "Use nw_connection_t in Network framework instead"]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other streamTaskWithNetService:)]
         pub unsafe fn streamTaskWithNetService(
             &self,
@@ -813,10 +814,15 @@ extern_methods!(
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub enum NSURLSessionMultipathServiceType {
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         NSURLSessionMultipathServiceTypeNone = 0,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         NSURLSessionMultipathServiceTypeHandover = 1,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         NSURLSessionMultipathServiceTypeInteractive = 2,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         NSURLSessionMultipathServiceTypeAggregate = 3,
     }
 );
@@ -1042,9 +1048,11 @@ extern_methods!(
         #[method(setProtocolClasses:)]
         pub unsafe fn setProtocolClasses(&self, protocol_classes: Option<&NSArray<TodoClass>>);
 
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method(multipathServiceType)]
         pub unsafe fn multipathServiceType(&self) -> NSURLSessionMultipathServiceType;
 
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method(setMultipathServiceType:)]
         pub unsafe fn setMultipathServiceType(
             &self,

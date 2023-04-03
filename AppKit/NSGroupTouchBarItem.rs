@@ -37,6 +37,7 @@ extern_methods!(
             feature = "AppKit_NSUserInterfaceCompressionOptions",
             feature = "Foundation_NSArray"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other groupItemWithIdentifier:items:allowedCompressionOptions:)]
         pub unsafe fn groupItemWithIdentifier_items_allowedCompressionOptions(
             identifier: &NSTouchBarItemIdentifier,
@@ -65,9 +66,11 @@ extern_methods!(
         #[method(setCustomizationLabel:)]
         pub unsafe fn setCustomizationLabel(&self, customization_label: Option<&NSString>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(groupUserInterfaceLayoutDirection)]
         pub unsafe fn groupUserInterfaceLayoutDirection(&self) -> NSUserInterfaceLayoutDirection;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setGroupUserInterfaceLayoutDirection:)]
         pub unsafe fn setGroupUserInterfaceLayoutDirection(
             &self,
@@ -87,6 +90,7 @@ extern_methods!(
         pub unsafe fn setPreferredItemWidth(&self, preferred_item_width: CGFloat);
 
         #[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other effectiveCompressionOptions)]
         pub unsafe fn effectiveCompressionOptions(&self) -> Id<NSUserInterfaceCompressionOptions>;
 
@@ -94,6 +98,7 @@ extern_methods!(
             feature = "AppKit_NSUserInterfaceCompressionOptions",
             feature = "Foundation_NSArray"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other prioritizedCompressionOptions)]
         pub unsafe fn prioritizedCompressionOptions(
             &self,
@@ -103,6 +108,7 @@ extern_methods!(
             feature = "AppKit_NSUserInterfaceCompressionOptions",
             feature = "Foundation_NSArray"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPrioritizedCompressionOptions:)]
         pub unsafe fn setPrioritizedCompressionOptions(
             &self,

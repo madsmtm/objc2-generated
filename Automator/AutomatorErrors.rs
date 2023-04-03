@@ -8,40 +8,75 @@ use crate::OSAKit::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum AMErrorCode {
+        #[cfg(not(any(target_os = "ios")))]
         AMWorkflowNewerVersionError = -100,
+        #[cfg(not(any(target_os = "ios")))]
         AMWorkflowPropertyListInvalidError = -101,
+        #[cfg(not(any(target_os = "ios")))]
         AMWorkflowNewerActionVersionError = -111,
+        #[cfg(not(any(target_os = "ios")))]
         AMWorkflowOlderActionVersionError = -112,
+        #[cfg(not(any(target_os = "ios")))]
         AMWorkflowActionsNotLoadedError = -113,
+        #[cfg(not(any(target_os = "ios")))]
         AMWorkflowNoEnabledActionsError = -114,
+        #[cfg(not(any(target_os = "ios")))]
         AMUserCanceledError = -128,
+        #[cfg(not(any(target_os = "ios")))]
         AMNoSuchActionError = -200,
+        #[cfg(not(any(target_os = "ios")))]
         AMActionNotLoadableError = -201,
+        #[cfg(not(any(target_os = "ios")))]
         AMActionArchitectureMismatchError = -202,
+        #[cfg(not(any(target_os = "ios")))]
         AMActionRuntimeMismatchError = -203,
+        #[cfg(not(any(target_os = "ios")))]
         AMActionLoadError = -204,
+        #[cfg(not(any(target_os = "ios")))]
         AMActionLinkError = -205,
+        #[cfg(not(any(target_os = "ios")))]
         AMActionApplicationResourceError = -206,
+        #[cfg(not(any(target_os = "ios")))]
         AMActionApplicationVersionResourceError = -207,
+        #[cfg(not(any(target_os = "ios")))]
         AMActionFileResourceError = -208,
+        #[cfg(not(any(target_os = "ios")))]
         AMActionLicenseResourceError = -209,
+        #[cfg(not(any(target_os = "ios")))]
         AMActionRequiredActionResourceError = -210,
+        #[cfg(not(any(target_os = "ios")))]
         AMActionInitializationError = -211,
+        #[cfg(not(any(target_os = "ios")))]
         AMActionExecutionError = -212,
+        #[cfg(not(any(target_os = "ios")))]
         AMActionExceptionError = -213,
+        #[cfg(not(any(target_os = "ios")))]
         AMActionPropertyListInvalidError = -214,
+        #[cfg(not(any(target_os = "ios")))]
         AMActionInsufficientDataError = -215,
+        #[cfg(not(any(target_os = "ios")))]
         AMActionIsDeprecatedError = -216,
+        #[cfg(not(any(target_os = "ios")))]
         AMActionFailedGatekeeperError = -217,
+        #[cfg(not(any(target_os = "ios")))]
         AMActionSignatureCorruptError = -218,
+        #[cfg(not(any(target_os = "ios")))]
         AMActionQuarantineError = -219,
+        #[cfg(not(any(target_os = "ios")))]
         AMActionXProtectError = -220,
+        #[cfg(not(any(target_os = "ios")))]
         AMActionMalwareError = -221,
+        #[cfg(not(any(target_os = "ios")))]
         AMActionThirdPartyActionsNotAllowedError = -222,
+        #[cfg(not(any(target_os = "ios")))]
         AMActionXPCError = -223,
+        #[cfg(not(any(target_os = "ios")))]
         AMConversionNotPossibleError = -300,
+        #[cfg(not(any(target_os = "ios")))]
         AMConversionNoDataError = -301,
+        #[cfg(not(any(target_os = "ios")))]
         AMConversionFailedError = -302,
     }
 );

@@ -10,6 +10,7 @@ use crate::MapKit::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MapKit_MKOverlayPathRenderer")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct MKOverlayPathRenderer;
 
     #[cfg(feature = "MapKit_MKOverlayPathRenderer")]
@@ -67,9 +68,11 @@ extern_methods!(
         #[method(setLineDashPattern:)]
         pub unsafe fn setLineDashPattern(&self, line_dash_pattern: Option<&NSArray<NSNumber>>);
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(shouldRasterize)]
         pub unsafe fn shouldRasterize(&self) -> bool;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(setShouldRasterize:)]
         pub unsafe fn setShouldRasterize(&self, should_rasterize: bool);
 

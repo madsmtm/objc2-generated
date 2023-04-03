@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSActionCell")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSActionCell;
 
     #[cfg(feature = "AppKit_NSActionCell")]
@@ -35,21 +36,27 @@ unsafe impl NSUserInterfaceItemIdentification for NSActionCell {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSActionCell")]
     unsafe impl NSActionCell {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other target)]
         pub unsafe fn target(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTarget:)]
         pub unsafe fn setTarget(&self, target: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(action)]
         pub unsafe fn action(&self) -> Option<Sel>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAction:)]
         pub unsafe fn setAction(&self, action: Option<Sel>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(tag)]
         pub unsafe fn tag(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTag:)]
         pub unsafe fn setTag(&self, tag: NSInteger);
     }
@@ -60,10 +67,12 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSActionCell")]
     unsafe impl NSActionCell {
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initTextCell:)]
         pub unsafe fn initTextCell(this: Option<Allocated<Self>>, string: &NSString) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initImageCell:)]
         pub unsafe fn initImageCell(
             this: Option<Allocated<Self>>,

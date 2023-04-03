@@ -83,7 +83,7 @@ extern_static!(NSAppKitVersionNumber10_11_3: NSAppKitVersion = 1404.34);
 
 extern_static!(NSAppKitVersionNumber10_12: NSAppKitVersion = 1504);
 
-extern_static!(NSAppKitVersionNumber10_12_1: NSAppKitVersion = 1504.6);
+extern_static!(NSAppKitVersionNumber10_12_1: NSAppKitVersion = 1504.60);
 
 extern_static!(NSAppKitVersionNumber10_12_2: NSAppKitVersion = 1504.76);
 
@@ -131,24 +131,6 @@ extern_static!(NSAppKitVersionNumber11_3: NSAppKitVersion = 2022.4);
 
 extern_static!(NSAppKitVersionNumber11_4: NSAppKitVersion = 2022.5);
 
-extern_static!(NSAppKitVersionNumber11_5: NSAppKitVersion = 2022.6);
-
-extern_static!(NSAppKitVersionNumber12_0: NSAppKitVersion = 2113);
-
-extern_static!(NSAppKitVersionNumber12_1: NSAppKitVersion = 2113.2);
-
-extern_static!(NSAppKitVersionNumber12_2: NSAppKitVersion = 2113.3);
-
-extern_static!(NSAppKitVersionNumber12_3: NSAppKitVersion = 2113.4);
-
-extern_static!(NSAppKitVersionNumber12_4: NSAppKitVersion = 2113.5);
-
-extern_static!(NSAppKitVersionNumber12_5: NSAppKitVersion = 2113.6);
-
-extern_static!(NSAppKitVersionNumber13_0: NSAppKitVersion = 2299);
-
-extern_static!(NSAppKitVersionNumber13_1: NSAppKitVersion = 2299.3);
-
 extern_static!(NSModalPanelRunLoopMode: &'static NSRunLoopMode);
 
 extern_static!(NSEventTrackingRunLoopMode: &'static NSRunLoopMode);
@@ -165,41 +147,62 @@ extern_static!(NSModalResponseContinue: NSModalResponse = -1002);
 
 extern_enum!(
     #[underlying(c_uint)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum __anonymous__ {
+        #[cfg(not(any(target_os = "ios")))]
         NSUpdateWindowsRunLoopOrdering = 500000,
     }
 );
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSApplicationPresentationOptions {
+        #[cfg(not(any(target_os = "ios")))]
         NSApplicationPresentationDefault = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSApplicationPresentationAutoHideDock = 1 << 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSApplicationPresentationHideDock = 1 << 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSApplicationPresentationAutoHideMenuBar = 1 << 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSApplicationPresentationHideMenuBar = 1 << 3,
+        #[cfg(not(any(target_os = "ios")))]
         NSApplicationPresentationDisableAppleMenu = 1 << 4,
+        #[cfg(not(any(target_os = "ios")))]
         NSApplicationPresentationDisableProcessSwitching = 1 << 5,
+        #[cfg(not(any(target_os = "ios")))]
         NSApplicationPresentationDisableForceQuit = 1 << 6,
+        #[cfg(not(any(target_os = "ios")))]
         NSApplicationPresentationDisableSessionTermination = 1 << 7,
+        #[cfg(not(any(target_os = "ios")))]
         NSApplicationPresentationDisableHideApplication = 1 << 8,
+        #[cfg(not(any(target_os = "ios")))]
         NSApplicationPresentationDisableMenuBarTransparency = 1 << 9,
+        #[cfg(not(any(target_os = "ios")))]
         NSApplicationPresentationFullScreen = 1 << 10,
+        #[cfg(not(any(target_os = "ios")))]
         NSApplicationPresentationAutoHideToolbar = 1 << 11,
+        #[cfg(not(any(target_os = "ios")))]
         NSApplicationPresentationDisableCursorLocationAssistance = 1 << 12,
     }
 );
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSApplicationOcclusionState {
+        #[cfg(not(any(target_os = "ios")))]
         NSApplicationOcclusionStateVisible = 1 << 1,
     }
 );
 
 ns_options!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSWindowListOptions {
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowListOrderedFrontToBack = 1 << 0,
     }
 );
@@ -210,17 +213,24 @@ extern_static!(NSApp: Option<&'static NSApplication>);
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSRequestUserAttentionType {
+        #[cfg(not(any(target_os = "ios")))]
         NSCriticalRequest = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSInformationalRequest = 10,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSApplicationDelegateReply {
+        #[cfg(not(any(target_os = "ios")))]
         NSApplicationDelegateReplySuccess = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSApplicationDelegateReplyCancel = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSApplicationDelegateReplyFailure = 2,
     }
 );
@@ -228,6 +238,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSApplication")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSApplication;
 
     #[cfg(feature = "AppKit_NSApplication")]
@@ -258,109 +269,140 @@ unsafe impl NSUserInterfaceValidations for NSApplication {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSApplication")]
     unsafe impl NSApplication {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other sharedApplication)]
         pub unsafe fn sharedApplication() -> Id<NSApplication>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSApplicationDelegate>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn NSApplicationDelegate>>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(hide:)]
         pub unsafe fn hide(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(unhide:)]
         pub unsafe fn unhide(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(unhideWithoutActivation)]
         pub unsafe fn unhideWithoutActivation(&self);
 
         #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other windowWithWindowNumber:)]
         pub unsafe fn windowWithWindowNumber(&self, window_num: NSInteger) -> Option<Id<NSWindow>>;
 
         #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other mainWindow)]
         pub unsafe fn mainWindow(&self) -> Option<Id<NSWindow>>;
 
         #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other keyWindow)]
         pub unsafe fn keyWindow(&self) -> Option<Id<NSWindow>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isActive)]
         pub unsafe fn isActive(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isHidden)]
         pub unsafe fn isHidden(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isRunning)]
         pub unsafe fn isRunning(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(deactivate)]
         pub unsafe fn deactivate(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(activateIgnoringOtherApps:)]
         pub unsafe fn activateIgnoringOtherApps(&self, flag: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(hideOtherApplications:)]
         pub unsafe fn hideOtherApplications(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(unhideAllApplications:)]
         pub unsafe fn unhideAllApplications(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(finishLaunching)]
         pub unsafe fn finishLaunching(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(run)]
         pub unsafe fn run(&self);
 
         #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(runModalForWindow:)]
         pub unsafe fn runModalForWindow(&self, window: &NSWindow) -> NSModalResponse;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(stop:)]
         pub unsafe fn stop(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(stopModal)]
         pub unsafe fn stopModal(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(stopModalWithCode:)]
         pub unsafe fn stopModalWithCode(&self, return_code: NSModalResponse);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(abortModal)]
         pub unsafe fn abortModal(&self);
 
         #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other modalWindow)]
         pub unsafe fn modalWindow(&self) -> Option<Id<NSWindow>>;
 
         #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(beginModalSessionForWindow:)]
         pub unsafe fn beginModalSessionForWindow(&self, window: &NSWindow) -> NSModalSession;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(runModalSession:)]
         pub unsafe fn runModalSession(&self, session: NSModalSession) -> NSModalResponse;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(endModalSession:)]
         pub unsafe fn endModalSession(&self, session: NSModalSession);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(terminate:)]
         pub unsafe fn terminate(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(requestUserAttention:)]
         pub unsafe fn requestUserAttention(
             &self,
             request_type: NSRequestUserAttentionType,
         ) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(cancelUserAttentionRequest:)]
         pub unsafe fn cancelUserAttentionRequest(&self, request: NSInteger);
 
         #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(enumerateWindowsWithOptions:usingBlock:)]
         pub unsafe fn enumerateWindowsWithOptions_usingBlock(
             &self,
@@ -368,46 +410,58 @@ extern_methods!(
             block: &Block<(NonNull<NSWindow>, NonNull<Bool>), ()>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(preventWindowOrdering)]
         pub unsafe fn preventWindowOrdering(&self);
 
         #[cfg(all(feature = "AppKit_NSWindow", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other windows)]
         pub unsafe fn windows(&self) -> Id<NSArray<NSWindow>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setWindowsNeedUpdate:)]
         pub unsafe fn setWindowsNeedUpdate(&self, need_update: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(updateWindows)]
         pub unsafe fn updateWindows(&self);
 
         #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other mainMenu)]
         pub unsafe fn mainMenu(&self) -> Option<Id<NSMenu>>;
 
         #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMainMenu:)]
         pub unsafe fn setMainMenu(&self, main_menu: Option<&NSMenu>);
 
         #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other helpMenu)]
         pub unsafe fn helpMenu(&self) -> Option<Id<NSMenu>>;
 
         #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setHelpMenu:)]
         pub unsafe fn setHelpMenu(&self, help_menu: Option<&NSMenu>);
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other applicationIconImage)]
         pub unsafe fn applicationIconImage(&self) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setApplicationIconImage:)]
         pub unsafe fn setApplicationIconImage(&self, application_icon_image: Option<&NSImage>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(activationPolicy)]
         pub unsafe fn activationPolicy(&self) -> NSApplicationActivationPolicy;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setActivationPolicy:)]
         pub unsafe fn setActivationPolicy(
             &self,
@@ -415,13 +469,16 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "AppKit_NSDockTile")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other dockTile)]
         pub unsafe fn dockTile(&self) -> Id<NSDockTile>;
 
         #[cfg(feature = "Foundation_NSException")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(reportException:)]
         pub unsafe fn reportException(&self, exception: &NSException);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(detachDrawingThread:toTarget:withObject:)]
         pub unsafe fn detachDrawingThread_toTarget_withObject(
             selector: Sel,
@@ -429,30 +486,38 @@ extern_methods!(
             argument: Option<&Object>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(replyToApplicationShouldTerminate:)]
         pub unsafe fn replyToApplicationShouldTerminate(&self, should_terminate: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(replyToOpenOrPrint:)]
         pub unsafe fn replyToOpenOrPrint(&self, reply: NSApplicationDelegateReply);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(orderFrontCharacterPalette:)]
         pub unsafe fn orderFrontCharacterPalette(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(presentationOptions)]
         pub unsafe fn presentationOptions(&self) -> NSApplicationPresentationOptions;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPresentationOptions:)]
         pub unsafe fn setPresentationOptions(
             &self,
             presentation_options: NSApplicationPresentationOptions,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(currentSystemPresentationOptions)]
         pub unsafe fn currentSystemPresentationOptions(&self) -> NSApplicationPresentationOptions;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(occlusionState)]
         pub unsafe fn occlusionState(&self) -> NSApplicationOcclusionState;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isProtectedDataAvailable)]
         pub unsafe fn isProtectedDataAvailable(&self) -> bool;
     }
@@ -463,14 +528,17 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSApplication")]
     unsafe impl NSApplication {
         #[cfg(feature = "AppKit_NSAppearance")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other appearance)]
         pub unsafe fn appearance(&self) -> Option<Id<NSAppearance>>;
 
         #[cfg(feature = "AppKit_NSAppearance")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAppearance:)]
         pub unsafe fn setAppearance(&self, appearance: Option<&NSAppearance>);
 
         #[cfg(feature = "AppKit_NSAppearance")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other effectiveAppearance)]
         pub unsafe fn effectiveAppearance(&self) -> Id<NSAppearance>;
     }
@@ -484,18 +552,22 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSApplication")]
     unsafe impl NSApplication {
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(sendEvent:)]
         pub unsafe fn sendEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(postEvent:atStart:)]
         pub unsafe fn postEvent_atStart(&self, event: &NSEvent, flag: bool);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other currentEvent)]
         pub unsafe fn currentEvent(&self) -> Option<Id<NSEvent>>;
 
         #[cfg(all(feature = "AppKit_NSEvent", feature = "Foundation_NSDate"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other nextEventMatchingMask:untilDate:inMode:dequeue:)]
         pub unsafe fn nextEventMatchingMask_untilDate_inMode_dequeue(
             &self,
@@ -506,6 +578,7 @@ extern_methods!(
         ) -> Option<Id<NSEvent>>;
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(discardEventsMatchingMask:beforeEvent:)]
         pub unsafe fn discardEventsMatchingMask_beforeEvent(
             &self,
@@ -519,6 +592,7 @@ extern_methods!(
     /// NSResponder
     #[cfg(feature = "AppKit_NSApplication")]
     unsafe impl NSApplication {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(sendAction:to:from:)]
         pub unsafe fn sendAction_to_from(
             &self,
@@ -527,9 +601,11 @@ extern_methods!(
             sender: Option<&Object>,
         ) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other targetForAction:)]
         pub unsafe fn targetForAction(&self, action: Sel) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other targetForAction:to:from:)]
         pub unsafe fn targetForAction_to_from(
             &self,
@@ -538,9 +614,11 @@ extern_methods!(
             sender: Option<&Object>,
         ) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(tryToPerform:with:)]
         pub unsafe fn tryToPerform_with(&self, action: Sel, object: Option<&Object>) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other validRequestorForSendType:returnType:)]
         pub unsafe fn validRequestorForSendType_returnType(
             &self,
@@ -555,21 +633,26 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSApplication")]
     unsafe impl NSApplication {
         #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other windowsMenu)]
         pub unsafe fn windowsMenu(&self) -> Option<Id<NSMenu>>;
 
         #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setWindowsMenu:)]
         pub unsafe fn setWindowsMenu(&self, windows_menu: Option<&NSMenu>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(arrangeInFront:)]
         pub unsafe fn arrangeInFront(&self, sender: Option<&Object>);
 
         #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeWindowsItem:)]
         pub unsafe fn removeWindowsItem(&self, win: &NSWindow);
 
         #[cfg(all(feature = "AppKit_NSWindow", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(addWindowsItem:title:filename:)]
         pub unsafe fn addWindowsItem_title_filename(
             &self,
@@ -579,6 +662,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "AppKit_NSWindow", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(changeWindowsItem:title:filename:)]
         pub unsafe fn changeWindowsItem_title_filename(
             &self,
@@ -588,9 +672,11 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(updateWindowsItem:)]
         pub unsafe fn updateWindowsItem(&self, win: &NSWindow);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(miniaturizeAll:)]
         pub unsafe fn miniaturizeAll(&self, sender: Option<&Object>);
     }
@@ -600,6 +686,7 @@ extern_methods!(
     /// NSFullKeyboardAccess
     #[cfg(feature = "AppKit_NSApplication")]
     unsafe impl NSApplication {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isFullKeyboardAccessEnabled)]
         pub unsafe fn isFullKeyboardAccessEnabled(&self) -> bool;
     }
@@ -607,26 +694,37 @@ extern_methods!(
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSApplicationTerminateReply {
+        #[cfg(not(any(target_os = "ios")))]
         NSTerminateCancel = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSTerminateNow = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSTerminateLater = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSApplicationPrintReply {
+        #[cfg(not(any(target_os = "ios")))]
         NSPrintingCancelled = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSPrintingSuccess = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSPrintingFailure = 3,
+        #[cfg(not(any(target_os = "ios")))]
         NSPrintingReplyLater = 2,
     }
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSApplicationDelegate: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSApplication")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(applicationShouldTerminate:)]
         unsafe fn applicationShouldTerminate(
@@ -639,11 +737,13 @@ extern_protocol!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSURL"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(application:openURLs:)]
         unsafe fn application_openURLs(&self, application: &NSApplication, urls: &NSArray<NSURL>);
 
         #[cfg(all(feature = "AppKit_NSApplication", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(application:openFile:)]
         unsafe fn application_openFile(&self, sender: &NSApplication, filename: &NSString) -> bool;
@@ -653,6 +753,7 @@ extern_protocol!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSString"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(application:openFiles:)]
         unsafe fn application_openFiles(
@@ -662,6 +763,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "AppKit_NSApplication", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(application:openTempFile:)]
         unsafe fn application_openTempFile(
@@ -671,16 +773,19 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "AppKit_NSApplication")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(applicationShouldOpenUntitledFile:)]
         unsafe fn applicationShouldOpenUntitledFile(&self, sender: &NSApplication) -> bool;
 
         #[cfg(feature = "AppKit_NSApplication")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(applicationOpenUntitledFile:)]
         unsafe fn applicationOpenUntitledFile(&self, sender: &NSApplication) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(application:openFileWithoutUI:)]
         unsafe fn application_openFileWithoutUI(
@@ -690,6 +795,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(feature = "AppKit_NSApplication", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(application:printFile:)]
         unsafe fn application_printFile(&self, sender: &NSApplication, filename: &NSString)
@@ -701,6 +807,7 @@ extern_protocol!(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(application:printFiles:withSettings:showPrintPanels:)]
         unsafe fn application_printFiles_withSettings_showPrintPanels(
@@ -712,6 +819,7 @@ extern_protocol!(
         ) -> NSApplicationPrintReply;
 
         #[cfg(feature = "AppKit_NSApplication")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(applicationShouldTerminateAfterLastWindowClosed:)]
         unsafe fn applicationShouldTerminateAfterLastWindowClosed(
@@ -720,6 +828,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "AppKit_NSApplication")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(applicationShouldHandleReopen:hasVisibleWindows:)]
         unsafe fn applicationShouldHandleReopen_hasVisibleWindows(
@@ -729,11 +838,13 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(feature = "AppKit_NSApplication", feature = "AppKit_NSMenu"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other applicationDockMenu:)]
         unsafe fn applicationDockMenu(&self, sender: &NSApplication) -> Option<Id<NSMenu>>;
 
         #[cfg(all(feature = "AppKit_NSApplication", feature = "Foundation_NSError"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other application:willPresentError:)]
         unsafe fn application_willPresentError(
@@ -743,6 +854,7 @@ extern_protocol!(
         ) -> Id<NSError>;
 
         #[cfg(all(feature = "AppKit_NSApplication", feature = "Foundation_NSData"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(application:didRegisterForRemoteNotificationsWithDeviceToken:)]
         unsafe fn application_didRegisterForRemoteNotificationsWithDeviceToken(
@@ -752,6 +864,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "AppKit_NSApplication", feature = "Foundation_NSError"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(application:didFailToRegisterForRemoteNotificationsWithError:)]
         unsafe fn application_didFailToRegisterForRemoteNotificationsWithError(
@@ -765,6 +878,7 @@ extern_protocol!(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(application:didReceiveRemoteNotification:)]
         unsafe fn application_didReceiveRemoteNotification(
@@ -774,11 +888,13 @@ extern_protocol!(
         );
 
         #[cfg(feature = "AppKit_NSApplication")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(applicationSupportsSecureRestorableState:)]
         unsafe fn applicationSupportsSecureRestorableState(&self, app: &NSApplication) -> bool;
 
         #[cfg(all(feature = "AppKit_NSApplication", feature = "Foundation_NSCoder"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(application:willEncodeRestorableState:)]
         unsafe fn application_willEncodeRestorableState(
@@ -788,11 +904,13 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "AppKit_NSApplication", feature = "Foundation_NSCoder"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(application:didDecodeRestorableState:)]
         unsafe fn application_didDecodeRestorableState(&self, app: &NSApplication, coder: &NSCoder);
 
         #[cfg(all(feature = "AppKit_NSApplication", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(application:willContinueUserActivityWithType:)]
         unsafe fn application_willContinueUserActivityWithType(
@@ -806,6 +924,7 @@ extern_protocol!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSUserActivity"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(application:continueUserActivity:restorationHandler:)]
         unsafe fn application_continueUserActivity_restorationHandler(
@@ -823,6 +942,7 @@ extern_protocol!(
             feature = "Foundation_NSError",
             feature = "Foundation_NSString"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(application:didFailToContinueUserActivityWithType:error:)]
         unsafe fn application_didFailToContinueUserActivityWithType_error(
@@ -836,6 +956,7 @@ extern_protocol!(
             feature = "AppKit_NSApplication",
             feature = "Foundation_NSUserActivity"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(application:didUpdateUserActivity:)]
         unsafe fn application_didUpdateUserActivity(
@@ -845,6 +966,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "AppKit_NSApplication", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(application:delegateHandlesKey:)]
         unsafe fn application_delegateHandlesKey(
@@ -854,6 +976,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "AppKit_NSApplication")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(applicationShouldAutomaticallyLocalizeKeyEquivalents:)]
         unsafe fn applicationShouldAutomaticallyLocalizeKeyEquivalents(
@@ -862,81 +985,97 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(applicationWillFinishLaunching:)]
         unsafe fn applicationWillFinishLaunching(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(applicationDidFinishLaunching:)]
         unsafe fn applicationDidFinishLaunching(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(applicationWillHide:)]
         unsafe fn applicationWillHide(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(applicationDidHide:)]
         unsafe fn applicationDidHide(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(applicationWillUnhide:)]
         unsafe fn applicationWillUnhide(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(applicationDidUnhide:)]
         unsafe fn applicationDidUnhide(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(applicationWillBecomeActive:)]
         unsafe fn applicationWillBecomeActive(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(applicationDidBecomeActive:)]
         unsafe fn applicationDidBecomeActive(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(applicationWillResignActive:)]
         unsafe fn applicationWillResignActive(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(applicationDidResignActive:)]
         unsafe fn applicationDidResignActive(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(applicationWillUpdate:)]
         unsafe fn applicationWillUpdate(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(applicationDidUpdate:)]
         unsafe fn applicationDidUpdate(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(applicationWillTerminate:)]
         unsafe fn applicationWillTerminate(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(applicationDidChangeScreenParameters:)]
         unsafe fn applicationDidChangeScreenParameters(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(applicationDidChangeOcclusionState:)]
         unsafe fn applicationDidChangeOcclusionState(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(applicationProtectedDataWillBecomeUnavailable:)]
         unsafe fn applicationProtectedDataWillBecomeUnavailable(
@@ -945,6 +1084,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(applicationProtectedDataDidBecomeAvailable:)]
         unsafe fn applicationProtectedDataDidBecomeAvailable(&self, notification: &NSNotification);
@@ -958,14 +1098,17 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSApplication")]
     unsafe impl NSApplication {
         #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other servicesMenu)]
         pub unsafe fn servicesMenu(&self) -> Option<Id<NSMenu>>;
 
         #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setServicesMenu:)]
         pub unsafe fn setServicesMenu(&self, services_menu: Option<&NSMenu>);
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(registerServicesMenuSendTypes:returnTypes:)]
         pub unsafe fn registerServicesMenuSendTypes_returnTypes(
             &self,
@@ -976,8 +1119,10 @@ extern_methods!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSServicesMenuRequestor: NSObjectProtocol {
         #[cfg(all(feature = "AppKit_NSPasteboard", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(writeSelectionToPasteboard:types:)]
         unsafe fn writeSelectionToPasteboard_types(
@@ -987,6 +1132,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "AppKit_NSPasteboard")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(readSelectionFromPasteboard:)]
         unsafe fn readSelectionFromPasteboard(&self, pboard: &NSPasteboard) -> bool;
@@ -999,9 +1145,11 @@ extern_methods!(
     /// NSServicesHandling
     #[cfg(feature = "AppKit_NSApplication")]
     unsafe impl NSApplication {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other servicesProvider)]
         pub unsafe fn servicesProvider(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setServicesProvider:)]
         pub unsafe fn setServicesProvider(&self, services_provider: Option<&Object>);
     }
@@ -1025,10 +1173,12 @@ extern_methods!(
     /// NSStandardAboutPanel
     #[cfg(feature = "AppKit_NSApplication")]
     unsafe impl NSApplication {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(orderFrontStandardAboutPanel:)]
         pub unsafe fn orderFrontStandardAboutPanel(&self, sender: Option<&Object>);
 
         #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(orderFrontStandardAboutPanelWithOptions:)]
         pub unsafe fn orderFrontStandardAboutPanelWithOptions(
             &self,
@@ -1041,6 +1191,7 @@ extern_methods!(
     /// NSApplicationLayoutDirection
     #[cfg(feature = "AppKit_NSApplication")]
     unsafe impl NSApplication {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(userInterfaceLayoutDirection)]
         pub unsafe fn userInterfaceLayoutDirection(&self) -> NSUserInterfaceLayoutDirection;
     }
@@ -1050,9 +1201,11 @@ extern_methods!(
     /// NSRestorableUserInterface
     #[cfg(feature = "AppKit_NSApplication")]
     unsafe impl NSApplication {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(disableRelaunchOnLogin)]
         pub unsafe fn disableRelaunchOnLogin(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(enableRelaunchOnLogin)]
         pub unsafe fn enableRelaunchOnLogin(&self);
     }
@@ -1060,10 +1213,15 @@ extern_methods!(
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSRemoteNotificationType {
+        #[cfg(not(any(target_os = "ios")))]
         NSRemoteNotificationTypeNone = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSRemoteNotificationTypeBadge = 1 << 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSRemoteNotificationTypeSound = 1 << 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSRemoteNotificationTypeAlert = 1 << 2,
     }
 );
@@ -1072,53 +1230,65 @@ extern_methods!(
     /// NSRemoteNotifications
     #[cfg(feature = "AppKit_NSApplication")]
     unsafe impl NSApplication {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(registerForRemoteNotifications)]
         pub unsafe fn registerForRemoteNotifications(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(unregisterForRemoteNotifications)]
         pub unsafe fn unregisterForRemoteNotifications(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isRegisteredForRemoteNotifications)]
         pub unsafe fn isRegisteredForRemoteNotifications(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(registerForRemoteNotificationTypes:)]
         pub unsafe fn registerForRemoteNotificationTypes(&self, types: NSRemoteNotificationType);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(enabledRemoteNotificationTypes)]
         pub unsafe fn enabledRemoteNotificationTypes(&self) -> NSRemoteNotificationType;
     }
 );
 
 extern_fn!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSApplicationMain(argc: c_int, argv: NonNull<NonNull<c_char>>) -> c_int;
 );
 
 extern_fn!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSApplicationLoad() -> Bool;
 );
 
 extern_fn!(
     #[cfg(feature = "Foundation_NSString")]
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSShowsServicesMenuItem(item_name: &NSString) -> Bool;
 );
 
 extern_fn!(
     #[cfg(feature = "Foundation_NSString")]
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSSetShowsServicesMenuItem(item_name: &NSString, enabled: Bool) -> NSInteger;
 );
 
 extern_fn!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSUpdateDynamicServices();
 );
 
 extern_fn!(
     #[cfg(all(feature = "AppKit_NSPasteboard", feature = "Foundation_NSString"))]
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSPerformService(item_name: &NSString, pboard: Option<&NSPasteboard>) -> Bool;
 );
 
 pub type NSServiceProviderName = NSString;
 
 extern_fn!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSRegisterServicesProvider(
         provider: Option<&Object>,
         name: &NSServiceProviderName,
@@ -1126,6 +1296,7 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSUnregisterServicesProvider(name: &NSServiceProviderName);
 );
 
@@ -1175,12 +1346,16 @@ extern_static!(NSApplicationDidChangeOcclusionStateNotification: &'static NSNoti
 
 extern_enum!(
     #[underlying(c_int)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum __anonymous__ {
         #[deprecated = "Use NSModalResponseStop instead"]
+        #[cfg(not(any(target_os = "ios")))]
         NSRunStoppedResponse = -1000,
         #[deprecated = "Use NSModalResponseAbort instead"]
+        #[cfg(not(any(target_os = "ios")))]
         NSRunAbortedResponse = -1001,
         #[deprecated = "Use NSModalResponseContinue instead"]
+        #[cfg(not(any(target_os = "ios")))]
         NSRunContinuesResponse = -1002,
     }
 );
@@ -1191,6 +1366,7 @@ extern_methods!(
     unsafe impl NSApplication {
         #[cfg(feature = "AppKit_NSWindow")]
         #[deprecated = "Use -[NSWindow beginSheet:completionHandler:] instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(runModalForWindow:relativeToWindow:)]
         pub unsafe fn runModalForWindow_relativeToWindow(
             &self,
@@ -1200,6 +1376,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[deprecated = "Use -[NSWindow beginSheet:completionHandler:] instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(beginModalSessionForWindow:relativeToWindow:)]
         pub unsafe fn beginModalSessionForWindow_relativeToWindow(
             &self,
@@ -1209,6 +1386,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(application:printFiles:)]
         pub unsafe fn application_printFiles(
             &self,
@@ -1218,6 +1396,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[deprecated = "Use -[NSWindow beginSheet:completionHandler:] instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(beginSheet:modalForWindow:modalDelegate:didEndSelector:contextInfo:)]
         pub unsafe fn beginSheet_modalForWindow_modalDelegate_didEndSelector_contextInfo(
             &self,
@@ -1230,16 +1409,19 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[deprecated = "Use -[NSWindow endSheet:] instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(endSheet:)]
         pub unsafe fn endSheet(&self, sheet: &NSWindow);
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[deprecated = "Use -[NSWindow endSheet:returnCode:] instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(endSheet:returnCode:)]
         pub unsafe fn endSheet_returnCode(&self, sheet: &NSWindow, return_code: NSInteger);
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[deprecated = "Use -enumerateWindowsWithOptions:usingBlock: instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other makeWindowsPerform:inOrder:)]
         pub unsafe fn makeWindowsPerform_inOrder(
             &self,
@@ -1249,6 +1431,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSGraphicsContext")]
         #[deprecated = "This method always returns nil. If you need access to the current drawing context, use [NSGraphicsContext currentContext] inside of a draw operation."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other context)]
         pub unsafe fn context(&self) -> Option<Id<NSGraphicsContext>>;
     }

@@ -18,6 +18,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MapKit_MKDirectionsRequest")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct MKDirectionsRequest;
 
     #[cfg(feature = "MapKit_MKDirectionsRequest")]
@@ -82,15 +83,19 @@ extern_methods!(
         #[method(setArrivalDate:)]
         pub unsafe fn setArrivalDate(&self, arrival_date: Option<&NSDate>);
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(tollPreference)]
         pub unsafe fn tollPreference(&self) -> MKDirectionsRoutePreference;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(setTollPreference:)]
         pub unsafe fn setTollPreference(&self, toll_preference: MKDirectionsRoutePreference);
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(highwayPreference)]
         pub unsafe fn highwayPreference(&self) -> MKDirectionsRoutePreference;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(setHighwayPreference:)]
         pub unsafe fn setHighwayPreference(&self, highway_preference: MKDirectionsRoutePreference);
     }

@@ -9,9 +9,13 @@ use crate::MapKit::*;
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub enum MKMapType {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         MKMapTypeStandard = 0,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         MKMapTypeSatellite = 1,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         MKMapTypeHybrid = 2,
         MKMapTypeSatelliteFlyover = 3,
         MKMapTypeHybridFlyover = 4,
@@ -23,21 +27,31 @@ extern_static!(MKErrorDomain: &'static NSString);
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub enum MKErrorCode {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         MKErrorUnknown = 1,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         MKErrorServerFailure = 2,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         MKErrorLoadingThrottled = 3,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         MKErrorPlacemarkNotFound = 4,
         MKErrorDirectionsNotFound = 5,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         MKErrorDecodingFailed = 6,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub enum MKFeatureVisibility {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         MKFeatureVisibilityAdaptive = 0,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         MKFeatureVisibilityHidden = 1,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         MKFeatureVisibilityVisible = 2,
     }
 );

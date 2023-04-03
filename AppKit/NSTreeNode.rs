@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSTreeNode")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSTreeNode;
 
     #[cfg(feature = "AppKit_NSTreeNode")]
@@ -22,40 +23,49 @@ unsafe impl NSObjectProtocol for NSTreeNode {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSTreeNode")]
     unsafe impl NSTreeNode {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other treeNodeWithRepresentedObject:)]
         pub unsafe fn treeNodeWithRepresentedObject(model_object: Option<&Object>) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithRepresentedObject:)]
         pub unsafe fn initWithRepresentedObject(
             this: Option<Allocated<Self>>,
             model_object: Option<&Object>,
         ) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other representedObject)]
         pub unsafe fn representedObject(&self) -> Option<Id<Object>>;
 
         #[cfg(feature = "Foundation_NSIndexPath")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other indexPath)]
         pub unsafe fn indexPath(&self) -> Id<NSIndexPath>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isLeaf)]
         pub unsafe fn isLeaf(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other childNodes)]
         pub unsafe fn childNodes(&self) -> Option<Id<NSArray<NSTreeNode>>>;
 
         #[cfg(feature = "Foundation_NSMutableArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other mutableChildNodes)]
         pub unsafe fn mutableChildNodes(&self) -> Id<NSMutableArray<NSTreeNode>, Owned>;
 
         #[cfg(feature = "Foundation_NSIndexPath")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other descendantNodeAtIndexPath:)]
         pub unsafe fn descendantNodeAtIndexPath(
             &self,
             index_path: &NSIndexPath,
         ) -> Option<Id<NSTreeNode>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other parentNode)]
         pub unsafe fn parentNode(&self) -> Option<Id<NSTreeNode>>;
 
@@ -63,6 +73,7 @@ extern_methods!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSSortDescriptor"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(sortWithSortDescriptors:recursively:)]
         pub unsafe fn sortWithSortDescriptors_recursively(
             &self,

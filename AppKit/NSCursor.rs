@@ -135,6 +135,7 @@ extern_methods!(
     unsafe impl NSCursor {
         #[cfg(all(feature = "AppKit_NSColor", feature = "AppKit_NSImage"))]
         #[deprecated = "Color hints are ignored. Use -initWithImage:hotSpot: instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithImage:foregroundColorHint:backgroundColorHint:hotSpot:)]
         pub unsafe fn initWithImage_foregroundColorHint_backgroundColorHint_hotSpot(
             this: Option<Allocated<Self>>,
@@ -145,28 +146,34 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[deprecated = "setOnMouseExited is unused and should not be called"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setOnMouseExited:)]
         pub unsafe fn setOnMouseExited(&self, flag: bool);
 
         #[deprecated = "setOnMouseEntered is unused and should not be called"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setOnMouseEntered:)]
         pub unsafe fn setOnMouseEntered(&self, flag: bool);
 
         #[deprecated = "isSetOnMouseExited is unused"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isSetOnMouseExited)]
         pub unsafe fn isSetOnMouseExited(&self) -> bool;
 
         #[deprecated = "isSetOnMouseEntered is unused"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isSetOnMouseEntered)]
         pub unsafe fn isSetOnMouseEntered(&self) -> bool;
 
         #[cfg(feature = "AppKit_NSEvent")]
         #[deprecated = "mouseEntered: is unused and should not be called"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(mouseEntered:)]
         pub unsafe fn mouseEntered(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
         #[deprecated = "mouseExited: is unused and should not be called"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(mouseExited:)]
         pub unsafe fn mouseExited(&self, event: &NSEvent);
     }

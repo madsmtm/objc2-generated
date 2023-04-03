@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSCollectionViewGridLayout")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSCollectionViewGridLayout;
 
     #[cfg(feature = "AppKit_NSCollectionViewGridLayout")]
@@ -26,53 +27,69 @@ unsafe impl NSObjectProtocol for NSCollectionViewGridLayout {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionViewGridLayout")]
     unsafe impl NSCollectionViewGridLayout {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(margins)]
         pub unsafe fn margins(&self) -> NSEdgeInsets;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMargins:)]
         pub unsafe fn setMargins(&self, margins: NSEdgeInsets);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(minimumInteritemSpacing)]
         pub unsafe fn minimumInteritemSpacing(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMinimumInteritemSpacing:)]
         pub unsafe fn setMinimumInteritemSpacing(&self, minimum_interitem_spacing: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(minimumLineSpacing)]
         pub unsafe fn minimumLineSpacing(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMinimumLineSpacing:)]
         pub unsafe fn setMinimumLineSpacing(&self, minimum_line_spacing: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(maximumNumberOfRows)]
         pub unsafe fn maximumNumberOfRows(&self) -> NSUInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMaximumNumberOfRows:)]
         pub unsafe fn setMaximumNumberOfRows(&self, maximum_number_of_rows: NSUInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(maximumNumberOfColumns)]
         pub unsafe fn maximumNumberOfColumns(&self) -> NSUInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMaximumNumberOfColumns:)]
         pub unsafe fn setMaximumNumberOfColumns(&self, maximum_number_of_columns: NSUInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(minimumItemSize)]
         pub unsafe fn minimumItemSize(&self) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMinimumItemSize:)]
         pub unsafe fn setMinimumItemSize(&self, minimum_item_size: NSSize);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(maximumItemSize)]
         pub unsafe fn maximumItemSize(&self) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMaximumItemSize:)]
         pub unsafe fn setMaximumItemSize(&self, maximum_item_size: NSSize);
 
         #[cfg(all(feature = "AppKit_NSColor", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other backgroundColors)]
         pub unsafe fn backgroundColors(&self) -> Id<NSArray<NSColor>>;
 
         #[cfg(all(feature = "AppKit_NSColor", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBackgroundColors:)]
         pub unsafe fn setBackgroundColors(&self, background_colors: Option<&NSArray<NSColor>>);
     }

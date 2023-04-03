@@ -8,6 +8,7 @@ use crate::MailKit::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MailKit_MEComposeSession")]
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub struct MEComposeSession;
 
     #[cfg(feature = "MailKit_MEComposeSession")]
@@ -55,14 +56,19 @@ extern_static!(MEComposeSessionErrorDomain: &'static NSErrorDomain);
 
 ns_error_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub enum MEComposeSessionErrorCode {
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         MEComposeSessionErrorCodeInvalidRecipients = 0,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         MEComposeSessionErrorCodeInvalidHeaders = 1,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         MEComposeSessionErrorCodeInvalidBody = 2,
     }
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait MEComposeSessionHandler: NSObjectProtocol {
         #[cfg(feature = "MailKit_MEComposeSession")]
         #[method(mailComposeSessionDidBegin:)]

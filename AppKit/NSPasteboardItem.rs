@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSPasteboardItem")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSPasteboardItem;
 
     #[cfg(feature = "AppKit_NSPasteboardItem")]
@@ -29,10 +30,12 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSPasteboardItem")]
     unsafe impl NSPasteboardItem {
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other types)]
         pub unsafe fn types(&self) -> Id<NSArray<NSPasteboardType>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other availableTypeFromArray:)]
         pub unsafe fn availableTypeFromArray(
             &self,
@@ -40,6 +43,7 @@ extern_methods!(
         ) -> Option<Id<NSPasteboardType>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDataProvider:forTypes:)]
         pub unsafe fn setDataProvider_forTypes(
             &self,
@@ -48,10 +52,12 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSData")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setData:forType:)]
         pub unsafe fn setData_forType(&self, data: &NSData, r#type: &NSPasteboardType) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setString:forType:)]
         pub unsafe fn setString_forType(
             &self,
@@ -59,6 +65,7 @@ extern_methods!(
             r#type: &NSPasteboardType,
         ) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPropertyList:forType:)]
         pub unsafe fn setPropertyList_forType(
             &self,
@@ -67,21 +74,26 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSData")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other dataForType:)]
         pub unsafe fn dataForType(&self, r#type: &NSPasteboardType) -> Option<Id<NSData>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other stringForType:)]
         pub unsafe fn stringForType(&self, r#type: &NSPasteboardType) -> Option<Id<NSString>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other propertyListForType:)]
         pub unsafe fn propertyListForType(&self, r#type: &NSPasteboardType) -> Option<Id<Object>>;
     }
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSPasteboardItemDataProvider: NSObjectProtocol {
         #[cfg(all(feature = "AppKit_NSPasteboard", feature = "AppKit_NSPasteboardItem"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(pasteboard:item:provideDataForType:)]
         unsafe fn pasteboard_item_provideDataForType(
             &self,
@@ -91,6 +103,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "AppKit_NSPasteboard")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(pasteboardFinishedWithDataProvider:)]
         unsafe fn pasteboardFinishedWithDataProvider(&self, pasteboard: &NSPasteboard);

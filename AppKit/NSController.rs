@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSController")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSController;
 
     #[cfg(feature = "AppKit_NSController")]
@@ -31,28 +32,35 @@ unsafe impl NSObjectProtocol for NSController {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSController")]
     unsafe impl NSController {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
         ) -> Option<Id<Self>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(objectDidBeginEditing:)]
         pub unsafe fn objectDidBeginEditing(&self, editor: &ProtocolObject<dyn NSEditor>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(objectDidEndEditing:)]
         pub unsafe fn objectDidEndEditing(&self, editor: &ProtocolObject<dyn NSEditor>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(discardEditing)]
         pub unsafe fn discardEditing(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(commitEditing)]
         pub unsafe fn commitEditing(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(commitEditingWithDelegate:didCommitSelector:contextInfo:)]
         pub unsafe fn commitEditingWithDelegate_didCommitSelector_contextInfo(
             &self,
@@ -61,6 +69,7 @@ extern_methods!(
             context_info: *mut c_void,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isEditing)]
         pub unsafe fn isEditing(&self) -> bool;
     }

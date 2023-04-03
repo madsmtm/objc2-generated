@@ -10,6 +10,7 @@ use crate::MapKit::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MapKit_MKMapCamera")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct MKMapCamera;
 
     #[cfg(feature = "MapKit_MKMapCamera")]
@@ -36,9 +37,11 @@ extern_methods!(
         #[method(setCenterCoordinate:)]
         pub unsafe fn setCenterCoordinate(&self, center_coordinate: CLLocationCoordinate2D);
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(centerCoordinateDistance)]
         pub unsafe fn centerCoordinateDistance(&self) -> CLLocationDistance;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(setCenterCoordinateDistance:)]
         pub unsafe fn setCenterCoordinateDistance(
             &self,
@@ -58,10 +61,12 @@ extern_methods!(
         pub unsafe fn setPitch(&self, pitch: CGFloat);
 
         #[deprecated = "Use centerCoordinateDistance"]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(altitude)]
         pub unsafe fn altitude(&self) -> CLLocationDistance;
 
         #[deprecated = "Use centerCoordinateDistance"]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(setAltitude:)]
         pub unsafe fn setAltitude(&self, altitude: CLLocationDistance);
 
@@ -84,6 +89,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "MapKit_MKMapItem")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other cameraLookingAtMapItem:forViewSize:allowPitch:)]
         pub unsafe fn cameraLookingAtMapItem_forViewSize_allowPitch(
             map_item: &MKMapItem,

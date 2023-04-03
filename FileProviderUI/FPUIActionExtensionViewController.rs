@@ -59,6 +59,7 @@ extern_methods!(
     #[cfg(feature = "FileProviderUI_FPUIActionExtensionViewController")]
     unsafe impl FPUIActionExtensionViewController {
         #[cfg(feature = "Foundation_NSBundle")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Option<Allocated<Self>>,

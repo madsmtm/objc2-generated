@@ -48,6 +48,12 @@ extern_methods!(
         #[method(doubleValue)]
         pub unsafe fn doubleValue(&self) -> c_double;
 
+        #[cfg(not(any(
+            target_os = "ios",
+            target_os = "macos",
+            target_os = "tvos",
+            target_os = "watchos"
+        )))]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 

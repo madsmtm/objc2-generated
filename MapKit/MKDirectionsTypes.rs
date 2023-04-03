@@ -9,10 +9,14 @@ use crate::MapKit::*;
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub enum MKDirectionsTransportType {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         MKDirectionsTransportTypeAutomobile = 1 << 0,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         MKDirectionsTransportTypeWalking = 1 << 1,
         MKDirectionsTransportTypeTransit = 1 << 2,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         MKDirectionsTransportTypeAny = 0x0FFFFFFF,
     }
 );

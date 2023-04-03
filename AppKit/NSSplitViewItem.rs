@@ -7,19 +7,28 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSSplitViewItemBehavior {
+        #[cfg(not(any(target_os = "ios")))]
         NSSplitViewItemBehaviorDefault = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSSplitViewItemBehaviorSidebar = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSSplitViewItemBehaviorContentList = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSSplitViewItemCollapseBehavior {
+        #[cfg(not(any(target_os = "ios")))]
         NSSplitViewItemCollapseBehaviorDefault = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSSplitViewItemCollapseBehaviorPreferResizingSplitViewWithFixedSiblings = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSSplitViewItemCollapseBehaviorPreferResizingSiblingsWithFixedSplitView = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSSplitViewItemCollapseBehaviorUseConstraints = 3,
     }
 );
@@ -29,6 +38,7 @@ extern_static!(NSSplitViewItemUnspecifiedDimension: CGFloat);
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSSplitViewItem")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSSplitViewItem;
 
     #[cfg(feature = "AppKit_NSSplitViewItem")]
@@ -50,97 +60,125 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSSplitViewItem")]
     unsafe impl NSSplitViewItem {
         #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other splitViewItemWithViewController:)]
         pub unsafe fn splitViewItemWithViewController(
             view_controller: &NSViewController,
         ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other sidebarWithViewController:)]
         pub unsafe fn sidebarWithViewController(view_controller: &NSViewController) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other contentListWithViewController:)]
         pub unsafe fn contentListWithViewController(view_controller: &NSViewController)
             -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(behavior)]
         pub unsafe fn behavior(&self) -> NSSplitViewItemBehavior;
 
         #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other viewController)]
         pub unsafe fn viewController(&self) -> Id<NSViewController>;
 
         #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setViewController:)]
         pub unsafe fn setViewController(&self, view_controller: &NSViewController);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isCollapsed)]
         pub unsafe fn isCollapsed(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCollapsed:)]
         pub unsafe fn setCollapsed(&self, collapsed: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(canCollapse)]
         pub unsafe fn canCollapse(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCanCollapse:)]
         pub unsafe fn setCanCollapse(&self, can_collapse: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(collapseBehavior)]
         pub unsafe fn collapseBehavior(&self) -> NSSplitViewItemCollapseBehavior;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCollapseBehavior:)]
         pub unsafe fn setCollapseBehavior(
             &self,
             collapse_behavior: NSSplitViewItemCollapseBehavior,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(minimumThickness)]
         pub unsafe fn minimumThickness(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMinimumThickness:)]
         pub unsafe fn setMinimumThickness(&self, minimum_thickness: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(maximumThickness)]
         pub unsafe fn maximumThickness(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMaximumThickness:)]
         pub unsafe fn setMaximumThickness(&self, maximum_thickness: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(preferredThicknessFraction)]
         pub unsafe fn preferredThicknessFraction(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPreferredThicknessFraction:)]
         pub unsafe fn setPreferredThicknessFraction(&self, preferred_thickness_fraction: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(holdingPriority)]
         pub unsafe fn holdingPriority(&self) -> NSLayoutPriority;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setHoldingPriority:)]
         pub unsafe fn setHoldingPriority(&self, holding_priority: NSLayoutPriority);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(automaticMaximumThickness)]
         pub unsafe fn automaticMaximumThickness(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAutomaticMaximumThickness:)]
         pub unsafe fn setAutomaticMaximumThickness(&self, automatic_maximum_thickness: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isSpringLoaded)]
         pub unsafe fn isSpringLoaded(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSpringLoaded:)]
         pub unsafe fn setSpringLoaded(&self, spring_loaded: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(allowsFullHeightLayout)]
         pub unsafe fn allowsFullHeightLayout(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAllowsFullHeightLayout:)]
         pub unsafe fn setAllowsFullHeightLayout(&self, allows_full_height_layout: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(titlebarSeparatorStyle)]
         pub unsafe fn titlebarSeparatorStyle(&self) -> NSTitlebarSeparatorStyle;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTitlebarSeparatorStyle:)]
         pub unsafe fn setTitlebarSeparatorStyle(
             &self,

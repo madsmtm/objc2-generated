@@ -114,23 +114,29 @@ extern_methods!(
         #[method(systemUptime)]
         pub unsafe fn systemUptime(&self) -> NSTimeInterval;
 
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(disableSuddenTermination)]
         pub unsafe fn disableSuddenTermination(&self);
 
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(enableSuddenTermination)]
         pub unsafe fn enableSuddenTermination(&self);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(disableAutomaticTermination:)]
         pub unsafe fn disableAutomaticTermination(&self, reason: &NSString);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(enableAutomaticTermination:)]
         pub unsafe fn enableAutomaticTermination(&self, reason: &NSString);
 
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(automaticTerminationSupportEnabled)]
         pub unsafe fn automaticTerminationSupportEnabled(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(setAutomaticTerminationSupportEnabled:)]
         pub unsafe fn setAutomaticTerminationSupportEnabled(
             &self,
@@ -182,6 +188,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "macos")))]
         #[method(performExpiringActivityWithReason:usingBlock:)]
         pub unsafe fn performExpiringActivityWithReason_usingBlock(
             &self,
@@ -196,10 +203,12 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSProcessInfo")]
     unsafe impl NSProcessInfo {
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other userName)]
         pub unsafe fn userName(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other fullUserName)]
         pub unsafe fn fullUserName(&self) -> Id<NSString>;
     }

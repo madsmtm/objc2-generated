@@ -17,6 +17,7 @@ extern_methods!(
             feature = "CloudKit_CKAllowedSharingOptions",
             feature = "CloudKit_CKContainer"
         ))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(registerCKShareWithContainer:allowedSharingOptions:preparationHandler:)]
         pub unsafe fn registerCKShareWithContainer_allowedSharingOptions_preparationHandler(
             &self,
@@ -30,6 +31,7 @@ extern_methods!(
             feature = "CloudKit_CKContainer",
             feature = "CloudKit_CKShare"
         ))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(registerCKShare:container:allowedSharingOptions:)]
         pub unsafe fn registerCKShare_container_allowedSharingOptions(
             &self,

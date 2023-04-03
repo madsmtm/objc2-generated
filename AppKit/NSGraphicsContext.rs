@@ -25,11 +25,17 @@ extern_static!(NSGraphicsContextPDFFormat: &'static NSGraphicsContextRepresentat
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSImageInterpolation {
+        #[cfg(not(any(target_os = "ios")))]
         NSImageInterpolationDefault = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSImageInterpolationNone = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSImageInterpolationLow = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSImageInterpolationMedium = 4,
+        #[cfg(not(any(target_os = "ios")))]
         NSImageInterpolationHigh = 3,
     }
 );
@@ -37,6 +43,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSGraphicsContext")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSGraphicsContext;
 
     #[cfg(feature = "AppKit_NSGraphicsContext")]
@@ -52,54 +59,68 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSGraphicsContext")]
     unsafe impl NSGraphicsContext {
         #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other graphicsContextWithAttributes:)]
         pub unsafe fn graphicsContextWithAttributes(
             attributes: &NSDictionary<NSGraphicsContextAttributeKey, Object>,
         ) -> Option<Id<NSGraphicsContext>>;
 
         #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other graphicsContextWithWindow:)]
         pub unsafe fn graphicsContextWithWindow(window: &NSWindow) -> Id<NSGraphicsContext>;
 
         #[cfg(feature = "AppKit_NSBitmapImageRep")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other graphicsContextWithBitmapImageRep:)]
         pub unsafe fn graphicsContextWithBitmapImageRep(
             bitmap_rep: &NSBitmapImageRep,
         ) -> Option<Id<NSGraphicsContext>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other currentContext)]
         pub unsafe fn currentContext() -> Option<Id<NSGraphicsContext>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCurrentContext:)]
         pub unsafe fn setCurrentContext(current_context: Option<&NSGraphicsContext>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(currentContextDrawingToScreen)]
         pub unsafe fn currentContextDrawingToScreen() -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(saveGraphicsState)]
         pub unsafe fn saveGraphicsState_class();
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(restoreGraphicsState)]
         pub unsafe fn restoreGraphicsState_class();
 
         #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other attributes)]
         pub unsafe fn attributes(
             &self,
         ) -> Option<Id<NSDictionary<NSGraphicsContextAttributeKey, Object>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isDrawingToScreen)]
         pub unsafe fn isDrawingToScreen(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(saveGraphicsState)]
         pub unsafe fn saveGraphicsState(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(restoreGraphicsState)]
         pub unsafe fn restoreGraphicsState(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(flushGraphics)]
         pub unsafe fn flushGraphics(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isFlipped)]
         pub unsafe fn isFlipped(&self) -> bool;
     }
@@ -109,33 +130,43 @@ extern_methods!(
     /// NSGraphicsContext_RenderingOptions
     #[cfg(feature = "AppKit_NSGraphicsContext")]
     unsafe impl NSGraphicsContext {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(shouldAntialias)]
         pub unsafe fn shouldAntialias(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setShouldAntialias:)]
         pub unsafe fn setShouldAntialias(&self, should_antialias: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(imageInterpolation)]
         pub unsafe fn imageInterpolation(&self) -> NSImageInterpolation;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setImageInterpolation:)]
         pub unsafe fn setImageInterpolation(&self, image_interpolation: NSImageInterpolation);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(patternPhase)]
         pub unsafe fn patternPhase(&self) -> NSPoint;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPatternPhase:)]
         pub unsafe fn setPatternPhase(&self, pattern_phase: NSPoint);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(compositingOperation)]
         pub unsafe fn compositingOperation(&self) -> NSCompositingOperation;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCompositingOperation:)]
         pub unsafe fn setCompositingOperation(&self, compositing_operation: NSCompositingOperation);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(colorRenderingIntent)]
         pub unsafe fn colorRenderingIntent(&self) -> NSColorRenderingIntent;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setColorRenderingIntent:)]
         pub unsafe fn setColorRenderingIntent(
             &self,
@@ -155,18 +186,22 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSGraphicsContext")]
     unsafe impl NSGraphicsContext {
         #[deprecated = "This method has no effect"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setGraphicsState:)]
         pub unsafe fn setGraphicsState(g_state: NSInteger);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other focusStack)]
         pub unsafe fn focusStack(&self) -> Option<Id<Object>>;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFocusStack:)]
         pub unsafe fn setFocusStack(&self, stack: Option<&Object>);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other graphicsContextWithGraphicsPort:flipped:)]
         pub unsafe fn graphicsContextWithGraphicsPort_flipped(
             graphics_port: NonNull<c_void>,
@@ -174,6 +209,7 @@ extern_methods!(
         ) -> Id<NSGraphicsContext>;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(graphicsPort)]
         pub unsafe fn graphicsPort(&self) -> NonNull<c_void>;
     }

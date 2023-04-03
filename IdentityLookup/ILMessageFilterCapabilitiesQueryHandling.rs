@@ -5,6 +5,7 @@ use crate::Foundation::*;
 use crate::IdentityLookup::*;
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait ILMessageFilterCapabilitiesQueryHandling: NSObjectProtocol {
         #[cfg(all(
             feature = "IdentityLookup_ILMessageFilterCapabilitiesQueryRequest",

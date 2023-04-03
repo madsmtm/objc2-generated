@@ -7,6 +7,7 @@ use crate::HealthKit::*;
 use crate::UniformTypeIdentifiers::*;
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait HKLiveWorkoutBuilderDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "Foundation_NSSet",
@@ -55,6 +56,7 @@ extern_protocol!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HealthKit_HKLiveWorkoutBuilder")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct HKLiveWorkoutBuilder;
 
     #[cfg(feature = "HealthKit_HKLiveWorkoutBuilder")]

@@ -7,32 +7,49 @@ use crate::MediaPlayer::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub enum MPMusicPlaybackState {
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         MPMusicPlaybackStateStopped = 0,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         MPMusicPlaybackStatePlaying = 1,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         MPMusicPlaybackStatePaused = 2,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         MPMusicPlaybackStateInterrupted = 3,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         MPMusicPlaybackStateSeekingForward = 4,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         MPMusicPlaybackStateSeekingBackward = 5,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub enum MPMusicRepeatMode {
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         MPMusicRepeatModeDefault = 0,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         MPMusicRepeatModeNone = 1,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         MPMusicRepeatModeOne = 2,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         MPMusicRepeatModeAll = 3,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub enum MPMusicShuffleMode {
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         MPMusicShuffleModeDefault = 0,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         MPMusicShuffleModeOff = 1,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         MPMusicShuffleModeSongs = 2,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         MPMusicShuffleModeAlbums = 3,
     }
 );
@@ -40,6 +57,7 @@ ns_enum!(
 extern_protocol!(
     pub unsafe trait MPSystemMusicPlayerController: NSObjectProtocol {
         #[cfg(feature = "MediaPlayer_MPMusicPlayerQueueDescriptor")]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method(openToPlayQueueDescriptor:)]
         unsafe fn openToPlayQueueDescriptor(&self, queue_descriptor: &MPMusicPlayerQueueDescriptor);
     }
@@ -50,6 +68,7 @@ extern_protocol!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MediaPlayer_MPMusicPlayerController")]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub struct MPMusicPlayerController;
 
     #[cfg(feature = "MediaPlayer_MPMusicPlayerController")]

@@ -6,9 +6,13 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub enum ASAuthorizationProviderExtensionKeyType {
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         ASAuthorizationProviderExtensionKeyTypeUserDeviceSigning = 1,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         ASAuthorizationProviderExtensionKeyTypeUserDeviceEncryption = 2,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         ASAuthorizationProviderExtensionKeyTypeUserSecureEnclaveKey = 3,
     }
 );
@@ -16,6 +20,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionLoginManager")]
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub struct ASAuthorizationProviderExtensionLoginManager;
 
     #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionLoginManager")]

@@ -7,6 +7,7 @@ use crate::IdentityLookup::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "IdentityLookup_ILMessageFilterQueryResponse")]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub struct ILMessageFilterQueryResponse;
 
     #[cfg(feature = "IdentityLookup_ILMessageFilterQueryResponse")]
@@ -33,9 +34,11 @@ extern_methods!(
         #[method(setAction:)]
         pub unsafe fn setAction(&self, action: ILMessageFilterAction);
 
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method(subAction)]
         pub unsafe fn subAction(&self) -> ILMessageFilterSubAction;
 
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method(setSubAction:)]
         pub unsafe fn setSubAction(&self, sub_action: ILMessageFilterSubAction);
     }

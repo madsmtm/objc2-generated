@@ -41,9 +41,11 @@ extern_methods!(
         #[method(setActive:)]
         pub unsafe fn setActive(&self, active: bool);
 
+        #[cfg(not(any(target_os = "ios", target_os = "macos")))]
         #[method(isFocused)]
         pub unsafe fn isFocused(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios", target_os = "macos")))]
         #[method(setFocused:)]
         pub unsafe fn setFocused(&self, focused: bool);
 

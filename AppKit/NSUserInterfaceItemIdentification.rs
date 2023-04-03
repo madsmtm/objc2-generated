@@ -10,10 +10,13 @@ typed_extensible_enum!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSUserInterfaceItemIdentification {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other identifier)]
         unsafe fn identifier(&self) -> Option<Id<NSUserInterfaceItemIdentifier>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setIdentifier:)]
         unsafe fn setIdentifier(&self, identifier: Option<&NSUserInterfaceItemIdentifier>);
     }

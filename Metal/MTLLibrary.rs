@@ -193,6 +193,7 @@ ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLLanguageVersion {
         #[deprecated = "Use a newer language standard"]
+        #[cfg(not(any(target_os = "macos")))]
         MTLLanguageVersion1_0 = 1 << 16,
         MTLLanguageVersion1_1 = (1 << 16) + 1,
         MTLLanguageVersion1_2 = (1 << 16) + 2,

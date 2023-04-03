@@ -7,8 +7,11 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSRulerOrientation {
+        #[cfg(not(any(target_os = "ios")))]
         NSHorizontalRuler = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSVerticalRuler = 1,
     }
 );
@@ -28,6 +31,7 @@ extern_static!(NSRulerViewUnitPicas: &'static NSRulerViewUnitName);
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSRulerView")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSRulerView;
 
     #[cfg(feature = "AppKit_NSRulerView")]
@@ -69,6 +73,7 @@ extern_methods!(
             feature = "Foundation_NSNumber",
             feature = "Foundation_NSString"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(registerUnitWithName:abbreviation:unitToPointsConversionFactor:stepUpCycle:stepDownCycle:)]
         pub unsafe fn registerUnitWithName_abbreviation_unitToPointsConversionFactor_stepUpCycle_stepDownCycle(
             unit_name: &NSRulerViewUnitName,
@@ -79,10 +84,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSScrollView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithScrollView:orientation:)]
         pub unsafe fn initWithScrollView_orientation(
             this: Option<Allocated<Self>>,
@@ -91,84 +98,107 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSScrollView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other scrollView)]
         pub unsafe fn scrollView(&self) -> Option<Id<NSScrollView>>;
 
         #[cfg(feature = "AppKit_NSScrollView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setScrollView:)]
         pub unsafe fn setScrollView(&self, scroll_view: Option<&NSScrollView>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(orientation)]
         pub unsafe fn orientation(&self) -> NSRulerOrientation;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setOrientation:)]
         pub unsafe fn setOrientation(&self, orientation: NSRulerOrientation);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(baselineLocation)]
         pub unsafe fn baselineLocation(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(requiredThickness)]
         pub unsafe fn requiredThickness(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(ruleThickness)]
         pub unsafe fn ruleThickness(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setRuleThickness:)]
         pub unsafe fn setRuleThickness(&self, rule_thickness: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(reservedThicknessForMarkers)]
         pub unsafe fn reservedThicknessForMarkers(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setReservedThicknessForMarkers:)]
         pub unsafe fn setReservedThicknessForMarkers(
             &self,
             reserved_thickness_for_markers: CGFloat,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(reservedThicknessForAccessoryView)]
         pub unsafe fn reservedThicknessForAccessoryView(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setReservedThicknessForAccessoryView:)]
         pub unsafe fn setReservedThicknessForAccessoryView(
             &self,
             reserved_thickness_for_accessory_view: CGFloat,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other measurementUnits)]
         pub unsafe fn measurementUnits(&self) -> Id<NSRulerViewUnitName>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMeasurementUnits:)]
         pub unsafe fn setMeasurementUnits(&self, measurement_units: &NSRulerViewUnitName);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(originOffset)]
         pub unsafe fn originOffset(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setOriginOffset:)]
         pub unsafe fn setOriginOffset(&self, origin_offset: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other clientView)]
         pub unsafe fn clientView(&self) -> Option<Id<NSView>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setClientView:)]
         pub unsafe fn setClientView(&self, client_view: Option<&NSView>);
 
         #[cfg(feature = "AppKit_NSRulerMarker")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(addMarker:)]
         pub unsafe fn addMarker(&self, marker: &NSRulerMarker);
 
         #[cfg(feature = "AppKit_NSRulerMarker")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeMarker:)]
         pub unsafe fn removeMarker(&self, marker: &NSRulerMarker);
 
         #[cfg(all(feature = "AppKit_NSRulerMarker", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other markers)]
         pub unsafe fn markers(&self) -> Option<Id<NSArray<NSRulerMarker>>>;
 
         #[cfg(all(feature = "AppKit_NSRulerMarker", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMarkers:)]
         pub unsafe fn setMarkers(&self, markers: Option<&NSArray<NSRulerMarker>>);
 
         #[cfg(all(feature = "AppKit_NSEvent", feature = "AppKit_NSRulerMarker"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(trackMarker:withMouseEvent:)]
         pub unsafe fn trackMarker_withMouseEvent(
             &self,
@@ -176,12 +206,15 @@ extern_methods!(
             event: &NSEvent,
         ) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessoryView)]
         pub unsafe fn accessoryView(&self) -> Option<Id<NSView>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessoryView:)]
         pub unsafe fn setAccessoryView(&self, accessory_view: Option<&NSView>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(moveRulerlineFromLocation:toLocation:)]
         pub unsafe fn moveRulerlineFromLocation_toLocation(
             &self,
@@ -189,15 +222,19 @@ extern_methods!(
             new_location: CGFloat,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(invalidateHashMarks)]
         pub unsafe fn invalidateHashMarks(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawHashMarksAndLabelsInRect:)]
         pub unsafe fn drawHashMarksAndLabelsInRect(&self, rect: NSRect);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawMarkersInRect:)]
         pub unsafe fn drawMarkersInRect(&self, rect: NSRect);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isFlipped)]
         pub unsafe fn isFlipped(&self) -> bool;
     }
@@ -208,6 +245,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSView")]
     unsafe impl NSView {
         #[cfg(all(feature = "AppKit_NSRulerMarker", feature = "AppKit_NSRulerView"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rulerView:shouldMoveMarker:)]
         pub unsafe fn rulerView_shouldMoveMarker(
             &self,
@@ -216,6 +254,7 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(all(feature = "AppKit_NSRulerMarker", feature = "AppKit_NSRulerView"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rulerView:willMoveMarker:toLocation:)]
         pub unsafe fn rulerView_willMoveMarker_toLocation(
             &self,
@@ -225,10 +264,12 @@ extern_methods!(
         ) -> CGFloat;
 
         #[cfg(all(feature = "AppKit_NSRulerMarker", feature = "AppKit_NSRulerView"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rulerView:didMoveMarker:)]
         pub unsafe fn rulerView_didMoveMarker(&self, ruler: &NSRulerView, marker: &NSRulerMarker);
 
         #[cfg(all(feature = "AppKit_NSRulerMarker", feature = "AppKit_NSRulerView"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rulerView:shouldRemoveMarker:)]
         pub unsafe fn rulerView_shouldRemoveMarker(
             &self,
@@ -237,10 +278,12 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(all(feature = "AppKit_NSRulerMarker", feature = "AppKit_NSRulerView"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rulerView:didRemoveMarker:)]
         pub unsafe fn rulerView_didRemoveMarker(&self, ruler: &NSRulerView, marker: &NSRulerMarker);
 
         #[cfg(all(feature = "AppKit_NSRulerMarker", feature = "AppKit_NSRulerView"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rulerView:shouldAddMarker:)]
         pub unsafe fn rulerView_shouldAddMarker(
             &self,
@@ -249,6 +292,7 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(all(feature = "AppKit_NSRulerMarker", feature = "AppKit_NSRulerView"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rulerView:willAddMarker:atLocation:)]
         pub unsafe fn rulerView_willAddMarker_atLocation(
             &self,
@@ -258,18 +302,22 @@ extern_methods!(
         ) -> CGFloat;
 
         #[cfg(all(feature = "AppKit_NSRulerMarker", feature = "AppKit_NSRulerView"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rulerView:didAddMarker:)]
         pub unsafe fn rulerView_didAddMarker(&self, ruler: &NSRulerView, marker: &NSRulerMarker);
 
         #[cfg(all(feature = "AppKit_NSEvent", feature = "AppKit_NSRulerView"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rulerView:handleMouseDown:)]
         pub unsafe fn rulerView_handleMouseDown(&self, ruler: &NSRulerView, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSRulerView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rulerView:willSetClientView:)]
         pub unsafe fn rulerView_willSetClientView(&self, ruler: &NSRulerView, new_client: &NSView);
 
         #[cfg(feature = "AppKit_NSRulerView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rulerView:locationForPoint:)]
         pub unsafe fn rulerView_locationForPoint(
             &self,
@@ -278,6 +326,7 @@ extern_methods!(
         ) -> CGFloat;
 
         #[cfg(feature = "AppKit_NSRulerView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rulerView:pointForLocation:)]
         pub unsafe fn rulerView_pointForLocation(
             &self,
@@ -291,6 +340,7 @@ extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(feature = "AppKit_NSRulerView")]
     unsafe impl NSRulerView {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }

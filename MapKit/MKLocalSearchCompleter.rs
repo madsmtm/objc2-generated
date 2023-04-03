@@ -10,19 +10,26 @@ use crate::MapKit::*;
 ns_enum!(
     #[underlying(NSInteger)]
     #[deprecated = "Use MKLocalSearchCompleterResultType"]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub enum MKSearchCompletionFilterType {
         #[deprecated = "Use MKLocalSearchCompleterResultType"]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         MKSearchCompletionFilterTypeLocationsAndQueries = 0,
         #[deprecated = "Use MKLocalSearchCompleterResultType"]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         MKSearchCompletionFilterTypeLocationsOnly = 1,
     }
 );
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub enum MKLocalSearchCompleterResultType {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         MKLocalSearchCompleterResultTypeAddress = 1 << 0,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         MKLocalSearchCompleterResultTypePointOfInterest = 1 << 1,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         MKLocalSearchCompleterResultTypeQuery = 1 << 2,
     }
 );
@@ -30,6 +37,7 @@ ns_options!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MapKit_MKLocalSearchCompleter")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct MKLocalSearchCompleter;
 
     #[cfg(feature = "MapKit_MKLocalSearchCompleter")]
@@ -59,24 +67,30 @@ extern_methods!(
         pub unsafe fn setRegion(&self, region: MKCoordinateRegion);
 
         #[deprecated = "Use resultTypes"]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(filterType)]
         pub unsafe fn filterType(&self) -> MKSearchCompletionFilterType;
 
         #[deprecated = "Use resultTypes"]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(setFilterType:)]
         pub unsafe fn setFilterType(&self, filter_type: MKSearchCompletionFilterType);
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(resultTypes)]
         pub unsafe fn resultTypes(&self) -> MKLocalSearchCompleterResultType;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(setResultTypes:)]
         pub unsafe fn setResultTypes(&self, result_types: MKLocalSearchCompleterResultType);
 
         #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other pointOfInterestFilter)]
         pub unsafe fn pointOfInterestFilter(&self) -> Option<Id<MKPointOfInterestFilter>>;
 
         #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(setPointOfInterestFilter:)]
         pub unsafe fn setPointOfInterestFilter(
             &self,
@@ -110,6 +124,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait MKLocalSearchCompleterDelegate: NSObjectProtocol {
         #[cfg(feature = "MapKit_MKLocalSearchCompleter")]
         #[optional]
@@ -135,6 +150,7 @@ extern_protocol!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MapKit_MKLocalSearchCompletion")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct MKLocalSearchCompletion;
 
     #[cfg(feature = "MapKit_MKLocalSearchCompletion")]
@@ -171,6 +187,7 @@ extern_methods!(
     #[cfg(feature = "MapKit_MKLocalSearchRequest")]
     unsafe impl MKLocalSearchRequest {
         #[cfg(feature = "MapKit_MKLocalSearchCompletion")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Init initWithCompletion:)]
         pub unsafe fn initWithCompletion(
             this: Option<Allocated<Self>>,

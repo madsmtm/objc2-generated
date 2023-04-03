@@ -9,6 +9,7 @@ use crate::LocalAuthenticationEmbeddedUI::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "LocalAuthenticationEmbeddedUI_LAAuthenticationView")]
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub struct LAAuthenticationView;
 
     #[cfg(feature = "LocalAuthenticationEmbeddedUI_LAAuthenticationView")]
@@ -53,6 +54,7 @@ extern_methods!(
         pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
 
         #[cfg(feature = "LocalAuthentication_LAContext")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Init initWithContext:)]
         pub unsafe fn initWithContext(
             this: Option<Allocated<Self>>,
@@ -60,6 +62,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "LocalAuthentication_LAContext")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Init initWithContext:controlSize:)]
         pub unsafe fn initWithContext_controlSize(
             this: Option<Allocated<Self>>,
@@ -68,9 +71,11 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "LocalAuthentication_LAContext")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other context)]
         pub unsafe fn context(&self) -> Id<LAContext>;
 
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(controlSize)]
         pub unsafe fn controlSize(&self) -> NSControlSize;
     }

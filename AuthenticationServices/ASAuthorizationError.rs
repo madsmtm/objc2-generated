@@ -14,6 +14,7 @@ ns_error_enum!(
         ASAuthorizationErrorInvalidResponse = 1002,
         ASAuthorizationErrorNotHandled = 1003,
         ASAuthorizationErrorFailed = 1004,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         ASAuthorizationErrorNotInteractive = 1005,
     }
 );

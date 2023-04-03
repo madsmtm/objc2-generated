@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSTintConfiguration")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSTintConfiguration;
 
     #[cfg(feature = "AppKit_NSTintConfiguration")]
@@ -28,28 +29,35 @@ unsafe impl NSSecureCoding for NSTintConfiguration {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSTintConfiguration")]
     unsafe impl NSTintConfiguration {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other defaultTintConfiguration)]
         pub unsafe fn defaultTintConfiguration() -> Id<NSTintConfiguration>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other monochromeTintConfiguration)]
         pub unsafe fn monochromeTintConfiguration() -> Id<NSTintConfiguration>;
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other tintConfigurationWithPreferredColor:)]
         pub unsafe fn tintConfigurationWithPreferredColor(color: &NSColor) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other tintConfigurationWithFixedColor:)]
         pub unsafe fn tintConfigurationWithFixedColor(color: &NSColor) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other baseTintColor)]
         pub unsafe fn baseTintColor(&self) -> Option<Id<NSColor>>;
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other equivalentContentTintColor)]
         pub unsafe fn equivalentContentTintColor(&self) -> Option<Id<NSColor>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(adaptsToUserAccentColor)]
         pub unsafe fn adaptsToUserAccentColor(&self) -> bool;
     }

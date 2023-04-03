@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSAccessibilityElement")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSAccessibilityElement;
 
     #[cfg(feature = "AppKit_NSAccessibilityElement")]
@@ -26,6 +27,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSAccessibilityElement")]
     unsafe impl NSAccessibilityElement {
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityElementWithRole:frame:label:parent:)]
         pub unsafe fn accessibilityElementWithRole_frame_label_parent(
             role: &NSAccessibilityRole,
@@ -34,12 +36,15 @@ extern_methods!(
             parent: Option<&Object>,
         ) -> Id<Object>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityAddChildElement:)]
         pub unsafe fn accessibilityAddChildElement(&self, child_element: &NSAccessibilityElement);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityFrameInParentSpace)]
         pub unsafe fn accessibilityFrameInParentSpace(&self) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityFrameInParentSpace:)]
         pub unsafe fn setAccessibilityFrameInParentSpace(
             &self,

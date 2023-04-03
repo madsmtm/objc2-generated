@@ -19,6 +19,7 @@ extern_static!(NSFileProviderInitialPageSortedByDate: &'static NSFileProviderPag
 extern_static!(NSFileProviderInitialPageSortedByName: &'static NSFileProviderPage);
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait NSFileProviderEnumerationObserver: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSArray")]
         #[method(didEnumerateItems:)]
@@ -34,6 +35,7 @@ extern_protocol!(
         #[method(finishEnumeratingWithError:)]
         unsafe fn finishEnumeratingWithError(&self, error: &NSError);
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method(suggestedPageSize)]
         unsafe fn suggestedPageSize(&self) -> NSInteger;
@@ -43,6 +45,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait NSFileProviderChangeObserver: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSArray")]
         #[method(didUpdateItems:)]
@@ -69,6 +72,7 @@ extern_protocol!(
         #[method(finishEnumeratingWithError:)]
         unsafe fn finishEnumeratingWithError(&self, error: &NSError);
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method(suggestedBatchSize)]
         unsafe fn suggestedBatchSize(&self) -> NSInteger;
@@ -78,6 +82,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait NSFileProviderEnumerator: NSObjectProtocol {
         #[method(invalidate)]
         unsafe fn invalidate(&self);

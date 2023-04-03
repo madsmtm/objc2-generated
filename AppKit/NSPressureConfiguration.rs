@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSPressureConfiguration")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSPressureConfiguration;
 
     #[cfg(feature = "AppKit_NSPressureConfiguration")]
@@ -22,15 +23,18 @@ unsafe impl NSObjectProtocol for NSPressureConfiguration {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSPressureConfiguration")]
     unsafe impl NSPressureConfiguration {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(pressureBehavior)]
         pub unsafe fn pressureBehavior(&self) -> NSPressureBehavior;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithPressureBehavior:)]
         pub unsafe fn initWithPressureBehavior(
             this: Option<Allocated<Self>>,
             pressure_behavior: NSPressureBehavior,
         ) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(set)]
         pub unsafe fn set(&self);
     }
@@ -41,10 +45,12 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSView")]
     unsafe impl NSView {
         #[cfg(feature = "AppKit_NSPressureConfiguration")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other pressureConfiguration)]
         pub unsafe fn pressureConfiguration(&self) -> Option<Id<NSPressureConfiguration>>;
 
         #[cfg(feature = "AppKit_NSPressureConfiguration")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPressureConfiguration:)]
         pub unsafe fn setPressureConfiguration(
             &self,

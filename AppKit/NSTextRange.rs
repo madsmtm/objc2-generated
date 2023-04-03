@@ -6,7 +6,9 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait NSTextLocation: NSObjectProtocol {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(compare:)]
         unsafe fn compare(
             &self,
@@ -20,6 +22,7 @@ extern_protocol!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSTextRange")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct NSTextRange;
 
     #[cfg(feature = "AppKit_NSTextRange")]

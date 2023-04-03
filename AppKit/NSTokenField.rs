@@ -6,12 +6,14 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSTokenFieldDelegate: NSTextFieldDelegate {
         #[cfg(all(
             feature = "AppKit_NSTokenField",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSString"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other tokenField:completionsForSubstring:indexOfToken:indexOfSelectedItem:)]
         unsafe fn tokenField_completionsForSubstring_indexOfToken_indexOfSelectedItem(
@@ -23,6 +25,7 @@ extern_protocol!(
         ) -> Option<Id<NSArray>>;
 
         #[cfg(all(feature = "AppKit_NSTokenField", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other tokenField:shouldAddObjects:atIndex:)]
         unsafe fn tokenField_shouldAddObjects_atIndex(
@@ -33,6 +36,7 @@ extern_protocol!(
         ) -> Id<NSArray>;
 
         #[cfg(all(feature = "AppKit_NSTokenField", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other tokenField:displayStringForRepresentedObject:)]
         unsafe fn tokenField_displayStringForRepresentedObject(
@@ -42,6 +46,7 @@ extern_protocol!(
         ) -> Option<Id<NSString>>;
 
         #[cfg(all(feature = "AppKit_NSTokenField", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other tokenField:editingStringForRepresentedObject:)]
         unsafe fn tokenField_editingStringForRepresentedObject(
@@ -51,6 +56,7 @@ extern_protocol!(
         ) -> Option<Id<NSString>>;
 
         #[cfg(all(feature = "AppKit_NSTokenField", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other tokenField:representedObjectForEditingString:)]
         unsafe fn tokenField_representedObjectForEditingString(
@@ -64,6 +70,7 @@ extern_protocol!(
             feature = "AppKit_NSTokenField",
             feature = "Foundation_NSArray"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(tokenField:writeRepresentedObjects:toPasteboard:)]
         unsafe fn tokenField_writeRepresentedObjects_toPasteboard(
@@ -78,6 +85,7 @@ extern_protocol!(
             feature = "AppKit_NSTokenField",
             feature = "Foundation_NSArray"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other tokenField:readFromPasteboard:)]
         unsafe fn tokenField_readFromPasteboard(
@@ -87,6 +95,7 @@ extern_protocol!(
         ) -> Option<Id<NSArray>>;
 
         #[cfg(all(feature = "AppKit_NSMenu", feature = "AppKit_NSTokenField"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other tokenField:menuForRepresentedObject:)]
         unsafe fn tokenField_menuForRepresentedObject(
@@ -96,6 +105,7 @@ extern_protocol!(
         ) -> Option<Id<NSMenu>>;
 
         #[cfg(feature = "AppKit_NSTokenField")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(tokenField:hasMenuForRepresentedObject:)]
         unsafe fn tokenField_hasMenuForRepresentedObject(
@@ -105,6 +115,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "AppKit_NSTokenField")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(tokenField:styleForRepresentedObject:)]
         unsafe fn tokenField_styleForRepresentedObject(
@@ -120,6 +131,7 @@ extern_protocol!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSTokenField")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSTokenField;
 
     #[cfg(feature = "AppKit_NSTokenField")]
@@ -168,35 +180,44 @@ unsafe impl NSUserInterfaceValidations for NSTokenField {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSTokenField")]
     unsafe impl NSTokenField {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSTokenFieldDelegate>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn NSTokenFieldDelegate>>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(tokenStyle)]
         pub unsafe fn tokenStyle(&self) -> NSTokenStyle;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTokenStyle:)]
         pub unsafe fn setTokenStyle(&self, token_style: NSTokenStyle);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(completionDelay)]
         pub unsafe fn completionDelay(&self) -> NSTimeInterval;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCompletionDelay:)]
         pub unsafe fn setCompletionDelay(&self, completion_delay: NSTimeInterval);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(defaultCompletionDelay)]
         pub unsafe fn defaultCompletionDelay() -> NSTimeInterval;
 
         #[cfg(feature = "Foundation_NSCharacterSet")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other tokenizingCharacterSet)]
         pub unsafe fn tokenizingCharacterSet(&self) -> Id<NSCharacterSet>;
 
         #[cfg(feature = "Foundation_NSCharacterSet")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTokenizingCharacterSet:)]
         pub unsafe fn setTokenizingCharacterSet(
             &self,
@@ -204,6 +225,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSCharacterSet")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other defaultTokenizingCharacterSet)]
         pub unsafe fn defaultTokenizingCharacterSet() -> Id<NSCharacterSet>;
     }
@@ -216,20 +238,24 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTokenField")]
     unsafe impl NSTokenField {
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other labelWithString:)]
         pub unsafe fn labelWithString(string_value: &NSString) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other wrappingLabelWithString:)]
         pub unsafe fn wrappingLabelWithString(string_value: &NSString) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other labelWithAttributedString:)]
         pub unsafe fn labelWithAttributedString(
             attributed_string_value: &NSAttributedString,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other textFieldWithString:)]
         pub unsafe fn textFieldWithString(string_value: &NSString) -> Id<Self>;
     }
@@ -239,6 +265,7 @@ extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(feature = "AppKit_NSTokenField")]
     unsafe impl NSTokenField {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }

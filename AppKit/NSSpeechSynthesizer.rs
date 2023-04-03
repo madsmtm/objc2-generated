@@ -97,9 +97,13 @@ extern_static!(NSVoiceLanguage: &'static NSVoiceAttributeKey);
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSSpeechBoundary {
+        #[cfg(not(any(target_os = "ios")))]
         NSSpeechImmediateBoundary = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSSpeechWordBoundary = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSSpeechSentenceBoundary = 2,
     }
 );
@@ -107,6 +111,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSSpeechSynthesizer;
 
     #[cfg(feature = "AppKit_NSSpeechSynthesizer")]
@@ -121,6 +126,7 @@ unsafe impl NSObjectProtocol for NSSpeechSynthesizer {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSSpeechSynthesizer")]
     unsafe impl NSSpeechSynthesizer {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithVoice:)]
         pub unsafe fn initWithVoice(
             this: Option<Allocated<Self>>,
@@ -128,64 +134,82 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(startSpeakingString:)]
         pub unsafe fn startSpeakingString(&self, string: &NSString) -> bool;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(startSpeakingString:toURL:)]
         pub unsafe fn startSpeakingString_toURL(&self, string: &NSString, url: &NSURL) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isSpeaking)]
         pub unsafe fn isSpeaking(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(stopSpeaking)]
         pub unsafe fn stopSpeaking(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(stopSpeakingAtBoundary:)]
         pub unsafe fn stopSpeakingAtBoundary(&self, boundary: NSSpeechBoundary);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(pauseSpeakingAtBoundary:)]
         pub unsafe fn pauseSpeakingAtBoundary(&self, boundary: NSSpeechBoundary);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(continueSpeaking)]
         pub unsafe fn continueSpeaking(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Id<ProtocolObject<dyn NSSpeechSynthesizerDelegate>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn NSSpeechSynthesizerDelegate>>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other voice)]
         pub unsafe fn voice(&self) -> Option<Id<NSSpeechSynthesizerVoiceName>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setVoice:)]
         pub unsafe fn setVoice(&self, voice: Option<&NSSpeechSynthesizerVoiceName>) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rate)]
         pub unsafe fn rate(&self) -> c_float;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setRate:)]
         pub unsafe fn setRate(&self, rate: c_float);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(volume)]
         pub unsafe fn volume(&self) -> c_float;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setVolume:)]
         pub unsafe fn setVolume(&self, volume: c_float);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(usesFeedbackWindow)]
         pub unsafe fn usesFeedbackWindow(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setUsesFeedbackWindow:)]
         pub unsafe fn setUsesFeedbackWindow(&self, uses_feedback_window: bool);
 
         #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(addSpeechDictionary:)]
         pub unsafe fn addSpeechDictionary(
             &self,
@@ -193,10 +217,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other phonemesFromText:)]
         pub unsafe fn phonemesFromText(&self, text: &NSString) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSError")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other objectForProperty:error:_)]
         pub unsafe fn objectForProperty_error(
             &self,
@@ -204,6 +230,7 @@ extern_methods!(
         ) -> Result<Id<Object>, Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSError")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setObject:forProperty:error:_)]
         pub unsafe fn setObject_forProperty_error(
             &self,
@@ -211,17 +238,21 @@ extern_methods!(
             property: &NSSpeechPropertyKey,
         ) -> Result<(), Id<NSError>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isAnyApplicationSpeaking)]
         pub unsafe fn isAnyApplicationSpeaking() -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other defaultVoice)]
         pub unsafe fn defaultVoice() -> Id<NSSpeechSynthesizerVoiceName>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other availableVoices)]
         pub unsafe fn availableVoices() -> Id<NSArray<NSSpeechSynthesizerVoiceName>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other attributesForVoice:)]
         pub unsafe fn attributesForVoice(
             voice: &NSSpeechSynthesizerVoiceName,
@@ -230,8 +261,10 @@ extern_methods!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSSpeechSynthesizerDelegate: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(speechSynthesizer:didFinishSpeaking:)]
         unsafe fn speechSynthesizer_didFinishSpeaking(
@@ -244,6 +277,7 @@ extern_protocol!(
             feature = "AppKit_NSSpeechSynthesizer",
             feature = "Foundation_NSString"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(speechSynthesizer:willSpeakWord:ofString:)]
         unsafe fn speechSynthesizer_willSpeakWord_ofString(
@@ -254,6 +288,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(speechSynthesizer:willSpeakPhoneme:)]
         unsafe fn speechSynthesizer_willSpeakPhoneme(
@@ -266,6 +301,7 @@ extern_protocol!(
             feature = "AppKit_NSSpeechSynthesizer",
             feature = "Foundation_NSString"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(speechSynthesizer:didEncounterErrorAtIndex:ofString:message:)]
         unsafe fn speechSynthesizer_didEncounterErrorAtIndex_ofString_message(
@@ -280,6 +316,7 @@ extern_protocol!(
             feature = "AppKit_NSSpeechSynthesizer",
             feature = "Foundation_NSString"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(speechSynthesizer:didEncounterSyncMessage:)]
         unsafe fn speechSynthesizer_didEncounterSyncMessage(

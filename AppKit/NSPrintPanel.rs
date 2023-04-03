@@ -7,14 +7,23 @@ use crate::Foundation::*;
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSPrintPanelOptions {
+        #[cfg(not(any(target_os = "ios")))]
         NSPrintPanelShowsCopies = 1 << 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSPrintPanelShowsPageRange = 1 << 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSPrintPanelShowsPaperSize = 1 << 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSPrintPanelShowsOrientation = 1 << 3,
+        #[cfg(not(any(target_os = "ios")))]
         NSPrintPanelShowsScaling = 1 << 4,
+        #[cfg(not(any(target_os = "ios")))]
         NSPrintPanelShowsPrintSelection = 1 << 5,
+        #[cfg(not(any(target_os = "ios")))]
         NSPrintPanelShowsPageSetupAccessory = 1 << 8,
+        #[cfg(not(any(target_os = "ios")))]
         NSPrintPanelShowsPreview = 1 << 17,
     }
 );
@@ -40,18 +49,21 @@ extern_static!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSPrintPanelAccessorizing {
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other localizedSummaryItems)]
         unsafe fn localizedSummaryItems(
             &self,
         ) -> Id<NSArray<NSDictionary<NSPrintPanelAccessorySummaryKey, NSString>>>;
 
         #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other keyPathsForValuesAffectingPreview)]
         unsafe fn keyPathsForValuesAffectingPreview(&self) -> Id<NSSet<NSString>>;
@@ -63,6 +75,7 @@ extern_protocol!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSPrintPanel")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSPrintPanel;
 
     #[cfg(feature = "AppKit_NSPrintPanel")]
@@ -77,48 +90,61 @@ unsafe impl NSObjectProtocol for NSPrintPanel {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSPrintPanel")]
     unsafe impl NSPrintPanel {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other printPanel)]
         pub unsafe fn printPanel() -> Id<NSPrintPanel>;
 
         #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(addAccessoryController:)]
         pub unsafe fn addAccessoryController(&self, accessory_controller: &NSViewController);
 
         #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeAccessoryController:)]
         pub unsafe fn removeAccessoryController(&self, accessory_controller: &NSViewController);
 
         #[cfg(all(feature = "AppKit_NSViewController", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessoryControllers)]
         pub unsafe fn accessoryControllers(&self) -> Id<NSArray<NSViewController>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(options)]
         pub unsafe fn options(&self) -> NSPrintPanelOptions;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setOptions:)]
         pub unsafe fn setOptions(&self, options: NSPrintPanelOptions);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDefaultButtonTitle:)]
         pub unsafe fn setDefaultButtonTitle(&self, default_button_title: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other defaultButtonTitle)]
         pub unsafe fn defaultButtonTitle(&self) -> Option<Id<NSString>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other helpAnchor)]
         pub unsafe fn helpAnchor(&self) -> Option<Id<NSHelpAnchorName>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setHelpAnchor:)]
         pub unsafe fn setHelpAnchor(&self, help_anchor: Option<&NSHelpAnchorName>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other jobStyleHint)]
         pub unsafe fn jobStyleHint(&self) -> Option<Id<NSPrintPanelJobStyleHint>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setJobStyleHint:)]
         pub unsafe fn setJobStyleHint(&self, job_style_hint: Option<&NSPrintPanelJobStyleHint>);
 
         #[cfg(all(feature = "AppKit_NSPrintInfo", feature = "AppKit_NSWindow"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(beginSheetWithPrintInfo:modalForWindow:delegate:didEndSelector:contextInfo:)]
         pub unsafe fn beginSheetWithPrintInfo_modalForWindow_delegate_didEndSelector_contextInfo(
             &self,
@@ -130,13 +156,16 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSPrintInfo")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(runModalWithPrintInfo:)]
         pub unsafe fn runModalWithPrintInfo(&self, print_info: &NSPrintInfo) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(runModal)]
         pub unsafe fn runModal(&self) -> NSInteger;
 
         #[cfg(feature = "AppKit_NSPrintInfo")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other printInfo)]
         pub unsafe fn printInfo(&self) -> Id<NSPrintInfo>;
     }
@@ -148,19 +177,23 @@ extern_methods!(
     unsafe impl NSPrintPanel {
         #[cfg(feature = "AppKit_NSView")]
         #[deprecated = "Use -addAccessoryController instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessoryView:)]
         pub unsafe fn setAccessoryView(&self, accessory_view: Option<&NSView>);
 
         #[cfg(feature = "AppKit_NSView")]
         #[deprecated = "Use -accessoryControllers instead. For compatibility this returns the view of the first accessory controller, or nil"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessoryView)]
         pub unsafe fn accessoryView(&self) -> Option<Id<NSView>>;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(updateFromPrintInfo)]
         pub unsafe fn updateFromPrintInfo(&self);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(finalWritePrintInfo)]
         pub unsafe fn finalWritePrintInfo(&self);
     }

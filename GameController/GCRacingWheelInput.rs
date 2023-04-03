@@ -8,6 +8,7 @@ use crate::GameController::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GameController_GCRacingWheelInputState")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct GCRacingWheelInputState;
 
     #[cfg(feature = "GameController_GCRacingWheelInputState")]
@@ -47,6 +48,7 @@ extern_methods!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GameController_GCRacingWheelInput")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct GCRacingWheelInput;
 
     #[cfg(feature = "GameController_GCRacingWheelInput")]

@@ -335,7 +335,9 @@ ns_options!(
         NSURLBookmarkCreationPreferFileIDResolution = 1 << 8,
         NSURLBookmarkCreationMinimalBookmark = 1 << 9,
         NSURLBookmarkCreationSuitableForBookmarkFile = 1 << 10,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         NSURLBookmarkCreationWithSecurityScope = 1 << 11,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         NSURLBookmarkCreationSecurityScopeAllowOnlyReadAccess = 1 << 12,
         NSURLBookmarkCreationWithoutImplicitSecurityScope = 1 << 29,
     }
@@ -346,6 +348,7 @@ ns_options!(
     pub enum NSURLBookmarkResolutionOptions {
         NSURLBookmarkResolutionWithoutUI = 1 << 8,
         NSURLBookmarkResolutionWithoutMounting = 1 << 9,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         NSURLBookmarkResolutionWithSecurityScope = 1 << 10,
         NSURLBookmarkResolutionWithoutImplicitStartAccessing = 1 << 15,
     }

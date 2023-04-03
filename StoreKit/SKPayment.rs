@@ -28,6 +28,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other paymentWithProductIdentifier:)]
         pub unsafe fn paymentWithProductIdentifier(identifier: &NSString) -> Id<Object>;
 

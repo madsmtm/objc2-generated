@@ -9,6 +9,7 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GameKit_GKCloudPlayer")]
     #[deprecated = "GKGameSession is deprecated. Use GKPlayer for both real-time and turn-based matchmaking APIs."]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct GKCloudPlayer;
 
     #[cfg(feature = "GameKit_GKCloudPlayer")]

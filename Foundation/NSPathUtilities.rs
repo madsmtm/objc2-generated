@@ -148,10 +148,12 @@ ns_enum!(
         NSPrinterDescriptionDirectory = 20,
         NSSharedPublicDirectory = 21,
         NSPreferencePanesDirectory = 22,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         NSApplicationScriptsDirectory = 23,
         NSItemReplacementDirectory = 99,
         NSAllApplicationsDirectory = 100,
         NSAllLibrariesDirectory = 101,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSTrashDirectory = 102,
     }
 );

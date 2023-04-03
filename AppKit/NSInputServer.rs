@@ -6,20 +6,25 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSInputServiceProvider {
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(insertText:client:)]
         unsafe fn insertText_client(&self, string: Option<&Object>, sender: Option<&Object>);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(doCommandBySelector:client:)]
         unsafe fn doCommandBySelector_client(&self, selector: Option<Sel>, sender: Option<&Object>);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(markedTextAbandoned:)]
         unsafe fn markedTextAbandoned(&self, sender: Option<&Object>);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(markedTextSelectionChanged:client:)]
         unsafe fn markedTextSelectionChanged_client(
             &self,
@@ -28,42 +33,52 @@ extern_protocol!(
         );
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(terminate:)]
         unsafe fn terminate(&self, sender: Option<&Object>);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(canBeDisabled)]
         unsafe fn canBeDisabled(&self) -> bool;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(wantsToInterpretAllKeystrokes)]
         unsafe fn wantsToInterpretAllKeystrokes(&self) -> bool;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(wantsToHandleMouseEvents)]
         unsafe fn wantsToHandleMouseEvents(&self) -> bool;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(wantsToDelayTextChangeNotifications)]
         unsafe fn wantsToDelayTextChangeNotifications(&self) -> bool;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(inputClientBecomeActive:)]
         unsafe fn inputClientBecomeActive(&self, sender: Option<&Object>);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(inputClientResignActive:)]
         unsafe fn inputClientResignActive(&self, sender: Option<&Object>);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(inputClientEnabled:)]
         unsafe fn inputClientEnabled(&self, sender: Option<&Object>);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(inputClientDisabled:)]
         unsafe fn inputClientDisabled(&self, sender: Option<&Object>);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(activeConversationWillChange:fromOldConversation:)]
         unsafe fn activeConversationWillChange_fromOldConversation(
             &self,
@@ -72,6 +87,7 @@ extern_protocol!(
         );
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(activeConversationChanged:toNewConversation:)]
         unsafe fn activeConversationChanged_toNewConversation(
             &self,
@@ -84,8 +100,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSInputServerMouseTracker {
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(mouseDownOnCharacterIndex:atCoordinate:withModifier:client:)]
         unsafe fn mouseDownOnCharacterIndex_atCoordinate_withModifier_client(
             &self,
@@ -96,6 +114,7 @@ extern_protocol!(
         ) -> bool;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(mouseDraggedOnCharacterIndex:atCoordinate:withModifier:client:)]
         unsafe fn mouseDraggedOnCharacterIndex_atCoordinate_withModifier_client(
             &self,
@@ -106,6 +125,7 @@ extern_protocol!(
         ) -> bool;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(mouseUpOnCharacterIndex:atCoordinate:withModifier:client:)]
         unsafe fn mouseUpOnCharacterIndex_atCoordinate_withModifier_client(
             &self,
@@ -123,6 +143,7 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSInputServer")]
     #[deprecated]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSInputServer;
 
     #[cfg(feature = "AppKit_NSInputServer")]
@@ -145,6 +166,7 @@ extern_methods!(
     unsafe impl NSInputServer {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithDelegate:name:)]
         pub unsafe fn initWithDelegate_name(
             this: Option<Allocated<Self>>,

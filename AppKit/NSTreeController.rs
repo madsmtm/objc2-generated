@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSTreeController")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSTreeController;
 
     #[cfg(feature = "AppKit_NSTreeController")]
@@ -32,34 +33,42 @@ unsafe impl NSObjectProtocol for NSTreeController {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSTreeController")]
     unsafe impl NSTreeController {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rearrangeObjects)]
         pub unsafe fn rearrangeObjects(&self);
 
         #[cfg(feature = "AppKit_NSTreeNode")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other arrangedObjects)]
         pub unsafe fn arrangedObjects(&self) -> Id<NSTreeNode>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other childrenKeyPath)]
         pub unsafe fn childrenKeyPath(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setChildrenKeyPath:)]
         pub unsafe fn setChildrenKeyPath(&self, children_key_path: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other countKeyPath)]
         pub unsafe fn countKeyPath(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCountKeyPath:)]
         pub unsafe fn setCountKeyPath(&self, count_key_path: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other leafKeyPath)]
         pub unsafe fn leafKeyPath(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setLeafKeyPath:)]
         pub unsafe fn setLeafKeyPath(&self, leaf_key_path: Option<&NSString>);
 
@@ -67,6 +76,7 @@ extern_methods!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSSortDescriptor"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other sortDescriptors)]
         pub unsafe fn sortDescriptors(&self) -> Id<NSArray<NSSortDescriptor>>;
 
@@ -74,40 +84,52 @@ extern_methods!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSSortDescriptor"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSortDescriptors:)]
         pub unsafe fn setSortDescriptors(&self, sort_descriptors: &NSArray<NSSortDescriptor>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other content)]
         pub unsafe fn content(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setContent:)]
         pub unsafe fn setContent(&self, content: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(add:)]
         pub unsafe fn add(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(remove:)]
         pub unsafe fn remove(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(addChild:)]
         pub unsafe fn addChild(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(insert:)]
         pub unsafe fn insert(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(insertChild:)]
         pub unsafe fn insertChild(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(canInsert)]
         pub unsafe fn canInsert(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(canInsertChild)]
         pub unsafe fn canInsertChild(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(canAddChild)]
         pub unsafe fn canAddChild(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSIndexPath")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(insertObject:atArrangedObjectIndexPath:)]
         pub unsafe fn insertObject_atArrangedObjectIndexPath(
             &self,
@@ -116,6 +138,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSIndexPath"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(insertObjects:atArrangedObjectIndexPaths:)]
         pub unsafe fn insertObjects_atArrangedObjectIndexPaths(
             &self,
@@ -124,37 +147,47 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSIndexPath")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeObjectAtArrangedObjectIndexPath:)]
         pub unsafe fn removeObjectAtArrangedObjectIndexPath(&self, index_path: &NSIndexPath);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSIndexPath"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeObjectsAtArrangedObjectIndexPaths:)]
         pub unsafe fn removeObjectsAtArrangedObjectIndexPaths(
             &self,
             index_paths: &NSArray<NSIndexPath>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(avoidsEmptySelection)]
         pub unsafe fn avoidsEmptySelection(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAvoidsEmptySelection:)]
         pub unsafe fn setAvoidsEmptySelection(&self, avoids_empty_selection: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(preservesSelection)]
         pub unsafe fn preservesSelection(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPreservesSelection:)]
         pub unsafe fn setPreservesSelection(&self, preserves_selection: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectsInsertedObjects)]
         pub unsafe fn selectsInsertedObjects(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSelectsInsertedObjects:)]
         pub unsafe fn setSelectsInsertedObjects(&self, selects_inserted_objects: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(alwaysUsesMultipleValuesMarker)]
         pub unsafe fn alwaysUsesMultipleValuesMarker(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAlwaysUsesMultipleValuesMarker:)]
         pub unsafe fn setAlwaysUsesMultipleValuesMarker(
             &self,
@@ -162,38 +195,47 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other selectedObjects)]
         pub unsafe fn selectedObjects(&self) -> Id<NSArray>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSIndexPath"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSelectionIndexPaths:)]
         pub unsafe fn setSelectionIndexPaths(&self, index_paths: &NSArray<NSIndexPath>) -> bool;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSIndexPath"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other selectionIndexPaths)]
         pub unsafe fn selectionIndexPaths(&self) -> Id<NSArray<NSIndexPath>>;
 
         #[cfg(feature = "Foundation_NSIndexPath")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSelectionIndexPath:)]
         pub unsafe fn setSelectionIndexPath(&self, index_path: Option<&NSIndexPath>) -> bool;
 
         #[cfg(feature = "Foundation_NSIndexPath")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other selectionIndexPath)]
         pub unsafe fn selectionIndexPath(&self) -> Option<Id<NSIndexPath>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSIndexPath"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(addSelectionIndexPaths:)]
         pub unsafe fn addSelectionIndexPaths(&self, index_paths: &NSArray<NSIndexPath>) -> bool;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSIndexPath"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeSelectionIndexPaths:)]
         pub unsafe fn removeSelectionIndexPaths(&self, index_paths: &NSArray<NSIndexPath>) -> bool;
 
         #[cfg(all(feature = "AppKit_NSTreeNode", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other selectedNodes)]
         pub unsafe fn selectedNodes(&self) -> Id<NSArray<NSTreeNode>>;
 
         #[cfg(all(feature = "AppKit_NSTreeNode", feature = "Foundation_NSIndexPath"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(moveNode:toIndexPath:)]
         pub unsafe fn moveNode_toIndexPath(&self, node: &NSTreeNode, index_path: &NSIndexPath);
 
@@ -202,6 +244,7 @@ extern_methods!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSIndexPath"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(moveNodes:toIndexPath:)]
         pub unsafe fn moveNodes_toIndexPath(
             &self,
@@ -210,14 +253,17 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "AppKit_NSTreeNode", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other childrenKeyPathForNode:)]
         pub unsafe fn childrenKeyPathForNode(&self, node: &NSTreeNode) -> Option<Id<NSString>>;
 
         #[cfg(all(feature = "AppKit_NSTreeNode", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other countKeyPathForNode:)]
         pub unsafe fn countKeyPathForNode(&self, node: &NSTreeNode) -> Option<Id<NSString>>;
 
         #[cfg(all(feature = "AppKit_NSTreeNode", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other leafKeyPathForNode:)]
         pub unsafe fn leafKeyPathForNode(&self, node: &NSTreeNode) -> Option<Id<NSString>>;
     }
@@ -227,6 +273,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObjectController`
     #[cfg(feature = "AppKit_NSTreeController")]
     unsafe impl NSTreeController {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithContent:)]
         pub unsafe fn initWithContent(
             this: Option<Allocated<Self>>,

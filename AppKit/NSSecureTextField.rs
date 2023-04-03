@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSSecureTextField")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSSecureTextField;
 
     #[cfg(feature = "AppKit_NSSecureTextField")]
@@ -61,6 +62,7 @@ extern_methods!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSSecureTextFieldCell")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSSecureTextFieldCell;
 
     #[cfg(feature = "AppKit_NSSecureTextFieldCell")]
@@ -88,9 +90,11 @@ unsafe impl NSUserInterfaceItemIdentification for NSSecureTextFieldCell {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSSecureTextFieldCell")]
     unsafe impl NSSecureTextFieldCell {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(echosBullets)]
         pub unsafe fn echosBullets(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setEchosBullets:)]
         pub unsafe fn setEchosBullets(&self, echos_bullets: bool);
     }
@@ -103,20 +107,24 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSSecureTextField")]
     unsafe impl NSSecureTextField {
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other labelWithString:)]
         pub unsafe fn labelWithString(string_value: &NSString) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other wrappingLabelWithString:)]
         pub unsafe fn wrappingLabelWithString(string_value: &NSString) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other labelWithAttributedString:)]
         pub unsafe fn labelWithAttributedString(
             attributed_string_value: &NSAttributedString,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other textFieldWithString:)]
         pub unsafe fn textFieldWithString(string_value: &NSString) -> Id<Self>;
     }
@@ -126,6 +134,7 @@ extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(feature = "AppKit_NSSecureTextField")]
     unsafe impl NSSecureTextField {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
@@ -136,10 +145,12 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSSecureTextFieldCell")]
     unsafe impl NSSecureTextFieldCell {
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initTextCell:)]
         pub unsafe fn initTextCell(this: Option<Allocated<Self>>, string: &NSString) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initImageCell:)]
         pub unsafe fn initImageCell(
             this: Option<Allocated<Self>>,

@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSOpenPanel")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSOpenPanel;
 
     #[cfg(feature = "AppKit_NSOpenPanel")]
@@ -47,58 +48,74 @@ unsafe impl NSUserInterfaceValidations for NSOpenPanel {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSOpenPanel")]
     unsafe impl NSOpenPanel {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other openPanel)]
         pub unsafe fn openPanel() -> Id<NSOpenPanel>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURL"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other URLs)]
         pub unsafe fn URLs(&self) -> Id<NSArray<NSURL>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(resolvesAliases)]
         pub unsafe fn resolvesAliases(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setResolvesAliases:)]
         pub unsafe fn setResolvesAliases(&self, resolves_aliases: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(canChooseDirectories)]
         pub unsafe fn canChooseDirectories(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCanChooseDirectories:)]
         pub unsafe fn setCanChooseDirectories(&self, can_choose_directories: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(allowsMultipleSelection)]
         pub unsafe fn allowsMultipleSelection(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAllowsMultipleSelection:)]
         pub unsafe fn setAllowsMultipleSelection(&self, allows_multiple_selection: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(canChooseFiles)]
         pub unsafe fn canChooseFiles(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCanChooseFiles:)]
         pub unsafe fn setCanChooseFiles(&self, can_choose_files: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(canResolveUbiquitousConflicts)]
         pub unsafe fn canResolveUbiquitousConflicts(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCanResolveUbiquitousConflicts:)]
         pub unsafe fn setCanResolveUbiquitousConflicts(
             &self,
             can_resolve_ubiquitous_conflicts: bool,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(canDownloadUbiquitousContents)]
         pub unsafe fn canDownloadUbiquitousContents(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCanDownloadUbiquitousContents:)]
         pub unsafe fn setCanDownloadUbiquitousContents(
             &self,
             can_download_ubiquitous_contents: bool,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isAccessoryViewDisclosed)]
         pub unsafe fn isAccessoryViewDisclosed(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessoryViewDisclosed:)]
         pub unsafe fn setAccessoryViewDisclosed(&self, accessory_view_disclosed: bool);
     }
@@ -110,6 +127,7 @@ extern_methods!(
     unsafe impl NSOpenPanel {
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other filenames)]
         pub unsafe fn filenames(&self) -> Id<NSArray>;
 
@@ -119,6 +137,7 @@ extern_methods!(
             feature = "Foundation_NSString"
         ))]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(beginSheetForDirectory:file:types:modalForWindow:modalDelegate:didEndSelector:contextInfo:)]
         pub unsafe fn beginSheetForDirectory_file_types_modalForWindow_modalDelegate_didEndSelector_contextInfo(
             &self,
@@ -133,6 +152,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(beginForDirectory:file:types:modelessDelegate:didEndSelector:contextInfo:)]
         pub unsafe fn beginForDirectory_file_types_modelessDelegate_didEndSelector_contextInfo(
             &self,
@@ -146,6 +166,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(runModalForDirectory:file:types:)]
         pub unsafe fn runModalForDirectory_file_types(
             &self,
@@ -156,6 +177,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(runModalForTypes:)]
         pub unsafe fn runModalForTypes(&self, file_types: Option<&NSArray>) -> NSInteger;
     }
@@ -165,6 +187,7 @@ extern_methods!(
     /// Methods declared on superclass `NSWindow`
     #[cfg(feature = "AppKit_NSOpenPanel")]
     unsafe impl NSOpenPanel {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer(
             this: Option<Allocated<Self>>,
@@ -175,6 +198,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSScreen")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:screen:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer_screen(
             this: Option<Allocated<Self>>,
@@ -186,6 +210,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other windowWithContentViewController:)]
         pub unsafe fn windowWithContentViewController(
             content_view_controller: &NSViewController,

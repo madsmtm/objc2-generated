@@ -7,10 +7,15 @@ use crate::MediaPlayer::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub enum MPMediaLibraryAuthorizationStatus {
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         MPMediaLibraryAuthorizationStatusNotDetermined = 0,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         MPMediaLibraryAuthorizationStatusDenied = 1,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         MPMediaLibraryAuthorizationStatusRestricted = 2,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         MPMediaLibraryAuthorizationStatusAuthorized = 3,
     }
 );
@@ -18,6 +23,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MediaPlayer_MPMediaLibrary")]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub struct MPMediaLibrary;
 
     #[cfg(feature = "MediaPlayer_MPMediaLibrary")]

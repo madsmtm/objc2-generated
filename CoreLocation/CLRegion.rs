@@ -7,19 +7,28 @@ use crate::Foundation::*;
 
 ns_closed_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub enum CLRegionState {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLRegionStateUnknown = 0,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLRegionStateInside = 1,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLRegionStateOutside = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub enum CLProximity {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLProximityUnknown = 0,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLProximityImmediate = 1,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLProximityNear = 2,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLProximityFar = 3,
     }
 );

@@ -25,7 +25,9 @@ ns_error_enum!(
         NSFileWriteUnsupportedSchemeError = 518,
         NSFileWriteOutOfSpaceError = 640,
         NSFileWriteVolumeReadOnlyError = 642,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         NSFileManagerUnmountUnknownError = 768,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         NSFileManagerUnmountBusyError = 769,
         NSKeyValueValidationError = 1024,
         NSFormattingError = 2048,
@@ -78,13 +80,21 @@ ns_error_enum!(
         NSBundleOnDemandResourceOutOfSpaceError = 4992,
         NSBundleOnDemandResourceExceededMaximumSizeError = 4993,
         NSBundleOnDemandResourceInvalidTagError = 4994,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSCloudSharingNetworkFailureError = 5120,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSCloudSharingQuotaExceededError = 5121,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSCloudSharingTooManyParticipantsError = 5122,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSCloudSharingConflictError = 5123,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSCloudSharingNoPermissionError = 5124,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSCloudSharingOtherError = 5375,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSCloudSharingErrorMinimum = 5120,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSCloudSharingErrorMaximum = 5375,
         NSCompressionFailedError = 5376,
         NSDecompressionFailedError = 5377,

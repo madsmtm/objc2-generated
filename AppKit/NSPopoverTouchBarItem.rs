@@ -43,10 +43,12 @@ extern_methods!(
         pub unsafe fn setCustomizationLabel(&self, customization_label: Option<&NSString>);
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other collapsedRepresentation)]
         pub unsafe fn collapsedRepresentation(&self) -> Id<NSView>;
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCollapsedRepresentation:)]
         pub unsafe fn setCollapsedRepresentation(&self, collapsed_representation: &NSView);
 
@@ -93,6 +95,7 @@ extern_methods!(
         pub unsafe fn dismissPopover(&self, sender: Option<&Object>);
 
         #[cfg(feature = "AppKit_NSGestureRecognizer")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other makeStandardActivatePopoverGestureRecognizer)]
         pub unsafe fn makeStandardActivatePopoverGestureRecognizer(
             &self,

@@ -9,13 +9,17 @@ extern_static!(MEMessageSecurityErrorDomain: &'static NSErrorDomain);
 
 ns_error_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub enum MEMessageSecurityErrorCode {
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         MEMessageSecurityEncodingError = 0,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         MEMessageSecurityDecodingError = 1,
     }
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait MEMessageSecurityHandler: MEMessageDecoder + MEMessageEncoder {
         #[cfg(all(
             feature = "Foundation_NSArray",

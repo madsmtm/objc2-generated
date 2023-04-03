@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSMenuItemCell")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSMenuItemCell;
 
     #[cfg(feature = "AppKit_NSMenuItemCell")]
@@ -36,58 +37,75 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSMenuItemCell")]
     unsafe impl NSMenuItemCell {
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initTextCell:)]
         pub unsafe fn initTextCell(this: Option<Allocated<Self>>, string: &NSString) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other menuItem)]
         pub unsafe fn menuItem(&self) -> Option<Id<NSMenuItem>>;
 
         #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMenuItem:)]
         pub unsafe fn setMenuItem(&self, menu_item: Option<&NSMenuItem>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(needsSizing)]
         pub unsafe fn needsSizing(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setNeedsSizing:)]
         pub unsafe fn setNeedsSizing(&self, needs_sizing: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(calcSize)]
         pub unsafe fn calcSize(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(needsDisplay)]
         pub unsafe fn needsDisplay(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setNeedsDisplay:)]
         pub unsafe fn setNeedsDisplay(&self, needs_display: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(stateImageWidth)]
         pub unsafe fn stateImageWidth(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(imageWidth)]
         pub unsafe fn imageWidth(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(titleWidth)]
         pub unsafe fn titleWidth(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(keyEquivalentWidth)]
         pub unsafe fn keyEquivalentWidth(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(stateImageRectForBounds:)]
         pub unsafe fn stateImageRectForBounds(&self, cell_frame: NSRect) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(titleRectForBounds:)]
         pub unsafe fn titleRectForBounds(&self, cell_frame: NSRect) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(keyEquivalentRectForBounds:)]
         pub unsafe fn keyEquivalentRectForBounds(&self, cell_frame: NSRect) -> NSRect;
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawSeparatorItemWithFrame:inView:)]
         pub unsafe fn drawSeparatorItemWithFrame_inView(
             &self,
@@ -96,6 +114,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawStateImageWithFrame:inView:)]
         pub unsafe fn drawStateImageWithFrame_inView(
             &self,
@@ -104,14 +123,17 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawImageWithFrame:inView:)]
         pub unsafe fn drawImageWithFrame_inView(&self, cell_frame: NSRect, control_view: &NSView);
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawTitleWithFrame:inView:)]
         pub unsafe fn drawTitleWithFrame_inView(&self, cell_frame: NSRect, control_view: &NSView);
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawKeyEquivalentWithFrame:inView:)]
         pub unsafe fn drawKeyEquivalentWithFrame_inView(
             &self,
@@ -120,6 +142,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawBorderAndBackgroundWithFrame:inView:)]
         pub unsafe fn drawBorderAndBackgroundWithFrame_inView(
             &self,
@@ -127,9 +150,11 @@ extern_methods!(
             control_view: &NSView,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(tag)]
         pub unsafe fn tag(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTag:)]
         pub unsafe fn setTag(&self, tag: NSInteger);
     }
@@ -140,6 +165,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSMenuItemCell")]
     unsafe impl NSMenuItemCell {
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initImageCell:)]
         pub unsafe fn initImageCell(
             this: Option<Allocated<Self>>,

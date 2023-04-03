@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSComboBoxCell")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSComboBoxCell;
 
     #[cfg(feature = "AppKit_NSComboBoxCell")]
@@ -35,131 +36,170 @@ unsafe impl NSUserInterfaceItemIdentification for NSComboBoxCell {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSComboBoxCell")]
     unsafe impl NSComboBoxCell {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(hasVerticalScroller)]
         pub unsafe fn hasVerticalScroller(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setHasVerticalScroller:)]
         pub unsafe fn setHasVerticalScroller(&self, has_vertical_scroller: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(intercellSpacing)]
         pub unsafe fn intercellSpacing(&self) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setIntercellSpacing:)]
         pub unsafe fn setIntercellSpacing(&self, intercell_spacing: NSSize);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(itemHeight)]
         pub unsafe fn itemHeight(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setItemHeight:)]
         pub unsafe fn setItemHeight(&self, item_height: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(numberOfVisibleItems)]
         pub unsafe fn numberOfVisibleItems(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setNumberOfVisibleItems:)]
         pub unsafe fn setNumberOfVisibleItems(&self, number_of_visible_items: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isButtonBordered)]
         pub unsafe fn isButtonBordered(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setButtonBordered:)]
         pub unsafe fn setButtonBordered(&self, button_bordered: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(reloadData)]
         pub unsafe fn reloadData(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(noteNumberOfItemsChanged)]
         pub unsafe fn noteNumberOfItemsChanged(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(usesDataSource)]
         pub unsafe fn usesDataSource(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setUsesDataSource:)]
         pub unsafe fn setUsesDataSource(&self, uses_data_source: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(scrollItemAtIndexToTop:)]
         pub unsafe fn scrollItemAtIndexToTop(&self, index: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(scrollItemAtIndexToVisible:)]
         pub unsafe fn scrollItemAtIndexToVisible(&self, index: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectItemAtIndex:)]
         pub unsafe fn selectItemAtIndex(&self, index: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(deselectItemAtIndex:)]
         pub unsafe fn deselectItemAtIndex(&self, index: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(indexOfSelectedItem)]
         pub unsafe fn indexOfSelectedItem(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(numberOfItems)]
         pub unsafe fn numberOfItems(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(completes)]
         pub unsafe fn completes(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCompletes:)]
         pub unsafe fn setCompletes(&self, completes: bool);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other completedString:)]
         pub unsafe fn completedString(&self, string: &NSString) -> Option<Id<NSString>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other dataSource)]
         pub unsafe fn dataSource(&self)
             -> Option<Id<ProtocolObject<dyn NSComboBoxCellDataSource>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(
             &self,
             data_source: Option<&ProtocolObject<dyn NSComboBoxCellDataSource>>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(addItemWithObjectValue:)]
         pub unsafe fn addItemWithObjectValue(&self, object: &Object);
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(addItemsWithObjectValues:)]
         pub unsafe fn addItemsWithObjectValues(&self, objects: &NSArray);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(insertItemWithObjectValue:atIndex:)]
         pub unsafe fn insertItemWithObjectValue_atIndex(&self, object: &Object, index: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeItemWithObjectValue:)]
         pub unsafe fn removeItemWithObjectValue(&self, object: &Object);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeItemAtIndex:)]
         pub unsafe fn removeItemAtIndex(&self, index: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeAllItems)]
         pub unsafe fn removeAllItems(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectItemWithObjectValue:)]
         pub unsafe fn selectItemWithObjectValue(&self, object: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other itemObjectValueAtIndex:)]
         pub unsafe fn itemObjectValueAtIndex(&self, index: NSInteger) -> Id<Object>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other objectValueOfSelectedItem)]
         pub unsafe fn objectValueOfSelectedItem(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(indexOfItemWithObjectValue:)]
         pub unsafe fn indexOfItemWithObjectValue(&self, object: &Object) -> NSInteger;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other objectValues)]
         pub unsafe fn objectValues(&self) -> Id<NSArray>;
     }
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSComboBoxCellDataSource: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSComboBoxCell")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(numberOfItemsInComboBoxCell:)]
         unsafe fn numberOfItemsInComboBoxCell(&self, combo_box_cell: &NSComboBoxCell) -> NSInteger;
 
         #[cfg(feature = "AppKit_NSComboBoxCell")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other comboBoxCell:objectValueForItemAtIndex:)]
         unsafe fn comboBoxCell_objectValueForItemAtIndex(
@@ -169,6 +209,7 @@ extern_protocol!(
         ) -> Id<Object>;
 
         #[cfg(all(feature = "AppKit_NSComboBoxCell", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(comboBoxCell:indexOfItemWithStringValue:)]
         unsafe fn comboBoxCell_indexOfItemWithStringValue(
@@ -178,6 +219,7 @@ extern_protocol!(
         ) -> NSUInteger;
 
         #[cfg(all(feature = "AppKit_NSComboBoxCell", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other comboBoxCell:completedString:)]
         unsafe fn comboBoxCell_completedString(
@@ -195,10 +237,12 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSComboBoxCell")]
     unsafe impl NSComboBoxCell {
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initTextCell:)]
         pub unsafe fn initTextCell(this: Option<Allocated<Self>>, string: &NSString) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initImageCell:)]
         pub unsafe fn initImageCell(
             this: Option<Allocated<Self>>,

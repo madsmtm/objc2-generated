@@ -49,11 +49,13 @@ extern_methods!(
         pub unsafe fn state(&self) -> SKDownloadState;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method(downloadState)]
         pub unsafe fn downloadState(&self) -> SKDownloadState;
 
         #[cfg(feature = "Foundation_NSNumber")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other contentLength)]
         pub unsafe fn contentLength(&self) -> Id<NSNumber>;
 
@@ -96,11 +98,13 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
         #[deprecated = "Hosted content is no longer supported"]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other contentURLForProductID:)]
         pub unsafe fn contentURLForProductID(product_id: &NSString) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Hosted content is no longer supported"]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(deleteContentForProductID:)]
         pub unsafe fn deleteContentForProductID(product_id: &NSString);
     }

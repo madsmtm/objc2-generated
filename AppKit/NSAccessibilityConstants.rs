@@ -244,9 +244,13 @@ extern_static!(NSAccessibilityAnnotationLocation: &'static NSAccessibilityAnnota
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSAccessibilityAnnotationPosition {
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityAnnotationPositionFullRange = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityAnnotationPositionStart = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityAnnotationPositionEnd = 2,
     }
 );
@@ -305,9 +309,13 @@ extern_static!(NSAccessibilityExtrasMenuBarAttribute: &'static NSAccessibilityAt
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSAccessibilityOrientation {
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityOrientationUnknown = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityOrientationVertical = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityOrientationHorizontal = 2,
     }
 );
@@ -417,9 +425,13 @@ extern_static!(
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSAccessibilitySortDirection {
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilitySortDirectionUnknown = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilitySortDirectionAscending = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilitySortDirectionDescending = 2,
     }
 );
@@ -498,14 +510,23 @@ extern_static!(NSAccessibilityUnknownMarkerTypeValue: &'static NSAccessibilityRu
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSAccessibilityRulerMarkerType {
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityRulerMarkerTypeUnknown = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityRulerMarkerTypeTabStopLeft = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityRulerMarkerTypeTabStopRight = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityRulerMarkerTypeTabStopCenter = 3,
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityRulerMarkerTypeTabStopDecimal = 4,
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityRulerMarkerTypeIndentHead = 5,
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityRulerMarkerTypeIndentTail = 6,
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityRulerMarkerTypeIndentFirstLine = 7,
     }
 );
@@ -526,11 +547,17 @@ extern_static!(NSAccessibilityUnknownUnitValue: &'static NSAccessibilityRulerUni
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSAccessibilityUnits {
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityUnitsUnknown = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityUnitsInches = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityUnitsCentimeters = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityUnitsPoints = 3,
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityUnitsPicas = 4,
     }
 );
@@ -863,6 +890,7 @@ extern_static!(NSAccessibilityAnnouncementKey: &'static NSAccessibilityNotificat
 
 extern_fn!(
     #[cfg(feature = "Foundation_NSDictionary")]
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSAccessibilityPostNotificationWithUserInfo(
         element: &Object,
         notification: &NSAccessibilityNotificationName,
@@ -872,9 +900,13 @@ extern_fn!(
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSAccessibilityPriorityLevel {
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityPriorityLow = 10,
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityPriorityMedium = 50,
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityPriorityHigh = 90,
     }
 );

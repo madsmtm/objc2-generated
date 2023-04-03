@@ -7,6 +7,7 @@ use crate::MetricKit::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MetricKit_MXMetric")]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub struct MXMetric;
 
     #[cfg(feature = "MetricKit_MXMetric")]
@@ -33,10 +34,12 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[deprecated]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other DictionaryRepresentation)]
         pub unsafe fn DictionaryRepresentation(&self) -> Id<NSDictionary>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other dictionaryRepresentation)]
         pub unsafe fn dictionaryRepresentation(&self) -> Id<NSDictionary>;
     }

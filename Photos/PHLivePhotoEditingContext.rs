@@ -110,6 +110,7 @@ extern_static!(PHLivePhotoEditingErrorDomain: &'static NSString);
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum PHLivePhotoEditingErrorCode {
         #[deprecated]
         PHLivePhotoEditingErrorCodeUnknown = 0,

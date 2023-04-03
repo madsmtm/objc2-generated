@@ -10,6 +10,7 @@ extern_static!(NSAppKitVersionNumberWithDockTilePlugInSupport: NSAppKitVersion =
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSDockTile")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSDockTile;
 
     #[cfg(feature = "AppKit_NSDockTile")]
@@ -24,46 +25,58 @@ unsafe impl NSObjectProtocol for NSDockTile {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSDockTile")]
     unsafe impl NSDockTile {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(size)]
         pub unsafe fn size(&self) -> NSSize;
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other contentView)]
         pub unsafe fn contentView(&self) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setContentView:)]
         pub unsafe fn setContentView(&self, content_view: Option<&NSView>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(display)]
         pub unsafe fn display(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(showsApplicationBadge)]
         pub unsafe fn showsApplicationBadge(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setShowsApplicationBadge:)]
         pub unsafe fn setShowsApplicationBadge(&self, shows_application_badge: bool);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other badgeLabel)]
         pub unsafe fn badgeLabel(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBadgeLabel:)]
         pub unsafe fn setBadgeLabel(&self, badge_label: Option<&NSString>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other owner)]
         pub unsafe fn owner(&self) -> Option<Id<Object>>;
     }
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSDockTilePlugIn: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSDockTile")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDockTile:)]
         unsafe fn setDockTile(&self, dock_tile: Option<&NSDockTile>);
 
         #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other dockMenu)]
         unsafe fn dockMenu(&self) -> Option<Id<NSMenu>>;

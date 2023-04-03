@@ -10,7 +10,9 @@ ns_error_enum!(
     #[underlying(NSInteger)]
     pub enum ASWebAuthenticationSessionErrorCode {
         ASWebAuthenticationSessionErrorCodeCanceledLogin = 1,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         ASWebAuthenticationSessionErrorCodePresentationContextNotProvided = 2,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         ASWebAuthenticationSessionErrorCodePresentationContextInvalid = 3,
     }
 );
@@ -43,11 +45,13 @@ extern_methods!(
             completion_handler: ASWebAuthenticationSessionCompletionHandler,
         ) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other presentationContextProvider)]
         pub unsafe fn presentationContextProvider(
             &self,
         ) -> Option<Id<ProtocolObject<dyn ASWebAuthenticationPresentationContextProviding>>>;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(setPresentationContextProvider:)]
         pub unsafe fn setPresentationContextProvider(
             &self,
@@ -83,6 +87,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait ASWebAuthenticationPresentationContextProviding:
         NSObjectProtocol
     {

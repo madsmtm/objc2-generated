@@ -7,29 +7,43 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSDatePickerStyle {
+        #[cfg(not(any(target_os = "ios")))]
         NSDatePickerStyleTextFieldAndStepper = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSDatePickerStyleClockAndCalendar = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSDatePickerStyleTextField = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSDatePickerMode {
+        #[cfg(not(any(target_os = "ios")))]
         NSDatePickerModeSingle = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSDatePickerModeRange = 1,
     }
 );
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSDatePickerElementFlags {
+        #[cfg(not(any(target_os = "ios")))]
         NSDatePickerElementFlagHourMinute = 0x000c,
+        #[cfg(not(any(target_os = "ios")))]
         NSDatePickerElementFlagHourMinuteSecond = 0x000e,
+        #[cfg(not(any(target_os = "ios")))]
         NSDatePickerElementFlagTimeZone = 0x0010,
+        #[cfg(not(any(target_os = "ios")))]
         NSDatePickerElementFlagYearMonth = 0x00c0,
+        #[cfg(not(any(target_os = "ios")))]
         NSDatePickerElementFlagYearMonthDay = 0x00e0,
+        #[cfg(not(any(target_os = "ios")))]
         NSDatePickerElementFlagEra = 0x0100,
     }
 );
@@ -37,6 +51,7 @@ ns_options!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSDatePickerCell")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSDatePickerCell;
 
     #[cfg(feature = "AppKit_NSDatePickerCell")]
@@ -65,117 +80,148 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSDatePickerCell")]
     unsafe impl NSDatePickerCell {
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initTextCell:)]
         pub unsafe fn initTextCell(this: Option<Allocated<Self>>, string: &NSString) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initImageCell:)]
         pub unsafe fn initImageCell(
             this: Option<Allocated<Self>>,
             image: Option<&NSImage>,
         ) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(datePickerStyle)]
         pub unsafe fn datePickerStyle(&self) -> NSDatePickerStyle;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDatePickerStyle:)]
         pub unsafe fn setDatePickerStyle(&self, date_picker_style: NSDatePickerStyle);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawsBackground)]
         pub unsafe fn drawsBackground(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDrawsBackground:)]
         pub unsafe fn setDrawsBackground(&self, draws_background: bool);
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Id<NSColor>;
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: &NSColor);
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other textColor)]
         pub unsafe fn textColor(&self) -> Id<NSColor>;
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTextColor:)]
         pub unsafe fn setTextColor(&self, text_color: &NSColor);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(datePickerMode)]
         pub unsafe fn datePickerMode(&self) -> NSDatePickerMode;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDatePickerMode:)]
         pub unsafe fn setDatePickerMode(&self, date_picker_mode: NSDatePickerMode);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(datePickerElements)]
         pub unsafe fn datePickerElements(&self) -> NSDatePickerElementFlags;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDatePickerElements:)]
         pub unsafe fn setDatePickerElements(&self, date_picker_elements: NSDatePickerElementFlags);
 
         #[cfg(feature = "Foundation_NSCalendar")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other calendar)]
         pub unsafe fn calendar(&self) -> Option<Id<NSCalendar>>;
 
         #[cfg(feature = "Foundation_NSCalendar")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCalendar:)]
         pub unsafe fn setCalendar(&self, calendar: Option<&NSCalendar>);
 
         #[cfg(feature = "Foundation_NSLocale")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other locale)]
         pub unsafe fn locale(&self) -> Option<Id<NSLocale>>;
 
         #[cfg(feature = "Foundation_NSLocale")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setLocale:)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
         #[cfg(feature = "Foundation_NSTimeZone")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other timeZone)]
         pub unsafe fn timeZone(&self) -> Option<Id<NSTimeZone>>;
 
         #[cfg(feature = "Foundation_NSTimeZone")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTimeZone:)]
         pub unsafe fn setTimeZone(&self, time_zone: Option<&NSTimeZone>);
 
         #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other dateValue)]
         pub unsafe fn dateValue(&self) -> Id<NSDate>;
 
         #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDateValue:)]
         pub unsafe fn setDateValue(&self, date_value: &NSDate);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(timeInterval)]
         pub unsafe fn timeInterval(&self) -> NSTimeInterval;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTimeInterval:)]
         pub unsafe fn setTimeInterval(&self, time_interval: NSTimeInterval);
 
         #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other minDate)]
         pub unsafe fn minDate(&self) -> Option<Id<NSDate>>;
 
         #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMinDate:)]
         pub unsafe fn setMinDate(&self, min_date: Option<&NSDate>);
 
         #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other maxDate)]
         pub unsafe fn maxDate(&self) -> Option<Id<NSDate>>;
 
         #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMaxDate:)]
         pub unsafe fn setMaxDate(&self, max_date: Option<&NSDate>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSDatePickerCellDelegate>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -185,8 +231,10 @@ extern_methods!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSDatePickerCellDelegate: NSObjectProtocol {
         #[cfg(all(feature = "AppKit_NSDatePickerCell", feature = "Foundation_NSDate"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(datePickerCell:validateProposedDateValue:timeInterval:)]
         unsafe fn datePickerCell_validateProposedDateValue_timeInterval(

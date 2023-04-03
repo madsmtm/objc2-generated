@@ -131,6 +131,7 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKScore")]
     unsafe impl GKScore {
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "macos")))]
         #[method_id(@__retain_semantics Init initWithLeaderboardIdentifier:forPlayer:)]
         pub unsafe fn initWithLeaderboardIdentifier_forPlayer(
             this: Option<Allocated<Self>>,

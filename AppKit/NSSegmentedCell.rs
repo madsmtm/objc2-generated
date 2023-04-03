@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSSegmentedCell")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSSegmentedCell;
 
     #[cfg(feature = "AppKit_NSSegmentedCell")]
@@ -35,47 +36,61 @@ unsafe impl NSUserInterfaceItemIdentification for NSSegmentedCell {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSSegmentedCell")]
     unsafe impl NSSegmentedCell {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(segmentCount)]
         pub unsafe fn segmentCount(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSegmentCount:)]
         pub unsafe fn setSegmentCount(&self, segment_count: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectedSegment)]
         pub unsafe fn selectedSegment(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSelectedSegment:)]
         pub unsafe fn setSelectedSegment(&self, selected_segment: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectSegmentWithTag:)]
         pub unsafe fn selectSegmentWithTag(&self, tag: NSInteger) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(makeNextSegmentKey)]
         pub unsafe fn makeNextSegmentKey(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(makePreviousSegmentKey)]
         pub unsafe fn makePreviousSegmentKey(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(trackingMode)]
         pub unsafe fn trackingMode(&self) -> NSSegmentSwitchTracking;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTrackingMode:)]
         pub unsafe fn setTrackingMode(&self, tracking_mode: NSSegmentSwitchTracking);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setWidth:forSegment:)]
         pub unsafe fn setWidth_forSegment(&self, width: CGFloat, segment: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(widthForSegment:)]
         pub unsafe fn widthForSegment(&self, segment: NSInteger) -> CGFloat;
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setImage:forSegment:)]
         pub unsafe fn setImage_forSegment(&self, image: Option<&NSImage>, segment: NSInteger);
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other imageForSegment:)]
         pub unsafe fn imageForSegment(&self, segment: NSInteger) -> Option<Id<NSImage>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setImageScaling:forSegment:)]
         pub unsafe fn setImageScaling_forSegment(
             &self,
@@ -83,58 +98,74 @@ extern_methods!(
             segment: NSInteger,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(imageScalingForSegment:)]
         pub unsafe fn imageScalingForSegment(&self, segment: NSInteger) -> NSImageScaling;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setLabel:forSegment:)]
         pub unsafe fn setLabel_forSegment(&self, label: &NSString, segment: NSInteger);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other labelForSegment:)]
         pub unsafe fn labelForSegment(&self, segment: NSInteger) -> Option<Id<NSString>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSelected:forSegment:)]
         pub unsafe fn setSelected_forSegment(&self, selected: bool, segment: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isSelectedForSegment:)]
         pub unsafe fn isSelectedForSegment(&self, segment: NSInteger) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setEnabled:forSegment:)]
         pub unsafe fn setEnabled_forSegment(&self, enabled: bool, segment: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isEnabledForSegment:)]
         pub unsafe fn isEnabledForSegment(&self, segment: NSInteger) -> bool;
 
         #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMenu:forSegment:)]
         pub unsafe fn setMenu_forSegment(&self, menu: Option<&NSMenu>, segment: NSInteger);
 
         #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other menuForSegment:)]
         pub unsafe fn menuForSegment(&self, segment: NSInteger) -> Option<Id<NSMenu>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setToolTip:forSegment:)]
         pub unsafe fn setToolTip_forSegment(&self, tool_tip: Option<&NSString>, segment: NSInteger);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other toolTipForSegment:)]
         pub unsafe fn toolTipForSegment(&self, segment: NSInteger) -> Option<Id<NSString>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTag:forSegment:)]
         pub unsafe fn setTag_forSegment(&self, tag: NSInteger, segment: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(tagForSegment:)]
         pub unsafe fn tagForSegment(&self, segment: NSInteger) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(segmentStyle)]
         pub unsafe fn segmentStyle(&self) -> NSSegmentStyle;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSegmentStyle:)]
         pub unsafe fn setSegmentStyle(&self, segment_style: NSSegmentStyle);
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawSegment:inFrame:withView:)]
         pub unsafe fn drawSegment_inFrame_withView(
             &self,
@@ -149,6 +180,7 @@ extern_methods!(
     /// NSSegmentBackgroundStyle
     #[cfg(feature = "AppKit_NSSegmentedCell")]
     unsafe impl NSSegmentedCell {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(interiorBackgroundStyleForSegment:)]
         pub unsafe fn interiorBackgroundStyleForSegment(
             &self,
@@ -162,10 +194,12 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSSegmentedCell")]
     unsafe impl NSSegmentedCell {
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initTextCell:)]
         pub unsafe fn initTextCell(this: Option<Allocated<Self>>, string: &NSString) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initImageCell:)]
         pub unsafe fn initImageCell(
             this: Option<Allocated<Self>>,

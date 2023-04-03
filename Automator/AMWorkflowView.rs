@@ -9,6 +9,7 @@ use crate::OSAKit::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Automator_AMWorkflowView")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct AMWorkflowView;
 
     #[cfg(feature = "Automator_AMWorkflowView")]
@@ -45,17 +46,21 @@ unsafe impl NSUserInterfaceItemIdentification for AMWorkflowView {}
 extern_methods!(
     #[cfg(feature = "Automator_AMWorkflowView")]
     unsafe impl AMWorkflowView {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isEditable)]
         pub unsafe fn isEditable(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setEditable:)]
         pub unsafe fn setEditable(&self, editable: bool);
 
         #[cfg(feature = "Automator_AMWorkflowController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other workflowController)]
         pub unsafe fn workflowController(&self) -> Option<Id<AMWorkflowController>>;
 
         #[cfg(feature = "Automator_AMWorkflowController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setWorkflowController:)]
         pub unsafe fn setWorkflowController(
             &self,
@@ -68,6 +73,7 @@ extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(feature = "Automator_AMWorkflowView")]
     unsafe impl AMWorkflowView {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }

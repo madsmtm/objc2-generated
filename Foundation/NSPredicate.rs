@@ -34,6 +34,7 @@ extern_methods!(
         ) -> Id<NSPredicate>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other predicateFromMetadataQueryString:)]
         pub unsafe fn predicateFromMetadataQueryString(
             query_string: &NSString,

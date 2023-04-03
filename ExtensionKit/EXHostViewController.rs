@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "ExtensionKit_EXHostViewController")]
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub struct EXHostViewController;
 
     #[cfg(feature = "ExtensionKit_EXHostViewController")]
@@ -62,6 +63,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait EXHostViewControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "ExtensionKit_EXHostViewController")]
         #[optional]
@@ -89,6 +91,7 @@ extern_methods!(
     #[cfg(feature = "ExtensionKit_EXHostViewController")]
     unsafe impl EXHostViewController {
         #[cfg(feature = "Foundation_NSBundle")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Option<Allocated<Self>>,

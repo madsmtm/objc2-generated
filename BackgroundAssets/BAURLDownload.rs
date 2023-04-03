@@ -7,6 +7,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "BackgroundAssets_BAURLDownload")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct BAURLDownload;
 
     #[cfg(feature = "BackgroundAssets_BAURLDownload")]
@@ -35,6 +36,7 @@ extern_methods!(
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURLRequest"))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Init initWithIdentifier:request:applicationGroupIdentifier:)]
         pub unsafe fn initWithIdentifier_request_applicationGroupIdentifier(
             this: Option<Allocated<Self>>,
@@ -44,6 +46,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURLRequest"))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Init initWithIdentifier:request:applicationGroupIdentifier:priority:)]
         pub unsafe fn initWithIdentifier_request_applicationGroupIdentifier_priority(
             this: Option<Allocated<Self>>,

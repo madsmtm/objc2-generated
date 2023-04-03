@@ -14,6 +14,7 @@ extern_protocol!(
         unsafe fn presentedItemOperationQueue(&self) -> Id<NSOperationQueue>;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method_id(@__retain_semantics Other primaryPresentedItemURL)]
         unsafe fn primaryPresentedItemURL(&self) -> Option<Id<NSURL>>;
@@ -52,6 +53,7 @@ extern_protocol!(
         unsafe fn presentedItemDidChange(&self);
 
         #[cfg(feature = "Foundation_NSSet")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method(presentedItemDidChangeUbiquityAttributes:)]
         unsafe fn presentedItemDidChangeUbiquityAttributes(
@@ -60,6 +62,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "Foundation_NSSet")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method_id(@__retain_semantics Other observedPresentedItemUbiquityAttributes)]
         unsafe fn observedPresentedItemUbiquityAttributes(&self) -> Id<NSSet<NSURLResourceKey>>;

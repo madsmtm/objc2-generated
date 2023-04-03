@@ -7,9 +7,13 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSTabState {
+        #[cfg(not(any(target_os = "ios")))]
         NSSelectedTab = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSBackgroundTab = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSPressedTab = 2,
     }
 );
@@ -17,6 +21,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSTabViewItem")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSTabViewItem;
 
     #[cfg(feature = "AppKit_NSTabViewItem")]
@@ -35,88 +40,110 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTabViewItem")]
     unsafe impl NSTabViewItem {
         #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other tabViewItemWithViewController:)]
         pub unsafe fn tabViewItemWithViewController(view_controller: &NSViewController)
             -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Option<Allocated<Self>>,
             identifier: Option<&Object>,
         ) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setIdentifier:)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&Object>);
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other color)]
         pub unsafe fn color(&self) -> Id<NSColor>;
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setColor:)]
         pub unsafe fn setColor(&self, color: &NSColor);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other label)]
         pub unsafe fn label(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: &NSString);
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other view)]
         pub unsafe fn view(&self) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setView:)]
         pub unsafe fn setView(&self, view: Option<&NSView>);
 
         #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other viewController)]
         pub unsafe fn viewController(&self) -> Option<Id<NSViewController>>;
 
         #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setViewController:)]
         pub unsafe fn setViewController(&self, view_controller: Option<&NSViewController>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(tabState)]
         pub unsafe fn tabState(&self) -> NSTabState;
 
         #[cfg(feature = "AppKit_NSTabView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other tabView)]
         pub unsafe fn tabView(&self) -> Option<Id<NSTabView>>;
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other initialFirstResponder)]
         pub unsafe fn initialFirstResponder(&self) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setInitialFirstResponder:)]
         pub unsafe fn setInitialFirstResponder(&self, initial_first_responder: Option<&NSView>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other toolTip)]
         pub unsafe fn toolTip(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setToolTip:)]
         pub unsafe fn setToolTip(&self, tool_tip: Option<&NSString>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawLabel:inRect:)]
         pub unsafe fn drawLabel_inRect(&self, should_truncate_label: bool, label_rect: NSRect);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(sizeOfLabel:)]
         pub unsafe fn sizeOfLabel(&self, compute_min: bool) -> NSSize;
     }

@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSTrackingSeparatorToolbarItem")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSTrackingSeparatorToolbarItem;
 
     #[cfg(feature = "AppKit_NSTrackingSeparatorToolbarItem")]
@@ -24,6 +25,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTrackingSeparatorToolbarItem")]
     unsafe impl NSTrackingSeparatorToolbarItem {
         #[cfg(feature = "AppKit_NSSplitView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other trackingSeparatorToolbarItemWithIdentifier:splitView:dividerIndex:)]
         pub unsafe fn trackingSeparatorToolbarItemWithIdentifier_splitView_dividerIndex(
             identifier: &NSToolbarItemIdentifier,
@@ -32,16 +34,20 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSSplitView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other splitView)]
         pub unsafe fn splitView(&self) -> Id<NSSplitView>;
 
         #[cfg(feature = "AppKit_NSSplitView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSplitView:)]
         pub unsafe fn setSplitView(&self, split_view: &NSSplitView);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(dividerIndex)]
         pub unsafe fn dividerIndex(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDividerIndex:)]
         pub unsafe fn setDividerIndex(&self, divider_index: NSInteger);
     }

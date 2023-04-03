@@ -415,10 +415,12 @@ extern_methods!(
         NSMutableSet<ObjectType, ObjectTypeOwnership>
     {
         #[cfg(feature = "Foundation_NSIndexPath")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other setWithCollectionViewIndexPath:)]
         pub unsafe fn setWithCollectionViewIndexPath(index_path: &NSIndexPath) -> Id<Self, Owned>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSIndexPath"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other setWithCollectionViewIndexPaths:)]
         pub unsafe fn setWithCollectionViewIndexPaths(
             index_paths: &NSArray<NSIndexPath>,
@@ -512,10 +514,12 @@ extern_methods!(
         NSCountedSet<ObjectType, ObjectTypeOwnership>
     {
         #[cfg(feature = "Foundation_NSIndexPath")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other setWithCollectionViewIndexPath:)]
         pub unsafe fn setWithCollectionViewIndexPath(index_path: &NSIndexPath) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSIndexPath"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other setWithCollectionViewIndexPaths:)]
         pub unsafe fn setWithCollectionViewIndexPaths(
             index_paths: &NSArray<NSIndexPath>,

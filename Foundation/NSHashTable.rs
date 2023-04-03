@@ -86,6 +86,7 @@ extern_methods!(
         ) -> Id<NSHashTable<ObjectType>>;
 
         #[deprecated = "GC no longer supported"]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other hashTableWithWeakObjects)]
         pub unsafe fn hashTableWithWeakObjects() -> Id<Object>;
 

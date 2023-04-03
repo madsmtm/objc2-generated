@@ -7,22 +7,34 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSTitlePosition {
+        #[cfg(not(any(target_os = "ios")))]
         NSNoTitle = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSAboveTop = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSAtTop = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSBelowTop = 3,
+        #[cfg(not(any(target_os = "ios")))]
         NSAboveBottom = 4,
+        #[cfg(not(any(target_os = "ios")))]
         NSAtBottom = 5,
+        #[cfg(not(any(target_os = "ios")))]
         NSBelowBottom = 6,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSBoxType {
+        #[cfg(not(any(target_os = "ios")))]
         NSBoxPrimary = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSBoxSeparator = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSBoxCustom = 4,
     }
 );
@@ -30,6 +42,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSBox")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSBox;
 
     #[cfg(feature = "AppKit_NSBox")]
@@ -66,92 +79,119 @@ unsafe impl NSUserInterfaceItemIdentification for NSBox {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSBox")]
     unsafe impl NSBox {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(boxType)]
         pub unsafe fn boxType(&self) -> NSBoxType;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBoxType:)]
         pub unsafe fn setBoxType(&self, box_type: NSBoxType);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(titlePosition)]
         pub unsafe fn titlePosition(&self) -> NSTitlePosition;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTitlePosition:)]
         pub unsafe fn setTitlePosition(&self, title_position: NSTitlePosition);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
         #[cfg(feature = "AppKit_NSFont")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other titleFont)]
         pub unsafe fn titleFont(&self) -> Id<NSFont>;
 
         #[cfg(feature = "AppKit_NSFont")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTitleFont:)]
         pub unsafe fn setTitleFont(&self, title_font: &NSFont);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(borderRect)]
         pub unsafe fn borderRect(&self) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(titleRect)]
         pub unsafe fn titleRect(&self) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other titleCell)]
         pub unsafe fn titleCell(&self) -> Id<Object>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(contentViewMargins)]
         pub unsafe fn contentViewMargins(&self) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setContentViewMargins:)]
         pub unsafe fn setContentViewMargins(&self, content_view_margins: NSSize);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(sizeToFit)]
         pub unsafe fn sizeToFit(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFrameFromContentFrame:)]
         pub unsafe fn setFrameFromContentFrame(&self, content_frame: NSRect);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other contentView)]
         pub unsafe fn contentView(&self) -> Option<Id<NSView>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setContentView:)]
         pub unsafe fn setContentView(&self, content_view: Option<&NSView>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isTransparent)]
         pub unsafe fn isTransparent(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTransparent:)]
         pub unsafe fn setTransparent(&self, transparent: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(borderWidth)]
         pub unsafe fn borderWidth(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBorderWidth:)]
         pub unsafe fn setBorderWidth(&self, border_width: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(cornerRadius)]
         pub unsafe fn cornerRadius(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCornerRadius:)]
         pub unsafe fn setCornerRadius(&self, corner_radius: CGFloat);
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other borderColor)]
         pub unsafe fn borderColor(&self) -> Id<NSColor>;
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBorderColor:)]
         pub unsafe fn setBorderColor(&self, border_color: &NSColor);
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other fillColor)]
         pub unsafe fn fillColor(&self) -> Id<NSColor>;
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFillColor:)]
         pub unsafe fn setFillColor(&self, fill_color: &NSColor);
     }
@@ -162,15 +202,18 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSBox")]
     unsafe impl NSBox {
         #[deprecated = "borderType is only applicable to NSBoxOldStyle, which is deprecated. To replace a borderType of NSNoBorder, use the `transparent` property."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(borderType)]
         pub unsafe fn borderType(&self) -> NSBorderType;
 
         #[deprecated = "borderType is only applicable to NSBoxOldStyle, which is deprecated. To replace a borderType of NSNoBorder, use the `transparent` property."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBorderType:)]
         pub unsafe fn setBorderType(&self, border_type: NSBorderType);
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTitleWithMnemonic:)]
         pub unsafe fn setTitleWithMnemonic(&self, string_with_ampersand: Option<&NSString>);
     }
@@ -184,6 +227,7 @@ extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(feature = "AppKit_NSBox")]
     unsafe impl NSBox {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }

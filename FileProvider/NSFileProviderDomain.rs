@@ -13,6 +13,7 @@ typed_extensible_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "FileProvider_NSFileProviderDomainVersion")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct NSFileProviderDomainVersion;
 
     #[cfg(feature = "FileProvider_NSFileProviderDomainVersion")]
@@ -55,6 +56,7 @@ ns_options!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "FileProvider_NSFileProviderDomain")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct NSFileProviderDomain;
 
     #[cfg(feature = "FileProvider_NSFileProviderDomain")]
@@ -70,6 +72,7 @@ extern_methods!(
     #[cfg(feature = "FileProvider_NSFileProviderDomain")]
     unsafe impl NSFileProviderDomain {
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Init initWithIdentifier:displayName:pathRelativeToDocumentStorage:)]
         pub unsafe fn initWithIdentifier_displayName_pathRelativeToDocumentStorage(
             this: Option<Allocated<Self>>,
@@ -79,6 +82,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Init initWithIdentifier:displayName:)]
         pub unsafe fn initWithIdentifier_displayName(
             this: Option<Allocated<Self>>,
@@ -94,37 +98,48 @@ extern_methods!(
         pub unsafe fn displayName(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other pathRelativeToDocumentStorage)]
         pub unsafe fn pathRelativeToDocumentStorage(&self) -> Id<NSString>;
 
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(isDisconnected)]
         pub unsafe fn isDisconnected(&self) -> bool;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(userEnabled)]
         pub unsafe fn userEnabled(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(isHidden)]
         pub unsafe fn isHidden(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(setHidden:)]
         pub unsafe fn setHidden(&self, hidden: bool);
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(isReplicated)]
         pub unsafe fn isReplicated(&self) -> bool;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(testingModes)]
         pub unsafe fn testingModes(&self) -> NSFileProviderDomainTestingModes;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(setTestingModes:)]
         pub unsafe fn setTestingModes(&self, testing_modes: NSFileProviderDomainTestingModes);
 
         #[cfg(feature = "Foundation_NSData")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other backingStoreIdentity)]
         pub unsafe fn backingStoreIdentity(&self) -> Option<Id<NSData>>;
 
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(supportsSyncingTrash)]
         pub unsafe fn supportsSyncingTrash(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(setSupportsSyncingTrash:)]
         pub unsafe fn setSupportsSyncingTrash(&self, supports_syncing_trash: bool);
     }

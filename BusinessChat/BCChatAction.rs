@@ -18,7 +18,6 @@ extern_static!(BCParameterNameBody: &'static BCParameterName);
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "BusinessChat_BCChatAction")]
-    #[deprecated]
     pub struct BCChatAction;
 
     #[cfg(feature = "BusinessChat_BCChatAction")]
@@ -34,7 +33,6 @@ extern_methods!(
     #[cfg(feature = "BusinessChat_BCChatAction")]
     unsafe impl BCChatAction {
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
-        #[deprecated]
         #[method(openTranscript:intentParameters:)]
         pub unsafe fn openTranscript_intentParameters(
             business_identifier: &NSString,

@@ -7,8 +7,11 @@ use crate::StoreKit::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub enum SKOverlayPosition {
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         SKOverlayPositionBottom = 0,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         SKOverlayPositionBottomRaised = 1,
     }
 );
@@ -16,6 +19,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "StoreKit_SKOverlayConfiguration")]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub struct SKOverlayConfiguration;
 
     #[cfg(feature = "StoreKit_SKOverlayConfiguration")]
@@ -41,6 +45,7 @@ extern_methods!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "StoreKit_SKOverlayAppConfiguration")]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub struct SKOverlayAppConfiguration;
 
     #[cfg(feature = "StoreKit_SKOverlayAppConfiguration")]
@@ -95,10 +100,12 @@ extern_methods!(
         pub unsafe fn setProviderToken(&self, provider_token: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other customProductPageIdentifier)]
         pub unsafe fn customProductPageIdentifier(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method(setCustomProductPageIdentifier:)]
         pub unsafe fn setCustomProductPageIdentifier(
             &self,
@@ -106,10 +113,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other latestReleaseID)]
         pub unsafe fn latestReleaseID(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method(setLatestReleaseID:)]
         pub unsafe fn setLatestReleaseID(&self, latest_release_id: Option<&NSString>);
 
@@ -134,6 +143,7 @@ extern_methods!(
         pub unsafe fn additionalValueForKey(&self, key: &NSString) -> Option<Id<Object>>;
 
         #[cfg(feature = "StoreKit_SKAdImpression")]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method(setAdImpression:)]
         pub unsafe fn setAdImpression(&self, impression: &SKAdImpression);
     }
@@ -142,6 +152,7 @@ extern_methods!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "StoreKit_SKOverlayAppClipConfiguration")]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub struct SKOverlayAppClipConfiguration;
 
     #[cfg(feature = "StoreKit_SKOverlayAppClipConfiguration")]
@@ -186,10 +197,12 @@ extern_methods!(
         pub unsafe fn setProviderToken(&self, provider_token: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other customProductPageIdentifier)]
         pub unsafe fn customProductPageIdentifier(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method(setCustomProductPageIdentifier:)]
         pub unsafe fn setCustomProductPageIdentifier(
             &self,
@@ -197,10 +210,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other latestReleaseID)]
         pub unsafe fn latestReleaseID(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method(setLatestReleaseID:)]
         pub unsafe fn setLatestReleaseID(&self, latest_release_id: Option<&NSString>);
 

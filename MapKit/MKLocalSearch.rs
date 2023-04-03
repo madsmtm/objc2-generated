@@ -13,6 +13,7 @@ pub type MKLocalSearchCompletionHandler =
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MapKit_MKLocalSearch")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct MKLocalSearch;
 
     #[cfg(feature = "MapKit_MKLocalSearch")]
@@ -35,6 +36,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "MapKit_MKLocalPointsOfInterestRequest")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Init initWithPointsOfInterestRequest:)]
         pub unsafe fn initWithPointsOfInterestRequest(
             this: Option<Allocated<Self>>,

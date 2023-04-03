@@ -14,6 +14,7 @@ pub type NSHelpManagerContextHelpKey = NSString;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSHelpManager")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSHelpManager;
 
     #[cfg(feature = "AppKit_NSHelpManager")]
@@ -28,16 +29,20 @@ unsafe impl NSObjectProtocol for NSHelpManager {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSHelpManager")]
     unsafe impl NSHelpManager {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other sharedHelpManager)]
         pub unsafe fn sharedHelpManager() -> Id<NSHelpManager>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isContextHelpModeActive)]
         pub unsafe fn isContextHelpModeActive() -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setContextHelpModeActive:)]
         pub unsafe fn setContextHelpModeActive(context_help_mode_active: bool);
 
         #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setContextHelp:forObject:)]
         pub unsafe fn setContextHelp_forObject(
             &self,
@@ -45,16 +50,19 @@ extern_methods!(
             object: &Object,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeContextHelpForObject:)]
         pub unsafe fn removeContextHelpForObject(&self, object: &Object);
 
         #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other contextHelpForObject:)]
         pub unsafe fn contextHelpForObject(
             &self,
             object: &Object,
         ) -> Option<Id<NSAttributedString>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(showContextHelpForObject:locationHint:)]
         pub unsafe fn showContextHelpForObject_locationHint(
             &self,
@@ -62,6 +70,7 @@ extern_methods!(
             pt: NSPoint,
         ) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(openHelpAnchor:inBook:)]
         pub unsafe fn openHelpAnchor_inBook(
             &self,
@@ -70,10 +79,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(findString:inBook:)]
         pub unsafe fn findString_inBook(&self, query: &NSString, book: Option<&NSHelpBookName>);
 
         #[cfg(feature = "Foundation_NSBundle")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(registerBooksInBundle:)]
         pub unsafe fn registerBooksInBundle(&self, bundle: &NSBundle) -> bool;
     }
@@ -88,6 +99,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSBundle")]
     unsafe impl NSBundle {
         #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other contextHelpForKey:)]
         pub unsafe fn contextHelpForKey(
             &self,
@@ -100,9 +112,11 @@ extern_methods!(
     /// NSApplicationHelpExtension
     #[cfg(feature = "AppKit_NSApplication")]
     unsafe impl NSApplication {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(activateContextHelpMode:)]
         pub unsafe fn activateContextHelpMode(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(showHelp:)]
         pub unsafe fn showHelp(&self, sender: Option<&Object>);
     }

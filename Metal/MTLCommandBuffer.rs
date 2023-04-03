@@ -32,6 +32,7 @@ ns_enum!(
         MTLCommandBufferErrorOutOfMemory = 8,
         MTLCommandBufferErrorInvalidResource = 9,
         MTLCommandBufferErrorMemoryless = 10,
+        #[cfg(not(any(target_os = "ios")))]
         MTLCommandBufferErrorDeviceRemoved = 11,
         MTLCommandBufferErrorStackOverflow = 12,
     }

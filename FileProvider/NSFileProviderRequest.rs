@@ -9,6 +9,7 @@ use crate::UniformTypeIdentifiers::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "FileProvider_NSFileProviderRequest")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct NSFileProviderRequest;
 
     #[cfg(feature = "FileProvider_NSFileProviderRequest")]
@@ -30,10 +31,12 @@ extern_methods!(
         pub unsafe fn isFileViewerRequest(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other requestingExecutable)]
         pub unsafe fn requestingExecutable(&self) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "FileProvider_NSFileProviderDomainVersion")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other domainVersion)]
         pub unsafe fn domainVersion(&self) -> Option<Id<NSFileProviderDomainVersion>>;
     }

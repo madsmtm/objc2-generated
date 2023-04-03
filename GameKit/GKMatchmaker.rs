@@ -153,6 +153,7 @@ extern_methods!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GameKit_GKInvite")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct GKInvite;
 
     #[cfg(feature = "GameKit_GKInvite")]
@@ -190,11 +191,13 @@ extern_methods!(
 extern_protocol!(
     pub unsafe trait GKInviteEventListener {
         #[cfg(all(feature = "GameKit_GKInvite", feature = "GameKit_GKPlayer"))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method(player:didAcceptInvite:)]
         unsafe fn player_didAcceptInvite(&self, player: &GKPlayer, invite: &GKInvite);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "GameKit_GKPlayer"))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method(player:didRequestMatchWithRecipients:)]
         unsafe fn player_didRequestMatchWithRecipients(
@@ -208,6 +211,7 @@ extern_protocol!(
             feature = "Foundation_NSString",
             feature = "GameKit_GKPlayer"
         ))]
+        #[cfg(not(any(target_os = "macos")))]
         #[optional]
         #[method(player:didRequestMatchWithPlayers:)]
         unsafe fn player_didRequestMatchWithPlayers(
@@ -223,6 +227,7 @@ extern_protocol!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GameKit_GKMatchmaker")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct GKMatchmaker;
 
     #[cfg(feature = "GameKit_GKMatchmaker")]
@@ -325,16 +330,6 @@ extern_methods!(
 
         #[method(stopBrowsingForNearbyPlayers)]
         pub unsafe fn stopBrowsingForNearbyPlayers(&self);
-
-        #[cfg(feature = "GameKit_GKPlayer")]
-        #[method(startGroupActivityWithPlayerHandler:)]
-        pub unsafe fn startGroupActivityWithPlayerHandler(
-            &self,
-            handler: &Block<(NonNull<GKPlayer>,), ()>,
-        );
-
-        #[method(stopGroupActivity)]
-        pub unsafe fn stopGroupActivity(&self);
     }
 );
 

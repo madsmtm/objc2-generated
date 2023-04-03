@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSScreen")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSScreen;
 
     #[cfg(feature = "AppKit_NSScreen")]
@@ -23,47 +24,61 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSScreen")]
     unsafe impl NSScreen {
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other screens)]
         pub unsafe fn screens() -> Id<NSArray<NSScreen>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other mainScreen)]
         pub unsafe fn mainScreen() -> Option<Id<NSScreen>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other deepestScreen)]
         pub unsafe fn deepestScreen() -> Option<Id<NSScreen>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(screensHaveSeparateSpaces)]
         pub unsafe fn screensHaveSeparateSpaces() -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(depth)]
         pub unsafe fn depth(&self) -> NSWindowDepth;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(frame)]
         pub unsafe fn frame(&self) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(visibleFrame)]
         pub unsafe fn visibleFrame(&self) -> NSRect;
 
         #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other deviceDescription)]
         pub unsafe fn deviceDescription(&self) -> Id<NSDictionary<NSDeviceDescriptionKey, Object>>;
 
         #[cfg(feature = "AppKit_NSColorSpace")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other colorSpace)]
         pub unsafe fn colorSpace(&self) -> Option<Id<NSColorSpace>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(supportedWindowDepths)]
         pub unsafe fn supportedWindowDepths(&self) -> NonNull<NSWindowDepth>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(canRepresentDisplayGamut:)]
         pub unsafe fn canRepresentDisplayGamut(&self, display_gamut: NSDisplayGamut) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(convertRectToBacking:)]
         pub unsafe fn convertRectToBacking(&self, rect: NSRect) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(convertRectFromBacking:)]
         pub unsafe fn convertRectFromBacking(&self, rect: NSRect) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(backingAlignedRect:options:)]
         pub unsafe fn backingAlignedRect_options(
             &self,
@@ -71,19 +86,24 @@ extern_methods!(
             options: NSAlignmentOptions,
         ) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(backingScaleFactor)]
         pub unsafe fn backingScaleFactor(&self) -> CGFloat;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other localizedName)]
         pub unsafe fn localizedName(&self) -> Id<NSString>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(safeAreaInsets)]
         pub unsafe fn safeAreaInsets(&self) -> NSEdgeInsets;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(auxiliaryTopLeftArea)]
         pub unsafe fn auxiliaryTopLeftArea(&self) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(auxiliaryTopRightArea)]
         pub unsafe fn auxiliaryTopRightArea(&self) -> NSRect;
     }
@@ -94,12 +114,15 @@ extern_static!(NSScreenColorSpaceDidChangeNotification: &'static NSNotificationN
 extern_methods!(
     #[cfg(feature = "AppKit_NSScreen")]
     unsafe impl NSScreen {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(maximumExtendedDynamicRangeColorComponentValue)]
         pub unsafe fn maximumExtendedDynamicRangeColorComponentValue(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(maximumPotentialExtendedDynamicRangeColorComponentValue)]
         pub unsafe fn maximumPotentialExtendedDynamicRangeColorComponentValue(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(maximumReferenceExtendedDynamicRangeColorComponentValue)]
         pub unsafe fn maximumReferenceExtendedDynamicRangeColorComponentValue(&self) -> CGFloat;
     }
@@ -108,18 +131,23 @@ extern_methods!(
 extern_methods!(
     #[cfg(feature = "AppKit_NSScreen")]
     unsafe impl NSScreen {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(maximumFramesPerSecond)]
         pub unsafe fn maximumFramesPerSecond(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(minimumRefreshInterval)]
         pub unsafe fn minimumRefreshInterval(&self) -> NSTimeInterval;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(maximumRefreshInterval)]
         pub unsafe fn maximumRefreshInterval(&self) -> NSTimeInterval;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(displayUpdateGranularity)]
         pub unsafe fn displayUpdateGranularity(&self) -> NSTimeInterval;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(lastDisplayUpdateTimestamp)]
         pub unsafe fn lastDisplayUpdateTimestamp(&self) -> NSTimeInterval;
     }
@@ -130,6 +158,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSScreen")]
     unsafe impl NSScreen {
         #[deprecated = "Use -convertRectToBacking: or -backingScaleFactor instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(userSpaceScaleFactor)]
         pub unsafe fn userSpaceScaleFactor(&self) -> CGFloat;
     }

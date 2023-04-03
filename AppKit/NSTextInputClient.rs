@@ -6,13 +6,17 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSTextInputClient {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(insertText:replacementRange:)]
         unsafe fn insertText_replacementRange(&self, string: &Object, replacement_range: NSRange);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(doCommandBySelector:)]
         unsafe fn doCommandBySelector(&self, selector: Sel);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMarkedText:selectedRange:replacementRange:)]
         unsafe fn setMarkedText_selectedRange_replacementRange(
             &self,
@@ -21,19 +25,24 @@ extern_protocol!(
             replacement_range: NSRange,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(unmarkText)]
         unsafe fn unmarkText(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectedRange)]
         unsafe fn selectedRange(&self) -> NSRange;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(markedRange)]
         unsafe fn markedRange(&self) -> NSRange;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(hasMarkedText)]
         unsafe fn hasMarkedText(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other attributedSubstringForProposedRange:actualRange:)]
         unsafe fn attributedSubstringForProposedRange_actualRange(
             &self,
@@ -42,9 +51,11 @@ extern_protocol!(
         ) -> Option<Id<NSAttributedString>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other validAttributesForMarkedText)]
         unsafe fn validAttributesForMarkedText(&self) -> Id<NSArray<NSAttributedStringKey>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(firstRectForCharacterRange:actualRange:)]
         unsafe fn firstRectForCharacterRange_actualRange(
             &self,
@@ -52,26 +63,32 @@ extern_protocol!(
             actual_range: NSRangePointer,
         ) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(characterIndexForPoint:)]
         unsafe fn characterIndexForPoint(&self, point: NSPoint) -> NSUInteger;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other attributedString)]
         unsafe fn attributedString(&self) -> Id<NSAttributedString>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(fractionOfDistanceThroughGlyphForPoint:)]
         unsafe fn fractionOfDistanceThroughGlyphForPoint(&self, point: NSPoint) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(baselineDeltaForCharacterAtIndex:)]
         unsafe fn baselineDeltaForCharacterAtIndex(&self, an_index: NSUInteger) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(windowLevel)]
         unsafe fn windowLevel(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(drawsVerticallyForCharacterAtIndex:)]
         unsafe fn drawsVerticallyForCharacterAtIndex(&self, char_index: NSUInteger) -> bool;

@@ -12,6 +12,7 @@ extern_protocol!(
             feature = "CoreLocation_CLLocationManager"
         ))]
         #[deprecated = "Implement -locationManager:didUpdateLocations: instead"]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method(locationManager:didUpdateToLocation:fromLocation:)]
         unsafe fn locationManager_didUpdateToLocation_fromLocation(
@@ -58,6 +59,7 @@ extern_protocol!(
             feature = "CoreLocation_CLLocationManager",
             feature = "CoreLocation_CLRegion"
         ))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method(locationManager:didDetermineState:forRegion:)]
         unsafe fn locationManager_didDetermineState_forRegion(
@@ -74,6 +76,7 @@ extern_protocol!(
             feature = "Foundation_NSArray"
         ))]
         #[deprecated]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method(locationManager:didRangeBeacons:inRegion:)]
         unsafe fn locationManager_didRangeBeacons_inRegion(
@@ -89,6 +92,7 @@ extern_protocol!(
             feature = "Foundation_NSError"
         ))]
         #[deprecated]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method(locationManager:rangingBeaconsDidFailForRegion:withError:)]
         unsafe fn locationManager_rangingBeaconsDidFailForRegion_withError(
@@ -104,6 +108,7 @@ extern_protocol!(
             feature = "CoreLocation_CLLocationManager",
             feature = "Foundation_NSArray"
         ))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method(locationManager:didRangeBeacons:satisfyingConstraint:)]
         unsafe fn locationManager_didRangeBeacons_satisfyingConstraint(
@@ -118,6 +123,7 @@ extern_protocol!(
             feature = "CoreLocation_CLLocationManager",
             feature = "Foundation_NSError"
         ))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method(locationManager:didFailRangingBeaconsForConstraint:error:)]
         unsafe fn locationManager_didFailRangingBeaconsForConstraint_error(
@@ -131,6 +137,7 @@ extern_protocol!(
             feature = "CoreLocation_CLLocationManager",
             feature = "CoreLocation_CLRegion"
         ))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method(locationManager:didEnterRegion:)]
         unsafe fn locationManager_didEnterRegion(
@@ -143,6 +150,7 @@ extern_protocol!(
             feature = "CoreLocation_CLLocationManager",
             feature = "CoreLocation_CLRegion"
         ))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method(locationManager:didExitRegion:)]
         unsafe fn locationManager_didExitRegion(
@@ -168,6 +176,7 @@ extern_protocol!(
             feature = "CoreLocation_CLRegion",
             feature = "Foundation_NSError"
         ))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method(locationManager:monitoringDidFailForRegion:withError:)]
         unsafe fn locationManager_monitoringDidFailForRegion_withError(
@@ -196,6 +205,7 @@ extern_protocol!(
             feature = "CoreLocation_CLLocationManager",
             feature = "CoreLocation_CLRegion"
         ))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method(locationManager:didStartMonitoringForRegion:)]
         unsafe fn locationManager_didStartMonitoringForRegion(
@@ -205,11 +215,13 @@ extern_protocol!(
         );
 
         #[cfg(feature = "CoreLocation_CLLocationManager")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method(locationManagerDidPauseLocationUpdates:)]
         unsafe fn locationManagerDidPauseLocationUpdates(&self, manager: &CLLocationManager);
 
         #[cfg(feature = "CoreLocation_CLLocationManager")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method(locationManagerDidResumeLocationUpdates:)]
         unsafe fn locationManagerDidResumeLocationUpdates(&self, manager: &CLLocationManager);
@@ -218,6 +230,7 @@ extern_protocol!(
             feature = "CoreLocation_CLLocationManager",
             feature = "Foundation_NSError"
         ))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method(locationManager:didFinishDeferredUpdatesWithError:)]
         unsafe fn locationManager_didFinishDeferredUpdatesWithError(
@@ -230,6 +243,7 @@ extern_protocol!(
             feature = "CoreLocation_CLLocationManager",
             feature = "CoreLocation_CLVisit"
         ))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method(locationManager:didVisit:)]
         unsafe fn locationManager_didVisit(&self, manager: &CLLocationManager, visit: &CLVisit);

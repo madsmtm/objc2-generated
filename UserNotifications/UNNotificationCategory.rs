@@ -9,10 +9,14 @@ ns_options!(
     #[underlying(NSUInteger)]
     pub enum UNNotificationCategoryOptions {
         UNNotificationCategoryOptionCustomDismissAction = 1 << 0,
+        #[cfg(not(any(target_os = "macos")))]
         UNNotificationCategoryOptionAllowInCarPlay = 1 << 1,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         UNNotificationCategoryOptionHiddenPreviewsShowTitle = 1 << 2,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         UNNotificationCategoryOptionHiddenPreviewsShowSubtitle = 1 << 3,
         #[deprecated = "Announcement option is ignored"]
+        #[cfg(not(any(target_os = "macos")))]
         UNNotificationCategoryOptionAllowAnnouncement = 1 << 4,
     }
 );
@@ -61,10 +65,12 @@ extern_methods!(
         pub unsafe fn options(&self) -> UNNotificationCategoryOptions;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other hiddenPreviewsBodyPlaceholder)]
         pub unsafe fn hiddenPreviewsBodyPlaceholder(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other categorySummaryFormat)]
         pub unsafe fn categorySummaryFormat(&self) -> Id<NSString>;
 
@@ -86,6 +92,7 @@ extern_methods!(
             feature = "Foundation_NSString",
             feature = "UserNotifications_UNNotificationAction"
         ))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other categoryWithIdentifier:actions:intentIdentifiers:hiddenPreviewsBodyPlaceholder:options:)]
         pub unsafe fn categoryWithIdentifier_actions_intentIdentifiers_hiddenPreviewsBodyPlaceholder_options(
             identifier: &NSString,
@@ -100,6 +107,7 @@ extern_methods!(
             feature = "Foundation_NSString",
             feature = "UserNotifications_UNNotificationAction"
         ))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other categoryWithIdentifier:actions:intentIdentifiers:hiddenPreviewsBodyPlaceholder:categorySummaryFormat:options:)]
         pub unsafe fn categoryWithIdentifier_actions_intentIdentifiers_hiddenPreviewsBodyPlaceholder_categorySummaryFormat_options(
             identifier: &NSString,

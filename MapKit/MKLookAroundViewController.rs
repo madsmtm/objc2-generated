@@ -9,9 +9,13 @@ use crate::MapKit::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub enum MKLookAroundBadgePosition {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         MKLookAroundBadgePositionTopLeading = 0,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         MKLookAroundBadgePositionTopTrailing = 1,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         MKLookAroundBadgePositionBottomTrailing = 2,
     }
 );
@@ -19,6 +23,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MapKit_MKLookAroundViewController")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct MKLookAroundViewController;
 
     #[cfg(feature = "MapKit_MKLookAroundViewController")]
@@ -122,6 +127,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait MKLookAroundViewControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "MapKit_MKLookAroundViewController")]
         #[optional]

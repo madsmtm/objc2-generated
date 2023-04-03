@@ -23,6 +23,7 @@ unsafe impl NSObjectProtocol for GKLocalPlayer {}
 extern_methods!(
     #[cfg(feature = "GameKit_GKLocalPlayer")]
     unsafe impl GKLocalPlayer {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other local)]
         pub unsafe fn local() -> Id<GKLocalPlayer>;
 
@@ -35,9 +36,11 @@ extern_methods!(
         #[method(isUnderage)]
         pub unsafe fn isUnderage(&self) -> bool;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(isMultiplayerGamingRestricted)]
         pub unsafe fn isMultiplayerGamingRestricted(&self) -> bool;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(isPersonalizedCommunicationRestricted)]
         pub unsafe fn isPersonalizedCommunicationRestricted(&self) -> bool;
 
@@ -258,10 +261,12 @@ extern_methods!(
             authenticate_handler: Option<&Block<(*mut NSViewController, *mut NSError), ()>>,
         );
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(isPresentingFriendRequestViewController)]
         pub unsafe fn isPresentingFriendRequestViewController(&self) -> bool;
 
         #[cfg(all(feature = "AppKit_NSWindow", feature = "Foundation_NSError"))]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(presentFriendRequestCreatorFromWindow:error:_)]
         pub unsafe fn presentFriendRequestCreatorFromWindow_error(
             &self,
@@ -275,6 +280,7 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKLocalPlayer")]
     unsafe impl GKLocalPlayer {
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other anonymousGuestPlayerWithIdentifier:)]
         pub unsafe fn anonymousGuestPlayerWithIdentifier(guest_identifier: &NSString) -> Id<Self>;
     }

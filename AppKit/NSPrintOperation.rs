@@ -7,18 +7,26 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSPrintingPageOrder {
+        #[cfg(not(any(target_os = "ios")))]
         NSDescendingPageOrder = -1,
+        #[cfg(not(any(target_os = "ios")))]
         NSSpecialPageOrder = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSAscendingPageOrder = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSUnknownPageOrder = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSPrintRenderingQuality {
+        #[cfg(not(any(target_os = "ios")))]
         NSPrintRenderingQualityBest = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSPrintRenderingQualityResponsive = 1,
     }
 );
@@ -28,6 +36,7 @@ extern_static!(NSPrintOperationExistsException: &'static NSExceptionName);
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSPrintOperation")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSPrintOperation;
 
     #[cfg(feature = "AppKit_NSPrintOperation")]
@@ -43,6 +52,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSPrintOperation")]
     unsafe impl NSPrintOperation {
         #[cfg(all(feature = "AppKit_NSPrintInfo", feature = "AppKit_NSView"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other printOperationWithView:printInfo:)]
         pub unsafe fn printOperationWithView_printInfo(
             view: &NSView,
@@ -54,6 +64,7 @@ extern_methods!(
             feature = "AppKit_NSView",
             feature = "Foundation_NSMutableData"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other PDFOperationWithView:insideRect:toData:printInfo:)]
         pub unsafe fn PDFOperationWithView_insideRect_toData_printInfo(
             view: &NSView,
@@ -67,6 +78,7 @@ extern_methods!(
             feature = "AppKit_NSView",
             feature = "Foundation_NSString"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other PDFOperationWithView:insideRect:toPath:printInfo:)]
         pub unsafe fn PDFOperationWithView_insideRect_toPath_printInfo(
             view: &NSView,
@@ -80,6 +92,7 @@ extern_methods!(
             feature = "AppKit_NSView",
             feature = "Foundation_NSMutableData"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other EPSOperationWithView:insideRect:toData:printInfo:)]
         pub unsafe fn EPSOperationWithView_insideRect_toData_printInfo(
             view: &NSView,
@@ -93,6 +106,7 @@ extern_methods!(
             feature = "AppKit_NSView",
             feature = "Foundation_NSString"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other EPSOperationWithView:insideRect:toPath:printInfo:)]
         pub unsafe fn EPSOperationWithView_insideRect_toPath_printInfo(
             view: &NSView,
@@ -102,10 +116,12 @@ extern_methods!(
         ) -> Id<NSPrintOperation>;
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other printOperationWithView:)]
         pub unsafe fn printOperationWithView(view: &NSView) -> Id<NSPrintOperation>;
 
         #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSMutableData"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other PDFOperationWithView:insideRect:toData:)]
         pub unsafe fn PDFOperationWithView_insideRect_toData(
             view: &NSView,
@@ -114,6 +130,7 @@ extern_methods!(
         ) -> Id<NSPrintOperation>;
 
         #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSMutableData"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other EPSOperationWithView:insideRect:toData:)]
         pub unsafe fn EPSOperationWithView_insideRect_toData(
             view: &NSView,
@@ -121,67 +138,86 @@ extern_methods!(
             data: Option<&NSMutableData>,
         ) -> Id<NSPrintOperation>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other currentOperation)]
         pub unsafe fn currentOperation() -> Option<Id<NSPrintOperation>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCurrentOperation:)]
         pub unsafe fn setCurrentOperation(current_operation: Option<&NSPrintOperation>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isCopyingOperation)]
         pub unsafe fn isCopyingOperation(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(preferredRenderingQuality)]
         pub unsafe fn preferredRenderingQuality(&self) -> NSPrintRenderingQuality;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other jobTitle)]
         pub unsafe fn jobTitle(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setJobTitle:)]
         pub unsafe fn setJobTitle(&self, job_title: Option<&NSString>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(showsPrintPanel)]
         pub unsafe fn showsPrintPanel(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setShowsPrintPanel:)]
         pub unsafe fn setShowsPrintPanel(&self, shows_print_panel: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(showsProgressPanel)]
         pub unsafe fn showsProgressPanel(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setShowsProgressPanel:)]
         pub unsafe fn setShowsProgressPanel(&self, shows_progress_panel: bool);
 
         #[cfg(feature = "AppKit_NSPrintPanel")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other printPanel)]
         pub unsafe fn printPanel(&self) -> Id<NSPrintPanel>;
 
         #[cfg(feature = "AppKit_NSPrintPanel")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPrintPanel:)]
         pub unsafe fn setPrintPanel(&self, print_panel: &NSPrintPanel);
 
         #[cfg(feature = "AppKit_NSPDFPanel")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other PDFPanel)]
         pub unsafe fn PDFPanel(&self) -> Id<NSPDFPanel>;
 
         #[cfg(feature = "AppKit_NSPDFPanel")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPDFPanel:)]
         pub unsafe fn setPDFPanel(&self, pdf_panel: &NSPDFPanel);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(canSpawnSeparateThread)]
         pub unsafe fn canSpawnSeparateThread(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCanSpawnSeparateThread:)]
         pub unsafe fn setCanSpawnSeparateThread(&self, can_spawn_separate_thread: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(pageOrder)]
         pub unsafe fn pageOrder(&self) -> NSPrintingPageOrder;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPageOrder:)]
         pub unsafe fn setPageOrder(&self, page_order: NSPrintingPageOrder);
 
         #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(runOperationModalForWindow:delegate:didRunSelector:contextInfo:)]
         pub unsafe fn runOperationModalForWindow_delegate_didRunSelector_contextInfo(
             &self,
@@ -191,41 +227,52 @@ extern_methods!(
             context_info: *mut c_void,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(runOperation)]
         pub unsafe fn runOperation(&self) -> bool;
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other view)]
         pub unsafe fn view(&self) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSPrintInfo")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other printInfo)]
         pub unsafe fn printInfo(&self) -> Id<NSPrintInfo>;
 
         #[cfg(feature = "AppKit_NSPrintInfo")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPrintInfo:)]
         pub unsafe fn setPrintInfo(&self, print_info: &NSPrintInfo);
 
         #[cfg(feature = "AppKit_NSGraphicsContext")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other context)]
         pub unsafe fn context(&self) -> Option<Id<NSGraphicsContext>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(pageRange)]
         pub unsafe fn pageRange(&self) -> NSRange;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(currentPage)]
         pub unsafe fn currentPage(&self) -> NSInteger;
 
         #[cfg(feature = "AppKit_NSGraphicsContext")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other createContext)]
         pub unsafe fn createContext(&self) -> Option<Id<NSGraphicsContext>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(destroyContext)]
         pub unsafe fn destroyContext(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(deliverResult)]
         pub unsafe fn deliverResult(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(cleanUpOperation)]
         pub unsafe fn cleanUpOperation(&self);
     }
@@ -237,29 +284,35 @@ extern_methods!(
     unsafe impl NSPrintOperation {
         #[cfg(feature = "AppKit_NSView")]
         #[deprecated = "Use -[NSPrintPanel addAccessoryController:] and -[NSPrintPanel removeAccessoryController:] instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessoryView:)]
         pub unsafe fn setAccessoryView(&self, view: Option<&NSView>);
 
         #[cfg(feature = "AppKit_NSView")]
         #[deprecated = "Use -[NSPrintPanel accessoryControllers] instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessoryView)]
         pub unsafe fn accessoryView(&self) -> Option<Id<NSView>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setJobStyleHint:)]
         pub unsafe fn setJobStyleHint(&self, hint: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other jobStyleHint)]
         pub unsafe fn jobStyleHint(&self) -> Option<Id<NSString>>;
 
         #[deprecated = "Use -setShowsPrintPanel: and -setShowsProgressPanel: instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setShowPanels:)]
         pub unsafe fn setShowPanels(&self, flag: bool);
 
         #[deprecated = "Use -showsPrintPanel and -showsProgressPanel instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(showPanels)]
         pub unsafe fn showPanels(&self) -> bool;
     }

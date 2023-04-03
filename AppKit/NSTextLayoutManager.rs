@@ -7,21 +7,32 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub enum NSTextLayoutManagerSegmentType {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSTextLayoutManagerSegmentTypeStandard = 0,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSTextLayoutManagerSegmentTypeSelection = 1,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSTextLayoutManagerSegmentTypeHighlight = 2,
     }
 );
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub enum NSTextLayoutManagerSegmentOptions {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSTextLayoutManagerSegmentOptionsNone = 0,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSTextLayoutManagerSegmentOptionsRangeNotRequired = 1 << 0,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSTextLayoutManagerSegmentOptionsMiddleFragmentsExcluded = 1 << 1,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSTextLayoutManagerSegmentOptionsHeadSegmentExtended = 1 << 2,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSTextLayoutManagerSegmentOptionsTailSegmentExtended = 1 << 3,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSTextLayoutManagerSegmentOptionsUpstreamAffinity = 1 << 4,
     }
 );
@@ -29,6 +40,7 @@ ns_options!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSTextLayoutManager")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct NSTextLayoutManager;
 
     #[cfg(feature = "AppKit_NSTextLayoutManager")]
@@ -286,6 +298,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait NSTextLayoutManagerDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "AppKit_NSTextElement",

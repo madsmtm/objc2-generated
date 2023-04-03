@@ -7,36 +7,66 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSCompositingOperation {
+        #[cfg(not(any(target_os = "ios")))]
         NSCompositingOperationClear = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSCompositingOperationCopy = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSCompositingOperationSourceOver = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSCompositingOperationSourceIn = 3,
+        #[cfg(not(any(target_os = "ios")))]
         NSCompositingOperationSourceOut = 4,
+        #[cfg(not(any(target_os = "ios")))]
         NSCompositingOperationSourceAtop = 5,
+        #[cfg(not(any(target_os = "ios")))]
         NSCompositingOperationDestinationOver = 6,
+        #[cfg(not(any(target_os = "ios")))]
         NSCompositingOperationDestinationIn = 7,
+        #[cfg(not(any(target_os = "ios")))]
         NSCompositingOperationDestinationOut = 8,
+        #[cfg(not(any(target_os = "ios")))]
         NSCompositingOperationDestinationAtop = 9,
+        #[cfg(not(any(target_os = "ios")))]
         NSCompositingOperationXOR = 10,
+        #[cfg(not(any(target_os = "ios")))]
         NSCompositingOperationPlusDarker = 11,
         #[deprecated = "Use NSCompositingOperationSourceOver instead"]
+        #[cfg(not(any(target_os = "ios")))]
         NSCompositingOperationHighlight = 12,
+        #[cfg(not(any(target_os = "ios")))]
         NSCompositingOperationPlusLighter = 13,
+        #[cfg(not(any(target_os = "ios")))]
         NSCompositingOperationMultiply = 14,
+        #[cfg(not(any(target_os = "ios")))]
         NSCompositingOperationScreen = 15,
+        #[cfg(not(any(target_os = "ios")))]
         NSCompositingOperationOverlay = 16,
+        #[cfg(not(any(target_os = "ios")))]
         NSCompositingOperationDarken = 17,
+        #[cfg(not(any(target_os = "ios")))]
         NSCompositingOperationLighten = 18,
+        #[cfg(not(any(target_os = "ios")))]
         NSCompositingOperationColorDodge = 19,
+        #[cfg(not(any(target_os = "ios")))]
         NSCompositingOperationColorBurn = 20,
+        #[cfg(not(any(target_os = "ios")))]
         NSCompositingOperationSoftLight = 21,
+        #[cfg(not(any(target_os = "ios")))]
         NSCompositingOperationHardLight = 22,
+        #[cfg(not(any(target_os = "ios")))]
         NSCompositingOperationDifference = 23,
+        #[cfg(not(any(target_os = "ios")))]
         NSCompositingOperationExclusion = 24,
+        #[cfg(not(any(target_os = "ios")))]
         NSCompositingOperationHue = 25,
+        #[cfg(not(any(target_os = "ios")))]
         NSCompositingOperationSaturation = 26,
+        #[cfg(not(any(target_os = "ios")))]
         NSCompositingOperationColor = 27,
+        #[cfg(not(any(target_os = "ios")))]
         NSCompositingOperationLuminosity = 28,
     }
 );
@@ -109,49 +139,71 @@ extern_static!(NSCompositeLuminosity: NSCompositingOperation = NSCompositingOper
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSBackingStoreType {
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         NSBackingStoreRetained = 0,
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         NSBackingStoreNonretained = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSBackingStoreBuffered = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSWindowOrderingMode {
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowAbove = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowBelow = -1,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowOut = 0,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSFocusRingPlacement {
+        #[cfg(not(any(target_os = "ios")))]
         NSFocusRingOnly = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSFocusRingBelow = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSFocusRingAbove = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSFocusRingType {
+        #[cfg(not(any(target_os = "ios")))]
         NSFocusRingTypeDefault = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSFocusRingTypeNone = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSFocusRingTypeExterior = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSColorRenderingIntent {
+        #[cfg(not(any(target_os = "ios")))]
         NSColorRenderingIntentDefault = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSColorRenderingIntentAbsoluteColorimetric = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSColorRenderingIntentRelativeColorimetric = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSColorRenderingIntentPerceptual = 3,
+        #[cfg(not(any(target_os = "ios")))]
         NSColorRenderingIntentSaturation = 4,
     }
 );
@@ -182,14 +234,19 @@ extern_static!(NSDeviceBlackColorSpace: &'static NSColorSpaceName);
 
 ns_enum!(
     #[underlying(i32)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSWindowDepth {
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowDepthTwentyfourBitRGB = 0x208,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowDepthSixtyfourBitRGB = 0x210,
+        #[cfg(not(any(target_os = "ios")))]
         NSWindowDepthOnehundredtwentyeightBitRGB = 0x220,
     }
 );
 
 extern_fn!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSBestDepth(
         color_space: &NSColorSpaceName,
         bps: NSInteger,
@@ -200,26 +257,32 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSPlanarFromDepth(depth: NSWindowDepth) -> Bool;
 );
 
 extern_fn!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSColorSpaceFromDepth(depth: NSWindowDepth) -> *mut NSColorSpaceName;
 );
 
 extern_fn!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSBitsPerSampleFromDepth(depth: NSWindowDepth) -> NSInteger;
 );
 
 extern_fn!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSBitsPerPixelFromDepth(depth: NSWindowDepth) -> NSInteger;
 );
 
 extern_fn!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSNumberOfColorComponents(color_space_name: &NSColorSpaceName) -> NSInteger;
 );
 
 extern_fn!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSAvailableWindowDepths() -> NonNull<NSWindowDepth>;
 );
 
@@ -233,8 +296,11 @@ extern_static!(NSBlack: CGFloat);
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSDisplayGamut {
+        #[cfg(not(any(target_os = "ios")))]
         NSDisplayGamutSRGB = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSDisplayGamutP3 = 2,
     }
 );
@@ -256,14 +322,17 @@ extern_static!(NSDeviceIsPrinter: &'static NSDeviceDescriptionKey);
 extern_static!(NSDeviceSize: &'static NSDeviceDescriptionKey);
 
 extern_fn!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSRectFill(rect: NSRect);
 );
 
 extern_fn!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSRectFillList(rects: NonNull<NSRect>, count: NSInteger);
 );
 
 extern_fn!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSRectFillListWithGrays(
         rects: NonNull<NSRect>,
         grays: NonNull<CGFloat>,
@@ -273,6 +342,7 @@ extern_fn!(
 
 extern_fn!(
     #[cfg(feature = "AppKit_NSColor")]
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSRectFillListWithColors(
         rects: NonNull<NSRect>,
         colors: NonNull<NonNull<NSColor>>,
@@ -281,10 +351,12 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSRectFillUsingOperation(rect: NSRect, op: NSCompositingOperation);
 );
 
 extern_fn!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSRectFillListUsingOperation(
         rects: NonNull<NSRect>,
         count: NSInteger,
@@ -294,6 +366,7 @@ extern_fn!(
 
 extern_fn!(
     #[cfg(feature = "AppKit_NSColor")]
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSRectFillListWithColorsUsingOperation(
         rects: NonNull<NSRect>,
         colors: NonNull<NonNull<NSColor>>,
@@ -303,14 +376,17 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSFrameRect(rect: NSRect);
 );
 
 extern_fn!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSFrameRectWithWidth(rect: NSRect, frame_width: CGFloat);
 );
 
 extern_fn!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSFrameRectWithWidthUsingOperation(
         rect: NSRect,
         frame_width: CGFloat,
@@ -319,14 +395,17 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSRectClip(rect: NSRect);
 );
 
 extern_fn!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSRectClipList(rects: NonNull<NSRect>, count: NSInteger);
 );
 
 extern_fn!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSDrawTiledRects(
         bounds_rect: NSRect,
         clip_rect: NSRect,
@@ -337,43 +416,52 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSDrawGrayBezel(rect: NSRect, clip_rect: NSRect);
 );
 
 extern_fn!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSDrawGroove(rect: NSRect, clip_rect: NSRect);
 );
 
 extern_fn!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSDrawWhiteBezel(rect: NSRect, clip_rect: NSRect);
 );
 
 extern_fn!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSDrawButton(rect: NSRect, clip_rect: NSRect);
 );
 
 extern_fn!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSEraseRect(rect: NSRect);
 );
 
 extern_fn!(
     #[cfg(feature = "AppKit_NSColor")]
     #[deprecated = "Use -[NSBitmapImageRep colorAtX:y:] to interrogate pixel values.  If necessary, use -[NSView cacheDisplayInRect:toBitmapImageRep:] to snapshot a view hierarchy into an NSBitmapImageRep."]
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSReadPixel(passed_point: NSPoint) -> *mut NSColor;
 );
 
 extern_fn!(
     #[deprecated]
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSHighlightRect(rect: NSRect);
 );
 
 extern_fn!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSBeep();
 );
 
 extern_fn!(
     #[cfg(feature = "Foundation_NSString")]
     #[deprecated = "Doesn't return anything useful since 10.0"]
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSGetWindowServerMemory(
         context: NSInteger,
         virtual_memory: NonNull<NSInteger>,
@@ -384,6 +472,7 @@ extern_fn!(
 
 extern_fn!(
     #[cfg(feature = "AppKit_NSColor")]
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSDrawColorTiledRects(
         bounds_rect: NSRect,
         clip_rect: NSRect,
@@ -394,44 +483,55 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSDrawDarkBezel(rect: NSRect, clip_rect: NSRect);
 );
 
 extern_fn!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSDrawLightBezel(rect: NSRect, clip_rect: NSRect);
 );
 
 extern_fn!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSDottedFrameRect(rect: NSRect);
 );
 
 extern_fn!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSDrawWindowBackground(rect: NSRect);
 );
 
 extern_fn!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSSetFocusRingStyle(placement: NSFocusRingPlacement);
 );
 
 extern_fn!(
     #[deprecated = "As of 10.11 it is not generally necessary to take explicit action to achieve visual atomicity. +[NSAnimationContext runAnimationGroup:] and other similar methods can be used when a stronger than normal need for visual atomicity is required. The NSAnimationContext methods do not suffer from the same performance problems as NSDisableScreenUpdates."]
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSDisableScreenUpdates();
 );
 
 extern_fn!(
     #[deprecated = "As of 10.11 it is not generally necessary to take explicit action to achieve visual atomicity. +[NSAnimationContext runAnimationGroup:] and other similar methods can be used when a stronger than normal need for visual atomicity is required. The NSAnimationContext methods do not suffer from the same performance problems as NSEnableScreenUpdates."]
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSEnableScreenUpdates();
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSAnimationEffect {
+        #[cfg(not(any(target_os = "ios")))]
         NSAnimationEffectDisappearingItemDefault = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSAnimationEffectPoof = 10,
     }
 );
 
 extern_fn!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSShowAnimationEffect(
         animation_effect: NSAnimationEffect,
         center_location: NSPoint,
@@ -444,21 +544,25 @@ extern_fn!(
 
 extern_fn!(
     #[deprecated = "Use +[NSWindow windowNumbersWithOptions:] instead"]
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSCountWindows(count: NonNull<NSInteger>);
 );
 
 extern_fn!(
     #[deprecated = "Use +[NSWindow windowNumbersWithOptions:] instead"]
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSWindowList(size: NSInteger, list: NonNull<NSInteger>);
 );
 
 extern_fn!(
     #[deprecated = "Use +[NSWindow windowNumbersWithOptions:] instead"]
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSCountWindowsForContext(context: NSInteger, count: NonNull<NSInteger>);
 );
 
 extern_fn!(
     #[deprecated = "Use +[NSWindow windowNumbersWithOptions:] instead"]
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSWindowListForContext(
         context: NSInteger,
         size: NSInteger,
@@ -468,5 +572,6 @@ extern_fn!(
 
 extern_fn!(
     #[deprecated]
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSCopyBits(src_g_state: NSInteger, src_rect: NSRect, dest_point: NSPoint);
 );

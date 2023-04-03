@@ -82,6 +82,7 @@ extern_methods!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSError"
         ))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other unifiedMeContactWithKeysToFetch:error:_)]
         pub unsafe fn unifiedMeContactWithKeysToFetch_error(
             &self,
@@ -152,6 +153,7 @@ extern_methods!(
         ) -> Result<Id<NSArray<CNContainer>>, Id<NSError>>;
 
         #[cfg(all(feature = "Contacts_CNSaveRequest", feature = "Foundation_NSError"))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(executeSaveRequest:error:_)]
         pub unsafe fn executeSaveRequest_error(
             &self,

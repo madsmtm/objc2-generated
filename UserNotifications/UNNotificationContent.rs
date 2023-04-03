@@ -64,6 +64,7 @@ extern_methods!(
         pub unsafe fn categoryIdentifier(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "macos")))]
         #[method_id(@__retain_semantics Other launchImageName)]
         pub unsafe fn launchImageName(&self) -> Id<NSString>;
 
@@ -182,10 +183,12 @@ extern_methods!(
         pub unsafe fn setCategoryIdentifier(&self, category_identifier: &NSString);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "macos")))]
         #[method_id(@__retain_semantics Other launchImageName)]
         pub unsafe fn launchImageName(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "macos")))]
         #[method(setLaunchImageName:)]
         pub unsafe fn setLaunchImageName(&self, launch_image_name: &NSString);
 

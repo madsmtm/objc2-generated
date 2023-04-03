@@ -6,26 +6,34 @@ use crate::Foundation::*;
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "macos")))]
     pub enum AXHearingDeviceEar {
+        #[cfg(not(any(target_os = "macos")))]
         AXHearingDeviceEarNone = 0,
+        #[cfg(not(any(target_os = "macos")))]
         AXHearingDeviceEarLeft = 1 << 1,
+        #[cfg(not(any(target_os = "macos")))]
         AXHearingDeviceEarRight = 1 << 2,
+        #[cfg(not(any(target_os = "macos")))]
         AXHearingDeviceEarBoth = AXHearingDeviceEarLeft | AXHearingDeviceEarRight,
     }
 );
 
 extern_fn!(
+    #[cfg(not(any(target_os = "macos")))]
     pub unsafe fn AXMFiHearingDeviceStreamingEar() -> AXHearingDeviceEar;
 );
 
 extern_static!(AXMFiHearingDeviceStreamingEarDidChangeNotification: &'static NSNotificationName);
 
 extern_fn!(
+    #[cfg(not(any(target_os = "macos")))]
     pub unsafe fn AXSupportsBidirectionalAXMFiHearingDeviceStreaming() -> Bool;
 );
 
 extern_fn!(
     #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSUUID"))]
+    #[cfg(not(any(target_os = "macos")))]
     pub unsafe fn AXMFiHearingDevicePairedUUIDs() -> NonNull<NSArray<NSUUID>>;
 );
 

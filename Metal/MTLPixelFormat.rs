@@ -63,19 +63,33 @@ ns_enum!(
         MTLPixelFormatRGBA32Uint = 123,
         MTLPixelFormatRGBA32Sint = 124,
         MTLPixelFormatRGBA32Float = 125,
+        #[cfg(not(any(target_os = "ios")))]
         MTLPixelFormatBC1_RGBA = 130,
+        #[cfg(not(any(target_os = "ios")))]
         MTLPixelFormatBC1_RGBA_sRGB = 131,
+        #[cfg(not(any(target_os = "ios")))]
         MTLPixelFormatBC2_RGBA = 132,
+        #[cfg(not(any(target_os = "ios")))]
         MTLPixelFormatBC2_RGBA_sRGB = 133,
+        #[cfg(not(any(target_os = "ios")))]
         MTLPixelFormatBC3_RGBA = 134,
+        #[cfg(not(any(target_os = "ios")))]
         MTLPixelFormatBC3_RGBA_sRGB = 135,
+        #[cfg(not(any(target_os = "ios")))]
         MTLPixelFormatBC4_RUnorm = 140,
+        #[cfg(not(any(target_os = "ios")))]
         MTLPixelFormatBC4_RSnorm = 141,
+        #[cfg(not(any(target_os = "ios")))]
         MTLPixelFormatBC5_RGUnorm = 142,
+        #[cfg(not(any(target_os = "ios")))]
         MTLPixelFormatBC5_RGSnorm = 143,
+        #[cfg(not(any(target_os = "ios")))]
         MTLPixelFormatBC6H_RGBFloat = 150,
+        #[cfg(not(any(target_os = "ios")))]
         MTLPixelFormatBC6H_RGBUfloat = 151,
+        #[cfg(not(any(target_os = "ios")))]
         MTLPixelFormatBC7_RGBAUnorm = 152,
+        #[cfg(not(any(target_os = "ios")))]
         MTLPixelFormatBC7_RGBAUnorm_sRGB = 153,
         MTLPixelFormatPVRTC_RGB_2BPP = 160,
         MTLPixelFormatPVRTC_RGB_2BPP_sRGB = 161,
@@ -142,9 +156,11 @@ ns_enum!(
         MTLPixelFormatDepth16Unorm = 250,
         MTLPixelFormatDepth32Float = 252,
         MTLPixelFormatStencil8 = 253,
+        #[cfg(not(any(target_os = "ios")))]
         MTLPixelFormatDepth24Unorm_Stencil8 = 255,
         MTLPixelFormatDepth32Float_Stencil8 = 260,
         MTLPixelFormatX32_Stencil8 = 261,
+        #[cfg(not(any(target_os = "ios")))]
         MTLPixelFormatX24_Stencil8 = 262,
     }
 );

@@ -7,6 +7,7 @@ use crate::IdentityLookup::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "IdentityLookup_ILMessageFilterQueryRequest")]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub struct ILMessageFilterQueryRequest;
 
     #[cfg(feature = "IdentityLookup_ILMessageFilterQueryRequest")]
@@ -36,6 +37,7 @@ extern_methods!(
         pub unsafe fn messageBody(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other receiverISOCountryCode)]
         pub unsafe fn receiverISOCountryCode(&self) -> Option<Id<NSString>>;
 

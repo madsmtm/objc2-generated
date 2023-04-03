@@ -59,6 +59,7 @@ extern_methods!(
         pub unsafe fn end(&self);
 
         #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentConfiguration")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(updateToConfiguration:)]
         pub unsafe fn updateToConfiguration(&self, configuration: &AEAssessmentConfiguration);
     }

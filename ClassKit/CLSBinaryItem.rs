@@ -6,10 +6,15 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub enum CLSBinaryValueType {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLSBinaryValueTypeTrueFalse = 0,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLSBinaryValueTypePassFail = 1,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLSBinaryValueTypeYesNo = 2,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLSBinaryValueTypeCorrectIncorrect = 3,
     }
 );
@@ -17,6 +22,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "ClassKit_CLSBinaryItem")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct CLSBinaryItem;
 
     #[cfg(feature = "ClassKit_CLSBinaryItem")]

@@ -7,6 +7,7 @@ use crate::MetricKit::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MetricKit_MXMetaData")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct MXMetaData;
 
     #[cfg(feature = "MetricKit_MXMetaData")]
@@ -44,6 +45,7 @@ extern_methods!(
         pub unsafe fn applicationBuildVersion(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other platformArchitecture)]
         pub unsafe fn platformArchitecture(&self) -> Id<NSString>;
 
@@ -53,10 +55,12 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[deprecated]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other DictionaryRepresentation)]
         pub unsafe fn DictionaryRepresentation(&self) -> Id<NSDictionary>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other dictionaryRepresentation)]
         pub unsafe fn dictionaryRepresentation(&self) -> Id<NSDictionary>;
     }

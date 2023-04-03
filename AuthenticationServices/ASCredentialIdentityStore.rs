@@ -8,9 +8,13 @@ extern_static!(ASCredentialIdentityStoreErrorDomain: &'static NSErrorDomain);
 
 ns_error_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub enum ASCredentialIdentityStoreErrorCode {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         ASCredentialIdentityStoreErrorCodeInternalError = 0,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         ASCredentialIdentityStoreErrorCodeStoreDisabled = 1,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         ASCredentialIdentityStoreErrorCodeStoreBusy = 2,
     }
 );
@@ -18,6 +22,7 @@ ns_error_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AuthenticationServices_ASCredentialIdentityStore")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct ASCredentialIdentityStore;
 
     #[cfg(feature = "AuthenticationServices_ASCredentialIdentityStore")]

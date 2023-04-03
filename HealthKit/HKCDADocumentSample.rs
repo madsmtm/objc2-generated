@@ -9,6 +9,7 @@ use crate::UniformTypeIdentifiers::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HealthKit_HKCDADocumentSample")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct HKCDADocumentSample;
 
     #[cfg(feature = "HealthKit_HKCDADocumentSample")]
@@ -41,6 +42,7 @@ extern_methods!(
             feature = "Foundation_NSError",
             feature = "Foundation_NSString"
         ))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other CDADocumentSampleWithData:startDate:endDate:metadata:validationError:_)]
         pub unsafe fn CDADocumentSampleWithData_startDate_endDate_metadata_validationError(
             document_data: &NSData,
@@ -54,6 +56,7 @@ extern_methods!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HealthKit_HKCDADocument")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct HKCDADocument;
 
     #[cfg(feature = "HealthKit_HKCDADocument")]

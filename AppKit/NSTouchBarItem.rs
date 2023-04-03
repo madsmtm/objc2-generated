@@ -52,6 +52,7 @@ extern_methods!(
             coder: &NSCoder,
         ) -> Option<Id<Self>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
@@ -65,10 +66,12 @@ extern_methods!(
         pub unsafe fn setVisibilityPriority(&self, visibility_priority: NSTouchBarItemPriority);
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other view)]
         pub unsafe fn view(&self) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other viewController)]
         pub unsafe fn viewController(&self) -> Option<Id<NSViewController>>;
 

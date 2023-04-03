@@ -10,6 +10,7 @@ pub type NSStoryboardSegueIdentifier = NSString;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSStoryboardSegue")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSStoryboardSegue;
 
     #[cfg(feature = "AppKit_NSStoryboardSegue")]
@@ -24,6 +25,7 @@ unsafe impl NSObjectProtocol for NSStoryboardSegue {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSStoryboardSegue")]
     unsafe impl NSStoryboardSegue {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other segueWithIdentifier:source:destination:performHandler:)]
         pub unsafe fn segueWithIdentifier_source_destination_performHandler(
             identifier: &NSStoryboardSegueIdentifier,
@@ -32,6 +34,7 @@ extern_methods!(
             perform_handler: &Block<(), ()>,
         ) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithIdentifier:source:destination:)]
         pub unsafe fn initWithIdentifier_source_destination(
             this: Option<Allocated<Self>>,
@@ -40,27 +43,34 @@ extern_methods!(
             destination_controller: &Object,
         ) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Option<Id<NSStoryboardSegueIdentifier>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other sourceController)]
         pub unsafe fn sourceController(&self) -> Id<Object>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other destinationController)]
         pub unsafe fn destinationController(&self) -> Id<Object>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(perform)]
         pub unsafe fn perform(&self);
     }
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSSeguePerforming: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSStoryboardSegue")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(prepareForSegue:sender:)]
         unsafe fn prepareForSegue_sender(&self, segue: &NSStoryboardSegue, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(performSegueWithIdentifier:sender:)]
         unsafe fn performSegueWithIdentifier_sender(
@@ -69,6 +79,7 @@ extern_protocol!(
             sender: Option<&Object>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(shouldPerformSegueWithIdentifier:sender:)]
         unsafe fn shouldPerformSegueWithIdentifier_sender(

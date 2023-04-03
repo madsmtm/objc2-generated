@@ -8,6 +8,7 @@ use crate::StoreKit::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "StoreKit_SKArcadeService")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct SKArcadeService;
 
     #[cfg(feature = "StoreKit_SKArcadeService")]
@@ -23,6 +24,7 @@ extern_methods!(
     #[cfg(feature = "StoreKit_SKArcadeService")]
     unsafe impl SKArcadeService {
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(registerArcadeAppWithRandomFromLib:randomFromLibLength:resultHandler:)]
         pub unsafe fn registerArcadeAppWithRandomFromLib_randomFromLibLength_resultHandler(
             random_from_lib: &NSData,
@@ -31,12 +33,14 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(arcadeSubscriptionStatusWithNonce:resultHandler:)]
         pub unsafe fn arcadeSubscriptionStatusWithNonce_resultHandler(
             nonce: u64,
             result_handler: &Block<(*mut NSData, u32, *mut NSData, u32, *mut NSError), ()>,
         );
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(repairArcadeApp)]
         pub unsafe fn repairArcadeApp();
     }

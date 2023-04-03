@@ -70,6 +70,7 @@ extern_methods!(
     /// Methods declared on superclass `GKGameCenterViewController`
     #[cfg(feature = "GameKit_GKAchievementViewController")]
     unsafe impl GKAchievementViewController {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Init initWithState:)]
         pub unsafe fn initWithState(
             this: Option<Allocated<Self>>,
@@ -77,6 +78,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Init initWithLeaderboardID:playerScope:timeScope:)]
         pub unsafe fn initWithLeaderboardID_playerScope_timeScope(
             this: Option<Allocated<Self>>,
@@ -86,6 +88,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "GameKit_GKLeaderboard")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Init initWithLeaderboard:playerScope:)]
         pub unsafe fn initWithLeaderboard_playerScope(
             this: Option<Allocated<Self>>,
@@ -94,6 +97,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Init initWithAchievementID:)]
         pub unsafe fn initWithAchievementID(
             this: Option<Allocated<Self>>,
@@ -107,6 +111,7 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKAchievementViewController")]
     unsafe impl GKAchievementViewController {
         #[cfg(feature = "Foundation_NSBundle")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Option<Allocated<Self>>,

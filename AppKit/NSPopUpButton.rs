@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSPopUpButton")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSPopUpButton;
 
     #[cfg(feature = "AppKit_NSPopUpButton")]
@@ -53,6 +54,7 @@ unsafe impl NSUserInterfaceValidations for NSPopUpButton {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSPopUpButton")]
     unsafe impl NSPopUpButton {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithFrame:pullsDown:)]
         pub unsafe fn initWithFrame_pullsDown(
             this: Option<Allocated<Self>>,
@@ -61,74 +63,95 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other menu)]
         pub unsafe fn menu(&self) -> Option<Id<NSMenu>>;
 
         #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMenu:)]
         pub unsafe fn setMenu(&self, menu: Option<&NSMenu>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(pullsDown)]
         pub unsafe fn pullsDown(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPullsDown:)]
         pub unsafe fn setPullsDown(&self, pulls_down: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(autoenablesItems)]
         pub unsafe fn autoenablesItems(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAutoenablesItems:)]
         pub unsafe fn setAutoenablesItems(&self, autoenables_items: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(preferredEdge)]
         pub unsafe fn preferredEdge(&self) -> NSRectEdge;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPreferredEdge:)]
         pub unsafe fn setPreferredEdge(&self, preferred_edge: NSRectEdge);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(addItemWithTitle:)]
         pub unsafe fn addItemWithTitle(&self, title: &NSString);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(addItemsWithTitles:)]
         pub unsafe fn addItemsWithTitles(&self, item_titles: &NSArray<NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(insertItemWithTitle:atIndex:)]
         pub unsafe fn insertItemWithTitle_atIndex(&self, title: &NSString, index: NSInteger);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeItemWithTitle:)]
         pub unsafe fn removeItemWithTitle(&self, title: &NSString);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeItemAtIndex:)]
         pub unsafe fn removeItemAtIndex(&self, index: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeAllItems)]
         pub unsafe fn removeAllItems(&self);
 
         #[cfg(all(feature = "AppKit_NSMenuItem", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other itemArray)]
         pub unsafe fn itemArray(&self) -> Id<NSArray<NSMenuItem>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(numberOfItems)]
         pub unsafe fn numberOfItems(&self) -> NSInteger;
 
         #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(indexOfItem:)]
         pub unsafe fn indexOfItem(&self, item: &NSMenuItem) -> NSInteger;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(indexOfItemWithTitle:)]
         pub unsafe fn indexOfItemWithTitle(&self, title: &NSString) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(indexOfItemWithTag:)]
         pub unsafe fn indexOfItemWithTag(&self, tag: NSInteger) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(indexOfItemWithRepresentedObject:)]
         pub unsafe fn indexOfItemWithRepresentedObject(&self, obj: Option<&Object>) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(indexOfItemWithTarget:andAction:)]
         pub unsafe fn indexOfItemWithTarget_andAction(
             &self,
@@ -137,57 +160,72 @@ extern_methods!(
         ) -> NSInteger;
 
         #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other itemAtIndex:)]
         pub unsafe fn itemAtIndex(&self, index: NSInteger) -> Option<Id<NSMenuItem>>;
 
         #[cfg(all(feature = "AppKit_NSMenuItem", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other itemWithTitle:)]
         pub unsafe fn itemWithTitle(&self, title: &NSString) -> Option<Id<NSMenuItem>>;
 
         #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other lastItem)]
         pub unsafe fn lastItem(&self) -> Option<Id<NSMenuItem>>;
 
         #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectItem:)]
         pub unsafe fn selectItem(&self, item: Option<&NSMenuItem>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectItemAtIndex:)]
         pub unsafe fn selectItemAtIndex(&self, index: NSInteger);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectItemWithTitle:)]
         pub unsafe fn selectItemWithTitle(&self, title: &NSString);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectItemWithTag:)]
         pub unsafe fn selectItemWithTag(&self, tag: NSInteger) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, string: &NSString);
 
         #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other selectedItem)]
         pub unsafe fn selectedItem(&self) -> Option<Id<NSMenuItem>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(indexOfSelectedItem)]
         pub unsafe fn indexOfSelectedItem(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectedTag)]
         pub unsafe fn selectedTag(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(synchronizeTitleAndSelectedItem)]
         pub unsafe fn synchronizeTitleAndSelectedItem(&self);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other itemTitleAtIndex:)]
         pub unsafe fn itemTitleAtIndex(&self, index: NSInteger) -> Id<NSString>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other itemTitles)]
         pub unsafe fn itemTitles(&self) -> Id<NSArray<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other titleOfSelectedItem)]
         pub unsafe fn titleOfSelectedItem(&self) -> Option<Id<NSString>>;
     }
@@ -200,6 +238,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSPopUpButton")]
     unsafe impl NSPopUpButton {
         #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other buttonWithTitle:image:target:action:)]
         pub unsafe fn buttonWithTitle_image_target_action(
             title: &NSString,
@@ -209,6 +248,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other buttonWithTitle:target:action:)]
         pub unsafe fn buttonWithTitle_target_action(
             title: &NSString,
@@ -217,6 +257,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other buttonWithImage:target:action:)]
         pub unsafe fn buttonWithImage_target_action(
             image: &NSImage,
@@ -225,6 +266,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other checkboxWithTitle:target:action:)]
         pub unsafe fn checkboxWithTitle_target_action(
             title: &NSString,
@@ -233,6 +275,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other radioButtonWithTitle:target:action:)]
         pub unsafe fn radioButtonWithTitle_target_action(
             title: &NSString,
@@ -246,6 +289,7 @@ extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(feature = "AppKit_NSPopUpButton")]
     unsafe impl NSPopUpButton {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }

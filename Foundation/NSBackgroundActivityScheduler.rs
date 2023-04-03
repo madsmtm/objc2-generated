@@ -5,8 +5,11 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub enum NSBackgroundActivityResult {
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         NSBackgroundActivityResultFinished = 1,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         NSBackgroundActivityResultDeferred = 2,
     }
 );
@@ -16,6 +19,7 @@ pub type NSBackgroundActivityCompletionHandler = *mut Block<(NSBackgroundActivit
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSBackgroundActivityScheduler")]
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub struct NSBackgroundActivityScheduler;
 
     #[cfg(feature = "Foundation_NSBackgroundActivityScheduler")]

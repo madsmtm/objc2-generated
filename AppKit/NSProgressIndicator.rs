@@ -7,8 +7,11 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSProgressIndicatorStyle {
+        #[cfg(not(any(target_os = "ios")))]
         NSProgressIndicatorStyleBar = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSProgressIndicatorStyleSpinning = 1,
     }
 );
@@ -16,6 +19,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSProgressIndicator")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSProgressIndicator;
 
     #[cfg(feature = "AppKit_NSProgressIndicator")]
@@ -58,75 +62,99 @@ unsafe impl NSUserInterfaceItemIdentification for NSProgressIndicator {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSProgressIndicator")]
     unsafe impl NSProgressIndicator {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isIndeterminate)]
         pub unsafe fn isIndeterminate(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setIndeterminate:)]
         pub unsafe fn setIndeterminate(&self, indeterminate: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isBezeled)]
         pub unsafe fn isBezeled(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBezeled:)]
         pub unsafe fn setBezeled(&self, bezeled: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(controlTint)]
         pub unsafe fn controlTint(&self) -> NSControlTint;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setControlTint:)]
         pub unsafe fn setControlTint(&self, control_tint: NSControlTint);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(controlSize)]
         pub unsafe fn controlSize(&self) -> NSControlSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setControlSize:)]
         pub unsafe fn setControlSize(&self, control_size: NSControlSize);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(doubleValue)]
         pub unsafe fn doubleValue(&self) -> c_double;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDoubleValue:)]
         pub unsafe fn setDoubleValue(&self, double_value: c_double);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(incrementBy:)]
         pub unsafe fn incrementBy(&self, delta: c_double);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(minValue)]
         pub unsafe fn minValue(&self) -> c_double;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMinValue:)]
         pub unsafe fn setMinValue(&self, min_value: c_double);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(maxValue)]
         pub unsafe fn maxValue(&self) -> c_double;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMaxValue:)]
         pub unsafe fn setMaxValue(&self, max_value: c_double);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(usesThreadedAnimation)]
         pub unsafe fn usesThreadedAnimation(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setUsesThreadedAnimation:)]
         pub unsafe fn setUsesThreadedAnimation(&self, uses_threaded_animation: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(startAnimation:)]
         pub unsafe fn startAnimation(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(stopAnimation:)]
         pub unsafe fn stopAnimation(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(style)]
         pub unsafe fn style(&self) -> NSProgressIndicatorStyle;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setStyle:)]
         pub unsafe fn setStyle(&self, style: NSProgressIndicatorStyle);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(sizeToFit)]
         pub unsafe fn sizeToFit(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isDisplayedWhenStopped)]
         pub unsafe fn isDisplayedWhenStopped(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDisplayedWhenStopped:)]
         pub unsafe fn setDisplayedWhenStopped(&self, displayed_when_stopped: bool);
     }
@@ -135,14 +163,19 @@ extern_methods!(
 ns_enum!(
     #[underlying(NSUInteger)]
     #[deprecated = "These constants do not accurately represent the geometry of NSProgressIndicator.  Use `controlSize` and `sizeToFit` instead."]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSProgressIndicatorThickness {
         #[deprecated = "These constants do not accurately represent the geometry of NSProgressIndicator.  Use `controlSize` and `sizeToFit` instead."]
+        #[cfg(not(any(target_os = "ios")))]
         NSProgressIndicatorPreferredThickness = 14,
         #[deprecated = "These constants do not accurately represent the geometry of NSProgressIndicator.  Use `controlSize` and `sizeToFit` instead."]
+        #[cfg(not(any(target_os = "ios")))]
         NSProgressIndicatorPreferredSmallThickness = 10,
         #[deprecated = "These constants do not accurately represent the geometry of NSProgressIndicator.  Use `controlSize` and `sizeToFit` instead."]
+        #[cfg(not(any(target_os = "ios")))]
         NSProgressIndicatorPreferredLargeThickness = 18,
         #[deprecated = "These constants do not accurately represent the geometry of NSProgressIndicator.  Use `controlSize` and `sizeToFit` instead."]
+        #[cfg(not(any(target_os = "ios")))]
         NSProgressIndicatorPreferredAquaThickness = 12,
     }
 );
@@ -158,14 +191,17 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSProgressIndicator")]
     unsafe impl NSProgressIndicator {
         #[deprecated = "The animationDelay property does nothing."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(animationDelay)]
         pub unsafe fn animationDelay(&self) -> NSTimeInterval;
 
         #[deprecated = "The animationDelay property does nothing."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAnimationDelay:)]
         pub unsafe fn setAnimationDelay(&self, delay: NSTimeInterval);
 
         #[deprecated = "Use -startAnimation and -stopAnimation instead."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(animate:)]
         pub unsafe fn animate(&self, sender: Option<&Object>);
     }
@@ -175,6 +211,7 @@ extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(feature = "AppKit_NSProgressIndicator")]
     unsafe impl NSProgressIndicator {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }

@@ -7,36 +7,62 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSAccessibilityCustomRotorSearchDirection {
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityCustomRotorSearchDirectionPrevious = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityCustomRotorSearchDirectionNext = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSAccessibilityCustomRotorType {
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityCustomRotorTypeCustom = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityCustomRotorTypeAny = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityCustomRotorTypeAnnotation = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityCustomRotorTypeBoldText = 3,
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityCustomRotorTypeHeading = 4,
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityCustomRotorTypeHeadingLevel1 = 5,
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityCustomRotorTypeHeadingLevel2 = 6,
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityCustomRotorTypeHeadingLevel3 = 7,
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityCustomRotorTypeHeadingLevel4 = 8,
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityCustomRotorTypeHeadingLevel5 = 9,
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityCustomRotorTypeHeadingLevel6 = 10,
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityCustomRotorTypeImage = 11,
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityCustomRotorTypeItalicText = 12,
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityCustomRotorTypeLandmark = 13,
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityCustomRotorTypeLink = 14,
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityCustomRotorTypeList = 15,
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityCustomRotorTypeMisspelledWord = 16,
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityCustomRotorTypeTable = 17,
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityCustomRotorTypeTextField = 18,
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityCustomRotorTypeUnderlinedText = 19,
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityCustomRotorTypeVisitedLink = 20,
+        #[cfg(not(any(target_os = "ios")))]
         NSAccessibilityCustomRotorTypeAudiograph = 21,
     }
 );
@@ -44,6 +70,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSAccessibilityCustomRotor")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSAccessibilityCustomRotor;
 
     #[cfg(feature = "AppKit_NSAccessibilityCustomRotor")]
@@ -59,6 +86,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSAccessibilityCustomRotor")]
     unsafe impl NSAccessibilityCustomRotor {
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithLabel:itemSearchDelegate:)]
         pub unsafe fn initWithLabel_itemSearchDelegate(
             this: Option<Allocated<Self>>,
@@ -66,6 +94,7 @@ extern_methods!(
             item_search_delegate: &ProtocolObject<dyn NSAccessibilityCustomRotorItemSearchDelegate>,
         ) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithRotorType:itemSearchDelegate:)]
         pub unsafe fn initWithRotorType_itemSearchDelegate(
             this: Option<Allocated<Self>>,
@@ -73,25 +102,31 @@ extern_methods!(
             item_search_delegate: &ProtocolObject<dyn NSAccessibilityCustomRotorItemSearchDelegate>,
         ) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(type)]
         pub unsafe fn r#type(&self) -> NSAccessibilityCustomRotorType;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setType:)]
         pub unsafe fn setType(&self, r#type: NSAccessibilityCustomRotorType);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other label)]
         pub unsafe fn label(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: &NSString);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other itemSearchDelegate)]
         pub unsafe fn itemSearchDelegate(
             &self,
         ) -> Option<Id<ProtocolObject<dyn NSAccessibilityCustomRotorItemSearchDelegate>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setItemSearchDelegate:)]
         pub unsafe fn setItemSearchDelegate(
             &self,
@@ -100,11 +135,13 @@ extern_methods!(
             >,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other itemLoadingDelegate)]
         pub unsafe fn itemLoadingDelegate(
             &self,
         ) -> Option<Id<ProtocolObject<dyn NSAccessibilityElementLoading>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setItemLoadingDelegate:)]
         pub unsafe fn setItemLoadingDelegate(
             &self,
@@ -116,6 +153,7 @@ extern_methods!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSAccessibilityCustomRotorSearchParameters")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSAccessibilityCustomRotorSearchParameters;
 
     #[cfg(feature = "AppKit_NSAccessibilityCustomRotorSearchParameters")]
@@ -131,19 +169,23 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSAccessibilityCustomRotorSearchParameters")]
     unsafe impl NSAccessibilityCustomRotorSearchParameters {
         #[cfg(feature = "AppKit_NSAccessibilityCustomRotorItemResult")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other currentItem)]
         pub unsafe fn currentItem(&self) -> Option<Id<NSAccessibilityCustomRotorItemResult>>;
 
         #[cfg(feature = "AppKit_NSAccessibilityCustomRotorItemResult")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCurrentItem:)]
         pub unsafe fn setCurrentItem(
             &self,
             current_item: Option<&NSAccessibilityCustomRotorItemResult>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(searchDirection)]
         pub unsafe fn searchDirection(&self) -> NSAccessibilityCustomRotorSearchDirection;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSearchDirection:)]
         pub unsafe fn setSearchDirection(
             &self,
@@ -151,10 +193,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other filterString)]
         pub unsafe fn filterString(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFilterString:)]
         pub unsafe fn setFilterString(&self, filter_string: &NSString);
     }
@@ -163,6 +207,7 @@ extern_methods!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSAccessibilityCustomRotorItemResult")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSAccessibilityCustomRotorItemResult;
 
     #[cfg(feature = "AppKit_NSAccessibilityCustomRotorItemResult")]
@@ -177,12 +222,15 @@ unsafe impl NSObjectProtocol for NSAccessibilityCustomRotorItemResult {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSAccessibilityCustomRotorItemResult")]
     unsafe impl NSAccessibilityCustomRotorItemResult {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithTargetElement:)]
         pub unsafe fn initWithTargetElement(
             this: Option<Allocated<Self>>,
@@ -190,6 +238,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithItemLoadingToken:customLabel:)]
         pub unsafe fn initWithItemLoadingToken_customLabel(
             this: Option<Allocated<Self>>,
@@ -197,37 +246,45 @@ extern_methods!(
             custom_label: &NSString,
         ) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other targetElement)]
         pub unsafe fn targetElement(
             &self,
         ) -> Option<Id<ProtocolObject<dyn NSAccessibilityElementProtocol>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other itemLoadingToken)]
         pub unsafe fn itemLoadingToken(&self) -> Option<Id<NSAccessibilityLoadingToken>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(targetRange)]
         pub unsafe fn targetRange(&self) -> NSRange;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTargetRange:)]
         pub unsafe fn setTargetRange(&self, target_range: NSRange);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other customLabel)]
         pub unsafe fn customLabel(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCustomLabel:)]
         pub unsafe fn setCustomLabel(&self, custom_label: Option<&NSString>);
     }
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSAccessibilityCustomRotorItemSearchDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "AppKit_NSAccessibilityCustomRotor",
             feature = "AppKit_NSAccessibilityCustomRotorItemResult",
             feature = "AppKit_NSAccessibilityCustomRotorSearchParameters"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other rotor:resultForSearchParameters:)]
         unsafe fn rotor_resultForSearchParameters(
             &self,

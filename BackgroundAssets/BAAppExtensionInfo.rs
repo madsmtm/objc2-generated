@@ -7,6 +7,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "BackgroundAssets_BAAppExtensionInfo")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct BAAppExtensionInfo;
 
     #[cfg(feature = "BackgroundAssets_BAAppExtensionInfo")]

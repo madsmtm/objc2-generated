@@ -8,6 +8,7 @@ use crate::GameKit::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GameKit_GKVoiceChatService")]
+    #[cfg(not(any(target_os = "macos")))]
     pub struct GKVoiceChatService;
 
     #[cfg(feature = "GameKit_GKVoiceChatService")]
@@ -28,9 +29,11 @@ extern_methods!(
         #[method(isVoIPAllowed)]
         pub unsafe fn isVoIPAllowed() -> bool;
 
+        #[cfg(not(any(target_os = "macos")))]
         #[method_id(@__retain_semantics Other client)]
         pub unsafe fn client(&self) -> Option<Id<ProtocolObject<dyn GKVoiceChatClient>>>;
 
+        #[cfg(not(any(target_os = "macos")))]
         #[method(setClient:)]
         pub unsafe fn setClient(&self, client: Option<&ProtocolObject<dyn GKVoiceChatClient>>);
 

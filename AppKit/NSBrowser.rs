@@ -13,17 +13,24 @@ pub type NSBrowserColumnsAutosaveName = NSString;
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSBrowserColumnResizingType {
+        #[cfg(not(any(target_os = "ios")))]
         NSBrowserNoColumnResizing = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSBrowserAutoColumnResizing = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSBrowserUserColumnResizing = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSBrowserDropOperation {
+        #[cfg(not(any(target_os = "ios")))]
         NSBrowserDropOn = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSBrowserDropAbove = 1,
     }
 );
@@ -31,6 +38,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSBrowser")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSBrowser;
 
     #[cfg(feature = "AppKit_NSBrowser")]
@@ -67,115 +75,151 @@ unsafe impl NSUserInterfaceItemIdentification for NSBrowser {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSBrowser")]
     unsafe impl NSBrowser {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(cellClass)]
         pub unsafe fn cellClass() -> &'static Class;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(loadColumnZero)]
         pub unsafe fn loadColumnZero(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isLoaded)]
         pub unsafe fn isLoaded(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(doubleAction)]
         pub unsafe fn doubleAction(&self) -> Option<Sel>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDoubleAction:)]
         pub unsafe fn setDoubleAction(&self, double_action: Option<Sel>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCellClass:)]
         pub unsafe fn setCellClass(&self, factory_id: &Class);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other cellPrototype)]
         pub unsafe fn cellPrototype(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCellPrototype:)]
         pub unsafe fn setCellPrototype(&self, cell_prototype: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSBrowserDelegate>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSBrowserDelegate>>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(reusesColumns)]
         pub unsafe fn reusesColumns(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setReusesColumns:)]
         pub unsafe fn setReusesColumns(&self, reuses_columns: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(hasHorizontalScroller)]
         pub unsafe fn hasHorizontalScroller(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setHasHorizontalScroller:)]
         pub unsafe fn setHasHorizontalScroller(&self, has_horizontal_scroller: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(autohidesScroller)]
         pub unsafe fn autohidesScroller(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAutohidesScroller:)]
         pub unsafe fn setAutohidesScroller(&self, autohides_scroller: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(separatesColumns)]
         pub unsafe fn separatesColumns(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSeparatesColumns:)]
         pub unsafe fn setSeparatesColumns(&self, separates_columns: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isTitled)]
         pub unsafe fn isTitled(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTitled:)]
         pub unsafe fn setTitled(&self, titled: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(minColumnWidth)]
         pub unsafe fn minColumnWidth(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMinColumnWidth:)]
         pub unsafe fn setMinColumnWidth(&self, min_column_width: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(maxVisibleColumns)]
         pub unsafe fn maxVisibleColumns(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMaxVisibleColumns:)]
         pub unsafe fn setMaxVisibleColumns(&self, max_visible_columns: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(allowsMultipleSelection)]
         pub unsafe fn allowsMultipleSelection(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAllowsMultipleSelection:)]
         pub unsafe fn setAllowsMultipleSelection(&self, allows_multiple_selection: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(allowsBranchSelection)]
         pub unsafe fn allowsBranchSelection(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAllowsBranchSelection:)]
         pub unsafe fn setAllowsBranchSelection(&self, allows_branch_selection: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(allowsEmptySelection)]
         pub unsafe fn allowsEmptySelection(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAllowsEmptySelection:)]
         pub unsafe fn setAllowsEmptySelection(&self, allows_empty_selection: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(takesTitleFromPreviousColumn)]
         pub unsafe fn takesTitleFromPreviousColumn(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTakesTitleFromPreviousColumn:)]
         pub unsafe fn setTakesTitleFromPreviousColumn(
             &self,
             takes_title_from_previous_column: bool,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(sendsActionOnArrowKeys)]
         pub unsafe fn sendsActionOnArrowKeys(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSendsActionOnArrowKeys:)]
         pub unsafe fn setSendsActionOnArrowKeys(&self, sends_action_on_arrow_keys: bool);
 
         #[cfg(feature = "Foundation_NSIndexPath")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other itemAtIndexPath:)]
         pub unsafe fn itemAtIndexPath(&self, index_path: &NSIndexPath) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other itemAtRow:inColumn:)]
         pub unsafe fn itemAtRow_inColumn(
             &self,
@@ -184,13 +228,16 @@ extern_methods!(
         ) -> Option<Id<Object>>;
 
         #[cfg(feature = "Foundation_NSIndexPath")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other indexPathForColumn:)]
         pub unsafe fn indexPathForColumn(&self, column: NSInteger) -> Id<NSIndexPath>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isLeafItem:)]
         pub unsafe fn isLeafItem(&self, item: Option<&Object>) -> bool;
 
         #[cfg(feature = "Foundation_NSIndexSet")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(reloadDataForRowIndexes:inColumn:)]
         pub unsafe fn reloadDataForRowIndexes_inColumn(
             &self,
@@ -198,125 +245,160 @@ extern_methods!(
             column: NSInteger,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other parentForItemsInColumn:)]
         pub unsafe fn parentForItemsInColumn(&self, column: NSInteger) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(scrollRowToVisible:inColumn:)]
         pub unsafe fn scrollRowToVisible_inColumn(&self, row: NSInteger, column: NSInteger);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTitle:ofColumn:)]
         pub unsafe fn setTitle_ofColumn(&self, string: &NSString, column: NSInteger);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other titleOfColumn:)]
         pub unsafe fn titleOfColumn(&self, column: NSInteger) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other pathSeparator)]
         pub unsafe fn pathSeparator(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPathSeparator:)]
         pub unsafe fn setPathSeparator(&self, path_separator: &NSString);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPath:)]
         pub unsafe fn setPath(&self, path: &NSString) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other path)]
         pub unsafe fn path(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other pathToColumn:)]
         pub unsafe fn pathToColumn(&self, column: NSInteger) -> Id<NSString>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(clickedColumn)]
         pub unsafe fn clickedColumn(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(clickedRow)]
         pub unsafe fn clickedRow(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectedColumn)]
         pub unsafe fn selectedColumn(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other selectedCell)]
         pub unsafe fn selectedCell(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other selectedCellInColumn:)]
         pub unsafe fn selectedCellInColumn(&self, column: NSInteger) -> Option<Id<Object>>;
 
         #[cfg(all(feature = "AppKit_NSCell", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other selectedCells)]
         pub unsafe fn selectedCells(&self) -> Option<Id<NSArray<NSCell>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectRow:inColumn:)]
         pub unsafe fn selectRow_inColumn(&self, row: NSInteger, column: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectedRowInColumn:)]
         pub unsafe fn selectedRowInColumn(&self, column: NSInteger) -> NSInteger;
 
         #[cfg(feature = "Foundation_NSIndexPath")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other selectionIndexPath)]
         pub unsafe fn selectionIndexPath(&self) -> Option<Id<NSIndexPath>>;
 
         #[cfg(feature = "Foundation_NSIndexPath")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSelectionIndexPath:)]
         pub unsafe fn setSelectionIndexPath(&self, selection_index_path: Option<&NSIndexPath>);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSIndexPath"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other selectionIndexPaths)]
         pub unsafe fn selectionIndexPaths(&self) -> Id<NSArray<NSIndexPath>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSIndexPath"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSelectionIndexPaths:)]
         pub unsafe fn setSelectionIndexPaths(&self, selection_index_paths: &NSArray<NSIndexPath>);
 
         #[cfg(feature = "Foundation_NSIndexSet")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectRowIndexes:inColumn:)]
         pub unsafe fn selectRowIndexes_inColumn(&self, indexes: &NSIndexSet, column: NSInteger);
 
         #[cfg(feature = "Foundation_NSIndexSet")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other selectedRowIndexesInColumn:)]
         pub unsafe fn selectedRowIndexesInColumn(
             &self,
             column: NSInteger,
         ) -> Option<Id<NSIndexSet>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(reloadColumn:)]
         pub unsafe fn reloadColumn(&self, column: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(validateVisibleColumns)]
         pub unsafe fn validateVisibleColumns(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(scrollColumnsRightBy:)]
         pub unsafe fn scrollColumnsRightBy(&self, shift_amount: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(scrollColumnsLeftBy:)]
         pub unsafe fn scrollColumnsLeftBy(&self, shift_amount: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(scrollColumnToVisible:)]
         pub unsafe fn scrollColumnToVisible(&self, column: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(lastColumn)]
         pub unsafe fn lastColumn(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setLastColumn:)]
         pub unsafe fn setLastColumn(&self, last_column: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(addColumn)]
         pub unsafe fn addColumn(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(numberOfVisibleColumns)]
         pub unsafe fn numberOfVisibleColumns(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(firstVisibleColumn)]
         pub unsafe fn firstVisibleColumn(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(lastVisibleColumn)]
         pub unsafe fn lastVisibleColumn(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other loadedCellAtRow:column:)]
         pub unsafe fn loadedCellAtRow_column(
             &self,
@@ -324,39 +406,51 @@ extern_methods!(
             col: NSInteger,
         ) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectAll:)]
         pub unsafe fn selectAll(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(tile)]
         pub unsafe fn tile(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(doClick:)]
         pub unsafe fn doClick(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(doDoubleClick:)]
         pub unsafe fn doDoubleClick(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(sendAction)]
         pub unsafe fn sendAction(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(titleFrameOfColumn:)]
         pub unsafe fn titleFrameOfColumn(&self, column: NSInteger) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawTitleOfColumn:inRect:)]
         pub unsafe fn drawTitleOfColumn_inRect(&self, column: NSInteger, rect: NSRect);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(titleHeight)]
         pub unsafe fn titleHeight(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(frameOfColumn:)]
         pub unsafe fn frameOfColumn(&self, column: NSInteger) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(frameOfInsideOfColumn:)]
         pub unsafe fn frameOfInsideOfColumn(&self, column: NSInteger) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(frameOfRow:inColumn:)]
         pub unsafe fn frameOfRow_inColumn(&self, row: NSInteger, column: NSInteger) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(getRow:column:forPoint:)]
         pub unsafe fn getRow_column_forPoint(
             &self,
@@ -365,46 +459,57 @@ extern_methods!(
             point: NSPoint,
         ) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(columnWidthForColumnContentWidth:)]
         pub unsafe fn columnWidthForColumnContentWidth(
             &self,
             column_content_width: CGFloat,
         ) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(columnContentWidthForColumnWidth:)]
         pub unsafe fn columnContentWidthForColumnWidth(&self, column_width: CGFloat) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(columnResizingType)]
         pub unsafe fn columnResizingType(&self) -> NSBrowserColumnResizingType;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setColumnResizingType:)]
         pub unsafe fn setColumnResizingType(
             &self,
             column_resizing_type: NSBrowserColumnResizingType,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(prefersAllColumnUserResizing)]
         pub unsafe fn prefersAllColumnUserResizing(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPrefersAllColumnUserResizing:)]
         pub unsafe fn setPrefersAllColumnUserResizing(
             &self,
             prefers_all_column_user_resizing: bool,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setWidth:ofColumn:)]
         pub unsafe fn setWidth_ofColumn(&self, column_width: CGFloat, column_index: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(widthOfColumn:)]
         pub unsafe fn widthOfColumn(&self, column: NSInteger) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rowHeight)]
         pub unsafe fn rowHeight(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setRowHeight:)]
         pub unsafe fn setRowHeight(&self, row_height: CGFloat);
 
         #[cfg(feature = "Foundation_NSIndexSet")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(noteHeightOfRowsWithIndexesChanged:inColumn:)]
         pub unsafe fn noteHeightOfRowsWithIndexesChanged_inColumn(
             &self,
@@ -412,25 +517,31 @@ extern_methods!(
             column_index: NSInteger,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDefaultColumnWidth:)]
         pub unsafe fn setDefaultColumnWidth(&self, column_width: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(defaultColumnWidth)]
         pub unsafe fn defaultColumnWidth(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other columnsAutosaveName)]
         pub unsafe fn columnsAutosaveName(&self) -> Id<NSBrowserColumnsAutosaveName>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setColumnsAutosaveName:)]
         pub unsafe fn setColumnsAutosaveName(
             &self,
             columns_autosave_name: &NSBrowserColumnsAutosaveName,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeSavedColumnsWithAutosaveName:)]
         pub unsafe fn removeSavedColumnsWithAutosaveName(name: &NSBrowserColumnsAutosaveName);
 
         #[cfg(all(feature = "AppKit_NSEvent", feature = "Foundation_NSIndexSet"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(canDragRowsWithIndexes:inColumn:withEvent:)]
         pub unsafe fn canDragRowsWithIndexes_inColumn_withEvent(
             &self,
@@ -444,6 +555,7 @@ extern_methods!(
             feature = "AppKit_NSImage",
             feature = "Foundation_NSIndexSet"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other draggingImageForRowsWithIndexes:inColumn:withEvent:offset:)]
         pub unsafe fn draggingImageForRowsWithIndexes_inColumn_withEvent_offset(
             &self,
@@ -453,6 +565,7 @@ extern_methods!(
             drag_image_offset: NSPointPointer,
         ) -> Option<Id<NSImage>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDraggingSourceOperationMask:forLocal:)]
         pub unsafe fn setDraggingSourceOperationMask_forLocal(
             &self,
@@ -460,21 +573,26 @@ extern_methods!(
             is_local: bool,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(allowsTypeSelect)]
         pub unsafe fn allowsTypeSelect(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAllowsTypeSelect:)]
         pub unsafe fn setAllowsTypeSelect(&self, allows_type_select: bool);
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Id<NSColor>;
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: &NSColor);
 
         #[cfg(all(feature = "AppKit_NSEvent", feature = "Foundation_NSIndexPath"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(editItemAtIndexPath:withEvent:select:)]
         pub unsafe fn editItemAtIndexPath_withEvent_select(
             &self,
@@ -488,8 +606,10 @@ extern_methods!(
 extern_static!(NSBrowserColumnConfigurationDidChangeNotification: &'static NSNotificationName);
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSBrowserDelegate: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSBrowser")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(browser:numberOfRowsInColumn:)]
         unsafe fn browser_numberOfRowsInColumn(
@@ -499,6 +619,7 @@ extern_protocol!(
         ) -> NSInteger;
 
         #[cfg(all(feature = "AppKit_NSBrowser", feature = "AppKit_NSMatrix"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(browser:createRowsForColumn:inMatrix:)]
         unsafe fn browser_createRowsForColumn_inMatrix(
@@ -509,6 +630,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "AppKit_NSBrowser")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(browser:numberOfChildrenOfItem:)]
         unsafe fn browser_numberOfChildrenOfItem(
@@ -518,6 +640,7 @@ extern_protocol!(
         ) -> NSInteger;
 
         #[cfg(feature = "AppKit_NSBrowser")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other browser:child:ofItem:)]
         unsafe fn browser_child_ofItem(
@@ -528,11 +651,13 @@ extern_protocol!(
         ) -> Id<Object>;
 
         #[cfg(feature = "AppKit_NSBrowser")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(browser:isLeafItem:)]
         unsafe fn browser_isLeafItem(&self, browser: &NSBrowser, item: Option<&Object>) -> bool;
 
         #[cfg(feature = "AppKit_NSBrowser")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other browser:objectValueForItem:)]
         unsafe fn browser_objectValueForItem(
@@ -542,6 +667,7 @@ extern_protocol!(
         ) -> Option<Id<Object>>;
 
         #[cfg(feature = "AppKit_NSBrowser")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(browser:heightOfRow:inColumn:)]
         unsafe fn browser_heightOfRow_inColumn(
@@ -552,11 +678,13 @@ extern_protocol!(
         ) -> CGFloat;
 
         #[cfg(feature = "AppKit_NSBrowser")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other rootItemForBrowser:)]
         unsafe fn rootItemForBrowser(&self, browser: &NSBrowser) -> Option<Id<Object>>;
 
         #[cfg(feature = "AppKit_NSBrowser")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(browser:setObjectValue:forItem:)]
         unsafe fn browser_setObjectValue_forItem(
@@ -567,12 +695,14 @@ extern_protocol!(
         );
 
         #[cfg(feature = "AppKit_NSBrowser")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(browser:shouldEditItem:)]
         unsafe fn browser_shouldEditItem(&self, browser: &NSBrowser, item: Option<&Object>)
             -> bool;
 
         #[cfg(feature = "AppKit_NSBrowser")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(browser:willDisplayCell:atRow:column:)]
         unsafe fn browser_willDisplayCell_atRow_column(
@@ -584,6 +714,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "AppKit_NSBrowser", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other browser:titleOfColumn:)]
         unsafe fn browser_titleOfColumn(
@@ -593,6 +724,7 @@ extern_protocol!(
         ) -> Option<Id<NSString>>;
 
         #[cfg(all(feature = "AppKit_NSBrowser", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(browser:selectCellWithString:inColumn:)]
         unsafe fn browser_selectCellWithString_inColumn(
@@ -603,6 +735,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "AppKit_NSBrowser")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(browser:selectRow:inColumn:)]
         unsafe fn browser_selectRow_inColumn(
@@ -613,21 +746,25 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "AppKit_NSBrowser")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(browser:isColumnValid:)]
         unsafe fn browser_isColumnValid(&self, sender: &NSBrowser, column: NSInteger) -> bool;
 
         #[cfg(feature = "AppKit_NSBrowser")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(browserWillScroll:)]
         unsafe fn browserWillScroll(&self, sender: &NSBrowser);
 
         #[cfg(feature = "AppKit_NSBrowser")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(browserDidScroll:)]
         unsafe fn browserDidScroll(&self, sender: &NSBrowser);
 
         #[cfg(feature = "AppKit_NSBrowser")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(browser:shouldSizeColumn:forUserResize:toWidth:)]
         unsafe fn browser_shouldSizeColumn_forUserResize_toWidth(
@@ -639,6 +776,7 @@ extern_protocol!(
         ) -> CGFloat;
 
         #[cfg(feature = "AppKit_NSBrowser")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(browser:sizeToFitWidthOfColumn:)]
         unsafe fn browser_sizeToFitWidthOfColumn(
@@ -648,11 +786,13 @@ extern_protocol!(
         ) -> CGFloat;
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(browserColumnConfigurationDidChange:)]
         unsafe fn browserColumnConfigurationDidChange(&self, notification: &NSNotification);
 
         #[cfg(feature = "AppKit_NSBrowser")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(browser:shouldShowCellExpansionForRow:column:)]
         unsafe fn browser_shouldShowCellExpansionForRow_column(
@@ -667,6 +807,7 @@ extern_protocol!(
             feature = "AppKit_NSPasteboard",
             feature = "Foundation_NSIndexSet"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(browser:writeRowsWithIndexes:inColumn:toPasteboard:)]
         unsafe fn browser_writeRowsWithIndexes_inColumn_toPasteboard(
@@ -685,6 +826,7 @@ extern_protocol!(
             feature = "Foundation_NSURL"
         ))]
         #[deprecated = "Use NSFilePromiseReceiver objects instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other browser:namesOfPromisedFilesDroppedAtDestination:forDraggedRowsWithIndexes:inColumn:)]
         unsafe fn browser_namesOfPromisedFilesDroppedAtDestination_forDraggedRowsWithIndexes_inColumn(
@@ -700,6 +842,7 @@ extern_protocol!(
             feature = "AppKit_NSEvent",
             feature = "Foundation_NSIndexSet"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(browser:canDragRowsWithIndexes:inColumn:withEvent:)]
         unsafe fn browser_canDragRowsWithIndexes_inColumn_withEvent(
@@ -716,6 +859,7 @@ extern_protocol!(
             feature = "AppKit_NSImage",
             feature = "Foundation_NSIndexSet"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other browser:draggingImageForRowsWithIndexes:inColumn:withEvent:offset:)]
         unsafe fn browser_draggingImageForRowsWithIndexes_inColumn_withEvent_offset(
@@ -728,6 +872,7 @@ extern_protocol!(
         ) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSBrowser")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(browser:validateDrop:proposedRow:column:dropOperation:)]
         unsafe fn browser_validateDrop_proposedRow_column_dropOperation(
@@ -740,6 +885,7 @@ extern_protocol!(
         ) -> NSDragOperation;
 
         #[cfg(feature = "AppKit_NSBrowser")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(browser:acceptDrop:atRow:column:dropOperation:)]
         unsafe fn browser_acceptDrop_atRow_column_dropOperation(
@@ -752,6 +898,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(feature = "AppKit_NSBrowser", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other browser:typeSelectStringForRow:inColumn:)]
         unsafe fn browser_typeSelectStringForRow_inColumn(
@@ -766,6 +913,7 @@ extern_protocol!(
             feature = "AppKit_NSEvent",
             feature = "Foundation_NSString"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(browser:shouldTypeSelectForEvent:withCurrentSearchString:)]
         unsafe fn browser_shouldTypeSelectForEvent_withCurrentSearchString(
@@ -776,6 +924,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(feature = "AppKit_NSBrowser", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(browser:nextTypeSelectMatchFromRow:toRow:inColumn:forString:)]
         unsafe fn browser_nextTypeSelectMatchFromRow_toRow_inColumn_forString(
@@ -788,6 +937,7 @@ extern_protocol!(
         ) -> NSInteger;
 
         #[cfg(all(feature = "AppKit_NSBrowser", feature = "AppKit_NSViewController"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other browser:previewViewControllerForLeafItem:)]
         unsafe fn browser_previewViewControllerForLeafItem(
@@ -797,6 +947,7 @@ extern_protocol!(
         ) -> Option<Id<NSViewController>>;
 
         #[cfg(all(feature = "AppKit_NSBrowser", feature = "AppKit_NSViewController"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other browser:headerViewControllerForItem:)]
         unsafe fn browser_headerViewControllerForItem(
@@ -806,6 +957,7 @@ extern_protocol!(
         ) -> Option<Id<NSViewController>>;
 
         #[cfg(feature = "AppKit_NSBrowser")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(browser:didChangeLastColumn:toColumn:)]
         unsafe fn browser_didChangeLastColumn_toColumn(
@@ -816,6 +968,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "AppKit_NSBrowser", feature = "Foundation_NSIndexSet"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other browser:selectionIndexesForProposedSelection:inColumn:)]
         unsafe fn browser_selectionIndexesForProposedSelection_inColumn(
@@ -834,45 +987,55 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSBrowser")]
     unsafe impl NSBrowser {
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAcceptsArrowKeys:)]
         pub unsafe fn setAcceptsArrowKeys(&self, flag: bool);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(acceptsArrowKeys)]
         pub unsafe fn acceptsArrowKeys(&self) -> bool;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(displayColumn:)]
         pub unsafe fn displayColumn(&self, column: NSInteger);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(displayAllColumns)]
         pub unsafe fn displayAllColumns(&self);
 
         #[cfg(feature = "AppKit_NSScroller")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(scrollViaScroller:)]
         pub unsafe fn scrollViaScroller(&self, sender: Option<&NSScroller>);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(updateScroller)]
         pub unsafe fn updateScroller(&self);
 
         #[deprecated = "Use the item based NSBrowser instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMatrixClass:)]
         pub unsafe fn setMatrixClass(&self, factory_id: &Class);
 
         #[deprecated = "Use the item based NSBrowser instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(matrixClass)]
         pub unsafe fn matrixClass(&self) -> &'static Class;
 
         #[cfg(feature = "AppKit_NSMatrix")]
         #[deprecated = "Use the item based NSBrowser instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(columnOfMatrix:)]
         pub unsafe fn columnOfMatrix(&self, matrix: &NSMatrix) -> NSInteger;
 
         #[cfg(feature = "AppKit_NSMatrix")]
         #[deprecated = "Use the item based NSBrowser instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other matrixInColumn:)]
         pub unsafe fn matrixInColumn(&self, column: NSInteger) -> Option<Id<NSMatrix>>;
     }
@@ -882,6 +1045,7 @@ extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(feature = "AppKit_NSBrowser")]
     unsafe impl NSBrowser {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }

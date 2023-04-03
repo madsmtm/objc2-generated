@@ -25,14 +25,17 @@ unsafe impl NSObjectProtocol for GKPlayer {}
 extern_methods!(
     #[cfg(feature = "GameKit_GKPlayer")]
     unsafe impl GKPlayer {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(scopedIDsArePersistent)]
         pub unsafe fn scopedIDsArePersistent(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other gamePlayerID)]
         pub unsafe fn gamePlayerID(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other teamPlayerID)]
         pub unsafe fn teamPlayerID(&self) -> Id<NSString>;
 
@@ -45,13 +48,16 @@ extern_methods!(
         pub unsafe fn alias(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other anonymousGuestPlayerWithIdentifier:)]
         pub unsafe fn anonymousGuestPlayerWithIdentifier(guest_identifier: &NSString) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other guestIdentifier)]
         pub unsafe fn guestIdentifier(&self) -> Option<Id<NSString>>;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(isInvitable)]
         pub unsafe fn isInvitable(&self) -> bool;
     }

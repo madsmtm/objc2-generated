@@ -7,50 +7,75 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub enum NSTextSelectionNavigationDirection {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSTextSelectionNavigationDirectionForward = 0,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSTextSelectionNavigationDirectionBackward = 1,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSTextSelectionNavigationDirectionRight = 2,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSTextSelectionNavigationDirectionLeft = 3,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSTextSelectionNavigationDirectionUp = 4,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSTextSelectionNavigationDirectionDown = 5,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub enum NSTextSelectionNavigationDestination {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSTextSelectionNavigationDestinationCharacter = 0,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSTextSelectionNavigationDestinationWord = 1,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSTextSelectionNavigationDestinationLine = 2,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSTextSelectionNavigationDestinationSentence = 3,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSTextSelectionNavigationDestinationParagraph = 4,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSTextSelectionNavigationDestinationContainer = 5,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSTextSelectionNavigationDestinationDocument = 6,
     }
 );
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub enum NSTextSelectionNavigationModifier {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSTextSelectionNavigationModifierExtend = 1 << 0,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSTextSelectionNavigationModifierVisual = 1 << 1,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSTextSelectionNavigationModifierMultiple = 1 << 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub enum NSTextSelectionNavigationWritingDirection {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSTextSelectionNavigationWritingDirectionLeftToRight = 0,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSTextSelectionNavigationWritingDirectionRightToLeft = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub enum NSTextSelectionNavigationLayoutOrientation {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSTextSelectionNavigationLayoutOrientationHorizontal = 0,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSTextSelectionNavigationLayoutOrientationVertical = 1,
     }
 );
@@ -58,6 +83,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSTextSelectionNavigation")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct NSTextSelectionNavigation;
 
     #[cfg(feature = "AppKit_NSTextSelectionNavigation")]
@@ -172,6 +198,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait NSTextSelectionDataSource: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSTextRange")]
         #[method_id(@__retain_semantics Other documentRange)]

@@ -6,6 +6,7 @@ use crate::Foundation::*;
 use crate::StoreKit::*;
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait SKOverlayDelegate: NSObjectProtocol {
         #[cfg(all(feature = "Foundation_NSError", feature = "StoreKit_SKOverlay"))]
         #[optional]
@@ -67,6 +68,7 @@ extern_protocol!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "StoreKit_SKOverlay")]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub struct SKOverlay;
 
     #[cfg(feature = "StoreKit_SKOverlay")]

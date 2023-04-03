@@ -7,10 +7,15 @@ use crate::MailKit::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub enum MEComposeUserAction {
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         MEComposeUserActionNewMessage = 1,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         MEComposeUserActionReply = 2,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         MEComposeUserActionReplyAll = 3,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         MEComposeUserActionForward = 4,
     }
 );
@@ -18,6 +23,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MailKit_MEComposeContext")]
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub struct MEComposeContext;
 
     #[cfg(feature = "MailKit_MEComposeContext")]

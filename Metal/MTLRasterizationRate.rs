@@ -48,6 +48,7 @@ unsafe impl NSObjectProtocol for MTLRasterizationRateLayerDescriptor {}
 extern_methods!(
     #[cfg(feature = "Metal_MTLRasterizationRateLayerDescriptor")]
     unsafe impl MTLRasterizationRateLayerDescriptor {
+        #[cfg(not(any(target_os = "ios", target_os = "macos")))]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 

@@ -10,6 +10,7 @@ use crate::MapKit::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MapKit_MKMultiPoint")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct MKMultiPoint;
 
     #[cfg(feature = "MapKit_MKMultiPoint")]
@@ -41,6 +42,7 @@ extern_methods!(
             range: NSRange,
         );
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(locationAtPointIndex:)]
         pub unsafe fn locationAtPointIndex(&self, index: NSUInteger) -> CGFloat;
 
@@ -49,6 +51,7 @@ extern_methods!(
             feature = "Foundation_NSIndexSet",
             feature = "Foundation_NSNumber"
         ))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other locationsAtPointIndexes:)]
         pub unsafe fn locationsAtPointIndexes(&self, indexes: &NSIndexSet)
             -> Id<NSArray<NSNumber>>;

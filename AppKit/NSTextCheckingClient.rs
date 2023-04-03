@@ -7,91 +7,116 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSTextInputTraitType {
+        #[cfg(not(any(target_os = "ios")))]
         NSTextInputTraitTypeDefault = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSTextInputTraitTypeNo = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSTextInputTraitTypeYes = 2,
     }
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSTextInputTraits {
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(autocorrectionType)]
         unsafe fn autocorrectionType(&self) -> NSTextInputTraitType;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(setAutocorrectionType:)]
         unsafe fn setAutocorrectionType(&self, autocorrection_type: NSTextInputTraitType);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(spellCheckingType)]
         unsafe fn spellCheckingType(&self) -> NSTextInputTraitType;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(setSpellCheckingType:)]
         unsafe fn setSpellCheckingType(&self, spell_checking_type: NSTextInputTraitType);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(grammarCheckingType)]
         unsafe fn grammarCheckingType(&self) -> NSTextInputTraitType;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(setGrammarCheckingType:)]
         unsafe fn setGrammarCheckingType(&self, grammar_checking_type: NSTextInputTraitType);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(smartQuotesType)]
         unsafe fn smartQuotesType(&self) -> NSTextInputTraitType;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(setSmartQuotesType:)]
         unsafe fn setSmartQuotesType(&self, smart_quotes_type: NSTextInputTraitType);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(smartDashesType)]
         unsafe fn smartDashesType(&self) -> NSTextInputTraitType;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(setSmartDashesType:)]
         unsafe fn setSmartDashesType(&self, smart_dashes_type: NSTextInputTraitType);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(smartInsertDeleteType)]
         unsafe fn smartInsertDeleteType(&self) -> NSTextInputTraitType;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(setSmartInsertDeleteType:)]
         unsafe fn setSmartInsertDeleteType(&self, smart_insert_delete_type: NSTextInputTraitType);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(textReplacementType)]
         unsafe fn textReplacementType(&self) -> NSTextInputTraitType;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(setTextReplacementType:)]
         unsafe fn setTextReplacementType(&self, text_replacement_type: NSTextInputTraitType);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(dataDetectionType)]
         unsafe fn dataDetectionType(&self) -> NSTextInputTraitType;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(setDataDetectionType:)]
         unsafe fn setDataDetectionType(&self, data_detection_type: NSTextInputTraitType);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(linkDetectionType)]
         unsafe fn linkDetectionType(&self) -> NSTextInputTraitType;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(setLinkDetectionType:)]
         unsafe fn setLinkDetectionType(&self, link_detection_type: NSTextInputTraitType);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(textCompletionType)]
         unsafe fn textCompletionType(&self) -> NSTextInputTraitType;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(setTextCompletionType:)]
         unsafe fn setTextCompletionType(&self, text_completion_type: NSTextInputTraitType);
@@ -101,8 +126,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSTextCheckingClient: NSTextInputClient + NSTextInputTraits {
         #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other annotatedSubstringForProposedRange:actualRange:)]
         unsafe fn annotatedSubstringForProposedRange_actualRange(
             &self,
@@ -111,6 +138,7 @@ extern_protocol!(
         ) -> Option<Id<NSAttributedString>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAnnotations:range:)]
         unsafe fn setAnnotations_range(
             &self,
@@ -119,6 +147,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(addAnnotations:range:)]
         unsafe fn addAnnotations_range(
             &self,
@@ -126,6 +155,7 @@ extern_protocol!(
             range: NSRange,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeAnnotation:range:)]
         unsafe fn removeAnnotation_range(
             &self,
@@ -134,6 +164,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(replaceCharactersInRange:withAnnotatedString:)]
         unsafe fn replaceCharactersInRange_withAnnotatedString(
             &self,
@@ -141,10 +172,12 @@ extern_protocol!(
             annotated_string: &NSAttributedString,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectAndShowRange:)]
         unsafe fn selectAndShowRange(&self, range: NSRange);
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other viewForRange:firstRect:actualRange:)]
         unsafe fn viewForRange_firstRect_actualRange(
             &self,
@@ -154,6 +187,7 @@ extern_protocol!(
         ) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other candidateListTouchBarItem)]
         unsafe fn candidateListTouchBarItem(&self) -> Option<Id<NSCandidateListTouchBarItem>>;
     }

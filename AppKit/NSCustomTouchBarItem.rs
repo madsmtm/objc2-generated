@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSCustomTouchBarItem")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSCustomTouchBarItem;
 
     #[cfg(feature = "AppKit_NSCustomTouchBarItem")]
@@ -27,26 +28,32 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSCustomTouchBarItem")]
     unsafe impl NSCustomTouchBarItem {
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other view)]
         pub unsafe fn view(&self) -> Id<NSView>;
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setView:)]
         pub unsafe fn setView(&self, view: &NSView);
 
         #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other viewController)]
         pub unsafe fn viewController(&self) -> Option<Id<NSViewController>>;
 
         #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setViewController:)]
         pub unsafe fn setViewController(&self, view_controller: Option<&NSViewController>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other customizationLabel)]
         pub unsafe fn customizationLabel(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCustomizationLabel:)]
         pub unsafe fn setCustomizationLabel(&self, customization_label: Option<&NSString>);
     }

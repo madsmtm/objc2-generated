@@ -7,40 +7,75 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSEventType {
+        #[cfg(not(any(target_os = "ios")))]
         NSEventTypeLeftMouseDown = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventTypeLeftMouseUp = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventTypeRightMouseDown = 3,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventTypeRightMouseUp = 4,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventTypeMouseMoved = 5,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventTypeLeftMouseDragged = 6,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventTypeRightMouseDragged = 7,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventTypeMouseEntered = 8,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventTypeMouseExited = 9,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventTypeKeyDown = 10,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventTypeKeyUp = 11,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventTypeFlagsChanged = 12,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventTypeAppKitDefined = 13,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventTypeSystemDefined = 14,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventTypeApplicationDefined = 15,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventTypePeriodic = 16,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventTypeCursorUpdate = 17,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventTypeScrollWheel = 22,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventTypeTabletPoint = 23,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventTypeTabletProximity = 24,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventTypeOtherMouseDown = 25,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventTypeOtherMouseUp = 26,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventTypeOtherMouseDragged = 27,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventTypeGesture = 29,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventTypeMagnify = 30,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventTypeSwipe = 31,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventTypeRotate = 18,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventTypeBeginGesture = 19,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventTypeEndGesture = 20,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventTypeSmartMagnify = 32,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventTypeQuickLook = 33,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventTypePressure = 34,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventTypeDirectTouch = 37,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventTypeChangeMode = 38,
     }
 );
@@ -93,40 +128,75 @@ extern_static!(NSOtherMouseDragged: NSEventType = NSEventTypeOtherMouseDragged);
 
 ns_options!(
     #[underlying(c_ulonglong)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSEventMask {
+        #[cfg(not(any(target_os = "ios")))]
         NSEventMaskLeftMouseDown = 1 << NSEventTypeLeftMouseDown,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventMaskLeftMouseUp = 1 << NSEventTypeLeftMouseUp,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventMaskRightMouseDown = 1 << NSEventTypeRightMouseDown,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventMaskRightMouseUp = 1 << NSEventTypeRightMouseUp,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventMaskMouseMoved = 1 << NSEventTypeMouseMoved,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventMaskLeftMouseDragged = 1 << NSEventTypeLeftMouseDragged,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventMaskRightMouseDragged = 1 << NSEventTypeRightMouseDragged,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventMaskMouseEntered = 1 << NSEventTypeMouseEntered,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventMaskMouseExited = 1 << NSEventTypeMouseExited,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventMaskKeyDown = 1 << NSEventTypeKeyDown,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventMaskKeyUp = 1 << NSEventTypeKeyUp,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventMaskFlagsChanged = 1 << NSEventTypeFlagsChanged,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventMaskAppKitDefined = 1 << NSEventTypeAppKitDefined,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventMaskSystemDefined = 1 << NSEventTypeSystemDefined,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventMaskApplicationDefined = 1 << NSEventTypeApplicationDefined,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventMaskPeriodic = 1 << NSEventTypePeriodic,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventMaskCursorUpdate = 1 << NSEventTypeCursorUpdate,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventMaskScrollWheel = 1 << NSEventTypeScrollWheel,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventMaskTabletPoint = 1 << NSEventTypeTabletPoint,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventMaskTabletProximity = 1 << NSEventTypeTabletProximity,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventMaskOtherMouseDown = 1 << NSEventTypeOtherMouseDown,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventMaskOtherMouseUp = 1 << NSEventTypeOtherMouseUp,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventMaskOtherMouseDragged = 1 << NSEventTypeOtherMouseDragged,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventMaskGesture = 1 << NSEventTypeGesture,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventMaskMagnify = 1 << NSEventTypeMagnify,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventMaskSwipe = 1 << NSEventTypeSwipe,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventMaskRotate = 1 << NSEventTypeRotate,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventMaskBeginGesture = 1 << NSEventTypeBeginGesture,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventMaskEndGesture = 1 << NSEventTypeEndGesture,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventMaskSmartMagnify = 1 << NSEventTypeSmartMagnify,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventMaskPressure = 1 << NSEventTypePressure,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventMaskDirectTouch = 1 << NSEventTypeDirectTouch,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventMaskChangeMode = 1 << NSEventTypeChangeMode,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventMaskAny = NSUIntegerMax as _,
     }
 );
@@ -178,6 +248,7 @@ extern_static!(NSOtherMouseUpMask: NSEventMask = NSEventMaskOtherMouseUp);
 extern_static!(NSOtherMouseDraggedMask: NSEventMask = NSEventMaskOtherMouseDragged);
 
 inline_fn!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSEventMaskFromType(r#type: NSEventType) -> NSEventMask {
         todo!()
     }
@@ -185,15 +256,25 @@ inline_fn!(
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSEventModifierFlags {
+        #[cfg(not(any(target_os = "ios")))]
         NSEventModifierFlagCapsLock = 1 << 16,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventModifierFlagShift = 1 << 17,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventModifierFlagControl = 1 << 18,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventModifierFlagOption = 1 << 19,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventModifierFlagCommand = 1 << 20,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventModifierFlagNumericPad = 1 << 21,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventModifierFlagHelp = 1 << 22,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventModifierFlagFunction = 1 << 23,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventModifierFlagDeviceIndependentFlagsMask = 0xffff0000,
     }
 );
@@ -221,10 +302,15 @@ extern_static!(
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSPointingDeviceType {
+        #[cfg(not(any(target_os = "ios")))]
         NSPointingDeviceTypeUnknown = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSPointingDeviceTypePen = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSPointingDeviceTypeCursor = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSPointingDeviceTypeEraser = 3,
     }
 );
@@ -239,9 +325,13 @@ extern_static!(NSEraserPointingDevice: NSPointingDeviceType = NSPointingDeviceTy
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSEventButtonMask {
+        #[cfg(not(any(target_os = "ios")))]
         NSEventButtonMaskPenTip = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventButtonMaskPenLowerSide = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventButtonMaskPenUpperSide = 4,
     }
 );
@@ -254,46 +344,72 @@ extern_static!(NSPenUpperSideMask: NSEventButtonMask = NSEventButtonMaskPenUpper
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSEventPhase {
+        #[cfg(not(any(target_os = "ios")))]
         NSEventPhaseNone = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventPhaseBegan = 0x1 << 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventPhaseStationary = 0x1 << 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventPhaseChanged = 0x1 << 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventPhaseEnded = 0x1 << 3,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventPhaseCancelled = 0x1 << 4,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventPhaseMayBegin = 0x1 << 5,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSEventGestureAxis {
+        #[cfg(not(any(target_os = "ios")))]
         NSEventGestureAxisNone = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventGestureAxisHorizontal = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventGestureAxisVertical = 2,
     }
 );
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSEventSwipeTrackingOptions {
+        #[cfg(not(any(target_os = "ios")))]
         NSEventSwipeTrackingLockDirection = 0x1 << 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventSwipeTrackingClampGestureAmount = 0x1 << 1,
     }
 );
 
 ns_enum!(
     #[underlying(c_short)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSEventSubtype {
+        #[cfg(not(any(target_os = "ios")))]
         NSEventSubtypeWindowExposed = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventSubtypeApplicationActivated = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventSubtypeApplicationDeactivated = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventSubtypeWindowMoved = 4,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventSubtypeScreenChanged = 8,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventSubtypePowerOff = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventSubtypeMouseEvent = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventSubtypeTabletPoint = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventSubtypeTabletProximity = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSEventSubtypeTouch = 3,
     }
 );
@@ -326,13 +442,21 @@ extern_static!(NSTouchEventSubtype: NSEventSubtype = NSEventSubtypeTouch);
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSPressureBehavior {
+        #[cfg(not(any(target_os = "ios")))]
         NSPressureBehaviorUnknown = -1,
+        #[cfg(not(any(target_os = "ios")))]
         NSPressureBehaviorPrimaryDefault = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSPressureBehaviorPrimaryClick = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSPressureBehaviorPrimaryGeneric = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSPressureBehaviorPrimaryAccelerator = 3,
+        #[cfg(not(any(target_os = "ios")))]
         NSPressureBehaviorPrimaryDeepClick = 5,
+        #[cfg(not(any(target_os = "ios")))]
         NSPressureBehaviorPrimaryDeepDrag = 6,
     }
 );
@@ -340,6 +464,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSEvent")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSEvent;
 
     #[cfg(feature = "AppKit_NSEvent")]
@@ -357,175 +482,229 @@ unsafe impl NSObjectProtocol for NSEvent {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSEvent")]
     unsafe impl NSEvent {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(type)]
         pub unsafe fn r#type(&self) -> NSEventType;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(modifierFlags)]
         pub unsafe fn modifierFlags(&self) -> NSEventModifierFlags;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(timestamp)]
         pub unsafe fn timestamp(&self) -> NSTimeInterval;
 
         #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other window)]
         pub unsafe fn window(&self) -> Option<Id<NSWindow>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(windowNumber)]
         pub unsafe fn windowNumber(&self) -> NSInteger;
 
         #[cfg(feature = "AppKit_NSGraphicsContext")]
         #[deprecated = "This method always returns nil. If you need access to the current drawing context, use [NSGraphicsContext currentContext] inside of a draw operation."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other context)]
         pub unsafe fn context(&self) -> Option<Id<NSGraphicsContext>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(clickCount)]
         pub unsafe fn clickCount(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(buttonNumber)]
         pub unsafe fn buttonNumber(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(eventNumber)]
         pub unsafe fn eventNumber(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(pressure)]
         pub unsafe fn pressure(&self) -> c_float;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(locationInWindow)]
         pub unsafe fn locationInWindow(&self) -> NSPoint;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(deltaX)]
         pub unsafe fn deltaX(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(deltaY)]
         pub unsafe fn deltaY(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(deltaZ)]
         pub unsafe fn deltaZ(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(hasPreciseScrollingDeltas)]
         pub unsafe fn hasPreciseScrollingDeltas(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(scrollingDeltaX)]
         pub unsafe fn scrollingDeltaX(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(scrollingDeltaY)]
         pub unsafe fn scrollingDeltaY(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(momentumPhase)]
         pub unsafe fn momentumPhase(&self) -> NSEventPhase;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isDirectionInvertedFromDevice)]
         pub unsafe fn isDirectionInvertedFromDevice(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other characters)]
         pub unsafe fn characters(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other charactersIgnoringModifiers)]
         pub unsafe fn charactersIgnoringModifiers(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other charactersByApplyingModifiers:)]
         pub unsafe fn charactersByApplyingModifiers(
             &self,
             modifiers: NSEventModifierFlags,
         ) -> Option<Id<NSString>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isARepeat)]
         pub unsafe fn isARepeat(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(keyCode)]
         pub unsafe fn keyCode(&self) -> c_ushort;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(trackingNumber)]
         pub unsafe fn trackingNumber(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(userData)]
         pub unsafe fn userData(&self) -> *mut c_void;
 
         #[cfg(feature = "AppKit_NSTrackingArea")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other trackingArea)]
         pub unsafe fn trackingArea(&self) -> Option<Id<NSTrackingArea>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(subtype)]
         pub unsafe fn subtype(&self) -> NSEventSubtype;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(data1)]
         pub unsafe fn data1(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(data2)]
         pub unsafe fn data2(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(eventRef)]
         pub unsafe fn eventRef(&self) -> *mut c_void;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other eventWithEventRef:)]
         pub unsafe fn eventWithEventRef(event_ref: NonNull<c_void>) -> Option<Id<NSEvent>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isMouseCoalescingEnabled)]
         pub unsafe fn isMouseCoalescingEnabled() -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMouseCoalescingEnabled:)]
         pub unsafe fn setMouseCoalescingEnabled(mouse_coalescing_enabled: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(magnification)]
         pub unsafe fn magnification(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(deviceID)]
         pub unsafe fn deviceID(&self) -> NSUInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rotation)]
         pub unsafe fn rotation(&self) -> c_float;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(absoluteX)]
         pub unsafe fn absoluteX(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(absoluteY)]
         pub unsafe fn absoluteY(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(absoluteZ)]
         pub unsafe fn absoluteZ(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(buttonMask)]
         pub unsafe fn buttonMask(&self) -> NSEventButtonMask;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(tilt)]
         pub unsafe fn tilt(&self) -> NSPoint;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(tangentialPressure)]
         pub unsafe fn tangentialPressure(&self) -> c_float;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other vendorDefined)]
         pub unsafe fn vendorDefined(&self) -> Id<Object>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(vendorID)]
         pub unsafe fn vendorID(&self) -> NSUInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(tabletID)]
         pub unsafe fn tabletID(&self) -> NSUInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(pointingDeviceID)]
         pub unsafe fn pointingDeviceID(&self) -> NSUInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(systemTabletID)]
         pub unsafe fn systemTabletID(&self) -> NSUInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(vendorPointingDeviceType)]
         pub unsafe fn vendorPointingDeviceType(&self) -> NSUInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(pointingDeviceSerialNumber)]
         pub unsafe fn pointingDeviceSerialNumber(&self) -> NSUInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(uniqueID)]
         pub unsafe fn uniqueID(&self) -> c_ulonglong;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(capabilityMask)]
         pub unsafe fn capabilityMask(&self) -> NSUInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(pointingDeviceType)]
         pub unsafe fn pointingDeviceType(&self) -> NSPointingDeviceType;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isEnteringProximity)]
         pub unsafe fn isEnteringProximity(&self) -> bool;
 
@@ -534,6 +713,7 @@ extern_methods!(
             feature = "AppKit_NSView",
             feature = "Foundation_NSSet"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other touchesMatchingPhase:inView:)]
         pub unsafe fn touchesMatchingPhase_inView(
             &self,
@@ -542,6 +722,7 @@ extern_methods!(
         ) -> Id<NSSet<NSTouch>>;
 
         #[cfg(all(feature = "AppKit_NSTouch", feature = "Foundation_NSSet"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other allTouches)]
         pub unsafe fn allTouches(&self) -> Id<NSSet<NSTouch>>;
 
@@ -550,31 +731,40 @@ extern_methods!(
             feature = "AppKit_NSView",
             feature = "Foundation_NSSet"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other touchesForView:)]
         pub unsafe fn touchesForView(&self, view: &NSView) -> Id<NSSet<NSTouch>>;
 
         #[cfg(all(feature = "AppKit_NSTouch", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other coalescedTouchesForTouch:)]
         pub unsafe fn coalescedTouchesForTouch(&self, touch: &NSTouch) -> Id<NSArray<NSTouch>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(phase)]
         pub unsafe fn phase(&self) -> NSEventPhase;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(stage)]
         pub unsafe fn stage(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(stageTransition)]
         pub unsafe fn stageTransition(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(associatedEventsMask)]
         pub unsafe fn associatedEventsMask(&self) -> NSEventMask;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(pressureBehavior)]
         pub unsafe fn pressureBehavior(&self) -> NSPressureBehavior;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isSwipeTrackingFromScrollEventsEnabled)]
         pub unsafe fn isSwipeTrackingFromScrollEventsEnabled() -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(trackSwipeEventWithOptions:dampenAmountThresholdMin:max:usingHandler:)]
         pub unsafe fn trackSwipeEventWithOptions_dampenAmountThresholdMin_max_usingHandler(
             &self,
@@ -584,16 +774,19 @@ extern_methods!(
             tracking_handler: &Block<(CGFloat, NSEventPhase, Bool, NonNull<Bool>), ()>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(startPeriodicEventsAfterDelay:withPeriod:)]
         pub unsafe fn startPeriodicEventsAfterDelay_withPeriod(
             delay: NSTimeInterval,
             period: NSTimeInterval,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(stopPeriodicEvents)]
         pub unsafe fn stopPeriodicEvents();
 
         #[cfg(feature = "AppKit_NSGraphicsContext")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other mouseEventWithType:location:modifierFlags:timestamp:windowNumber:context:eventNumber:clickCount:pressure:)]
         pub unsafe fn mouseEventWithType_location_modifierFlags_timestamp_windowNumber_context_eventNumber_clickCount_pressure(
             r#type: NSEventType,
@@ -608,6 +801,7 @@ extern_methods!(
         ) -> Option<Id<NSEvent>>;
 
         #[cfg(all(feature = "AppKit_NSGraphicsContext", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other keyEventWithType:location:modifierFlags:timestamp:windowNumber:context:characters:charactersIgnoringModifiers:isARepeat:keyCode:)]
         pub unsafe fn keyEventWithType_location_modifierFlags_timestamp_windowNumber_context_characters_charactersIgnoringModifiers_isARepeat_keyCode(
             r#type: NSEventType,
@@ -623,6 +817,7 @@ extern_methods!(
         ) -> Option<Id<NSEvent>>;
 
         #[cfg(feature = "AppKit_NSGraphicsContext")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other enterExitEventWithType:location:modifierFlags:timestamp:windowNumber:context:eventNumber:trackingNumber:userData:)]
         pub unsafe fn enterExitEventWithType_location_modifierFlags_timestamp_windowNumber_context_eventNumber_trackingNumber_userData(
             r#type: NSEventType,
@@ -637,6 +832,7 @@ extern_methods!(
         ) -> Option<Id<NSEvent>>;
 
         #[cfg(feature = "AppKit_NSGraphicsContext")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other otherEventWithType:location:modifierFlags:timestamp:windowNumber:context:subtype:data1:data2:)]
         pub unsafe fn otherEventWithType_location_modifierFlags_timestamp_windowNumber_context_subtype_data1_data2(
             r#type: NSEventType,
@@ -650,36 +846,45 @@ extern_methods!(
             d2: NSInteger,
         ) -> Option<Id<NSEvent>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(mouseLocation)]
         pub unsafe fn mouseLocation() -> NSPoint;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(modifierFlags)]
         pub unsafe fn modifierFlags_class() -> NSEventModifierFlags;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(pressedMouseButtons)]
         pub unsafe fn pressedMouseButtons() -> NSUInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(doubleClickInterval)]
         pub unsafe fn doubleClickInterval() -> NSTimeInterval;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(keyRepeatDelay)]
         pub unsafe fn keyRepeatDelay() -> NSTimeInterval;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(keyRepeatInterval)]
         pub unsafe fn keyRepeatInterval() -> NSTimeInterval;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other addGlobalMonitorForEventsMatchingMask:handler:)]
         pub unsafe fn addGlobalMonitorForEventsMatchingMask_handler(
             mask: NSEventMask,
             block: &Block<(NonNull<NSEvent>,), ()>,
         ) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other addLocalMonitorForEventsMatchingMask:handler:)]
         pub unsafe fn addLocalMonitorForEventsMatchingMask_handler(
             mask: NSEventMask,
             block: &Block<(NonNull<NSEvent>,), *mut NSEvent>,
         ) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeMonitor:)]
         pub unsafe fn removeMonitor(event_monitor: &Object);
     }
@@ -687,78 +892,151 @@ extern_methods!(
 
 extern_enum!(
     #[underlying(c_uint)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum __anonymous__ {
+        #[cfg(not(any(target_os = "ios")))]
         NSUpArrowFunctionKey = 0xF700,
+        #[cfg(not(any(target_os = "ios")))]
         NSDownArrowFunctionKey = 0xF701,
+        #[cfg(not(any(target_os = "ios")))]
         NSLeftArrowFunctionKey = 0xF702,
+        #[cfg(not(any(target_os = "ios")))]
         NSRightArrowFunctionKey = 0xF703,
+        #[cfg(not(any(target_os = "ios")))]
         NSF1FunctionKey = 0xF704,
+        #[cfg(not(any(target_os = "ios")))]
         NSF2FunctionKey = 0xF705,
+        #[cfg(not(any(target_os = "ios")))]
         NSF3FunctionKey = 0xF706,
+        #[cfg(not(any(target_os = "ios")))]
         NSF4FunctionKey = 0xF707,
+        #[cfg(not(any(target_os = "ios")))]
         NSF5FunctionKey = 0xF708,
+        #[cfg(not(any(target_os = "ios")))]
         NSF6FunctionKey = 0xF709,
+        #[cfg(not(any(target_os = "ios")))]
         NSF7FunctionKey = 0xF70A,
+        #[cfg(not(any(target_os = "ios")))]
         NSF8FunctionKey = 0xF70B,
+        #[cfg(not(any(target_os = "ios")))]
         NSF9FunctionKey = 0xF70C,
+        #[cfg(not(any(target_os = "ios")))]
         NSF10FunctionKey = 0xF70D,
+        #[cfg(not(any(target_os = "ios")))]
         NSF11FunctionKey = 0xF70E,
+        #[cfg(not(any(target_os = "ios")))]
         NSF12FunctionKey = 0xF70F,
+        #[cfg(not(any(target_os = "ios")))]
         NSF13FunctionKey = 0xF710,
+        #[cfg(not(any(target_os = "ios")))]
         NSF14FunctionKey = 0xF711,
+        #[cfg(not(any(target_os = "ios")))]
         NSF15FunctionKey = 0xF712,
+        #[cfg(not(any(target_os = "ios")))]
         NSF16FunctionKey = 0xF713,
+        #[cfg(not(any(target_os = "ios")))]
         NSF17FunctionKey = 0xF714,
+        #[cfg(not(any(target_os = "ios")))]
         NSF18FunctionKey = 0xF715,
+        #[cfg(not(any(target_os = "ios")))]
         NSF19FunctionKey = 0xF716,
+        #[cfg(not(any(target_os = "ios")))]
         NSF20FunctionKey = 0xF717,
+        #[cfg(not(any(target_os = "ios")))]
         NSF21FunctionKey = 0xF718,
+        #[cfg(not(any(target_os = "ios")))]
         NSF22FunctionKey = 0xF719,
+        #[cfg(not(any(target_os = "ios")))]
         NSF23FunctionKey = 0xF71A,
+        #[cfg(not(any(target_os = "ios")))]
         NSF24FunctionKey = 0xF71B,
+        #[cfg(not(any(target_os = "ios")))]
         NSF25FunctionKey = 0xF71C,
+        #[cfg(not(any(target_os = "ios")))]
         NSF26FunctionKey = 0xF71D,
+        #[cfg(not(any(target_os = "ios")))]
         NSF27FunctionKey = 0xF71E,
+        #[cfg(not(any(target_os = "ios")))]
         NSF28FunctionKey = 0xF71F,
+        #[cfg(not(any(target_os = "ios")))]
         NSF29FunctionKey = 0xF720,
+        #[cfg(not(any(target_os = "ios")))]
         NSF30FunctionKey = 0xF721,
+        #[cfg(not(any(target_os = "ios")))]
         NSF31FunctionKey = 0xF722,
+        #[cfg(not(any(target_os = "ios")))]
         NSF32FunctionKey = 0xF723,
+        #[cfg(not(any(target_os = "ios")))]
         NSF33FunctionKey = 0xF724,
+        #[cfg(not(any(target_os = "ios")))]
         NSF34FunctionKey = 0xF725,
+        #[cfg(not(any(target_os = "ios")))]
         NSF35FunctionKey = 0xF726,
+        #[cfg(not(any(target_os = "ios")))]
         NSInsertFunctionKey = 0xF727,
+        #[cfg(not(any(target_os = "ios")))]
         NSDeleteFunctionKey = 0xF728,
+        #[cfg(not(any(target_os = "ios")))]
         NSHomeFunctionKey = 0xF729,
+        #[cfg(not(any(target_os = "ios")))]
         NSBeginFunctionKey = 0xF72A,
+        #[cfg(not(any(target_os = "ios")))]
         NSEndFunctionKey = 0xF72B,
+        #[cfg(not(any(target_os = "ios")))]
         NSPageUpFunctionKey = 0xF72C,
+        #[cfg(not(any(target_os = "ios")))]
         NSPageDownFunctionKey = 0xF72D,
+        #[cfg(not(any(target_os = "ios")))]
         NSPrintScreenFunctionKey = 0xF72E,
+        #[cfg(not(any(target_os = "ios")))]
         NSScrollLockFunctionKey = 0xF72F,
+        #[cfg(not(any(target_os = "ios")))]
         NSPauseFunctionKey = 0xF730,
+        #[cfg(not(any(target_os = "ios")))]
         NSSysReqFunctionKey = 0xF731,
+        #[cfg(not(any(target_os = "ios")))]
         NSBreakFunctionKey = 0xF732,
+        #[cfg(not(any(target_os = "ios")))]
         NSResetFunctionKey = 0xF733,
+        #[cfg(not(any(target_os = "ios")))]
         NSStopFunctionKey = 0xF734,
+        #[cfg(not(any(target_os = "ios")))]
         NSMenuFunctionKey = 0xF735,
+        #[cfg(not(any(target_os = "ios")))]
         NSUserFunctionKey = 0xF736,
+        #[cfg(not(any(target_os = "ios")))]
         NSSystemFunctionKey = 0xF737,
+        #[cfg(not(any(target_os = "ios")))]
         NSPrintFunctionKey = 0xF738,
+        #[cfg(not(any(target_os = "ios")))]
         NSClearLineFunctionKey = 0xF739,
+        #[cfg(not(any(target_os = "ios")))]
         NSClearDisplayFunctionKey = 0xF73A,
+        #[cfg(not(any(target_os = "ios")))]
         NSInsertLineFunctionKey = 0xF73B,
+        #[cfg(not(any(target_os = "ios")))]
         NSDeleteLineFunctionKey = 0xF73C,
+        #[cfg(not(any(target_os = "ios")))]
         NSInsertCharFunctionKey = 0xF73D,
+        #[cfg(not(any(target_os = "ios")))]
         NSDeleteCharFunctionKey = 0xF73E,
+        #[cfg(not(any(target_os = "ios")))]
         NSPrevFunctionKey = 0xF73F,
+        #[cfg(not(any(target_os = "ios")))]
         NSNextFunctionKey = 0xF740,
+        #[cfg(not(any(target_os = "ios")))]
         NSSelectFunctionKey = 0xF741,
+        #[cfg(not(any(target_os = "ios")))]
         NSExecuteFunctionKey = 0xF742,
+        #[cfg(not(any(target_os = "ios")))]
         NSUndoFunctionKey = 0xF743,
+        #[cfg(not(any(target_os = "ios")))]
         NSRedoFunctionKey = 0xF744,
+        #[cfg(not(any(target_os = "ios")))]
         NSFindFunctionKey = 0xF745,
+        #[cfg(not(any(target_os = "ios")))]
         NSHelpFunctionKey = 0xF746,
+        #[cfg(not(any(target_os = "ios")))]
         NSModeSwitchFunctionKey = 0xF747,
     }
 );

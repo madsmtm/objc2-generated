@@ -8,9 +8,13 @@ extern_static!(BGTaskSchedulerErrorDomain: &'static NSErrorDomain);
 
 ns_error_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub enum BGTaskSchedulerErrorCode {
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         BGTaskSchedulerErrorCodeUnavailable = 1,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         BGTaskSchedulerErrorCodeTooManyPendingTaskRequests = 2,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         BGTaskSchedulerErrorCodeNotPermitted = 3,
     }
 );
@@ -18,6 +22,7 @@ ns_error_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "BackgroundTasks_BGTaskScheduler")]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub struct BGTaskScheduler;
 
     #[cfg(feature = "BackgroundTasks_BGTaskScheduler")]

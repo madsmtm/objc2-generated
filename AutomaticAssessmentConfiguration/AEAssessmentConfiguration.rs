@@ -30,61 +30,80 @@ unsafe impl NSObjectProtocol for AEAssessmentConfiguration {}
 extern_methods!(
     #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentConfiguration")]
     unsafe impl AEAssessmentConfiguration {
+        #[cfg(not(any(target_os = "macos")))]
         #[method(autocorrectMode)]
         pub unsafe fn autocorrectMode(&self) -> AEAutocorrectMode;
 
+        #[cfg(not(any(target_os = "macos")))]
         #[method(setAutocorrectMode:)]
         pub unsafe fn setAutocorrectMode(&self, autocorrect_mode: AEAutocorrectMode);
 
+        #[cfg(not(any(target_os = "macos")))]
         #[method(allowsSpellCheck)]
         pub unsafe fn allowsSpellCheck(&self) -> bool;
 
+        #[cfg(not(any(target_os = "macos")))]
         #[method(setAllowsSpellCheck:)]
         pub unsafe fn setAllowsSpellCheck(&self, allows_spell_check: bool);
 
+        #[cfg(not(any(target_os = "macos")))]
         #[method(allowsPredictiveKeyboard)]
         pub unsafe fn allowsPredictiveKeyboard(&self) -> bool;
 
+        #[cfg(not(any(target_os = "macos")))]
         #[method(setAllowsPredictiveKeyboard:)]
         pub unsafe fn setAllowsPredictiveKeyboard(&self, allows_predictive_keyboard: bool);
 
+        #[cfg(not(any(target_os = "macos")))]
         #[method(allowsKeyboardShortcuts)]
         pub unsafe fn allowsKeyboardShortcuts(&self) -> bool;
 
+        #[cfg(not(any(target_os = "macos")))]
         #[method(setAllowsKeyboardShortcuts:)]
         pub unsafe fn setAllowsKeyboardShortcuts(&self, allows_keyboard_shortcuts: bool);
 
+        #[cfg(not(any(target_os = "macos")))]
         #[method(allowsActivityContinuation)]
         pub unsafe fn allowsActivityContinuation(&self) -> bool;
 
+        #[cfg(not(any(target_os = "macos")))]
         #[method(setAllowsActivityContinuation:)]
         pub unsafe fn setAllowsActivityContinuation(&self, allows_activity_continuation: bool);
 
+        #[cfg(not(any(target_os = "macos")))]
         #[method(allowsDictation)]
         pub unsafe fn allowsDictation(&self) -> bool;
 
+        #[cfg(not(any(target_os = "macos")))]
         #[method(setAllowsDictation:)]
         pub unsafe fn setAllowsDictation(&self, allows_dictation: bool);
 
+        #[cfg(not(any(target_os = "macos")))]
         #[method(allowsAccessibilitySpeech)]
         pub unsafe fn allowsAccessibilitySpeech(&self) -> bool;
 
+        #[cfg(not(any(target_os = "macos")))]
         #[method(setAllowsAccessibilitySpeech:)]
         pub unsafe fn setAllowsAccessibilitySpeech(&self, allows_accessibility_speech: bool);
 
+        #[cfg(not(any(target_os = "macos")))]
         #[method(allowsPasswordAutoFill)]
         pub unsafe fn allowsPasswordAutoFill(&self) -> bool;
 
+        #[cfg(not(any(target_os = "macos")))]
         #[method(setAllowsPasswordAutoFill:)]
         pub unsafe fn setAllowsPasswordAutoFill(&self, allows_password_auto_fill: bool);
 
+        #[cfg(not(any(target_os = "macos")))]
         #[method(allowsContinuousPathKeyboard)]
         pub unsafe fn allowsContinuousPathKeyboard(&self) -> bool;
 
+        #[cfg(not(any(target_os = "macos")))]
         #[method(setAllowsContinuousPathKeyboard:)]
         pub unsafe fn setAllowsContinuousPathKeyboard(&self, allows_continuous_path_keyboard: bool);
 
         #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentParticipantConfiguration")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other mainParticipantConfiguration)]
         pub unsafe fn mainParticipantConfiguration(
             &self,
@@ -95,6 +114,7 @@ extern_methods!(
             feature = "AutomaticAssessmentConfiguration_AEAssessmentParticipantConfiguration",
             feature = "Foundation_NSDictionary"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other configurationsByApplication)]
         pub unsafe fn configurationsByApplication(
             &self,
@@ -104,6 +124,7 @@ extern_methods!(
             feature = "AutomaticAssessmentConfiguration_AEAssessmentApplication",
             feature = "AutomaticAssessmentConfiguration_AEAssessmentParticipantConfiguration"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setConfiguration:forApplication:)]
         pub unsafe fn setConfiguration_forApplication(
             &self,
@@ -112,6 +133,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentApplication")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeApplication:)]
         pub unsafe fn removeApplication(&self, application: &AEAssessmentApplication);
     }

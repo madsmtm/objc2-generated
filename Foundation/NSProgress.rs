@@ -228,22 +228,27 @@ extern_methods!(
         #[method(setFileCompletedCount:)]
         pub unsafe fn setFileCompletedCount(&self, file_completed_count: Option<&NSNumber>);
 
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(publish)]
         pub unsafe fn publish(&self);
 
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(unpublish)]
         pub unsafe fn unpublish(&self);
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other addSubscriberForFileURL:withPublishingHandler:)]
         pub unsafe fn addSubscriberForFileURL_withPublishingHandler(
             url: &NSURL,
             publishing_handler: NSProgressPublishingHandler,
         ) -> Id<Object>;
 
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(removeSubscriber:)]
         pub unsafe fn removeSubscriber(subscriber: &Object);
 
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(isOld)]
         pub unsafe fn isOld(&self) -> bool;
     }

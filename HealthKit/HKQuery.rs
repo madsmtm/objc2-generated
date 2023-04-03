@@ -409,6 +409,7 @@ extern_methods!(
     #[cfg(feature = "HealthKit_HKQuery")]
     unsafe impl HKQuery {
         #[cfg(feature = "Foundation_NSPredicate")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other predicateForClinicalRecordsWithFHIRResourceType:)]
         pub unsafe fn predicateForClinicalRecordsWithFHIRResourceType(
             resource_type: &HKFHIRResourceType,
@@ -419,6 +420,7 @@ extern_methods!(
             feature = "Foundation_NSString",
             feature = "HealthKit_HKSource"
         ))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other predicateForClinicalRecordsFromSource:FHIRResourceType:identifier:)]
         pub unsafe fn predicateForClinicalRecordsFromSource_FHIRResourceType_identifier(
             source: &HKSource,

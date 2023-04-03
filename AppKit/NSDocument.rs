@@ -7,27 +7,43 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSDocumentChangeType {
+        #[cfg(not(any(target_os = "ios")))]
         NSChangeDone = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSChangeUndone = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSChangeRedone = 5,
+        #[cfg(not(any(target_os = "ios")))]
         NSChangeCleared = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSChangeReadOtherContents = 3,
+        #[cfg(not(any(target_os = "ios")))]
         NSChangeAutosaved = 4,
+        #[cfg(not(any(target_os = "ios")))]
         NSChangeDiscardable = 256,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSSaveOperationType {
+        #[cfg(not(any(target_os = "ios")))]
         NSSaveOperation = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSSaveAsOperation = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSSaveToOperation = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSAutosaveInPlaceOperation = 4,
+        #[cfg(not(any(target_os = "ios")))]
         NSAutosaveElsewhereOperation = 3,
+        #[cfg(not(any(target_os = "ios")))]
         NSAutosaveAsOperation = 5,
         #[deprecated = "Use NSAutosaveElsewhereOperation instead"]
+        #[cfg(not(any(target_os = "ios")))]
         NSAutosaveOperation = 3,
     }
 );
@@ -35,6 +51,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSDocument")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSDocument;
 
     #[cfg(feature = "AppKit_NSDocument")]
@@ -61,10 +78,12 @@ unsafe impl NSUserInterfaceValidations for NSDocument {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSDocument")]
     unsafe impl NSDocument {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithType:error:_)]
         pub unsafe fn initWithType_error(
             this: Option<Allocated<Self>>,
@@ -72,6 +91,7 @@ extern_methods!(
         ) -> Result<Id<Self>, Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(canConcurrentlyReadDocumentsOfType:)]
         pub unsafe fn canConcurrentlyReadDocumentsOfType(type_name: &NSString) -> bool;
 
@@ -80,6 +100,7 @@ extern_methods!(
             feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:ofType:error:_)]
         pub unsafe fn initWithContentsOfURL_ofType_error(
             this: Option<Allocated<Self>>,
@@ -92,6 +113,7 @@ extern_methods!(
             feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initForURL:withContentsOfURL:ofType:error:_)]
         pub unsafe fn initForURL_withContentsOfURL_ofType_error(
             this: Option<Allocated<Self>>,
@@ -101,35 +123,44 @@ extern_methods!(
         ) -> Result<Id<Self>, Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other fileType)]
         pub unsafe fn fileType(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFileType:)]
         pub unsafe fn setFileType(&self, file_type: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other fileURL)]
         pub unsafe fn fileURL(&self) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFileURL:)]
         pub unsafe fn setFileURL(&self, file_url: Option<&NSURL>);
 
         #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other fileModificationDate)]
         pub unsafe fn fileModificationDate(&self) -> Option<Id<NSDate>>;
 
         #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFileModificationDate:)]
         pub unsafe fn setFileModificationDate(&self, file_modification_date: Option<&NSDate>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isDraft)]
         pub unsafe fn isDraft(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDraft:)]
         pub unsafe fn setDraft(&self, draft: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(performActivityWithSynchronousWaiting:usingBlock:)]
         pub unsafe fn performActivityWithSynchronousWaiting_usingBlock(
             &self,
@@ -137,21 +168,26 @@ extern_methods!(
             block: &Block<(NonNull<Block<(), ()>>,), ()>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(continueActivityUsingBlock:)]
         pub unsafe fn continueActivityUsingBlock(&self, block: &Block<(), ()>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(continueAsynchronousWorkOnMainThreadUsingBlock:)]
         pub unsafe fn continueAsynchronousWorkOnMainThreadUsingBlock(&self, block: &Block<(), ()>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(performSynchronousFileAccessUsingBlock:)]
         pub unsafe fn performSynchronousFileAccessUsingBlock(&self, block: &Block<(), ()>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(performAsynchronousFileAccessUsingBlock:)]
         pub unsafe fn performAsynchronousFileAccessUsingBlock(
             &self,
             block: &Block<(NonNull<Block<(), ()>>,), ()>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(revertDocumentToSaved:)]
         pub unsafe fn revertDocumentToSaved(&self, sender: Option<&Object>);
 
@@ -160,6 +196,7 @@ extern_methods!(
             feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(revertToContentsOfURL:ofType:error:_)]
         pub unsafe fn revertToContentsOfURL_ofType_error(
             &self,
@@ -172,6 +209,7 @@ extern_methods!(
             feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(readFromURL:ofType:error:_)]
         pub unsafe fn readFromURL_ofType_error(
             &self,
@@ -184,6 +222,7 @@ extern_methods!(
             feature = "Foundation_NSFileWrapper",
             feature = "Foundation_NSString"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(readFromFileWrapper:ofType:error:_)]
         pub unsafe fn readFromFileWrapper_ofType_error(
             &self,
@@ -196,6 +235,7 @@ extern_methods!(
             feature = "Foundation_NSError",
             feature = "Foundation_NSString"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(readFromData:ofType:error:_)]
         pub unsafe fn readFromData_ofType_error(
             &self,
@@ -203,6 +243,7 @@ extern_methods!(
             type_name: &NSString,
         ) -> Result<(), Id<NSError>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isEntireFileLoaded)]
         pub unsafe fn isEntireFileLoaded(&self) -> bool;
 
@@ -211,6 +252,7 @@ extern_methods!(
             feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(writeToURL:ofType:error:_)]
         pub unsafe fn writeToURL_ofType_error(
             &self,
@@ -223,6 +265,7 @@ extern_methods!(
             feature = "Foundation_NSFileWrapper",
             feature = "Foundation_NSString"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other fileWrapperOfType:error:_)]
         pub unsafe fn fileWrapperOfType_error(
             &self,
@@ -234,15 +277,18 @@ extern_methods!(
             feature = "Foundation_NSError",
             feature = "Foundation_NSString"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other dataOfType:error:_)]
         pub unsafe fn dataOfType_error(
             &self,
             type_name: &NSString,
         ) -> Result<Id<NSData>, Id<NSError>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(unblockUserInteraction)]
         pub unsafe fn unblockUserInteraction(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(autosavingIsImplicitlyCancellable)]
         pub unsafe fn autosavingIsImplicitlyCancellable(&self) -> bool;
 
@@ -251,6 +297,7 @@ extern_methods!(
             feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(writeSafelyToURL:ofType:forSaveOperation:error:_)]
         pub unsafe fn writeSafelyToURL_ofType_forSaveOperation_error(
             &self,
@@ -264,6 +311,7 @@ extern_methods!(
             feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(writeToURL:ofType:forSaveOperation:originalContentsURL:error:_)]
         pub unsafe fn writeToURL_ofType_forSaveOperation_originalContentsURL_error(
             &self,
@@ -279,6 +327,7 @@ extern_methods!(
             feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other fileAttributesToWriteToURL:ofType:forSaveOperation:originalContentsURL:error:_)]
         pub unsafe fn fileAttributesToWriteToURL_ofType_forSaveOperation_originalContentsURL_error(
             &self,
@@ -288,22 +337,28 @@ extern_methods!(
             absolute_original_contents_url: Option<&NSURL>,
         ) -> Result<Id<NSDictionary<NSString, Object>>, Id<NSError>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(keepBackupFile)]
         pub unsafe fn keepBackupFile(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other backupFileURL)]
         pub unsafe fn backupFileURL(&self) -> Option<Id<NSURL>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(saveDocument:)]
         pub unsafe fn saveDocument(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(saveDocumentAs:)]
         pub unsafe fn saveDocumentAs(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(saveDocumentTo:)]
         pub unsafe fn saveDocumentTo(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(saveDocumentWithDelegate:didSaveSelector:contextInfo:)]
         pub unsafe fn saveDocumentWithDelegate_didSaveSelector_contextInfo(
             &self,
@@ -312,6 +367,7 @@ extern_methods!(
             context_info: *mut c_void,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(runModalSavePanelForSaveOperation:delegate:didSaveSelector:contextInfo:)]
         pub unsafe fn runModalSavePanelForSaveOperation_delegate_didSaveSelector_contextInfo(
             &self,
@@ -321,21 +377,26 @@ extern_methods!(
             context_info: *mut c_void,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(shouldRunSavePanelWithAccessoryView)]
         pub unsafe fn shouldRunSavePanelWithAccessoryView(&self) -> bool;
 
         #[cfg(feature = "AppKit_NSSavePanel")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(prepareSavePanel:)]
         pub unsafe fn prepareSavePanel(&self, save_panel: &NSSavePanel) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(fileNameExtensionWasHiddenInLastRunSavePanel)]
         pub unsafe fn fileNameExtensionWasHiddenInLastRunSavePanel(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other fileTypeFromLastRunSavePanel)]
         pub unsafe fn fileTypeFromLastRunSavePanel(&self) -> Option<Id<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(saveToURL:ofType:forSaveOperation:delegate:didSaveSelector:contextInfo:)]
         pub unsafe fn saveToURL_ofType_forSaveOperation_delegate_didSaveSelector_contextInfo(
             &self,
@@ -352,6 +413,7 @@ extern_methods!(
             feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(saveToURL:ofType:forSaveOperation:completionHandler:)]
         pub unsafe fn saveToURL_ofType_forSaveOperation_completionHandler(
             &self,
@@ -362,6 +424,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(canAsynchronouslyWriteToURL:ofType:forSaveOperation:)]
         pub unsafe fn canAsynchronouslyWriteToURL_ofType_forSaveOperation(
             &self,
@@ -371,15 +434,19 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSError")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(checkAutosavingSafetyAndReturnError:_)]
         pub unsafe fn checkAutosavingSafetyAndReturnError(&self) -> Result<(), Id<NSError>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(scheduleAutosaving)]
         pub unsafe fn scheduleAutosaving(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(hasUnautosavedChanges)]
         pub unsafe fn hasUnautosavedChanges(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(autosaveDocumentWithDelegate:didAutosaveSelector:contextInfo:)]
         pub unsafe fn autosaveDocumentWithDelegate_didAutosaveSelector_contextInfo(
             &self,
@@ -389,6 +456,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSError")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(autosaveWithImplicitCancellability:completionHandler:)]
         pub unsafe fn autosaveWithImplicitCancellability_completionHandler(
             &self,
@@ -396,42 +464,52 @@ extern_methods!(
             completion_handler: &Block<(*mut NSError,), ()>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(autosavesInPlace)]
         pub unsafe fn autosavesInPlace() -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(preservesVersions)]
         pub unsafe fn preservesVersions() -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(browseDocumentVersions:)]
         pub unsafe fn browseDocumentVersions(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isBrowsingVersions)]
         pub unsafe fn isBrowsingVersions(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(stopBrowsingVersionsWithCompletionHandler:)]
         pub unsafe fn stopBrowsingVersionsWithCompletionHandler(
             &self,
             completion_handler: Option<&Block<(), ()>>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(autosavesDrafts)]
         pub unsafe fn autosavesDrafts() -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other autosavingFileType)]
         pub unsafe fn autosavingFileType(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other autosavedContentsFileURL)]
         pub unsafe fn autosavedContentsFileURL(&self) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAutosavedContentsFileURL:)]
         pub unsafe fn setAutosavedContentsFileURL(
             &self,
             autosaved_contents_file_url: Option<&NSURL>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(canCloseDocumentWithDelegate:shouldCloseSelector:contextInfo:)]
         pub unsafe fn canCloseDocumentWithDelegate_shouldCloseSelector_contextInfo(
             &self,
@@ -440,12 +518,15 @@ extern_methods!(
             context_info: *mut c_void,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(close)]
         pub unsafe fn close(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(duplicateDocument:)]
         pub unsafe fn duplicateDocument(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(duplicateDocumentWithDelegate:didDuplicateSelector:contextInfo:)]
         pub unsafe fn duplicateDocumentWithDelegate_didDuplicateSelector_contextInfo(
             &self,
@@ -455,18 +536,23 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSError")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other duplicateAndReturnError:_)]
         pub unsafe fn duplicateAndReturnError(&self) -> Result<Id<NSDocument>, Id<NSError>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(renameDocument:)]
         pub unsafe fn renameDocument(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(moveDocumentToUbiquityContainer:)]
         pub unsafe fn moveDocumentToUbiquityContainer(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(moveDocument:)]
         pub unsafe fn moveDocument(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(moveDocumentWithCompletionHandler:)]
         pub unsafe fn moveDocumentWithCompletionHandler(
             &self,
@@ -474,6 +560,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(moveToURL:completionHandler:)]
         pub unsafe fn moveToURL_completionHandler(
             &self,
@@ -481,12 +568,15 @@ extern_methods!(
             completion_handler: Option<&Block<(*mut NSError,), ()>>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(lockDocument:)]
         pub unsafe fn lockDocument(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(unlockDocument:)]
         pub unsafe fn unlockDocument(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(lockDocumentWithCompletionHandler:)]
         pub unsafe fn lockDocumentWithCompletionHandler(
             &self,
@@ -494,12 +584,14 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSError")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(lockWithCompletionHandler:)]
         pub unsafe fn lockWithCompletionHandler(
             &self,
             completion_handler: Option<&Block<(*mut NSError,), ()>>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(unlockDocumentWithCompletionHandler:)]
         pub unsafe fn unlockDocumentWithCompletionHandler(
             &self,
@@ -507,19 +599,23 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSError")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(unlockWithCompletionHandler:)]
         pub unsafe fn unlockWithCompletionHandler(
             &self,
             completion_handler: Option<&Block<(*mut NSError,), ()>>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isLocked)]
         pub unsafe fn isLocked(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(runPageLayout:)]
         pub unsafe fn runPageLayout(&self, sender: Option<&Object>);
 
         #[cfg(feature = "AppKit_NSPrintInfo")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(runModalPageLayoutWithPrintInfo:delegate:didRunSelector:contextInfo:)]
         pub unsafe fn runModalPageLayoutWithPrintInfo_delegate_didRunSelector_contextInfo(
             &self,
@@ -530,25 +626,31 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSPageLayout")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(preparePageLayout:)]
         pub unsafe fn preparePageLayout(&self, page_layout: &NSPageLayout) -> bool;
 
         #[cfg(feature = "AppKit_NSPrintInfo")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(shouldChangePrintInfo:)]
         pub unsafe fn shouldChangePrintInfo(&self, new_print_info: &NSPrintInfo) -> bool;
 
         #[cfg(feature = "AppKit_NSPrintInfo")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other printInfo)]
         pub unsafe fn printInfo(&self) -> Id<NSPrintInfo>;
 
         #[cfg(feature = "AppKit_NSPrintInfo")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPrintInfo:)]
         pub unsafe fn setPrintInfo(&self, print_info: &NSPrintInfo);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(printDocument:)]
         pub unsafe fn printDocument(&self, sender: Option<&Object>);
 
         #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(printDocumentWithSettings:showPrintPanel:delegate:didPrintSelector:contextInfo:)]
         pub unsafe fn printDocumentWithSettings_showPrintPanel_delegate_didPrintSelector_contextInfo(
             &self,
@@ -564,6 +666,7 @@ extern_methods!(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other printOperationWithSettings:error:_)]
         pub unsafe fn printOperationWithSettings_error(
             &self,
@@ -571,6 +674,7 @@ extern_methods!(
         ) -> Result<Id<NSPrintOperation>, Id<NSError>>;
 
         #[cfg(feature = "AppKit_NSPrintOperation")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(runModalPrintOperation:delegate:didRunSelector:contextInfo:)]
         pub unsafe fn runModalPrintOperation_delegate_didRunSelector_contextInfo(
             &self,
@@ -580,17 +684,21 @@ extern_methods!(
             context_info: *mut c_void,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(saveDocumentToPDF:)]
         pub unsafe fn saveDocumentToPDF(&self, sender: Option<&Object>);
 
         #[cfg(feature = "AppKit_NSPrintOperation")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other PDFPrintOperation)]
         pub unsafe fn PDFPrintOperation(&self) -> Id<NSPrintOperation>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(allowsDocumentSharing)]
         pub unsafe fn allowsDocumentSharing(&self) -> bool;
 
         #[cfg(feature = "AppKit_NSSharingService")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(shareDocumentWithSharingService:completionHandler:)]
         pub unsafe fn shareDocumentWithSharingService_completionHandler(
             &self,
@@ -599,27 +707,33 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSSharingServicePicker")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(prepareSharingServicePicker:)]
         pub unsafe fn prepareSharingServicePicker(
             &self,
             sharing_service_picker: &NSSharingServicePicker,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isDocumentEdited)]
         pub unsafe fn isDocumentEdited(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isInViewingMode)]
         pub unsafe fn isInViewingMode(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(updateChangeCount:)]
         pub unsafe fn updateChangeCount(&self, change: NSDocumentChangeType);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other changeCountTokenForSaveOperation:)]
         pub unsafe fn changeCountTokenForSaveOperation(
             &self,
             save_operation: NSSaveOperationType,
         ) -> Id<Object>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(updateChangeCountWithToken:forSaveOperation:)]
         pub unsafe fn updateChangeCountWithToken_forSaveOperation(
             &self,
@@ -628,20 +742,25 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSUndoManager")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other undoManager)]
         pub unsafe fn undoManager(&self) -> Option<Id<NSUndoManager>>;
 
         #[cfg(feature = "Foundation_NSUndoManager")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setUndoManager:)]
         pub unsafe fn setUndoManager(&self, undo_manager: Option<&NSUndoManager>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(hasUndoManager)]
         pub unsafe fn hasUndoManager(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setHasUndoManager:)]
         pub unsafe fn setHasUndoManager(&self, has_undo_manager: bool);
 
         #[cfg(all(feature = "AppKit_NSWindow", feature = "Foundation_NSError"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(presentError:modalForWindow:delegate:didPresentSelector:contextInfo:)]
         pub unsafe fn presentError_modalForWindow_delegate_didPresentSelector_contextInfo(
             &self,
@@ -653,51 +772,64 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSError")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(presentError:)]
         pub unsafe fn presentError(&self, error: &NSError) -> bool;
 
         #[cfg(feature = "Foundation_NSError")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other willPresentError:)]
         pub unsafe fn willPresentError(&self, error: &NSError) -> Id<NSError>;
 
         #[cfg(feature = "Foundation_NSError")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(willNotPresentError:)]
         pub unsafe fn willNotPresentError(&self, error: &NSError);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(makeWindowControllers)]
         pub unsafe fn makeWindowControllers(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other windowNibName)]
         pub unsafe fn windowNibName(&self) -> Option<Id<NSNibName>>;
 
         #[cfg(feature = "AppKit_NSWindowController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(windowControllerWillLoadNib:)]
         pub unsafe fn windowControllerWillLoadNib(&self, window_controller: &NSWindowController);
 
         #[cfg(feature = "AppKit_NSWindowController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(windowControllerDidLoadNib:)]
         pub unsafe fn windowControllerDidLoadNib(&self, window_controller: &NSWindowController);
 
         #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setWindow:)]
         pub unsafe fn setWindow(&self, window: Option<&NSWindow>);
 
         #[cfg(feature = "AppKit_NSWindowController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(addWindowController:)]
         pub unsafe fn addWindowController(&self, window_controller: &NSWindowController);
 
         #[cfg(feature = "AppKit_NSWindowController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeWindowController:)]
         pub unsafe fn removeWindowController(&self, window_controller: &NSWindowController);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(showWindows)]
         pub unsafe fn showWindows(&self);
 
         #[cfg(all(feature = "AppKit_NSWindowController", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other windowControllers)]
         pub unsafe fn windowControllers(&self) -> Id<NSArray<NSWindowController>>;
 
         #[cfg(feature = "AppKit_NSWindowController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(shouldCloseWindowController:delegate:shouldCloseSelector:contextInfo:)]
         pub unsafe fn shouldCloseWindowController_delegate_shouldCloseSelector_contextInfo(
             &self,
@@ -708,30 +840,37 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other displayName)]
         pub unsafe fn displayName(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other defaultDraftName)]
         pub unsafe fn defaultDraftName(&self) -> Id<NSString>;
 
         #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other windowForSheet)]
         pub unsafe fn windowForSheet(&self) -> Option<Id<NSWindow>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other readableTypes)]
         pub unsafe fn readableTypes() -> Id<NSArray<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other writableTypes)]
         pub unsafe fn writableTypes() -> Id<NSArray<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isNativeType:)]
         pub unsafe fn isNativeType(r#type: &NSString) -> bool;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other writableTypesForSaveOperation:)]
         pub unsafe fn writableTypesForSaveOperation(
             &self,
@@ -739,6 +878,7 @@ extern_methods!(
         ) -> Id<NSArray<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other fileNameExtensionForType:saveOperation:)]
         pub unsafe fn fileNameExtensionForType_saveOperation(
             &self,
@@ -746,30 +886,36 @@ extern_methods!(
             save_operation: NSSaveOperationType,
         ) -> Option<Id<NSString>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(validateUserInterfaceItem:)]
         pub unsafe fn validateUserInterfaceItem(
             &self,
             item: &ProtocolObject<dyn NSValidatedUserInterfaceItem>,
         ) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(usesUbiquitousStorage)]
         pub unsafe fn usesUbiquitousStorage() -> bool;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other presentedItemURL)]
         pub unsafe fn presentedItemURL(&self) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "Foundation_NSSet")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other observedPresentedItemUbiquityAttributes)]
         pub unsafe fn observedPresentedItemUbiquityAttributes(&self)
             -> Id<NSSet<NSURLResourceKey>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(relinquishPresentedItemToReader:)]
         pub unsafe fn relinquishPresentedItemToReader(
             &self,
             reader: &Block<(*mut Block<(), ()>,), ()>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(relinquishPresentedItemToWriter:)]
         pub unsafe fn relinquishPresentedItemToWriter(
             &self,
@@ -777,6 +923,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSError")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(savePresentedItemChangesWithCompletionHandler:)]
         pub unsafe fn savePresentedItemChangesWithCompletionHandler(
             &self,
@@ -784,6 +931,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSError")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accommodatePresentedItemDeletionWithCompletionHandler:)]
         pub unsafe fn accommodatePresentedItemDeletionWithCompletionHandler(
             &self,
@@ -791,9 +939,11 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(presentedItemDidMoveToURL:)]
         pub unsafe fn presentedItemDidMoveToURL(&self, new_url: &NSURL);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(presentedItemDidChange)]
         pub unsafe fn presentedItemDidChange(&self);
 
@@ -805,14 +955,17 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSFileVersion")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(presentedItemDidGainVersion:)]
         pub unsafe fn presentedItemDidGainVersion(&self, version: &NSFileVersion);
 
         #[cfg(feature = "Foundation_NSFileVersion")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(presentedItemDidLoseVersion:)]
         pub unsafe fn presentedItemDidLoseVersion(&self, version: &NSFileVersion);
 
         #[cfg(feature = "Foundation_NSFileVersion")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(presentedItemDidResolveConflictVersion:)]
         pub unsafe fn presentedItemDidResolveConflictVersion(&self, version: &NSFileVersion);
     }
@@ -828,6 +981,7 @@ extern_methods!(
             feature = "Foundation_NSURL"
         ))]
         #[deprecated = "Use -saveToURL:ofType:forSaveOperation:completionHandler: instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(saveToURL:ofType:forSaveOperation:error:_)]
         pub unsafe fn saveToURL_ofType_forSaveOperation_error(
             &self,
@@ -838,11 +992,13 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSString"))]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other dataRepresentationOfType:)]
         pub unsafe fn dataRepresentationOfType(&self, r#type: &NSString) -> Option<Id<NSData>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other fileAttributesToWriteToFile:ofType:saveOperation:)]
         pub unsafe fn fileAttributesToWriteToFile_ofType_saveOperation(
             &self,
@@ -853,11 +1009,13 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other fileName)]
         pub unsafe fn fileName(&self) -> Option<Id<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSFileWrapper", feature = "Foundation_NSString"))]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other fileWrapperRepresentationOfType:)]
         pub unsafe fn fileWrapperRepresentationOfType(
             &self,
@@ -866,6 +1024,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithContentsOfFile:ofType:)]
         pub unsafe fn initWithContentsOfFile_ofType(
             this: Option<Allocated<Self>>,
@@ -875,6 +1034,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:ofType:)]
         pub unsafe fn initWithContentsOfURL_ofType(
             this: Option<Allocated<Self>>,
@@ -884,6 +1044,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSString"))]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(loadDataRepresentation:ofType:)]
         pub unsafe fn loadDataRepresentation_ofType(
             &self,
@@ -893,6 +1054,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSFileWrapper", feature = "Foundation_NSString"))]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(loadFileWrapperRepresentation:ofType:)]
         pub unsafe fn loadFileWrapperRepresentation_ofType(
             &self,
@@ -901,21 +1063,25 @@ extern_methods!(
         ) -> bool;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(printShowingPrintPanel:)]
         pub unsafe fn printShowingPrintPanel(&self, flag: bool);
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(readFromFile:ofType:)]
         pub unsafe fn readFromFile_ofType(&self, file_name: &NSString, r#type: &NSString) -> bool;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(readFromURL:ofType:)]
         pub unsafe fn readFromURL_ofType(&self, url: &NSURL, r#type: &NSString) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(revertToSavedFromFile:ofType:)]
         pub unsafe fn revertToSavedFromFile_ofType(
             &self,
@@ -925,17 +1091,20 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(revertToSavedFromURL:ofType:)]
         pub unsafe fn revertToSavedFromURL_ofType(&self, url: &NSURL, r#type: &NSString) -> bool;
 
         #[cfg(feature = "AppKit_NSPrintInfo")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(runModalPageLayoutWithPrintInfo:)]
         pub unsafe fn runModalPageLayoutWithPrintInfo(&self, print_info: &NSPrintInfo)
             -> NSInteger;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(saveToFile:saveOperation:delegate:didSaveSelector:contextInfo:)]
         pub unsafe fn saveToFile_saveOperation_delegate_didSaveSelector_contextInfo(
             &self,
@@ -948,16 +1117,19 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFileName:)]
         pub unsafe fn setFileName(&self, file_name: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(writeToFile:ofType:)]
         pub unsafe fn writeToFile_ofType(&self, file_name: &NSString, r#type: &NSString) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(writeToFile:ofType:originalFile:saveOperation:)]
         pub unsafe fn writeToFile_ofType_originalFile_saveOperation(
             &self,
@@ -969,11 +1141,13 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(writeToURL:ofType:)]
         pub unsafe fn writeToURL_ofType(&self, url: &NSURL, r#type: &NSString) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(writeWithBackupToFile:ofType:saveOperation:)]
         pub unsafe fn writeWithBackupToFile_ofType_saveOperation(
             &self,

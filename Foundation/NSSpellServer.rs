@@ -125,6 +125,7 @@ extern_protocol!(
             feature = "Foundation_NSSpellServer",
             feature = "Foundation_NSString"
         ))]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method(spellServer:checkGrammarInString:language:details:)]
         unsafe fn spellServer_checkGrammarInString_language_details(
@@ -143,6 +144,7 @@ extern_protocol!(
             feature = "Foundation_NSString",
             feature = "Foundation_NSTextCheckingResult"
         ))]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method_id(@__retain_semantics Other spellServer:checkString:offset:types:options:orthography:wordCount:)]
         unsafe fn spellServer_checkString_offset_types_options_orthography_wordCount(
@@ -157,6 +159,7 @@ extern_protocol!(
         ) -> Option<Id<NSArray<NSTextCheckingResult>>>;
 
         #[cfg(all(feature = "Foundation_NSSpellServer", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method(spellServer:recordResponse:toCorrection:forWord:language:)]
         unsafe fn spellServer_recordResponse_toCorrection_forWord_language(

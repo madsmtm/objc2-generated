@@ -7,9 +7,13 @@ use crate::Foundation::*;
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSTableColumnResizingOptions {
+        #[cfg(not(any(target_os = "ios")))]
         NSTableColumnNoResizing = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSTableColumnAutoresizingMask = 1 << 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSTableColumnUserResizingMask = 1 << 1,
     }
 );
@@ -17,6 +21,7 @@ ns_options!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSTableColumn")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSTableColumn;
 
     #[cfg(feature = "AppKit_NSTableColumn")]
@@ -37,6 +42,7 @@ unsafe impl NSUserInterfaceItemIdentification for NSTableColumn {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSTableColumn")]
     unsafe impl NSTableColumn {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Option<Allocated<Self>>,
@@ -44,94 +50,120 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Id<NSUserInterfaceItemIdentifier>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setIdentifier:)]
         pub unsafe fn setIdentifier(&self, identifier: &NSUserInterfaceItemIdentifier);
 
         #[cfg(feature = "AppKit_NSTableView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other tableView)]
         pub unsafe fn tableView(&self) -> Option<Id<NSTableView>>;
 
         #[cfg(feature = "AppKit_NSTableView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTableView:)]
         pub unsafe fn setTableView(&self, table_view: Option<&NSTableView>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(width)]
         pub unsafe fn width(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setWidth:)]
         pub unsafe fn setWidth(&self, width: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(minWidth)]
         pub unsafe fn minWidth(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMinWidth:)]
         pub unsafe fn setMinWidth(&self, min_width: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(maxWidth)]
         pub unsafe fn maxWidth(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMaxWidth:)]
         pub unsafe fn setMaxWidth(&self, max_width: CGFloat);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
         #[cfg(feature = "AppKit_NSTableHeaderCell")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other headerCell)]
         pub unsafe fn headerCell(&self) -> Id<NSTableHeaderCell>;
 
         #[cfg(feature = "AppKit_NSTableHeaderCell")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setHeaderCell:)]
         pub unsafe fn setHeaderCell(&self, header_cell: &NSTableHeaderCell);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isEditable)]
         pub unsafe fn isEditable(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setEditable:)]
         pub unsafe fn setEditable(&self, editable: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(sizeToFit)]
         pub unsafe fn sizeToFit(&self);
 
         #[cfg(feature = "Foundation_NSSortDescriptor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other sortDescriptorPrototype)]
         pub unsafe fn sortDescriptorPrototype(&self) -> Option<Id<NSSortDescriptor>>;
 
         #[cfg(feature = "Foundation_NSSortDescriptor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSortDescriptorPrototype:)]
         pub unsafe fn setSortDescriptorPrototype(
             &self,
             sort_descriptor_prototype: Option<&NSSortDescriptor>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(resizingMask)]
         pub unsafe fn resizingMask(&self) -> NSTableColumnResizingOptions;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setResizingMask:)]
         pub unsafe fn setResizingMask(&self, resizing_mask: NSTableColumnResizingOptions);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other headerToolTip)]
         pub unsafe fn headerToolTip(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setHeaderToolTip:)]
         pub unsafe fn setHeaderToolTip(&self, header_tool_tip: Option<&NSString>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isHidden)]
         pub unsafe fn isHidden(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setHidden:)]
         pub unsafe fn setHidden(&self, hidden: bool);
     }
@@ -142,19 +174,24 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTableColumn")]
     unsafe impl NSTableColumn {
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setResizable:)]
         pub unsafe fn setResizable(&self, flag: bool);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isResizable)]
         pub unsafe fn isResizable(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other dataCell)]
         pub unsafe fn dataCell(&self) -> Id<Object>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDataCell:)]
         pub unsafe fn setDataCell(&self, data_cell: &Object);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other dataCellForRow:)]
         pub unsafe fn dataCellForRow(&self, row: NSInteger) -> Id<Object>;
     }

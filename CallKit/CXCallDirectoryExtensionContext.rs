@@ -5,6 +5,7 @@ use crate::CallKit::*;
 use crate::Foundation::*;
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait CXCallDirectoryExtensionContextDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "CallKit_CXCallDirectoryExtensionContext",
@@ -24,6 +25,7 @@ extern_protocol!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CallKit_CXCallDirectoryExtensionContext")]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub struct CXCallDirectoryExtensionContext;
 
     #[cfg(feature = "CallKit_CXCallDirectoryExtensionContext")]
@@ -50,6 +52,7 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn CXCallDirectoryExtensionContextDelegate>>,
         );
 
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method(isIncremental)]
         pub unsafe fn isIncremental(&self) -> bool;
 
@@ -59,12 +62,14 @@ extern_methods!(
             phone_number: CXCallDirectoryPhoneNumber,
         );
 
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method(removeBlockingEntryWithPhoneNumber:)]
         pub unsafe fn removeBlockingEntryWithPhoneNumber(
             &self,
             phone_number: CXCallDirectoryPhoneNumber,
         );
 
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method(removeAllBlockingEntries)]
         pub unsafe fn removeAllBlockingEntries(&self);
 
@@ -76,12 +81,14 @@ extern_methods!(
             label: &NSString,
         );
 
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method(removeIdentificationEntryWithPhoneNumber:)]
         pub unsafe fn removeIdentificationEntryWithPhoneNumber(
             &self,
             phone_number: CXCallDirectoryPhoneNumber,
         );
 
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method(removeAllIdentificationEntries)]
         pub unsafe fn removeAllIdentificationEntries(&self);
 

@@ -7,7 +7,9 @@ use crate::Foundation::*;
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSFontAssetRequestOptions {
+        #[cfg(not(any(target_os = "ios")))]
         NSFontAssetRequestOptionUsesStandardUI = 1 << 0,
     }
 );
@@ -15,6 +17,7 @@ ns_options!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSFontAssetRequest")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSFontAssetRequest;
 
     #[cfg(feature = "AppKit_NSFontAssetRequest")]
@@ -32,10 +35,12 @@ unsafe impl NSProgressReporting for NSFontAssetRequest {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSFontAssetRequest")]
     unsafe impl NSFontAssetRequest {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(all(feature = "AppKit_NSFontDescriptor", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithFontDescriptors:options:)]
         pub unsafe fn initWithFontDescriptors_options(
             this: Option<Allocated<Self>>,
@@ -44,14 +49,17 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(all(feature = "AppKit_NSFontDescriptor", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other downloadedFontDescriptors)]
         pub unsafe fn downloadedFontDescriptors(&self) -> Id<NSArray<NSFontDescriptor>>;
 
         #[cfg(feature = "Foundation_NSProgress")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other progress)]
         pub unsafe fn progress(&self) -> Id<NSProgress>;
 
         #[cfg(feature = "Foundation_NSError")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(downloadFontAssetsWithCompletionHandler:)]
         pub unsafe fn downloadFontAssetsWithCompletionHandler(
             &self,

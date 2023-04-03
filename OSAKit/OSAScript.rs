@@ -45,12 +45,19 @@ extern_static!(OSAStorageTextType: &'static NSString);
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum OSAStorageOptions {
+        #[cfg(not(any(target_os = "ios")))]
         OSANull = 0x00000000,
+        #[cfg(not(any(target_os = "ios")))]
         OSAPreventGetSource = 0x00000001,
+        #[cfg(not(any(target_os = "ios")))]
         OSACompileIntoContext = 0x00000002,
+        #[cfg(not(any(target_os = "ios")))]
         OSADontSetScriptLocation = 0x01000000,
+        #[cfg(not(any(target_os = "ios")))]
         OSAStayOpenApplet = 0x10000000,
+        #[cfg(not(any(target_os = "ios")))]
         OSAShowStartupScreen = 0x20000000,
     }
 );
@@ -58,6 +65,7 @@ ns_options!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "OSAKit_OSAScript")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct OSAScript;
 
     #[cfg(feature = "OSAKit_OSAScript")]
@@ -76,16 +84,19 @@ extern_methods!(
             feature = "Foundation_NSAppleEventDescriptor",
             feature = "Foundation_NSURL"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other scriptDataDescriptorWithContentsOfURL:)]
         pub unsafe fn scriptDataDescriptorWithContentsOfURL(
             url: &NSURL,
         ) -> Option<Id<NSAppleEventDescriptor>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithSource:)]
         pub unsafe fn initWithSource(this: Option<Allocated<Self>>, source: &NSString) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "OSAKit_OSALanguage"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithSource:language:)]
         pub unsafe fn initWithSource_language(
             this: Option<Allocated<Self>>,
@@ -98,6 +109,7 @@ extern_methods!(
             feature = "Foundation_NSURL",
             feature = "OSAKit_OSALanguageInstance"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithSource:fromURL:languageInstance:usingStorageOptions:)]
         pub unsafe fn initWithSource_fromURL_languageInstance_usingStorageOptions(
             this: Option<Allocated<Self>>,
@@ -112,6 +124,7 @@ extern_methods!(
             feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:error:)]
         pub unsafe fn initWithContentsOfURL_error(
             this: Option<Allocated<Self>>,
@@ -126,6 +139,7 @@ extern_methods!(
             feature = "OSAKit_OSALanguage"
         ))]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:language:error:)]
         pub unsafe fn initWithContentsOfURL_language_error(
             this: Option<Allocated<Self>>,
@@ -139,6 +153,7 @@ extern_methods!(
             feature = "Foundation_NSURL",
             feature = "OSAKit_OSALanguageInstance"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:languageInstance:usingStorageOptions:error:_)]
         pub unsafe fn initWithContentsOfURL_languageInstance_usingStorageOptions_error(
             this: Option<Allocated<Self>>,
@@ -153,6 +168,7 @@ extern_methods!(
             feature = "Foundation_NSString"
         ))]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithCompiledData:error:)]
         pub unsafe fn initWithCompiledData_error(
             this: Option<Allocated<Self>>,
@@ -165,6 +181,7 @@ extern_methods!(
             feature = "Foundation_NSError",
             feature = "Foundation_NSURL"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithCompiledData:fromURL:usingStorageOptions:error:_)]
         pub unsafe fn initWithCompiledData_fromURL_usingStorageOptions_error(
             this: Option<Allocated<Self>>,
@@ -179,6 +196,7 @@ extern_methods!(
             feature = "Foundation_NSURL",
             feature = "OSAKit_OSALanguageInstance"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithScriptDataDescriptor:fromURL:languageInstance:usingStorageOptions:error:_)]
         pub unsafe fn initWithScriptDataDescriptor_fromURL_languageInstance_usingStorageOptions_error(
             this: Option<Allocated<Self>>,
@@ -189,33 +207,41 @@ extern_methods!(
         ) -> Result<Id<Self>, Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other source)]
         pub unsafe fn source(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other url)]
         pub unsafe fn url(&self) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "OSAKit_OSALanguage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other language)]
         pub unsafe fn language(&self) -> Id<OSALanguage>;
 
         #[cfg(feature = "OSAKit_OSALanguage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setLanguage:)]
         pub unsafe fn setLanguage(&self, language: &OSALanguage);
 
         #[cfg(feature = "OSAKit_OSALanguageInstance")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other languageInstance)]
         pub unsafe fn languageInstance(&self) -> Id<OSALanguageInstance>;
 
         #[cfg(feature = "OSAKit_OSALanguageInstance")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setLanguageInstance:)]
         pub unsafe fn setLanguageInstance(&self, language_instance: &OSALanguageInstance);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isCompiled)]
         pub unsafe fn isCompiled(&self) -> bool;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(compileAndReturnError:)]
         pub unsafe fn compileAndReturnError(
             &self,
@@ -227,6 +253,7 @@ extern_methods!(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other executeAndReturnError:)]
         pub unsafe fn executeAndReturnError(
             &self,
@@ -238,6 +265,7 @@ extern_methods!(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other executeAppleEvent:error:)]
         pub unsafe fn executeAppleEvent_error(
             &self,
@@ -251,6 +279,7 @@ extern_methods!(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other executeAndReturnDisplayValue:error:)]
         pub unsafe fn executeAndReturnDisplayValue_error(
             &self,
@@ -264,6 +293,7 @@ extern_methods!(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other executeHandlerWithName:arguments:error:)]
         pub unsafe fn executeHandlerWithName_arguments_error(
             &self,
@@ -273,6 +303,7 @@ extern_methods!(
         ) -> Option<Id<NSAppleEventDescriptor>>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other richTextSource)]
         pub unsafe fn richTextSource(&self) -> Option<Id<NSAttributedString>>;
 
@@ -280,6 +311,7 @@ extern_methods!(
             feature = "Foundation_NSAppleEventDescriptor",
             feature = "Foundation_NSAttributedString"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other richTextFromDescriptor:)]
         pub unsafe fn richTextFromDescriptor(
             &self,
@@ -291,6 +323,7 @@ extern_methods!(
             feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(writeToURL:ofType:error:)]
         pub unsafe fn writeToURL_ofType_error(
             &self,
@@ -304,6 +337,7 @@ extern_methods!(
             feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(writeToURL:ofType:usingStorageOptions:error:)]
         pub unsafe fn writeToURL_ofType_usingStorageOptions_error(
             &self,
@@ -318,6 +352,7 @@ extern_methods!(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other compiledDataForType:usingStorageOptions:error:)]
         pub unsafe fn compiledDataForType_usingStorageOptions_error(
             &self,

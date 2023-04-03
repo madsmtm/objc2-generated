@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSPanel")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSPanel;
 
     #[cfg(feature = "AppKit_NSPanel")]
@@ -47,21 +48,27 @@ unsafe impl NSUserInterfaceValidations for NSPanel {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSPanel")]
     unsafe impl NSPanel {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isFloatingPanel)]
         pub unsafe fn isFloatingPanel(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFloatingPanel:)]
         pub unsafe fn setFloatingPanel(&self, floating_panel: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(becomesKeyOnlyIfNeeded)]
         pub unsafe fn becomesKeyOnlyIfNeeded(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBecomesKeyOnlyIfNeeded:)]
         pub unsafe fn setBecomesKeyOnlyIfNeeded(&self, becomes_key_only_if_needed: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(worksWhenModal)]
         pub unsafe fn worksWhenModal(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setWorksWhenModal:)]
         pub unsafe fn setWorksWhenModal(&self, works_when_modal: bool);
     }
@@ -69,19 +76,25 @@ extern_methods!(
 
 extern_fn!(
     #[deprecated = "Use NSAlert instead"]
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSReleaseAlertPanel(panel: Option<&Object>);
 );
 
 extern_enum!(
     #[underlying(c_int)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum __anonymous__ {
         #[deprecated = "Use NSAlertFirstButtonReturn with an NSAlert presentation instead"]
+        #[cfg(not(any(target_os = "ios")))]
         NSAlertDefaultReturn = 1,
         #[deprecated = "Use NSAlertFirstButtonReturn and other NSModalResponses with an NSAlert presentation instead"]
+        #[cfg(not(any(target_os = "ios")))]
         NSAlertAlternateReturn = 0,
         #[deprecated = "Use NSAlertFirstButtonReturn and other NSModalResponses with an NSAlert presentation instead"]
+        #[cfg(not(any(target_os = "ios")))]
         NSAlertOtherReturn = -1,
         #[deprecated = "Use NSAlertFirstButtonReturn and other NSModalResponses with an NSAlert presentation instead"]
+        #[cfg(not(any(target_os = "ios")))]
         NSAlertErrorReturn = -2,
     }
 );
@@ -90,6 +103,7 @@ extern_methods!(
     /// Methods declared on superclass `NSWindow`
     #[cfg(feature = "AppKit_NSPanel")]
     unsafe impl NSPanel {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer(
             this: Option<Allocated<Self>>,
@@ -100,6 +114,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSScreen")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:screen:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer_screen(
             this: Option<Allocated<Self>>,
@@ -111,6 +126,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other windowWithContentViewController:)]
         pub unsafe fn windowWithContentViewController(
             content_view_controller: &NSViewController,

@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSUserDefaultsController")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSUserDefaultsController;
 
     #[cfg(feature = "AppKit_NSUserDefaultsController")]
@@ -32,6 +33,7 @@ unsafe impl NSObjectProtocol for NSUserDefaultsController {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSUserDefaultsController")]
     unsafe impl NSUserDefaultsController {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other sharedUserDefaultsController)]
         pub unsafe fn sharedUserDefaultsController() -> Id<NSUserDefaultsController>;
 
@@ -40,6 +42,7 @@ extern_methods!(
             feature = "Foundation_NSString",
             feature = "Foundation_NSUserDefaults"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithDefaults:initialValues:)]
         pub unsafe fn initWithDefaults_initialValues(
             this: Option<Allocated<Self>>,
@@ -48,6 +51,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -55,38 +59,48 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSUserDefaults")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other defaults)]
         pub unsafe fn defaults(&self) -> Id<NSUserDefaults>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other initialValues)]
         pub unsafe fn initialValues(&self) -> Option<Id<NSDictionary<NSString, Object>>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setInitialValues:)]
         pub unsafe fn setInitialValues(
             &self,
             initial_values: Option<&NSDictionary<NSString, Object>>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(appliesImmediately)]
         pub unsafe fn appliesImmediately(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAppliesImmediately:)]
         pub unsafe fn setAppliesImmediately(&self, applies_immediately: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(hasUnappliedChanges)]
         pub unsafe fn hasUnappliedChanges(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other values)]
         pub unsafe fn values(&self) -> Id<Object>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(revert:)]
         pub unsafe fn revert(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(save:)]
         pub unsafe fn save(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(revertToInitialValues:)]
         pub unsafe fn revertToInitialValues(&self, sender: Option<&Object>);
     }

@@ -9,9 +9,11 @@ extern_methods!(
     /// CLVisitExtensions
     #[cfg(feature = "CoreLocation_CLLocationManager")]
     unsafe impl CLLocationManager {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(startMonitoringVisits)]
         pub unsafe fn startMonitoringVisits(&self);
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(stopMonitoringVisits)]
         pub unsafe fn stopMonitoringVisits(&self);
     }

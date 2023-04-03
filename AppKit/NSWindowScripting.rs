@@ -9,43 +9,56 @@ extern_methods!(
     /// NSScripting
     #[cfg(feature = "AppKit_NSWindow")]
     unsafe impl NSWindow {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(hasCloseBox)]
         pub unsafe fn hasCloseBox(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(hasTitleBar)]
         pub unsafe fn hasTitleBar(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isFloatingPanel)]
         pub unsafe fn isFloatingPanel(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isMiniaturizable)]
         pub unsafe fn isMiniaturizable(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isModalPanel)]
         pub unsafe fn isModalPanel(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isResizable)]
         pub unsafe fn isResizable(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isZoomable)]
         pub unsafe fn isZoomable(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(orderedIndex)]
         pub unsafe fn orderedIndex(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setOrderedIndex:)]
         pub unsafe fn setOrderedIndex(&self, ordered_index: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setIsMiniaturized:)]
         pub unsafe fn setIsMiniaturized(&self, flag: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setIsVisible:)]
         pub unsafe fn setIsVisible(&self, flag: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setIsZoomed:)]
         pub unsafe fn setIsZoomed(&self, flag: bool);
 
         #[cfg(feature = "Foundation_NSCloseCommand")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other handleCloseScriptCommand:)]
         pub unsafe fn handleCloseScriptCommand(
             &self,
@@ -53,6 +66,7 @@ extern_methods!(
         ) -> Option<Id<Object>>;
 
         #[cfg(feature = "Foundation_NSScriptCommand")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other handlePrintScriptCommand:)]
         pub unsafe fn handlePrintScriptCommand(
             &self,
@@ -60,6 +74,7 @@ extern_methods!(
         ) -> Option<Id<Object>>;
 
         #[cfg(feature = "Foundation_NSScriptCommand")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other handleSaveScriptCommand:)]
         pub unsafe fn handleSaveScriptCommand(
             &self,

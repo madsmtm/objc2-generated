@@ -8,6 +8,7 @@ use crate::GameController::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GameController_GCSteeringWheelElement")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct GCSteeringWheelElement;
 
     #[cfg(feature = "GameController_GCSteeringWheelElement")]

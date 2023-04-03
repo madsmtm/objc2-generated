@@ -7,9 +7,13 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSColorWellStyle {
+        #[cfg(not(any(target_os = "ios")))]
         NSColorWellStyleDefault = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSColorWellStyleMinimal = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSColorWellStyleExpanded = 2,
     }
 );
@@ -17,6 +21,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSColorWell")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSColorWell;
 
     #[cfg(feature = "AppKit_NSColorWell")]
@@ -53,63 +58,81 @@ unsafe impl NSUserInterfaceItemIdentification for NSColorWell {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSColorWell")]
     unsafe impl NSColorWell {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other colorWellWithStyle:)]
         pub unsafe fn colorWellWithStyle(style: NSColorWellStyle) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(deactivate)]
         pub unsafe fn deactivate(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(activate:)]
         pub unsafe fn activate(&self, exclusive: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isActive)]
         pub unsafe fn isActive(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawWellInside:)]
         pub unsafe fn drawWellInside(&self, inside_rect: NSRect);
 
         #[deprecated = "This property will be deprecated in a future release."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isBordered)]
         pub unsafe fn isBordered(&self) -> bool;
 
         #[deprecated = "This property will be deprecated in a future release."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBordered:)]
         pub unsafe fn setBordered(&self, bordered: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(takeColorFrom:)]
         pub unsafe fn takeColorFrom(&self, sender: Option<&Object>);
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other color)]
         pub unsafe fn color(&self) -> Id<NSColor>;
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setColor:)]
         pub unsafe fn setColor(&self, color: &NSColor);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(colorWellStyle)]
         pub unsafe fn colorWellStyle(&self) -> NSColorWellStyle;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setColorWellStyle:)]
         pub unsafe fn setColorWellStyle(&self, color_well_style: NSColorWellStyle);
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other pulldownTarget)]
         pub unsafe fn pulldownTarget(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPulldownTarget:)]
         pub unsafe fn setPulldownTarget(&self, pulldown_target: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(pulldownAction)]
         pub unsafe fn pulldownAction(&self) -> Option<Sel>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPulldownAction:)]
         pub unsafe fn setPulldownAction(&self, pulldown_action: Option<Sel>);
     }
@@ -119,6 +142,7 @@ extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(feature = "AppKit_NSColorWell")]
     unsafe impl NSColorWell {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }

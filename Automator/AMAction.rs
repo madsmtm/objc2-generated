@@ -8,10 +8,15 @@ use crate::OSAKit::*;
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum AMLogLevel {
+        #[cfg(not(any(target_os = "ios")))]
         AMLogLevelDebug = 0,
+        #[cfg(not(any(target_os = "ios")))]
         AMLogLevelInfo = 1,
+        #[cfg(not(any(target_os = "ios")))]
         AMLogLevelWarn = 2,
+        #[cfg(not(any(target_os = "ios")))]
         AMLogLevelError = 3,
     }
 );
@@ -19,6 +24,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Automator_AMAction")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct AMAction;
 
     #[cfg(feature = "Automator_AMAction")]
@@ -34,6 +40,7 @@ extern_methods!(
     #[cfg(feature = "Automator_AMAction")]
     unsafe impl AMAction {
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithDefinition:fromArchive:)]
         pub unsafe fn initWithDefinition_fromArchive(
             this: Option<Allocated<Self>>,
@@ -42,6 +49,7 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:error:_)]
         pub unsafe fn initWithContentsOfURL_error(
             this: Option<Allocated<Self>>,
@@ -49,36 +57,45 @@ extern_methods!(
         ) -> Result<Id<Self>, Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSString>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(ignoresInput)]
         pub unsafe fn ignoresInput(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other selectedInputType)]
         pub unsafe fn selectedInputType(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSelectedInputType:)]
         pub unsafe fn setSelectedInputType(&self, selected_input_type: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other selectedOutputType)]
         pub unsafe fn selectedOutputType(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSelectedOutputType:)]
         pub unsafe fn setSelectedOutputType(&self, selected_output_type: Option<&NSString>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(progressValue)]
         pub unsafe fn progressValue(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setProgressValue:)]
         pub unsafe fn setProgressValue(&self, progress_value: CGFloat);
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other runWithInput:fromAction:error:)]
         pub unsafe fn runWithInput_fromAction_error(
             &self,
@@ -88,20 +105,24 @@ extern_methods!(
         ) -> Option<Id<Object>>;
 
         #[cfg(feature = "Foundation_NSError")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other runWithInput:error:_)]
         pub unsafe fn runWithInput_error(
             &self,
             input: Option<&Object>,
         ) -> Result<Id<Object>, Id<NSError>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(runAsynchronouslyWithInput:)]
         pub unsafe fn runAsynchronouslyWithInput(&self, input: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(willFinishRunning)]
         pub unsafe fn willFinishRunning(&self);
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(didFinishRunningWithError:)]
         pub unsafe fn didFinishRunningWithError(
             &self,
@@ -109,18 +130,23 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSError")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(finishRunningWithError:)]
         pub unsafe fn finishRunningWithError(&self, error: Option<&NSError>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other output)]
         pub unsafe fn output(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setOutput:)]
         pub unsafe fn setOutput(&self, output: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(stop)]
         pub unsafe fn stop(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(reset)]
         pub unsafe fn reset(&self);
 
@@ -128,24 +154,31 @@ extern_methods!(
             feature = "Foundation_NSMutableDictionary",
             feature = "Foundation_NSString"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(writeToDictionary:)]
         pub unsafe fn writeToDictionary(&self, dictionary: &NSMutableDictionary<NSString, Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(opened)]
         pub unsafe fn opened(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(activated)]
         pub unsafe fn activated(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(closed)]
         pub unsafe fn closed(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(updateParameters)]
         pub unsafe fn updateParameters(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(parametersUpdated)]
         pub unsafe fn parametersUpdated(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isStopped)]
         pub unsafe fn isStopped(&self) -> bool;
     }

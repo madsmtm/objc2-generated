@@ -12,15 +12,20 @@ ns_enum!(
         UNAuthorizationStatusDenied = 1,
         UNAuthorizationStatusAuthorized = 2,
         UNAuthorizationStatusProvisional = 3,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         UNAuthorizationStatusEphemeral = 4,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub enum UNShowPreviewsSetting {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         UNShowPreviewsSettingAlways = 0,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         UNShowPreviewsSettingWhenAuthenticated = 1,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         UNShowPreviewsSettingNever = 2,
     }
 );
@@ -36,9 +41,13 @@ ns_enum!(
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub enum UNAlertStyle {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         UNAlertStyleNone = 0,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         UNAlertStyleBanner = 1,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         UNAlertStyleAlert = 2,
     }
 );
@@ -72,6 +81,7 @@ extern_methods!(
         #[method(soundSetting)]
         pub unsafe fn soundSetting(&self) -> UNNotificationSetting;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(badgeSetting)]
         pub unsafe fn badgeSetting(&self) -> UNNotificationSetting;
 
@@ -81,15 +91,19 @@ extern_methods!(
         #[method(notificationCenterSetting)]
         pub unsafe fn notificationCenterSetting(&self) -> UNNotificationSetting;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(lockScreenSetting)]
         pub unsafe fn lockScreenSetting(&self) -> UNNotificationSetting;
 
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method(carPlaySetting)]
         pub unsafe fn carPlaySetting(&self) -> UNNotificationSetting;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(alertStyle)]
         pub unsafe fn alertStyle(&self) -> UNAlertStyle;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(showPreviewsSetting)]
         pub unsafe fn showPreviewsSetting(&self) -> UNShowPreviewsSetting;
 
@@ -99,6 +113,7 @@ extern_methods!(
         #[method(providesAppNotificationSettings)]
         pub unsafe fn providesAppNotificationSettings(&self) -> bool;
 
+        #[cfg(not(any(target_os = "macos")))]
         #[method(announcementSetting)]
         pub unsafe fn announcementSetting(&self) -> UNNotificationSetting;
 

@@ -19,6 +19,7 @@ ns_options!(
     pub enum MTLBarrierScope {
         MTLBarrierScopeBuffers = 1 << 0,
         MTLBarrierScopeTextures = 1 << 1,
+        #[cfg(not(any(target_os = "ios")))]
         MTLBarrierScopeRenderTargets = 1 << 2,
     }
 );

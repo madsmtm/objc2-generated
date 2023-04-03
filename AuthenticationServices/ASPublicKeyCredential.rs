@@ -5,6 +5,7 @@ use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait ASPublicKeyCredential: ASAuthorizationCredential {
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other rawClientDataJSON)]

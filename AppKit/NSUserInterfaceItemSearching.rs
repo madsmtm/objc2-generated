@@ -6,8 +6,10 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSUserInterfaceItemSearching: NSObjectProtocol {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(searchForItemsWithSearchString:resultLimit:matchedItemHandler:)]
         unsafe fn searchForItemsWithSearchString_resultLimit_matchedItemHandler(
             &self,
@@ -17,14 +19,17 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other localizedTitlesForItem:)]
         unsafe fn localizedTitlesForItem(&self, item: &Object) -> Id<NSArray<NSString>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(performActionForItem:)]
         unsafe fn performActionForItem(&self, item: &Object);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(showAllHelpTopicsForSearchString:)]
         unsafe fn showAllHelpTopicsForSearchString(&self, search_string: &NSString);
@@ -37,12 +42,14 @@ extern_methods!(
     /// NSUserInterfaceItemSearching
     #[cfg(feature = "AppKit_NSApplication")]
     unsafe impl NSApplication {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(registerUserInterfaceItemSearchHandler:)]
         pub unsafe fn registerUserInterfaceItemSearchHandler(
             &self,
             handler: &ProtocolObject<dyn NSUserInterfaceItemSearching>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(unregisterUserInterfaceItemSearchHandler:)]
         pub unsafe fn unregisterUserInterfaceItemSearchHandler(
             &self,
@@ -50,6 +57,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(searchString:inUserInterfaceItemString:searchRange:foundRange:)]
         pub unsafe fn searchString_inUserInterfaceItemString_searchRange_foundRange(
             &self,

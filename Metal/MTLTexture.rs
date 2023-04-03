@@ -382,9 +382,11 @@ extern_protocol!(
         #[method_id(@__retain_semantics New newSharedTextureHandle)]
         fn newSharedTextureHandle(&self) -> Option<Id<MTLSharedTextureHandle>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other remoteStorageTexture)]
         fn remoteStorageTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics New newRemoteTextureViewForDevice:)]
         unsafe fn newRemoteTextureViewForDevice(
             &self,

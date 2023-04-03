@@ -7,26 +7,42 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSImageAlignment {
+        #[cfg(not(any(target_os = "ios")))]
         NSImageAlignCenter = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSImageAlignTop = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSImageAlignTopLeft = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSImageAlignTopRight = 3,
+        #[cfg(not(any(target_os = "ios")))]
         NSImageAlignLeft = 4,
+        #[cfg(not(any(target_os = "ios")))]
         NSImageAlignBottom = 5,
+        #[cfg(not(any(target_os = "ios")))]
         NSImageAlignBottomLeft = 6,
+        #[cfg(not(any(target_os = "ios")))]
         NSImageAlignBottomRight = 7,
+        #[cfg(not(any(target_os = "ios")))]
         NSImageAlignRight = 8,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSImageFrameStyle {
+        #[cfg(not(any(target_os = "ios")))]
         NSImageFrameNone = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSImageFramePhoto = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSImageFrameGrayBezel = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSImageFrameGroove = 3,
+        #[cfg(not(any(target_os = "ios")))]
         NSImageFrameButton = 4,
     }
 );
@@ -34,6 +50,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSImageCell")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSImageCell;
 
     #[cfg(feature = "AppKit_NSImageCell")]
@@ -61,21 +78,27 @@ unsafe impl NSUserInterfaceItemIdentification for NSImageCell {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSImageCell")]
     unsafe impl NSImageCell {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(imageAlignment)]
         pub unsafe fn imageAlignment(&self) -> NSImageAlignment;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setImageAlignment:)]
         pub unsafe fn setImageAlignment(&self, image_alignment: NSImageAlignment);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(imageScaling)]
         pub unsafe fn imageScaling(&self) -> NSImageScaling;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setImageScaling:)]
         pub unsafe fn setImageScaling(&self, image_scaling: NSImageScaling);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(imageFrameStyle)]
         pub unsafe fn imageFrameStyle(&self) -> NSImageFrameStyle;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setImageFrameStyle:)]
         pub unsafe fn setImageFrameStyle(&self, image_frame_style: NSImageFrameStyle);
     }
@@ -86,10 +109,12 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSImageCell")]
     unsafe impl NSImageCell {
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initTextCell:)]
         pub unsafe fn initTextCell(this: Option<Allocated<Self>>, string: &NSString) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initImageCell:)]
         pub unsafe fn initImageCell(
             this: Option<Allocated<Self>>,

@@ -214,6 +214,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Other localeWithLocaleIdentifier:)]
         pub unsafe fn localeWithLocaleIdentifier(ident: &NSString) -> Id<Self>;
 
+        #[cfg(not(any(
+            target_os = "ios",
+            target_os = "macos",
+            target_os = "tvos",
+            target_os = "watchos"
+        )))]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

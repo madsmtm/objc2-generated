@@ -17,6 +17,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSText")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSText;
 
     #[cfg(feature = "AppKit_NSText")]
@@ -59,10 +60,12 @@ unsafe impl NSUserInterfaceItemIdentification for NSText {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSText")]
     unsafe impl NSText {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
@@ -70,229 +73,299 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other string)]
         pub unsafe fn string(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setString:)]
         pub unsafe fn setString(&self, string: &NSString);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(replaceCharactersInRange:withString:)]
         pub unsafe fn replaceCharactersInRange_withString(&self, range: NSRange, string: &NSString);
 
         #[cfg(feature = "Foundation_NSData")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(replaceCharactersInRange:withRTF:)]
         pub unsafe fn replaceCharactersInRange_withRTF(&self, range: NSRange, rtf_data: &NSData);
 
         #[cfg(feature = "Foundation_NSData")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(replaceCharactersInRange:withRTFD:)]
         pub unsafe fn replaceCharactersInRange_withRTFD(&self, range: NSRange, rtfd_data: &NSData);
 
         #[cfg(feature = "Foundation_NSData")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other RTFFromRange:)]
         pub unsafe fn RTFFromRange(&self, range: NSRange) -> Option<Id<NSData>>;
 
         #[cfg(feature = "Foundation_NSData")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other RTFDFromRange:)]
         pub unsafe fn RTFDFromRange(&self, range: NSRange) -> Option<Id<NSData>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(writeRTFDToFile:atomically:)]
         pub unsafe fn writeRTFDToFile_atomically(&self, path: &NSString, flag: bool) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(readRTFDFromFile:)]
         pub unsafe fn readRTFDFromFile(&self, path: &NSString) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSTextDelegate>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSTextDelegate>>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isEditable)]
         pub unsafe fn isEditable(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setEditable:)]
         pub unsafe fn setEditable(&self, editable: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isSelectable)]
         pub unsafe fn isSelectable(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSelectable:)]
         pub unsafe fn setSelectable(&self, selectable: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isRichText)]
         pub unsafe fn isRichText(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setRichText:)]
         pub unsafe fn setRichText(&self, rich_text: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(importsGraphics)]
         pub unsafe fn importsGraphics(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setImportsGraphics:)]
         pub unsafe fn setImportsGraphics(&self, imports_graphics: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isFieldEditor)]
         pub unsafe fn isFieldEditor(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFieldEditor:)]
         pub unsafe fn setFieldEditor(&self, field_editor: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(usesFontPanel)]
         pub unsafe fn usesFontPanel(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setUsesFontPanel:)]
         pub unsafe fn setUsesFontPanel(&self, uses_font_panel: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawsBackground)]
         pub unsafe fn drawsBackground(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDrawsBackground:)]
         pub unsafe fn setDrawsBackground(&self, draws_background: bool);
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Option<Id<NSColor>>;
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSColor>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isRulerVisible)]
         pub unsafe fn isRulerVisible(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectedRange)]
         pub unsafe fn selectedRange(&self) -> NSRange;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSelectedRange:)]
         pub unsafe fn setSelectedRange(&self, selected_range: NSRange);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(scrollRangeToVisible:)]
         pub unsafe fn scrollRangeToVisible(&self, range: NSRange);
 
         #[cfg(feature = "AppKit_NSFont")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other font)]
         pub unsafe fn font(&self) -> Option<Id<NSFont>>;
 
         #[cfg(feature = "AppKit_NSFont")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFont:)]
         pub unsafe fn setFont(&self, font: Option<&NSFont>);
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other textColor)]
         pub unsafe fn textColor(&self) -> Option<Id<NSColor>>;
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTextColor:)]
         pub unsafe fn setTextColor(&self, text_color: Option<&NSColor>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(alignment)]
         pub unsafe fn alignment(&self) -> NSTextAlignment;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAlignment:)]
         pub unsafe fn setAlignment(&self, alignment: NSTextAlignment);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(baseWritingDirection)]
         pub unsafe fn baseWritingDirection(&self) -> NSWritingDirection;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBaseWritingDirection:)]
         pub unsafe fn setBaseWritingDirection(&self, base_writing_direction: NSWritingDirection);
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTextColor:range:)]
         pub unsafe fn setTextColor_range(&self, color: Option<&NSColor>, range: NSRange);
 
         #[cfg(feature = "AppKit_NSFont")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFont:range:)]
         pub unsafe fn setFont_range(&self, font: &NSFont, range: NSRange);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(maxSize)]
         pub unsafe fn maxSize(&self) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMaxSize:)]
         pub unsafe fn setMaxSize(&self, max_size: NSSize);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(minSize)]
         pub unsafe fn minSize(&self) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMinSize:)]
         pub unsafe fn setMinSize(&self, min_size: NSSize);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isHorizontallyResizable)]
         pub unsafe fn isHorizontallyResizable(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setHorizontallyResizable:)]
         pub unsafe fn setHorizontallyResizable(&self, horizontally_resizable: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isVerticallyResizable)]
         pub unsafe fn isVerticallyResizable(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setVerticallyResizable:)]
         pub unsafe fn setVerticallyResizable(&self, vertically_resizable: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(sizeToFit)]
         pub unsafe fn sizeToFit(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(copy:)]
         pub unsafe fn copy(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(copyFont:)]
         pub unsafe fn copyFont(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(copyRuler:)]
         pub unsafe fn copyRuler(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(cut:)]
         pub unsafe fn cut(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(delete:)]
         pub unsafe fn delete(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(paste:)]
         pub unsafe fn paste(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(pasteFont:)]
         pub unsafe fn pasteFont(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(pasteRuler:)]
         pub unsafe fn pasteRuler(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectAll:)]
         pub unsafe fn selectAll(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(changeFont:)]
         pub unsafe fn changeFont(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(alignLeft:)]
         pub unsafe fn alignLeft(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(alignRight:)]
         pub unsafe fn alignRight(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(alignCenter:)]
         pub unsafe fn alignCenter(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(subscript:)]
         pub unsafe fn subscript(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(superscript:)]
         pub unsafe fn superscript(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(underline:)]
         pub unsafe fn underline(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(unscript:)]
         pub unsafe fn unscript(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(showGuessPanel:)]
         pub unsafe fn showGuessPanel(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(checkSpelling:)]
         pub unsafe fn checkSpelling(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(toggleRuler:)]
         pub unsafe fn toggleRuler(&self, sender: Option<&Object>);
     }

@@ -12,6 +12,7 @@ pub type MKMapSnapshotCompletionHandler = *mut Block<(*mut MKMapSnapshot, *mut N
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MapKit_MKMapSnapshotter")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct MKMapSnapshotter;
 
     #[cfg(feature = "MapKit_MKMapSnapshotter")]

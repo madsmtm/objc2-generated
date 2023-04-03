@@ -7,6 +7,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationRequest")]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub struct ASAccountAuthenticationModificationRequest;
 
     #[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationRequest")]

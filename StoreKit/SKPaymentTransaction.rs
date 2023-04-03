@@ -59,6 +59,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSData")]
         #[deprecated]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other transactionReceipt)]
         pub unsafe fn transactionReceipt(&self) -> Option<Id<NSData>>;
 

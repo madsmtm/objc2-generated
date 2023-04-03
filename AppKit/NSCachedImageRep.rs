@@ -9,6 +9,7 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSCachedImageRep")]
     #[deprecated]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSCachedImageRep;
 
     #[cfg(feature = "AppKit_NSCachedImageRep")]
@@ -29,6 +30,7 @@ extern_methods!(
     unsafe impl NSCachedImageRep {
         #[cfg(feature = "AppKit_NSWindow")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithWindow:rect:)]
         pub unsafe fn initWithWindow_rect(
             this: Option<Allocated<Self>>,
@@ -37,6 +39,7 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithSize:depth:separate:alpha:)]
         pub unsafe fn initWithSize_depth_separate_alpha(
             this: Option<Allocated<Self>>,
@@ -48,10 +51,12 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other window)]
         pub unsafe fn window(&self) -> Option<Id<NSWindow>>;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rect)]
         pub unsafe fn rect(&self) -> NSRect;
     }

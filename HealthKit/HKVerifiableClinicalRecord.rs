@@ -47,6 +47,7 @@ extern_static!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HealthKit_HKVerifiableClinicalRecord")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct HKVerifiableClinicalRecord;
 
     #[cfg(feature = "HealthKit_HKVerifiableClinicalRecord")]

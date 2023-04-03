@@ -26,42 +26,51 @@ unsafe impl NSObjectProtocol for NSSharingServicePickerTouchBarItem {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSSharingServicePickerTouchBarItem")]
     unsafe impl NSSharingServicePickerTouchBarItem {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Id<ProtocolObject<dyn NSSharingServicePickerTouchBarItemDelegate>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn NSSharingServicePickerTouchBarItemDelegate>>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setEnabled:)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other buttonTitle)]
         pub unsafe fn buttonTitle(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setButtonTitle:)]
         pub unsafe fn setButtonTitle(&self, button_title: &NSString);
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other buttonImage)]
         pub unsafe fn buttonImage(&self) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setButtonImage:)]
         pub unsafe fn setButtonImage(&self, button_image: Option<&NSImage>);
     }
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSSharingServicePickerTouchBarItemDelegate:
         NSSharingServicePickerDelegate
     {
@@ -69,6 +78,7 @@ extern_protocol!(
             feature = "AppKit_NSSharingServicePickerTouchBarItem",
             feature = "Foundation_NSArray"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other itemsForSharingServicePickerTouchBarItem:)]
         unsafe fn itemsForSharingServicePickerTouchBarItem(
             &self,

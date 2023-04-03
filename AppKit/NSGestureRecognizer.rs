@@ -7,13 +7,21 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSGestureRecognizerState {
+        #[cfg(not(any(target_os = "ios")))]
         NSGestureRecognizerStatePossible = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSGestureRecognizerStateBegan = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSGestureRecognizerStateChanged = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSGestureRecognizerStateEnded = 3,
+        #[cfg(not(any(target_os = "ios")))]
         NSGestureRecognizerStateCancelled = 4,
+        #[cfg(not(any(target_os = "ios")))]
         NSGestureRecognizerStateFailed = 5,
+        #[cfg(not(any(target_os = "ios")))]
         NSGestureRecognizerStateRecognized = NSGestureRecognizerStateEnded,
     }
 );
@@ -21,6 +29,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSGestureRecognizer")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSGestureRecognizer;
 
     #[cfg(feature = "AppKit_NSGestureRecognizer")]
@@ -38,6 +47,7 @@ unsafe impl NSObjectProtocol for NSGestureRecognizer {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSGestureRecognizer")]
     unsafe impl NSGestureRecognizer {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithTarget:action:)]
         pub unsafe fn initWithTarget_action(
             this: Option<Allocated<Self>>,
@@ -46,102 +56,127 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
         ) -> Option<Id<Self>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other target)]
         pub unsafe fn target(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTarget:)]
         pub unsafe fn setTarget(&self, target: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(action)]
         pub unsafe fn action(&self) -> Option<Sel>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAction:)]
         pub unsafe fn setAction(&self, action: Option<Sel>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Id<ProtocolObject<dyn NSGestureRecognizerDelegate>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn NSGestureRecognizerDelegate>>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setEnabled:)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other view)]
         pub unsafe fn view(&self) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSPressureConfiguration")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other pressureConfiguration)]
         pub unsafe fn pressureConfiguration(&self) -> Id<NSPressureConfiguration>;
 
         #[cfg(feature = "AppKit_NSPressureConfiguration")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPressureConfiguration:)]
         pub unsafe fn setPressureConfiguration(
             &self,
             pressure_configuration: &NSPressureConfiguration,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(delaysPrimaryMouseButtonEvents)]
         pub unsafe fn delaysPrimaryMouseButtonEvents(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDelaysPrimaryMouseButtonEvents:)]
         pub unsafe fn setDelaysPrimaryMouseButtonEvents(
             &self,
             delays_primary_mouse_button_events: bool,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(delaysSecondaryMouseButtonEvents)]
         pub unsafe fn delaysSecondaryMouseButtonEvents(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDelaysSecondaryMouseButtonEvents:)]
         pub unsafe fn setDelaysSecondaryMouseButtonEvents(
             &self,
             delays_secondary_mouse_button_events: bool,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(delaysOtherMouseButtonEvents)]
         pub unsafe fn delaysOtherMouseButtonEvents(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDelaysOtherMouseButtonEvents:)]
         pub unsafe fn setDelaysOtherMouseButtonEvents(
             &self,
             delays_other_mouse_button_events: bool,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(delaysKeyEvents)]
         pub unsafe fn delaysKeyEvents(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDelaysKeyEvents:)]
         pub unsafe fn setDelaysKeyEvents(&self, delays_key_events: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(delaysMagnificationEvents)]
         pub unsafe fn delaysMagnificationEvents(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDelaysMagnificationEvents:)]
         pub unsafe fn setDelaysMagnificationEvents(&self, delays_magnification_events: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(delaysRotationEvents)]
         pub unsafe fn delaysRotationEvents(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDelaysRotationEvents:)]
         pub unsafe fn setDelaysRotationEvents(&self, delays_rotation_events: bool);
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(locationInView:)]
         pub unsafe fn locationInView(&self, view: Option<&NSView>) -> NSPoint;
     }
@@ -151,17 +186,21 @@ extern_methods!(
     /// NSTouchBar
     #[cfg(feature = "AppKit_NSGestureRecognizer")]
     unsafe impl NSGestureRecognizer {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(allowedTouchTypes)]
         pub unsafe fn allowedTouchTypes(&self) -> NSTouchTypeMask;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAllowedTouchTypes:)]
         pub unsafe fn setAllowedTouchTypes(&self, allowed_touch_types: NSTouchTypeMask);
     }
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSGestureRecognizerDelegate: NSObjectProtocol {
         #[cfg(all(feature = "AppKit_NSEvent", feature = "AppKit_NSGestureRecognizer"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(gestureRecognizer:shouldAttemptToRecognizeWithEvent:)]
         unsafe fn gestureRecognizer_shouldAttemptToRecognizeWithEvent(
@@ -171,6 +210,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "AppKit_NSGestureRecognizer")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(gestureRecognizerShouldBegin:)]
         unsafe fn gestureRecognizerShouldBegin(
@@ -179,6 +219,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "AppKit_NSGestureRecognizer")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:)]
         unsafe fn gestureRecognizer_shouldRecognizeSimultaneouslyWithGestureRecognizer(
@@ -188,6 +229,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "AppKit_NSGestureRecognizer")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(gestureRecognizer:shouldRequireFailureOfGestureRecognizer:)]
         unsafe fn gestureRecognizer_shouldRequireFailureOfGestureRecognizer(
@@ -197,6 +239,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "AppKit_NSGestureRecognizer")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(gestureRecognizer:shouldBeRequiredToFailByGestureRecognizer:)]
         unsafe fn gestureRecognizer_shouldBeRequiredToFailByGestureRecognizer(
@@ -206,6 +249,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(feature = "AppKit_NSGestureRecognizer", feature = "AppKit_NSTouch"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(gestureRecognizer:shouldReceiveTouch:)]
         unsafe fn gestureRecognizer_shouldReceiveTouch(
@@ -222,30 +266,36 @@ extern_methods!(
     /// NSSubclassUse
     #[cfg(feature = "AppKit_NSGestureRecognizer")]
     unsafe impl NSGestureRecognizer {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setState:)]
         pub unsafe fn setState(&self, state: NSGestureRecognizerState);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(reset)]
         pub unsafe fn reset(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(canPreventGestureRecognizer:)]
         pub unsafe fn canPreventGestureRecognizer(
             &self,
             prevented_gesture_recognizer: &NSGestureRecognizer,
         ) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(canBePreventedByGestureRecognizer:)]
         pub unsafe fn canBePreventedByGestureRecognizer(
             &self,
             preventing_gesture_recognizer: &NSGestureRecognizer,
         ) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(shouldRequireFailureOfGestureRecognizer:)]
         pub unsafe fn shouldRequireFailureOfGestureRecognizer(
             &self,
             other_gesture_recognizer: &NSGestureRecognizer,
         ) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(shouldBeRequiredToFailByGestureRecognizer:)]
         pub unsafe fn shouldBeRequiredToFailByGestureRecognizer(
             &self,
@@ -253,82 +303,102 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(mouseDown:)]
         pub unsafe fn mouseDown(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rightMouseDown:)]
         pub unsafe fn rightMouseDown(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(otherMouseDown:)]
         pub unsafe fn otherMouseDown(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(mouseUp:)]
         pub unsafe fn mouseUp(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rightMouseUp:)]
         pub unsafe fn rightMouseUp(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(otherMouseUp:)]
         pub unsafe fn otherMouseUp(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(mouseDragged:)]
         pub unsafe fn mouseDragged(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rightMouseDragged:)]
         pub unsafe fn rightMouseDragged(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(otherMouseDragged:)]
         pub unsafe fn otherMouseDragged(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(keyDown:)]
         pub unsafe fn keyDown(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(keyUp:)]
         pub unsafe fn keyUp(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(flagsChanged:)]
         pub unsafe fn flagsChanged(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(tabletPoint:)]
         pub unsafe fn tabletPoint(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(magnifyWithEvent:)]
         pub unsafe fn magnifyWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rotateWithEvent:)]
         pub unsafe fn rotateWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(pressureChangeWithEvent:)]
         pub unsafe fn pressureChangeWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(touchesBeganWithEvent:)]
         pub unsafe fn touchesBeganWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(touchesMovedWithEvent:)]
         pub unsafe fn touchesMovedWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(touchesEndedWithEvent:)]
         pub unsafe fn touchesEndedWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(touchesCancelledWithEvent:)]
         pub unsafe fn touchesCancelledWithEvent(&self, event: &NSEvent);
     }

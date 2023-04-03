@@ -6,9 +6,13 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "macos")))]
     pub enum CXPlayDTMFCallActionType {
+        #[cfg(not(any(target_os = "macos")))]
         CXPlayDTMFCallActionTypeSingleTone = 1,
+        #[cfg(not(any(target_os = "macos")))]
         CXPlayDTMFCallActionTypeSoftPause = 2,
+        #[cfg(not(any(target_os = "macos")))]
         CXPlayDTMFCallActionTypeHardPause = 3,
     }
 );
@@ -16,6 +20,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CallKit_CXPlayDTMFCallAction")]
+    #[cfg(not(any(target_os = "macos")))]
     pub struct CXPlayDTMFCallAction;
 
     #[cfg(feature = "CallKit_CXPlayDTMFCallAction")]

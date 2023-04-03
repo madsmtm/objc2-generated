@@ -7,6 +7,7 @@ use crate::MetricKit::*;
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MetricKit_MXHistogramBucket")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct MXHistogramBucket<UnitType: Message = Object, UnitTypeOwnership: Ownership = Shared> {
         _inner0: PhantomData<*mut (UnitType, UnitTypeOwnership)>,
         notunwindsafe: PhantomData<&'static mut ()>,
@@ -59,6 +60,7 @@ extern_methods!(
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MetricKit_MXHistogram")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct MXHistogram<UnitType: Message = Object, UnitTypeOwnership: Ownership = Shared> {
         _inner0: PhantomData<*mut (UnitType, UnitTypeOwnership)>,
         notunwindsafe: PhantomData<&'static mut ()>,

@@ -16,48 +16,76 @@ extern_static!(CXErrorDomainNotificationServiceExtension: &'static NSErrorDomain
 
 ns_error_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "macos")))]
     pub enum CXErrorCode {
+        #[cfg(not(any(target_os = "macos")))]
         CXErrorCodeUnknownError = 0,
+        #[cfg(not(any(target_os = "macos")))]
         CXErrorCodeUnentitled = 1,
+        #[cfg(not(any(target_os = "macos")))]
         CXErrorCodeInvalidArgument = 2,
+        #[cfg(not(any(target_os = "macos")))]
         CXErrorCodeMissingVoIPBackgroundMode = 3,
     }
 );
 
 ns_error_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "macos")))]
     pub enum CXErrorCodeIncomingCallError {
+        #[cfg(not(any(target_os = "macos")))]
         CXErrorCodeIncomingCallErrorUnknown = 0,
+        #[cfg(not(any(target_os = "macos")))]
         CXErrorCodeIncomingCallErrorUnentitled = 1,
+        #[cfg(not(any(target_os = "macos")))]
         CXErrorCodeIncomingCallErrorCallUUIDAlreadyExists = 2,
+        #[cfg(not(any(target_os = "macos")))]
         CXErrorCodeIncomingCallErrorFilteredByDoNotDisturb = 3,
+        #[cfg(not(any(target_os = "macos")))]
         CXErrorCodeIncomingCallErrorFilteredByBlockList = 4,
     }
 );
 
 ns_error_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "macos")))]
     pub enum CXErrorCodeRequestTransactionError {
+        #[cfg(not(any(target_os = "macos")))]
         CXErrorCodeRequestTransactionErrorUnknown = 0,
+        #[cfg(not(any(target_os = "macos")))]
         CXErrorCodeRequestTransactionErrorUnentitled = 1,
+        #[cfg(not(any(target_os = "macos")))]
         CXErrorCodeRequestTransactionErrorUnknownCallProvider = 2,
+        #[cfg(not(any(target_os = "macos")))]
         CXErrorCodeRequestTransactionErrorEmptyTransaction = 3,
+        #[cfg(not(any(target_os = "macos")))]
         CXErrorCodeRequestTransactionErrorUnknownCallUUID = 4,
+        #[cfg(not(any(target_os = "macos")))]
         CXErrorCodeRequestTransactionErrorCallUUIDAlreadyExists = 5,
+        #[cfg(not(any(target_os = "macos")))]
         CXErrorCodeRequestTransactionErrorInvalidAction = 6,
+        #[cfg(not(any(target_os = "macos")))]
         CXErrorCodeRequestTransactionErrorMaximumCallGroupsReached = 7,
     }
 );
 
 ns_error_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "macos")))]
     pub enum CXErrorCodeCallDirectoryManagerError {
+        #[cfg(not(any(target_os = "macos")))]
         CXErrorCodeCallDirectoryManagerErrorUnknown = 0,
+        #[cfg(not(any(target_os = "macos")))]
         CXErrorCodeCallDirectoryManagerErrorNoExtensionFound = 1,
+        #[cfg(not(any(target_os = "macos")))]
         CXErrorCodeCallDirectoryManagerErrorLoadingInterrupted = 2,
+        #[cfg(not(any(target_os = "macos")))]
         CXErrorCodeCallDirectoryManagerErrorEntriesOutOfOrder = 3,
+        #[cfg(not(any(target_os = "macos")))]
         CXErrorCodeCallDirectoryManagerErrorDuplicateEntries = 4,
+        #[cfg(not(any(target_os = "macos")))]
         CXErrorCodeCallDirectoryManagerErrorMaximumEntriesExceeded = 5,
+        #[cfg(not(any(target_os = "macos")))]
         CXErrorCodeCallDirectoryManagerErrorExtensionDisabled = 6,
         CXErrorCodeCallDirectoryManagerErrorCurrentlyLoading = 7,
         CXErrorCodeCallDirectoryManagerErrorUnexpectedIncrementalRemoval = 8,
@@ -66,9 +94,13 @@ ns_error_enum!(
 
 ns_error_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "macos")))]
     pub enum CXErrorCodeNotificationServiceExtensionError {
+        #[cfg(not(any(target_os = "macos")))]
         CXErrorCodeNotificationServiceExtensionErrorUnknown = 0,
+        #[cfg(not(any(target_os = "macos")))]
         CXErrorCodeNotificationServiceExtensionErrorInvalidClientProcess = 1,
+        #[cfg(not(any(target_os = "macos")))]
         CXErrorCodeNotificationServiceExtensionErrorMissingNotificationFilteringEntitlement = 2,
     }
 );

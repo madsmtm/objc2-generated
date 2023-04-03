@@ -16,6 +16,7 @@ ns_options!(
         UNAuthorizationOptionProvidesAppNotificationSettings = 1 << 5,
         UNAuthorizationOptionProvisional = 1 << 6,
         #[deprecated = "Announcement authorization is always included"]
+        #[cfg(not(any(target_os = "macos")))]
         UNAuthorizationOptionAnnouncement = 1 << 7,
         #[deprecated = "Use time-sensitive entitlement"]
         UNAuthorizationOptionTimeSensitive = 1 << 8,
@@ -145,6 +146,7 @@ extern_methods!(
         pub unsafe fn removeAllDeliveredNotifications(&self);
 
         #[cfg(feature = "Foundation_NSError")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(setBadgeCount:withCompletionHandler:)]
         pub unsafe fn setBadgeCount_withCompletionHandler(
             &self,
@@ -200,6 +202,7 @@ extern_protocol!(
             feature = "UserNotifications_UNNotification",
             feature = "UserNotifications_UNUserNotificationCenter"
         ))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method(userNotificationCenter:openSettingsForNotification:)]
         unsafe fn userNotificationCenter_openSettingsForNotification(

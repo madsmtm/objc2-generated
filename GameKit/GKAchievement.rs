@@ -118,6 +118,7 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKAchievement")]
     unsafe impl GKAchievement {
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "macos")))]
         #[method_id(@__retain_semantics Init initWithIdentifier:forPlayer:)]
         pub unsafe fn initWithIdentifier_forPlayer(
             this: Option<Allocated<Self>>,
@@ -126,6 +127,7 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "macos")))]
         #[method_id(@__retain_semantics Other playerID)]
         pub unsafe fn playerID(&self) -> Option<Id<NSString>>;
     }

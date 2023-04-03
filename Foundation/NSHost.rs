@@ -7,6 +7,7 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSHost")]
     #[deprecated = "Use Network framework instead, see deprecation notice in <Foundation/NSHost.h>"]
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub struct NSHost;
 
     #[cfg(feature = "Foundation_NSHost")]
@@ -52,18 +53,22 @@ extern_methods!(
         pub unsafe fn addresses(&self) -> Id<NSArray<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other localizedName)]
         pub unsafe fn localizedName(&self) -> Option<Id<NSString>>;
 
         #[deprecated = "Caching no longer supported"]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(setHostCacheEnabled:)]
         pub unsafe fn setHostCacheEnabled(flag: bool);
 
         #[deprecated = "Caching no longer supported"]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(isHostCacheEnabled)]
         pub unsafe fn isHostCacheEnabled() -> bool;
 
         #[deprecated = "Caching no longer supported"]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(flushHostCache)]
         pub unsafe fn flushHostCache();
     }

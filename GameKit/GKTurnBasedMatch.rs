@@ -98,6 +98,7 @@ extern_methods!(
 extern_protocol!(
     pub unsafe trait GKTurnBasedEventListener {
         #[cfg(all(feature = "Foundation_NSArray", feature = "GameKit_GKPlayer"))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method(player:didRequestMatchWithOtherPlayers:)]
         unsafe fn player_didRequestMatchWithOtherPlayers(
@@ -176,6 +177,7 @@ extern_protocol!(
             feature = "Foundation_NSString",
             feature = "GameKit_GKPlayer"
         ))]
+        #[cfg(not(any(target_os = "macos")))]
         #[optional]
         #[method(player:didRequestMatchWithPlayers:)]
         unsafe fn player_didRequestMatchWithPlayers(

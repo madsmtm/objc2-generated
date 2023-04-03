@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSDatePicker")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSDatePicker;
 
     #[cfg(feature = "AppKit_NSDatePicker")]
@@ -44,121 +45,155 @@ unsafe impl NSUserInterfaceItemIdentification for NSDatePicker {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSDatePicker")]
     unsafe impl NSDatePicker {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(datePickerStyle)]
         pub unsafe fn datePickerStyle(&self) -> NSDatePickerStyle;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDatePickerStyle:)]
         pub unsafe fn setDatePickerStyle(&self, date_picker_style: NSDatePickerStyle);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isBezeled)]
         pub unsafe fn isBezeled(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBezeled:)]
         pub unsafe fn setBezeled(&self, bezeled: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isBordered)]
         pub unsafe fn isBordered(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBordered:)]
         pub unsafe fn setBordered(&self, bordered: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawsBackground)]
         pub unsafe fn drawsBackground(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDrawsBackground:)]
         pub unsafe fn setDrawsBackground(&self, draws_background: bool);
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Id<NSColor>;
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: &NSColor);
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other textColor)]
         pub unsafe fn textColor(&self) -> Id<NSColor>;
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTextColor:)]
         pub unsafe fn setTextColor(&self, text_color: &NSColor);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(datePickerMode)]
         pub unsafe fn datePickerMode(&self) -> NSDatePickerMode;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDatePickerMode:)]
         pub unsafe fn setDatePickerMode(&self, date_picker_mode: NSDatePickerMode);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(datePickerElements)]
         pub unsafe fn datePickerElements(&self) -> NSDatePickerElementFlags;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDatePickerElements:)]
         pub unsafe fn setDatePickerElements(&self, date_picker_elements: NSDatePickerElementFlags);
 
         #[cfg(feature = "Foundation_NSCalendar")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other calendar)]
         pub unsafe fn calendar(&self) -> Option<Id<NSCalendar>>;
 
         #[cfg(feature = "Foundation_NSCalendar")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCalendar:)]
         pub unsafe fn setCalendar(&self, calendar: Option<&NSCalendar>);
 
         #[cfg(feature = "Foundation_NSLocale")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other locale)]
         pub unsafe fn locale(&self) -> Option<Id<NSLocale>>;
 
         #[cfg(feature = "Foundation_NSLocale")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setLocale:)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
         #[cfg(feature = "Foundation_NSTimeZone")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other timeZone)]
         pub unsafe fn timeZone(&self) -> Option<Id<NSTimeZone>>;
 
         #[cfg(feature = "Foundation_NSTimeZone")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTimeZone:)]
         pub unsafe fn setTimeZone(&self, time_zone: Option<&NSTimeZone>);
 
         #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other dateValue)]
         pub unsafe fn dateValue(&self) -> Id<NSDate>;
 
         #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDateValue:)]
         pub unsafe fn setDateValue(&self, date_value: &NSDate);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(timeInterval)]
         pub unsafe fn timeInterval(&self) -> NSTimeInterval;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTimeInterval:)]
         pub unsafe fn setTimeInterval(&self, time_interval: NSTimeInterval);
 
         #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other minDate)]
         pub unsafe fn minDate(&self) -> Option<Id<NSDate>>;
 
         #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMinDate:)]
         pub unsafe fn setMinDate(&self, min_date: Option<&NSDate>);
 
         #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other maxDate)]
         pub unsafe fn maxDate(&self) -> Option<Id<NSDate>>;
 
         #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMaxDate:)]
         pub unsafe fn setMaxDate(&self, max_date: Option<&NSDate>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(presentsCalendarOverlay)]
         pub unsafe fn presentsCalendarOverlay(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPresentsCalendarOverlay:)]
         pub unsafe fn setPresentsCalendarOverlay(&self, presents_calendar_overlay: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSDatePickerCellDelegate>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -171,6 +206,7 @@ extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(feature = "AppKit_NSDatePicker")]
     unsafe impl NSDatePicker {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }

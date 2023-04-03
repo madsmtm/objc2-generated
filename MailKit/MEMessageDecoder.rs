@@ -6,6 +6,7 @@ use crate::Foundation::*;
 use crate::MailKit::*;
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait MEMessageDecoder: NSObjectProtocol {
         #[cfg(all(feature = "Foundation_NSData", feature = "MailKit_MEDecodedMessage"))]
         #[method_id(@__retain_semantics Other decodedMessageForMessageData:)]

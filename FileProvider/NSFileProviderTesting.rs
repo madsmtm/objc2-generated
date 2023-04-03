@@ -8,19 +8,29 @@ use crate::UniformTypeIdentifiers::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub enum NSFileProviderTestingOperationType {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSFileProviderTestingOperationTypeIngestion = 0,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSFileProviderTestingOperationTypeLookup = 1,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSFileProviderTestingOperationTypeCreation = 2,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSFileProviderTestingOperationTypeModification = 3,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSFileProviderTestingOperationTypeDeletion = 4,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSFileProviderTestingOperationTypeContentFetch = 5,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSFileProviderTestingOperationTypeChildrenEnumeration = 6,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSFileProviderTestingOperationTypeCollisionResolution = 7,
     }
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait NSFileProviderTestingOperation: NSObjectProtocol {
         #[method(type)]
         unsafe fn r#type(&self) -> NSFileProviderTestingOperationType;
@@ -72,6 +82,7 @@ extern_methods!(
     #[cfg(feature = "FileProvider_NSFileProviderManager")]
     unsafe impl NSFileProviderManager {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSError"))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other listAvailableTestingOperationsWithError:_)]
         pub unsafe fn listAvailableTestingOperationsWithError(
             &self,
@@ -82,6 +93,7 @@ extern_methods!(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError"
         ))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other runTestingOperations:error:_)]
         pub unsafe fn runTestingOperations_error(
             &self,
@@ -95,13 +107,17 @@ extern_methods!(
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub enum NSFileProviderTestingOperationSide {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSFileProviderTestingOperationSideDisk = 0,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSFileProviderTestingOperationSideFileProvider = 1,
     }
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait NSFileProviderTestingIngestion: NSFileProviderTestingOperation {
         #[method(side)]
         unsafe fn side(&self) -> NSFileProviderTestingOperationSide;
@@ -117,6 +133,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait NSFileProviderTestingLookup: NSFileProviderTestingOperation {
         #[method(side)]
         unsafe fn side(&self) -> NSFileProviderTestingOperationSide;
@@ -129,6 +146,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait NSFileProviderTestingCreation: NSFileProviderTestingOperation {
         #[method(targetSide)]
         unsafe fn targetSide(&self) -> NSFileProviderTestingOperationSide;
@@ -145,6 +163,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait NSFileProviderTestingModification:
         NSFileProviderTestingOperation
     {
@@ -173,6 +192,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait NSFileProviderTestingDeletion: NSFileProviderTestingOperation {
         #[method(targetSide)]
         unsafe fn targetSide(&self) -> NSFileProviderTestingOperationSide;
@@ -196,6 +216,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait NSFileProviderTestingContentFetch:
         NSFileProviderTestingOperation
     {
@@ -210,6 +231,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait NSFileProviderTestingChildrenEnumeration:
         NSFileProviderTestingOperation
     {
@@ -224,6 +246,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait NSFileProviderTestingCollisionResolution:
         NSFileProviderTestingOperation
     {

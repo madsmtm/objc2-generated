@@ -8,6 +8,7 @@ use crate::OSAKit::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "OSAKit_OSAScriptView")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct OSAScriptView;
 
     #[cfg(feature = "OSAKit_OSAScriptView")]
@@ -84,46 +85,60 @@ extern_methods!(
     #[cfg(feature = "OSAKit_OSAScriptView")]
     unsafe impl OSAScriptView {
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other source)]
         pub unsafe fn source(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSource:)]
         pub unsafe fn setSource(&self, source: Option<&NSString>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(usesScriptAssistant)]
         pub unsafe fn usesScriptAssistant(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setUsesScriptAssistant:)]
         pub unsafe fn setUsesScriptAssistant(&self, uses_script_assistant: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(usesTabs)]
         pub unsafe fn usesTabs(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setUsesTabs:)]
         pub unsafe fn setUsesTabs(&self, uses_tabs: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(tabWidth)]
         pub unsafe fn tabWidth(&self) -> NSUInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTabWidth:)]
         pub unsafe fn setTabWidth(&self, tab_width: NSUInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(wrapsLines)]
         pub unsafe fn wrapsLines(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setWrapsLines:)]
         pub unsafe fn setWrapsLines(&self, wraps_lines: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(indentsWrappedLines)]
         pub unsafe fn indentsWrappedLines(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setIndentsWrappedLines:)]
         pub unsafe fn setIndentsWrappedLines(&self, indents_wrapped_lines: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(indentWidth)]
         pub unsafe fn indentWidth(&self) -> NSUInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setIndentWidth:)]
         pub unsafe fn setIndentWidth(&self, indent_width: NSUInteger);
     }
@@ -134,6 +149,7 @@ extern_methods!(
     #[cfg(feature = "OSAKit_OSAScriptView")]
     unsafe impl OSAScriptView {
         #[cfg(feature = "AppKit_NSTextContainer")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithFrame:textContainer:)]
         pub unsafe fn initWithFrame_textContainer(
             this: Option<Allocated<Self>>,
@@ -141,15 +157,18 @@ extern_methods!(
             container: Option<&NSTextContainer>,
         ) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initUsingTextLayoutManager:)]
         pub unsafe fn initUsingTextLayoutManager(
             this: Option<Allocated<Self>>,
             using_text_layout_manager: bool,
         ) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other textViewUsingTextLayoutManager:)]
         pub unsafe fn textViewUsingTextLayoutManager(using_text_layout_manager: bool) -> Id<Self>;
     }
@@ -161,6 +180,7 @@ extern_methods!(
     /// NSTextView_Factory
     #[cfg(feature = "OSAKit_OSAScriptView")]
     unsafe impl OSAScriptView {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other fieldEditor)]
         pub unsafe fn fieldEditor() -> Id<Self>;
     }

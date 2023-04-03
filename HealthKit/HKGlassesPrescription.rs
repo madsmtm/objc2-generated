@@ -60,7 +60,13 @@ extern_methods!(
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
+    }
+);
 
+extern_methods!(
+    /// Methods declared on superclass `HKVisionPrescription`
+    #[cfg(feature = "HealthKit_HKGlassesPrescription")]
+    unsafe impl HKGlassesPrescription {
         #[cfg(all(
             feature = "Foundation_NSDate",
             feature = "Foundation_NSDictionary",

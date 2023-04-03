@@ -6,14 +6,20 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub enum NSUserNotificationActivationType {
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         NSUserNotificationActivationTypeNone = 0,
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         NSUserNotificationActivationTypeContentsClicked = 1,
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         NSUserNotificationActivationTypeActionButtonClicked = 2,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         NSUserNotificationActivationTypeReplied = 3,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         NSUserNotificationActivationTypeAdditionalActionClicked = 4,
     }
 );
@@ -22,6 +28,7 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSUserNotification")]
     #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub struct NSUserNotification;
 
     #[cfg(feature = "Foundation_NSUserNotification")]
@@ -142,28 +149,35 @@ extern_methods!(
         pub unsafe fn setOtherButtonTitle(&self, other_button_title: &NSString);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(setIdentifier:)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&NSString>);
 
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(hasReplyButton)]
         pub unsafe fn hasReplyButton(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(setHasReplyButton:)]
         pub unsafe fn setHasReplyButton(&self, has_reply_button: bool);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other responsePlaceholder)]
         pub unsafe fn responsePlaceholder(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(setResponsePlaceholder:)]
         pub unsafe fn setResponsePlaceholder(&self, response_placeholder: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other response)]
         pub unsafe fn response(&self) -> Option<Id<NSAttributedString>>;
 
@@ -171,6 +185,7 @@ extern_methods!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSUserNotificationAction"
         ))]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other additionalActions)]
         pub unsafe fn additionalActions(&self) -> Option<Id<NSArray<NSUserNotificationAction>>>;
 
@@ -178,6 +193,7 @@ extern_methods!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSUserNotificationAction"
         ))]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(setAdditionalActions:)]
         pub unsafe fn setAdditionalActions(
             &self,
@@ -185,6 +201,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSUserNotificationAction")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other additionalActivationAction)]
         pub unsafe fn additionalActivationAction(&self) -> Option<Id<NSUserNotificationAction>>;
     }
@@ -194,6 +211,7 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSUserNotificationAction")]
     #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub struct NSUserNotificationAction;
 
     #[cfg(feature = "Foundation_NSUserNotificationAction")]
@@ -231,6 +249,7 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSUserNotificationCenter")]
     #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub struct NSUserNotificationCenter;
 
     #[cfg(feature = "Foundation_NSUserNotificationCenter")]
@@ -311,6 +330,7 @@ extern_protocol!(
             feature = "Foundation_NSUserNotificationCenter"
         ))]
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method(userNotificationCenter:didDeliverNotification:)]
         unsafe fn userNotificationCenter_didDeliverNotification(
@@ -324,6 +344,7 @@ extern_protocol!(
             feature = "Foundation_NSUserNotificationCenter"
         ))]
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method(userNotificationCenter:didActivateNotification:)]
         unsafe fn userNotificationCenter_didActivateNotification(
@@ -337,6 +358,7 @@ extern_protocol!(
             feature = "Foundation_NSUserNotificationCenter"
         ))]
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method(userNotificationCenter:shouldPresentNotification:)]
         unsafe fn userNotificationCenter_shouldPresentNotification(

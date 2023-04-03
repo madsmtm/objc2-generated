@@ -7,9 +7,13 @@ use crate::Foundation::*;
 
 ns_options!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSPDFPanelOptions {
+        #[cfg(not(any(target_os = "ios")))]
         NSPDFPanelShowsPaperSize = 1 << 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSPDFPanelShowsOrientation = 1 << 3,
+        #[cfg(not(any(target_os = "ios")))]
         NSPDFPanelRequestsParentDirectory = 1 << 24,
     }
 );
@@ -17,6 +21,7 @@ ns_options!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSPDFPanel")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSPDFPanel;
 
     #[cfg(feature = "AppKit_NSPDFPanel")]
@@ -31,35 +36,43 @@ unsafe impl NSObjectProtocol for NSPDFPanel {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSPDFPanel")]
     unsafe impl NSPDFPanel {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other panel)]
         pub unsafe fn panel() -> Id<NSPDFPanel>;
 
         #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessoryController)]
         pub unsafe fn accessoryController(&self) -> Option<Id<NSViewController>>;
 
         #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessoryController:)]
         pub unsafe fn setAccessoryController(
             &self,
             accessory_controller: Option<&NSViewController>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(options)]
         pub unsafe fn options(&self) -> NSPDFPanelOptions;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setOptions:)]
         pub unsafe fn setOptions(&self, options: NSPDFPanelOptions);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other defaultFileName)]
         pub unsafe fn defaultFileName(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDefaultFileName:)]
         pub unsafe fn setDefaultFileName(&self, default_file_name: &NSString);
 
         #[cfg(all(feature = "AppKit_NSPDFInfo", feature = "AppKit_NSWindow"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(beginSheetWithPDFInfo:modalForWindow:completionHandler:)]
         pub unsafe fn beginSheetWithPDFInfo_modalForWindow_completionHandler(
             &self,

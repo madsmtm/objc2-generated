@@ -7,63 +7,103 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSCellType {
+        #[cfg(not(any(target_os = "ios")))]
         NSNullCellType = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSTextCellType = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSImageCellType = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSCellAttribute {
+        #[cfg(not(any(target_os = "ios")))]
         NSCellDisabled = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSCellState = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSPushInCell = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSCellEditable = 3,
+        #[cfg(not(any(target_os = "ios")))]
         NSChangeGrayCell = 4,
+        #[cfg(not(any(target_os = "ios")))]
         NSCellHighlighted = 5,
+        #[cfg(not(any(target_os = "ios")))]
         NSCellLightsByContents = 6,
+        #[cfg(not(any(target_os = "ios")))]
         NSCellLightsByGray = 7,
+        #[cfg(not(any(target_os = "ios")))]
         NSChangeBackgroundCell = 8,
+        #[cfg(not(any(target_os = "ios")))]
         NSCellLightsByBackground = 9,
+        #[cfg(not(any(target_os = "ios")))]
         NSCellIsBordered = 10,
+        #[cfg(not(any(target_os = "ios")))]
         NSCellHasOverlappingImage = 11,
+        #[cfg(not(any(target_os = "ios")))]
         NSCellHasImageHorizontal = 12,
+        #[cfg(not(any(target_os = "ios")))]
         NSCellHasImageOnLeftOrBottom = 13,
+        #[cfg(not(any(target_os = "ios")))]
         NSCellChangesContents = 14,
+        #[cfg(not(any(target_os = "ios")))]
         NSCellIsInsetButton = 15,
+        #[cfg(not(any(target_os = "ios")))]
         NSCellAllowsMixedState = 16,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSCellImagePosition {
+        #[cfg(not(any(target_os = "ios")))]
         NSNoImage = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSImageOnly = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSImageLeft = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSImageRight = 3,
+        #[cfg(not(any(target_os = "ios")))]
         NSImageBelow = 4,
+        #[cfg(not(any(target_os = "ios")))]
         NSImageAbove = 5,
+        #[cfg(not(any(target_os = "ios")))]
         NSImageOverlaps = 6,
+        #[cfg(not(any(target_os = "ios")))]
         NSImageLeading = 7,
+        #[cfg(not(any(target_os = "ios")))]
         NSImageTrailing = 8,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSImageScaling {
+        #[cfg(not(any(target_os = "ios")))]
         NSImageScaleProportionallyDown = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSImageScaleAxesIndependently = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSImageScaleNone = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSImageScaleProportionallyUpOrDown = 3,
         #[deprecated = "Use NSImageScaleProportionallyDown instead"]
+        #[cfg(not(any(target_os = "ios")))]
         NSScaleProportionally = 0,
         #[deprecated = "Use NSImageScaleAxesIndependently instead"]
+        #[cfg(not(any(target_os = "ios")))]
         NSScaleToFit = 1,
         #[deprecated = "Use NSImageScaleNone instead"]
+        #[cfg(not(any(target_os = "ios")))]
         NSScaleNone = 2,
     }
 );
@@ -80,31 +120,47 @@ extern_static!(NSControlStateValueOn: NSControlStateValue = 1);
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSCellStyleMask {
+        #[cfg(not(any(target_os = "ios")))]
         NSNoCellMask = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSContentsCellMask = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSPushInCellMask = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSChangeGrayCellMask = 4,
+        #[cfg(not(any(target_os = "ios")))]
         NSChangeBackgroundCellMask = 8,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSControlTint {
+        #[cfg(not(any(target_os = "ios")))]
         NSDefaultControlTint = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSBlueControlTint = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSGraphiteControlTint = 6,
+        #[cfg(not(any(target_os = "ios")))]
         NSClearControlTint = 7,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSControlSize {
+        #[cfg(not(any(target_os = "ios")))]
         NSControlSizeRegular = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSControlSizeSmall = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSControlSizeMini = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSControlSizeLarge = 3,
     }
 );
@@ -112,6 +168,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSCell")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSCell;
 
     #[cfg(feature = "AppKit_NSCell")]
@@ -138,14 +195,17 @@ unsafe impl NSUserInterfaceItemIdentification for NSCell {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSCell")]
     unsafe impl NSCell {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initTextCell:)]
         pub unsafe fn initTextCell(this: Option<Allocated<Self>>, string: &NSString) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initImageCell:)]
         pub unsafe fn initImageCell(
             this: Option<Allocated<Self>>,
@@ -153,248 +213,325 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(prefersTrackingUntilMouseUp)]
         pub unsafe fn prefersTrackingUntilMouseUp() -> bool;
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other controlView)]
         pub unsafe fn controlView(&self) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setControlView:)]
         pub unsafe fn setControlView(&self, control_view: Option<&NSView>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(type)]
         pub unsafe fn r#type(&self) -> NSCellType;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setType:)]
         pub unsafe fn setType(&self, r#type: NSCellType);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(state)]
         pub unsafe fn state(&self) -> NSControlStateValue;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setState:)]
         pub unsafe fn setState(&self, state: NSControlStateValue);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other target)]
         pub unsafe fn target(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTarget:)]
         pub unsafe fn setTarget(&self, target: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(action)]
         pub unsafe fn action(&self) -> Option<Sel>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAction:)]
         pub unsafe fn setAction(&self, action: Option<Sel>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(tag)]
         pub unsafe fn tag(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTag:)]
         pub unsafe fn setTag(&self, tag: NSInteger);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isOpaque)]
         pub unsafe fn isOpaque(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setEnabled:)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(sendActionOn:)]
         pub unsafe fn sendActionOn(&self, mask: NSEventMask) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isContinuous)]
         pub unsafe fn isContinuous(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setContinuous:)]
         pub unsafe fn setContinuous(&self, continuous: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isEditable)]
         pub unsafe fn isEditable(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setEditable:)]
         pub unsafe fn setEditable(&self, editable: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isSelectable)]
         pub unsafe fn isSelectable(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSelectable:)]
         pub unsafe fn setSelectable(&self, selectable: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isBordered)]
         pub unsafe fn isBordered(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBordered:)]
         pub unsafe fn setBordered(&self, bordered: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isBezeled)]
         pub unsafe fn isBezeled(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBezeled:)]
         pub unsafe fn setBezeled(&self, bezeled: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isScrollable)]
         pub unsafe fn isScrollable(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setScrollable:)]
         pub unsafe fn setScrollable(&self, scrollable: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isHighlighted)]
         pub unsafe fn isHighlighted(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setHighlighted:)]
         pub unsafe fn setHighlighted(&self, highlighted: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(alignment)]
         pub unsafe fn alignment(&self) -> NSTextAlignment;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAlignment:)]
         pub unsafe fn setAlignment(&self, alignment: NSTextAlignment);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(wraps)]
         pub unsafe fn wraps(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setWraps:)]
         pub unsafe fn setWraps(&self, wraps: bool);
 
         #[cfg(feature = "AppKit_NSFont")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other font)]
         pub unsafe fn font(&self) -> Option<Id<NSFont>>;
 
         #[cfg(feature = "AppKit_NSFont")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFont:)]
         pub unsafe fn setFont(&self, font: Option<&NSFont>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other keyEquivalent)]
         pub unsafe fn keyEquivalent(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSFormatter")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other formatter)]
         pub unsafe fn formatter(&self) -> Option<Id<NSFormatter>>;
 
         #[cfg(feature = "Foundation_NSFormatter")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFormatter:)]
         pub unsafe fn setFormatter(&self, formatter: Option<&NSFormatter>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other objectValue)]
         pub unsafe fn objectValue(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setObjectValue:)]
         pub unsafe fn setObjectValue(&self, object_value: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(hasValidObjectValue)]
         pub unsafe fn hasValidObjectValue(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other stringValue)]
         pub unsafe fn stringValue(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setStringValue:)]
         pub unsafe fn setStringValue(&self, string_value: &NSString);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(compare:)]
         pub unsafe fn compare(&self, other_cell: &Object) -> NSComparisonResult;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(intValue)]
         pub unsafe fn intValue(&self) -> c_int;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setIntValue:)]
         pub unsafe fn setIntValue(&self, int_value: c_int);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(floatValue)]
         pub unsafe fn floatValue(&self) -> c_float;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFloatValue:)]
         pub unsafe fn setFloatValue(&self, float_value: c_float);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(doubleValue)]
         pub unsafe fn doubleValue(&self) -> c_double;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDoubleValue:)]
         pub unsafe fn setDoubleValue(&self, double_value: c_double);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(integerValue)]
         pub unsafe fn integerValue(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setIntegerValue:)]
         pub unsafe fn setIntegerValue(&self, integer_value: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(takeIntValueFrom:)]
         pub unsafe fn takeIntValueFrom(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(takeFloatValueFrom:)]
         pub unsafe fn takeFloatValueFrom(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(takeDoubleValueFrom:)]
         pub unsafe fn takeDoubleValueFrom(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(takeStringValueFrom:)]
         pub unsafe fn takeStringValueFrom(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(takeObjectValueFrom:)]
         pub unsafe fn takeObjectValueFrom(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(takeIntegerValueFrom:)]
         pub unsafe fn takeIntegerValueFrom(&self, sender: Option<&Object>);
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(controlSize)]
         pub unsafe fn controlSize(&self) -> NSControlSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setControlSize:)]
         pub unsafe fn setControlSize(&self, control_size: NSControlSize);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other representedObject)]
         pub unsafe fn representedObject(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setRepresentedObject:)]
         pub unsafe fn setRepresentedObject(&self, represented_object: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(cellAttribute:)]
         pub unsafe fn cellAttribute(&self, parameter: NSCellAttribute) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCellAttribute:to:)]
         pub unsafe fn setCellAttribute_to(&self, parameter: NSCellAttribute, value: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(imageRectForBounds:)]
         pub unsafe fn imageRectForBounds(&self, rect: NSRect) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(titleRectForBounds:)]
         pub unsafe fn titleRectForBounds(&self, rect: NSRect) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawingRectForBounds:)]
         pub unsafe fn drawingRectForBounds(&self, rect: NSRect) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(cellSize)]
         pub unsafe fn cellSize(&self) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(cellSizeForBounds:)]
         pub unsafe fn cellSizeForBounds(&self, rect: NSRect) -> NSSize;
 
         #[cfg(all(feature = "AppKit_NSColor", feature = "AppKit_NSView"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other highlightColorWithFrame:inView:)]
         pub unsafe fn highlightColorWithFrame_inView(
             &self,
@@ -402,14 +539,17 @@ extern_methods!(
             control_view: &NSView,
         ) -> Option<Id<NSColor>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(calcDrawInfo:)]
         pub unsafe fn calcDrawInfo(&self, rect: NSRect);
 
         #[cfg(feature = "AppKit_NSText")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other setUpFieldEditorAttributes:)]
         pub unsafe fn setUpFieldEditorAttributes(&self, text_obj: &NSText) -> Id<NSText>;
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawInteriorWithFrame:inView:)]
         pub unsafe fn drawInteriorWithFrame_inView(
             &self,
@@ -418,10 +558,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawWithFrame:inView:)]
         pub unsafe fn drawWithFrame_inView(&self, cell_frame: NSRect, control_view: &NSView);
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(highlight:withFrame:inView:)]
         pub unsafe fn highlight_withFrame_inView(
             &self,
@@ -430,9 +572,11 @@ extern_methods!(
             control_view: &NSView,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(mouseDownFlags)]
         pub unsafe fn mouseDownFlags(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(getPeriodicDelay:interval:)]
         pub unsafe fn getPeriodicDelay_interval(
             &self,
@@ -441,6 +585,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(startTrackingAt:inView:)]
         pub unsafe fn startTrackingAt_inView(
             &self,
@@ -449,6 +594,7 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(continueTracking:at:inView:)]
         pub unsafe fn continueTracking_at_inView(
             &self,
@@ -458,6 +604,7 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(stopTracking:at:inView:mouseIsUp:)]
         pub unsafe fn stopTracking_at_inView_mouseIsUp(
             &self,
@@ -468,6 +615,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "AppKit_NSEvent", feature = "AppKit_NSView"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(trackMouse:inRect:ofView:untilMouseUp:)]
         pub unsafe fn trackMouse_inRect_ofView_untilMouseUp(
             &self,
@@ -482,6 +630,7 @@ extern_methods!(
             feature = "AppKit_NSText",
             feature = "AppKit_NSView"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(editWithFrame:inView:editor:delegate:event:)]
         pub unsafe fn editWithFrame_inView_editor_delegate_event(
             &self,
@@ -493,6 +642,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "AppKit_NSText", feature = "AppKit_NSView"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectWithFrame:inView:editor:delegate:start:length:)]
         pub unsafe fn selectWithFrame_inView_editor_delegate_start_length(
             &self,
@@ -505,18 +655,22 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSText")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(endEditing:)]
         pub unsafe fn endEditing(&self, text_obj: &NSText);
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(resetCursorRect:inView:)]
         pub unsafe fn resetCursorRect_inView(&self, cell_frame: NSRect, control_view: &NSView);
 
         #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other menu)]
         pub unsafe fn menu(&self) -> Option<Id<NSMenu>>;
 
         #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMenu:)]
         pub unsafe fn setMenu(&self, menu: Option<&NSMenu>);
 
@@ -525,6 +679,7 @@ extern_methods!(
             feature = "AppKit_NSMenu",
             feature = "AppKit_NSView"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other menuForEvent:inRect:ofView:)]
         pub unsafe fn menuForEvent_inRect_ofView(
             &self,
@@ -534,42 +689,55 @@ extern_methods!(
         ) -> Option<Id<NSMenu>>;
 
         #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other defaultMenu)]
         pub unsafe fn defaultMenu() -> Option<Id<NSMenu>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(sendsActionOnEndEditing)]
         pub unsafe fn sendsActionOnEndEditing(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSendsActionOnEndEditing:)]
         pub unsafe fn setSendsActionOnEndEditing(&self, sends_action_on_end_editing: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(baseWritingDirection)]
         pub unsafe fn baseWritingDirection(&self) -> NSWritingDirection;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBaseWritingDirection:)]
         pub unsafe fn setBaseWritingDirection(&self, base_writing_direction: NSWritingDirection);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(lineBreakMode)]
         pub unsafe fn lineBreakMode(&self) -> NSLineBreakMode;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setLineBreakMode:)]
         pub unsafe fn setLineBreakMode(&self, line_break_mode: NSLineBreakMode);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(allowsUndo)]
         pub unsafe fn allowsUndo(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAllowsUndo:)]
         pub unsafe fn setAllowsUndo(&self, allows_undo: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(truncatesLastVisibleLine)]
         pub unsafe fn truncatesLastVisibleLine(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTruncatesLastVisibleLine:)]
         pub unsafe fn setTruncatesLastVisibleLine(&self, truncates_last_visible_line: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(userInterfaceLayoutDirection)]
         pub unsafe fn userInterfaceLayoutDirection(&self) -> NSUserInterfaceLayoutDirection;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setUserInterfaceLayoutDirection:)]
         pub unsafe fn setUserInterfaceLayoutDirection(
             &self,
@@ -577,12 +745,15 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "AppKit_NSTextView", feature = "AppKit_NSView"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other fieldEditorForView:)]
         pub unsafe fn fieldEditorForView(&self, control_view: &NSView) -> Option<Id<NSTextView>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(usesSingleLineMode)]
         pub unsafe fn usesSingleLineMode(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setUsesSingleLineMode:)]
         pub unsafe fn setUsesSingleLineMode(&self, uses_single_line_mode: bool);
 
@@ -591,6 +762,7 @@ extern_methods!(
             feature = "AppKit_NSView",
             feature = "Foundation_NSArray"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other draggingImageComponentsWithFrame:inView:)]
         pub unsafe fn draggingImageComponentsWithFrame_inView(
             &self,
@@ -604,34 +776,44 @@ extern_methods!(
     /// NSKeyboardUI
     #[cfg(feature = "AppKit_NSCell")]
     unsafe impl NSCell {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(refusesFirstResponder)]
         pub unsafe fn refusesFirstResponder(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setRefusesFirstResponder:)]
         pub unsafe fn setRefusesFirstResponder(&self, refuses_first_responder: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(acceptsFirstResponder)]
         pub unsafe fn acceptsFirstResponder(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(showsFirstResponder)]
         pub unsafe fn showsFirstResponder(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setShowsFirstResponder:)]
         pub unsafe fn setShowsFirstResponder(&self, shows_first_responder: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(performClick:)]
         pub unsafe fn performClick(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(focusRingType)]
         pub unsafe fn focusRingType(&self) -> NSFocusRingType;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFocusRingType:)]
         pub unsafe fn setFocusRingType(&self, focus_ring_type: NSFocusRingType);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(defaultFocusRingType)]
         pub unsafe fn defaultFocusRingType() -> NSFocusRingType;
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawFocusRingMaskWithFrame:inView:)]
         pub unsafe fn drawFocusRingMaskWithFrame_inView(
             &self,
@@ -640,6 +822,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(focusRingMaskBoundsForFrame:inView:)]
         pub unsafe fn focusRingMaskBoundsForFrame_inView(
             &self,
@@ -647,6 +830,7 @@ extern_methods!(
             control_view: &NSView,
         ) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(wantsNotificationForMarkedText)]
         pub unsafe fn wantsNotificationForMarkedText(&self) -> bool;
     }
@@ -657,22 +841,28 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSCell")]
     unsafe impl NSCell {
         #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other attributedStringValue)]
         pub unsafe fn attributedStringValue(&self) -> Id<NSAttributedString>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAttributedStringValue:)]
         pub unsafe fn setAttributedStringValue(&self, attributed_string_value: &NSAttributedString);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(allowsEditingTextAttributes)]
         pub unsafe fn allowsEditingTextAttributes(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAllowsEditingTextAttributes:)]
         pub unsafe fn setAllowsEditingTextAttributes(&self, allows_editing_text_attributes: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(importsGraphics)]
         pub unsafe fn importsGraphics(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setImportsGraphics:)]
         pub unsafe fn setImportsGraphics(&self, imports_graphics: bool);
     }
@@ -682,15 +872,19 @@ extern_methods!(
     /// NSCellMixedState
     #[cfg(feature = "AppKit_NSCell")]
     unsafe impl NSCell {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(allowsMixedState)]
         pub unsafe fn allowsMixedState(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAllowsMixedState:)]
         pub unsafe fn setAllowsMixedState(&self, allows_mixed_state: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(nextState)]
         pub unsafe fn nextState(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setNextState)]
         pub unsafe fn setNextState(&self);
     }
@@ -698,10 +892,15 @@ extern_methods!(
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSCellHitResult {
+        #[cfg(not(any(target_os = "ios")))]
         NSCellHitNone = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSCellHitContentArea = 1 << 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSCellHitEditableTextArea = 1 << 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSCellHitTrackableArea = 1 << 2,
     }
 );
@@ -711,6 +910,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSCell")]
     unsafe impl NSCell {
         #[cfg(all(feature = "AppKit_NSEvent", feature = "AppKit_NSView"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(hitTestForEvent:inRect:ofView:)]
         pub unsafe fn hitTestForEvent_inRect_ofView(
             &self,
@@ -726,6 +926,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSCell")]
     unsafe impl NSCell {
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(expansionFrameWithFrame:inView:)]
         pub unsafe fn expansionFrameWithFrame_inView(
             &self,
@@ -734,6 +935,7 @@ extern_methods!(
         ) -> NSRect;
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawWithExpansionFrame:inView:)]
         pub unsafe fn drawWithExpansionFrame_inView(&self, cell_frame: NSRect, view: &NSView);
     }
@@ -741,10 +943,15 @@ extern_methods!(
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSBackgroundStyle {
+        #[cfg(not(any(target_os = "ios")))]
         NSBackgroundStyleNormal = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSBackgroundStyleEmphasized = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSBackgroundStyleRaised = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSBackgroundStyleLowered = 3,
     }
 );
@@ -753,12 +960,15 @@ extern_methods!(
     /// NSCellBackgroundStyle
     #[cfg(feature = "AppKit_NSCell")]
     unsafe impl NSCell {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(backgroundStyle)]
         pub unsafe fn backgroundStyle(&self) -> NSBackgroundStyle;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBackgroundStyle:)]
         pub unsafe fn setBackgroundStyle(&self, background_style: NSBackgroundStyle);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(interiorBackgroundStyle)]
         pub unsafe fn interiorBackgroundStyle(&self) -> NSBackgroundStyle;
     }
@@ -766,6 +976,7 @@ extern_methods!(
 
 extern_fn!(
     #[cfg(feature = "AppKit_NSImage")]
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSDrawThreePartImage(
         frame: NSRect,
         start_cap: Option<&NSImage>,
@@ -780,6 +991,7 @@ extern_fn!(
 
 extern_fn!(
     #[cfg(feature = "AppKit_NSImage")]
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSDrawNinePartImage(
         frame: NSRect,
         top_left_corner: Option<&NSImage>,
@@ -802,27 +1014,33 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSCell")]
     unsafe impl NSCell {
         #[deprecated = "The controlTint property is not respected on 10.14 and later. For custom cells, use +[NSColor controlAccentColor] to respect the user's preferred accent color when drawing."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(controlTint)]
         pub unsafe fn controlTint(&self) -> NSControlTint;
 
         #[deprecated = "The controlTint property is not respected on 10.14 and later. For custom cells, use +[NSColor controlAccentColor] to respect the user's preferred accent color when drawing."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setControlTint:)]
         pub unsafe fn setControlTint(&self, control_tint: NSControlTint);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(entryType)]
         pub unsafe fn entryType(&self) -> NSInteger;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setEntryType:)]
         pub unsafe fn setEntryType(&self, r#type: NSInteger);
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isEntryAcceptable:)]
         pub unsafe fn isEntryAcceptable(&self, string: &NSString) -> bool;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFloatingPointFormat:left:right:)]
         pub unsafe fn setFloatingPointFormat_left_right(
             &self,
@@ -832,20 +1050,24 @@ extern_methods!(
         );
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMnemonicLocation:)]
         pub unsafe fn setMnemonicLocation(&self, location: NSUInteger);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(mnemonicLocation)]
         pub unsafe fn mnemonicLocation(&self) -> NSUInteger;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other mnemonic)]
         pub unsafe fn mnemonic(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTitleWithMnemonic:)]
         pub unsafe fn setTitleWithMnemonic(&self, string_with_ampersand: &NSString);
     }
@@ -873,20 +1095,28 @@ extern_static!(NSControlTintDidChangeNotification: &'static NSNotificationName);
 
 extern_enum!(
     #[underlying(c_uint)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum __anonymous__ {
         #[deprecated = "Use formatters instead"]
+        #[cfg(not(any(target_os = "ios")))]
         NSAnyType = 0,
         #[deprecated = "Use formatters instead"]
+        #[cfg(not(any(target_os = "ios")))]
         NSIntType = 1,
         #[deprecated = "Use formatters instead"]
+        #[cfg(not(any(target_os = "ios")))]
         NSPositiveIntType = 2,
         #[deprecated = "Use formatters instead"]
+        #[cfg(not(any(target_os = "ios")))]
         NSFloatType = 3,
         #[deprecated = "Use formatters instead"]
+        #[cfg(not(any(target_os = "ios")))]
         NSPositiveFloatType = 4,
         #[deprecated = "Use formatters instead"]
+        #[cfg(not(any(target_os = "ios")))]
         NSDoubleType = 6,
         #[deprecated = "Use formatters instead"]
+        #[cfg(not(any(target_os = "ios")))]
         NSPositiveDoubleType = 7,
     }
 );

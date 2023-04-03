@@ -256,6 +256,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSMetadataItem")]
     unsafe impl NSMetadataItem {
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Init initWithURL:)]
         pub unsafe fn initWithURL(this: Option<Allocated<Self>>, url: &NSURL) -> Option<Id<Self>>;
 

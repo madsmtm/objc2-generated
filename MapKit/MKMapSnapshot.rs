@@ -10,6 +10,7 @@ use crate::MapKit::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MapKit_MKMapSnapshot")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct MKMapSnapshot;
 
     #[cfg(feature = "MapKit_MKMapSnapshot")]
@@ -29,6 +30,7 @@ extern_methods!(
         pub unsafe fn image(&self) -> Id<NSImage>;
 
         #[cfg(feature = "AppKit_NSAppearance")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other appearance)]
         pub unsafe fn appearance(&self) -> Id<NSAppearance>;
 

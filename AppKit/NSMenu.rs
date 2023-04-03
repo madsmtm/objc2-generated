@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSMenu")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSMenu;
 
     #[cfg(feature = "AppKit_NSMenu")]
@@ -38,22 +39,27 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSMenu")]
     unsafe impl NSMenu {
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithTitle:)]
         pub unsafe fn initWithTitle(this: Option<Allocated<Self>>, title: &NSString) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
         #[cfg(all(feature = "AppKit_NSEvent", feature = "AppKit_NSView"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(popUpContextMenu:withEvent:forView:)]
         pub unsafe fn popUpContextMenu_withEvent_forView(
             menu: &NSMenu,
@@ -66,6 +72,7 @@ extern_methods!(
             feature = "AppKit_NSFont",
             feature = "AppKit_NSView"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(popUpContextMenu:withEvent:forView:withFont:)]
         pub unsafe fn popUpContextMenu_withEvent_forView_withFont(
             menu: &NSMenu,
@@ -75,6 +82,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "AppKit_NSMenuItem", feature = "AppKit_NSView"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(popUpMenuPositioningItem:atLocation:inView:)]
         pub unsafe fn popUpMenuPositioningItem_atLocation_inView(
             &self,
@@ -83,27 +91,34 @@ extern_methods!(
             view: Option<&NSView>,
         ) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMenuBarVisible:)]
         pub unsafe fn setMenuBarVisible(visible: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(menuBarVisible)]
         pub unsafe fn menuBarVisible() -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other supermenu)]
         pub unsafe fn supermenu(&self) -> Option<Id<NSMenu>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSupermenu:)]
         pub unsafe fn setSupermenu(&self, supermenu: Option<&NSMenu>);
 
         #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(insertItem:atIndex:)]
         pub unsafe fn insertItem_atIndex(&self, new_item: &NSMenuItem, index: NSInteger);
 
         #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(addItem:)]
         pub unsafe fn addItem(&self, new_item: &NSMenuItem);
 
         #[cfg(all(feature = "AppKit_NSMenuItem", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other insertItemWithTitle:action:keyEquivalent:atIndex:)]
         pub unsafe fn insertItemWithTitle_action_keyEquivalent_atIndex(
             &self,
@@ -114,6 +129,7 @@ extern_methods!(
         ) -> Id<NSMenuItem>;
 
         #[cfg(all(feature = "AppKit_NSMenuItem", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other addItemWithTitle:action:keyEquivalent:)]
         pub unsafe fn addItemWithTitle_action_keyEquivalent(
             &self,
@@ -122,53 +138,67 @@ extern_methods!(
             char_code: &NSString,
         ) -> Id<NSMenuItem>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeItemAtIndex:)]
         pub unsafe fn removeItemAtIndex(&self, index: NSInteger);
 
         #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeItem:)]
         pub unsafe fn removeItem(&self, item: &NSMenuItem);
 
         #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSubmenu:forItem:)]
         pub unsafe fn setSubmenu_forItem(&self, menu: Option<&NSMenu>, item: &NSMenuItem);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeAllItems)]
         pub unsafe fn removeAllItems(&self);
 
         #[cfg(all(feature = "AppKit_NSMenuItem", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other itemArray)]
         pub unsafe fn itemArray(&self) -> Id<NSArray<NSMenuItem>>;
 
         #[cfg(all(feature = "AppKit_NSMenuItem", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setItemArray:)]
         pub unsafe fn setItemArray(&self, item_array: &NSArray<NSMenuItem>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(numberOfItems)]
         pub unsafe fn numberOfItems(&self) -> NSInteger;
 
         #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other itemAtIndex:)]
         pub unsafe fn itemAtIndex(&self, index: NSInteger) -> Option<Id<NSMenuItem>>;
 
         #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(indexOfItem:)]
         pub unsafe fn indexOfItem(&self, item: &NSMenuItem) -> NSInteger;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(indexOfItemWithTitle:)]
         pub unsafe fn indexOfItemWithTitle(&self, title: &NSString) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(indexOfItemWithTag:)]
         pub unsafe fn indexOfItemWithTag(&self, tag: NSInteger) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(indexOfItemWithRepresentedObject:)]
         pub unsafe fn indexOfItemWithRepresentedObject(&self, object: Option<&Object>)
             -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(indexOfItemWithSubmenu:)]
         pub unsafe fn indexOfItemWithSubmenu(&self, submenu: Option<&NSMenu>) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(indexOfItemWithTarget:andAction:)]
         pub unsafe fn indexOfItemWithTarget_andAction(
             &self,
@@ -177,84 +207,109 @@ extern_methods!(
         ) -> NSInteger;
 
         #[cfg(all(feature = "AppKit_NSMenuItem", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other itemWithTitle:)]
         pub unsafe fn itemWithTitle(&self, title: &NSString) -> Option<Id<NSMenuItem>>;
 
         #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other itemWithTag:)]
         pub unsafe fn itemWithTag(&self, tag: NSInteger) -> Option<Id<NSMenuItem>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(autoenablesItems)]
         pub unsafe fn autoenablesItems(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAutoenablesItems:)]
         pub unsafe fn setAutoenablesItems(&self, autoenables_items: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(update)]
         pub unsafe fn update(&self);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(performKeyEquivalent:)]
         pub unsafe fn performKeyEquivalent(&self, event: &NSEvent) -> bool;
 
         #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(itemChanged:)]
         pub unsafe fn itemChanged(&self, item: &NSMenuItem);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(performActionForItemAtIndex:)]
         pub unsafe fn performActionForItemAtIndex(&self, index: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSMenuDelegate>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSMenuDelegate>>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(menuBarHeight)]
         pub unsafe fn menuBarHeight(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(cancelTracking)]
         pub unsafe fn cancelTracking(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(cancelTrackingWithoutAnimation)]
         pub unsafe fn cancelTrackingWithoutAnimation(&self);
 
         #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other highlightedItem)]
         pub unsafe fn highlightedItem(&self) -> Option<Id<NSMenuItem>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(minimumWidth)]
         pub unsafe fn minimumWidth(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMinimumWidth:)]
         pub unsafe fn setMinimumWidth(&self, minimum_width: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(size)]
         pub unsafe fn size(&self) -> NSSize;
 
         #[cfg(feature = "AppKit_NSFont")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other font)]
         pub unsafe fn font(&self) -> Option<Id<NSFont>>;
 
         #[cfg(feature = "AppKit_NSFont")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFont:)]
         pub unsafe fn setFont(&self, font: Option<&NSFont>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(allowsContextMenuPlugIns)]
         pub unsafe fn allowsContextMenuPlugIns(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAllowsContextMenuPlugIns:)]
         pub unsafe fn setAllowsContextMenuPlugIns(&self, allows_context_menu_plug_ins: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(showsStateColumn)]
         pub unsafe fn showsStateColumn(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setShowsStateColumn:)]
         pub unsafe fn setShowsStateColumn(&self, shows_state_column: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(userInterfaceLayoutDirection)]
         pub unsafe fn userInterfaceLayoutDirection(&self) -> NSUserInterfaceLayoutDirection;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setUserInterfaceLayoutDirection:)]
         pub unsafe fn setUserInterfaceLayoutDirection(
             &self,
@@ -267,14 +322,17 @@ extern_methods!(
     /// NSSubmenuAction
     #[cfg(feature = "AppKit_NSMenu")]
     unsafe impl NSMenu {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(submenuAction:)]
         pub unsafe fn submenuAction(&self, sender: Option<&Object>);
     }
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSMenuItemValidation: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSMenuItem")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(validateMenuItem:)]
         unsafe fn validateMenuItem(&self, menu_item: &NSMenuItem) -> bool;
     }
@@ -283,18 +341,22 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSMenuDelegate: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(menuNeedsUpdate:)]
         unsafe fn menuNeedsUpdate(&self, menu: &NSMenu);
 
         #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(numberOfItemsInMenu:)]
         unsafe fn numberOfItemsInMenu(&self, menu: &NSMenu) -> NSInteger;
 
         #[cfg(all(feature = "AppKit_NSMenu", feature = "AppKit_NSMenuItem"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(menu:updateItem:atIndex:shouldCancel:)]
         unsafe fn menu_updateItem_atIndex_shouldCancel(
@@ -306,21 +368,25 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(menuWillOpen:)]
         unsafe fn menuWillOpen(&self, menu: &NSMenu);
 
         #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(menuDidClose:)]
         unsafe fn menuDidClose(&self, menu: &NSMenu);
 
         #[cfg(all(feature = "AppKit_NSMenu", feature = "AppKit_NSMenuItem"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(menu:willHighlightItem:)]
         unsafe fn menu_willHighlightItem(&self, menu: &NSMenu, item: Option<&NSMenuItem>);
 
         #[cfg(all(feature = "AppKit_NSMenu", feature = "AppKit_NSScreen"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(confinementRectForMenu:onScreen:)]
         unsafe fn confinementRectForMenu_onScreen(
@@ -335,12 +401,19 @@ extern_protocol!(
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSMenuProperties {
+        #[cfg(not(any(target_os = "ios")))]
         NSMenuPropertyItemTitle = 1 << 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSMenuPropertyItemAttributedTitle = 1 << 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSMenuPropertyItemKeyEquivalent = 1 << 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSMenuPropertyItemImage = 1 << 3,
+        #[cfg(not(any(target_os = "ios")))]
         NSMenuPropertyItemEnabled = 1 << 4,
+        #[cfg(not(any(target_os = "ios")))]
         NSMenuPropertyItemAccessibilityDescription = 1 << 5,
     }
 );
@@ -349,6 +422,7 @@ extern_methods!(
     /// NSMenuPropertiesToUpdate
     #[cfg(feature = "AppKit_NSMenu")]
     unsafe impl NSMenu {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(propertiesToUpdate)]
         pub unsafe fn propertiesToUpdate(&self) -> NSMenuProperties;
     }
@@ -373,67 +447,83 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSMenu")]
     unsafe impl NSMenu {
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMenuRepresentation:)]
         pub unsafe fn setMenuRepresentation(&self, menu_rep: Option<&Object>);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other menuRepresentation)]
         pub unsafe fn menuRepresentation(&self) -> Option<Id<Object>>;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setContextMenuRepresentation:)]
         pub unsafe fn setContextMenuRepresentation(&self, menu_rep: Option<&Object>);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other contextMenuRepresentation)]
         pub unsafe fn contextMenuRepresentation(&self) -> Option<Id<Object>>;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTearOffMenuRepresentation:)]
         pub unsafe fn setTearOffMenuRepresentation(&self, menu_rep: Option<&Object>);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other tearOffMenuRepresentation)]
         pub unsafe fn tearOffMenuRepresentation(&self) -> Option<Id<Object>>;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(menuZone)]
         pub unsafe fn menuZone() -> *mut NSZone;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMenuZone:)]
         pub unsafe fn setMenuZone(zone: *mut NSZone);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other attachedMenu)]
         pub unsafe fn attachedMenu(&self) -> Option<Id<NSMenu>>;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isAttached)]
         pub unsafe fn isAttached(&self) -> bool;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(sizeToFit)]
         pub unsafe fn sizeToFit(&self);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(locationForSubmenu:)]
         pub unsafe fn locationForSubmenu(&self, submenu: Option<&NSMenu>) -> NSPoint;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(menuChangedMessagesEnabled)]
         pub unsafe fn menuChangedMessagesEnabled(&self) -> bool;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMenuChangedMessagesEnabled:)]
         pub unsafe fn setMenuChangedMessagesEnabled(&self, menu_changed_messages_enabled: bool);
 
         #[cfg(feature = "AppKit_NSEvent")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(helpRequested:)]
         pub unsafe fn helpRequested(&self, event_ptr: &NSEvent);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isTornOff)]
         pub unsafe fn isTornOff(&self) -> bool;
     }

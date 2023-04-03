@@ -5,6 +5,7 @@ use crate::BackgroundAssets::*;
 use crate::Foundation::*;
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait BADownloadManagerDelegate: NSObjectProtocol {
         #[cfg(feature = "BackgroundAssets_BADownload")]
         #[optional]
@@ -64,6 +65,7 @@ extern_protocol!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "BackgroundAssets_BADownloadManager")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct BADownloadManager;
 
     #[cfg(feature = "BackgroundAssets_BADownloadManager")]
@@ -84,12 +86,15 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other sharedManager)]
         pub unsafe fn sharedManager() -> Id<BADownloadManager>;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn BADownloadManagerDelegate>>>;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -101,6 +106,7 @@ extern_methods!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSError"
         ))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(fetchCurrentDownloadsWithCompletionHandler:)]
         pub unsafe fn fetchCurrentDownloadsWithCompletionHandler(
             &self,
@@ -111,6 +117,7 @@ extern_methods!(
             feature = "BackgroundAssets_BADownload",
             feature = "Foundation_NSError"
         ))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(scheduleDownload:error:_)]
         pub unsafe fn scheduleDownload_error(
             &self,
@@ -118,6 +125,7 @@ extern_methods!(
         ) -> Result<(), Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSError")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(performWithExclusiveControl:)]
         pub unsafe fn performWithExclusiveControl(
             &self,
@@ -125,6 +133,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSError"))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(performWithExclusiveControlBeforeDate:performHandler:)]
         pub unsafe fn performWithExclusiveControlBeforeDate_performHandler(
             &self,
@@ -136,6 +145,7 @@ extern_methods!(
             feature = "BackgroundAssets_BADownload",
             feature = "Foundation_NSError"
         ))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(startForegroundDownload:error:_)]
         pub unsafe fn startForegroundDownload_error(
             &self,
@@ -146,6 +156,7 @@ extern_methods!(
             feature = "BackgroundAssets_BADownload",
             feature = "Foundation_NSError"
         ))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(cancelDownload:error:_)]
         pub unsafe fn cancelDownload_error(&self, download: &BADownload)
             -> Result<(), Id<NSError>>;

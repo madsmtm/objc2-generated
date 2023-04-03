@@ -9,6 +9,7 @@ use crate::OSAKit::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Automator_AMWorkspace")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct AMWorkspace;
 
     #[cfg(feature = "Automator_AMWorkspace")]
@@ -23,6 +24,7 @@ unsafe impl NSObjectProtocol for AMWorkspace {}
 extern_methods!(
     #[cfg(feature = "Automator_AMWorkspace")]
     unsafe impl AMWorkspace {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other sharedWorkspace)]
         pub unsafe fn sharedWorkspace() -> Option<Id<AMWorkspace>>;
     }

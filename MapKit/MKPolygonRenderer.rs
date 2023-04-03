@@ -10,6 +10,7 @@ use crate::MapKit::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MapKit_MKPolygonRenderer")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct MKPolygonRenderer;
 
     #[cfg(feature = "MapKit_MKPolygonRenderer")]
@@ -36,15 +37,19 @@ extern_methods!(
         #[method_id(@__retain_semantics Other polygon)]
         pub unsafe fn polygon(&self) -> Id<MKPolygon>;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(strokeStart)]
         pub unsafe fn strokeStart(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(setStrokeStart:)]
         pub unsafe fn setStrokeStart(&self, stroke_start: CGFloat);
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(strokeEnd)]
         pub unsafe fn strokeEnd(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(setStrokeEnd:)]
         pub unsafe fn setStrokeEnd(&self, stroke_end: CGFloat);
     }

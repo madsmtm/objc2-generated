@@ -7,6 +7,7 @@ use crate::MetricKit::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MetricKit_MXForegroundExitData")]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub struct MXForegroundExitData;
 
     #[cfg(feature = "MetricKit_MXForegroundExitData")]
@@ -50,6 +51,7 @@ extern_methods!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MetricKit_MXBackgroundExitData")]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub struct MXBackgroundExitData;
 
     #[cfg(feature = "MetricKit_MXBackgroundExitData")]
@@ -105,6 +107,7 @@ extern_methods!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MetricKit_MXAppExitMetric")]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub struct MXAppExitMetric;
 
     #[cfg(feature = "MetricKit_MXAppExitMetric")]

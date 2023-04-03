@@ -8,6 +8,7 @@ use crate::MailKit::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MailKit_MEDecodedMessageBanner")]
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub struct MEDecodedMessageBanner;
 
     #[cfg(feature = "MailKit_MEDecodedMessageBanner")]

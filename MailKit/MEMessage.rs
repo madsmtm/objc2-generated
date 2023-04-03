@@ -7,18 +7,26 @@ use crate::MailKit::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub enum MEMessageState {
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         MEMessageStateReceived = 0,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         MEMessageStateDraft = 1,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         MEMessageStateSending = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub enum MEMessageEncryptionState {
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         MEMessageEncryptionStateUnknown = 0,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         MEMessageEncryptionStateNotEncrypted = 1,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         MEMessageEncryptionStateEncrypted = 2,
     }
 );
@@ -26,6 +34,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MailKit_MEMessage")]
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub struct MEMessage;
 
     #[cfg(feature = "MailKit_MEMessage")]

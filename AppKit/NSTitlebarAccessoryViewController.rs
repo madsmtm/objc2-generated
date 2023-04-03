@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSTitlebarAccessoryViewController")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSTitlebarAccessoryViewController;
 
     #[cfg(feature = "AppKit_NSTitlebarAccessoryViewController")]
@@ -41,36 +42,47 @@ unsafe impl NSUserInterfaceItemIdentification for NSTitlebarAccessoryViewControl
 extern_methods!(
     #[cfg(feature = "AppKit_NSTitlebarAccessoryViewController")]
     unsafe impl NSTitlebarAccessoryViewController {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(layoutAttribute)]
         pub unsafe fn layoutAttribute(&self) -> NSLayoutAttribute;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setLayoutAttribute:)]
         pub unsafe fn setLayoutAttribute(&self, layout_attribute: NSLayoutAttribute);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(fullScreenMinHeight)]
         pub unsafe fn fullScreenMinHeight(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFullScreenMinHeight:)]
         pub unsafe fn setFullScreenMinHeight(&self, full_screen_min_height: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isHidden)]
         pub unsafe fn isHidden(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setHidden:)]
         pub unsafe fn setHidden(&self, hidden: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(automaticallyAdjustsSize)]
         pub unsafe fn automaticallyAdjustsSize(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAutomaticallyAdjustsSize:)]
         pub unsafe fn setAutomaticallyAdjustsSize(&self, automatically_adjusts_size: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(viewWillAppear)]
         pub unsafe fn viewWillAppear(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(viewDidAppear)]
         pub unsafe fn viewDidAppear(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(viewDidDisappear)]
         pub unsafe fn viewDidDisappear(&self);
     }
@@ -81,6 +93,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTitlebarAccessoryViewController")]
     unsafe impl NSTitlebarAccessoryViewController {
         #[cfg(feature = "Foundation_NSBundle")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Option<Allocated<Self>>,

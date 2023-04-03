@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSStepperCell")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSStepperCell;
 
     #[cfg(feature = "AppKit_NSStepperCell")]
@@ -35,33 +36,43 @@ unsafe impl NSUserInterfaceItemIdentification for NSStepperCell {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSStepperCell")]
     unsafe impl NSStepperCell {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(minValue)]
         pub unsafe fn minValue(&self) -> c_double;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMinValue:)]
         pub unsafe fn setMinValue(&self, min_value: c_double);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(maxValue)]
         pub unsafe fn maxValue(&self) -> c_double;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMaxValue:)]
         pub unsafe fn setMaxValue(&self, max_value: c_double);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(increment)]
         pub unsafe fn increment(&self) -> c_double;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setIncrement:)]
         pub unsafe fn setIncrement(&self, increment: c_double);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(valueWraps)]
         pub unsafe fn valueWraps(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setValueWraps:)]
         pub unsafe fn setValueWraps(&self, value_wraps: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(autorepeat)]
         pub unsafe fn autorepeat(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAutorepeat:)]
         pub unsafe fn setAutorepeat(&self, autorepeat: bool);
     }
@@ -72,10 +83,12 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSStepperCell")]
     unsafe impl NSStepperCell {
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initTextCell:)]
         pub unsafe fn initTextCell(this: Option<Allocated<Self>>, string: &NSString) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initImageCell:)]
         pub unsafe fn initImageCell(
             this: Option<Allocated<Self>>,

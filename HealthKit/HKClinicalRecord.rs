@@ -13,6 +13,7 @@ extern_static!(HKPredicateKeyPathClinicalRecordFHIRResourceType: &'static NSStri
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HealthKit_HKClinicalRecord")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct HKClinicalRecord;
 
     #[cfg(feature = "HealthKit_HKClinicalRecord")]

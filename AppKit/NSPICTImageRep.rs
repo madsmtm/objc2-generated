@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSPICTImageRep")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSPICTImageRep;
 
     #[cfg(feature = "AppKit_NSPICTImageRep")]
@@ -27,10 +28,12 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSPICTImageRep")]
     unsafe impl NSPICTImageRep {
         #[cfg(feature = "Foundation_NSData")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other imageRepWithData:)]
         pub unsafe fn imageRepWithData(pict_data: &NSData) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSData")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithData:)]
         pub unsafe fn initWithData(
             this: Option<Allocated<Self>>,
@@ -38,9 +41,11 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSData")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other PICTRepresentation)]
         pub unsafe fn PICTRepresentation(&self) -> Id<NSData>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(boundingBox)]
         pub unsafe fn boundingBox(&self) -> NSRect;
     }

@@ -12,6 +12,7 @@ extern_static!(GCRacingWheelDidDisconnectNotification: &'static NSString);
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GameController_GCRacingWheel")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct GCRacingWheel;
 
     #[cfg(feature = "GameController_GCRacingWheel")]

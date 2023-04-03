@@ -10,10 +10,12 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSFileWrapper")]
     unsafe impl NSFileWrapper {
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other icon)]
         pub unsafe fn icon(&self) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setIcon:)]
         pub unsafe fn setIcon(&self, icon: Option<&NSImage>);
     }

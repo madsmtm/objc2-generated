@@ -11,6 +11,7 @@ typed_extensible_enum!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait NSFileProviderItemDecorating: NSFileProviderItemProtocol {
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other decorations)]

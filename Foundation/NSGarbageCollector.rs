@@ -7,6 +7,7 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSGarbageCollector")]
     #[deprecated = "Building Garbage Collected apps is no longer supported."]
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub struct NSGarbageCollector;
 
     #[cfg(feature = "Foundation_NSGarbageCollector")]
@@ -25,6 +26,7 @@ extern_methods!(
         pub unsafe fn defaultCollector() -> Id<Object>;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(isCollecting)]
         pub unsafe fn isCollecting(&self) -> bool;
 

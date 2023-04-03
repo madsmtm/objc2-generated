@@ -18,6 +18,7 @@ ns_enum!(
         NSNetServicesCancelledError = -72005,
         NSNetServicesInvalidError = -72006,
         NSNetServicesTimeoutError = -72007,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSNetServicesMissingRequiredConfigurationError = -72008,
     }
 );
@@ -34,6 +35,7 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSNetService")]
     #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct NSNetService;
 
     #[cfg(feature = "Foundation_NSNetService")]
@@ -177,6 +179,7 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSNetServiceBrowser")]
     #[deprecated = "Use nw_browser_t in Network framework instead"]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct NSNetServiceBrowser;
 
     #[cfg(feature = "Foundation_NSNetServiceBrowser")]
@@ -247,6 +250,7 @@ extern_methods!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait NSNetServiceDelegate: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSNetService")]
         #[optional]
@@ -325,6 +329,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait NSNetServiceBrowserDelegate: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSNetServiceBrowser")]
         #[optional]

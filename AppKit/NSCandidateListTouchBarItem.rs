@@ -8,6 +8,7 @@ use crate::Foundation::*;
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSCandidateListTouchBarItem<
         CandidateType: Message = Object,
         CandidateTypeOwnership: Ownership = Shared,
@@ -43,45 +44,57 @@ extern_methods!(
         NSCandidateListTouchBarItem<CandidateType, CandidateTypeOwnership>
     {
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other client)]
         pub unsafe fn client(&self) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setClient:)]
         pub unsafe fn setClient(&self, client: Option<&NSView>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Id<ProtocolObject<dyn NSCandidateListTouchBarItemDelegate>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn NSCandidateListTouchBarItemDelegate>>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isCollapsed)]
         pub unsafe fn isCollapsed(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCollapsed:)]
         pub unsafe fn setCollapsed(&self, collapsed: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(allowsCollapsing)]
         pub unsafe fn allowsCollapsing(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAllowsCollapsing:)]
         pub unsafe fn setAllowsCollapsing(&self, allows_collapsing: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isCandidateListVisible)]
         pub unsafe fn isCandidateListVisible(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(updateWithInsertionPointVisibility:)]
         pub unsafe fn updateWithInsertionPointVisibility(&self, is_visible: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(allowsTextInputContextCandidates)]
         pub unsafe fn allowsTextInputContextCandidates(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAllowsTextInputContextCandidates:)]
         pub unsafe fn setAllowsTextInputContextCandidates(
             &self,
@@ -89,12 +102,14 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(attributedStringForCandidate)]
         pub unsafe fn attributedStringForCandidate(
             &self,
         ) -> *mut Block<(NonNull<CandidateType>, NSInteger), NonNull<NSAttributedString>>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAttributedStringForCandidate:)]
         pub unsafe fn setAttributedStringForCandidate(
             &self,
@@ -104,10 +119,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other candidates)]
         pub unsafe fn candidates(&self) -> Id<NSArray<CandidateType>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCandidates:forSelectedRange:inString:)]
         pub unsafe fn setCandidates_forSelectedRange_inString(
             &self,
@@ -117,18 +134,22 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other customizationLabel)]
         pub unsafe fn customizationLabel(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCustomizationLabel:)]
         pub unsafe fn setCustomizationLabel(&self, customization_label: Option<&NSString>);
     }
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSCandidateListTouchBarItemDelegate: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(candidateListTouchBarItem:beginSelectingCandidateAtIndex:)]
         unsafe fn candidateListTouchBarItem_beginSelectingCandidateAtIndex(
@@ -138,6 +159,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(candidateListTouchBarItem:changeSelectionFromCandidateAtIndex:toIndex:)]
         unsafe fn candidateListTouchBarItem_changeSelectionFromCandidateAtIndex_toIndex(
@@ -148,6 +170,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(candidateListTouchBarItem:endSelectingCandidateAtIndex:)]
         unsafe fn candidateListTouchBarItem_endSelectingCandidateAtIndex(
@@ -157,6 +180,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(candidateListTouchBarItem:changedCandidateListVisibility:)]
         unsafe fn candidateListTouchBarItem_changedCandidateListVisibility(
@@ -174,6 +198,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSView")]
     unsafe impl NSView {
         #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other candidateListTouchBarItem)]
         pub unsafe fn candidateListTouchBarItem(&self) -> Option<Id<NSCandidateListTouchBarItem>>;
     }

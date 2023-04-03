@@ -7,42 +7,61 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSUsableScrollerParts {
+        #[cfg(not(any(target_os = "ios")))]
         NSNoScrollerParts = 0,
         #[deprecated = "Scroller arrows are not used anymore."]
+        #[cfg(not(any(target_os = "ios")))]
         NSOnlyScrollerArrows = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSAllScrollerParts = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSScrollerPart {
+        #[cfg(not(any(target_os = "ios")))]
         NSScrollerNoPart = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSScrollerDecrementPage = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSScrollerKnob = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSScrollerIncrementPage = 3,
         #[deprecated = "Scroller arrows are not used anymore."]
+        #[cfg(not(any(target_os = "ios")))]
         NSScrollerDecrementLine = 4,
         #[deprecated = "Scroller arrows are not used anymore."]
+        #[cfg(not(any(target_os = "ios")))]
         NSScrollerIncrementLine = 5,
+        #[cfg(not(any(target_os = "ios")))]
         NSScrollerKnobSlot = 6,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSScrollerStyle {
+        #[cfg(not(any(target_os = "ios")))]
         NSScrollerStyleLegacy = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSScrollerStyleOverlay = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSScrollerKnobStyle {
+        #[cfg(not(any(target_os = "ios")))]
         NSScrollerKnobStyleDefault = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSScrollerKnobStyleDark = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSScrollerKnobStyleLight = 2,
     }
 );
@@ -50,6 +69,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSScroller")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSScroller;
 
     #[cfg(feature = "AppKit_NSScroller")]
@@ -86,64 +106,83 @@ unsafe impl NSUserInterfaceItemIdentification for NSScroller {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSScroller")]
     unsafe impl NSScroller {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isCompatibleWithOverlayScrollers)]
         pub unsafe fn isCompatibleWithOverlayScrollers() -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(scrollerWidthForControlSize:scrollerStyle:)]
         pub unsafe fn scrollerWidthForControlSize_scrollerStyle(
             control_size: NSControlSize,
             scroller_style: NSScrollerStyle,
         ) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(preferredScrollerStyle)]
         pub unsafe fn preferredScrollerStyle() -> NSScrollerStyle;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(scrollerStyle)]
         pub unsafe fn scrollerStyle(&self) -> NSScrollerStyle;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setScrollerStyle:)]
         pub unsafe fn setScrollerStyle(&self, scroller_style: NSScrollerStyle);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(knobStyle)]
         pub unsafe fn knobStyle(&self) -> NSScrollerKnobStyle;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setKnobStyle:)]
         pub unsafe fn setKnobStyle(&self, knob_style: NSScrollerKnobStyle);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rectForPart:)]
         pub unsafe fn rectForPart(&self, part_code: NSScrollerPart) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(checkSpaceForParts)]
         pub unsafe fn checkSpaceForParts(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(usableParts)]
         pub unsafe fn usableParts(&self) -> NSUsableScrollerParts;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(controlSize)]
         pub unsafe fn controlSize(&self) -> NSControlSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setControlSize:)]
         pub unsafe fn setControlSize(&self, control_size: NSControlSize);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawKnob)]
         pub unsafe fn drawKnob(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawKnobSlotInRect:highlight:)]
         pub unsafe fn drawKnobSlotInRect_highlight(&self, slot_rect: NSRect, flag: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(testPart:)]
         pub unsafe fn testPart(&self, point: NSPoint) -> NSScrollerPart;
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(trackKnob:)]
         pub unsafe fn trackKnob(&self, event: &NSEvent);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(hitPart)]
         pub unsafe fn hitPart(&self) -> NSScrollerPart;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(knobProportion)]
         pub unsafe fn knobProportion(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setKnobProportion:)]
         pub unsafe fn setKnobProportion(&self, knob_proportion: CGFloat);
     }
@@ -154,10 +193,15 @@ extern_static!(NSPreferredScrollerStyleDidChangeNotification: &'static NSNotific
 ns_enum!(
     #[underlying(NSUInteger)]
     #[deprecated = "Scroller arrows are not used anymore."]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSScrollArrowPosition {
+        #[cfg(not(any(target_os = "ios")))]
         NSScrollerArrowsMaxEnd = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSScrollerArrowsMinEnd = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSScrollerArrowsDefaultSetting = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSScrollerArrowsNone = 2,
     }
 );
@@ -165,8 +209,11 @@ ns_enum!(
 ns_enum!(
     #[underlying(NSUInteger)]
     #[deprecated = "Scroller arrows are not used anymore."]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSScrollerArrow {
+        #[cfg(not(any(target_os = "ios")))]
         NSScrollerIncrementArrow = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSScrollerDecrementArrow = 1,
     }
 );
@@ -176,47 +223,58 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSScroller")]
     unsafe impl NSScroller {
         #[deprecated = "Use +scrollerWidthForControlSize:scrollerStyle: instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(scrollerWidthForControlSize:)]
         pub unsafe fn scrollerWidthForControlSize(control_size: NSControlSize) -> CGFloat;
 
         #[deprecated = "Use +scrollerWidthForControlSize:scrollerStyle: instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(scrollerWidth)]
         pub unsafe fn scrollerWidth() -> CGFloat;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFloatValue:knobProportion:)]
         pub unsafe fn setFloatValue_knobProportion(&self, value: c_float, proportion: CGFloat);
 
         #[deprecated = "Has had no effect since 10.7"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(arrowsPosition)]
         pub unsafe fn arrowsPosition(&self) -> NSScrollArrowPosition;
 
         #[deprecated = "Has had no effect since 10.7"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setArrowsPosition:)]
         pub unsafe fn setArrowsPosition(&self, arrows_position: NSScrollArrowPosition);
 
         #[deprecated = "Has had no effect since 10.7"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(controlTint)]
         pub unsafe fn controlTint(&self) -> NSControlTint;
 
         #[deprecated = "Has had no effect since 10.7"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setControlTint:)]
         pub unsafe fn setControlTint(&self, control_tint: NSControlTint);
 
         #[deprecated = "Has had no effect since 10.7"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(highlight:)]
         pub unsafe fn highlight(&self, flag: bool);
 
         #[cfg(feature = "AppKit_NSEvent")]
         #[deprecated = "Not invoked since 10.7"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(trackScrollButtons:)]
         pub unsafe fn trackScrollButtons(&self, event: &NSEvent);
 
         #[deprecated = "Not invoked on any macOS version"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawParts)]
         pub unsafe fn drawParts(&self);
 
         #[deprecated = "Scrollers don't have arrows as of 10.7"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawArrow:highlight:)]
         pub unsafe fn drawArrow_highlight(&self, which_arrow: NSScrollerArrow, flag: bool);
     }
@@ -226,6 +284,7 @@ extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(feature = "AppKit_NSScroller")]
     unsafe impl NSScroller {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }

@@ -35,14 +35,17 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSSliderTouchBarItem")]
     unsafe impl NSSliderTouchBarItem {
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other view)]
         pub unsafe fn view(&self) -> Id<NSView>;
 
         #[cfg(feature = "AppKit_NSSlider")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other slider)]
         pub unsafe fn slider(&self) -> Id<NSSlider>;
 
         #[cfg(feature = "AppKit_NSSlider")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSlider:)]
         pub unsafe fn setSlider(&self, slider: &NSSlider);
 

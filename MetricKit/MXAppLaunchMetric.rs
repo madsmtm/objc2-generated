@@ -7,6 +7,7 @@ use crate::MetricKit::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MetricKit_MXAppLaunchMetric")]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub struct MXAppLaunchMetric;
 
     #[cfg(feature = "MetricKit_MXAppLaunchMetric")]
@@ -46,6 +47,7 @@ extern_methods!(
             feature = "Foundation_NSUnitDuration",
             feature = "MetricKit_MXHistogram"
         ))]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other histogrammedOptimizedTimeToFirstDraw)]
         pub unsafe fn histogrammedOptimizedTimeToFirstDraw(
             &self,
@@ -55,6 +57,7 @@ extern_methods!(
             feature = "Foundation_NSUnitDuration",
             feature = "MetricKit_MXHistogram"
         ))]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other histogrammedExtendedLaunch)]
         pub unsafe fn histogrammedExtendedLaunch(&self) -> Id<MXHistogram<NSUnitDuration>>;
     }

@@ -9,6 +9,7 @@ use crate::OSAKit::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Automator_AMAppleScriptAction")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct AMAppleScriptAction;
 
     #[cfg(feature = "Automator_AMAppleScriptAction")]
@@ -31,10 +32,12 @@ extern_methods!(
     #[cfg(feature = "Automator_AMAppleScriptAction")]
     unsafe impl AMAppleScriptAction {
         #[cfg(feature = "OSAKit_OSAScript")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other script)]
         pub unsafe fn script(&self) -> Option<Id<OSAScript>>;
 
         #[cfg(feature = "OSAKit_OSAScript")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setScript:)]
         pub unsafe fn setScript(&self, script: Option<&OSAScript>);
     }
@@ -45,6 +48,7 @@ extern_methods!(
     #[cfg(feature = "Automator_AMAppleScriptAction")]
     unsafe impl AMAppleScriptAction {
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithDefinition:fromArchive:)]
         pub unsafe fn initWithDefinition_fromArchive(
             this: Option<Allocated<Self>>,
@@ -53,6 +57,7 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:error:_)]
         pub unsafe fn initWithContentsOfURL_error(
             this: Option<Allocated<Self>>,

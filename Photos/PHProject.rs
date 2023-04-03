@@ -9,6 +9,7 @@ use crate::PhotoKit::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PhotoKit_PHProject")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct PHProject;
 
     #[cfg(feature = "PhotoKit_PHProject")]
@@ -25,9 +26,11 @@ extern_methods!(
     #[cfg(feature = "PhotoKit_PHProject")]
     unsafe impl PHProject {
         #[cfg(feature = "Foundation_NSData")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other projectExtensionData)]
         pub unsafe fn projectExtensionData(&self) -> Id<NSData>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(hasProjectPreview)]
         pub unsafe fn hasProjectPreview(&self) -> bool;
     }

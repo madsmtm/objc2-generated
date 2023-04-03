@@ -7,14 +7,23 @@ use crate::MediaPlayer::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub enum MPMediaGrouping {
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         MPMediaGroupingTitle = 0,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         MPMediaGroupingAlbum = 1,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         MPMediaGroupingArtist = 2,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         MPMediaGroupingAlbumArtist = 3,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         MPMediaGroupingComposer = 4,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         MPMediaGroupingGenre = 5,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         MPMediaGroupingPlaylist = 6,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         MPMediaGroupingPodcastTitle = 7,
     }
 );
@@ -22,6 +31,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MediaPlayer_MPMediaQuery")]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub struct MPMediaQuery;
 
     #[cfg(feature = "MediaPlayer_MPMediaQuery")]
@@ -131,6 +141,7 @@ extern_methods!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MediaPlayer_MPMediaPredicate")]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub struct MPMediaPredicate;
 
     #[cfg(feature = "MediaPlayer_MPMediaPredicate")]
@@ -155,8 +166,11 @@ extern_methods!(
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub enum MPMediaPredicateComparison {
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         MPMediaPredicateComparisonEqualTo = 0,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         MPMediaPredicateComparisonContains = 1,
     }
 );
@@ -164,6 +178,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MediaPlayer_MPMediaPropertyPredicate")]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub struct MPMediaPropertyPredicate;
 
     #[cfg(feature = "MediaPlayer_MPMediaPropertyPredicate")]
@@ -217,12 +232,14 @@ extern_methods!(
     #[cfg(feature = "MediaPlayer_MPMediaItem")]
     unsafe impl MPMediaItem {
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other persistentIDPropertyForGroupingType:)]
         pub unsafe fn persistentIDPropertyForGroupingType(
             grouping_type: MPMediaGrouping,
         ) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other titlePropertyForGroupingType:)]
         pub unsafe fn titlePropertyForGroupingType(grouping_type: MPMediaGrouping) -> Id<NSString>;
     }

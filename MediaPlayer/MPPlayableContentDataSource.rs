@@ -7,6 +7,7 @@ use crate::MediaPlayer::*;
 
 extern_protocol!(
     #[deprecated = "Use CarPlay framework"]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait MPPlayableContentDataSource: NSObjectProtocol {
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSIndexPath"))]
         #[optional]
@@ -31,6 +32,7 @@ extern_protocol!(
             feature = "MediaPlayer_MPContentItem"
         ))]
         #[deprecated = "Use CarPlay framework"]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method(contentItemForIdentifier:completionHandler:)]
         unsafe fn contentItemForIdentifier_completionHandler(

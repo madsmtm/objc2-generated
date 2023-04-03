@@ -9,6 +9,7 @@ use crate::UniformTypeIdentifiers::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HealthKit_HKVerifiableClinicalRecordSubject")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct HKVerifiableClinicalRecordSubject;
 
     #[cfg(feature = "HealthKit_HKVerifiableClinicalRecordSubject")]

@@ -7,6 +7,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AuthenticationServices_ASAuthorizationSingleSignOnRequest")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct ASAuthorizationSingleSignOnRequest;
 
     #[cfg(feature = "AuthenticationServices_ASAuthorizationSingleSignOnRequest")]
@@ -39,9 +40,11 @@ extern_methods!(
             authorization_options: &NSArray<NSURLQueryItem>,
         );
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(isUserInterfaceEnabled)]
         pub unsafe fn isUserInterfaceEnabled(&self) -> bool;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(setUserInterfaceEnabled:)]
         pub unsafe fn setUserInterfaceEnabled(&self, user_interface_enabled: bool);
     }

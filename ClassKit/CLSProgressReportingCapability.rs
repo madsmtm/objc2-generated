@@ -6,11 +6,17 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub enum CLSProgressReportingCapabilityKind {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLSProgressReportingCapabilityKindDuration = 0,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLSProgressReportingCapabilityKindPercent = 1,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLSProgressReportingCapabilityKindBinary = 2,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLSProgressReportingCapabilityKindQuantity = 3,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLSProgressReportingCapabilityKindScore = 4,
     }
 );
@@ -18,6 +24,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "ClassKit_CLSProgressReportingCapability")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct CLSProgressReportingCapability;
 
     #[cfg(feature = "ClassKit_CLSProgressReportingCapability")]

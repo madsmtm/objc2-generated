@@ -105,6 +105,7 @@ extern_static!(MPMediaItemPropertyIsPreorder: &'static NSString);
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MediaPlayer_MPMediaItem")]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub struct MPMediaItem;
 
     #[cfg(feature = "MediaPlayer_MPMediaItem")]

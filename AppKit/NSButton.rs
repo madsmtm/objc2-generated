@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSButton")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSButton;
 
     #[cfg(feature = "AppKit_NSButton")]
@@ -54,6 +55,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSButton")]
     unsafe impl NSButton {
         #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other buttonWithTitle:image:target:action:)]
         pub unsafe fn buttonWithTitle_image_target_action(
             title: &NSString,
@@ -63,6 +65,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other buttonWithTitle:target:action:)]
         pub unsafe fn buttonWithTitle_target_action(
             title: &NSString,
@@ -71,6 +74,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other buttonWithImage:target:action:)]
         pub unsafe fn buttonWithImage_target_action(
             image: &NSImage,
@@ -79,6 +83,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other checkboxWithTitle:target:action:)]
         pub unsafe fn checkboxWithTitle_target_action(
             title: &NSString,
@@ -87,6 +92,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other radioButtonWithTitle:target:action:)]
         pub unsafe fn radioButtonWithTitle_target_action(
             title: &NSString,
@@ -94,73 +100,92 @@ extern_methods!(
             action: Option<Sel>,
         ) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setButtonType:)]
         pub unsafe fn setButtonType(&self, r#type: NSButtonType);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
         #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other attributedTitle)]
         pub unsafe fn attributedTitle(&self) -> Id<NSAttributedString>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAttributedTitle:)]
         pub unsafe fn setAttributedTitle(&self, attributed_title: &NSAttributedString);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other alternateTitle)]
         pub unsafe fn alternateTitle(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAlternateTitle:)]
         pub unsafe fn setAlternateTitle(&self, alternate_title: &NSString);
 
         #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other attributedAlternateTitle)]
         pub unsafe fn attributedAlternateTitle(&self) -> Id<NSAttributedString>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAttributedAlternateTitle:)]
         pub unsafe fn setAttributedAlternateTitle(
             &self,
             attributed_alternate_title: &NSAttributedString,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(hasDestructiveAction)]
         pub unsafe fn hasDestructiveAction(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setHasDestructiveAction:)]
         pub unsafe fn setHasDestructiveAction(&self, has_destructive_action: bool);
 
         #[cfg(feature = "AppKit_NSSound")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other sound)]
         pub unsafe fn sound(&self) -> Option<Id<NSSound>>;
 
         #[cfg(feature = "AppKit_NSSound")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSound:)]
         pub unsafe fn setSound(&self, sound: Option<&NSSound>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isSpringLoaded)]
         pub unsafe fn isSpringLoaded(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSpringLoaded:)]
         pub unsafe fn setSpringLoaded(&self, spring_loaded: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(maxAcceleratorLevel)]
         pub unsafe fn maxAcceleratorLevel(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMaxAcceleratorLevel:)]
         pub unsafe fn setMaxAcceleratorLevel(&self, max_accelerator_level: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPeriodicDelay:interval:)]
         pub unsafe fn setPeriodicDelay_interval(&self, delay: c_float, interval: c_float);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(getPeriodicDelay:interval:)]
         pub unsafe fn getPeriodicDelay_interval(
             &self,
@@ -168,27 +193,35 @@ extern_methods!(
             interval: NonNull<c_float>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(bezelStyle)]
         pub unsafe fn bezelStyle(&self) -> NSBezelStyle;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBezelStyle:)]
         pub unsafe fn setBezelStyle(&self, bezel_style: NSBezelStyle);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isBordered)]
         pub unsafe fn isBordered(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBordered:)]
         pub unsafe fn setBordered(&self, bordered: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isTransparent)]
         pub unsafe fn isTransparent(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTransparent:)]
         pub unsafe fn setTransparent(&self, transparent: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(showsBorderOnlyWhileMouseInside)]
         pub unsafe fn showsBorderOnlyWhileMouseInside(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setShowsBorderOnlyWhileMouseInside:)]
         pub unsafe fn setShowsBorderOnlyWhileMouseInside(
             &self,
@@ -196,44 +229,56 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other alternateImage)]
         pub unsafe fn alternateImage(&self) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAlternateImage:)]
         pub unsafe fn setAlternateImage(&self, alternate_image: Option<&NSImage>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(imagePosition)]
         pub unsafe fn imagePosition(&self) -> NSCellImagePosition;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setImagePosition:)]
         pub unsafe fn setImagePosition(&self, image_position: NSCellImagePosition);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(imageScaling)]
         pub unsafe fn imageScaling(&self) -> NSImageScaling;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setImageScaling:)]
         pub unsafe fn setImageScaling(&self, image_scaling: NSImageScaling);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(imageHugsTitle)]
         pub unsafe fn imageHugsTitle(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setImageHugsTitle:)]
         pub unsafe fn setImageHugsTitle(&self, image_hugs_title: bool);
 
         #[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other symbolConfiguration)]
         pub unsafe fn symbolConfiguration(&self) -> Option<Id<NSImageSymbolConfiguration>>;
 
         #[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSymbolConfiguration:)]
         pub unsafe fn setSymbolConfiguration(
             &self,
@@ -241,50 +286,64 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other bezelColor)]
         pub unsafe fn bezelColor(&self) -> Option<Id<NSColor>>;
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBezelColor:)]
         pub unsafe fn setBezelColor(&self, bezel_color: Option<&NSColor>);
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other contentTintColor)]
         pub unsafe fn contentTintColor(&self) -> Option<Id<NSColor>>;
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setContentTintColor:)]
         pub unsafe fn setContentTintColor(&self, content_tint_color: Option<&NSColor>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(state)]
         pub unsafe fn state(&self) -> NSControlStateValue;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setState:)]
         pub unsafe fn setState(&self, state: NSControlStateValue);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(allowsMixedState)]
         pub unsafe fn allowsMixedState(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAllowsMixedState:)]
         pub unsafe fn setAllowsMixedState(&self, allows_mixed_state: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setNextState)]
         pub unsafe fn setNextState(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(highlight:)]
         pub unsafe fn highlight(&self, flag: bool);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other keyEquivalent)]
         pub unsafe fn keyEquivalent(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setKeyEquivalent:)]
         pub unsafe fn setKeyEquivalent(&self, key_equivalent: &NSString);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(keyEquivalentModifierMask)]
         pub unsafe fn keyEquivalentModifierMask(&self) -> NSEventModifierFlags;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setKeyEquivalentModifierMask:)]
         pub unsafe fn setKeyEquivalentModifierMask(
             &self,
@@ -292,6 +351,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(performKeyEquivalent:)]
         pub unsafe fn performKeyEquivalent(&self, key: &NSEvent) -> bool;
 
@@ -299,6 +359,7 @@ extern_methods!(
             feature = "AppKit_NSUserInterfaceCompressionOptions",
             feature = "Foundation_NSArray"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(compressWithPrioritizedCompressionOptions:)]
         pub unsafe fn compressWithPrioritizedCompressionOptions(
             &self,
@@ -309,6 +370,7 @@ extern_methods!(
             feature = "AppKit_NSUserInterfaceCompressionOptions",
             feature = "Foundation_NSArray"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(minimumSizeWithPrioritizedCompressionOptions:)]
         pub unsafe fn minimumSizeWithPrioritizedCompressionOptions(
             &self,
@@ -316,6 +378,7 @@ extern_methods!(
         ) -> NSSize;
 
         #[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other activeCompressionOptions)]
         pub unsafe fn activeCompressionOptions(&self) -> Id<NSUserInterfaceCompressionOptions>;
     }
@@ -327,6 +390,7 @@ extern_methods!(
     unsafe impl NSButton {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Mnemonics are not used on macOS. Set the title property directly instead."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTitleWithMnemonic:)]
         pub unsafe fn setTitleWithMnemonic(&self, string_with_ampersand: Option<&NSString>);
     }
@@ -336,6 +400,7 @@ extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(feature = "AppKit_NSButton")]
     unsafe impl NSButton {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }

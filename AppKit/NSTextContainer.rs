@@ -51,6 +51,7 @@ extern_methods!(
         pub unsafe fn replaceLayoutManager(&self, new_layout_manager: &NSLayoutManager);
 
         #[cfg(feature = "AppKit_NSTextLayoutManager")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other textLayoutManager)]
         pub unsafe fn textLayoutManager(&self) -> Option<Id<NSTextLayoutManager>>;
 

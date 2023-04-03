@@ -61,6 +61,7 @@ extern_methods!(
 
         #[cfg(feature = "AVFoundation_AVAsset")]
         #[deprecated]
+        #[cfg(not(any(target_os = "macos")))]
         #[method_id(@__retain_semantics Other avAsset)]
         pub unsafe fn avAsset(&self) -> Option<Id<AVAsset>>;
 

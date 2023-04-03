@@ -7,6 +7,7 @@ use crate::MetricKit::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MetricKit_MXDisplayMetric")]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub struct MXDisplayMetric;
 
     #[cfg(feature = "MetricKit_MXDisplayMetric")]

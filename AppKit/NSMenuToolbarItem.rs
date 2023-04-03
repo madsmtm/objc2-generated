@@ -24,10 +24,12 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSMenuToolbarItem")]
     unsafe impl NSMenuToolbarItem {
         #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other menu)]
         pub unsafe fn menu(&self) -> Id<NSMenu>;
 
         #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMenu:)]
         pub unsafe fn setMenu(&self, menu: &NSMenu);
 

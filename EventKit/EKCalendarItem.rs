@@ -26,6 +26,7 @@ extern_methods!(
     #[cfg(feature = "EventKit_EKCalendarItem")]
     unsafe impl EKCalendarItem {
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "macos")))]
         #[method_id(@__retain_semantics Other UUID)]
         pub unsafe fn UUID(&self) -> Id<NSString>;
 

@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSUserInterfaceCompressionOptions;
 
     #[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
@@ -25,14 +26,17 @@ unsafe impl NSObjectProtocol for NSUserInterfaceCompressionOptions {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
     unsafe impl NSUserInterfaceCompressionOptions {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Option<Allocated<Self>>,
@@ -40,57 +44,70 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSSet")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithCompressionOptions:)]
         pub unsafe fn initWithCompressionOptions(
             this: Option<Allocated<Self>>,
             options: &NSSet<NSUserInterfaceCompressionOptions>,
         ) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(containsOptions:)]
         pub unsafe fn containsOptions(&self, options: &NSUserInterfaceCompressionOptions) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(intersectsOptions:)]
         pub unsafe fn intersectsOptions(&self, options: &NSUserInterfaceCompressionOptions)
             -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isEmpty)]
         pub unsafe fn isEmpty(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other optionsByAddingOptions:)]
         pub unsafe fn optionsByAddingOptions(
             &self,
             options: &NSUserInterfaceCompressionOptions,
         ) -> Id<NSUserInterfaceCompressionOptions>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other optionsByRemovingOptions:)]
         pub unsafe fn optionsByRemovingOptions(
             &self,
             options: &NSUserInterfaceCompressionOptions,
         ) -> Id<NSUserInterfaceCompressionOptions>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other hideImagesOption)]
         pub unsafe fn hideImagesOption() -> Id<NSUserInterfaceCompressionOptions>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other hideTextOption)]
         pub unsafe fn hideTextOption() -> Id<NSUserInterfaceCompressionOptions>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other reduceMetricsOption)]
         pub unsafe fn reduceMetricsOption() -> Id<NSUserInterfaceCompressionOptions>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other breakEqualWidthsOption)]
         pub unsafe fn breakEqualWidthsOption() -> Id<NSUserInterfaceCompressionOptions>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other standardOptions)]
         pub unsafe fn standardOptions() -> Id<NSUserInterfaceCompressionOptions>;
     }
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSUserInterfaceCompression {
         #[cfg(all(
             feature = "AppKit_NSUserInterfaceCompressionOptions",
             feature = "Foundation_NSArray"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(compressWithPrioritizedCompressionOptions:)]
         unsafe fn compressWithPrioritizedCompressionOptions(
             &self,
@@ -101,6 +118,7 @@ extern_protocol!(
             feature = "AppKit_NSUserInterfaceCompressionOptions",
             feature = "Foundation_NSArray"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(minimumSizeWithPrioritizedCompressionOptions:)]
         unsafe fn minimumSizeWithPrioritizedCompressionOptions(
             &self,
@@ -108,6 +126,7 @@ extern_protocol!(
         ) -> NSSize;
 
         #[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other activeCompressionOptions)]
         unsafe fn activeCompressionOptions(&self) -> Id<NSUserInterfaceCompressionOptions>;
     }

@@ -10,6 +10,7 @@ use crate::MapKit::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MapKit_MKLookAroundSnapshot")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct MKLookAroundSnapshot;
 
     #[cfg(feature = "MapKit_MKLookAroundSnapshot")]

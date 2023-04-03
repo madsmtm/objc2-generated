@@ -87,11 +87,13 @@ extern_methods!(
         #[method(ensureAttributesAreFixedInRange:)]
         pub unsafe fn ensureAttributesAreFixedInRange(&self, range: NSRange);
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other textStorageObserver)]
         pub unsafe fn textStorageObserver(
             &self,
         ) -> Option<Id<ProtocolObject<dyn NSTextStorageObserving>>>;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(setTextStorageObserver:)]
         pub unsafe fn setTextStorageObserver(
             &self,
@@ -133,6 +135,7 @@ extern_static!(NSTextStorageWillProcessEditingNotification: &'static NSNotificat
 extern_static!(NSTextStorageDidProcessEditingNotification: &'static NSNotificationName);
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait NSTextStorageObserving: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSTextStorage")]
         #[method_id(@__retain_semantics Other textStorage)]

@@ -12,6 +12,7 @@ pub type NSColorName = NSString;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSColorList")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSColorList;
 
     #[cfg(feature = "AppKit_NSColorList")]
@@ -33,12 +34,15 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSColorList")]
     unsafe impl NSColorList {
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other availableColorLists)]
         pub unsafe fn availableColorLists() -> Id<NSArray<NSColorList>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other colorListNamed:)]
         pub unsafe fn colorListNamed(name: &NSColorListName) -> Option<Id<NSColorList>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithName:)]
         pub unsafe fn initWithName(
             this: Option<Allocated<Self>>,
@@ -46,6 +50,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithName:fromFile:)]
         pub unsafe fn initWithName_fromFile(
             this: Option<Allocated<Self>>,
@@ -53,14 +58,17 @@ extern_methods!(
             path: Option<&NSString>,
         ) -> Option<Id<Self>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Id<NSColorListName>>;
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setColor:forKey:)]
         pub unsafe fn setColor_forKey(&self, color: &NSColor, key: &NSColorName);
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(insertColor:key:atIndex:)]
         pub unsafe fn insertColor_key_atIndex(
             &self,
@@ -69,29 +77,36 @@ extern_methods!(
             loc: NSUInteger,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeColorWithKey:)]
         pub unsafe fn removeColorWithKey(&self, key: &NSColorName);
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other colorWithKey:)]
         pub unsafe fn colorWithKey(&self, key: &NSColorName) -> Option<Id<NSColor>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other allKeys)]
         pub unsafe fn allKeys(&self) -> Id<NSArray<NSColorName>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isEditable)]
         pub unsafe fn isEditable(&self) -> bool;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(writeToURL:error:_)]
         pub unsafe fn writeToURL_error(&self, url: Option<&NSURL>) -> Result<(), Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use -writeToURL:error: instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(writeToFile:)]
         pub unsafe fn writeToFile(&self, path: Option<&NSString>) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeFile)]
         pub unsafe fn removeFile(&self);
     }

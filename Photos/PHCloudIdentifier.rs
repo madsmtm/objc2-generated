@@ -30,6 +30,7 @@ extern_methods!(
     #[cfg(feature = "PhotoKit_PHCloudIdentifier")]
     unsafe impl PHCloudIdentifier {
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other notFoundIdentifier)]
         pub unsafe fn notFoundIdentifier() -> Id<PHCloudIdentifier>;
 
@@ -139,6 +140,7 @@ extern_methods!(
             feature = "PhotoKit_PHCloudIdentifier"
         ))]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other localIdentifiersForCloudIdentifiers:)]
         pub unsafe fn localIdentifiersForCloudIdentifiers(
             &self,
@@ -151,6 +153,7 @@ extern_methods!(
             feature = "PhotoKit_PHCloudIdentifier"
         ))]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other cloudIdentifiersForLocalIdentifiers:)]
         pub unsafe fn cloudIdentifiersForLocalIdentifiers(
             &self,

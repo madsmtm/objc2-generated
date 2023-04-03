@@ -10,12 +10,15 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSAffineTransform")]
     unsafe impl NSAffineTransform {
         #[cfg(feature = "AppKit_NSBezierPath")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other transformBezierPath:)]
         pub unsafe fn transformBezierPath(&self, path: &NSBezierPath) -> Id<NSBezierPath>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(set)]
         pub unsafe fn set(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(concat)]
         pub unsafe fn concat(&self);
     }

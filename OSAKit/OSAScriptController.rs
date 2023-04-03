@@ -7,9 +7,13 @@ use crate::OSAKit::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum OSAScriptState {
+        #[cfg(not(any(target_os = "ios")))]
         OSAScriptStopped = 0,
+        #[cfg(not(any(target_os = "ios")))]
         OSAScriptRunning = 1,
+        #[cfg(not(any(target_os = "ios")))]
         OSAScriptRecording = 2,
     }
 );
@@ -17,6 +21,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "OSAKit_OSAScriptController")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct OSAScriptController;
 
     #[cfg(feature = "OSAKit_OSAScriptController")]
@@ -42,52 +47,66 @@ extern_methods!(
     #[cfg(feature = "OSAKit_OSAScriptController")]
     unsafe impl OSAScriptController {
         #[cfg(feature = "OSAKit_OSAScriptView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other scriptView)]
         pub unsafe fn scriptView(&self) -> Option<Id<OSAScriptView>>;
 
         #[cfg(feature = "OSAKit_OSAScriptView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setScriptView:)]
         pub unsafe fn setScriptView(&self, script_view: Option<&OSAScriptView>);
 
         #[cfg(feature = "AppKit_NSTextView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other resultView)]
         pub unsafe fn resultView(&self) -> Option<Id<NSTextView>>;
 
         #[cfg(feature = "AppKit_NSTextView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setResultView:)]
         pub unsafe fn setResultView(&self, result_view: Option<&NSTextView>);
 
         #[cfg(feature = "OSAKit_OSAScript")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other script)]
         pub unsafe fn script(&self) -> Option<Id<OSAScript>>;
 
         #[cfg(feature = "OSAKit_OSAScript")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setScript:)]
         pub unsafe fn setScript(&self, script: Option<&OSAScript>);
 
         #[cfg(feature = "OSAKit_OSALanguage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other language)]
         pub unsafe fn language(&self) -> Option<Id<OSALanguage>>;
 
         #[cfg(feature = "OSAKit_OSALanguage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setLanguage:)]
         pub unsafe fn setLanguage(&self, language: Option<&OSALanguage>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(scriptState)]
         pub unsafe fn scriptState(&self) -> OSAScriptState;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isCompiling)]
         pub unsafe fn isCompiling(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(compileScript:)]
         pub unsafe fn compileScript(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(recordScript:)]
         pub unsafe fn recordScript(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(runScript:)]
         pub unsafe fn runScript(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(stopScript:)]
         pub unsafe fn stopScript(&self, sender: Option<&Object>);
     }

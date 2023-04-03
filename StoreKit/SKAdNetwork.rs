@@ -18,6 +18,7 @@ extern_static!(SKAdNetworkCoarseConversionValueLow: &'static SKAdNetworkCoarseCo
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "StoreKit_SKAdNetwork")]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub struct SKAdNetwork;
 
     #[cfg(feature = "StoreKit_SKAdNetwork")]
@@ -33,6 +34,7 @@ extern_methods!(
     #[cfg(feature = "StoreKit_SKAdNetwork")]
     unsafe impl SKAdNetwork {
         #[cfg(all(feature = "Foundation_NSError", feature = "StoreKit_SKAdImpression"))]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method(startImpression:completionHandler:)]
         pub unsafe fn startImpression_completionHandler(
             impression: &SKAdImpression,
@@ -40,6 +42,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "StoreKit_SKAdImpression"))]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method(endImpression:completionHandler:)]
         pub unsafe fn endImpression_completionHandler(
             impression: &SKAdImpression,
@@ -47,14 +50,17 @@ extern_methods!(
         );
 
         #[deprecated = "Use updatePostbackConversionValue:completionHandler: instead"]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method(registerAppForAdNetworkAttribution)]
         pub unsafe fn registerAppForAdNetworkAttribution();
 
         #[deprecated = "Use updatePostbackConversionValue:completionHandler: instead"]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method(updateConversionValue:)]
         pub unsafe fn updateConversionValue(conversion_value: NSInteger);
 
         #[cfg(feature = "Foundation_NSError")]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method(updatePostbackConversionValue:completionHandler:)]
         pub unsafe fn updatePostbackConversionValue_completionHandler(
             conversion_value: NSInteger,
@@ -62,6 +68,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSError")]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method(updatePostbackConversionValue:coarseValue:completionHandler:)]
         pub unsafe fn updatePostbackConversionValue_coarseValue_completionHandler(
             fine_value: NSInteger,
@@ -70,6 +77,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSError")]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method(updatePostbackConversionValue:coarseValue:lockWindow:completionHandler:)]
         pub unsafe fn updatePostbackConversionValue_coarseValue_lockWindow_completionHandler(
             fine_value: NSInteger,

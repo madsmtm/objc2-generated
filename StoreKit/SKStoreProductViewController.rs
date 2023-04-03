@@ -64,6 +64,7 @@ extern_methods!(
             feature = "Foundation_NSString",
             feature = "StoreKit_SKAdImpression"
         ))]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method(loadProductWithParameters:impression:completionBlock:)]
         pub unsafe fn loadProductWithParameters_impression_completionBlock(
             &self,
@@ -107,6 +108,7 @@ extern_methods!(
     #[cfg(feature = "StoreKit_SKStoreProductViewController")]
     unsafe impl SKStoreProductViewController {
         #[cfg(feature = "Foundation_NSBundle")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Option<Allocated<Self>>,

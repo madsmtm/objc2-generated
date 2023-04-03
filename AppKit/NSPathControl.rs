@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSPathControl")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSPathControl;
 
     #[cfg(feature = "AppKit_NSPathControl")]
@@ -44,33 +45,41 @@ unsafe impl NSUserInterfaceItemIdentification for NSPathControl {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSPathControl")]
     unsafe impl NSPathControl {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isEditable)]
         pub unsafe fn isEditable(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setEditable:)]
         pub unsafe fn setEditable(&self, editable: bool);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other allowedTypes)]
         pub unsafe fn allowedTypes(&self) -> Option<Id<NSArray<NSString>>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAllowedTypes:)]
         pub unsafe fn setAllowedTypes(&self, allowed_types: Option<&NSArray<NSString>>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other placeholderString)]
         pub unsafe fn placeholderString(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPlaceholderString:)]
         pub unsafe fn setPlaceholderString(&self, placeholder_string: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other placeholderAttributedString)]
         pub unsafe fn placeholderAttributedString(&self) -> Option<Id<NSAttributedString>>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPlaceholderAttributedString:)]
         pub unsafe fn setPlaceholderAttributedString(
             &self,
@@ -78,54 +87,68 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other URL)]
         pub unsafe fn URL(&self) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setURL:)]
         pub unsafe fn setURL(&self, url: Option<&NSURL>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(doubleAction)]
         pub unsafe fn doubleAction(&self) -> Option<Sel>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDoubleAction:)]
         pub unsafe fn setDoubleAction(&self, double_action: Option<Sel>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(pathStyle)]
         pub unsafe fn pathStyle(&self) -> NSPathStyle;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPathStyle:)]
         pub unsafe fn setPathStyle(&self, path_style: NSPathStyle);
 
         #[cfg(feature = "AppKit_NSPathControlItem")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other clickedPathItem)]
         pub unsafe fn clickedPathItem(&self) -> Option<Id<NSPathControlItem>>;
 
         #[cfg(all(feature = "AppKit_NSPathControlItem", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other pathItems)]
         pub unsafe fn pathItems(&self) -> Id<NSArray<NSPathControlItem>>;
 
         #[cfg(all(feature = "AppKit_NSPathControlItem", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPathItems:)]
         pub unsafe fn setPathItems(&self, path_items: &NSArray<NSPathControlItem>);
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Option<Id<NSColor>>;
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSColor>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSPathControlDelegate>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn NSPathControlDelegate>>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDraggingSourceOperationMask:forLocal:)]
         pub unsafe fn setDraggingSourceOperationMask_forLocal(
             &self,
@@ -134,22 +157,26 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other menu)]
         pub unsafe fn menu(&self) -> Option<Id<NSMenu>>;
 
         #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMenu:)]
         pub unsafe fn setMenu(&self, menu: Option<&NSMenu>);
     }
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSPathControlDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "AppKit_NSPasteboard",
             feature = "AppKit_NSPathControl",
             feature = "AppKit_NSPathControlItem"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(pathControl:shouldDragItem:withPasteboard:)]
         unsafe fn pathControl_shouldDragItem_withPasteboard(
@@ -164,6 +191,7 @@ extern_protocol!(
             feature = "AppKit_NSPathComponentCell",
             feature = "AppKit_NSPathControl"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(pathControl:shouldDragPathComponentCell:withPasteboard:)]
         unsafe fn pathControl_shouldDragPathComponentCell_withPasteboard(
@@ -174,6 +202,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "AppKit_NSPathControl")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(pathControl:validateDrop:)]
         unsafe fn pathControl_validateDrop(
@@ -183,6 +212,7 @@ extern_protocol!(
         ) -> NSDragOperation;
 
         #[cfg(feature = "AppKit_NSPathControl")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(pathControl:acceptDrop:)]
         unsafe fn pathControl_acceptDrop(
@@ -192,6 +222,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(feature = "AppKit_NSOpenPanel", feature = "AppKit_NSPathControl"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(pathControl:willDisplayOpenPanel:)]
         unsafe fn pathControl_willDisplayOpenPanel(
@@ -201,6 +232,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "AppKit_NSMenu", feature = "AppKit_NSPathControl"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(pathControl:willPopUpMenu:)]
         unsafe fn pathControl_willPopUpMenu(&self, path_control: &NSPathControl, menu: &NSMenu);
@@ -215,16 +247,19 @@ extern_methods!(
     unsafe impl NSPathControl {
         #[cfg(feature = "AppKit_NSPathComponentCell")]
         #[deprecated = "Use the clickedPathItem property instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other clickedPathComponentCell)]
         pub unsafe fn clickedPathComponentCell(&self) -> Option<Id<NSPathComponentCell>>;
 
         #[cfg(all(feature = "AppKit_NSPathComponentCell", feature = "Foundation_NSArray"))]
         #[deprecated = "Use the pathItems property instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other pathComponentCells)]
         pub unsafe fn pathComponentCells(&self) -> Id<NSArray<NSPathComponentCell>>;
 
         #[cfg(all(feature = "AppKit_NSPathComponentCell", feature = "Foundation_NSArray"))]
         #[deprecated = "Use the pathItems property instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPathComponentCells:)]
         pub unsafe fn setPathComponentCells(&self, cells: &NSArray<NSPathComponentCell>);
     }
@@ -234,6 +269,7 @@ extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(feature = "AppKit_NSPathControl")]
     unsafe impl NSPathControl {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }

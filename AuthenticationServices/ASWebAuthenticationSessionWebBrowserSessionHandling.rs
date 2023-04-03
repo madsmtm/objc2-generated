@@ -5,6 +5,7 @@ use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait ASWebAuthenticationSessionWebBrowserSessionHandling {
         #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSessionRequest")]
         #[method(beginHandlingWebAuthenticationSessionRequest:)]

@@ -7,17 +7,24 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSPaperOrientation {
+        #[cfg(not(any(target_os = "ios")))]
         NSPaperOrientationPortrait = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSPaperOrientationLandscape = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSPrintingPaginationMode {
+        #[cfg(not(any(target_os = "ios")))]
         NSPrintingPaginationModeAutomatic = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSPrintingPaginationModeFit = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSPrintingPaginationModeClip = 2,
     }
 );
@@ -103,6 +110,7 @@ pub type NSPrintInfoSettingKey = NSString;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSPrintInfo")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSPrintInfo;
 
     #[cfg(feature = "AppKit_NSPrintInfo")]
@@ -120,13 +128,16 @@ unsafe impl NSObjectProtocol for NSPrintInfo {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSPrintInfo")]
     unsafe impl NSPrintInfo {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other sharedPrintInfo)]
         pub unsafe fn sharedPrintInfo() -> Id<NSPrintInfo>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSharedPrintInfo:)]
         pub unsafe fn setSharedPrintInfo(shared_print_info: &NSPrintInfo);
 
         #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithDictionary:)]
         pub unsafe fn initWithDictionary(
             this: Option<Allocated<Self>>,
@@ -134,149 +145,193 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSMutableDictionary")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other dictionary)]
         pub unsafe fn dictionary(
             &self,
         ) -> Id<NSMutableDictionary<NSPrintInfoAttributeKey, Object>, Owned>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other paperName)]
         pub unsafe fn paperName(&self) -> Option<Id<NSPrinterPaperName>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPaperName:)]
         pub unsafe fn setPaperName(&self, paper_name: Option<&NSPrinterPaperName>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(paperSize)]
         pub unsafe fn paperSize(&self) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPaperSize:)]
         pub unsafe fn setPaperSize(&self, paper_size: NSSize);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(orientation)]
         pub unsafe fn orientation(&self) -> NSPaperOrientation;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setOrientation:)]
         pub unsafe fn setOrientation(&self, orientation: NSPaperOrientation);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(scalingFactor)]
         pub unsafe fn scalingFactor(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setScalingFactor:)]
         pub unsafe fn setScalingFactor(&self, scaling_factor: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(leftMargin)]
         pub unsafe fn leftMargin(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setLeftMargin:)]
         pub unsafe fn setLeftMargin(&self, left_margin: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rightMargin)]
         pub unsafe fn rightMargin(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setRightMargin:)]
         pub unsafe fn setRightMargin(&self, right_margin: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(topMargin)]
         pub unsafe fn topMargin(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTopMargin:)]
         pub unsafe fn setTopMargin(&self, top_margin: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(bottomMargin)]
         pub unsafe fn bottomMargin(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBottomMargin:)]
         pub unsafe fn setBottomMargin(&self, bottom_margin: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isHorizontallyCentered)]
         pub unsafe fn isHorizontallyCentered(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setHorizontallyCentered:)]
         pub unsafe fn setHorizontallyCentered(&self, horizontally_centered: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isVerticallyCentered)]
         pub unsafe fn isVerticallyCentered(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setVerticallyCentered:)]
         pub unsafe fn setVerticallyCentered(&self, vertically_centered: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(horizontalPagination)]
         pub unsafe fn horizontalPagination(&self) -> NSPrintingPaginationMode;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setHorizontalPagination:)]
         pub unsafe fn setHorizontalPagination(
             &self,
             horizontal_pagination: NSPrintingPaginationMode,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(verticalPagination)]
         pub unsafe fn verticalPagination(&self) -> NSPrintingPaginationMode;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setVerticalPagination:)]
         pub unsafe fn setVerticalPagination(&self, vertical_pagination: NSPrintingPaginationMode);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other jobDisposition)]
         pub unsafe fn jobDisposition(&self) -> Id<NSPrintJobDispositionValue>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setJobDisposition:)]
         pub unsafe fn setJobDisposition(&self, job_disposition: &NSPrintJobDispositionValue);
 
         #[cfg(feature = "AppKit_NSPrinter")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other printer)]
         pub unsafe fn printer(&self) -> Id<NSPrinter>;
 
         #[cfg(feature = "AppKit_NSPrinter")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPrinter:)]
         pub unsafe fn setPrinter(&self, printer: &NSPrinter);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setUpPrintOperationDefaultValues)]
         pub unsafe fn setUpPrintOperationDefaultValues(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(imageablePageBounds)]
         pub unsafe fn imageablePageBounds(&self) -> NSRect;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other localizedPaperName)]
         pub unsafe fn localizedPaperName(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "AppKit_NSPrinter")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other defaultPrinter)]
         pub unsafe fn defaultPrinter() -> Option<Id<NSPrinter>>;
 
         #[cfg(feature = "Foundation_NSMutableDictionary")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other printSettings)]
         pub unsafe fn printSettings(
             &self,
         ) -> Id<NSMutableDictionary<NSPrintInfoSettingKey, Object>, Owned>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(PMPrintSession)]
         pub unsafe fn PMPrintSession(&self) -> NonNull<c_void>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(PMPageFormat)]
         pub unsafe fn PMPageFormat(&self) -> NonNull<c_void>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(PMPrintSettings)]
         pub unsafe fn PMPrintSettings(&self) -> NonNull<c_void>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(updateFromPMPageFormat)]
         pub unsafe fn updateFromPMPageFormat(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(updateFromPMPrintSettings)]
         pub unsafe fn updateFromPMPrintSettings(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isSelectionOnly)]
         pub unsafe fn isSelectionOnly(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSelectionOnly:)]
         pub unsafe fn setSelectionOnly(&self, selection_only: bool);
 
         #[cfg(feature = "AppKit_NSPDFInfo")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(takeSettingsFromPDFInfo:)]
         pub unsafe fn takeSettingsFromPDFInfo(&self, in_pdf_info: &NSPDFInfo);
     }
@@ -288,10 +343,12 @@ extern_methods!(
     unsafe impl NSPrintInfo {
         #[cfg(feature = "AppKit_NSPrinter")]
         #[deprecated = "NSPrintInfo's implementation has no effect"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDefaultPrinter:)]
         pub unsafe fn setDefaultPrinter(printer: Option<&NSPrinter>);
 
         #[deprecated = "Use -[NSPrinter pageSizeForPaper:] instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(sizeForPaperName:)]
         pub unsafe fn sizeForPaperName(name: Option<&NSPrinterPaperName>) -> NSSize;
     }
@@ -312,10 +369,13 @@ extern_static!(NSPrintSavePath: &'static NSString);
 ns_enum!(
     #[underlying(NSUInteger)]
     #[deprecated]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSPrintingOrientation {
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         NSPortraitOrientation = 0,
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         NSLandscapeOrientation = 1,
     }
 );

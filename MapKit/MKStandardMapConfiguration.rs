@@ -18,6 +18,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MapKit_MKStandardMapConfiguration")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct MKStandardMapConfiguration;
 
     #[cfg(feature = "MapKit_MKStandardMapConfiguration")]

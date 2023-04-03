@@ -9,9 +9,13 @@ pub type NSSplitViewAutosaveName = NSString;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSSplitViewDividerStyle {
+        #[cfg(not(any(target_os = "ios")))]
         NSSplitViewDividerStyleThick = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSSplitViewDividerStyleThin = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSSplitViewDividerStylePaneSplitter = 3,
     }
 );
@@ -19,6 +23,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSSplitView")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSSplitView;
 
     #[cfg(feature = "AppKit_NSSplitView")]
@@ -55,61 +60,77 @@ unsafe impl NSUserInterfaceItemIdentification for NSSplitView {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSSplitView")]
     unsafe impl NSSplitView {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isVertical)]
         pub unsafe fn isVertical(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setVertical:)]
         pub unsafe fn setVertical(&self, vertical: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(dividerStyle)]
         pub unsafe fn dividerStyle(&self) -> NSSplitViewDividerStyle;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDividerStyle:)]
         pub unsafe fn setDividerStyle(&self, divider_style: NSSplitViewDividerStyle);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other autosaveName)]
         pub unsafe fn autosaveName(&self) -> Option<Id<NSSplitViewAutosaveName>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAutosaveName:)]
         pub unsafe fn setAutosaveName(&self, autosave_name: Option<&NSSplitViewAutosaveName>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSSplitViewDelegate>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn NSSplitViewDelegate>>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawDividerInRect:)]
         pub unsafe fn drawDividerInRect(&self, rect: NSRect);
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other dividerColor)]
         pub unsafe fn dividerColor(&self) -> Id<NSColor>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(dividerThickness)]
         pub unsafe fn dividerThickness(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(adjustSubviews)]
         pub unsafe fn adjustSubviews(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isSubviewCollapsed:)]
         pub unsafe fn isSubviewCollapsed(&self, subview: &NSView) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(minPossiblePositionOfDividerAtIndex:)]
         pub unsafe fn minPossiblePositionOfDividerAtIndex(
             &self,
             divider_index: NSInteger,
         ) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(maxPossiblePositionOfDividerAtIndex:)]
         pub unsafe fn maxPossiblePositionOfDividerAtIndex(
             &self,
             divider_index: NSInteger,
         ) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPosition:ofDividerAtIndex:)]
         pub unsafe fn setPosition_ofDividerAtIndex(
             &self,
@@ -117,12 +138,14 @@ extern_methods!(
             divider_index: NSInteger,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(holdingPriorityForSubviewAtIndex:)]
         pub unsafe fn holdingPriorityForSubviewAtIndex(
             &self,
             subview_index: NSInteger,
         ) -> NSLayoutPriority;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setHoldingPriority:forSubviewAtIndex:)]
         pub unsafe fn setHoldingPriority_forSubviewAtIndex(
             &self,
@@ -136,33 +159,41 @@ extern_methods!(
     /// NSSplitViewArrangedSubviews
     #[cfg(feature = "AppKit_NSSplitView")]
     unsafe impl NSSplitView {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(arrangesAllSubviews)]
         pub unsafe fn arrangesAllSubviews(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setArrangesAllSubviews:)]
         pub unsafe fn setArrangesAllSubviews(&self, arranges_all_subviews: bool);
 
         #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other arrangedSubviews)]
         pub unsafe fn arrangedSubviews(&self) -> Id<NSArray<NSView>>;
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(addArrangedSubview:)]
         pub unsafe fn addArrangedSubview(&self, view: &NSView);
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(insertArrangedSubview:atIndex:)]
         pub unsafe fn insertArrangedSubview_atIndex(&self, view: &NSView, index: NSInteger);
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeArrangedSubview:)]
         pub unsafe fn removeArrangedSubview(&self, view: &NSView);
     }
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSSplitViewDelegate: NSObjectProtocol {
         #[cfg(all(feature = "AppKit_NSSplitView", feature = "AppKit_NSView"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(splitView:canCollapseSubview:)]
         unsafe fn splitView_canCollapseSubview(
@@ -173,6 +204,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "AppKit_NSSplitView", feature = "AppKit_NSView"))]
         #[deprecated = "NSSplitView no longer supports collapsing sections via double-click. This delegate method is never called."]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(splitView:shouldCollapseSubview:forDoubleClickOnDividerAtIndex:)]
         unsafe fn splitView_shouldCollapseSubview_forDoubleClickOnDividerAtIndex(
@@ -183,6 +215,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "AppKit_NSSplitView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(splitView:constrainMinCoordinate:ofSubviewAt:)]
         unsafe fn splitView_constrainMinCoordinate_ofSubviewAt(
@@ -193,6 +226,7 @@ extern_protocol!(
         ) -> CGFloat;
 
         #[cfg(feature = "AppKit_NSSplitView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(splitView:constrainMaxCoordinate:ofSubviewAt:)]
         unsafe fn splitView_constrainMaxCoordinate_ofSubviewAt(
@@ -203,6 +237,7 @@ extern_protocol!(
         ) -> CGFloat;
 
         #[cfg(feature = "AppKit_NSSplitView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(splitView:constrainSplitPosition:ofSubviewAt:)]
         unsafe fn splitView_constrainSplitPosition_ofSubviewAt(
@@ -213,6 +248,7 @@ extern_protocol!(
         ) -> CGFloat;
 
         #[cfg(feature = "AppKit_NSSplitView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(splitView:resizeSubviewsWithOldSize:)]
         unsafe fn splitView_resizeSubviewsWithOldSize(
@@ -222,6 +258,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "AppKit_NSSplitView", feature = "AppKit_NSView"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(splitView:shouldAdjustSizeOfSubview:)]
         unsafe fn splitView_shouldAdjustSizeOfSubview(
@@ -231,6 +268,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "AppKit_NSSplitView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(splitView:shouldHideDividerAtIndex:)]
         unsafe fn splitView_shouldHideDividerAtIndex(
@@ -240,6 +278,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "AppKit_NSSplitView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(splitView:effectiveRect:forDrawnRect:ofDividerAtIndex:)]
         unsafe fn splitView_effectiveRect_forDrawnRect_ofDividerAtIndex(
@@ -251,6 +290,7 @@ extern_protocol!(
         ) -> NSRect;
 
         #[cfg(feature = "AppKit_NSSplitView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(splitView:additionalEffectiveRectOfDividerAtIndex:)]
         unsafe fn splitView_additionalEffectiveRectOfDividerAtIndex(
@@ -260,11 +300,13 @@ extern_protocol!(
         ) -> NSRect;
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(splitViewWillResizeSubviews:)]
         unsafe fn splitViewWillResizeSubviews(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(splitViewDidResizeSubviews:)]
         unsafe fn splitViewDidResizeSubviews(&self, notification: &NSNotification);
@@ -282,10 +324,12 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSSplitView")]
     unsafe impl NSSplitView {
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setIsPaneSplitter:)]
         pub unsafe fn setIsPaneSplitter(&self, flag: bool);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isPaneSplitter)]
         pub unsafe fn isPaneSplitter(&self) -> bool;
     }
@@ -295,6 +339,7 @@ extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(feature = "AppKit_NSSplitView")]
     unsafe impl NSSplitView {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }

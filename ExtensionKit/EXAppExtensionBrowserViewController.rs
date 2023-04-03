@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "ExtensionKit_EXAppExtensionBrowserViewController")]
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub struct EXAppExtensionBrowserViewController;
 
     #[cfg(feature = "ExtensionKit_EXAppExtensionBrowserViewController")]
@@ -42,6 +43,7 @@ extern_methods!(
     #[cfg(feature = "ExtensionKit_EXAppExtensionBrowserViewController")]
     unsafe impl EXAppExtensionBrowserViewController {
         #[cfg(feature = "Foundation_NSBundle")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Option<Allocated<Self>>,

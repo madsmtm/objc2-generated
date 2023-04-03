@@ -61,6 +61,7 @@ extern_methods!(
         pub unsafe fn isFavorite(&self) -> bool;
 
         #[deprecated = "No longer supported"]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(isSyncFailureHidden)]
         pub unsafe fn isSyncFailureHidden(&self) -> bool;
 
@@ -158,6 +159,7 @@ extern_methods!(
             feature = "PhotoKit_PHFetchResult"
         ))]
         #[deprecated = "Will be removed in a future release"]
+        #[cfg(not(any(target_os = "macos")))]
         #[method_id(@__retain_semantics Other fetchAssetsWithALAssetURLs:options:)]
         pub unsafe fn fetchAssetsWithALAssetURLs_options(
             asset_ur_ls: &NSArray<NSURL>,

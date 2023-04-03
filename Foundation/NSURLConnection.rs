@@ -22,6 +22,7 @@ extern_methods!(
     unsafe impl NSURLConnection {
         #[cfg(feature = "Foundation_NSURLRequest")]
         #[deprecated = "Use NSURLSession (see NSURLSession.h)"]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Init initWithRequest:delegate:startImmediately:)]
         pub unsafe fn initWithRequest_delegate_startImmediately(
             this: Option<Allocated<Self>>,
@@ -32,6 +33,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURLRequest")]
         #[deprecated = "Use NSURLSession (see NSURLSession.h)"]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Init initWithRequest:delegate:)]
         pub unsafe fn initWithRequest_delegate(
             this: Option<Allocated<Self>>,
@@ -41,6 +43,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURLRequest")]
         #[deprecated = "Use NSURLSession (see NSURLSession.h)"]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other connectionWithRequest:delegate:)]
         pub unsafe fn connectionWithRequest_delegate(
             request: &NSURLRequest,
@@ -279,6 +282,7 @@ extern_methods!(
             feature = "Foundation_NSURLResponse"
         ))]
         #[deprecated = "Use [NSURLSession dataTaskWithRequest:completionHandler:] (see NSURLSession.h"]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other sendSynchronousRequest:returningResponse:error:_)]
         pub unsafe fn sendSynchronousRequest_returningResponse_error(
             request: &NSURLRequest,
@@ -299,6 +303,7 @@ extern_methods!(
             feature = "Foundation_NSURLResponse"
         ))]
         #[deprecated = "Use [NSURLSession dataTaskWithRequest:completionHandler:] (see NSURLSession.h"]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(sendAsynchronousRequest:queue:completionHandler:)]
         pub unsafe fn sendAsynchronousRequest_queue_completionHandler(
             request: &NSURLRequest,

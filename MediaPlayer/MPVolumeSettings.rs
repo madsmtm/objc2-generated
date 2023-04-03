@@ -7,15 +7,18 @@ use crate::MediaPlayer::*;
 
 extern_fn!(
     #[deprecated = "Use MPVolumeView to present volume controls."]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub unsafe fn MPVolumeSettingsAlertShow();
 );
 
 extern_fn!(
     #[deprecated = "Use MPVolumeView to present volume controls."]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub unsafe fn MPVolumeSettingsAlertHide();
 );
 
 extern_fn!(
     #[deprecated = "Use MPVolumeView to present volume controls."]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub unsafe fn MPVolumeSettingsAlertIsVisible() -> Bool;
 );

@@ -104,9 +104,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other transactions)]
         pub unsafe fn transactions(&self) -> Id<NSArray<SKPaymentTransaction>>;
 
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method(showPriceConsentIfNeeded)]
         pub unsafe fn showPriceConsentIfNeeded(&self);
 
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method(presentCodeRedemptionSheet)]
         pub unsafe fn presentCodeRedemptionSheet(&self);
     }
@@ -129,6 +131,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "StoreKit_SKPaymentQueue")]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method(paymentQueueShouldShowPriceConsent:)]
         unsafe fn paymentQueueShouldShowPriceConsent(&self, payment_queue: &SKPaymentQueue)
@@ -198,6 +201,7 @@ extern_protocol!(
             feature = "StoreKit_SKPaymentQueue",
             feature = "StoreKit_SKProduct"
         ))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method(paymentQueue:shouldAddStorePayment:forProduct:)]
         unsafe fn paymentQueue_shouldAddStorePayment_forProduct(

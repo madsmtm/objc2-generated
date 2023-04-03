@@ -23,6 +23,7 @@ extern_methods!(
     unsafe impl CXProviderConfiguration {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "No longer supported"]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other localizedName)]
         pub unsafe fn localizedName(&self) -> Option<Id<NSString>>;
 
@@ -79,6 +80,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Init initWithLocalizedName:)]
         pub unsafe fn initWithLocalizedName(
             this: Option<Allocated<Self>>,

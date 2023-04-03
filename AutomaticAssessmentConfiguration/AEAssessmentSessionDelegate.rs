@@ -41,6 +41,7 @@ extern_protocol!(
         unsafe fn assessmentSessionDidEnd(&self, session: &AEAssessmentSession);
 
         #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentSession")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(assessmentSessionDidUpdate:)]
         unsafe fn assessmentSessionDidUpdate(&self, session: &AEAssessmentSession);
@@ -50,6 +51,7 @@ extern_protocol!(
             feature = "AutomaticAssessmentConfiguration_AEAssessmentSession",
             feature = "Foundation_NSError"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(assessmentSession:failedToUpdateToConfiguration:error:)]
         unsafe fn assessmentSession_failedToUpdateToConfiguration_error(

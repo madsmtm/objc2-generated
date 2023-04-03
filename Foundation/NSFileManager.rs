@@ -57,8 +57,11 @@ ns_enum!(
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub enum NSFileManagerUnmountOptions {
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         NSFileManagerUnmountAllPartitionsAndEjectDisk = 1 << 0,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         NSFileManagerUnmountWithoutUI = 1 << 1,
     }
 );
@@ -96,6 +99,7 @@ extern_methods!(
         ) -> Option<Id<NSArray<NSURL>>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(unmountVolumeAtURL:options:completionHandler:)]
         pub unsafe fn unmountVolumeAtURL_options_completionHandler(
             &self,
@@ -325,6 +329,7 @@ extern_methods!(
         pub unsafe fn removeItemAtURL_error(&self, url: &NSURL) -> Result<(), Id<NSError>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(trashItemAtURL:resultingItemURL:error:_)]
         pub unsafe fn trashItemAtURL_resultingItemURL_error(
             &self,
@@ -609,6 +614,7 @@ extern_methods!(
             feature = "Foundation_NSFileProviderService",
             feature = "Foundation_NSURL"
         ))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(getFileProviderServicesForItemAtURL:completionHandler:)]
         pub unsafe fn getFileProviderServicesForItemAtURL_completionHandler(
             &self,
@@ -636,6 +642,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSFileManager")]
     unsafe impl NSFileManager {
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other homeDirectoryForCurrentUser)]
         pub unsafe fn homeDirectoryForCurrentUser(&self) -> Id<NSURL>;
 
@@ -644,6 +651,7 @@ extern_methods!(
         pub unsafe fn temporaryDirectory(&self) -> Id<NSURL>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other homeDirectoryForUser:)]
         pub unsafe fn homeDirectoryForUser(&self, user_name: &NSString) -> Option<Id<NSURL>>;
     }
@@ -916,6 +924,7 @@ extern_methods!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSFileProviderService")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct NSFileProviderService;
 
     #[cfg(feature = "Foundation_NSFileProviderService")]

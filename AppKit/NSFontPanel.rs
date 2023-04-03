@@ -7,29 +7,44 @@ use crate::Foundation::*;
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSFontPanelModeMask {
+        #[cfg(not(any(target_os = "ios")))]
         NSFontPanelModeMaskFace = 1 << 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSFontPanelModeMaskSize = 1 << 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSFontPanelModeMaskCollection = 1 << 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSFontPanelModeMaskUnderlineEffect = 1 << 8,
+        #[cfg(not(any(target_os = "ios")))]
         NSFontPanelModeMaskStrikethroughEffect = 1 << 9,
+        #[cfg(not(any(target_os = "ios")))]
         NSFontPanelModeMaskTextColorEffect = 1 << 10,
+        #[cfg(not(any(target_os = "ios")))]
         NSFontPanelModeMaskDocumentColorEffect = 1 << 11,
+        #[cfg(not(any(target_os = "ios")))]
         NSFontPanelModeMaskShadowEffect = 1 << 12,
+        #[cfg(not(any(target_os = "ios")))]
         NSFontPanelModeMaskAllEffects = 0xFFF00,
+        #[cfg(not(any(target_os = "ios")))]
         NSFontPanelModesMaskStandardModes = 0xFFFF,
+        #[cfg(not(any(target_os = "ios")))]
         NSFontPanelModesMaskAllModes = 0xFFFFFFFF,
     }
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSFontChanging: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSFontManager")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(changeFont:)]
         unsafe fn changeFont(&self, sender: Option<&NSFontManager>);
 
         #[cfg(feature = "AppKit_NSFontPanel")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(validModesForFontPanel:)]
         unsafe fn validModesForFontPanel(&self, font_panel: &NSFontPanel) -> NSFontPanelModeMask;
@@ -41,6 +56,7 @@ extern_protocol!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSFontPanel")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSFontPanel;
 
     #[cfg(feature = "AppKit_NSFontPanel")]
@@ -80,40 +96,51 @@ unsafe impl NSUserInterfaceValidations for NSFontPanel {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSFontPanel")]
     unsafe impl NSFontPanel {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other sharedFontPanel)]
         pub unsafe fn sharedFontPanel() -> Id<NSFontPanel>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(sharedFontPanelExists)]
         pub unsafe fn sharedFontPanelExists() -> bool;
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessoryView)]
         pub unsafe fn accessoryView(&self) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessoryView:)]
         pub unsafe fn setAccessoryView(&self, accessory_view: Option<&NSView>);
 
         #[cfg(feature = "AppKit_NSFont")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPanelFont:isMultiple:)]
         pub unsafe fn setPanelFont_isMultiple(&self, font_obj: &NSFont, flag: bool);
 
         #[cfg(feature = "AppKit_NSFont")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other panelConvertFont:)]
         pub unsafe fn panelConvertFont(&self, font_obj: &NSFont) -> Id<NSFont>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(worksWhenModal)]
         pub unsafe fn worksWhenModal(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setWorksWhenModal:)]
         pub unsafe fn setWorksWhenModal(&self, works_when_modal: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setEnabled:)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(reloadDefaultFontFamilies)]
         pub unsafe fn reloadDefaultFontFamilies(&self);
     }
@@ -121,17 +148,29 @@ extern_methods!(
 
 extern_enum!(
     #[underlying(c_uint)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum __anonymous__ {
+        #[cfg(not(any(target_os = "ios")))]
         NSFontPanelFaceModeMask = 1 << 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSFontPanelSizeModeMask = 1 << 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSFontPanelCollectionModeMask = 1 << 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSFontPanelUnderlineEffectModeMask = 1 << 8,
+        #[cfg(not(any(target_os = "ios")))]
         NSFontPanelStrikethroughEffectModeMask = 1 << 9,
+        #[cfg(not(any(target_os = "ios")))]
         NSFontPanelTextColorEffectModeMask = 1 << 10,
+        #[cfg(not(any(target_os = "ios")))]
         NSFontPanelDocumentColorEffectModeMask = 1 << 11,
+        #[cfg(not(any(target_os = "ios")))]
         NSFontPanelShadowEffectModeMask = 1 << 12,
+        #[cfg(not(any(target_os = "ios")))]
         NSFontPanelAllEffectsModeMask = 0xFFF00,
+        #[cfg(not(any(target_os = "ios")))]
         NSFontPanelStandardModesMask = 0xFFFF,
+        #[cfg(not(any(target_os = "ios")))]
         NSFontPanelAllModesMask = 0xFFFFFFFF,
     }
 );
@@ -139,13 +178,21 @@ extern_enum!(
 extern_enum!(
     #[underlying(c_uint)]
     #[deprecated]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum __anonymous__ {
+        #[cfg(not(any(target_os = "ios")))]
         NSFPPreviewButton = 131,
+        #[cfg(not(any(target_os = "ios")))]
         NSFPRevertButton = 130,
+        #[cfg(not(any(target_os = "ios")))]
         NSFPSetButton = 132,
+        #[cfg(not(any(target_os = "ios")))]
         NSFPPreviewField = 128,
+        #[cfg(not(any(target_os = "ios")))]
         NSFPSizeField = 129,
+        #[cfg(not(any(target_os = "ios")))]
         NSFPSizeTitle = 133,
+        #[cfg(not(any(target_os = "ios")))]
         NSFPCurrentField = 134,
     }
 );
@@ -154,6 +201,7 @@ extern_methods!(
     /// Methods declared on superclass `NSWindow`
     #[cfg(feature = "AppKit_NSFontPanel")]
     unsafe impl NSFontPanel {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer(
             this: Option<Allocated<Self>>,
@@ -164,6 +212,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSScreen")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:screen:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer_screen(
             this: Option<Allocated<Self>>,
@@ -175,6 +224,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other windowWithContentViewController:)]
         pub unsafe fn windowWithContentViewController(
             content_view_controller: &NSViewController,

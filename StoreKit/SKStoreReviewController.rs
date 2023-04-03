@@ -8,6 +8,7 @@ use crate::StoreKit::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "StoreKit_SKStoreReviewController")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct SKStoreReviewController;
 
     #[cfg(feature = "StoreKit_SKStoreReviewController")]
@@ -23,6 +24,7 @@ extern_methods!(
     #[cfg(feature = "StoreKit_SKStoreReviewController")]
     unsafe impl SKStoreReviewController {
         #[deprecated]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(requestReview)]
         pub unsafe fn requestReview();
     }

@@ -5,6 +5,7 @@ use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait ASAccountAuthenticationModificationControllerDelegate:
         NSObjectProtocol
     {
@@ -41,6 +42,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait ASAccountAuthenticationModificationControllerPresentationContextProviding:
         NSObjectProtocol
     {
@@ -61,6 +63,7 @@ extern_protocol!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationController")]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub struct ASAccountAuthenticationModificationController;
 
     #[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationController")]

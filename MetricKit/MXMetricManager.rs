@@ -7,6 +7,7 @@ use crate::MetricKit::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MetricKit_MXMetricManager")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct MXMetricManager;
 
     #[cfg(feature = "MetricKit_MXMetricManager")]
@@ -22,6 +23,7 @@ extern_methods!(
     #[cfg(feature = "MetricKit_MXMetricManager")]
     unsafe impl MXMetricManager {
         #[cfg(all(feature = "Foundation_NSArray", feature = "MetricKit_MXMetricPayload"))]
+        #[cfg(not(any(target_os = "macos")))]
         #[method_id(@__retain_semantics Other pastPayloads)]
         pub unsafe fn pastPayloads(&self) -> Id<NSArray<MXMetricPayload>>;
 
@@ -29,6 +31,7 @@ extern_methods!(
             feature = "Foundation_NSArray",
             feature = "MetricKit_MXDiagnosticPayload"
         ))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other pastDiagnosticPayloads)]
         pub unsafe fn pastDiagnosticPayloads(&self) -> Id<NSArray<MXDiagnosticPayload>>;
 
@@ -50,8 +53,10 @@ extern_methods!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait MXMetricManagerSubscriber: NSObjectProtocol {
         #[cfg(all(feature = "Foundation_NSArray", feature = "MetricKit_MXMetricPayload"))]
+        #[cfg(not(any(target_os = "macos")))]
         #[optional]
         #[method(didReceiveMetricPayloads:)]
         unsafe fn didReceiveMetricPayloads(&self, payloads: &NSArray<MXMetricPayload>);
@@ -60,6 +65,7 @@ extern_protocol!(
             feature = "Foundation_NSArray",
             feature = "MetricKit_MXDiagnosticPayload"
         ))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method(didReceiveDiagnosticPayloads:)]
         unsafe fn didReceiveDiagnosticPayloads(&self, payloads: &NSArray<MXDiagnosticPayload>);

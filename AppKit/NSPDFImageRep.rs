@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSPDFImageRep")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSPDFImageRep;
 
     #[cfg(feature = "AppKit_NSPDFImageRep")]
@@ -27,10 +28,12 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSPDFImageRep")]
     unsafe impl NSPDFImageRep {
         #[cfg(feature = "Foundation_NSData")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other imageRepWithData:)]
         pub unsafe fn imageRepWithData(pdf_data: &NSData) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSData")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithData:)]
         pub unsafe fn initWithData(
             this: Option<Allocated<Self>>,
@@ -38,18 +41,23 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSData")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other PDFRepresentation)]
         pub unsafe fn PDFRepresentation(&self) -> Id<NSData>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(bounds)]
         pub unsafe fn bounds(&self) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(currentPage)]
         pub unsafe fn currentPage(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCurrentPage:)]
         pub unsafe fn setCurrentPage(&self, current_page: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(pageCount)]
         pub unsafe fn pageCount(&self) -> NSInteger;
     }

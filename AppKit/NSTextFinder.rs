@@ -7,19 +7,33 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSTextFinderAction {
+        #[cfg(not(any(target_os = "ios")))]
         NSTextFinderActionShowFindInterface = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSTextFinderActionNextMatch = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSTextFinderActionPreviousMatch = 3,
+        #[cfg(not(any(target_os = "ios")))]
         NSTextFinderActionReplaceAll = 4,
+        #[cfg(not(any(target_os = "ios")))]
         NSTextFinderActionReplace = 5,
+        #[cfg(not(any(target_os = "ios")))]
         NSTextFinderActionReplaceAndFind = 6,
+        #[cfg(not(any(target_os = "ios")))]
         NSTextFinderActionSetSearchString = 7,
+        #[cfg(not(any(target_os = "ios")))]
         NSTextFinderActionReplaceAllInSelection = 8,
+        #[cfg(not(any(target_os = "ios")))]
         NSTextFinderActionSelectAll = 9,
+        #[cfg(not(any(target_os = "ios")))]
         NSTextFinderActionSelectAllInSelection = 10,
+        #[cfg(not(any(target_os = "ios")))]
         NSTextFinderActionHideFindInterface = 11,
+        #[cfg(not(any(target_os = "ios")))]
         NSTextFinderActionShowReplaceInterface = 12,
+        #[cfg(not(any(target_os = "ios")))]
         NSTextFinderActionHideReplaceInterface = 13,
     }
 );
@@ -34,10 +48,15 @@ extern_static!(NSTextFinderMatchingTypeKey: &'static NSPasteboardTypeTextFinderO
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSTextFinderMatchingType {
+        #[cfg(not(any(target_os = "ios")))]
         NSTextFinderMatchingTypeContains = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSTextFinderMatchingTypeStartsWith = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSTextFinderMatchingTypeFullWord = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSTextFinderMatchingTypeEndsWith = 3,
     }
 );
@@ -45,6 +64,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSTextFinder")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSTextFinder;
 
     #[cfg(feature = "AppKit_NSTextFinder")]
@@ -62,54 +82,69 @@ unsafe impl NSObjectProtocol for NSTextFinder {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextFinder")]
     unsafe impl NSTextFinder {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other client)]
         pub unsafe fn client(&self) -> Option<Id<ProtocolObject<dyn NSTextFinderClient>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setClient:)]
         pub unsafe fn setClient(&self, client: Option<&ProtocolObject<dyn NSTextFinderClient>>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(performAction:)]
         pub unsafe fn performAction(&self, op: NSTextFinderAction);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(validateAction:)]
         pub unsafe fn validateAction(&self, op: NSTextFinderAction) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other findBarContainer)]
         pub unsafe fn findBarContainer(
             &self,
         ) -> Option<Id<ProtocolObject<dyn NSTextFinderBarContainer>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFindBarContainer:)]
         pub unsafe fn setFindBarContainer(
             &self,
             find_bar_container: Option<&ProtocolObject<dyn NSTextFinderBarContainer>>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(cancelFindIndicator)]
         pub unsafe fn cancelFindIndicator(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(findIndicatorNeedsUpdate)]
         pub unsafe fn findIndicatorNeedsUpdate(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFindIndicatorNeedsUpdate:)]
         pub unsafe fn setFindIndicatorNeedsUpdate(&self, find_indicator_needs_update: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isIncrementalSearchingEnabled)]
         pub unsafe fn isIncrementalSearchingEnabled(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setIncrementalSearchingEnabled:)]
         pub unsafe fn setIncrementalSearchingEnabled(&self, incremental_searching_enabled: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(incrementalSearchingShouldDimContentView)]
         pub unsafe fn incrementalSearchingShouldDimContentView(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setIncrementalSearchingShouldDimContentView:)]
         pub unsafe fn setIncrementalSearchingShouldDimContentView(
             &self,
@@ -117,37 +152,46 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other incrementalMatchRanges)]
         pub unsafe fn incrementalMatchRanges(&self) -> Id<NSArray<NSValue>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawIncrementalMatchHighlightInRect:)]
         pub unsafe fn drawIncrementalMatchHighlightInRect(rect: NSRect);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(noteClientStringWillChange)]
         pub unsafe fn noteClientStringWillChange(&self);
     }
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSTextFinderClient: NSObjectProtocol {
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(isSelectable)]
         unsafe fn isSelectable(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(allowsMultipleSelection)]
         unsafe fn allowsMultipleSelection(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(isEditable)]
         unsafe fn isEditable(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other string)]
         unsafe fn string(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other stringAtIndex:effectiveRange:endsWithSearchBoundary:)]
         unsafe fn stringAtIndex_effectiveRange_endsWithSearchBoundary(
@@ -157,24 +201,29 @@ extern_protocol!(
             out_flag: NonNull<Bool>,
         ) -> Id<NSString>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(stringLength)]
         unsafe fn stringLength(&self) -> NSUInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(firstSelectedRange)]
         unsafe fn firstSelectedRange(&self) -> NSRange;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other selectedRanges)]
         unsafe fn selectedRanges(&self) -> Id<NSArray<NSValue>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(setSelectedRanges:)]
         unsafe fn setSelectedRanges(&self, selected_ranges: &NSArray<NSValue>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(scrollRangeToVisible:)]
         unsafe fn scrollRangeToVisible(&self, range: NSRange);
@@ -184,6 +233,7 @@ extern_protocol!(
             feature = "Foundation_NSString",
             feature = "Foundation_NSValue"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(shouldReplaceCharactersInRanges:withStrings:)]
         unsafe fn shouldReplaceCharactersInRanges_withStrings(
@@ -193,15 +243,18 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(replaceCharactersInRange:withString:)]
         unsafe fn replaceCharactersInRange_withString(&self, range: NSRange, string: &NSString);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(didReplaceCharacters)]
         unsafe fn didReplaceCharacters(&self);
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other contentViewAtIndex:effectiveCharacterRange:)]
         unsafe fn contentViewAtIndex_effectiveCharacterRange(
@@ -211,16 +264,19 @@ extern_protocol!(
         ) -> Id<NSView>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other rectsForCharacterRange:)]
         unsafe fn rectsForCharacterRange(&self, range: NSRange) -> Option<Id<NSArray<NSValue>>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other visibleCharacterRanges)]
         unsafe fn visibleCharacterRanges(&self) -> Id<NSArray<NSValue>>;
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(drawCharactersInRange:forContentView:)]
         unsafe fn drawCharactersInRange_forContentView(&self, range: NSRange, view: &NSView);
@@ -230,25 +286,32 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSTextFinderBarContainer: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other findBarView)]
         unsafe fn findBarView(&self) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFindBarView:)]
         unsafe fn setFindBarView(&self, find_bar_view: Option<&NSView>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isFindBarVisible)]
         unsafe fn isFindBarVisible(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFindBarVisible:)]
         unsafe fn setFindBarVisible(&self, find_bar_visible: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(findBarViewDidChangeHeight)]
         unsafe fn findBarViewDidChangeHeight(&self);
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other contentView)]
         unsafe fn contentView(&self) -> Option<Id<NSView>>;

@@ -52,23 +52,41 @@ extern_static!(GKVoiceChatServiceErrorDomain: Option<&'static NSString>);
 
 ns_enum!(
     #[underlying(c_int)]
+    #[cfg(not(any(target_os = "macos")))]
     pub enum GKVoiceChatServiceError {
+        #[cfg(not(any(target_os = "macos")))]
         GKVoiceChatServiceInternalError = 32000,
+        #[cfg(not(any(target_os = "macos")))]
         GKVoiceChatServiceNoRemotePacketsError = 32001,
+        #[cfg(not(any(target_os = "macos")))]
         GKVoiceChatServiceUnableToConnectError = 32002,
+        #[cfg(not(any(target_os = "macos")))]
         GKVoiceChatServiceRemoteParticipantHangupError = 32003,
+        #[cfg(not(any(target_os = "macos")))]
         GKVoiceChatServiceInvalidCallIDError = 32004,
+        #[cfg(not(any(target_os = "macos")))]
         GKVoiceChatServiceAudioUnavailableError = 32005,
+        #[cfg(not(any(target_os = "macos")))]
         GKVoiceChatServiceUninitializedClientError = 32006,
+        #[cfg(not(any(target_os = "macos")))]
         GKVoiceChatServiceClientMissingRequiredMethodsError = 32007,
+        #[cfg(not(any(target_os = "macos")))]
         GKVoiceChatServiceRemoteParticipantBusyError = 32008,
+        #[cfg(not(any(target_os = "macos")))]
         GKVoiceChatServiceRemoteParticipantCancelledError = 32009,
+        #[cfg(not(any(target_os = "macos")))]
         GKVoiceChatServiceRemoteParticipantResponseInvalidError = 32010,
+        #[cfg(not(any(target_os = "macos")))]
         GKVoiceChatServiceRemoteParticipantDeclinedInviteError = 32011,
+        #[cfg(not(any(target_os = "macos")))]
         GKVoiceChatServiceMethodCurrentlyInvalidError = 32012,
+        #[cfg(not(any(target_os = "macos")))]
         GKVoiceChatServiceNetworkConfigurationError = 32013,
+        #[cfg(not(any(target_os = "macos")))]
         GKVoiceChatServiceUnsupportedRemoteVersionError = 32014,
+        #[cfg(not(any(target_os = "macos")))]
         GKVoiceChatServiceOutOfMemoryError = 32015,
+        #[cfg(not(any(target_os = "macos")))]
         GKVoiceChatServiceInvalidParameterError = 32016,
     }
 );

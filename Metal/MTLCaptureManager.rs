@@ -82,6 +82,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sharedCaptureManager)]
         pub unsafe fn sharedCaptureManager() -> Id<MTLCaptureManager>;
 
+        #[cfg(not(any(target_os = "ios", target_os = "macos")))]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 

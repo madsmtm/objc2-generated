@@ -5,8 +5,11 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub enum NSTaskTerminationReason {
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         NSTaskTerminationReasonExit = 1,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         NSTaskTerminationReasonUncaughtSignal = 2,
     }
 );
@@ -32,10 +35,12 @@ extern_methods!(
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other executableURL)]
         pub unsafe fn executableURL(&self) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(setExecutableURL:)]
         pub unsafe fn setExecutableURL(&self, executable_url: Option<&NSURL>);
 
@@ -56,10 +61,12 @@ extern_methods!(
         pub unsafe fn setEnvironment(&self, environment: Option<&NSDictionary<NSString, NSString>>);
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other currentDirectoryURL)]
         pub unsafe fn currentDirectoryURL(&self) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(setCurrentDirectoryURL:)]
         pub unsafe fn setCurrentDirectoryURL(&self, current_directory_url: Option<&NSURL>);
 
@@ -82,6 +89,7 @@ extern_methods!(
         pub unsafe fn setStandardError(&self, standard_error: Option<&Object>);
 
         #[cfg(feature = "Foundation_NSError")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(launchAndReturnError:_)]
         pub unsafe fn launchAndReturnError(&self) -> Result<(), Id<NSError>>;
 
@@ -106,12 +114,15 @@ extern_methods!(
         #[method(terminationStatus)]
         pub unsafe fn terminationStatus(&self) -> c_int;
 
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(terminationReason)]
         pub unsafe fn terminationReason(&self) -> NSTaskTerminationReason;
 
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(terminationHandler)]
         pub unsafe fn terminationHandler(&self) -> *mut Block<(NonNull<NSTask>,), ()>;
 
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(setTerminationHandler:)]
         pub unsafe fn setTerminationHandler(
             &self,
@@ -136,6 +147,7 @@ extern_methods!(
             feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other launchedTaskWithExecutableURL:arguments:error:terminationHandler:)]
         pub unsafe fn launchedTaskWithExecutableURL_arguments_error_terminationHandler(
             url: &NSURL,
@@ -155,30 +167,36 @@ extern_methods!(
     unsafe impl NSTask {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other launchPath)]
         pub unsafe fn launchPath(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(setLaunchPath:)]
         pub unsafe fn setLaunchPath(&self, launch_path: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other currentDirectoryPath)]
         pub unsafe fn currentDirectoryPath(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(setCurrentDirectoryPath:)]
         pub unsafe fn setCurrentDirectoryPath(&self, current_directory_path: &NSString);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(launch)]
         pub unsafe fn launch(&self);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other launchedTaskWithLaunchPath:arguments:)]
         pub unsafe fn launchedTaskWithLaunchPath_arguments(
             path: &NSString,

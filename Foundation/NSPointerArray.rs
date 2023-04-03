@@ -92,10 +92,12 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSPointerArray")]
     unsafe impl NSPointerArray {
         #[deprecated = "GC no longer supported"]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other pointerArrayWithStrongObjects)]
         pub unsafe fn pointerArrayWithStrongObjects() -> Id<Object>;
 
         #[deprecated = "GC no longer supported"]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other pointerArrayWithWeakObjects)]
         pub unsafe fn pointerArrayWithWeakObjects() -> Id<Object>;
 

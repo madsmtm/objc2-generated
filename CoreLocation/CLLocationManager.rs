@@ -25,8 +25,10 @@ ns_enum!(
         kCLAuthorizationStatusRestricted = 1,
         kCLAuthorizationStatusDenied = 2,
         kCLAuthorizationStatusAuthorizedAlways = 3,
+        #[cfg(not(any(target_os = "macos")))]
         kCLAuthorizationStatusAuthorizedWhenInUse = 4,
         #[deprecated = "Use kCLAuthorizationStatusAuthorizedAlways"]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         kCLAuthorizationStatusAuthorized = kCLAuthorizationStatusAuthorizedAlways,
     }
 );
@@ -73,20 +75,25 @@ extern_methods!(
         #[method(headingAvailable)]
         pub unsafe fn headingAvailable_class() -> bool;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(significantLocationChangeMonitoringAvailable)]
         pub unsafe fn significantLocationChangeMonitoringAvailable() -> bool;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(isMonitoringAvailableForClass:)]
         pub unsafe fn isMonitoringAvailableForClass(region_class: &Class) -> bool;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(regionMonitoringAvailable)]
         pub unsafe fn regionMonitoringAvailable() -> bool;
 
         #[deprecated = "Use +isMonitoringAvailableForClass: and -authorizationStatus instead"]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(regionMonitoringEnabled)]
         pub unsafe fn regionMonitoringEnabled() -> bool;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(isRangingAvailable)]
         pub unsafe fn isRangingAvailable() -> bool;
 
@@ -100,6 +107,7 @@ extern_methods!(
         #[method(accuracyAuthorization)]
         pub unsafe fn accuracyAuthorization(&self) -> CLAccuracyAuthorization;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(isAuthorizedForWidgetUpdates)]
         pub unsafe fn isAuthorizedForWidgetUpdates(&self) -> bool;
 
@@ -113,16 +121,19 @@ extern_methods!(
         );
 
         #[deprecated]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(locationServicesEnabled)]
         pub unsafe fn locationServicesEnabled(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Set the purpose string in Info.plist using key NSLocationUsageDescription"]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other purpose)]
         pub unsafe fn purpose(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Set the purpose string in Info.plist using key NSLocationUsageDescription"]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(setPurpose:)]
         pub unsafe fn setPurpose(&self, purpose: Option<&NSString>);
 
@@ -144,9 +155,11 @@ extern_methods!(
         #[method(setDesiredAccuracy:)]
         pub unsafe fn setDesiredAccuracy(&self, desired_accuracy: CLLocationAccuracy);
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(pausesLocationUpdatesAutomatically)]
         pub unsafe fn pausesLocationUpdatesAutomatically(&self) -> bool;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(setPausesLocationUpdatesAutomatically:)]
         pub unsafe fn setPausesLocationUpdatesAutomatically(
             &self,
@@ -162,9 +175,11 @@ extern_methods!(
             allows_background_location_updates: bool,
         );
 
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method(showsBackgroundLocationIndicator)]
         pub unsafe fn showsBackgroundLocationIndicator(&self) -> bool;
 
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method(setShowsBackgroundLocationIndicator:)]
         pub unsafe fn setShowsBackgroundLocationIndicator(
             &self,
@@ -176,6 +191,7 @@ extern_methods!(
         pub unsafe fn location(&self) -> Option<Id<CLLocation>>;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(headingAvailable)]
         pub unsafe fn headingAvailable(&self) -> bool;
 
@@ -195,15 +211,18 @@ extern_methods!(
         #[method_id(@__retain_semantics Other heading)]
         pub unsafe fn heading(&self) -> Option<Id<CLHeading>>;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(maximumRegionMonitoringDistance)]
         pub unsafe fn maximumRegionMonitoringDistance(&self) -> CLLocationDistance;
 
         #[cfg(all(feature = "CoreLocation_CLRegion", feature = "Foundation_NSSet"))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other monitoredRegions)]
         pub unsafe fn monitoredRegions(&self) -> Id<NSSet<CLRegion>>;
 
         #[cfg(all(feature = "CoreLocation_CLRegion", feature = "Foundation_NSSet"))]
         #[deprecated = "Use -rangedBeaconConstraints"]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other rangedRegions)]
         pub unsafe fn rangedRegions(&self) -> Id<NSSet<CLRegion>>;
 
@@ -211,6 +230,7 @@ extern_methods!(
             feature = "CoreLocation_CLBeaconIdentityConstraint",
             feature = "Foundation_NSSet"
         ))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other rangedBeaconConstraints)]
         pub unsafe fn rangedBeaconConstraints(&self) -> Id<NSSet<CLBeaconIdentityConstraint>>;
 
@@ -247,30 +267,36 @@ extern_methods!(
         #[method(startUpdatingHeading)]
         pub unsafe fn startUpdatingHeading(&self);
 
+        #[cfg(not(any(target_os = "macos")))]
         #[method(stopUpdatingHeading)]
         pub unsafe fn stopUpdatingHeading(&self);
 
         #[method(dismissHeadingCalibrationDisplay)]
         pub unsafe fn dismissHeadingCalibrationDisplay(&self);
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(startMonitoringSignificantLocationChanges)]
         pub unsafe fn startMonitoringSignificantLocationChanges(&self);
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(stopMonitoringSignificantLocationChanges)]
         pub unsafe fn stopMonitoringSignificantLocationChanges(&self);
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method(startMonitoringLocationPushesWithCompletion:)]
         pub unsafe fn startMonitoringLocationPushesWithCompletion(
             &self,
             completion: Option<&Block<(*mut NSData, *mut NSError), ()>>,
         );
 
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method(stopMonitoringLocationPushes)]
         pub unsafe fn stopMonitoringLocationPushes(&self);
 
         #[cfg(feature = "CoreLocation_CLRegion")]
         #[deprecated]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(startMonitoringForRegion:desiredAccuracy:)]
         pub unsafe fn startMonitoringForRegion_desiredAccuracy(
             &self,
@@ -279,28 +305,34 @@ extern_methods!(
         );
 
         #[cfg(feature = "CoreLocation_CLRegion")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(stopMonitoringForRegion:)]
         pub unsafe fn stopMonitoringForRegion(&self, region: &CLRegion);
 
         #[cfg(feature = "CoreLocation_CLRegion")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(startMonitoringForRegion:)]
         pub unsafe fn startMonitoringForRegion(&self, region: &CLRegion);
 
         #[cfg(feature = "CoreLocation_CLRegion")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(requestStateForRegion:)]
         pub unsafe fn requestStateForRegion(&self, region: &CLRegion);
 
         #[cfg(feature = "CoreLocation_CLBeaconRegion")]
         #[deprecated = "Use -startRangingBeaconsSatisfyingConstraint:"]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(startRangingBeaconsInRegion:)]
         pub unsafe fn startRangingBeaconsInRegion(&self, region: &CLBeaconRegion);
 
         #[cfg(feature = "CoreLocation_CLBeaconRegion")]
         #[deprecated = "Use -stopRangingBeaconsSatisfyingConstraint:"]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(stopRangingBeaconsInRegion:)]
         pub unsafe fn stopRangingBeaconsInRegion(&self, region: &CLBeaconRegion);
 
         #[cfg(feature = "CoreLocation_CLBeaconIdentityConstraint")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(startRangingBeaconsSatisfyingConstraint:)]
         pub unsafe fn startRangingBeaconsSatisfyingConstraint(
             &self,
@@ -308,6 +340,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "CoreLocation_CLBeaconIdentityConstraint")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(stopRangingBeaconsSatisfyingConstraint:)]
         pub unsafe fn stopRangingBeaconsSatisfyingConstraint(
             &self,
@@ -315,6 +348,7 @@ extern_methods!(
         );
 
         #[deprecated = "You can remove calls to this method"]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(allowDeferredLocationUpdatesUntilTraveled:timeout:)]
         pub unsafe fn allowDeferredLocationUpdatesUntilTraveled_timeout(
             &self,
@@ -323,10 +357,12 @@ extern_methods!(
         );
 
         #[deprecated = "You can remove calls to this method"]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(disallowDeferredLocationUpdates)]
         pub unsafe fn disallowDeferredLocationUpdates(&self);
 
         #[deprecated = "You can remove calls to this method"]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(deferredLocationUpdatesAvailable)]
         pub unsafe fn deferredLocationUpdatesAvailable() -> bool;
 
@@ -336,6 +372,7 @@ extern_methods!(
             feature = "Foundation_NSError",
             feature = "Foundation_NSString"
         ))]
+        #[cfg(not(any(target_os = "ios", target_os = "macos")))]
         #[method(requestHistoricalLocationsWithPurposeKey:sampleCount:completionHandler:)]
         pub unsafe fn requestHistoricalLocationsWithPurposeKey_sampleCount_completionHandler(
             &self,

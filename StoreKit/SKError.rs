@@ -26,10 +26,13 @@ ns_enum!(
         SKErrorMissingOfferParams = 13,
         SKErrorInvalidOfferPrice = 14,
         SKErrorOverlayCancelled = 15,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         SKErrorOverlayInvalidConfiguration = 16,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         SKErrorOverlayTimeout = 17,
         SKErrorIneligibleForOffer = 18,
         SKErrorUnsupportedPlatform = 19,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         SKErrorOverlayPresentedInBackgroundScene = 20,
     }
 );

@@ -25,6 +25,7 @@ extern_static!(
 
 extern_fn!(
     #[cfg(feature = "Foundation_NSArray")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub unsafe fn ASAuthorizationAllSupportedPublicKeyCredentialDescriptorTransports(
     ) -> NonNull<NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport>>;
 );
@@ -34,6 +35,7 @@ extern_class!(
     #[cfg(
         feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor"
     )]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor;
 
     #[cfg(

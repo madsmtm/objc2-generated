@@ -10,6 +10,7 @@ pub type NSCollectionViewTransitionLayoutAnimatedKey = NSString;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSCollectionViewTransitionLayout")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSCollectionViewTransitionLayout;
 
     #[cfg(feature = "AppKit_NSCollectionViewTransitionLayout")]
@@ -28,18 +29,23 @@ unsafe impl NSObjectProtocol for NSCollectionViewTransitionLayout {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionViewTransitionLayout")]
     unsafe impl NSCollectionViewTransitionLayout {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(transitionProgress)]
         pub unsafe fn transitionProgress(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTransitionProgress:)]
         pub unsafe fn setTransitionProgress(&self, transition_progress: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other currentLayout)]
         pub unsafe fn currentLayout(&self) -> Id<NSCollectionViewLayout>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other nextLayout)]
         pub unsafe fn nextLayout(&self) -> Id<NSCollectionViewLayout>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithCurrentLayout:nextLayout:)]
         pub unsafe fn initWithCurrentLayout_nextLayout(
             this: Option<Allocated<Self>>,
@@ -47,6 +53,7 @@ extern_methods!(
             new_layout: &NSCollectionViewLayout,
         ) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(updateValue:forAnimatedKey:)]
         pub unsafe fn updateValue_forAnimatedKey(
             &self,
@@ -54,6 +61,7 @@ extern_methods!(
             key: &NSCollectionViewTransitionLayoutAnimatedKey,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(valueForAnimatedKey:)]
         pub unsafe fn valueForAnimatedKey(
             &self,

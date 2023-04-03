@@ -6,15 +6,19 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSTextAttachmentCellProtocol: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawWithFrame:inView:)]
         unsafe fn drawWithFrame_inView(&self, cell_frame: NSRect, control_view: Option<&NSView>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(wantsToTrackMouse)]
         unsafe fn wantsToTrackMouse(&self) -> bool;
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(highlight:withFrame:inView:)]
         unsafe fn highlight_withFrame_inView(
             &self,
@@ -24,6 +28,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "AppKit_NSEvent", feature = "AppKit_NSView"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(trackMouse:inRect:ofView:untilMouseUp:)]
         unsafe fn trackMouse_inRect_ofView_untilMouseUp(
             &self,
@@ -33,21 +38,26 @@ extern_protocol!(
             flag: bool,
         ) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(cellSize)]
         unsafe fn cellSize(&self) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(cellBaselineOffset)]
         unsafe fn cellBaselineOffset(&self) -> NSPoint;
 
         #[cfg(feature = "AppKit_NSTextAttachment")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other attachment)]
         unsafe fn attachment(&self) -> Option<Id<NSTextAttachment>>;
 
         #[cfg(feature = "AppKit_NSTextAttachment")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAttachment:)]
         unsafe fn setAttachment(&self, attachment: Option<&NSTextAttachment>);
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawWithFrame:inView:characterIndex:)]
         unsafe fn drawWithFrame_inView_characterIndex(
             &self,
@@ -57,6 +67,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "AppKit_NSLayoutManager", feature = "AppKit_NSView"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawWithFrame:inView:characterIndex:layoutManager:)]
         unsafe fn drawWithFrame_inView_characterIndex_layoutManager(
             &self,
@@ -67,6 +78,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "AppKit_NSEvent", feature = "AppKit_NSView"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(wantsToTrackMouseForEvent:inRect:ofView:atCharacterIndex:)]
         unsafe fn wantsToTrackMouseForEvent_inRect_ofView_atCharacterIndex(
             &self,
@@ -77,6 +89,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(feature = "AppKit_NSEvent", feature = "AppKit_NSView"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(trackMouse:inRect:ofView:atCharacterIndex:untilMouseUp:)]
         unsafe fn trackMouse_inRect_ofView_atCharacterIndex_untilMouseUp(
             &self,
@@ -88,6 +101,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "AppKit_NSTextContainer")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(cellFrameForTextContainer:proposedLineFragment:glyphPosition:characterIndex:)]
         unsafe fn cellFrameForTextContainer_proposedLineFragment_glyphPosition_characterIndex(
             &self,
@@ -104,6 +118,7 @@ extern_protocol!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSTextAttachmentCell")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSTextAttachmentCell;
 
     #[cfg(feature = "AppKit_NSTextAttachmentCell")]
@@ -141,10 +156,12 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTextAttachmentCell")]
     unsafe impl NSTextAttachmentCell {
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initTextCell:)]
         pub unsafe fn initTextCell(this: Option<Allocated<Self>>, string: &NSString) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initImageCell:)]
         pub unsafe fn initImageCell(
             this: Option<Allocated<Self>>,

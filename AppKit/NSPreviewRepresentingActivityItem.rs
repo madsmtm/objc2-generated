@@ -6,21 +6,26 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait NSPreviewRepresentableActivityItem: NSObjectProtocol {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other item)]
         unsafe fn item(&self) -> Id<Object>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other title)]
         unsafe fn title(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSItemProvider")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other imageProvider)]
         unsafe fn imageProvider(&self) -> Option<Id<NSItemProvider>>;
 
         #[cfg(feature = "Foundation_NSItemProvider")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other iconProvider)]
         unsafe fn iconProvider(&self) -> Option<Id<NSItemProvider>>;
@@ -32,6 +37,7 @@ extern_protocol!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSPreviewRepresentingActivityItem")]
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub struct NSPreviewRepresentingActivityItem;
 
     #[cfg(feature = "AppKit_NSPreviewRepresentingActivityItem")]
@@ -50,6 +56,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSPreviewRepresentingActivityItem")]
     unsafe impl NSPreviewRepresentingActivityItem {
         #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithItem:title:image:icon:)]
         pub unsafe fn initWithItem_title_image_icon(
             this: Option<Allocated<Self>>,
@@ -60,6 +67,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSItemProvider", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithItem:title:imageProvider:iconProvider:)]
         pub unsafe fn initWithItem_title_imageProvider_iconProvider(
             this: Option<Allocated<Self>>,
@@ -69,9 +77,11 @@ extern_methods!(
             icon_provider: Option<&NSItemProvider>,
         ) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
     }

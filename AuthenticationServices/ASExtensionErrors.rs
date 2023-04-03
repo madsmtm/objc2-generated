@@ -8,10 +8,15 @@ extern_static!(ASExtensionErrorDomain: Option<&'static NSErrorDomain>);
 
 ns_error_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub enum ASExtensionErrorCode {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         ASExtensionErrorCodeFailed = 0,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         ASExtensionErrorCodeUserCanceled = 1,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         ASExtensionErrorCodeUserInteractionRequired = 100,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         ASExtensionErrorCodeCredentialIdentityNotFound = 101,
     }
 );

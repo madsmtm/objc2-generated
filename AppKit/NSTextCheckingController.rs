@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSTextCheckingController")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSTextCheckingController;
 
     #[cfg(feature = "AppKit_NSTextCheckingController")]
@@ -22,34 +23,43 @@ unsafe impl NSObjectProtocol for NSTextCheckingController {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSTextCheckingController")]
     unsafe impl NSTextCheckingController {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithClient:)]
         pub unsafe fn initWithClient(
             this: Option<Allocated<Self>>,
             client: &ProtocolObject<dyn NSTextCheckingClient>,
         ) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other client)]
         pub unsafe fn client(&self) -> Id<ProtocolObject<dyn NSTextCheckingClient>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(invalidate)]
         pub unsafe fn invalidate(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(didChangeTextInRange:)]
         pub unsafe fn didChangeTextInRange(&self, range: NSRange);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(insertedTextInRange:)]
         pub unsafe fn insertedTextInRange(&self, range: NSRange);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(didChangeSelectedRange)]
         pub unsafe fn didChangeSelectedRange(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(considerTextCheckingForRange:)]
         pub unsafe fn considerTextCheckingForRange(&self, range: NSRange);
 
         #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(checkTextInRange:types:options:)]
         pub unsafe fn checkTextInRange_types_options(
             &self,
@@ -58,35 +68,45 @@ extern_methods!(
             options: &NSDictionary<NSTextCheckingOptionKey, Object>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(checkTextInSelection:)]
         pub unsafe fn checkTextInSelection(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(checkTextInDocument:)]
         pub unsafe fn checkTextInDocument(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(orderFrontSubstitutionsPanel:)]
         pub unsafe fn orderFrontSubstitutionsPanel(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(checkSpelling:)]
         pub unsafe fn checkSpelling(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(showGuessPanel:)]
         pub unsafe fn showGuessPanel(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(changeSpelling:)]
         pub unsafe fn changeSpelling(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(ignoreSpelling:)]
         pub unsafe fn ignoreSpelling(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(updateCandidates)]
         pub unsafe fn updateCandidates(&self);
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other validAnnotations)]
         pub unsafe fn validAnnotations(&self) -> Id<NSArray<NSAttributedStringKey>>;
 
         #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other menuAtIndex:clickedOnSelection:effectiveRange:)]
         pub unsafe fn menuAtIndex_clickedOnSelection_effectiveRange(
             &self,
@@ -95,9 +115,11 @@ extern_methods!(
             effective_range: NSRangePointer,
         ) -> Option<Id<NSMenu>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(spellCheckerDocumentTag)]
         pub unsafe fn spellCheckerDocumentTag(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSpellCheckerDocumentTag:)]
         pub unsafe fn setSpellCheckerDocumentTag(&self, spell_checker_document_tag: NSInteger);
     }

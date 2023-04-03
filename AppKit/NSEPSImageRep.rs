@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSEPSImageRep")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSEPSImageRep;
 
     #[cfg(feature = "AppKit_NSEPSImageRep")]
@@ -27,10 +28,12 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSEPSImageRep")]
     unsafe impl NSEPSImageRep {
         #[cfg(feature = "Foundation_NSData")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other imageRepWithData:)]
         pub unsafe fn imageRepWithData(eps_data: &NSData) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSData")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithData:)]
         pub unsafe fn initWithData(
             this: Option<Allocated<Self>>,
@@ -38,13 +41,16 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(prepareGState)]
         pub unsafe fn prepareGState(&self);
 
         #[cfg(feature = "Foundation_NSData")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other EPSRepresentation)]
         pub unsafe fn EPSRepresentation(&self) -> Id<NSData>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(boundingBox)]
         pub unsafe fn boundingBox(&self) -> NSRect;
     }

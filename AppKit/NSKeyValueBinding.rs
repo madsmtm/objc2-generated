@@ -16,6 +16,7 @@ typed_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSBindingSelectionMarker")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSBindingSelectionMarker;
 
     #[cfg(feature = "AppKit_NSBindingSelectionMarker")]
@@ -30,18 +31,23 @@ unsafe impl NSObjectProtocol for NSBindingSelectionMarker {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSBindingSelectionMarker")]
     unsafe impl NSBindingSelectionMarker {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other multipleValuesSelectionMarker)]
         pub unsafe fn multipleValuesSelectionMarker() -> Id<NSBindingSelectionMarker>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other noSelectionMarker)]
         pub unsafe fn noSelectionMarker() -> Id<NSBindingSelectionMarker>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other notApplicableSelectionMarker)]
         pub unsafe fn notApplicableSelectionMarker() -> Id<NSBindingSelectionMarker>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDefaultPlaceholder:forMarker:onClass:withBinding:)]
         pub unsafe fn setDefaultPlaceholder_forMarker_onClass_withBinding(
             placeholder: Option<&Object>,
@@ -50,6 +56,7 @@ extern_methods!(
             binding: &NSBindingName,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other defaultPlaceholderForMarker:onClass:withBinding:)]
         pub unsafe fn defaultPlaceholderForMarker_onClass_withBinding(
             marker: Option<&NSBindingSelectionMarker>,
@@ -66,6 +73,7 @@ extern_static!(NSNoSelectionMarker: &'static Object);
 extern_static!(NSNotApplicableMarker: &'static Object);
 
 extern_fn!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSIsControllerMarker(object: Option<&Object>) -> Bool;
 );
 
@@ -80,13 +88,17 @@ extern_static!(NSObservedKeyPathKey: &'static NSBindingInfoKey);
 extern_static!(NSOptionsKey: &'static NSBindingInfoKey);
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSEditor: NSObjectProtocol {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(discardEditing)]
         unsafe fn discardEditing(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(commitEditing)]
         unsafe fn commitEditing(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(commitEditingWithDelegate:didCommitSelector:contextInfo:)]
         unsafe fn commitEditingWithDelegate_didCommitSelector_contextInfo(
             &self,
@@ -96,6 +108,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "Foundation_NSError")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(commitEditingAndReturnError:_)]
         unsafe fn commitEditingAndReturnError(&self) -> Result<(), Id<NSError>>;
     }
@@ -104,11 +117,14 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSEditorRegistration: NSObjectProtocol {
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(objectDidBeginEditing:)]
         unsafe fn objectDidBeginEditing(&self, editor: &ProtocolObject<dyn NSEditor>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(objectDidEndEditing:)]
         unsafe fn objectDidEndEditing(&self, editor: &ProtocolObject<dyn NSEditor>);

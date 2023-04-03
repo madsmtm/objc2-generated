@@ -159,6 +159,7 @@ extern_methods!(
             feature = "PhotoKit_PHFetchResult"
         ))]
         #[deprecated = "Will be removed in a future release"]
+        #[cfg(not(any(target_os = "macos")))]
         #[method_id(@__retain_semantics Other fetchMomentsInMomentList:options:)]
         pub unsafe fn fetchMomentsInMomentList_options(
             moment_list: &PHCollectionList,
@@ -170,6 +171,7 @@ extern_methods!(
             feature = "PhotoKit_PHFetchResult"
         ))]
         #[deprecated = "Will be removed in a future release"]
+        #[cfg(not(any(target_os = "macos")))]
         #[method_id(@__retain_semantics Other fetchMomentsWithOptions:)]
         pub unsafe fn fetchMomentsWithOptions(
             options: Option<&PHFetchOptions>,
@@ -274,6 +276,7 @@ extern_methods!(
             feature = "PhotoKit_PHFetchResult"
         ))]
         #[deprecated = "Will be removed in a future release"]
+        #[cfg(not(any(target_os = "macos")))]
         #[method_id(@__retain_semantics Other fetchMomentListsWithSubtype:containingMoment:options:)]
         pub unsafe fn fetchMomentListsWithSubtype_containingMoment_options(
             moment_list_subtype: PHCollectionListSubtype,
@@ -286,6 +289,7 @@ extern_methods!(
             feature = "PhotoKit_PHFetchResult"
         ))]
         #[deprecated = "Will be removed in a future release"]
+        #[cfg(not(any(target_os = "macos")))]
         #[method_id(@__retain_semantics Other fetchMomentListsWithSubtype:options:)]
         pub unsafe fn fetchMomentListsWithSubtype_options(
             moment_list_subtype: PHCollectionListSubtype,

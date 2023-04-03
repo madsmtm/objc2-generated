@@ -6,9 +6,13 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "macos")))]
     pub enum CXHandleType {
+        #[cfg(not(any(target_os = "macos")))]
         CXHandleTypeGeneric = 1,
+        #[cfg(not(any(target_os = "macos")))]
         CXHandleTypePhoneNumber = 2,
+        #[cfg(not(any(target_os = "macos")))]
         CXHandleTypeEmailAddress = 3,
     }
 );
@@ -16,6 +20,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CallKit_CXHandle")]
+    #[cfg(not(any(target_os = "macos")))]
     pub struct CXHandle;
 
     #[cfg(feature = "CallKit_CXHandle")]

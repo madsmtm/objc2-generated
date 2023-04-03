@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSImageView")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSImageView;
 
     #[cfg(feature = "AppKit_NSImageView")]
@@ -51,46 +52,59 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSImageView")]
     unsafe impl NSImageView {
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other imageViewWithImage:)]
         pub unsafe fn imageViewWithImage(image: &NSImage) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isEditable)]
         pub unsafe fn isEditable(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setEditable:)]
         pub unsafe fn setEditable(&self, editable: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(imageAlignment)]
         pub unsafe fn imageAlignment(&self) -> NSImageAlignment;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setImageAlignment:)]
         pub unsafe fn setImageAlignment(&self, image_alignment: NSImageAlignment);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(imageScaling)]
         pub unsafe fn imageScaling(&self) -> NSImageScaling;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setImageScaling:)]
         pub unsafe fn setImageScaling(&self, image_scaling: NSImageScaling);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(imageFrameStyle)]
         pub unsafe fn imageFrameStyle(&self) -> NSImageFrameStyle;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setImageFrameStyle:)]
         pub unsafe fn setImageFrameStyle(&self, image_frame_style: NSImageFrameStyle);
 
         #[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other symbolConfiguration)]
         pub unsafe fn symbolConfiguration(&self) -> Option<Id<NSImageSymbolConfiguration>>;
 
         #[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSymbolConfiguration:)]
         pub unsafe fn setSymbolConfiguration(
             &self,
@@ -98,22 +112,28 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other contentTintColor)]
         pub unsafe fn contentTintColor(&self) -> Option<Id<NSColor>>;
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setContentTintColor:)]
         pub unsafe fn setContentTintColor(&self, content_tint_color: Option<&NSColor>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(animates)]
         pub unsafe fn animates(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAnimates:)]
         pub unsafe fn setAnimates(&self, animates: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(allowsCutCopyPaste)]
         pub unsafe fn allowsCutCopyPaste(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAllowsCutCopyPaste:)]
         pub unsafe fn setAllowsCutCopyPaste(&self, allows_cut_copy_paste: bool);
     }
@@ -123,6 +143,7 @@ extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(feature = "AppKit_NSImageView")]
     unsafe impl NSImageView {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }

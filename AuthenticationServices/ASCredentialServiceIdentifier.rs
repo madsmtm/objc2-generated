@@ -6,8 +6,11 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub enum ASCredentialServiceIdentifierType {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         ASCredentialServiceIdentifierTypeDomain = 0,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         ASCredentialServiceIdentifierTypeURL = 1,
     }
 );
@@ -15,6 +18,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AuthenticationServices_ASCredentialServiceIdentifier")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct ASCredentialServiceIdentifier;
 
     #[cfg(feature = "AuthenticationServices_ASCredentialServiceIdentifier")]

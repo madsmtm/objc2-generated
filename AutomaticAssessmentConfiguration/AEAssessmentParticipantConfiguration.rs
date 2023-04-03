@@ -21,15 +21,19 @@ unsafe impl NSObjectProtocol for AEAssessmentParticipantConfiguration {}
 extern_methods!(
     #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentParticipantConfiguration")]
     unsafe impl AEAssessmentParticipantConfiguration {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(allowsNetworkAccess)]
         pub unsafe fn allowsNetworkAccess(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAllowsNetworkAccess:)]
         pub unsafe fn setAllowsNetworkAccess(&self, allows_network_access: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
     }

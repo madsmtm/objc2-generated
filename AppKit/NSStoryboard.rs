@@ -14,6 +14,7 @@ pub type NSStoryboardControllerCreator = *mut Block<(NonNull<NSCoder>,), *mut Ob
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSStoryboard")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSStoryboard;
 
     #[cfg(feature = "AppKit_NSStoryboard")]
@@ -28,31 +29,37 @@ unsafe impl NSObjectProtocol for NSStoryboard {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSStoryboard")]
     unsafe impl NSStoryboard {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other mainStoryboard)]
         pub unsafe fn mainStoryboard() -> Option<Id<NSStoryboard>>;
 
         #[cfg(feature = "Foundation_NSBundle")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other storyboardWithName:bundle:)]
         pub unsafe fn storyboardWithName_bundle(
             name: &NSStoryboardName,
             storyboard_bundle_or_nil: Option<&NSBundle>,
         ) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other instantiateInitialController)]
         pub unsafe fn instantiateInitialController(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other instantiateInitialControllerWithCreator:)]
         pub unsafe fn instantiateInitialControllerWithCreator(
             &self,
             block: NSStoryboardControllerCreator,
         ) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other instantiateControllerWithIdentifier:)]
         pub unsafe fn instantiateControllerWithIdentifier(
             &self,
             identifier: &NSStoryboardSceneIdentifier,
         ) -> Id<Object>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other instantiateControllerWithIdentifier:creator:)]
         pub unsafe fn instantiateControllerWithIdentifier_creator(
             &self,

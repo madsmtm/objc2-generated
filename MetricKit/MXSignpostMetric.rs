@@ -7,6 +7,7 @@ use crate::MetricKit::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MetricKit_MXSignpostIntervalData")]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub struct MXSignpostIntervalData;
 
     #[cfg(feature = "MetricKit_MXSignpostIntervalData")]
@@ -58,6 +59,7 @@ extern_methods!(
         ) -> Option<Id<NSMeasurement<NSUnitInformationStorage>>>;
 
         #[cfg(all(feature = "Foundation_NSMeasurement", feature = "Foundation_NSUnit"))]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other cumulativeHitchTimeRatio)]
         pub unsafe fn cumulativeHitchTimeRatio(&self) -> Option<Id<NSMeasurement<NSUnit>>>;
     }
@@ -66,6 +68,7 @@ extern_methods!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MetricKit_MXSignpostMetric")]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub struct MXSignpostMetric;
 
     #[cfg(feature = "MetricKit_MXSignpostMetric")]

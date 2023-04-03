@@ -6,8 +6,11 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub enum ASAuthorizationProviderExtensionAuthenticationMethod {
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         ASAuthorizationProviderExtensionAuthenticationMethodPassword = 1,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         ASAuthorizationProviderExtensionAuthenticationMethodUserSecureEnclaveKey = 2,
     }
 );
@@ -23,15 +26,21 @@ ns_options!(
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub enum ASAuthorizationProviderExtensionRegistrationResult {
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         ASAuthorizationProviderExtensionRegistrationResultSuccess = 0,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         ASAuthorizationProviderExtensionRegistrationResultFailed = 1,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         ASAuthorizationProviderExtensionRegistrationResultUserInterfaceRequired = 2,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         ASAuthorizationProviderExtensionRegistrationResultFailedNoRetry = 3,
     }
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait ASAuthorizationProviderExtensionRegistrationHandler:
         NSObjectProtocol
     {

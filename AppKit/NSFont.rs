@@ -10,6 +10,7 @@ extern_static!(NSFontIdentityMatrix: NonNull<CGFloat>);
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSFont")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSFont;
 
     #[cfg(feature = "AppKit_NSFont")]
@@ -31,6 +32,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSFont")]
     unsafe impl NSFont {
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other fontWithName:size:)]
         pub unsafe fn fontWithName_size(
             font_name: &NSString,
@@ -38,6 +40,7 @@ extern_methods!(
         ) -> Option<Id<NSFont>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other fontWithName:matrix:)]
         pub unsafe fn fontWithName_matrix(
             font_name: &NSString,
@@ -45,6 +48,7 @@ extern_methods!(
         ) -> Option<Id<NSFont>>;
 
         #[cfg(feature = "AppKit_NSFontDescriptor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other fontWithDescriptor:size:)]
         pub unsafe fn fontWithDescriptor_size(
             font_descriptor: &NSFontDescriptor,
@@ -55,66 +59,84 @@ extern_methods!(
             feature = "AppKit_NSFontDescriptor",
             feature = "Foundation_NSAffineTransform"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other fontWithDescriptor:textTransform:)]
         pub unsafe fn fontWithDescriptor_textTransform(
             font_descriptor: &NSFontDescriptor,
             text_transform: Option<&NSAffineTransform>,
         ) -> Option<Id<NSFont>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other userFontOfSize:)]
         pub unsafe fn userFontOfSize(font_size: CGFloat) -> Option<Id<NSFont>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other userFixedPitchFontOfSize:)]
         pub unsafe fn userFixedPitchFontOfSize(font_size: CGFloat) -> Option<Id<NSFont>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setUserFont:)]
         pub unsafe fn setUserFont(font: Option<&NSFont>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setUserFixedPitchFont:)]
         pub unsafe fn setUserFixedPitchFont(font: Option<&NSFont>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other systemFontOfSize:)]
         pub unsafe fn systemFontOfSize(font_size: CGFloat) -> Id<NSFont>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other boldSystemFontOfSize:)]
         pub unsafe fn boldSystemFontOfSize(font_size: CGFloat) -> Id<NSFont>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other labelFontOfSize:)]
         pub unsafe fn labelFontOfSize(font_size: CGFloat) -> Id<NSFont>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other titleBarFontOfSize:)]
         pub unsafe fn titleBarFontOfSize(font_size: CGFloat) -> Id<NSFont>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other menuFontOfSize:)]
         pub unsafe fn menuFontOfSize(font_size: CGFloat) -> Id<NSFont>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other menuBarFontOfSize:)]
         pub unsafe fn menuBarFontOfSize(font_size: CGFloat) -> Id<NSFont>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other messageFontOfSize:)]
         pub unsafe fn messageFontOfSize(font_size: CGFloat) -> Id<NSFont>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other paletteFontOfSize:)]
         pub unsafe fn paletteFontOfSize(font_size: CGFloat) -> Id<NSFont>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other toolTipsFontOfSize:)]
         pub unsafe fn toolTipsFontOfSize(font_size: CGFloat) -> Id<NSFont>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other controlContentFontOfSize:)]
         pub unsafe fn controlContentFontOfSize(font_size: CGFloat) -> Id<NSFont>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other systemFontOfSize:weight:)]
         pub unsafe fn systemFontOfSize_weight(
             font_size: CGFloat,
             weight: NSFontWeight,
         ) -> Id<NSFont>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other monospacedDigitSystemFontOfSize:weight:)]
         pub unsafe fn monospacedDigitSystemFontOfSize_weight(
             font_size: CGFloat,
             weight: NSFontWeight,
         ) -> Id<NSFont>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other systemFontOfSize:weight:width:)]
         pub unsafe fn systemFontOfSize_weight_width(
             font_size: CGFloat,
@@ -122,106 +144,137 @@ extern_methods!(
             width: NSFontWidth,
         ) -> Id<NSFont>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other monospacedSystemFontOfSize:weight:)]
         pub unsafe fn monospacedSystemFontOfSize_weight(
             font_size: CGFloat,
             weight: NSFontWeight,
         ) -> Id<NSFont>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other fontWithSize:)]
         pub unsafe fn fontWithSize(&self, font_size: CGFloat) -> Id<NSFont>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(systemFontSize)]
         pub unsafe fn systemFontSize() -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(smallSystemFontSize)]
         pub unsafe fn smallSystemFontSize() -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(labelFontSize)]
         pub unsafe fn labelFontSize() -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(systemFontSizeForControlSize:)]
         pub unsafe fn systemFontSizeForControlSize(control_size: NSControlSize) -> CGFloat;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other fontName)]
         pub unsafe fn fontName(&self) -> Id<NSString>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(pointSize)]
         pub unsafe fn pointSize(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(matrix)]
         pub unsafe fn matrix(&self) -> NonNull<CGFloat>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other familyName)]
         pub unsafe fn familyName(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other displayName)]
         pub unsafe fn displayName(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "AppKit_NSFontDescriptor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other fontDescriptor)]
         pub unsafe fn fontDescriptor(&self) -> Id<NSFontDescriptor>;
 
         #[cfg(feature = "Foundation_NSAffineTransform")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other textTransform)]
         pub unsafe fn textTransform(&self) -> Id<NSAffineTransform>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(numberOfGlyphs)]
         pub unsafe fn numberOfGlyphs(&self) -> NSUInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(mostCompatibleStringEncoding)]
         pub unsafe fn mostCompatibleStringEncoding(&self) -> NSStringEncoding;
 
         #[cfg(feature = "Foundation_NSCharacterSet")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other coveredCharacterSet)]
         pub unsafe fn coveredCharacterSet(&self) -> Id<NSCharacterSet>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(boundingRectForFont)]
         pub unsafe fn boundingRectForFont(&self) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(maximumAdvancement)]
         pub unsafe fn maximumAdvancement(&self) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(ascender)]
         pub unsafe fn ascender(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(descender)]
         pub unsafe fn descender(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(leading)]
         pub unsafe fn leading(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(underlinePosition)]
         pub unsafe fn underlinePosition(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(underlineThickness)]
         pub unsafe fn underlineThickness(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(italicAngle)]
         pub unsafe fn italicAngle(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(capHeight)]
         pub unsafe fn capHeight(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(xHeight)]
         pub unsafe fn xHeight(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isFixedPitch)]
         pub unsafe fn isFixedPitch(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(set)]
         pub unsafe fn set(&self);
 
         #[cfg(feature = "AppKit_NSGraphicsContext")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setInContext:)]
         pub unsafe fn setInContext(&self, graphics_context: &NSGraphicsContext);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other verticalFont)]
         pub unsafe fn verticalFont(&self) -> Id<NSFont>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isVertical)]
         pub unsafe fn isVertical(&self) -> bool;
     }
@@ -235,18 +288,26 @@ pub type NSGlyph = c_uint;
 
 extern_enum!(
     #[underlying(c_uint)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum __anonymous__ {
+        #[cfg(not(any(target_os = "ios")))]
         NSControlGlyph = 0x00FFFFFF,
+        #[cfg(not(any(target_os = "ios")))]
         NSNullGlyph = 0x0,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSFontRenderingMode {
+        #[cfg(not(any(target_os = "ios")))]
         NSFontDefaultRenderingMode = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSFontAntialiasedRenderingMode = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSFontIntegerAdvancementsRenderingMode = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSFontAntialiasedIntegerAdvancementsRenderingMode = 3,
     }
 );
@@ -254,14 +315,17 @@ ns_enum!(
 ns_enum!(
     #[underlying(NSUInteger)]
     #[deprecated]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSMultibyteGlyphPacking {
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         NSNativeShortGlyphPacking = 5,
     }
 );
 
 extern_fn!(
     #[deprecated]
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn NSConvertGlyphsToPackedGlyphs(
         gl_buf: NonNull<NSGlyph>,
         count: NSInteger,
@@ -275,15 +339,19 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSFont")]
     unsafe impl NSFont {
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(glyphWithName:)]
         pub unsafe fn glyphWithName(&self, name: &NSString) -> NSGlyph;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(boundingRectForGlyph:)]
         pub unsafe fn boundingRectForGlyph(&self, glyph: NSGlyph) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(advancementForGlyph:)]
         pub unsafe fn advancementForGlyph(&self, glyph: NSGlyph) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(getBoundingRects:forGlyphs:count:)]
         pub unsafe fn getBoundingRects_forGlyphs_count(
             &self,
@@ -292,6 +360,7 @@ extern_methods!(
             glyph_count: NSUInteger,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(getAdvancements:forGlyphs:count:)]
         pub unsafe fn getAdvancements_forGlyphs_count(
             &self,
@@ -300,6 +369,7 @@ extern_methods!(
             glyph_count: NSUInteger,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(getAdvancements:forPackedGlyphs:length:)]
         pub unsafe fn getAdvancements_forPackedGlyphs_length(
             &self,
@@ -308,18 +378,22 @@ extern_methods!(
             length: NSUInteger,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other printerFont)]
         pub unsafe fn printerFont(&self) -> Id<NSFont>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other screenFont)]
         pub unsafe fn screenFont(&self) -> Id<NSFont>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other screenFontWithRenderingMode:)]
         pub unsafe fn screenFontWithRenderingMode(
             &self,
             rendering_mode: NSFontRenderingMode,
         ) -> Id<NSFont>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(renderingMode)]
         pub unsafe fn renderingMode(&self) -> NSFontRenderingMode;
     }
@@ -330,6 +404,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSFont")]
     unsafe impl NSFont {
         #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other preferredFontForTextStyle:options:)]
         pub unsafe fn preferredFontForTextStyle_options(
             style: &NSFontTextStyle,

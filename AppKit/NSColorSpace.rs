@@ -7,14 +7,23 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSColorSpaceModel {
+        #[cfg(not(any(target_os = "ios")))]
         NSColorSpaceModelUnknown = -1,
+        #[cfg(not(any(target_os = "ios")))]
         NSColorSpaceModelGray = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSColorSpaceModelRGB = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSColorSpaceModelCMYK = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSColorSpaceModelLAB = 3,
+        #[cfg(not(any(target_os = "ios")))]
         NSColorSpaceModelDeviceN = 4,
+        #[cfg(not(any(target_os = "ios")))]
         NSColorSpaceModelIndexed = 5,
+        #[cfg(not(any(target_os = "ios")))]
         NSColorSpaceModelPatterned = 6,
     }
 );
@@ -22,6 +31,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSColorSpace")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSColorSpace;
 
     #[cfg(feature = "AppKit_NSColorSpace")]
@@ -43,6 +53,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSColorSpace")]
     unsafe impl NSColorSpace {
         #[cfg(feature = "Foundation_NSData")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithICCProfileData:)]
         pub unsafe fn initWithICCProfileData(
             this: Option<Allocated<Self>>,
@@ -50,65 +61,84 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSData")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other ICCProfileData)]
         pub unsafe fn ICCProfileData(&self) -> Option<Id<NSData>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithColorSyncProfile:)]
         pub unsafe fn initWithColorSyncProfile(
             this: Option<Allocated<Self>>,
             prof: NonNull<c_void>,
         ) -> Option<Id<Self>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(colorSyncProfile)]
         pub unsafe fn colorSyncProfile(&self) -> *mut c_void;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(numberOfColorComponents)]
         pub unsafe fn numberOfColorComponents(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(colorSpaceModel)]
         pub unsafe fn colorSpaceModel(&self) -> NSColorSpaceModel;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other localizedName)]
         pub unsafe fn localizedName(&self) -> Option<Id<NSString>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other sRGBColorSpace)]
         pub unsafe fn sRGBColorSpace() -> Id<NSColorSpace>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other genericGamma22GrayColorSpace)]
         pub unsafe fn genericGamma22GrayColorSpace() -> Id<NSColorSpace>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other extendedSRGBColorSpace)]
         pub unsafe fn extendedSRGBColorSpace() -> Id<NSColorSpace>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other extendedGenericGamma22GrayColorSpace)]
         pub unsafe fn extendedGenericGamma22GrayColorSpace() -> Id<NSColorSpace>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other displayP3ColorSpace)]
         pub unsafe fn displayP3ColorSpace() -> Id<NSColorSpace>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other adobeRGB1998ColorSpace)]
         pub unsafe fn adobeRGB1998ColorSpace() -> Id<NSColorSpace>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other genericRGBColorSpace)]
         pub unsafe fn genericRGBColorSpace() -> Id<NSColorSpace>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other genericGrayColorSpace)]
         pub unsafe fn genericGrayColorSpace() -> Id<NSColorSpace>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other genericCMYKColorSpace)]
         pub unsafe fn genericCMYKColorSpace() -> Id<NSColorSpace>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other deviceRGBColorSpace)]
         pub unsafe fn deviceRGBColorSpace() -> Id<NSColorSpace>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other deviceGrayColorSpace)]
         pub unsafe fn deviceGrayColorSpace() -> Id<NSColorSpace>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other deviceCMYKColorSpace)]
         pub unsafe fn deviceCMYKColorSpace() -> Id<NSColorSpace>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other availableColorSpacesWithModel:)]
         pub unsafe fn availableColorSpacesWithModel(
             model: NSColorSpaceModel,

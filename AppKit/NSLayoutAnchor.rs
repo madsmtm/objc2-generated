@@ -56,16 +56,20 @@ extern_methods!(
         ) -> Id<NSLayoutConstraint>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSString>;
 
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other item)]
         pub unsafe fn item(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(hasAmbiguousLayout)]
         pub unsafe fn hasAmbiguousLayout(&self) -> bool;
 
         #[cfg(all(feature = "AppKit_NSLayoutConstraint", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other constraintsAffectingLayout)]
         pub unsafe fn constraintsAffectingLayout(&self) -> Id<NSArray<NSLayoutConstraint>>;
     }

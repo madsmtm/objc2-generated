@@ -7,6 +7,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AuthenticationServices_ASAuthorizationSingleSignOnCredential")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct ASAuthorizationSingleSignOnCredential;
 
     #[cfg(feature = "AuthenticationServices_ASAuthorizationSingleSignOnCredential")]
@@ -51,6 +52,7 @@ extern_methods!(
         pub unsafe fn authenticatedResponse(&self) -> Option<Id<NSHTTPURLResponse>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other privateKeys)]
         pub unsafe fn privateKeys(&self) -> Id<NSArray>;
 

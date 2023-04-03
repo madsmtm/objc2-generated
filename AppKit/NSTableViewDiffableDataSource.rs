@@ -24,6 +24,7 @@ pub type NSTableViewDiffableDataSourceSectionHeaderViewProvider =
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSTableViewDiffableDataSource")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSTableViewDiffableDataSource<
         SectionIdentifierType: Message = Object,
         ItemIdentifierType: Message = Object,
@@ -101,6 +102,7 @@ extern_methods!(
         >
     {
         #[cfg(feature = "AppKit_NSTableView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithTableView:cellProvider:)]
         pub unsafe fn initWithTableView_cellProvider(
             this: Option<Allocated<Self>>,
@@ -108,19 +110,23 @@ extern_methods!(
             cell_provider: NSTableViewDiffableDataSourceCellProvider,
         ) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSDiffableDataSourceSnapshot")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other snapshot)]
         pub unsafe fn snapshot(
             &self,
         ) -> Id<NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>>;
 
         #[cfg(feature = "AppKit_NSDiffableDataSourceSnapshot")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(applySnapshot:animatingDifferences:)]
         pub unsafe fn applySnapshot_animatingDifferences(
             &self,
@@ -129,6 +135,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSDiffableDataSourceSnapshot")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(applySnapshot:animatingDifferences:completion:)]
         pub unsafe fn applySnapshot_animatingDifferences_completion(
             &self,
@@ -137,50 +144,60 @@ extern_methods!(
             completion: Option<&Block<(), ()>>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other itemIdentifierForRow:)]
         pub unsafe fn itemIdentifierForRow(
             &self,
             row: NSInteger,
         ) -> Option<Id<ItemIdentifierType, ItemIdentifierTypeOwnership>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rowForItemIdentifier:)]
         pub unsafe fn rowForItemIdentifier(&self, identifier: &ItemIdentifierType) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other sectionIdentifierForRow:)]
         pub unsafe fn sectionIdentifierForRow(
             &self,
             row: NSInteger,
         ) -> Option<Id<SectionIdentifierType, SectionIdentifierTypeOwnership>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rowForSectionIdentifier:)]
         pub unsafe fn rowForSectionIdentifier(
             &self,
             identifier: &SectionIdentifierType,
         ) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(rowViewProvider)]
         pub unsafe fn rowViewProvider(&self) -> NSTableViewDiffableDataSourceRowProvider;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setRowViewProvider:)]
         pub unsafe fn setRowViewProvider(
             &self,
             row_view_provider: NSTableViewDiffableDataSourceRowProvider,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(sectionHeaderViewProvider)]
         pub unsafe fn sectionHeaderViewProvider(
             &self,
         ) -> NSTableViewDiffableDataSourceSectionHeaderViewProvider;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSectionHeaderViewProvider:)]
         pub unsafe fn setSectionHeaderViewProvider(
             &self,
             section_header_view_provider: NSTableViewDiffableDataSourceSectionHeaderViewProvider,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(defaultRowAnimation)]
         pub unsafe fn defaultRowAnimation(&self) -> NSTableViewAnimationOptions;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDefaultRowAnimation:)]
         pub unsafe fn setDefaultRowAnimation(
             &self,

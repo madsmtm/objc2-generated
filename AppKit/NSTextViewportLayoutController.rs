@@ -6,6 +6,7 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait NSTextViewportLayoutControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSTextViewportLayoutController")]
         #[method(viewportBoundsForTextViewportLayoutController:)]
@@ -48,6 +49,7 @@ extern_protocol!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSTextViewportLayoutController")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct NSTextViewportLayoutController;
 
     #[cfg(feature = "AppKit_NSTextViewportLayoutController")]

@@ -9,6 +9,7 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSForm")]
     #[deprecated = "Use NSTextField directly instead, and consider NSStackView for layout assistance"]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSForm;
 
     #[cfg(feature = "AppKit_NSForm")]
@@ -51,46 +52,59 @@ unsafe impl NSViewToolTipOwner for NSForm {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSForm")]
     unsafe impl NSForm {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(indexOfSelectedItem)]
         pub unsafe fn indexOfSelectedItem(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setEntryWidth:)]
         pub unsafe fn setEntryWidth(&self, width: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setInterlineSpacing:)]
         pub unsafe fn setInterlineSpacing(&self, spacing: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBordered:)]
         pub unsafe fn setBordered(&self, flag: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBezeled:)]
         pub unsafe fn setBezeled(&self, flag: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTitleAlignment:)]
         pub unsafe fn setTitleAlignment(&self, mode: NSTextAlignment);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTextAlignment:)]
         pub unsafe fn setTextAlignment(&self, mode: NSTextAlignment);
 
         #[cfg(feature = "AppKit_NSFont")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTitleFont:)]
         pub unsafe fn setTitleFont(&self, font_obj: &NSFont);
 
         #[cfg(feature = "AppKit_NSFont")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTextFont:)]
         pub unsafe fn setTextFont(&self, font_obj: &NSFont);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other cellAtIndex:)]
         pub unsafe fn cellAtIndex(&self, index: NSInteger) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawCellAtIndex:)]
         pub unsafe fn drawCellAtIndex(&self, index: NSInteger);
 
         #[cfg(all(feature = "AppKit_NSFormCell", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other addEntry:)]
         pub unsafe fn addEntry(&self, title: &NSString) -> Id<NSFormCell>;
 
         #[cfg(all(feature = "AppKit_NSFormCell", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other insertEntry:atIndex:)]
         pub unsafe fn insertEntry_atIndex(
             &self,
@@ -98,27 +112,35 @@ extern_methods!(
             index: NSInteger,
         ) -> Option<Id<NSFormCell>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeEntryAtIndex:)]
         pub unsafe fn removeEntryAtIndex(&self, index: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(indexOfCellWithTag:)]
         pub unsafe fn indexOfCellWithTag(&self, tag: NSInteger) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectTextAtIndex:)]
         pub unsafe fn selectTextAtIndex(&self, index: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFrameSize:)]
         pub unsafe fn setFrameSize(&self, new_size: NSSize);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTitleBaseWritingDirection:)]
         pub unsafe fn setTitleBaseWritingDirection(&self, writing_direction: NSWritingDirection);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTextBaseWritingDirection:)]
         pub unsafe fn setTextBaseWritingDirection(&self, writing_direction: NSWritingDirection);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPreferredTextFieldWidth:)]
         pub unsafe fn setPreferredTextFieldWidth(&self, preferred_width: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(preferredTextFieldWidth)]
         pub unsafe fn preferredTextFieldWidth(&self) -> CGFloat;
     }
@@ -128,10 +150,12 @@ extern_methods!(
     /// Methods declared on superclass `NSMatrix`
     #[cfg(feature = "AppKit_NSForm")]
     unsafe impl NSForm {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithFrame:mode:prototype:numberOfRows:numberOfColumns:)]
         pub unsafe fn initWithFrame_mode_prototype_numberOfRows_numberOfColumns(
             this: Option<Allocated<Self>>,
@@ -142,6 +166,7 @@ extern_methods!(
             cols_wide: NSInteger,
         ) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithFrame:mode:cellClass:numberOfRows:numberOfColumns:)]
         pub unsafe fn initWithFrame_mode_cellClass_numberOfRows_numberOfColumns(
             this: Option<Allocated<Self>>,

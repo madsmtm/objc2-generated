@@ -12,6 +12,7 @@ extern_protocol!(
         #[method(contents)]
         fn contents(&self) -> NonNull<c_void>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(didModifyRange:)]
         fn didModifyRange(&self, range: NSRange);
 
@@ -31,9 +32,11 @@ extern_protocol!(
         #[method(removeAllDebugMarkers)]
         fn removeAllDebugMarkers(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other remoteStorageBuffer)]
         fn remoteStorageBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics New newRemoteBufferViewForDevice:)]
         fn newRemoteBufferViewForDevice(
             &self,

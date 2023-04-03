@@ -10,38 +10,55 @@ extern_static!(GKGameSessionErrorDomain: &'static NSString);
 ns_enum!(
     #[underlying(NSInteger)]
     #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub enum GKGameSessionErrorCode {
         #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         GKGameSessionErrorUnknown = 1,
         #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         GKGameSessionErrorNotAuthenticated = 2,
         #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         GKGameSessionErrorSessionConflict = 3,
         #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         GKGameSessionErrorSessionNotShared = 4,
         #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         GKGameSessionErrorConnectionCancelledByUser = 5,
         #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         GKGameSessionErrorConnectionFailed = 6,
         #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         GKGameSessionErrorSessionHasMaxConnectedPlayers = 7,
         #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         GKGameSessionErrorSendDataNotConnected = 8,
         #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         GKGameSessionErrorSendDataNoRecipients = 9,
         #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         GKGameSessionErrorSendDataNotReachable = 10,
         #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         GKGameSessionErrorSendRateLimitReached = 11,
         #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         GKGameSessionErrorBadContainer = 12,
         #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         GKGameSessionErrorCloudQuotaExceeded = 13,
         #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         GKGameSessionErrorNetworkFailure = 14,
         #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         GKGameSessionErrorCloudDriveDisabled = 15,
         #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         GKGameSessionErrorInvalidSession = 16,
     }
 );

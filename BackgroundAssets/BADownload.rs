@@ -7,6 +7,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "BackgroundAssets_BADownload")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct BADownload;
 
     #[cfg(feature = "BackgroundAssets_BADownload")]
@@ -27,17 +28,21 @@ unsafe impl NSSecureCoding for BADownload {}
 extern_methods!(
     #[cfg(feature = "BackgroundAssets_BADownload")]
     unsafe impl BADownload {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(state)]
         pub unsafe fn state(&self) -> BADownloadState;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other uniqueIdentifier)]
         pub unsafe fn uniqueIdentifier(&self) -> Id<NSString>;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(priority)]
         pub unsafe fn priority(&self) -> BADownloaderPriority;
 

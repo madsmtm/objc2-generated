@@ -7,7 +7,9 @@ ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSItemProviderRepresentationVisibility {
         NSItemProviderRepresentationVisibilityAll = 0,
+        #[cfg(not(any(target_os = "macos")))]
         NSItemProviderRepresentationVisibilityTeam = 1,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         NSItemProviderRepresentationVisibilityGroup = 2,
         NSItemProviderRepresentationVisibilityOwnProcess = 3,
     }
@@ -214,10 +216,12 @@ extern_methods!(
         ) -> Id<NSProgress>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other suggestedName)]
         pub unsafe fn suggestedName(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(setSuggestedName:)]
         pub unsafe fn setSuggestedName(&self, suggested_name: Option<&NSString>);
 

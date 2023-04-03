@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSSavePanel")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSSavePanel;
 
     #[cfg(feature = "AppKit_NSSavePanel")]
@@ -47,68 +48,87 @@ unsafe impl NSUserInterfaceValidations for NSSavePanel {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSSavePanel")]
     unsafe impl NSSavePanel {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other savePanel)]
         pub unsafe fn savePanel() -> Id<NSSavePanel>;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other URL)]
         pub unsafe fn URL(&self) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other directoryURL)]
         pub unsafe fn directoryURL(&self) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDirectoryURL:)]
         pub unsafe fn setDirectoryURL(&self, directory_url: Option<&NSURL>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(allowsOtherFileTypes)]
         pub unsafe fn allowsOtherFileTypes(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAllowsOtherFileTypes:)]
         pub unsafe fn setAllowsOtherFileTypes(&self, allows_other_file_types: bool);
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessoryView)]
         pub unsafe fn accessoryView(&self) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessoryView:)]
         pub unsafe fn setAccessoryView(&self, accessory_view: Option<&NSView>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSOpenSavePanelDelegate>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn NSOpenSavePanelDelegate>>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isExpanded)]
         pub unsafe fn isExpanded(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(canCreateDirectories)]
         pub unsafe fn canCreateDirectories(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCanCreateDirectories:)]
         pub unsafe fn setCanCreateDirectories(&self, can_create_directories: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(canSelectHiddenExtension)]
         pub unsafe fn canSelectHiddenExtension(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCanSelectHiddenExtension:)]
         pub unsafe fn setCanSelectHiddenExtension(&self, can_select_hidden_extension: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isExtensionHidden)]
         pub unsafe fn isExtensionHidden(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setExtensionHidden:)]
         pub unsafe fn setExtensionHidden(&self, extension_hidden: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(treatsFilePackagesAsDirectories)]
         pub unsafe fn treatsFilePackagesAsDirectories(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTreatsFilePackagesAsDirectories:)]
         pub unsafe fn setTreatsFilePackagesAsDirectories(
             &self,
@@ -116,74 +136,94 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other prompt)]
         pub unsafe fn prompt(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPrompt:)]
         pub unsafe fn setPrompt(&self, prompt: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other nameFieldLabel)]
         pub unsafe fn nameFieldLabel(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setNameFieldLabel:)]
         pub unsafe fn setNameFieldLabel(&self, name_field_label: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other nameFieldStringValue)]
         pub unsafe fn nameFieldStringValue(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setNameFieldStringValue:)]
         pub unsafe fn setNameFieldStringValue(&self, name_field_string_value: &NSString);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other message)]
         pub unsafe fn message(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMessage:)]
         pub unsafe fn setMessage(&self, message: Option<&NSString>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(validateVisibleColumns)]
         pub unsafe fn validateVisibleColumns(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(showsHiddenFiles)]
         pub unsafe fn showsHiddenFiles(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setShowsHiddenFiles:)]
         pub unsafe fn setShowsHiddenFiles(&self, shows_hidden_files: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(showsTagField)]
         pub unsafe fn showsTagField(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setShowsTagField:)]
         pub unsafe fn setShowsTagField(&self, shows_tag_field: bool);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other tagNames)]
         pub unsafe fn tagNames(&self) -> Option<Id<NSArray<NSString>>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTagNames:)]
         pub unsafe fn setTagNames(&self, tag_names: Option<&NSArray<NSString>>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(ok:)]
         pub unsafe fn ok(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(cancel:)]
         pub unsafe fn cancel(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(beginSheetModalForWindow:completionHandler:)]
         pub unsafe fn beginSheetModalForWindow_completionHandler(
             &self,
@@ -191,22 +231,27 @@ extern_methods!(
             handler: &Block<(NSModalResponse,), ()>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(beginWithCompletionHandler:)]
         pub unsafe fn beginWithCompletionHandler(&self, handler: &Block<(NSModalResponse,), ()>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(runModal)]
         pub unsafe fn runModal(&self) -> NSModalResponse;
     }
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSOpenSavePanelDelegate: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(panel:shouldEnableURL:)]
         unsafe fn panel_shouldEnableURL(&self, sender: &Object, url: &NSURL) -> bool;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(panel:validateURL:error:_)]
         unsafe fn panel_validateURL_error(
@@ -216,11 +261,13 @@ extern_protocol!(
         ) -> Result<(), Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(panel:didChangeToDirectoryURL:)]
         unsafe fn panel_didChangeToDirectoryURL(&self, sender: &Object, url: Option<&NSURL>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other panel:userEnteredFilename:confirmed:)]
         unsafe fn panel_userEnteredFilename_confirmed(
@@ -230,10 +277,12 @@ extern_protocol!(
             ok_flag: bool,
         ) -> Option<Id<NSString>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(panel:willExpand:)]
         unsafe fn panel_willExpand(&self, sender: &Object, expanding: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(panelSelectionDidChange:)]
         unsafe fn panelSelectionDidChange(&self, sender: Option<&Object>);
@@ -248,31 +297,37 @@ extern_methods!(
     unsafe impl NSSavePanel {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use -URL instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other filename)]
         pub unsafe fn filename(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use -directoryURL instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other directory)]
         pub unsafe fn directory(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use -setDirectoryURL: instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDirectory:)]
         pub unsafe fn setDirectory(&self, path: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use -allowedFileTypes instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other requiredFileType)]
         pub unsafe fn requiredFileType(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use -setAllowedFileTypes: instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setRequiredFileType:)]
         pub unsafe fn setRequiredFileType(&self, r#type: Option<&NSString>);
 
         #[cfg(all(feature = "AppKit_NSWindow", feature = "Foundation_NSString"))]
         #[deprecated = "Use beginSheetModalForWindow:completionHandler: instead. The following parameters are replaced by properties: 'path' is replaced by 'directoryURL' and 'name' by 'nameFieldStringValue'."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(beginSheetForDirectory:file:modalForWindow:modalDelegate:didEndSelector:contextInfo:)]
         pub unsafe fn beginSheetForDirectory_file_modalForWindow_modalDelegate_didEndSelector_contextInfo(
             &self,
@@ -286,6 +341,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use -runModal instead. The following parameters are replaced by properties: 'path' is replaced by 'directoryURL' and 'name' by 'nameFieldStringValue'."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(runModalForDirectory:file:)]
         pub unsafe fn runModalForDirectory_file(
             &self,
@@ -294,16 +350,19 @@ extern_methods!(
         ) -> NSInteger;
 
         #[deprecated = "Default implementation does nothing."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectText:)]
         pub unsafe fn selectText(&self, sender: Option<&Object>);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[deprecated = "Use -allowedContentTypes instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other allowedFileTypes)]
         pub unsafe fn allowedFileTypes(&self) -> Option<Id<NSArray<NSString>>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[deprecated = "Use -allowedContentTypes instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAllowedFileTypes:)]
         pub unsafe fn setAllowedFileTypes(&self, allowed_file_types: Option<&NSArray<NSString>>);
     }
@@ -313,6 +372,7 @@ extern_methods!(
     /// Methods declared on superclass `NSWindow`
     #[cfg(feature = "AppKit_NSSavePanel")]
     unsafe impl NSSavePanel {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer(
             this: Option<Allocated<Self>>,
@@ -323,6 +383,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSScreen")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:screen:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer_screen(
             this: Option<Allocated<Self>>,
@@ -334,6 +395,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other windowWithContentViewController:)]
         pub unsafe fn windowWithContentViewController(
             content_view_controller: &NSViewController,

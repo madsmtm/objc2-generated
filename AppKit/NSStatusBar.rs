@@ -12,6 +12,7 @@ extern_static!(NSSquareStatusItemLength: CGFloat = -2.0);
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSStatusBar")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSStatusBar;
 
     #[cfg(feature = "AppKit_NSStatusBar")]
@@ -26,20 +27,25 @@ unsafe impl NSObjectProtocol for NSStatusBar {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSStatusBar")]
     unsafe impl NSStatusBar {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other systemStatusBar)]
         pub unsafe fn systemStatusBar() -> Id<NSStatusBar>;
 
         #[cfg(feature = "AppKit_NSStatusItem")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other statusItemWithLength:)]
         pub unsafe fn statusItemWithLength(&self, length: CGFloat) -> Id<NSStatusItem>;
 
         #[cfg(feature = "AppKit_NSStatusItem")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeStatusItem:)]
         pub unsafe fn removeStatusItem(&self, item: &NSStatusItem);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isVertical)]
         pub unsafe fn isVertical(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(thickness)]
         pub unsafe fn thickness(&self) -> CGFloat;
     }

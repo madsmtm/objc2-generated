@@ -67,6 +67,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
     unsafe impl NSScriptObjectSpecifier {
         #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other objectSpecifierWithDescriptor:)]
         pub unsafe fn objectSpecifierWithDescriptor(
             descriptor: &NSAppleEventDescriptor,
@@ -181,6 +182,7 @@ extern_methods!(
         pub unsafe fn evaluationErrorSpecifier(&self) -> Option<Id<NSScriptObjectSpecifier>>;
 
         #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other descriptor)]
         pub unsafe fn descriptor(&self) -> Option<Id<NSAppleEventDescriptor>>;
     }
@@ -327,10 +329,12 @@ extern_methods!(
             specifier: &NSScriptObjectSpecifier,
         ) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(position)]
         pub unsafe fn position(&self) -> NSInsertionPosition;
 
         #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other objectSpecifier)]
         pub unsafe fn objectSpecifier(&self) -> Id<NSScriptObjectSpecifier>;
 

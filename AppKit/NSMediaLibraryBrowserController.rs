@@ -7,9 +7,13 @@ use crate::Foundation::*;
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSMediaLibrary {
+        #[cfg(not(any(target_os = "ios")))]
         NSMediaLibraryAudio = 1 << 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSMediaLibraryImage = 1 << 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSMediaLibraryMovie = 1 << 2,
     }
 );
@@ -17,6 +21,7 @@ ns_options!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSMediaLibraryBrowserController")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSMediaLibraryBrowserController;
 
     #[cfg(feature = "AppKit_NSMediaLibraryBrowserController")]
@@ -31,27 +36,35 @@ unsafe impl NSObjectProtocol for NSMediaLibraryBrowserController {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSMediaLibraryBrowserController")]
     unsafe impl NSMediaLibraryBrowserController {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isVisible)]
         pub unsafe fn isVisible(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setVisible:)]
         pub unsafe fn setVisible(&self, visible: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(frame)]
         pub unsafe fn frame(&self) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFrame:)]
         pub unsafe fn setFrame(&self, frame: NSRect);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(mediaLibraries)]
         pub unsafe fn mediaLibraries(&self) -> NSMediaLibrary;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMediaLibraries:)]
         pub unsafe fn setMediaLibraries(&self, media_libraries: NSMediaLibrary);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other sharedMediaLibraryBrowserController)]
         pub unsafe fn sharedMediaLibraryBrowserController() -> Id<NSMediaLibraryBrowserController>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(togglePanel:)]
         pub unsafe fn togglePanel(&self, sender: Option<&Object>);
     }

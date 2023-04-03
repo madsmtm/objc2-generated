@@ -7,6 +7,7 @@ use crate::MetricKit::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MetricKit_MXDiagnosticPayload")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct MXDiagnosticPayload;
 
     #[cfg(feature = "MetricKit_MXDiagnosticPayload")]
@@ -53,6 +54,7 @@ extern_methods!(
             feature = "Foundation_NSArray",
             feature = "MetricKit_MXAppLaunchDiagnostic"
         ))]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other appLaunchDiagnostics)]
         pub unsafe fn appLaunchDiagnostics(&self) -> Option<Id<NSArray<MXAppLaunchDiagnostic>>>;
 

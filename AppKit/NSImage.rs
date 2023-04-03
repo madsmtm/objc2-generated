@@ -15,21 +15,32 @@ extern_static!(NSImageHintUserInterfaceLayoutDirection: &'static NSImageHintKey)
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSImageLoadStatus {
+        #[cfg(not(any(target_os = "ios")))]
         NSImageLoadStatusCompleted = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSImageLoadStatusCancelled = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSImageLoadStatusInvalidData = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSImageLoadStatusUnexpectedEOF = 3,
+        #[cfg(not(any(target_os = "ios")))]
         NSImageLoadStatusReadError = 4,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSImageCacheMode {
+        #[cfg(not(any(target_os = "ios")))]
         NSImageCacheDefault = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSImageCacheAlways = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSImageCacheBySize = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSImageCacheNever = 3,
     }
 );
@@ -51,10 +62,12 @@ unsafe impl NSObjectProtocol for NSImage {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSImage")]
     unsafe impl NSImage {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other imageNamed:)]
         pub unsafe fn imageNamed(name: &NSImageName) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other imageWithSystemSymbolName:accessibilityDescription:)]
         pub unsafe fn imageWithSystemSymbolName_accessibilityDescription(
             name: &NSString,
@@ -62,6 +75,7 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other imageWithSystemSymbolName:variableValue:accessibilityDescription:)]
         pub unsafe fn imageWithSystemSymbolName_variableValue_accessibilityDescription(
             name: &NSString,
@@ -70,6 +84,7 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other imageWithSymbolName:variableValue:)]
         pub unsafe fn imageWithSymbolName_variableValue(
             name: &NSString,
@@ -77,6 +92,7 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[cfg(all(feature = "Foundation_NSBundle", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other imageWithSymbolName:bundle:variableValue:)]
         pub unsafe fn imageWithSymbolName_bundle_variableValue(
             name: &NSString,
@@ -84,14 +100,17 @@ extern_methods!(
             value: c_double,
         ) -> Option<Id<Self>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithSize:)]
         pub unsafe fn initWithSize(this: Option<Allocated<Self>>, size: NSSize) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSData")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithData:)]
         pub unsafe fn initWithData(
             this: Option<Allocated<Self>>,
@@ -99,6 +118,7 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithContentsOfFile:)]
         pub unsafe fn initWithContentsOfFile(
             this: Option<Allocated<Self>>,
@@ -106,6 +126,7 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
         pub unsafe fn initWithContentsOfURL(
             this: Option<Allocated<Self>>,
@@ -113,6 +134,7 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initByReferencingFile:)]
         pub unsafe fn initByReferencingFile(
             this: Option<Allocated<Self>>,
@@ -120,10 +142,12 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initByReferencingURL:)]
         pub unsafe fn initByReferencingURL(this: Option<Allocated<Self>>, url: &NSURL) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSPasteboard")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithPasteboard:)]
         pub unsafe fn initWithPasteboard(
             this: Option<Allocated<Self>>,
@@ -131,12 +155,14 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSData")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithDataIgnoringOrientation:)]
         pub unsafe fn initWithDataIgnoringOrientation(
             this: Option<Allocated<Self>>,
             data: &NSData,
         ) -> Option<Id<Self>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other imageWithSize:flipped:drawingHandler:)]
         pub unsafe fn imageWithSize_flipped_drawingHandler(
             size: NSSize,
@@ -144,53 +170,68 @@ extern_methods!(
             drawing_handler: &Block<(NSRect,), Bool>,
         ) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(size)]
         pub unsafe fn size(&self) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSize:)]
         pub unsafe fn setSize(&self, size: NSSize);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setName:)]
         pub unsafe fn setName(&self, string: Option<&NSImageName>) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Id<NSImageName>>;
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Id<NSColor>;
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: &NSColor);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(usesEPSOnResolutionMismatch)]
         pub unsafe fn usesEPSOnResolutionMismatch(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setUsesEPSOnResolutionMismatch:)]
         pub unsafe fn setUsesEPSOnResolutionMismatch(&self, uses_eps_on_resolution_mismatch: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(prefersColorMatch)]
         pub unsafe fn prefersColorMatch(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPrefersColorMatch:)]
         pub unsafe fn setPrefersColorMatch(&self, prefers_color_match: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(matchesOnMultipleResolution)]
         pub unsafe fn matchesOnMultipleResolution(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMatchesOnMultipleResolution:)]
         pub unsafe fn setMatchesOnMultipleResolution(&self, matches_on_multiple_resolution: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(matchesOnlyOnBestFittingAxis)]
         pub unsafe fn matchesOnlyOnBestFittingAxis(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMatchesOnlyOnBestFittingAxis:)]
         pub unsafe fn setMatchesOnlyOnBestFittingAxis(
             &self,
             matches_only_on_best_fitting_axis: bool,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawAtPoint:fromRect:operation:fraction:)]
         pub unsafe fn drawAtPoint_fromRect_operation_fraction(
             &self,
@@ -200,6 +241,7 @@ extern_methods!(
             delta: CGFloat,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawInRect:fromRect:operation:fraction:)]
         pub unsafe fn drawInRect_fromRect_operation_fraction(
             &self,
@@ -210,6 +252,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawInRect:fromRect:operation:fraction:respectFlipped:hints:)]
         pub unsafe fn drawInRect_fromRect_operation_fraction_respectFlipped_hints(
             &self,
@@ -222,6 +265,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSImageRep")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawRepresentation:inRect:)]
         pub unsafe fn drawRepresentation_inRect(
             &self,
@@ -229,17 +273,21 @@ extern_methods!(
             rect: NSRect,
         ) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawInRect:)]
         pub unsafe fn drawInRect(&self, rect: NSRect);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(recache)]
         pub unsafe fn recache(&self);
 
         #[cfg(feature = "Foundation_NSData")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other TIFFRepresentation)]
         pub unsafe fn TIFFRepresentation(&self) -> Option<Id<NSData>>;
 
         #[cfg(feature = "Foundation_NSData")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other TIFFRepresentationUsingCompression:factor:)]
         pub unsafe fn TIFFRepresentationUsingCompression_factor(
             &self,
@@ -248,80 +296,102 @@ extern_methods!(
         ) -> Option<Id<NSData>>;
 
         #[cfg(all(feature = "AppKit_NSImageRep", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other representations)]
         pub unsafe fn representations(&self) -> Id<NSArray<NSImageRep>>;
 
         #[cfg(all(feature = "AppKit_NSImageRep", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(addRepresentations:)]
         pub unsafe fn addRepresentations(&self, image_reps: &NSArray<NSImageRep>);
 
         #[cfg(feature = "AppKit_NSImageRep")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(addRepresentation:)]
         pub unsafe fn addRepresentation(&self, image_rep: &NSImageRep);
 
         #[cfg(feature = "AppKit_NSImageRep")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeRepresentation:)]
         pub unsafe fn removeRepresentation(&self, image_rep: &NSImageRep);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isValid)]
         pub unsafe fn isValid(&self) -> bool;
 
         #[deprecated = "This method is incompatible with resolution-independent drawing and should not be used. Instead, use +[NSImage imageWithSize:flipped:drawingHandler:] to create a block-based image describing the desired image drawing, or use +[NSGraphicsContext graphicsContextWithBitmapImageRep:] to manipulate specific bitmap image representations."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(lockFocus)]
         pub unsafe fn lockFocus(&self);
 
         #[deprecated = "This method is incompatible with resolution-independent drawing and should not be used. Instead, use +[NSImage imageWithSize:flipped:drawingHandler:] to create a block-based image describing the desired image drawing, or use +[NSGraphicsContext graphicsContextWithBitmapImageRep:] to manipulate specific bitmap image representations."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(lockFocusFlipped:)]
         pub unsafe fn lockFocusFlipped(&self, flipped: bool);
 
         #[deprecated = "This method is incompatible with resolution-independent drawing and should not be used. Instead, use +[NSImage imageWithSize:flipped:drawingHandler:] to create a block-based image describing the desired image drawing, or use +[NSGraphicsContext graphicsContextWithBitmapImageRep:] to manipulate specific bitmap image representations."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(unlockFocus)]
         pub unsafe fn unlockFocus(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSImageDelegate>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSImageDelegate>>);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other imageTypes)]
         pub unsafe fn imageTypes() -> Id<NSArray<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other imageUnfilteredTypes)]
         pub unsafe fn imageUnfilteredTypes() -> Id<NSArray<NSString>>;
 
         #[cfg(feature = "AppKit_NSPasteboard")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(canInitWithPasteboard:)]
         pub unsafe fn canInitWithPasteboard(pasteboard: &NSPasteboard) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(cancelIncrementalLoad)]
         pub unsafe fn cancelIncrementalLoad(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(cacheMode)]
         pub unsafe fn cacheMode(&self) -> NSImageCacheMode;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCacheMode:)]
         pub unsafe fn setCacheMode(&self, cache_mode: NSImageCacheMode);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(alignmentRect)]
         pub unsafe fn alignmentRect(&self) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAlignmentRect:)]
         pub unsafe fn setAlignmentRect(&self, alignment_rect: NSRect);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isTemplate)]
         pub unsafe fn isTemplate(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTemplate:)]
         pub unsafe fn setTemplate(&self, template: bool);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityDescription)]
         pub unsafe fn accessibilityDescription(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityDescription:)]
         pub unsafe fn setAccessibilityDescription(
             &self,
@@ -333,6 +403,7 @@ extern_methods!(
             feature = "AppKit_NSImageRep",
             feature = "Foundation_NSDictionary"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other bestRepresentationForRect:context:hints:)]
         pub unsafe fn bestRepresentationForRect_context_hints(
             &self,
@@ -345,6 +416,7 @@ extern_methods!(
             feature = "AppKit_NSGraphicsContext",
             feature = "Foundation_NSDictionary"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(hitTestRect:withImageDestinationRect:context:hints:flipped:)]
         pub unsafe fn hitTestRect_withImageDestinationRect_context_hints_flipped(
             &self,
@@ -355,31 +427,38 @@ extern_methods!(
             flipped: bool,
         ) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(recommendedLayerContentsScale:)]
         pub unsafe fn recommendedLayerContentsScale(
             &self,
             preferred_contents_scale: CGFloat,
         ) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other layerContentsForContentsScale:)]
         pub unsafe fn layerContentsForContentsScale(
             &self,
             layer_contents_scale: CGFloat,
         ) -> Id<Object>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(capInsets)]
         pub unsafe fn capInsets(&self) -> NSEdgeInsets;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCapInsets:)]
         pub unsafe fn setCapInsets(&self, cap_insets: NSEdgeInsets);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(resizingMode)]
         pub unsafe fn resizingMode(&self) -> NSImageResizingMode;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setResizingMode:)]
         pub unsafe fn setResizingMode(&self, resizing_mode: NSImageResizingMode);
 
         #[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other imageWithSymbolConfiguration:)]
         pub unsafe fn imageWithSymbolConfiguration(
             &self,
@@ -387,6 +466,7 @@ extern_methods!(
         ) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other symbolConfiguration)]
         pub unsafe fn symbolConfiguration(&self) -> Id<NSImageSymbolConfiguration>;
     }
@@ -418,8 +498,10 @@ unsafe impl NSItemProviderReading for NSImage {}
 unsafe impl NSItemProviderWriting for NSImage {}
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSImageDelegate: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other imageDidNotDraw:inRect:)]
         unsafe fn imageDidNotDraw_inRect(
@@ -429,16 +511,19 @@ extern_protocol!(
         ) -> Option<Id<NSImage>>;
 
         #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSImageRep"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(image:willLoadRepresentation:)]
         unsafe fn image_willLoadRepresentation(&self, image: &NSImage, rep: &NSImageRep);
 
         #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSImageRep"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(image:didLoadRepresentationHeader:)]
         unsafe fn image_didLoadRepresentationHeader(&self, image: &NSImage, rep: &NSImageRep);
 
         #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSImageRep"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(image:didLoadPartOfRepresentation:withValidRows:)]
         unsafe fn image_didLoadPartOfRepresentation_withValidRows(
@@ -449,6 +534,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSImageRep"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(image:didLoadRepresentation:withStatus:)]
         unsafe fn image_didLoadRepresentation_withStatus(
@@ -467,14 +553,17 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSBundle")]
     unsafe impl NSBundle {
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other imageForResource:)]
         pub unsafe fn imageForResource(&self, name: &NSImageName) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other pathForImageResource:)]
         pub unsafe fn pathForImageResource(&self, name: &NSImageName) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other URLForImageResource:)]
         pub unsafe fn URLForImageResource(&self, name: &NSImageName) -> Option<Id<NSURL>>;
     }
@@ -485,6 +574,7 @@ extern_methods!(
     unsafe impl NSImage {
         #[cfg(all(feature = "AppKit_NSImageRep", feature = "Foundation_NSDictionary"))]
         #[deprecated = "Use -[NSImage bestRepresentationForRect:context:hints:] instead.  Any deviceDescription dictionary is also a valid hints dictionary."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other bestRepresentationForDevice:)]
         pub unsafe fn bestRepresentationForDevice(
             &self,
@@ -493,37 +583,45 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[deprecated = "Use +imageUnfilteredTypes instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other imageUnfilteredFileTypes)]
         pub unsafe fn imageUnfilteredFileTypes() -> Id<NSArray<NSString>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated = "Use +imageUnfilteredTypes instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other imageUnfilteredPasteboardTypes)]
         pub unsafe fn imageUnfilteredPasteboardTypes() -> Id<NSArray<NSPasteboardType>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[deprecated = "Use +imageTypes instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other imageFileTypes)]
         pub unsafe fn imageFileTypes() -> Id<NSArray<NSString>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated = "Use +imageTypes instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other imagePasteboardTypes)]
         pub unsafe fn imagePasteboardTypes() -> Id<NSArray<NSPasteboardType>>;
 
         #[deprecated = "The concept of flippedness for NSImage is deprecated.  Please see the AppKit 10.6 release notes for a discussion of why and for how to replace existing usage."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFlipped:)]
         pub unsafe fn setFlipped(&self, flag: bool);
 
         #[deprecated = "The concept of flippedness for NSImage is deprecated.  Please see the AppKit 10.6 release notes for a discussion of why and for how to replace existing usage."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isFlipped)]
         pub unsafe fn isFlipped(&self) -> bool;
 
         #[deprecated = "Use -drawAtPoint:... or -drawInRect:... methods instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(dissolveToPoint:fraction:)]
         pub unsafe fn dissolveToPoint_fraction(&self, point: NSPoint, fraction: CGFloat);
 
         #[deprecated = "Use -drawAtPoint:... or -drawInRect:... methods instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(dissolveToPoint:fromRect:fraction:)]
         pub unsafe fn dissolveToPoint_fromRect_fraction(
             &self,
@@ -533,10 +631,12 @@ extern_methods!(
         );
 
         #[deprecated = "Use -drawAtPoint:... or -drawInRect:... methods instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(compositeToPoint:operation:)]
         pub unsafe fn compositeToPoint_operation(&self, point: NSPoint, op: NSCompositingOperation);
 
         #[deprecated = "Use -drawAtPoint:... or -drawInRect:... methods instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(compositeToPoint:fromRect:operation:)]
         pub unsafe fn compositeToPoint_fromRect_operation(
             &self,
@@ -546,6 +646,7 @@ extern_methods!(
         );
 
         #[deprecated = "Use -drawAtPoint:... or -drawInRect:... methods instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(compositeToPoint:operation:fraction:)]
         pub unsafe fn compositeToPoint_operation_fraction(
             &self,
@@ -555,6 +656,7 @@ extern_methods!(
         );
 
         #[deprecated = "Use -drawAtPoint:... or -drawInRect:... methods instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(compositeToPoint:fromRect:operation:fraction:)]
         pub unsafe fn compositeToPoint_fromRect_operation_fraction(
             &self,
@@ -566,38 +668,47 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSImageRep")]
         #[deprecated = "Create an image using +[NSImage imageWithSize:flipped:drawingHandler:], and begin your custom drawing with -[NSImageRep drawInRect:] instead."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(lockFocusOnRepresentation:)]
         pub unsafe fn lockFocusOnRepresentation(&self, image_representation: Option<&NSImageRep>);
 
         #[deprecated = "You should be able to remove use of this method without any replacement.  See 10.6 AppKit release notes for details."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setScalesWhenResized:)]
         pub unsafe fn setScalesWhenResized(&self, flag: bool);
 
         #[deprecated = "You should be able to remove use of this method without any replacement.  See 10.6 AppKit release notes for details."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(scalesWhenResized)]
         pub unsafe fn scalesWhenResized(&self) -> bool;
 
         #[deprecated = "You should be able to remove use of this method without any replacement.  See 10.6 AppKit release notes for details."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDataRetained:)]
         pub unsafe fn setDataRetained(&self, flag: bool);
 
         #[deprecated = "You should be able to remove use of this method without any replacement.  See 10.6 AppKit release notes for details."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isDataRetained)]
         pub unsafe fn isDataRetained(&self) -> bool;
 
         #[deprecated = "You should be able to remove use of this method without any replacement.  See 10.6 AppKit release notes for details."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCachedSeparately:)]
         pub unsafe fn setCachedSeparately(&self, flag: bool);
 
         #[deprecated = "You should be able to remove use of this method without any replacement.  See 10.6 AppKit release notes for details."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isCachedSeparately)]
         pub unsafe fn isCachedSeparately(&self) -> bool;
 
         #[deprecated = "You should be able to remove use of this method without any replacement.  See 10.6 AppKit release notes for details."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCacheDepthMatchesImageDepth:)]
         pub unsafe fn setCacheDepthMatchesImageDepth(&self, flag: bool);
 
         #[deprecated = "You should be able to remove use of this method without any replacement.  See 10.6 AppKit release notes for details."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(cacheDepthMatchesImageDepth)]
         pub unsafe fn cacheDepthMatchesImageDepth(&self) -> bool;
     }
@@ -883,9 +994,13 @@ extern_static!(NSImageNameTouchBarPlayheadTemplate: &'static NSImageName);
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSImageSymbolScale {
+        #[cfg(not(any(target_os = "ios")))]
         NSImageSymbolScaleSmall = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSImageSymbolScaleMedium = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSImageSymbolScaleLarge = 3,
     }
 );
@@ -893,6 +1008,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSImageSymbolConfiguration;
 
     #[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
@@ -913,6 +1029,7 @@ unsafe impl NSSecureCoding for NSImageSymbolConfiguration {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
     unsafe impl NSImageSymbolConfiguration {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other configurationWithPointSize:weight:scale:)]
         pub unsafe fn configurationWithPointSize_weight_scale(
             point_size: CGFloat,
@@ -920,42 +1037,52 @@ extern_methods!(
             scale: NSImageSymbolScale,
         ) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other configurationWithPointSize:weight:)]
         pub unsafe fn configurationWithPointSize_weight(
             point_size: CGFloat,
             weight: NSFontWeight,
         ) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other configurationWithTextStyle:scale:)]
         pub unsafe fn configurationWithTextStyle_scale(
             style: &NSFontTextStyle,
             scale: NSImageSymbolScale,
         ) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other configurationWithTextStyle:)]
         pub unsafe fn configurationWithTextStyle(style: &NSFontTextStyle) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other configurationWithScale:)]
         pub unsafe fn configurationWithScale(scale: NSImageSymbolScale) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other configurationPreferringMonochrome)]
         pub unsafe fn configurationPreferringMonochrome() -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other configurationPreferringHierarchical)]
         pub unsafe fn configurationPreferringHierarchical() -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other configurationWithHierarchicalColor:)]
         pub unsafe fn configurationWithHierarchicalColor(hierarchical_color: &NSColor) -> Id<Self>;
 
         #[cfg(all(feature = "AppKit_NSColor", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other configurationWithPaletteColors:)]
         pub unsafe fn configurationWithPaletteColors(palette_colors: &NSArray<NSColor>)
             -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other configurationPreferringMulticolor)]
         pub unsafe fn configurationPreferringMulticolor() -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other configurationByApplyingConfiguration:)]
         pub unsafe fn configurationByApplyingConfiguration(
             &self,

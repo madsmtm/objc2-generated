@@ -6,24 +6,43 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub enum CLSContextType {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLSContextTypeNone = 0,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLSContextTypeApp = 1,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLSContextTypeChapter = 2,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLSContextTypeSection = 3,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLSContextTypeLevel = 4,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLSContextTypePage = 5,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLSContextTypeTask = 6,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLSContextTypeChallenge = 7,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLSContextTypeQuiz = 8,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLSContextTypeExercise = 9,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLSContextTypeLesson = 10,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLSContextTypeBook = 11,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLSContextTypeGame = 12,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLSContextTypeDocument = 13,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLSContextTypeAudio = 14,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLSContextTypeVideo = 15,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLSContextTypeCourse = 16,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         CLSContextTypeCustom = 17,
     }
 );
@@ -51,6 +70,7 @@ extern_static!(CLSContextTopicHealthAndFitness: &'static CLSContextTopic);
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "ClassKit_CLSContext")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct CLSContext;
 
     #[cfg(feature = "ClassKit_CLSContext")]
@@ -79,6 +99,7 @@ extern_methods!(
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other identifierPath)]
         pub unsafe fn identifierPath(&self) -> Id<NSArray<NSString>>;
 
@@ -87,10 +108,12 @@ extern_methods!(
         pub unsafe fn identifier(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other universalLinkURL)]
         pub unsafe fn universalLinkURL(&self) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(setUniversalLinkURL:)]
         pub unsafe fn setUniversalLinkURL(&self, universal_link_url: Option<&NSURL>);
 
@@ -98,10 +121,12 @@ extern_methods!(
         pub unsafe fn r#type(&self) -> CLSContextType;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other customTypeName)]
         pub unsafe fn customTypeName(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(setCustomTypeName:)]
         pub unsafe fn setCustomTypeName(&self, custom_type_name: Option<&NSString>);
 
@@ -125,21 +150,27 @@ extern_methods!(
         #[method(setTopic:)]
         pub unsafe fn setTopic(&self, topic: Option<&CLSContextTopic>);
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(isAssignable)]
         pub unsafe fn isAssignable(&self) -> bool;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(setAssignable:)]
         pub unsafe fn setAssignable(&self, assignable: bool);
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(suggestedAge)]
         pub unsafe fn suggestedAge(&self) -> NSRange;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(setSuggestedAge:)]
         pub unsafe fn setSuggestedAge(&self, suggested_age: NSRange);
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(suggestedCompletionTime)]
         pub unsafe fn suggestedCompletionTime(&self) -> NSRange;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(setSuggestedCompletionTime:)]
         pub unsafe fn setSuggestedCompletionTime(&self, suggested_completion_time: NSRange);
 
@@ -147,16 +178,19 @@ extern_methods!(
             feature = "ClassKit_CLSProgressReportingCapability",
             feature = "Foundation_NSSet"
         ))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other progressReportingCapabilities)]
         pub unsafe fn progressReportingCapabilities(
             &self,
         ) -> Id<NSSet<CLSProgressReportingCapability>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other summary)]
         pub unsafe fn summary(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(setSummary:)]
         pub unsafe fn setSummary(&self, summary: Option<&NSString>);
 
@@ -178,6 +212,7 @@ extern_methods!(
         #[method(resignActive)]
         pub unsafe fn resignActive(&self);
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(setType:)]
         pub unsafe fn setType(&self, r#type: CLSContextType);
 
@@ -185,12 +220,14 @@ extern_methods!(
             feature = "ClassKit_CLSProgressReportingCapability",
             feature = "Foundation_NSSet"
         ))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(addProgressReportingCapabilities:)]
         pub unsafe fn addProgressReportingCapabilities(
             &self,
             capabilities: &NSSet<CLSProgressReportingCapability>,
         );
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(resetProgressReportingCapabilities)]
         pub unsafe fn resetProgressReportingCapabilities(&self);
     }
@@ -222,12 +259,15 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other navigationChildContexts)]
         pub unsafe fn navigationChildContexts(&self) -> Id<NSArray<CLSContext>>;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(addNavigationChildContext:)]
         pub unsafe fn addNavigationChildContext(&self, child: &CLSContext);
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(removeNavigationChildContext:)]
         pub unsafe fn removeNavigationChildContext(&self, child: &CLSContext);
     }

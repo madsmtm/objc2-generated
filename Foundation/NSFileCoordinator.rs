@@ -185,6 +185,7 @@ extern_methods!(
         pub unsafe fn itemAtURL_didMoveToURL(&self, old_url: &NSURL, new_url: &NSURL);
 
         #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSURL"))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(itemAtURL:didChangeUbiquityAttributes:)]
         pub unsafe fn itemAtURL_didChangeUbiquityAttributes(
             &self,

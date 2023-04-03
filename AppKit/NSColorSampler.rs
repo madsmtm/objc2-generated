@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSColorSampler")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSColorSampler;
 
     #[cfg(feature = "AppKit_NSColorSampler")]
@@ -23,6 +24,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSColorSampler")]
     unsafe impl NSColorSampler {
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(showSamplerWithSelectionHandler:)]
         pub unsafe fn showSamplerWithSelectionHandler(
             &self,

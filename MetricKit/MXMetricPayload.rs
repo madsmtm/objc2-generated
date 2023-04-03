@@ -7,6 +7,7 @@ use crate::MetricKit::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MetricKit_MXMetricPayload")]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub struct MXMetricPayload;
 
     #[cfg(feature = "MetricKit_MXMetricPayload")]
@@ -89,10 +90,12 @@ extern_methods!(
         pub unsafe fn displayMetrics(&self) -> Option<Id<MXDisplayMetric>>;
 
         #[cfg(feature = "MetricKit_MXAnimationMetric")]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other animationMetrics)]
         pub unsafe fn animationMetrics(&self) -> Option<Id<MXAnimationMetric>>;
 
         #[cfg(feature = "MetricKit_MXAppExitMetric")]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other applicationExitMetrics)]
         pub unsafe fn applicationExitMetrics(&self) -> Option<Id<MXAppExitMetric>>;
 
@@ -110,10 +113,12 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[deprecated]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other DictionaryRepresentation)]
         pub unsafe fn DictionaryRepresentation(&self) -> Id<NSDictionary>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other dictionaryRepresentation)]
         pub unsafe fn dictionaryRepresentation(&self) -> Id<NSDictionary>;
     }

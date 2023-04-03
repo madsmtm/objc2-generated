@@ -25,59 +25,96 @@ extern_static!(NSLayoutPriorityFittingSizeCompression: NSLayoutPriority = 50);
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSLayoutConstraintOrientation {
+        #[cfg(not(any(target_os = "ios")))]
         NSLayoutConstraintOrientationHorizontal = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSLayoutConstraintOrientationVertical = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSLayoutRelation {
+        #[cfg(not(any(target_os = "ios")))]
         NSLayoutRelationLessThanOrEqual = -1,
+        #[cfg(not(any(target_os = "ios")))]
         NSLayoutRelationEqual = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSLayoutRelationGreaterThanOrEqual = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSLayoutAttribute {
+        #[cfg(not(any(target_os = "ios")))]
         NSLayoutAttributeLeft = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSLayoutAttributeRight = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSLayoutAttributeTop = 3,
+        #[cfg(not(any(target_os = "ios")))]
         NSLayoutAttributeBottom = 4,
+        #[cfg(not(any(target_os = "ios")))]
         NSLayoutAttributeLeading = 5,
+        #[cfg(not(any(target_os = "ios")))]
         NSLayoutAttributeTrailing = 6,
+        #[cfg(not(any(target_os = "ios")))]
         NSLayoutAttributeWidth = 7,
+        #[cfg(not(any(target_os = "ios")))]
         NSLayoutAttributeHeight = 8,
+        #[cfg(not(any(target_os = "ios")))]
         NSLayoutAttributeCenterX = 9,
+        #[cfg(not(any(target_os = "ios")))]
         NSLayoutAttributeCenterY = 10,
+        #[cfg(not(any(target_os = "ios")))]
         NSLayoutAttributeLastBaseline = 11,
+        #[cfg(not(any(target_os = "ios")))]
         NSLayoutAttributeBaseline = NSLayoutAttributeLastBaseline,
         NSLayoutAttributeFirstBaseline = 12,
+        #[cfg(not(any(target_os = "ios")))]
         NSLayoutAttributeNotAnAttribute = 0,
     }
 );
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSLayoutFormatOptions {
+        #[cfg(not(any(target_os = "ios")))]
         NSLayoutFormatAlignAllLeft = 1 << NSLayoutAttributeLeft,
+        #[cfg(not(any(target_os = "ios")))]
         NSLayoutFormatAlignAllRight = 1 << NSLayoutAttributeRight,
+        #[cfg(not(any(target_os = "ios")))]
         NSLayoutFormatAlignAllTop = 1 << NSLayoutAttributeTop,
+        #[cfg(not(any(target_os = "ios")))]
         NSLayoutFormatAlignAllBottom = 1 << NSLayoutAttributeBottom,
+        #[cfg(not(any(target_os = "ios")))]
         NSLayoutFormatAlignAllLeading = 1 << NSLayoutAttributeLeading,
+        #[cfg(not(any(target_os = "ios")))]
         NSLayoutFormatAlignAllTrailing = 1 << NSLayoutAttributeTrailing,
+        #[cfg(not(any(target_os = "ios")))]
         NSLayoutFormatAlignAllCenterX = 1 << NSLayoutAttributeCenterX,
+        #[cfg(not(any(target_os = "ios")))]
         NSLayoutFormatAlignAllCenterY = 1 << NSLayoutAttributeCenterY,
+        #[cfg(not(any(target_os = "ios")))]
         NSLayoutFormatAlignAllLastBaseline = 1 << NSLayoutAttributeLastBaseline,
         NSLayoutFormatAlignAllFirstBaseline = 1 << NSLayoutAttributeFirstBaseline,
+        #[cfg(not(any(target_os = "ios")))]
         NSLayoutFormatAlignAllBaseline = NSLayoutFormatAlignAllLastBaseline,
+        #[cfg(not(any(target_os = "ios")))]
         NSLayoutFormatAlignmentMask = 0xFFFF,
+        #[cfg(not(any(target_os = "ios")))]
         NSLayoutFormatDirectionLeadingToTrailing = 0 << 16,
+        #[cfg(not(any(target_os = "ios")))]
         NSLayoutFormatDirectionLeftToRight = 1 << 16,
+        #[cfg(not(any(target_os = "ios")))]
         NSLayoutFormatDirectionRightToLeft = 2 << 16,
+        #[cfg(not(any(target_os = "ios")))]
         NSLayoutFormatDirectionMask = 0x3 << 16,
     }
 );
@@ -123,27 +160,35 @@ extern_methods!(
             c: CGFloat,
         ) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(priority)]
         pub unsafe fn priority(&self) -> NSLayoutPriority;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPriority:)]
         pub unsafe fn setPriority(&self, priority: NSLayoutPriority);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(shouldBeArchived)]
         pub unsafe fn shouldBeArchived(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setShouldBeArchived:)]
         pub unsafe fn setShouldBeArchived(&self, should_be_archived: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other firstItem)]
         pub unsafe fn firstItem(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other secondItem)]
         pub unsafe fn secondItem(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(firstAttribute)]
         pub unsafe fn firstAttribute(&self) -> NSLayoutAttribute;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(secondAttribute)]
         pub unsafe fn secondAttribute(&self) -> NSLayoutAttribute;
 
@@ -155,15 +200,19 @@ extern_methods!(
         #[method_id(@__retain_semantics Other secondAnchor)]
         pub unsafe fn secondAnchor(&self) -> Option<Id<NSLayoutAnchor>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(relation)]
         pub unsafe fn relation(&self) -> NSLayoutRelation;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(multiplier)]
         pub unsafe fn multiplier(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(constant)]
         pub unsafe fn constant(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setConstant:)]
         pub unsafe fn setConstant(&self, constant: CGFloat);
 
@@ -210,70 +259,87 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSView")]
     unsafe impl NSView {
         #[cfg(feature = "AppKit_NSLayoutXAxisAnchor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other leadingAnchor)]
         pub unsafe fn leadingAnchor(&self) -> Id<NSLayoutXAxisAnchor>;
 
         #[cfg(feature = "AppKit_NSLayoutXAxisAnchor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other trailingAnchor)]
         pub unsafe fn trailingAnchor(&self) -> Id<NSLayoutXAxisAnchor>;
 
         #[cfg(feature = "AppKit_NSLayoutXAxisAnchor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other leftAnchor)]
         pub unsafe fn leftAnchor(&self) -> Id<NSLayoutXAxisAnchor>;
 
         #[cfg(feature = "AppKit_NSLayoutXAxisAnchor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other rightAnchor)]
         pub unsafe fn rightAnchor(&self) -> Id<NSLayoutXAxisAnchor>;
 
         #[cfg(feature = "AppKit_NSLayoutYAxisAnchor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other topAnchor)]
         pub unsafe fn topAnchor(&self) -> Id<NSLayoutYAxisAnchor>;
 
         #[cfg(feature = "AppKit_NSLayoutYAxisAnchor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other bottomAnchor)]
         pub unsafe fn bottomAnchor(&self) -> Id<NSLayoutYAxisAnchor>;
 
         #[cfg(feature = "AppKit_NSLayoutDimension")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other widthAnchor)]
         pub unsafe fn widthAnchor(&self) -> Id<NSLayoutDimension>;
 
         #[cfg(feature = "AppKit_NSLayoutDimension")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other heightAnchor)]
         pub unsafe fn heightAnchor(&self) -> Id<NSLayoutDimension>;
 
         #[cfg(feature = "AppKit_NSLayoutXAxisAnchor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other centerXAnchor)]
         pub unsafe fn centerXAnchor(&self) -> Id<NSLayoutXAxisAnchor>;
 
         #[cfg(feature = "AppKit_NSLayoutYAxisAnchor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other centerYAnchor)]
         pub unsafe fn centerYAnchor(&self) -> Id<NSLayoutYAxisAnchor>;
 
         #[cfg(feature = "AppKit_NSLayoutYAxisAnchor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other firstBaselineAnchor)]
         pub unsafe fn firstBaselineAnchor(&self) -> Id<NSLayoutYAxisAnchor>;
 
         #[cfg(feature = "AppKit_NSLayoutYAxisAnchor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other lastBaselineAnchor)]
         pub unsafe fn lastBaselineAnchor(&self) -> Id<NSLayoutYAxisAnchor>;
 
         #[cfg(all(feature = "AppKit_NSLayoutConstraint", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other constraints)]
         pub unsafe fn constraints(&self) -> Id<NSArray<NSLayoutConstraint>>;
 
         #[cfg(feature = "AppKit_NSLayoutConstraint")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(addConstraint:)]
         pub unsafe fn addConstraint(&self, constraint: &NSLayoutConstraint);
 
         #[cfg(all(feature = "AppKit_NSLayoutConstraint", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(addConstraints:)]
         pub unsafe fn addConstraints(&self, constraints: &NSArray<NSLayoutConstraint>);
 
         #[cfg(feature = "AppKit_NSLayoutConstraint")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeConstraint:)]
         pub unsafe fn removeConstraint(&self, constraint: &NSLayoutConstraint);
 
         #[cfg(all(feature = "AppKit_NSLayoutConstraint", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeConstraints:)]
         pub unsafe fn removeConstraints(&self, constraints: &NSArray<NSLayoutConstraint>);
     }
@@ -283,9 +349,11 @@ extern_methods!(
     /// NSConstraintBasedLayoutCoreMethods
     #[cfg(feature = "AppKit_NSWindow")]
     unsafe impl NSWindow {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(updateConstraintsIfNeeded)]
         pub unsafe fn updateConstraintsIfNeeded(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(layoutIfNeeded)]
         pub unsafe fn layoutIfNeeded(&self);
     }
@@ -295,15 +363,19 @@ extern_methods!(
     /// NSConstraintBasedLayoutCoreMethods
     #[cfg(feature = "AppKit_NSView")]
     unsafe impl NSView {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(updateConstraintsForSubtreeIfNeeded)]
         pub unsafe fn updateConstraintsForSubtreeIfNeeded(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(updateConstraints)]
         pub unsafe fn updateConstraints(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(needsUpdateConstraints)]
         pub unsafe fn needsUpdateConstraints(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setNeedsUpdateConstraints:)]
         pub unsafe fn setNeedsUpdateConstraints(&self, needs_update_constraints: bool);
     }
@@ -313,15 +385,18 @@ extern_methods!(
     /// NSConstraintBasedCompatibility
     #[cfg(feature = "AppKit_NSView")]
     unsafe impl NSView {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(translatesAutoresizingMaskIntoConstraints)]
         pub unsafe fn translatesAutoresizingMaskIntoConstraints(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTranslatesAutoresizingMaskIntoConstraints:)]
         pub unsafe fn setTranslatesAutoresizingMaskIntoConstraints(
             &self,
             translates_autoresizing_mask_into_constraints: bool,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(requiresConstraintBasedLayout)]
         pub unsafe fn requiresConstraintBasedLayout() -> bool;
     }
@@ -335,36 +410,46 @@ extern_methods!(
     /// NSConstraintBasedLayoutLayering
     #[cfg(feature = "AppKit_NSView")]
     unsafe impl NSView {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(alignmentRectForFrame:)]
         pub unsafe fn alignmentRectForFrame(&self, frame: NSRect) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(frameForAlignmentRect:)]
         pub unsafe fn frameForAlignmentRect(&self, alignment_rect: NSRect) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(alignmentRectInsets)]
         pub unsafe fn alignmentRectInsets(&self) -> NSEdgeInsets;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(firstBaselineOffsetFromTop)]
         pub unsafe fn firstBaselineOffsetFromTop(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(lastBaselineOffsetFromBottom)]
         pub unsafe fn lastBaselineOffsetFromBottom(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(baselineOffsetFromBottom)]
         pub unsafe fn baselineOffsetFromBottom(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(intrinsicContentSize)]
         pub unsafe fn intrinsicContentSize(&self) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(invalidateIntrinsicContentSize)]
         pub unsafe fn invalidateIntrinsicContentSize(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(contentHuggingPriorityForOrientation:)]
         pub unsafe fn contentHuggingPriorityForOrientation(
             &self,
             orientation: NSLayoutConstraintOrientation,
         ) -> NSLayoutPriority;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setContentHuggingPriority:forOrientation:)]
         pub unsafe fn setContentHuggingPriority_forOrientation(
             &self,
@@ -372,12 +457,14 @@ extern_methods!(
             orientation: NSLayoutConstraintOrientation,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(contentCompressionResistancePriorityForOrientation:)]
         pub unsafe fn contentCompressionResistancePriorityForOrientation(
             &self,
             orientation: NSLayoutConstraintOrientation,
         ) -> NSLayoutPriority;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setContentCompressionResistancePriority:forOrientation:)]
         pub unsafe fn setContentCompressionResistancePriority_forOrientation(
             &self,
@@ -385,18 +472,22 @@ extern_methods!(
             orientation: NSLayoutConstraintOrientation,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isHorizontalContentSizeConstraintActive)]
         pub unsafe fn isHorizontalContentSizeConstraintActive(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setHorizontalContentSizeConstraintActive:)]
         pub unsafe fn setHorizontalContentSizeConstraintActive(
             &self,
             horizontal_content_size_constraint_active: bool,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isVerticalContentSizeConstraintActive)]
         pub unsafe fn isVerticalContentSizeConstraintActive(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setVerticalContentSizeConstraintActive:)]
         pub unsafe fn setVerticalContentSizeConstraintActive(
             &self,
@@ -410,6 +501,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSControl")]
     unsafe impl NSControl {
         #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(invalidateIntrinsicContentSizeForCell:)]
         pub unsafe fn invalidateIntrinsicContentSizeForCell(&self, cell: &NSCell);
     }
@@ -419,12 +511,14 @@ extern_methods!(
     /// NSConstraintBasedLayoutAnchoring
     #[cfg(feature = "AppKit_NSWindow")]
     unsafe impl NSWindow {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(anchorAttributeForOrientation:)]
         pub unsafe fn anchorAttributeForOrientation(
             &self,
             orientation: NSLayoutConstraintOrientation,
         ) -> NSLayoutAttribute;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAnchorAttribute:forOrientation:)]
         pub unsafe fn setAnchorAttribute_forOrientation(
             &self,
@@ -438,6 +532,7 @@ extern_methods!(
     /// NSConstraintBasedLayoutFittingSize
     #[cfg(feature = "AppKit_NSView")]
     unsafe impl NSView {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(fittingSize)]
         pub unsafe fn fittingSize(&self) -> NSSize;
     }
@@ -448,15 +543,18 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSView")]
     unsafe impl NSView {
         #[cfg(all(feature = "AppKit_NSLayoutConstraint", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other constraintsAffectingLayoutForOrientation:)]
         pub unsafe fn constraintsAffectingLayoutForOrientation(
             &self,
             orientation: NSLayoutConstraintOrientation,
         ) -> Id<NSArray<NSLayoutConstraint>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(hasAmbiguousLayout)]
         pub unsafe fn hasAmbiguousLayout(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(exerciseAmbiguityInLayout)]
         pub unsafe fn exerciseAmbiguityInLayout(&self);
     }
@@ -467,6 +565,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSWindow")]
     unsafe impl NSWindow {
         #[cfg(all(feature = "AppKit_NSLayoutConstraint", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(visualizeConstraints:)]
         pub unsafe fn visualizeConstraints(
             &self,

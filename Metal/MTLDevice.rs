@@ -21,6 +21,7 @@ extern_fn!(
 
 extern_fn!(
     #[cfg(feature = "Foundation_NSArray")]
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn MTLCopyAllDevices() -> NonNull<NSArray<ProtocolObject<dyn MTLDevice>>>;
 );
 
@@ -43,6 +44,7 @@ pub type MTLDeviceNotificationHandler = *mut Block<
 >;
 
 extern_fn!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe fn MTLRemoveDeviceObserver(observer: &NSObject);
 );
 
@@ -50,38 +52,71 @@ ns_enum!(
     #[underlying(NSUInteger)]
     #[deprecated = "Use MTLGPUFamily instead"]
     pub enum MTLFeatureSet {
+        #[cfg(not(any(target_os = "macos")))]
         MTLFeatureSet_iOS_GPUFamily1_v1 = 0,
+        #[cfg(not(any(target_os = "macos")))]
         MTLFeatureSet_iOS_GPUFamily2_v1 = 1,
+        #[cfg(not(any(target_os = "macos")))]
         MTLFeatureSet_iOS_GPUFamily1_v2 = 2,
+        #[cfg(not(any(target_os = "macos")))]
         MTLFeatureSet_iOS_GPUFamily2_v2 = 3,
+        #[cfg(not(any(target_os = "macos")))]
         MTLFeatureSet_iOS_GPUFamily3_v1 = 4,
+        #[cfg(not(any(target_os = "macos")))]
         MTLFeatureSet_iOS_GPUFamily1_v3 = 5,
+        #[cfg(not(any(target_os = "macos")))]
         MTLFeatureSet_iOS_GPUFamily2_v3 = 6,
+        #[cfg(not(any(target_os = "macos")))]
         MTLFeatureSet_iOS_GPUFamily3_v2 = 7,
+        #[cfg(not(any(target_os = "macos")))]
         MTLFeatureSet_iOS_GPUFamily1_v4 = 8,
+        #[cfg(not(any(target_os = "macos")))]
         MTLFeatureSet_iOS_GPUFamily2_v4 = 9,
+        #[cfg(not(any(target_os = "macos")))]
         MTLFeatureSet_iOS_GPUFamily3_v3 = 10,
+        #[cfg(not(any(target_os = "macos")))]
         MTLFeatureSet_iOS_GPUFamily4_v1 = 11,
+        #[cfg(not(any(target_os = "macos")))]
         MTLFeatureSet_iOS_GPUFamily1_v5 = 12,
+        #[cfg(not(any(target_os = "macos")))]
         MTLFeatureSet_iOS_GPUFamily2_v5 = 13,
+        #[cfg(not(any(target_os = "macos")))]
         MTLFeatureSet_iOS_GPUFamily3_v4 = 14,
+        #[cfg(not(any(target_os = "macos")))]
         MTLFeatureSet_iOS_GPUFamily4_v2 = 15,
+        #[cfg(not(any(target_os = "macos")))]
         MTLFeatureSet_iOS_GPUFamily5_v1 = 16,
+        #[cfg(not(any(target_os = "ios")))]
         MTLFeatureSet_macOS_GPUFamily1_v1 = 10000,
+        #[cfg(not(any(target_os = "ios")))]
         MTLFeatureSet_OSX_GPUFamily1_v1 = MTLFeatureSet_macOS_GPUFamily1_v1,
+        #[cfg(not(any(target_os = "ios")))]
         MTLFeatureSet_macOS_GPUFamily1_v2 = 10001,
+        #[cfg(not(any(target_os = "ios")))]
         MTLFeatureSet_OSX_GPUFamily1_v2 = MTLFeatureSet_macOS_GPUFamily1_v2,
+        #[cfg(not(any(target_os = "ios")))]
         MTLFeatureSet_macOS_ReadWriteTextureTier2 = 10002,
+        #[cfg(not(any(target_os = "ios")))]
         MTLFeatureSet_OSX_ReadWriteTextureTier2 = MTLFeatureSet_macOS_ReadWriteTextureTier2,
+        #[cfg(not(any(target_os = "ios")))]
         MTLFeatureSet_macOS_GPUFamily1_v3 = 10003,
+        #[cfg(not(any(target_os = "ios")))]
         MTLFeatureSet_macOS_GPUFamily1_v4 = 10004,
+        #[cfg(not(any(target_os = "ios")))]
         MTLFeatureSet_macOS_GPUFamily2_v1 = 10005,
+        #[cfg(not(any(target_os = "ios", target_os = "macos")))]
         MTLFeatureSet_tvOS_GPUFamily1_v1 = 30000,
+        #[cfg(not(any(target_os = "ios", target_os = "macos")))]
         MTLFeatureSet_TVOS_GPUFamily1_v1 = MTLFeatureSet_tvOS_GPUFamily1_v1,
+        #[cfg(not(any(target_os = "ios", target_os = "macos")))]
         MTLFeatureSet_tvOS_GPUFamily1_v2 = 30001,
+        #[cfg(not(any(target_os = "ios", target_os = "macos")))]
         MTLFeatureSet_tvOS_GPUFamily1_v3 = 30002,
+        #[cfg(not(any(target_os = "ios", target_os = "macos")))]
         MTLFeatureSet_tvOS_GPUFamily2_v1 = 30003,
+        #[cfg(not(any(target_os = "ios", target_os = "macos")))]
         MTLFeatureSet_tvOS_GPUFamily1_v4 = 30004,
+        #[cfg(not(any(target_os = "ios", target_os = "macos")))]
         MTLFeatureSet_tvOS_GPUFamily2_v2 = 30005,
     }
 );
@@ -113,10 +148,15 @@ ns_enum!(
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum MTLDeviceLocation {
+        #[cfg(not(any(target_os = "ios")))]
         MTLDeviceLocationBuiltIn = 0,
+        #[cfg(not(any(target_os = "ios")))]
         MTLDeviceLocationSlot = 1,
+        #[cfg(not(any(target_os = "ios")))]
         MTLDeviceLocationExternal = 2,
+        #[cfg(not(any(target_os = "ios")))]
         MTLDeviceLocationUnspecified = NSUIntegerMax as _,
     }
 );
@@ -302,30 +342,38 @@ extern_protocol!(
         #[method(maxThreadsPerThreadgroup)]
         fn maxThreadsPerThreadgroup(&self) -> MTLSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isLowPower)]
         fn isLowPower(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isHeadless)]
         fn isHeadless(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isRemovable)]
         fn isRemovable(&self) -> bool;
 
         #[method(hasUnifiedMemory)]
         fn hasUnifiedMemory(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(recommendedMaxWorkingSetSize)]
         fn recommendedMaxWorkingSetSize(&self) -> u64;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(location)]
         fn location(&self) -> MTLDeviceLocation;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(locationNumber)]
         fn locationNumber(&self) -> NSUInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(maxTransferRate)]
         fn maxTransferRate(&self) -> u64;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isDepth24Stencil8PixelFormatSupported)]
         fn isDepth24Stencil8PixelFormatSupported(&self) -> bool;
 
@@ -347,6 +395,7 @@ extern_protocol!(
         #[method(supportsQueryTextureLOD)]
         fn supportsQueryTextureLOD(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(supportsBCTextureCompression)]
         fn supportsBCTextureCompression(&self) -> bool;
 
@@ -674,12 +723,15 @@ extern_protocol!(
             shared_event_handle: &MTLSharedEventHandle,
         ) -> Option<Id<ProtocolObject<dyn MTLSharedEvent>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(peerGroupID)]
         unsafe fn peerGroupID(&self) -> u64;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(peerIndex)]
         unsafe fn peerIndex(&self) -> u32;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(peerCount)]
         unsafe fn peerCount(&self) -> u32;
 

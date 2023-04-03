@@ -9,6 +9,7 @@ use crate::OSAKit::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Automator_AMBundleAction")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct AMBundleAction;
 
     #[cfg(feature = "Automator_AMBundleAction")]
@@ -30,17 +31,21 @@ unsafe impl NSSecureCoding for AMBundleAction {}
 extern_methods!(
     #[cfg(feature = "Automator_AMBundleAction")]
     unsafe impl AMBundleAction {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(awakeFromBundle)]
         pub unsafe fn awakeFromBundle(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(hasView)]
         pub unsafe fn hasView(&self) -> bool;
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other view)]
         pub unsafe fn view(&self) -> Option<Id<NSView>>;
 
         #[cfg(feature = "Foundation_NSBundle")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other bundle)]
         pub unsafe fn bundle(&self) -> Id<NSBundle>;
 
@@ -48,6 +53,7 @@ extern_methods!(
             feature = "Foundation_NSMutableDictionary",
             feature = "Foundation_NSString"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other parameters)]
         pub unsafe fn parameters(&self)
             -> Option<Id<NSMutableDictionary<NSString, Object>, Owned>>;
@@ -56,6 +62,7 @@ extern_methods!(
             feature = "Foundation_NSMutableDictionary",
             feature = "Foundation_NSString"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setParameters:)]
         pub unsafe fn setParameters(
             &self,
@@ -69,6 +76,7 @@ extern_methods!(
     #[cfg(feature = "Automator_AMBundleAction")]
     unsafe impl AMBundleAction {
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithDefinition:fromArchive:)]
         pub unsafe fn initWithDefinition_fromArchive(
             this: Option<Allocated<Self>>,
@@ -77,6 +85,7 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:error:_)]
         pub unsafe fn initWithContentsOfURL_error(
             this: Option<Allocated<Self>>,

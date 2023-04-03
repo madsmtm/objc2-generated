@@ -7,6 +7,7 @@ use crate::GameKit::*;
 
 extern_protocol!(
     #[deprecated = "Use GKLocalPlayerListener for multiplayer event notifications."]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait GKGameSessionEventListener: NSObjectProtocol {
         #[cfg(all(feature = "GameKit_GKCloudPlayer", feature = "GameKit_GKGameSession"))]
         #[optional]
@@ -81,10 +82,12 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKGameSession")]
     unsafe impl GKGameSession {
         #[deprecated = "Use GKLocalPlayer's registerListener: to register for GKLocalPlayerListener event notifications."]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(addEventListener:)]
         pub unsafe fn addEventListener(listener: &NSObject);
 
         #[deprecated = "Use GKLocalPlayer's unregisterListener: or unregisterAllListeners to unregister from GKLocalPlayerListener event notifications."]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(removeEventListener:)]
         pub unsafe fn removeEventListener(listener: &NSObject);
     }

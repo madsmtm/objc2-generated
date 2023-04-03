@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSControl")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSControl;
 
     #[cfg(feature = "AppKit_NSControl")]
@@ -44,202 +45,264 @@ unsafe impl NSUserInterfaceItemIdentification for NSControl {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSControl")]
     unsafe impl NSControl {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
         ) -> Option<Id<Self>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other target)]
         pub unsafe fn target(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTarget:)]
         pub unsafe fn setTarget(&self, target: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(action)]
         pub unsafe fn action(&self) -> Option<Sel>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAction:)]
         pub unsafe fn setAction(&self, action: Option<Sel>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(tag)]
         pub unsafe fn tag(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTag:)]
         pub unsafe fn setTag(&self, tag: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(ignoresMultiClick)]
         pub unsafe fn ignoresMultiClick(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setIgnoresMultiClick:)]
         pub unsafe fn setIgnoresMultiClick(&self, ignores_multi_click: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isContinuous)]
         pub unsafe fn isContinuous(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setContinuous:)]
         pub unsafe fn setContinuous(&self, continuous: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setEnabled:)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(refusesFirstResponder)]
         pub unsafe fn refusesFirstResponder(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setRefusesFirstResponder:)]
         pub unsafe fn setRefusesFirstResponder(&self, refuses_first_responder: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isHighlighted)]
         pub unsafe fn isHighlighted(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setHighlighted:)]
         pub unsafe fn setHighlighted(&self, highlighted: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(controlSize)]
         pub unsafe fn controlSize(&self) -> NSControlSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setControlSize:)]
         pub unsafe fn setControlSize(&self, control_size: NSControlSize);
 
         #[cfg(feature = "Foundation_NSFormatter")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other formatter)]
         pub unsafe fn formatter(&self) -> Option<Id<NSFormatter>>;
 
         #[cfg(feature = "Foundation_NSFormatter")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFormatter:)]
         pub unsafe fn setFormatter(&self, formatter: Option<&NSFormatter>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other objectValue)]
         pub unsafe fn objectValue(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setObjectValue:)]
         pub unsafe fn setObjectValue(&self, object_value: Option<&Object>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other stringValue)]
         pub unsafe fn stringValue(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setStringValue:)]
         pub unsafe fn setStringValue(&self, string_value: &NSString);
 
         #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other attributedStringValue)]
         pub unsafe fn attributedStringValue(&self) -> Id<NSAttributedString>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAttributedStringValue:)]
         pub unsafe fn setAttributedStringValue(&self, attributed_string_value: &NSAttributedString);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(intValue)]
         pub unsafe fn intValue(&self) -> c_int;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setIntValue:)]
         pub unsafe fn setIntValue(&self, int_value: c_int);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(integerValue)]
         pub unsafe fn integerValue(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setIntegerValue:)]
         pub unsafe fn setIntegerValue(&self, integer_value: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(floatValue)]
         pub unsafe fn floatValue(&self) -> c_float;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFloatValue:)]
         pub unsafe fn setFloatValue(&self, float_value: c_float);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(doubleValue)]
         pub unsafe fn doubleValue(&self) -> c_double;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDoubleValue:)]
         pub unsafe fn setDoubleValue(&self, double_value: c_double);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(sizeThatFits:)]
         pub unsafe fn sizeThatFits(&self, size: NSSize) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(sizeToFit)]
         pub unsafe fn sizeToFit(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(sendActionOn:)]
         pub unsafe fn sendActionOn(&self, mask: NSEventMask) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(sendAction:to:)]
         pub unsafe fn sendAction_to(&self, action: Option<Sel>, target: Option<&Object>) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(takeIntValueFrom:)]
         pub unsafe fn takeIntValueFrom(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(takeFloatValueFrom:)]
         pub unsafe fn takeFloatValueFrom(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(takeDoubleValueFrom:)]
         pub unsafe fn takeDoubleValueFrom(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(takeStringValueFrom:)]
         pub unsafe fn takeStringValueFrom(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(takeObjectValueFrom:)]
         pub unsafe fn takeObjectValueFrom(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(takeIntegerValueFrom:)]
         pub unsafe fn takeIntegerValueFrom(&self, sender: Option<&Object>);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(mouseDown:)]
         pub unsafe fn mouseDown(&self, event: &NSEvent);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(performClick:)]
         pub unsafe fn performClick(&self, sender: Option<&Object>);
 
         #[cfg(feature = "AppKit_NSFont")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other font)]
         pub unsafe fn font(&self) -> Option<Id<NSFont>>;
 
         #[cfg(feature = "AppKit_NSFont")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFont:)]
         pub unsafe fn setFont(&self, font: Option<&NSFont>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(usesSingleLineMode)]
         pub unsafe fn usesSingleLineMode(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setUsesSingleLineMode:)]
         pub unsafe fn setUsesSingleLineMode(&self, uses_single_line_mode: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(lineBreakMode)]
         pub unsafe fn lineBreakMode(&self) -> NSLineBreakMode;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setLineBreakMode:)]
         pub unsafe fn setLineBreakMode(&self, line_break_mode: NSLineBreakMode);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(alignment)]
         pub unsafe fn alignment(&self) -> NSTextAlignment;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAlignment:)]
         pub unsafe fn setAlignment(&self, alignment: NSTextAlignment);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(baseWritingDirection)]
         pub unsafe fn baseWritingDirection(&self) -> NSWritingDirection;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBaseWritingDirection:)]
         pub unsafe fn setBaseWritingDirection(&self, base_writing_direction: NSWritingDirection);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(allowsExpansionToolTips)]
         pub unsafe fn allowsExpansionToolTips(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAllowsExpansionToolTips:)]
         pub unsafe fn setAllowsExpansionToolTips(&self, allows_expansion_tool_tips: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(expansionFrameWithFrame:)]
         pub unsafe fn expansionFrameWithFrame(&self, content_frame: NSRect) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawWithExpansionFrame:inView:)]
         pub unsafe fn drawWithExpansionFrame_inView(&self, content_frame: NSRect, view: &NSView);
     }
@@ -250,16 +313,20 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSControl")]
     unsafe impl NSControl {
         #[cfg(feature = "AppKit_NSText")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other currentEditor)]
         pub unsafe fn currentEditor(&self) -> Option<Id<NSText>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(abortEditing)]
         pub unsafe fn abortEditing(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(validateEditing)]
         pub unsafe fn validateEditing(&self);
 
         #[cfg(all(feature = "AppKit_NSEvent", feature = "AppKit_NSText"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(editWithFrame:editor:delegate:event:)]
         pub unsafe fn editWithFrame_editor_delegate_event(
             &self,
@@ -270,6 +337,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSText")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectWithFrame:editor:delegate:start:length:)]
         pub unsafe fn selectWithFrame_editor_delegate_start_length(
             &self,
@@ -281,29 +349,35 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSText")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(endEditing:)]
         pub unsafe fn endEditing(&self, text_obj: &NSText);
     }
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSControlTextEditingDelegate: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(controlTextDidBeginEditing:)]
         unsafe fn controlTextDidBeginEditing(&self, obj: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(controlTextDidEndEditing:)]
         unsafe fn controlTextDidEndEditing(&self, obj: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(controlTextDidChange:)]
         unsafe fn controlTextDidChange(&self, obj: &NSNotification);
 
         #[cfg(all(feature = "AppKit_NSControl", feature = "AppKit_NSText"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(control:textShouldBeginEditing:)]
         unsafe fn control_textShouldBeginEditing(
@@ -313,6 +387,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(feature = "AppKit_NSControl", feature = "AppKit_NSText"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(control:textShouldEndEditing:)]
         unsafe fn control_textShouldEndEditing(
@@ -322,6 +397,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(feature = "AppKit_NSControl", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(control:didFailToFormatString:errorDescription:)]
         unsafe fn control_didFailToFormatString_errorDescription(
@@ -332,6 +408,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(feature = "AppKit_NSControl", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(control:didFailToValidatePartialString:errorDescription:)]
         unsafe fn control_didFailToValidatePartialString_errorDescription(
@@ -342,11 +419,13 @@ extern_protocol!(
         );
 
         #[cfg(feature = "AppKit_NSControl")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(control:isValidObject:)]
         unsafe fn control_isValidObject(&self, control: &NSControl, obj: Option<&Object>) -> bool;
 
         #[cfg(all(feature = "AppKit_NSControl", feature = "AppKit_NSTextView"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(control:textView:doCommandBySelector:)]
         unsafe fn control_textView_doCommandBySelector(
@@ -362,6 +441,7 @@ extern_protocol!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSString"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other control:textView:completions:forPartialWordRange:indexOfSelectedItem:)]
         unsafe fn control_textView_completions_forPartialWordRange_indexOfSelectedItem(
@@ -388,6 +468,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSControl")]
     unsafe impl NSControl {
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFloatingPointFormat:left:right:)]
         pub unsafe fn setFloatingPointFormat_left_right(
             &self,
@@ -396,52 +477,65 @@ extern_methods!(
             right_digits: NSUInteger,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(cellClass)]
         pub unsafe fn cellClass() -> Option<&'static Class>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCellClass:)]
         pub unsafe fn setCellClass(cell_class: Option<&Class>);
 
         #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other cell)]
         pub unsafe fn cell(&self) -> Option<Id<NSCell>>;
 
         #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCell:)]
         pub unsafe fn setCell(&self, cell: Option<&NSCell>);
 
         #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other selectedCell)]
         pub unsafe fn selectedCell(&self) -> Option<Id<NSCell>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectedTag)]
         pub unsafe fn selectedTag(&self) -> NSInteger;
 
         #[deprecated = "Set the needsDisplay property to YES instead"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setNeedsDisplay)]
         pub unsafe fn setNeedsDisplay(&self);
 
         #[deprecated = "Override -layout instead. This method should never be called"]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(calcSize)]
         pub unsafe fn calcSize(&self);
 
         #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(updateCell:)]
         pub unsafe fn updateCell(&self, cell: &NSCell);
 
         #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(updateCellInside:)]
         pub unsafe fn updateCellInside(&self, cell: &NSCell);
 
         #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawCellInside:)]
         pub unsafe fn drawCellInside(&self, cell: &NSCell);
 
         #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawCell:)]
         pub unsafe fn drawCell(&self, cell: &NSCell);
 
         #[cfg(feature = "AppKit_NSCell")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectCell:)]
         pub unsafe fn selectCell(&self, cell: &NSCell);
     }

@@ -9,33 +9,51 @@ extern_static!(NSAppKitVersionNumberWithDirectionalTabs: NSAppKitVersion = 631.0
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSTabViewType {
+        #[cfg(not(any(target_os = "ios")))]
         NSTopTabsBezelBorder = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSLeftTabsBezelBorder = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSBottomTabsBezelBorder = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSRightTabsBezelBorder = 3,
+        #[cfg(not(any(target_os = "ios")))]
         NSNoTabsBezelBorder = 4,
+        #[cfg(not(any(target_os = "ios")))]
         NSNoTabsLineBorder = 5,
+        #[cfg(not(any(target_os = "ios")))]
         NSNoTabsNoBorder = 6,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSTabPosition {
+        #[cfg(not(any(target_os = "ios")))]
         NSTabPositionNone = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSTabPositionTop = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSTabPositionLeft = 2,
+        #[cfg(not(any(target_os = "ios")))]
         NSTabPositionBottom = 3,
+        #[cfg(not(any(target_os = "ios")))]
         NSTabPositionRight = 4,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSTabViewBorderType {
+        #[cfg(not(any(target_os = "ios")))]
         NSTabViewBorderTypeNone = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSTabViewBorderTypeLine = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSTabViewBorderTypeBezel = 2,
     }
 );
@@ -43,6 +61,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSTabView")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSTabView;
 
     #[cfg(feature = "AppKit_NSTabView")]
@@ -80,94 +99,122 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTabView")]
     unsafe impl NSTabView {
         #[cfg(feature = "AppKit_NSTabViewItem")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectTabViewItem:)]
         pub unsafe fn selectTabViewItem(&self, tab_view_item: Option<&NSTabViewItem>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectTabViewItemAtIndex:)]
         pub unsafe fn selectTabViewItemAtIndex(&self, index: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectTabViewItemWithIdentifier:)]
         pub unsafe fn selectTabViewItemWithIdentifier(&self, identifier: &Object);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(takeSelectedTabViewItemFromSender:)]
         pub unsafe fn takeSelectedTabViewItemFromSender(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectFirstTabViewItem:)]
         pub unsafe fn selectFirstTabViewItem(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectLastTabViewItem:)]
         pub unsafe fn selectLastTabViewItem(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectNextTabViewItem:)]
         pub unsafe fn selectNextTabViewItem(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectPreviousTabViewItem:)]
         pub unsafe fn selectPreviousTabViewItem(&self, sender: Option<&Object>);
 
         #[cfg(feature = "AppKit_NSTabViewItem")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other selectedTabViewItem)]
         pub unsafe fn selectedTabViewItem(&self) -> Option<Id<NSTabViewItem>>;
 
         #[cfg(feature = "AppKit_NSFont")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other font)]
         pub unsafe fn font(&self) -> Id<NSFont>;
 
         #[cfg(feature = "AppKit_NSFont")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setFont:)]
         pub unsafe fn setFont(&self, font: &NSFont);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(tabViewType)]
         pub unsafe fn tabViewType(&self) -> NSTabViewType;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTabViewType:)]
         pub unsafe fn setTabViewType(&self, tab_view_type: NSTabViewType);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(tabPosition)]
         pub unsafe fn tabPosition(&self) -> NSTabPosition;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTabPosition:)]
         pub unsafe fn setTabPosition(&self, tab_position: NSTabPosition);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(tabViewBorderType)]
         pub unsafe fn tabViewBorderType(&self) -> NSTabViewBorderType;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTabViewBorderType:)]
         pub unsafe fn setTabViewBorderType(&self, tab_view_border_type: NSTabViewBorderType);
 
         #[cfg(all(feature = "AppKit_NSTabViewItem", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other tabViewItems)]
         pub unsafe fn tabViewItems(&self) -> Id<NSArray<NSTabViewItem>>;
 
         #[cfg(all(feature = "AppKit_NSTabViewItem", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTabViewItems:)]
         pub unsafe fn setTabViewItems(&self, tab_view_items: &NSArray<NSTabViewItem>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(allowsTruncatedLabels)]
         pub unsafe fn allowsTruncatedLabels(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAllowsTruncatedLabels:)]
         pub unsafe fn setAllowsTruncatedLabels(&self, allows_truncated_labels: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(minimumSize)]
         pub unsafe fn minimumSize(&self) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawsBackground)]
         pub unsafe fn drawsBackground(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDrawsBackground:)]
         pub unsafe fn setDrawsBackground(&self, draws_background: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(controlSize)]
         pub unsafe fn controlSize(&self) -> NSControlSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setControlSize:)]
         pub unsafe fn setControlSize(&self, control_size: NSControlSize);
 
         #[cfg(feature = "AppKit_NSTabViewItem")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(addTabViewItem:)]
         pub unsafe fn addTabViewItem(&self, tab_view_item: &NSTabViewItem);
 
         #[cfg(feature = "AppKit_NSTabViewItem")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(insertTabViewItem:atIndex:)]
         pub unsafe fn insertTabViewItem_atIndex(
             &self,
@@ -176,49 +223,62 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSTabViewItem")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(removeTabViewItem:)]
         pub unsafe fn removeTabViewItem(&self, tab_view_item: &NSTabViewItem);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSTabViewDelegate>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSTabViewDelegate>>);
 
         #[cfg(feature = "AppKit_NSTabViewItem")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other tabViewItemAtPoint:)]
         pub unsafe fn tabViewItemAtPoint(&self, point: NSPoint) -> Option<Id<NSTabViewItem>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(contentRect)]
         pub unsafe fn contentRect(&self) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(numberOfTabViewItems)]
         pub unsafe fn numberOfTabViewItems(&self) -> NSInteger;
 
         #[cfg(feature = "AppKit_NSTabViewItem")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(indexOfTabViewItem:)]
         pub unsafe fn indexOfTabViewItem(&self, tab_view_item: &NSTabViewItem) -> NSInteger;
 
         #[cfg(feature = "AppKit_NSTabViewItem")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other tabViewItemAtIndex:)]
         pub unsafe fn tabViewItemAtIndex(&self, index: NSInteger) -> Id<NSTabViewItem>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(indexOfTabViewItemWithIdentifier:)]
         pub unsafe fn indexOfTabViewItemWithIdentifier(&self, identifier: &Object) -> NSInteger;
 
         #[deprecated = "The controlTint property is not respected on 10.14 and later."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(controlTint)]
         pub unsafe fn controlTint(&self) -> NSControlTint;
 
         #[deprecated = "The controlTint property is not respected on 10.14 and later."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setControlTint:)]
         pub unsafe fn setControlTint(&self, control_tint: NSControlTint);
     }
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSTabViewDelegate: NSObjectProtocol {
         #[cfg(all(feature = "AppKit_NSTabView", feature = "AppKit_NSTabViewItem"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(tabView:shouldSelectTabViewItem:)]
         unsafe fn tabView_shouldSelectTabViewItem(
@@ -228,6 +288,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(feature = "AppKit_NSTabView", feature = "AppKit_NSTabViewItem"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(tabView:willSelectTabViewItem:)]
         unsafe fn tabView_willSelectTabViewItem(
@@ -237,6 +298,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "AppKit_NSTabView", feature = "AppKit_NSTabViewItem"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(tabView:didSelectTabViewItem:)]
         unsafe fn tabView_didSelectTabViewItem(
@@ -246,6 +308,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "AppKit_NSTabView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(tabViewDidChangeNumberOfTabViewItems:)]
         unsafe fn tabViewDidChangeNumberOfTabViewItems(&self, tab_view: &NSTabView);
@@ -258,6 +321,7 @@ extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(feature = "AppKit_NSTabView")]
     unsafe impl NSTabView {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }

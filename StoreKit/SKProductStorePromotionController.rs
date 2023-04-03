@@ -7,9 +7,13 @@ use crate::StoreKit::*;
 
 ns_closed_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub enum SKProductStorePromotionVisibility {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         SKProductStorePromotionVisibilityDefault = 0,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         SKProductStorePromotionVisibilityShow = 1,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         SKProductStorePromotionVisibilityHide = 2,
     }
 );
@@ -17,6 +21,7 @@ ns_closed_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "StoreKit_SKProductStorePromotionController")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct SKProductStorePromotionController;
 
     #[cfg(feature = "StoreKit_SKProductStorePromotionController")]
@@ -31,10 +36,12 @@ unsafe impl NSObjectProtocol for SKProductStorePromotionController {}
 extern_methods!(
     #[cfg(feature = "StoreKit_SKProductStorePromotionController")]
     unsafe impl SKProductStorePromotionController {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other defaultController)]
         pub unsafe fn defaultController() -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "StoreKit_SKProduct"))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(fetchStorePromotionVisibilityForProduct:completionHandler:)]
         pub unsafe fn fetchStorePromotionVisibilityForProduct_completionHandler(
             &self,
@@ -45,6 +52,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "StoreKit_SKProduct"))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(updateStorePromotionVisibility:forProduct:completionHandler:)]
         pub unsafe fn updateStorePromotionVisibility_forProduct_completionHandler(
             &self,
@@ -58,6 +66,7 @@ extern_methods!(
             feature = "Foundation_NSError",
             feature = "StoreKit_SKProduct"
         ))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(fetchStorePromotionOrderWithCompletionHandler:)]
         pub unsafe fn fetchStorePromotionOrderWithCompletionHandler(
             &self,
@@ -69,6 +78,7 @@ extern_methods!(
             feature = "Foundation_NSError",
             feature = "StoreKit_SKProduct"
         ))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(updateStorePromotionOrder:completionHandler:)]
         pub unsafe fn updateStorePromotionOrder_completionHandler(
             &self,

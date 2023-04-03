@@ -47,6 +47,7 @@ extern_methods!(
         pub unsafe fn sharedAccessoryManager() -> Id<EAAccessoryManager>;
 
         #[cfg(feature = "Foundation_NSPredicate")]
+        #[cfg(not(any(target_os = "macos")))]
         #[method(showBluetoothAccessoryPickerWithNameFilter:completion:)]
         pub unsafe fn showBluetoothAccessoryPickerWithNameFilter_completion(
             &self,

@@ -82,6 +82,7 @@ extern_methods!(
         pub unsafe fn sourceWithIdentifier(&self, identifier: &NSString) -> Option<Id<EKSource>>;
 
         #[cfg(all(feature = "EventKit_EKCalendar", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "macos")))]
         #[method_id(@__retain_semantics Other calendars)]
         pub unsafe fn calendars(&self) -> Id<NSArray<EKCalendar>>;
 
@@ -108,6 +109,7 @@ extern_methods!(
         ) -> Option<Id<EKCalendar>>;
 
         #[cfg(all(feature = "EventKit_EKCalendar", feature = "Foundation_NSError"))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(saveCalendar:commit:error:_)]
         pub unsafe fn saveCalendar_commit_error(
             &self,
@@ -116,6 +118,7 @@ extern_methods!(
         ) -> Result<(), Id<NSError>>;
 
         #[cfg(all(feature = "EventKit_EKCalendar", feature = "Foundation_NSError"))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(removeCalendar:commit:error:_)]
         pub unsafe fn removeCalendar_commit_error(
             &self,
@@ -142,6 +145,7 @@ extern_methods!(
         ) -> Id<NSArray<EKCalendarItem>>;
 
         #[cfg(all(feature = "EventKit_EKEvent", feature = "Foundation_NSError"))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(saveEvent:span:error:_)]
         pub unsafe fn saveEvent_span_error(
             &self,
@@ -150,6 +154,7 @@ extern_methods!(
         ) -> Result<(), Id<NSError>>;
 
         #[cfg(all(feature = "EventKit_EKEvent", feature = "Foundation_NSError"))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(removeEvent:span:error:_)]
         pub unsafe fn removeEvent_span_error(
             &self,
@@ -158,6 +163,7 @@ extern_methods!(
         ) -> Result<(), Id<NSError>>;
 
         #[cfg(all(feature = "EventKit_EKEvent", feature = "Foundation_NSError"))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(saveEvent:span:commit:error:_)]
         pub unsafe fn saveEvent_span_commit_error(
             &self,
@@ -167,6 +173,7 @@ extern_methods!(
         ) -> Result<(), Id<NSError>>;
 
         #[cfg(all(feature = "EventKit_EKEvent", feature = "Foundation_NSError"))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(removeEvent:span:commit:error:_)]
         pub unsafe fn removeEvent_span_commit_error(
             &self,
@@ -213,6 +220,7 @@ extern_methods!(
         ) -> Id<NSPredicate>;
 
         #[cfg(all(feature = "EventKit_EKReminder", feature = "Foundation_NSError"))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(saveReminder:commit:error:_)]
         pub unsafe fn saveReminder_commit_error(
             &self,
@@ -221,6 +229,7 @@ extern_methods!(
         ) -> Result<(), Id<NSError>>;
 
         #[cfg(all(feature = "EventKit_EKReminder", feature = "Foundation_NSError"))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(removeReminder:commit:error:_)]
         pub unsafe fn removeReminder_commit_error(
             &self,
@@ -283,12 +292,14 @@ extern_methods!(
         ) -> Id<NSPredicate>;
 
         #[cfg(feature = "Foundation_NSError")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(commit:_)]
         pub unsafe fn commit(&self) -> Result<(), Id<NSError>>;
 
         #[method(reset)]
         pub unsafe fn reset(&self);
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(refreshSourcesIfNecessary)]
         pub unsafe fn refreshSourcesIfNecessary(&self);
     }

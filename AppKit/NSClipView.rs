@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSClipView")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSClipView;
 
     #[cfg(feature = "AppKit_NSClipView")]
@@ -45,66 +46,85 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSClipView")]
     unsafe impl NSClipView {
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Id<NSColor>;
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: &NSColor);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawsBackground)]
         pub unsafe fn drawsBackground(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDrawsBackground:)]
         pub unsafe fn setDrawsBackground(&self, draws_background: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other documentView)]
         pub unsafe fn documentView(&self) -> Option<Id<NSView>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDocumentView:)]
         pub unsafe fn setDocumentView(&self, document_view: Option<&NSView>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(documentRect)]
         pub unsafe fn documentRect(&self) -> NSRect;
 
         #[cfg(feature = "AppKit_NSCursor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other documentCursor)]
         pub unsafe fn documentCursor(&self) -> Option<Id<NSCursor>>;
 
         #[cfg(feature = "AppKit_NSCursor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDocumentCursor:)]
         pub unsafe fn setDocumentCursor(&self, document_cursor: Option<&NSCursor>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(documentVisibleRect)]
         pub unsafe fn documentVisibleRect(&self) -> NSRect;
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(viewFrameChanged:)]
         pub unsafe fn viewFrameChanged(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(viewBoundsChanged:)]
         pub unsafe fn viewBoundsChanged(&self, notification: &NSNotification);
 
         #[cfg(feature = "AppKit_NSEvent")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(autoscroll:)]
         pub unsafe fn autoscroll(&self, event: &NSEvent) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(scrollToPoint:)]
         pub unsafe fn scrollToPoint(&self, new_origin: NSPoint);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(constrainBoundsRect:)]
         pub unsafe fn constrainBoundsRect(&self, proposed_bounds: NSRect) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(contentInsets)]
         pub unsafe fn contentInsets(&self) -> NSEdgeInsets;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setContentInsets:)]
         pub unsafe fn setContentInsets(&self, content_insets: NSEdgeInsets);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(automaticallyAdjustsContentInsets)]
         pub unsafe fn automaticallyAdjustsContentInsets(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAutomaticallyAdjustsContentInsets:)]
         pub unsafe fn setAutomaticallyAdjustsContentInsets(
             &self,
@@ -118,10 +138,12 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSView")]
     unsafe impl NSView {
         #[cfg(feature = "AppKit_NSClipView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(reflectScrolledClipView:)]
         pub unsafe fn reflectScrolledClipView(&self, clip_view: &NSClipView);
 
         #[cfg(feature = "AppKit_NSClipView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(scrollClipView:toPoint:)]
         pub unsafe fn scrollClipView_toPoint(&self, clip_view: &NSClipView, point: NSPoint);
     }
@@ -131,14 +153,17 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSClipView")]
     unsafe impl NSClipView {
         #[deprecated = "Use -constrainBoundsRect: instead."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(constrainScrollPoint:)]
         pub unsafe fn constrainScrollPoint(&self, new_origin: NSPoint) -> NSPoint;
 
         #[deprecated = "Setting this property has no effect.  NSClipView will always minimize the area of the document view that is invalidated.  To force invalidation of the document view, use -[NSView setNeedsDisplayInRect:]."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(copiesOnScroll)]
         pub unsafe fn copiesOnScroll(&self) -> bool;
 
         #[deprecated = "Setting this property has no effect.  NSClipView will always minimize the area of the document view that is invalidated.  To force invalidation of the document view, use -[NSView setNeedsDisplayInRect:]."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCopiesOnScroll:)]
         pub unsafe fn setCopiesOnScroll(&self, copies_on_scroll: bool);
     }
@@ -148,6 +173,7 @@ extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(feature = "AppKit_NSClipView")]
     unsafe impl NSClipView {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }

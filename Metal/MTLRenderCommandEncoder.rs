@@ -729,6 +729,7 @@ extern_protocol!(
         );
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(textureBarrier)]
         unsafe fn textureBarrier(&self);
 

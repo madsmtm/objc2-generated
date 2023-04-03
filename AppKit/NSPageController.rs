@@ -9,9 +9,13 @@ pub type NSPageControllerObjectIdentifier = NSString;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSPageControllerTransitionStyle {
+        #[cfg(not(any(target_os = "ios")))]
         NSPageControllerTransitionStyleStackHistory = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSPageControllerTransitionStyleStackBook = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSPageControllerTransitionStyleHorizontalStrip = 2,
     }
 );
@@ -19,6 +23,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSPageController")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSPageController;
 
     #[cfg(feature = "AppKit_NSPageController")]
@@ -49,58 +54,74 @@ unsafe impl NSUserInterfaceItemIdentification for NSPageController {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSPageController")]
     unsafe impl NSPageController {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSPageControllerDelegate>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn NSPageControllerDelegate>>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other selectedViewController)]
         pub unsafe fn selectedViewController(&self) -> Option<Id<NSViewController>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(transitionStyle)]
         pub unsafe fn transitionStyle(&self) -> NSPageControllerTransitionStyle;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTransitionStyle:)]
         pub unsafe fn setTransitionStyle(&self, transition_style: NSPageControllerTransitionStyle);
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other arrangedObjects)]
         pub unsafe fn arrangedObjects(&self) -> Id<NSArray>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setArrangedObjects:)]
         pub unsafe fn setArrangedObjects(&self, arranged_objects: &NSArray);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectedIndex)]
         pub unsafe fn selectedIndex(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSelectedIndex:)]
         pub unsafe fn setSelectedIndex(&self, selected_index: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(navigateForwardToObject:)]
         pub unsafe fn navigateForwardToObject(&self, object: &Object);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(completeTransition)]
         pub unsafe fn completeTransition(&self);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(navigateBack:)]
         pub unsafe fn navigateBack(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(navigateForward:)]
         pub unsafe fn navigateForward(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(takeSelectedIndexFrom:)]
         pub unsafe fn takeSelectedIndexFrom(&self, sender: Option<&Object>);
     }
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSPageControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSPageController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other pageController:identifierForObject:)]
         unsafe fn pageController_identifierForObject(
@@ -113,6 +134,7 @@ extern_protocol!(
             feature = "AppKit_NSPageController",
             feature = "AppKit_NSViewController"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other pageController:viewControllerForIdentifier:)]
         unsafe fn pageController_viewControllerForIdentifier(
@@ -122,6 +144,7 @@ extern_protocol!(
         ) -> Id<NSViewController>;
 
         #[cfg(feature = "AppKit_NSPageController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(pageController:frameForObject:)]
         unsafe fn pageController_frameForObject(
@@ -134,6 +157,7 @@ extern_protocol!(
             feature = "AppKit_NSPageController",
             feature = "AppKit_NSViewController"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(pageController:prepareViewController:withObject:)]
         unsafe fn pageController_prepareViewController_withObject(
@@ -144,6 +168,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "AppKit_NSPageController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(pageController:didTransitionToObject:)]
         unsafe fn pageController_didTransitionToObject(
@@ -153,11 +178,13 @@ extern_protocol!(
         );
 
         #[cfg(feature = "AppKit_NSPageController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(pageControllerWillStartLiveTransition:)]
         unsafe fn pageControllerWillStartLiveTransition(&self, page_controller: &NSPageController);
 
         #[cfg(feature = "AppKit_NSPageController")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(pageControllerDidEndLiveTransition:)]
         unsafe fn pageControllerDidEndLiveTransition(&self, page_controller: &NSPageController);
@@ -171,6 +198,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSPageController")]
     unsafe impl NSPageController {
         #[cfg(feature = "Foundation_NSBundle")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Option<Allocated<Self>>,

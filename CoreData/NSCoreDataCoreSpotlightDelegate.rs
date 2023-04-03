@@ -11,6 +11,7 @@ extern_static!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CoreData_NSCoreDataCoreSpotlightDelegate")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct NSCoreDataCoreSpotlightDelegate;
 
     #[cfg(feature = "CoreData_NSCoreDataCoreSpotlightDelegate")]
@@ -25,6 +26,7 @@ unsafe impl NSObjectProtocol for NSCoreDataCoreSpotlightDelegate {}
 extern_methods!(
     #[cfg(feature = "CoreData_NSCoreDataCoreSpotlightDelegate")]
     unsafe impl NSCoreDataCoreSpotlightDelegate {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(isIndexingEnabled)]
         pub unsafe fn isIndexingEnabled(&self) -> bool;
 
@@ -43,6 +45,7 @@ extern_methods!(
             feature = "CoreData_NSPersistentStoreCoordinator",
             feature = "CoreData_NSPersistentStoreDescription"
         ))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Init initForStoreWithDescription:coordinator:)]
         pub unsafe fn initForStoreWithDescription_coordinator(
             this: Option<Allocated<Self>>,
@@ -62,13 +65,16 @@ extern_methods!(
             model: &NSManagedObjectModel,
         ) -> Id<Self>;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(startSpotlightIndexing)]
         pub unsafe fn startSpotlightIndexing(&self);
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(stopSpotlightIndexing)]
         pub unsafe fn stopSpotlightIndexing(&self);
 
         #[cfg(feature = "Foundation_NSError")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method(deleteSpotlightIndexWithCompletionHandler:)]
         pub unsafe fn deleteSpotlightIndexWithCompletionHandler(
             &self,

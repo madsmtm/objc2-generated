@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSTextField")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSTextField;
 
     #[cfg(feature = "AppKit_NSTextField")]
@@ -57,18 +58,22 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTextField")]
     unsafe impl NSTextField {
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other placeholderString)]
         pub unsafe fn placeholderString(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPlaceholderString:)]
         pub unsafe fn setPlaceholderString(&self, placeholder_string: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other placeholderAttributedString)]
         pub unsafe fn placeholderAttributedString(&self) -> Option<Id<NSAttributedString>>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPlaceholderAttributedString:)]
         pub unsafe fn setPlaceholderAttributedString(
             &self,
@@ -76,57 +81,74 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Option<Id<NSColor>>;
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSColor>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawsBackground)]
         pub unsafe fn drawsBackground(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDrawsBackground:)]
         pub unsafe fn setDrawsBackground(&self, draws_background: bool);
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other textColor)]
         pub unsafe fn textColor(&self) -> Option<Id<NSColor>>;
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTextColor:)]
         pub unsafe fn setTextColor(&self, text_color: Option<&NSColor>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isBordered)]
         pub unsafe fn isBordered(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBordered:)]
         pub unsafe fn setBordered(&self, bordered: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isBezeled)]
         pub unsafe fn isBezeled(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBezeled:)]
         pub unsafe fn setBezeled(&self, bezeled: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isEditable)]
         pub unsafe fn isEditable(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setEditable:)]
         pub unsafe fn setEditable(&self, editable: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isSelectable)]
         pub unsafe fn isSelectable(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setSelectable:)]
         pub unsafe fn setSelectable(&self, selectable: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectText:)]
         pub unsafe fn selectText(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSTextFieldDelegate>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -134,58 +156,74 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSText")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(textShouldBeginEditing:)]
         pub unsafe fn textShouldBeginEditing(&self, text_object: &NSText) -> bool;
 
         #[cfg(feature = "AppKit_NSText")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(textShouldEndEditing:)]
         pub unsafe fn textShouldEndEditing(&self, text_object: &NSText) -> bool;
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(textDidBeginEditing:)]
         pub unsafe fn textDidBeginEditing(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(textDidEndEditing:)]
         pub unsafe fn textDidEndEditing(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(textDidChange:)]
         pub unsafe fn textDidChange(&self, notification: &NSNotification);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(acceptsFirstResponder)]
         pub unsafe fn acceptsFirstResponder(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(bezelStyle)]
         pub unsafe fn bezelStyle(&self) -> NSTextFieldBezelStyle;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBezelStyle:)]
         pub unsafe fn setBezelStyle(&self, bezel_style: NSTextFieldBezelStyle);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(preferredMaxLayoutWidth)]
         pub unsafe fn preferredMaxLayoutWidth(&self) -> CGFloat;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPreferredMaxLayoutWidth:)]
         pub unsafe fn setPreferredMaxLayoutWidth(&self, preferred_max_layout_width: CGFloat);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(maximumNumberOfLines)]
         pub unsafe fn maximumNumberOfLines(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMaximumNumberOfLines:)]
         pub unsafe fn setMaximumNumberOfLines(&self, maximum_number_of_lines: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(allowsDefaultTighteningForTruncation)]
         pub unsafe fn allowsDefaultTighteningForTruncation(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAllowsDefaultTighteningForTruncation:)]
         pub unsafe fn setAllowsDefaultTighteningForTruncation(
             &self,
             allows_default_tightening_for_truncation: bool,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(lineBreakStrategy)]
         pub unsafe fn lineBreakStrategy(&self) -> NSLineBreakStrategy;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setLineBreakStrategy:)]
         pub unsafe fn setLineBreakStrategy(&self, line_break_strategy: NSLineBreakStrategy);
     }
@@ -195,18 +233,22 @@ extern_methods!(
     /// NSTouchBar
     #[cfg(feature = "AppKit_NSTextField")]
     unsafe impl NSTextField {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isAutomaticTextCompletionEnabled)]
         pub unsafe fn isAutomaticTextCompletionEnabled(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAutomaticTextCompletionEnabled:)]
         pub unsafe fn setAutomaticTextCompletionEnabled(
             &self,
             automatic_text_completion_enabled: bool,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(allowsCharacterPickerTouchBarItem)]
         pub unsafe fn allowsCharacterPickerTouchBarItem(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAllowsCharacterPickerTouchBarItem:)]
         pub unsafe fn setAllowsCharacterPickerTouchBarItem(
             &self,
@@ -220,20 +262,24 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTextField")]
     unsafe impl NSTextField {
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other labelWithString:)]
         pub unsafe fn labelWithString(string_value: &NSString) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other wrappingLabelWithString:)]
         pub unsafe fn wrappingLabelWithString(string_value: &NSString) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other labelWithAttributedString:)]
         pub unsafe fn labelWithAttributedString(
             attributed_string_value: &NSAttributedString,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other textFieldWithString:)]
         pub unsafe fn textFieldWithString(string_value: &NSString) -> Id<Self>;
     }
@@ -243,27 +289,33 @@ extern_methods!(
     /// NSTextFieldAttributedStringMethods
     #[cfg(feature = "AppKit_NSTextField")]
     unsafe impl NSTextField {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(allowsEditingTextAttributes)]
         pub unsafe fn allowsEditingTextAttributes(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAllowsEditingTextAttributes:)]
         pub unsafe fn setAllowsEditingTextAttributes(&self, allows_editing_text_attributes: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(importsGraphics)]
         pub unsafe fn importsGraphics(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setImportsGraphics:)]
         pub unsafe fn setImportsGraphics(&self, imports_graphics: bool);
     }
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSTextFieldDelegate: NSControlTextEditingDelegate {
         #[cfg(all(
             feature = "AppKit_NSTextField",
             feature = "AppKit_NSTextView",
             feature = "Foundation_NSArray"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other textField:textView:candidatesForSelectedRange:)]
         unsafe fn textField_textView_candidatesForSelectedRange(
@@ -279,6 +331,7 @@ extern_protocol!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSTextCheckingResult"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other textField:textView:candidates:forSelectedRange:)]
         unsafe fn textField_textView_candidates_forSelectedRange(
@@ -290,6 +343,7 @@ extern_protocol!(
         ) -> Id<NSArray<NSTextCheckingResult>>;
 
         #[cfg(all(feature = "AppKit_NSTextField", feature = "AppKit_NSTextView"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(textField:textView:shouldSelectCandidateAtIndex:)]
         unsafe fn textField_textView_shouldSelectCandidateAtIndex(
@@ -309,6 +363,7 @@ extern_methods!(
     unsafe impl NSTextField {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTitleWithMnemonic:)]
         pub unsafe fn setTitleWithMnemonic(&self, string_with_ampersand: Option<&NSString>);
     }
@@ -318,6 +373,7 @@ extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(feature = "AppKit_NSTextField")]
     unsafe impl NSTextField {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }

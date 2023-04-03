@@ -7,8 +7,11 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSTextFieldBezelStyle {
+        #[cfg(not(any(target_os = "ios")))]
         NSTextFieldSquareBezel = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSTextFieldRoundedBezel = 1,
     }
 );
@@ -16,6 +19,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSTextFieldCell")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSTextFieldCell;
 
     #[cfg(feature = "AppKit_NSTextFieldCell")]
@@ -44,14 +48,17 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTextFieldCell")]
     unsafe impl NSTextFieldCell {
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initTextCell:)]
         pub unsafe fn initTextCell(this: Option<Allocated<Self>>, string: &NSString) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initImageCell:)]
         pub unsafe fn initImageCell(
             this: Option<Allocated<Self>>,
@@ -59,64 +66,80 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Option<Id<NSColor>>;
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSColor>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(drawsBackground)]
         pub unsafe fn drawsBackground(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDrawsBackground:)]
         pub unsafe fn setDrawsBackground(&self, draws_background: bool);
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other textColor)]
         pub unsafe fn textColor(&self) -> Option<Id<NSColor>>;
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTextColor:)]
         pub unsafe fn setTextColor(&self, text_color: Option<&NSColor>);
 
         #[cfg(feature = "AppKit_NSText")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other setUpFieldEditorAttributes:)]
         pub unsafe fn setUpFieldEditorAttributes(&self, text_obj: &NSText) -> Id<NSText>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(bezelStyle)]
         pub unsafe fn bezelStyle(&self) -> NSTextFieldBezelStyle;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setBezelStyle:)]
         pub unsafe fn setBezelStyle(&self, bezel_style: NSTextFieldBezelStyle);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other placeholderString)]
         pub unsafe fn placeholderString(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPlaceholderString:)]
         pub unsafe fn setPlaceholderString(&self, placeholder_string: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other placeholderAttributedString)]
         pub unsafe fn placeholderAttributedString(&self) -> Option<Id<NSAttributedString>>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPlaceholderAttributedString:)]
         pub unsafe fn setPlaceholderAttributedString(
             &self,
             placeholder_attributed_string: Option<&NSAttributedString>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setWantsNotificationForMarkedText:)]
         pub unsafe fn setWantsNotificationForMarkedText(&self, flag: bool);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other allowedInputSourceLocales)]
         pub unsafe fn allowedInputSourceLocales(&self) -> Option<Id<NSArray<NSString>>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAllowedInputSourceLocales:)]
         pub unsafe fn setAllowedInputSourceLocales(
             &self,

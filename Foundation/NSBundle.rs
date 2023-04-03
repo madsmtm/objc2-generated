@@ -370,6 +370,7 @@ extern_static!(NSLoadedClasses: &'static NSString);
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSBundleResourceRequest")]
+    #[cfg(not(any(target_os = "macos")))]
     pub struct NSBundleResourceRequest;
 
     #[cfg(feature = "Foundation_NSBundleResourceRequest")]
@@ -387,6 +388,12 @@ unsafe impl NSProgressReporting for NSBundleResourceRequest {}
 extern_methods!(
     #[cfg(feature = "Foundation_NSBundleResourceRequest")]
     unsafe impl NSBundleResourceRequest {
+        #[cfg(not(any(
+            target_os = "ios",
+            target_os = "macos",
+            target_os = "tvos",
+            target_os = "watchos"
+        )))]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
@@ -450,6 +457,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSBundle")]
     unsafe impl NSBundle {
         #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "macos")))]
         #[method(setPreservationPriority:forTags:)]
         pub unsafe fn setPreservationPriority_forTags(
             &self,
@@ -458,6 +466,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "macos")))]
         #[method(preservationPriorityForTag:)]
         pub unsafe fn preservationPriorityForTag(&self, tag: &NSString) -> c_double;
     }

@@ -8,6 +8,7 @@ use crate::MediaPlayer::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MediaPlayer_MPMusicPlayerControllerQueue")]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub struct MPMusicPlayerControllerQueue;
 
     #[cfg(feature = "MediaPlayer_MPMusicPlayerControllerQueue")]
@@ -37,6 +38,7 @@ extern_methods!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MediaPlayer_MPMusicPlayerControllerMutableQueue")]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub struct MPMusicPlayerControllerMutableQueue;
 
     #[cfg(feature = "MediaPlayer_MPMusicPlayerControllerMutableQueue")]
@@ -72,6 +74,7 @@ extern_methods!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MediaPlayer_MPMusicPlayerApplicationController")]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub struct MPMusicPlayerApplicationController;
 
     #[cfg(feature = "MediaPlayer_MPMusicPlayerApplicationController")]

@@ -7,6 +7,7 @@ use crate::MetricKit::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MetricKit_MXCPUExceptionDiagnostic")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct MXCPUExceptionDiagnostic;
 
     #[cfg(feature = "MetricKit_MXCPUExceptionDiagnostic")]

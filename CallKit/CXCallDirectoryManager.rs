@@ -6,9 +6,13 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub enum CXCallDirectoryEnabledStatus {
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         CXCallDirectoryEnabledStatusUnknown = 0,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         CXCallDirectoryEnabledStatusDisabled = 1,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         CXCallDirectoryEnabledStatusEnabled = 2,
     }
 );
@@ -16,6 +20,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CallKit_CXCallDirectoryManager")]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub struct CXCallDirectoryManager;
 
     #[cfg(feature = "CallKit_CXCallDirectoryManager")]
@@ -50,6 +55,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSError")]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[method(openSettingsWithCompletionHandler:)]
         pub unsafe fn openSettingsWithCompletionHandler(
             &self,

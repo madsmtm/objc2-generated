@@ -7,8 +7,11 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSComboButtonStyle {
+        #[cfg(not(any(target_os = "ios")))]
         NSComboButtonStyleSplit = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSComboButtonStyleUnified = 1,
     }
 );
@@ -16,6 +19,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSComboButton")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSComboButton;
 
     #[cfg(feature = "AppKit_NSComboButton")]
@@ -53,6 +57,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSComboButton")]
     unsafe impl NSComboButton {
         #[cfg(all(feature = "AppKit_NSMenu", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other comboButtonWithTitle:menu:target:action:)]
         pub unsafe fn comboButtonWithTitle_menu_target_action(
             title: &NSString,
@@ -62,6 +67,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSMenu"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other comboButtonWithImage:menu:target:action:)]
         pub unsafe fn comboButtonWithImage_menu_target_action(
             image: &NSImage,
@@ -75,6 +81,7 @@ extern_methods!(
             feature = "AppKit_NSMenu",
             feature = "Foundation_NSString"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other comboButtonWithTitle:image:menu:target:action:)]
         pub unsafe fn comboButtonWithTitle_image_menu_target_action(
             title: &NSString,
@@ -85,38 +92,48 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(imageScaling)]
         pub unsafe fn imageScaling(&self) -> NSImageScaling;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setImageScaling:)]
         pub unsafe fn setImageScaling(&self, image_scaling: NSImageScaling);
 
         #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other menu)]
         pub unsafe fn menu(&self) -> Id<NSMenu>;
 
         #[cfg(feature = "AppKit_NSMenu")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMenu:)]
         pub unsafe fn setMenu(&self, menu: &NSMenu);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(style)]
         pub unsafe fn style(&self) -> NSComboButtonStyle;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setStyle:)]
         pub unsafe fn setStyle(&self, style: NSComboButtonStyle);
     }
@@ -126,6 +143,7 @@ extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(feature = "AppKit_NSComboButton")]
     unsafe impl NSComboButton {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }

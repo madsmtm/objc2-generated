@@ -6,32 +6,53 @@ use crate::IdentityLookup::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub enum ILMessageFilterAction {
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         ILMessageFilterActionNone = 0,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         ILMessageFilterActionAllow = 1,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         ILMessageFilterActionJunk = 2,
         #[deprecated]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         ILMessageFilterActionFilter = ILMessageFilterActionJunk,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         ILMessageFilterActionPromotion = 3,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         ILMessageFilterActionTransaction = 4,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
     pub enum ILMessageFilterSubAction {
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         ILMessageFilterSubActionNone = 0,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         ILMessageFilterSubActionTransactionalOthers = 10000,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         ILMessageFilterSubActionTransactionalFinance = 10001,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         ILMessageFilterSubActionTransactionalOrders = 10002,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         ILMessageFilterSubActionTransactionalReminders = 10003,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         ILMessageFilterSubActionTransactionalHealth = 10004,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         ILMessageFilterSubActionTransactionalWeather = 10005,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         ILMessageFilterSubActionTransactionalCarrier = 10006,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         ILMessageFilterSubActionTransactionalRewards = 10007,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         ILMessageFilterSubActionTransactionalPublicServices = 10008,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         ILMessageFilterSubActionPromotionalOthers = 20000,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         ILMessageFilterSubActionPromotionalOffers = 20001,
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         ILMessageFilterSubActionPromotionalCoupons = 20002,
     }
 );

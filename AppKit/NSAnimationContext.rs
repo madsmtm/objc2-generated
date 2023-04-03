@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSAnimationContext")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSAnimationContext;
 
     #[cfg(feature = "AppKit_NSAnimationContext")]
@@ -22,39 +23,50 @@ unsafe impl NSObjectProtocol for NSAnimationContext {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSAnimationContext")]
     unsafe impl NSAnimationContext {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(runAnimationGroup:completionHandler:)]
         pub unsafe fn runAnimationGroup_completionHandler(
             changes: &Block<(NonNull<NSAnimationContext>,), ()>,
             completion_handler: Option<&Block<(), ()>>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(runAnimationGroup:)]
         pub unsafe fn runAnimationGroup(changes: &Block<(NonNull<NSAnimationContext>,), ()>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(beginGrouping)]
         pub unsafe fn beginGrouping();
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(endGrouping)]
         pub unsafe fn endGrouping();
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other currentContext)]
         pub unsafe fn currentContext() -> Id<NSAnimationContext>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(duration)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDuration:)]
         pub unsafe fn setDuration(&self, duration: NSTimeInterval);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(completionHandler)]
         pub unsafe fn completionHandler(&self) -> *mut Block<(), ()>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCompletionHandler:)]
         pub unsafe fn setCompletionHandler(&self, completion_handler: Option<&Block<(), ()>>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(allowsImplicitAnimation)]
         pub unsafe fn allowsImplicitAnimation(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAllowsImplicitAnimation:)]
         pub unsafe fn setAllowsImplicitAnimation(&self, allows_implicit_animation: bool);
     }

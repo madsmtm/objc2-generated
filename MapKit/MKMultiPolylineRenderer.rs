@@ -10,6 +10,7 @@ use crate::MapKit::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MapKit_MKMultiPolylineRenderer")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct MKMultiPolylineRenderer;
 
     #[cfg(feature = "MapKit_MKMultiPolylineRenderer")]

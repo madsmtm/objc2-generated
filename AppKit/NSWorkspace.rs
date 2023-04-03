@@ -7,8 +7,11 @@ use crate::Foundation::*;
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSWorkspaceIconCreationOptions {
+        #[cfg(not(any(target_os = "ios")))]
         NSExcludeQuickDrawElementsIconCreationOption = 1 << 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSExclude10_4ElementsIconCreationOption = 1 << 2,
     }
 );
@@ -16,6 +19,7 @@ ns_options!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSWorkspace")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSWorkspace;
 
     #[cfg(feature = "AppKit_NSWorkspace")]
@@ -30,14 +34,17 @@ unsafe impl NSObjectProtocol for NSWorkspace {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSWorkspace")]
     unsafe impl NSWorkspace {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other sharedWorkspace)]
         pub unsafe fn sharedWorkspace() -> Id<NSWorkspace>;
 
         #[cfg(feature = "Foundation_NSNotificationCenter")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other notificationCenter)]
         pub unsafe fn notificationCenter(&self) -> Id<NSNotificationCenter>;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(openURL:)]
         pub unsafe fn openURL(&self, url: &NSURL) -> bool;
 
@@ -47,6 +54,7 @@ extern_methods!(
             feature = "Foundation_NSError",
             feature = "Foundation_NSURL"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(openURL:configuration:completionHandler:)]
         pub unsafe fn openURL_configuration_completionHandler(
             &self,
@@ -62,6 +70,7 @@ extern_methods!(
             feature = "Foundation_NSError",
             feature = "Foundation_NSURL"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(openURLs:withApplicationAtURL:configuration:completionHandler:)]
         pub unsafe fn openURLs_withApplicationAtURL_configuration_completionHandler(
             &self,
@@ -77,6 +86,7 @@ extern_methods!(
             feature = "Foundation_NSError",
             feature = "Foundation_NSURL"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(openApplicationAtURL:configuration:completionHandler:)]
         pub unsafe fn openApplicationAtURL_configuration_completionHandler(
             &self,
@@ -86,6 +96,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(selectFile:inFileViewerRootedAtPath:)]
         pub unsafe fn selectFile_inFileViewerRootedAtPath(
             &self,
@@ -94,22 +105,27 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURL"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(activateFileViewerSelectingURLs:)]
         pub unsafe fn activateFileViewerSelectingURLs(&self, file_ur_ls: &NSArray<NSURL>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(showSearchResultsForQueryString:)]
         pub unsafe fn showSearchResultsForQueryString(&self, query_string: &NSString) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(noteFileSystemChanged:)]
         pub unsafe fn noteFileSystemChanged_(&self, path: &NSString);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isFilePackageAtPath:)]
         pub unsafe fn isFilePackageAtPath(&self, full_path: &NSString) -> bool;
 
         #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other iconForFile:)]
         pub unsafe fn iconForFile(&self, full_path: &NSString) -> Id<NSImage>;
 
@@ -118,10 +134,12 @@ extern_methods!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSString"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other iconForFiles:)]
         pub unsafe fn iconForFiles(&self, full_paths: &NSArray<NSString>) -> Option<Id<NSImage>>;
 
         #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setIcon:forFile:options:)]
         pub unsafe fn setIcon_forFile_options(
             &self,
@@ -131,10 +149,12 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other fileLabels)]
         pub unsafe fn fileLabels(&self) -> Id<NSArray<NSString>>;
 
         #[cfg(all(feature = "AppKit_NSColor", feature = "Foundation_NSArray"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other fileLabelColors)]
         pub unsafe fn fileLabelColors(&self) -> Id<NSArray<NSColor>>;
 
@@ -144,6 +164,7 @@ extern_methods!(
             feature = "Foundation_NSError",
             feature = "Foundation_NSURL"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(recycleURLs:completionHandler:)]
         pub unsafe fn recycleURLs_completionHandler(
             &self,
@@ -157,6 +178,7 @@ extern_methods!(
             feature = "Foundation_NSError",
             feature = "Foundation_NSURL"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(duplicateURLs:completionHandler:)]
         pub unsafe fn duplicateURLs_completionHandler(
             &self,
@@ -165,6 +187,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(getFileSystemInfoForPath:isRemovable:isWritable:isUnmountable:description:type:)]
         pub unsafe fn getFileSystemInfoForPath_isRemovable_isWritable_isUnmountable_description_type(
             &self,
@@ -177,23 +200,28 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(unmountAndEjectDeviceAtPath:)]
         pub unsafe fn unmountAndEjectDeviceAtPath(&self, path: &NSString) -> bool;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(unmountAndEjectDeviceAtURL:error:_)]
         pub unsafe fn unmountAndEjectDeviceAtURL_error(
             &self,
             url: &NSURL,
         ) -> Result<(), Id<NSError>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(extendPowerOffBy:)]
         pub unsafe fn extendPowerOffBy(&self, requested: NSInteger) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(hideOtherApplications)]
         pub unsafe fn hideOtherApplications(&self);
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other URLForApplicationWithBundleIdentifier:)]
         pub unsafe fn URLForApplicationWithBundleIdentifier(
             &self,
@@ -205,6 +233,7 @@ extern_methods!(
             feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other URLsForApplicationsWithBundleIdentifier:)]
         pub unsafe fn URLsForApplicationsWithBundleIdentifier(
             &self,
@@ -212,14 +241,17 @@ extern_methods!(
         ) -> Id<NSArray<NSURL>>;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other URLForApplicationToOpenURL:)]
         pub unsafe fn URLForApplicationToOpenURL(&self, url: &NSURL) -> Option<Id<NSURL>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURL"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other URLsForApplicationsToOpenURL:)]
         pub unsafe fn URLsForApplicationsToOpenURL(&self, url: &NSURL) -> Id<NSArray<NSURL>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDefaultApplicationAtURL:toOpenContentTypeOfFileAtURL:completionHandler:)]
         pub unsafe fn setDefaultApplicationAtURL_toOpenContentTypeOfFileAtURL_completionHandler(
             &self,
@@ -233,6 +265,7 @@ extern_methods!(
             feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDefaultApplicationAtURL:toOpenURLsWithScheme:completionHandler:)]
         pub unsafe fn setDefaultApplicationAtURL_toOpenURLsWithScheme_completionHandler(
             &self,
@@ -242,6 +275,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDefaultApplicationAtURL:toOpenFileAtURL:completionHandler:)]
         pub unsafe fn setDefaultApplicationAtURL_toOpenFileAtURL_completionHandler(
             &self,
@@ -251,10 +285,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "AppKit_NSRunningApplication")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other frontmostApplication)]
         pub unsafe fn frontmostApplication(&self) -> Option<Id<NSRunningApplication>>;
 
         #[cfg(feature = "AppKit_NSRunningApplication")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other menuBarOwningApplication)]
         pub unsafe fn menuBarOwningApplication(&self) -> Option<Id<NSRunningApplication>>;
     }
@@ -263,6 +299,7 @@ extern_methods!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSWorkspaceOpenConfiguration")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSWorkspaceOpenConfiguration;
 
     #[cfg(feature = "AppKit_NSWorkspaceOpenConfiguration")]
@@ -277,57 +314,74 @@ unsafe impl NSObjectProtocol for NSWorkspaceOpenConfiguration {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSWorkspaceOpenConfiguration")]
     unsafe impl NSWorkspaceOpenConfiguration {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other configuration)]
         pub unsafe fn configuration() -> Id<Self>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(promptsUserIfNeeded)]
         pub unsafe fn promptsUserIfNeeded(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setPromptsUserIfNeeded:)]
         pub unsafe fn setPromptsUserIfNeeded(&self, prompts_user_if_needed: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(addsToRecentItems)]
         pub unsafe fn addsToRecentItems(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAddsToRecentItems:)]
         pub unsafe fn setAddsToRecentItems(&self, adds_to_recent_items: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(activates)]
         pub unsafe fn activates(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setActivates:)]
         pub unsafe fn setActivates(&self, activates: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(hides)]
         pub unsafe fn hides(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setHides:)]
         pub unsafe fn setHides(&self, hides: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(hidesOthers)]
         pub unsafe fn hidesOthers(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setHidesOthers:)]
         pub unsafe fn setHidesOthers(&self, hides_others: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isForPrinting)]
         pub unsafe fn isForPrinting(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setForPrinting:)]
         pub unsafe fn setForPrinting(&self, for_printing: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(createsNewApplicationInstance)]
         pub unsafe fn createsNewApplicationInstance(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setCreatesNewApplicationInstance:)]
         pub unsafe fn setCreatesNewApplicationInstance(
             &self,
             creates_new_application_instance: bool,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(allowsRunningApplicationSubstitution)]
         pub unsafe fn allowsRunningApplicationSubstitution(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAllowsRunningApplicationSubstitution:)]
         pub unsafe fn setAllowsRunningApplicationSubstitution(
             &self,
@@ -335,32 +389,40 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other arguments)]
         pub unsafe fn arguments(&self) -> Id<NSArray<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setArguments:)]
         pub unsafe fn setArguments(&self, arguments: &NSArray<NSString>);
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other environment)]
         pub unsafe fn environment(&self) -> Id<NSDictionary<NSString, NSString>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setEnvironment:)]
         pub unsafe fn setEnvironment(&self, environment: &NSDictionary<NSString, NSString>);
 
         #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other appleEvent)]
         pub unsafe fn appleEvent(&self) -> Option<Id<NSAppleEventDescriptor>>;
 
         #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAppleEvent:)]
         pub unsafe fn setAppleEvent(&self, apple_event: Option<&NSAppleEventDescriptor>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(requiresUniversalLinks)]
         pub unsafe fn requiresUniversalLinks(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setRequiresUniversalLinks:)]
         pub unsafe fn setRequiresUniversalLinks(&self, requires_universal_links: bool);
     }
@@ -386,6 +448,7 @@ extern_methods!(
             feature = "Foundation_NSError",
             feature = "Foundation_NSURL"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setDesktopImageURL:forScreen:options:error:_)]
         pub unsafe fn setDesktopImageURL_forScreen_options_error(
             &self,
@@ -395,10 +458,12 @@ extern_methods!(
         ) -> Result<(), Id<NSError>>;
 
         #[cfg(all(feature = "AppKit_NSScreen", feature = "Foundation_NSURL"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other desktopImageURLForScreen:)]
         pub unsafe fn desktopImageURLForScreen(&self, screen: &NSScreen) -> Option<Id<NSURL>>;
 
         #[cfg(all(feature = "AppKit_NSScreen", feature = "Foundation_NSDictionary"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other desktopImageOptionsForScreen:)]
         pub unsafe fn desktopImageOptionsForScreen(
             &self,
@@ -409,9 +474,13 @@ extern_methods!(
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSWorkspaceAuthorizationType {
+        #[cfg(not(any(target_os = "ios")))]
         NSWorkspaceAuthorizationTypeCreateSymbolicLink = 0,
+        #[cfg(not(any(target_os = "ios")))]
         NSWorkspaceAuthorizationTypeSetAttributes = 1,
+        #[cfg(not(any(target_os = "ios")))]
         NSWorkspaceAuthorizationTypeReplaceFile = 2,
     }
 );
@@ -419,6 +488,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSWorkspaceAuthorization")]
+    #[cfg(not(any(target_os = "ios")))]
     pub struct NSWorkspaceAuthorization;
 
     #[cfg(feature = "AppKit_NSWorkspaceAuthorization")]
@@ -443,6 +513,7 @@ extern_methods!(
             feature = "AppKit_NSWorkspaceAuthorization",
             feature = "Foundation_NSError"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(requestAuthorizationOfType:completionHandler:)]
         pub unsafe fn requestAuthorizationOfType_completionHandler(
             &self,
@@ -457,6 +528,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSFileManager")]
     unsafe impl NSFileManager {
         #[cfg(feature = "AppKit_NSWorkspaceAuthorization")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other fileManagerWithAuthorization:)]
         pub unsafe fn fileManagerWithAuthorization(
             authorization: &NSWorkspaceAuthorization,
@@ -520,30 +592,43 @@ typed_enum!(
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "ios")))]
     pub enum NSWorkspaceLaunchOptions {
         #[deprecated = "Use -[NSWorkspaceOpenConfiguration setForPrinting:YES] instead."]
+        #[cfg(not(any(target_os = "ios")))]
         NSWorkspaceLaunchAndPrint = 0x00000002,
         #[deprecated = "Use -[NSWorkspaceOpenConfiguration setPromptsUserIfNeeded:YES] instead."]
+        #[cfg(not(any(target_os = "ios")))]
         NSWorkspaceLaunchWithErrorPresentation = 0x00000040,
         #[deprecated = "This option does nothing."]
+        #[cfg(not(any(target_os = "ios")))]
         NSWorkspaceLaunchInhibitingBackgroundOnly = 0x00000080,
         #[deprecated = "Use -[NSWorkspaceOpenConfiguration setAddsToRecentItems:YES] instead."]
+        #[cfg(not(any(target_os = "ios")))]
         NSWorkspaceLaunchWithoutAddingToRecents = 0x00000100,
         #[deprecated = "Use -[NSWorkspaceOpenConfiguration setActivates:NO] instead."]
+        #[cfg(not(any(target_os = "ios")))]
         NSWorkspaceLaunchWithoutActivation = 0x00000200,
         #[deprecated = "When using NSWorkspaceOpenConfiguration, all launches are asynchronous."]
+        #[cfg(not(any(target_os = "ios")))]
         NSWorkspaceLaunchAsync = 0x00010000,
         #[deprecated = "Use -[NSWorkspaceOpenConfiguration setCreatesNewApplicationInstance:YES] instead."]
+        #[cfg(not(any(target_os = "ios")))]
         NSWorkspaceLaunchNewInstance = 0x00080000,
         #[deprecated = "Use -[NSWorkspaceOpenConfiguration setHides:YES] instead."]
+        #[cfg(not(any(target_os = "ios")))]
         NSWorkspaceLaunchAndHide = 0x00100000,
         #[deprecated = "Use -[NSWorkspaceOpenConfiguration setHidesOthers:YES] instead."]
+        #[cfg(not(any(target_os = "ios")))]
         NSWorkspaceLaunchAndHideOthers = 0x00200000,
         #[deprecated = "Use NSWorkspaceOpenConfiguration instead."]
+        #[cfg(not(any(target_os = "ios")))]
         NSWorkspaceLaunchDefault = NSWorkspaceLaunchAsync,
         #[deprecated = "The Classic environment is no longer supported."]
+        #[cfg(not(any(target_os = "ios")))]
         NSWorkspaceLaunchAllowingClassicStartup = 0x00020000,
         #[deprecated = "The Classic environment is no longer supported."]
+        #[cfg(not(any(target_os = "ios")))]
         NSWorkspaceLaunchPreferringClassic = 0x00040000,
     }
 );
@@ -572,11 +657,13 @@ extern_methods!(
     unsafe impl NSWorkspace {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use -[NSWorkspace openURL:] instead."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(openFile:)]
         pub unsafe fn openFile(&self, full_path: &NSString) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use -[NSWorkspace openURLs:withApplicationAtURL:configuration:completionHandler:] instead."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(openFile:withApplication:)]
         pub unsafe fn openFile_withApplication(
             &self,
@@ -586,6 +673,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use -[NSWorkspace openURLs:withApplicationAtURL:configuration:completionHandler:] instead."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(openFile:withApplication:andDeactivate:)]
         pub unsafe fn openFile_withApplication_andDeactivate(
             &self,
@@ -596,6 +684,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use -[NSWorkspace openApplicationAtURL:configuration:completionHandler:] instead."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(launchApplication:)]
         pub unsafe fn launchApplication(&self, app_name: &NSString) -> bool;
 
@@ -606,6 +695,7 @@ extern_methods!(
             feature = "Foundation_NSURL"
         ))]
         #[deprecated = "Use -[NSWorkspace openApplicationAtURL:configuration:completionHandler:] instead."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other launchApplicationAtURL:options:configuration:error:_)]
         pub unsafe fn launchApplicationAtURL_options_configuration_error(
             &self,
@@ -621,6 +711,7 @@ extern_methods!(
             feature = "Foundation_NSURL"
         ))]
         #[deprecated = "Use -[NSWorkspace openURL:configuration:completionHandler:] instead."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other openURL:options:configuration:error:_)]
         pub unsafe fn openURL_options_configuration_error(
             &self,
@@ -637,6 +728,7 @@ extern_methods!(
             feature = "Foundation_NSURL"
         ))]
         #[deprecated = "Use -[NSWorkspace openURLs:withApplicationAtURL:configuration:completionHandler:] instead."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other openURLs:withApplicationAtURL:options:configuration:error:_)]
         pub unsafe fn openURLs_withApplicationAtURL_options_configuration_error(
             &self,
@@ -648,6 +740,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use -[NSWorkspace openApplicationAtURL:configuration:completionHandler:] instead."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(launchApplication:showIcon:autolaunch:)]
         pub unsafe fn launchApplication_showIcon_autolaunch(
             &self,
@@ -658,11 +751,13 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use -[NSWorkspace URLForApplicationWithBundleIdentifier:] instead."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other fullPathForApplication:)]
         pub unsafe fn fullPathForApplication(&self, app_name: &NSString) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use -[NSWorkspace URLForApplicationWithBundleIdentifier:] instead."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other absolutePathForAppBundleWithIdentifier:)]
         pub unsafe fn absolutePathForAppBundleWithIdentifier(
             &self,
@@ -675,6 +770,7 @@ extern_methods!(
             feature = "Foundation_NSString"
         ))]
         #[deprecated = "Use -[NSWorkspace openApplicationAtURL:configuration:completionHandler:] instead."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(launchAppWithBundleIdentifier:options:additionalEventParamDescriptor:launchIdentifier:)]
         pub unsafe fn launchAppWithBundleIdentifier_options_additionalEventParamDescriptor_launchIdentifier(
             &self,
@@ -692,6 +788,7 @@ extern_methods!(
             feature = "Foundation_NSURL"
         ))]
         #[deprecated = "Use -[NSWorkspace openURLs:withApplicationAtURL:configuration:completionHandler:] instead."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(openURLs:withAppBundleIdentifier:options:additionalEventParamDescriptor:launchIdentifiers:)]
         pub unsafe fn openURLs_withAppBundleIdentifier_options_additionalEventParamDescriptor_launchIdentifiers(
             &self,
@@ -704,19 +801,23 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(openTempFile:)]
         pub unsafe fn openTempFile(&self, full_path: &NSString) -> bool;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(findApplications)]
         pub unsafe fn findApplications(&self);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(noteUserDefaultsChanged)]
         pub unsafe fn noteUserDefaultsChanged(&self);
 
         #[cfg(feature = "AppKit_NSImage")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(slideImage:from:to:)]
         pub unsafe fn slideImage_from_to(
             &self,
@@ -726,43 +827,52 @@ extern_methods!(
         );
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(checkForRemovableMedia)]
         pub unsafe fn checkForRemovableMedia(&self);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(noteFileSystemChanged)]
         pub unsafe fn noteFileSystemChanged(&self);
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(fileSystemChanged)]
         pub unsafe fn fileSystemChanged(&self) -> bool;
 
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(userDefaultsChanged)]
         pub unsafe fn userDefaultsChanged(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other mountNewRemovableMedia)]
         pub unsafe fn mountNewRemovableMedia(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[deprecated = "Use -[NSWorkspace frontmostApplication] instead."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other activeApplication)]
         pub unsafe fn activeApplication(&self) -> Option<Id<NSDictionary>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated = "Use -[NSFileManager mountedVolumeURLsIncludingResourceValuesForKeys:options:] instead."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other mountedLocalVolumePaths)]
         pub unsafe fn mountedLocalVolumePaths(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated = "Use -[NSFileManager mountedVolumeURLsIncludingResourceValuesForKeys:options:] instead."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other mountedRemovableMedia)]
         pub unsafe fn mountedRemovableMedia(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated = "Use -[NSWorkspace runningApplications] instead."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other launchedApplications)]
         pub unsafe fn launchedApplications(&self) -> Option<Id<NSArray>>;
 
@@ -772,6 +882,7 @@ extern_methods!(
             feature = "Foundation_NSString"
         ))]
         #[deprecated = "Use -[NSWorkspace openURL:] instead."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(openFile:fromImage:at:inView:)]
         pub unsafe fn openFile_fromImage_at_inView(
             &self,
@@ -783,6 +894,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(performFileOperation:source:destination:files:tag:)]
         pub unsafe fn performFileOperation_source_destination_files_tag(
             &self,
@@ -795,6 +907,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use -[NSWorkspace URLForApplicationToOpenURL:] to get the URL of an application that will open a given item, or -[NSURL getResourceValue:forKey:error:] with NSURLContentTypeKey to get the type of the given item."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(getInfoForFile:application:type:)]
         pub unsafe fn getInfoForFile_application_type(
             &self,
@@ -805,11 +918,13 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSString"))]
         #[deprecated = "Use -[NSWorkspace iconForContentType:] instead."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other iconForFileType:)]
         pub unsafe fn iconForFileType(&self, file_type: &NSString) -> Id<NSImage>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[deprecated = "Use -[NSURL getResourceValue:forKey:error:] with NSURLContentTypeKey instead."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other typeOfFile:error:_)]
         pub unsafe fn typeOfFile_error(
             &self,
@@ -818,6 +933,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use UTType.localizedDescription instead."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other localizedDescriptionForType:)]
         pub unsafe fn localizedDescriptionForType(
             &self,
@@ -826,6 +942,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use UTType.preferredFilenameExtension instead."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other preferredFilenameExtensionForType:)]
         pub unsafe fn preferredFilenameExtensionForType(
             &self,
@@ -834,6 +951,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use +[UTType typesWithTag:tagClass:conformingToType:] to get a list of candidate types, then check if the input type conforms to any of them."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(filenameExtension:isValidForType:)]
         pub unsafe fn filenameExtension_isValidForType(
             &self,
@@ -843,6 +961,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use -[UTType conformsToType:] instead."]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(type:conformsToType:)]
         pub unsafe fn type_conformsToType(
             &self,

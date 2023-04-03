@@ -16,9 +16,11 @@ ns_options!(
 
 extern_protocol!(
     pub unsafe trait MTLBlitCommandEncoder: MTLCommandEncoder {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(synchronizeResource:)]
         fn synchronizeResource(&self, resource: &ProtocolObject<dyn MTLResource>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(synchronizeTexture:slice:level:)]
         unsafe fn synchronizeTexture_slice_level(
             &self,

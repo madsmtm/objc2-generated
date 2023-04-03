@@ -104,18 +104,22 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(hasPropertyForKey:)]
         pub unsafe fn hasPropertyForKey(&self, key: &NSString) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(hasOrderedToManyRelationshipForKey:)]
         pub unsafe fn hasOrderedToManyRelationshipForKey(&self, key: &NSString) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(hasReadablePropertyForKey:)]
         pub unsafe fn hasReadablePropertyForKey(&self, key: &NSString) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(hasWritablePropertyForKey:)]
         pub unsafe fn hasWritablePropertyForKey(&self, key: &NSString) -> bool;
     }
@@ -127,6 +131,7 @@ extern_methods!(
     unsafe impl NSScriptClassDescription {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         #[method(isReadOnlyKey:)]
         pub unsafe fn isReadOnlyKey(&self, key: &NSString) -> bool;
     }

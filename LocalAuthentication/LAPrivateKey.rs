@@ -7,6 +7,7 @@ use crate::LocalAuthentication::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "LocalAuthentication_LAPrivateKey")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct LAPrivateKey;
 
     #[cfg(feature = "LocalAuthentication_LAPrivateKey")]

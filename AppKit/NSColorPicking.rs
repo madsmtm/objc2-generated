@@ -6,8 +6,10 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSColorPickingDefault {
         #[cfg(feature = "AppKit_NSColorPanel")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Init initWithPickerMask:colorPanel:)]
         unsafe fn initWithPickerMask_colorPanel(
             this: Option<Allocated<Self>>,
@@ -16,10 +18,12 @@ extern_protocol!(
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other provideNewButtonImage)]
         unsafe fn provideNewButtonImage(&self) -> Id<NSImage>;
 
         #[cfg(all(feature = "AppKit_NSButtonCell", feature = "AppKit_NSImage"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(insertNewButtonImage:in:)]
         unsafe fn insertNewButtonImage_in(
             &self,
@@ -27,27 +31,34 @@ extern_protocol!(
             button_cell: &NSButtonCell,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(viewSizeChanged:)]
         unsafe fn viewSizeChanged(&self, sender: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(alphaControlAddedOrRemoved:)]
         unsafe fn alphaControlAddedOrRemoved(&self, sender: Option<&Object>);
 
         #[cfg(feature = "AppKit_NSColorList")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(attachColorList:)]
         unsafe fn attachColorList(&self, color_list: &NSColorList);
 
         #[cfg(feature = "AppKit_NSColorList")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(detachColorList:)]
         unsafe fn detachColorList(&self, color_list: &NSColorList);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setMode:)]
         unsafe fn setMode(&self, mode: NSColorPanelMode);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other buttonToolTip)]
         unsafe fn buttonToolTip(&self) -> Id<NSString>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(minContentSize)]
         unsafe fn minContentSize(&self) -> NSSize;
     }
@@ -56,18 +67,23 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSColorPickingCustom: NSColorPickingDefault {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(supportsMode:)]
         unsafe fn supportsMode(&self, mode: NSColorPanelMode) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(currentMode)]
         unsafe fn currentMode(&self) -> NSColorPanelMode;
 
         #[cfg(feature = "AppKit_NSView")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other provideNewView:)]
         unsafe fn provideNewView(&self, initial_request: bool) -> Id<NSView>;
 
         #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setColor:)]
         unsafe fn setColor(&self, new_color: &NSColor);
     }

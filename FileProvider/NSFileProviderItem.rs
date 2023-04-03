@@ -21,6 +21,7 @@ extern_static!(NSFileProviderTrashContainerItemIdentifier: &'static NSFileProvid
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "FileProvider_NSFileProviderItemVersion")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct NSFileProviderItemVersion;
 
     #[cfg(feature = "FileProvider_NSFileProviderItemVersion")]
@@ -36,6 +37,7 @@ extern_methods!(
     #[cfg(feature = "FileProvider_NSFileProviderItemVersion")]
     unsafe impl NSFileProviderItemVersion {
         #[cfg(feature = "Foundation_NSData")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other beforeFirstSyncComponent)]
         pub unsafe fn beforeFirstSyncComponent() -> Id<NSData>;
 
@@ -70,6 +72,7 @@ ns_options!(
         NSFileProviderItemCapabilitiesAllowsDeleting = 1 << 5,
         #[deprecated = "use NSFileProviderContentPolicy instead"]
         NSFileProviderItemCapabilitiesAllowsEvicting = 1 << 6,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         NSFileProviderItemCapabilitiesAllowsExcludingFromSync = 1 << 7,
         NSFileProviderItemCapabilitiesAllowsAddingSubItems =
             NSFileProviderItemCapabilitiesAllowsWriting,
@@ -87,17 +90,29 @@ ns_options!(
 
 ns_options!(
     #[underlying(NSUInteger)]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub enum NSFileProviderItemFields {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSFileProviderItemContents = 1 << 0,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSFileProviderItemFilename = 1 << 1,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSFileProviderItemParentItemIdentifier = 1 << 2,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSFileProviderItemLastUsedDate = 1 << 3,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSFileProviderItemTagData = 1 << 4,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSFileProviderItemFavoriteRank = 1 << 5,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSFileProviderItemCreationDate = 1 << 6,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSFileProviderItemContentModificationDate = 1 << 7,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSFileProviderItemFileSystemFlags = 1 << 8,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSFileProviderItemExtendedAttributes = 1 << 9,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSFileProviderItemTypeAndCreator = 1 << 10,
     }
 );
@@ -123,14 +138,19 @@ extern_struct!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSFileProviderContentPolicy {
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSFileProviderContentPolicyInherited = 0,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         NSFileProviderContentPolicyDownloadLazily = 1,
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         NSFileProviderContentPolicyDownloadLazilyAndEvictOnRemoteUpdate = 2,
+        #[cfg(not(any(target_os = "ios", target_os = "tvos", target_os = "watchos")))]
         NSFileProviderContentPolicyDownloadEagerlyAndKeepDownloaded = 3,
     }
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait NSFileProviderItemProtocol: NSObjectProtocol {
         #[method_id(@__retain_semantics Other itemIdentifier)]
         unsafe fn itemIdentifier(&self) -> Id<NSFileProviderItemIdentifier>;
@@ -149,10 +169,12 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
+        #[cfg(not(any(target_os = "macos")))]
         #[optional]
         #[method_id(@__retain_semantics Other typeIdentifier)]
         unsafe fn typeIdentifier(&self) -> Id<NSString>;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method(typeAndCreator)]
         unsafe fn typeAndCreator(&self) -> NSFileProviderTypeAndCreator;
@@ -161,6 +183,7 @@ extern_protocol!(
         #[method(capabilities)]
         unsafe fn capabilities(&self) -> NSFileProviderItemCapabilities;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method(fileSystemFlags)]
         unsafe fn fileSystemFlags(&self) -> NSFileProviderFileSystemFlags;
@@ -190,6 +213,7 @@ extern_protocol!(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString"
         ))]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method_id(@__retain_semantics Other extendedAttributes)]
         unsafe fn extendedAttributes(&self) -> Id<NSDictionary<NSString, NSData>>;
@@ -205,10 +229,12 @@ extern_protocol!(
         unsafe fn tagData(&self) -> Option<Id<NSData>>;
 
         #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method_id(@__retain_semantics Other favoriteRank)]
         unsafe fn favoriteRank(&self) -> Option<Id<NSNumber>>;
 
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method(isTrashed)]
         unsafe fn isTrashed(&self) -> bool;
@@ -262,16 +288,19 @@ extern_protocol!(
         unsafe fn mostRecentEditorNameComponents(&self) -> Option<Id<NSPersonNameComponents>>;
 
         #[cfg(feature = "Foundation_NSData")]
+        #[cfg(not(any(target_os = "macos", target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method_id(@__retain_semantics Other versionIdentifier)]
         unsafe fn versionIdentifier(&self) -> Option<Id<NSData>>;
 
         #[cfg(feature = "FileProvider_NSFileProviderItemVersion")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method_id(@__retain_semantics Other itemVersion)]
         unsafe fn itemVersion(&self) -> Id<NSFileProviderItemVersion>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method_id(@__retain_semantics Other symlinkTargetPath)]
         unsafe fn symlinkTargetPath(&self) -> Option<Id<NSString>>;
@@ -281,6 +310,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other userInfo)]
         unsafe fn userInfo(&self) -> Option<Id<NSDictionary>>;
 
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[optional]
         #[method(contentPolicy)]
         unsafe fn contentPolicy(&self) -> NSFileProviderContentPolicy;

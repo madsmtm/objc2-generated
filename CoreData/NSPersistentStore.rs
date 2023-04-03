@@ -131,6 +131,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "CoreData_NSCoreDataCoreSpotlightDelegate")]
+        #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
         #[method_id(@__retain_semantics Other coreSpotlightExporter)]
         pub unsafe fn coreSpotlightExporter(&self) -> Id<NSCoreDataCoreSpotlightDelegate>;
     }

@@ -6,18 +6,23 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSAccessibilityElementProtocol: NSObjectProtocol {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityFrame)]
         unsafe fn accessibilityFrame(&self) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityParent)]
         unsafe fn accessibilityParent(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(isAccessibilityFocused)]
         unsafe fn isAccessibilityFocused(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other accessibilityIdentifier)]
         unsafe fn accessibilityIdentifier(&self) -> Id<NSString>;
@@ -27,17 +32,21 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSAccessibilityGroup: NSAccessibilityElementProtocol {}
 
     unsafe impl ProtocolType for dyn NSAccessibilityGroup {}
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSAccessibilityButton: NSAccessibilityElementProtocol {
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityLabel)]
         unsafe fn accessibilityLabel(&self) -> Option<Id<NSString>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityPerformPress)]
         unsafe fn accessibilityPerformPress(&self) -> bool;
     }
@@ -46,15 +55,19 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSAccessibilitySwitch: NSAccessibilityButton {
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityValue)]
         unsafe fn accessibilityValue(&self) -> Option<Id<NSString>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(accessibilityPerformIncrement)]
         unsafe fn accessibilityPerformIncrement(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(accessibilityPerformDecrement)]
         unsafe fn accessibilityPerformDecrement(&self) -> bool;
@@ -64,8 +77,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSAccessibilityRadioButton: NSAccessibilityButton {
         #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityValue)]
         unsafe fn accessibilityValue(&self) -> Option<Id<NSNumber>>;
     }
@@ -74,8 +89,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSAccessibilityCheckBox: NSAccessibilityButton {
         #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityValue)]
         unsafe fn accessibilityValue(&self) -> Option<Id<NSNumber>>;
     }
@@ -84,12 +101,15 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSAccessibilityStaticText: NSAccessibilityElementProtocol {
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityValue)]
         unsafe fn accessibilityValue(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other accessibilityAttributedStringForRange:)]
         unsafe fn accessibilityAttributedStringForRange(
@@ -97,6 +117,7 @@ extern_protocol!(
             range: NSRange,
         ) -> Option<Id<NSAttributedString>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(accessibilityVisibleCharacterRange)]
         unsafe fn accessibilityVisibleCharacterRange(&self) -> NSRange;
@@ -106,17 +127,22 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSAccessibilityNavigableStaticText: NSAccessibilityStaticText {
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityStringForRange:)]
         unsafe fn accessibilityStringForRange(&self, range: NSRange) -> Option<Id<NSString>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityLineForIndex:)]
         unsafe fn accessibilityLineForIndex(&self, index: NSInteger) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityRangeForLine:)]
         unsafe fn accessibilityRangeForLine(&self, line_number: NSInteger) -> NSRange;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityFrameForRange:)]
         unsafe fn accessibilityFrameForRange(&self, range: NSRange) -> NSRect;
     }
@@ -125,8 +151,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSAccessibilityProgressIndicator: NSAccessibilityGroup {
         #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityValue)]
         unsafe fn accessibilityValue(&self) -> Option<Id<NSNumber>>;
     }
@@ -135,17 +163,22 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSAccessibilityStepper: NSAccessibilityElementProtocol {
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityLabel)]
         unsafe fn accessibilityLabel(&self) -> Option<Id<NSString>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityPerformIncrement)]
         unsafe fn accessibilityPerformIncrement(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityPerformDecrement)]
         unsafe fn accessibilityPerformDecrement(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other accessibilityValue)]
         unsafe fn accessibilityValue(&self) -> Option<Id<Object>>;
@@ -155,17 +188,22 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSAccessibilitySlider: NSAccessibilityElementProtocol {
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityLabel)]
         unsafe fn accessibilityLabel(&self) -> Option<Id<NSString>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityValue)]
         unsafe fn accessibilityValue(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityPerformIncrement)]
         unsafe fn accessibilityPerformIncrement(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityPerformDecrement)]
         unsafe fn accessibilityPerformDecrement(&self) -> bool;
     }
@@ -174,8 +212,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSAccessibilityImage: NSAccessibilityElementProtocol {
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityLabel)]
         unsafe fn accessibilityLabel(&self) -> Option<Id<NSString>>;
     }
@@ -184,15 +224,19 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSAccessibilityContainsTransientUI:
         NSAccessibilityElementProtocol
     {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityPerformShowAlternateUI)]
         unsafe fn accessibilityPerformShowAlternateUI(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityPerformShowDefaultUI)]
         unsafe fn accessibilityPerformShowDefaultUI(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isAccessibilityAlternateUIVisible)]
         unsafe fn isAccessibilityAlternateUIVisible(&self) -> bool;
     }
@@ -201,18 +245,22 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSAccessibilityTable: NSAccessibilityGroup {
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityLabel)]
         unsafe fn accessibilityLabel(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityRows)]
         unsafe fn accessibilityRows(
             &self,
         ) -> Option<Id<NSArray<ProtocolObject<dyn NSAccessibilityRow>>>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other accessibilitySelectedRows)]
         unsafe fn accessibilitySelectedRows(
@@ -220,6 +268,7 @@ extern_protocol!(
         ) -> Option<Id<NSArray<ProtocolObject<dyn NSAccessibilityRow>>>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(setAccessibilitySelectedRows:)]
         unsafe fn setAccessibilitySelectedRows(
@@ -228,6 +277,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other accessibilityVisibleRows)]
         unsafe fn accessibilityVisibleRows(
@@ -235,42 +285,50 @@ extern_protocol!(
         ) -> Option<Id<NSArray<ProtocolObject<dyn NSAccessibilityRow>>>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other accessibilityColumns)]
         unsafe fn accessibilityColumns(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other accessibilityVisibleColumns)]
         unsafe fn accessibilityVisibleColumns(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other accessibilitySelectedColumns)]
         unsafe fn accessibilitySelectedColumns(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other accessibilityHeaderGroup)]
         unsafe fn accessibilityHeaderGroup(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other accessibilitySelectedCells)]
         unsafe fn accessibilitySelectedCells(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other accessibilityVisibleCells)]
         unsafe fn accessibilityVisibleCells(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other accessibilityRowHeaderUIElements)]
         unsafe fn accessibilityRowHeaderUIElements(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method_id(@__retain_semantics Other accessibilityColumnHeaderUIElements)]
         unsafe fn accessibilityColumnHeaderUIElements(&self) -> Option<Id<NSArray>>;
@@ -280,22 +338,27 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSAccessibilityOutline: NSAccessibilityTable {}
 
     unsafe impl ProtocolType for dyn NSAccessibilityOutline {}
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSAccessibilityList: NSAccessibilityTable {}
 
     unsafe impl ProtocolType for dyn NSAccessibilityList {}
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSAccessibilityRow: NSAccessibilityGroup {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityIndex)]
         unsafe fn accessibilityIndex(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(accessibilityDisclosureLevel)]
         unsafe fn accessibilityDisclosureLevel(&self) -> NSInteger;
@@ -305,19 +368,24 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSAccessibilityLayoutArea: NSAccessibilityGroup {
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityLabel)]
         unsafe fn accessibilityLabel(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityChildren)]
         unsafe fn accessibilityChildren(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilitySelectedChildren)]
         unsafe fn accessibilitySelectedChildren(&self) -> Option<Id<NSArray>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityFocusedUIElement)]
         unsafe fn accessibilityFocusedUIElement(&self) -> Id<Object>;
     }
@@ -326,7 +394,9 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSAccessibilityLayoutItem: NSAccessibilityGroup {
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(setAccessibilityFrame:)]
         unsafe fn setAccessibilityFrame(&self, frame: NSRect);
@@ -336,13 +406,16 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSAccessibilityElementLoading: NSObjectProtocol {
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityElementWithToken:)]
         unsafe fn accessibilityElementWithToken(
             &self,
             token: &NSAccessibilityLoadingToken,
         ) -> Option<Id<ProtocolObject<dyn NSAccessibilityElementProtocol>>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[optional]
         #[method(accessibilityRangeInTargetElementWithToken:)]
         unsafe fn accessibilityRangeInTargetElementWithToken(
@@ -355,34 +428,45 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    #[cfg(not(any(target_os = "ios")))]
     pub unsafe trait NSAccessibility: NSObjectProtocol {
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isAccessibilityElement)]
         unsafe fn isAccessibilityElement(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityElement:)]
         unsafe fn setAccessibilityElement(&self, accessibility_element: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityFrame)]
         unsafe fn accessibilityFrame(&self) -> NSRect;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityFrame:)]
         unsafe fn setAccessibilityFrame(&self, accessibility_frame: NSRect);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isAccessibilityFocused)]
         unsafe fn isAccessibilityFocused(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityFocused:)]
         unsafe fn setAccessibilityFocused(&self, accessibility_focused: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityActivationPoint)]
         unsafe fn accessibilityActivationPoint(&self) -> NSPoint;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityActivationPoint:)]
         unsafe fn setAccessibilityActivationPoint(&self, accessibility_activation_point: NSPoint);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityTopLevelUIElement)]
         unsafe fn accessibilityTopLevelUIElement(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityTopLevelUIElement:)]
         unsafe fn setAccessibilityTopLevelUIElement(
             &self,
@@ -390,24 +474,30 @@ extern_protocol!(
         );
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityURL)]
         unsafe fn accessibilityURL(&self) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityURL:)]
         unsafe fn setAccessibilityURL(&self, accessibility_url: Option<&NSURL>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityValue)]
         unsafe fn accessibilityValue(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityValue:)]
         unsafe fn setAccessibilityValue(&self, accessibility_value: Option<&Object>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityValueDescription)]
         unsafe fn accessibilityValueDescription(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityValueDescription:)]
         unsafe fn setAccessibilityValueDescription(
             &self,
@@ -415,19 +505,23 @@ extern_protocol!(
         );
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityVisibleChildren)]
         unsafe fn accessibilityVisibleChildren(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityVisibleChildren:)]
         unsafe fn setAccessibilityVisibleChildren(
             &self,
             accessibility_visible_children: Option<&NSArray>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilitySubrole)]
         unsafe fn accessibilitySubrole(&self) -> Option<Id<NSAccessibilitySubrole>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilitySubrole:)]
         unsafe fn setAccessibilitySubrole(
             &self,
@@ -435,16 +529,20 @@ extern_protocol!(
         );
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityTitle)]
         unsafe fn accessibilityTitle(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityTitle:)]
         unsafe fn setAccessibilityTitle(&self, accessibility_title: Option<&NSString>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityTitleUIElement)]
         unsafe fn accessibilityTitleUIElement(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityTitleUIElement:)]
         unsafe fn setAccessibilityTitleUIElement(
             &self,
@@ -452,45 +550,55 @@ extern_protocol!(
         );
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityNextContents)]
         unsafe fn accessibilityNextContents(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityNextContents:)]
         unsafe fn setAccessibilityNextContents(
             &self,
             accessibility_next_contents: Option<&NSArray>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityOrientation)]
         unsafe fn accessibilityOrientation(&self) -> NSAccessibilityOrientation;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityOrientation:)]
         unsafe fn setAccessibilityOrientation(
             &self,
             accessibility_orientation: NSAccessibilityOrientation,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityOverflowButton)]
         unsafe fn accessibilityOverflowButton(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityOverflowButton:)]
         unsafe fn setAccessibilityOverflowButton(
             &self,
             accessibility_overflow_button: Option<&Object>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityParent)]
         unsafe fn accessibilityParent(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityParent:)]
         unsafe fn setAccessibilityParent(&self, accessibility_parent: Option<&Object>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityPlaceholderValue)]
         unsafe fn accessibilityPlaceholderValue(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityPlaceholderValue:)]
         unsafe fn setAccessibilityPlaceholderValue(
             &self,
@@ -498,56 +606,70 @@ extern_protocol!(
         );
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityPreviousContents)]
         unsafe fn accessibilityPreviousContents(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityPreviousContents:)]
         unsafe fn setAccessibilityPreviousContents(
             &self,
             accessibility_previous_contents: Option<&NSArray>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityRole)]
         unsafe fn accessibilityRole(&self) -> Option<Id<NSAccessibilityRole>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityRole:)]
         unsafe fn setAccessibilityRole(&self, accessibility_role: Option<&NSAccessibilityRole>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityRoleDescription)]
         unsafe fn accessibilityRoleDescription(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityRoleDescription:)]
         unsafe fn setAccessibilityRoleDescription(
             &self,
             accessibility_role_description: Option<&NSString>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilitySearchButton)]
         unsafe fn accessibilitySearchButton(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilitySearchButton:)]
         unsafe fn setAccessibilitySearchButton(&self, accessibility_search_button: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilitySearchMenu)]
         unsafe fn accessibilitySearchMenu(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilitySearchMenu:)]
         unsafe fn setAccessibilitySearchMenu(&self, accessibility_search_menu: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isAccessibilitySelected)]
         unsafe fn isAccessibilitySelected(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilitySelected:)]
         unsafe fn setAccessibilitySelected(&self, accessibility_selected: bool);
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilitySelectedChildren)]
         unsafe fn accessibilitySelectedChildren(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilitySelectedChildren:)]
         unsafe fn setAccessibilitySelectedChildren(
             &self,
@@ -555,108 +677,136 @@ extern_protocol!(
         );
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityServesAsTitleForUIElements)]
         unsafe fn accessibilityServesAsTitleForUIElements(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityServesAsTitleForUIElements:)]
         unsafe fn setAccessibilityServesAsTitleForUIElements(
             &self,
             accessibility_serves_as_title_for_ui_elements: Option<&NSArray>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityShownMenu)]
         unsafe fn accessibilityShownMenu(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityShownMenu:)]
         unsafe fn setAccessibilityShownMenu(&self, accessibility_shown_menu: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityMinValue)]
         unsafe fn accessibilityMinValue(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityMinValue:)]
         unsafe fn setAccessibilityMinValue(&self, accessibility_min_value: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityMaxValue)]
         unsafe fn accessibilityMaxValue(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityMaxValue:)]
         unsafe fn setAccessibilityMaxValue(&self, accessibility_max_value: Option<&Object>);
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityLinkedUIElements)]
         unsafe fn accessibilityLinkedUIElements(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityLinkedUIElements:)]
         unsafe fn setAccessibilityLinkedUIElements(
             &self,
             accessibility_linked_ui_elements: Option<&NSArray>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityWindow)]
         unsafe fn accessibilityWindow(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityWindow:)]
         unsafe fn setAccessibilityWindow(&self, accessibility_window: Option<&Object>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityIdentifier)]
         unsafe fn accessibilityIdentifier(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityIdentifier:)]
         unsafe fn setAccessibilityIdentifier(&self, accessibility_identifier: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityHelp)]
         unsafe fn accessibilityHelp(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityHelp:)]
         unsafe fn setAccessibilityHelp(&self, accessibility_help: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityFilename)]
         unsafe fn accessibilityFilename(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityFilename:)]
         unsafe fn setAccessibilityFilename(&self, accessibility_filename: Option<&NSString>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isAccessibilityExpanded)]
         unsafe fn isAccessibilityExpanded(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityExpanded:)]
         unsafe fn setAccessibilityExpanded(&self, accessibility_expanded: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isAccessibilityEdited)]
         unsafe fn isAccessibilityEdited(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityEdited:)]
         unsafe fn setAccessibilityEdited(&self, accessibility_edited: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isAccessibilityEnabled)]
         unsafe fn isAccessibilityEnabled(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityEnabled:)]
         unsafe fn setAccessibilityEnabled(&self, accessibility_enabled: bool);
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityChildren)]
         unsafe fn accessibilityChildren(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityChildren:)]
         unsafe fn setAccessibilityChildren(&self, accessibility_children: Option<&NSArray>);
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityChildrenInNavigationOrder)]
         unsafe fn accessibilityChildrenInNavigationOrder(
             &self,
         ) -> Option<Id<NSArray<ProtocolObject<dyn NSAccessibilityElementProtocol>>>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityChildrenInNavigationOrder:)]
         unsafe fn setAccessibilityChildrenInNavigationOrder(
             &self,
@@ -665,43 +815,55 @@ extern_protocol!(
             >,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityClearButton)]
         unsafe fn accessibilityClearButton(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityClearButton:)]
         unsafe fn setAccessibilityClearButton(&self, accessibility_clear_button: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityCancelButton)]
         unsafe fn accessibilityCancelButton(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityCancelButton:)]
         unsafe fn setAccessibilityCancelButton(&self, accessibility_cancel_button: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isAccessibilityProtectedContent)]
         unsafe fn isAccessibilityProtectedContent(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityProtectedContent:)]
         unsafe fn setAccessibilityProtectedContent(&self, accessibility_protected_content: bool);
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityContents)]
         unsafe fn accessibilityContents(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityContents:)]
         unsafe fn setAccessibilityContents(&self, accessibility_contents: Option<&NSArray>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityLabel)]
         unsafe fn accessibilityLabel(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityLabel:)]
         unsafe fn setAccessibilityLabel(&self, accessibility_label: Option<&NSString>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isAccessibilityAlternateUIVisible)]
         unsafe fn isAccessibilityAlternateUIVisible(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityAlternateUIVisible:)]
         unsafe fn setAccessibilityAlternateUIVisible(
             &self,
@@ -709,19 +871,23 @@ extern_protocol!(
         );
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilitySharedFocusElements)]
         unsafe fn accessibilitySharedFocusElements(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilitySharedFocusElements:)]
         unsafe fn setAccessibilitySharedFocusElements(
             &self,
             accessibility_shared_focus_elements: Option<&NSArray>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isAccessibilityRequired)]
         unsafe fn isAccessibilityRequired(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityRequired:)]
         unsafe fn setAccessibilityRequired(&self, accessibility_required: bool);
 
@@ -729,6 +895,7 @@ extern_protocol!(
             feature = "AppKit_NSAccessibilityCustomRotor",
             feature = "Foundation_NSArray"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityCustomRotors)]
         unsafe fn accessibilityCustomRotors(&self) -> Id<NSArray<NSAccessibilityCustomRotor>>;
 
@@ -736,42 +903,53 @@ extern_protocol!(
             feature = "AppKit_NSAccessibilityCustomRotor",
             feature = "Foundation_NSArray"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityCustomRotors:)]
         unsafe fn setAccessibilityCustomRotors(
             &self,
             accessibility_custom_rotors: &NSArray<NSAccessibilityCustomRotor>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityApplicationFocusedUIElement)]
         unsafe fn accessibilityApplicationFocusedUIElement(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityApplicationFocusedUIElement:)]
         unsafe fn setAccessibilityApplicationFocusedUIElement(
             &self,
             accessibility_application_focused_ui_element: Option<&Object>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityMainWindow)]
         unsafe fn accessibilityMainWindow(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityMainWindow:)]
         unsafe fn setAccessibilityMainWindow(&self, accessibility_main_window: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isAccessibilityHidden)]
         unsafe fn isAccessibilityHidden(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityHidden:)]
         unsafe fn setAccessibilityHidden(&self, accessibility_hidden: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isAccessibilityFrontmost)]
         unsafe fn isAccessibilityFrontmost(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityFrontmost:)]
         unsafe fn setAccessibilityFrontmost(&self, accessibility_frontmost: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityFocusedWindow)]
         unsafe fn accessibilityFocusedWindow(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityFocusedWindow:)]
         unsafe fn setAccessibilityFocusedWindow(
             &self,
@@ -779,57 +957,71 @@ extern_protocol!(
         );
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityWindows)]
         unsafe fn accessibilityWindows(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityWindows:)]
         unsafe fn setAccessibilityWindows(&self, accessibility_windows: Option<&NSArray>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityExtrasMenuBar)]
         unsafe fn accessibilityExtrasMenuBar(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityExtrasMenuBar:)]
         unsafe fn setAccessibilityExtrasMenuBar(
             &self,
             accessibility_extras_menu_bar: Option<&Object>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityMenuBar)]
         unsafe fn accessibilityMenuBar(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityMenuBar:)]
         unsafe fn setAccessibilityMenuBar(&self, accessibility_menu_bar: Option<&Object>);
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityColumnTitles)]
         unsafe fn accessibilityColumnTitles(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityColumnTitles:)]
         unsafe fn setAccessibilityColumnTitles(
             &self,
             accessibility_column_titles: Option<&NSArray>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isAccessibilityOrderedByRow)]
         unsafe fn isAccessibilityOrderedByRow(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityOrderedByRow:)]
         unsafe fn setAccessibilityOrderedByRow(&self, accessibility_ordered_by_row: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityHorizontalUnits)]
         unsafe fn accessibilityHorizontalUnits(&self) -> NSAccessibilityUnits;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityHorizontalUnits:)]
         unsafe fn setAccessibilityHorizontalUnits(
             &self,
             accessibility_horizontal_units: NSAccessibilityUnits,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityVerticalUnits)]
         unsafe fn accessibilityVerticalUnits(&self) -> NSAccessibilityUnits;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityVerticalUnits:)]
         unsafe fn setAccessibilityVerticalUnits(
             &self,
@@ -837,10 +1029,12 @@ extern_protocol!(
         );
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityHorizontalUnitDescription)]
         unsafe fn accessibilityHorizontalUnitDescription(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityHorizontalUnitDescription:)]
         unsafe fn setAccessibilityHorizontalUnitDescription(
             &self,
@@ -848,127 +1042,159 @@ extern_protocol!(
         );
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityVerticalUnitDescription)]
         unsafe fn accessibilityVerticalUnitDescription(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityVerticalUnitDescription:)]
         unsafe fn setAccessibilityVerticalUnitDescription(
             &self,
             accessibility_vertical_unit_description: Option<&NSString>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityLayoutPointForScreenPoint:)]
         unsafe fn accessibilityLayoutPointForScreenPoint(&self, point: NSPoint) -> NSPoint;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityLayoutSizeForScreenSize:)]
         unsafe fn accessibilityLayoutSizeForScreenSize(&self, size: NSSize) -> NSSize;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityScreenPointForLayoutPoint:)]
         unsafe fn accessibilityScreenPointForLayoutPoint(&self, point: NSPoint) -> NSPoint;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityScreenSizeForLayoutSize:)]
         unsafe fn accessibilityScreenSizeForLayoutSize(&self, size: NSSize) -> NSSize;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityHandles)]
         unsafe fn accessibilityHandles(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityHandles:)]
         unsafe fn setAccessibilityHandles(&self, accessibility_handles: Option<&NSArray>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityWarningValue)]
         unsafe fn accessibilityWarningValue(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityWarningValue:)]
         unsafe fn setAccessibilityWarningValue(&self, accessibility_warning_value: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityCriticalValue)]
         unsafe fn accessibilityCriticalValue(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityCriticalValue:)]
         unsafe fn setAccessibilityCriticalValue(
             &self,
             accessibility_critical_value: Option<&Object>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isAccessibilityDisclosed)]
         unsafe fn isAccessibilityDisclosed(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityDisclosed:)]
         unsafe fn setAccessibilityDisclosed(&self, accessibility_disclosed: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityDisclosedByRow)]
         unsafe fn accessibilityDisclosedByRow(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityDisclosedByRow:)]
         unsafe fn setAccessibilityDisclosedByRow(
             &self,
             accessibility_disclosed_by_row: Option<&Object>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityDisclosedRows)]
         unsafe fn accessibilityDisclosedRows(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityDisclosedRows:)]
         unsafe fn setAccessibilityDisclosedRows(
             &self,
             accessibility_disclosed_rows: Option<&Object>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityDisclosureLevel)]
         unsafe fn accessibilityDisclosureLevel(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityDisclosureLevel:)]
         unsafe fn setAccessibilityDisclosureLevel(&self, accessibility_disclosure_level: NSInteger);
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityMarkerUIElements)]
         unsafe fn accessibilityMarkerUIElements(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityMarkerUIElements:)]
         unsafe fn setAccessibilityMarkerUIElements(
             &self,
             accessibility_marker_ui_elements: Option<&NSArray>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityMarkerValues)]
         unsafe fn accessibilityMarkerValues(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityMarkerValues:)]
         unsafe fn setAccessibilityMarkerValues(&self, accessibility_marker_values: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityMarkerGroupUIElement)]
         unsafe fn accessibilityMarkerGroupUIElement(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityMarkerGroupUIElement:)]
         unsafe fn setAccessibilityMarkerGroupUIElement(
             &self,
             accessibility_marker_group_ui_element: Option<&Object>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityUnits)]
         unsafe fn accessibilityUnits(&self) -> NSAccessibilityUnits;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityUnits:)]
         unsafe fn setAccessibilityUnits(&self, accessibility_units: NSAccessibilityUnits);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityUnitDescription)]
         unsafe fn accessibilityUnitDescription(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityUnitDescription:)]
         unsafe fn setAccessibilityUnitDescription(
             &self,
             accessibility_unit_description: Option<&NSString>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityRulerMarkerType)]
         unsafe fn accessibilityRulerMarkerType(&self) -> NSAccessibilityRulerMarkerType;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityRulerMarkerType:)]
         unsafe fn setAccessibilityRulerMarkerType(
             &self,
@@ -976,28 +1202,34 @@ extern_protocol!(
         );
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityMarkerTypeDescription)]
         unsafe fn accessibilityMarkerTypeDescription(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityMarkerTypeDescription:)]
         unsafe fn setAccessibilityMarkerTypeDescription(
             &self,
             accessibility_marker_type_description: Option<&NSString>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityHorizontalScrollBar)]
         unsafe fn accessibilityHorizontalScrollBar(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityHorizontalScrollBar:)]
         unsafe fn setAccessibilityHorizontalScrollBar(
             &self,
             accessibility_horizontal_scroll_bar: Option<&Object>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityVerticalScrollBar)]
         unsafe fn accessibilityVerticalScrollBar(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityVerticalScrollBar:)]
         unsafe fn setAccessibilityVerticalScrollBar(
             &self,
@@ -1005,10 +1237,12 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityAllowedValues)]
         unsafe fn accessibilityAllowedValues(&self) -> Option<Id<NSArray<NSNumber>>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityAllowedValues:)]
         unsafe fn setAccessibilityAllowedValues(
             &self,
@@ -1016,42 +1250,52 @@ extern_protocol!(
         );
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityLabelUIElements)]
         unsafe fn accessibilityLabelUIElements(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityLabelUIElements:)]
         unsafe fn setAccessibilityLabelUIElements(
             &self,
             accessibility_label_ui_elements: Option<&NSArray>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityLabelValue)]
         unsafe fn accessibilityLabelValue(&self) -> c_float;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityLabelValue:)]
         unsafe fn setAccessibilityLabelValue(&self, accessibility_label_value: c_float);
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilitySplitters)]
         unsafe fn accessibilitySplitters(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilitySplitters:)]
         unsafe fn setAccessibilitySplitters(&self, accessibility_splitters: Option<&NSArray>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityDecrementButton)]
         unsafe fn accessibilityDecrementButton(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityDecrementButton:)]
         unsafe fn setAccessibilityDecrementButton(
             &self,
             accessibility_decrement_button: Option<&Object>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityIncrementButton)]
         unsafe fn accessibilityIncrementButton(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityIncrementButton:)]
         unsafe fn setAccessibilityIncrementButton(
             &self,
@@ -1059,66 +1303,84 @@ extern_protocol!(
         );
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityTabs)]
         unsafe fn accessibilityTabs(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityTabs:)]
         unsafe fn setAccessibilityTabs(&self, accessibility_tabs: Option<&NSArray>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityHeader)]
         unsafe fn accessibilityHeader(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityHeader:)]
         unsafe fn setAccessibilityHeader(&self, accessibility_header: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityColumnCount)]
         unsafe fn accessibilityColumnCount(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityColumnCount:)]
         unsafe fn setAccessibilityColumnCount(&self, accessibility_column_count: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityRowCount)]
         unsafe fn accessibilityRowCount(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityRowCount:)]
         unsafe fn setAccessibilityRowCount(&self, accessibility_row_count: NSInteger);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityIndex)]
         unsafe fn accessibilityIndex(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityIndex:)]
         unsafe fn setAccessibilityIndex(&self, accessibility_index: NSInteger);
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityColumns)]
         unsafe fn accessibilityColumns(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityColumns:)]
         unsafe fn setAccessibilityColumns(&self, accessibility_columns: Option<&NSArray>);
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityRows)]
         unsafe fn accessibilityRows(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityRows:)]
         unsafe fn setAccessibilityRows(&self, accessibility_rows: Option<&NSArray>);
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityVisibleRows)]
         unsafe fn accessibilityVisibleRows(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityVisibleRows:)]
         unsafe fn setAccessibilityVisibleRows(&self, accessibility_visible_rows: Option<&NSArray>);
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilitySelectedRows)]
         unsafe fn accessibilitySelectedRows(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilitySelectedRows:)]
         unsafe fn setAccessibilitySelectedRows(
             &self,
@@ -1126,10 +1388,12 @@ extern_protocol!(
         );
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityVisibleColumns)]
         unsafe fn accessibilityVisibleColumns(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityVisibleColumns:)]
         unsafe fn setAccessibilityVisibleColumns(
             &self,
@@ -1137,19 +1401,23 @@ extern_protocol!(
         );
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilitySelectedColumns)]
         unsafe fn accessibilitySelectedColumns(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilitySelectedColumns:)]
         unsafe fn setAccessibilitySelectedColumns(
             &self,
             accessibility_selected_columns: Option<&NSArray>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilitySortDirection)]
         unsafe fn accessibilitySortDirection(&self) -> NSAccessibilitySortDirection;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilitySortDirection:)]
         unsafe fn setAccessibilitySortDirection(
             &self,
@@ -1157,10 +1425,12 @@ extern_protocol!(
         );
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityRowHeaderUIElements)]
         unsafe fn accessibilityRowHeaderUIElements(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityRowHeaderUIElements:)]
         unsafe fn setAccessibilityRowHeaderUIElements(
             &self,
@@ -1168,10 +1438,12 @@ extern_protocol!(
         );
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilitySelectedCells)]
         unsafe fn accessibilitySelectedCells(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilitySelectedCells:)]
         unsafe fn setAccessibilitySelectedCells(
             &self,
@@ -1179,10 +1451,12 @@ extern_protocol!(
         );
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityVisibleCells)]
         unsafe fn accessibilityVisibleCells(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityVisibleCells:)]
         unsafe fn setAccessibilityVisibleCells(
             &self,
@@ -1190,16 +1464,19 @@ extern_protocol!(
         );
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityColumnHeaderUIElements)]
         unsafe fn accessibilityColumnHeaderUIElements(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityColumnHeaderUIElements:)]
         unsafe fn setAccessibilityColumnHeaderUIElements(
             &self,
             accessibility_column_header_ui_elements: Option<&NSArray>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityCellForColumn:row:)]
         unsafe fn accessibilityCellForColumn_row(
             &self,
@@ -1207,33 +1484,41 @@ extern_protocol!(
             row: NSInteger,
         ) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityRowIndexRange)]
         unsafe fn accessibilityRowIndexRange(&self) -> NSRange;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityRowIndexRange:)]
         unsafe fn setAccessibilityRowIndexRange(&self, accessibility_row_index_range: NSRange);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityColumnIndexRange)]
         unsafe fn accessibilityColumnIndexRange(&self) -> NSRange;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityColumnIndexRange:)]
         unsafe fn setAccessibilityColumnIndexRange(
             &self,
             accessibility_column_index_range: NSRange,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityInsertionPointLineNumber)]
         unsafe fn accessibilityInsertionPointLineNumber(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityInsertionPointLineNumber:)]
         unsafe fn setAccessibilityInsertionPointLineNumber(
             &self,
             accessibility_insertion_point_line_number: NSInteger,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilitySharedCharacterRange)]
         unsafe fn accessibilitySharedCharacterRange(&self) -> NSRange;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilitySharedCharacterRange:)]
         unsafe fn setAccessibilitySharedCharacterRange(
             &self,
@@ -1241,28 +1526,34 @@ extern_protocol!(
         );
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilitySharedTextUIElements)]
         unsafe fn accessibilitySharedTextUIElements(&self) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilitySharedTextUIElements:)]
         unsafe fn setAccessibilitySharedTextUIElements(
             &self,
             accessibility_shared_text_ui_elements: Option<&NSArray>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityVisibleCharacterRange)]
         unsafe fn accessibilityVisibleCharacterRange(&self) -> NSRange;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityVisibleCharacterRange:)]
         unsafe fn setAccessibilityVisibleCharacterRange(
             &self,
             accessibility_visible_character_range: NSRange,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityNumberOfCharacters)]
         unsafe fn accessibilityNumberOfCharacters(&self) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityNumberOfCharacters:)]
         unsafe fn setAccessibilityNumberOfCharacters(
             &self,
@@ -1270,19 +1561,23 @@ extern_protocol!(
         );
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilitySelectedText)]
         unsafe fn accessibilitySelectedText(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilitySelectedText:)]
         unsafe fn setAccessibilitySelectedText(
             &self,
             accessibility_selected_text: Option<&NSString>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilitySelectedTextRange)]
         unsafe fn accessibilitySelectedTextRange(&self) -> NSRange;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilitySelectedTextRange:)]
         unsafe fn setAccessibilitySelectedTextRange(
             &self,
@@ -1290,10 +1585,12 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilitySelectedTextRanges)]
         unsafe fn accessibilitySelectedTextRanges(&self) -> Option<Id<NSArray<NSValue>>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilitySelectedTextRanges:)]
         unsafe fn setAccessibilitySelectedTextRanges(
             &self,
@@ -1301,121 +1598,154 @@ extern_protocol!(
         );
 
         #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityAttributedStringForRange:)]
         unsafe fn accessibilityAttributedStringForRange(
             &self,
             range: NSRange,
         ) -> Option<Id<NSAttributedString>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityRangeForLine:)]
         unsafe fn accessibilityRangeForLine(&self, line: NSInteger) -> NSRange;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityStringForRange:)]
         unsafe fn accessibilityStringForRange(&self, range: NSRange) -> Option<Id<NSString>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityRangeForPosition:)]
         unsafe fn accessibilityRangeForPosition(&self, point: NSPoint) -> NSRange;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityRangeForIndex:)]
         unsafe fn accessibilityRangeForIndex(&self, index: NSInteger) -> NSRange;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityFrameForRange:)]
         unsafe fn accessibilityFrameForRange(&self, range: NSRange) -> NSRect;
 
         #[cfg(feature = "Foundation_NSData")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityRTFForRange:)]
         unsafe fn accessibilityRTFForRange(&self, range: NSRange) -> Option<Id<NSData>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityStyleRangeForIndex:)]
         unsafe fn accessibilityStyleRangeForIndex(&self, index: NSInteger) -> NSRange;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityLineForIndex:)]
         unsafe fn accessibilityLineForIndex(&self, index: NSInteger) -> NSInteger;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityToolbarButton)]
         unsafe fn accessibilityToolbarButton(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityToolbarButton:)]
         unsafe fn setAccessibilityToolbarButton(
             &self,
             accessibility_toolbar_button: Option<&Object>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isAccessibilityModal)]
         unsafe fn isAccessibilityModal(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityModal:)]
         unsafe fn setAccessibilityModal(&self, accessibility_modal: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityProxy)]
         unsafe fn accessibilityProxy(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityProxy:)]
         unsafe fn setAccessibilityProxy(&self, accessibility_proxy: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isAccessibilityMain)]
         unsafe fn isAccessibilityMain(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityMain:)]
         unsafe fn setAccessibilityMain(&self, accessibility_main: bool);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityFullScreenButton)]
         unsafe fn accessibilityFullScreenButton(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityFullScreenButton:)]
         unsafe fn setAccessibilityFullScreenButton(
             &self,
             accessibility_full_screen_button: Option<&Object>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityGrowArea)]
         unsafe fn accessibilityGrowArea(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityGrowArea:)]
         unsafe fn setAccessibilityGrowArea(&self, accessibility_grow_area: Option<&Object>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityDocument)]
         unsafe fn accessibilityDocument(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityDocument:)]
         unsafe fn setAccessibilityDocument(&self, accessibility_document: Option<&NSString>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityDefaultButton)]
         unsafe fn accessibilityDefaultButton(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityDefaultButton:)]
         unsafe fn setAccessibilityDefaultButton(
             &self,
             accessibility_default_button: Option<&Object>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityCloseButton)]
         unsafe fn accessibilityCloseButton(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityCloseButton:)]
         unsafe fn setAccessibilityCloseButton(&self, accessibility_close_button: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityZoomButton)]
         unsafe fn accessibilityZoomButton(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityZoomButton:)]
         unsafe fn setAccessibilityZoomButton(&self, accessibility_zoom_button: Option<&Object>);
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityMinimizeButton)]
         unsafe fn accessibilityMinimizeButton(&self) -> Option<Id<Object>>;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityMinimizeButton:)]
         unsafe fn setAccessibilityMinimizeButton(
             &self,
             accessibility_minimize_button: Option<&Object>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isAccessibilityMinimized)]
         unsafe fn isAccessibilityMinimized(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityMinimized:)]
         unsafe fn setAccessibilityMinimized(&self, accessibility_minimized: bool);
 
@@ -1423,6 +1753,7 @@ extern_protocol!(
             feature = "AppKit_NSAccessibilityCustomAction",
             feature = "Foundation_NSArray"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method_id(@__retain_semantics Other accessibilityCustomActions)]
         unsafe fn accessibilityCustomActions(
             &self,
@@ -1432,45 +1763,58 @@ extern_protocol!(
             feature = "AppKit_NSAccessibilityCustomAction",
             feature = "Foundation_NSArray"
         ))]
+        #[cfg(not(any(target_os = "ios")))]
         #[method(setAccessibilityCustomActions:)]
         unsafe fn setAccessibilityCustomActions(
             &self,
             accessibility_custom_actions: Option<&NSArray<NSAccessibilityCustomAction>>,
         );
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityPerformCancel)]
         unsafe fn accessibilityPerformCancel(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityPerformConfirm)]
         unsafe fn accessibilityPerformConfirm(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityPerformDecrement)]
         unsafe fn accessibilityPerformDecrement(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityPerformDelete)]
         unsafe fn accessibilityPerformDelete(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityPerformIncrement)]
         unsafe fn accessibilityPerformIncrement(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityPerformPick)]
         unsafe fn accessibilityPerformPick(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityPerformPress)]
         unsafe fn accessibilityPerformPress(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityPerformRaise)]
         unsafe fn accessibilityPerformRaise(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityPerformShowAlternateUI)]
         unsafe fn accessibilityPerformShowAlternateUI(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityPerformShowDefaultUI)]
         unsafe fn accessibilityPerformShowDefaultUI(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(accessibilityPerformShowMenu)]
         unsafe fn accessibilityPerformShowMenu(&self) -> bool;
 
+        #[cfg(not(any(target_os = "ios")))]
         #[method(isAccessibilitySelectorAllowed:)]
         unsafe fn isAccessibilitySelectorAllowed(&self, selector: Sel) -> bool;
     }

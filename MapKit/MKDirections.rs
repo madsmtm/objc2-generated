@@ -14,6 +14,7 @@ pub type MKETAHandler = *mut Block<(*mut MKETAResponse, *mut NSError), ()>;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MapKit_MKDirections")]
+    #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub struct MKDirections;
 
     #[cfg(feature = "MapKit_MKDirections")]
