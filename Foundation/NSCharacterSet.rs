@@ -160,27 +160,27 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSMutableCharacterSet")]
     unsafe impl NSMutableCharacterSet {
         #[method(addCharactersInRange:)]
-        pub unsafe fn addCharactersInRange(&self, a_range: NSRange);
+        pub unsafe fn addCharactersInRange(&mut self, a_range: NSRange);
 
         #[method(removeCharactersInRange:)]
-        pub unsafe fn removeCharactersInRange(&self, a_range: NSRange);
+        pub unsafe fn removeCharactersInRange(&mut self, a_range: NSRange);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(addCharactersInString:)]
-        pub unsafe fn addCharactersInString(&self, a_string: &NSString);
+        pub unsafe fn addCharactersInString(&mut self, a_string: &NSString);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(removeCharactersInString:)]
-        pub unsafe fn removeCharactersInString(&self, a_string: &NSString);
+        pub unsafe fn removeCharactersInString(&mut self, a_string: &NSString);
 
         #[method(formUnionWithCharacterSet:)]
-        pub unsafe fn formUnionWithCharacterSet(&self, other_set: &NSCharacterSet);
+        pub unsafe fn formUnionWithCharacterSet(&mut self, other_set: &NSCharacterSet);
 
         #[method(formIntersectionWithCharacterSet:)]
-        pub unsafe fn formIntersectionWithCharacterSet(&self, other_set: &NSCharacterSet);
+        pub unsafe fn formIntersectionWithCharacterSet(&mut self, other_set: &NSCharacterSet);
 
         #[method(invert)]
-        pub unsafe fn invert(&self);
+        pub unsafe fn invert(&mut self);
 
         #[method_id(@__retain_semantics Other controlCharacterSet)]
         pub unsafe fn controlCharacterSet() -> Id<NSMutableCharacterSet>;

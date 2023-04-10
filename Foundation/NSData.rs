@@ -411,28 +411,32 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSMutableData")]
     unsafe impl NSMutableData {
         #[method(appendBytes:length:)]
-        pub unsafe fn appendBytes_length(&self, bytes: NonNull<c_void>, length: NSUInteger);
+        pub unsafe fn appendBytes_length(&mut self, bytes: NonNull<c_void>, length: NSUInteger);
 
         #[cfg(feature = "Foundation_NSData")]
         #[method(appendData:)]
-        pub unsafe fn appendData(&self, other: &NSData);
+        pub unsafe fn appendData(&mut self, other: &NSData);
 
         #[method(increaseLengthBy:)]
-        pub unsafe fn increaseLengthBy(&self, extra_length: NSUInteger);
+        pub unsafe fn increaseLengthBy(&mut self, extra_length: NSUInteger);
 
         #[method(replaceBytesInRange:withBytes:)]
-        pub unsafe fn replaceBytesInRange_withBytes(&self, range: NSRange, bytes: NonNull<c_void>);
+        pub unsafe fn replaceBytesInRange_withBytes(
+            &mut self,
+            range: NSRange,
+            bytes: NonNull<c_void>,
+        );
 
         #[method(resetBytesInRange:)]
-        pub unsafe fn resetBytesInRange(&self, range: NSRange);
+        pub unsafe fn resetBytesInRange(&mut self, range: NSRange);
 
         #[cfg(feature = "Foundation_NSData")]
         #[method(setData:)]
-        pub unsafe fn setData(&self, data: &NSData);
+        pub unsafe fn setData(&mut self, data: &NSData);
 
         #[method(replaceBytesInRange:withBytes:length:)]
         pub unsafe fn replaceBytesInRange_withBytes_length(
-            &self,
+            &mut self,
             range: NSRange,
             replacement_bytes: *mut c_void,
             replacement_length: NSUInteger,
@@ -471,14 +475,14 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSError")]
         #[method(decompressUsingAlgorithm:error:_)]
         pub unsafe fn decompressUsingAlgorithm_error(
-            &self,
+            &mut self,
             algorithm: NSDataCompressionAlgorithm,
         ) -> Result<(), Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(compressUsingAlgorithm:error:_)]
         pub unsafe fn compressUsingAlgorithm_error(
-            &self,
+            &mut self,
             algorithm: NSDataCompressionAlgorithm,
         ) -> Result<(), Id<NSError>>;
     }

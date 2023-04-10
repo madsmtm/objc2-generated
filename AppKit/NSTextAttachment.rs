@@ -311,6 +311,6 @@ extern_methods!(
     unsafe impl NSMutableAttributedString {
         #[cfg(feature = "Foundation_NSString")]
         #[method(updateAttachmentsFromPath:)]
-        pub unsafe fn updateAttachmentsFromPath(&self, path: &NSString);
+        pub unsafe fn updateAttachmentsFromPath(&mut self, path: &NSString);
     }
 );

@@ -177,12 +177,16 @@ extern_methods!(
     unsafe impl NSMutableAttributedString {
         #[cfg(feature = "Foundation_NSString")]
         #[method(replaceCharactersInRange:withString:)]
-        pub unsafe fn replaceCharactersInRange_withString(&self, range: NSRange, str: &NSString);
+        pub unsafe fn replaceCharactersInRange_withString(
+            &mut self,
+            range: NSRange,
+            str: &NSString,
+        );
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setAttributes:range:)]
         pub unsafe fn setAttributes_range(
-            &self,
+            &mut self,
             attrs: Option<&NSDictionary<NSAttributedStringKey, Object>>,
             range: NSRange,
         );
@@ -199,7 +203,7 @@ extern_methods!(
 
         #[method(addAttribute:value:range:)]
         pub unsafe fn addAttribute_value_range(
-            &self,
+            &mut self,
             name: &NSAttributedStringKey,
             value: &Object,
             range: NSRange,
@@ -208,18 +212,22 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(addAttributes:range:)]
         pub unsafe fn addAttributes_range(
-            &self,
+            &mut self,
             attrs: &NSDictionary<NSAttributedStringKey, Object>,
             range: NSRange,
         );
 
         #[method(removeAttribute:range:)]
-        pub unsafe fn removeAttribute_range(&self, name: &NSAttributedStringKey, range: NSRange);
+        pub unsafe fn removeAttribute_range(
+            &mut self,
+            name: &NSAttributedStringKey,
+            range: NSRange,
+        );
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(replaceCharactersInRange:withAttributedString:)]
         pub unsafe fn replaceCharactersInRange_withAttributedString(
-            &self,
+            &mut self,
             range: NSRange,
             attr_string: &NSAttributedString,
         );
@@ -227,27 +235,27 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(insertAttributedString:atIndex:)]
         pub unsafe fn insertAttributedString_atIndex(
-            &self,
+            &mut self,
             attr_string: &NSAttributedString,
             loc: NSUInteger,
         );
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(appendAttributedString:)]
-        pub unsafe fn appendAttributedString(&self, attr_string: &NSAttributedString);
+        pub unsafe fn appendAttributedString(&mut self, attr_string: &NSAttributedString);
 
         #[method(deleteCharactersInRange:)]
-        pub unsafe fn deleteCharactersInRange(&self, range: NSRange);
+        pub unsafe fn deleteCharactersInRange(&mut self, range: NSRange);
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setAttributedString:)]
         pub fn setAttributedString(&mut self, attr_string: &NSAttributedString);
 
         #[method(beginEditing)]
-        pub unsafe fn beginEditing(&self);
+        pub unsafe fn beginEditing(&mut self);
 
         #[method(endEditing)]
-        pub unsafe fn endEditing(&self);
+        pub unsafe fn endEditing(&mut self);
     }
 );
 

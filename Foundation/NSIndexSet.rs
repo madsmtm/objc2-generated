@@ -219,28 +219,32 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSMutableIndexSet")]
     unsafe impl NSMutableIndexSet {
         #[method(addIndexes:)]
-        pub unsafe fn addIndexes(&self, index_set: &NSIndexSet);
+        pub unsafe fn addIndexes(&mut self, index_set: &NSIndexSet);
 
         #[method(removeIndexes:)]
-        pub unsafe fn removeIndexes(&self, index_set: &NSIndexSet);
+        pub unsafe fn removeIndexes(&mut self, index_set: &NSIndexSet);
 
         #[method(removeAllIndexes)]
-        pub unsafe fn removeAllIndexes(&self);
+        pub unsafe fn removeAllIndexes(&mut self);
 
         #[method(addIndex:)]
-        pub unsafe fn addIndex(&self, value: NSUInteger);
+        pub unsafe fn addIndex(&mut self, value: NSUInteger);
 
         #[method(removeIndex:)]
-        pub unsafe fn removeIndex(&self, value: NSUInteger);
+        pub unsafe fn removeIndex(&mut self, value: NSUInteger);
 
         #[method(addIndexesInRange:)]
-        pub unsafe fn addIndexesInRange(&self, range: NSRange);
+        pub unsafe fn addIndexesInRange(&mut self, range: NSRange);
 
         #[method(removeIndexesInRange:)]
-        pub unsafe fn removeIndexesInRange(&self, range: NSRange);
+        pub unsafe fn removeIndexesInRange(&mut self, range: NSRange);
 
         #[method(shiftIndexesStartingAtIndex:by:)]
-        pub unsafe fn shiftIndexesStartingAtIndex_by(&self, index: NSUInteger, delta: NSInteger);
+        pub unsafe fn shiftIndexesStartingAtIndex_by(
+            &mut self,
+            index: NSUInteger,
+            delta: NSInteger,
+        );
     }
 );
 

@@ -802,7 +802,7 @@ extern_methods!(
     unsafe impl NSMutableString {
         #[method(replaceCharactersInRange:withString:)]
         pub unsafe fn replaceCharactersInRange_withString(
-            &self,
+            &mut self,
             range: NSRange,
             a_string: &NSString,
         );
@@ -815,10 +815,10 @@ extern_methods!(
     unsafe impl NSMutableString {
         #[cfg(feature = "Foundation_NSString")]
         #[method(insertString:atIndex:)]
-        pub unsafe fn insertString_atIndex(&self, a_string: &NSString, loc: NSUInteger);
+        pub unsafe fn insertString_atIndex(&mut self, a_string: &NSString, loc: NSUInteger);
 
         #[method(deleteCharactersInRange:)]
-        pub unsafe fn deleteCharactersInRange(&self, range: NSRange);
+        pub unsafe fn deleteCharactersInRange(&mut self, range: NSRange);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(appendString:)]
@@ -831,7 +831,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method(replaceOccurrencesOfString:withString:options:range:)]
         pub unsafe fn replaceOccurrencesOfString_withString_options_range(
-            &self,
+            &mut self,
             target: &NSString,
             replacement: &NSString,
             options: NSStringCompareOptions,
@@ -840,7 +840,7 @@ extern_methods!(
 
         #[method(applyTransform:reverse:range:updatedRange:)]
         pub unsafe fn applyTransform_reverse_range_updatedRange(
-            &self,
+            &mut self,
             transform: &NSStringTransform,
             reverse: bool,
             range: NSRange,

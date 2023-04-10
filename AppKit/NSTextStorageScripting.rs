@@ -15,7 +15,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAttributeRuns:)]
-        pub unsafe fn setAttributeRuns(&self, attribute_runs: &NSArray<NSTextStorage>);
+        pub unsafe fn setAttributeRuns(&mut self, attribute_runs: &NSArray<NSTextStorage>);
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other paragraphs)]
@@ -23,7 +23,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setParagraphs:)]
-        pub unsafe fn setParagraphs(&self, paragraphs: &NSArray<NSTextStorage>);
+        pub unsafe fn setParagraphs(&mut self, paragraphs: &NSArray<NSTextStorage>);
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other words)]
@@ -31,7 +31,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setWords:)]
-        pub unsafe fn setWords(&self, words: &NSArray<NSTextStorage>);
+        pub unsafe fn setWords(&mut self, words: &NSArray<NSTextStorage>);
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other characters)]
@@ -39,7 +39,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setCharacters:)]
-        pub unsafe fn setCharacters(&self, characters: &NSArray<NSTextStorage>);
+        pub unsafe fn setCharacters(&mut self, characters: &NSArray<NSTextStorage>);
 
         #[cfg(feature = "AppKit_NSFont")]
         #[method_id(@__retain_semantics Other font)]
@@ -47,7 +47,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSFont")]
         #[method(setFont:)]
-        pub unsafe fn setFont(&self, font: Option<&NSFont>);
+        pub unsafe fn setFont(&mut self, font: Option<&NSFont>);
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other foregroundColor)]
@@ -55,6 +55,6 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setForegroundColor:)]
-        pub unsafe fn setForegroundColor(&self, foreground_color: Option<&NSColor>);
+        pub unsafe fn setForegroundColor(&mut self, foreground_color: Option<&NSColor>);
     }
 );

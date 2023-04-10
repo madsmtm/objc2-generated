@@ -172,19 +172,19 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(setURL:)]
-        pub unsafe fn setURL(&self, url: Option<&NSURL>);
+        pub unsafe fn setURL(&mut self, url: Option<&NSURL>);
 
         #[method(cachePolicy)]
         pub unsafe fn cachePolicy(&self) -> NSURLRequestCachePolicy;
 
         #[method(setCachePolicy:)]
-        pub unsafe fn setCachePolicy(&self, cache_policy: NSURLRequestCachePolicy);
+        pub unsafe fn setCachePolicy(&mut self, cache_policy: NSURLRequestCachePolicy);
 
         #[method(timeoutInterval)]
         pub unsafe fn timeoutInterval(&self) -> NSTimeInterval;
 
         #[method(setTimeoutInterval:)]
-        pub unsafe fn setTimeoutInterval(&self, timeout_interval: NSTimeInterval);
+        pub unsafe fn setTimeoutInterval(&mut self, timeout_interval: NSTimeInterval);
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other mainDocumentURL)]
@@ -192,14 +192,14 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(setMainDocumentURL:)]
-        pub unsafe fn setMainDocumentURL(&self, main_document_url: Option<&NSURL>);
+        pub unsafe fn setMainDocumentURL(&mut self, main_document_url: Option<&NSURL>);
 
         #[method(networkServiceType)]
         pub unsafe fn networkServiceType(&self) -> NSURLRequestNetworkServiceType;
 
         #[method(setNetworkServiceType:)]
         pub unsafe fn setNetworkServiceType(
-            &self,
+            &mut self,
             network_service_type: NSURLRequestNetworkServiceType,
         );
 
@@ -207,20 +207,23 @@ extern_methods!(
         pub unsafe fn allowsCellularAccess(&self) -> bool;
 
         #[method(setAllowsCellularAccess:)]
-        pub unsafe fn setAllowsCellularAccess(&self, allows_cellular_access: bool);
+        pub unsafe fn setAllowsCellularAccess(&mut self, allows_cellular_access: bool);
 
         #[method(allowsExpensiveNetworkAccess)]
         pub unsafe fn allowsExpensiveNetworkAccess(&self) -> bool;
 
         #[method(setAllowsExpensiveNetworkAccess:)]
-        pub unsafe fn setAllowsExpensiveNetworkAccess(&self, allows_expensive_network_access: bool);
+        pub unsafe fn setAllowsExpensiveNetworkAccess(
+            &mut self,
+            allows_expensive_network_access: bool,
+        );
 
         #[method(allowsConstrainedNetworkAccess)]
         pub unsafe fn allowsConstrainedNetworkAccess(&self) -> bool;
 
         #[method(setAllowsConstrainedNetworkAccess:)]
         pub unsafe fn setAllowsConstrainedNetworkAccess(
-            &self,
+            &mut self,
             allows_constrained_network_access: bool,
         );
 
@@ -228,19 +231,19 @@ extern_methods!(
         pub unsafe fn assumesHTTP3Capable(&self) -> bool;
 
         #[method(setAssumesHTTP3Capable:)]
-        pub unsafe fn setAssumesHTTP3Capable(&self, assumes_http3_capable: bool);
+        pub unsafe fn setAssumesHTTP3Capable(&mut self, assumes_http3_capable: bool);
 
         #[method(attribution)]
         pub unsafe fn attribution(&self) -> NSURLRequestAttribution;
 
         #[method(setAttribution:)]
-        pub unsafe fn setAttribution(&self, attribution: NSURLRequestAttribution);
+        pub unsafe fn setAttribution(&mut self, attribution: NSURLRequestAttribution);
 
         #[method(requiresDNSSECValidation)]
         pub unsafe fn requiresDNSSECValidation(&self) -> bool;
 
         #[method(setRequiresDNSSECValidation:)]
-        pub unsafe fn setRequiresDNSSECValidation(&self, requires_dnssec_validation: bool);
+        pub unsafe fn setRequiresDNSSECValidation(&mut self, requires_dnssec_validation: bool);
     }
 );
 
@@ -286,7 +289,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setHTTPMethod:)]
-        pub unsafe fn setHTTPMethod(&self, http_method: &NSString);
+        pub unsafe fn setHTTPMethod(&mut self, http_method: &NSString);
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other allHTTPHeaderFields)]
@@ -295,21 +298,21 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setAllHTTPHeaderFields:)]
         pub unsafe fn setAllHTTPHeaderFields(
-            &self,
+            &mut self,
             all_http_header_fields: Option<&NSDictionary<NSString, NSString>>,
         );
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setValue:forHTTPHeaderField:)]
         pub unsafe fn setValue_forHTTPHeaderField(
-            &self,
+            &mut self,
             value: Option<&NSString>,
             field: &NSString,
         );
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(addValue:forHTTPHeaderField:)]
-        pub unsafe fn addValue_forHTTPHeaderField(&self, value: &NSString, field: &NSString);
+        pub unsafe fn addValue_forHTTPHeaderField(&mut self, value: &NSString, field: &NSString);
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other HTTPBody)]
@@ -317,7 +320,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSData")]
         #[method(setHTTPBody:)]
-        pub unsafe fn setHTTPBody(&self, http_body: Option<&NSData>);
+        pub unsafe fn setHTTPBody(&mut self, http_body: Option<&NSData>);
 
         #[cfg(feature = "Foundation_NSInputStream")]
         #[method_id(@__retain_semantics Other HTTPBodyStream)]
@@ -325,19 +328,19 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSInputStream")]
         #[method(setHTTPBodyStream:)]
-        pub unsafe fn setHTTPBodyStream(&self, http_body_stream: Option<&NSInputStream>);
+        pub unsafe fn setHTTPBodyStream(&mut self, http_body_stream: Option<&NSInputStream>);
 
         #[method(HTTPShouldHandleCookies)]
         pub unsafe fn HTTPShouldHandleCookies(&self) -> bool;
 
         #[method(setHTTPShouldHandleCookies:)]
-        pub unsafe fn setHTTPShouldHandleCookies(&self, http_should_handle_cookies: bool);
+        pub unsafe fn setHTTPShouldHandleCookies(&mut self, http_should_handle_cookies: bool);
 
         #[method(HTTPShouldUsePipelining)]
         pub unsafe fn HTTPShouldUsePipelining(&self) -> bool;
 
         #[method(setHTTPShouldUsePipelining:)]
-        pub unsafe fn setHTTPShouldUsePipelining(&self, http_should_use_pipelining: bool);
+        pub unsafe fn setHTTPShouldUsePipelining(&mut self, http_should_use_pipelining: bool);
     }
 );
 

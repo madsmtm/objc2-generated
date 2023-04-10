@@ -346,7 +346,7 @@ extern_methods!(
         pub fn removeObjectForKey(&mut self, a_key: &KeyType);
 
         #[method(setObject:forKey:)]
-        pub unsafe fn setObject_forKey(&self, an_object: &ObjectType, a_key: &Object);
+        pub unsafe fn setObject_forKey(&mut self, an_object: &ObjectType, a_key: &Object);
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
@@ -373,7 +373,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(addEntriesFromDictionary:)]
         pub unsafe fn addEntriesFromDictionary(
-            &self,
+            &mut self,
             other_dictionary: &NSDictionary<KeyType, ObjectType>,
         );
 
@@ -382,7 +382,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(removeObjectsForKeys:)]
-        pub unsafe fn removeObjectsForKeys(&self, key_array: &NSArray<KeyType>);
+        pub unsafe fn removeObjectsForKeys(&mut self, key_array: &NSArray<KeyType>);
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setDictionary:)]
@@ -392,7 +392,11 @@ extern_methods!(
         );
 
         #[method(setObject:forKeyedSubscript:)]
-        pub unsafe fn setObject_forKeyedSubscript(&self, obj: Option<&ObjectType>, key: &Object);
+        pub unsafe fn setObject_forKeyedSubscript(
+            &mut self,
+            obj: Option<&ObjectType>,
+            key: &Object,
+        );
     }
 );
 

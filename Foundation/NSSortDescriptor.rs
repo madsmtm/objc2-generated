@@ -152,7 +152,7 @@ extern_methods!(
             feature = "Foundation_NSSortDescriptor"
         ))]
         #[method(sortUsingDescriptors:)]
-        pub unsafe fn sortUsingDescriptors(&self, sort_descriptors: &NSArray<NSSortDescriptor>);
+        pub unsafe fn sortUsingDescriptors(&mut self, sort_descriptors: &NSArray<NSSortDescriptor>);
     }
 );
 
@@ -181,6 +181,6 @@ extern_methods!(
             feature = "Foundation_NSSortDescriptor"
         ))]
         #[method(sortUsingDescriptors:)]
-        pub unsafe fn sortUsingDescriptors(&self, sort_descriptors: &NSArray<NSSortDescriptor>);
+        pub unsafe fn sortUsingDescriptors(&mut self, sort_descriptors: &NSArray<NSSortDescriptor>);
     }
 );

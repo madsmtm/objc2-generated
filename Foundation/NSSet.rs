@@ -208,7 +208,7 @@ extern_methods!(
         pub unsafe fn addObject(&mut self, object: &ObjectType);
 
         #[method(removeObject:)]
-        pub unsafe fn removeObject(&self, object: &ObjectType);
+        pub unsafe fn removeObject(&mut self, object: &ObjectType);
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
@@ -234,26 +234,26 @@ extern_methods!(
     unsafe impl<ObjectType: Message> NSMutableSet<ObjectType> {
         #[cfg(feature = "Foundation_NSArray")]
         #[method(addObjectsFromArray:)]
-        pub unsafe fn addObjectsFromArray(&self, array: &NSArray<ObjectType>);
+        pub unsafe fn addObjectsFromArray(&mut self, array: &NSArray<ObjectType>);
 
         #[cfg(feature = "Foundation_NSSet")]
         #[method(intersectSet:)]
-        pub unsafe fn intersectSet(&self, other_set: &NSSet<ObjectType>);
+        pub unsafe fn intersectSet(&mut self, other_set: &NSSet<ObjectType>);
 
         #[cfg(feature = "Foundation_NSSet")]
         #[method(minusSet:)]
-        pub unsafe fn minusSet(&self, other_set: &NSSet<ObjectType>);
+        pub unsafe fn minusSet(&mut self, other_set: &NSSet<ObjectType>);
 
         #[method(removeAllObjects)]
         pub fn removeAllObjects(&mut self);
 
         #[cfg(feature = "Foundation_NSSet")]
         #[method(unionSet:)]
-        pub unsafe fn unionSet(&self, other_set: &NSSet<ObjectType>);
+        pub unsafe fn unionSet(&mut self, other_set: &NSSet<ObjectType>);
 
         #[cfg(feature = "Foundation_NSSet")]
         #[method(setSet:)]
-        pub unsafe fn setSet(&self, other_set: &NSSet<ObjectType>);
+        pub unsafe fn setSet(&mut self, other_set: &NSSet<ObjectType>);
     }
 );
 

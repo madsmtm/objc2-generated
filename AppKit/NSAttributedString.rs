@@ -106,16 +106,16 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSMutableAttributedString")]
     unsafe impl NSMutableAttributedString {
         #[method(fixAttributesInRange:)]
-        pub unsafe fn fixAttributesInRange(&self, range: NSRange);
+        pub unsafe fn fixAttributesInRange(&mut self, range: NSRange);
 
         #[method(fixFontAttributeInRange:)]
-        pub unsafe fn fixFontAttributeInRange(&self, range: NSRange);
+        pub unsafe fn fixFontAttributeInRange(&mut self, range: NSRange);
 
         #[method(fixParagraphStyleAttributeInRange:)]
-        pub unsafe fn fixParagraphStyleAttributeInRange(&self, range: NSRange);
+        pub unsafe fn fixParagraphStyleAttributeInRange(&mut self, range: NSRange);
 
         #[method(fixAttachmentAttributeInRange:)]
-        pub unsafe fn fixAttachmentAttributeInRange(&self, range: NSRange);
+        pub unsafe fn fixAttachmentAttributeInRange(&mut self, range: NSRange);
     }
 );
 
@@ -480,7 +480,7 @@ extern_methods!(
         ))]
         #[method(readFromURL:options:documentAttributes:error:_)]
         pub unsafe fn readFromURL_options_documentAttributes_error(
-            &self,
+            &mut self,
             url: &NSURL,
             opts: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, Object>,
             dict: Option<
@@ -495,7 +495,7 @@ extern_methods!(
         ))]
         #[method(readFromData:options:documentAttributes:error:_)]
         pub unsafe fn readFromData_options_documentAttributes_error(
-            &self,
+            &mut self,
             data: &NSData,
             opts: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, Object>,
             dict: Option<
@@ -609,23 +609,23 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSMutableAttributedString")]
     unsafe impl NSMutableAttributedString {
         #[method(superscriptRange:)]
-        pub unsafe fn superscriptRange(&self, range: NSRange);
+        pub unsafe fn superscriptRange(&mut self, range: NSRange);
 
         #[method(subscriptRange:)]
-        pub unsafe fn subscriptRange(&self, range: NSRange);
+        pub unsafe fn subscriptRange(&mut self, range: NSRange);
 
         #[method(unscriptRange:)]
-        pub unsafe fn unscriptRange(&self, range: NSRange);
+        pub unsafe fn unscriptRange(&mut self, range: NSRange);
 
         #[method(applyFontTraits:range:)]
-        pub unsafe fn applyFontTraits_range(&self, trait_mask: NSFontTraitMask, range: NSRange);
+        pub unsafe fn applyFontTraits_range(&mut self, trait_mask: NSFontTraitMask, range: NSRange);
 
         #[method(setAlignment:range:)]
-        pub unsafe fn setAlignment_range(&self, alignment: NSTextAlignment, range: NSRange);
+        pub unsafe fn setAlignment_range(&mut self, alignment: NSTextAlignment, range: NSRange);
 
         #[method(setBaseWritingDirection:range:)]
         pub unsafe fn setBaseWritingDirection_range(
-            &self,
+            &mut self,
             writing_direction: NSWritingDirection,
             range: NSRange,
         );
@@ -726,7 +726,7 @@ extern_methods!(
         #[deprecated = "Use -readFromURL:options:documentAttributes:error: instead"]
         #[method(readFromURL:options:documentAttributes:)]
         pub unsafe fn readFromURL_options_documentAttributes(
-            &self,
+            &mut self,
             url: &NSURL,
             options: &NSDictionary,
             dict: Option<&mut Option<Id<NSDictionary>>>,
@@ -736,7 +736,7 @@ extern_methods!(
         #[deprecated = "Use -readFromData:options:documentAttributes:error: instead"]
         #[method(readFromData:options:documentAttributes:)]
         pub unsafe fn readFromData_options_documentAttributes(
-            &self,
+            &mut self,
             data: &NSData,
             options: &NSDictionary,
             dict: Option<&mut Option<Id<NSDictionary>>>,

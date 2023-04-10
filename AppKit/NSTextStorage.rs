@@ -44,11 +44,11 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSLayoutManager")]
         #[method(addLayoutManager:)]
-        pub unsafe fn addLayoutManager(&self, a_layout_manager: &NSLayoutManager);
+        pub unsafe fn addLayoutManager(&mut self, a_layout_manager: &NSLayoutManager);
 
         #[cfg(feature = "AppKit_NSLayoutManager")]
         #[method(removeLayoutManager:)]
-        pub unsafe fn removeLayoutManager(&self, a_layout_manager: &NSLayoutManager);
+        pub unsafe fn removeLayoutManager(&mut self, a_layout_manager: &NSLayoutManager);
 
         #[method(editedMask)]
         pub unsafe fn editedMask(&self) -> NSTextStorageEditActions;
@@ -64,29 +64,29 @@ extern_methods!(
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
-            &self,
+            &mut self,
             delegate: Option<&ProtocolObject<dyn NSTextStorageDelegate>>,
         );
 
         #[method(edited:range:changeInLength:)]
         pub unsafe fn edited_range_changeInLength(
-            &self,
+            &mut self,
             edited_mask: NSTextStorageEditActions,
             edited_range: NSRange,
             delta: NSInteger,
         );
 
         #[method(processEditing)]
-        pub unsafe fn processEditing(&self);
+        pub unsafe fn processEditing(&mut self);
 
         #[method(fixesAttributesLazily)]
         pub unsafe fn fixesAttributesLazily(&self) -> bool;
 
         #[method(invalidateAttributesInRange:)]
-        pub unsafe fn invalidateAttributesInRange(&self, range: NSRange);
+        pub unsafe fn invalidateAttributesInRange(&mut self, range: NSRange);
 
         #[method(ensureAttributesAreFixedInRange:)]
-        pub unsafe fn ensureAttributesAreFixedInRange(&self, range: NSRange);
+        pub unsafe fn ensureAttributesAreFixedInRange(&mut self, range: NSRange);
 
         #[method_id(@__retain_semantics Other textStorageObserver)]
         pub unsafe fn textStorageObserver(
@@ -95,7 +95,7 @@ extern_methods!(
 
         #[method(setTextStorageObserver:)]
         pub unsafe fn setTextStorageObserver(
-            &self,
+            &mut self,
             text_storage_observer: Option<&ProtocolObject<dyn NSTextStorageObserving>>,
         );
     }
