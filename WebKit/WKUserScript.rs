@@ -21,8 +21,12 @@ extern_class!(
     #[cfg(feature = "WebKit_WKUserScript")]
     unsafe impl ClassType for WKUserScript {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "WebKit_WKUserScript")]
+unsafe impl NSCopying for WKUserScript {}
 
 #[cfg(feature = "WebKit_WKUserScript")]
 unsafe impl NSObjectProtocol for WKUserScript {}

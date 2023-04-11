@@ -21,8 +21,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLHeapDescriptor")]
     unsafe impl ClassType for MTLHeapDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLHeapDescriptor")]
+unsafe impl NSCopying for MTLHeapDescriptor {}
 
 #[cfg(feature = "Metal_MTLHeapDescriptor")]
 unsafe impl NSObjectProtocol for MTLHeapDescriptor {}

@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "CoreAnimation_CARenderer")]
     unsafe impl ClassType for CARenderer {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

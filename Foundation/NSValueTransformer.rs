@@ -27,6 +27,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSValueTransformer")]
     unsafe impl ClassType for NSValueTransformer {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -74,6 +75,7 @@ extern_class!(
     unsafe impl ClassType for NSSecureUnarchiveFromDataTransformer {
         #[inherits(NSObject)]
         type Super = NSValueTransformer;
+        type Mutability = InteriorMutable;
     }
 );
 

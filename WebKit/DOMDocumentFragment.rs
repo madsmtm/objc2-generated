@@ -15,11 +15,15 @@ extern_class!(
     unsafe impl ClassType for DOMDocumentFragment {
         #[inherits(DOMObject, WebScriptObject, NSObject)]
         type Super = DOMNode;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "WebKit_DOMDocumentFragment")]
 unsafe impl DOMEventTarget for DOMDocumentFragment {}
+
+#[cfg(feature = "WebKit_DOMDocumentFragment")]
+unsafe impl NSCopying for DOMDocumentFragment {}
 
 #[cfg(feature = "WebKit_DOMDocumentFragment")]
 unsafe impl NSObjectProtocol for DOMDocumentFragment {}

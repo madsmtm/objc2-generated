@@ -15,11 +15,15 @@ extern_class!(
     unsafe impl ClassType for NSFetchRequestExpression {
         #[inherits(NSObject)]
         type Super = NSExpression;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "CoreData_NSFetchRequestExpression")]
 unsafe impl NSCoding for NSFetchRequestExpression {}
+
+#[cfg(feature = "CoreData_NSFetchRequestExpression")]
+unsafe impl NSCopying for NSFetchRequestExpression {}
 
 #[cfg(feature = "CoreData_NSFetchRequestExpression")]
 unsafe impl NSObjectProtocol for NSFetchRequestExpression {}

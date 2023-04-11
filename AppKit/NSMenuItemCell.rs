@@ -14,6 +14,7 @@ extern_class!(
     unsafe impl ClassType for NSMenuItemCell {
         #[inherits(NSActionCell, NSCell, NSObject)]
         type Super = NSButtonCell;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -25,6 +26,9 @@ unsafe impl NSAccessibilityElementProtocol for NSMenuItemCell {}
 
 #[cfg(feature = "AppKit_NSMenuItemCell")]
 unsafe impl NSCoding for NSMenuItemCell {}
+
+#[cfg(feature = "AppKit_NSMenuItemCell")]
+unsafe impl NSCopying for NSMenuItemCell {}
 
 #[cfg(feature = "AppKit_NSMenuItemCell")]
 unsafe impl NSObjectProtocol for NSMenuItemCell {}

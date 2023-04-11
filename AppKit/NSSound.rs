@@ -19,11 +19,15 @@ extern_class!(
     #[cfg(feature = "AppKit_NSSound")]
     unsafe impl ClassType for NSSound {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "AppKit_NSSound")]
 unsafe impl NSCoding for NSSound {}
+
+#[cfg(feature = "AppKit_NSSound")]
+unsafe impl NSCopying for NSSound {}
 
 #[cfg(feature = "AppKit_NSSound")]
 unsafe impl NSObjectProtocol for NSSound {}

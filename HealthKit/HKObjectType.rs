@@ -14,11 +14,15 @@ extern_class!(
     #[cfg(feature = "HealthKit_HKObjectType")]
     unsafe impl ClassType for HKObjectType {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "HealthKit_HKObjectType")]
 unsafe impl NSCoding for HKObjectType {}
+
+#[cfg(feature = "HealthKit_HKObjectType")]
+unsafe impl NSCopying for HKObjectType {}
 
 #[cfg(feature = "HealthKit_HKObjectType")]
 unsafe impl NSObjectProtocol for HKObjectType {}
@@ -104,11 +108,15 @@ extern_class!(
     unsafe impl ClassType for HKCharacteristicType {
         #[inherits(NSObject)]
         type Super = HKObjectType;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "HealthKit_HKCharacteristicType")]
 unsafe impl NSCoding for HKCharacteristicType {}
+
+#[cfg(feature = "HealthKit_HKCharacteristicType")]
+unsafe impl NSCopying for HKCharacteristicType {}
 
 #[cfg(feature = "HealthKit_HKCharacteristicType")]
 unsafe impl NSObjectProtocol for HKCharacteristicType {}
@@ -130,11 +138,15 @@ extern_class!(
     unsafe impl ClassType for HKSampleType {
         #[inherits(NSObject)]
         type Super = HKObjectType;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "HealthKit_HKSampleType")]
 unsafe impl NSCoding for HKSampleType {}
+
+#[cfg(feature = "HealthKit_HKSampleType")]
+unsafe impl NSCopying for HKSampleType {}
 
 #[cfg(feature = "HealthKit_HKSampleType")]
 unsafe impl NSObjectProtocol for HKSampleType {}
@@ -171,11 +183,15 @@ extern_class!(
     unsafe impl ClassType for HKCategoryType {
         #[inherits(HKObjectType, NSObject)]
         type Super = HKSampleType;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "HealthKit_HKCategoryType")]
 unsafe impl NSCoding for HKCategoryType {}
+
+#[cfg(feature = "HealthKit_HKCategoryType")]
+unsafe impl NSCopying for HKCategoryType {}
 
 #[cfg(feature = "HealthKit_HKCategoryType")]
 unsafe impl NSObjectProtocol for HKCategoryType {}
@@ -197,11 +213,15 @@ extern_class!(
     unsafe impl ClassType for HKCorrelationType {
         #[inherits(HKObjectType, NSObject)]
         type Super = HKSampleType;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "HealthKit_HKCorrelationType")]
 unsafe impl NSCoding for HKCorrelationType {}
+
+#[cfg(feature = "HealthKit_HKCorrelationType")]
+unsafe impl NSCopying for HKCorrelationType {}
 
 #[cfg(feature = "HealthKit_HKCorrelationType")]
 unsafe impl NSObjectProtocol for HKCorrelationType {}
@@ -223,11 +243,15 @@ extern_class!(
     unsafe impl ClassType for HKDocumentType {
         #[inherits(HKObjectType, NSObject)]
         type Super = HKSampleType;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "HealthKit_HKDocumentType")]
 unsafe impl NSCoding for HKDocumentType {}
+
+#[cfg(feature = "HealthKit_HKDocumentType")]
+unsafe impl NSCopying for HKDocumentType {}
 
 #[cfg(feature = "HealthKit_HKDocumentType")]
 unsafe impl NSObjectProtocol for HKDocumentType {}
@@ -249,11 +273,15 @@ extern_class!(
     unsafe impl ClassType for HKQuantityType {
         #[inherits(HKObjectType, NSObject)]
         type Super = HKSampleType;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "HealthKit_HKQuantityType")]
 unsafe impl NSCoding for HKQuantityType {}
+
+#[cfg(feature = "HealthKit_HKQuantityType")]
+unsafe impl NSCopying for HKQuantityType {}
 
 #[cfg(feature = "HealthKit_HKQuantityType")]
 unsafe impl NSObjectProtocol for HKQuantityType {}
@@ -282,11 +310,15 @@ extern_class!(
     unsafe impl ClassType for HKWorkoutType {
         #[inherits(HKObjectType, NSObject)]
         type Super = HKSampleType;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "HealthKit_HKWorkoutType")]
 unsafe impl NSCoding for HKWorkoutType {}
+
+#[cfg(feature = "HealthKit_HKWorkoutType")]
+unsafe impl NSCopying for HKWorkoutType {}
 
 #[cfg(feature = "HealthKit_HKWorkoutType")]
 unsafe impl NSObjectProtocol for HKWorkoutType {}
@@ -308,11 +340,15 @@ extern_class!(
     unsafe impl ClassType for HKSeriesType {
         #[inherits(HKObjectType, NSObject)]
         type Super = HKSampleType;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "HealthKit_HKSeriesType")]
 unsafe impl NSCoding for HKSeriesType {}
+
+#[cfg(feature = "HealthKit_HKSeriesType")]
+unsafe impl NSCopying for HKSeriesType {}
 
 #[cfg(feature = "HealthKit_HKSeriesType")]
 unsafe impl NSObjectProtocol for HKSeriesType {}
@@ -340,11 +376,15 @@ extern_class!(
     unsafe impl ClassType for HKActivitySummaryType {
         #[inherits(NSObject)]
         type Super = HKObjectType;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "HealthKit_HKActivitySummaryType")]
 unsafe impl NSCoding for HKActivitySummaryType {}
+
+#[cfg(feature = "HealthKit_HKActivitySummaryType")]
+unsafe impl NSCopying for HKActivitySummaryType {}
 
 #[cfg(feature = "HealthKit_HKActivitySummaryType")]
 unsafe impl NSObjectProtocol for HKActivitySummaryType {}
@@ -366,11 +406,15 @@ extern_class!(
     unsafe impl ClassType for HKAudiogramSampleType {
         #[inherits(HKObjectType, NSObject)]
         type Super = HKSampleType;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "HealthKit_HKAudiogramSampleType")]
 unsafe impl NSCoding for HKAudiogramSampleType {}
+
+#[cfg(feature = "HealthKit_HKAudiogramSampleType")]
+unsafe impl NSCopying for HKAudiogramSampleType {}
 
 #[cfg(feature = "HealthKit_HKAudiogramSampleType")]
 unsafe impl NSObjectProtocol for HKAudiogramSampleType {}
@@ -392,11 +436,15 @@ extern_class!(
     unsafe impl ClassType for HKElectrocardiogramType {
         #[inherits(HKObjectType, NSObject)]
         type Super = HKSampleType;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "HealthKit_HKElectrocardiogramType")]
 unsafe impl NSCoding for HKElectrocardiogramType {}
+
+#[cfg(feature = "HealthKit_HKElectrocardiogramType")]
+unsafe impl NSCopying for HKElectrocardiogramType {}
 
 #[cfg(feature = "HealthKit_HKElectrocardiogramType")]
 unsafe impl NSObjectProtocol for HKElectrocardiogramType {}
@@ -418,11 +466,15 @@ extern_class!(
     unsafe impl ClassType for HKPrescriptionType {
         #[inherits(HKObjectType, NSObject)]
         type Super = HKSampleType;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "HealthKit_HKPrescriptionType")]
 unsafe impl NSCoding for HKPrescriptionType {}
+
+#[cfg(feature = "HealthKit_HKPrescriptionType")]
+unsafe impl NSCopying for HKPrescriptionType {}
 
 #[cfg(feature = "HealthKit_HKPrescriptionType")]
 unsafe impl NSObjectProtocol for HKPrescriptionType {}

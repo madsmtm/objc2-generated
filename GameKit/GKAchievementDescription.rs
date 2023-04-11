@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "GameKit_GKAchievementDescription")]
     unsafe impl ClassType for GKAchievementDescription {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

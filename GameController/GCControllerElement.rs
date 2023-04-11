@@ -22,6 +22,7 @@ extern_class!(
     #[cfg(feature = "GameController_GCControllerElement")]
     unsafe impl ClassType for GCControllerElement {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

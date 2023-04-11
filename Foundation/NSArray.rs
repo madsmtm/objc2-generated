@@ -3,59 +3,32 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-__inner_extern_class!(
-    #[derive(PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSArray")]
-    pub struct NSArray<ObjectType: Message = Object, ObjectTypeOwnership: Ownership = Shared> {
-        _inner0: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    #[cfg(feature = "Foundation_NSArray")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
-        for NSArray<ObjectType, ObjectTypeOwnership>
-    {
-        type Super = NSObject;
-    }
-);
+#[cfg(feature = "Foundation_NSArray")]
+unsafe impl<ObjectType: Message + NSCoding> NSCoding for NSArray<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSArray")]
-unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSCoding
-    for NSArray<ObjectType, ObjectTypeOwnership>
-{
-}
+unsafe impl<ObjectType: IsIdCloneable> NSCopying for NSArray<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSArray")]
-unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSFastEnumeration
-    for NSArray<ObjectType, ObjectTypeOwnership>
-{
-}
+unsafe impl<ObjectType: Message> NSFastEnumeration for NSArray<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSArray")]
-unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSObjectProtocol
-    for NSArray<ObjectType, ObjectTypeOwnership>
-{
-}
+unsafe impl<ObjectType: IsIdCloneable> NSMutableCopying for NSArray<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSArray")]
-unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSSecureCoding
-    for NSArray<ObjectType, ObjectTypeOwnership>
-{
-}
+unsafe impl<ObjectType: Message> NSObjectProtocol for NSArray<ObjectType> {}
+
+#[cfg(feature = "Foundation_NSArray")]
+unsafe impl<ObjectType: Message + NSSecureCoding> NSSecureCoding for NSArray<ObjectType> {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSArray")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSArray<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> NSArray<ObjectType> {
         #[method(count)]
         pub fn count(&self) -> NSUInteger;
 
         #[method_id(@__retain_semantics Other objectAtIndex:)]
-        pub unsafe fn objectAtIndex(
-            &self,
-            index: NSUInteger,
-        ) -> Id<ObjectType, ObjectTypeOwnership>;
+        pub unsafe fn objectAtIndex(&self, index: NSUInteger) -> Id<ObjectType>;
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
@@ -88,9 +61,7 @@ ns_options!(
 extern_methods!(
     /// NSExtendedArray
     #[cfg(feature = "Foundation_NSArray")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSArray<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> NSArray<ObjectType> {
         #[method_id(@__retain_semantics Other arrayByAddingObject:)]
         pub unsafe fn arrayByAddingObject(&self, an_object: &ObjectType)
             -> Id<NSArray<ObjectType>>;
@@ -128,7 +99,7 @@ extern_methods!(
         pub unsafe fn firstObjectCommonWithArray(
             &self,
             other_array: &NSArray<ObjectType>,
-        ) -> Option<Id<ObjectType, ObjectTypeOwnership>>;
+        ) -> Option<Id<ObjectType>>;
 
         #[method(getObjects:range:)]
         pub unsafe fn getObjects_range(
@@ -161,10 +132,10 @@ extern_methods!(
         pub unsafe fn isEqualToArray(&self, other_array: &NSArray<ObjectType>) -> bool;
 
         #[method_id(@__retain_semantics Other firstObject)]
-        pub unsafe fn firstObject(&self) -> Option<Id<ObjectType, ObjectTypeOwnership>>;
+        pub unsafe fn firstObject(&self) -> Option<Id<ObjectType>>;
 
         #[method_id(@__retain_semantics Other lastObject)]
-        pub unsafe fn lastObject(&self) -> Option<Id<ObjectType, ObjectTypeOwnership>>;
+        pub unsafe fn lastObject(&self) -> Option<Id<ObjectType>>;
 
         #[cfg(feature = "Foundation_NSEnumerator")]
         #[method_id(@__retain_semantics Other objectEnumerator)]
@@ -227,10 +198,7 @@ extern_methods!(
         pub unsafe fn objectsAtIndexes(&self, indexes: &NSIndexSet) -> Id<NSArray<ObjectType>>;
 
         #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
-        pub unsafe fn objectAtIndexedSubscript(
-            &self,
-            idx: NSUInteger,
-        ) -> Id<ObjectType, ObjectTypeOwnership>;
+        pub unsafe fn objectAtIndexedSubscript(&self, idx: NSUInteger) -> Id<ObjectType>;
 
         #[method(enumerateObjectsUsingBlock:)]
         pub unsafe fn enumerateObjectsUsingBlock(
@@ -327,9 +295,7 @@ extern_methods!(
 extern_methods!(
     /// NSArrayCreation
     #[cfg(feature = "Foundation_NSArray")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSArray<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> NSArray<ObjectType> {
         #[method_id(@__retain_semantics Other array)]
         pub unsafe fn array() -> Id<Self>;
 
@@ -359,6 +325,13 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[method_id(@__retain_semantics Init initWithContentsOfURL:error:_)]
+        pub unsafe fn initWithContentsOfURL_error(
+            this: Option<Allocated<Self>>,
+            url: &NSURL,
+        ) -> Result<Id<NSArray<ObjectType>>, Id<NSError>>;
+
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other arrayWithContentsOfURL:error:_)]
         pub unsafe fn arrayWithContentsOfURL_error(
             url: &NSURL,
@@ -369,9 +342,7 @@ extern_methods!(
 extern_methods!(
     /// NSArrayDiffing
     #[cfg(feature = "Foundation_NSArray")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSArray<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> NSArray<ObjectType> {
         #[cfg(feature = "Foundation_NSOrderedCollectionDifference")]
         #[method_id(@__retain_semantics Other differenceFromArray:withOptions:usingEquivalenceTest:)]
         pub unsafe fn differenceFromArray_withOptions_usingEquivalenceTest(
@@ -408,9 +379,7 @@ extern_methods!(
 extern_methods!(
     /// NSDeprecated
     #[cfg(feature = "Foundation_NSArray")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSArray<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> NSArray<ObjectType> {
         #[deprecated = "Use -getObjects:range: instead"]
         #[method(getObjects:)]
         pub unsafe fn getObjects(&self, objects: NonNull<NonNull<ObjectType>>);
@@ -424,6 +393,22 @@ extern_methods!(
         #[deprecated]
         #[method_id(@__retain_semantics Other arrayWithContentsOfURL:)]
         pub unsafe fn arrayWithContentsOfURL(url: &NSURL) -> Option<Id<NSArray<ObjectType>>>;
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
+        #[method_id(@__retain_semantics Init initWithContentsOfFile:)]
+        pub unsafe fn initWithContentsOfFile(
+            this: Option<Allocated<Self>>,
+            path: &NSString,
+        ) -> Option<Id<NSArray<ObjectType>>>;
+
+        #[cfg(feature = "Foundation_NSURL")]
+        #[deprecated]
+        #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
+        pub unsafe fn initWithContentsOfURL(
+            this: Option<Allocated<Self>>,
+            url: &NSURL,
+        ) -> Option<Id<NSArray<ObjectType>>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
@@ -441,52 +426,27 @@ extern_methods!(
     }
 );
 
-__inner_extern_class!(
-    #[derive(PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSMutableArray")]
-    pub struct NSMutableArray<ObjectType: Message = Object, ObjectTypeOwnership: Ownership = Shared> {
-        _inner0: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    #[cfg(feature = "Foundation_NSMutableArray")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
-        for NSMutableArray<ObjectType, ObjectTypeOwnership>
-    {
-        #[inherits(NSObject)]
-        type Super = NSArray<ObjectType, ObjectTypeOwnership>;
-    }
-);
+#[cfg(feature = "Foundation_NSMutableArray")]
+unsafe impl<ObjectType: Message + NSCoding> NSCoding for NSMutableArray<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSMutableArray")]
-unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSCoding
-    for NSMutableArray<ObjectType, ObjectTypeOwnership>
-{
-}
+unsafe impl<ObjectType: IsIdCloneable> NSCopying for NSMutableArray<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSMutableArray")]
-unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSFastEnumeration
-    for NSMutableArray<ObjectType, ObjectTypeOwnership>
-{
-}
+unsafe impl<ObjectType: Message> NSFastEnumeration for NSMutableArray<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSMutableArray")]
-unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSObjectProtocol
-    for NSMutableArray<ObjectType, ObjectTypeOwnership>
-{
-}
+unsafe impl<ObjectType: IsIdCloneable> NSMutableCopying for NSMutableArray<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSMutableArray")]
-unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSSecureCoding
-    for NSMutableArray<ObjectType, ObjectTypeOwnership>
-{
-}
+unsafe impl<ObjectType: Message> NSObjectProtocol for NSMutableArray<ObjectType> {}
+
+#[cfg(feature = "Foundation_NSMutableArray")]
+unsafe impl<ObjectType: Message + NSSecureCoding> NSSecureCoding for NSMutableArray<ObjectType> {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSMutableArray")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSMutableArray<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
         #[method(addObject:)]
         pub unsafe fn addObject(&mut self, an_object: &ObjectType);
 
@@ -507,29 +467,27 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Owned>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithCapacity:)]
         pub unsafe fn initWithCapacity(
             this: Option<Allocated<Self>>,
             num_items: NSUInteger,
-        ) -> Id<Self, Owned>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
-        ) -> Option<Id<Self, Owned>>;
+        ) -> Option<Id<Self>>;
     }
 );
 
 extern_methods!(
     /// NSExtendedMutableArray
     #[cfg(feature = "Foundation_NSMutableArray")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSMutableArray<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
         #[cfg(feature = "Foundation_NSArray")]
         #[method(addObjectsFromArray:)]
         pub unsafe fn addObjectsFromArray(&self, other_array: &NSArray<ObjectType>);
@@ -648,32 +606,41 @@ extern_methods!(
 extern_methods!(
     /// NSMutableArrayCreation
     #[cfg(feature = "Foundation_NSMutableArray")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSMutableArray<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
         #[method_id(@__retain_semantics Other arrayWithCapacity:)]
-        pub unsafe fn arrayWithCapacity(num_items: NSUInteger) -> Id<Self, Owned>;
+        pub unsafe fn arrayWithCapacity(num_items: NSUInteger) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other arrayWithContentsOfFile:)]
         pub unsafe fn arrayWithContentsOfFile(
             path: &NSString,
-        ) -> Option<Id<NSMutableArray<ObjectType>, Owned>>;
+        ) -> Option<Id<NSMutableArray<ObjectType>>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other arrayWithContentsOfURL:)]
-        pub unsafe fn arrayWithContentsOfURL(
+        pub unsafe fn arrayWithContentsOfURL(url: &NSURL)
+            -> Option<Id<NSMutableArray<ObjectType>>>;
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Init initWithContentsOfFile:)]
+        pub unsafe fn initWithContentsOfFile(
+            this: Option<Allocated<Self>>,
+            path: &NSString,
+        ) -> Option<Id<NSMutableArray<ObjectType>>>;
+
+        #[cfg(feature = "Foundation_NSURL")]
+        #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
+        pub unsafe fn initWithContentsOfURL(
+            this: Option<Allocated<Self>>,
             url: &NSURL,
-        ) -> Option<Id<NSMutableArray<ObjectType>, Owned>>;
+        ) -> Option<Id<NSMutableArray<ObjectType>>>;
     }
 );
 
 extern_methods!(
     /// NSMutableArrayDiffing
     #[cfg(feature = "Foundation_NSMutableArray")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSMutableArray<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
         #[cfg(feature = "Foundation_NSOrderedCollectionDifference")]
         #[method(applyDifference:)]
         pub unsafe fn applyDifference(
@@ -686,15 +653,13 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSArray`
     #[cfg(feature = "Foundation_NSMutableArray")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSMutableArray<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
         #[method_id(@__retain_semantics Init initWithObjects:count:)]
         pub unsafe fn initWithObjects_count(
             this: Option<Allocated<Self>>,
             objects: *mut NonNull<ObjectType>,
             cnt: NSUInteger,
-        ) -> Id<Self, Owned>;
+        ) -> Id<Self>;
     }
 );
 
@@ -703,35 +668,33 @@ extern_methods!(
     ///
     /// NSArrayCreation
     #[cfg(feature = "Foundation_NSMutableArray")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSMutableArray<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
         #[method_id(@__retain_semantics Other array)]
-        pub unsafe fn array() -> Id<Self, Owned>;
+        pub unsafe fn array() -> Id<Self>;
 
         #[method_id(@__retain_semantics Other arrayWithObject:)]
-        pub unsafe fn arrayWithObject(an_object: &ObjectType) -> Id<Self, Owned>;
+        pub unsafe fn arrayWithObject(an_object: &ObjectType) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other arrayWithObjects:count:)]
         pub unsafe fn arrayWithObjects_count(
             objects: NonNull<NonNull<ObjectType>>,
             cnt: NSUInteger,
-        ) -> Id<Self, Owned>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other arrayWithArray:)]
-        pub unsafe fn arrayWithArray(array: &NSArray<ObjectType>) -> Id<Self, Owned>;
+        pub unsafe fn arrayWithArray(array: &NSArray<ObjectType>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithArray:)]
         pub unsafe fn initWithArray(
             this: Option<Allocated<Self>>,
             array: &NSArray<ObjectType>,
-        ) -> Id<Self, Owned>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithArray:copyItems:)]
         pub unsafe fn initWithArray_copyItems(
             this: Option<Allocated<Self>>,
             array: &NSArray<ObjectType>,
             flag: bool,
-        ) -> Id<Self, Owned>;
+        ) -> Id<Self>;
     }
 );

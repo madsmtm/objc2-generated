@@ -14,8 +14,12 @@ extern_class!(
     unsafe impl ClassType for NSMenuToolbarItem {
         #[inherits(NSObject)]
         type Super = NSToolbarItem;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "AppKit_NSMenuToolbarItem")]
+unsafe impl NSCopying for NSMenuToolbarItem {}
 
 #[cfg(feature = "AppKit_NSMenuToolbarItem")]
 unsafe impl NSObjectProtocol for NSMenuToolbarItem {}

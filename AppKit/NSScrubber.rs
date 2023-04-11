@@ -97,6 +97,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSScrubberSelectionStyle")]
     unsafe impl ClassType for NSScrubberSelectionStyle {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -137,6 +138,7 @@ extern_class!(
     unsafe impl ClassType for NSScrubber {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
+        type Mutability = InteriorMutable;
     }
 );
 

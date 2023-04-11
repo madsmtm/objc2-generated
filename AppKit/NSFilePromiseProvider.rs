@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSFilePromiseProvider")]
     unsafe impl ClassType for NSFilePromiseProvider {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

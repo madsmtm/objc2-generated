@@ -14,6 +14,7 @@ extern_class!(
     unsafe impl ClassType for CKModifySubscriptionsOperation {
         #[inherits(CKOperation, NSOperation, NSObject)]
         type Super = CKDatabaseOperation;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -83,6 +83,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSURLHandle")]
     unsafe impl ClassType for NSURLHandle {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

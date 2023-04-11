@@ -60,11 +60,15 @@ extern_class!(
     #[cfg(feature = "AppKit_NSTextBlock")]
     unsafe impl ClassType for NSTextBlock {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "AppKit_NSTextBlock")]
 unsafe impl NSCoding for NSTextBlock {}
+
+#[cfg(feature = "AppKit_NSTextBlock")]
+unsafe impl NSCopying for NSTextBlock {}
 
 #[cfg(feature = "AppKit_NSTextBlock")]
 unsafe impl NSObjectProtocol for NSTextBlock {}
@@ -202,11 +206,15 @@ extern_class!(
     unsafe impl ClassType for NSTextTableBlock {
         #[inherits(NSObject)]
         type Super = NSTextBlock;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "AppKit_NSTextTableBlock")]
 unsafe impl NSCoding for NSTextTableBlock {}
+
+#[cfg(feature = "AppKit_NSTextTableBlock")]
+unsafe impl NSCopying for NSTextTableBlock {}
 
 #[cfg(feature = "AppKit_NSTextTableBlock")]
 unsafe impl NSObjectProtocol for NSTextTableBlock {}
@@ -255,11 +263,15 @@ extern_class!(
     unsafe impl ClassType for NSTextTable {
         #[inherits(NSObject)]
         type Super = NSTextBlock;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "AppKit_NSTextTable")]
 unsafe impl NSCoding for NSTextTable {}
+
+#[cfg(feature = "AppKit_NSTextTable")]
+unsafe impl NSCopying for NSTextTable {}
 
 #[cfg(feature = "AppKit_NSTextTable")]
 unsafe impl NSObjectProtocol for NSTextTable {}

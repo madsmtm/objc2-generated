@@ -26,6 +26,7 @@ extern_class!(
     #[cfg(feature = "WebKit_WebHistory")]
     unsafe impl ClassType for WebHistory {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

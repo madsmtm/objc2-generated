@@ -15,8 +15,12 @@ extern_class!(
     unsafe impl ClassType for DOMTreeWalker {
         #[inherits(WebScriptObject, NSObject)]
         type Super = DOMObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "WebKit_DOMTreeWalker")]
+unsafe impl NSCopying for DOMTreeWalker {}
 
 #[cfg(feature = "WebKit_DOMTreeWalker")]
 unsafe impl NSObjectProtocol for DOMTreeWalker {}

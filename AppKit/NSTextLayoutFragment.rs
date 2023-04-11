@@ -34,6 +34,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSTextLayoutFragment")]
     unsafe impl ClassType for NSTextLayoutFragment {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

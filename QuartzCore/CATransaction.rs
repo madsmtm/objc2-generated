@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "CoreAnimation_CATransaction")]
     unsafe impl ClassType for CATransaction {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -15,11 +15,15 @@ extern_class!(
     #[cfg(feature = "Foundation_NSLocale")]
     unsafe impl ClassType for NSLocale {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSLocale")]
 unsafe impl NSCoding for NSLocale {}
+
+#[cfg(feature = "Foundation_NSLocale")]
+unsafe impl NSCopying for NSLocale {}
 
 #[cfg(feature = "Foundation_NSLocale")]
 unsafe impl NSObjectProtocol for NSLocale {}

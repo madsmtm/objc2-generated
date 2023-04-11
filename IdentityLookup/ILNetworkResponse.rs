@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "IdentityLookup_ILNetworkResponse")]
     unsafe impl ClassType for ILNetworkResponse {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

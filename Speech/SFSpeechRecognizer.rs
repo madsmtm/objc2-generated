@@ -22,6 +22,7 @@ extern_class!(
     #[cfg(feature = "Speech_SFSpeechRecognizer")]
     unsafe impl ClassType for SFSpeechRecognizer {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -22,6 +22,7 @@ extern_class!(
     unsafe impl ClassType for NSPersistentCloudKitContainer {
         #[inherits(NSObject)]
         type Super = NSPersistentContainer;
+        type Mutability = InteriorMutable;
     }
 );
 

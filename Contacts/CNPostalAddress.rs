@@ -12,11 +12,18 @@ extern_class!(
     #[cfg(feature = "Contacts_CNPostalAddress")]
     unsafe impl ClassType for CNPostalAddress {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Contacts_CNPostalAddress")]
 unsafe impl NSCoding for CNPostalAddress {}
+
+#[cfg(feature = "Contacts_CNPostalAddress")]
+unsafe impl NSCopying for CNPostalAddress {}
+
+#[cfg(feature = "Contacts_CNPostalAddress")]
+unsafe impl NSMutableCopying for CNPostalAddress {}
 
 #[cfg(feature = "Contacts_CNPostalAddress")]
 unsafe impl NSObjectProtocol for CNPostalAddress {}

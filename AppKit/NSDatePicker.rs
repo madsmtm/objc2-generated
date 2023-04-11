@@ -14,6 +14,7 @@ extern_class!(
     unsafe impl ClassType for NSDatePicker {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "CoreAnimation_CARemoteLayerClient")]
     unsafe impl ClassType for CARemoteLayerClient {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

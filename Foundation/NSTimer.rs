@@ -11,6 +11,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSTimer")]
     unsafe impl ClassType for NSTimer {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

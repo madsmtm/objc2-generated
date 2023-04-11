@@ -14,11 +14,15 @@ extern_class!(
     unsafe impl ClassType for CKLocationSortDescriptor {
         #[inherits(NSObject)]
         type Super = NSSortDescriptor;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "CloudKit_CKLocationSortDescriptor")]
 unsafe impl NSCoding for CKLocationSortDescriptor {}
+
+#[cfg(feature = "CloudKit_CKLocationSortDescriptor")]
+unsafe impl NSCopying for CKLocationSortDescriptor {}
 
 #[cfg(feature = "CloudKit_CKLocationSortDescriptor")]
 unsafe impl NSObjectProtocol for CKLocationSortDescriptor {}

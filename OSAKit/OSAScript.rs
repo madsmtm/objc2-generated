@@ -63,8 +63,12 @@ extern_class!(
     #[cfg(feature = "OSAKit_OSAScript")]
     unsafe impl ClassType for OSAScript {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "OSAKit_OSAScript")]
+unsafe impl NSCopying for OSAScript {}
 
 #[cfg(feature = "OSAKit_OSAScript")]
 unsafe impl NSObjectProtocol for OSAScript {}

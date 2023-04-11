@@ -51,6 +51,7 @@ extern_class!(
     #[cfg(feature = "GameController_GCMotion")]
     unsafe impl ClassType for GCMotion {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -27,6 +27,7 @@ extern_class!(
     #[cfg(feature = "EventKit_EKEventStore")]
     unsafe impl ClassType for EKEventStore {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

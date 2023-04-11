@@ -33,6 +33,7 @@ extern_class!(
     #[cfg(feature = "StoreKit_SKCloudServiceController")]
     unsafe impl ClassType for SKCloudServiceController {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

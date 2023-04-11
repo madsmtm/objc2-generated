@@ -33,6 +33,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSPrintOperation")]
     unsafe impl ClassType for NSPrintOperation {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

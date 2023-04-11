@@ -20,11 +20,15 @@ extern_class!(
     unsafe impl ClassType for CNPostalAddressFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Contacts_CNPostalAddressFormatter")]
 unsafe impl NSCoding for CNPostalAddressFormatter {}
+
+#[cfg(feature = "Contacts_CNPostalAddressFormatter")]
+unsafe impl NSCopying for CNPostalAddressFormatter {}
 
 #[cfg(feature = "Contacts_CNPostalAddressFormatter")]
 unsafe impl NSObjectProtocol for CNPostalAddressFormatter {}

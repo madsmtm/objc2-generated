@@ -15,8 +15,12 @@ extern_class!(
     unsafe impl ClassType for DOMNamedNodeMap {
         #[inherits(WebScriptObject, NSObject)]
         type Super = DOMObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "WebKit_DOMNamedNodeMap")]
+unsafe impl NSCopying for DOMNamedNodeMap {}
 
 #[cfg(feature = "WebKit_DOMNamedNodeMap")]
 unsafe impl NSObjectProtocol for DOMNamedNodeMap {}

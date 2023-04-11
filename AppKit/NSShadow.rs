@@ -13,11 +13,15 @@ extern_class!(
     #[cfg(feature = "AppKit_NSShadow")]
     unsafe impl ClassType for NSShadow {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "AppKit_NSShadow")]
 unsafe impl NSCoding for NSShadow {}
+
+#[cfg(feature = "AppKit_NSShadow")]
+unsafe impl NSCopying for NSShadow {}
 
 #[cfg(feature = "AppKit_NSShadow")]
 unsafe impl NSObjectProtocol for NSShadow {}

@@ -14,8 +14,12 @@ extern_class!(
     #[cfg(feature = "PhotoKit_PHObject")]
     unsafe impl ClassType for PHObject {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "PhotoKit_PHObject")]
+unsafe impl NSCopying for PHObject {}
 
 #[cfg(feature = "PhotoKit_PHObject")]
 unsafe impl NSObjectProtocol for PHObject {}
@@ -38,8 +42,12 @@ extern_class!(
     unsafe impl ClassType for PHObjectPlaceholder {
         #[inherits(NSObject)]
         type Super = PHObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "PhotoKit_PHObjectPlaceholder")]
+unsafe impl NSCopying for PHObjectPlaceholder {}
 
 #[cfg(feature = "PhotoKit_PHObjectPlaceholder")]
 unsafe impl NSObjectProtocol for PHObjectPlaceholder {}

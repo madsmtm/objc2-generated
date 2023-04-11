@@ -15,8 +15,12 @@ extern_class!(
     #[cfg(feature = "MapKit_MKLookAroundScene")]
     unsafe impl ClassType for MKLookAroundScene {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "MapKit_MKLookAroundScene")]
+unsafe impl NSCopying for MKLookAroundScene {}
 
 #[cfg(feature = "MapKit_MKLookAroundScene")]
 unsafe impl NSObjectProtocol for MKLookAroundScene {}

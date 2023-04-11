@@ -34,6 +34,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSTextLayoutManager")]
     unsafe impl ClassType for NSTextLayoutManager {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

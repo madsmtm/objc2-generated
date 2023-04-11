@@ -13,11 +13,15 @@ extern_class!(
     unsafe impl ClassType for NSExpressionDescription {
         #[inherits(NSObject)]
         type Super = NSPropertyDescription;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "CoreData_NSExpressionDescription")]
 unsafe impl NSCoding for NSExpressionDescription {}
+
+#[cfg(feature = "CoreData_NSExpressionDescription")]
+unsafe impl NSCopying for NSExpressionDescription {}
 
 #[cfg(feature = "CoreData_NSExpressionDescription")]
 unsafe impl NSObjectProtocol for NSExpressionDescription {}

@@ -20,11 +20,15 @@ extern_class!(
     #[cfg(feature = "CoreData_NSFetchIndexElementDescription")]
     unsafe impl ClassType for NSFetchIndexElementDescription {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "CoreData_NSFetchIndexElementDescription")]
 unsafe impl NSCoding for NSFetchIndexElementDescription {}
+
+#[cfg(feature = "CoreData_NSFetchIndexElementDescription")]
+unsafe impl NSCopying for NSFetchIndexElementDescription {}
 
 #[cfg(feature = "CoreData_NSFetchIndexElementDescription")]
 unsafe impl NSObjectProtocol for NSFetchIndexElementDescription {}

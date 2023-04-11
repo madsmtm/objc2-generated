@@ -25,8 +25,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLIntersectionFunctionTableDescriptor")]
     unsafe impl ClassType for MTLIntersectionFunctionTableDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLIntersectionFunctionTableDescriptor")]
+unsafe impl NSCopying for MTLIntersectionFunctionTableDescriptor {}
 
 #[cfg(feature = "Metal_MTLIntersectionFunctionTableDescriptor")]
 unsafe impl NSObjectProtocol for MTLIntersectionFunctionTableDescriptor {}

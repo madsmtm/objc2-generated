@@ -17,11 +17,15 @@ extern_class!(
     #[cfg(feature = "UserNotifications_UNNotificationSound")]
     unsafe impl ClassType for UNNotificationSound {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "UserNotifications_UNNotificationSound")]
 unsafe impl NSCoding for UNNotificationSound {}
+
+#[cfg(feature = "UserNotifications_UNNotificationSound")]
+unsafe impl NSCopying for UNNotificationSound {}
 
 #[cfg(feature = "UserNotifications_UNNotificationSound")]
 unsafe impl NSObjectProtocol for UNNotificationSound {}

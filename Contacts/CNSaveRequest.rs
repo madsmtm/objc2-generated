@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "Contacts_CNSaveRequest")]
     unsafe impl ClassType for CNSaveRequest {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -16,6 +16,7 @@ extern_class!(
     #[cfg(feature = "CoreData_NSCoreDataCoreSpotlightDelegate")]
     unsafe impl ClassType for NSCoreDataCoreSpotlightDelegate {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

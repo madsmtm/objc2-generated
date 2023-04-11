@@ -15,11 +15,15 @@ extern_class!(
     unsafe impl ClassType for DOMHTMLTableCellElement {
         #[inherits(DOMElement, DOMNode, DOMObject, WebScriptObject, NSObject)]
         type Super = DOMHTMLElement;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "WebKit_DOMHTMLTableCellElement")]
 unsafe impl DOMEventTarget for DOMHTMLTableCellElement {}
+
+#[cfg(feature = "WebKit_DOMHTMLTableCellElement")]
+unsafe impl NSCopying for DOMHTMLTableCellElement {}
 
 #[cfg(feature = "WebKit_DOMHTMLTableCellElement")]
 unsafe impl NSObjectProtocol for DOMHTMLTableCellElement {}

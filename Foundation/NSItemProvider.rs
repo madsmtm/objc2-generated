@@ -104,8 +104,12 @@ extern_class!(
     #[cfg(feature = "Foundation_NSItemProvider")]
     unsafe impl ClassType for NSItemProvider {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Foundation_NSItemProvider")]
+unsafe impl NSCopying for NSItemProvider {}
 
 #[cfg(feature = "Foundation_NSItemProvider")]
 unsafe impl NSObjectProtocol for NSItemProvider {}

@@ -14,11 +14,15 @@ extern_class!(
     unsafe impl ClassType for NSPDFImageRep {
         #[inherits(NSObject)]
         type Super = NSImageRep;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "AppKit_NSPDFImageRep")]
 unsafe impl NSCoding for NSPDFImageRep {}
+
+#[cfg(feature = "AppKit_NSPDFImageRep")]
+unsafe impl NSCopying for NSPDFImageRep {}
 
 #[cfg(feature = "AppKit_NSPDFImageRep")]
 unsafe impl NSObjectProtocol for NSPDFImageRep {}

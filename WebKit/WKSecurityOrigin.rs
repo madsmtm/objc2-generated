@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "WebKit_WKSecurityOrigin")]
     unsafe impl ClassType for WKSecurityOrigin {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

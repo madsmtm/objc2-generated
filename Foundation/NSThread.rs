@@ -11,6 +11,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSThread")]
     unsafe impl ClassType for NSThread {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -38,7 +39,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSMutableDictionary")]
         #[method_id(@__retain_semantics Other threadDictionary)]
-        pub unsafe fn threadDictionary(&self) -> Id<NSMutableDictionary, Owned>;
+        pub unsafe fn threadDictionary(&self) -> Id<NSMutableDictionary>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method(sleepUntilDate:)]

@@ -30,47 +30,45 @@ extern_protocol!(
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSEnumerator")]
-    pub struct NSEnumerator<ObjectType: Message = Object, ObjectTypeOwnership: Ownership = Shared> {
-        _inner0: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
+    pub struct NSEnumerator<ObjectType: Message = Object> {
+        __superclass: NSObject,
+        _inner0: PhantomData<*mut ObjectType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     #[cfg(feature = "Foundation_NSEnumerator")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
-        for NSEnumerator<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> ClassType for NSEnumerator<ObjectType> {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
+
+        fn as_super(&self) -> &Self::Super {
+            &self.__superclass
+        }
+
+        fn as_super_mut(&mut self) -> &mut Self::Super {
+            &mut self.__superclass
+        }
     }
 );
 
 #[cfg(feature = "Foundation_NSEnumerator")]
-unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSFastEnumeration
-    for NSEnumerator<ObjectType, ObjectTypeOwnership>
-{
-}
+unsafe impl<ObjectType: Message> NSFastEnumeration for NSEnumerator<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSEnumerator")]
-unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSObjectProtocol
-    for NSEnumerator<ObjectType, ObjectTypeOwnership>
-{
-}
+unsafe impl<ObjectType: Message> NSObjectProtocol for NSEnumerator<ObjectType> {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSEnumerator")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSEnumerator<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> NSEnumerator<ObjectType> {
         #[method_id(@__retain_semantics Other nextObject)]
-        pub unsafe fn nextObject(&self) -> Option<Id<ObjectType, ObjectTypeOwnership>>;
+        pub unsafe fn nextObject(&self) -> Option<Id<ObjectType>>;
     }
 );
 
 extern_methods!(
     /// NSExtendedEnumerator
     #[cfg(feature = "Foundation_NSEnumerator")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSEnumerator<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> NSEnumerator<ObjectType> {
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other allObjects)]
         pub unsafe fn allObjects(&self) -> Id<NSArray<ObjectType>>;

@@ -33,11 +33,15 @@ extern_class!(
     #[cfg(feature = "CloudKit_CKAllowedSharingOptions")]
     unsafe impl ClassType for CKAllowedSharingOptions {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "CloudKit_CKAllowedSharingOptions")]
 unsafe impl NSCoding for CKAllowedSharingOptions {}
+
+#[cfg(feature = "CloudKit_CKAllowedSharingOptions")]
+unsafe impl NSCopying for CKAllowedSharingOptions {}
 
 #[cfg(feature = "CloudKit_CKAllowedSharingOptions")]
 unsafe impl NSObjectProtocol for CKAllowedSharingOptions {}

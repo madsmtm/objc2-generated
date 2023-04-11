@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "StoreKit_SKAdImpression")]
     unsafe impl ClassType for SKAdImpression {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

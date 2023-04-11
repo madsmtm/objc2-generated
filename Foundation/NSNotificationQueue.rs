@@ -29,6 +29,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSNotificationQueue")]
     unsafe impl ClassType for NSNotificationQueue {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

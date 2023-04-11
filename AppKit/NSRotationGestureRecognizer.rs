@@ -14,6 +14,7 @@ extern_class!(
     unsafe impl ClassType for NSRotationGestureRecognizer {
         #[inherits(NSObject)]
         type Super = NSGestureRecognizer;
+        type Mutability = InteriorMutable;
     }
 );
 

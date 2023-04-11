@@ -11,6 +11,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSPortMessage")]
     unsafe impl ClassType for NSPortMessage {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

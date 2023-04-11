@@ -14,6 +14,7 @@ extern_class!(
     #[cfg(feature = "PhotoKit_PHPersistentChange")]
     unsafe impl ClassType for PHPersistentChange {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

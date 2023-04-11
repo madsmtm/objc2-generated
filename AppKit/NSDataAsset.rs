@@ -15,8 +15,12 @@ extern_class!(
     #[cfg(feature = "AppKit_NSDataAsset")]
     unsafe impl ClassType for NSDataAsset {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "AppKit_NSDataAsset")]
+unsafe impl NSCopying for NSDataAsset {}
 
 #[cfg(feature = "AppKit_NSDataAsset")]
 unsafe impl NSObjectProtocol for NSDataAsset {}

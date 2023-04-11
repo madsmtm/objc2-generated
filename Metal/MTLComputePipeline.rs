@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "Metal_MTLComputePipelineReflection")]
     unsafe impl ClassType for MTLComputePipelineReflection {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -40,8 +41,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLComputePipelineDescriptor")]
     unsafe impl ClassType for MTLComputePipelineDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLComputePipelineDescriptor")]
+unsafe impl NSCopying for MTLComputePipelineDescriptor {}
 
 #[cfg(feature = "Metal_MTLComputePipelineDescriptor")]
 unsafe impl NSObjectProtocol for MTLComputePipelineDescriptor {}

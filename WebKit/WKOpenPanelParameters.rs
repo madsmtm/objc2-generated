@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "WebKit_WKOpenPanelParameters")]
     unsafe impl ClassType for WKOpenPanelParameters {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

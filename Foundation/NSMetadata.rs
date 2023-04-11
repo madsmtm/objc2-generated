@@ -11,6 +11,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSMetadataQuery")]
     unsafe impl ClassType for NSMetadataQuery {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -246,6 +247,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSMetadataItem")]
     unsafe impl ClassType for NSMetadataItem {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -288,6 +290,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSMetadataQueryAttributeValueTuple")]
     unsafe impl ClassType for NSMetadataQueryAttributeValueTuple {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -317,6 +320,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSMetadataQueryResultGroup")]
     unsafe impl ClassType for NSMetadataQueryResultGroup {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

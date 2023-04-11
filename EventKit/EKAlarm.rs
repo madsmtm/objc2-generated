@@ -16,8 +16,12 @@ extern_class!(
     unsafe impl ClassType for EKAlarm {
         #[inherits(NSObject)]
         type Super = EKObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "EventKit_EKAlarm")]
+unsafe impl NSCopying for EKAlarm {}
 
 #[cfg(feature = "EventKit_EKAlarm")]
 unsafe impl NSObjectProtocol for EKAlarm {}

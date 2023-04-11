@@ -27,78 +27,46 @@ __inner_extern_class!(
     pub struct NSTableViewDiffableDataSource<
         SectionIdentifierType: Message = Object,
         ItemIdentifierType: Message = Object,
-        SectionIdentifierTypeOwnership: Ownership = Shared,
-        ItemIdentifierTypeOwnership: Ownership = Shared,
     > {
-        _inner0: PhantomData<*mut (SectionIdentifierType, SectionIdentifierTypeOwnership)>,
-        _inner1: PhantomData<*mut (ItemIdentifierType, ItemIdentifierTypeOwnership)>,
+        __superclass: NSObject,
+        _inner0: PhantomData<*mut SectionIdentifierType>,
+        _inner1: PhantomData<*mut ItemIdentifierType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     #[cfg(feature = "AppKit_NSTableViewDiffableDataSource")]
-    unsafe impl<
-            SectionIdentifierType: Message,
-            ItemIdentifierType: Message,
-            SectionIdentifierTypeOwnership: Ownership,
-            ItemIdentifierTypeOwnership: Ownership,
-        > ClassType
-        for NSTableViewDiffableDataSource<
-            SectionIdentifierType,
-            ItemIdentifierType,
-            SectionIdentifierTypeOwnership,
-            ItemIdentifierTypeOwnership,
-        >
+    unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message> ClassType
+        for NSTableViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
     {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
+
+        fn as_super(&self) -> &Self::Super {
+            &self.__superclass
+        }
+
+        fn as_super_mut(&mut self) -> &mut Self::Super {
+            &mut self.__superclass
+        }
     }
 );
 
 #[cfg(feature = "AppKit_NSTableViewDiffableDataSource")]
-unsafe impl<
-        SectionIdentifierType: Message,
-        ItemIdentifierType: Message,
-        SectionIdentifierTypeOwnership: Ownership,
-        ItemIdentifierTypeOwnership: Ownership,
-    > NSObjectProtocol
-    for NSTableViewDiffableDataSource<
-        SectionIdentifierType,
-        ItemIdentifierType,
-        SectionIdentifierTypeOwnership,
-        ItemIdentifierTypeOwnership,
-    >
+unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message> NSObjectProtocol
+    for NSTableViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
 {
 }
 
 #[cfg(feature = "AppKit_NSTableViewDiffableDataSource")]
-unsafe impl<
-        SectionIdentifierType: Message,
-        ItemIdentifierType: Message,
-        SectionIdentifierTypeOwnership: Ownership,
-        ItemIdentifierTypeOwnership: Ownership,
-    > NSTableViewDataSource
-    for NSTableViewDiffableDataSource<
-        SectionIdentifierType,
-        ItemIdentifierType,
-        SectionIdentifierTypeOwnership,
-        ItemIdentifierTypeOwnership,
-    >
+unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message> NSTableViewDataSource
+    for NSTableViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
 {
 }
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSTableViewDiffableDataSource")]
-    unsafe impl<
-            SectionIdentifierType: Message,
-            ItemIdentifierType: Message,
-            SectionIdentifierTypeOwnership: Ownership,
-            ItemIdentifierTypeOwnership: Ownership,
-        >
-        NSTableViewDiffableDataSource<
-            SectionIdentifierType,
-            ItemIdentifierType,
-            SectionIdentifierTypeOwnership,
-            ItemIdentifierTypeOwnership,
-        >
+    unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
+        NSTableViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
     {
         #[cfg(feature = "AppKit_NSTableView")]
         #[method_id(@__retain_semantics Init initWithTableView:cellProvider:)]
@@ -138,10 +106,8 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other itemIdentifierForRow:)]
-        pub unsafe fn itemIdentifierForRow(
-            &self,
-            row: NSInteger,
-        ) -> Option<Id<ItemIdentifierType, ItemIdentifierTypeOwnership>>;
+        pub unsafe fn itemIdentifierForRow(&self, row: NSInteger)
+            -> Option<Id<ItemIdentifierType>>;
 
         #[method(rowForItemIdentifier:)]
         pub unsafe fn rowForItemIdentifier(&self, identifier: &ItemIdentifierType) -> NSInteger;
@@ -150,7 +116,7 @@ extern_methods!(
         pub unsafe fn sectionIdentifierForRow(
             &self,
             row: NSInteger,
-        ) -> Option<Id<SectionIdentifierType, SectionIdentifierTypeOwnership>>;
+        ) -> Option<Id<SectionIdentifierType>>;
 
         #[method(rowForSectionIdentifier:)]
         pub unsafe fn rowForSectionIdentifier(

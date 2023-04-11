@@ -48,6 +48,7 @@ extern_class!(
     #[cfg(feature = "LocalAuthentication_LAContext")]
     unsafe impl ClassType for LAContext {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

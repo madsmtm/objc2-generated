@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSDraggingSession")]
     unsafe impl ClassType for NSDraggingSession {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

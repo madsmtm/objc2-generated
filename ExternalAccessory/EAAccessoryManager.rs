@@ -34,6 +34,7 @@ extern_class!(
     #[cfg(feature = "ExternalAccessory_EAAccessoryManager")]
     unsafe impl ClassType for EAAccessoryManager {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

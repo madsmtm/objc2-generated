@@ -117,6 +117,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSCell")]
     unsafe impl ClassType for NSCell {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -128,6 +129,9 @@ unsafe impl NSAccessibilityElementProtocol for NSCell {}
 
 #[cfg(feature = "AppKit_NSCell")]
 unsafe impl NSCoding for NSCell {}
+
+#[cfg(feature = "AppKit_NSCell")]
+unsafe impl NSCopying for NSCell {}
 
 #[cfg(feature = "AppKit_NSCell")]
 unsafe impl NSObjectProtocol for NSCell {}

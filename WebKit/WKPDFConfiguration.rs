@@ -13,8 +13,12 @@ extern_class!(
     #[cfg(feature = "WebKit_WKPDFConfiguration")]
     unsafe impl ClassType for WKPDFConfiguration {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "WebKit_WKPDFConfiguration")]
+unsafe impl NSCopying for WKPDFConfiguration {}
 
 #[cfg(feature = "WebKit_WKPDFConfiguration")]
 unsafe impl NSObjectProtocol for WKPDFConfiguration {}

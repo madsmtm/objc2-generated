@@ -14,6 +14,7 @@ extern_class!(
     #[cfg(feature = "HealthKit_HKStatisticsCollection")]
     unsafe impl ClassType for HKStatisticsCollection {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -58,6 +59,7 @@ extern_class!(
     unsafe impl ClassType for HKStatisticsCollectionQuery {
         #[inherits(NSObject)]
         type Super = HKQuery;
+        type Mutability = InteriorMutable;
     }
 );
 

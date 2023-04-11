@@ -62,8 +62,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLRenderPassAttachmentDescriptor")]
     unsafe impl ClassType for MTLRenderPassAttachmentDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLRenderPassAttachmentDescriptor")]
+unsafe impl NSCopying for MTLRenderPassAttachmentDescriptor {}
 
 #[cfg(feature = "Metal_MTLRenderPassAttachmentDescriptor")]
 unsafe impl NSObjectProtocol for MTLRenderPassAttachmentDescriptor {}
@@ -148,8 +152,12 @@ extern_class!(
     unsafe impl ClassType for MTLRenderPassColorAttachmentDescriptor {
         #[inherits(NSObject)]
         type Super = MTLRenderPassAttachmentDescriptor;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLRenderPassColorAttachmentDescriptor")]
+unsafe impl NSCopying for MTLRenderPassColorAttachmentDescriptor {}
 
 #[cfg(feature = "Metal_MTLRenderPassColorAttachmentDescriptor")]
 unsafe impl NSObjectProtocol for MTLRenderPassColorAttachmentDescriptor {}
@@ -183,8 +191,12 @@ extern_class!(
     unsafe impl ClassType for MTLRenderPassDepthAttachmentDescriptor {
         #[inherits(NSObject)]
         type Super = MTLRenderPassAttachmentDescriptor;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLRenderPassDepthAttachmentDescriptor")]
+unsafe impl NSCopying for MTLRenderPassDepthAttachmentDescriptor {}
 
 #[cfg(feature = "Metal_MTLRenderPassDepthAttachmentDescriptor")]
 unsafe impl NSObjectProtocol for MTLRenderPassDepthAttachmentDescriptor {}
@@ -223,8 +235,12 @@ extern_class!(
     unsafe impl ClassType for MTLRenderPassStencilAttachmentDescriptor {
         #[inherits(NSObject)]
         type Super = MTLRenderPassAttachmentDescriptor;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLRenderPassStencilAttachmentDescriptor")]
+unsafe impl NSCopying for MTLRenderPassStencilAttachmentDescriptor {}
 
 #[cfg(feature = "Metal_MTLRenderPassStencilAttachmentDescriptor")]
 unsafe impl NSObjectProtocol for MTLRenderPassStencilAttachmentDescriptor {}
@@ -257,6 +273,7 @@ extern_class!(
     #[cfg(feature = "Metal_MTLRenderPassColorAttachmentDescriptorArray")]
     unsafe impl ClassType for MTLRenderPassColorAttachmentDescriptorArray {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -291,8 +308,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLRenderPassSampleBufferAttachmentDescriptor")]
     unsafe impl ClassType for MTLRenderPassSampleBufferAttachmentDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLRenderPassSampleBufferAttachmentDescriptor")]
+unsafe impl NSCopying for MTLRenderPassSampleBufferAttachmentDescriptor {}
 
 #[cfg(feature = "Metal_MTLRenderPassSampleBufferAttachmentDescriptor")]
 unsafe impl NSObjectProtocol for MTLRenderPassSampleBufferAttachmentDescriptor {}
@@ -346,6 +367,7 @@ extern_class!(
     #[cfg(feature = "Metal_MTLRenderPassSampleBufferAttachmentDescriptorArray")]
     unsafe impl ClassType for MTLRenderPassSampleBufferAttachmentDescriptorArray {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -380,8 +402,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLRenderPassDescriptor")]
     unsafe impl ClassType for MTLRenderPassDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLRenderPassDescriptor")]
+unsafe impl NSCopying for MTLRenderPassDescriptor {}
 
 #[cfg(feature = "Metal_MTLRenderPassDescriptor")]
 unsafe impl NSObjectProtocol for MTLRenderPassDescriptor {}

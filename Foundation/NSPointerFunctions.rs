@@ -31,8 +31,12 @@ extern_class!(
     #[cfg(feature = "Foundation_NSPointerFunctions")]
     unsafe impl ClassType for NSPointerFunctions {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Foundation_NSPointerFunctions")]
+unsafe impl NSCopying for NSPointerFunctions {}
 
 #[cfg(feature = "Foundation_NSPointerFunctions")]
 unsafe impl NSObjectProtocol for NSPointerFunctions {}

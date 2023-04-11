@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "MailKit_MEComposeSession")]
     unsafe impl ClassType for MEComposeSession {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

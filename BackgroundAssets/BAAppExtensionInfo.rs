@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "BackgroundAssets_BAAppExtensionInfo")]
     unsafe impl ClassType for BAAppExtensionInfo {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

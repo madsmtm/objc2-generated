@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialAssertion")]
     unsafe impl ClassType for ASAuthorizationPlatformPublicKeyCredentialAssertion {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -29,6 +30,9 @@ unsafe impl ASPublicKeyCredential for ASAuthorizationPlatformPublicKeyCredential
 
 #[cfg(feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialAssertion")]
 unsafe impl NSCoding for ASAuthorizationPlatformPublicKeyCredentialAssertion {}
+
+#[cfg(feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialAssertion")]
+unsafe impl NSCopying for ASAuthorizationPlatformPublicKeyCredentialAssertion {}
 
 #[cfg(feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialAssertion")]
 unsafe impl NSObjectProtocol for ASAuthorizationPlatformPublicKeyCredentialAssertion {}

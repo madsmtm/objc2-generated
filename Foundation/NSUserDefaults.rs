@@ -17,6 +17,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSUserDefaults")]
     unsafe impl ClassType for NSUserDefaults {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

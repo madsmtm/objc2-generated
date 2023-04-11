@@ -13,11 +13,15 @@ extern_class!(
     #[cfg(feature = "WebKit_WebResource")]
     unsafe impl ClassType for WebResource {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "WebKit_WebResource")]
 unsafe impl NSCoding for WebResource {}
+
+#[cfg(feature = "WebKit_WebResource")]
+unsafe impl NSCopying for WebResource {}
 
 #[cfg(feature = "WebKit_WebResource")]
 unsafe impl NSObjectProtocol for WebResource {}

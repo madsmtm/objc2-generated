@@ -13,6 +13,7 @@ extern_class!(
     unsafe impl ClassType for CLSActivity {
         #[inherits(NSObject)]
         type Super = CLSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

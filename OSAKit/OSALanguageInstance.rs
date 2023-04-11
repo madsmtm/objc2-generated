@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "OSAKit_OSALanguageInstance")]
     unsafe impl ClassType for OSALanguageInstance {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

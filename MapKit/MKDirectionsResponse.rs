@@ -15,6 +15,7 @@ extern_class!(
     #[cfg(feature = "MapKit_MKDirectionsResponse")]
     unsafe impl ClassType for MKDirectionsResponse {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -46,6 +47,7 @@ extern_class!(
     #[cfg(feature = "MapKit_MKRoute")]
     unsafe impl ClassType for MKRoute {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -96,6 +98,7 @@ extern_class!(
     #[cfg(feature = "MapKit_MKRouteStep")]
     unsafe impl ClassType for MKRouteStep {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -133,6 +136,7 @@ extern_class!(
     #[cfg(feature = "MapKit_MKETAResponse")]
     unsafe impl ClassType for MKETAResponse {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

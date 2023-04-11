@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "LocalAuthentication_LARightStore")]
     unsafe impl ClassType for LARightStore {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

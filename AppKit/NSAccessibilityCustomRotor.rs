@@ -49,6 +49,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSAccessibilityCustomRotor")]
     unsafe impl ClassType for NSAccessibilityCustomRotor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -121,6 +122,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSAccessibilityCustomRotorSearchParameters")]
     unsafe impl ClassType for NSAccessibilityCustomRotorSearchParameters {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -168,6 +170,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSAccessibilityCustomRotorItemResult")]
     unsafe impl ClassType for NSAccessibilityCustomRotorItemResult {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

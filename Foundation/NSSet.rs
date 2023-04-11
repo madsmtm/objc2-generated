@@ -3,59 +3,32 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-__inner_extern_class!(
-    #[derive(PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSSet")]
-    pub struct NSSet<ObjectType: Message = Object, ObjectTypeOwnership: Ownership = Shared> {
-        _inner0: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    #[cfg(feature = "Foundation_NSSet")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
-        for NSSet<ObjectType, ObjectTypeOwnership>
-    {
-        type Super = NSObject;
-    }
-);
+#[cfg(feature = "Foundation_NSSet")]
+unsafe impl<ObjectType: Message + NSCoding> NSCoding for NSSet<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSSet")]
-unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSCoding
-    for NSSet<ObjectType, ObjectTypeOwnership>
-{
-}
+unsafe impl<ObjectType: IsIdCloneable> NSCopying for NSSet<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSSet")]
-unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSFastEnumeration
-    for NSSet<ObjectType, ObjectTypeOwnership>
-{
-}
+unsafe impl<ObjectType: Message> NSFastEnumeration for NSSet<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSSet")]
-unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSObjectProtocol
-    for NSSet<ObjectType, ObjectTypeOwnership>
-{
-}
+unsafe impl<ObjectType: IsIdCloneable> NSMutableCopying for NSSet<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSSet")]
-unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSSecureCoding
-    for NSSet<ObjectType, ObjectTypeOwnership>
-{
-}
+unsafe impl<ObjectType: Message> NSObjectProtocol for NSSet<ObjectType> {}
+
+#[cfg(feature = "Foundation_NSSet")]
+unsafe impl<ObjectType: Message + NSSecureCoding> NSSecureCoding for NSSet<ObjectType> {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSSet")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSSet<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> NSSet<ObjectType> {
         #[method(count)]
         pub fn count(&self) -> NSUInteger;
 
         #[method_id(@__retain_semantics Other member:)]
-        pub unsafe fn member(
-            &self,
-            object: &ObjectType,
-        ) -> Option<Id<ObjectType, ObjectTypeOwnership>>;
+        pub unsafe fn member(&self, object: &ObjectType) -> Option<Id<ObjectType>>;
 
         #[cfg(feature = "Foundation_NSEnumerator")]
         #[method_id(@__retain_semantics Other objectEnumerator)]
@@ -83,15 +56,13 @@ extern_methods!(
 extern_methods!(
     /// NSExtendedSet
     #[cfg(feature = "Foundation_NSSet")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSSet<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> NSSet<ObjectType> {
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other allObjects)]
         pub unsafe fn allObjects(&self) -> Id<NSArray<ObjectType>>;
 
         #[method_id(@__retain_semantics Other anyObject)]
-        pub unsafe fn anyObject(&self) -> Option<Id<ObjectType, ObjectTypeOwnership>>;
+        pub unsafe fn anyObject(&self) -> Option<Id<ObjectType>>;
 
         #[method(containsObject:)]
         pub unsafe fn containsObject(&self, an_object: &ObjectType) -> bool;
@@ -170,9 +141,7 @@ extern_methods!(
 extern_methods!(
     /// NSSetCreation
     #[cfg(feature = "Foundation_NSSet")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSSet<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> NSSet<ObjectType> {
         #[method_id(@__retain_semantics Other set)]
         pub unsafe fn set() -> Id<Self>;
 
@@ -214,52 +183,27 @@ extern_methods!(
     }
 );
 
-__inner_extern_class!(
-    #[derive(PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSMutableSet")]
-    pub struct NSMutableSet<ObjectType: Message = Object, ObjectTypeOwnership: Ownership = Shared> {
-        _inner0: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    #[cfg(feature = "Foundation_NSMutableSet")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
-        for NSMutableSet<ObjectType, ObjectTypeOwnership>
-    {
-        #[inherits(NSObject)]
-        type Super = NSSet<ObjectType, ObjectTypeOwnership>;
-    }
-);
+#[cfg(feature = "Foundation_NSMutableSet")]
+unsafe impl<ObjectType: Message + NSCoding> NSCoding for NSMutableSet<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSMutableSet")]
-unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSCoding
-    for NSMutableSet<ObjectType, ObjectTypeOwnership>
-{
-}
+unsafe impl<ObjectType: IsIdCloneable> NSCopying for NSMutableSet<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSMutableSet")]
-unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSFastEnumeration
-    for NSMutableSet<ObjectType, ObjectTypeOwnership>
-{
-}
+unsafe impl<ObjectType: Message> NSFastEnumeration for NSMutableSet<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSMutableSet")]
-unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSObjectProtocol
-    for NSMutableSet<ObjectType, ObjectTypeOwnership>
-{
-}
+unsafe impl<ObjectType: IsIdCloneable> NSMutableCopying for NSMutableSet<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSMutableSet")]
-unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSSecureCoding
-    for NSMutableSet<ObjectType, ObjectTypeOwnership>
-{
-}
+unsafe impl<ObjectType: Message> NSObjectProtocol for NSMutableSet<ObjectType> {}
+
+#[cfg(feature = "Foundation_NSMutableSet")]
+unsafe impl<ObjectType: Message + NSSecureCoding> NSSecureCoding for NSMutableSet<ObjectType> {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSMutableSet")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSMutableSet<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> NSMutableSet<ObjectType> {
         #[method(addObject:)]
         pub unsafe fn addObject(&mut self, object: &ObjectType);
 
@@ -271,25 +215,23 @@ extern_methods!(
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
-        ) -> Option<Id<Self, Owned>>;
+        ) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Owned>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithCapacity:)]
         pub unsafe fn initWithCapacity(
             this: Option<Allocated<Self>>,
             num_items: NSUInteger,
-        ) -> Id<Self, Owned>;
+        ) -> Id<Self>;
     }
 );
 
 extern_methods!(
     /// NSExtendedMutableSet
     #[cfg(feature = "Foundation_NSMutableSet")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSMutableSet<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> NSMutableSet<ObjectType> {
         #[cfg(feature = "Foundation_NSArray")]
         #[method(addObjectsFromArray:)]
         pub unsafe fn addObjectsFromArray(&self, array: &NSArray<ObjectType>);
@@ -318,60 +260,33 @@ extern_methods!(
 extern_methods!(
     /// NSMutableSetCreation
     #[cfg(feature = "Foundation_NSMutableSet")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSMutableSet<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> NSMutableSet<ObjectType> {
         #[method_id(@__retain_semantics Other setWithCapacity:)]
-        pub unsafe fn setWithCapacity(num_items: NSUInteger) -> Id<Self, Owned>;
-    }
-);
-
-__inner_extern_class!(
-    #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSCountedSet")]
-    pub struct NSCountedSet<ObjectType: Message = Object, ObjectTypeOwnership: Ownership = Shared> {
-        _inner0: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    #[cfg(feature = "Foundation_NSCountedSet")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
-        for NSCountedSet<ObjectType, ObjectTypeOwnership>
-    {
-        #[inherits(NSSet<ObjectType, ObjectTypeOwnership, >, NSObject)]
-        type Super = NSMutableSet<ObjectType, ObjectTypeOwnership>;
+        pub unsafe fn setWithCapacity(num_items: NSUInteger) -> Id<Self>;
     }
 );
 
 #[cfg(feature = "Foundation_NSCountedSet")]
-unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSCoding
-    for NSCountedSet<ObjectType, ObjectTypeOwnership>
-{
-}
+unsafe impl<ObjectType: Message + NSCoding> NSCoding for NSCountedSet<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSCountedSet")]
-unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSFastEnumeration
-    for NSCountedSet<ObjectType, ObjectTypeOwnership>
-{
-}
+unsafe impl<ObjectType: IsIdCloneable> NSCopying for NSCountedSet<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSCountedSet")]
-unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSObjectProtocol
-    for NSCountedSet<ObjectType, ObjectTypeOwnership>
-{
-}
+unsafe impl<ObjectType: Message> NSFastEnumeration for NSCountedSet<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSCountedSet")]
-unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSSecureCoding
-    for NSCountedSet<ObjectType, ObjectTypeOwnership>
-{
-}
+unsafe impl<ObjectType: IsIdCloneable> NSMutableCopying for NSCountedSet<ObjectType> {}
+
+#[cfg(feature = "Foundation_NSCountedSet")]
+unsafe impl<ObjectType: Message> NSObjectProtocol for NSCountedSet<ObjectType> {}
+
+#[cfg(feature = "Foundation_NSCountedSet")]
+unsafe impl<ObjectType: Message + NSSecureCoding> NSSecureCoding for NSCountedSet<ObjectType> {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSCountedSet")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSCountedSet<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> NSCountedSet<ObjectType> {
         #[method_id(@__retain_semantics Init initWithCapacity:)]
         pub unsafe fn initWithCapacity(
             this: Option<Allocated<Self>>,
@@ -411,33 +326,29 @@ extern_methods!(
     ///
     /// NSCollectionViewAdditions
     #[cfg(feature = "Foundation_NSMutableSet")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSMutableSet<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> NSMutableSet<ObjectType> {
         #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other setWithCollectionViewIndexPath:)]
-        pub unsafe fn setWithCollectionViewIndexPath(index_path: &NSIndexPath) -> Id<Self, Owned>;
+        pub unsafe fn setWithCollectionViewIndexPath(index_path: &NSIndexPath) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSIndexPath"))]
         #[method_id(@__retain_semantics Other setWithCollectionViewIndexPaths:)]
         pub unsafe fn setWithCollectionViewIndexPaths(
             index_paths: &NSArray<NSIndexPath>,
-        ) -> Id<Self, Owned>;
+        ) -> Id<Self>;
     }
 );
 
 extern_methods!(
     /// Methods declared on superclass `NSSet`
     #[cfg(feature = "Foundation_NSMutableSet")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSMutableSet<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> NSMutableSet<ObjectType> {
         #[method_id(@__retain_semantics Init initWithObjects:count:)]
         pub unsafe fn initWithObjects_count(
             this: Option<Allocated<Self>>,
             objects: *mut NonNull<ObjectType>,
             cnt: NSUInteger,
-        ) -> Id<Self, Owned>;
+        ) -> Id<Self>;
     }
 );
 
@@ -446,47 +357,45 @@ extern_methods!(
     ///
     /// NSSetCreation
     #[cfg(feature = "Foundation_NSMutableSet")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSMutableSet<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> NSMutableSet<ObjectType> {
         #[method_id(@__retain_semantics Other set)]
-        pub unsafe fn set() -> Id<Self, Owned>;
+        pub unsafe fn set() -> Id<Self>;
 
         #[method_id(@__retain_semantics Other setWithObject:)]
-        pub unsafe fn setWithObject(object: &ObjectType) -> Id<Self, Owned>;
+        pub unsafe fn setWithObject(object: &ObjectType) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other setWithObjects:count:)]
         pub unsafe fn setWithObjects_count(
             objects: NonNull<NonNull<ObjectType>>,
             cnt: NSUInteger,
-        ) -> Id<Self, Owned>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other setWithSet:)]
-        pub unsafe fn setWithSet(set: &NSSet<ObjectType>) -> Id<Self, Owned>;
+        pub unsafe fn setWithSet(set: &NSSet<ObjectType>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other setWithArray:)]
-        pub unsafe fn setWithArray(array: &NSArray<ObjectType>) -> Id<Self, Owned>;
+        pub unsafe fn setWithArray(array: &NSArray<ObjectType>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithSet:)]
         pub unsafe fn initWithSet(
             this: Option<Allocated<Self>>,
             set: &NSSet<ObjectType>,
-        ) -> Id<Self, Owned>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithSet:copyItems:)]
         pub unsafe fn initWithSet_copyItems(
             this: Option<Allocated<Self>>,
             set: &NSSet<ObjectType>,
             flag: bool,
-        ) -> Id<Self, Owned>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Init initWithArray:)]
         pub unsafe fn initWithArray(
             this: Option<Allocated<Self>>,
             array: &NSArray<ObjectType>,
-        ) -> Id<Self, Owned>;
+        ) -> Id<Self>;
     }
 );
 
@@ -495,9 +404,7 @@ extern_methods!(
     ///
     /// NSMutableSetCreation
     #[cfg(feature = "Foundation_NSCountedSet")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSCountedSet<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> NSCountedSet<ObjectType> {
         #[method_id(@__retain_semantics Other setWithCapacity:)]
         pub unsafe fn setWithCapacity(num_items: NSUInteger) -> Id<Self>;
     }
@@ -508,9 +415,7 @@ extern_methods!(
     ///
     /// NSCollectionViewAdditions
     #[cfg(feature = "Foundation_NSCountedSet")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSCountedSet<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> NSCountedSet<ObjectType> {
         #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other setWithCollectionViewIndexPath:)]
         pub unsafe fn setWithCollectionViewIndexPath(index_path: &NSIndexPath) -> Id<Self>;
@@ -526,9 +431,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSSet`
     #[cfg(feature = "Foundation_NSCountedSet")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSCountedSet<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> NSCountedSet<ObjectType> {
         #[method_id(@__retain_semantics Init initWithObjects:count:)]
         pub unsafe fn initWithObjects_count(
             this: Option<Allocated<Self>>,
@@ -543,9 +446,7 @@ extern_methods!(
     ///
     /// NSSetCreation
     #[cfg(feature = "Foundation_NSCountedSet")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSCountedSet<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> NSCountedSet<ObjectType> {
         #[method_id(@__retain_semantics Other set)]
         pub unsafe fn set() -> Id<Self>;
 

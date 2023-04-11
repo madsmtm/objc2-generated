@@ -19,6 +19,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSStoryboard")]
     unsafe impl ClassType for NSStoryboard {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

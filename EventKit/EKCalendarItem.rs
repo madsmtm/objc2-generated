@@ -16,6 +16,7 @@ extern_class!(
     unsafe impl ClassType for EKCalendarItem {
         #[inherits(NSObject)]
         type Super = EKObject;
+        type Mutability = InteriorMutable;
     }
 );
 

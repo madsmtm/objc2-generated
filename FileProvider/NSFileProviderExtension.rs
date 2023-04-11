@@ -14,6 +14,7 @@ extern_class!(
     #[cfg(feature = "FileProvider_NSFileProviderExtension")]
     unsafe impl ClassType for NSFileProviderExtension {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

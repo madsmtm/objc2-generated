@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSColorSampler")]
     unsafe impl ClassType for NSColorSampler {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

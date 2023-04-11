@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSCursor")]
     unsafe impl ClassType for NSCursor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

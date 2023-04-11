@@ -57,6 +57,7 @@ extern_class!(
     unsafe impl ClassType for CLSContext {
         #[inherits(NSObject)]
         type Super = CLSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -6,48 +6,37 @@ use crate::Foundation::*;
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSCache")]
-    pub struct NSCache<
-        KeyType: Message = Object,
-        ObjectType: Message = Object,
-        KeyTypeOwnership: Ownership = Shared,
-        ObjectTypeOwnership: Ownership = Shared,
-    > {
-        _inner0: PhantomData<*mut (KeyType, KeyTypeOwnership)>,
-        _inner1: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
+    pub struct NSCache<KeyType: Message = Object, ObjectType: Message = Object> {
+        __superclass: NSObject,
+        _inner0: PhantomData<*mut KeyType>,
+        _inner1: PhantomData<*mut ObjectType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     #[cfg(feature = "Foundation_NSCache")]
-    unsafe impl<
-            KeyType: Message,
-            ObjectType: Message,
-            KeyTypeOwnership: Ownership,
-            ObjectTypeOwnership: Ownership,
-        > ClassType for NSCache<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
-    {
+    unsafe impl<KeyType: Message, ObjectType: Message> ClassType for NSCache<KeyType, ObjectType> {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
+
+        fn as_super(&self) -> &Self::Super {
+            &self.__superclass
+        }
+
+        fn as_super_mut(&mut self) -> &mut Self::Super {
+            &mut self.__superclass
+        }
     }
 );
 
 #[cfg(feature = "Foundation_NSCache")]
-unsafe impl<
-        KeyType: Message,
-        ObjectType: Message,
-        KeyTypeOwnership: Ownership,
-        ObjectTypeOwnership: Ownership,
-    > NSObjectProtocol for NSCache<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+unsafe impl<KeyType: Message, ObjectType: Message> NSObjectProtocol
+    for NSCache<KeyType, ObjectType>
 {
 }
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSCache")]
-    unsafe impl<
-            KeyType: Message,
-            ObjectType: Message,
-            KeyTypeOwnership: Ownership,
-            ObjectTypeOwnership: Ownership,
-        > NSCache<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
-    {
+    unsafe impl<KeyType: Message, ObjectType: Message> NSCache<KeyType, ObjectType> {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSString>;
@@ -63,10 +52,7 @@ extern_methods!(
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSCacheDelegate>>);
 
         #[method_id(@__retain_semantics Other objectForKey:)]
-        pub unsafe fn objectForKey(
-            &self,
-            key: &KeyType,
-        ) -> Option<Id<ObjectType, ObjectTypeOwnership>>;
+        pub unsafe fn objectForKey(&self, key: &KeyType) -> Option<Id<ObjectType>>;
 
         #[method(setObject:forKey:)]
         pub unsafe fn setObject_forKey(&self, obj: &ObjectType, key: &KeyType);

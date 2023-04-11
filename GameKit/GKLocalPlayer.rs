@@ -14,6 +14,7 @@ extern_class!(
     unsafe impl ClassType for GKLocalPlayer {
         #[inherits(GKBasePlayer, NSObject)]
         type Super = GKPlayer;
+        type Mutability = InteriorMutable;
     }
 );
 

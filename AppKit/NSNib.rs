@@ -15,6 +15,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSNib")]
     unsafe impl ClassType for NSNib {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

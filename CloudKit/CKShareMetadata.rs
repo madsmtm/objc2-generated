@@ -13,11 +13,15 @@ extern_class!(
     #[cfg(feature = "CloudKit_CKShareMetadata")]
     unsafe impl ClassType for CKShareMetadata {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "CloudKit_CKShareMetadata")]
 unsafe impl NSCoding for CKShareMetadata {}
+
+#[cfg(feature = "CloudKit_CKShareMetadata")]
+unsafe impl NSCopying for CKShareMetadata {}
 
 #[cfg(feature = "CloudKit_CKShareMetadata")]
 unsafe impl NSObjectProtocol for CKShareMetadata {}

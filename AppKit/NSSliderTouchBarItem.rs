@@ -22,6 +22,7 @@ extern_class!(
     unsafe impl ClassType for NSSliderTouchBarItem {
         #[inherits(NSObject)]
         type Super = NSTouchBarItem;
+        type Mutability = InteriorMutable;
     }
 );
 

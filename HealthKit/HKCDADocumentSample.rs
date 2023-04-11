@@ -15,6 +15,7 @@ extern_class!(
     unsafe impl ClassType for HKCDADocumentSample {
         #[inherits(HKSample, HKObject, NSObject)]
         type Super = HKDocumentSample;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -59,6 +60,7 @@ extern_class!(
     #[cfg(feature = "HealthKit_HKCDADocument")]
     unsafe impl ClassType for HKCDADocument {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

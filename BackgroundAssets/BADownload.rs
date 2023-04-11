@@ -12,11 +12,15 @@ extern_class!(
     #[cfg(feature = "BackgroundAssets_BADownload")]
     unsafe impl ClassType for BADownload {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "BackgroundAssets_BADownload")]
 unsafe impl NSCoding for BADownload {}
+
+#[cfg(feature = "BackgroundAssets_BADownload")]
+unsafe impl NSCopying for BADownload {}
 
 #[cfg(feature = "BackgroundAssets_BADownload")]
 unsafe impl NSObjectProtocol for BADownload {}

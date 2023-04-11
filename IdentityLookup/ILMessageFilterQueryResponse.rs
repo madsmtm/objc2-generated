@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "IdentityLookup_ILMessageFilterQueryResponse")]
     unsafe impl ClassType for ILMessageFilterQueryResponse {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

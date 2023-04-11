@@ -41,11 +41,15 @@ extern_class!(
     #[cfg(feature = "Foundation_NSException")]
     unsafe impl ClassType for NSException {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSException")]
 unsafe impl NSCoding for NSException {}
+
+#[cfg(feature = "Foundation_NSException")]
+unsafe impl NSCopying for NSException {}
 
 #[cfg(feature = "Foundation_NSException")]
 unsafe impl NSObjectProtocol for NSException {}
@@ -120,6 +124,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSAssertionHandler")]
     unsafe impl ClassType for NSAssertionHandler {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -24,6 +24,7 @@ extern_class!(
     unsafe impl ClassType for GCKeyboardInput {
         #[inherits(NSObject)]
         type Super = GCPhysicalInputProfile;
+        type Mutability = InteriorMutable;
     }
 );
 

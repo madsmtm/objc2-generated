@@ -14,11 +14,15 @@ extern_class!(
     unsafe impl ClassType for CLBeaconRegion {
         #[inherits(NSObject)]
         type Super = CLRegion;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "CoreLocation_CLBeaconRegion")]
 unsafe impl NSCoding for CLBeaconRegion {}
+
+#[cfg(feature = "CoreLocation_CLBeaconRegion")]
+unsafe impl NSCopying for CLBeaconRegion {}
 
 #[cfg(feature = "CoreLocation_CLBeaconRegion")]
 unsafe impl NSObjectProtocol for CLBeaconRegion {}
@@ -106,7 +110,7 @@ extern_methods!(
         pub unsafe fn peripheralDataWithMeasuredPower(
             &self,
             measured_power: Option<&NSNumber>,
-        ) -> Id<NSMutableDictionary<NSString, Object>, Owned>;
+        ) -> Id<NSMutableDictionary<NSString, Object>>;
 
         #[cfg(feature = "CoreLocation_CLBeaconIdentityConstraint")]
         #[method_id(@__retain_semantics Other beaconIdentityConstraint)]
@@ -145,11 +149,15 @@ extern_class!(
     #[cfg(feature = "CoreLocation_CLBeacon")]
     unsafe impl ClassType for CLBeacon {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "CoreLocation_CLBeacon")]
 unsafe impl NSCoding for CLBeacon {}
+
+#[cfg(feature = "CoreLocation_CLBeacon")]
+unsafe impl NSCopying for CLBeacon {}
 
 #[cfg(feature = "CoreLocation_CLBeacon")]
 unsafe impl NSObjectProtocol for CLBeacon {}

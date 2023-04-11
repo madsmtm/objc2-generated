@@ -58,6 +58,7 @@ extern_class!(
     #[cfg(feature = "CoreLocation_CLLocationManager")]
     unsafe impl ClassType for CLLocationManager {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -34,6 +34,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSJSONSerialization")]
     unsafe impl ClassType for NSJSONSerialization {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

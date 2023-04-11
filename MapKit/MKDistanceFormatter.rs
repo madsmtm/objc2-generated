@@ -35,11 +35,15 @@ extern_class!(
     unsafe impl ClassType for MKDistanceFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "MapKit_MKDistanceFormatter")]
 unsafe impl NSCoding for MKDistanceFormatter {}
+
+#[cfg(feature = "MapKit_MKDistanceFormatter")]
+unsafe impl NSCopying for MKDistanceFormatter {}
 
 #[cfg(feature = "MapKit_MKDistanceFormatter")]
 unsafe impl NSObjectProtocol for MKDistanceFormatter {}

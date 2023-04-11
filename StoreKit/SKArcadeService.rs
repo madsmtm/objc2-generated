@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "StoreKit_SKArcadeService")]
     unsafe impl ClassType for SKArcadeService {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

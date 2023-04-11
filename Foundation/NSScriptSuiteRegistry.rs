@@ -11,6 +11,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSScriptSuiteRegistry")]
     unsafe impl ClassType for NSScriptSuiteRegistry {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

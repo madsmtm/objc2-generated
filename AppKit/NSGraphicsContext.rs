@@ -42,6 +42,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSGraphicsContext")]
     unsafe impl ClassType for NSGraphicsContext {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

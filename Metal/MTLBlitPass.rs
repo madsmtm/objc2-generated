@@ -12,8 +12,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLBlitPassSampleBufferAttachmentDescriptor")]
     unsafe impl ClassType for MTLBlitPassSampleBufferAttachmentDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLBlitPassSampleBufferAttachmentDescriptor")]
+unsafe impl NSCopying for MTLBlitPassSampleBufferAttachmentDescriptor {}
 
 #[cfg(feature = "Metal_MTLBlitPassSampleBufferAttachmentDescriptor")]
 unsafe impl NSObjectProtocol for MTLBlitPassSampleBufferAttachmentDescriptor {}
@@ -56,6 +60,7 @@ extern_class!(
     #[cfg(feature = "Metal_MTLBlitPassSampleBufferAttachmentDescriptorArray")]
     unsafe impl ClassType for MTLBlitPassSampleBufferAttachmentDescriptorArray {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -90,8 +95,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLBlitPassDescriptor")]
     unsafe impl ClassType for MTLBlitPassDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLBlitPassDescriptor")]
+unsafe impl NSCopying for MTLBlitPassDescriptor {}
 
 #[cfg(feature = "Metal_MTLBlitPassDescriptor")]
 unsafe impl NSObjectProtocol for MTLBlitPassDescriptor {}

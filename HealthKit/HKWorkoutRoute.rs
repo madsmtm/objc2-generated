@@ -15,6 +15,7 @@ extern_class!(
     unsafe impl ClassType for HKWorkoutRoute {
         #[inherits(HKSample, HKObject, NSObject)]
         type Super = HKSeriesSample;
+        type Mutability = InteriorMutable;
     }
 );
 

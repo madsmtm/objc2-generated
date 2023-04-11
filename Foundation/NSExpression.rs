@@ -30,11 +30,15 @@ extern_class!(
     #[cfg(feature = "Foundation_NSExpression")]
     unsafe impl ClassType for NSExpression {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSExpression")]
 unsafe impl NSCoding for NSExpression {}
+
+#[cfg(feature = "Foundation_NSExpression")]
+unsafe impl NSCopying for NSExpression {}
 
 #[cfg(feature = "Foundation_NSExpression")]
 unsafe impl NSObjectProtocol for NSExpression {}

@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "CoreData_NSAtomicStoreCacheNode")]
     unsafe impl ClassType for NSAtomicStoreCacheNode {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -37,9 +38,7 @@ extern_methods!(
             feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other propertyCache)]
-        pub unsafe fn propertyCache(
-            &self,
-        ) -> Option<Id<NSMutableDictionary<NSString, Object>, Owned>>;
+        pub unsafe fn propertyCache(&self) -> Option<Id<NSMutableDictionary<NSString, Object>>>;
 
         #[cfg(all(
             feature = "Foundation_NSMutableDictionary",

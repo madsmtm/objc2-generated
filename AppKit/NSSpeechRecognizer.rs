@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSSpeechRecognizer")]
     unsafe impl ClassType for NSSpeechRecognizer {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

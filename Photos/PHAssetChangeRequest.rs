@@ -15,6 +15,7 @@ extern_class!(
     unsafe impl ClassType for PHAssetChangeRequest {
         #[inherits(NSObject)]
         type Super = PHChangeRequest;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -105,6 +106,7 @@ extern_class!(
     #[cfg(feature = "PhotoKit_PHContentEditingInputRequestOptions")]
     unsafe impl ClassType for PHContentEditingInputRequestOptions {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "LocalAuthentication_LAAuthenticationRequirement")]
     unsafe impl ClassType for LAAuthenticationRequirement {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -46,6 +47,7 @@ extern_class!(
     #[cfg(feature = "LocalAuthentication_LABiometryFallbackRequirement")]
     unsafe impl ClassType for LABiometryFallbackRequirement {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

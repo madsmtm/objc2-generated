@@ -13,8 +13,12 @@ extern_class!(
     unsafe impl ClassType for NSBatchDeleteRequest {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreRequest;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "CoreData_NSBatchDeleteRequest")]
+unsafe impl NSCopying for NSBatchDeleteRequest {}
 
 #[cfg(feature = "CoreData_NSBatchDeleteRequest")]
 unsafe impl NSObjectProtocol for NSBatchDeleteRequest {}

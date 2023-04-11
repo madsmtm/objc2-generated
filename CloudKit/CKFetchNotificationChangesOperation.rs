@@ -15,6 +15,7 @@ extern_class!(
     unsafe impl ClassType for CKFetchNotificationChangesOperation {
         #[inherits(NSOperation, NSObject)]
         type Super = CKOperation;
+        type Mutability = InteriorMutable;
     }
 );
 

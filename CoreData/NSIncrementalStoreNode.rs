@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "CoreData_NSIncrementalStoreNode")]
     unsafe impl ClassType for NSIncrementalStoreNode {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

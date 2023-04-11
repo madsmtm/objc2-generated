@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "GameController_GCPhysicalInputProfile")]
     unsafe impl ClassType for GCPhysicalInputProfile {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

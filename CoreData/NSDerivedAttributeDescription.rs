@@ -13,11 +13,15 @@ extern_class!(
     unsafe impl ClassType for NSDerivedAttributeDescription {
         #[inherits(NSPropertyDescription, NSObject)]
         type Super = NSAttributeDescription;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "CoreData_NSDerivedAttributeDescription")]
 unsafe impl NSCoding for NSDerivedAttributeDescription {}
+
+#[cfg(feature = "CoreData_NSDerivedAttributeDescription")]
+unsafe impl NSCopying for NSDerivedAttributeDescription {}
 
 #[cfg(feature = "CoreData_NSDerivedAttributeDescription")]
 unsafe impl NSObjectProtocol for NSDerivedAttributeDescription {}

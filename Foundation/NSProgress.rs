@@ -28,6 +28,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSProgress")]
     unsafe impl ClassType for NSProgress {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

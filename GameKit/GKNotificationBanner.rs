@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "GameKit_GKNotificationBanner")]
     unsafe impl ClassType for GKNotificationBanner {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -16,6 +16,7 @@ extern_class!(
     unsafe impl ClassType for GCMouseInput {
         #[inherits(NSObject)]
         type Super = GCPhysicalInputProfile;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -25,6 +25,18 @@ ns_enum!(
     }
 );
 
+#[cfg(feature = "AppKit_NSPopover")]
+unsafe impl NSAccessibility for NSPopover {}
+
+#[cfg(feature = "AppKit_NSPopover")]
+unsafe impl NSAccessibilityElementProtocol for NSPopover {}
+
+#[cfg(feature = "AppKit_NSPopover")]
+unsafe impl NSCoding for NSPopover {}
+
+#[cfg(feature = "AppKit_NSPopover")]
+unsafe impl NSObjectProtocol for NSPopover {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSPopover")]
     unsafe impl NSPopover {

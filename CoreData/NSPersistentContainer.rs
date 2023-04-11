@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "CoreData_NSPersistentContainer")]
     unsafe impl ClassType for NSPersistentContainer {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

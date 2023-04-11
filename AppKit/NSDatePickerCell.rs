@@ -43,6 +43,7 @@ extern_class!(
     unsafe impl ClassType for NSDatePickerCell {
         #[inherits(NSCell, NSObject)]
         type Super = NSActionCell;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -54,6 +55,9 @@ unsafe impl NSAccessibilityElementProtocol for NSDatePickerCell {}
 
 #[cfg(feature = "AppKit_NSDatePickerCell")]
 unsafe impl NSCoding for NSDatePickerCell {}
+
+#[cfg(feature = "AppKit_NSDatePickerCell")]
+unsafe impl NSCopying for NSDatePickerCell {}
 
 #[cfg(feature = "AppKit_NSDatePickerCell")]
 unsafe impl NSObjectProtocol for NSDatePickerCell {}

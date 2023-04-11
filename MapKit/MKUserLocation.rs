@@ -15,6 +15,7 @@ extern_class!(
     #[cfg(feature = "MapKit_MKUserLocation")]
     unsafe impl ClassType for MKUserLocation {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

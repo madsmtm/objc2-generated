@@ -16,6 +16,7 @@ extern_class!(
     unsafe impl ClassType for CKOperation {
         #[inherits(NSObject)]
         type Super = NSOperation;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -66,6 +67,7 @@ extern_class!(
     #[cfg(feature = "CloudKit_CKOperationConfiguration")]
     unsafe impl ClassType for CKOperationConfiguration {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

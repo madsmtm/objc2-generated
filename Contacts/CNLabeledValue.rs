@@ -7,42 +7,42 @@ use crate::Foundation::*;
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Contacts_CNLabeledValue")]
-    pub struct CNLabeledValue<ValueType: Message = Object, ValueTypeOwnership: Ownership = Shared> {
-        _inner0: PhantomData<*mut (ValueType, ValueTypeOwnership)>,
+    pub struct CNLabeledValue<ValueType: Message = Object> {
+        __superclass: NSObject,
+        _inner0: PhantomData<*mut ValueType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     #[cfg(feature = "Contacts_CNLabeledValue")]
-    unsafe impl<ValueType: Message, ValueTypeOwnership: Ownership> ClassType
-        for CNLabeledValue<ValueType, ValueTypeOwnership>
-    {
+    unsafe impl<ValueType: Message> ClassType for CNLabeledValue<ValueType> {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
+
+        fn as_super(&self) -> &Self::Super {
+            &self.__superclass
+        }
+
+        fn as_super_mut(&mut self) -> &mut Self::Super {
+            &mut self.__superclass
+        }
     }
 );
 
 #[cfg(feature = "Contacts_CNLabeledValue")]
-unsafe impl<ValueType: Message, ValueTypeOwnership: Ownership> NSCoding
-    for CNLabeledValue<ValueType, ValueTypeOwnership>
-{
-}
+unsafe impl<ValueType: Message + NSCoding> NSCoding for CNLabeledValue<ValueType> {}
 
 #[cfg(feature = "Contacts_CNLabeledValue")]
-unsafe impl<ValueType: Message, ValueTypeOwnership: Ownership> NSObjectProtocol
-    for CNLabeledValue<ValueType, ValueTypeOwnership>
-{
-}
+unsafe impl<ValueType: IsIdCloneable> NSCopying for CNLabeledValue<ValueType> {}
 
 #[cfg(feature = "Contacts_CNLabeledValue")]
-unsafe impl<ValueType: Message, ValueTypeOwnership: Ownership> NSSecureCoding
-    for CNLabeledValue<ValueType, ValueTypeOwnership>
-{
-}
+unsafe impl<ValueType: Message> NSObjectProtocol for CNLabeledValue<ValueType> {}
+
+#[cfg(feature = "Contacts_CNLabeledValue")]
+unsafe impl<ValueType: Message + NSSecureCoding> NSSecureCoding for CNLabeledValue<ValueType> {}
 
 extern_methods!(
     #[cfg(feature = "Contacts_CNLabeledValue")]
-    unsafe impl<ValueType: Message, ValueTypeOwnership: Ownership>
-        CNLabeledValue<ValueType, ValueTypeOwnership>
-    {
+    unsafe impl<ValueType: Message> CNLabeledValue<ValueType> {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Id<NSString>;
@@ -52,7 +52,7 @@ extern_methods!(
         pub unsafe fn label(&self) -> Option<Id<NSString>>;
 
         #[method_id(@__retain_semantics Other value)]
-        pub unsafe fn value(&self) -> Id<ValueType, ValueTypeOwnership>;
+        pub unsafe fn value(&self) -> Id<ValueType>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other labeledValueWithLabel:value:)]

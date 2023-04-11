@@ -11,6 +11,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSDistributedLock")]
     unsafe impl ClassType for NSDistributedLock {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

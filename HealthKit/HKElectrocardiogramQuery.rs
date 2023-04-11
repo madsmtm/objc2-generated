@@ -14,8 +14,12 @@ extern_class!(
     #[cfg(feature = "HealthKit_HKElectrocardiogramVoltageMeasurement")]
     unsafe impl ClassType for HKElectrocardiogramVoltageMeasurement {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "HealthKit_HKElectrocardiogramVoltageMeasurement")]
+unsafe impl NSCopying for HKElectrocardiogramVoltageMeasurement {}
 
 #[cfg(feature = "HealthKit_HKElectrocardiogramVoltageMeasurement")]
 unsafe impl NSObjectProtocol for HKElectrocardiogramVoltageMeasurement {}
@@ -44,6 +48,7 @@ extern_class!(
     unsafe impl ClassType for HKElectrocardiogramQuery {
         #[inherits(NSObject)]
         type Super = HKQuery;
+        type Mutability = InteriorMutable;
     }
 );
 

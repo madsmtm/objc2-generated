@@ -17,11 +17,15 @@ extern_class!(
     #[cfg(feature = "MapKit_MKMapCameraZoomRange")]
     unsafe impl ClassType for MKMapCameraZoomRange {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "MapKit_MKMapCameraZoomRange")]
 unsafe impl NSCoding for MKMapCameraZoomRange {}
+
+#[cfg(feature = "MapKit_MKMapCameraZoomRange")]
+unsafe impl NSCopying for MKMapCameraZoomRange {}
 
 #[cfg(feature = "MapKit_MKMapCameraZoomRange")]
 unsafe impl NSObjectProtocol for MKMapCameraZoomRange {}

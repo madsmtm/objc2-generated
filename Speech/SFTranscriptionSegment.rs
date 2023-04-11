@@ -12,11 +12,15 @@ extern_class!(
     #[cfg(feature = "Speech_SFTranscriptionSegment")]
     unsafe impl ClassType for SFTranscriptionSegment {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Speech_SFTranscriptionSegment")]
 unsafe impl NSCoding for SFTranscriptionSegment {}
+
+#[cfg(feature = "Speech_SFTranscriptionSegment")]
+unsafe impl NSCopying for SFTranscriptionSegment {}
 
 #[cfg(feature = "Speech_SFTranscriptionSegment")]
 unsafe impl NSObjectProtocol for SFTranscriptionSegment {}

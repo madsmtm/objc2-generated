@@ -23,11 +23,15 @@ extern_class!(
     #[cfg(feature = "Foundation_NSAffineTransform")]
     unsafe impl ClassType for NSAffineTransform {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSAffineTransform")]
 unsafe impl NSCoding for NSAffineTransform {}
+
+#[cfg(feature = "Foundation_NSAffineTransform")]
+unsafe impl NSCopying for NSAffineTransform {}
 
 #[cfg(feature = "Foundation_NSAffineTransform")]
 unsafe impl NSObjectProtocol for NSAffineTransform {}

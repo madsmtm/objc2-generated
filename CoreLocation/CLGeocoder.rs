@@ -15,6 +15,7 @@ extern_class!(
     #[cfg(feature = "CoreLocation_CLGeocoder")]
     unsafe impl ClassType for CLGeocoder {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

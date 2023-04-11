@@ -15,6 +15,7 @@ extern_class!(
     #[cfg(feature = "MapKit_MKLocalSearchResponse")]
     unsafe impl ClassType for MKLocalSearchResponse {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

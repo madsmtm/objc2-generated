@@ -30,8 +30,12 @@ extern_class!(
     unsafe impl ClassType for DOMEvent {
         #[inherits(WebScriptObject, NSObject)]
         type Super = DOMObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "WebKit_DOMEvent")]
+unsafe impl NSCopying for DOMEvent {}
 
 #[cfg(feature = "WebKit_DOMEvent")]
 unsafe impl NSObjectProtocol for DOMEvent {}

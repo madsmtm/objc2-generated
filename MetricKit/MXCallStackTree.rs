@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "MetricKit_MXCallStackTree")]
     unsafe impl ClassType for MXCallStackTree {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

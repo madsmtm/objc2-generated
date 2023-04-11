@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSSliderAccessory")]
     unsafe impl ClassType for NSSliderAccessory {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -64,11 +65,15 @@ extern_class!(
     #[cfg(feature = "AppKit_NSSliderAccessoryBehavior")]
     unsafe impl ClassType for NSSliderAccessoryBehavior {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "AppKit_NSSliderAccessoryBehavior")]
 unsafe impl NSCoding for NSSliderAccessoryBehavior {}
+
+#[cfg(feature = "AppKit_NSSliderAccessoryBehavior")]
+unsafe impl NSCopying for NSSliderAccessoryBehavior {}
 
 #[cfg(feature = "AppKit_NSSliderAccessoryBehavior")]
 unsafe impl NSObjectProtocol for NSSliderAccessoryBehavior {}

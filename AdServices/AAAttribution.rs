@@ -23,6 +23,7 @@ extern_class!(
     #[cfg(feature = "AdServices_AAAttribution")]
     unsafe impl ClassType for AAAttribution {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

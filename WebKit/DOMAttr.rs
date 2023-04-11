@@ -15,11 +15,15 @@ extern_class!(
     unsafe impl ClassType for DOMAttr {
         #[inherits(DOMObject, WebScriptObject, NSObject)]
         type Super = DOMNode;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "WebKit_DOMAttr")]
 unsafe impl DOMEventTarget for DOMAttr {}
+
+#[cfg(feature = "WebKit_DOMAttr")]
+unsafe impl NSCopying for DOMAttr {}
 
 #[cfg(feature = "WebKit_DOMAttr")]
 unsafe impl NSObjectProtocol for DOMAttr {}

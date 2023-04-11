@@ -13,6 +13,7 @@ extern_class!(
     unsafe impl ClassType for CATransformLayer {
         #[inherits(NSObject)]
         type Super = CALayer;
+        type Mutability = InteriorMutable;
     }
 );
 

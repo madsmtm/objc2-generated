@@ -113,6 +113,7 @@ extern_class!(
     unsafe impl ClassType for NSCollectionViewItem {
         #[inherits(NSResponder, NSObject)]
         type Super = NSViewController;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -121,6 +122,9 @@ unsafe impl NSCoding for NSCollectionViewItem {}
 
 #[cfg(feature = "AppKit_NSCollectionViewItem")]
 unsafe impl NSCollectionViewElement for NSCollectionViewItem {}
+
+#[cfg(feature = "AppKit_NSCollectionViewItem")]
+unsafe impl NSCopying for NSCollectionViewItem {}
 
 #[cfg(feature = "AppKit_NSCollectionViewItem")]
 unsafe impl NSEditor for NSCollectionViewItem {}
@@ -187,6 +191,7 @@ extern_class!(
     unsafe impl ClassType for NSCollectionView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
+        type Mutability = InteriorMutable;
     }
 );
 

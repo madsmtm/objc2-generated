@@ -23,78 +23,61 @@ pub type NSMapTableOptions = NSUInteger;
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSMapTable")]
-    pub struct NSMapTable<
-        KeyType: Message = Object,
-        ObjectType: Message = Object,
-        KeyTypeOwnership: Ownership = Shared,
-        ObjectTypeOwnership: Ownership = Shared,
-    > {
-        _inner0: PhantomData<*mut (KeyType, KeyTypeOwnership)>,
-        _inner1: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
+    pub struct NSMapTable<KeyType: Message = Object, ObjectType: Message = Object> {
+        __superclass: NSObject,
+        _inner0: PhantomData<*mut KeyType>,
+        _inner1: PhantomData<*mut ObjectType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     #[cfg(feature = "Foundation_NSMapTable")]
-    unsafe impl<
-            KeyType: Message,
-            ObjectType: Message,
-            KeyTypeOwnership: Ownership,
-            ObjectTypeOwnership: Ownership,
-        > ClassType for NSMapTable<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
-    {
+    unsafe impl<KeyType: Message, ObjectType: Message> ClassType for NSMapTable<KeyType, ObjectType> {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
+
+        fn as_super(&self) -> &Self::Super {
+            &self.__superclass
+        }
+
+        fn as_super_mut(&mut self) -> &mut Self::Super {
+            &mut self.__superclass
+        }
     }
 );
 
 #[cfg(feature = "Foundation_NSMapTable")]
-unsafe impl<
-        KeyType: Message,
-        ObjectType: Message,
-        KeyTypeOwnership: Ownership,
-        ObjectTypeOwnership: Ownership,
-    > NSCoding for NSMapTable<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+unsafe impl<KeyType: Message + NSCoding, ObjectType: Message + NSCoding> NSCoding
+    for NSMapTable<KeyType, ObjectType>
 {
 }
 
 #[cfg(feature = "Foundation_NSMapTable")]
-unsafe impl<
-        KeyType: Message,
-        ObjectType: Message,
-        KeyTypeOwnership: Ownership,
-        ObjectTypeOwnership: Ownership,
-    > NSFastEnumeration for NSMapTable<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+unsafe impl<KeyType: IsIdCloneable, ObjectType: IsIdCloneable> NSCopying
+    for NSMapTable<KeyType, ObjectType>
 {
 }
 
 #[cfg(feature = "Foundation_NSMapTable")]
-unsafe impl<
-        KeyType: Message,
-        ObjectType: Message,
-        KeyTypeOwnership: Ownership,
-        ObjectTypeOwnership: Ownership,
-    > NSObjectProtocol for NSMapTable<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+unsafe impl<KeyType: Message, ObjectType: Message> NSFastEnumeration
+    for NSMapTable<KeyType, ObjectType>
 {
 }
 
 #[cfg(feature = "Foundation_NSMapTable")]
-unsafe impl<
-        KeyType: Message,
-        ObjectType: Message,
-        KeyTypeOwnership: Ownership,
-        ObjectTypeOwnership: Ownership,
-    > NSSecureCoding for NSMapTable<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+unsafe impl<KeyType: Message, ObjectType: Message> NSObjectProtocol
+    for NSMapTable<KeyType, ObjectType>
+{
+}
+
+#[cfg(feature = "Foundation_NSMapTable")]
+unsafe impl<KeyType: Message + NSSecureCoding, ObjectType: Message + NSSecureCoding> NSSecureCoding
+    for NSMapTable<KeyType, ObjectType>
 {
 }
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSMapTable")]
-    unsafe impl<
-            KeyType: Message,
-            ObjectType: Message,
-            KeyTypeOwnership: Ownership,
-            ObjectTypeOwnership: Ownership,
-        > NSMapTable<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
-    {
+    unsafe impl<KeyType: Message, ObjectType: Message> NSMapTable<KeyType, ObjectType> {
         #[method_id(@__retain_semantics Init initWithKeyOptions:valueOptions:capacity:)]
         pub unsafe fn initWithKeyOptions_valueOptions_capacity(
             this: Option<Allocated<Self>>,
@@ -155,10 +138,7 @@ extern_methods!(
         pub unsafe fn valuePointerFunctions(&self) -> Id<NSPointerFunctions>;
 
         #[method_id(@__retain_semantics Other objectForKey:)]
-        pub unsafe fn objectForKey(
-            &self,
-            a_key: Option<&KeyType>,
-        ) -> Option<Id<ObjectType, ObjectTypeOwnership>>;
+        pub unsafe fn objectForKey(&self, a_key: Option<&KeyType>) -> Option<Id<ObjectType>>;
 
         #[method(removeObjectForKey:)]
         pub unsafe fn removeObjectForKey(&self, a_key: Option<&KeyType>);

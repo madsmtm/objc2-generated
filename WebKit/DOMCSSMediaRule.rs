@@ -15,8 +15,12 @@ extern_class!(
     unsafe impl ClassType for DOMCSSMediaRule {
         #[inherits(DOMObject, WebScriptObject, NSObject)]
         type Super = DOMCSSRule;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "WebKit_DOMCSSMediaRule")]
+unsafe impl NSCopying for DOMCSSMediaRule {}
 
 #[cfg(feature = "WebKit_DOMCSSMediaRule")]
 unsafe impl NSObjectProtocol for DOMCSSMediaRule {}

@@ -14,6 +14,7 @@ extern_class!(
     #[cfg(feature = "Automator_AMWorkspace")]
     unsafe impl ClassType for AMWorkspace {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -13,8 +13,12 @@ extern_class!(
     #[cfg(feature = "WebKit_WKFrameInfo")]
     unsafe impl ClassType for WKFrameInfo {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "WebKit_WKFrameInfo")]
+unsafe impl NSCopying for WKFrameInfo {}
 
 #[cfg(feature = "WebKit_WKFrameInfo")]
 unsafe impl NSObjectProtocol for WKFrameInfo {}

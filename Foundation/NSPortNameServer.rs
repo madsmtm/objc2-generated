@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSPortNameServer")]
     unsafe impl ClassType for NSPortNameServer {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -56,6 +57,7 @@ extern_class!(
     unsafe impl ClassType for NSMachBootstrapServer {
         #[inherits(NSObject)]
         type Super = NSPortNameServer;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -100,6 +102,7 @@ extern_class!(
     unsafe impl ClassType for NSMessagePortNameServer {
         #[inherits(NSObject)]
         type Super = NSPortNameServer;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -136,6 +139,7 @@ extern_class!(
     unsafe impl ClassType for NSSocketPortNameServer {
         #[inherits(NSObject)]
         type Super = NSPortNameServer;
+        type Mutability = InteriorMutable;
     }
 );
 

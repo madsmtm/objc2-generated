@@ -13,11 +13,15 @@ extern_class!(
     #[cfg(feature = "UserNotifications_UNNotificationActionIcon")]
     unsafe impl ClassType for UNNotificationActionIcon {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "UserNotifications_UNNotificationActionIcon")]
 unsafe impl NSCoding for UNNotificationActionIcon {}
+
+#[cfg(feature = "UserNotifications_UNNotificationActionIcon")]
+unsafe impl NSCopying for UNNotificationActionIcon {}
 
 #[cfg(feature = "UserNotifications_UNNotificationActionIcon")]
 unsafe impl NSObjectProtocol for UNNotificationActionIcon {}

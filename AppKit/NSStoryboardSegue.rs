@@ -15,6 +15,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSStoryboardSegue")]
     unsafe impl ClassType for NSStoryboardSegue {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

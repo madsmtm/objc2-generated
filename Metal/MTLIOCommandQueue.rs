@@ -85,8 +85,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLIOCommandQueueDescriptor")]
     unsafe impl ClassType for MTLIOCommandQueueDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLIOCommandQueueDescriptor")]
+unsafe impl NSCopying for MTLIOCommandQueueDescriptor {}
 
 #[cfg(feature = "Metal_MTLIOCommandQueueDescriptor")]
 unsafe impl NSObjectProtocol for MTLIOCommandQueueDescriptor {}

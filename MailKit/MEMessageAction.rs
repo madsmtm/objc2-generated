@@ -42,6 +42,7 @@ extern_class!(
     #[cfg(feature = "MailKit_MEMessageAction")]
     unsafe impl ClassType for MEMessageAction {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

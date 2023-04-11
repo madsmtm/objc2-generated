@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "GameKit_GKVoiceChatService")]
     unsafe impl ClassType for GKVoiceChatService {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

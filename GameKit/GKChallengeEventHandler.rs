@@ -65,6 +65,7 @@ extern_class!(
     #[cfg(feature = "GameKit_GKChallengeEventHandler")]
     unsafe impl ClassType for GKChallengeEventHandler {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -30,11 +30,15 @@ extern_class!(
     #[cfg(feature = "HealthKit_HKDevice")]
     unsafe impl ClassType for HKDevice {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "HealthKit_HKDevice")]
 unsafe impl NSCoding for HKDevice {}
+
+#[cfg(feature = "HealthKit_HKDevice")]
+unsafe impl NSCopying for HKDevice {}
 
 #[cfg(feature = "HealthKit_HKDevice")]
 unsafe impl NSObjectProtocol for HKDevice {}

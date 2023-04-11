@@ -15,11 +15,15 @@ extern_class!(
     unsafe impl ClassType for DOMCDATASection {
         #[inherits(DOMCharacterData, DOMNode, DOMObject, WebScriptObject, NSObject)]
         type Super = DOMText;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "WebKit_DOMCDATASection")]
 unsafe impl DOMEventTarget for DOMCDATASection {}
+
+#[cfg(feature = "WebKit_DOMCDATASection")]
+unsafe impl NSCopying for DOMCDATASection {}
 
 #[cfg(feature = "WebKit_DOMCDATASection")]
 unsafe impl NSObjectProtocol for DOMCDATASection {}

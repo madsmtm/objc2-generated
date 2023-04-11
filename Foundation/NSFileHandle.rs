@@ -11,6 +11,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSFileHandle")]
     unsafe impl ClassType for NSFileHandle {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -281,6 +282,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSPipe")]
     unsafe impl ClassType for NSPipe {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -11,6 +11,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSURLConnection")]
     unsafe impl ClassType for NSURLConnection {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -25,6 +25,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSTextRange")]
     unsafe impl ClassType for NSTextRange {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

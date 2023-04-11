@@ -56,6 +56,7 @@ extern_class!(
     #[cfg(feature = "CoreData_NSManagedObjectContext")]
     unsafe impl ClassType for NSManagedObjectContext {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -130,7 +131,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSMutableDictionary")]
         #[method_id(@__retain_semantics Other userInfo)]
-        pub unsafe fn userInfo(&self) -> Id<NSMutableDictionary, Owned>;
+        pub unsafe fn userInfo(&self) -> Id<NSMutableDictionary>;
 
         #[method(concurrencyType)]
         pub unsafe fn concurrencyType(&self) -> NSManagedObjectContextConcurrencyType;

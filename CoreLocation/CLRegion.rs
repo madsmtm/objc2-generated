@@ -32,11 +32,15 @@ extern_class!(
     #[cfg(feature = "CoreLocation_CLRegion")]
     unsafe impl ClassType for CLRegion {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "CoreLocation_CLRegion")]
 unsafe impl NSCoding for CLRegion {}
+
+#[cfg(feature = "CoreLocation_CLRegion")]
+unsafe impl NSCopying for CLRegion {}
 
 #[cfg(feature = "CoreLocation_CLRegion")]
 unsafe impl NSObjectProtocol for CLRegion {}

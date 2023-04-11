@@ -13,11 +13,18 @@ extern_class!(
     unsafe impl ClassType for CNMutableGroup {
         #[inherits(NSObject)]
         type Super = CNGroup;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Contacts_CNMutableGroup")]
 unsafe impl NSCoding for CNMutableGroup {}
+
+#[cfg(feature = "Contacts_CNMutableGroup")]
+unsafe impl NSCopying for CNMutableGroup {}
+
+#[cfg(feature = "Contacts_CNMutableGroup")]
+unsafe impl NSMutableCopying for CNMutableGroup {}
 
 #[cfg(feature = "Contacts_CNMutableGroup")]
 unsafe impl NSObjectProtocol for CNMutableGroup {}

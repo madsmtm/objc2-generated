@@ -32,6 +32,7 @@ extern_class!(
     unsafe impl ClassType for NSSliderCell {
         #[inherits(NSCell, NSObject)]
         type Super = NSActionCell;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -43,6 +44,9 @@ unsafe impl NSAccessibilityElementProtocol for NSSliderCell {}
 
 #[cfg(feature = "AppKit_NSSliderCell")]
 unsafe impl NSCoding for NSSliderCell {}
+
+#[cfg(feature = "AppKit_NSSliderCell")]
+unsafe impl NSCopying for NSSliderCell {}
 
 #[cfg(feature = "AppKit_NSSliderCell")]
 unsafe impl NSObjectProtocol for NSSliderCell {}

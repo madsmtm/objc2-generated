@@ -73,6 +73,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSInputManager")]
     unsafe impl ClassType for NSInputManager {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

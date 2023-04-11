@@ -15,6 +15,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSTextInputContext")]
     unsafe impl ClassType for NSTextInputContext {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

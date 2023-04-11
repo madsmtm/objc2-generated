@@ -93,8 +93,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLBufferLayoutDescriptor")]
     unsafe impl ClassType for MTLBufferLayoutDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLBufferLayoutDescriptor")]
+unsafe impl NSCopying for MTLBufferLayoutDescriptor {}
 
 #[cfg(feature = "Metal_MTLBufferLayoutDescriptor")]
 unsafe impl NSObjectProtocol for MTLBufferLayoutDescriptor {}
@@ -130,6 +134,7 @@ extern_class!(
     #[cfg(feature = "Metal_MTLBufferLayoutDescriptorArray")]
     unsafe impl ClassType for MTLBufferLayoutDescriptorArray {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -164,8 +169,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLAttributeDescriptor")]
     unsafe impl ClassType for MTLAttributeDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLAttributeDescriptor")]
+unsafe impl NSCopying for MTLAttributeDescriptor {}
 
 #[cfg(feature = "Metal_MTLAttributeDescriptor")]
 unsafe impl NSObjectProtocol for MTLAttributeDescriptor {}
@@ -201,6 +210,7 @@ extern_class!(
     #[cfg(feature = "Metal_MTLAttributeDescriptorArray")]
     unsafe impl ClassType for MTLAttributeDescriptorArray {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -235,8 +245,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
     unsafe impl ClassType for MTLStageInputOutputDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
+unsafe impl NSCopying for MTLStageInputOutputDescriptor {}
 
 #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
 unsafe impl NSObjectProtocol for MTLStageInputOutputDescriptor {}

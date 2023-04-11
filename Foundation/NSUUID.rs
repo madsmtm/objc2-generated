@@ -11,11 +11,15 @@ extern_class!(
     #[cfg(feature = "Foundation_NSUUID")]
     unsafe impl ClassType for NSUUID {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSUUID")]
 unsafe impl NSCoding for NSUUID {}
+
+#[cfg(feature = "Foundation_NSUUID")]
+unsafe impl NSCopying for NSUUID {}
 
 #[cfg(feature = "Foundation_NSUUID")]
 unsafe impl NSObjectProtocol for NSUUID {}

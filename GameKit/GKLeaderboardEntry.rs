@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "GameKit_GKLeaderboardEntry")]
     unsafe impl ClassType for GKLeaderboardEntry {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

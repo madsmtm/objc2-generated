@@ -17,6 +17,7 @@ extern_class!(
     #[cfg(feature = "GameController_GCKeyboard")]
     unsafe impl ClassType for GCKeyboard {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

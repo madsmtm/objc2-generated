@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSColorPicker")]
     unsafe impl ClassType for NSColorPicker {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

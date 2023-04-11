@@ -24,6 +24,7 @@ extern_class!(
     unsafe impl ClassType for NSLevelIndicatorCell {
         #[inherits(NSCell, NSObject)]
         type Super = NSActionCell;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -35,6 +36,9 @@ unsafe impl NSAccessibilityElementProtocol for NSLevelIndicatorCell {}
 
 #[cfg(feature = "AppKit_NSLevelIndicatorCell")]
 unsafe impl NSCoding for NSLevelIndicatorCell {}
+
+#[cfg(feature = "AppKit_NSLevelIndicatorCell")]
+unsafe impl NSCopying for NSLevelIndicatorCell {}
 
 #[cfg(feature = "AppKit_NSLevelIndicatorCell")]
 unsafe impl NSObjectProtocol for NSLevelIndicatorCell {}

@@ -22,11 +22,15 @@ extern_class!(
     unsafe impl ClassType for CXPlayDTMFCallAction {
         #[inherits(CXAction, NSObject)]
         type Super = CXCallAction;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "CallKit_CXPlayDTMFCallAction")]
 unsafe impl NSCoding for CXPlayDTMFCallAction {}
+
+#[cfg(feature = "CallKit_CXPlayDTMFCallAction")]
+unsafe impl NSCopying for CXPlayDTMFCallAction {}
 
 #[cfg(feature = "CallKit_CXPlayDTMFCallAction")]
 unsafe impl NSObjectProtocol for CXPlayDTMFCallAction {}

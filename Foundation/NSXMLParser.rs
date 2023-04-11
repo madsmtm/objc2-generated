@@ -21,6 +21,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSXMLParser")]
     unsafe impl ClassType for NSXMLParser {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

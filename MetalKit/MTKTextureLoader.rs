@@ -69,6 +69,7 @@ extern_class!(
     #[cfg(feature = "MetalKit_MTKTextureLoader")]
     unsafe impl ClassType for MTKTextureLoader {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

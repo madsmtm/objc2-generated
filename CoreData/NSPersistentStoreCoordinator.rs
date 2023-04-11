@@ -102,6 +102,7 @@ extern_class!(
     #[cfg(feature = "CoreData_NSPersistentStoreCoordinator")]
     unsafe impl ClassType for NSPersistentStoreCoordinator {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

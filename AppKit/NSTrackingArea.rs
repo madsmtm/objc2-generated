@@ -29,11 +29,15 @@ extern_class!(
     #[cfg(feature = "AppKit_NSTrackingArea")]
     unsafe impl ClassType for NSTrackingArea {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "AppKit_NSTrackingArea")]
 unsafe impl NSCoding for NSTrackingArea {}
+
+#[cfg(feature = "AppKit_NSTrackingArea")]
+unsafe impl NSCopying for NSTrackingArea {}
 
 #[cfg(feature = "AppKit_NSTrackingArea")]
 unsafe impl NSObjectProtocol for NSTrackingArea {}

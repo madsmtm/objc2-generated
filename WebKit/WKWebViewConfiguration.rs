@@ -31,11 +31,15 @@ extern_class!(
     #[cfg(feature = "WebKit_WKWebViewConfiguration")]
     unsafe impl ClassType for WKWebViewConfiguration {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "WebKit_WKWebViewConfiguration")]
 unsafe impl NSCoding for WKWebViewConfiguration {}
+
+#[cfg(feature = "WebKit_WKWebViewConfiguration")]
+unsafe impl NSCopying for WKWebViewConfiguration {}
 
 #[cfg(feature = "WebKit_WKWebViewConfiguration")]
 unsafe impl NSObjectProtocol for WKWebViewConfiguration {}

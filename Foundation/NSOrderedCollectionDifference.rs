@@ -15,39 +15,36 @@ ns_options!(
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSOrderedCollectionDifference")]
-    pub struct NSOrderedCollectionDifference<
-        ObjectType: Message = Object,
-        ObjectTypeOwnership: Ownership = Shared,
-    > {
-        _inner0: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
+    pub struct NSOrderedCollectionDifference<ObjectType: Message = Object> {
+        __superclass: NSObject,
+        _inner0: PhantomData<*mut ObjectType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     #[cfg(feature = "Foundation_NSOrderedCollectionDifference")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
-        for NSOrderedCollectionDifference<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> ClassType for NSOrderedCollectionDifference<ObjectType> {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
+
+        fn as_super(&self) -> &Self::Super {
+            &self.__superclass
+        }
+
+        fn as_super_mut(&mut self) -> &mut Self::Super {
+            &mut self.__superclass
+        }
     }
 );
 
 #[cfg(feature = "Foundation_NSOrderedCollectionDifference")]
-unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSFastEnumeration
-    for NSOrderedCollectionDifference<ObjectType, ObjectTypeOwnership>
-{
-}
+unsafe impl<ObjectType: Message> NSFastEnumeration for NSOrderedCollectionDifference<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSOrderedCollectionDifference")]
-unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSObjectProtocol
-    for NSOrderedCollectionDifference<ObjectType, ObjectTypeOwnership>
-{
-}
+unsafe impl<ObjectType: Message> NSObjectProtocol for NSOrderedCollectionDifference<ObjectType> {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSOrderedCollectionDifference")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSOrderedCollectionDifference<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> NSOrderedCollectionDifference<ObjectType> {
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSOrderedCollectionChange"

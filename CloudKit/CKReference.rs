@@ -21,11 +21,15 @@ extern_class!(
     #[cfg(feature = "CloudKit_CKReference")]
     unsafe impl ClassType for CKReference {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "CloudKit_CKReference")]
 unsafe impl NSCoding for CKReference {}
+
+#[cfg(feature = "CloudKit_CKReference")]
+unsafe impl NSCopying for CKReference {}
 
 #[cfg(feature = "CloudKit_CKReference")]
 unsafe impl NSObjectProtocol for CKReference {}

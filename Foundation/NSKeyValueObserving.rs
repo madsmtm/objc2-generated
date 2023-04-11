@@ -50,9 +50,7 @@ extern_static!(NSKeyValueChangeNotificationIsPriorKey: &'static NSKeyValueChange
 extern_methods!(
     /// NSKeyValueObserverRegistration
     #[cfg(feature = "Foundation_NSArray")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSArray<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> NSArray<ObjectType> {
         #[cfg(all(feature = "Foundation_NSIndexSet", feature = "Foundation_NSString"))]
         #[method(addObserver:toObjectsAtIndexes:forKeyPath:options:context:)]
         pub unsafe fn addObserver_toObjectsAtIndexes_forKeyPath_options_context(
@@ -111,9 +109,7 @@ extern_methods!(
 extern_methods!(
     /// NSKeyValueObserverRegistration
     #[cfg(feature = "Foundation_NSOrderedSet")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSOrderedSet<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         #[cfg(feature = "Foundation_NSString")]
         #[method(addObserver:forKeyPath:options:context:)]
         pub unsafe fn addObserver_forKeyPath_options_context(
@@ -142,9 +138,7 @@ extern_methods!(
 extern_methods!(
     /// NSKeyValueObserverRegistration
     #[cfg(feature = "Foundation_NSSet")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSSet<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> NSSet<ObjectType> {
         #[cfg(feature = "Foundation_NSString")]
         #[method(addObserver:forKeyPath:options:context:)]
         pub unsafe fn addObserver_forKeyPath_options_context(

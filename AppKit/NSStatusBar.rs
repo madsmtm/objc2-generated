@@ -17,6 +17,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSStatusBar")]
     unsafe impl ClassType for NSStatusBar {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

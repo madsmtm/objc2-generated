@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "StoreKit_SKPaymentQueue")]
     unsafe impl ClassType for SKPaymentQueue {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

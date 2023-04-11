@@ -12,8 +12,12 @@ extern_class!(
     #[cfg(feature = "CoreData_NSPersistentHistoryTransaction")]
     unsafe impl ClassType for NSPersistentHistoryTransaction {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "CoreData_NSPersistentHistoryTransaction")]
+unsafe impl NSCopying for NSPersistentHistoryTransaction {}
 
 #[cfg(feature = "CoreData_NSPersistentHistoryTransaction")]
 unsafe impl NSObjectProtocol for NSPersistentHistoryTransaction {}

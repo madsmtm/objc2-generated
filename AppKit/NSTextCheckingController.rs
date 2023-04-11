@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSTextCheckingController")]
     unsafe impl ClassType for NSTextCheckingController {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -19,6 +19,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSAppleEventManager")]
     unsafe impl ClassType for NSAppleEventManager {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

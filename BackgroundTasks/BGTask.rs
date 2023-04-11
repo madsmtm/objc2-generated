@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "BackgroundTasks_BGTask")]
     unsafe impl ClassType for BGTask {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -51,6 +52,7 @@ extern_class!(
     unsafe impl ClassType for BGProcessingTask {
         #[inherits(NSObject)]
         type Super = BGTask;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -71,6 +73,7 @@ extern_class!(
     unsafe impl ClassType for BGAppRefreshTask {
         #[inherits(NSObject)]
         type Super = BGTask;
+        type Mutability = InteriorMutable;
     }
 );
 

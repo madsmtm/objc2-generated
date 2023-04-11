@@ -25,6 +25,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSFileVersion")]
     unsafe impl ClassType for NSFileVersion {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

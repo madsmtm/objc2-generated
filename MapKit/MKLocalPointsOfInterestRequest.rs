@@ -17,8 +17,12 @@ extern_class!(
     #[cfg(feature = "MapKit_MKLocalPointsOfInterestRequest")]
     unsafe impl ClassType for MKLocalPointsOfInterestRequest {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "MapKit_MKLocalPointsOfInterestRequest")]
+unsafe impl NSCopying for MKLocalPointsOfInterestRequest {}
 
 #[cfg(feature = "MapKit_MKLocalPointsOfInterestRequest")]
 unsafe impl NSObjectProtocol for MKLocalPointsOfInterestRequest {}

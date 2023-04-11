@@ -40,6 +40,7 @@ extern_class!(
     unsafe impl ClassType for NSImageCell {
         #[inherits(NSObject)]
         type Super = NSCell;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -51,6 +52,9 @@ unsafe impl NSAccessibilityElementProtocol for NSImageCell {}
 
 #[cfg(feature = "AppKit_NSImageCell")]
 unsafe impl NSCoding for NSImageCell {}
+
+#[cfg(feature = "AppKit_NSImageCell")]
+unsafe impl NSCopying for NSImageCell {}
 
 #[cfg(feature = "AppKit_NSImageCell")]
 unsafe impl NSObjectProtocol for NSImageCell {}

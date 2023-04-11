@@ -15,11 +15,18 @@ extern_class!(
     #[cfg(feature = "Foundation_NSAttributedString")]
     unsafe impl ClassType for NSAttributedString {
         type Super = NSObject;
+        type Mutability = ImmutableWithMutableSubclass<NSMutableAttributedString>;
     }
 );
 
 #[cfg(feature = "Foundation_NSAttributedString")]
 unsafe impl NSCoding for NSAttributedString {}
+
+#[cfg(feature = "Foundation_NSAttributedString")]
+unsafe impl NSCopying for NSAttributedString {}
+
+#[cfg(feature = "Foundation_NSAttributedString")]
+unsafe impl NSMutableCopying for NSAttributedString {}
 
 #[cfg(feature = "Foundation_NSAttributedString")]
 unsafe impl NSObjectProtocol for NSAttributedString {}
@@ -139,18 +146,25 @@ extern_methods!(
 
 extern_class!(
     #[derive(PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSMutableAttributedString")]
+    #[cfg(feature = "Foundation_NSAttributedString")]
     pub struct NSMutableAttributedString;
 
-    #[cfg(feature = "Foundation_NSMutableAttributedString")]
+    #[cfg(feature = "Foundation_NSAttributedString")]
     unsafe impl ClassType for NSMutableAttributedString {
         #[inherits(NSObject)]
         type Super = NSAttributedString;
+        type Mutability = MutableWithImmutableSuperclass<NSAttributedString>;
     }
 );
 
 #[cfg(feature = "Foundation_NSMutableAttributedString")]
 unsafe impl NSCoding for NSMutableAttributedString {}
+
+#[cfg(feature = "Foundation_NSMutableAttributedString")]
+unsafe impl NSCopying for NSMutableAttributedString {}
+
+#[cfg(feature = "Foundation_NSMutableAttributedString")]
+unsafe impl NSMutableCopying for NSMutableAttributedString {}
 
 #[cfg(feature = "Foundation_NSMutableAttributedString")]
 unsafe impl NSObjectProtocol for NSMutableAttributedString {}
@@ -181,7 +195,7 @@ extern_methods!(
     unsafe impl NSMutableAttributedString {
         #[cfg(feature = "Foundation_NSMutableString")]
         #[method_id(@__retain_semantics Other mutableString)]
-        pub unsafe fn mutableString(&self) -> Id<NSMutableString, Owned>;
+        pub unsafe fn mutableString(&self) -> Id<NSMutableString>;
 
         #[method(addAttribute:value:range:)]
         pub unsafe fn addAttribute_value_range(
@@ -286,11 +300,15 @@ extern_class!(
     #[cfg(feature = "Foundation_NSAttributedStringMarkdownSourcePosition")]
     unsafe impl ClassType for NSAttributedStringMarkdownSourcePosition {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSAttributedStringMarkdownSourcePosition")]
 unsafe impl NSCoding for NSAttributedStringMarkdownSourcePosition {}
+
+#[cfg(feature = "Foundation_NSAttributedStringMarkdownSourcePosition")]
+unsafe impl NSCopying for NSAttributedStringMarkdownSourcePosition {}
 
 #[cfg(feature = "Foundation_NSAttributedStringMarkdownSourcePosition")]
 unsafe impl NSObjectProtocol for NSAttributedStringMarkdownSourcePosition {}
@@ -336,8 +354,12 @@ extern_class!(
     #[cfg(feature = "Foundation_NSAttributedStringMarkdownParsingOptions")]
     unsafe impl ClassType for NSAttributedStringMarkdownParsingOptions {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Foundation_NSAttributedStringMarkdownParsingOptions")]
+unsafe impl NSCopying for NSAttributedStringMarkdownParsingOptions {}
 
 #[cfg(feature = "Foundation_NSAttributedStringMarkdownParsingOptions")]
 unsafe impl NSObjectProtocol for NSAttributedStringMarkdownParsingOptions {}
@@ -512,11 +534,15 @@ extern_class!(
     #[cfg(feature = "Foundation_NSPresentationIntent")]
     unsafe impl ClassType for NSPresentationIntent {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSPresentationIntent")]
 unsafe impl NSCoding for NSPresentationIntent {}
+
+#[cfg(feature = "Foundation_NSPresentationIntent")]
+unsafe impl NSCopying for NSPresentationIntent {}
 
 #[cfg(feature = "Foundation_NSPresentationIntent")]
 unsafe impl NSObjectProtocol for NSPresentationIntent {}
@@ -660,7 +686,7 @@ extern_methods!(
     unsafe impl NSMutableAttributedString {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithString:)]
-        pub fn initWithString(this: Option<Allocated<Self>>, str: &NSString) -> Id<Self, Owned>;
+        pub fn initWithString(this: Option<Allocated<Self>>, str: &NSString) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithString:attributes:)]
@@ -668,13 +694,13 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             str: &NSString,
             attrs: Option<&NSDictionary<NSAttributedStringKey, Object>>,
-        ) -> Id<Self, Owned>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithAttributedString:)]
         pub fn initWithAttributedString(
             this: Option<Allocated<Self>>,
             attr_str: &NSAttributedString,
-        ) -> Id<Self, Owned>;
+        ) -> Id<Self>;
     }
 );
 
@@ -695,7 +721,7 @@ extern_methods!(
             markdown_file: &NSURL,
             options: Option<&NSAttributedStringMarkdownParsingOptions>,
             base_url: Option<&NSURL>,
-        ) -> Result<Id<Self, Owned>, Id<NSError>>;
+        ) -> Result<Id<Self>, Id<NSError>>;
 
         #[cfg(all(
             feature = "Foundation_NSAttributedStringMarkdownParsingOptions",
@@ -709,7 +735,7 @@ extern_methods!(
             markdown: &NSData,
             options: Option<&NSAttributedStringMarkdownParsingOptions>,
             base_url: Option<&NSURL>,
-        ) -> Result<Id<Self, Owned>, Id<NSError>>;
+        ) -> Result<Id<Self>, Id<NSError>>;
 
         #[cfg(all(
             feature = "Foundation_NSAttributedStringMarkdownParsingOptions",
@@ -723,6 +749,6 @@ extern_methods!(
             markdown_string: &NSString,
             options: Option<&NSAttributedStringMarkdownParsingOptions>,
             base_url: Option<&NSURL>,
-        ) -> Result<Id<Self, Owned>, Id<NSError>>;
+        ) -> Result<Id<Self>, Id<NSError>>;
     }
 );

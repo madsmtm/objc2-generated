@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "GameController_GCGearShifterElement")]
     unsafe impl ClassType for GCGearShifterElement {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

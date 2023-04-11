@@ -11,11 +11,15 @@ extern_class!(
     #[cfg(feature = "Foundation_NSExtensionItem")]
     unsafe impl ClassType for NSExtensionItem {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSExtensionItem")]
 unsafe impl NSCoding for NSExtensionItem {}
+
+#[cfg(feature = "Foundation_NSExtensionItem")]
+unsafe impl NSCopying for NSExtensionItem {}
 
 #[cfg(feature = "Foundation_NSExtensionItem")]
 unsafe impl NSObjectProtocol for NSExtensionItem {}

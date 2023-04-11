@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSTextAlternatives")]
     unsafe impl ClassType for NSTextAlternatives {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

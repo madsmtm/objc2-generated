@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "MailKit_MEDecodedMessage")]
     unsafe impl ClassType for MEDecodedMessage {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

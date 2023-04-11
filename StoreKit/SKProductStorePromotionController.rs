@@ -22,6 +22,7 @@ extern_class!(
     #[cfg(feature = "StoreKit_SKProductStorePromotionController")]
     unsafe impl ClassType for SKProductStorePromotionController {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

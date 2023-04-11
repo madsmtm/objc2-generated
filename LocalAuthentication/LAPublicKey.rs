@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "LocalAuthentication_LAPublicKey")]
     unsafe impl ClassType for LAPublicKey {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

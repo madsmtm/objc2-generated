@@ -14,8 +14,12 @@ extern_class!(
     #[cfg(feature = "PhotoKit_PHFetchOptions")]
     unsafe impl ClassType for PHFetchOptions {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "PhotoKit_PHFetchOptions")]
+unsafe impl NSCopying for PHFetchOptions {}
 
 #[cfg(feature = "PhotoKit_PHFetchOptions")]
 unsafe impl NSObjectProtocol for PHFetchOptions {}

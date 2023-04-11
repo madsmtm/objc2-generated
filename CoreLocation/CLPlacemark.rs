@@ -13,11 +13,15 @@ extern_class!(
     #[cfg(feature = "CoreLocation_CLPlacemark")]
     unsafe impl ClassType for CLPlacemark {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "CoreLocation_CLPlacemark")]
 unsafe impl NSCoding for CLPlacemark {}
+
+#[cfg(feature = "CoreLocation_CLPlacemark")]
+unsafe impl NSCopying for CLPlacemark {}
 
 #[cfg(feature = "CoreLocation_CLPlacemark")]
 unsafe impl NSObjectProtocol for CLPlacemark {}

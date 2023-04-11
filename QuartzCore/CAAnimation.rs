@@ -28,6 +28,7 @@ extern_class!(
     #[cfg(feature = "CoreAnimation_CAAnimation")]
     unsafe impl ClassType for CAAnimation {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -39,6 +40,9 @@ unsafe impl CAMediaTiming for CAAnimation {}
 
 #[cfg(feature = "CoreAnimation_CAAnimation")]
 unsafe impl NSCoding for CAAnimation {}
+
+#[cfg(feature = "CoreAnimation_CAAnimation")]
+unsafe impl NSCopying for CAAnimation {}
 
 #[cfg(feature = "CoreAnimation_CAAnimation")]
 unsafe impl NSObjectProtocol for CAAnimation {}
@@ -119,6 +123,7 @@ extern_class!(
     unsafe impl ClassType for CAPropertyAnimation {
         #[inherits(NSObject)]
         type Super = CAAnimation;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -130,6 +135,9 @@ unsafe impl CAMediaTiming for CAPropertyAnimation {}
 
 #[cfg(feature = "CoreAnimation_CAPropertyAnimation")]
 unsafe impl NSCoding for CAPropertyAnimation {}
+
+#[cfg(feature = "CoreAnimation_CAPropertyAnimation")]
+unsafe impl NSCopying for CAPropertyAnimation {}
 
 #[cfg(feature = "CoreAnimation_CAPropertyAnimation")]
 unsafe impl NSObjectProtocol for CAPropertyAnimation {}
@@ -183,6 +191,7 @@ extern_class!(
     unsafe impl ClassType for CABasicAnimation {
         #[inherits(CAAnimation, NSObject)]
         type Super = CAPropertyAnimation;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -194,6 +203,9 @@ unsafe impl CAMediaTiming for CABasicAnimation {}
 
 #[cfg(feature = "CoreAnimation_CABasicAnimation")]
 unsafe impl NSCoding for CABasicAnimation {}
+
+#[cfg(feature = "CoreAnimation_CABasicAnimation")]
+unsafe impl NSCopying for CABasicAnimation {}
 
 #[cfg(feature = "CoreAnimation_CABasicAnimation")]
 unsafe impl NSObjectProtocol for CABasicAnimation {}
@@ -233,6 +245,7 @@ extern_class!(
     unsafe impl ClassType for CAKeyframeAnimation {
         #[inherits(CAAnimation, NSObject)]
         type Super = CAPropertyAnimation;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -244,6 +257,9 @@ unsafe impl CAMediaTiming for CAKeyframeAnimation {}
 
 #[cfg(feature = "CoreAnimation_CAKeyframeAnimation")]
 unsafe impl NSCoding for CAKeyframeAnimation {}
+
+#[cfg(feature = "CoreAnimation_CAKeyframeAnimation")]
+unsafe impl NSCopying for CAKeyframeAnimation {}
 
 #[cfg(feature = "CoreAnimation_CAKeyframeAnimation")]
 unsafe impl NSObjectProtocol for CAKeyframeAnimation {}
@@ -348,6 +364,7 @@ extern_class!(
     unsafe impl ClassType for CASpringAnimation {
         #[inherits(CAPropertyAnimation, CAAnimation, NSObject)]
         type Super = CABasicAnimation;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -359,6 +376,9 @@ unsafe impl CAMediaTiming for CASpringAnimation {}
 
 #[cfg(feature = "CoreAnimation_CASpringAnimation")]
 unsafe impl NSCoding for CASpringAnimation {}
+
+#[cfg(feature = "CoreAnimation_CASpringAnimation")]
+unsafe impl NSCopying for CASpringAnimation {}
 
 #[cfg(feature = "CoreAnimation_CASpringAnimation")]
 unsafe impl NSObjectProtocol for CASpringAnimation {}
@@ -407,6 +427,7 @@ extern_class!(
     unsafe impl ClassType for CATransition {
         #[inherits(NSObject)]
         type Super = CAAnimation;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -418,6 +439,9 @@ unsafe impl CAMediaTiming for CATransition {}
 
 #[cfg(feature = "CoreAnimation_CATransition")]
 unsafe impl NSCoding for CATransition {}
+
+#[cfg(feature = "CoreAnimation_CATransition")]
+unsafe impl NSCopying for CATransition {}
 
 #[cfg(feature = "CoreAnimation_CATransition")]
 unsafe impl NSObjectProtocol for CATransition {}
@@ -485,6 +509,7 @@ extern_class!(
     unsafe impl ClassType for CAAnimationGroup {
         #[inherits(NSObject)]
         type Super = CAAnimation;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -496,6 +521,9 @@ unsafe impl CAMediaTiming for CAAnimationGroup {}
 
 #[cfg(feature = "CoreAnimation_CAAnimationGroup")]
 unsafe impl NSCoding for CAAnimationGroup {}
+
+#[cfg(feature = "CoreAnimation_CAAnimationGroup")]
+unsafe impl NSCopying for CAAnimationGroup {}
 
 #[cfg(feature = "CoreAnimation_CAAnimationGroup")]
 unsafe impl NSObjectProtocol for CAAnimationGroup {}

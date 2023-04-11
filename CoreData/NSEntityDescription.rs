@@ -12,11 +12,15 @@ extern_class!(
     #[cfg(feature = "CoreData_NSEntityDescription")]
     unsafe impl ClassType for NSEntityDescription {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "CoreData_NSEntityDescription")]
 unsafe impl NSCoding for NSEntityDescription {}
+
+#[cfg(feature = "CoreData_NSEntityDescription")]
+unsafe impl NSCopying for NSEntityDescription {}
 
 #[cfg(feature = "CoreData_NSEntityDescription")]
 unsafe impl NSFastEnumeration for NSEntityDescription {}

@@ -13,11 +13,15 @@ extern_class!(
     #[cfg(feature = "CoreLocation_CLVisit")]
     unsafe impl ClassType for CLVisit {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "CoreLocation_CLVisit")]
 unsafe impl NSCoding for CLVisit {}
+
+#[cfg(feature = "CoreLocation_CLVisit")]
+unsafe impl NSCopying for CLVisit {}
 
 #[cfg(feature = "CoreLocation_CLVisit")]
 unsafe impl NSObjectProtocol for CLVisit {}

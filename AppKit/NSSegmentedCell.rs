@@ -14,6 +14,7 @@ extern_class!(
     unsafe impl ClassType for NSSegmentedCell {
         #[inherits(NSCell, NSObject)]
         type Super = NSActionCell;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -25,6 +26,9 @@ unsafe impl NSAccessibilityElementProtocol for NSSegmentedCell {}
 
 #[cfg(feature = "AppKit_NSSegmentedCell")]
 unsafe impl NSCoding for NSSegmentedCell {}
+
+#[cfg(feature = "AppKit_NSSegmentedCell")]
+unsafe impl NSCopying for NSSegmentedCell {}
 
 #[cfg(feature = "AppKit_NSSegmentedCell")]
 unsafe impl NSObjectProtocol for NSSegmentedCell {}

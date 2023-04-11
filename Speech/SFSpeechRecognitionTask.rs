@@ -23,6 +23,7 @@ extern_class!(
     #[cfg(feature = "Speech_SFSpeechRecognitionTask")]
     unsafe impl ClassType for SFSpeechRecognitionTask {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

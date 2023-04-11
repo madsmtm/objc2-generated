@@ -29,8 +29,12 @@ extern_class!(
     #[cfg(feature = "AppKit_NSCollectionViewLayoutAttributes")]
     unsafe impl ClassType for NSCollectionViewLayoutAttributes {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "AppKit_NSCollectionViewLayoutAttributes")]
+unsafe impl NSCopying for NSCollectionViewLayoutAttributes {}
 
 #[cfg(feature = "AppKit_NSCollectionViewLayoutAttributes")]
 unsafe impl NSObjectProtocol for NSCollectionViewLayoutAttributes {}
@@ -128,6 +132,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSCollectionViewUpdateItem")]
     unsafe impl ClassType for NSCollectionViewUpdateItem {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -158,6 +163,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSCollectionViewLayoutInvalidationContext")]
     unsafe impl ClassType for NSCollectionViewLayoutInvalidationContext {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -239,6 +245,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSCollectionViewLayout")]
     unsafe impl ClassType for NSCollectionViewLayout {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -19,6 +19,7 @@ extern_class!(
     {
         #[inherits(NSObject)]
         type Super = ASAccountAuthenticationModificationRequest;
+        type Mutability = InteriorMutable;
     }
 );
 

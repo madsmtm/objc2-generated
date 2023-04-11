@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "GameController_GCSteeringWheelElement")]
     unsafe impl ClassType for GCSteeringWheelElement {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

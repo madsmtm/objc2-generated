@@ -15,8 +15,12 @@ extern_class!(
     unsafe impl ClassType for DOMRect {
         #[inherits(WebScriptObject, NSObject)]
         type Super = DOMObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "WebKit_DOMRect")]
+unsafe impl NSCopying for DOMRect {}
 
 #[cfg(feature = "WebKit_DOMRect")]
 unsafe impl NSObjectProtocol for DOMRect {}

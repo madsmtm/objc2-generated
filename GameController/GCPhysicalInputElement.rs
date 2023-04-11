@@ -26,45 +26,45 @@ extern_protocol!(
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GameController_GCPhysicalInputElementCollection")]
-    pub struct GCPhysicalInputElementCollection<
-        Key: Message = Object,
-        Element: Message = Object,
-        KeyOwnership: Ownership = Shared,
-        ElementOwnership: Ownership = Shared,
-    > {
-        _inner0: PhantomData<*mut (Key, KeyOwnership)>,
-        _inner1: PhantomData<*mut (Element, ElementOwnership)>,
+    pub struct GCPhysicalInputElementCollection<Key: Message = Object, Element: Message = Object> {
+        __superclass: NSObject,
+        _inner0: PhantomData<*mut Key>,
+        _inner1: PhantomData<*mut Element>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     #[cfg(feature = "GameController_GCPhysicalInputElementCollection")]
-    unsafe impl<Key: Message, Element: Message, KeyOwnership: Ownership, ElementOwnership: Ownership>
-        ClassType
-        for GCPhysicalInputElementCollection<Key, Element, KeyOwnership, ElementOwnership>
+    unsafe impl<Key: Message, Element: Message> ClassType
+        for GCPhysicalInputElementCollection<Key, Element>
     {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
+
+        fn as_super(&self) -> &Self::Super {
+            &self.__superclass
+        }
+
+        fn as_super_mut(&mut self) -> &mut Self::Super {
+            &mut self.__superclass
+        }
     }
 );
 
 #[cfg(feature = "GameController_GCPhysicalInputElementCollection")]
-unsafe impl<Key: Message, Element: Message, KeyOwnership: Ownership, ElementOwnership: Ownership>
-    NSFastEnumeration
-    for GCPhysicalInputElementCollection<Key, Element, KeyOwnership, ElementOwnership>
+unsafe impl<Key: Message, Element: Message> NSFastEnumeration
+    for GCPhysicalInputElementCollection<Key, Element>
 {
 }
 
 #[cfg(feature = "GameController_GCPhysicalInputElementCollection")]
-unsafe impl<Key: Message, Element: Message, KeyOwnership: Ownership, ElementOwnership: Ownership>
-    NSObjectProtocol
-    for GCPhysicalInputElementCollection<Key, Element, KeyOwnership, ElementOwnership>
+unsafe impl<Key: Message, Element: Message> NSObjectProtocol
+    for GCPhysicalInputElementCollection<Key, Element>
 {
 }
 
 extern_methods!(
     #[cfg(feature = "GameController_GCPhysicalInputElementCollection")]
-    unsafe impl<Key: Message, Element: Message, KeyOwnership: Ownership, ElementOwnership: Ownership>
-        GCPhysicalInputElementCollection<Key, Element, KeyOwnership, ElementOwnership>
-    {
+    unsafe impl<Key: Message, Element: Message> GCPhysicalInputElementCollection<Key, Element> {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
@@ -75,13 +75,10 @@ extern_methods!(
         pub unsafe fn count(&self) -> NSUInteger;
 
         #[method_id(@__retain_semantics Other elementForAlias:)]
-        pub unsafe fn elementForAlias(&self, alias: &Key) -> Option<Id<Element, ElementOwnership>>;
+        pub unsafe fn elementForAlias(&self, alias: &Key) -> Option<Id<Element>>;
 
         #[method_id(@__retain_semantics Other objectForKeyedSubscript:)]
-        pub unsafe fn objectForKeyedSubscript(
-            &self,
-            key: &Key,
-        ) -> Option<Id<Element, ElementOwnership>>;
+        pub unsafe fn objectForKeyedSubscript(&self, key: &Key) -> Option<Id<Element>>;
 
         #[cfg(feature = "Foundation_NSEnumerator")]
         #[method_id(@__retain_semantics Other elementEnumerator)]

@@ -29,6 +29,7 @@ extern_class!(
     #[cfg(feature = "WebKit_WebPreferences")]
     unsafe impl ClassType for WebPreferences {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -15,6 +15,7 @@ extern_class!(
     #[cfg(feature = "EventKit_EKVirtualConferenceProvider")]
     unsafe impl ClassType for EKVirtualConferenceProvider {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

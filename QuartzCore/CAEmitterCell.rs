@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "CoreAnimation_CAEmitterCell")]
     unsafe impl ClassType for CAEmitterCell {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

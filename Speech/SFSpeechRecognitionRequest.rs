@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "Speech_SFSpeechRecognitionRequest")]
     unsafe impl ClassType for SFSpeechRecognitionRequest {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -74,6 +75,7 @@ extern_class!(
     unsafe impl ClassType for SFSpeechURLRecognitionRequest {
         #[inherits(NSObject)]
         type Super = SFSpeechRecognitionRequest;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -105,6 +107,7 @@ extern_class!(
     unsafe impl ClassType for SFSpeechAudioBufferRecognitionRequest {
         #[inherits(NSObject)]
         type Super = SFSpeechRecognitionRequest;
+        type Mutability = InteriorMutable;
     }
 );
 

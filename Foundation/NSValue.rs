@@ -10,11 +10,15 @@ extern_class!(
     #[cfg(feature = "Foundation_NSValue")]
     unsafe impl ClassType for NSValue {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSValue")]
 unsafe impl NSCoding for NSValue {}
+
+#[cfg(feature = "Foundation_NSValue")]
+unsafe impl NSCopying for NSValue {}
 
 #[cfg(feature = "Foundation_NSValue")]
 unsafe impl NSObjectProtocol for NSValue {}
@@ -94,11 +98,15 @@ extern_class!(
     unsafe impl ClassType for NSNumber {
         #[inherits(NSObject)]
         type Super = NSValue;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSNumber")]
 unsafe impl NSCoding for NSNumber {}
+
+#[cfg(feature = "Foundation_NSNumber")]
+unsafe impl NSCopying for NSNumber {}
 
 #[cfg(feature = "Foundation_NSNumber")]
 unsafe impl NSObjectProtocol for NSNumber {}

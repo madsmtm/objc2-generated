@@ -7,33 +7,33 @@ use crate::Foundation::*;
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CoreData_NSFetchedResultsController")]
-    pub struct NSFetchedResultsController<
-        ResultType: Message = Object,
-        ResultTypeOwnership: Ownership = Shared,
-    > {
-        _inner0: PhantomData<*mut (ResultType, ResultTypeOwnership)>,
+    pub struct NSFetchedResultsController<ResultType: Message = Object> {
+        __superclass: NSObject,
+        _inner0: PhantomData<*mut ResultType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     #[cfg(feature = "CoreData_NSFetchedResultsController")]
-    unsafe impl<ResultType: Message, ResultTypeOwnership: Ownership> ClassType
-        for NSFetchedResultsController<ResultType, ResultTypeOwnership>
-    {
+    unsafe impl<ResultType: Message> ClassType for NSFetchedResultsController<ResultType> {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
+
+        fn as_super(&self) -> &Self::Super {
+            &self.__superclass
+        }
+
+        fn as_super_mut(&mut self) -> &mut Self::Super {
+            &mut self.__superclass
+        }
     }
 );
 
 #[cfg(feature = "CoreData_NSFetchedResultsController")]
-unsafe impl<ResultType: Message, ResultTypeOwnership: Ownership> NSObjectProtocol
-    for NSFetchedResultsController<ResultType, ResultTypeOwnership>
-{
-}
+unsafe impl<ResultType: Message> NSObjectProtocol for NSFetchedResultsController<ResultType> {}
 
 extern_methods!(
     #[cfg(feature = "CoreData_NSFetchedResultsController")]
-    unsafe impl<ResultType: Message, ResultTypeOwnership: Ownership>
-        NSFetchedResultsController<ResultType, ResultTypeOwnership>
-    {
+    unsafe impl<ResultType: Message> NSFetchedResultsController<ResultType> {
         #[cfg(all(
             feature = "CoreData_NSFetchRequest",
             feature = "CoreData_NSManagedObjectContext",
@@ -89,10 +89,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other objectAtIndexPath:)]
-        pub unsafe fn objectAtIndexPath(
-            &self,
-            index_path: &NSIndexPath,
-        ) -> Id<ResultType, ResultTypeOwnership>;
+        pub unsafe fn objectAtIndexPath(&self, index_path: &NSIndexPath) -> Id<ResultType>;
 
         #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other indexPathForObject:)]

@@ -16,8 +16,12 @@ extern_class!(
     unsafe impl ClassType for EKStructuredLocation {
         #[inherits(NSObject)]
         type Super = EKObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "EventKit_EKStructuredLocation")]
+unsafe impl NSCopying for EKStructuredLocation {}
 
 #[cfg(feature = "EventKit_EKStructuredLocation")]
 unsafe impl NSObjectProtocol for EKStructuredLocation {}

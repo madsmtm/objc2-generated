@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "LinkPresentation_LPMetadataProvider")]
     unsafe impl ClassType for LPMetadataProvider {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

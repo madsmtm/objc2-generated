@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSTextLineFragment")]
     unsafe impl ClassType for NSTextLineFragment {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

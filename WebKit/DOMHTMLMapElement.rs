@@ -15,11 +15,15 @@ extern_class!(
     unsafe impl ClassType for DOMHTMLMapElement {
         #[inherits(DOMElement, DOMNode, DOMObject, WebScriptObject, NSObject)]
         type Super = DOMHTMLElement;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "WebKit_DOMHTMLMapElement")]
 unsafe impl DOMEventTarget for DOMHTMLMapElement {}
+
+#[cfg(feature = "WebKit_DOMHTMLMapElement")]
+unsafe impl NSCopying for DOMHTMLMapElement {}
 
 #[cfg(feature = "WebKit_DOMHTMLMapElement")]
 unsafe impl NSObjectProtocol for DOMHTMLMapElement {}

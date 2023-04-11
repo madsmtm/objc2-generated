@@ -15,11 +15,15 @@ extern_class!(
     unsafe impl ClassType for DOMHTMLAnchorElement {
         #[inherits(DOMElement, DOMNode, DOMObject, WebScriptObject, NSObject)]
         type Super = DOMHTMLElement;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "WebKit_DOMHTMLAnchorElement")]
 unsafe impl DOMEventTarget for DOMHTMLAnchorElement {}
+
+#[cfg(feature = "WebKit_DOMHTMLAnchorElement")]
+unsafe impl NSCopying for DOMHTMLAnchorElement {}
 
 #[cfg(feature = "WebKit_DOMHTMLAnchorElement")]
 unsafe impl NSObjectProtocol for DOMHTMLAnchorElement {}

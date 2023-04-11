@@ -25,6 +25,7 @@ extern_class!(
     #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSession")]
     unsafe impl ClassType for ASWebAuthenticationSession {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

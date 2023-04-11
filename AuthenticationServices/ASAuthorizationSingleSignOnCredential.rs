@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "AuthenticationServices_ASAuthorizationSingleSignOnCredential")]
     unsafe impl ClassType for ASAuthorizationSingleSignOnCredential {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -20,6 +21,9 @@ unsafe impl ASAuthorizationCredential for ASAuthorizationSingleSignOnCredential 
 
 #[cfg(feature = "AuthenticationServices_ASAuthorizationSingleSignOnCredential")]
 unsafe impl NSCoding for ASAuthorizationSingleSignOnCredential {}
+
+#[cfg(feature = "AuthenticationServices_ASAuthorizationSingleSignOnCredential")]
+unsafe impl NSCopying for ASAuthorizationSingleSignOnCredential {}
 
 #[cfg(feature = "AuthenticationServices_ASAuthorizationSingleSignOnCredential")]
 unsafe impl NSObjectProtocol for ASAuthorizationSingleSignOnCredential {}

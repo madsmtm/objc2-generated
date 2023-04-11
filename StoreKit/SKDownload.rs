@@ -35,6 +35,7 @@ extern_class!(
     #[cfg(feature = "StoreKit_SKDownload")]
     unsafe impl ClassType for SKDownload {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

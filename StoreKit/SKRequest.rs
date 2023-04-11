@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "StoreKit_SKRequest")]
     unsafe impl ClassType for SKRequest {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

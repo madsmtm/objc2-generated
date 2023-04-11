@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSGarbageCollector")]
     unsafe impl ClassType for NSGarbageCollector {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -13,8 +13,15 @@ extern_class!(
     #[cfg(feature = "StoreKit_SKPayment")]
     unsafe impl ClassType for SKPayment {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "StoreKit_SKPayment")]
+unsafe impl NSCopying for SKPayment {}
+
+#[cfg(feature = "StoreKit_SKPayment")]
+unsafe impl NSMutableCopying for SKPayment {}
 
 #[cfg(feature = "StoreKit_SKPayment")]
 unsafe impl NSObjectProtocol for SKPayment {}
@@ -64,8 +71,15 @@ extern_class!(
     unsafe impl ClassType for SKMutablePayment {
         #[inherits(NSObject)]
         type Super = SKPayment;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "StoreKit_SKMutablePayment")]
+unsafe impl NSCopying for SKMutablePayment {}
+
+#[cfg(feature = "StoreKit_SKMutablePayment")]
+unsafe impl NSMutableCopying for SKMutablePayment {}
 
 #[cfg(feature = "StoreKit_SKMutablePayment")]
 unsafe impl NSObjectProtocol for SKMutablePayment {}

@@ -19,6 +19,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSTask")]
     unsafe impl ClassType for NSTask {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

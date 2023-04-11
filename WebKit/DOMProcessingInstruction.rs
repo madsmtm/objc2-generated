@@ -15,11 +15,15 @@ extern_class!(
     unsafe impl ClassType for DOMProcessingInstruction {
         #[inherits(DOMNode, DOMObject, WebScriptObject, NSObject)]
         type Super = DOMCharacterData;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "WebKit_DOMProcessingInstruction")]
 unsafe impl DOMEventTarget for DOMProcessingInstruction {}
+
+#[cfg(feature = "WebKit_DOMProcessingInstruction")]
+unsafe impl NSCopying for DOMProcessingInstruction {}
 
 #[cfg(feature = "WebKit_DOMProcessingInstruction")]
 unsafe impl NSObjectProtocol for DOMProcessingInstruction {}

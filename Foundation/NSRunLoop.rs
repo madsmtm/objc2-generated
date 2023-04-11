@@ -15,6 +15,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSRunLoop")]
     unsafe impl ClassType for NSRunLoop {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

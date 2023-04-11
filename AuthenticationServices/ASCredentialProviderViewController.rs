@@ -4,6 +4,21 @@ use crate::common::*;
 use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "AuthenticationServices_ASCredentialProviderViewController")]
+unsafe impl NSCoding for ASCredentialProviderViewController {}
+
+#[cfg(feature = "AuthenticationServices_ASCredentialProviderViewController")]
+unsafe impl NSEditor for ASCredentialProviderViewController {}
+
+#[cfg(feature = "AuthenticationServices_ASCredentialProviderViewController")]
+unsafe impl NSObjectProtocol for ASCredentialProviderViewController {}
+
+#[cfg(feature = "AuthenticationServices_ASCredentialProviderViewController")]
+unsafe impl NSSeguePerforming for ASCredentialProviderViewController {}
+
+#[cfg(feature = "AuthenticationServices_ASCredentialProviderViewController")]
+unsafe impl NSUserInterfaceItemIdentification for ASCredentialProviderViewController {}
+
 extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASCredentialProviderViewController")]
     unsafe impl ASCredentialProviderViewController {
@@ -37,5 +52,19 @@ extern_methods!(
 
         #[method(prepareInterfaceForExtensionConfiguration)]
         pub unsafe fn prepareInterfaceForExtensionConfiguration(&self);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSViewController`
+    #[cfg(feature = "AuthenticationServices_ASCredentialProviderViewController")]
+    unsafe impl ASCredentialProviderViewController {
+        #[cfg(feature = "Foundation_NSBundle")]
+        #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
+        pub unsafe fn initWithNibName_bundle(
+            this: Option<Allocated<Self>>,
+            nib_name_or_nil: Option<&NSNibName>,
+            nib_bundle_or_nil: Option<&NSBundle>,
+        ) -> Id<Self>;
     }
 );

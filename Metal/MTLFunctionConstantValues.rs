@@ -12,8 +12,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLFunctionConstantValues")]
     unsafe impl ClassType for MTLFunctionConstantValues {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLFunctionConstantValues")]
+unsafe impl NSCopying for MTLFunctionConstantValues {}
 
 #[cfg(feature = "Metal_MTLFunctionConstantValues")]
 unsafe impl NSObjectProtocol for MTLFunctionConstantValues {}

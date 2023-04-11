@@ -15,8 +15,12 @@ extern_class!(
     unsafe impl ClassType for PHCollection {
         #[inherits(NSObject)]
         type Super = PHObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "PhotoKit_PHCollection")]
+unsafe impl NSCopying for PHCollection {}
 
 #[cfg(feature = "PhotoKit_PHCollection")]
 unsafe impl NSObjectProtocol for PHCollection {}
@@ -71,8 +75,12 @@ extern_class!(
     unsafe impl ClassType for PHAssetCollection {
         #[inherits(PHObject, NSObject)]
         type Super = PHCollection;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "PhotoKit_PHAssetCollection")]
+unsafe impl NSCopying for PHAssetCollection {}
 
 #[cfg(feature = "PhotoKit_PHAssetCollection")]
 unsafe impl NSObjectProtocol for PHAssetCollection {}
@@ -208,8 +216,12 @@ extern_class!(
     unsafe impl ClassType for PHCollectionList {
         #[inherits(PHObject, NSObject)]
         type Super = PHCollection;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "PhotoKit_PHCollectionList")]
+unsafe impl NSCopying for PHCollectionList {}
 
 #[cfg(feature = "PhotoKit_PHCollectionList")]
 unsafe impl NSObjectProtocol for PHCollectionList {}

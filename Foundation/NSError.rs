@@ -49,11 +49,15 @@ extern_class!(
     #[cfg(feature = "Foundation_NSError")]
     unsafe impl ClassType for NSError {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSError")]
 unsafe impl NSCoding for NSError {}
+
+#[cfg(feature = "Foundation_NSError")]
+unsafe impl NSCopying for NSError {}
 
 #[cfg(feature = "Foundation_NSError")]
 unsafe impl NSObjectProtocol for NSError {}

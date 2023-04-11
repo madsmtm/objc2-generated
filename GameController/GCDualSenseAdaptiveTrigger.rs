@@ -63,6 +63,7 @@ extern_class!(
     unsafe impl ClassType for GCDualSenseAdaptiveTrigger {
         #[inherits(GCControllerElement, NSObject)]
         type Super = GCControllerButtonInput;
+        type Mutability = InteriorMutable;
     }
 );
 

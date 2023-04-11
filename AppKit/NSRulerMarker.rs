@@ -13,11 +13,15 @@ extern_class!(
     #[cfg(feature = "AppKit_NSRulerMarker")]
     unsafe impl ClassType for NSRulerMarker {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "AppKit_NSRulerMarker")]
 unsafe impl NSCoding for NSRulerMarker {}
+
+#[cfg(feature = "AppKit_NSRulerMarker")]
+unsafe impl NSCopying for NSRulerMarker {}
 
 #[cfg(feature = "AppKit_NSRulerMarker")]
 unsafe impl NSObjectProtocol for NSRulerMarker {}

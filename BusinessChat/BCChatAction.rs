@@ -24,6 +24,7 @@ extern_class!(
     #[cfg(feature = "BusinessChat_BCChatAction")]
     unsafe impl ClassType for BCChatAction {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

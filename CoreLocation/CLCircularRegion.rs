@@ -14,11 +14,15 @@ extern_class!(
     unsafe impl ClassType for CLCircularRegion {
         #[inherits(NSObject)]
         type Super = CLRegion;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "CoreLocation_CLCircularRegion")]
 unsafe impl NSCoding for CLCircularRegion {}
+
+#[cfg(feature = "CoreLocation_CLCircularRegion")]
+unsafe impl NSCopying for CLCircularRegion {}
 
 #[cfg(feature = "CoreLocation_CLCircularRegion")]
 unsafe impl NSObjectProtocol for CLCircularRegion {}

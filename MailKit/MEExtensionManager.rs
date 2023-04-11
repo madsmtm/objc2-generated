@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "MailKit_MEExtensionManager")]
     unsafe impl ClassType for MEExtensionManager {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

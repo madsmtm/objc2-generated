@@ -14,6 +14,7 @@ extern_class!(
     #[cfg(feature = "PhotoKit_PHContentEditingOutput")]
     unsafe impl ClassType for PHContentEditingOutput {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

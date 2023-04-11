@@ -44,6 +44,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSHapticFeedbackManager")]
     unsafe impl ClassType for NSHapticFeedbackManager {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

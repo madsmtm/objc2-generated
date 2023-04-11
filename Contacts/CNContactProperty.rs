@@ -12,11 +12,15 @@ extern_class!(
     #[cfg(feature = "Contacts_CNContactProperty")]
     unsafe impl ClassType for CNContactProperty {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Contacts_CNContactProperty")]
 unsafe impl NSCoding for CNContactProperty {}
+
+#[cfg(feature = "Contacts_CNContactProperty")]
+unsafe impl NSCopying for CNContactProperty {}
 
 #[cfg(feature = "Contacts_CNContactProperty")]
 unsafe impl NSObjectProtocol for CNContactProperty {}

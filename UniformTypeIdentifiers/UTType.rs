@@ -12,11 +12,15 @@ extern_class!(
     #[cfg(feature = "UniformTypeIdentifiers_UTType")]
     unsafe impl ClassType for UTType {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "UniformTypeIdentifiers_UTType")]
 unsafe impl NSCoding for UTType {}
+
+#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+unsafe impl NSCopying for UTType {}
 
 #[cfg(feature = "UniformTypeIdentifiers_UTType")]
 unsafe impl NSObjectProtocol for UTType {}

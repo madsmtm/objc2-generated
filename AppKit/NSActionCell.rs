@@ -14,6 +14,7 @@ extern_class!(
     unsafe impl ClassType for NSActionCell {
         #[inherits(NSObject)]
         type Super = NSCell;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -25,6 +26,9 @@ unsafe impl NSAccessibilityElementProtocol for NSActionCell {}
 
 #[cfg(feature = "AppKit_NSActionCell")]
 unsafe impl NSCoding for NSActionCell {}
+
+#[cfg(feature = "AppKit_NSActionCell")]
+unsafe impl NSCopying for NSActionCell {}
 
 #[cfg(feature = "AppKit_NSActionCell")]
 unsafe impl NSObjectProtocol for NSActionCell {}

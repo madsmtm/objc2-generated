@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSController")]
     unsafe impl ClassType for NSController {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

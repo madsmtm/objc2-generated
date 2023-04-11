@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "InputMethodKit_IMKServer")]
     unsafe impl ClassType for IMKServer {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

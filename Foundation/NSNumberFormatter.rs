@@ -60,11 +60,15 @@ extern_class!(
     unsafe impl ClassType for NSNumberFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSNumberFormatter")]
 unsafe impl NSCoding for NSNumberFormatter {}
+
+#[cfg(feature = "Foundation_NSNumberFormatter")]
+unsafe impl NSCopying for NSNumberFormatter {}
 
 #[cfg(feature = "Foundation_NSNumberFormatter")]
 unsafe impl NSObjectProtocol for NSNumberFormatter {}

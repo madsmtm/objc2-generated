@@ -41,6 +41,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSProcessInfo")]
     unsafe impl ClassType for NSProcessInfo {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

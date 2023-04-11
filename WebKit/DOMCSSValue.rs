@@ -30,8 +30,12 @@ extern_class!(
     unsafe impl ClassType for DOMCSSValue {
         #[inherits(WebScriptObject, NSObject)]
         type Super = DOMObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "WebKit_DOMCSSValue")]
+unsafe impl NSCopying for DOMCSSValue {}
 
 #[cfg(feature = "WebKit_DOMCSSValue")]
 unsafe impl NSObjectProtocol for DOMCSSValue {}

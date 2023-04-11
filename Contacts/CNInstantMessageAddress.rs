@@ -12,11 +12,15 @@ extern_class!(
     #[cfg(feature = "Contacts_CNInstantMessageAddress")]
     unsafe impl ClassType for CNInstantMessageAddress {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Contacts_CNInstantMessageAddress")]
 unsafe impl NSCoding for CNInstantMessageAddress {}
+
+#[cfg(feature = "Contacts_CNInstantMessageAddress")]
+unsafe impl NSCopying for CNInstantMessageAddress {}
 
 #[cfg(feature = "Contacts_CNInstantMessageAddress")]
 unsafe impl NSObjectProtocol for CNInstantMessageAddress {}

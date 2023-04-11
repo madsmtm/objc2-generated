@@ -28,11 +28,15 @@ extern_class!(
     #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
     unsafe impl ClassType for NSAppleEventDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
 unsafe impl NSCoding for NSAppleEventDescriptor {}
+
+#[cfg(feature = "Foundation_NSAppleEventDescriptor")]
+unsafe impl NSCopying for NSAppleEventDescriptor {}
 
 #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
 unsafe impl NSObjectProtocol for NSAppleEventDescriptor {}

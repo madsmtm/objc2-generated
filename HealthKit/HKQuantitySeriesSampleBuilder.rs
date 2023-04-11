@@ -14,6 +14,7 @@ extern_class!(
     #[cfg(feature = "HealthKit_HKQuantitySeriesSampleBuilder")]
     unsafe impl ClassType for HKQuantitySeriesSampleBuilder {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

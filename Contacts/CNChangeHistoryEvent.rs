@@ -12,11 +12,15 @@ extern_class!(
     #[cfg(feature = "Contacts_CNChangeHistoryEvent")]
     unsafe impl ClassType for CNChangeHistoryEvent {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Contacts_CNChangeHistoryEvent")]
 unsafe impl NSCoding for CNChangeHistoryEvent {}
+
+#[cfg(feature = "Contacts_CNChangeHistoryEvent")]
+unsafe impl NSCopying for CNChangeHistoryEvent {}
 
 #[cfg(feature = "Contacts_CNChangeHistoryEvent")]
 unsafe impl NSObjectProtocol for CNChangeHistoryEvent {}
@@ -44,11 +48,15 @@ extern_class!(
     unsafe impl ClassType for CNChangeHistoryDropEverythingEvent {
         #[inherits(NSObject)]
         type Super = CNChangeHistoryEvent;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Contacts_CNChangeHistoryDropEverythingEvent")]
 unsafe impl NSCoding for CNChangeHistoryDropEverythingEvent {}
+
+#[cfg(feature = "Contacts_CNChangeHistoryDropEverythingEvent")]
+unsafe impl NSCopying for CNChangeHistoryDropEverythingEvent {}
 
 #[cfg(feature = "Contacts_CNChangeHistoryDropEverythingEvent")]
 unsafe impl NSObjectProtocol for CNChangeHistoryDropEverythingEvent {}
@@ -70,11 +78,15 @@ extern_class!(
     unsafe impl ClassType for CNChangeHistoryAddContactEvent {
         #[inherits(NSObject)]
         type Super = CNChangeHistoryEvent;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Contacts_CNChangeHistoryAddContactEvent")]
 unsafe impl NSCoding for CNChangeHistoryAddContactEvent {}
+
+#[cfg(feature = "Contacts_CNChangeHistoryAddContactEvent")]
+unsafe impl NSCopying for CNChangeHistoryAddContactEvent {}
 
 #[cfg(feature = "Contacts_CNChangeHistoryAddContactEvent")]
 unsafe impl NSObjectProtocol for CNChangeHistoryAddContactEvent {}
@@ -104,11 +116,15 @@ extern_class!(
     unsafe impl ClassType for CNChangeHistoryUpdateContactEvent {
         #[inherits(NSObject)]
         type Super = CNChangeHistoryEvent;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Contacts_CNChangeHistoryUpdateContactEvent")]
 unsafe impl NSCoding for CNChangeHistoryUpdateContactEvent {}
+
+#[cfg(feature = "Contacts_CNChangeHistoryUpdateContactEvent")]
+unsafe impl NSCopying for CNChangeHistoryUpdateContactEvent {}
 
 #[cfg(feature = "Contacts_CNChangeHistoryUpdateContactEvent")]
 unsafe impl NSObjectProtocol for CNChangeHistoryUpdateContactEvent {}
@@ -134,11 +150,15 @@ extern_class!(
     unsafe impl ClassType for CNChangeHistoryDeleteContactEvent {
         #[inherits(NSObject)]
         type Super = CNChangeHistoryEvent;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Contacts_CNChangeHistoryDeleteContactEvent")]
 unsafe impl NSCoding for CNChangeHistoryDeleteContactEvent {}
+
+#[cfg(feature = "Contacts_CNChangeHistoryDeleteContactEvent")]
+unsafe impl NSCopying for CNChangeHistoryDeleteContactEvent {}
 
 #[cfg(feature = "Contacts_CNChangeHistoryDeleteContactEvent")]
 unsafe impl NSObjectProtocol for CNChangeHistoryDeleteContactEvent {}
@@ -164,11 +184,15 @@ extern_class!(
     unsafe impl ClassType for CNChangeHistoryAddGroupEvent {
         #[inherits(NSObject)]
         type Super = CNChangeHistoryEvent;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Contacts_CNChangeHistoryAddGroupEvent")]
 unsafe impl NSCoding for CNChangeHistoryAddGroupEvent {}
+
+#[cfg(feature = "Contacts_CNChangeHistoryAddGroupEvent")]
+unsafe impl NSCopying for CNChangeHistoryAddGroupEvent {}
 
 #[cfg(feature = "Contacts_CNChangeHistoryAddGroupEvent")]
 unsafe impl NSObjectProtocol for CNChangeHistoryAddGroupEvent {}
@@ -198,11 +222,15 @@ extern_class!(
     unsafe impl ClassType for CNChangeHistoryUpdateGroupEvent {
         #[inherits(NSObject)]
         type Super = CNChangeHistoryEvent;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Contacts_CNChangeHistoryUpdateGroupEvent")]
 unsafe impl NSCoding for CNChangeHistoryUpdateGroupEvent {}
+
+#[cfg(feature = "Contacts_CNChangeHistoryUpdateGroupEvent")]
+unsafe impl NSCopying for CNChangeHistoryUpdateGroupEvent {}
 
 #[cfg(feature = "Contacts_CNChangeHistoryUpdateGroupEvent")]
 unsafe impl NSObjectProtocol for CNChangeHistoryUpdateGroupEvent {}
@@ -228,11 +256,15 @@ extern_class!(
     unsafe impl ClassType for CNChangeHistoryDeleteGroupEvent {
         #[inherits(NSObject)]
         type Super = CNChangeHistoryEvent;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Contacts_CNChangeHistoryDeleteGroupEvent")]
 unsafe impl NSCoding for CNChangeHistoryDeleteGroupEvent {}
+
+#[cfg(feature = "Contacts_CNChangeHistoryDeleteGroupEvent")]
+unsafe impl NSCopying for CNChangeHistoryDeleteGroupEvent {}
 
 #[cfg(feature = "Contacts_CNChangeHistoryDeleteGroupEvent")]
 unsafe impl NSObjectProtocol for CNChangeHistoryDeleteGroupEvent {}
@@ -258,11 +290,15 @@ extern_class!(
     unsafe impl ClassType for CNChangeHistoryAddMemberToGroupEvent {
         #[inherits(NSObject)]
         type Super = CNChangeHistoryEvent;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Contacts_CNChangeHistoryAddMemberToGroupEvent")]
 unsafe impl NSCoding for CNChangeHistoryAddMemberToGroupEvent {}
+
+#[cfg(feature = "Contacts_CNChangeHistoryAddMemberToGroupEvent")]
+unsafe impl NSCopying for CNChangeHistoryAddMemberToGroupEvent {}
 
 #[cfg(feature = "Contacts_CNChangeHistoryAddMemberToGroupEvent")]
 unsafe impl NSObjectProtocol for CNChangeHistoryAddMemberToGroupEvent {}
@@ -292,11 +328,15 @@ extern_class!(
     unsafe impl ClassType for CNChangeHistoryRemoveMemberFromGroupEvent {
         #[inherits(NSObject)]
         type Super = CNChangeHistoryEvent;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Contacts_CNChangeHistoryRemoveMemberFromGroupEvent")]
 unsafe impl NSCoding for CNChangeHistoryRemoveMemberFromGroupEvent {}
+
+#[cfg(feature = "Contacts_CNChangeHistoryRemoveMemberFromGroupEvent")]
+unsafe impl NSCopying for CNChangeHistoryRemoveMemberFromGroupEvent {}
 
 #[cfg(feature = "Contacts_CNChangeHistoryRemoveMemberFromGroupEvent")]
 unsafe impl NSObjectProtocol for CNChangeHistoryRemoveMemberFromGroupEvent {}
@@ -326,11 +366,15 @@ extern_class!(
     unsafe impl ClassType for CNChangeHistoryAddSubgroupToGroupEvent {
         #[inherits(NSObject)]
         type Super = CNChangeHistoryEvent;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Contacts_CNChangeHistoryAddSubgroupToGroupEvent")]
 unsafe impl NSCoding for CNChangeHistoryAddSubgroupToGroupEvent {}
+
+#[cfg(feature = "Contacts_CNChangeHistoryAddSubgroupToGroupEvent")]
+unsafe impl NSCopying for CNChangeHistoryAddSubgroupToGroupEvent {}
 
 #[cfg(feature = "Contacts_CNChangeHistoryAddSubgroupToGroupEvent")]
 unsafe impl NSObjectProtocol for CNChangeHistoryAddSubgroupToGroupEvent {}
@@ -360,11 +404,15 @@ extern_class!(
     unsafe impl ClassType for CNChangeHistoryRemoveSubgroupFromGroupEvent {
         #[inherits(NSObject)]
         type Super = CNChangeHistoryEvent;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Contacts_CNChangeHistoryRemoveSubgroupFromGroupEvent")]
 unsafe impl NSCoding for CNChangeHistoryRemoveSubgroupFromGroupEvent {}
+
+#[cfg(feature = "Contacts_CNChangeHistoryRemoveSubgroupFromGroupEvent")]
+unsafe impl NSCopying for CNChangeHistoryRemoveSubgroupFromGroupEvent {}
 
 #[cfg(feature = "Contacts_CNChangeHistoryRemoveSubgroupFromGroupEvent")]
 unsafe impl NSObjectProtocol for CNChangeHistoryRemoveSubgroupFromGroupEvent {}

@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "MetricKit_MXDiagnostic")]
     unsafe impl ClassType for MXDiagnostic {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

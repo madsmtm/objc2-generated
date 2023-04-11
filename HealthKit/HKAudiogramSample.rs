@@ -15,6 +15,7 @@ extern_class!(
     unsafe impl ClassType for HKAudiogramSample {
         #[inherits(HKObject, NSObject)]
         type Super = HKSample;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -62,6 +63,7 @@ extern_class!(
     #[cfg(feature = "HealthKit_HKAudiogramSensitivityPoint")]
     unsafe impl ClassType for HKAudiogramSensitivityPoint {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

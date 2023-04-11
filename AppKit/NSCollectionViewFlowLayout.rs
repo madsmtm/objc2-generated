@@ -30,6 +30,7 @@ extern_class!(
     unsafe impl ClassType for NSCollectionViewFlowLayoutInvalidationContext {
         #[inherits(NSObject)]
         type Super = NSCollectionViewLayoutInvalidationContext;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -153,6 +154,7 @@ extern_class!(
     unsafe impl ClassType for NSCollectionViewFlowLayout {
         #[inherits(NSObject)]
         type Super = NSCollectionViewLayout;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -25,6 +25,7 @@ extern_class!(
     unsafe impl ClassType for CAEmitterLayer {
         #[inherits(NSObject)]
         type Super = CALayer;
+        type Mutability = InteriorMutable;
     }
 );
 

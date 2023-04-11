@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSStringDrawingContext")]
     unsafe impl ClassType for NSStringDrawingContext {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -23,6 +23,7 @@ extern_class!(
     #[cfg(feature = "MapKit_MKDirectionsRequest")]
     unsafe impl ClassType for MKDirectionsRequest {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

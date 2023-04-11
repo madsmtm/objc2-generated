@@ -13,11 +13,15 @@ extern_class!(
     #[cfg(feature = "CloudKit_CKQuery")]
     unsafe impl ClassType for CKQuery {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "CloudKit_CKQuery")]
 unsafe impl NSCoding for CKQuery {}
+
+#[cfg(feature = "CloudKit_CKQuery")]
+unsafe impl NSCopying for CKQuery {}
 
 #[cfg(feature = "CloudKit_CKQuery")]
 unsafe impl NSObjectProtocol for CKQuery {}

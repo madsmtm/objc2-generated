@@ -28,8 +28,12 @@ extern_class!(
     unsafe impl ClassType for DOMWheelEvent {
         #[inherits(DOMUIEvent, DOMEvent, DOMObject, WebScriptObject, NSObject)]
         type Super = DOMMouseEvent;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "WebKit_DOMWheelEvent")]
+unsafe impl NSCopying for DOMWheelEvent {}
 
 #[cfg(feature = "WebKit_DOMWheelEvent")]
 unsafe impl NSObjectProtocol for DOMWheelEvent {}

@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "DataDetection_DDMatch")]
     unsafe impl ClassType for DDMatch {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -39,6 +40,7 @@ extern_class!(
     unsafe impl ClassType for DDMatchLink {
         #[inherits(NSObject)]
         type Super = DDMatch;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -63,6 +65,7 @@ extern_class!(
     unsafe impl ClassType for DDMatchPhoneNumber {
         #[inherits(NSObject)]
         type Super = DDMatch;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -91,6 +94,7 @@ extern_class!(
     unsafe impl ClassType for DDMatchEmailAddress {
         #[inherits(NSObject)]
         type Super = DDMatch;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -119,6 +123,7 @@ extern_class!(
     unsafe impl ClassType for DDMatchPostalAddress {
         #[inherits(NSObject)]
         type Super = DDMatch;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -159,6 +164,7 @@ extern_class!(
     unsafe impl ClassType for DDMatchCalendarEvent {
         #[inherits(NSObject)]
         type Super = DDMatch;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -198,6 +204,7 @@ extern_class!(
     unsafe impl ClassType for DDMatchShipmentTrackingNumber {
         #[inherits(NSObject)]
         type Super = DDMatch;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -226,6 +233,7 @@ extern_class!(
     unsafe impl ClassType for DDMatchFlightNumber {
         #[inherits(NSObject)]
         type Super = DDMatch;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -254,6 +262,7 @@ extern_class!(
     unsafe impl ClassType for DDMatchMoneyAmount {
         #[inherits(NSObject)]
         type Super = DDMatch;
+        type Mutability = InteriorMutable;
     }
 );
 

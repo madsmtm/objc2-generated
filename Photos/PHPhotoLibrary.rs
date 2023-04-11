@@ -53,6 +53,7 @@ extern_class!(
     #[cfg(feature = "PhotoKit_PHPhotoLibrary")]
     unsafe impl ClassType for PHPhotoLibrary {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

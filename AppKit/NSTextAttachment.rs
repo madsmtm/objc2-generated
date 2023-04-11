@@ -92,6 +92,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSTextAttachment")]
     unsafe impl ClassType for NSTextAttachment {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -227,6 +228,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSTextAttachmentViewProvider")]
     unsafe impl ClassType for NSTextAttachmentViewProvider {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "GameController_GCRacingWheelInputState")]
     unsafe impl ClassType for GCRacingWheelInputState {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -53,6 +54,7 @@ extern_class!(
     unsafe impl ClassType for GCRacingWheelInput {
         #[inherits(NSObject)]
         type Super = GCRacingWheelInputState;
+        type Mutability = InteriorMutable;
     }
 );
 

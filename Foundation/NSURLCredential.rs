@@ -21,11 +21,15 @@ extern_class!(
     #[cfg(feature = "Foundation_NSURLCredential")]
     unsafe impl ClassType for NSURLCredential {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSURLCredential")]
 unsafe impl NSCoding for NSURLCredential {}
+
+#[cfg(feature = "Foundation_NSURLCredential")]
+unsafe impl NSCopying for NSURLCredential {}
 
 #[cfg(feature = "Foundation_NSURLCredential")]
 unsafe impl NSObjectProtocol for NSURLCredential {}

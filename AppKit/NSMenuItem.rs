@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSMenuItem")]
     unsafe impl ClassType for NSMenuItem {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -24,6 +25,9 @@ unsafe impl NSAccessibilityElementProtocol for NSMenuItem {}
 
 #[cfg(feature = "AppKit_NSMenuItem")]
 unsafe impl NSCoding for NSMenuItem {}
+
+#[cfg(feature = "AppKit_NSMenuItem")]
+unsafe impl NSCopying for NSMenuItem {}
 
 #[cfg(feature = "AppKit_NSMenuItem")]
 unsafe impl NSObjectProtocol for NSMenuItem {}

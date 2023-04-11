@@ -13,6 +13,7 @@ extern_class!(
     unsafe impl ClassType for CNChangeHistoryFetchRequest {
         #[inherits(NSObject)]
         type Super = CNFetchRequest;
+        type Mutability = InteriorMutable;
     }
 );
 

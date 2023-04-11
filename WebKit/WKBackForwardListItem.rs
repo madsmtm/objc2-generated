@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "WebKit_WKBackForwardListItem")]
     unsafe impl ClassType for WKBackForwardListItem {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -23,6 +23,7 @@ extern_class!(
     #[cfg(feature = "GameController_GCDeviceBattery")]
     unsafe impl ClassType for GCDeviceBattery {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

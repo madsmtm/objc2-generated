@@ -72,6 +72,7 @@ extern_class!(
     #[cfg(feature = "StoreKit_SKOverlay")]
     unsafe impl ClassType for SKOverlay {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

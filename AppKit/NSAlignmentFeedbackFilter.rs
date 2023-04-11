@@ -19,6 +19,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSAlignmentFeedbackFilter")]
     unsafe impl ClassType for NSAlignmentFeedbackFilter {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

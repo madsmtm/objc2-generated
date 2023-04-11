@@ -27,6 +27,7 @@ extern_class!(
     #[cfg(feature = "CloudKit_CKOperationGroup")]
     unsafe impl ClassType for CKOperationGroup {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -14,6 +14,7 @@ extern_class!(
     #[cfg(feature = "WebKit_WebBackForwardList")]
     unsafe impl ClassType for WebBackForwardList {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

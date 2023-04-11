@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "ClassKit_CLSObject")]
     unsafe impl ClassType for CLSObject {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -87,6 +87,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSURLProtocol")]
     unsafe impl ClassType for NSURLProtocol {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

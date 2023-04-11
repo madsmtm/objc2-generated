@@ -30,11 +30,15 @@ extern_class!(
     unsafe impl ClassType for NSPersonNameComponentsFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSPersonNameComponentsFormatter")]
 unsafe impl NSCoding for NSPersonNameComponentsFormatter {}
+
+#[cfg(feature = "Foundation_NSPersonNameComponentsFormatter")]
+unsafe impl NSCopying for NSPersonNameComponentsFormatter {}
 
 #[cfg(feature = "Foundation_NSPersonNameComponentsFormatter")]
 unsafe impl NSObjectProtocol for NSPersonNameComponentsFormatter {}

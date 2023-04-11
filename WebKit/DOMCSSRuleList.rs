@@ -15,8 +15,12 @@ extern_class!(
     unsafe impl ClassType for DOMCSSRuleList {
         #[inherits(WebScriptObject, NSObject)]
         type Super = DOMObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "WebKit_DOMCSSRuleList")]
+unsafe impl NSCopying for DOMCSSRuleList {}
 
 #[cfg(feature = "WebKit_DOMCSSRuleList")]
 unsafe impl NSObjectProtocol for DOMCSSRuleList {}

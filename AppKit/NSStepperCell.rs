@@ -14,6 +14,7 @@ extern_class!(
     unsafe impl ClassType for NSStepperCell {
         #[inherits(NSCell, NSObject)]
         type Super = NSActionCell;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -25,6 +26,9 @@ unsafe impl NSAccessibilityElementProtocol for NSStepperCell {}
 
 #[cfg(feature = "AppKit_NSStepperCell")]
 unsafe impl NSCoding for NSStepperCell {}
+
+#[cfg(feature = "AppKit_NSStepperCell")]
+unsafe impl NSCopying for NSStepperCell {}
 
 #[cfg(feature = "AppKit_NSStepperCell")]
 unsafe impl NSObjectProtocol for NSStepperCell {}

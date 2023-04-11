@@ -30,11 +30,15 @@ extern_class!(
     unsafe impl ClassType for CNContactFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Contacts_CNContactFormatter")]
 unsafe impl NSCoding for CNContactFormatter {}
+
+#[cfg(feature = "Contacts_CNContactFormatter")]
+unsafe impl NSCopying for CNContactFormatter {}
 
 #[cfg(feature = "Contacts_CNContactFormatter")]
 unsafe impl NSObjectProtocol for CNContactFormatter {}

@@ -14,11 +14,15 @@ extern_class!(
     #[cfg(feature = "HealthKit_HKQueryDescriptor")]
     unsafe impl ClassType for HKQueryDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "HealthKit_HKQueryDescriptor")]
 unsafe impl NSCoding for HKQueryDescriptor {}
+
+#[cfg(feature = "HealthKit_HKQueryDescriptor")]
+unsafe impl NSCopying for HKQueryDescriptor {}
 
 #[cfg(feature = "HealthKit_HKQueryDescriptor")]
 unsafe impl NSObjectProtocol for HKQueryDescriptor {}

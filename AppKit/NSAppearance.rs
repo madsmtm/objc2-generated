@@ -17,6 +17,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSAppearance")]
     unsafe impl ClassType for NSAppearance {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

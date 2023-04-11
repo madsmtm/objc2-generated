@@ -22,6 +22,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSBundle")]
     unsafe impl ClassType for NSBundle {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -375,6 +376,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSBundleResourceRequest")]
     unsafe impl ClassType for NSBundleResourceRequest {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

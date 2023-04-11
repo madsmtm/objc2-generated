@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "MediaPlayer_MPMusicPlayerQueueDescriptor")]
     unsafe impl ClassType for MPMusicPlayerQueueDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -39,6 +40,7 @@ extern_class!(
     unsafe impl ClassType for MPMusicPlayerMediaItemQueueDescriptor {
         #[inherits(NSObject)]
         type Super = MPMusicPlayerQueueDescriptor;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -101,6 +103,7 @@ extern_class!(
     unsafe impl ClassType for MPMusicPlayerStoreQueueDescriptor {
         #[inherits(NSObject)]
         type Super = MPMusicPlayerQueueDescriptor;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -159,6 +162,7 @@ extern_class!(
     #[cfg(feature = "MediaPlayer_MPMusicPlayerPlayParameters")]
     unsafe impl ClassType for MPMusicPlayerPlayParameters {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -190,6 +194,7 @@ extern_class!(
     unsafe impl ClassType for MPMusicPlayerPlayParametersQueueDescriptor {
         #[inherits(NSObject)]
         type Super = MPMusicPlayerQueueDescriptor;
+        type Mutability = InteriorMutable;
     }
 );
 

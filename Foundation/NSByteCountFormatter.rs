@@ -39,11 +39,15 @@ extern_class!(
     unsafe impl ClassType for NSByteCountFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSByteCountFormatter")]
 unsafe impl NSCoding for NSByteCountFormatter {}
+
+#[cfg(feature = "Foundation_NSByteCountFormatter")]
+unsafe impl NSCopying for NSByteCountFormatter {}
 
 #[cfg(feature = "Foundation_NSByteCountFormatter")]
 unsafe impl NSObjectProtocol for NSByteCountFormatter {}

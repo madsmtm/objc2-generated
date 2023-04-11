@@ -17,6 +17,7 @@ extern_class!(
     unsafe impl ClassType for ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest {
         #[inherits(NSObject)]
         type Super = ASAuthorizationRequest;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -32,6 +33,11 @@ unsafe impl ASAuthorizationPublicKeyCredentialRegistrationRequest
     feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest"
 )]
 unsafe impl NSCoding for ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest {}
+
+#[cfg(
+    feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest"
+)]
+unsafe impl NSCopying for ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest {}
 
 #[cfg(
     feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest"

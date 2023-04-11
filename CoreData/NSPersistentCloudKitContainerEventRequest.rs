@@ -13,8 +13,12 @@ extern_class!(
     unsafe impl ClassType for NSPersistentCloudKitContainerEventRequest {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreRequest;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "CoreData_NSPersistentCloudKitContainerEventRequest")]
+unsafe impl NSCopying for NSPersistentCloudKitContainerEventRequest {}
 
 #[cfg(feature = "CoreData_NSPersistentCloudKitContainerEventRequest")]
 unsafe impl NSObjectProtocol for NSPersistentCloudKitContainerEventRequest {}

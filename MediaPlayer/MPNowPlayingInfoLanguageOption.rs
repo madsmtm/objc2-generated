@@ -41,6 +41,7 @@ extern_class!(
     #[cfg(feature = "MediaPlayer_MPNowPlayingInfoLanguageOption")]
     unsafe impl ClassType for MPNowPlayingInfoLanguageOption {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -96,6 +97,7 @@ extern_class!(
     #[cfg(feature = "MediaPlayer_MPNowPlayingInfoLanguageOptionGroup")]
     unsafe impl ClassType for MPNowPlayingInfoLanguageOptionGroup {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

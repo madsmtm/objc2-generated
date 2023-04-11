@@ -12,11 +12,15 @@ extern_class!(
     #[cfg(feature = "Speech_SFAcousticFeature")]
     unsafe impl ClassType for SFAcousticFeature {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Speech_SFAcousticFeature")]
 unsafe impl NSCoding for SFAcousticFeature {}
+
+#[cfg(feature = "Speech_SFAcousticFeature")]
+unsafe impl NSCopying for SFAcousticFeature {}
 
 #[cfg(feature = "Speech_SFAcousticFeature")]
 unsafe impl NSObjectProtocol for SFAcousticFeature {}
@@ -44,11 +48,15 @@ extern_class!(
     #[cfg(feature = "Speech_SFVoiceAnalytics")]
     unsafe impl ClassType for SFVoiceAnalytics {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Speech_SFVoiceAnalytics")]
 unsafe impl NSCoding for SFVoiceAnalytics {}
+
+#[cfg(feature = "Speech_SFVoiceAnalytics")]
+unsafe impl NSCopying for SFVoiceAnalytics {}
 
 #[cfg(feature = "Speech_SFVoiceAnalytics")]
 unsafe impl NSObjectProtocol for SFVoiceAnalytics {}

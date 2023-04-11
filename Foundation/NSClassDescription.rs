@@ -11,6 +11,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSClassDescription")]
     unsafe impl ClassType for NSClassDescription {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSAccessibilityCustomAction")]
     unsafe impl ClassType for NSAccessibilityCustomAction {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

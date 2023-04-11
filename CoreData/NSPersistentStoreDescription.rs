@@ -12,8 +12,12 @@ extern_class!(
     #[cfg(feature = "CoreData_NSPersistentStoreDescription")]
     unsafe impl ClassType for NSPersistentStoreDescription {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "CoreData_NSPersistentStoreDescription")]
+unsafe impl NSCopying for NSPersistentStoreDescription {}
 
 #[cfg(feature = "CoreData_NSPersistentStoreDescription")]
 unsafe impl NSObjectProtocol for NSPersistentStoreDescription {}

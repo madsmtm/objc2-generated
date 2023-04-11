@@ -15,11 +15,15 @@ extern_class!(
     unsafe impl ClassType for DOMHTMLFontElement {
         #[inherits(DOMElement, DOMNode, DOMObject, WebScriptObject, NSObject)]
         type Super = DOMHTMLElement;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "WebKit_DOMHTMLFontElement")]
 unsafe impl DOMEventTarget for DOMHTMLFontElement {}
+
+#[cfg(feature = "WebKit_DOMHTMLFontElement")]
+unsafe impl NSCopying for DOMHTMLFontElement {}
 
 #[cfg(feature = "WebKit_DOMHTMLFontElement")]
 unsafe impl NSObjectProtocol for DOMHTMLFontElement {}

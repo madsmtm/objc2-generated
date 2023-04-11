@@ -14,6 +14,7 @@ extern_class!(
     unsafe impl ClassType for NSGroupTouchBarItem {
         #[inherits(NSObject)]
         type Super = NSTouchBarItem;
+        type Mutability = InteriorMutable;
     }
 );
 

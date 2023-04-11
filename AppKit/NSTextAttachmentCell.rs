@@ -110,6 +110,7 @@ extern_class!(
     unsafe impl ClassType for NSTextAttachmentCell {
         #[inherits(NSObject)]
         type Super = NSCell;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -121,6 +122,9 @@ unsafe impl NSAccessibilityElementProtocol for NSTextAttachmentCell {}
 
 #[cfg(feature = "AppKit_NSTextAttachmentCell")]
 unsafe impl NSCoding for NSTextAttachmentCell {}
+
+#[cfg(feature = "AppKit_NSTextAttachmentCell")]
+unsafe impl NSCopying for NSTextAttachmentCell {}
 
 #[cfg(feature = "AppKit_NSTextAttachmentCell")]
 unsafe impl NSObjectProtocol for NSTextAttachmentCell {}

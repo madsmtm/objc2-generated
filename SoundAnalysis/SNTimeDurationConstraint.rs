@@ -20,6 +20,7 @@ extern_class!(
     #[cfg(feature = "SoundAnalysis_SNTimeDurationConstraint")]
     unsafe impl ClassType for SNTimeDurationConstraint {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

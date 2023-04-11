@@ -12,11 +12,15 @@ extern_class!(
     #[cfg(feature = "CoreData_NSQueryGenerationToken")]
     unsafe impl ClassType for NSQueryGenerationToken {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "CoreData_NSQueryGenerationToken")]
 unsafe impl NSCoding for NSQueryGenerationToken {}
+
+#[cfg(feature = "CoreData_NSQueryGenerationToken")]
+unsafe impl NSCopying for NSQueryGenerationToken {}
 
 #[cfg(feature = "CoreData_NSQueryGenerationToken")]
 unsafe impl NSObjectProtocol for NSQueryGenerationToken {}

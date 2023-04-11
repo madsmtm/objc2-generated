@@ -34,9 +34,7 @@ extern_static!(NSUnionOfSetsKeyValueOperator: &'static NSKeyValueOperator);
 extern_methods!(
     /// NSKeyValueCoding
     #[cfg(feature = "Foundation_NSArray")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSArray<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> NSArray<ObjectType> {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other valueForKey:)]
         pub unsafe fn valueForKey(&self, key: &NSString) -> Id<Object>;
@@ -50,32 +48,17 @@ extern_methods!(
 extern_methods!(
     /// NSKeyValueCoding
     #[cfg(feature = "Foundation_NSDictionary")]
-    unsafe impl<
-            KeyType: Message,
-            ObjectType: Message,
-            KeyTypeOwnership: Ownership,
-            ObjectTypeOwnership: Ownership,
-        > NSDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
-    {
+    unsafe impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other valueForKey:)]
-        pub unsafe fn valueForKey(
-            &self,
-            key: &NSString,
-        ) -> Option<Id<ObjectType, ObjectTypeOwnership>>;
+        pub unsafe fn valueForKey(&self, key: &NSString) -> Option<Id<ObjectType>>;
     }
 );
 
 extern_methods!(
     /// NSKeyValueCoding
     #[cfg(feature = "Foundation_NSMutableDictionary")]
-    unsafe impl<
-            KeyType: Message,
-            ObjectType: Message,
-            KeyTypeOwnership: Ownership,
-            ObjectTypeOwnership: Ownership,
-        > NSMutableDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
-    {
+    unsafe impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
         #[cfg(feature = "Foundation_NSString")]
         #[method(setValue:forKey:)]
         pub unsafe fn setValue_forKey(&self, value: Option<&ObjectType>, key: &NSString);
@@ -85,9 +68,7 @@ extern_methods!(
 extern_methods!(
     /// NSKeyValueCoding
     #[cfg(feature = "Foundation_NSOrderedSet")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSOrderedSet<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other valueForKey:)]
         pub unsafe fn valueForKey(&self, key: &NSString) -> Id<Object>;
@@ -101,9 +82,7 @@ extern_methods!(
 extern_methods!(
     /// NSKeyValueCoding
     #[cfg(feature = "Foundation_NSSet")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSSet<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> NSSet<ObjectType> {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other valueForKey:)]
         pub unsafe fn valueForKey(&self, key: &NSString) -> Id<Object>;

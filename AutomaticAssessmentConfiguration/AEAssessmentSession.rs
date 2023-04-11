@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentSession")]
     unsafe impl ClassType for AEAssessmentSession {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

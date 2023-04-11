@@ -29,6 +29,7 @@ extern_class!(
     #[cfg(feature = "Contacts_CNContactStore")]
     unsafe impl ClassType for CNContactStore {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -42,11 +42,15 @@ extern_class!(
     unsafe impl ClassType for NSDecimalNumber {
         #[inherits(NSValue, NSObject)]
         type Super = NSNumber;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSDecimalNumber")]
 unsafe impl NSCoding for NSDecimalNumber {}
+
+#[cfg(feature = "Foundation_NSDecimalNumber")]
+unsafe impl NSCopying for NSDecimalNumber {}
 
 #[cfg(feature = "Foundation_NSDecimalNumber")]
 unsafe impl NSObjectProtocol for NSDecimalNumber {}
@@ -239,6 +243,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSDecimalNumberHandler")]
     unsafe impl ClassType for NSDecimalNumberHandler {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

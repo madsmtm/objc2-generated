@@ -44,6 +44,7 @@ extern_class!(
     #[cfg(feature = "CoreAnimation_CAConstraintLayoutManager")]
     unsafe impl ClassType for CAConstraintLayoutManager {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -69,6 +70,7 @@ extern_class!(
     #[cfg(feature = "CoreAnimation_CAConstraint")]
     unsafe impl ClassType for CAConstraint {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

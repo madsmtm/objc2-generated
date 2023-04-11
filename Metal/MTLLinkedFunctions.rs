@@ -12,8 +12,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLLinkedFunctions")]
     unsafe impl ClassType for MTLLinkedFunctions {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLLinkedFunctions")]
+unsafe impl NSCopying for MTLLinkedFunctions {}
 
 #[cfg(feature = "Metal_MTLLinkedFunctions")]
 unsafe impl NSObjectProtocol for MTLLinkedFunctions {}

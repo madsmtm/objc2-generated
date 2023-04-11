@@ -16,6 +16,7 @@ extern_class!(
     unsafe impl ClassType for MKMultiPolyline {
         #[inherits(NSObject)]
         type Super = MKShape;
+        type Mutability = InteriorMutable;
     }
 );
 

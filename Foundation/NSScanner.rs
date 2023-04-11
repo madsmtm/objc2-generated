@@ -11,8 +11,12 @@ extern_class!(
     #[cfg(feature = "Foundation_NSScanner")]
     unsafe impl ClassType for NSScanner {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Foundation_NSScanner")]
+unsafe impl NSCopying for NSScanner {}
 
 #[cfg(feature = "Foundation_NSScanner")]
 unsafe impl NSObjectProtocol for NSScanner {}

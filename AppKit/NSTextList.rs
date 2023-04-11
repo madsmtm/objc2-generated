@@ -58,11 +58,15 @@ extern_class!(
     #[cfg(feature = "AppKit_NSTextList")]
     unsafe impl ClassType for NSTextList {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "AppKit_NSTextList")]
 unsafe impl NSCoding for NSTextList {}
+
+#[cfg(feature = "AppKit_NSTextList")]
+unsafe impl NSCopying for NSTextList {}
 
 #[cfg(feature = "AppKit_NSTextList")]
 unsafe impl NSObjectProtocol for NSTextList {}

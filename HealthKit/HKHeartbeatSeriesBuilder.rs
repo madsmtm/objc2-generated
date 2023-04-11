@@ -15,6 +15,7 @@ extern_class!(
     unsafe impl ClassType for HKHeartbeatSeriesBuilder {
         #[inherits(NSObject)]
         type Super = HKSeriesBuilder;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -16,8 +16,12 @@ extern_class!(
     unsafe impl ClassType for EKParticipant {
         #[inherits(NSObject)]
         type Super = EKObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "EventKit_EKParticipant")]
+unsafe impl NSCopying for EKParticipant {}
 
 #[cfg(feature = "EventKit_EKParticipant")]
 unsafe impl NSObjectProtocol for EKParticipant {}

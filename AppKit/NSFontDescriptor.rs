@@ -79,11 +79,15 @@ extern_class!(
     #[cfg(feature = "AppKit_NSFontDescriptor")]
     unsafe impl ClassType for NSFontDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "AppKit_NSFontDescriptor")]
 unsafe impl NSCoding for NSFontDescriptor {}
+
+#[cfg(feature = "AppKit_NSFontDescriptor")]
+unsafe impl NSCopying for NSFontDescriptor {}
 
 #[cfg(feature = "AppKit_NSFontDescriptor")]
 unsafe impl NSObjectProtocol for NSFontDescriptor {}

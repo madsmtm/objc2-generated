@@ -55,6 +55,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSURLAuthenticationChallenge")]
     unsafe impl ClassType for NSURLAuthenticationChallenge {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

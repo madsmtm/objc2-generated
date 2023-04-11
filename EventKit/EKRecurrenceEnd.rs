@@ -15,11 +15,15 @@ extern_class!(
     #[cfg(feature = "EventKit_EKRecurrenceEnd")]
     unsafe impl ClassType for EKRecurrenceEnd {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "EventKit_EKRecurrenceEnd")]
 unsafe impl NSCoding for EKRecurrenceEnd {}
+
+#[cfg(feature = "EventKit_EKRecurrenceEnd")]
+unsafe impl NSCopying for EKRecurrenceEnd {}
 
 #[cfg(feature = "EventKit_EKRecurrenceEnd")]
 unsafe impl NSObjectProtocol for EKRecurrenceEnd {}

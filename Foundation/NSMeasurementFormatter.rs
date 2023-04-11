@@ -21,11 +21,15 @@ extern_class!(
     unsafe impl ClassType for NSMeasurementFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSMeasurementFormatter")]
 unsafe impl NSCoding for NSMeasurementFormatter {}
+
+#[cfg(feature = "Foundation_NSMeasurementFormatter")]
+unsafe impl NSCopying for NSMeasurementFormatter {}
 
 #[cfg(feature = "Foundation_NSMeasurementFormatter")]
 unsafe impl NSObjectProtocol for NSMeasurementFormatter {}

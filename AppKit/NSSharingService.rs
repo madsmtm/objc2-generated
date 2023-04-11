@@ -57,6 +57,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSSharingService")]
     unsafe impl ClassType for NSSharingService {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -307,6 +308,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSSharingServicePicker")]
     unsafe impl ClassType for NSSharingServicePicker {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -24,6 +24,7 @@ extern_class!(
     unsafe impl ClassType for GKMatchmakerViewController {
         #[inherits(NSResponder, NSObject)]
         type Super = NSViewController;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -15,11 +15,15 @@ extern_class!(
     #[cfg(feature = "MapKit_MKMapCameraBoundary")]
     unsafe impl ClassType for MKMapCameraBoundary {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "MapKit_MKMapCameraBoundary")]
 unsafe impl NSCoding for MKMapCameraBoundary {}
+
+#[cfg(feature = "MapKit_MKMapCameraBoundary")]
+unsafe impl NSCopying for MKMapCameraBoundary {}
 
 #[cfg(feature = "MapKit_MKMapCameraBoundary")]
 unsafe impl NSObjectProtocol for MKMapCameraBoundary {}

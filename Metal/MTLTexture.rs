@@ -61,6 +61,7 @@ extern_class!(
     #[cfg(feature = "Metal_MTLSharedTextureHandle")]
     unsafe impl ClassType for MTLSharedTextureHandle {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -112,8 +113,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLTextureDescriptor")]
     unsafe impl ClassType for MTLTextureDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLTextureDescriptor")]
+unsafe impl NSCopying for MTLTextureDescriptor {}
 
 #[cfg(feature = "Metal_MTLTextureDescriptor")]
 unsafe impl NSObjectProtocol for MTLTextureDescriptor {}

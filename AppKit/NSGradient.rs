@@ -21,11 +21,15 @@ extern_class!(
     #[cfg(feature = "AppKit_NSGradient")]
     unsafe impl ClassType for NSGradient {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "AppKit_NSGradient")]
 unsafe impl NSCoding for NSGradient {}
+
+#[cfg(feature = "AppKit_NSGradient")]
+unsafe impl NSCopying for NSGradient {}
 
 #[cfg(feature = "AppKit_NSGradient")]
 unsafe impl NSObjectProtocol for NSGradient {}

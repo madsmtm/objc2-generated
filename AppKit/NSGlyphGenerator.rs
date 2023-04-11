@@ -52,6 +52,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSGlyphGenerator")]
     unsafe impl ClassType for NSGlyphGenerator {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

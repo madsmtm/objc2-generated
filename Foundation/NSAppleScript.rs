@@ -21,8 +21,12 @@ extern_class!(
     #[cfg(feature = "Foundation_NSAppleScript")]
     unsafe impl ClassType for NSAppleScript {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Foundation_NSAppleScript")]
+unsafe impl NSCopying for NSAppleScript {}
 
 #[cfg(feature = "Foundation_NSAppleScript")]
 unsafe impl NSObjectProtocol for NSAppleScript {}

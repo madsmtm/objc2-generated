@@ -7,30 +7,33 @@ use crate::Foundation::*;
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Contacts_CNFetchResult")]
-    pub struct CNFetchResult<ValueType: Message = Object, ValueTypeOwnership: Ownership = Shared> {
-        _inner0: PhantomData<*mut (ValueType, ValueTypeOwnership)>,
+    pub struct CNFetchResult<ValueType: Message = Object> {
+        __superclass: NSObject,
+        _inner0: PhantomData<*mut ValueType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     #[cfg(feature = "Contacts_CNFetchResult")]
-    unsafe impl<ValueType: Message, ValueTypeOwnership: Ownership> ClassType
-        for CNFetchResult<ValueType, ValueTypeOwnership>
-    {
+    unsafe impl<ValueType: Message> ClassType for CNFetchResult<ValueType> {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
+
+        fn as_super(&self) -> &Self::Super {
+            &self.__superclass
+        }
+
+        fn as_super_mut(&mut self) -> &mut Self::Super {
+            &mut self.__superclass
+        }
     }
 );
 
 #[cfg(feature = "Contacts_CNFetchResult")]
-unsafe impl<ValueType: Message, ValueTypeOwnership: Ownership> NSObjectProtocol
-    for CNFetchResult<ValueType, ValueTypeOwnership>
-{
-}
+unsafe impl<ValueType: Message> NSObjectProtocol for CNFetchResult<ValueType> {}
 
 extern_methods!(
     #[cfg(feature = "Contacts_CNFetchResult")]
-    unsafe impl<ValueType: Message, ValueTypeOwnership: Ownership>
-        CNFetchResult<ValueType, ValueTypeOwnership>
-    {
+    unsafe impl<ValueType: Message> CNFetchResult<ValueType> {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
@@ -38,7 +41,7 @@ extern_methods!(
         pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Other value)]
-        pub unsafe fn value(&self) -> Id<ValueType, ValueTypeOwnership>;
+        pub unsafe fn value(&self) -> Id<ValueType>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other currentHistoryToken)]

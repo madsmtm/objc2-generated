@@ -34,6 +34,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSSplitViewItem")]
     unsafe impl ClassType for NSSplitViewItem {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

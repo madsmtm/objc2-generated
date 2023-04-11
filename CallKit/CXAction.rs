@@ -12,11 +12,15 @@ extern_class!(
     #[cfg(feature = "CallKit_CXAction")]
     unsafe impl ClassType for CXAction {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "CallKit_CXAction")]
 unsafe impl NSCoding for CXAction {}
+
+#[cfg(feature = "CallKit_CXAction")]
+unsafe impl NSCopying for CXAction {}
 
 #[cfg(feature = "CallKit_CXAction")]
 unsafe impl NSObjectProtocol for CXAction {}

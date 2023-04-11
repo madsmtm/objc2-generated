@@ -15,11 +15,15 @@ extern_class!(
     unsafe impl ClassType for DOMHTMLFormElement {
         #[inherits(DOMElement, DOMNode, DOMObject, WebScriptObject, NSObject)]
         type Super = DOMHTMLElement;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "WebKit_DOMHTMLFormElement")]
 unsafe impl DOMEventTarget for DOMHTMLFormElement {}
+
+#[cfg(feature = "WebKit_DOMHTMLFormElement")]
+unsafe impl NSCopying for DOMHTMLFormElement {}
 
 #[cfg(feature = "WebKit_DOMHTMLFormElement")]
 unsafe impl NSObjectProtocol for DOMHTMLFormElement {}

@@ -15,6 +15,7 @@ extern_class!(
     #[cfg(feature = "MapKit_MKShape")]
     unsafe impl ClassType for MKShape {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

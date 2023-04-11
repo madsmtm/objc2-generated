@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "WebKit_WKProcessPool")]
     unsafe impl ClassType for WKProcessPool {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

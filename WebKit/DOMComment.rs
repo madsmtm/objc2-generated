@@ -15,11 +15,15 @@ extern_class!(
     unsafe impl ClassType for DOMComment {
         #[inherits(DOMNode, DOMObject, WebScriptObject, NSObject)]
         type Super = DOMCharacterData;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "WebKit_DOMComment")]
 unsafe impl DOMEventTarget for DOMComment {}
+
+#[cfg(feature = "WebKit_DOMComment")]
+unsafe impl NSCopying for DOMComment {}
 
 #[cfg(feature = "WebKit_DOMComment")]
 unsafe impl NSObjectProtocol for DOMComment {}

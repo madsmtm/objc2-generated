@@ -38,11 +38,15 @@ extern_class!(
     #[cfg(feature = "HealthKit_HKFHIRResource")]
     unsafe impl ClassType for HKFHIRResource {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "HealthKit_HKFHIRResource")]
 unsafe impl NSCoding for HKFHIRResource {}
+
+#[cfg(feature = "HealthKit_HKFHIRResource")]
+unsafe impl NSCopying for HKFHIRResource {}
 
 #[cfg(feature = "HealthKit_HKFHIRResource")]
 unsafe impl NSObjectProtocol for HKFHIRResource {}

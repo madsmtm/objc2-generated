@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSDistantObject")]
     unsafe impl ClassType for NSDistantObject {
         type Super = NSProxy;
+        type Mutability = InteriorMutable;
     }
 );
 

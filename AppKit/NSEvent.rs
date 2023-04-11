@@ -345,11 +345,15 @@ extern_class!(
     #[cfg(feature = "AppKit_NSEvent")]
     unsafe impl ClassType for NSEvent {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "AppKit_NSEvent")]
 unsafe impl NSCoding for NSEvent {}
+
+#[cfg(feature = "AppKit_NSEvent")]
+unsafe impl NSCopying for NSEvent {}
 
 #[cfg(feature = "AppKit_NSEvent")]
 unsafe impl NSObjectProtocol for NSEvent {}

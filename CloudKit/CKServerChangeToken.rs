@@ -13,11 +13,15 @@ extern_class!(
     #[cfg(feature = "CloudKit_CKServerChangeToken")]
     unsafe impl ClassType for CKServerChangeToken {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "CloudKit_CKServerChangeToken")]
 unsafe impl NSCoding for CKServerChangeToken {}
+
+#[cfg(feature = "CloudKit_CKServerChangeToken")]
+unsafe impl NSCopying for CKServerChangeToken {}
 
 #[cfg(feature = "CloudKit_CKServerChangeToken")]
 unsafe impl NSObjectProtocol for CKServerChangeToken {}

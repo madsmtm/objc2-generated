@@ -49,6 +49,7 @@ extern_class!(
     unsafe impl ClassType for NSButtonCell {
         #[inherits(NSCell, NSObject)]
         type Super = NSActionCell;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -60,6 +61,9 @@ unsafe impl NSAccessibilityElementProtocol for NSButtonCell {}
 
 #[cfg(feature = "AppKit_NSButtonCell")]
 unsafe impl NSCoding for NSButtonCell {}
+
+#[cfg(feature = "AppKit_NSButtonCell")]
+unsafe impl NSCopying for NSButtonCell {}
 
 #[cfg(feature = "AppKit_NSButtonCell")]
 unsafe impl NSObjectProtocol for NSButtonCell {}

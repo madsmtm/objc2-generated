@@ -15,11 +15,15 @@ extern_class!(
     unsafe impl ClassType for DOMHTMLQuoteElement {
         #[inherits(DOMElement, DOMNode, DOMObject, WebScriptObject, NSObject)]
         type Super = DOMHTMLElement;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "WebKit_DOMHTMLQuoteElement")]
 unsafe impl DOMEventTarget for DOMHTMLQuoteElement {}
+
+#[cfg(feature = "WebKit_DOMHTMLQuoteElement")]
+unsafe impl NSCopying for DOMHTMLQuoteElement {}
 
 #[cfg(feature = "WebKit_DOMHTMLQuoteElement")]
 unsafe impl NSObjectProtocol for DOMHTMLQuoteElement {}

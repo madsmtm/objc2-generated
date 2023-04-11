@@ -19,6 +19,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSCoder")]
     unsafe impl ClassType for NSCoder {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

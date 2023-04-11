@@ -13,8 +13,12 @@ extern_class!(
     #[cfg(feature = "WebKit_WKSnapshotConfiguration")]
     unsafe impl ClassType for WKSnapshotConfiguration {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "WebKit_WKSnapshotConfiguration")]
+unsafe impl NSCopying for WKSnapshotConfiguration {}
 
 #[cfg(feature = "WebKit_WKSnapshotConfiguration")]
 unsafe impl NSObjectProtocol for WKSnapshotConfiguration {}

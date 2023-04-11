@@ -14,6 +14,7 @@ extern_class!(
     unsafe impl ClassType for NSComboBoxCell {
         #[inherits(NSActionCell, NSCell, NSObject)]
         type Super = NSTextFieldCell;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -25,6 +26,9 @@ unsafe impl NSAccessibilityElementProtocol for NSComboBoxCell {}
 
 #[cfg(feature = "AppKit_NSComboBoxCell")]
 unsafe impl NSCoding for NSComboBoxCell {}
+
+#[cfg(feature = "AppKit_NSComboBoxCell")]
+unsafe impl NSCopying for NSComboBoxCell {}
 
 #[cfg(feature = "AppKit_NSComboBoxCell")]
 unsafe impl NSObjectProtocol for NSComboBoxCell {}

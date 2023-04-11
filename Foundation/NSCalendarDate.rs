@@ -13,11 +13,15 @@ extern_class!(
     unsafe impl ClassType for NSCalendarDate {
         #[inherits(NSObject)]
         type Super = NSDate;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSCalendarDate")]
 unsafe impl NSCoding for NSCalendarDate {}
+
+#[cfg(feature = "Foundation_NSCalendarDate")]
+unsafe impl NSCopying for NSCalendarDate {}
 
 #[cfg(feature = "Foundation_NSCalendarDate")]
 unsafe impl NSObjectProtocol for NSCalendarDate {}

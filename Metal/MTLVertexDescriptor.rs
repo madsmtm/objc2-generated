@@ -81,8 +81,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLVertexBufferLayoutDescriptor")]
     unsafe impl ClassType for MTLVertexBufferLayoutDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLVertexBufferLayoutDescriptor")]
+unsafe impl NSCopying for MTLVertexBufferLayoutDescriptor {}
 
 #[cfg(feature = "Metal_MTLVertexBufferLayoutDescriptor")]
 unsafe impl NSObjectProtocol for MTLVertexBufferLayoutDescriptor {}
@@ -118,6 +122,7 @@ extern_class!(
     #[cfg(feature = "Metal_MTLVertexBufferLayoutDescriptorArray")]
     unsafe impl ClassType for MTLVertexBufferLayoutDescriptorArray {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -152,8 +157,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLVertexAttributeDescriptor")]
     unsafe impl ClassType for MTLVertexAttributeDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLVertexAttributeDescriptor")]
+unsafe impl NSCopying for MTLVertexAttributeDescriptor {}
 
 #[cfg(feature = "Metal_MTLVertexAttributeDescriptor")]
 unsafe impl NSObjectProtocol for MTLVertexAttributeDescriptor {}
@@ -189,6 +198,7 @@ extern_class!(
     #[cfg(feature = "Metal_MTLVertexAttributeDescriptorArray")]
     unsafe impl ClassType for MTLVertexAttributeDescriptorArray {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -223,8 +233,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLVertexDescriptor")]
     unsafe impl ClassType for MTLVertexDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLVertexDescriptor")]
+unsafe impl NSCopying for MTLVertexDescriptor {}
 
 #[cfg(feature = "Metal_MTLVertexDescriptor")]
 unsafe impl NSObjectProtocol for MTLVertexDescriptor {}

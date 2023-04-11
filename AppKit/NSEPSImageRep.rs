@@ -14,11 +14,15 @@ extern_class!(
     unsafe impl ClassType for NSEPSImageRep {
         #[inherits(NSObject)]
         type Super = NSImageRep;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "AppKit_NSEPSImageRep")]
 unsafe impl NSCoding for NSEPSImageRep {}
+
+#[cfg(feature = "AppKit_NSEPSImageRep")]
+unsafe impl NSCopying for NSEPSImageRep {}
 
 #[cfg(feature = "AppKit_NSEPSImageRep")]
 unsafe impl NSObjectProtocol for NSEPSImageRep {}

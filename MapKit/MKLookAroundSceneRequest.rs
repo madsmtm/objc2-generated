@@ -15,6 +15,7 @@ extern_class!(
     #[cfg(feature = "MapKit_MKLookAroundSceneRequest")]
     unsafe impl ClassType for MKLookAroundSceneRequest {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

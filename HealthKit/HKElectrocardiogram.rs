@@ -45,6 +45,7 @@ extern_class!(
     unsafe impl ClassType for HKElectrocardiogram {
         #[inherits(HKObject, NSObject)]
         type Super = HKSample;
+        type Mutability = InteriorMutable;
     }
 );
 

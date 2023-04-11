@@ -13,6 +13,7 @@ extern_class!(
     unsafe impl ClassType for NSArchiver {
         #[inherits(NSObject)]
         type Super = NSCoder;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -31,7 +32,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSMutableData")]
         #[method_id(@__retain_semantics Other archiverData)]
-        pub unsafe fn archiverData(&self) -> Id<NSMutableData, Owned>;
+        pub unsafe fn archiverData(&self) -> Id<NSMutableData>;
 
         #[method(encodeRootObject:)]
         pub unsafe fn encodeRootObject(&self, root_object: &Object);
@@ -77,6 +78,7 @@ extern_class!(
     unsafe impl ClassType for NSUnarchiver {
         #[inherits(NSObject)]
         type Super = NSCoder;
+        type Mutability = InteriorMutable;
     }
 );
 

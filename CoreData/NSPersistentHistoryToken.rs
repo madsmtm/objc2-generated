@@ -12,11 +12,15 @@ extern_class!(
     #[cfg(feature = "CoreData_NSPersistentHistoryToken")]
     unsafe impl ClassType for NSPersistentHistoryToken {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "CoreData_NSPersistentHistoryToken")]
 unsafe impl NSCoding for NSPersistentHistoryToken {}
+
+#[cfg(feature = "CoreData_NSPersistentHistoryToken")]
+unsafe impl NSCopying for NSPersistentHistoryToken {}
 
 #[cfg(feature = "CoreData_NSPersistentHistoryToken")]
 unsafe impl NSObjectProtocol for NSPersistentHistoryToken {}

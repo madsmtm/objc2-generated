@@ -15,11 +15,15 @@ extern_class!(
     unsafe impl ClassType for DOMHTMLButtonElement {
         #[inherits(DOMElement, DOMNode, DOMObject, WebScriptObject, NSObject)]
         type Super = DOMHTMLElement;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "WebKit_DOMHTMLButtonElement")]
 unsafe impl DOMEventTarget for DOMHTMLButtonElement {}
+
+#[cfg(feature = "WebKit_DOMHTMLButtonElement")]
+unsafe impl NSCopying for DOMHTMLButtonElement {}
 
 #[cfg(feature = "WebKit_DOMHTMLButtonElement")]
 unsafe impl NSObjectProtocol for DOMHTMLButtonElement {}

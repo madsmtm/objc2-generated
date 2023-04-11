@@ -63,6 +63,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSTextSelectionNavigation")]
     unsafe impl ClassType for NSTextSelectionNavigation {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

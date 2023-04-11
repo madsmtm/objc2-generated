@@ -11,6 +11,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSExtensionContext")]
     unsafe impl ClassType for NSExtensionContext {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

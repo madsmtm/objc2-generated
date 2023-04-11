@@ -51,6 +51,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSHTTPCookie")]
     unsafe impl ClassType for NSHTTPCookie {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

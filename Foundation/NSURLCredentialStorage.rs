@@ -11,6 +11,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSURLCredentialStorage")]
     unsafe impl ClassType for NSURLCredentialStorage {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -52,6 +52,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSFontManager")]
     unsafe impl ClassType for NSFontManager {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

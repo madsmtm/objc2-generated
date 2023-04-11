@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSFilePromiseReceiver")]
     unsafe impl ClassType for NSFilePromiseReceiver {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

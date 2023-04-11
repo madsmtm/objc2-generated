@@ -15,8 +15,12 @@ extern_class!(
     unsafe impl ClassType for DOMHTMLOptionsCollection {
         #[inherits(WebScriptObject, NSObject)]
         type Super = DOMObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "WebKit_DOMHTMLOptionsCollection")]
+unsafe impl NSCopying for DOMHTMLOptionsCollection {}
 
 #[cfg(feature = "WebKit_DOMHTMLOptionsCollection")]
 unsafe impl NSObjectProtocol for DOMHTMLOptionsCollection {}

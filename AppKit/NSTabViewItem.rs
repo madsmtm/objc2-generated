@@ -22,6 +22,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSTabViewItem")]
     unsafe impl ClassType for NSTabViewItem {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

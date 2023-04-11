@@ -41,6 +41,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSStream")]
     unsafe impl ClassType for NSStream {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -106,6 +107,7 @@ extern_class!(
     unsafe impl ClassType for NSInputStream {
         #[inherits(NSObject)]
         type Super = NSStream;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -147,6 +149,7 @@ extern_class!(
     unsafe impl ClassType for NSOutputStream {
         #[inherits(NSObject)]
         type Super = NSStream;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -15,6 +15,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSDockTile")]
     unsafe impl ClassType for NSDockTile {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

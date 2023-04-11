@@ -13,11 +13,15 @@ extern_class!(
     #[cfg(feature = "AppKit_NSTintConfiguration")]
     unsafe impl ClassType for NSTintConfiguration {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "AppKit_NSTintConfiguration")]
 unsafe impl NSCoding for NSTintConfiguration {}
+
+#[cfg(feature = "AppKit_NSTintConfiguration")]
+unsafe impl NSCopying for NSTintConfiguration {}
 
 #[cfg(feature = "AppKit_NSTintConfiguration")]
 unsafe impl NSObjectProtocol for NSTintConfiguration {}

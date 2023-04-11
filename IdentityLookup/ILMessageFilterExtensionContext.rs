@@ -13,6 +13,7 @@ extern_class!(
     unsafe impl ClassType for ILMessageFilterExtensionContext {
         #[inherits(NSObject)]
         type Super = NSExtensionContext;
+        type Mutability = InteriorMutable;
     }
 );
 

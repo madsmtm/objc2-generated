@@ -20,8 +20,12 @@ extern_class!(
     #[cfg(feature = "PhotoKit_PHAssetResourceRequestOptions")]
     unsafe impl ClassType for PHAssetResourceRequestOptions {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "PhotoKit_PHAssetResourceRequestOptions")]
+unsafe impl NSCopying for PHAssetResourceRequestOptions {}
 
 #[cfg(feature = "PhotoKit_PHAssetResourceRequestOptions")]
 unsafe impl NSObjectProtocol for PHAssetResourceRequestOptions {}
@@ -51,6 +55,7 @@ extern_class!(
     #[cfg(feature = "PhotoKit_PHAssetResourceManager")]
     unsafe impl ClassType for PHAssetResourceManager {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

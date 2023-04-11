@@ -15,8 +15,12 @@ extern_class!(
     unsafe impl ClassType for DOMNodeIterator {
         #[inherits(WebScriptObject, NSObject)]
         type Super = DOMObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "WebKit_DOMNodeIterator")]
+unsafe impl NSCopying for DOMNodeIterator {}
 
 #[cfg(feature = "WebKit_DOMNodeIterator")]
 unsafe impl NSObjectProtocol for DOMNodeIterator {}

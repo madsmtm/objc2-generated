@@ -15,8 +15,12 @@ extern_class!(
     unsafe impl ClassType for DOMCSSFontFaceRule {
         #[inherits(DOMObject, WebScriptObject, NSObject)]
         type Super = DOMCSSRule;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "WebKit_DOMCSSFontFaceRule")]
+unsafe impl NSCopying for DOMCSSFontFaceRule {}
 
 #[cfg(feature = "WebKit_DOMCSSFontFaceRule")]
 unsafe impl NSObjectProtocol for DOMCSSFontFaceRule {}

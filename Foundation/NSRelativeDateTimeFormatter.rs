@@ -30,11 +30,15 @@ extern_class!(
     unsafe impl ClassType for NSRelativeDateTimeFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSRelativeDateTimeFormatter")]
 unsafe impl NSCoding for NSRelativeDateTimeFormatter {}
+
+#[cfg(feature = "Foundation_NSRelativeDateTimeFormatter")]
+unsafe impl NSCopying for NSRelativeDateTimeFormatter {}
 
 #[cfg(feature = "Foundation_NSRelativeDateTimeFormatter")]
 unsafe impl NSObjectProtocol for NSRelativeDateTimeFormatter {}

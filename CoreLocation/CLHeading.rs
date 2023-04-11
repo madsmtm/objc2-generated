@@ -17,11 +17,15 @@ extern_class!(
     #[cfg(feature = "CoreLocation_CLHeading")]
     unsafe impl ClassType for CLHeading {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "CoreLocation_CLHeading")]
 unsafe impl NSCoding for CLHeading {}
+
+#[cfg(feature = "CoreLocation_CLHeading")]
+unsafe impl NSCopying for CLHeading {}
 
 #[cfg(feature = "CoreLocation_CLHeading")]
 unsafe impl NSObjectProtocol for CLHeading {}

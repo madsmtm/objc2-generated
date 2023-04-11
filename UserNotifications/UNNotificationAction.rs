@@ -24,11 +24,15 @@ extern_class!(
     #[cfg(feature = "UserNotifications_UNNotificationAction")]
     unsafe impl ClassType for UNNotificationAction {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "UserNotifications_UNNotificationAction")]
 unsafe impl NSCoding for UNNotificationAction {}
+
+#[cfg(feature = "UserNotifications_UNNotificationAction")]
+unsafe impl NSCopying for UNNotificationAction {}
 
 #[cfg(feature = "UserNotifications_UNNotificationAction")]
 unsafe impl NSObjectProtocol for UNNotificationAction {}
@@ -88,11 +92,15 @@ extern_class!(
     unsafe impl ClassType for UNTextInputNotificationAction {
         #[inherits(NSObject)]
         type Super = UNNotificationAction;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "UserNotifications_UNTextInputNotificationAction")]
 unsafe impl NSCoding for UNTextInputNotificationAction {}
+
+#[cfg(feature = "UserNotifications_UNTextInputNotificationAction")]
+unsafe impl NSCopying for UNTextInputNotificationAction {}
 
 #[cfg(feature = "UserNotifications_UNTextInputNotificationAction")]
 unsafe impl NSObjectProtocol for UNTextInputNotificationAction {}

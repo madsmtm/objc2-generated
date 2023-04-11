@@ -113,8 +113,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLCounterSampleBufferDescriptor")]
     unsafe impl ClassType for MTLCounterSampleBufferDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLCounterSampleBufferDescriptor")]
+unsafe impl NSCopying for MTLCounterSampleBufferDescriptor {}
 
 #[cfg(feature = "Metal_MTLCounterSampleBufferDescriptor")]
 unsafe impl NSObjectProtocol for MTLCounterSampleBufferDescriptor {}

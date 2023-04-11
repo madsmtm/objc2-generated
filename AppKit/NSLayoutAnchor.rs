@@ -5,11 +5,12 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "AppKit_NSLayoutAnchor")]
+unsafe impl<AnchorType: Message> NSObjectProtocol for NSLayoutAnchor<AnchorType> {}
+
 extern_methods!(
     #[cfg(feature = "AppKit_NSLayoutAnchor")]
-    unsafe impl<AnchorType: Message, AnchorTypeOwnership: Ownership>
-        NSLayoutAnchor<AnchorType, AnchorTypeOwnership>
-    {
+    unsafe impl<AnchorType: Message> NSLayoutAnchor<AnchorType> {
         #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method_id(@__retain_semantics Other constraintEqualToAnchor:)]
         pub unsafe fn constraintEqualToAnchor(
@@ -80,6 +81,7 @@ extern_class!(
     unsafe impl ClassType for NSLayoutXAxisAnchor {
         #[inherits(NSObject)]
         type Super = NSLayoutAnchor;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -131,6 +133,7 @@ extern_class!(
     unsafe impl ClassType for NSLayoutYAxisAnchor {
         #[inherits(NSObject)]
         type Super = NSLayoutAnchor;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -182,6 +185,7 @@ extern_class!(
     unsafe impl ClassType for NSLayoutDimension {
         #[inherits(NSObject)]
         type Super = NSLayoutAnchor;
+        type Mutability = InteriorMutable;
     }
 );
 

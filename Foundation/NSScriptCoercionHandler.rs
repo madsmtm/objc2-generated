@@ -11,6 +11,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSScriptCoercionHandler")]
     unsafe impl ClassType for NSScriptCoercionHandler {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

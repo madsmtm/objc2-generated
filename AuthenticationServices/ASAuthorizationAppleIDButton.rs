@@ -23,6 +23,33 @@ ns_enum!(
     }
 );
 
+#[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDButton")]
+unsafe impl NSAccessibility for ASAuthorizationAppleIDButton {}
+
+#[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDButton")]
+unsafe impl NSAccessibilityButton for ASAuthorizationAppleIDButton {}
+
+#[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDButton")]
+unsafe impl NSAccessibilityElementProtocol for ASAuthorizationAppleIDButton {}
+
+#[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDButton")]
+unsafe impl NSAnimatablePropertyContainer for ASAuthorizationAppleIDButton {}
+
+#[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDButton")]
+unsafe impl NSAppearanceCustomization for ASAuthorizationAppleIDButton {}
+
+#[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDButton")]
+unsafe impl NSCoding for ASAuthorizationAppleIDButton {}
+
+#[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDButton")]
+unsafe impl NSDraggingDestination for ASAuthorizationAppleIDButton {}
+
+#[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDButton")]
+unsafe impl NSObjectProtocol for ASAuthorizationAppleIDButton {}
+
+#[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDButton")]
+unsafe impl NSUserInterfaceItemIdentification for ASAuthorizationAppleIDButton {}
+
 extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDButton")]
     unsafe impl ASAuthorizationAppleIDButton {
@@ -44,5 +71,14 @@ extern_methods!(
 
         #[method(setCornerRadius:)]
         pub unsafe fn setCornerRadius(&self, corner_radius: CGFloat);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSControl`
+    #[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDButton")]
+    unsafe impl ASAuthorizationAppleIDButton {
+        #[method_id(@__retain_semantics Init initWithFrame:)]
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

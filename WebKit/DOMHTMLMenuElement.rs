@@ -15,11 +15,15 @@ extern_class!(
     unsafe impl ClassType for DOMHTMLMenuElement {
         #[inherits(DOMElement, DOMNode, DOMObject, WebScriptObject, NSObject)]
         type Super = DOMHTMLElement;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "WebKit_DOMHTMLMenuElement")]
 unsafe impl DOMEventTarget for DOMHTMLMenuElement {}
+
+#[cfg(feature = "WebKit_DOMHTMLMenuElement")]
+unsafe impl NSCopying for DOMHTMLMenuElement {}
 
 #[cfg(feature = "WebKit_DOMHTMLMenuElement")]
 unsafe impl NSObjectProtocol for DOMHTMLMenuElement {}

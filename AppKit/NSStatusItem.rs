@@ -23,6 +23,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSStatusItem")]
     unsafe impl ClassType for NSStatusItem {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

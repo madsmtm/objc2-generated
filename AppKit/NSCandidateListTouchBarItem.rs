@@ -8,40 +8,43 @@ use crate::Foundation::*;
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
-    pub struct NSCandidateListTouchBarItem<
-        CandidateType: Message = Object,
-        CandidateTypeOwnership: Ownership = Shared,
-    > {
-        _inner0: PhantomData<*mut (CandidateType, CandidateTypeOwnership)>,
+    pub struct NSCandidateListTouchBarItem<CandidateType: Message = Object> {
+        __superclass: NSTouchBarItem,
+        _inner0: PhantomData<*mut CandidateType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
-    unsafe impl<CandidateType: Message, CandidateTypeOwnership: Ownership> ClassType
-        for NSCandidateListTouchBarItem<CandidateType, CandidateTypeOwnership>
-    {
+    unsafe impl<CandidateType: Message> ClassType for NSCandidateListTouchBarItem<CandidateType> {
         #[inherits(NSObject)]
         type Super = NSTouchBarItem;
+        type Mutability = InteriorMutable;
+
+        fn as_super(&self) -> &Self::Super {
+            &self.__superclass
+        }
+
+        fn as_super_mut(&mut self) -> &mut Self::Super {
+            &mut self.__superclass
+        }
     }
 );
 
 #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
-unsafe impl<CandidateType: Message, CandidateTypeOwnership: Ownership> NSCoding
-    for NSCandidateListTouchBarItem<CandidateType, CandidateTypeOwnership>
+unsafe impl<CandidateType: Message + NSCoding> NSCoding
+    for NSCandidateListTouchBarItem<CandidateType>
 {
 }
 
 #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
-unsafe impl<CandidateType: Message, CandidateTypeOwnership: Ownership> NSObjectProtocol
-    for NSCandidateListTouchBarItem<CandidateType, CandidateTypeOwnership>
+unsafe impl<CandidateType: Message> NSObjectProtocol
+    for NSCandidateListTouchBarItem<CandidateType>
 {
 }
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
-    unsafe impl<CandidateType: Message, CandidateTypeOwnership: Ownership>
-        NSCandidateListTouchBarItem<CandidateType, CandidateTypeOwnership>
-    {
+    unsafe impl<CandidateType: Message> NSCandidateListTouchBarItem<CandidateType> {
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other client)]
         pub unsafe fn client(&self) -> Option<Id<NSView>>;
@@ -184,9 +187,7 @@ extern_static!(NSTouchBarItemIdentifierCandidateList: &'static NSTouchBarItemIde
 extern_methods!(
     /// Methods declared on superclass `NSTouchBarItem`
     #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
-    unsafe impl<CandidateType: Message, CandidateTypeOwnership: Ownership>
-        NSCandidateListTouchBarItem<CandidateType, CandidateTypeOwnership>
-    {
+    unsafe impl<CandidateType: Message> NSCandidateListTouchBarItem<CandidateType> {
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Option<Allocated<Self>>,

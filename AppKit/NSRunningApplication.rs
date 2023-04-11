@@ -30,6 +30,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSRunningApplication")]
     unsafe impl ClassType for NSRunningApplication {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

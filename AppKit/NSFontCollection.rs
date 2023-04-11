@@ -40,11 +40,18 @@ extern_class!(
     #[cfg(feature = "AppKit_NSFontCollection")]
     unsafe impl ClassType for NSFontCollection {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "AppKit_NSFontCollection")]
 unsafe impl NSCoding for NSFontCollection {}
+
+#[cfg(feature = "AppKit_NSFontCollection")]
+unsafe impl NSCopying for NSFontCollection {}
+
+#[cfg(feature = "AppKit_NSFontCollection")]
+unsafe impl NSMutableCopying for NSFontCollection {}
 
 #[cfg(feature = "AppKit_NSFontCollection")]
 unsafe impl NSObjectProtocol for NSFontCollection {}
@@ -163,11 +170,18 @@ extern_class!(
     unsafe impl ClassType for NSMutableFontCollection {
         #[inherits(NSObject)]
         type Super = NSFontCollection;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "AppKit_NSMutableFontCollection")]
 unsafe impl NSCoding for NSMutableFontCollection {}
+
+#[cfg(feature = "AppKit_NSMutableFontCollection")]
+unsafe impl NSCopying for NSMutableFontCollection {}
+
+#[cfg(feature = "AppKit_NSMutableFontCollection")]
+unsafe impl NSMutableCopying for NSMutableFontCollection {}
 
 #[cfg(feature = "AppKit_NSMutableFontCollection")]
 unsafe impl NSObjectProtocol for NSMutableFontCollection {}

@@ -12,11 +12,15 @@ extern_class!(
     #[cfg(feature = "Contacts_CNPhoneNumber")]
     unsafe impl ClassType for CNPhoneNumber {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Contacts_CNPhoneNumber")]
 unsafe impl NSCoding for CNPhoneNumber {}
+
+#[cfg(feature = "Contacts_CNPhoneNumber")]
+unsafe impl NSCopying for CNPhoneNumber {}
 
 #[cfg(feature = "Contacts_CNPhoneNumber")]
 unsafe impl NSObjectProtocol for CNPhoneNumber {}

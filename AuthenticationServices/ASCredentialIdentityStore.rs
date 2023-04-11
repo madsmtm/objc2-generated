@@ -23,6 +23,7 @@ extern_class!(
     #[cfg(feature = "AuthenticationServices_ASCredentialIdentityStore")]
     unsafe impl ClassType for ASCredentialIdentityStore {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

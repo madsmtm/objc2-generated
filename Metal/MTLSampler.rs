@@ -50,8 +50,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLSamplerDescriptor")]
     unsafe impl ClassType for MTLSamplerDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLSamplerDescriptor")]
+unsafe impl NSCopying for MTLSamplerDescriptor {}
 
 #[cfg(feature = "Metal_MTLSamplerDescriptor")]
 unsafe impl NSObjectProtocol for MTLSamplerDescriptor {}

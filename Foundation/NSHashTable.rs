@@ -23,48 +23,45 @@ pub type NSHashTableOptions = NSUInteger;
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSHashTable")]
-    pub struct NSHashTable<ObjectType: Message = Object, ObjectTypeOwnership: Ownership = Shared> {
-        _inner0: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
+    pub struct NSHashTable<ObjectType: Message = Object> {
+        __superclass: NSObject,
+        _inner0: PhantomData<*mut ObjectType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     #[cfg(feature = "Foundation_NSHashTable")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
-        for NSHashTable<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> ClassType for NSHashTable<ObjectType> {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
+
+        fn as_super(&self) -> &Self::Super {
+            &self.__superclass
+        }
+
+        fn as_super_mut(&mut self) -> &mut Self::Super {
+            &mut self.__superclass
+        }
     }
 );
 
 #[cfg(feature = "Foundation_NSHashTable")]
-unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSCoding
-    for NSHashTable<ObjectType, ObjectTypeOwnership>
-{
-}
+unsafe impl<ObjectType: Message + NSCoding> NSCoding for NSHashTable<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSHashTable")]
-unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSFastEnumeration
-    for NSHashTable<ObjectType, ObjectTypeOwnership>
-{
-}
+unsafe impl<ObjectType: IsIdCloneable> NSCopying for NSHashTable<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSHashTable")]
-unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSObjectProtocol
-    for NSHashTable<ObjectType, ObjectTypeOwnership>
-{
-}
+unsafe impl<ObjectType: Message> NSFastEnumeration for NSHashTable<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSHashTable")]
-unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSSecureCoding
-    for NSHashTable<ObjectType, ObjectTypeOwnership>
-{
-}
+unsafe impl<ObjectType: Message> NSObjectProtocol for NSHashTable<ObjectType> {}
+
+#[cfg(feature = "Foundation_NSHashTable")]
+unsafe impl<ObjectType: Message + NSSecureCoding> NSSecureCoding for NSHashTable<ObjectType> {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSHashTable")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSHashTable<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> NSHashTable<ObjectType> {
         #[method_id(@__retain_semantics Init initWithOptions:capacity:)]
         pub unsafe fn initWithOptions_capacity(
             this: Option<Allocated<Self>>,
@@ -100,10 +97,7 @@ extern_methods!(
         pub unsafe fn count(&self) -> NSUInteger;
 
         #[method_id(@__retain_semantics Other member:)]
-        pub unsafe fn member(
-            &self,
-            object: Option<&ObjectType>,
-        ) -> Option<Id<ObjectType, ObjectTypeOwnership>>;
+        pub unsafe fn member(&self, object: Option<&ObjectType>) -> Option<Id<ObjectType>>;
 
         #[cfg(feature = "Foundation_NSEnumerator")]
         #[method_id(@__retain_semantics Other objectEnumerator)]
@@ -123,7 +117,7 @@ extern_methods!(
         pub unsafe fn allObjects(&self) -> Id<NSArray<ObjectType>>;
 
         #[method_id(@__retain_semantics Other anyObject)]
-        pub unsafe fn anyObject(&self) -> Option<Id<ObjectType, ObjectTypeOwnership>>;
+        pub unsafe fn anyObject(&self) -> Option<Id<ObjectType>>;
 
         #[method(containsObject:)]
         pub unsafe fn containsObject(&self, an_object: Option<&ObjectType>) -> bool;

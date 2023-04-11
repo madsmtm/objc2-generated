@@ -15,11 +15,15 @@ extern_class!(
     unsafe impl ClassType for DOMHTMLFieldSetElement {
         #[inherits(DOMElement, DOMNode, DOMObject, WebScriptObject, NSObject)]
         type Super = DOMHTMLElement;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "WebKit_DOMHTMLFieldSetElement")]
 unsafe impl DOMEventTarget for DOMHTMLFieldSetElement {}
+
+#[cfg(feature = "WebKit_DOMHTMLFieldSetElement")]
+unsafe impl NSCopying for DOMHTMLFieldSetElement {}
 
 #[cfg(feature = "WebKit_DOMHTMLFieldSetElement")]
 unsafe impl NSObjectProtocol for DOMHTMLFieldSetElement {}

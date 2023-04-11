@@ -21,8 +21,12 @@ extern_class!(
     #[cfg(feature = "CoreData_NSPersistentHistoryChange")]
     unsafe impl ClassType for NSPersistentHistoryChange {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "CoreData_NSPersistentHistoryChange")]
+unsafe impl NSCopying for NSPersistentHistoryChange {}
 
 #[cfg(feature = "CoreData_NSPersistentHistoryChange")]
 unsafe impl NSObjectProtocol for NSPersistentHistoryChange {}

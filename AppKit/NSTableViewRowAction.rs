@@ -21,8 +21,12 @@ extern_class!(
     #[cfg(feature = "AppKit_NSTableViewRowAction")]
     unsafe impl ClassType for NSTableViewRowAction {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "AppKit_NSTableViewRowAction")]
+unsafe impl NSCopying for NSTableViewRowAction {}
 
 #[cfg(feature = "AppKit_NSTableViewRowAction")]
 unsafe impl NSObjectProtocol for NSTableViewRowAction {}

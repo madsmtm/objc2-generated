@@ -14,6 +14,7 @@ extern_class!(
     #[cfg(feature = "WebKit_WebFrame")]
     unsafe impl ClassType for WebFrame {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -13,11 +13,15 @@ extern_class!(
     unsafe impl ClassType for CXEndCallAction {
         #[inherits(CXAction, NSObject)]
         type Super = CXCallAction;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "CallKit_CXEndCallAction")]
 unsafe impl NSCoding for CXEndCallAction {}
+
+#[cfg(feature = "CallKit_CXEndCallAction")]
+unsafe impl NSCopying for CXEndCallAction {}
 
 #[cfg(feature = "CallKit_CXEndCallAction")]
 unsafe impl NSObjectProtocol for CXEndCallAction {}

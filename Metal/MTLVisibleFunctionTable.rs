@@ -12,8 +12,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLVisibleFunctionTableDescriptor")]
     unsafe impl ClassType for MTLVisibleFunctionTableDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLVisibleFunctionTableDescriptor")]
+unsafe impl NSCopying for MTLVisibleFunctionTableDescriptor {}
 
 #[cfg(feature = "Metal_MTLVisibleFunctionTableDescriptor")]
 unsafe impl NSObjectProtocol for MTLVisibleFunctionTableDescriptor {}

@@ -23,11 +23,15 @@ extern_class!(
     unsafe impl ClassType for NSRelationshipDescription {
         #[inherits(NSObject)]
         type Super = NSPropertyDescription;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "CoreData_NSRelationshipDescription")]
 unsafe impl NSCoding for NSRelationshipDescription {}
+
+#[cfg(feature = "CoreData_NSRelationshipDescription")]
+unsafe impl NSCopying for NSRelationshipDescription {}
 
 #[cfg(feature = "CoreData_NSRelationshipDescription")]
 unsafe impl NSObjectProtocol for NSRelationshipDescription {}

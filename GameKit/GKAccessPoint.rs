@@ -23,6 +23,7 @@ extern_class!(
     #[cfg(feature = "GameKit_GKAccessPoint")]
     unsafe impl ClassType for GKAccessPoint {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

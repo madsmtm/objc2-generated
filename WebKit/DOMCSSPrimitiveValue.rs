@@ -82,8 +82,12 @@ extern_class!(
     unsafe impl ClassType for DOMCSSPrimitiveValue {
         #[inherits(DOMObject, WebScriptObject, NSObject)]
         type Super = DOMCSSValue;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+unsafe impl NSCopying for DOMCSSPrimitiveValue {}
 
 #[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
 unsafe impl NSObjectProtocol for DOMCSSPrimitiveValue {}

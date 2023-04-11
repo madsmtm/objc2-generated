@@ -11,6 +11,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSAutoreleasePool")]
     unsafe impl ClassType for NSAutoreleasePool {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

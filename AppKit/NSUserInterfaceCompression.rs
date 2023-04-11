@@ -13,11 +13,15 @@ extern_class!(
     #[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
     unsafe impl ClassType for NSUserInterfaceCompressionOptions {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
 unsafe impl NSCoding for NSUserInterfaceCompressionOptions {}
+
+#[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
+unsafe impl NSCopying for NSUserInterfaceCompressionOptions {}
 
 #[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
 unsafe impl NSObjectProtocol for NSUserInterfaceCompressionOptions {}

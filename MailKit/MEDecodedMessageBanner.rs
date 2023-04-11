@@ -13,11 +13,15 @@ extern_class!(
     #[cfg(feature = "MailKit_MEDecodedMessageBanner")]
     unsafe impl ClassType for MEDecodedMessageBanner {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "MailKit_MEDecodedMessageBanner")]
 unsafe impl NSCoding for MEDecodedMessageBanner {}
+
+#[cfg(feature = "MailKit_MEDecodedMessageBanner")]
+unsafe impl NSCopying for MEDecodedMessageBanner {}
 
 #[cfg(feature = "MailKit_MEDecodedMessageBanner")]
 unsafe impl NSObjectProtocol for MEDecodedMessageBanner {}

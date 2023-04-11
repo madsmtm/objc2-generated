@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSWindowTabGroup")]
     unsafe impl ClassType for NSWindowTabGroup {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

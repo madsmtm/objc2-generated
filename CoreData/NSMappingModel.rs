@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "CoreData_NSMappingModel")]
     unsafe impl ClassType for NSMappingModel {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

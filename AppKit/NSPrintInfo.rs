@@ -108,11 +108,15 @@ extern_class!(
     #[cfg(feature = "AppKit_NSPrintInfo")]
     unsafe impl ClassType for NSPrintInfo {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "AppKit_NSPrintInfo")]
 unsafe impl NSCoding for NSPrintInfo {}
+
+#[cfg(feature = "AppKit_NSPrintInfo")]
+unsafe impl NSCopying for NSPrintInfo {}
 
 #[cfg(feature = "AppKit_NSPrintInfo")]
 unsafe impl NSObjectProtocol for NSPrintInfo {}
@@ -142,9 +146,8 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSMutableDictionary")]
         #[method_id(@__retain_semantics Other dictionary)]
-        pub unsafe fn dictionary(
-            &self,
-        ) -> Id<NSMutableDictionary<NSPrintInfoAttributeKey, Object>, Owned>;
+        pub unsafe fn dictionary(&self)
+            -> Id<NSMutableDictionary<NSPrintInfoAttributeKey, Object>>;
 
         #[method_id(@__retain_semantics Other paperName)]
         pub unsafe fn paperName(&self) -> Option<Id<NSPrinterPaperName>>;
@@ -253,7 +256,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other printSettings)]
         pub unsafe fn printSettings(
             &self,
-        ) -> Id<NSMutableDictionary<NSPrintInfoSettingKey, Object>, Owned>;
+        ) -> Id<NSMutableDictionary<NSPrintInfoSettingKey, Object>>;
 
         #[method(PMPrintSession)]
         pub unsafe fn PMPrintSession(&self) -> NonNull<c_void>;

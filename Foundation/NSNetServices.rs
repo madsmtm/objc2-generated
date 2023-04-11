@@ -39,6 +39,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSNetService")]
     unsafe impl ClassType for NSNetService {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -182,6 +183,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSNetServiceBrowser")]
     unsafe impl ClassType for NSNetServiceBrowser {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

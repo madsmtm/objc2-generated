@@ -33,6 +33,7 @@ extern_class!(
     #[cfg(feature = "MediaPlayer_MPNowPlayingInfoCenter")]
     unsafe impl ClassType for MPNowPlayingInfoCenter {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -30,6 +30,7 @@ extern_class!(
     #[cfg(feature = "GameKit_GKMatch")]
     unsafe impl ClassType for GKMatch {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

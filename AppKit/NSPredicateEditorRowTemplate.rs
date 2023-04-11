@@ -13,11 +13,15 @@ extern_class!(
     #[cfg(feature = "AppKit_NSPredicateEditorRowTemplate")]
     unsafe impl ClassType for NSPredicateEditorRowTemplate {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "AppKit_NSPredicateEditorRowTemplate")]
 unsafe impl NSCoding for NSPredicateEditorRowTemplate {}
+
+#[cfg(feature = "AppKit_NSPredicateEditorRowTemplate")]
+unsafe impl NSCopying for NSPredicateEditorRowTemplate {}
 
 #[cfg(feature = "AppKit_NSPredicateEditorRowTemplate")]
 unsafe impl NSObjectProtocol for NSPredicateEditorRowTemplate {}

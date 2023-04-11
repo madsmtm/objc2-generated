@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialProvider")]
     unsafe impl ClassType for ASAuthorizationSecurityKeyPublicKeyCredentialProvider {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

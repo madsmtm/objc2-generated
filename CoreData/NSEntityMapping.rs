@@ -24,6 +24,7 @@ extern_class!(
     #[cfg(feature = "CoreData_NSEntityMapping")]
     unsafe impl ClassType for NSEntityMapping {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

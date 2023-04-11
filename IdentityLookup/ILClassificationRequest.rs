@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "IdentityLookup_ILClassificationRequest")]
     unsafe impl ClassType for ILClassificationRequest {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

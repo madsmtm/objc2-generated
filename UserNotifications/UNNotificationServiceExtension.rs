@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "UserNotifications_UNNotificationServiceExtension")]
     unsafe impl ClassType for UNNotificationServiceExtension {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

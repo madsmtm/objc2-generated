@@ -11,11 +11,18 @@ extern_class!(
     #[cfg(feature = "Foundation_NSIndexSet")]
     unsafe impl ClassType for NSIndexSet {
         type Super = NSObject;
+        type Mutability = ImmutableWithMutableSubclass<NSMutableIndexSet>;
     }
 );
 
 #[cfg(feature = "Foundation_NSIndexSet")]
 unsafe impl NSCoding for NSIndexSet {}
+
+#[cfg(feature = "Foundation_NSIndexSet")]
+unsafe impl NSCopying for NSIndexSet {}
+
+#[cfg(feature = "Foundation_NSIndexSet")]
+unsafe impl NSMutableCopying for NSIndexSet {}
 
 #[cfg(feature = "Foundation_NSIndexSet")]
 unsafe impl NSObjectProtocol for NSIndexSet {}
@@ -182,18 +189,25 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSMutableIndexSet")]
+    #[cfg(feature = "Foundation_NSIndexSet")]
     pub struct NSMutableIndexSet;
 
-    #[cfg(feature = "Foundation_NSMutableIndexSet")]
+    #[cfg(feature = "Foundation_NSIndexSet")]
     unsafe impl ClassType for NSMutableIndexSet {
         #[inherits(NSObject)]
         type Super = NSIndexSet;
+        type Mutability = MutableWithImmutableSuperclass<NSIndexSet>;
     }
 );
 
 #[cfg(feature = "Foundation_NSMutableIndexSet")]
 unsafe impl NSCoding for NSMutableIndexSet {}
+
+#[cfg(feature = "Foundation_NSMutableIndexSet")]
+unsafe impl NSCopying for NSMutableIndexSet {}
+
+#[cfg(feature = "Foundation_NSMutableIndexSet")]
+unsafe impl NSMutableCopying for NSMutableIndexSet {}
 
 #[cfg(feature = "Foundation_NSMutableIndexSet")]
 unsafe impl NSObjectProtocol for NSMutableIndexSet {}
@@ -235,30 +249,27 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSMutableIndexSet")]
     unsafe impl NSMutableIndexSet {
         #[method_id(@__retain_semantics Other indexSet)]
-        pub unsafe fn indexSet() -> Id<Self, Owned>;
+        pub unsafe fn indexSet() -> Id<Self>;
 
         #[method_id(@__retain_semantics Other indexSetWithIndex:)]
-        pub unsafe fn indexSetWithIndex(value: NSUInteger) -> Id<Self, Owned>;
+        pub unsafe fn indexSetWithIndex(value: NSUInteger) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other indexSetWithIndexesInRange:)]
-        pub unsafe fn indexSetWithIndexesInRange(range: NSRange) -> Id<Self, Owned>;
+        pub unsafe fn indexSetWithIndexesInRange(range: NSRange) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithIndexesInRange:)]
         pub unsafe fn initWithIndexesInRange(
             this: Option<Allocated<Self>>,
             range: NSRange,
-        ) -> Id<Self, Owned>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithIndexSet:)]
         pub unsafe fn initWithIndexSet(
             this: Option<Allocated<Self>>,
             index_set: &NSIndexSet,
-        ) -> Id<Self, Owned>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithIndex:)]
-        pub unsafe fn initWithIndex(
-            this: Option<Allocated<Self>>,
-            value: NSUInteger,
-        ) -> Id<Self, Owned>;
+        pub unsafe fn initWithIndex(this: Option<Allocated<Self>>, value: NSUInteger) -> Id<Self>;
     }
 );

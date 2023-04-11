@@ -49,11 +49,15 @@ extern_class!(
     #[cfg(feature = "AppKit_NSBezierPath")]
     unsafe impl ClassType for NSBezierPath {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "AppKit_NSBezierPath")]
 unsafe impl NSCoding for NSBezierPath {}
+
+#[cfg(feature = "AppKit_NSBezierPath")]
+unsafe impl NSCopying for NSBezierPath {}
 
 #[cfg(feature = "AppKit_NSBezierPath")]
 unsafe impl NSObjectProtocol for NSBezierPath {}

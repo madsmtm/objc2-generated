@@ -11,11 +11,15 @@ extern_class!(
     #[cfg(feature = "Foundation_NSDateInterval")]
     unsafe impl ClassType for NSDateInterval {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSDateInterval")]
 unsafe impl NSCoding for NSDateInterval {}
+
+#[cfg(feature = "Foundation_NSDateInterval")]
+unsafe impl NSCopying for NSDateInterval {}
 
 #[cfg(feature = "Foundation_NSDateInterval")]
 unsafe impl NSObjectProtocol for NSDateInterval {}

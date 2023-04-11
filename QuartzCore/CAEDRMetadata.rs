@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "CoreAnimation_CAEDRMetadata")]
     unsafe impl ClassType for CAEDRMetadata {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

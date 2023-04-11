@@ -24,11 +24,15 @@ extern_class!(
     #[cfg(feature = "Foundation_NSRegularExpression")]
     unsafe impl ClassType for NSRegularExpression {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSRegularExpression")]
 unsafe impl NSCoding for NSRegularExpression {}
+
+#[cfg(feature = "Foundation_NSRegularExpression")]
+unsafe impl NSCopying for NSRegularExpression {}
 
 #[cfg(feature = "Foundation_NSRegularExpression")]
 unsafe impl NSObjectProtocol for NSRegularExpression {}
@@ -209,11 +213,15 @@ extern_class!(
     unsafe impl ClassType for NSDataDetector {
         #[inherits(NSObject)]
         type Super = NSRegularExpression;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSDataDetector")]
 unsafe impl NSCoding for NSDataDetector {}
+
+#[cfg(feature = "Foundation_NSDataDetector")]
+unsafe impl NSCopying for NSDataDetector {}
 
 #[cfg(feature = "Foundation_NSDataDetector")]
 unsafe impl NSObjectProtocol for NSDataDetector {}

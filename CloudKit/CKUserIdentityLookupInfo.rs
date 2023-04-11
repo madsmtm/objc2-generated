@@ -13,11 +13,15 @@ extern_class!(
     #[cfg(feature = "CloudKit_CKUserIdentityLookupInfo")]
     unsafe impl ClassType for CKUserIdentityLookupInfo {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "CloudKit_CKUserIdentityLookupInfo")]
 unsafe impl NSCoding for CKUserIdentityLookupInfo {}
+
+#[cfg(feature = "CloudKit_CKUserIdentityLookupInfo")]
+unsafe impl NSCopying for CKUserIdentityLookupInfo {}
 
 #[cfg(feature = "CloudKit_CKUserIdentityLookupInfo")]
 unsafe impl NSObjectProtocol for CKUserIdentityLookupInfo {}

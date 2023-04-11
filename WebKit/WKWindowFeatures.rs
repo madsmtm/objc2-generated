@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "WebKit_WKWindowFeatures")]
     unsafe impl ClassType for WKWindowFeatures {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

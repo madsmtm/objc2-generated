@@ -13,8 +13,12 @@ extern_class!(
     unsafe impl ClassType for NSPersistentHistoryChangeRequest {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreRequest;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "CoreData_NSPersistentHistoryChangeRequest")]
+unsafe impl NSCopying for NSPersistentHistoryChangeRequest {}
 
 #[cfg(feature = "CoreData_NSPersistentHistoryChangeRequest")]
 unsafe impl NSObjectProtocol for NSPersistentHistoryChangeRequest {}

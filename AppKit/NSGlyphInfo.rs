@@ -13,11 +13,15 @@ extern_class!(
     #[cfg(feature = "AppKit_NSGlyphInfo")]
     unsafe impl ClassType for NSGlyphInfo {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "AppKit_NSGlyphInfo")]
 unsafe impl NSCoding for NSGlyphInfo {}
+
+#[cfg(feature = "AppKit_NSGlyphInfo")]
+unsafe impl NSCopying for NSGlyphInfo {}
 
 #[cfg(feature = "AppKit_NSGlyphInfo")]
 unsafe impl NSObjectProtocol for NSGlyphInfo {}

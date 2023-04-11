@@ -12,11 +12,15 @@ extern_class!(
     unsafe impl ClassType for NSListFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSListFormatter")]
 unsafe impl NSCoding for NSListFormatter {}
+
+#[cfg(feature = "Foundation_NSListFormatter")]
+unsafe impl NSCopying for NSListFormatter {}
 
 #[cfg(feature = "Foundation_NSListFormatter")]
 unsafe impl NSObjectProtocol for NSListFormatter {}

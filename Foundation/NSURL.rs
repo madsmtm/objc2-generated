@@ -361,11 +361,15 @@ extern_class!(
     #[cfg(feature = "Foundation_NSURL")]
     unsafe impl ClassType for NSURL {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSURL")]
 unsafe impl NSCoding for NSURL {}
+
+#[cfg(feature = "Foundation_NSURL")]
+unsafe impl NSCopying for NSURL {}
 
 #[cfg(feature = "Foundation_NSURL")]
 unsafe impl NSObjectProtocol for NSURL {}
@@ -775,11 +779,15 @@ extern_class!(
     #[cfg(feature = "Foundation_NSURLQueryItem")]
     unsafe impl ClassType for NSURLQueryItem {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSURLQueryItem")]
 unsafe impl NSCoding for NSURLQueryItem {}
+
+#[cfg(feature = "Foundation_NSURLQueryItem")]
+unsafe impl NSCopying for NSURLQueryItem {}
 
 #[cfg(feature = "Foundation_NSURLQueryItem")]
 unsafe impl NSObjectProtocol for NSURLQueryItem {}
@@ -823,8 +831,12 @@ extern_class!(
     #[cfg(feature = "Foundation_NSURLComponents")]
     unsafe impl ClassType for NSURLComponents {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Foundation_NSURLComponents")]
+unsafe impl NSCopying for NSURLComponents {}
 
 #[cfg(feature = "Foundation_NSURLComponents")]
 unsafe impl NSObjectProtocol for NSURLComponents {}
@@ -1160,11 +1172,15 @@ extern_class!(
     #[cfg(feature = "Foundation_NSFileSecurity")]
     unsafe impl ClassType for NSFileSecurity {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSFileSecurity")]
 unsafe impl NSCoding for NSFileSecurity {}
+
+#[cfg(feature = "Foundation_NSFileSecurity")]
+unsafe impl NSCopying for NSFileSecurity {}
 
 #[cfg(feature = "Foundation_NSFileSecurity")]
 unsafe impl NSObjectProtocol for NSFileSecurity {}

@@ -13,11 +13,15 @@ extern_class!(
     #[cfg(feature = "GameController_GCColor")]
     unsafe impl ClassType for GCColor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "GameController_GCColor")]
 unsafe impl NSCoding for GCColor {}
+
+#[cfg(feature = "GameController_GCColor")]
+unsafe impl NSCopying for GCColor {}
 
 #[cfg(feature = "GameController_GCColor")]
 unsafe impl NSObjectProtocol for GCColor {}

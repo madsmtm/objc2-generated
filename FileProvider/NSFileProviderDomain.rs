@@ -18,6 +18,7 @@ extern_class!(
     #[cfg(feature = "FileProvider_NSFileProviderDomainVersion")]
     unsafe impl ClassType for NSFileProviderDomainVersion {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -60,6 +61,7 @@ extern_class!(
     #[cfg(feature = "FileProvider_NSFileProviderDomain")]
     unsafe impl ClassType for NSFileProviderDomain {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "MetricKit_MXForegroundExitData")]
     unsafe impl ClassType for MXForegroundExitData {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -55,6 +56,7 @@ extern_class!(
     #[cfg(feature = "MetricKit_MXBackgroundExitData")]
     unsafe impl ClassType for MXBackgroundExitData {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -111,6 +113,7 @@ extern_class!(
     unsafe impl ClassType for MXAppExitMetric {
         #[inherits(NSObject)]
         type Super = MXMetric;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -15,11 +15,15 @@ extern_class!(
     #[cfg(feature = "Foundation_NSPort")]
     unsafe impl ClassType for NSPort {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSPort")]
 unsafe impl NSCoding for NSPort {}
+
+#[cfg(feature = "Foundation_NSPort")]
+unsafe impl NSCopying for NSPort {}
 
 #[cfg(feature = "Foundation_NSPort")]
 unsafe impl NSObjectProtocol for NSPort {}
@@ -125,11 +129,15 @@ extern_class!(
     unsafe impl ClassType for NSMachPort {
         #[inherits(NSObject)]
         type Super = NSPort;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSMachPort")]
 unsafe impl NSCoding for NSMachPort {}
+
+#[cfg(feature = "Foundation_NSMachPort")]
+unsafe impl NSCopying for NSMachPort {}
 
 #[cfg(feature = "Foundation_NSMachPort")]
 unsafe impl NSObjectProtocol for NSMachPort {}
@@ -194,11 +202,15 @@ extern_class!(
     unsafe impl ClassType for NSMessagePort {
         #[inherits(NSObject)]
         type Super = NSPort;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSMessagePort")]
 unsafe impl NSCoding for NSMessagePort {}
+
+#[cfg(feature = "Foundation_NSMessagePort")]
+unsafe impl NSCopying for NSMessagePort {}
 
 #[cfg(feature = "Foundation_NSMessagePort")]
 unsafe impl NSObjectProtocol for NSMessagePort {}
@@ -217,11 +229,15 @@ extern_class!(
     unsafe impl ClassType for NSSocketPort {
         #[inherits(NSObject)]
         type Super = NSPort;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSSocketPort")]
 unsafe impl NSCoding for NSSocketPort {}
+
+#[cfg(feature = "Foundation_NSSocketPort")]
+unsafe impl NSCopying for NSSocketPort {}
 
 #[cfg(feature = "Foundation_NSSocketPort")]
 unsafe impl NSObjectProtocol for NSSocketPort {}

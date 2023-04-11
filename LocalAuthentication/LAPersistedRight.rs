@@ -13,6 +13,7 @@ extern_class!(
     unsafe impl ClassType for LAPersistedRight {
         #[inherits(NSObject)]
         type Super = LARight;
+        type Mutability = InteriorMutable;
     }
 );
 

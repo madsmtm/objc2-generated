@@ -13,6 +13,7 @@ extern_class!(
     unsafe impl ClassType for CLSScoreItem {
         #[inherits(CLSObject, NSObject)]
         type Super = CLSActivityItem;
+        type Mutability = InteriorMutable;
     }
 );
 

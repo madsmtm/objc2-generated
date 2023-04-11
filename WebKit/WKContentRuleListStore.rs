@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "WebKit_WKContentRuleListStore")]
     unsafe impl ClassType for WKContentRuleListStore {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

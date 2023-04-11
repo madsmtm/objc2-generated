@@ -21,6 +21,7 @@ extern_class!(
     unsafe impl ClassType for NSOutlineView {
         #[inherits(NSControl, NSView, NSResponder, NSObject)]
         type Super = NSTableView;
+        type Mutability = InteriorMutable;
     }
 );
 

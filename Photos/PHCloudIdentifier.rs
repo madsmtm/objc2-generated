@@ -14,6 +14,7 @@ extern_class!(
     #[cfg(feature = "PhotoKit_PHCloudIdentifier")]
     unsafe impl ClassType for PHCloudIdentifier {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -54,6 +55,7 @@ extern_class!(
     #[cfg(feature = "PhotoKit_PHCloudIdentifierMapping")]
     unsafe impl ClassType for PHCloudIdentifierMapping {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -81,6 +83,7 @@ extern_class!(
     #[cfg(feature = "PhotoKit_PHLocalIdentifierMapping")]
     unsafe impl ClassType for PHLocalIdentifierMapping {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -104,6 +107,9 @@ extern_methods!(
     #[cfg(feature = "PhotoKit_PHCloudIdentifier")]
     unsafe impl PHCloudIdentifier {}
 );
+
+#[cfg(feature = "PhotoKit_PHCloudIdentifier")]
+unsafe impl NSCopying for PHCloudIdentifier {}
 
 extern_methods!(
     /// CloudIdentifiers

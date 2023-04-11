@@ -15,6 +15,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSUndoManager")]
     unsafe impl ClassType for NSUndoManager {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

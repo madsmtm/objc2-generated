@@ -16,6 +16,7 @@ extern_class!(
     unsafe impl ClassType for MKOverlayPathRenderer {
         #[inherits(NSObject)]
         type Super = MKOverlayRenderer;
+        type Mutability = InteriorMutable;
     }
 );
 

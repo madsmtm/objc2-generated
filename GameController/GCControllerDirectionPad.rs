@@ -17,6 +17,7 @@ extern_class!(
     unsafe impl ClassType for GCControllerDirectionPad {
         #[inherits(NSObject)]
         type Super = GCControllerElement;
+        type Mutability = InteriorMutable;
     }
 );
 

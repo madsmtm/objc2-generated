@@ -112,6 +112,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSSpeechSynthesizer")]
     unsafe impl ClassType for NSSpeechSynthesizer {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

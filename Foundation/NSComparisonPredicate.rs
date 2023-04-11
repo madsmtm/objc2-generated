@@ -50,11 +50,15 @@ extern_class!(
     unsafe impl ClassType for NSComparisonPredicate {
         #[inherits(NSObject)]
         type Super = NSPredicate;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSComparisonPredicate")]
 unsafe impl NSCoding for NSComparisonPredicate {}
+
+#[cfg(feature = "Foundation_NSComparisonPredicate")]
+unsafe impl NSCopying for NSComparisonPredicate {}
 
 #[cfg(feature = "Foundation_NSComparisonPredicate")]
 unsafe impl NSObjectProtocol for NSComparisonPredicate {}

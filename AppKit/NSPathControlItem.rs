@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSPathControlItem")]
     unsafe impl ClassType for NSPathControlItem {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

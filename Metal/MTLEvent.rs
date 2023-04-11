@@ -29,6 +29,7 @@ extern_class!(
     #[cfg(feature = "Metal_MTLSharedEventListener")]
     unsafe impl ClassType for MTLSharedEventListener {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -79,6 +80,7 @@ extern_class!(
     #[cfg(feature = "Metal_MTLSharedEventHandle")]
     unsafe impl ClassType for MTLSharedEventHandle {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

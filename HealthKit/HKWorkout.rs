@@ -120,11 +120,15 @@ extern_class!(
     #[cfg(feature = "HealthKit_HKWorkoutEvent")]
     unsafe impl ClassType for HKWorkoutEvent {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "HealthKit_HKWorkoutEvent")]
 unsafe impl NSCoding for HKWorkoutEvent {}
+
+#[cfg(feature = "HealthKit_HKWorkoutEvent")]
+unsafe impl NSCopying for HKWorkoutEvent {}
 
 #[cfg(feature = "HealthKit_HKWorkoutEvent")]
 unsafe impl NSObjectProtocol for HKWorkoutEvent {}
@@ -198,6 +202,7 @@ extern_class!(
     unsafe impl ClassType for HKWorkout {
         #[inherits(HKObject, NSObject)]
         type Super = HKSample;
+        type Mutability = InteriorMutable;
     }
 );
 

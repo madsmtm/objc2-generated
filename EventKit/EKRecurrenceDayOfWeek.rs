@@ -15,11 +15,15 @@ extern_class!(
     #[cfg(feature = "EventKit_EKRecurrenceDayOfWeek")]
     unsafe impl ClassType for EKRecurrenceDayOfWeek {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "EventKit_EKRecurrenceDayOfWeek")]
 unsafe impl NSCoding for EKRecurrenceDayOfWeek {}
+
+#[cfg(feature = "EventKit_EKRecurrenceDayOfWeek")]
+unsafe impl NSCopying for EKRecurrenceDayOfWeek {}
 
 #[cfg(feature = "EventKit_EKRecurrenceDayOfWeek")]
 unsafe impl NSObjectProtocol for EKRecurrenceDayOfWeek {}

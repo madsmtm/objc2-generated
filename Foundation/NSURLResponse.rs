@@ -11,11 +11,15 @@ extern_class!(
     #[cfg(feature = "Foundation_NSURLResponse")]
     unsafe impl ClassType for NSURLResponse {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSURLResponse")]
 unsafe impl NSCoding for NSURLResponse {}
+
+#[cfg(feature = "Foundation_NSURLResponse")]
+unsafe impl NSCopying for NSURLResponse {}
 
 #[cfg(feature = "Foundation_NSURLResponse")]
 unsafe impl NSObjectProtocol for NSURLResponse {}
@@ -66,11 +70,15 @@ extern_class!(
     unsafe impl ClassType for NSHTTPURLResponse {
         #[inherits(NSObject)]
         type Super = NSURLResponse;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSHTTPURLResponse")]
 unsafe impl NSCoding for NSHTTPURLResponse {}
+
+#[cfg(feature = "Foundation_NSHTTPURLResponse")]
+unsafe impl NSCopying for NSHTTPURLResponse {}
 
 #[cfg(feature = "Foundation_NSHTTPURLResponse")]
 unsafe impl NSObjectProtocol for NSHTTPURLResponse {}

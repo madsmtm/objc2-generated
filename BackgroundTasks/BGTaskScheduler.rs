@@ -23,6 +23,7 @@ extern_class!(
     #[cfg(feature = "BackgroundTasks_BGTaskScheduler")]
     unsafe impl ClassType for BGTaskScheduler {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

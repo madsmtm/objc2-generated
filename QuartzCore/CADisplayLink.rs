@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "CoreAnimation_CADisplayLink")]
     unsafe impl ClassType for CADisplayLink {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

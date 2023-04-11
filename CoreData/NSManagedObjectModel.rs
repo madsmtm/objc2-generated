@@ -12,11 +12,15 @@ extern_class!(
     #[cfg(feature = "CoreData_NSManagedObjectModel")]
     unsafe impl ClassType for NSManagedObjectModel {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "CoreData_NSManagedObjectModel")]
 unsafe impl NSCoding for NSManagedObjectModel {}
+
+#[cfg(feature = "CoreData_NSManagedObjectModel")]
+unsafe impl NSCopying for NSManagedObjectModel {}
 
 #[cfg(feature = "CoreData_NSManagedObjectModel")]
 unsafe impl NSFastEnumeration for NSManagedObjectModel {}

@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "AdSupport_ASIdentifierManager")]
     unsafe impl ClassType for ASIdentifierManager {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

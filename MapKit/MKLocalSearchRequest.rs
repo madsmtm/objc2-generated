@@ -23,8 +23,12 @@ extern_class!(
     #[cfg(feature = "MapKit_MKLocalSearchRequest")]
     unsafe impl ClassType for MKLocalSearchRequest {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "MapKit_MKLocalSearchRequest")]
+unsafe impl NSCopying for MKLocalSearchRequest {}
 
 #[cfg(feature = "MapKit_MKLocalSearchRequest")]
 unsafe impl NSObjectProtocol for MKLocalSearchRequest {}

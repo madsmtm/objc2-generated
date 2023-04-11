@@ -14,6 +14,7 @@ extern_class!(
     #[cfg(feature = "HealthKit_HKObject")]
     unsafe impl ClassType for HKObject {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

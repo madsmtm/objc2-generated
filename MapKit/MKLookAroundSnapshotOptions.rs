@@ -15,6 +15,7 @@ extern_class!(
     #[cfg(feature = "MapKit_MKLookAroundSnapshotOptions")]
     unsafe impl ClassType for MKLookAroundSnapshotOptions {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

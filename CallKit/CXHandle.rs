@@ -21,11 +21,15 @@ extern_class!(
     #[cfg(feature = "CallKit_CXHandle")]
     unsafe impl ClassType for CXHandle {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "CallKit_CXHandle")]
 unsafe impl NSCoding for CXHandle {}
+
+#[cfg(feature = "CallKit_CXHandle")]
+unsafe impl NSCopying for CXHandle {}
 
 #[cfg(feature = "CallKit_CXHandle")]
 unsafe impl NSObjectProtocol for CXHandle {}

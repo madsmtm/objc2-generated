@@ -13,8 +13,12 @@ extern_class!(
     #[cfg(feature = "GameKit_GKSavedGame")]
     unsafe impl ClassType for GKSavedGame {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "GameKit_GKSavedGame")]
+unsafe impl NSCopying for GKSavedGame {}
 
 #[cfg(feature = "GameKit_GKSavedGame")]
 unsafe impl NSObjectProtocol for GKSavedGame {}

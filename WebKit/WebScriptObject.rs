@@ -14,6 +14,7 @@ extern_class!(
     #[cfg(feature = "WebKit_WebScriptObject")]
     unsafe impl ClassType for WebScriptObject {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -72,11 +73,15 @@ extern_class!(
     #[cfg(feature = "WebKit_WebUndefined")]
     unsafe impl ClassType for WebUndefined {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "WebKit_WebUndefined")]
 unsafe impl NSCoding for WebUndefined {}
+
+#[cfg(feature = "WebKit_WebUndefined")]
+unsafe impl NSCopying for WebUndefined {}
 
 #[cfg(feature = "WebKit_WebUndefined")]
 unsafe impl NSObjectProtocol for WebUndefined {}

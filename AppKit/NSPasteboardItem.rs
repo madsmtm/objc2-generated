@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSPasteboardItem")]
     unsafe impl ClassType for NSPasteboardItem {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

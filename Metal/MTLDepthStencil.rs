@@ -40,8 +40,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLStencilDescriptor")]
     unsafe impl ClassType for MTLStencilDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLStencilDescriptor")]
+unsafe impl NSCopying for MTLStencilDescriptor {}
 
 #[cfg(feature = "Metal_MTLStencilDescriptor")]
 unsafe impl NSObjectProtocol for MTLStencilDescriptor {}
@@ -98,8 +102,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLDepthStencilDescriptor")]
     unsafe impl ClassType for MTLDepthStencilDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLDepthStencilDescriptor")]
+unsafe impl NSCopying for MTLDepthStencilDescriptor {}
 
 #[cfg(feature = "Metal_MTLDepthStencilDescriptor")]
 unsafe impl NSObjectProtocol for MTLDepthStencilDescriptor {}

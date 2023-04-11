@@ -21,8 +21,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLPipelineBufferDescriptor")]
     unsafe impl ClassType for MTLPipelineBufferDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLPipelineBufferDescriptor")]
+unsafe impl NSCopying for MTLPipelineBufferDescriptor {}
 
 #[cfg(feature = "Metal_MTLPipelineBufferDescriptor")]
 unsafe impl NSObjectProtocol for MTLPipelineBufferDescriptor {}
@@ -46,6 +50,7 @@ extern_class!(
     #[cfg(feature = "Metal_MTLPipelineBufferDescriptorArray")]
     unsafe impl ClassType for MTLPipelineBufferDescriptorArray {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -16,11 +16,15 @@ extern_class!(
     unsafe impl ClassType for MKImageryMapConfiguration {
         #[inherits(NSObject)]
         type Super = MKMapConfiguration;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "MapKit_MKImageryMapConfiguration")]
 unsafe impl NSCoding for MKImageryMapConfiguration {}
+
+#[cfg(feature = "MapKit_MKImageryMapConfiguration")]
+unsafe impl NSCopying for MKImageryMapConfiguration {}
 
 #[cfg(feature = "MapKit_MKImageryMapConfiguration")]
 unsafe impl NSObjectProtocol for MKImageryMapConfiguration {}

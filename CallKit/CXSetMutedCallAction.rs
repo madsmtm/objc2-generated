@@ -13,11 +13,15 @@ extern_class!(
     unsafe impl ClassType for CXSetMutedCallAction {
         #[inherits(CXAction, NSObject)]
         type Super = CXCallAction;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "CallKit_CXSetMutedCallAction")]
 unsafe impl NSCoding for CXSetMutedCallAction {}
+
+#[cfg(feature = "CallKit_CXSetMutedCallAction")]
+unsafe impl NSCopying for CXSetMutedCallAction {}
 
 #[cfg(feature = "CallKit_CXSetMutedCallAction")]
 unsafe impl NSObjectProtocol for CXSetMutedCallAction {}

@@ -25,11 +25,15 @@ extern_class!(
     #[cfg(feature = "CloudKit_CKRecordZone")]
     unsafe impl ClassType for CKRecordZone {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "CloudKit_CKRecordZone")]
 unsafe impl NSCoding for CKRecordZone {}
+
+#[cfg(feature = "CloudKit_CKRecordZone")]
+unsafe impl NSCopying for CKRecordZone {}
 
 #[cfg(feature = "CloudKit_CKRecordZone")]
 unsafe impl NSObjectProtocol for CKRecordZone {}

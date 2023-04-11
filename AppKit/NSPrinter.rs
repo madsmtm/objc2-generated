@@ -30,11 +30,15 @@ extern_class!(
     #[cfg(feature = "AppKit_NSPrinter")]
     unsafe impl ClassType for NSPrinter {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "AppKit_NSPrinter")]
 unsafe impl NSCoding for NSPrinter {}
+
+#[cfg(feature = "AppKit_NSPrinter")]
+unsafe impl NSCopying for NSPrinter {}
 
 #[cfg(feature = "AppKit_NSPrinter")]
 unsafe impl NSObjectProtocol for NSPrinter {}

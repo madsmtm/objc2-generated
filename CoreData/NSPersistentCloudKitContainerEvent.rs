@@ -25,8 +25,12 @@ extern_class!(
     #[cfg(feature = "CoreData_NSPersistentCloudKitContainerEvent")]
     unsafe impl ClassType for NSPersistentCloudKitContainerEvent {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "CoreData_NSPersistentCloudKitContainerEvent")]
+unsafe impl NSCopying for NSPersistentCloudKitContainerEvent {}
 
 #[cfg(feature = "CoreData_NSPersistentCloudKitContainerEvent")]
 unsafe impl NSObjectProtocol for NSPersistentCloudKitContainerEvent {}

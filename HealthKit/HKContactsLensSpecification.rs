@@ -15,11 +15,15 @@ extern_class!(
     unsafe impl ClassType for HKContactsLensSpecification {
         #[inherits(NSObject)]
         type Super = HKLensSpecification;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "HealthKit_HKContactsLensSpecification")]
 unsafe impl NSCoding for HKContactsLensSpecification {}
+
+#[cfg(feature = "HealthKit_HKContactsLensSpecification")]
+unsafe impl NSCopying for HKContactsLensSpecification {}
 
 #[cfg(feature = "HealthKit_HKContactsLensSpecification")]
 unsafe impl NSObjectProtocol for HKContactsLensSpecification {}

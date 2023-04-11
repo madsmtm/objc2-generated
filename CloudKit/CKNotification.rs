@@ -13,11 +13,15 @@ extern_class!(
     #[cfg(feature = "CloudKit_CKNotificationID")]
     unsafe impl ClassType for CKNotificationID {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "CloudKit_CKNotificationID")]
 unsafe impl NSCoding for CKNotificationID {}
+
+#[cfg(feature = "CloudKit_CKNotificationID")]
+unsafe impl NSCopying for CKNotificationID {}
 
 #[cfg(feature = "CloudKit_CKNotificationID")]
 unsafe impl NSObjectProtocol for CKNotificationID {}
@@ -48,6 +52,7 @@ extern_class!(
     #[cfg(feature = "CloudKit_CKNotification")]
     unsafe impl ClassType for CKNotification {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -166,6 +171,7 @@ extern_class!(
     unsafe impl ClassType for CKQueryNotification {
         #[inherits(NSObject)]
         type Super = CKNotification;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -200,6 +206,7 @@ extern_class!(
     unsafe impl ClassType for CKRecordZoneNotification {
         #[inherits(NSObject)]
         type Super = CKNotification;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -227,6 +234,7 @@ extern_class!(
     unsafe impl ClassType for CKDatabaseNotification {
         #[inherits(NSObject)]
         type Super = CKNotification;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -15,11 +15,15 @@ extern_class!(
     unsafe impl ClassType for AMBundleAction {
         #[inherits(NSObject)]
         type Super = AMAction;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Automator_AMBundleAction")]
 unsafe impl NSCoding for AMBundleAction {}
+
+#[cfg(feature = "Automator_AMBundleAction")]
+unsafe impl NSCopying for AMBundleAction {}
 
 #[cfg(feature = "Automator_AMBundleAction")]
 unsafe impl NSObjectProtocol for AMBundleAction {}
@@ -49,8 +53,7 @@ extern_methods!(
             feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other parameters)]
-        pub unsafe fn parameters(&self)
-            -> Option<Id<NSMutableDictionary<NSString, Object>, Owned>>;
+        pub unsafe fn parameters(&self) -> Option<Id<NSMutableDictionary<NSString, Object>>>;
 
         #[cfg(all(
             feature = "Foundation_NSMutableDictionary",

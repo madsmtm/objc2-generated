@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "GameController_GCDeviceLight")]
     unsafe impl ClassType for GCDeviceLight {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

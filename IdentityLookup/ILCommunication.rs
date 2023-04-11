@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "IdentityLookup_ILCommunication")]
     unsafe impl ClassType for ILCommunication {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "MetricKit_MXSignpostIntervalData")]
     unsafe impl ClassType for MXSignpostIntervalData {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -72,6 +73,7 @@ extern_class!(
     unsafe impl ClassType for MXSignpostMetric {
         #[inherits(NSObject)]
         type Super = MXMetric;
+        type Mutability = InteriorMutable;
     }
 );
 

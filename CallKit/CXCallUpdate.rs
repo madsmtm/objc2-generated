@@ -12,8 +12,12 @@ extern_class!(
     #[cfg(feature = "CallKit_CXCallUpdate")]
     unsafe impl ClassType for CXCallUpdate {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "CallKit_CXCallUpdate")]
+unsafe impl NSCopying for CXCallUpdate {}
 
 #[cfg(feature = "CallKit_CXCallUpdate")]
 unsafe impl NSObjectProtocol for CXCallUpdate {}

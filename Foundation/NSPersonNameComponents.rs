@@ -11,11 +11,15 @@ extern_class!(
     #[cfg(feature = "Foundation_NSPersonNameComponents")]
     unsafe impl ClassType for NSPersonNameComponents {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSPersonNameComponents")]
 unsafe impl NSCoding for NSPersonNameComponents {}
+
+#[cfg(feature = "Foundation_NSPersonNameComponents")]
+unsafe impl NSCopying for NSPersonNameComponents {}
 
 #[cfg(feature = "Foundation_NSPersonNameComponents")]
 unsafe impl NSObjectProtocol for NSPersonNameComponents {}

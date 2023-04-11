@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "StoreKit_SKOverlayTransitionContext")]
     unsafe impl ClassType for SKOverlayTransitionContext {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

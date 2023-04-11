@@ -35,11 +35,15 @@ extern_class!(
     #[cfg(feature = "AppKit_NSColor")]
     unsafe impl ClassType for NSColor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "AppKit_NSColor")]
 unsafe impl NSCoding for NSColor {}
+
+#[cfg(feature = "AppKit_NSColor")]
+unsafe impl NSCopying for NSColor {}
 
 #[cfg(feature = "AppKit_NSColor")]
 unsafe impl NSObjectProtocol for NSColor {}

@@ -37,6 +37,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSPreviewRepresentingActivityItem")]
     unsafe impl ClassType for NSPreviewRepresentingActivityItem {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

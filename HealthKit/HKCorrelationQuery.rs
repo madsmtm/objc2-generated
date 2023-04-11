@@ -15,6 +15,7 @@ extern_class!(
     unsafe impl ClassType for HKCorrelationQuery {
         #[inherits(NSObject)]
         type Super = HKQuery;
+        type Mutability = InteriorMutable;
     }
 );
 

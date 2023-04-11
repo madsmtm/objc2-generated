@@ -25,6 +25,7 @@ extern_class!(
     unsafe impl ClassType for NSTokenFieldCell {
         #[inherits(NSActionCell, NSCell, NSObject)]
         type Super = NSTextFieldCell;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -36,6 +37,9 @@ unsafe impl NSAccessibilityElementProtocol for NSTokenFieldCell {}
 
 #[cfg(feature = "AppKit_NSTokenFieldCell")]
 unsafe impl NSCoding for NSTokenFieldCell {}
+
+#[cfg(feature = "AppKit_NSTokenFieldCell")]
+unsafe impl NSCopying for NSTokenFieldCell {}
 
 #[cfg(feature = "AppKit_NSTokenFieldCell")]
 unsafe impl NSObjectProtocol for NSTokenFieldCell {}

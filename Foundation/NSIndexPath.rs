@@ -11,11 +11,15 @@ extern_class!(
     #[cfg(feature = "Foundation_NSIndexPath")]
     unsafe impl ClassType for NSIndexPath {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSIndexPath")]
 unsafe impl NSCoding for NSIndexPath {}
+
+#[cfg(feature = "Foundation_NSIndexPath")]
+unsafe impl NSCopying for NSIndexPath {}
 
 #[cfg(feature = "Foundation_NSIndexPath")]
 unsafe impl NSObjectProtocol for NSIndexPath {}

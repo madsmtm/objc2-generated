@@ -15,11 +15,15 @@ extern_class!(
     unsafe impl ClassType for DOMHTMLLegendElement {
         #[inherits(DOMElement, DOMNode, DOMObject, WebScriptObject, NSObject)]
         type Super = DOMHTMLElement;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "WebKit_DOMHTMLLegendElement")]
 unsafe impl DOMEventTarget for DOMHTMLLegendElement {}
+
+#[cfg(feature = "WebKit_DOMHTMLLegendElement")]
+unsafe impl NSCopying for DOMHTMLLegendElement {}
 
 #[cfg(feature = "WebKit_DOMHTMLLegendElement")]
 unsafe impl NSObjectProtocol for DOMHTMLLegendElement {}

@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "DeviceCheck_DCDevice")]
     unsafe impl ClassType for DCDevice {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

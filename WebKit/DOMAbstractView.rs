@@ -15,8 +15,12 @@ extern_class!(
     unsafe impl ClassType for DOMAbstractView {
         #[inherits(WebScriptObject, NSObject)]
         type Super = DOMObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "WebKit_DOMAbstractView")]
+unsafe impl NSCopying for DOMAbstractView {}
 
 #[cfg(feature = "WebKit_DOMAbstractView")]
 unsafe impl NSObjectProtocol for DOMAbstractView {}

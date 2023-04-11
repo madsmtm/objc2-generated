@@ -33,8 +33,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLAccelerationStructureDescriptor")]
     unsafe impl ClassType for MTLAccelerationStructureDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLAccelerationStructureDescriptor")]
+unsafe impl NSCopying for MTLAccelerationStructureDescriptor {}
 
 #[cfg(feature = "Metal_MTLAccelerationStructureDescriptor")]
 unsafe impl NSObjectProtocol for MTLAccelerationStructureDescriptor {}
@@ -58,8 +62,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLAccelerationStructureGeometryDescriptor")]
     unsafe impl ClassType for MTLAccelerationStructureGeometryDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLAccelerationStructureGeometryDescriptor")]
+unsafe impl NSCopying for MTLAccelerationStructureGeometryDescriptor {}
 
 #[cfg(feature = "Metal_MTLAccelerationStructureGeometryDescriptor")]
 unsafe impl NSObjectProtocol for MTLAccelerationStructureGeometryDescriptor {}
@@ -145,8 +153,12 @@ extern_class!(
     unsafe impl ClassType for MTLPrimitiveAccelerationStructureDescriptor {
         #[inherits(NSObject)]
         type Super = MTLAccelerationStructureDescriptor;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLPrimitiveAccelerationStructureDescriptor")]
+unsafe impl NSCopying for MTLPrimitiveAccelerationStructureDescriptor {}
 
 #[cfg(feature = "Metal_MTLPrimitiveAccelerationStructureDescriptor")]
 unsafe impl NSObjectProtocol for MTLPrimitiveAccelerationStructureDescriptor {}
@@ -220,8 +232,12 @@ extern_class!(
     unsafe impl ClassType for MTLAccelerationStructureTriangleGeometryDescriptor {
         #[inherits(NSObject)]
         type Super = MTLAccelerationStructureGeometryDescriptor;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLAccelerationStructureTriangleGeometryDescriptor")]
+unsafe impl NSCopying for MTLAccelerationStructureTriangleGeometryDescriptor {}
 
 #[cfg(feature = "Metal_MTLAccelerationStructureTriangleGeometryDescriptor")]
 unsafe impl NSObjectProtocol for MTLAccelerationStructureTriangleGeometryDescriptor {}
@@ -311,8 +327,12 @@ extern_class!(
     unsafe impl ClassType for MTLAccelerationStructureBoundingBoxGeometryDescriptor {
         #[inherits(NSObject)]
         type Super = MTLAccelerationStructureGeometryDescriptor;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLAccelerationStructureBoundingBoxGeometryDescriptor")]
+unsafe impl NSCopying for MTLAccelerationStructureBoundingBoxGeometryDescriptor {}
 
 #[cfg(feature = "Metal_MTLAccelerationStructureBoundingBoxGeometryDescriptor")]
 unsafe impl NSObjectProtocol for MTLAccelerationStructureBoundingBoxGeometryDescriptor {}
@@ -360,6 +380,7 @@ extern_class!(
     #[cfg(feature = "Metal_MTLMotionKeyframeData")]
     unsafe impl ClassType for MTLMotionKeyframeData {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -395,8 +416,12 @@ extern_class!(
     unsafe impl ClassType for MTLAccelerationStructureMotionTriangleGeometryDescriptor {
         #[inherits(NSObject)]
         type Super = MTLAccelerationStructureGeometryDescriptor;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLAccelerationStructureMotionTriangleGeometryDescriptor")]
+unsafe impl NSCopying for MTLAccelerationStructureMotionTriangleGeometryDescriptor {}
 
 #[cfg(feature = "Metal_MTLAccelerationStructureMotionTriangleGeometryDescriptor")]
 unsafe impl NSObjectProtocol for MTLAccelerationStructureMotionTriangleGeometryDescriptor {}
@@ -488,8 +513,12 @@ extern_class!(
     unsafe impl ClassType for MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor {
         #[inherits(NSObject)]
         type Super = MTLAccelerationStructureGeometryDescriptor;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor")]
+unsafe impl NSCopying for MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor {}
 
 #[cfg(feature = "Metal_MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor")]
 unsafe impl NSObjectProtocol for MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor {}
@@ -589,8 +618,12 @@ extern_class!(
     unsafe impl ClassType for MTLInstanceAccelerationStructureDescriptor {
         #[inherits(NSObject)]
         type Super = MTLAccelerationStructureDescriptor;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLInstanceAccelerationStructureDescriptor")]
+unsafe impl NSCopying for MTLInstanceAccelerationStructureDescriptor {}
 
 #[cfg(feature = "Metal_MTLInstanceAccelerationStructureDescriptor")]
 unsafe impl NSObjectProtocol for MTLInstanceAccelerationStructureDescriptor {}

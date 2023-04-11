@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "MailKit_MEAddressAnnotation")]
     unsafe impl ClassType for MEAddressAnnotation {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

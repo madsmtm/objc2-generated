@@ -14,6 +14,7 @@ extern_class!(
     unsafe impl ClassType for NSPersistentDocument {
         #[inherits(NSObject)]
         type Super = NSDocument;
+        type Mutability = InteriorMutable;
     }
 );
 

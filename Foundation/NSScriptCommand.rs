@@ -28,6 +28,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSScriptCommand")]
     unsafe impl ClassType for NSScriptCommand {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

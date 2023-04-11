@@ -22,6 +22,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSPDFPanel")]
     unsafe impl ClassType for NSPDFPanel {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

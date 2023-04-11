@@ -15,6 +15,7 @@ extern_class!(
     #[cfg(feature = "MapKit_MKTileOverlay")]
     unsafe impl ClassType for MKTileOverlay {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

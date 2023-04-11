@@ -24,6 +24,7 @@ extern_class!(
     #[cfg(feature = "MediaPlayer_MPRemoteCommand")]
     unsafe impl ClassType for MPRemoteCommand {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -72,6 +73,7 @@ extern_class!(
     unsafe impl ClassType for MPSkipIntervalCommand {
         #[inherits(NSObject)]
         type Super = MPRemoteCommand;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -100,6 +102,7 @@ extern_class!(
     unsafe impl ClassType for MPFeedbackCommand {
         #[inherits(NSObject)]
         type Super = MPRemoteCommand;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -142,6 +145,7 @@ extern_class!(
     unsafe impl ClassType for MPRatingCommand {
         #[inherits(NSObject)]
         type Super = MPRemoteCommand;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -174,6 +178,7 @@ extern_class!(
     unsafe impl ClassType for MPChangePlaybackRateCommand {
         #[inherits(NSObject)]
         type Super = MPRemoteCommand;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -205,6 +210,7 @@ extern_class!(
     unsafe impl ClassType for MPChangePlaybackPositionCommand {
         #[inherits(NSObject)]
         type Super = MPRemoteCommand;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -225,6 +231,7 @@ extern_class!(
     unsafe impl ClassType for MPChangeShuffleModeCommand {
         #[inherits(NSObject)]
         type Super = MPRemoteCommand;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -251,6 +258,7 @@ extern_class!(
     unsafe impl ClassType for MPChangeRepeatModeCommand {
         #[inherits(NSObject)]
         type Super = MPRemoteCommand;
+        type Mutability = InteriorMutable;
     }
 );
 

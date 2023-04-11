@@ -12,11 +12,15 @@ extern_class!(
     #[cfg(feature = "CoreData_NSPropertyDescription")]
     unsafe impl ClassType for NSPropertyDescription {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "CoreData_NSPropertyDescription")]
 unsafe impl NSCoding for NSPropertyDescription {}
+
+#[cfg(feature = "CoreData_NSPropertyDescription")]
+unsafe impl NSCopying for NSPropertyDescription {}
 
 #[cfg(feature = "CoreData_NSPropertyDescription")]
 unsafe impl NSObjectProtocol for NSPropertyDescription {}

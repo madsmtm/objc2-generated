@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "WebKit_WKScriptMessage")]
     unsafe impl ClassType for WKScriptMessage {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -12,8 +12,12 @@ extern_class!(
     unsafe impl ClassType for NSXMLElement {
         #[inherits(NSObject)]
         type Super = NSXMLNode;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Foundation_NSXMLElement")]
+unsafe impl NSCopying for NSXMLElement {}
 
 #[cfg(feature = "Foundation_NSXMLElement")]
 unsafe impl NSObjectProtocol for NSXMLElement {}

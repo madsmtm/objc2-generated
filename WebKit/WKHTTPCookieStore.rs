@@ -24,6 +24,7 @@ extern_class!(
     #[cfg(feature = "WebKit_WKHTTPCookieStore")]
     unsafe impl ClassType for WKHTTPCookieStore {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

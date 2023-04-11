@@ -24,6 +24,7 @@ extern_class!(
     #[cfg(feature = "CoreData_NSEntityMigrationPolicy")]
     unsafe impl ClassType for NSEntityMigrationPolicy {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

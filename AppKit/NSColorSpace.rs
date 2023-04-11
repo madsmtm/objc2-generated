@@ -27,6 +27,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSColorSpace")]
     unsafe impl ClassType for NSColorSpace {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

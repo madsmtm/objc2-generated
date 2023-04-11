@@ -13,6 +13,7 @@ extern_class!(
     unsafe impl ClassType for CNContactFetchRequest {
         #[inherits(NSObject)]
         type Super = CNFetchRequest;
+        type Mutability = InteriorMutable;
     }
 );
 

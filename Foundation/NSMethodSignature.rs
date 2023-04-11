@@ -11,6 +11,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSMethodSignature")]
     unsafe impl ClassType for NSMethodSignature {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

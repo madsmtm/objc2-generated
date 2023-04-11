@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSScreen")]
     unsafe impl ClassType for NSScreen {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

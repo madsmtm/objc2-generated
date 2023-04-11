@@ -24,11 +24,15 @@ extern_class!(
     #[cfg(feature = "PhotoKit_PHLivePhoto")]
     unsafe impl ClassType for PHLivePhoto {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "PhotoKit_PHLivePhoto")]
 unsafe impl NSCoding for PHLivePhoto {}
+
+#[cfg(feature = "PhotoKit_PHLivePhoto")]
+unsafe impl NSCopying for PHLivePhoto {}
 
 #[cfg(feature = "PhotoKit_PHLivePhoto")]
 unsafe impl NSObjectProtocol for PHLivePhoto {}

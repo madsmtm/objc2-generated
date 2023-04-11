@@ -11,6 +11,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSScriptExecutionContext")]
     unsafe impl ClassType for NSScriptExecutionContext {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -38,11 +38,15 @@ extern_class!(
     #[cfg(feature = "AppKit_NSAnimation")]
     unsafe impl ClassType for NSAnimation {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "AppKit_NSAnimation")]
 unsafe impl NSCoding for NSAnimation {}
+
+#[cfg(feature = "AppKit_NSAnimation")]
+unsafe impl NSCopying for NSAnimation {}
 
 #[cfg(feature = "AppKit_NSAnimation")]
 unsafe impl NSObjectProtocol for NSAnimation {}
@@ -226,11 +230,15 @@ extern_class!(
     unsafe impl ClassType for NSViewAnimation {
         #[inherits(NSObject)]
         type Super = NSAnimation;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "AppKit_NSViewAnimation")]
 unsafe impl NSCoding for NSViewAnimation {}
+
+#[cfg(feature = "AppKit_NSViewAnimation")]
+unsafe impl NSCopying for NSViewAnimation {}
 
 #[cfg(feature = "AppKit_NSViewAnimation")]
 unsafe impl NSObjectProtocol for NSViewAnimation {}

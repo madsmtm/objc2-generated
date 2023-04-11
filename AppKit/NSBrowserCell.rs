@@ -14,6 +14,7 @@ extern_class!(
     unsafe impl ClassType for NSBrowserCell {
         #[inherits(NSObject)]
         type Super = NSCell;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -25,6 +26,9 @@ unsafe impl NSAccessibilityElementProtocol for NSBrowserCell {}
 
 #[cfg(feature = "AppKit_NSBrowserCell")]
 unsafe impl NSCoding for NSBrowserCell {}
+
+#[cfg(feature = "AppKit_NSBrowserCell")]
+unsafe impl NSCopying for NSBrowserCell {}
 
 #[cfg(feature = "AppKit_NSBrowserCell")]
 unsafe impl NSObjectProtocol for NSBrowserCell {}

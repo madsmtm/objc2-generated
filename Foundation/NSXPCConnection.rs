@@ -42,6 +42,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSXPCConnection")]
     unsafe impl ClassType for NSXPCConnection {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -170,6 +171,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSXPCListener")]
     unsafe impl ClassType for NSXPCListener {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -249,6 +251,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSXPCInterface")]
     unsafe impl ClassType for NSXPCInterface {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -313,6 +316,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSXPCListenerEndpoint")]
     unsafe impl ClassType for NSXPCListenerEndpoint {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -339,6 +343,7 @@ extern_class!(
     unsafe impl ClassType for NSXPCCoder {
         #[inherits(NSObject)]
         type Super = NSCoder;
+        type Mutability = InteriorMutable;
     }
 );
 

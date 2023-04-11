@@ -15,6 +15,7 @@ extern_class!(
     unsafe impl ClassType for NSForm {
         #[inherits(NSControl, NSView, NSResponder, NSObject)]
         type Super = NSMatrix;
+        type Mutability = InteriorMutable;
     }
 );
 

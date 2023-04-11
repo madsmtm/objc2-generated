@@ -14,6 +14,7 @@ extern_class!(
     unsafe impl ClassType for NSTableHeaderCell {
         #[inherits(NSActionCell, NSCell, NSObject)]
         type Super = NSTextFieldCell;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -25,6 +26,9 @@ unsafe impl NSAccessibilityElementProtocol for NSTableHeaderCell {}
 
 #[cfg(feature = "AppKit_NSTableHeaderCell")]
 unsafe impl NSCoding for NSTableHeaderCell {}
+
+#[cfg(feature = "AppKit_NSTableHeaderCell")]
+unsafe impl NSCopying for NSTableHeaderCell {}
 
 #[cfg(feature = "AppKit_NSTableHeaderCell")]
 unsafe impl NSObjectProtocol for NSTableHeaderCell {}

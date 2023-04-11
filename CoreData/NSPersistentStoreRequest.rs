@@ -23,8 +23,12 @@ extern_class!(
     #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
     unsafe impl ClassType for NSPersistentStoreRequest {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "CoreData_NSPersistentStoreRequest")]
+unsafe impl NSCopying for NSPersistentStoreRequest {}
 
 #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
 unsafe impl NSObjectProtocol for NSPersistentStoreRequest {}

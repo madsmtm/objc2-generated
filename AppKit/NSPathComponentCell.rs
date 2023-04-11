@@ -14,6 +14,7 @@ extern_class!(
     unsafe impl ClassType for NSPathComponentCell {
         #[inherits(NSActionCell, NSCell, NSObject)]
         type Super = NSTextFieldCell;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -25,6 +26,9 @@ unsafe impl NSAccessibilityElementProtocol for NSPathComponentCell {}
 
 #[cfg(feature = "AppKit_NSPathComponentCell")]
 unsafe impl NSCoding for NSPathComponentCell {}
+
+#[cfg(feature = "AppKit_NSPathComponentCell")]
+unsafe impl NSCopying for NSPathComponentCell {}
 
 #[cfg(feature = "AppKit_NSPathComponentCell")]
 unsafe impl NSObjectProtocol for NSPathComponentCell {}

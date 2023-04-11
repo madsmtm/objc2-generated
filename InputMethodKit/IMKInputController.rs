@@ -84,6 +84,7 @@ extern_class!(
     #[cfg(feature = "InputMethodKit_IMKInputController")]
     unsafe impl ClassType for IMKInputController {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -119,7 +120,7 @@ extern_methods!(
         pub unsafe fn compositionAttributesAtRange(
             &self,
             range: NSRange,
-        ) -> Option<Id<NSMutableDictionary, Owned>>;
+        ) -> Option<Id<NSMutableDictionary>>;
 
         #[method(selectionRange)]
         pub unsafe fn selectionRange(&self) -> NSRange;

@@ -14,6 +14,7 @@ extern_class!(
     unsafe impl ClassType for NSSavePanel {
         #[inherits(NSWindow, NSResponder, NSObject)]
         type Super = NSPanel;
+        type Mutability = InteriorMutable;
     }
 );
 

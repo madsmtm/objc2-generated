@@ -15,11 +15,15 @@ extern_class!(
     #[cfg(feature = "AppKit_NSFont")]
     unsafe impl ClassType for NSFont {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "AppKit_NSFont")]
 unsafe impl NSCoding for NSFont {}
+
+#[cfg(feature = "AppKit_NSFont")]
+unsafe impl NSCopying for NSFont {}
 
 #[cfg(feature = "AppKit_NSFont")]
 unsafe impl NSObjectProtocol for NSFont {}

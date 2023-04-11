@@ -11,6 +11,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSSpellServer")]
     unsafe impl ClassType for NSSpellServer {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

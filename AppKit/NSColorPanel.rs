@@ -44,6 +44,7 @@ extern_class!(
     unsafe impl ClassType for NSColorPanel {
         #[inherits(NSWindow, NSResponder, NSObject)]
         type Super = NSPanel;
+        type Mutability = InteriorMutable;
     }
 );
 

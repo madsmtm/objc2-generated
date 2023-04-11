@@ -21,6 +21,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSDraggingImageComponent")]
     unsafe impl ClassType for NSDraggingImageComponent {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -72,6 +73,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSDraggingItem")]
     unsafe impl ClassType for NSDraggingItem {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -21,8 +21,12 @@ extern_class!(
     #[cfg(feature = "AppKit_NSBindingSelectionMarker")]
     unsafe impl ClassType for NSBindingSelectionMarker {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "AppKit_NSBindingSelectionMarker")]
+unsafe impl NSCopying for NSBindingSelectionMarker {}
 
 #[cfg(feature = "AppKit_NSBindingSelectionMarker")]
 unsafe impl NSObjectProtocol for NSBindingSelectionMarker {}

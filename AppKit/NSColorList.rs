@@ -17,6 +17,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSColorList")]
     unsafe impl ClassType for NSColorList {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

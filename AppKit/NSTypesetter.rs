@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSTypesetter")]
     unsafe impl ClassType for NSTypesetter {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

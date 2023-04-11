@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "WebKit_WKContentWorld")]
     unsafe impl ClassType for WKContentWorld {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

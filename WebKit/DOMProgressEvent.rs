@@ -15,8 +15,12 @@ extern_class!(
     unsafe impl ClassType for DOMProgressEvent {
         #[inherits(DOMObject, WebScriptObject, NSObject)]
         type Super = DOMEvent;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "WebKit_DOMProgressEvent")]
+unsafe impl NSCopying for DOMProgressEvent {}
 
 #[cfg(feature = "WebKit_DOMProgressEvent")]
 unsafe impl NSObjectProtocol for DOMProgressEvent {}

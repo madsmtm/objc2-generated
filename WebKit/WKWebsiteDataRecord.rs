@@ -35,6 +35,7 @@ extern_class!(
     #[cfg(feature = "WebKit_WKWebsiteDataRecord")]
     unsafe impl ClassType for WKWebsiteDataRecord {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

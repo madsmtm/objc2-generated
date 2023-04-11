@@ -16,6 +16,7 @@ extern_class!(
     unsafe impl ClassType for MKMarkerAnnotationView {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = MKAnnotationView;
+        type Mutability = InteriorMutable;
     }
 );
 

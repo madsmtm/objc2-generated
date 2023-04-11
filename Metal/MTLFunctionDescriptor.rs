@@ -20,8 +20,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLFunctionDescriptor")]
     unsafe impl ClassType for MTLFunctionDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLFunctionDescriptor")]
+unsafe impl NSCopying for MTLFunctionDescriptor {}
 
 #[cfg(feature = "Metal_MTLFunctionDescriptor")]
 unsafe impl NSObjectProtocol for MTLFunctionDescriptor {}
@@ -86,8 +90,12 @@ extern_class!(
     unsafe impl ClassType for MTLIntersectionFunctionDescriptor {
         #[inherits(NSObject)]
         type Super = MTLFunctionDescriptor;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLIntersectionFunctionDescriptor")]
+unsafe impl NSCopying for MTLIntersectionFunctionDescriptor {}
 
 #[cfg(feature = "Metal_MTLIntersectionFunctionDescriptor")]
 unsafe impl NSObjectProtocol for MTLIntersectionFunctionDescriptor {}

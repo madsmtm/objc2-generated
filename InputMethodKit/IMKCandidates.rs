@@ -48,6 +48,7 @@ extern_class!(
     unsafe impl ClassType for IMKCandidates {
         #[inherits(NSObject)]
         type Super = NSResponder;
+        type Mutability = InteriorMutable;
     }
 );
 

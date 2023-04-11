@@ -15,11 +15,15 @@ extern_class!(
     #[cfg(feature = "Foundation_NSDate")]
     unsafe impl ClassType for NSDate {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSDate")]
 unsafe impl NSCoding for NSDate {}
+
+#[cfg(feature = "Foundation_NSDate")]
+unsafe impl NSCopying for NSDate {}
 
 #[cfg(feature = "Foundation_NSDate")]
 unsafe impl NSObjectProtocol for NSDate {}

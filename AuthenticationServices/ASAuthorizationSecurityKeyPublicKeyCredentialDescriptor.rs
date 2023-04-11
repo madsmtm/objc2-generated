@@ -41,6 +41,7 @@ extern_class!(
     )]
     unsafe impl ClassType for ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -52,6 +53,9 @@ unsafe impl ASAuthorizationPublicKeyCredentialDescriptor
 
 #[cfg(feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor")]
 unsafe impl NSCoding for ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor {}
+
+#[cfg(feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor")]
+unsafe impl NSCopying for ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor {}
 
 #[cfg(feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor")]
 unsafe impl NSObjectProtocol for ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor {}

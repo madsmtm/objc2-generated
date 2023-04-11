@@ -59,37 +59,40 @@ unsafe impl NSFetchRequestResult for NSManagedObjectID {}
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CoreData_NSFetchRequest")]
-    pub struct NSFetchRequest<ResultType: Message = Object, ResultTypeOwnership: Ownership = Shared> {
-        _inner0: PhantomData<*mut (ResultType, ResultTypeOwnership)>,
+    pub struct NSFetchRequest<ResultType: Message = Object> {
+        __superclass: NSPersistentStoreRequest,
+        _inner0: PhantomData<*mut ResultType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     #[cfg(feature = "CoreData_NSFetchRequest")]
-    unsafe impl<ResultType: Message, ResultTypeOwnership: Ownership> ClassType
-        for NSFetchRequest<ResultType, ResultTypeOwnership>
-    {
+    unsafe impl<ResultType: Message> ClassType for NSFetchRequest<ResultType> {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreRequest;
+        type Mutability = InteriorMutable;
+
+        fn as_super(&self) -> &Self::Super {
+            &self.__superclass
+        }
+
+        fn as_super_mut(&mut self) -> &mut Self::Super {
+            &mut self.__superclass
+        }
     }
 );
 
 #[cfg(feature = "CoreData_NSFetchRequest")]
-unsafe impl<ResultType: Message, ResultTypeOwnership: Ownership> NSCoding
-    for NSFetchRequest<ResultType, ResultTypeOwnership>
-{
-}
+unsafe impl<ResultType: Message + NSCoding> NSCoding for NSFetchRequest<ResultType> {}
 
 #[cfg(feature = "CoreData_NSFetchRequest")]
-unsafe impl<ResultType: Message, ResultTypeOwnership: Ownership> NSObjectProtocol
-    for NSFetchRequest<ResultType, ResultTypeOwnership>
-{
-}
+unsafe impl<ResultType: IsIdCloneable> NSCopying for NSFetchRequest<ResultType> {}
+
+#[cfg(feature = "CoreData_NSFetchRequest")]
+unsafe impl<ResultType: Message> NSObjectProtocol for NSFetchRequest<ResultType> {}
 
 extern_methods!(
     #[cfg(feature = "CoreData_NSFetchRequest")]
-    unsafe impl<ResultType: Message, ResultTypeOwnership: Ownership>
-        NSFetchRequest<ResultType, ResultTypeOwnership>
-    {
+    unsafe impl<ResultType: Message> NSFetchRequest<ResultType> {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fetchRequestWithEntityName:)]
         pub unsafe fn fetchRequestWithEntityName(entity_name: &NSString) -> Id<Self>;
@@ -262,34 +265,37 @@ pub type NSPersistentStoreAsynchronousFetchResultCompletionBlock =
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CoreData_NSAsynchronousFetchRequest")]
-    pub struct NSAsynchronousFetchRequest<
-        ResultType: Message = Object,
-        ResultTypeOwnership: Ownership = Shared,
-    > {
-        _inner0: PhantomData<*mut (ResultType, ResultTypeOwnership)>,
+    pub struct NSAsynchronousFetchRequest<ResultType: Message = Object> {
+        __superclass: NSPersistentStoreRequest,
+        _inner0: PhantomData<*mut ResultType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     #[cfg(feature = "CoreData_NSAsynchronousFetchRequest")]
-    unsafe impl<ResultType: Message, ResultTypeOwnership: Ownership> ClassType
-        for NSAsynchronousFetchRequest<ResultType, ResultTypeOwnership>
-    {
+    unsafe impl<ResultType: Message> ClassType for NSAsynchronousFetchRequest<ResultType> {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreRequest;
+        type Mutability = InteriorMutable;
+
+        fn as_super(&self) -> &Self::Super {
+            &self.__superclass
+        }
+
+        fn as_super_mut(&mut self) -> &mut Self::Super {
+            &mut self.__superclass
+        }
     }
 );
 
 #[cfg(feature = "CoreData_NSAsynchronousFetchRequest")]
-unsafe impl<ResultType: Message, ResultTypeOwnership: Ownership> NSObjectProtocol
-    for NSAsynchronousFetchRequest<ResultType, ResultTypeOwnership>
-{
-}
+unsafe impl<ResultType: IsIdCloneable> NSCopying for NSAsynchronousFetchRequest<ResultType> {}
+
+#[cfg(feature = "CoreData_NSAsynchronousFetchRequest")]
+unsafe impl<ResultType: Message> NSObjectProtocol for NSAsynchronousFetchRequest<ResultType> {}
 
 extern_methods!(
     #[cfg(feature = "CoreData_NSAsynchronousFetchRequest")]
-    unsafe impl<ResultType: Message, ResultTypeOwnership: Ownership>
-        NSAsynchronousFetchRequest<ResultType, ResultTypeOwnership>
-    {
+    unsafe impl<ResultType: Message> NSAsynchronousFetchRequest<ResultType> {
         #[cfg(feature = "CoreData_NSFetchRequest")]
         #[method_id(@__retain_semantics Other fetchRequest)]
         pub unsafe fn fetchRequest(&self) -> Id<NSFetchRequest<ResultType>>;

@@ -28,8 +28,12 @@ extern_class!(
     unsafe impl ClassType for DOMOverflowEvent {
         #[inherits(DOMObject, WebScriptObject, NSObject)]
         type Super = DOMEvent;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "WebKit_DOMOverflowEvent")]
+unsafe impl NSCopying for DOMOverflowEvent {}
 
 #[cfg(feature = "WebKit_DOMOverflowEvent")]
 unsafe impl NSObjectProtocol for DOMOverflowEvent {}

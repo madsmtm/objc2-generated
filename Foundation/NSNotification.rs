@@ -15,11 +15,15 @@ extern_class!(
     #[cfg(feature = "Foundation_NSNotification")]
     unsafe impl ClassType for NSNotification {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSNotification")]
 unsafe impl NSCoding for NSNotification {}
+
+#[cfg(feature = "Foundation_NSNotification")]
+unsafe impl NSCopying for NSNotification {}
 
 #[cfg(feature = "Foundation_NSNotification")]
 unsafe impl NSObjectProtocol for NSNotification {}
@@ -86,6 +90,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSNotificationCenter")]
     unsafe impl ClassType for NSNotificationCenter {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

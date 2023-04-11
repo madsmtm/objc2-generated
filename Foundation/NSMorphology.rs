@@ -55,11 +55,15 @@ extern_class!(
     #[cfg(feature = "Foundation_NSMorphology")]
     unsafe impl ClassType for NSMorphology {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSMorphology")]
 unsafe impl NSCoding for NSMorphology {}
+
+#[cfg(feature = "Foundation_NSMorphology")]
+unsafe impl NSCopying for NSMorphology {}
 
 #[cfg(feature = "Foundation_NSMorphology")]
 unsafe impl NSObjectProtocol for NSMorphology {}
@@ -126,11 +130,15 @@ extern_class!(
     #[cfg(feature = "Foundation_NSMorphologyCustomPronoun")]
     unsafe impl ClassType for NSMorphologyCustomPronoun {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSMorphologyCustomPronoun")]
 unsafe impl NSCoding for NSMorphologyCustomPronoun {}
+
+#[cfg(feature = "Foundation_NSMorphologyCustomPronoun")]
+unsafe impl NSCopying for NSMorphologyCustomPronoun {}
 
 #[cfg(feature = "Foundation_NSMorphologyCustomPronoun")]
 unsafe impl NSObjectProtocol for NSMorphologyCustomPronoun {}

@@ -14,6 +14,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSMovie")]
     unsafe impl ClassType for NSMovie {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

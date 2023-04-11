@@ -14,6 +14,7 @@ extern_class!(
     #[cfg(feature = "PhotoKit_PHPersistentChangeFetchResult")]
     unsafe impl ClassType for PHPersistentChangeFetchResult {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

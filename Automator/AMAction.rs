@@ -24,6 +24,7 @@ extern_class!(
     #[cfg(feature = "Automator_AMAction")]
     unsafe impl ClassType for AMAction {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

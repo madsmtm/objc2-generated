@@ -35,6 +35,7 @@ extern_class!(
     #[cfg(feature = "MapKit_MKLocalSearchCompleter")]
     unsafe impl ClassType for MKLocalSearchCompleter {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -140,6 +141,7 @@ extern_class!(
     #[cfg(feature = "MapKit_MKLocalSearchCompletion")]
     unsafe impl ClassType for MKLocalSearchCompletion {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

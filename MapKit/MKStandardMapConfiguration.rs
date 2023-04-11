@@ -24,11 +24,15 @@ extern_class!(
     unsafe impl ClassType for MKStandardMapConfiguration {
         #[inherits(NSObject)]
         type Super = MKMapConfiguration;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "MapKit_MKStandardMapConfiguration")]
 unsafe impl NSCoding for MKStandardMapConfiguration {}
+
+#[cfg(feature = "MapKit_MKStandardMapConfiguration")]
+unsafe impl NSCopying for MKStandardMapConfiguration {}
 
 #[cfg(feature = "MapKit_MKStandardMapConfiguration")]
 unsafe impl NSObjectProtocol for MKStandardMapConfiguration {}

@@ -20,11 +20,15 @@ extern_class!(
     #[cfg(feature = "Foundation_NSCachedURLResponse")]
     unsafe impl ClassType for NSCachedURLResponse {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSCachedURLResponse")]
 unsafe impl NSCoding for NSCachedURLResponse {}
+
+#[cfg(feature = "Foundation_NSCachedURLResponse")]
+unsafe impl NSCopying for NSCachedURLResponse {}
 
 #[cfg(feature = "Foundation_NSCachedURLResponse")]
 unsafe impl NSObjectProtocol for NSCachedURLResponse {}
@@ -82,6 +86,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSURLCache")]
     unsafe impl ClassType for NSURLCache {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -15,11 +15,15 @@ extern_class!(
     unsafe impl ClassType for AMAppleScriptAction {
         #[inherits(AMAction, NSObject)]
         type Super = AMBundleAction;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Automator_AMAppleScriptAction")]
 unsafe impl NSCoding for AMAppleScriptAction {}
+
+#[cfg(feature = "Automator_AMAppleScriptAction")]
+unsafe impl NSCopying for AMAppleScriptAction {}
 
 #[cfg(feature = "Automator_AMAppleScriptAction")]
 unsafe impl NSObjectProtocol for AMAppleScriptAction {}

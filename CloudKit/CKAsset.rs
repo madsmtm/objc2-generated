@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "CloudKit_CKAsset")]
     unsafe impl ClassType for CKAsset {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

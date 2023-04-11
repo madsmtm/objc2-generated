@@ -22,11 +22,15 @@ extern_class!(
     #[cfg(feature = "Contacts_CNContainer")]
     unsafe impl ClassType for CNContainer {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Contacts_CNContainer")]
 unsafe impl NSCoding for CNContainer {}
+
+#[cfg(feature = "Contacts_CNContainer")]
+unsafe impl NSCopying for CNContainer {}
 
 #[cfg(feature = "Contacts_CNContainer")]
 unsafe impl NSObjectProtocol for CNContainer {}

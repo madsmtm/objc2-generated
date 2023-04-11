@@ -41,11 +41,15 @@ extern_class!(
     #[cfg(feature = "Foundation_NSURLProtectionSpace")]
     unsafe impl ClassType for NSURLProtectionSpace {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSURLProtectionSpace")]
 unsafe impl NSCoding for NSURLProtectionSpace {}
+
+#[cfg(feature = "Foundation_NSURLProtectionSpace")]
+unsafe impl NSCopying for NSURLProtectionSpace {}
 
 #[cfg(feature = "Foundation_NSURLProtectionSpace")]
 unsafe impl NSObjectProtocol for NSURLProtectionSpace {}

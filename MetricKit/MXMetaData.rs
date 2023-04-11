@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "MetricKit_MXMetaData")]
     unsafe impl ClassType for MXMetaData {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

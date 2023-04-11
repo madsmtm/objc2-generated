@@ -31,6 +31,7 @@ extern_class!(
     #[cfg(feature = "ClassKit_CLSDataStore")]
     unsafe impl ClassType for CLSDataStore {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

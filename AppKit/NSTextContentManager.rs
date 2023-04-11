@@ -84,6 +84,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSTextContentManager")]
     unsafe impl ClassType for NSTextContentManager {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -256,6 +257,7 @@ extern_class!(
     unsafe impl ClassType for NSTextContentStorage {
         #[inherits(NSObject)]
         type Super = NSTextContentManager;
+        type Mutability = InteriorMutable;
     }
 );
 

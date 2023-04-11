@@ -13,6 +13,7 @@ extern_class!(
     unsafe impl ClassType for ASCredentialProviderExtensionContext {
         #[inherits(NSObject)]
         type Super = NSExtensionContext;
+        type Mutability = InteriorMutable;
     }
 );
 

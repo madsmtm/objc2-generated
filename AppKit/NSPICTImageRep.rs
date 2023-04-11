@@ -14,11 +14,15 @@ extern_class!(
     unsafe impl ClassType for NSPICTImageRep {
         #[inherits(NSObject)]
         type Super = NSImageRep;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "AppKit_NSPICTImageRep")]
 unsafe impl NSCoding for NSPICTImageRep {}
+
+#[cfg(feature = "AppKit_NSPICTImageRep")]
+unsafe impl NSCopying for NSPICTImageRep {}
 
 #[cfg(feature = "AppKit_NSPICTImageRep")]
 unsafe impl NSObjectProtocol for NSPICTImageRep {}

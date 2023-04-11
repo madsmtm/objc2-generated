@@ -15,11 +15,15 @@ extern_class!(
     unsafe impl ClassType for DOMHTMLTitleElement {
         #[inherits(DOMElement, DOMNode, DOMObject, WebScriptObject, NSObject)]
         type Super = DOMHTMLElement;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "WebKit_DOMHTMLTitleElement")]
 unsafe impl DOMEventTarget for DOMHTMLTitleElement {}
+
+#[cfg(feature = "WebKit_DOMHTMLTitleElement")]
+unsafe impl NSCopying for DOMHTMLTitleElement {}
 
 #[cfg(feature = "WebKit_DOMHTMLTitleElement")]
 unsafe impl NSObjectProtocol for DOMHTMLTitleElement {}

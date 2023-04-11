@@ -22,6 +22,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSOperation")]
     unsafe impl ClassType for NSOperation {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -116,6 +117,7 @@ extern_class!(
     unsafe impl ClassType for NSBlockOperation {
         #[inherits(NSObject)]
         type Super = NSOperation;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -142,6 +144,7 @@ extern_class!(
     unsafe impl ClassType for NSInvocationOperation {
         #[inherits(NSObject)]
         type Super = NSOperation;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -189,6 +192,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSOperationQueue")]
     unsafe impl ClassType for NSOperationQueue {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

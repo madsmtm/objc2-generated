@@ -20,6 +20,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSFontAssetRequest")]
     unsafe impl ClassType for NSFontAssetRequest {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

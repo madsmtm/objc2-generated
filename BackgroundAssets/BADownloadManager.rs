@@ -69,6 +69,7 @@ extern_class!(
     #[cfg(feature = "BackgroundAssets_BADownloadManager")]
     unsafe impl ClassType for BADownloadManager {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -15,8 +15,12 @@ extern_class!(
     unsafe impl ClassType for DOMMediaList {
         #[inherits(WebScriptObject, NSObject)]
         type Super = DOMObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "WebKit_DOMMediaList")]
+unsafe impl NSCopying for DOMMediaList {}
 
 #[cfg(feature = "WebKit_DOMMediaList")]
 unsafe impl NSObjectProtocol for DOMMediaList {}

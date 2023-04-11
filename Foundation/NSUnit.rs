@@ -11,6 +11,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSUnitConverter")]
     unsafe impl ClassType for NSUnitConverter {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -37,6 +38,7 @@ extern_class!(
     unsafe impl ClassType for NSUnitConverterLinear {
         #[inherits(NSObject)]
         type Super = NSUnitConverter;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -81,11 +83,15 @@ extern_class!(
     #[cfg(feature = "Foundation_NSUnit")]
     unsafe impl ClassType for NSUnit {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSUnit")]
 unsafe impl NSCoding for NSUnit {}
+
+#[cfg(feature = "Foundation_NSUnit")]
+unsafe impl NSCopying for NSUnit {}
 
 #[cfg(feature = "Foundation_NSUnit")]
 unsafe impl NSObjectProtocol for NSUnit {}
@@ -121,11 +127,15 @@ extern_class!(
     unsafe impl ClassType for NSDimension {
         #[inherits(NSObject)]
         type Super = NSUnit;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSDimension")]
 unsafe impl NSCoding for NSDimension {}
+
+#[cfg(feature = "Foundation_NSDimension")]
+unsafe impl NSCopying for NSDimension {}
 
 #[cfg(feature = "Foundation_NSDimension")]
 unsafe impl NSObjectProtocol for NSDimension {}
@@ -165,11 +175,15 @@ extern_class!(
     unsafe impl ClassType for NSUnitAcceleration {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSUnitAcceleration")]
 unsafe impl NSCoding for NSUnitAcceleration {}
+
+#[cfg(feature = "Foundation_NSUnitAcceleration")]
+unsafe impl NSCopying for NSUnitAcceleration {}
 
 #[cfg(feature = "Foundation_NSUnitAcceleration")]
 unsafe impl NSObjectProtocol for NSUnitAcceleration {}
@@ -197,11 +211,15 @@ extern_class!(
     unsafe impl ClassType for NSUnitAngle {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSUnitAngle")]
 unsafe impl NSCoding for NSUnitAngle {}
+
+#[cfg(feature = "Foundation_NSUnitAngle")]
+unsafe impl NSCopying for NSUnitAngle {}
 
 #[cfg(feature = "Foundation_NSUnitAngle")]
 unsafe impl NSObjectProtocol for NSUnitAngle {}
@@ -241,11 +259,15 @@ extern_class!(
     unsafe impl ClassType for NSUnitArea {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSUnitArea")]
 unsafe impl NSCoding for NSUnitArea {}
+
+#[cfg(feature = "Foundation_NSUnitArea")]
+unsafe impl NSCopying for NSUnitArea {}
 
 #[cfg(feature = "Foundation_NSUnitArea")]
 unsafe impl NSObjectProtocol for NSUnitArea {}
@@ -309,11 +331,15 @@ extern_class!(
     unsafe impl ClassType for NSUnitConcentrationMass {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSUnitConcentrationMass")]
 unsafe impl NSCoding for NSUnitConcentrationMass {}
+
+#[cfg(feature = "Foundation_NSUnitConcentrationMass")]
+unsafe impl NSCopying for NSUnitConcentrationMass {}
 
 #[cfg(feature = "Foundation_NSUnitConcentrationMass")]
 unsafe impl NSObjectProtocol for NSUnitConcentrationMass {}
@@ -346,11 +372,15 @@ extern_class!(
     unsafe impl ClassType for NSUnitDispersion {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSUnitDispersion")]
 unsafe impl NSCoding for NSUnitDispersion {}
+
+#[cfg(feature = "Foundation_NSUnitDispersion")]
+unsafe impl NSCopying for NSUnitDispersion {}
 
 #[cfg(feature = "Foundation_NSUnitDispersion")]
 unsafe impl NSObjectProtocol for NSUnitDispersion {}
@@ -375,11 +405,15 @@ extern_class!(
     unsafe impl ClassType for NSUnitDuration {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSUnitDuration")]
 unsafe impl NSCoding for NSUnitDuration {}
+
+#[cfg(feature = "Foundation_NSUnitDuration")]
+unsafe impl NSCopying for NSUnitDuration {}
 
 #[cfg(feature = "Foundation_NSUnitDuration")]
 unsafe impl NSObjectProtocol for NSUnitDuration {}
@@ -422,11 +456,15 @@ extern_class!(
     unsafe impl ClassType for NSUnitElectricCharge {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSUnitElectricCharge")]
 unsafe impl NSCoding for NSUnitElectricCharge {}
+
+#[cfg(feature = "Foundation_NSUnitElectricCharge")]
+unsafe impl NSCopying for NSUnitElectricCharge {}
 
 #[cfg(feature = "Foundation_NSUnitElectricCharge")]
 unsafe impl NSObjectProtocol for NSUnitElectricCharge {}
@@ -466,11 +504,15 @@ extern_class!(
     unsafe impl ClassType for NSUnitElectricCurrent {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSUnitElectricCurrent")]
 unsafe impl NSCoding for NSUnitElectricCurrent {}
+
+#[cfg(feature = "Foundation_NSUnitElectricCurrent")]
+unsafe impl NSCopying for NSUnitElectricCurrent {}
 
 #[cfg(feature = "Foundation_NSUnitElectricCurrent")]
 unsafe impl NSObjectProtocol for NSUnitElectricCurrent {}
@@ -507,11 +549,15 @@ extern_class!(
     unsafe impl ClassType for NSUnitElectricPotentialDifference {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSUnitElectricPotentialDifference")]
 unsafe impl NSCoding for NSUnitElectricPotentialDifference {}
+
+#[cfg(feature = "Foundation_NSUnitElectricPotentialDifference")]
+unsafe impl NSCopying for NSUnitElectricPotentialDifference {}
 
 #[cfg(feature = "Foundation_NSUnitElectricPotentialDifference")]
 unsafe impl NSObjectProtocol for NSUnitElectricPotentialDifference {}
@@ -548,11 +594,15 @@ extern_class!(
     unsafe impl ClassType for NSUnitElectricResistance {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSUnitElectricResistance")]
 unsafe impl NSCoding for NSUnitElectricResistance {}
+
+#[cfg(feature = "Foundation_NSUnitElectricResistance")]
+unsafe impl NSCopying for NSUnitElectricResistance {}
 
 #[cfg(feature = "Foundation_NSUnitElectricResistance")]
 unsafe impl NSObjectProtocol for NSUnitElectricResistance {}
@@ -589,11 +639,15 @@ extern_class!(
     unsafe impl ClassType for NSUnitEnergy {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSUnitEnergy")]
 unsafe impl NSCoding for NSUnitEnergy {}
+
+#[cfg(feature = "Foundation_NSUnitEnergy")]
+unsafe impl NSCopying for NSUnitEnergy {}
 
 #[cfg(feature = "Foundation_NSUnitEnergy")]
 unsafe impl NSObjectProtocol for NSUnitEnergy {}
@@ -630,11 +684,15 @@ extern_class!(
     unsafe impl ClassType for NSUnitFrequency {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSUnitFrequency")]
 unsafe impl NSCoding for NSUnitFrequency {}
+
+#[cfg(feature = "Foundation_NSUnitFrequency")]
+unsafe impl NSCopying for NSUnitFrequency {}
 
 #[cfg(feature = "Foundation_NSUnitFrequency")]
 unsafe impl NSObjectProtocol for NSUnitFrequency {}
@@ -683,11 +741,15 @@ extern_class!(
     unsafe impl ClassType for NSUnitFuelEfficiency {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSUnitFuelEfficiency")]
 unsafe impl NSCoding for NSUnitFuelEfficiency {}
+
+#[cfg(feature = "Foundation_NSUnitFuelEfficiency")]
+unsafe impl NSCopying for NSUnitFuelEfficiency {}
 
 #[cfg(feature = "Foundation_NSUnitFuelEfficiency")]
 unsafe impl NSObjectProtocol for NSUnitFuelEfficiency {}
@@ -718,11 +780,15 @@ extern_class!(
     unsafe impl ClassType for NSUnitInformationStorage {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSUnitInformationStorage")]
 unsafe impl NSCoding for NSUnitInformationStorage {}
+
+#[cfg(feature = "Foundation_NSUnitInformationStorage")]
+unsafe impl NSCopying for NSUnitInformationStorage {}
 
 #[cfg(feature = "Foundation_NSUnitInformationStorage")]
 unsafe impl NSObjectProtocol for NSUnitInformationStorage {}
@@ -849,11 +915,15 @@ extern_class!(
     unsafe impl ClassType for NSUnitLength {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSUnitLength")]
 unsafe impl NSCoding for NSUnitLength {}
+
+#[cfg(feature = "Foundation_NSUnitLength")]
+unsafe impl NSCopying for NSUnitLength {}
 
 #[cfg(feature = "Foundation_NSUnitLength")]
 unsafe impl NSObjectProtocol for NSUnitLength {}
@@ -941,11 +1011,15 @@ extern_class!(
     unsafe impl ClassType for NSUnitIlluminance {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSUnitIlluminance")]
 unsafe impl NSCoding for NSUnitIlluminance {}
+
+#[cfg(feature = "Foundation_NSUnitIlluminance")]
+unsafe impl NSCopying for NSUnitIlluminance {}
 
 #[cfg(feature = "Foundation_NSUnitIlluminance")]
 unsafe impl NSObjectProtocol for NSUnitIlluminance {}
@@ -970,11 +1044,15 @@ extern_class!(
     unsafe impl ClassType for NSUnitMass {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSUnitMass")]
 unsafe impl NSCoding for NSUnitMass {}
+
+#[cfg(feature = "Foundation_NSUnitMass")]
+unsafe impl NSCopying for NSUnitMass {}
 
 #[cfg(feature = "Foundation_NSUnitMass")]
 unsafe impl NSObjectProtocol for NSUnitMass {}
@@ -1044,11 +1122,15 @@ extern_class!(
     unsafe impl ClassType for NSUnitPower {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSUnitPower")]
 unsafe impl NSCoding for NSUnitPower {}
+
+#[cfg(feature = "Foundation_NSUnitPower")]
+unsafe impl NSCopying for NSUnitPower {}
 
 #[cfg(feature = "Foundation_NSUnitPower")]
 unsafe impl NSObjectProtocol for NSUnitPower {}
@@ -1103,11 +1185,15 @@ extern_class!(
     unsafe impl ClassType for NSUnitPressure {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSUnitPressure")]
 unsafe impl NSCoding for NSUnitPressure {}
+
+#[cfg(feature = "Foundation_NSUnitPressure")]
+unsafe impl NSCopying for NSUnitPressure {}
 
 #[cfg(feature = "Foundation_NSUnitPressure")]
 unsafe impl NSObjectProtocol for NSUnitPressure {}
@@ -1159,11 +1245,15 @@ extern_class!(
     unsafe impl ClassType for NSUnitSpeed {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSUnitSpeed")]
 unsafe impl NSCoding for NSUnitSpeed {}
+
+#[cfg(feature = "Foundation_NSUnitSpeed")]
+unsafe impl NSCopying for NSUnitSpeed {}
 
 #[cfg(feature = "Foundation_NSUnitSpeed")]
 unsafe impl NSObjectProtocol for NSUnitSpeed {}
@@ -1197,11 +1287,15 @@ extern_class!(
     unsafe impl ClassType for NSUnitTemperature {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSUnitTemperature")]
 unsafe impl NSCoding for NSUnitTemperature {}
+
+#[cfg(feature = "Foundation_NSUnitTemperature")]
+unsafe impl NSCopying for NSUnitTemperature {}
 
 #[cfg(feature = "Foundation_NSUnitTemperature")]
 unsafe impl NSObjectProtocol for NSUnitTemperature {}
@@ -1232,11 +1326,15 @@ extern_class!(
     unsafe impl ClassType for NSUnitVolume {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSUnitVolume")]
 unsafe impl NSCoding for NSUnitVolume {}
+
+#[cfg(feature = "Foundation_NSUnitVolume")]
+unsafe impl NSCopying for NSUnitVolume {}
 
 #[cfg(feature = "Foundation_NSUnitVolume")]
 unsafe impl NSObjectProtocol for NSUnitVolume {}

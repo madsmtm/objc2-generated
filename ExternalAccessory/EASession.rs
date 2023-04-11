@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "ExternalAccessory_EASession")]
     unsafe impl ClassType for EASession {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -27,11 +27,15 @@ extern_class!(
     #[cfg(feature = "UserNotifications_UNNotificationCategory")]
     unsafe impl ClassType for UNNotificationCategory {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "UserNotifications_UNNotificationCategory")]
 unsafe impl NSCoding for UNNotificationCategory {}
+
+#[cfg(feature = "UserNotifications_UNNotificationCategory")]
+unsafe impl NSCopying for UNNotificationCategory {}
 
 #[cfg(feature = "UserNotifications_UNNotificationCategory")]
 unsafe impl NSObjectProtocol for UNNotificationCategory {}

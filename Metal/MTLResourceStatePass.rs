@@ -12,8 +12,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLResourceStatePassSampleBufferAttachmentDescriptor")]
     unsafe impl ClassType for MTLResourceStatePassSampleBufferAttachmentDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLResourceStatePassSampleBufferAttachmentDescriptor")]
+unsafe impl NSCopying for MTLResourceStatePassSampleBufferAttachmentDescriptor {}
 
 #[cfg(feature = "Metal_MTLResourceStatePassSampleBufferAttachmentDescriptor")]
 unsafe impl NSObjectProtocol for MTLResourceStatePassSampleBufferAttachmentDescriptor {}
@@ -56,6 +60,7 @@ extern_class!(
     #[cfg(feature = "Metal_MTLResourceStatePassSampleBufferAttachmentDescriptorArray")]
     unsafe impl ClassType for MTLResourceStatePassSampleBufferAttachmentDescriptorArray {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -90,8 +95,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLResourceStatePassDescriptor")]
     unsafe impl ClassType for MTLResourceStatePassDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLResourceStatePassDescriptor")]
+unsafe impl NSCopying for MTLResourceStatePassDescriptor {}
 
 #[cfg(feature = "Metal_MTLResourceStatePassDescriptor")]
 unsafe impl NSObjectProtocol for MTLResourceStatePassDescriptor {}

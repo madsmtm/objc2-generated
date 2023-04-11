@@ -133,8 +133,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLAccelerationStructurePassSampleBufferAttachmentDescriptor")]
     unsafe impl ClassType for MTLAccelerationStructurePassSampleBufferAttachmentDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLAccelerationStructurePassSampleBufferAttachmentDescriptor")]
+unsafe impl NSCopying for MTLAccelerationStructurePassSampleBufferAttachmentDescriptor {}
 
 #[cfg(feature = "Metal_MTLAccelerationStructurePassSampleBufferAttachmentDescriptor")]
 unsafe impl NSObjectProtocol for MTLAccelerationStructurePassSampleBufferAttachmentDescriptor {}
@@ -177,6 +181,7 @@ extern_class!(
     #[cfg(feature = "Metal_MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray")]
     unsafe impl ClassType for MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -211,8 +216,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLAccelerationStructurePassDescriptor")]
     unsafe impl ClassType for MTLAccelerationStructurePassDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLAccelerationStructurePassDescriptor")]
+unsafe impl NSCopying for MTLAccelerationStructurePassDescriptor {}
 
 #[cfg(feature = "Metal_MTLAccelerationStructurePassDescriptor")]
 unsafe impl NSObjectProtocol for MTLAccelerationStructurePassDescriptor {}

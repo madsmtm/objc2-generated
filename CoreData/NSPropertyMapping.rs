@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "CoreData_NSPropertyMapping")]
     unsafe impl ClassType for NSPropertyMapping {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

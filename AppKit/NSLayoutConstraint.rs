@@ -90,6 +90,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSLayoutConstraint")]
     unsafe impl ClassType for NSLayoutConstraint {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

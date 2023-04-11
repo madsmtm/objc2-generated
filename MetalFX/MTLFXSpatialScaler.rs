@@ -21,6 +21,7 @@ extern_class!(
     #[cfg(feature = "MetalFX_MTLFXSpatialScalerDescriptor")]
     unsafe impl ClassType for MTLFXSpatialScalerDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

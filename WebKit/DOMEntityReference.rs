@@ -15,11 +15,15 @@ extern_class!(
     unsafe impl ClassType for DOMEntityReference {
         #[inherits(DOMObject, WebScriptObject, NSObject)]
         type Super = DOMNode;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "WebKit_DOMEntityReference")]
 unsafe impl DOMEventTarget for DOMEntityReference {}
+
+#[cfg(feature = "WebKit_DOMEntityReference")]
+unsafe impl NSCopying for DOMEntityReference {}
 
 #[cfg(feature = "WebKit_DOMEntityReference")]
 unsafe impl NSObjectProtocol for DOMEntityReference {}

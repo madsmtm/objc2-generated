@@ -22,6 +22,7 @@ extern_class!(
     #[cfg(feature = "CloudKit_CKDatabase")]
     unsafe impl ClassType for CKDatabase {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

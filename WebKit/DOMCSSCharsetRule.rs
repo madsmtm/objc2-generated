@@ -15,8 +15,12 @@ extern_class!(
     unsafe impl ClassType for DOMCSSCharsetRule {
         #[inherits(DOMObject, WebScriptObject, NSObject)]
         type Super = DOMCSSRule;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "WebKit_DOMCSSCharsetRule")]
+unsafe impl NSCopying for DOMCSSCharsetRule {}
 
 #[cfg(feature = "WebKit_DOMCSSCharsetRule")]
 unsafe impl NSObjectProtocol for DOMCSSCharsetRule {}

@@ -15,6 +15,7 @@ extern_class!(
     unsafe impl ClassType for PHProjectChangeRequest {
         #[inherits(NSObject)]
         type Super = PHChangeRequest;
+        type Mutability = InteriorMutable;
     }
 );
 

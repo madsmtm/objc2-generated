@@ -15,11 +15,15 @@ extern_class!(
     unsafe impl ClassType for DOMHTMLMetaElement {
         #[inherits(DOMElement, DOMNode, DOMObject, WebScriptObject, NSObject)]
         type Super = DOMHTMLElement;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "WebKit_DOMHTMLMetaElement")]
 unsafe impl DOMEventTarget for DOMHTMLMetaElement {}
+
+#[cfg(feature = "WebKit_DOMHTMLMetaElement")]
+unsafe impl NSCopying for DOMHTMLMetaElement {}
 
 #[cfg(feature = "WebKit_DOMHTMLMetaElement")]
 unsafe impl NSObjectProtocol for DOMHTMLMetaElement {}

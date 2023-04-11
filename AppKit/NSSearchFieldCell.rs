@@ -22,6 +22,7 @@ extern_class!(
     unsafe impl ClassType for NSSearchFieldCell {
         #[inherits(NSActionCell, NSCell, NSObject)]
         type Super = NSTextFieldCell;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -33,6 +34,9 @@ unsafe impl NSAccessibilityElementProtocol for NSSearchFieldCell {}
 
 #[cfg(feature = "AppKit_NSSearchFieldCell")]
 unsafe impl NSCoding for NSSearchFieldCell {}
+
+#[cfg(feature = "AppKit_NSSearchFieldCell")]
+unsafe impl NSCopying for NSSearchFieldCell {}
 
 #[cfg(feature = "AppKit_NSSearchFieldCell")]
 unsafe impl NSObjectProtocol for NSSearchFieldCell {}

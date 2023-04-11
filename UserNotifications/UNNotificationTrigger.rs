@@ -13,11 +13,15 @@ extern_class!(
     #[cfg(feature = "UserNotifications_UNNotificationTrigger")]
     unsafe impl ClassType for UNNotificationTrigger {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "UserNotifications_UNNotificationTrigger")]
 unsafe impl NSCoding for UNNotificationTrigger {}
+
+#[cfg(feature = "UserNotifications_UNNotificationTrigger")]
+unsafe impl NSCopying for UNNotificationTrigger {}
 
 #[cfg(feature = "UserNotifications_UNNotificationTrigger")]
 unsafe impl NSObjectProtocol for UNNotificationTrigger {}
@@ -45,11 +49,15 @@ extern_class!(
     unsafe impl ClassType for UNPushNotificationTrigger {
         #[inherits(NSObject)]
         type Super = UNNotificationTrigger;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "UserNotifications_UNPushNotificationTrigger")]
 unsafe impl NSCoding for UNPushNotificationTrigger {}
+
+#[cfg(feature = "UserNotifications_UNPushNotificationTrigger")]
+unsafe impl NSCopying for UNPushNotificationTrigger {}
 
 #[cfg(feature = "UserNotifications_UNPushNotificationTrigger")]
 unsafe impl NSObjectProtocol for UNPushNotificationTrigger {}
@@ -71,11 +79,15 @@ extern_class!(
     unsafe impl ClassType for UNTimeIntervalNotificationTrigger {
         #[inherits(NSObject)]
         type Super = UNNotificationTrigger;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "UserNotifications_UNTimeIntervalNotificationTrigger")]
 unsafe impl NSCoding for UNTimeIntervalNotificationTrigger {}
+
+#[cfg(feature = "UserNotifications_UNTimeIntervalNotificationTrigger")]
+unsafe impl NSCopying for UNTimeIntervalNotificationTrigger {}
 
 #[cfg(feature = "UserNotifications_UNTimeIntervalNotificationTrigger")]
 unsafe impl NSObjectProtocol for UNTimeIntervalNotificationTrigger {}
@@ -110,11 +122,15 @@ extern_class!(
     unsafe impl ClassType for UNCalendarNotificationTrigger {
         #[inherits(NSObject)]
         type Super = UNNotificationTrigger;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "UserNotifications_UNCalendarNotificationTrigger")]
 unsafe impl NSCoding for UNCalendarNotificationTrigger {}
+
+#[cfg(feature = "UserNotifications_UNCalendarNotificationTrigger")]
+unsafe impl NSCopying for UNCalendarNotificationTrigger {}
 
 #[cfg(feature = "UserNotifications_UNCalendarNotificationTrigger")]
 unsafe impl NSObjectProtocol for UNCalendarNotificationTrigger {}
@@ -151,11 +167,15 @@ extern_class!(
     unsafe impl ClassType for UNLocationNotificationTrigger {
         #[inherits(NSObject)]
         type Super = UNNotificationTrigger;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "UserNotifications_UNLocationNotificationTrigger")]
 unsafe impl NSCoding for UNLocationNotificationTrigger {}
+
+#[cfg(feature = "UserNotifications_UNLocationNotificationTrigger")]
+unsafe impl NSCopying for UNLocationNotificationTrigger {}
 
 #[cfg(feature = "UserNotifications_UNLocationNotificationTrigger")]
 unsafe impl NSObjectProtocol for UNLocationNotificationTrigger {}

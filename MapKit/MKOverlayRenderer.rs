@@ -15,6 +15,7 @@ extern_class!(
     #[cfg(feature = "MapKit_MKOverlayRenderer")]
     unsafe impl ClassType for MKOverlayRenderer {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

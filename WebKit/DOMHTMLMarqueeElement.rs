@@ -15,11 +15,15 @@ extern_class!(
     unsafe impl ClassType for DOMHTMLMarqueeElement {
         #[inherits(DOMElement, DOMNode, DOMObject, WebScriptObject, NSObject)]
         type Super = DOMHTMLElement;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "WebKit_DOMHTMLMarqueeElement")]
 unsafe impl DOMEventTarget for DOMHTMLMarqueeElement {}
+
+#[cfg(feature = "WebKit_DOMHTMLMarqueeElement")]
+unsafe impl NSCopying for DOMHTMLMarqueeElement {}
 
 #[cfg(feature = "WebKit_DOMHTMLMarqueeElement")]
 unsafe impl NSObjectProtocol for DOMHTMLMarqueeElement {}

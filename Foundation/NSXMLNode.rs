@@ -30,8 +30,12 @@ extern_class!(
     #[cfg(feature = "Foundation_NSXMLNode")]
     unsafe impl ClassType for NSXMLNode {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Foundation_NSXMLNode")]
+unsafe impl NSCopying for NSXMLNode {}
 
 #[cfg(feature = "Foundation_NSXMLNode")]
 unsafe impl NSObjectProtocol for NSXMLNode {}

@@ -21,6 +21,7 @@ extern_class!(
     #[cfg(feature = "Metal_MTLVertexAttribute")]
     unsafe impl ClassType for MTLVertexAttribute {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -59,6 +60,7 @@ extern_class!(
     #[cfg(feature = "Metal_MTLAttribute")]
     unsafe impl ClassType for MTLAttribute {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -110,6 +112,7 @@ extern_class!(
     #[cfg(feature = "Metal_MTLFunctionConstant")]
     unsafe impl ClassType for MTLFunctionConstant {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -229,8 +232,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLCompileOptions")]
     unsafe impl ClassType for MTLCompileOptions {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLCompileOptions")]
+unsafe impl NSCopying for MTLCompileOptions {}
 
 #[cfg(feature = "Metal_MTLCompileOptions")]
 unsafe impl NSObjectProtocol for MTLCompileOptions {}

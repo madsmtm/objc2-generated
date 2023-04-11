@@ -11,11 +11,15 @@ extern_class!(
     #[cfg(feature = "Foundation_NSOrthography")]
     unsafe impl ClassType for NSOrthography {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSOrthography")]
 unsafe impl NSCoding for NSOrthography {}
+
+#[cfg(feature = "Foundation_NSOrthography")]
+unsafe impl NSCopying for NSOrthography {}
 
 #[cfg(feature = "Foundation_NSOrthography")]
 unsafe impl NSObjectProtocol for NSOrthography {}

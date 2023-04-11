@@ -13,11 +13,15 @@ extern_class!(
     unsafe impl ClassType for ASAuthorizationSingleSignOnRequest {
         #[inherits(ASAuthorizationRequest, NSObject)]
         type Super = ASAuthorizationOpenIDRequest;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "AuthenticationServices_ASAuthorizationSingleSignOnRequest")]
 unsafe impl NSCoding for ASAuthorizationSingleSignOnRequest {}
+
+#[cfg(feature = "AuthenticationServices_ASAuthorizationSingleSignOnRequest")]
+unsafe impl NSCopying for ASAuthorizationSingleSignOnRequest {}
 
 #[cfg(feature = "AuthenticationServices_ASAuthorizationSingleSignOnRequest")]
 unsafe impl NSObjectProtocol for ASAuthorizationSingleSignOnRequest {}

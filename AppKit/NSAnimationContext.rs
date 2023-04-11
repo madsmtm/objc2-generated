@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSAnimationContext")]
     unsafe impl ClassType for NSAnimationContext {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

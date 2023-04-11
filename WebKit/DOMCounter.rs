@@ -15,8 +15,12 @@ extern_class!(
     unsafe impl ClassType for DOMCounter {
         #[inherits(WebScriptObject, NSObject)]
         type Super = DOMObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "WebKit_DOMCounter")]
+unsafe impl NSCopying for DOMCounter {}
 
 #[cfg(feature = "WebKit_DOMCounter")]
 unsafe impl NSObjectProtocol for DOMCounter {}

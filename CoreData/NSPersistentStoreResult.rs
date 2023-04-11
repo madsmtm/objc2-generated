@@ -51,6 +51,7 @@ extern_class!(
     #[cfg(feature = "CoreData_NSPersistentStoreResult")]
     unsafe impl ClassType for NSPersistentStoreResult {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -71,6 +72,7 @@ extern_class!(
     unsafe impl ClassType for NSPersistentStoreAsynchronousResult {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreResult;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -100,34 +102,34 @@ extern_methods!(
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CoreData_NSAsynchronousFetchResult")]
-    pub struct NSAsynchronousFetchResult<
-        ResultType: Message = Object,
-        ResultTypeOwnership: Ownership = Shared,
-    > {
-        _inner0: PhantomData<*mut (ResultType, ResultTypeOwnership)>,
+    pub struct NSAsynchronousFetchResult<ResultType: Message = Object> {
+        __superclass: NSPersistentStoreAsynchronousResult,
+        _inner0: PhantomData<*mut ResultType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     #[cfg(feature = "CoreData_NSAsynchronousFetchResult")]
-    unsafe impl<ResultType: Message, ResultTypeOwnership: Ownership> ClassType
-        for NSAsynchronousFetchResult<ResultType, ResultTypeOwnership>
-    {
+    unsafe impl<ResultType: Message> ClassType for NSAsynchronousFetchResult<ResultType> {
         #[inherits(NSPersistentStoreResult, NSObject)]
         type Super = NSPersistentStoreAsynchronousResult;
+        type Mutability = InteriorMutable;
+
+        fn as_super(&self) -> &Self::Super {
+            &self.__superclass
+        }
+
+        fn as_super_mut(&mut self) -> &mut Self::Super {
+            &mut self.__superclass
+        }
     }
 );
 
 #[cfg(feature = "CoreData_NSAsynchronousFetchResult")]
-unsafe impl<ResultType: Message, ResultTypeOwnership: Ownership> NSObjectProtocol
-    for NSAsynchronousFetchResult<ResultType, ResultTypeOwnership>
-{
-}
+unsafe impl<ResultType: Message> NSObjectProtocol for NSAsynchronousFetchResult<ResultType> {}
 
 extern_methods!(
     #[cfg(feature = "CoreData_NSAsynchronousFetchResult")]
-    unsafe impl<ResultType: Message, ResultTypeOwnership: Ownership>
-        NSAsynchronousFetchResult<ResultType, ResultTypeOwnership>
-    {
+    unsafe impl<ResultType: Message> NSAsynchronousFetchResult<ResultType> {
         #[cfg(feature = "CoreData_NSAsynchronousFetchRequest")]
         #[method_id(@__retain_semantics Other fetchRequest)]
         pub unsafe fn fetchRequest(&self) -> Id<NSAsynchronousFetchRequest<ResultType>>;
@@ -147,6 +149,7 @@ extern_class!(
     unsafe impl ClassType for NSBatchInsertResult {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreResult;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -173,6 +176,7 @@ extern_class!(
     unsafe impl ClassType for NSBatchUpdateResult {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreResult;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -199,6 +203,7 @@ extern_class!(
     unsafe impl ClassType for NSBatchDeleteResult {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreResult;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -225,6 +230,7 @@ extern_class!(
     unsafe impl ClassType for NSPersistentHistoryResult {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreResult;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -259,6 +265,7 @@ extern_class!(
     unsafe impl ClassType for NSPersistentCloudKitContainerEventResult {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreResult;
+        type Mutability = InteriorMutable;
     }
 );
 

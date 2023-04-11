@@ -16,6 +16,7 @@ extern_class!(
     unsafe impl ClassType for MKZoomControl {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
+        type Mutability = InteriorMutable;
     }
 );
 

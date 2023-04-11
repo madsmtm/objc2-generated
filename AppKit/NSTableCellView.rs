@@ -14,6 +14,7 @@ extern_class!(
     unsafe impl ClassType for NSTableCellView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
+        type Mutability = InteriorMutable;
     }
 );
 

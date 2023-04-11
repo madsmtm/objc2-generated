@@ -44,8 +44,12 @@ extern_class!(
     #[cfg(feature = "PhotoKit_PHImageRequestOptions")]
     unsafe impl ClassType for PHImageRequestOptions {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "PhotoKit_PHImageRequestOptions")]
+unsafe impl NSCopying for PHImageRequestOptions {}
 
 #[cfg(feature = "PhotoKit_PHImageRequestOptions")]
 unsafe impl NSObjectProtocol for PHImageRequestOptions {}
@@ -105,8 +109,12 @@ extern_class!(
     #[cfg(feature = "PhotoKit_PHLivePhotoRequestOptions")]
     unsafe impl ClassType for PHLivePhotoRequestOptions {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "PhotoKit_PHLivePhotoRequestOptions")]
+unsafe impl NSCopying for PHLivePhotoRequestOptions {}
 
 #[cfg(feature = "PhotoKit_PHLivePhotoRequestOptions")]
 unsafe impl NSObjectProtocol for PHLivePhotoRequestOptions {}
@@ -169,6 +177,7 @@ extern_class!(
     #[cfg(feature = "PhotoKit_PHVideoRequestOptions")]
     unsafe impl ClassType for PHVideoRequestOptions {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -228,6 +237,7 @@ extern_class!(
     #[cfg(feature = "PhotoKit_PHImageManager")]
     unsafe impl ClassType for PHImageManager {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -331,6 +341,7 @@ extern_class!(
     unsafe impl ClassType for PHCachingImageManager {
         #[inherits(NSObject)]
         type Super = PHImageManager;
+        type Mutability = InteriorMutable;
     }
 );
 

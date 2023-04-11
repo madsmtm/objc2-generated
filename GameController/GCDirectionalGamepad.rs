@@ -22,6 +22,7 @@ extern_class!(
     unsafe impl ClassType for GCDirectionalGamepad {
         #[inherits(GCPhysicalInputProfile, NSObject)]
         type Super = GCMicroGamepad;
+        type Mutability = InteriorMutable;
     }
 );
 

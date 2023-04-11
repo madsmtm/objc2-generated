@@ -55,6 +55,7 @@ extern_class!(
     #[cfg(feature = "MediaPlayer_MPMusicPlayerController")]
     unsafe impl ClassType for MPMusicPlayerController {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

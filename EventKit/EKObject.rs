@@ -15,6 +15,7 @@ extern_class!(
     #[cfg(feature = "EventKit_EKObject")]
     unsafe impl ClassType for EKObject {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

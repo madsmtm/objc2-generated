@@ -16,11 +16,15 @@ extern_class!(
     #[cfg(feature = "WebKit_WebArchive")]
     unsafe impl ClassType for WebArchive {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "WebKit_WebArchive")]
 unsafe impl NSCoding for WebArchive {}
+
+#[cfg(feature = "WebKit_WebArchive")]
+unsafe impl NSCopying for WebArchive {}
 
 #[cfg(feature = "WebKit_WebArchive")]
 unsafe impl NSObjectProtocol for WebArchive {}

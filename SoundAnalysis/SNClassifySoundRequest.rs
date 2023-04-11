@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "SoundAnalysis_SNClassifySoundRequest")]
     unsafe impl ClassType for SNClassifySoundRequest {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

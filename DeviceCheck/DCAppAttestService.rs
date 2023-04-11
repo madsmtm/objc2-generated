@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "DeviceCheck_DCAppAttestService")]
     unsafe impl ClassType for DCAppAttestService {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

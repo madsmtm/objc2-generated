@@ -128,6 +128,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSInputServer")]
     unsafe impl ClassType for NSInputServer {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

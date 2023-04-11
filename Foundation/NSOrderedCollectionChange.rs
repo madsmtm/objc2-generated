@@ -14,33 +14,33 @@ ns_enum!(
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSOrderedCollectionChange")]
-    pub struct NSOrderedCollectionChange<
-        ObjectType: Message = Object,
-        ObjectTypeOwnership: Ownership = Shared,
-    > {
-        _inner0: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
+    pub struct NSOrderedCollectionChange<ObjectType: Message = Object> {
+        __superclass: NSObject,
+        _inner0: PhantomData<*mut ObjectType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     #[cfg(feature = "Foundation_NSOrderedCollectionChange")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
-        for NSOrderedCollectionChange<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> ClassType for NSOrderedCollectionChange<ObjectType> {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
+
+        fn as_super(&self) -> &Self::Super {
+            &self.__superclass
+        }
+
+        fn as_super_mut(&mut self) -> &mut Self::Super {
+            &mut self.__superclass
+        }
     }
 );
 
 #[cfg(feature = "Foundation_NSOrderedCollectionChange")]
-unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSObjectProtocol
-    for NSOrderedCollectionChange<ObjectType, ObjectTypeOwnership>
-{
-}
+unsafe impl<ObjectType: Message> NSObjectProtocol for NSOrderedCollectionChange<ObjectType> {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSOrderedCollectionChange")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSOrderedCollectionChange<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> NSOrderedCollectionChange<ObjectType> {
         #[method_id(@__retain_semantics Other changeWithObject:type:index:)]
         pub unsafe fn changeWithObject_type_index(
             an_object: Option<&ObjectType>,
@@ -57,7 +57,7 @@ extern_methods!(
         ) -> Id<NSOrderedCollectionChange<ObjectType>>;
 
         #[method_id(@__retain_semantics Other object)]
-        pub unsafe fn object(&self) -> Option<Id<ObjectType, ObjectTypeOwnership>>;
+        pub unsafe fn object(&self) -> Option<Id<ObjectType>>;
 
         #[method(changeType)]
         pub unsafe fn changeType(&self) -> NSCollectionChangeType;

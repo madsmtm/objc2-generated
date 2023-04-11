@@ -11,62 +11,46 @@ __inner_extern_class!(
     pub struct NSDiffableDataSourceSnapshot<
         SectionIdentifierType: Message = Object,
         ItemIdentifierType: Message = Object,
-        SectionIdentifierTypeOwnership: Ownership = Shared,
-        ItemIdentifierTypeOwnership: Ownership = Shared,
     > {
-        _inner0: PhantomData<*mut (SectionIdentifierType, SectionIdentifierTypeOwnership)>,
-        _inner1: PhantomData<*mut (ItemIdentifierType, ItemIdentifierTypeOwnership)>,
+        __superclass: NSObject,
+        _inner0: PhantomData<*mut SectionIdentifierType>,
+        _inner1: PhantomData<*mut ItemIdentifierType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     #[cfg(feature = "AppKit_NSDiffableDataSourceSnapshot")]
-    unsafe impl<
-            SectionIdentifierType: Message,
-            ItemIdentifierType: Message,
-            SectionIdentifierTypeOwnership: Ownership,
-            ItemIdentifierTypeOwnership: Ownership,
-        > ClassType
-        for NSDiffableDataSourceSnapshot<
-            SectionIdentifierType,
-            ItemIdentifierType,
-            SectionIdentifierTypeOwnership,
-            ItemIdentifierTypeOwnership,
-        >
+    unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message> ClassType
+        for NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
     {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
+
+        fn as_super(&self) -> &Self::Super {
+            &self.__superclass
+        }
+
+        fn as_super_mut(&mut self) -> &mut Self::Super {
+            &mut self.__superclass
+        }
     }
 );
 
 #[cfg(feature = "AppKit_NSDiffableDataSourceSnapshot")]
-unsafe impl<
-        SectionIdentifierType: Message,
-        ItemIdentifierType: Message,
-        SectionIdentifierTypeOwnership: Ownership,
-        ItemIdentifierTypeOwnership: Ownership,
-    > NSObjectProtocol
-    for NSDiffableDataSourceSnapshot<
-        SectionIdentifierType,
-        ItemIdentifierType,
-        SectionIdentifierTypeOwnership,
-        ItemIdentifierTypeOwnership,
-    >
+unsafe impl<SectionIdentifierType: IsIdCloneable, ItemIdentifierType: IsIdCloneable> NSCopying
+    for NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
+{
+}
+
+#[cfg(feature = "AppKit_NSDiffableDataSourceSnapshot")]
+unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message> NSObjectProtocol
+    for NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
 {
 }
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSDiffableDataSourceSnapshot")]
-    unsafe impl<
-            SectionIdentifierType: Message,
-            ItemIdentifierType: Message,
-            SectionIdentifierTypeOwnership: Ownership,
-            ItemIdentifierTypeOwnership: Ownership,
-        >
-        NSDiffableDataSourceSnapshot<
-            SectionIdentifierType,
-            ItemIdentifierType,
-            SectionIdentifierTypeOwnership,
-            ItemIdentifierTypeOwnership,
-        >
+    unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
+        NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
     {
         #[method(numberOfItems)]
         pub unsafe fn numberOfItems(&self) -> NSInteger;
@@ -99,7 +83,7 @@ extern_methods!(
         pub unsafe fn sectionIdentifierForSectionContainingItemIdentifier(
             &self,
             item_identifier: &ItemIdentifierType,
-        ) -> Option<Id<SectionIdentifierType, SectionIdentifierTypeOwnership>>;
+        ) -> Option<Id<SectionIdentifierType>>;
 
         #[method(indexOfItemIdentifier:)]
         pub unsafe fn indexOfItemIdentifier(
@@ -234,78 +218,46 @@ __inner_extern_class!(
     pub struct NSCollectionViewDiffableDataSource<
         SectionIdentifierType: Message = Object,
         ItemIdentifierType: Message = Object,
-        SectionIdentifierTypeOwnership: Ownership = Shared,
-        ItemIdentifierTypeOwnership: Ownership = Shared,
     > {
-        _inner0: PhantomData<*mut (SectionIdentifierType, SectionIdentifierTypeOwnership)>,
-        _inner1: PhantomData<*mut (ItemIdentifierType, ItemIdentifierTypeOwnership)>,
+        __superclass: NSObject,
+        _inner0: PhantomData<*mut SectionIdentifierType>,
+        _inner1: PhantomData<*mut ItemIdentifierType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     #[cfg(feature = "AppKit_NSCollectionViewDiffableDataSource")]
-    unsafe impl<
-            SectionIdentifierType: Message,
-            ItemIdentifierType: Message,
-            SectionIdentifierTypeOwnership: Ownership,
-            ItemIdentifierTypeOwnership: Ownership,
-        > ClassType
-        for NSCollectionViewDiffableDataSource<
-            SectionIdentifierType,
-            ItemIdentifierType,
-            SectionIdentifierTypeOwnership,
-            ItemIdentifierTypeOwnership,
-        >
+    unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message> ClassType
+        for NSCollectionViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
     {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
+
+        fn as_super(&self) -> &Self::Super {
+            &self.__superclass
+        }
+
+        fn as_super_mut(&mut self) -> &mut Self::Super {
+            &mut self.__superclass
+        }
     }
 );
 
 #[cfg(feature = "AppKit_NSCollectionViewDiffableDataSource")]
-unsafe impl<
-        SectionIdentifierType: Message,
-        ItemIdentifierType: Message,
-        SectionIdentifierTypeOwnership: Ownership,
-        ItemIdentifierTypeOwnership: Ownership,
-    > NSCollectionViewDataSource
-    for NSCollectionViewDiffableDataSource<
-        SectionIdentifierType,
-        ItemIdentifierType,
-        SectionIdentifierTypeOwnership,
-        ItemIdentifierTypeOwnership,
-    >
+unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message> NSCollectionViewDataSource
+    for NSCollectionViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
 {
 }
 
 #[cfg(feature = "AppKit_NSCollectionViewDiffableDataSource")]
-unsafe impl<
-        SectionIdentifierType: Message,
-        ItemIdentifierType: Message,
-        SectionIdentifierTypeOwnership: Ownership,
-        ItemIdentifierTypeOwnership: Ownership,
-    > NSObjectProtocol
-    for NSCollectionViewDiffableDataSource<
-        SectionIdentifierType,
-        ItemIdentifierType,
-        SectionIdentifierTypeOwnership,
-        ItemIdentifierTypeOwnership,
-    >
+unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message> NSObjectProtocol
+    for NSCollectionViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
 {
 }
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionViewDiffableDataSource")]
-    unsafe impl<
-            SectionIdentifierType: Message,
-            ItemIdentifierType: Message,
-            SectionIdentifierTypeOwnership: Ownership,
-            ItemIdentifierTypeOwnership: Ownership,
-        >
-        NSCollectionViewDiffableDataSource<
-            SectionIdentifierType,
-            ItemIdentifierType,
-            SectionIdentifierTypeOwnership,
-            ItemIdentifierTypeOwnership,
-        >
+    unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
+        NSCollectionViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
     {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
@@ -332,7 +284,7 @@ extern_methods!(
         pub unsafe fn itemIdentifierForIndexPath(
             &self,
             index_path: &NSIndexPath,
-        ) -> Option<Id<ItemIdentifierType, ItemIdentifierTypeOwnership>>;
+        ) -> Option<Id<ItemIdentifierType>>;
 
         #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other indexPathForItemIdentifier:)]

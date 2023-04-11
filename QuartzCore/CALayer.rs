@@ -61,6 +61,7 @@ extern_class!(
     #[cfg(feature = "CoreAnimation_CALayer")]
     unsafe impl ClassType for CALayer {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

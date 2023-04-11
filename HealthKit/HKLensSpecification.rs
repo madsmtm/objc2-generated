@@ -14,6 +14,7 @@ extern_class!(
     #[cfg(feature = "HealthKit_HKLensSpecification")]
     unsafe impl ClassType for HKLensSpecification {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

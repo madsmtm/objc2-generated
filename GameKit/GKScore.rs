@@ -14,6 +14,7 @@ extern_class!(
     #[cfg(feature = "GameKit_GKScore")]
     unsafe impl ClassType for GKScore {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

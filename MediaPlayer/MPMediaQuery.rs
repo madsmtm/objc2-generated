@@ -27,11 +27,15 @@ extern_class!(
     #[cfg(feature = "MediaPlayer_MPMediaQuery")]
     unsafe impl ClassType for MPMediaQuery {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "MediaPlayer_MPMediaQuery")]
 unsafe impl NSCoding for MPMediaQuery {}
+
+#[cfg(feature = "MediaPlayer_MPMediaQuery")]
+unsafe impl NSCopying for MPMediaQuery {}
 
 #[cfg(feature = "MediaPlayer_MPMediaQuery")]
 unsafe impl NSObjectProtocol for MPMediaQuery {}
@@ -136,6 +140,7 @@ extern_class!(
     #[cfg(feature = "MediaPlayer_MPMediaPredicate")]
     unsafe impl ClassType for MPMediaPredicate {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -170,6 +175,7 @@ extern_class!(
     unsafe impl ClassType for MPMediaPropertyPredicate {
         #[inherits(NSObject)]
         type Super = MPMediaPredicate;
+        type Mutability = InteriorMutable;
     }
 );
 

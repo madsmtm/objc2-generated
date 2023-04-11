@@ -35,6 +35,7 @@ extern_class!(
     #[cfg(feature = "GameController_GCDeviceHaptics")]
     unsafe impl ClassType for GCDeviceHaptics {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

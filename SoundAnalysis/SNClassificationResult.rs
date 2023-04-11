@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "SoundAnalysis_SNClassification")]
     unsafe impl ClassType for SNClassification {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -44,6 +45,7 @@ extern_class!(
     #[cfg(feature = "SoundAnalysis_SNClassificationResult")]
     unsafe impl ClassType for SNClassificationResult {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

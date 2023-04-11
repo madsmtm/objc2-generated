@@ -23,11 +23,15 @@ extern_class!(
     unsafe impl ClassType for NSMassFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSMassFormatter")]
 unsafe impl NSCoding for NSMassFormatter {}
+
+#[cfg(feature = "Foundation_NSMassFormatter")]
+unsafe impl NSCopying for NSMassFormatter {}
 
 #[cfg(feature = "Foundation_NSMassFormatter")]
 unsafe impl NSObjectProtocol for NSMassFormatter {}

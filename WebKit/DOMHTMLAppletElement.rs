@@ -15,11 +15,15 @@ extern_class!(
     unsafe impl ClassType for DOMHTMLAppletElement {
         #[inherits(DOMElement, DOMNode, DOMObject, WebScriptObject, NSObject)]
         type Super = DOMHTMLElement;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "WebKit_DOMHTMLAppletElement")]
 unsafe impl DOMEventTarget for DOMHTMLAppletElement {}
+
+#[cfg(feature = "WebKit_DOMHTMLAppletElement")]
+unsafe impl NSCopying for DOMHTMLAppletElement {}
 
 #[cfg(feature = "WebKit_DOMHTMLAppletElement")]
 unsafe impl NSObjectProtocol for DOMHTMLAppletElement {}

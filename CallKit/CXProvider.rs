@@ -149,6 +149,7 @@ extern_class!(
     #[cfg(feature = "CallKit_CXProvider")]
     unsafe impl ClassType for CXProvider {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

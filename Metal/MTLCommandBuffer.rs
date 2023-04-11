@@ -66,8 +66,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLCommandBufferDescriptor")]
     unsafe impl ClassType for MTLCommandBufferDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLCommandBufferDescriptor")]
+unsafe impl NSCopying for MTLCommandBufferDescriptor {}
 
 #[cfg(feature = "Metal_MTLCommandBufferDescriptor")]
 unsafe impl NSObjectProtocol for MTLCommandBufferDescriptor {}

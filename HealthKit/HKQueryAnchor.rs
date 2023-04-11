@@ -14,11 +14,15 @@ extern_class!(
     #[cfg(feature = "HealthKit_HKQueryAnchor")]
     unsafe impl ClassType for HKQueryAnchor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "HealthKit_HKQueryAnchor")]
 unsafe impl NSCoding for HKQueryAnchor {}
+
+#[cfg(feature = "HealthKit_HKQueryAnchor")]
+unsafe impl NSCopying for HKQueryAnchor {}
 
 #[cfg(feature = "HealthKit_HKQueryAnchor")]
 unsafe impl NSObjectProtocol for HKQueryAnchor {}

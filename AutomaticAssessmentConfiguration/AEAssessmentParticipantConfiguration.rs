@@ -12,8 +12,12 @@ extern_class!(
     #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentParticipantConfiguration")]
     unsafe impl ClassType for AEAssessmentParticipantConfiguration {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentParticipantConfiguration")]
+unsafe impl NSCopying for AEAssessmentParticipantConfiguration {}
 
 #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentParticipantConfiguration")]
 unsafe impl NSObjectProtocol for AEAssessmentParticipantConfiguration {}

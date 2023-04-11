@@ -27,8 +27,12 @@ extern_class!(
     #[cfg(feature = "Foundation_NSUserNotification")]
     unsafe impl ClassType for NSUserNotification {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Foundation_NSUserNotification")]
+unsafe impl NSCopying for NSUserNotification {}
 
 #[cfg(feature = "Foundation_NSUserNotification")]
 unsafe impl NSObjectProtocol for NSUserNotification {}
@@ -199,8 +203,12 @@ extern_class!(
     #[cfg(feature = "Foundation_NSUserNotificationAction")]
     unsafe impl ClassType for NSUserNotificationAction {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Foundation_NSUserNotificationAction")]
+unsafe impl NSCopying for NSUserNotificationAction {}
 
 #[cfg(feature = "Foundation_NSUserNotificationAction")]
 unsafe impl NSObjectProtocol for NSUserNotificationAction {}
@@ -236,6 +244,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSUserNotificationCenter")]
     unsafe impl ClassType for NSUserNotificationCenter {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

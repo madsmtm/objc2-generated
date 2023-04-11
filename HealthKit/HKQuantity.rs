@@ -14,11 +14,15 @@ extern_class!(
     #[cfg(feature = "HealthKit_HKQuantity")]
     unsafe impl ClassType for HKQuantity {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "HealthKit_HKQuantity")]
 unsafe impl NSCoding for HKQuantity {}
+
+#[cfg(feature = "HealthKit_HKQuantity")]
+unsafe impl NSCopying for HKQuantity {}
 
 #[cfg(feature = "HealthKit_HKQuantity")]
 unsafe impl NSObjectProtocol for HKQuantity {}

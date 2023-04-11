@@ -24,6 +24,7 @@ extern_class!(
     #[cfg(feature = "CoreData_NSManagedObject")]
     unsafe impl ClassType for NSManagedObject {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

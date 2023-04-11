@@ -12,11 +12,15 @@ extern_class!(
     #[cfg(feature = "Speech_SFSpeechRecognitionResult")]
     unsafe impl ClassType for SFSpeechRecognitionResult {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Speech_SFSpeechRecognitionResult")]
 unsafe impl NSCoding for SFSpeechRecognitionResult {}
+
+#[cfg(feature = "Speech_SFSpeechRecognitionResult")]
+unsafe impl NSCopying for SFSpeechRecognitionResult {}
 
 #[cfg(feature = "Speech_SFSpeechRecognitionResult")]
 unsafe impl NSObjectProtocol for SFSpeechRecognitionResult {}

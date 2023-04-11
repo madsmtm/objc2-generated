@@ -13,11 +13,15 @@ extern_class!(
     #[cfg(feature = "LinkPresentation_LPLinkMetadata")]
     unsafe impl ClassType for LPLinkMetadata {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "LinkPresentation_LPLinkMetadata")]
 unsafe impl NSCoding for LPLinkMetadata {}
+
+#[cfg(feature = "LinkPresentation_LPLinkMetadata")]
+unsafe impl NSCopying for LPLinkMetadata {}
 
 #[cfg(feature = "LinkPresentation_LPLinkMetadata")]
 unsafe impl NSObjectProtocol for LPLinkMetadata {}

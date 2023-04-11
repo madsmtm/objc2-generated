@@ -13,6 +13,7 @@ extern_class!(
     unsafe impl ClassType for ILMessageClassificationRequest {
         #[inherits(NSObject)]
         type Super = ILClassificationRequest;
+        type Mutability = InteriorMutable;
     }
 );
 

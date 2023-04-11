@@ -14,6 +14,7 @@ extern_class!(
     unsafe impl ClassType for NSPanGestureRecognizer {
         #[inherits(NSObject)]
         type Super = NSGestureRecognizer;
+        type Mutability = InteriorMutable;
     }
 );
 

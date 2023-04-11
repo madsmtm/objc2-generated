@@ -30,8 +30,12 @@ extern_class!(
     unsafe impl ClassType for DOMKeyboardEvent {
         #[inherits(DOMEvent, DOMObject, WebScriptObject, NSObject)]
         type Super = DOMUIEvent;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "WebKit_DOMKeyboardEvent")]
+unsafe impl NSCopying for DOMKeyboardEvent {}
 
 #[cfg(feature = "WebKit_DOMKeyboardEvent")]
 unsafe impl NSObjectProtocol for DOMKeyboardEvent {}

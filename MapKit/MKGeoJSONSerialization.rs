@@ -21,6 +21,7 @@ extern_class!(
     #[cfg(feature = "MapKit_MKGeoJSONDecoder")]
     unsafe impl ClassType for MKGeoJSONDecoder {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -51,6 +52,7 @@ extern_class!(
     #[cfg(feature = "MapKit_MKGeoJSONFeature")]
     unsafe impl ClassType for MKGeoJSONFeature {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

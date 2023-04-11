@@ -23,6 +23,7 @@ extern_class!(
     unsafe impl ClassType for OSAScriptController {
         #[inherits(NSObject)]
         type Super = NSController;
+        type Mutability = InteriorMutable;
     }
 );
 

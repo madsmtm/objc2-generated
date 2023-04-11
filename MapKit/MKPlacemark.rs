@@ -16,6 +16,7 @@ extern_class!(
     unsafe impl ClassType for MKPlacemark {
         #[inherits(NSObject)]
         type Super = CLPlacemark;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -24,6 +25,9 @@ unsafe impl MKAnnotation for MKPlacemark {}
 
 #[cfg(feature = "MapKit_MKPlacemark")]
 unsafe impl NSCoding for MKPlacemark {}
+
+#[cfg(feature = "MapKit_MKPlacemark")]
+unsafe impl NSCopying for MKPlacemark {}
 
 #[cfg(feature = "MapKit_MKPlacemark")]
 unsafe impl NSObjectProtocol for MKPlacemark {}

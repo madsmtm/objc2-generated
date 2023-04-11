@@ -14,6 +14,7 @@ extern_class!(
     #[cfg(feature = "WebKit_WebDataSource")]
     unsafe impl ClassType for WebDataSource {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -49,7 +50,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSMutableURLRequest")]
         #[method_id(@__retain_semantics Other request)]
-        pub unsafe fn request(&self) -> Option<Id<NSMutableURLRequest, Owned>>;
+        pub unsafe fn request(&self) -> Option<Id<NSMutableURLRequest>>;
 
         #[cfg(feature = "Foundation_NSURLResponse")]
         #[method_id(@__retain_semantics Other response)]

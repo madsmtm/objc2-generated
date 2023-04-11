@@ -14,6 +14,7 @@ extern_class!(
     #[cfg(feature = "PhotoKit_PHAssetResource")]
     unsafe impl ClassType for PHAssetResource {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

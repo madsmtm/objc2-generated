@@ -13,11 +13,15 @@ extern_class!(
     #[cfg(feature = "MailKit_MEEmailAddress")]
     unsafe impl ClassType for MEEmailAddress {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "MailKit_MEEmailAddress")]
 unsafe impl NSCoding for MEEmailAddress {}
+
+#[cfg(feature = "MailKit_MEEmailAddress")]
+unsafe impl NSCopying for MEEmailAddress {}
 
 #[cfg(feature = "MailKit_MEEmailAddress")]
 unsafe impl NSObjectProtocol for MEEmailAddress {}

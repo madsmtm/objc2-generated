@@ -238,8 +238,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLArgumentDescriptor")]
     unsafe impl ClassType for MTLArgumentDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLArgumentDescriptor")]
+unsafe impl NSCopying for MTLArgumentDescriptor {}
 
 #[cfg(feature = "Metal_MTLArgumentDescriptor")]
 unsafe impl NSObjectProtocol for MTLArgumentDescriptor {}

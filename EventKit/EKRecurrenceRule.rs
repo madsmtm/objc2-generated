@@ -16,8 +16,12 @@ extern_class!(
     unsafe impl ClassType for EKRecurrenceRule {
         #[inherits(NSObject)]
         type Super = EKObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "EventKit_EKRecurrenceRule")]
+unsafe impl NSCopying for EKRecurrenceRule {}
 
 #[cfg(feature = "EventKit_EKRecurrenceRule")]
 unsafe impl NSObjectProtocol for EKRecurrenceRule {}

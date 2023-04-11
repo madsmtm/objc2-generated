@@ -13,8 +13,12 @@ extern_class!(
     #[cfg(feature = "WebKit_WKFindConfiguration")]
     unsafe impl ClassType for WKFindConfiguration {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "WebKit_WKFindConfiguration")]
+unsafe impl NSCopying for WKFindConfiguration {}
 
 #[cfg(feature = "WebKit_WKFindConfiguration")]
 unsafe impl NSObjectProtocol for WKFindConfiguration {}

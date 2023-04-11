@@ -13,6 +13,7 @@ extern_class!(
     unsafe impl ClassType for MXCrashDiagnostic {
         #[inherits(NSObject)]
         type Super = MXDiagnostic;
+        type Mutability = InteriorMutable;
     }
 );
 

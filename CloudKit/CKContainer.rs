@@ -17,6 +17,7 @@ extern_class!(
     #[cfg(feature = "CloudKit_CKContainer")]
     unsafe impl ClassType for CKContainer {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

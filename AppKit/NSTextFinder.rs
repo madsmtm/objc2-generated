@@ -50,6 +50,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSTextFinder")]
     unsafe impl ClassType for NSTextFinder {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

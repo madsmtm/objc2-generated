@@ -21,6 +21,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSWorkspace")]
     unsafe impl ClassType for NSWorkspace {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -268,8 +269,12 @@ extern_class!(
     #[cfg(feature = "AppKit_NSWorkspaceOpenConfiguration")]
     unsafe impl ClassType for NSWorkspaceOpenConfiguration {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "AppKit_NSWorkspaceOpenConfiguration")]
+unsafe impl NSCopying for NSWorkspaceOpenConfiguration {}
 
 #[cfg(feature = "AppKit_NSWorkspaceOpenConfiguration")]
 unsafe impl NSObjectProtocol for NSWorkspaceOpenConfiguration {}
@@ -424,6 +429,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSWorkspaceAuthorization")]
     unsafe impl ClassType for NSWorkspaceAuthorization {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

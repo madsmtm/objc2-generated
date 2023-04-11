@@ -42,8 +42,12 @@ extern_class!(
     unsafe impl ClassType for DOMXPathResult {
         #[inherits(WebScriptObject, NSObject)]
         type Super = DOMObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "WebKit_DOMXPathResult")]
+unsafe impl NSCopying for DOMXPathResult {}
 
 #[cfg(feature = "WebKit_DOMXPathResult")]
 unsafe impl NSObjectProtocol for DOMXPathResult {}

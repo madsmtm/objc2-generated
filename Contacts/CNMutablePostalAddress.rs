@@ -13,11 +13,18 @@ extern_class!(
     unsafe impl ClassType for CNMutablePostalAddress {
         #[inherits(NSObject)]
         type Super = CNPostalAddress;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Contacts_CNMutablePostalAddress")]
 unsafe impl NSCoding for CNMutablePostalAddress {}
+
+#[cfg(feature = "Contacts_CNMutablePostalAddress")]
+unsafe impl NSCopying for CNMutablePostalAddress {}
+
+#[cfg(feature = "Contacts_CNMutablePostalAddress")]
+unsafe impl NSMutableCopying for CNMutablePostalAddress {}
 
 #[cfg(feature = "Contacts_CNMutablePostalAddress")]
 unsafe impl NSObjectProtocol for CNMutablePostalAddress {}

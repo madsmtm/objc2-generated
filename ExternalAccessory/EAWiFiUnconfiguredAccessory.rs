@@ -21,6 +21,7 @@ extern_class!(
     #[cfg(feature = "ExternalAccessory_EAWiFiUnconfiguredAccessory")]
     unsafe impl ClassType for EAWiFiUnconfiguredAccessory {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

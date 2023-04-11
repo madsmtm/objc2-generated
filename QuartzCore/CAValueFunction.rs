@@ -16,6 +16,7 @@ extern_class!(
     #[cfg(feature = "CoreAnimation_CAValueFunction")]
     unsafe impl ClassType for CAValueFunction {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

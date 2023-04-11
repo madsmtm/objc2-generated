@@ -16,6 +16,7 @@ extern_class!(
     unsafe impl ClassType for MKGeodesicPolyline {
         #[inherits(MKMultiPoint, MKShape, NSObject)]
         type Super = MKPolyline;
+        type Mutability = InteriorMutable;
     }
 );
 

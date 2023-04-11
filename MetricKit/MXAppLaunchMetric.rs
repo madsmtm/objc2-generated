@@ -13,6 +13,7 @@ extern_class!(
     unsafe impl ClassType for MXAppLaunchMetric {
         #[inherits(NSObject)]
         type Super = MXMetric;
+        type Mutability = InteriorMutable;
     }
 );
 

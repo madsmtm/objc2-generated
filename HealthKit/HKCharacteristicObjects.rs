@@ -14,11 +14,15 @@ extern_class!(
     #[cfg(feature = "HealthKit_HKBiologicalSexObject")]
     unsafe impl ClassType for HKBiologicalSexObject {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "HealthKit_HKBiologicalSexObject")]
 unsafe impl NSCoding for HKBiologicalSexObject {}
+
+#[cfg(feature = "HealthKit_HKBiologicalSexObject")]
+unsafe impl NSCopying for HKBiologicalSexObject {}
 
 #[cfg(feature = "HealthKit_HKBiologicalSexObject")]
 unsafe impl NSObjectProtocol for HKBiologicalSexObject {}
@@ -42,11 +46,15 @@ extern_class!(
     #[cfg(feature = "HealthKit_HKBloodTypeObject")]
     unsafe impl ClassType for HKBloodTypeObject {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "HealthKit_HKBloodTypeObject")]
 unsafe impl NSCoding for HKBloodTypeObject {}
+
+#[cfg(feature = "HealthKit_HKBloodTypeObject")]
+unsafe impl NSCopying for HKBloodTypeObject {}
 
 #[cfg(feature = "HealthKit_HKBloodTypeObject")]
 unsafe impl NSObjectProtocol for HKBloodTypeObject {}
@@ -70,11 +78,15 @@ extern_class!(
     #[cfg(feature = "HealthKit_HKFitzpatrickSkinTypeObject")]
     unsafe impl ClassType for HKFitzpatrickSkinTypeObject {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "HealthKit_HKFitzpatrickSkinTypeObject")]
 unsafe impl NSCoding for HKFitzpatrickSkinTypeObject {}
+
+#[cfg(feature = "HealthKit_HKFitzpatrickSkinTypeObject")]
+unsafe impl NSCopying for HKFitzpatrickSkinTypeObject {}
 
 #[cfg(feature = "HealthKit_HKFitzpatrickSkinTypeObject")]
 unsafe impl NSObjectProtocol for HKFitzpatrickSkinTypeObject {}
@@ -98,11 +110,15 @@ extern_class!(
     #[cfg(feature = "HealthKit_HKWheelchairUseObject")]
     unsafe impl ClassType for HKWheelchairUseObject {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "HealthKit_HKWheelchairUseObject")]
 unsafe impl NSCoding for HKWheelchairUseObject {}
+
+#[cfg(feature = "HealthKit_HKWheelchairUseObject")]
+unsafe impl NSCopying for HKWheelchairUseObject {}
 
 #[cfg(feature = "HealthKit_HKWheelchairUseObject")]
 unsafe impl NSObjectProtocol for HKWheelchairUseObject {}
@@ -126,11 +142,15 @@ extern_class!(
     #[cfg(feature = "HealthKit_HKActivityMoveModeObject")]
     unsafe impl ClassType for HKActivityMoveModeObject {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "HealthKit_HKActivityMoveModeObject")]
 unsafe impl NSCoding for HKActivityMoveModeObject {}
+
+#[cfg(feature = "HealthKit_HKActivityMoveModeObject")]
+unsafe impl NSCopying for HKActivityMoveModeObject {}
 
 #[cfg(feature = "HealthKit_HKActivityMoveModeObject")]
 unsafe impl NSObjectProtocol for HKActivityMoveModeObject {}

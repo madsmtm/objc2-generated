@@ -47,11 +47,15 @@ extern_class!(
     unsafe impl ClassType for HKClinicalType {
         #[inherits(HKObjectType, NSObject)]
         type Super = HKSampleType;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "HealthKit_HKClinicalType")]
 unsafe impl NSCoding for HKClinicalType {}
+
+#[cfg(feature = "HealthKit_HKClinicalType")]
+unsafe impl NSCopying for HKClinicalType {}
 
 #[cfg(feature = "HealthKit_HKClinicalType")]
 unsafe impl NSObjectProtocol for HKClinicalType {}

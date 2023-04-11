@@ -3,88 +3,50 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-__inner_extern_class!(
-    #[derive(PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSDictionary")]
-    pub struct NSDictionary<
-        KeyType: Message = Object,
-        ObjectType: Message = Object,
-        KeyTypeOwnership: Ownership = Shared,
-        ObjectTypeOwnership: Ownership = Shared,
-    > {
-        _inner0: PhantomData<*mut (KeyType, KeyTypeOwnership)>,
-        _inner1: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    #[cfg(feature = "Foundation_NSDictionary")]
-    unsafe impl<
-            KeyType: Message,
-            ObjectType: Message,
-            KeyTypeOwnership: Ownership,
-            ObjectTypeOwnership: Ownership,
-        > ClassType for NSDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
-    {
-        type Super = NSObject;
-    }
-);
-
 #[cfg(feature = "Foundation_NSDictionary")]
-unsafe impl<
-        KeyType: Message,
-        ObjectType: Message,
-        KeyTypeOwnership: Ownership,
-        ObjectTypeOwnership: Ownership,
-    > NSCoding for NSDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+unsafe impl<KeyType: Message + NSCoding, ObjectType: Message + NSCoding> NSCoding
+    for NSDictionary<KeyType, ObjectType>
 {
 }
 
 #[cfg(feature = "Foundation_NSDictionary")]
-unsafe impl<
-        KeyType: Message,
-        ObjectType: Message,
-        KeyTypeOwnership: Ownership,
-        ObjectTypeOwnership: Ownership,
-    > NSFastEnumeration
-    for NSDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+unsafe impl<KeyType: IsIdCloneable, ObjectType: IsIdCloneable> NSCopying
+    for NSDictionary<KeyType, ObjectType>
 {
 }
 
 #[cfg(feature = "Foundation_NSDictionary")]
-unsafe impl<
-        KeyType: Message,
-        ObjectType: Message,
-        KeyTypeOwnership: Ownership,
-        ObjectTypeOwnership: Ownership,
-    > NSObjectProtocol
-    for NSDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+unsafe impl<KeyType: Message, ObjectType: Message> NSFastEnumeration
+    for NSDictionary<KeyType, ObjectType>
 {
 }
 
 #[cfg(feature = "Foundation_NSDictionary")]
-unsafe impl<
-        KeyType: Message,
-        ObjectType: Message,
-        KeyTypeOwnership: Ownership,
-        ObjectTypeOwnership: Ownership,
-    > NSSecureCoding for NSDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+unsafe impl<KeyType: IsIdCloneable, ObjectType: IsIdCloneable> NSMutableCopying
+    for NSDictionary<KeyType, ObjectType>
+{
+}
+
+#[cfg(feature = "Foundation_NSDictionary")]
+unsafe impl<KeyType: Message, ObjectType: Message> NSObjectProtocol
+    for NSDictionary<KeyType, ObjectType>
+{
+}
+
+#[cfg(feature = "Foundation_NSDictionary")]
+unsafe impl<KeyType: Message + NSSecureCoding, ObjectType: Message + NSSecureCoding> NSSecureCoding
+    for NSDictionary<KeyType, ObjectType>
 {
 }
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSDictionary")]
-    unsafe impl<
-            KeyType: Message,
-            ObjectType: Message,
-            KeyTypeOwnership: Ownership,
-            ObjectTypeOwnership: Ownership,
-        > NSDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
-    {
+    unsafe impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         #[method(count)]
         pub fn count(&self) -> NSUInteger;
 
         #[method_id(@__retain_semantics Other objectForKey:)]
-        pub fn objectForKey(&self, a_key: &KeyType) -> Option<Id<ObjectType, ObjectTypeOwnership>>;
+        pub unsafe fn objectForKey(&self, a_key: &KeyType) -> Option<Id<ObjectType>>;
 
         #[cfg(feature = "Foundation_NSEnumerator")]
         #[method_id(@__retain_semantics Other keyEnumerator)]
@@ -113,16 +75,10 @@ extern_methods!(
 extern_methods!(
     /// NSExtendedDictionary
     #[cfg(feature = "Foundation_NSDictionary")]
-    unsafe impl<
-            KeyType: Message,
-            ObjectType: Message,
-            KeyTypeOwnership: Ownership,
-            ObjectTypeOwnership: Ownership,
-        > NSDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
-    {
+    unsafe impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other allKeys)]
-        pub fn allKeys(&self) -> Id<NSArray<KeyType>>;
+        pub unsafe fn allKeys(&self) -> Id<NSArray<KeyType>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other allKeysForObject:)]
@@ -130,7 +86,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other allValues)]
-        pub fn allValues(&self) -> Id<NSArray<ObjectType>>;
+        pub unsafe fn allValues(&self) -> Id<NSArray<ObjectType>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other description)]
@@ -190,10 +146,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other objectForKeyedSubscript:)]
-        pub unsafe fn objectForKeyedSubscript(
-            &self,
-            key: &KeyType,
-        ) -> Option<Id<ObjectType, ObjectTypeOwnership>>;
+        pub unsafe fn objectForKeyedSubscript(&self, key: &KeyType) -> Option<Id<ObjectType>>;
 
         #[method(enumerateKeysAndObjectsUsingBlock:)]
         pub unsafe fn enumerateKeysAndObjectsUsingBlock(
@@ -243,13 +196,7 @@ extern_methods!(
 extern_methods!(
     /// NSDeprecated
     #[cfg(feature = "Foundation_NSDictionary")]
-    unsafe impl<
-            KeyType: Message,
-            ObjectType: Message,
-            KeyTypeOwnership: Ownership,
-            ObjectTypeOwnership: Ownership,
-        > NSDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
-    {
+    unsafe impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         #[deprecated = "Use -getObjects:andKeys:count: instead"]
         #[method(getObjects:andKeys:)]
         pub unsafe fn getObjects_andKeys(
@@ -274,6 +221,22 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
+        #[method_id(@__retain_semantics Init initWithContentsOfFile:)]
+        pub unsafe fn initWithContentsOfFile(
+            this: Option<Allocated<Self>>,
+            path: &NSString,
+        ) -> Option<Id<NSDictionary<KeyType, ObjectType>>>;
+
+        #[cfg(feature = "Foundation_NSURL")]
+        #[deprecated]
+        #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
+        pub unsafe fn initWithContentsOfURL(
+            this: Option<Allocated<Self>>,
+            url: &NSURL,
+        ) -> Option<Id<NSDictionary<KeyType, ObjectType>>>;
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(writeToFile:atomically:)]
         pub unsafe fn writeToFile_atomically(
             &self,
@@ -291,13 +254,7 @@ extern_methods!(
 extern_methods!(
     /// NSDictionaryCreation
     #[cfg(feature = "Foundation_NSDictionary")]
-    unsafe impl<
-            KeyType: Message,
-            ObjectType: Message,
-            KeyTypeOwnership: Ownership,
-            ObjectTypeOwnership: Ownership,
-        > NSDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
-    {
+    unsafe impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         #[method_id(@__retain_semantics Other dictionary)]
         pub unsafe fn dictionary() -> Id<Self>;
 
@@ -346,86 +303,45 @@ extern_methods!(
     }
 );
 
-__inner_extern_class!(
-    #[derive(PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSMutableDictionary")]
-    pub struct NSMutableDictionary<
-        KeyType: Message = Object,
-        ObjectType: Message = Object,
-        KeyTypeOwnership: Ownership = Shared,
-        ObjectTypeOwnership: Ownership = Shared,
-    > {
-        _inner0: PhantomData<*mut (KeyType, KeyTypeOwnership)>,
-        _inner1: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    #[cfg(feature = "Foundation_NSMutableDictionary")]
-    unsafe impl<
-            KeyType: Message,
-            ObjectType: Message,
-            KeyTypeOwnership: Ownership,
-            ObjectTypeOwnership: Ownership,
-        > ClassType
-        for NSMutableDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
-    {
-        #[inherits(NSObject)]
-        type Super = NSDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>;
-    }
-);
-
 #[cfg(feature = "Foundation_NSMutableDictionary")]
-unsafe impl<
-        KeyType: Message,
-        ObjectType: Message,
-        KeyTypeOwnership: Ownership,
-        ObjectTypeOwnership: Ownership,
-    > NSCoding for NSMutableDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+unsafe impl<KeyType: Message + NSCoding, ObjectType: Message + NSCoding> NSCoding
+    for NSMutableDictionary<KeyType, ObjectType>
 {
 }
 
 #[cfg(feature = "Foundation_NSMutableDictionary")]
-unsafe impl<
-        KeyType: Message,
-        ObjectType: Message,
-        KeyTypeOwnership: Ownership,
-        ObjectTypeOwnership: Ownership,
-    > NSFastEnumeration
-    for NSMutableDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+unsafe impl<KeyType: IsIdCloneable, ObjectType: IsIdCloneable> NSCopying
+    for NSMutableDictionary<KeyType, ObjectType>
 {
 }
 
 #[cfg(feature = "Foundation_NSMutableDictionary")]
-unsafe impl<
-        KeyType: Message,
-        ObjectType: Message,
-        KeyTypeOwnership: Ownership,
-        ObjectTypeOwnership: Ownership,
-    > NSObjectProtocol
-    for NSMutableDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+unsafe impl<KeyType: Message, ObjectType: Message> NSFastEnumeration
+    for NSMutableDictionary<KeyType, ObjectType>
 {
 }
 
 #[cfg(feature = "Foundation_NSMutableDictionary")]
-unsafe impl<
-        KeyType: Message,
-        ObjectType: Message,
-        KeyTypeOwnership: Ownership,
-        ObjectTypeOwnership: Ownership,
-    > NSSecureCoding
-    for NSMutableDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
+unsafe impl<KeyType: IsIdCloneable, ObjectType: IsIdCloneable> NSMutableCopying
+    for NSMutableDictionary<KeyType, ObjectType>
+{
+}
+
+#[cfg(feature = "Foundation_NSMutableDictionary")]
+unsafe impl<KeyType: Message, ObjectType: Message> NSObjectProtocol
+    for NSMutableDictionary<KeyType, ObjectType>
+{
+}
+
+#[cfg(feature = "Foundation_NSMutableDictionary")]
+unsafe impl<KeyType: Message + NSSecureCoding, ObjectType: Message + NSSecureCoding> NSSecureCoding
+    for NSMutableDictionary<KeyType, ObjectType>
 {
 }
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSMutableDictionary")]
-    unsafe impl<
-            KeyType: Message,
-            ObjectType: Message,
-            KeyTypeOwnership: Ownership,
-            ObjectTypeOwnership: Ownership,
-        > NSMutableDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
-    {
+    unsafe impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
         #[method(removeObjectForKey:)]
         pub fn removeObjectForKey(&mut self, a_key: &KeyType);
 
@@ -433,33 +349,27 @@ extern_methods!(
         pub unsafe fn setObject_forKey(&self, an_object: &ObjectType, a_key: &Object);
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self, Owned>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithCapacity:)]
         pub unsafe fn initWithCapacity(
             this: Option<Allocated<Self>>,
             num_items: NSUInteger,
-        ) -> Id<Self, Owned>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
-        ) -> Option<Id<Self, Owned>>;
+        ) -> Option<Id<Self>>;
     }
 );
 
 extern_methods!(
     /// NSExtendedMutableDictionary
     #[cfg(feature = "Foundation_NSMutableDictionary")]
-    unsafe impl<
-            KeyType: Message,
-            ObjectType: Message,
-            KeyTypeOwnership: Ownership,
-            ObjectTypeOwnership: Ownership,
-        > NSMutableDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
-    {
+    unsafe impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(addEntriesFromDictionary:)]
         pub unsafe fn addEntriesFromDictionary(
@@ -476,7 +386,10 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setDictionary:)]
-        pub fn setDictionary(&mut self, other_dictionary: &NSDictionary<KeyType, ObjectType>);
+        pub unsafe fn setDictionary(
+            &mut self,
+            other_dictionary: &NSDictionary<KeyType, ObjectType>,
+        );
 
         #[method(setObject:forKeyedSubscript:)]
         pub unsafe fn setObject_forKeyedSubscript(&self, obj: Option<&ObjectType>, key: &Object);
@@ -486,40 +399,42 @@ extern_methods!(
 extern_methods!(
     /// NSMutableDictionaryCreation
     #[cfg(feature = "Foundation_NSMutableDictionary")]
-    unsafe impl<
-            KeyType: Message,
-            ObjectType: Message,
-            KeyTypeOwnership: Ownership,
-            ObjectTypeOwnership: Ownership,
-        > NSMutableDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
-    {
+    unsafe impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
         #[method_id(@__retain_semantics Other dictionaryWithCapacity:)]
-        pub unsafe fn dictionaryWithCapacity(num_items: NSUInteger) -> Id<Self, Owned>;
+        pub unsafe fn dictionaryWithCapacity(num_items: NSUInteger) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other dictionaryWithContentsOfFile:)]
         pub unsafe fn dictionaryWithContentsOfFile(
             path: &NSString,
-        ) -> Option<Id<NSMutableDictionary<KeyType, ObjectType>, Owned>>;
+        ) -> Option<Id<NSMutableDictionary<KeyType, ObjectType>>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other dictionaryWithContentsOfURL:)]
         pub unsafe fn dictionaryWithContentsOfURL(
             url: &NSURL,
-        ) -> Option<Id<NSMutableDictionary<KeyType, ObjectType>, Owned>>;
+        ) -> Option<Id<NSMutableDictionary<KeyType, ObjectType>>>;
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Init initWithContentsOfFile:)]
+        pub unsafe fn initWithContentsOfFile(
+            this: Option<Allocated<Self>>,
+            path: &NSString,
+        ) -> Option<Id<NSMutableDictionary<KeyType, ObjectType>>>;
+
+        #[cfg(feature = "Foundation_NSURL")]
+        #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
+        pub unsafe fn initWithContentsOfURL(
+            this: Option<Allocated<Self>>,
+            url: &NSURL,
+        ) -> Option<Id<NSMutableDictionary<KeyType, ObjectType>>>;
     }
 );
 
 extern_methods!(
     /// NSSharedKeySetDictionary
     #[cfg(feature = "Foundation_NSDictionary")]
-    unsafe impl<
-            KeyType: Message,
-            ObjectType: Message,
-            KeyTypeOwnership: Ownership,
-            ObjectTypeOwnership: Ownership,
-        > NSDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
-    {
+    unsafe impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other sharedKeySetForKeys:)]
         pub unsafe fn sharedKeySetForKeys(keys: &NSArray<Object>) -> Id<Object>;
@@ -529,37 +444,25 @@ extern_methods!(
 extern_methods!(
     /// NSSharedKeySetDictionary
     #[cfg(feature = "Foundation_NSMutableDictionary")]
-    unsafe impl<
-            KeyType: Message,
-            ObjectType: Message,
-            KeyTypeOwnership: Ownership,
-            ObjectTypeOwnership: Ownership,
-        > NSMutableDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
-    {
+    unsafe impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
         #[method_id(@__retain_semantics Other dictionaryWithSharedKeySet:)]
         pub unsafe fn dictionaryWithSharedKeySet(
             keyset: &Object,
-        ) -> Id<NSMutableDictionary<KeyType, ObjectType>, Owned>;
+        ) -> Id<NSMutableDictionary<KeyType, ObjectType>>;
     }
 );
 
 extern_methods!(
     /// Methods declared on superclass `NSDictionary`
     #[cfg(feature = "Foundation_NSMutableDictionary")]
-    unsafe impl<
-            KeyType: Message,
-            ObjectType: Message,
-            KeyTypeOwnership: Ownership,
-            ObjectTypeOwnership: Ownership,
-        > NSMutableDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
-    {
+    unsafe impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
         #[method_id(@__retain_semantics Init initWithObjects:forKeys:count:)]
         pub unsafe fn initWithObjects_forKeys_count(
             this: Option<Allocated<Self>>,
             objects: *mut NonNull<ObjectType>,
             keys: *mut NonNull<Object>,
             cnt: NSUInteger,
-        ) -> Id<Self, Owned>;
+        ) -> Id<Self>;
     }
 );
 
@@ -568,53 +471,44 @@ extern_methods!(
     ///
     /// NSDictionaryCreation
     #[cfg(feature = "Foundation_NSMutableDictionary")]
-    unsafe impl<
-            KeyType: Message,
-            ObjectType: Message,
-            KeyTypeOwnership: Ownership,
-            ObjectTypeOwnership: Ownership,
-        > NSMutableDictionary<KeyType, ObjectType, KeyTypeOwnership, ObjectTypeOwnership>
-    {
+    unsafe impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
         #[method_id(@__retain_semantics Other dictionary)]
-        pub unsafe fn dictionary() -> Id<Self, Owned>;
+        pub unsafe fn dictionary() -> Id<Self>;
 
         #[method_id(@__retain_semantics Other dictionaryWithObject:forKey:)]
-        pub unsafe fn dictionaryWithObject_forKey(
-            object: &ObjectType,
-            key: &Object,
-        ) -> Id<Self, Owned>;
+        pub unsafe fn dictionaryWithObject_forKey(object: &ObjectType, key: &Object) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other dictionaryWithObjects:forKeys:count:)]
         pub unsafe fn dictionaryWithObjects_forKeys_count(
             objects: *mut NonNull<ObjectType>,
             keys: *mut NonNull<Object>,
             cnt: NSUInteger,
-        ) -> Id<Self, Owned>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other dictionaryWithDictionary:)]
         pub unsafe fn dictionaryWithDictionary(
             dict: &NSDictionary<KeyType, ObjectType>,
-        ) -> Id<Self, Owned>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other dictionaryWithObjects:forKeys:)]
         pub unsafe fn dictionaryWithObjects_forKeys(
             objects: &NSArray<ObjectType>,
             keys: &NSArray<Object>,
-        ) -> Id<Self, Owned>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithDictionary:)]
         pub unsafe fn initWithDictionary(
             this: Option<Allocated<Self>>,
             other_dictionary: &NSDictionary<KeyType, ObjectType>,
-        ) -> Id<Self, Owned>;
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithDictionary:copyItems:)]
         pub unsafe fn initWithDictionary_copyItems(
             this: Option<Allocated<Self>>,
             other_dictionary: &NSDictionary<KeyType, ObjectType>,
             flag: bool,
-        ) -> Id<Self, Owned>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Init initWithObjects:forKeys:)]
@@ -622,6 +516,6 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             objects: &NSArray<ObjectType>,
             keys: &NSArray<Object>,
-        ) -> Id<Self, Owned>;
+        ) -> Id<Self>;
     }
 );

@@ -14,6 +14,7 @@ extern_class!(
     #[cfg(feature = "GameKit_GKSession")]
     unsafe impl ClassType for GKSession {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -32,6 +32,7 @@ extern_class!(
     #[cfg(feature = "UserNotifications_UNUserNotificationCenter")]
     unsafe impl ClassType for UNUserNotificationCenter {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

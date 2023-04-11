@@ -15,8 +15,12 @@ extern_class!(
     unsafe impl ClassType for DOMNodeList {
         #[inherits(WebScriptObject, NSObject)]
         type Super = DOMObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "WebKit_DOMNodeList")]
+unsafe impl NSCopying for DOMNodeList {}
 
 #[cfg(feature = "WebKit_DOMNodeList")]
 unsafe impl NSObjectProtocol for DOMNodeList {}

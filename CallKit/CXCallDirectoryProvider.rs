@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "CallKit_CXCallDirectoryProvider")]
     unsafe impl ClassType for CXCallDirectoryProvider {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

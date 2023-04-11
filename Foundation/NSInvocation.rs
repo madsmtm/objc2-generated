@@ -11,6 +11,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSInvocation")]
     unsafe impl ClassType for NSInvocation {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

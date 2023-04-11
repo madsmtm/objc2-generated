@@ -22,11 +22,15 @@ extern_class!(
     unsafe impl ClassType for NSEnergyFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSEnergyFormatter")]
 unsafe impl NSCoding for NSEnergyFormatter {}
+
+#[cfg(feature = "Foundation_NSEnergyFormatter")]
+unsafe impl NSCopying for NSEnergyFormatter {}
 
 #[cfg(feature = "Foundation_NSEnergyFormatter")]
 unsafe impl NSObjectProtocol for NSEnergyFormatter {}

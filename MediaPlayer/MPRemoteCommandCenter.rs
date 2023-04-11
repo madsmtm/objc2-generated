@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "MediaPlayer_MPRemoteCommandCenter")]
     unsafe impl ClassType for MPRemoteCommandCenter {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

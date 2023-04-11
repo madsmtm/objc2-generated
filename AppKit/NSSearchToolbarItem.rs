@@ -14,8 +14,12 @@ extern_class!(
     unsafe impl ClassType for NSSearchToolbarItem {
         #[inherits(NSObject)]
         type Super = NSToolbarItem;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "AppKit_NSSearchToolbarItem")]
+unsafe impl NSCopying for NSSearchToolbarItem {}
 
 #[cfg(feature = "AppKit_NSSearchToolbarItem")]
 unsafe impl NSObjectProtocol for NSSearchToolbarItem {}

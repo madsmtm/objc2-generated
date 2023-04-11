@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSConnection")]
     unsafe impl ClassType for NSConnection {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -298,6 +299,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSDistantObjectRequest")]
     unsafe impl ClassType for NSDistantObjectRequest {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

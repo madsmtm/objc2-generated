@@ -7,42 +7,39 @@ use crate::MetricKit::*;
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MetricKit_MXHistogramBucket")]
-    pub struct MXHistogramBucket<UnitType: Message = Object, UnitTypeOwnership: Ownership = Shared> {
-        _inner0: PhantomData<*mut (UnitType, UnitTypeOwnership)>,
+    pub struct MXHistogramBucket<UnitType: Message = Object> {
+        __superclass: NSObject,
+        _inner0: PhantomData<*mut UnitType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     #[cfg(feature = "MetricKit_MXHistogramBucket")]
-    unsafe impl<UnitType: Message, UnitTypeOwnership: Ownership> ClassType
-        for MXHistogramBucket<UnitType, UnitTypeOwnership>
-    {
+    unsafe impl<UnitType: Message> ClassType for MXHistogramBucket<UnitType> {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
+
+        fn as_super(&self) -> &Self::Super {
+            &self.__superclass
+        }
+
+        fn as_super_mut(&mut self) -> &mut Self::Super {
+            &mut self.__superclass
+        }
     }
 );
 
 #[cfg(feature = "MetricKit_MXHistogramBucket")]
-unsafe impl<UnitType: Message, UnitTypeOwnership: Ownership> NSCoding
-    for MXHistogramBucket<UnitType, UnitTypeOwnership>
-{
-}
+unsafe impl<UnitType: Message + NSCoding> NSCoding for MXHistogramBucket<UnitType> {}
 
 #[cfg(feature = "MetricKit_MXHistogramBucket")]
-unsafe impl<UnitType: Message, UnitTypeOwnership: Ownership> NSObjectProtocol
-    for MXHistogramBucket<UnitType, UnitTypeOwnership>
-{
-}
+unsafe impl<UnitType: Message> NSObjectProtocol for MXHistogramBucket<UnitType> {}
 
 #[cfg(feature = "MetricKit_MXHistogramBucket")]
-unsafe impl<UnitType: Message, UnitTypeOwnership: Ownership> NSSecureCoding
-    for MXHistogramBucket<UnitType, UnitTypeOwnership>
-{
-}
+unsafe impl<UnitType: Message + NSSecureCoding> NSSecureCoding for MXHistogramBucket<UnitType> {}
 
 extern_methods!(
     #[cfg(feature = "MetricKit_MXHistogramBucket")]
-    unsafe impl<UnitType: Message, UnitTypeOwnership: Ownership>
-        MXHistogramBucket<UnitType, UnitTypeOwnership>
-    {
+    unsafe impl<UnitType: Message> MXHistogramBucket<UnitType> {
         #[cfg(feature = "Foundation_NSMeasurement")]
         #[method_id(@__retain_semantics Other bucketStart)]
         pub unsafe fn bucketStart(&self) -> Id<NSMeasurement<UnitType>>;
@@ -59,42 +56,39 @@ extern_methods!(
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MetricKit_MXHistogram")]
-    pub struct MXHistogram<UnitType: Message = Object, UnitTypeOwnership: Ownership = Shared> {
-        _inner0: PhantomData<*mut (UnitType, UnitTypeOwnership)>,
+    pub struct MXHistogram<UnitType: Message = Object> {
+        __superclass: NSObject,
+        _inner0: PhantomData<*mut UnitType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     #[cfg(feature = "MetricKit_MXHistogram")]
-    unsafe impl<UnitType: Message, UnitTypeOwnership: Ownership> ClassType
-        for MXHistogram<UnitType, UnitTypeOwnership>
-    {
+    unsafe impl<UnitType: Message> ClassType for MXHistogram<UnitType> {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
+
+        fn as_super(&self) -> &Self::Super {
+            &self.__superclass
+        }
+
+        fn as_super_mut(&mut self) -> &mut Self::Super {
+            &mut self.__superclass
+        }
     }
 );
 
 #[cfg(feature = "MetricKit_MXHistogram")]
-unsafe impl<UnitType: Message, UnitTypeOwnership: Ownership> NSCoding
-    for MXHistogram<UnitType, UnitTypeOwnership>
-{
-}
+unsafe impl<UnitType: Message + NSCoding> NSCoding for MXHistogram<UnitType> {}
 
 #[cfg(feature = "MetricKit_MXHistogram")]
-unsafe impl<UnitType: Message, UnitTypeOwnership: Ownership> NSObjectProtocol
-    for MXHistogram<UnitType, UnitTypeOwnership>
-{
-}
+unsafe impl<UnitType: Message> NSObjectProtocol for MXHistogram<UnitType> {}
 
 #[cfg(feature = "MetricKit_MXHistogram")]
-unsafe impl<UnitType: Message, UnitTypeOwnership: Ownership> NSSecureCoding
-    for MXHistogram<UnitType, UnitTypeOwnership>
-{
-}
+unsafe impl<UnitType: Message + NSSecureCoding> NSSecureCoding for MXHistogram<UnitType> {}
 
 extern_methods!(
     #[cfg(feature = "MetricKit_MXHistogram")]
-    unsafe impl<UnitType: Message, UnitTypeOwnership: Ownership>
-        MXHistogram<UnitType, UnitTypeOwnership>
-    {
+    unsafe impl<UnitType: Message> MXHistogram<UnitType> {
         #[method(totalBucketCount)]
         pub unsafe fn totalBucketCount(&self) -> NSUInteger;
 

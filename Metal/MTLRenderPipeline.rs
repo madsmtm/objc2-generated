@@ -106,8 +106,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLRenderPipelineColorAttachmentDescriptor")]
     unsafe impl ClassType for MTLRenderPipelineColorAttachmentDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLRenderPipelineColorAttachmentDescriptor")]
+unsafe impl NSCopying for MTLRenderPipelineColorAttachmentDescriptor {}
 
 #[cfg(feature = "Metal_MTLRenderPipelineColorAttachmentDescriptor")]
 unsafe impl NSObjectProtocol for MTLRenderPipelineColorAttachmentDescriptor {}
@@ -182,6 +186,7 @@ extern_class!(
     #[cfg(feature = "Metal_MTLRenderPipelineReflection")]
     unsafe impl ClassType for MTLRenderPipelineReflection {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -236,8 +241,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLRenderPipelineDescriptor")]
     unsafe impl ClassType for MTLRenderPipelineDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLRenderPipelineDescriptor")]
+unsafe impl NSCopying for MTLRenderPipelineDescriptor {}
 
 #[cfg(feature = "Metal_MTLRenderPipelineDescriptor")]
 unsafe impl NSObjectProtocol for MTLRenderPipelineDescriptor {}
@@ -518,8 +527,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLRenderPipelineFunctionsDescriptor")]
     unsafe impl ClassType for MTLRenderPipelineFunctionsDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLRenderPipelineFunctionsDescriptor")]
+unsafe impl NSCopying for MTLRenderPipelineFunctionsDescriptor {}
 
 #[cfg(feature = "Metal_MTLRenderPipelineFunctionsDescriptor")]
 unsafe impl NSObjectProtocol for MTLRenderPipelineFunctionsDescriptor {}
@@ -658,6 +671,7 @@ extern_class!(
     #[cfg(feature = "Metal_MTLRenderPipelineColorAttachmentDescriptorArray")]
     unsafe impl ClassType for MTLRenderPipelineColorAttachmentDescriptorArray {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -692,8 +706,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLTileRenderPipelineColorAttachmentDescriptor")]
     unsafe impl ClassType for MTLTileRenderPipelineColorAttachmentDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLTileRenderPipelineColorAttachmentDescriptor")]
+unsafe impl NSCopying for MTLTileRenderPipelineColorAttachmentDescriptor {}
 
 #[cfg(feature = "Metal_MTLTileRenderPipelineColorAttachmentDescriptor")]
 unsafe impl NSObjectProtocol for MTLTileRenderPipelineColorAttachmentDescriptor {}
@@ -717,6 +735,7 @@ extern_class!(
     #[cfg(feature = "Metal_MTLTileRenderPipelineColorAttachmentDescriptorArray")]
     unsafe impl ClassType for MTLTileRenderPipelineColorAttachmentDescriptorArray {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -751,8 +770,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLTileRenderPipelineDescriptor")]
     unsafe impl ClassType for MTLTileRenderPipelineDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLTileRenderPipelineDescriptor")]
+unsafe impl NSCopying for MTLTileRenderPipelineDescriptor {}
 
 #[cfg(feature = "Metal_MTLTileRenderPipelineDescriptor")]
 unsafe impl NSObjectProtocol for MTLTileRenderPipelineDescriptor {}
@@ -867,8 +890,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLMeshRenderPipelineDescriptor")]
     unsafe impl ClassType for MTLMeshRenderPipelineDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLMeshRenderPipelineDescriptor")]
+unsafe impl NSCopying for MTLMeshRenderPipelineDescriptor {}
 
 #[cfg(feature = "Metal_MTLMeshRenderPipelineDescriptor")]
 unsafe impl NSObjectProtocol for MTLMeshRenderPipelineDescriptor {}

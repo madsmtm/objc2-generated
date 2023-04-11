@@ -11,6 +11,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSUbiquitousKeyValueStore")]
     unsafe impl ClassType for NSUbiquitousKeyValueStore {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "CloudKit_CKSystemSharingUIObserver")]
     unsafe impl ClassType for CKSystemSharingUIObserver {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

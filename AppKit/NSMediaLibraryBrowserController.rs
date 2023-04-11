@@ -22,6 +22,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSMediaLibraryBrowserController")]
     unsafe impl ClassType for NSMediaLibraryBrowserController {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

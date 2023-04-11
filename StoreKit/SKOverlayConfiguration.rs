@@ -21,6 +21,7 @@ extern_class!(
     #[cfg(feature = "StoreKit_SKOverlayConfiguration")]
     unsafe impl ClassType for SKOverlayConfiguration {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -47,6 +48,7 @@ extern_class!(
     unsafe impl ClassType for SKOverlayAppConfiguration {
         #[inherits(NSObject)]
         type Super = SKOverlayConfiguration;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -148,6 +150,7 @@ extern_class!(
     unsafe impl ClassType for SKOverlayAppClipConfiguration {
         #[inherits(NSObject)]
         type Super = SKOverlayConfiguration;
+        type Mutability = InteriorMutable;
     }
 );
 

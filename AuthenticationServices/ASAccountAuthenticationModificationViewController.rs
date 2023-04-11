@@ -4,6 +4,24 @@ use crate::common::*;
 use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationViewController")]
+unsafe impl NSCoding for ASAccountAuthenticationModificationViewController {}
+
+#[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationViewController")]
+unsafe impl NSEditor for ASAccountAuthenticationModificationViewController {}
+
+#[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationViewController")]
+unsafe impl NSObjectProtocol for ASAccountAuthenticationModificationViewController {}
+
+#[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationViewController")]
+unsafe impl NSSeguePerforming for ASAccountAuthenticationModificationViewController {}
+
+#[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationViewController")]
+unsafe impl NSUserInterfaceItemIdentification
+    for ASAccountAuthenticationModificationViewController
+{
+}
+
 extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationViewController")]
     unsafe impl ASAccountAuthenticationModificationViewController {
@@ -73,5 +91,19 @@ extern_methods!(
 
         #[method(cancelRequest)]
         pub unsafe fn cancelRequest(&self);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSViewController`
+    #[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationViewController")]
+    unsafe impl ASAccountAuthenticationModificationViewController {
+        #[cfg(feature = "Foundation_NSBundle")]
+        #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
+        pub unsafe fn initWithNibName_bundle(
+            this: Option<Allocated<Self>>,
+            nib_name_or_nil: Option<&NSNibName>,
+            nib_bundle_or_nil: Option<&NSBundle>,
+        ) -> Id<Self>;
     }
 );

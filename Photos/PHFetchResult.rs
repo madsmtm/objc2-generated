@@ -9,50 +9,47 @@ use crate::PhotoKit::*;
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PhotoKit_PHFetchResult")]
-    pub struct PHFetchResult<ObjectType: Message = Object, ObjectTypeOwnership: Ownership = Shared> {
-        _inner0: PhantomData<*mut (ObjectType, ObjectTypeOwnership)>,
+    pub struct PHFetchResult<ObjectType: Message = Object> {
+        __superclass: NSObject,
+        _inner0: PhantomData<*mut ObjectType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     #[cfg(feature = "PhotoKit_PHFetchResult")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> ClassType
-        for PHFetchResult<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> ClassType for PHFetchResult<ObjectType> {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
+
+        fn as_super(&self) -> &Self::Super {
+            &self.__superclass
+        }
+
+        fn as_super_mut(&mut self) -> &mut Self::Super {
+            &mut self.__superclass
+        }
     }
 );
 
 #[cfg(feature = "PhotoKit_PHFetchResult")]
-unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSFastEnumeration
-    for PHFetchResult<ObjectType, ObjectTypeOwnership>
-{
-}
+unsafe impl<ObjectType: IsIdCloneable> NSCopying for PHFetchResult<ObjectType> {}
 
 #[cfg(feature = "PhotoKit_PHFetchResult")]
-unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership> NSObjectProtocol
-    for PHFetchResult<ObjectType, ObjectTypeOwnership>
-{
-}
+unsafe impl<ObjectType: Message> NSFastEnumeration for PHFetchResult<ObjectType> {}
+
+#[cfg(feature = "PhotoKit_PHFetchResult")]
+unsafe impl<ObjectType: Message> NSObjectProtocol for PHFetchResult<ObjectType> {}
 
 extern_methods!(
     #[cfg(feature = "PhotoKit_PHFetchResult")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        PHFetchResult<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> PHFetchResult<ObjectType> {
         #[method(count)]
         pub unsafe fn count(&self) -> NSUInteger;
 
         #[method_id(@__retain_semantics Other objectAtIndex:)]
-        pub unsafe fn objectAtIndex(
-            &self,
-            index: NSUInteger,
-        ) -> Id<ObjectType, ObjectTypeOwnership>;
+        pub unsafe fn objectAtIndex(&self, index: NSUInteger) -> Id<ObjectType>;
 
         #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
-        pub unsafe fn objectAtIndexedSubscript(
-            &self,
-            idx: NSUInteger,
-        ) -> Id<ObjectType, ObjectTypeOwnership>;
+        pub unsafe fn objectAtIndexedSubscript(&self, idx: NSUInteger) -> Id<ObjectType>;
 
         #[method(containsObject:)]
         pub unsafe fn containsObject(&self, an_object: &ObjectType) -> bool;
@@ -68,10 +65,10 @@ extern_methods!(
         ) -> NSUInteger;
 
         #[method_id(@__retain_semantics Other firstObject)]
-        pub unsafe fn firstObject(&self) -> Option<Id<ObjectType, ObjectTypeOwnership>>;
+        pub unsafe fn firstObject(&self) -> Option<Id<ObjectType>>;
 
         #[method_id(@__retain_semantics Other lastObject)]
-        pub unsafe fn lastObject(&self) -> Option<Id<ObjectType, ObjectTypeOwnership>>;
+        pub unsafe fn lastObject(&self) -> Option<Id<ObjectType>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSIndexSet"))]
         #[method_id(@__retain_semantics Other objectsAtIndexes:)]

@@ -15,8 +15,12 @@ extern_class!(
     unsafe impl ClassType for DOMRGBColor {
         #[inherits(WebScriptObject, NSObject)]
         type Super = DOMObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "WebKit_DOMRGBColor")]
+unsafe impl NSCopying for DOMRGBColor {}
 
 #[cfg(feature = "WebKit_DOMRGBColor")]
 unsafe impl NSObjectProtocol for DOMRGBColor {}

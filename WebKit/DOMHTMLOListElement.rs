@@ -15,11 +15,15 @@ extern_class!(
     unsafe impl ClassType for DOMHTMLOListElement {
         #[inherits(DOMElement, DOMNode, DOMObject, WebScriptObject, NSObject)]
         type Super = DOMHTMLElement;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "WebKit_DOMHTMLOListElement")]
 unsafe impl DOMEventTarget for DOMHTMLOListElement {}
+
+#[cfg(feature = "WebKit_DOMHTMLOListElement")]
+unsafe impl NSCopying for DOMHTMLOListElement {}
 
 #[cfg(feature = "WebKit_DOMHTMLOListElement")]
 unsafe impl NSObjectProtocol for DOMHTMLOListElement {}

@@ -15,8 +15,12 @@ extern_class!(
     unsafe impl ClassType for PHProject {
         #[inherits(PHCollection, PHObject, NSObject)]
         type Super = PHAssetCollection;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "PhotoKit_PHProject")]
+unsafe impl NSCopying for PHProject {}
 
 #[cfg(feature = "PhotoKit_PHProject")]
 unsafe impl NSObjectProtocol for PHProject {}

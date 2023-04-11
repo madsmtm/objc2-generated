@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSPressureConfiguration")]
     unsafe impl ClassType for NSPressureConfiguration {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

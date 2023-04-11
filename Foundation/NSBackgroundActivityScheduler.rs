@@ -21,6 +21,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSBackgroundActivityScheduler")]
     unsafe impl ClassType for NSBackgroundActivityScheduler {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

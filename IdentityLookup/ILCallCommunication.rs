@@ -13,6 +13,7 @@ extern_class!(
     unsafe impl ClassType for ILCallCommunication {
         #[inherits(NSObject)]
         type Super = ILCommunication;
+        type Mutability = InteriorMutable;
     }
 );
 

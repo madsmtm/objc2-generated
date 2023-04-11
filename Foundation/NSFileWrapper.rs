@@ -27,6 +27,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSFileWrapper")]
     unsafe impl ClassType for NSFileWrapper {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

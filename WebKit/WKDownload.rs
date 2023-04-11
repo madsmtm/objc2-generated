@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "WebKit_WKDownload")]
     unsafe impl ClassType for WKDownload {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

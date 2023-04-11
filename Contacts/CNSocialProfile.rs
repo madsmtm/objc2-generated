@@ -12,11 +12,15 @@ extern_class!(
     #[cfg(feature = "Contacts_CNSocialProfile")]
     unsafe impl ClassType for CNSocialProfile {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Contacts_CNSocialProfile")]
 unsafe impl NSCoding for CNSocialProfile {}
+
+#[cfg(feature = "Contacts_CNSocialProfile")]
+unsafe impl NSCopying for CNSocialProfile {}
 
 #[cfg(feature = "Contacts_CNSocialProfile")]
 unsafe impl NSObjectProtocol for CNSocialProfile {}

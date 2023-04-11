@@ -15,11 +15,15 @@ extern_class!(
     unsafe impl ClassType for DOMHTMLOptGroupElement {
         #[inherits(DOMElement, DOMNode, DOMObject, WebScriptObject, NSObject)]
         type Super = DOMHTMLElement;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "WebKit_DOMHTMLOptGroupElement")]
 unsafe impl DOMEventTarget for DOMHTMLOptGroupElement {}
+
+#[cfg(feature = "WebKit_DOMHTMLOptGroupElement")]
+unsafe impl NSCopying for DOMHTMLOptGroupElement {}
 
 #[cfg(feature = "WebKit_DOMHTMLOptGroupElement")]
 unsafe impl NSObjectProtocol for DOMHTMLOptGroupElement {}

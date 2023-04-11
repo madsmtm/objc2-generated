@@ -14,6 +14,7 @@ extern_class!(
     #[cfg(feature = "MediaPlayer_MPPlayableContentManager")]
     unsafe impl ClassType for MPPlayableContentManager {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

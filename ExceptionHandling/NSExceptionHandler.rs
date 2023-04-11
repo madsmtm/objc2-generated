@@ -49,6 +49,7 @@ extern_class!(
     #[cfg(feature = "ExceptionHandling_NSExceptionHandler")]
     unsafe impl ClassType for NSExceptionHandler {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

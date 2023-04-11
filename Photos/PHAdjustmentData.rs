@@ -14,6 +14,7 @@ extern_class!(
     #[cfg(feature = "PhotoKit_PHAdjustmentData")]
     unsafe impl ClassType for PHAdjustmentData {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

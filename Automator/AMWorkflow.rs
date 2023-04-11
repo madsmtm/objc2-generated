@@ -14,8 +14,12 @@ extern_class!(
     #[cfg(feature = "Automator_AMWorkflow")]
     unsafe impl ClassType for AMWorkflow {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Automator_AMWorkflow")]
+unsafe impl NSCopying for AMWorkflow {}
 
 #[cfg(feature = "Automator_AMWorkflow")]
 unsafe impl NSObjectProtocol for AMWorkflow {}

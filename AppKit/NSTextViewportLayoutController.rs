@@ -53,6 +53,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSTextViewportLayoutController")]
     unsafe impl ClassType for NSTextViewportLayoutController {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

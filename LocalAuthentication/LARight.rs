@@ -22,6 +22,7 @@ extern_class!(
     #[cfg(feature = "LocalAuthentication_LARight")]
     unsafe impl ClassType for LARight {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -11,11 +11,15 @@ extern_class!(
     #[cfg(feature = "Foundation_NSSortDescriptor")]
     unsafe impl ClassType for NSSortDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSSortDescriptor")]
 unsafe impl NSCoding for NSSortDescriptor {}
+
+#[cfg(feature = "Foundation_NSSortDescriptor")]
+unsafe impl NSCopying for NSSortDescriptor {}
 
 #[cfg(feature = "Foundation_NSSortDescriptor")]
 unsafe impl NSObjectProtocol for NSSortDescriptor {}
@@ -113,9 +117,7 @@ extern_methods!(
 extern_methods!(
     /// NSSortDescriptorSorting
     #[cfg(feature = "Foundation_NSSet")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSSet<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> NSSet<ObjectType> {
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSSortDescriptor"
@@ -131,9 +133,7 @@ extern_methods!(
 extern_methods!(
     /// NSSortDescriptorSorting
     #[cfg(feature = "Foundation_NSArray")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSArray<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> NSArray<ObjectType> {
         #[cfg(feature = "Foundation_NSSortDescriptor")]
         #[method_id(@__retain_semantics Other sortedArrayUsingDescriptors:)]
         pub unsafe fn sortedArrayUsingDescriptors(
@@ -146,9 +146,7 @@ extern_methods!(
 extern_methods!(
     /// NSSortDescriptorSorting
     #[cfg(feature = "Foundation_NSMutableArray")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSMutableArray<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSSortDescriptor"
@@ -161,9 +159,7 @@ extern_methods!(
 extern_methods!(
     /// NSKeyValueSorting
     #[cfg(feature = "Foundation_NSOrderedSet")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSOrderedSet<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSSortDescriptor"
@@ -179,9 +175,7 @@ extern_methods!(
 extern_methods!(
     /// NSKeyValueSorting
     #[cfg(feature = "Foundation_NSMutableOrderedSet")]
-    unsafe impl<ObjectType: Message, ObjectTypeOwnership: Ownership>
-        NSMutableOrderedSet<ObjectType, ObjectTypeOwnership>
-    {
+    unsafe impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSSortDescriptor"

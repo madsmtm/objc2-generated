@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "MailKit_MEMessageSecurityInformation")]
     unsafe impl ClassType for MEMessageSecurityInformation {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

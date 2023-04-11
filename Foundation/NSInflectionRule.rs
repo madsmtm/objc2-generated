@@ -11,11 +11,15 @@ extern_class!(
     #[cfg(feature = "Foundation_NSInflectionRule")]
     unsafe impl ClassType for NSInflectionRule {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSInflectionRule")]
 unsafe impl NSCoding for NSInflectionRule {}
+
+#[cfg(feature = "Foundation_NSInflectionRule")]
+unsafe impl NSCopying for NSInflectionRule {}
 
 #[cfg(feature = "Foundation_NSInflectionRule")]
 unsafe impl NSObjectProtocol for NSInflectionRule {}
@@ -43,11 +47,15 @@ extern_class!(
     unsafe impl ClassType for NSInflectionRuleExplicit {
         #[inherits(NSObject)]
         type Super = NSInflectionRule;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSInflectionRuleExplicit")]
 unsafe impl NSCoding for NSInflectionRuleExplicit {}
+
+#[cfg(feature = "Foundation_NSInflectionRuleExplicit")]
+unsafe impl NSCopying for NSInflectionRuleExplicit {}
 
 #[cfg(feature = "Foundation_NSInflectionRuleExplicit")]
 unsafe impl NSObjectProtocol for NSInflectionRuleExplicit {}

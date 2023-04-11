@@ -12,11 +12,15 @@ extern_class!(
     #[cfg(feature = "Accessibility_AXBrailleMap")]
     unsafe impl ClassType for AXBrailleMap {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Accessibility_AXBrailleMap")]
 unsafe impl NSCoding for AXBrailleMap {}
+
+#[cfg(feature = "Accessibility_AXBrailleMap")]
+unsafe impl NSCopying for AXBrailleMap {}
 
 #[cfg(feature = "Accessibility_AXBrailleMap")]
 unsafe impl NSObjectProtocol for AXBrailleMap {}

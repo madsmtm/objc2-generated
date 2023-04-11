@@ -15,11 +15,15 @@ extern_class!(
     unsafe impl ClassType for DOMHTMLParagraphElement {
         #[inherits(DOMElement, DOMNode, DOMObject, WebScriptObject, NSObject)]
         type Super = DOMHTMLElement;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "WebKit_DOMHTMLParagraphElement")]
 unsafe impl DOMEventTarget for DOMHTMLParagraphElement {}
+
+#[cfg(feature = "WebKit_DOMHTMLParagraphElement")]
+unsafe impl NSCopying for DOMHTMLParagraphElement {}
 
 #[cfg(feature = "WebKit_DOMHTMLParagraphElement")]
 unsafe impl NSObjectProtocol for DOMHTMLParagraphElement {}

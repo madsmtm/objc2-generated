@@ -33,6 +33,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSPropertyListSerialization")]
     unsafe impl ClassType for NSPropertyListSerialization {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

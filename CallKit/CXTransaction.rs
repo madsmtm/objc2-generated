@@ -12,11 +12,15 @@ extern_class!(
     #[cfg(feature = "CallKit_CXTransaction")]
     unsafe impl ClassType for CXTransaction {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "CallKit_CXTransaction")]
 unsafe impl NSCoding for CXTransaction {}
+
+#[cfg(feature = "CallKit_CXTransaction")]
+unsafe impl NSCopying for CXTransaction {}
 
 #[cfg(feature = "CallKit_CXTransaction")]
 unsafe impl NSObjectProtocol for CXTransaction {}

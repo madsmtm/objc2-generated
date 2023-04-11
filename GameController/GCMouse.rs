@@ -21,6 +21,7 @@ extern_class!(
     #[cfg(feature = "GameController_GCMouse")]
     unsafe impl ClassType for GCMouse {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

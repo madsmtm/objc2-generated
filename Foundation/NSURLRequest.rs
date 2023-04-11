@@ -48,11 +48,18 @@ extern_class!(
     #[cfg(feature = "Foundation_NSURLRequest")]
     unsafe impl ClassType for NSURLRequest {
         type Super = NSObject;
+        type Mutability = ImmutableWithMutableSubclass<NSMutableURLRequest>;
     }
 );
 
 #[cfg(feature = "Foundation_NSURLRequest")]
 unsafe impl NSCoding for NSURLRequest {}
+
+#[cfg(feature = "Foundation_NSURLRequest")]
+unsafe impl NSCopying for NSURLRequest {}
+
+#[cfg(feature = "Foundation_NSURLRequest")]
+unsafe impl NSMutableCopying for NSURLRequest {}
 
 #[cfg(feature = "Foundation_NSURLRequest")]
 unsafe impl NSObjectProtocol for NSURLRequest {}
@@ -130,18 +137,25 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSMutableURLRequest")]
+    #[cfg(feature = "Foundation_NSURLRequest")]
     pub struct NSMutableURLRequest;
 
-    #[cfg(feature = "Foundation_NSMutableURLRequest")]
+    #[cfg(feature = "Foundation_NSURLRequest")]
     unsafe impl ClassType for NSMutableURLRequest {
         #[inherits(NSObject)]
         type Super = NSURLRequest;
+        type Mutability = MutableWithImmutableSuperclass<NSURLRequest>;
     }
 );
 
 #[cfg(feature = "Foundation_NSMutableURLRequest")]
 unsafe impl NSCoding for NSMutableURLRequest {}
+
+#[cfg(feature = "Foundation_NSMutableURLRequest")]
+unsafe impl NSCopying for NSMutableURLRequest {}
+
+#[cfg(feature = "Foundation_NSMutableURLRequest")]
+unsafe impl NSMutableCopying for NSMutableURLRequest {}
 
 #[cfg(feature = "Foundation_NSMutableURLRequest")]
 unsafe impl NSObjectProtocol for NSMutableURLRequest {}
@@ -333,7 +347,7 @@ extern_methods!(
     unsafe impl NSMutableURLRequest {
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other requestWithURL:)]
-        pub unsafe fn requestWithURL(url: &NSURL) -> Id<Self, Owned>;
+        pub unsafe fn requestWithURL(url: &NSURL) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other requestWithURL:cachePolicy:timeoutInterval:)]
@@ -341,11 +355,11 @@ extern_methods!(
             url: &NSURL,
             cache_policy: NSURLRequestCachePolicy,
             timeout_interval: NSTimeInterval,
-        ) -> Id<Self, Owned>;
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Init initWithURL:)]
-        pub unsafe fn initWithURL(this: Option<Allocated<Self>>, url: &NSURL) -> Id<Self, Owned>;
+        pub unsafe fn initWithURL(this: Option<Allocated<Self>>, url: &NSURL) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Init initWithURL:cachePolicy:timeoutInterval:)]
@@ -354,6 +368,6 @@ extern_methods!(
             url: &NSURL,
             cache_policy: NSURLRequestCachePolicy,
             timeout_interval: NSTimeInterval,
-        ) -> Id<Self, Owned>;
+        ) -> Id<Self>;
     }
 );

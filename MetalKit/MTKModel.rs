@@ -22,6 +22,7 @@ extern_class!(
     #[cfg(feature = "MetalKit_MTKMeshBufferAllocator")]
     unsafe impl ClassType for MTKMeshBufferAllocator {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -53,8 +54,12 @@ extern_class!(
     #[cfg(feature = "MetalKit_MTKMeshBuffer")]
     unsafe impl ClassType for MTKMeshBuffer {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "MetalKit_MTKMeshBuffer")]
+unsafe impl NSCopying for MTKMeshBuffer {}
 
 #[cfg(feature = "MetalKit_MTKMeshBuffer")]
 unsafe impl NSObjectProtocol for MTKMeshBuffer {}
@@ -88,6 +93,7 @@ extern_class!(
     #[cfg(feature = "MetalKit_MTKSubmesh")]
     unsafe impl ClassType for MTKSubmesh {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -135,6 +141,7 @@ extern_class!(
     #[cfg(feature = "MetalKit_MTKMesh")]
     unsafe impl ClassType for MTKMesh {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

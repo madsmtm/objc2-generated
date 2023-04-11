@@ -15,8 +15,12 @@ extern_class!(
     unsafe impl ClassType for DOMCSSStyleSheet {
         #[inherits(DOMObject, WebScriptObject, NSObject)]
         type Super = DOMStyleSheet;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "WebKit_DOMCSSStyleSheet")]
+unsafe impl NSCopying for DOMCSSStyleSheet {}
 
 #[cfg(feature = "WebKit_DOMCSSStyleSheet")]
 unsafe impl NSObjectProtocol for DOMCSSStyleSheet {}

@@ -13,8 +13,12 @@ extern_class!(
     #[cfg(feature = "MediaPlayer_MPAdTimeRange")]
     unsafe impl ClassType for MPAdTimeRange {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "MediaPlayer_MPAdTimeRange")]
+unsafe impl NSCopying for MPAdTimeRange {}
 
 #[cfg(feature = "MediaPlayer_MPAdTimeRange")]
 unsafe impl NSObjectProtocol for MPAdTimeRange {}
@@ -38,6 +42,7 @@ extern_class!(
     #[cfg(feature = "MediaPlayer_MPNowPlayingSession")]
     unsafe impl ClassType for MPNowPlayingSession {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

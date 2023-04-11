@@ -21,6 +21,7 @@ extern_class!(
     unsafe impl ClassType for CATextLayer {
         #[inherits(NSObject)]
         type Super = CALayer;
+        type Mutability = InteriorMutable;
     }
 );
 

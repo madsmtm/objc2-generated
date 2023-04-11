@@ -32,11 +32,15 @@ extern_class!(
     unsafe impl ClassType for NSDateFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSDateFormatter")]
 unsafe impl NSCoding for NSDateFormatter {}
+
+#[cfg(feature = "Foundation_NSDateFormatter")]
+unsafe impl NSCopying for NSDateFormatter {}
 
 #[cfg(feature = "Foundation_NSDateFormatter")]
 unsafe impl NSObjectProtocol for NSDateFormatter {}

@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSUserActivity")]
     unsafe impl ClassType for NSUserActivity {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

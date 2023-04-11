@@ -14,6 +14,7 @@ extern_class!(
     #[cfg(feature = "HealthKit_HKWorkoutActivity")]
     unsafe impl ClassType for HKWorkoutActivity {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

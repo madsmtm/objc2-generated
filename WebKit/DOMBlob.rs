@@ -15,8 +15,12 @@ extern_class!(
     unsafe impl ClassType for DOMBlob {
         #[inherits(WebScriptObject, NSObject)]
         type Super = DOMObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "WebKit_DOMBlob")]
+unsafe impl NSCopying for DOMBlob {}
 
 #[cfg(feature = "WebKit_DOMBlob")]
 unsafe impl NSObjectProtocol for DOMBlob {}

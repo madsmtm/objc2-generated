@@ -12,11 +12,15 @@ extern_class!(
     #[cfg(feature = "AuthenticationServices_ASPasswordCredentialIdentity")]
     unsafe impl ClassType for ASPasswordCredentialIdentity {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "AuthenticationServices_ASPasswordCredentialIdentity")]
 unsafe impl NSCoding for ASPasswordCredentialIdentity {}
+
+#[cfg(feature = "AuthenticationServices_ASPasswordCredentialIdentity")]
+unsafe impl NSCopying for ASPasswordCredentialIdentity {}
 
 #[cfg(feature = "AuthenticationServices_ASPasswordCredentialIdentity")]
 unsafe impl NSObjectProtocol for ASPasswordCredentialIdentity {}

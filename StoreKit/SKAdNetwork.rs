@@ -23,6 +23,7 @@ extern_class!(
     #[cfg(feature = "StoreKit_SKAdNetwork")]
     unsafe impl ClassType for SKAdNetwork {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

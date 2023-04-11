@@ -26,6 +26,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSGestureRecognizer")]
     unsafe impl ClassType for NSGestureRecognizer {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

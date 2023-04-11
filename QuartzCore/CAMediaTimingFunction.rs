@@ -16,6 +16,7 @@ extern_class!(
     #[cfg(feature = "CoreAnimation_CAMediaTimingFunction")]
     unsafe impl ClassType for CAMediaTimingFunction {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

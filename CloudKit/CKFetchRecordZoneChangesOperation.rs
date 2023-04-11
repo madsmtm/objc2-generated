@@ -14,6 +14,7 @@ extern_class!(
     unsafe impl ClassType for CKFetchRecordZoneChangesOperation {
         #[inherits(CKOperation, NSOperation, NSObject)]
         type Super = CKDatabaseOperation;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -279,11 +280,15 @@ extern_class!(
     #[cfg(feature = "CloudKit_CKFetchRecordZoneChangesConfiguration")]
     unsafe impl ClassType for CKFetchRecordZoneChangesConfiguration {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "CloudKit_CKFetchRecordZoneChangesConfiguration")]
 unsafe impl NSCoding for CKFetchRecordZoneChangesConfiguration {}
+
+#[cfg(feature = "CloudKit_CKFetchRecordZoneChangesConfiguration")]
+unsafe impl NSCopying for CKFetchRecordZoneChangesConfiguration {}
 
 #[cfg(feature = "CloudKit_CKFetchRecordZoneChangesConfiguration")]
 unsafe impl NSObjectProtocol for CKFetchRecordZoneChangesConfiguration {}
@@ -330,11 +335,15 @@ extern_class!(
     #[cfg(feature = "CloudKit_CKFetchRecordZoneChangesOptions")]
     unsafe impl ClassType for CKFetchRecordZoneChangesOptions {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "CloudKit_CKFetchRecordZoneChangesOptions")]
 unsafe impl NSCoding for CKFetchRecordZoneChangesOptions {}
+
+#[cfg(feature = "CloudKit_CKFetchRecordZoneChangesOptions")]
+unsafe impl NSCopying for CKFetchRecordZoneChangesOptions {}
 
 #[cfg(feature = "CloudKit_CKFetchRecordZoneChangesOptions")]
 unsafe impl NSObjectProtocol for CKFetchRecordZoneChangesOptions {}

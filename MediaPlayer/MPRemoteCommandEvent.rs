@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "MediaPlayer_MPRemoteCommandEvent")]
     unsafe impl ClassType for MPRemoteCommandEvent {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -40,6 +41,7 @@ extern_class!(
     unsafe impl ClassType for MPSkipIntervalCommandEvent {
         #[inherits(NSObject)]
         type Super = MPRemoteCommandEvent;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -71,6 +73,7 @@ extern_class!(
     unsafe impl ClassType for MPSeekCommandEvent {
         #[inherits(NSObject)]
         type Super = MPRemoteCommandEvent;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -94,6 +97,7 @@ extern_class!(
     unsafe impl ClassType for MPRatingCommandEvent {
         #[inherits(NSObject)]
         type Super = MPRemoteCommandEvent;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -117,6 +121,7 @@ extern_class!(
     unsafe impl ClassType for MPChangePlaybackRateCommandEvent {
         #[inherits(NSObject)]
         type Super = MPRemoteCommandEvent;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -140,6 +145,7 @@ extern_class!(
     unsafe impl ClassType for MPFeedbackCommandEvent {
         #[inherits(NSObject)]
         type Super = MPRemoteCommandEvent;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -163,6 +169,7 @@ extern_class!(
     unsafe impl ClassType for MPChangeLanguageOptionCommandEvent {
         #[inherits(NSObject)]
         type Super = MPRemoteCommandEvent;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -190,6 +197,7 @@ extern_class!(
     unsafe impl ClassType for MPChangePlaybackPositionCommandEvent {
         #[inherits(NSObject)]
         type Super = MPRemoteCommandEvent;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -213,6 +221,7 @@ extern_class!(
     unsafe impl ClassType for MPChangeShuffleModeCommandEvent {
         #[inherits(NSObject)]
         type Super = MPRemoteCommandEvent;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -239,6 +248,7 @@ extern_class!(
     unsafe impl ClassType for MPChangeRepeatModeCommandEvent {
         #[inherits(NSObject)]
         type Super = MPRemoteCommandEvent;
+        type Mutability = InteriorMutable;
     }
 );
 

@@ -20,11 +20,15 @@ extern_class!(
     #[cfg(feature = "Accessibility_AXCustomContent")]
     unsafe impl ClassType for AXCustomContent {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Accessibility_AXCustomContent")]
 unsafe impl NSCoding for AXCustomContent {}
+
+#[cfg(feature = "Accessibility_AXCustomContent")]
+unsafe impl NSCopying for AXCustomContent {}
 
 #[cfg(feature = "Accessibility_AXCustomContent")]
 unsafe impl NSObjectProtocol for AXCustomContent {}

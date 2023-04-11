@@ -33,11 +33,15 @@ extern_class!(
     #[cfg(feature = "HealthKit_HKVisionPrism")]
     unsafe impl ClassType for HKVisionPrism {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "HealthKit_HKVisionPrism")]
 unsafe impl NSCoding for HKVisionPrism {}
+
+#[cfg(feature = "HealthKit_HKVisionPrism")]
+unsafe impl NSCopying for HKVisionPrism {}
 
 #[cfg(feature = "HealthKit_HKVisionPrism")]
 unsafe impl NSObjectProtocol for HKVisionPrism {}

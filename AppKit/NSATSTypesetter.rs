@@ -14,6 +14,7 @@ extern_class!(
     unsafe impl ClassType for NSATSTypesetter {
         #[inherits(NSObject)]
         type Super = NSTypesetter;
+        type Mutability = InteriorMutable;
     }
 );
 

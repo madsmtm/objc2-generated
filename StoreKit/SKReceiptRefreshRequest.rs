@@ -14,6 +14,7 @@ extern_class!(
     unsafe impl ClassType for SKReceiptRefreshRequest {
         #[inherits(NSObject)]
         type Super = SKRequest;
+        type Mutability = InteriorMutable;
     }
 );
 

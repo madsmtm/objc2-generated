@@ -13,6 +13,7 @@ extern_class!(
     #[cfg(feature = "WebKit_WKNavigationResponse")]
     unsafe impl ClassType for WKNavigationResponse {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

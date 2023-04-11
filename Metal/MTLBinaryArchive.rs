@@ -25,8 +25,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLBinaryArchiveDescriptor")]
     unsafe impl ClassType for MTLBinaryArchiveDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLBinaryArchiveDescriptor")]
+unsafe impl NSCopying for MTLBinaryArchiveDescriptor {}
 
 #[cfg(feature = "Metal_MTLBinaryArchiveDescriptor")]
 unsafe impl NSObjectProtocol for MTLBinaryArchiveDescriptor {}

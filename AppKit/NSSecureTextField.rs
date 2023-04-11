@@ -14,6 +14,7 @@ extern_class!(
     unsafe impl ClassType for NSSecureTextField {
         #[inherits(NSControl, NSView, NSResponder, NSObject)]
         type Super = NSTextField;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -67,6 +68,7 @@ extern_class!(
     unsafe impl ClassType for NSSecureTextFieldCell {
         #[inherits(NSActionCell, NSCell, NSObject)]
         type Super = NSTextFieldCell;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -78,6 +80,9 @@ unsafe impl NSAccessibilityElementProtocol for NSSecureTextFieldCell {}
 
 #[cfg(feature = "AppKit_NSSecureTextFieldCell")]
 unsafe impl NSCoding for NSSecureTextFieldCell {}
+
+#[cfg(feature = "AppKit_NSSecureTextFieldCell")]
+unsafe impl NSCopying for NSSecureTextFieldCell {}
 
 #[cfg(feature = "AppKit_NSSecureTextFieldCell")]
 unsafe impl NSObjectProtocol for NSSecureTextFieldCell {}

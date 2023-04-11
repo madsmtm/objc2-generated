@@ -115,11 +115,15 @@ extern_class!(
     #[cfg(feature = "Foundation_NSCalendar")]
     unsafe impl ClassType for NSCalendar {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSCalendar")]
 unsafe impl NSCoding for NSCalendar {}
+
+#[cfg(feature = "Foundation_NSCalendar")]
+unsafe impl NSCopying for NSCalendar {}
 
 #[cfg(feature = "Foundation_NSCalendar")]
 unsafe impl NSObjectProtocol for NSCalendar {}
@@ -574,11 +578,15 @@ extern_class!(
     #[cfg(feature = "Foundation_NSDateComponents")]
     unsafe impl ClassType for NSDateComponents {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSDateComponents")]
 unsafe impl NSCoding for NSDateComponents {}
+
+#[cfg(feature = "Foundation_NSDateComponents")]
+unsafe impl NSCopying for NSDateComponents {}
 
 #[cfg(feature = "Foundation_NSDateComponents")]
 unsafe impl NSObjectProtocol for NSDateComponents {}

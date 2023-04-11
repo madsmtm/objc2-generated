@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "CallKit_CXCall")]
     unsafe impl ClassType for CXCall {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

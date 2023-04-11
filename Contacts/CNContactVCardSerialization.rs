@@ -12,6 +12,7 @@ extern_class!(
     #[cfg(feature = "Contacts_CNContactVCardSerialization")]
     unsafe impl ClassType for CNContactVCardSerialization {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

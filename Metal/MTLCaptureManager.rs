@@ -31,8 +31,12 @@ extern_class!(
     #[cfg(feature = "Metal_MTLCaptureDescriptor")]
     unsafe impl ClassType for MTLCaptureDescriptor {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Metal_MTLCaptureDescriptor")]
+unsafe impl NSCopying for MTLCaptureDescriptor {}
 
 #[cfg(feature = "Metal_MTLCaptureDescriptor")]
 unsafe impl NSObjectProtocol for MTLCaptureDescriptor {}
@@ -70,6 +74,7 @@ extern_class!(
     #[cfg(feature = "Metal_MTLCaptureManager")]
     unsafe impl ClassType for MTLCaptureManager {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

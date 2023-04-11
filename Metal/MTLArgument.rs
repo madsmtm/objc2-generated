@@ -156,6 +156,7 @@ extern_class!(
     #[cfg(feature = "Metal_MTLType")]
     unsafe impl ClassType for MTLType {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -178,6 +179,7 @@ extern_class!(
     #[cfg(feature = "Metal_MTLStructMember")]
     unsafe impl ClassType for MTLStructMember {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -227,6 +229,7 @@ extern_class!(
     unsafe impl ClassType for MTLStructType {
         #[inherits(NSObject)]
         type Super = MTLType;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -255,6 +258,7 @@ extern_class!(
     unsafe impl ClassType for MTLArrayType {
         #[inherits(NSObject)]
         type Super = MTLType;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -302,6 +306,7 @@ extern_class!(
     unsafe impl ClassType for MTLPointerType {
         #[inherits(NSObject)]
         type Super = MTLType;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -345,6 +350,7 @@ extern_class!(
     unsafe impl ClassType for MTLTextureReferenceType {
         #[inherits(NSObject)]
         type Super = MTLType;
+        type Mutability = InteriorMutable;
     }
 );
 
@@ -377,6 +383,7 @@ extern_class!(
     #[cfg(feature = "Metal_MTLArgument")]
     unsafe impl ClassType for MTLArgument {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 

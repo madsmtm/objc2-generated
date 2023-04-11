@@ -21,11 +21,15 @@ extern_class!(
     unsafe impl ClassType for NSCompoundPredicate {
         #[inherits(NSObject)]
         type Super = NSPredicate;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "Foundation_NSCompoundPredicate")]
 unsafe impl NSCoding for NSCompoundPredicate {}
+
+#[cfg(feature = "Foundation_NSCompoundPredicate")]
+unsafe impl NSCopying for NSCompoundPredicate {}
 
 #[cfg(feature = "Foundation_NSCompoundPredicate")]
 unsafe impl NSObjectProtocol for NSCompoundPredicate {}

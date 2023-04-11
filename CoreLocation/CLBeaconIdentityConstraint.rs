@@ -17,11 +17,15 @@ extern_class!(
     #[cfg(feature = "CoreLocation_CLBeaconIdentityConstraint")]
     unsafe impl ClassType for CLBeaconIdentityConstraint {
         type Super = NSObject;
+        type Mutability = InteriorMutable;
     }
 );
 
 #[cfg(feature = "CoreLocation_CLBeaconIdentityConstraint")]
 unsafe impl NSCoding for CLBeaconIdentityConstraint {}
+
+#[cfg(feature = "CoreLocation_CLBeaconIdentityConstraint")]
+unsafe impl NSCopying for CLBeaconIdentityConstraint {}
 
 #[cfg(feature = "CoreLocation_CLBeaconIdentityConstraint")]
 unsafe impl NSObjectProtocol for CLBeaconIdentityConstraint {}
