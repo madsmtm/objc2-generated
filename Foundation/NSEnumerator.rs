@@ -3,16 +3,6 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-extern_struct!(
-    #[encoding_name("?")]
-    pub struct NSFastEnumerationState {
-        pub state: c_ulong,
-        pub itemsPtr: *mut *mut Object,
-        pub mutationsPtr: *mut c_ulong,
-        pub extra: [c_ulong; 5],
-    }
-);
-
 extern_protocol!(
     pub unsafe trait NSFastEnumeration {
         #[method(countByEnumeratingWithState:objects:count:)]
@@ -27,30 +17,6 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSFastEnumeration {}
 );
 
-__inner_extern_class!(
-    #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSEnumerator")]
-    pub struct NSEnumerator<ObjectType: Message = Object> {
-        __superclass: NSObject,
-        _inner0: PhantomData<*mut ObjectType>,
-        notunwindsafe: PhantomData<&'static mut ()>,
-    }
-
-    #[cfg(feature = "Foundation_NSEnumerator")]
-    unsafe impl<ObjectType: Message> ClassType for NSEnumerator<ObjectType> {
-        type Super = NSObject;
-        type Mutability = InteriorMutable;
-
-        fn as_super(&self) -> &Self::Super {
-            &self.__superclass
-        }
-
-        fn as_super_mut(&mut self) -> &mut Self::Super {
-            &mut self.__superclass
-        }
-    }
-);
-
 #[cfg(feature = "Foundation_NSEnumerator")]
 unsafe impl<ObjectType: Message> NSFastEnumeration for NSEnumerator<ObjectType> {}
 
@@ -61,7 +27,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSEnumerator")]
     unsafe impl<ObjectType: Message> NSEnumerator<ObjectType> {
         #[method_id(@__retain_semantics Other nextObject)]
-        pub unsafe fn nextObject(&self) -> Option<Id<ObjectType>>;
+        pub fn nextObject(&mut self) -> Option<Id<ObjectType>>;
     }
 );
 
@@ -83,6 +49,6 @@ extern_methods!(
     unsafe impl<ObjectType: Message> NSEnumerator<ObjectType> {
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other allObjects)]
-        pub unsafe fn allObjects(&self) -> Id<NSArray<ObjectType>>;
+        pub fn allObjects(&self) -> Id<NSArray<ObjectType>>;
     }
 );

@@ -715,10 +715,7 @@ pub use self::__NSEnergyFormatter::{
     NSEnergyFormatterUnit, NSEnergyFormatterUnitCalorie, NSEnergyFormatterUnitJoule,
     NSEnergyFormatterUnitKilocalorie, NSEnergyFormatterUnitKilojoule,
 };
-#[cfg(feature = "Foundation_NSEnumerator")]
-pub use self::__NSEnumerator::NSEnumerator;
 pub use self::__NSEnumerator::NSFastEnumeration;
-pub use self::__NSEnumerator::NSFastEnumerationState;
 pub use self::__NSError::NSCocoaErrorDomain;
 pub use self::__NSError::NSDebugDescriptionErrorKey;
 #[cfg(feature = "Foundation_NSError")]
