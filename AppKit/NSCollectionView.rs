@@ -182,6 +182,20 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSViewController`
+    #[cfg(feature = "AppKit_NSCollectionViewItem")]
+    unsafe impl NSCollectionViewItem {
+        #[cfg(feature = "Foundation_NSBundle")]
+        #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
+        pub unsafe fn initWithNibName_bundle(
+            this: Option<Allocated<Self>>,
+            nib_name_or_nil: Option<&NSNibName>,
+            nib_bundle_or_nil: Option<&NSBundle>,
+        ) -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSCollectionView")]
@@ -592,6 +606,15 @@ extern_methods!(
             event: &NSEvent,
             drag_image_offset: NSPointPointer,
         ) -> Id<NSImage>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSView`
+    #[cfg(feature = "AppKit_NSCollectionView")]
+    unsafe impl NSCollectionView {
+        #[method_id(@__retain_semantics Init initWithFrame:)]
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );
 
@@ -1180,28 +1203,5 @@ extern_methods!(
         #[deprecated = "Use NSCollectionViewGridLayout as the receiver's collectionViewLayout, setting its maximumItemSize instead"]
         #[method(setMaxItemSize:)]
         pub unsafe fn setMaxItemSize(&self, max_item_size: NSSize);
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSViewController`
-    #[cfg(feature = "AppKit_NSCollectionViewItem")]
-    unsafe impl NSCollectionViewItem {
-        #[cfg(feature = "Foundation_NSBundle")]
-        #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
-        pub unsafe fn initWithNibName_bundle(
-            this: Option<Allocated<Self>>,
-            nib_name_or_nil: Option<&NSNibName>,
-            nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSView`
-    #[cfg(feature = "AppKit_NSCollectionView")]
-    unsafe impl NSCollectionView {
-        #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

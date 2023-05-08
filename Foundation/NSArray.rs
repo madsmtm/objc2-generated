@@ -485,6 +485,19 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclass `NSArray`
+    #[cfg(feature = "Foundation_NSMutableArray")]
+    unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
+        #[method_id(@__retain_semantics Init initWithObjects:count:)]
+        pub unsafe fn initWithObjects_count(
+            this: Option<Allocated<Self>>,
+            objects: *mut NonNull<ObjectType>,
+            cnt: NSUInteger,
+        ) -> Id<Self>;
+    }
+);
+
+extern_methods!(
     /// NSExtendedMutableArray
     #[cfg(feature = "Foundation_NSMutableArray")]
     unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
@@ -647,19 +660,6 @@ extern_methods!(
             &mut self,
             difference: &NSOrderedCollectionDifference<ObjectType>,
         );
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSArray`
-    #[cfg(feature = "Foundation_NSMutableArray")]
-    unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
-        #[method_id(@__retain_semantics Init initWithObjects:count:)]
-        pub unsafe fn initWithObjects_count(
-            this: Option<Allocated<Self>>,
-            objects: *mut NonNull<ObjectType>,
-            cnt: NSUInteger,
-        ) -> Id<Self>;
     }
 );
 

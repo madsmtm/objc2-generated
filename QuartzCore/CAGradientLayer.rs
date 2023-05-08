@@ -72,12 +72,6 @@ extern_methods!(
     }
 );
 
-extern_static!(kCAGradientLayerAxial: &'static CAGradientLayerType);
-
-extern_static!(kCAGradientLayerRadial: &'static CAGradientLayerType);
-
-extern_static!(kCAGradientLayerConic: &'static CAGradientLayerType);
-
 extern_methods!(
     /// Methods declared on superclass `CALayer`
     #[cfg(feature = "CoreAnimation_CAGradientLayer")]
@@ -89,3 +83,9 @@ extern_methods!(
         pub unsafe fn initWithLayer(this: Option<Allocated<Self>>, layer: &Object) -> Id<Self>;
     }
 );
+
+extern_static!(kCAGradientLayerAxial: &'static CAGradientLayerType);
+
+extern_static!(kCAGradientLayerRadial: &'static CAGradientLayerType);
+
+extern_static!(kCAGradientLayerConic: &'static CAGradientLayerType);

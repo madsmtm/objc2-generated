@@ -251,6 +251,15 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclass `NSControl`
+    #[cfg(feature = "AppKit_NSSegmentedControl")]
+    unsafe impl NSSegmentedControl {
+        #[method_id(@__retain_semantics Init initWithFrame:)]
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
+    }
+);
+
+extern_methods!(
     /// NSSegmentedControlConvenience
     #[cfg(feature = "AppKit_NSSegmentedControl")]
     unsafe impl NSSegmentedControl {
@@ -271,14 +280,5 @@ extern_methods!(
             target: Option<&Object>,
             action: Option<Sel>,
         ) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSControl`
-    #[cfg(feature = "AppKit_NSSegmentedControl")]
-    unsafe impl NSSegmentedControl {
-        #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

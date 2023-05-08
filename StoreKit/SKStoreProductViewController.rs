@@ -75,6 +75,20 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSViewController`
+    #[cfg(feature = "StoreKit_SKStoreProductViewController")]
+    unsafe impl SKStoreProductViewController {
+        #[cfg(feature = "Foundation_NSBundle")]
+        #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
+        pub unsafe fn initWithNibName_bundle(
+            this: Option<Allocated<Self>>,
+            nib_name_or_nil: Option<&NSNibName>,
+            nib_bundle_or_nil: Option<&NSBundle>,
+        ) -> Id<Self>;
+    }
+);
+
 extern_protocol!(
     pub unsafe trait SKStoreProductViewControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "StoreKit_SKStoreProductViewController")]
@@ -102,17 +116,3 @@ extern_static!(SKStoreProductParameterCampaignToken: &'static NSString);
 extern_static!(SKStoreProductParameterProviderToken: &'static NSString);
 
 extern_static!(SKStoreProductParameterAdvertisingPartnerToken: &'static NSString);
-
-extern_methods!(
-    /// Methods declared on superclass `NSViewController`
-    #[cfg(feature = "StoreKit_SKStoreProductViewController")]
-    unsafe impl SKStoreProductViewController {
-        #[cfg(feature = "Foundation_NSBundle")]
-        #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
-        pub unsafe fn initWithNibName_bundle(
-            this: Option<Allocated<Self>>,
-            nib_name_or_nil: Option<&NSNibName>,
-            nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self>;
-    }
-);

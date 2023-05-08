@@ -428,6 +428,19 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclass `NSOrderedSet`
+    #[cfg(feature = "Foundation_NSMutableOrderedSet")]
+    unsafe impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
+        #[method_id(@__retain_semantics Init initWithObjects:count:)]
+        pub unsafe fn initWithObjects_count(
+            this: Option<Allocated<Self>>,
+            objects: *mut NonNull<ObjectType>,
+            cnt: NSUInteger,
+        ) -> Id<Self>;
+    }
+);
+
+extern_methods!(
     /// NSExtendedMutableOrderedSet
     #[cfg(feature = "Foundation_NSMutableOrderedSet")]
     unsafe impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
@@ -570,19 +583,6 @@ extern_methods!(
             &mut self,
             difference: &NSOrderedCollectionDifference<ObjectType>,
         );
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSOrderedSet`
-    #[cfg(feature = "Foundation_NSMutableOrderedSet")]
-    unsafe impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
-        #[method_id(@__retain_semantics Init initWithObjects:count:)]
-        pub unsafe fn initWithObjects_count(
-            this: Option<Allocated<Self>>,
-            objects: *mut NonNull<ObjectType>,
-            cnt: NSUInteger,
-        ) -> Id<Self>;
     }
 );
 

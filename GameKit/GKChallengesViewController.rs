@@ -53,19 +53,6 @@ extern_methods!(
     }
 );
 
-extern_protocol!(
-    pub unsafe trait GKChallengesViewControllerDelegate {
-        #[cfg(feature = "GameKit_GKChallengesViewController")]
-        #[method(challengesViewControllerDidFinish:)]
-        unsafe fn challengesViewControllerDidFinish(
-            &self,
-            view_controller: Option<&GKChallengesViewController>,
-        );
-    }
-
-    unsafe impl ProtocolType for dyn GKChallengesViewControllerDelegate {}
-);
-
 extern_methods!(
     /// Methods declared on superclass `NSViewController`
     #[cfg(feature = "GameKit_GKChallengesViewController")]
@@ -78,4 +65,17 @@ extern_methods!(
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Id<Self>;
     }
+);
+
+extern_protocol!(
+    pub unsafe trait GKChallengesViewControllerDelegate {
+        #[cfg(feature = "GameKit_GKChallengesViewController")]
+        #[method(challengesViewControllerDidFinish:)]
+        unsafe fn challengesViewControllerDidFinish(
+            &self,
+            view_controller: Option<&GKChallengesViewController>,
+        );
+    }
+
+    unsafe impl ProtocolType for dyn GKChallengesViewControllerDelegate {}
 );

@@ -133,6 +133,15 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSView`
+    #[cfg(feature = "AppKit_NSProgressIndicator")]
+    unsafe impl NSProgressIndicator {
+        #[method_id(@__retain_semantics Init initWithFrame:)]
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
+    }
+);
+
 ns_enum!(
     #[underlying(NSUInteger)]
     #[deprecated = "These constants do not accurately represent the geometry of NSProgressIndicator.  Use `controlSize` and `sizeToFit` instead."]
@@ -169,14 +178,5 @@ extern_methods!(
         #[deprecated = "Use -startAnimation and -stopAnimation instead."]
         #[method(animate:)]
         pub unsafe fn animate(&self, sender: Option<&Object>);
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSView`
-    #[cfg(feature = "AppKit_NSProgressIndicator")]
-    unsafe impl NSProgressIndicator {
-        #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

@@ -367,6 +367,20 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclass `NSDictionary`
+    #[cfg(feature = "Foundation_NSMutableDictionary")]
+    unsafe impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
+        #[method_id(@__retain_semantics Init initWithObjects:forKeys:count:)]
+        pub unsafe fn initWithObjects_forKeys_count(
+            this: Option<Allocated<Self>>,
+            objects: *mut NonNull<ObjectType>,
+            keys: *mut NonNull<Object>,
+            cnt: NSUInteger,
+        ) -> Id<Self>;
+    }
+);
+
+extern_methods!(
     /// NSExtendedMutableDictionary
     #[cfg(feature = "Foundation_NSMutableDictionary")]
     unsafe impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
@@ -453,20 +467,6 @@ extern_methods!(
         pub unsafe fn dictionaryWithSharedKeySet(
             keyset: &Object,
         ) -> Id<NSMutableDictionary<KeyType, ObjectType>>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSDictionary`
-    #[cfg(feature = "Foundation_NSMutableDictionary")]
-    unsafe impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
-        #[method_id(@__retain_semantics Init initWithObjects:forKeys:count:)]
-        pub unsafe fn initWithObjects_forKeys_count(
-            this: Option<Allocated<Self>>,
-            objects: *mut NonNull<ObjectType>,
-            keys: *mut NonNull<Object>,
-            cnt: NSUInteger,
-        ) -> Id<Self>;
     }
 );
 

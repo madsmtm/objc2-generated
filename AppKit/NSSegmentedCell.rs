@@ -150,18 +150,6 @@ extern_methods!(
 );
 
 extern_methods!(
-    /// NSSegmentBackgroundStyle
-    #[cfg(feature = "AppKit_NSSegmentedCell")]
-    unsafe impl NSSegmentedCell {
-        #[method(interiorBackgroundStyleForSegment:)]
-        pub unsafe fn interiorBackgroundStyleForSegment(
-            &self,
-            segment: NSInteger,
-        ) -> NSBackgroundStyle;
-    }
-);
-
-extern_methods!(
     /// Methods declared on superclass `NSCell`
     #[cfg(feature = "AppKit_NSSegmentedCell")]
     unsafe impl NSSegmentedCell {
@@ -175,5 +163,17 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             image: Option<&NSImage>,
         ) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// NSSegmentBackgroundStyle
+    #[cfg(feature = "AppKit_NSSegmentedCell")]
+    unsafe impl NSSegmentedCell {
+        #[method(interiorBackgroundStyleForSegment:)]
+        pub unsafe fn interiorBackgroundStyleForSegment(
+            &self,
+            segment: NSInteger,
+        ) -> NSBackgroundStyle;
     }
 );

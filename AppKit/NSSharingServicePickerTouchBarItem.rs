@@ -62,6 +62,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSTouchBarItem`
+    #[cfg(feature = "AppKit_NSSharingServicePickerTouchBarItem")]
+    unsafe impl NSSharingServicePickerTouchBarItem {
+        #[method_id(@__retain_semantics Init initWithIdentifier:)]
+        pub unsafe fn initWithIdentifier(
+            this: Option<Allocated<Self>>,
+            identifier: &NSTouchBarItemIdentifier,
+        ) -> Id<Self>;
+    }
+);
+
 extern_protocol!(
     pub unsafe trait NSSharingServicePickerTouchBarItemDelegate:
         NSSharingServicePickerDelegate
@@ -78,16 +90,4 @@ extern_protocol!(
     }
 
     unsafe impl ProtocolType for dyn NSSharingServicePickerTouchBarItemDelegate {}
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSTouchBarItem`
-    #[cfg(feature = "AppKit_NSSharingServicePickerTouchBarItem")]
-    unsafe impl NSSharingServicePickerTouchBarItem {
-        #[method_id(@__retain_semantics Init initWithIdentifier:)]
-        pub unsafe fn initWithIdentifier(
-            this: Option<Allocated<Self>>,
-            identifier: &NSTouchBarItemIdentifier,
-        ) -> Id<Self>;
-    }
 );

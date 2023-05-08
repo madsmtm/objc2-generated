@@ -240,6 +240,19 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclass `NSValue`
+    #[cfg(feature = "Foundation_NSNumber")]
+    unsafe impl NSNumber {
+        #[method_id(@__retain_semantics Init initWithBytes:objCType:)]
+        pub unsafe fn initWithBytes_objCType(
+            this: Option<Allocated<Self>>,
+            value: NonNull<c_void>,
+            r#type: NonNull<c_char>,
+        ) -> Id<Self>;
+    }
+);
+
+extern_methods!(
     /// NSNumberCreation
     #[cfg(feature = "Foundation_NSNumber")]
     unsafe impl NSNumber {
@@ -297,18 +310,5 @@ extern_methods!(
         #[deprecated]
         #[method(getValue:)]
         pub unsafe fn getValue(&self, value: NonNull<c_void>);
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSValue`
-    #[cfg(feature = "Foundation_NSNumber")]
-    unsafe impl NSNumber {
-        #[method_id(@__retain_semantics Init initWithBytes:objCType:)]
-        pub unsafe fn initWithBytes_objCType(
-            this: Option<Allocated<Self>>,
-            value: NonNull<c_void>,
-            r#type: NonNull<c_char>,
-        ) -> Id<Self>;
     }
 );

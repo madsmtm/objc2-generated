@@ -120,37 +120,6 @@ extern_methods!(
     }
 );
 
-extern_enum!(
-    #[underlying(c_uint)]
-    pub enum __anonymous__ {
-        NSFontPanelFaceModeMask = 1 << 0,
-        NSFontPanelSizeModeMask = 1 << 1,
-        NSFontPanelCollectionModeMask = 1 << 2,
-        NSFontPanelUnderlineEffectModeMask = 1 << 8,
-        NSFontPanelStrikethroughEffectModeMask = 1 << 9,
-        NSFontPanelTextColorEffectModeMask = 1 << 10,
-        NSFontPanelDocumentColorEffectModeMask = 1 << 11,
-        NSFontPanelShadowEffectModeMask = 1 << 12,
-        NSFontPanelAllEffectsModeMask = 0xFFF00,
-        NSFontPanelStandardModesMask = 0xFFFF,
-        NSFontPanelAllModesMask = 0xFFFFFFFF,
-    }
-);
-
-extern_enum!(
-    #[underlying(c_uint)]
-    #[deprecated]
-    pub enum __anonymous__ {
-        NSFPPreviewButton = 131,
-        NSFPRevertButton = 130,
-        NSFPSetButton = 132,
-        NSFPPreviewField = 128,
-        NSFPSizeField = 129,
-        NSFPSizeTitle = 133,
-        NSFPCurrentField = 134,
-    }
-);
-
 extern_methods!(
     /// Methods declared on superclass `NSWindow`
     #[cfg(feature = "AppKit_NSFontPanel")]
@@ -180,5 +149,36 @@ extern_methods!(
         pub unsafe fn windowWithContentViewController(
             content_view_controller: &NSViewController,
         ) -> Id<Self>;
+    }
+);
+
+extern_enum!(
+    #[underlying(c_uint)]
+    pub enum __anonymous__ {
+        NSFontPanelFaceModeMask = 1 << 0,
+        NSFontPanelSizeModeMask = 1 << 1,
+        NSFontPanelCollectionModeMask = 1 << 2,
+        NSFontPanelUnderlineEffectModeMask = 1 << 8,
+        NSFontPanelStrikethroughEffectModeMask = 1 << 9,
+        NSFontPanelTextColorEffectModeMask = 1 << 10,
+        NSFontPanelDocumentColorEffectModeMask = 1 << 11,
+        NSFontPanelShadowEffectModeMask = 1 << 12,
+        NSFontPanelAllEffectsModeMask = 0xFFF00,
+        NSFontPanelStandardModesMask = 0xFFFF,
+        NSFontPanelAllModesMask = 0xFFFFFFFF,
+    }
+);
+
+extern_enum!(
+    #[underlying(c_uint)]
+    #[deprecated]
+    pub enum __anonymous__ {
+        NSFPPreviewButton = 131,
+        NSFPRevertButton = 130,
+        NSFPSetButton = 132,
+        NSFPPreviewField = 128,
+        NSFPSizeField = 129,
+        NSFPSizeTitle = 133,
+        NSFPCurrentField = 134,
     }
 );

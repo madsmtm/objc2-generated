@@ -166,6 +166,16 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSUnit`
+    #[cfg(feature = "Foundation_NSDimension")]
+    unsafe impl NSDimension {
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSUnitAcceleration")]
@@ -199,6 +209,36 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other gravity)]
         pub unsafe fn gravity() -> Id<NSUnitAcceleration>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSDimension`
+    #[cfg(feature = "Foundation_NSUnitAcceleration")]
+    unsafe impl NSUnitAcceleration {
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSUnitConverter"
+        ))]
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self>;
+
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSUnit`
+    #[cfg(feature = "Foundation_NSUnitAcceleration")]
+    unsafe impl NSUnitAcceleration {
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
     }
 );
 
@@ -247,6 +287,36 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other revolutions)]
         pub unsafe fn revolutions() -> Id<NSUnitAngle>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSDimension`
+    #[cfg(feature = "Foundation_NSUnitAngle")]
+    unsafe impl NSUnitAngle {
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSUnitConverter"
+        ))]
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self>;
+
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSUnit`
+    #[cfg(feature = "Foundation_NSUnitAngle")]
+    unsafe impl NSUnitAngle {
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
     }
 );
 
@@ -322,6 +392,36 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSDimension`
+    #[cfg(feature = "Foundation_NSUnitArea")]
+    unsafe impl NSUnitArea {
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSUnitConverter"
+        ))]
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self>;
+
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSUnit`
+    #[cfg(feature = "Foundation_NSUnitArea")]
+    unsafe impl NSUnitArea {
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSUnitConcentrationMass")]
@@ -363,6 +463,36 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSDimension`
+    #[cfg(feature = "Foundation_NSUnitConcentrationMass")]
+    unsafe impl NSUnitConcentrationMass {
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSUnitConverter"
+        ))]
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self>;
+
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSUnit`
+    #[cfg(feature = "Foundation_NSUnitConcentrationMass")]
+    unsafe impl NSUnitConcentrationMass {
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSUnitDispersion")]
@@ -393,6 +523,36 @@ extern_methods!(
     unsafe impl NSUnitDispersion {
         #[method_id(@__retain_semantics Other partsPerMillion)]
         pub unsafe fn partsPerMillion() -> Id<NSUnitDispersion>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSDimension`
+    #[cfg(feature = "Foundation_NSUnitDispersion")]
+    unsafe impl NSUnitDispersion {
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSUnitConverter"
+        ))]
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self>;
+
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSUnit`
+    #[cfg(feature = "Foundation_NSUnitDispersion")]
+    unsafe impl NSUnitDispersion {
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
     }
 );
 
@@ -447,6 +607,36 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSDimension`
+    #[cfg(feature = "Foundation_NSUnitDuration")]
+    unsafe impl NSUnitDuration {
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSUnitConverter"
+        ))]
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self>;
+
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSUnit`
+    #[cfg(feature = "Foundation_NSUnitDuration")]
+    unsafe impl NSUnitDuration {
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSUnitElectricCharge")]
@@ -495,6 +685,36 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSDimension`
+    #[cfg(feature = "Foundation_NSUnitElectricCharge")]
+    unsafe impl NSUnitElectricCharge {
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSUnitConverter"
+        ))]
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self>;
+
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSUnit`
+    #[cfg(feature = "Foundation_NSUnitElectricCharge")]
+    unsafe impl NSUnitElectricCharge {
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSUnitElectricCurrent")]
@@ -537,6 +757,36 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other microamperes)]
         pub unsafe fn microamperes() -> Id<NSUnitElectricCurrent>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSDimension`
+    #[cfg(feature = "Foundation_NSUnitElectricCurrent")]
+    unsafe impl NSUnitElectricCurrent {
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSUnitConverter"
+        ))]
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self>;
+
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSUnit`
+    #[cfg(feature = "Foundation_NSUnitElectricCurrent")]
+    unsafe impl NSUnitElectricCurrent {
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
     }
 );
 
@@ -585,6 +835,36 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSDimension`
+    #[cfg(feature = "Foundation_NSUnitElectricPotentialDifference")]
+    unsafe impl NSUnitElectricPotentialDifference {
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSUnitConverter"
+        ))]
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self>;
+
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSUnit`
+    #[cfg(feature = "Foundation_NSUnitElectricPotentialDifference")]
+    unsafe impl NSUnitElectricPotentialDifference {
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSUnitElectricResistance")]
@@ -630,6 +910,36 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSDimension`
+    #[cfg(feature = "Foundation_NSUnitElectricResistance")]
+    unsafe impl NSUnitElectricResistance {
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSUnitConverter"
+        ))]
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self>;
+
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSUnit`
+    #[cfg(feature = "Foundation_NSUnitElectricResistance")]
+    unsafe impl NSUnitElectricResistance {
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSUnitEnergy")]
@@ -672,6 +982,36 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other kilowattHours)]
         pub unsafe fn kilowattHours() -> Id<NSUnitEnergy>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSDimension`
+    #[cfg(feature = "Foundation_NSUnitEnergy")]
+    unsafe impl NSUnitEnergy {
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSUnitConverter"
+        ))]
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self>;
+
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSUnit`
+    #[cfg(feature = "Foundation_NSUnitEnergy")]
+    unsafe impl NSUnitEnergy {
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
     }
 );
 
@@ -732,6 +1072,36 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSDimension`
+    #[cfg(feature = "Foundation_NSUnitFrequency")]
+    unsafe impl NSUnitFrequency {
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSUnitConverter"
+        ))]
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self>;
+
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSUnit`
+    #[cfg(feature = "Foundation_NSUnitFrequency")]
+    unsafe impl NSUnitFrequency {
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSUnitFuelEfficiency")]
@@ -768,6 +1138,36 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other milesPerGallon)]
         pub unsafe fn milesPerGallon() -> Id<NSUnitFuelEfficiency>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSDimension`
+    #[cfg(feature = "Foundation_NSUnitFuelEfficiency")]
+    unsafe impl NSUnitFuelEfficiency {
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSUnitConverter"
+        ))]
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self>;
+
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSUnit`
+    #[cfg(feature = "Foundation_NSUnitFuelEfficiency")]
+    unsafe impl NSUnitFuelEfficiency {
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
     }
 );
 
@@ -906,6 +1306,36 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSDimension`
+    #[cfg(feature = "Foundation_NSUnitInformationStorage")]
+    unsafe impl NSUnitInformationStorage {
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSUnitConverter"
+        ))]
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self>;
+
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSUnit`
+    #[cfg(feature = "Foundation_NSUnitInformationStorage")]
+    unsafe impl NSUnitInformationStorage {
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSUnitLength")]
@@ -1002,6 +1432,36 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSDimension`
+    #[cfg(feature = "Foundation_NSUnitLength")]
+    unsafe impl NSUnitLength {
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSUnitConverter"
+        ))]
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self>;
+
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSUnit`
+    #[cfg(feature = "Foundation_NSUnitLength")]
+    unsafe impl NSUnitLength {
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSUnitIlluminance")]
@@ -1032,6 +1492,36 @@ extern_methods!(
     unsafe impl NSUnitIlluminance {
         #[method_id(@__retain_semantics Other lux)]
         pub unsafe fn lux() -> Id<NSUnitIlluminance>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSDimension`
+    #[cfg(feature = "Foundation_NSUnitIlluminance")]
+    unsafe impl NSUnitIlluminance {
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSUnitConverter"
+        ))]
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self>;
+
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSUnit`
+    #[cfg(feature = "Foundation_NSUnitIlluminance")]
+    unsafe impl NSUnitIlluminance {
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
     }
 );
 
@@ -1113,6 +1603,36 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSDimension`
+    #[cfg(feature = "Foundation_NSUnitMass")]
+    unsafe impl NSUnitMass {
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSUnitConverter"
+        ))]
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self>;
+
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSUnit`
+    #[cfg(feature = "Foundation_NSUnitMass")]
+    unsafe impl NSUnitMass {
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSUnitPower")]
@@ -1176,6 +1696,36 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSDimension`
+    #[cfg(feature = "Foundation_NSUnitPower")]
+    unsafe impl NSUnitPower {
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSUnitConverter"
+        ))]
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self>;
+
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSUnit`
+    #[cfg(feature = "Foundation_NSUnitPower")]
+    unsafe impl NSUnitPower {
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSUnitPressure")]
@@ -1236,6 +1786,36 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSDimension`
+    #[cfg(feature = "Foundation_NSUnitPressure")]
+    unsafe impl NSUnitPressure {
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSUnitConverter"
+        ))]
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self>;
+
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSUnit`
+    #[cfg(feature = "Foundation_NSUnitPressure")]
+    unsafe impl NSUnitPressure {
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSUnitSpeed")]
@@ -1278,6 +1858,36 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSDimension`
+    #[cfg(feature = "Foundation_NSUnitSpeed")]
+    unsafe impl NSUnitSpeed {
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSUnitConverter"
+        ))]
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self>;
+
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSUnit`
+    #[cfg(feature = "Foundation_NSUnitSpeed")]
+    unsafe impl NSUnitSpeed {
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSUnitTemperature")]
@@ -1314,6 +1924,36 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other fahrenheit)]
         pub unsafe fn fahrenheit() -> Id<NSUnitTemperature>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSDimension`
+    #[cfg(feature = "Foundation_NSUnitTemperature")]
+    unsafe impl NSUnitTemperature {
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSUnitConverter"
+        ))]
+        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        pub unsafe fn initWithSymbol_converter(
+            this: Option<Allocated<Self>>,
+            symbol: &NSString,
+            converter: &NSUnitConverter,
+        ) -> Id<Self>;
+
+        #[method_id(@__retain_semantics Other baseUnit)]
+        pub unsafe fn baseUnit() -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSUnit`
+    #[cfg(feature = "Foundation_NSUnitTemperature")]
+    unsafe impl NSUnitTemperature {
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
     }
 );
 
@@ -1437,646 +2077,6 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other metricCups)]
         pub unsafe fn metricCups() -> Id<NSUnitVolume>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSDimension")]
-    unsafe impl NSDimension {
-        #[cfg(feature = "Foundation_NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
-        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitAcceleration")]
-    unsafe impl NSUnitAcceleration {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
-        pub unsafe fn initWithSymbol_converter(
-            this: Option<Allocated<Self>>,
-            symbol: &NSString,
-            converter: &NSUnitConverter,
-        ) -> Id<Self>;
-
-        #[method_id(@__retain_semantics Other baseUnit)]
-        pub unsafe fn baseUnit() -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitAcceleration")]
-    unsafe impl NSUnitAcceleration {
-        #[cfg(feature = "Foundation_NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
-        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitAngle")]
-    unsafe impl NSUnitAngle {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
-        pub unsafe fn initWithSymbol_converter(
-            this: Option<Allocated<Self>>,
-            symbol: &NSString,
-            converter: &NSUnitConverter,
-        ) -> Id<Self>;
-
-        #[method_id(@__retain_semantics Other baseUnit)]
-        pub unsafe fn baseUnit() -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitAngle")]
-    unsafe impl NSUnitAngle {
-        #[cfg(feature = "Foundation_NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
-        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitArea")]
-    unsafe impl NSUnitArea {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
-        pub unsafe fn initWithSymbol_converter(
-            this: Option<Allocated<Self>>,
-            symbol: &NSString,
-            converter: &NSUnitConverter,
-        ) -> Id<Self>;
-
-        #[method_id(@__retain_semantics Other baseUnit)]
-        pub unsafe fn baseUnit() -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitArea")]
-    unsafe impl NSUnitArea {
-        #[cfg(feature = "Foundation_NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
-        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitConcentrationMass")]
-    unsafe impl NSUnitConcentrationMass {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
-        pub unsafe fn initWithSymbol_converter(
-            this: Option<Allocated<Self>>,
-            symbol: &NSString,
-            converter: &NSUnitConverter,
-        ) -> Id<Self>;
-
-        #[method_id(@__retain_semantics Other baseUnit)]
-        pub unsafe fn baseUnit() -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitConcentrationMass")]
-    unsafe impl NSUnitConcentrationMass {
-        #[cfg(feature = "Foundation_NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
-        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitDispersion")]
-    unsafe impl NSUnitDispersion {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
-        pub unsafe fn initWithSymbol_converter(
-            this: Option<Allocated<Self>>,
-            symbol: &NSString,
-            converter: &NSUnitConverter,
-        ) -> Id<Self>;
-
-        #[method_id(@__retain_semantics Other baseUnit)]
-        pub unsafe fn baseUnit() -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitDispersion")]
-    unsafe impl NSUnitDispersion {
-        #[cfg(feature = "Foundation_NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
-        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitDuration")]
-    unsafe impl NSUnitDuration {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
-        pub unsafe fn initWithSymbol_converter(
-            this: Option<Allocated<Self>>,
-            symbol: &NSString,
-            converter: &NSUnitConverter,
-        ) -> Id<Self>;
-
-        #[method_id(@__retain_semantics Other baseUnit)]
-        pub unsafe fn baseUnit() -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitDuration")]
-    unsafe impl NSUnitDuration {
-        #[cfg(feature = "Foundation_NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
-        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitElectricCharge")]
-    unsafe impl NSUnitElectricCharge {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
-        pub unsafe fn initWithSymbol_converter(
-            this: Option<Allocated<Self>>,
-            symbol: &NSString,
-            converter: &NSUnitConverter,
-        ) -> Id<Self>;
-
-        #[method_id(@__retain_semantics Other baseUnit)]
-        pub unsafe fn baseUnit() -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitElectricCharge")]
-    unsafe impl NSUnitElectricCharge {
-        #[cfg(feature = "Foundation_NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
-        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitElectricCurrent")]
-    unsafe impl NSUnitElectricCurrent {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
-        pub unsafe fn initWithSymbol_converter(
-            this: Option<Allocated<Self>>,
-            symbol: &NSString,
-            converter: &NSUnitConverter,
-        ) -> Id<Self>;
-
-        #[method_id(@__retain_semantics Other baseUnit)]
-        pub unsafe fn baseUnit() -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitElectricCurrent")]
-    unsafe impl NSUnitElectricCurrent {
-        #[cfg(feature = "Foundation_NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
-        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitElectricPotentialDifference")]
-    unsafe impl NSUnitElectricPotentialDifference {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
-        pub unsafe fn initWithSymbol_converter(
-            this: Option<Allocated<Self>>,
-            symbol: &NSString,
-            converter: &NSUnitConverter,
-        ) -> Id<Self>;
-
-        #[method_id(@__retain_semantics Other baseUnit)]
-        pub unsafe fn baseUnit() -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitElectricPotentialDifference")]
-    unsafe impl NSUnitElectricPotentialDifference {
-        #[cfg(feature = "Foundation_NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
-        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitElectricResistance")]
-    unsafe impl NSUnitElectricResistance {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
-        pub unsafe fn initWithSymbol_converter(
-            this: Option<Allocated<Self>>,
-            symbol: &NSString,
-            converter: &NSUnitConverter,
-        ) -> Id<Self>;
-
-        #[method_id(@__retain_semantics Other baseUnit)]
-        pub unsafe fn baseUnit() -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitElectricResistance")]
-    unsafe impl NSUnitElectricResistance {
-        #[cfg(feature = "Foundation_NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
-        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitEnergy")]
-    unsafe impl NSUnitEnergy {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
-        pub unsafe fn initWithSymbol_converter(
-            this: Option<Allocated<Self>>,
-            symbol: &NSString,
-            converter: &NSUnitConverter,
-        ) -> Id<Self>;
-
-        #[method_id(@__retain_semantics Other baseUnit)]
-        pub unsafe fn baseUnit() -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitEnergy")]
-    unsafe impl NSUnitEnergy {
-        #[cfg(feature = "Foundation_NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
-        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitFrequency")]
-    unsafe impl NSUnitFrequency {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
-        pub unsafe fn initWithSymbol_converter(
-            this: Option<Allocated<Self>>,
-            symbol: &NSString,
-            converter: &NSUnitConverter,
-        ) -> Id<Self>;
-
-        #[method_id(@__retain_semantics Other baseUnit)]
-        pub unsafe fn baseUnit() -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitFrequency")]
-    unsafe impl NSUnitFrequency {
-        #[cfg(feature = "Foundation_NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
-        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitFuelEfficiency")]
-    unsafe impl NSUnitFuelEfficiency {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
-        pub unsafe fn initWithSymbol_converter(
-            this: Option<Allocated<Self>>,
-            symbol: &NSString,
-            converter: &NSUnitConverter,
-        ) -> Id<Self>;
-
-        #[method_id(@__retain_semantics Other baseUnit)]
-        pub unsafe fn baseUnit() -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitFuelEfficiency")]
-    unsafe impl NSUnitFuelEfficiency {
-        #[cfg(feature = "Foundation_NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
-        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitInformationStorage")]
-    unsafe impl NSUnitInformationStorage {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
-        pub unsafe fn initWithSymbol_converter(
-            this: Option<Allocated<Self>>,
-            symbol: &NSString,
-            converter: &NSUnitConverter,
-        ) -> Id<Self>;
-
-        #[method_id(@__retain_semantics Other baseUnit)]
-        pub unsafe fn baseUnit() -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitInformationStorage")]
-    unsafe impl NSUnitInformationStorage {
-        #[cfg(feature = "Foundation_NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
-        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitLength")]
-    unsafe impl NSUnitLength {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
-        pub unsafe fn initWithSymbol_converter(
-            this: Option<Allocated<Self>>,
-            symbol: &NSString,
-            converter: &NSUnitConverter,
-        ) -> Id<Self>;
-
-        #[method_id(@__retain_semantics Other baseUnit)]
-        pub unsafe fn baseUnit() -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitLength")]
-    unsafe impl NSUnitLength {
-        #[cfg(feature = "Foundation_NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
-        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitIlluminance")]
-    unsafe impl NSUnitIlluminance {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
-        pub unsafe fn initWithSymbol_converter(
-            this: Option<Allocated<Self>>,
-            symbol: &NSString,
-            converter: &NSUnitConverter,
-        ) -> Id<Self>;
-
-        #[method_id(@__retain_semantics Other baseUnit)]
-        pub unsafe fn baseUnit() -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitIlluminance")]
-    unsafe impl NSUnitIlluminance {
-        #[cfg(feature = "Foundation_NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
-        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitMass")]
-    unsafe impl NSUnitMass {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
-        pub unsafe fn initWithSymbol_converter(
-            this: Option<Allocated<Self>>,
-            symbol: &NSString,
-            converter: &NSUnitConverter,
-        ) -> Id<Self>;
-
-        #[method_id(@__retain_semantics Other baseUnit)]
-        pub unsafe fn baseUnit() -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitMass")]
-    unsafe impl NSUnitMass {
-        #[cfg(feature = "Foundation_NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
-        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitPower")]
-    unsafe impl NSUnitPower {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
-        pub unsafe fn initWithSymbol_converter(
-            this: Option<Allocated<Self>>,
-            symbol: &NSString,
-            converter: &NSUnitConverter,
-        ) -> Id<Self>;
-
-        #[method_id(@__retain_semantics Other baseUnit)]
-        pub unsafe fn baseUnit() -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitPower")]
-    unsafe impl NSUnitPower {
-        #[cfg(feature = "Foundation_NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
-        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitPressure")]
-    unsafe impl NSUnitPressure {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
-        pub unsafe fn initWithSymbol_converter(
-            this: Option<Allocated<Self>>,
-            symbol: &NSString,
-            converter: &NSUnitConverter,
-        ) -> Id<Self>;
-
-        #[method_id(@__retain_semantics Other baseUnit)]
-        pub unsafe fn baseUnit() -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitPressure")]
-    unsafe impl NSUnitPressure {
-        #[cfg(feature = "Foundation_NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
-        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitSpeed")]
-    unsafe impl NSUnitSpeed {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
-        pub unsafe fn initWithSymbol_converter(
-            this: Option<Allocated<Self>>,
-            symbol: &NSString,
-            converter: &NSUnitConverter,
-        ) -> Id<Self>;
-
-        #[method_id(@__retain_semantics Other baseUnit)]
-        pub unsafe fn baseUnit() -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitSpeed")]
-    unsafe impl NSUnitSpeed {
-        #[cfg(feature = "Foundation_NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
-        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitTemperature")]
-    unsafe impl NSUnitTemperature {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
-        pub unsafe fn initWithSymbol_converter(
-            this: Option<Allocated<Self>>,
-            symbol: &NSString,
-            converter: &NSUnitConverter,
-        ) -> Id<Self>;
-
-        #[method_id(@__retain_semantics Other baseUnit)]
-        pub unsafe fn baseUnit() -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitTemperature")]
-    unsafe impl NSUnitTemperature {
-        #[cfg(feature = "Foundation_NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
-        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
     }
 );
 

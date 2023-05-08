@@ -59,6 +59,15 @@ extern_methods!(
     unsafe impl NSSecureTextField {}
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSControl`
+    #[cfg(feature = "AppKit_NSSecureTextField")]
+    unsafe impl NSSecureTextField {
+        #[method_id(@__retain_semantics Init initWithFrame:)]
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSSecureTextFieldCell")]
@@ -102,6 +111,23 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclass `NSTextFieldCell`
+    #[cfg(feature = "AppKit_NSSecureTextFieldCell")]
+    unsafe impl NSSecureTextFieldCell {
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Init initTextCell:)]
+        pub unsafe fn initTextCell(this: Option<Allocated<Self>>, string: &NSString) -> Id<Self>;
+
+        #[cfg(feature = "AppKit_NSImage")]
+        #[method_id(@__retain_semantics Init initImageCell:)]
+        pub unsafe fn initImageCell(
+            this: Option<Allocated<Self>>,
+            image: Option<&NSImage>,
+        ) -> Id<Self>;
+    }
+);
+
+extern_methods!(
     /// Methods declared on superclass `NSTextField`
     ///
     /// NSTextFieldConvenience
@@ -124,31 +150,5 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other textFieldWithString:)]
         pub unsafe fn textFieldWithString(string_value: &NSString) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSControl`
-    #[cfg(feature = "AppKit_NSSecureTextField")]
-    unsafe impl NSSecureTextField {
-        #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSTextFieldCell`
-    #[cfg(feature = "AppKit_NSSecureTextFieldCell")]
-    unsafe impl NSSecureTextFieldCell {
-        #[cfg(feature = "Foundation_NSString")]
-        #[method_id(@__retain_semantics Init initTextCell:)]
-        pub unsafe fn initTextCell(this: Option<Allocated<Self>>, string: &NSString) -> Id<Self>;
-
-        #[cfg(feature = "AppKit_NSImage")]
-        #[method_id(@__retain_semantics Init initImageCell:)]
-        pub unsafe fn initImageCell(
-            this: Option<Allocated<Self>>,
-            image: Option<&NSImage>,
-        ) -> Id<Self>;
     }
 );

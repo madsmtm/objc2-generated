@@ -235,6 +235,19 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSValue`
+    #[cfg(feature = "Foundation_NSDecimalNumber")]
+    unsafe impl NSDecimalNumber {
+        #[method_id(@__retain_semantics Init initWithBytes:objCType:)]
+        pub unsafe fn initWithBytes_objCType(
+            this: Option<Allocated<Self>>,
+            value: NonNull<c_void>,
+            r#type: NonNull<c_char>,
+        ) -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSDecimalNumberHandler")]
@@ -300,18 +313,5 @@ extern_methods!(
     unsafe impl NSScanner {
         #[method(scanDecimal:)]
         pub unsafe fn scanDecimal(&self, dcm: *mut NSDecimal) -> bool;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSValue`
-    #[cfg(feature = "Foundation_NSDecimalNumber")]
-    unsafe impl NSDecimalNumber {
-        #[method_id(@__retain_semantics Init initWithBytes:objCType:)]
-        pub unsafe fn initWithBytes_objCType(
-            this: Option<Allocated<Self>>,
-            value: NonNull<c_void>,
-            r#type: NonNull<c_char>,
-        ) -> Id<Self>;
     }
 );

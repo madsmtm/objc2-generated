@@ -218,6 +218,18 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclass `NSDate`
+    #[cfg(feature = "Foundation_NSCalendarDate")]
+    unsafe impl NSCalendarDate {
+        #[method_id(@__retain_semantics Init initWithTimeIntervalSinceReferenceDate:)]
+        pub unsafe fn initWithTimeIntervalSinceReferenceDate(
+            this: Option<Allocated<Self>>,
+            ti: NSTimeInterval,
+        ) -> Id<Self>;
+    }
+);
+
+extern_methods!(
     /// NSCalendarDateExtras
     #[cfg(feature = "Foundation_NSDate")]
     unsafe impl NSDate {
@@ -269,18 +281,6 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             description: &NSString,
         ) -> Option<Id<Self>>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSDate`
-    #[cfg(feature = "Foundation_NSCalendarDate")]
-    unsafe impl NSCalendarDate {
-        #[method_id(@__retain_semantics Init initWithTimeIntervalSinceReferenceDate:)]
-        pub unsafe fn initWithTimeIntervalSinceReferenceDate(
-            this: Option<Allocated<Self>>,
-            ti: NSTimeInterval,
-        ) -> Id<Self>;
     }
 );
 

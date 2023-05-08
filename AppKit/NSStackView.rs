@@ -193,6 +193,15 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSView`
+    #[cfg(feature = "AppKit_NSStackView")]
+    unsafe impl NSStackView {
+        #[method_id(@__retain_semantics Init initWithFrame:)]
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
+    }
+);
+
 extern_protocol!(
     pub unsafe trait NSStackViewDelegate: NSObjectProtocol {
         #[cfg(all(
@@ -275,14 +284,5 @@ extern_methods!(
         #[deprecated = "Set -distribution to NSStackViewDistributionEqualSpacing instead."]
         #[method(setHasEqualSpacing:)]
         pub unsafe fn setHasEqualSpacing(&self, has_equal_spacing: bool);
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSView`
-    #[cfg(feature = "AppKit_NSStackView")]
-    unsafe impl NSStackView {
-        #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

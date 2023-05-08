@@ -86,6 +86,16 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `GKPlayer`
+    #[cfg(feature = "GameKit_GKLocalPlayer")]
+    unsafe impl GKLocalPlayer {
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Other anonymousGuestPlayerWithIdentifier:)]
+        pub unsafe fn anonymousGuestPlayerWithIdentifier(guest_identifier: &NSString) -> Id<Self>;
+    }
+);
+
 extern_protocol!(
     pub unsafe trait GKLocalPlayerListener:
         GKChallengeListener + GKInviteEventListener + GKSavedGameListener + GKTurnBasedEventListener
@@ -268,15 +278,5 @@ extern_methods!(
             &self,
             window: Option<&NSWindow>,
         ) -> Result<(), Id<NSError>>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `GKPlayer`
-    #[cfg(feature = "GameKit_GKLocalPlayer")]
-    unsafe impl GKLocalPlayer {
-        #[cfg(feature = "Foundation_NSString")]
-        #[method_id(@__retain_semantics Other anonymousGuestPlayerWithIdentifier:)]
-        pub unsafe fn anonymousGuestPlayerWithIdentifier(guest_identifier: &NSString) -> Id<Self>;
     }
 );

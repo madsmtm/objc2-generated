@@ -150,6 +150,15 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSControl`
+    #[cfg(feature = "AppKit_NSScroller")]
+    unsafe impl NSScroller {
+        #[method_id(@__retain_semantics Init initWithFrame:)]
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
+    }
+);
+
 extern_static!(NSPreferredScrollerStyleDidChangeNotification: &'static NSNotificationName);
 
 ns_enum!(
@@ -220,14 +229,5 @@ extern_methods!(
         #[deprecated = "Scrollers don't have arrows as of 10.7"]
         #[method(drawArrow:highlight:)]
         pub unsafe fn drawArrow_highlight(&self, which_arrow: NSScrollerArrow, flag: bool);
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSControl`
-    #[cfg(feature = "AppKit_NSScroller")]
-    unsafe impl NSScroller {
-        #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

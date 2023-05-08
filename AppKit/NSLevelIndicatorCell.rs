@@ -111,22 +111,6 @@ extern_methods!(
     }
 );
 
-extern_static!(
-    NSRelevancyLevelIndicatorStyle: NSLevelIndicatorStyle = NSLevelIndicatorStyleRelevancy
-);
-
-extern_static!(
-    NSContinuousCapacityLevelIndicatorStyle: NSLevelIndicatorStyle =
-        NSLevelIndicatorStyleContinuousCapacity
-);
-
-extern_static!(
-    NSDiscreteCapacityLevelIndicatorStyle: NSLevelIndicatorStyle =
-        NSLevelIndicatorStyleDiscreteCapacity
-);
-
-extern_static!(NSRatingLevelIndicatorStyle: NSLevelIndicatorStyle = NSLevelIndicatorStyleRating);
-
 extern_methods!(
     /// Methods declared on superclass `NSCell`
     #[cfg(feature = "AppKit_NSLevelIndicatorCell")]
@@ -143,3 +127,19 @@ extern_methods!(
         ) -> Id<Self>;
     }
 );
+
+extern_static!(
+    NSRelevancyLevelIndicatorStyle: NSLevelIndicatorStyle = NSLevelIndicatorStyleRelevancy
+);
+
+extern_static!(
+    NSContinuousCapacityLevelIndicatorStyle: NSLevelIndicatorStyle =
+        NSLevelIndicatorStyleContinuousCapacity
+);
+
+extern_static!(
+    NSDiscreteCapacityLevelIndicatorStyle: NSLevelIndicatorStyle =
+        NSLevelIndicatorStyleDiscreteCapacity
+);
+
+extern_static!(NSRatingLevelIndicatorStyle: NSLevelIndicatorStyle = NSLevelIndicatorStyleRating);

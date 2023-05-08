@@ -91,6 +91,23 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSTextFieldCell`
+    #[cfg(feature = "AppKit_NSTokenFieldCell")]
+    unsafe impl NSTokenFieldCell {
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Init initTextCell:)]
+        pub unsafe fn initTextCell(this: Option<Allocated<Self>>, string: &NSString) -> Id<Self>;
+
+        #[cfg(feature = "AppKit_NSImage")]
+        #[method_id(@__retain_semantics Init initImageCell:)]
+        pub unsafe fn initImageCell(
+            this: Option<Allocated<Self>>,
+            image: Option<&NSImage>,
+        ) -> Id<Self>;
+    }
+);
+
 extern_protocol!(
     pub unsafe trait NSTokenFieldCellDelegate: NSObjectProtocol {
         #[cfg(all(
@@ -208,20 +225,3 @@ extern_static!(NSDefaultTokenStyle: NSTokenStyle = NSTokenStyleDefault);
 extern_static!(NSPlainTextTokenStyle: NSTokenStyle = NSTokenStyleNone);
 
 extern_static!(NSRoundedTokenStyle: NSTokenStyle = NSTokenStyleRounded);
-
-extern_methods!(
-    /// Methods declared on superclass `NSTextFieldCell`
-    #[cfg(feature = "AppKit_NSTokenFieldCell")]
-    unsafe impl NSTokenFieldCell {
-        #[cfg(feature = "Foundation_NSString")]
-        #[method_id(@__retain_semantics Init initTextCell:)]
-        pub unsafe fn initTextCell(this: Option<Allocated<Self>>, string: &NSString) -> Id<Self>;
-
-        #[cfg(feature = "AppKit_NSImage")]
-        #[method_id(@__retain_semantics Init initImageCell:)]
-        pub unsafe fn initImageCell(
-            this: Option<Allocated<Self>>,
-            image: Option<&NSImage>,
-        ) -> Id<Self>;
-    }
-);

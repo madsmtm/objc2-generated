@@ -106,6 +106,38 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclass `NSWindow`
+    #[cfg(feature = "AppKit_NSOpenPanel")]
+    unsafe impl NSOpenPanel {
+        #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:)]
+        pub unsafe fn initWithContentRect_styleMask_backing_defer(
+            this: Option<Allocated<Self>>,
+            content_rect: NSRect,
+            style: NSWindowStyleMask,
+            backing_store_type: NSBackingStoreType,
+            flag: bool,
+        ) -> Id<Self>;
+
+        #[cfg(feature = "AppKit_NSScreen")]
+        #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:screen:)]
+        pub unsafe fn initWithContentRect_styleMask_backing_defer_screen(
+            this: Option<Allocated<Self>>,
+            content_rect: NSRect,
+            style: NSWindowStyleMask,
+            backing_store_type: NSBackingStoreType,
+            flag: bool,
+            screen: Option<&NSScreen>,
+        ) -> Id<Self>;
+
+        #[cfg(feature = "AppKit_NSViewController")]
+        #[method_id(@__retain_semantics Other windowWithContentViewController:)]
+        pub unsafe fn windowWithContentViewController(
+            content_view_controller: &NSViewController,
+        ) -> Id<Self>;
+    }
+);
+
+extern_methods!(
     /// NSDeprecated
     #[cfg(feature = "AppKit_NSOpenPanel")]
     unsafe impl NSOpenPanel {
@@ -159,37 +191,5 @@ extern_methods!(
         #[deprecated]
         #[method(runModalForTypes:)]
         pub unsafe fn runModalForTypes(&self, file_types: Option<&NSArray>) -> NSInteger;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSWindow`
-    #[cfg(feature = "AppKit_NSOpenPanel")]
-    unsafe impl NSOpenPanel {
-        #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:)]
-        pub unsafe fn initWithContentRect_styleMask_backing_defer(
-            this: Option<Allocated<Self>>,
-            content_rect: NSRect,
-            style: NSWindowStyleMask,
-            backing_store_type: NSBackingStoreType,
-            flag: bool,
-        ) -> Id<Self>;
-
-        #[cfg(feature = "AppKit_NSScreen")]
-        #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:screen:)]
-        pub unsafe fn initWithContentRect_styleMask_backing_defer_screen(
-            this: Option<Allocated<Self>>,
-            content_rect: NSRect,
-            style: NSWindowStyleMask,
-            backing_store_type: NSBackingStoreType,
-            flag: bool,
-            screen: Option<&NSScreen>,
-        ) -> Id<Self>;
-
-        #[cfg(feature = "AppKit_NSViewController")]
-        #[method_id(@__retain_semantics Other windowWithContentViewController:)]
-        pub unsafe fn windowWithContentViewController(
-            content_view_controller: &NSViewController,
-        ) -> Id<Self>;
     }
 );

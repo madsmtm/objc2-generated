@@ -390,6 +390,15 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclass `NSView`
+    #[cfg(feature = "WebKit_WebView")]
+    unsafe impl WebView {
+        #[method_id(@__retain_semantics Init initWithFrame:)]
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
+    }
+);
+
+extern_methods!(
     /// WebIBActions
     #[cfg(feature = "WebKit_WebView")]
     unsafe impl WebView {
@@ -670,14 +679,5 @@ extern_methods!(
 
         #[method(overWrite:)]
         pub unsafe fn overWrite(&self, sender: Option<&Object>);
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSView`
-    #[cfg(feature = "WebKit_WebView")]
-    unsafe impl WebView {
-        #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

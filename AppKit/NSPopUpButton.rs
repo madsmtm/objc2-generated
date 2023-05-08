@@ -194,8 +194,6 @@ extern_methods!(
     }
 );
 
-extern_static!(NSPopUpButtonWillPopUpNotification: &'static NSNotificationName);
-
 extern_methods!(
     /// Methods declared on superclass `NSButton`
     #[cfg(feature = "AppKit_NSPopUpButton")]
@@ -251,3 +249,5 @@ extern_methods!(
         pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );
+
+extern_static!(NSPopUpButtonWillPopUpNotification: &'static NSNotificationName);

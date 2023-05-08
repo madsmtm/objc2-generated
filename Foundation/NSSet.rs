@@ -229,6 +229,19 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclass `NSSet`
+    #[cfg(feature = "Foundation_NSMutableSet")]
+    unsafe impl<ObjectType: Message> NSMutableSet<ObjectType> {
+        #[method_id(@__retain_semantics Init initWithObjects:count:)]
+        pub unsafe fn initWithObjects_count(
+            this: Option<Allocated<Self>>,
+            objects: *mut NonNull<ObjectType>,
+            cnt: NSUInteger,
+        ) -> Id<Self>;
+    }
+);
+
+extern_methods!(
     /// NSExtendedMutableSet
     #[cfg(feature = "Foundation_NSMutableSet")]
     unsafe impl<ObjectType: Message> NSMutableSet<ObjectType> {
@@ -323,6 +336,19 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSSet`
+    #[cfg(feature = "Foundation_NSCountedSet")]
+    unsafe impl<ObjectType: Message> NSCountedSet<ObjectType> {
+        #[method_id(@__retain_semantics Init initWithObjects:count:)]
+        pub unsafe fn initWithObjects_count(
+            this: Option<Allocated<Self>>,
+            objects: *mut NonNull<ObjectType>,
+            cnt: NSUInteger,
+        ) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSSet`
     ///
     /// NSCollectionViewAdditions
     #[cfg(feature = "Foundation_NSMutableSet")]
@@ -335,19 +361,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other setWithCollectionViewIndexPaths:)]
         pub unsafe fn setWithCollectionViewIndexPaths(
             index_paths: &NSArray<NSIndexPath>,
-        ) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSSet`
-    #[cfg(feature = "Foundation_NSMutableSet")]
-    unsafe impl<ObjectType: Message> NSMutableSet<ObjectType> {
-        #[method_id(@__retain_semantics Init initWithObjects:count:)]
-        pub unsafe fn initWithObjects_count(
-            this: Option<Allocated<Self>>,
-            objects: *mut NonNull<ObjectType>,
-            cnt: NSUInteger,
         ) -> Id<Self>;
     }
 );
@@ -424,19 +437,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other setWithCollectionViewIndexPaths:)]
         pub unsafe fn setWithCollectionViewIndexPaths(
             index_paths: &NSArray<NSIndexPath>,
-        ) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSSet`
-    #[cfg(feature = "Foundation_NSCountedSet")]
-    unsafe impl<ObjectType: Message> NSCountedSet<ObjectType> {
-        #[method_id(@__retain_semantics Init initWithObjects:count:)]
-        pub unsafe fn initWithObjects_count(
-            this: Option<Allocated<Self>>,
-            objects: *mut NonNull<ObjectType>,
-            cnt: NSUInteger,
         ) -> Id<Self>;
     }
 );

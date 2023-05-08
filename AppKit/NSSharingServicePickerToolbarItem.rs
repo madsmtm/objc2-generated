@@ -40,6 +40,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSToolbarItem`
+    #[cfg(feature = "AppKit_NSSharingServicePickerToolbarItem")]
+    unsafe impl NSSharingServicePickerToolbarItem {
+        #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
+        pub unsafe fn initWithItemIdentifier(
+            this: Option<Allocated<Self>>,
+            item_identifier: &NSToolbarItemIdentifier,
+        ) -> Id<Self>;
+    }
+);
+
 extern_protocol!(
     pub unsafe trait NSSharingServicePickerToolbarItemDelegate:
         NSSharingServicePickerDelegate
@@ -56,16 +68,4 @@ extern_protocol!(
     }
 
     unsafe impl ProtocolType for dyn NSSharingServicePickerToolbarItemDelegate {}
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSToolbarItem`
-    #[cfg(feature = "AppKit_NSSharingServicePickerToolbarItem")]
-    unsafe impl NSSharingServicePickerToolbarItem {
-        #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
-        pub unsafe fn initWithItemIdentifier(
-            this: Option<Allocated<Self>>,
-            item_identifier: &NSToolbarItemIdentifier,
-        ) -> Id<Self>;
-    }
 );

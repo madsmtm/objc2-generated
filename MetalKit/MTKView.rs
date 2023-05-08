@@ -195,6 +195,15 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSView`
+    #[cfg(feature = "MetalKit_MTKView")]
+    unsafe impl MTKView {
+        #[method_id(@__retain_semantics Init initWithFrame:)]
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
+    }
+);
+
 extern_protocol!(
     pub unsafe trait MTKViewDelegate: NSObjectProtocol {
         #[cfg(feature = "MetalKit_MTKView")]
@@ -207,13 +216,4 @@ extern_protocol!(
     }
 
     unsafe impl ProtocolType for dyn MTKViewDelegate {}
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSView`
-    #[cfg(feature = "MetalKit_MTKView")]
-    unsafe impl MTKView {
-        #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
-    }
 );

@@ -44,6 +44,19 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSScriptCommand`
+    #[cfg(feature = "Foundation_NSCloneCommand")]
+    unsafe impl NSCloneCommand {
+        #[cfg(feature = "Foundation_NSScriptCommandDescription")]
+        #[method_id(@__retain_semantics Init initWithCommandDescription:)]
+        pub unsafe fn initWithCommandDescription(
+            this: Option<Allocated<Self>>,
+            command_def: &NSScriptCommandDescription,
+        ) -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSCloseCommand")]
@@ -71,6 +84,19 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSScriptCommand`
+    #[cfg(feature = "Foundation_NSCloseCommand")]
+    unsafe impl NSCloseCommand {
+        #[cfg(feature = "Foundation_NSScriptCommandDescription")]
+        #[method_id(@__retain_semantics Init initWithCommandDescription:)]
+        pub unsafe fn initWithCommandDescription(
+            this: Option<Allocated<Self>>,
+            command_def: &NSScriptCommandDescription,
+        ) -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSCountCommand")]
@@ -93,6 +119,19 @@ unsafe impl NSObjectProtocol for NSCountCommand {}
 extern_methods!(
     #[cfg(feature = "Foundation_NSCountCommand")]
     unsafe impl NSCountCommand {}
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSScriptCommand`
+    #[cfg(feature = "Foundation_NSCountCommand")]
+    unsafe impl NSCountCommand {
+        #[cfg(feature = "Foundation_NSScriptCommandDescription")]
+        #[method_id(@__retain_semantics Init initWithCommandDescription:)]
+        pub unsafe fn initWithCommandDescription(
+            this: Option<Allocated<Self>>,
+            command_def: &NSScriptCommandDescription,
+        ) -> Id<Self>;
+    }
 );
 
 extern_class!(
@@ -124,6 +163,19 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other resolvedKeyDictionary)]
         pub unsafe fn resolvedKeyDictionary(&self) -> Id<NSDictionary<NSString, Object>>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSScriptCommand`
+    #[cfg(feature = "Foundation_NSCreateCommand")]
+    unsafe impl NSCreateCommand {
+        #[cfg(feature = "Foundation_NSScriptCommandDescription")]
+        #[method_id(@__retain_semantics Init initWithCommandDescription:)]
+        pub unsafe fn initWithCommandDescription(
+            this: Option<Allocated<Self>>,
+            command_def: &NSScriptCommandDescription,
+        ) -> Id<Self>;
     }
 );
 
@@ -159,6 +211,19 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSScriptCommand`
+    #[cfg(feature = "Foundation_NSDeleteCommand")]
+    unsafe impl NSDeleteCommand {
+        #[cfg(feature = "Foundation_NSScriptCommandDescription")]
+        #[method_id(@__retain_semantics Init initWithCommandDescription:)]
+        pub unsafe fn initWithCommandDescription(
+            this: Option<Allocated<Self>>,
+            command_def: &NSScriptCommandDescription,
+        ) -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSExistsCommand")]
@@ -183,6 +248,19 @@ extern_methods!(
     unsafe impl NSExistsCommand {}
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSScriptCommand`
+    #[cfg(feature = "Foundation_NSExistsCommand")]
+    unsafe impl NSExistsCommand {
+        #[cfg(feature = "Foundation_NSScriptCommandDescription")]
+        #[method_id(@__retain_semantics Init initWithCommandDescription:)]
+        pub unsafe fn initWithCommandDescription(
+            this: Option<Allocated<Self>>,
+            command_def: &NSScriptCommandDescription,
+        ) -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSGetCommand")]
@@ -205,6 +283,19 @@ unsafe impl NSObjectProtocol for NSGetCommand {}
 extern_methods!(
     #[cfg(feature = "Foundation_NSGetCommand")]
     unsafe impl NSGetCommand {}
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSScriptCommand`
+    #[cfg(feature = "Foundation_NSGetCommand")]
+    unsafe impl NSGetCommand {
+        #[cfg(feature = "Foundation_NSScriptCommandDescription")]
+        #[method_id(@__retain_semantics Init initWithCommandDescription:)]
+        pub unsafe fn initWithCommandDescription(
+            this: Option<Allocated<Self>>,
+            command_def: &NSScriptCommandDescription,
+        ) -> Id<Self>;
+    }
 );
 
 extern_class!(
@@ -239,6 +330,19 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSScriptCommand`
+    #[cfg(feature = "Foundation_NSMoveCommand")]
+    unsafe impl NSMoveCommand {
+        #[cfg(feature = "Foundation_NSScriptCommandDescription")]
+        #[method_id(@__retain_semantics Init initWithCommandDescription:)]
+        pub unsafe fn initWithCommandDescription(
+            this: Option<Allocated<Self>>,
+            command_def: &NSScriptCommandDescription,
+        ) -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSQuitCommand")]
@@ -263,6 +367,19 @@ extern_methods!(
     unsafe impl NSQuitCommand {
         #[method(saveOptions)]
         pub unsafe fn saveOptions(&self) -> NSSaveOptions;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSScriptCommand`
+    #[cfg(feature = "Foundation_NSQuitCommand")]
+    unsafe impl NSQuitCommand {
+        #[cfg(feature = "Foundation_NSScriptCommandDescription")]
+        #[method_id(@__retain_semantics Init initWithCommandDescription:)]
+        pub unsafe fn initWithCommandDescription(
+            this: Option<Allocated<Self>>,
+            command_def: &NSScriptCommandDescription,
+        ) -> Id<Self>;
     }
 );
 
@@ -295,123 +412,6 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
         #[method_id(@__retain_semantics Other keySpecifier)]
         pub unsafe fn keySpecifier(&self) -> Id<NSScriptObjectSpecifier>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSScriptCommand`
-    #[cfg(feature = "Foundation_NSCloneCommand")]
-    unsafe impl NSCloneCommand {
-        #[cfg(feature = "Foundation_NSScriptCommandDescription")]
-        #[method_id(@__retain_semantics Init initWithCommandDescription:)]
-        pub unsafe fn initWithCommandDescription(
-            this: Option<Allocated<Self>>,
-            command_def: &NSScriptCommandDescription,
-        ) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSScriptCommand`
-    #[cfg(feature = "Foundation_NSCloseCommand")]
-    unsafe impl NSCloseCommand {
-        #[cfg(feature = "Foundation_NSScriptCommandDescription")]
-        #[method_id(@__retain_semantics Init initWithCommandDescription:)]
-        pub unsafe fn initWithCommandDescription(
-            this: Option<Allocated<Self>>,
-            command_def: &NSScriptCommandDescription,
-        ) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSScriptCommand`
-    #[cfg(feature = "Foundation_NSCountCommand")]
-    unsafe impl NSCountCommand {
-        #[cfg(feature = "Foundation_NSScriptCommandDescription")]
-        #[method_id(@__retain_semantics Init initWithCommandDescription:)]
-        pub unsafe fn initWithCommandDescription(
-            this: Option<Allocated<Self>>,
-            command_def: &NSScriptCommandDescription,
-        ) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSScriptCommand`
-    #[cfg(feature = "Foundation_NSCreateCommand")]
-    unsafe impl NSCreateCommand {
-        #[cfg(feature = "Foundation_NSScriptCommandDescription")]
-        #[method_id(@__retain_semantics Init initWithCommandDescription:)]
-        pub unsafe fn initWithCommandDescription(
-            this: Option<Allocated<Self>>,
-            command_def: &NSScriptCommandDescription,
-        ) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSScriptCommand`
-    #[cfg(feature = "Foundation_NSDeleteCommand")]
-    unsafe impl NSDeleteCommand {
-        #[cfg(feature = "Foundation_NSScriptCommandDescription")]
-        #[method_id(@__retain_semantics Init initWithCommandDescription:)]
-        pub unsafe fn initWithCommandDescription(
-            this: Option<Allocated<Self>>,
-            command_def: &NSScriptCommandDescription,
-        ) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSScriptCommand`
-    #[cfg(feature = "Foundation_NSExistsCommand")]
-    unsafe impl NSExistsCommand {
-        #[cfg(feature = "Foundation_NSScriptCommandDescription")]
-        #[method_id(@__retain_semantics Init initWithCommandDescription:)]
-        pub unsafe fn initWithCommandDescription(
-            this: Option<Allocated<Self>>,
-            command_def: &NSScriptCommandDescription,
-        ) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSScriptCommand`
-    #[cfg(feature = "Foundation_NSGetCommand")]
-    unsafe impl NSGetCommand {
-        #[cfg(feature = "Foundation_NSScriptCommandDescription")]
-        #[method_id(@__retain_semantics Init initWithCommandDescription:)]
-        pub unsafe fn initWithCommandDescription(
-            this: Option<Allocated<Self>>,
-            command_def: &NSScriptCommandDescription,
-        ) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSScriptCommand`
-    #[cfg(feature = "Foundation_NSMoveCommand")]
-    unsafe impl NSMoveCommand {
-        #[cfg(feature = "Foundation_NSScriptCommandDescription")]
-        #[method_id(@__retain_semantics Init initWithCommandDescription:)]
-        pub unsafe fn initWithCommandDescription(
-            this: Option<Allocated<Self>>,
-            command_def: &NSScriptCommandDescription,
-        ) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSScriptCommand`
-    #[cfg(feature = "Foundation_NSQuitCommand")]
-    unsafe impl NSQuitCommand {
-        #[cfg(feature = "Foundation_NSScriptCommandDescription")]
-        #[method_id(@__retain_semantics Init initWithCommandDescription:)]
-        pub unsafe fn initWithCommandDescription(
-            this: Option<Allocated<Self>>,
-            command_def: &NSScriptCommandDescription,
-        ) -> Id<Self>;
     }
 );
 

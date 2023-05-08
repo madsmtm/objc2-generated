@@ -197,6 +197,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `CKNotification`
+    #[cfg(feature = "CloudKit_CKQueryNotification")]
+    unsafe impl CKQueryNotification {
+        #[cfg(feature = "Foundation_NSDictionary")]
+        #[method_id(@__retain_semantics Other notificationFromRemoteNotificationDictionary:)]
+        pub unsafe fn notificationFromRemoteNotificationDictionary(
+            notification_dictionary: &NSDictionary,
+        ) -> Option<Id<Self>>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CloudKit_CKRecordZoneNotification")]
@@ -225,6 +237,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `CKNotification`
+    #[cfg(feature = "CloudKit_CKRecordZoneNotification")]
+    unsafe impl CKRecordZoneNotification {
+        #[cfg(feature = "Foundation_NSDictionary")]
+        #[method_id(@__retain_semantics Other notificationFromRemoteNotificationDictionary:)]
+        pub unsafe fn notificationFromRemoteNotificationDictionary(
+            notification_dictionary: &NSDictionary,
+        ) -> Option<Id<Self>>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CloudKit_CKDatabaseNotification")]
@@ -246,30 +270,6 @@ extern_methods!(
     unsafe impl CKDatabaseNotification {
         #[method(databaseScope)]
         pub unsafe fn databaseScope(&self) -> CKDatabaseScope;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `CKNotification`
-    #[cfg(feature = "CloudKit_CKQueryNotification")]
-    unsafe impl CKQueryNotification {
-        #[cfg(feature = "Foundation_NSDictionary")]
-        #[method_id(@__retain_semantics Other notificationFromRemoteNotificationDictionary:)]
-        pub unsafe fn notificationFromRemoteNotificationDictionary(
-            notification_dictionary: &NSDictionary,
-        ) -> Option<Id<Self>>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `CKNotification`
-    #[cfg(feature = "CloudKit_CKRecordZoneNotification")]
-    unsafe impl CKRecordZoneNotification {
-        #[cfg(feature = "Foundation_NSDictionary")]
-        #[method_id(@__retain_semantics Other notificationFromRemoteNotificationDictionary:)]
-        pub unsafe fn notificationFromRemoteNotificationDictionary(
-            notification_dictionary: &NSDictionary,
-        ) -> Option<Id<Self>>;
     }
 );
 

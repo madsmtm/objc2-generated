@@ -120,6 +120,20 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclass `NSViewController`
+    #[cfg(feature = "GameKit_GKMatchmakerViewController")]
+    unsafe impl GKMatchmakerViewController {
+        #[cfg(feature = "Foundation_NSBundle")]
+        #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
+        pub unsafe fn initWithNibName_bundle(
+            this: Option<Allocated<Self>>,
+            nib_name_or_nil: Option<&NSNibName>,
+            nib_bundle_or_nil: Option<&NSBundle>,
+        ) -> Id<Self>;
+    }
+);
+
+extern_methods!(
     /// Obsoleted
     #[cfg(feature = "GameKit_GKMatchmakerViewController")]
     unsafe impl GKMatchmakerViewController {
@@ -216,18 +230,4 @@ extern_protocol!(
     }
 
     unsafe impl ProtocolType for dyn GKMatchmakerViewControllerDelegate {}
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSViewController`
-    #[cfg(feature = "GameKit_GKMatchmakerViewController")]
-    unsafe impl GKMatchmakerViewController {
-        #[cfg(feature = "Foundation_NSBundle")]
-        #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
-        pub unsafe fn initWithNibName_bundle(
-            this: Option<Allocated<Self>>,
-            nib_name_or_nil: Option<&NSNibName>,
-            nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self>;
-    }
 );

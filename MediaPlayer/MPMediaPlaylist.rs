@@ -102,6 +102,19 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `MPMediaItemCollection`
+    #[cfg(feature = "MediaPlayer_MPMediaPlaylist")]
+    unsafe impl MPMediaPlaylist {
+        #[cfg(all(feature = "Foundation_NSArray", feature = "MediaPlayer_MPMediaItem"))]
+        #[method_id(@__retain_semantics Init initWithItems:)]
+        pub unsafe fn initWithItems(
+            this: Option<Allocated<Self>>,
+            items: &NSArray<MPMediaItem>,
+        ) -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MediaPlayer_MPMediaPlaylistCreationMetadata")]
@@ -149,18 +162,5 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method(setDescriptionText:)]
         pub unsafe fn setDescriptionText(&self, description_text: &NSString);
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `MPMediaItemCollection`
-    #[cfg(feature = "MediaPlayer_MPMediaPlaylist")]
-    unsafe impl MPMediaPlaylist {
-        #[cfg(all(feature = "Foundation_NSArray", feature = "MediaPlayer_MPMediaItem"))]
-        #[method_id(@__retain_semantics Init initWithItems:)]
-        pub unsafe fn initWithItems(
-            this: Option<Allocated<Self>>,
-            items: &NSArray<MPMediaItem>,
-        ) -> Id<Self>;
     }
 );

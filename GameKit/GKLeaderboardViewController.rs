@@ -43,6 +43,20 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclass `NSViewController`
+    #[cfg(feature = "GameKit_GKLeaderboardViewController")]
+    unsafe impl GKLeaderboardViewController {
+        #[cfg(feature = "Foundation_NSBundle")]
+        #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
+        pub unsafe fn initWithNibName_bundle(
+            this: Option<Allocated<Self>>,
+            nib_name_or_nil: Option<&NSNibName>,
+            nib_bundle_or_nil: Option<&NSBundle>,
+        ) -> Id<Self>;
+    }
+);
+
+extern_methods!(
     #[cfg(feature = "GameKit_GKLeaderboardViewController")]
     unsafe impl GKLeaderboardViewController {
         #[method(timeScope)]
@@ -118,20 +132,6 @@ extern_methods!(
         pub unsafe fn initWithAchievementID(
             this: Option<Allocated<Self>>,
             achievement_id: &NSString,
-        ) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSViewController`
-    #[cfg(feature = "GameKit_GKLeaderboardViewController")]
-    unsafe impl GKLeaderboardViewController {
-        #[cfg(feature = "Foundation_NSBundle")]
-        #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
-        pub unsafe fn initWithNibName_bundle(
-            this: Option<Allocated<Self>>,
-            nib_name_or_nil: Option<&NSNibName>,
-            nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Id<Self>;
     }
 );

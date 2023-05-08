@@ -69,6 +69,20 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSViewController`
+    #[cfg(feature = "StoreKit_SKCloudServiceSetupViewController")]
+    unsafe impl SKCloudServiceSetupViewController {
+        #[cfg(feature = "Foundation_NSBundle")]
+        #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
+        pub unsafe fn initWithNibName_bundle(
+            this: Option<Allocated<Self>>,
+            nib_name_or_nil: Option<&NSNibName>,
+            nib_bundle_or_nil: Option<&NSBundle>,
+        ) -> Id<Self>;
+    }
+);
+
 extern_protocol!(
     pub unsafe trait SKCloudServiceSetupViewControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "StoreKit_SKCloudServiceSetupViewController")]
@@ -113,18 +127,4 @@ extern_static!(
 
 extern_static!(
     SKCloudServiceSetupMessageIdentifierPlayMusic: &'static SKCloudServiceSetupMessageIdentifier
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSViewController`
-    #[cfg(feature = "StoreKit_SKCloudServiceSetupViewController")]
-    unsafe impl SKCloudServiceSetupViewController {
-        #[cfg(feature = "Foundation_NSBundle")]
-        #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
-        pub unsafe fn initWithNibName_bundle(
-            this: Option<Allocated<Self>>,
-            nib_name_or_nil: Option<&NSNibName>,
-            nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self>;
-    }
 );

@@ -182,6 +182,15 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `CAAnimation`
+    #[cfg(feature = "CoreAnimation_CAPropertyAnimation")]
+    unsafe impl CAPropertyAnimation {
+        #[method_id(@__retain_semantics Other animation)]
+        pub unsafe fn animation() -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CoreAnimation_CABasicAnimation")]
@@ -233,6 +242,25 @@ extern_methods!(
 
         #[method(setByValue:)]
         pub unsafe fn setByValue(&self, by_value: Option<&Object>);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `CAPropertyAnimation`
+    #[cfg(feature = "CoreAnimation_CABasicAnimation")]
+    unsafe impl CABasicAnimation {
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Other animationWithKeyPath:)]
+        pub unsafe fn animationWithKeyPath(path: Option<&NSString>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `CAAnimation`
+    #[cfg(feature = "CoreAnimation_CABasicAnimation")]
+    unsafe impl CABasicAnimation {
+        #[method_id(@__retain_semantics Other animation)]
+        pub unsafe fn animation() -> Id<Self>;
     }
 );
 
@@ -341,6 +369,25 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `CAPropertyAnimation`
+    #[cfg(feature = "CoreAnimation_CAKeyframeAnimation")]
+    unsafe impl CAKeyframeAnimation {
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Other animationWithKeyPath:)]
+        pub unsafe fn animationWithKeyPath(path: Option<&NSString>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `CAAnimation`
+    #[cfg(feature = "CoreAnimation_CAKeyframeAnimation")]
+    unsafe impl CAKeyframeAnimation {
+        #[method_id(@__retain_semantics Other animation)]
+        pub unsafe fn animation() -> Id<Self>;
+    }
+);
+
 extern_static!(kCAAnimationLinear: &'static CAAnimationCalculationMode);
 
 extern_static!(kCAAnimationDiscrete: &'static CAAnimationCalculationMode);
@@ -418,6 +465,25 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `CAPropertyAnimation`
+    #[cfg(feature = "CoreAnimation_CASpringAnimation")]
+    unsafe impl CASpringAnimation {
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Other animationWithKeyPath:)]
+        pub unsafe fn animationWithKeyPath(path: Option<&NSString>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `CAAnimation`
+    #[cfg(feature = "CoreAnimation_CASpringAnimation")]
+    unsafe impl CASpringAnimation {
+        #[method_id(@__retain_semantics Other animation)]
+        pub unsafe fn animation() -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CoreAnimation_CATransition")]
@@ -484,6 +550,15 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `CAAnimation`
+    #[cfg(feature = "CoreAnimation_CATransition")]
+    unsafe impl CATransition {
+        #[method_id(@__retain_semantics Other animation)]
+        pub unsafe fn animation() -> Id<Self>;
+    }
+);
+
 extern_static!(kCATransitionFade: &'static CATransitionType);
 
 extern_static!(kCATransitionMoveIn: &'static CATransitionType);
@@ -541,81 +616,6 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setAnimations:)]
         pub unsafe fn setAnimations(&self, animations: Option<&NSArray<CAAnimation>>);
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `CAAnimation`
-    #[cfg(feature = "CoreAnimation_CAPropertyAnimation")]
-    unsafe impl CAPropertyAnimation {
-        #[method_id(@__retain_semantics Other animation)]
-        pub unsafe fn animation() -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `CAPropertyAnimation`
-    #[cfg(feature = "CoreAnimation_CABasicAnimation")]
-    unsafe impl CABasicAnimation {
-        #[cfg(feature = "Foundation_NSString")]
-        #[method_id(@__retain_semantics Other animationWithKeyPath:)]
-        pub unsafe fn animationWithKeyPath(path: Option<&NSString>) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `CAAnimation`
-    #[cfg(feature = "CoreAnimation_CABasicAnimation")]
-    unsafe impl CABasicAnimation {
-        #[method_id(@__retain_semantics Other animation)]
-        pub unsafe fn animation() -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `CAPropertyAnimation`
-    #[cfg(feature = "CoreAnimation_CAKeyframeAnimation")]
-    unsafe impl CAKeyframeAnimation {
-        #[cfg(feature = "Foundation_NSString")]
-        #[method_id(@__retain_semantics Other animationWithKeyPath:)]
-        pub unsafe fn animationWithKeyPath(path: Option<&NSString>) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `CAAnimation`
-    #[cfg(feature = "CoreAnimation_CAKeyframeAnimation")]
-    unsafe impl CAKeyframeAnimation {
-        #[method_id(@__retain_semantics Other animation)]
-        pub unsafe fn animation() -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `CAPropertyAnimation`
-    #[cfg(feature = "CoreAnimation_CASpringAnimation")]
-    unsafe impl CASpringAnimation {
-        #[cfg(feature = "Foundation_NSString")]
-        #[method_id(@__retain_semantics Other animationWithKeyPath:)]
-        pub unsafe fn animationWithKeyPath(path: Option<&NSString>) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `CAAnimation`
-    #[cfg(feature = "CoreAnimation_CASpringAnimation")]
-    unsafe impl CASpringAnimation {
-        #[method_id(@__retain_semantics Other animation)]
-        pub unsafe fn animation() -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `CAAnimation`
-    #[cfg(feature = "CoreAnimation_CATransition")]
-    unsafe impl CATransition {
-        #[method_id(@__retain_semantics Other animation)]
-        pub unsafe fn animation() -> Id<Self>;
     }
 );
 

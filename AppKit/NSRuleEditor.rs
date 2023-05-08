@@ -258,6 +258,15 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSControl`
+    #[cfg(feature = "AppKit_NSRuleEditor")]
+    unsafe impl NSRuleEditor {
+        #[method_id(@__retain_semantics Init initWithFrame:)]
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
+    }
+);
+
 extern_protocol!(
     pub unsafe trait NSRuleEditorDelegate: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSRuleEditor")]
@@ -309,12 +318,3 @@ extern_protocol!(
 );
 
 extern_static!(NSRuleEditorRowsDidChangeNotification: &'static NSNotificationName);
-
-extern_methods!(
-    /// Methods declared on superclass `NSControl`
-    #[cfg(feature = "AppKit_NSRuleEditor")]
-    unsafe impl NSRuleEditor {
-        #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
-    }
-);

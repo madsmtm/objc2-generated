@@ -144,6 +144,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `CALayer`
+    #[cfg(feature = "CoreAnimation_CAEmitterLayer")]
+    unsafe impl CAEmitterLayer {
+        #[method_id(@__retain_semantics Other layer)]
+        pub unsafe fn layer() -> Id<Self>;
+
+        #[method_id(@__retain_semantics Init initWithLayer:)]
+        pub unsafe fn initWithLayer(this: Option<Allocated<Self>>, layer: &Object) -> Id<Self>;
+    }
+);
+
 extern_static!(kCAEmitterLayerPoint: &'static CAEmitterLayerEmitterShape);
 
 extern_static!(kCAEmitterLayerLine: &'static CAEmitterLayerEmitterShape);
@@ -173,15 +185,3 @@ extern_static!(kCAEmitterLayerOldestLast: &'static CAEmitterLayerRenderMode);
 extern_static!(kCAEmitterLayerBackToFront: &'static CAEmitterLayerRenderMode);
 
 extern_static!(kCAEmitterLayerAdditive: &'static CAEmitterLayerRenderMode);
-
-extern_methods!(
-    /// Methods declared on superclass `CALayer`
-    #[cfg(feature = "CoreAnimation_CAEmitterLayer")]
-    unsafe impl CAEmitterLayer {
-        #[method_id(@__retain_semantics Other layer)]
-        pub unsafe fn layer() -> Id<Self>;
-
-        #[method_id(@__retain_semantics Init initWithLayer:)]
-        pub unsafe fn initWithLayer(this: Option<Allocated<Self>>, layer: &Object) -> Id<Self>;
-    }
-);

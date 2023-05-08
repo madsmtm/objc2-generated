@@ -248,6 +248,37 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclass `NSURLRequest`
+    #[cfg(feature = "Foundation_NSMutableURLRequest")]
+    unsafe impl NSMutableURLRequest {
+        #[cfg(feature = "Foundation_NSURL")]
+        #[method_id(@__retain_semantics Other requestWithURL:)]
+        pub unsafe fn requestWithURL(url: &NSURL) -> Id<Self>;
+
+        #[cfg(feature = "Foundation_NSURL")]
+        #[method_id(@__retain_semantics Other requestWithURL:cachePolicy:timeoutInterval:)]
+        pub unsafe fn requestWithURL_cachePolicy_timeoutInterval(
+            url: &NSURL,
+            cache_policy: NSURLRequestCachePolicy,
+            timeout_interval: NSTimeInterval,
+        ) -> Id<Self>;
+
+        #[cfg(feature = "Foundation_NSURL")]
+        #[method_id(@__retain_semantics Init initWithURL:)]
+        pub unsafe fn initWithURL(this: Option<Allocated<Self>>, url: &NSURL) -> Id<Self>;
+
+        #[cfg(feature = "Foundation_NSURL")]
+        #[method_id(@__retain_semantics Init initWithURL:cachePolicy:timeoutInterval:)]
+        pub unsafe fn initWithURL_cachePolicy_timeoutInterval(
+            this: Option<Allocated<Self>>,
+            url: &NSURL,
+            cache_policy: NSURLRequestCachePolicy,
+            timeout_interval: NSTimeInterval,
+        ) -> Id<Self>;
+    }
+);
+
+extern_methods!(
     /// NSHTTPURLRequest
     #[cfg(feature = "Foundation_NSURLRequest")]
     unsafe impl NSURLRequest {
@@ -341,36 +372,5 @@ extern_methods!(
 
         #[method(setHTTPShouldUsePipelining:)]
         pub unsafe fn setHTTPShouldUsePipelining(&mut self, http_should_use_pipelining: bool);
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSURLRequest`
-    #[cfg(feature = "Foundation_NSMutableURLRequest")]
-    unsafe impl NSMutableURLRequest {
-        #[cfg(feature = "Foundation_NSURL")]
-        #[method_id(@__retain_semantics Other requestWithURL:)]
-        pub unsafe fn requestWithURL(url: &NSURL) -> Id<Self>;
-
-        #[cfg(feature = "Foundation_NSURL")]
-        #[method_id(@__retain_semantics Other requestWithURL:cachePolicy:timeoutInterval:)]
-        pub unsafe fn requestWithURL_cachePolicy_timeoutInterval(
-            url: &NSURL,
-            cache_policy: NSURLRequestCachePolicy,
-            timeout_interval: NSTimeInterval,
-        ) -> Id<Self>;
-
-        #[cfg(feature = "Foundation_NSURL")]
-        #[method_id(@__retain_semantics Init initWithURL:)]
-        pub unsafe fn initWithURL(this: Option<Allocated<Self>>, url: &NSURL) -> Id<Self>;
-
-        #[cfg(feature = "Foundation_NSURL")]
-        #[method_id(@__retain_semantics Init initWithURL:cachePolicy:timeoutInterval:)]
-        pub unsafe fn initWithURL_cachePolicy_timeoutInterval(
-            this: Option<Allocated<Self>>,
-            url: &NSURL,
-            cache_policy: NSURLRequestCachePolicy,
-            timeout_interval: NSTimeInterval,
-        ) -> Id<Self>;
     }
 );

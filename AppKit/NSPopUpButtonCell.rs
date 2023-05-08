@@ -222,8 +222,6 @@ extern_methods!(
     }
 );
 
-extern_static!(NSPopUpButtonCellWillPopUpNotification: &'static NSNotificationName);
-
 extern_methods!(
     /// Methods declared on superclass `NSMenuItemCell`
     #[cfg(feature = "AppKit_NSPopUpButtonCell")]
@@ -246,3 +244,5 @@ extern_methods!(
         ) -> Id<Self>;
     }
 );
+
+extern_static!(NSPopUpButtonCellWillPopUpNotification: &'static NSNotificationName);

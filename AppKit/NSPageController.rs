@@ -99,6 +99,20 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSViewController`
+    #[cfg(feature = "AppKit_NSPageController")]
+    unsafe impl NSPageController {
+        #[cfg(feature = "Foundation_NSBundle")]
+        #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
+        pub unsafe fn initWithNibName_bundle(
+            this: Option<Allocated<Self>>,
+            nib_name_or_nil: Option<&NSNibName>,
+            nib_bundle_or_nil: Option<&NSBundle>,
+        ) -> Id<Self>;
+    }
+);
+
 extern_protocol!(
     pub unsafe trait NSPageControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSPageController")]
@@ -165,18 +179,4 @@ extern_protocol!(
     }
 
     unsafe impl ProtocolType for dyn NSPageControllerDelegate {}
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSViewController`
-    #[cfg(feature = "AppKit_NSPageController")]
-    unsafe impl NSPageController {
-        #[cfg(feature = "Foundation_NSBundle")]
-        #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
-        pub unsafe fn initWithNibName_bundle(
-            this: Option<Allocated<Self>>,
-            nib_name_or_nil: Option<&NSNibName>,
-            nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Id<Self>;
-    }
 );

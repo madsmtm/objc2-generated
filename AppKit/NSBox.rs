@@ -159,6 +159,15 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclass `NSView`
+    #[cfg(feature = "AppKit_NSBox")]
+    unsafe impl NSBox {
+        #[method_id(@__retain_semantics Init initWithFrame:)]
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
+    }
+);
+
+extern_methods!(
     /// NSDeprecated
     #[cfg(feature = "AppKit_NSBox")]
     unsafe impl NSBox {
@@ -180,12 +189,3 @@ extern_methods!(
 extern_static!(NSBoxSecondary: NSBoxType = 1);
 
 extern_static!(NSBoxOldStyle: NSBoxType = 3);
-
-extern_methods!(
-    /// Methods declared on superclass `NSView`
-    #[cfg(feature = "AppKit_NSBox")]
-    unsafe impl NSBox {
-        #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
-    }
-);

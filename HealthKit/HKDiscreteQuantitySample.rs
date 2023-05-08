@@ -53,20 +53,6 @@ extern_methods!(
     }
 );
 
-extern_static!(HKPredicateKeyPathMin: &'static NSString);
-
-extern_static!(HKPredicateKeyPathAverage: &'static NSString);
-
-extern_static!(HKPredicateKeyPathMax: &'static NSString);
-
-extern_static!(HKPredicateKeyPathMostRecent: &'static NSString);
-
-extern_static!(HKPredicateKeyPathMostRecentStartDate: &'static NSString);
-
-extern_static!(HKPredicateKeyPathMostRecentEndDate: &'static NSString);
-
-extern_static!(HKPredicateKeyPathMostRecentDuration: &'static NSString);
-
 extern_methods!(
     /// Methods declared on superclass `HKQuantitySample`
     #[cfg(feature = "HealthKit_HKDiscreteQuantitySample")]
@@ -119,3 +105,17 @@ extern_methods!(
         ) -> Id<Self>;
     }
 );
+
+extern_static!(HKPredicateKeyPathMin: &'static NSString);
+
+extern_static!(HKPredicateKeyPathAverage: &'static NSString);
+
+extern_static!(HKPredicateKeyPathMax: &'static NSString);
+
+extern_static!(HKPredicateKeyPathMostRecent: &'static NSString);
+
+extern_static!(HKPredicateKeyPathMostRecentStartDate: &'static NSString);
+
+extern_static!(HKPredicateKeyPathMostRecentEndDate: &'static NSString);
+
+extern_static!(HKPredicateKeyPathMostRecentDuration: &'static NSString);

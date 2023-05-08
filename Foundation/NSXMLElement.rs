@@ -165,6 +165,15 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclass `NSXMLNode`
+    #[cfg(feature = "Foundation_NSXMLElement")]
+    unsafe impl NSXMLElement {
+        #[method_id(@__retain_semantics Init initWithKind:)]
+        pub unsafe fn initWithKind(this: Option<Allocated<Self>>, kind: NSXMLNodeKind) -> Id<Self>;
+    }
+);
+
+extern_methods!(
     /// NSDeprecated
     #[cfg(feature = "Foundation_NSXMLElement")]
     unsafe impl NSXMLElement {
@@ -172,14 +181,5 @@ extern_methods!(
         #[deprecated]
         #[method(setAttributesAsDictionary:)]
         pub unsafe fn setAttributesAsDictionary(&self, attributes: &NSDictionary);
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSXMLNode`
-    #[cfg(feature = "Foundation_NSXMLElement")]
-    unsafe impl NSXMLElement {
-        #[method_id(@__retain_semantics Init initWithKind:)]
-        pub unsafe fn initWithKind(this: Option<Allocated<Self>>, kind: NSXMLNodeKind) -> Id<Self>;
     }
 );

@@ -81,6 +81,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `CALayer`
+    #[cfg(feature = "CoreAnimation_CATextLayer")]
+    unsafe impl CATextLayer {
+        #[method_id(@__retain_semantics Other layer)]
+        pub unsafe fn layer() -> Id<Self>;
+
+        #[method_id(@__retain_semantics Init initWithLayer:)]
+        pub unsafe fn initWithLayer(this: Option<Allocated<Self>>, layer: &Object) -> Id<Self>;
+    }
+);
+
 extern_static!(kCATruncationNone: &'static CATextLayerTruncationMode);
 
 extern_static!(kCATruncationStart: &'static CATextLayerTruncationMode);
@@ -98,15 +110,3 @@ extern_static!(kCAAlignmentRight: &'static CATextLayerAlignmentMode);
 extern_static!(kCAAlignmentCenter: &'static CATextLayerAlignmentMode);
 
 extern_static!(kCAAlignmentJustified: &'static CATextLayerAlignmentMode);
-
-extern_methods!(
-    /// Methods declared on superclass `CALayer`
-    #[cfg(feature = "CoreAnimation_CATextLayer")]
-    unsafe impl CATextLayer {
-        #[method_id(@__retain_semantics Other layer)]
-        pub unsafe fn layer() -> Id<Self>;
-
-        #[method_id(@__retain_semantics Init initWithLayer:)]
-        pub unsafe fn initWithLayer(this: Option<Allocated<Self>>, layer: &Object) -> Id<Self>;
-    }
-);

@@ -37,8 +37,6 @@ extern_methods!(
     }
 );
 
-extern_static!(HKPredicateKeyPathSum: &'static NSString);
-
 extern_methods!(
     /// Methods declared on superclass `HKQuantitySample`
     #[cfg(feature = "HealthKit_HKCumulativeQuantitySample")]
@@ -91,3 +89,5 @@ extern_methods!(
         ) -> Id<Self>;
     }
 );
+
+extern_static!(HKPredicateKeyPathSum: &'static NSString);

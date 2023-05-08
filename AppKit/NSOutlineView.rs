@@ -259,6 +259,15 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSTableView`
+    #[cfg(feature = "AppKit_NSOutlineView")]
+    unsafe impl NSOutlineView {
+        #[method_id(@__retain_semantics Init initWithFrame:)]
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
+    }
+);
+
 extern_protocol!(
     pub unsafe trait NSOutlineViewDataSource: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSOutlineView")]
@@ -813,12 +822,3 @@ extern_static!(NSOutlineViewItemDidExpandNotification: &'static NSNotificationNa
 extern_static!(NSOutlineViewItemWillCollapseNotification: &'static NSNotificationName);
 
 extern_static!(NSOutlineViewItemDidCollapseNotification: &'static NSNotificationName);
-
-extern_methods!(
-    /// Methods declared on superclass `NSTableView`
-    #[cfg(feature = "AppKit_NSOutlineView")]
-    unsafe impl NSOutlineView {
-        #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
-    }
-);

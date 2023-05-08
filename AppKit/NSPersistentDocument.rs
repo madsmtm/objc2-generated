@@ -111,25 +111,6 @@ extern_methods!(
 );
 
 extern_methods!(
-    /// NSDeprecated
-    #[cfg(feature = "AppKit_NSPersistentDocument")]
-    unsafe impl NSPersistentDocument {
-        #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSURL"
-        ))]
-        #[deprecated]
-        #[method(configurePersistentStoreCoordinatorForURL:ofType:error:_)]
-        pub unsafe fn configurePersistentStoreCoordinatorForURL_ofType_error(
-            &self,
-            url: Option<&NSURL>,
-            file_type: Option<&NSString>,
-        ) -> Result<(), Id<NSError>>;
-    }
-);
-
-extern_methods!(
     /// Methods declared on superclass `NSDocument`
     #[cfg(feature = "AppKit_NSPersistentDocument")]
     unsafe impl NSPersistentDocument {
@@ -164,6 +145,25 @@ extern_methods!(
             contents_url: &NSURL,
             type_name: &NSString,
         ) -> Result<Id<Self>, Id<NSError>>;
+    }
+);
+
+extern_methods!(
+    /// NSDeprecated
+    #[cfg(feature = "AppKit_NSPersistentDocument")]
+    unsafe impl NSPersistentDocument {
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSURL"
+        ))]
+        #[deprecated]
+        #[method(configurePersistentStoreCoordinatorForURL:ofType:error:_)]
+        pub unsafe fn configurePersistentStoreCoordinatorForURL_ofType_error(
+            &self,
+            url: Option<&NSURL>,
+            file_type: Option<&NSString>,
+        ) -> Result<(), Id<NSError>>;
     }
 );
 

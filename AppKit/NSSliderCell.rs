@@ -111,6 +111,23 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclass `NSCell`
+    #[cfg(feature = "AppKit_NSSliderCell")]
+    unsafe impl NSSliderCell {
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Init initTextCell:)]
+        pub unsafe fn initTextCell(this: Option<Allocated<Self>>, string: &NSString) -> Id<Self>;
+
+        #[cfg(feature = "AppKit_NSImage")]
+        #[method_id(@__retain_semantics Init initImageCell:)]
+        pub unsafe fn initImageCell(
+            this: Option<Allocated<Self>>,
+            image: Option<&NSImage>,
+        ) -> Id<Self>;
+    }
+);
+
+extern_methods!(
     /// NSSliderCellVerticalGetter
     #[cfg(feature = "AppKit_NSSliderCell")]
     unsafe impl NSSliderCell {}
@@ -225,20 +242,3 @@ extern_static!(NSTickMarkRight: NSTickMarkPosition = NSTickMarkPositionTrailing)
 extern_static!(NSLinearSlider: NSSliderType = NSSliderTypeLinear);
 
 extern_static!(NSCircularSlider: NSSliderType = NSSliderTypeCircular);
-
-extern_methods!(
-    /// Methods declared on superclass `NSCell`
-    #[cfg(feature = "AppKit_NSSliderCell")]
-    unsafe impl NSSliderCell {
-        #[cfg(feature = "Foundation_NSString")]
-        #[method_id(@__retain_semantics Init initTextCell:)]
-        pub unsafe fn initTextCell(this: Option<Allocated<Self>>, string: &NSString) -> Id<Self>;
-
-        #[cfg(feature = "AppKit_NSImage")]
-        #[method_id(@__retain_semantics Init initImageCell:)]
-        pub unsafe fn initImageCell(
-            this: Option<Allocated<Self>>,
-            image: Option<&NSImage>,
-        ) -> Id<Self>;
-    }
-);

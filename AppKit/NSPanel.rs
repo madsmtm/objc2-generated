@@ -68,25 +68,6 @@ extern_methods!(
     }
 );
 
-extern_fn!(
-    #[deprecated = "Use NSAlert instead"]
-    pub unsafe fn NSReleaseAlertPanel(panel: Option<&Object>);
-);
-
-extern_enum!(
-    #[underlying(c_int)]
-    pub enum __anonymous__ {
-        #[deprecated = "Use NSAlertFirstButtonReturn with an NSAlert presentation instead"]
-        NSAlertDefaultReturn = 1,
-        #[deprecated = "Use NSAlertFirstButtonReturn and other NSModalResponses with an NSAlert presentation instead"]
-        NSAlertAlternateReturn = 0,
-        #[deprecated = "Use NSAlertFirstButtonReturn and other NSModalResponses with an NSAlert presentation instead"]
-        NSAlertOtherReturn = -1,
-        #[deprecated = "Use NSAlertFirstButtonReturn and other NSModalResponses with an NSAlert presentation instead"]
-        NSAlertErrorReturn = -2,
-    }
-);
-
 extern_methods!(
     /// Methods declared on superclass `NSWindow`
     #[cfg(feature = "AppKit_NSPanel")]
@@ -116,5 +97,24 @@ extern_methods!(
         pub unsafe fn windowWithContentViewController(
             content_view_controller: &NSViewController,
         ) -> Id<Self>;
+    }
+);
+
+extern_fn!(
+    #[deprecated = "Use NSAlert instead"]
+    pub unsafe fn NSReleaseAlertPanel(panel: Option<&Object>);
+);
+
+extern_enum!(
+    #[underlying(c_int)]
+    pub enum __anonymous__ {
+        #[deprecated = "Use NSAlertFirstButtonReturn with an NSAlert presentation instead"]
+        NSAlertDefaultReturn = 1,
+        #[deprecated = "Use NSAlertFirstButtonReturn and other NSModalResponses with an NSAlert presentation instead"]
+        NSAlertAlternateReturn = 0,
+        #[deprecated = "Use NSAlertFirstButtonReturn and other NSModalResponses with an NSAlert presentation instead"]
+        NSAlertOtherReturn = -1,
+        #[deprecated = "Use NSAlertFirstButtonReturn and other NSModalResponses with an NSAlert presentation instead"]
+        NSAlertErrorReturn = -2,
     }
 );

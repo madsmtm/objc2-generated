@@ -129,6 +129,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSTouchBarItem`
+    #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
+    unsafe impl<CandidateType: Message> NSCandidateListTouchBarItem<CandidateType> {
+        #[method_id(@__retain_semantics Init initWithIdentifier:)]
+        pub unsafe fn initWithIdentifier(
+            this: Option<Allocated<Self>>,
+            identifier: &NSTouchBarItemIdentifier,
+        ) -> Id<Self>;
+    }
+);
+
 extern_protocol!(
     pub unsafe trait NSCandidateListTouchBarItemDelegate: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
@@ -183,15 +195,3 @@ extern_methods!(
 );
 
 extern_static!(NSTouchBarItemIdentifierCandidateList: &'static NSTouchBarItemIdentifier);
-
-extern_methods!(
-    /// Methods declared on superclass `NSTouchBarItem`
-    #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
-    unsafe impl<CandidateType: Message> NSCandidateListTouchBarItem<CandidateType> {
-        #[method_id(@__retain_semantics Init initWithIdentifier:)]
-        pub unsafe fn initWithIdentifier(
-            this: Option<Allocated<Self>>,
-            identifier: &NSTouchBarItemIdentifier,
-        ) -> Id<Self>;
-    }
-);

@@ -415,6 +415,15 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSView`
+    #[cfg(feature = "MapKit_MKMapView")]
+    unsafe impl MKMapView {
+        #[method_id(@__retain_semantics Init initWithFrame:)]
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
+    }
+);
+
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MKOverlayLevel {
@@ -709,13 +718,4 @@ extern_protocol!(
     }
 
     unsafe impl ProtocolType for dyn MKMapViewDelegate {}
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSView`
-    #[cfg(feature = "MapKit_MKMapView")]
-    unsafe impl MKMapView {
-        #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
-    }
 );

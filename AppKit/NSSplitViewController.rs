@@ -148,15 +148,6 @@ extern_methods!(
 );
 
 extern_methods!(
-    /// NSSplitViewControllerToggleSidebarAction
-    #[cfg(feature = "AppKit_NSSplitViewController")]
-    unsafe impl NSSplitViewController {
-        #[method(toggleSidebar:)]
-        pub unsafe fn toggleSidebar(&self, sender: Option<&Object>);
-    }
-);
-
-extern_methods!(
     /// Methods declared on superclass `NSViewController`
     #[cfg(feature = "AppKit_NSSplitViewController")]
     unsafe impl NSSplitViewController {
@@ -167,5 +158,14 @@ extern_methods!(
             nib_name_or_nil: Option<&NSNibName>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// NSSplitViewControllerToggleSidebarAction
+    #[cfg(feature = "AppKit_NSSplitViewController")]
+    unsafe impl NSSplitViewController {
+        #[method(toggleSidebar:)]
+        pub unsafe fn toggleSidebar(&self, sender: Option<&Object>);
     }
 );

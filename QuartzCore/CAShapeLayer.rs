@@ -102,6 +102,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `CALayer`
+    #[cfg(feature = "CoreAnimation_CAShapeLayer")]
+    unsafe impl CAShapeLayer {
+        #[method_id(@__retain_semantics Other layer)]
+        pub unsafe fn layer() -> Id<Self>;
+
+        #[method_id(@__retain_semantics Init initWithLayer:)]
+        pub unsafe fn initWithLayer(this: Option<Allocated<Self>>, layer: &Object) -> Id<Self>;
+    }
+);
+
 extern_static!(kCAFillRuleNonZero: &'static CAShapeLayerFillRule);
 
 extern_static!(kCAFillRuleEvenOdd: &'static CAShapeLayerFillRule);
@@ -117,15 +129,3 @@ extern_static!(kCALineCapButt: &'static CAShapeLayerLineCap);
 extern_static!(kCALineCapRound: &'static CAShapeLayerLineCap);
 
 extern_static!(kCALineCapSquare: &'static CAShapeLayerLineCap);
-
-extern_methods!(
-    /// Methods declared on superclass `CALayer`
-    #[cfg(feature = "CoreAnimation_CAShapeLayer")]
-    unsafe impl CAShapeLayer {
-        #[method_id(@__retain_semantics Other layer)]
-        pub unsafe fn layer() -> Id<Self>;
-
-        #[method_id(@__retain_semantics Init initWithLayer:)]
-        pub unsafe fn initWithLayer(this: Option<Allocated<Self>>, layer: &Object) -> Id<Self>;
-    }
-);

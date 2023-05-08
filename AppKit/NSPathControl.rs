@@ -144,6 +144,15 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSControl`
+    #[cfg(feature = "AppKit_NSPathControl")]
+    unsafe impl NSPathControl {
+        #[method_id(@__retain_semantics Init initWithFrame:)]
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
+    }
+);
+
 extern_protocol!(
     pub unsafe trait NSPathControlDelegate: NSObjectProtocol {
         #[cfg(all(
@@ -228,14 +237,5 @@ extern_methods!(
         #[deprecated = "Use the pathItems property instead"]
         #[method(setPathComponentCells:)]
         pub unsafe fn setPathComponentCells(&self, cells: &NSArray<NSPathComponentCell>);
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSControl`
-    #[cfg(feature = "AppKit_NSPathControl")]
-    unsafe impl NSPathControl {
-        #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

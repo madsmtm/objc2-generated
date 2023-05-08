@@ -546,6 +546,15 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclass `NSView`
+    #[cfg(feature = "WebKit_WKWebView")]
+    unsafe impl WKWebView {
+        #[method_id(@__retain_semantics Init initWithFrame:)]
+        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
+    }
+);
+
+extern_methods!(
     /// WKIBActions
     #[cfg(feature = "WebKit_WKWebView")]
     unsafe impl WKWebView {
@@ -586,14 +595,5 @@ extern_methods!(
         #[deprecated]
         #[method_id(@__retain_semantics Other certificateChain)]
         pub unsafe fn certificateChain(&self) -> Id<NSArray>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSView`
-    #[cfg(feature = "WebKit_WKWebView")]
-    unsafe impl WKWebView {
-        #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
     }
 );

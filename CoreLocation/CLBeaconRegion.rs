@@ -141,6 +141,22 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `CLRegion`
+    #[cfg(feature = "CoreLocation_CLBeaconRegion")]
+    unsafe impl CLBeaconRegion {
+        #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Please see CLCircularRegion"]
+        #[method_id(@__retain_semantics Init initCircularRegionWithCenter:radius:identifier:)]
+        pub unsafe fn initCircularRegionWithCenter_radius_identifier(
+            this: Option<Allocated<Self>>,
+            center: CLLocationCoordinate2D,
+            radius: CLLocationDistance,
+            identifier: &NSString,
+        ) -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CoreLocation_CLBeacon")]
@@ -197,21 +213,5 @@ extern_methods!(
 
         #[method(rssi)]
         pub unsafe fn rssi(&self) -> NSInteger;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `CLRegion`
-    #[cfg(feature = "CoreLocation_CLBeaconRegion")]
-    unsafe impl CLBeaconRegion {
-        #[cfg(feature = "Foundation_NSString")]
-        #[deprecated = "Please see CLCircularRegion"]
-        #[method_id(@__retain_semantics Init initCircularRegionWithCenter:radius:identifier:)]
-        pub unsafe fn initCircularRegionWithCenter_radius_identifier(
-            this: Option<Allocated<Self>>,
-            center: CLLocationCoordinate2D,
-            radius: CLLocationDistance,
-            identifier: &NSString,
-        ) -> Id<Self>;
     }
 );
