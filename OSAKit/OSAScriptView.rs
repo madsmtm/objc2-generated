@@ -155,14 +155,3 @@ extern_methods!(
         pub unsafe fn textViewUsingTextLayoutManager(using_text_layout_manager: bool) -> Id<Self>;
     }
 );
-
-extern_methods!(
-    /// Methods declared on superclass `NSTextView`
-    ///
-    /// NSTextView_Factory
-    #[cfg(feature = "OSAKit_OSAScriptView")]
-    unsafe impl OSAScriptView {
-        #[method_id(@__retain_semantics Other fieldEditor)]
-        pub unsafe fn fieldEditor() -> Id<Self>;
-    }
-);

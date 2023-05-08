@@ -303,6 +303,60 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSDictionary`
+    ///
+    /// NSDictionaryCreation
+    #[cfg(feature = "Foundation_NSMutableDictionary")]
+    unsafe impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
+        #[method_id(@__retain_semantics Other dictionary)]
+        pub unsafe fn dictionary() -> Id<Self>;
+
+        #[method_id(@__retain_semantics Other dictionaryWithObject:forKey:)]
+        pub unsafe fn dictionaryWithObject_forKey(object: &ObjectType, key: &Object) -> Id<Self>;
+
+        #[method_id(@__retain_semantics Other dictionaryWithObjects:forKeys:count:)]
+        pub unsafe fn dictionaryWithObjects_forKeys_count(
+            objects: *mut NonNull<ObjectType>,
+            keys: *mut NonNull<Object>,
+            cnt: NSUInteger,
+        ) -> Id<Self>;
+
+        #[method_id(@__retain_semantics Other dictionaryWithDictionary:)]
+        pub unsafe fn dictionaryWithDictionary(
+            dict: &NSDictionary<KeyType, ObjectType>,
+        ) -> Id<Self>;
+
+        #[cfg(feature = "Foundation_NSArray")]
+        #[method_id(@__retain_semantics Other dictionaryWithObjects:forKeys:)]
+        pub unsafe fn dictionaryWithObjects_forKeys(
+            objects: &NSArray<ObjectType>,
+            keys: &NSArray<Object>,
+        ) -> Id<Self>;
+
+        #[method_id(@__retain_semantics Init initWithDictionary:)]
+        pub unsafe fn initWithDictionary(
+            this: Option<Allocated<Self>>,
+            other_dictionary: &NSDictionary<KeyType, ObjectType>,
+        ) -> Id<Self>;
+
+        #[method_id(@__retain_semantics Init initWithDictionary:copyItems:)]
+        pub unsafe fn initWithDictionary_copyItems(
+            this: Option<Allocated<Self>>,
+            other_dictionary: &NSDictionary<KeyType, ObjectType>,
+            flag: bool,
+        ) -> Id<Self>;
+
+        #[cfg(feature = "Foundation_NSArray")]
+        #[method_id(@__retain_semantics Init initWithObjects:forKeys:)]
+        pub unsafe fn initWithObjects_forKeys(
+            this: Option<Allocated<Self>>,
+            objects: &NSArray<ObjectType>,
+            keys: &NSArray<Object>,
+        ) -> Id<Self>;
+    }
+);
+
 #[cfg(feature = "Foundation_NSMutableDictionary")]
 unsafe impl<KeyType: Message + NSCoding, ObjectType: Message + NSCoding> NSCoding
     for NSMutableDictionary<KeyType, ObjectType>
@@ -467,59 +521,5 @@ extern_methods!(
         pub unsafe fn dictionaryWithSharedKeySet(
             keyset: &Object,
         ) -> Id<NSMutableDictionary<KeyType, ObjectType>>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSDictionary`
-    ///
-    /// NSDictionaryCreation
-    #[cfg(feature = "Foundation_NSMutableDictionary")]
-    unsafe impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
-        #[method_id(@__retain_semantics Other dictionary)]
-        pub unsafe fn dictionary() -> Id<Self>;
-
-        #[method_id(@__retain_semantics Other dictionaryWithObject:forKey:)]
-        pub unsafe fn dictionaryWithObject_forKey(object: &ObjectType, key: &Object) -> Id<Self>;
-
-        #[method_id(@__retain_semantics Other dictionaryWithObjects:forKeys:count:)]
-        pub unsafe fn dictionaryWithObjects_forKeys_count(
-            objects: *mut NonNull<ObjectType>,
-            keys: *mut NonNull<Object>,
-            cnt: NSUInteger,
-        ) -> Id<Self>;
-
-        #[method_id(@__retain_semantics Other dictionaryWithDictionary:)]
-        pub unsafe fn dictionaryWithDictionary(
-            dict: &NSDictionary<KeyType, ObjectType>,
-        ) -> Id<Self>;
-
-        #[cfg(feature = "Foundation_NSArray")]
-        #[method_id(@__retain_semantics Other dictionaryWithObjects:forKeys:)]
-        pub unsafe fn dictionaryWithObjects_forKeys(
-            objects: &NSArray<ObjectType>,
-            keys: &NSArray<Object>,
-        ) -> Id<Self>;
-
-        #[method_id(@__retain_semantics Init initWithDictionary:)]
-        pub unsafe fn initWithDictionary(
-            this: Option<Allocated<Self>>,
-            other_dictionary: &NSDictionary<KeyType, ObjectType>,
-        ) -> Id<Self>;
-
-        #[method_id(@__retain_semantics Init initWithDictionary:copyItems:)]
-        pub unsafe fn initWithDictionary_copyItems(
-            this: Option<Allocated<Self>>,
-            other_dictionary: &NSDictionary<KeyType, ObjectType>,
-            flag: bool,
-        ) -> Id<Self>;
-
-        #[cfg(feature = "Foundation_NSArray")]
-        #[method_id(@__retain_semantics Init initWithObjects:forKeys:)]
-        pub unsafe fn initWithObjects_forKeys(
-            this: Option<Allocated<Self>>,
-            objects: &NSArray<ObjectType>,
-            keys: &NSArray<Object>,
-        ) -> Id<Self>;
     }
 );

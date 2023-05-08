@@ -166,29 +166,3 @@ extern_methods!(
         ) -> Result<(), Id<NSError>>;
     }
 );
-
-extern_methods!(
-    /// Methods declared on superclass `NSDocument`
-    ///
-    /// NSDeprecated
-    #[cfg(feature = "AppKit_NSPersistentDocument")]
-    unsafe impl NSPersistentDocument {
-        #[cfg(feature = "Foundation_NSString")]
-        #[deprecated]
-        #[method_id(@__retain_semantics Init initWithContentsOfFile:ofType:)]
-        pub unsafe fn initWithContentsOfFile_ofType(
-            this: Option<Allocated<Self>>,
-            absolute_path: &NSString,
-            type_name: &NSString,
-        ) -> Option<Id<Self>>;
-
-        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
-        #[deprecated]
-        #[method_id(@__retain_semantics Init initWithContentsOfURL:ofType:)]
-        pub unsafe fn initWithContentsOfURL_ofType(
-            this: Option<Allocated<Self>>,
-            url: &NSURL,
-            type_name: &NSString,
-        ) -> Option<Id<Self>>;
-    }
-);

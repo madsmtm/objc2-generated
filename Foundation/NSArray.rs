@@ -340,6 +340,42 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclass `NSArray`
+    ///
+    /// NSArrayCreation
+    #[cfg(feature = "Foundation_NSMutableArray")]
+    unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
+        #[method_id(@__retain_semantics Other array)]
+        pub unsafe fn array() -> Id<Self>;
+
+        #[method_id(@__retain_semantics Other arrayWithObject:)]
+        pub unsafe fn arrayWithObject(an_object: &ObjectType) -> Id<Self>;
+
+        #[method_id(@__retain_semantics Other arrayWithObjects:count:)]
+        pub unsafe fn arrayWithObjects_count(
+            objects: NonNull<NonNull<ObjectType>>,
+            cnt: NSUInteger,
+        ) -> Id<Self>;
+
+        #[method_id(@__retain_semantics Other arrayWithArray:)]
+        pub unsafe fn arrayWithArray(array: &NSArray<ObjectType>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics Init initWithArray:)]
+        pub unsafe fn initWithArray(
+            this: Option<Allocated<Self>>,
+            array: &NSArray<ObjectType>,
+        ) -> Id<Self>;
+
+        #[method_id(@__retain_semantics Init initWithArray:copyItems:)]
+        pub unsafe fn initWithArray_copyItems(
+            this: Option<Allocated<Self>>,
+            array: &NSArray<ObjectType>,
+            flag: bool,
+        ) -> Id<Self>;
+    }
+);
+
+extern_methods!(
     /// NSArrayDiffing
     #[cfg(feature = "Foundation_NSArray")]
     unsafe impl<ObjectType: Message> NSArray<ObjectType> {
@@ -660,41 +696,5 @@ extern_methods!(
             &mut self,
             difference: &NSOrderedCollectionDifference<ObjectType>,
         );
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSArray`
-    ///
-    /// NSArrayCreation
-    #[cfg(feature = "Foundation_NSMutableArray")]
-    unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
-        #[method_id(@__retain_semantics Other array)]
-        pub unsafe fn array() -> Id<Self>;
-
-        #[method_id(@__retain_semantics Other arrayWithObject:)]
-        pub unsafe fn arrayWithObject(an_object: &ObjectType) -> Id<Self>;
-
-        #[method_id(@__retain_semantics Other arrayWithObjects:count:)]
-        pub unsafe fn arrayWithObjects_count(
-            objects: NonNull<NonNull<ObjectType>>,
-            cnt: NSUInteger,
-        ) -> Id<Self>;
-
-        #[method_id(@__retain_semantics Other arrayWithArray:)]
-        pub unsafe fn arrayWithArray(array: &NSArray<ObjectType>) -> Id<Self>;
-
-        #[method_id(@__retain_semantics Init initWithArray:)]
-        pub unsafe fn initWithArray(
-            this: Option<Allocated<Self>>,
-            array: &NSArray<ObjectType>,
-        ) -> Id<Self>;
-
-        #[method_id(@__retain_semantics Init initWithArray:copyItems:)]
-        pub unsafe fn initWithArray_copyItems(
-            this: Option<Allocated<Self>>,
-            array: &NSArray<ObjectType>,
-            flag: bool,
-        ) -> Id<Self>;
     }
 );

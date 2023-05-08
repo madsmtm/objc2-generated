@@ -183,6 +183,53 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSSet`
+    ///
+    /// NSSetCreation
+    #[cfg(feature = "Foundation_NSMutableSet")]
+    unsafe impl<ObjectType: Message> NSMutableSet<ObjectType> {
+        #[method_id(@__retain_semantics Other set)]
+        pub unsafe fn set() -> Id<Self>;
+
+        #[method_id(@__retain_semantics Other setWithObject:)]
+        pub unsafe fn setWithObject(object: &ObjectType) -> Id<Self>;
+
+        #[method_id(@__retain_semantics Other setWithObjects:count:)]
+        pub unsafe fn setWithObjects_count(
+            objects: NonNull<NonNull<ObjectType>>,
+            cnt: NSUInteger,
+        ) -> Id<Self>;
+
+        #[method_id(@__retain_semantics Other setWithSet:)]
+        pub unsafe fn setWithSet(set: &NSSet<ObjectType>) -> Id<Self>;
+
+        #[cfg(feature = "Foundation_NSArray")]
+        #[method_id(@__retain_semantics Other setWithArray:)]
+        pub unsafe fn setWithArray(array: &NSArray<ObjectType>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics Init initWithSet:)]
+        pub unsafe fn initWithSet(
+            this: Option<Allocated<Self>>,
+            set: &NSSet<ObjectType>,
+        ) -> Id<Self>;
+
+        #[method_id(@__retain_semantics Init initWithSet:copyItems:)]
+        pub unsafe fn initWithSet_copyItems(
+            this: Option<Allocated<Self>>,
+            set: &NSSet<ObjectType>,
+            flag: bool,
+        ) -> Id<Self>;
+
+        #[cfg(feature = "Foundation_NSArray")]
+        #[method_id(@__retain_semantics Init initWithArray:)]
+        pub unsafe fn initWithArray(
+            this: Option<Allocated<Self>>,
+            array: &NSArray<ObjectType>,
+        ) -> Id<Self>;
+    }
+);
+
 #[cfg(feature = "Foundation_NSMutableSet")]
 unsafe impl<ObjectType: Message + NSCoding> NSCoding for NSMutableSet<ObjectType> {}
 
@@ -343,134 +390,6 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             objects: *mut NonNull<ObjectType>,
             cnt: NSUInteger,
-        ) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSSet`
-    ///
-    /// NSCollectionViewAdditions
-    #[cfg(feature = "Foundation_NSMutableSet")]
-    unsafe impl<ObjectType: Message> NSMutableSet<ObjectType> {
-        #[cfg(feature = "Foundation_NSIndexPath")]
-        #[method_id(@__retain_semantics Other setWithCollectionViewIndexPath:)]
-        pub unsafe fn setWithCollectionViewIndexPath(index_path: &NSIndexPath) -> Id<Self>;
-
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSIndexPath"))]
-        #[method_id(@__retain_semantics Other setWithCollectionViewIndexPaths:)]
-        pub unsafe fn setWithCollectionViewIndexPaths(
-            index_paths: &NSArray<NSIndexPath>,
-        ) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSSet`
-    ///
-    /// NSSetCreation
-    #[cfg(feature = "Foundation_NSMutableSet")]
-    unsafe impl<ObjectType: Message> NSMutableSet<ObjectType> {
-        #[method_id(@__retain_semantics Other set)]
-        pub unsafe fn set() -> Id<Self>;
-
-        #[method_id(@__retain_semantics Other setWithObject:)]
-        pub unsafe fn setWithObject(object: &ObjectType) -> Id<Self>;
-
-        #[method_id(@__retain_semantics Other setWithObjects:count:)]
-        pub unsafe fn setWithObjects_count(
-            objects: NonNull<NonNull<ObjectType>>,
-            cnt: NSUInteger,
-        ) -> Id<Self>;
-
-        #[method_id(@__retain_semantics Other setWithSet:)]
-        pub unsafe fn setWithSet(set: &NSSet<ObjectType>) -> Id<Self>;
-
-        #[cfg(feature = "Foundation_NSArray")]
-        #[method_id(@__retain_semantics Other setWithArray:)]
-        pub unsafe fn setWithArray(array: &NSArray<ObjectType>) -> Id<Self>;
-
-        #[method_id(@__retain_semantics Init initWithSet:)]
-        pub unsafe fn initWithSet(
-            this: Option<Allocated<Self>>,
-            set: &NSSet<ObjectType>,
-        ) -> Id<Self>;
-
-        #[method_id(@__retain_semantics Init initWithSet:copyItems:)]
-        pub unsafe fn initWithSet_copyItems(
-            this: Option<Allocated<Self>>,
-            set: &NSSet<ObjectType>,
-            flag: bool,
-        ) -> Id<Self>;
-
-        #[cfg(feature = "Foundation_NSArray")]
-        #[method_id(@__retain_semantics Init initWithArray:)]
-        pub unsafe fn initWithArray(
-            this: Option<Allocated<Self>>,
-            array: &NSArray<ObjectType>,
-        ) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSMutableSet`
-    ///
-    /// NSMutableSetCreation
-    #[cfg(feature = "Foundation_NSCountedSet")]
-    unsafe impl<ObjectType: Message> NSCountedSet<ObjectType> {
-        #[method_id(@__retain_semantics Other setWithCapacity:)]
-        pub unsafe fn setWithCapacity(num_items: NSUInteger) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSSet`
-    ///
-    /// NSCollectionViewAdditions
-    #[cfg(feature = "Foundation_NSCountedSet")]
-    unsafe impl<ObjectType: Message> NSCountedSet<ObjectType> {
-        #[cfg(feature = "Foundation_NSIndexPath")]
-        #[method_id(@__retain_semantics Other setWithCollectionViewIndexPath:)]
-        pub unsafe fn setWithCollectionViewIndexPath(index_path: &NSIndexPath) -> Id<Self>;
-
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSIndexPath"))]
-        #[method_id(@__retain_semantics Other setWithCollectionViewIndexPaths:)]
-        pub unsafe fn setWithCollectionViewIndexPaths(
-            index_paths: &NSArray<NSIndexPath>,
-        ) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSSet`
-    ///
-    /// NSSetCreation
-    #[cfg(feature = "Foundation_NSCountedSet")]
-    unsafe impl<ObjectType: Message> NSCountedSet<ObjectType> {
-        #[method_id(@__retain_semantics Other set)]
-        pub unsafe fn set() -> Id<Self>;
-
-        #[method_id(@__retain_semantics Other setWithObject:)]
-        pub unsafe fn setWithObject(object: &ObjectType) -> Id<Self>;
-
-        #[method_id(@__retain_semantics Other setWithObjects:count:)]
-        pub unsafe fn setWithObjects_count(
-            objects: NonNull<NonNull<ObjectType>>,
-            cnt: NSUInteger,
-        ) -> Id<Self>;
-
-        #[method_id(@__retain_semantics Other setWithSet:)]
-        pub unsafe fn setWithSet(set: &NSSet<ObjectType>) -> Id<Self>;
-
-        #[cfg(feature = "Foundation_NSArray")]
-        #[method_id(@__retain_semantics Other setWithArray:)]
-        pub unsafe fn setWithArray(array: &NSArray<ObjectType>) -> Id<Self>;
-
-        #[method_id(@__retain_semantics Init initWithSet:copyItems:)]
-        pub unsafe fn initWithSet_copyItems(
-            this: Option<Allocated<Self>>,
-            set: &NSSet<ObjectType>,
-            flag: bool,
         ) -> Id<Self>;
     }
 );

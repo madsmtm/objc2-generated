@@ -126,29 +126,3 @@ extern_methods!(
         ) -> Id<Self>;
     }
 );
-
-extern_methods!(
-    /// Methods declared on superclass `NSTextField`
-    ///
-    /// NSTextFieldConvenience
-    #[cfg(feature = "AppKit_NSSecureTextField")]
-    unsafe impl NSSecureTextField {
-        #[cfg(feature = "Foundation_NSString")]
-        #[method_id(@__retain_semantics Other labelWithString:)]
-        pub unsafe fn labelWithString(string_value: &NSString) -> Id<Self>;
-
-        #[cfg(feature = "Foundation_NSString")]
-        #[method_id(@__retain_semantics Other wrappingLabelWithString:)]
-        pub unsafe fn wrappingLabelWithString(string_value: &NSString) -> Id<Self>;
-
-        #[cfg(feature = "Foundation_NSAttributedString")]
-        #[method_id(@__retain_semantics Other labelWithAttributedString:)]
-        pub unsafe fn labelWithAttributedString(
-            attributed_string_value: &NSAttributedString,
-        ) -> Id<Self>;
-
-        #[cfg(feature = "Foundation_NSString")]
-        #[method_id(@__retain_semantics Other textFieldWithString:)]
-        pub unsafe fn textFieldWithString(string_value: &NSString) -> Id<Self>;
-    }
-);

@@ -99,39 +99,3 @@ extern_protocol!(
 
     unsafe impl ProtocolType for dyn GKLeaderboardViewControllerDelegate {}
 );
-
-extern_methods!(
-    /// Methods declared on superclass `GKGameCenterViewController`
-    #[cfg(feature = "GameKit_GKLeaderboardViewController")]
-    unsafe impl GKLeaderboardViewController {
-        #[method_id(@__retain_semantics Init initWithState:)]
-        pub unsafe fn initWithState(
-            this: Option<Allocated<Self>>,
-            state: GKGameCenterViewControllerState,
-        ) -> Id<Self>;
-
-        #[cfg(feature = "Foundation_NSString")]
-        #[method_id(@__retain_semantics Init initWithLeaderboardID:playerScope:timeScope:)]
-        pub unsafe fn initWithLeaderboardID_playerScope_timeScope(
-            this: Option<Allocated<Self>>,
-            leaderboard_id: &NSString,
-            player_scope: GKLeaderboardPlayerScope,
-            time_scope: GKLeaderboardTimeScope,
-        ) -> Id<Self>;
-
-        #[cfg(feature = "GameKit_GKLeaderboard")]
-        #[method_id(@__retain_semantics Init initWithLeaderboard:playerScope:)]
-        pub unsafe fn initWithLeaderboard_playerScope(
-            this: Option<Allocated<Self>>,
-            leaderboard: &GKLeaderboard,
-            player_scope: GKLeaderboardPlayerScope,
-        ) -> Id<Self>;
-
-        #[cfg(feature = "Foundation_NSString")]
-        #[method_id(@__retain_semantics Init initWithAchievementID:)]
-        pub unsafe fn initWithAchievementID(
-            this: Option<Allocated<Self>>,
-            achievement_id: &NSString,
-        ) -> Id<Self>;
-    }
-);
