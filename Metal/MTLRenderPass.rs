@@ -196,6 +196,13 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+#[cfg(feature = "Metal_MTLRenderPassColorAttachmentDescriptor")]
+impl DefaultId for MTLRenderPassColorAttachmentDescriptor {
+    #[inline]
+    fn default_id() -> Id<Self> {
+        Self::new()
+    }
+}
 
 ns_enum!(
     #[underlying(NSUInteger)]

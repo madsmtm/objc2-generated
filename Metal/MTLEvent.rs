@@ -52,6 +52,13 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+#[cfg(feature = "Metal_MTLSharedEventListener")]
+impl DefaultId for MTLSharedEventListener {
+    #[inline]
+    fn default_id() -> Id<Self> {
+        Self::new()
+    }
+}
 
 pub type MTLSharedEventNotificationBlock =
     *mut Block<(NonNull<ProtocolObject<dyn MTLSharedEvent>>, u64), ()>;

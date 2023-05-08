@@ -168,6 +168,13 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+#[cfg(feature = "Metal_MTLSamplerDescriptor")]
+impl DefaultId for MTLSamplerDescriptor {
+    #[inline]
+    fn default_id() -> Id<Self> {
+        Self::new()
+    }
+}
 
 extern_protocol!(
     pub unsafe trait MTLSamplerState: NSObjectProtocol {

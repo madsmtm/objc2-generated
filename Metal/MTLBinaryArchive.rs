@@ -59,6 +59,13 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+#[cfg(feature = "Metal_MTLBinaryArchiveDescriptor")]
+impl DefaultId for MTLBinaryArchiveDescriptor {
+    #[inline]
+    fn default_id() -> Id<Self> {
+        Self::new()
+    }
+}
 
 extern_protocol!(
     pub unsafe trait MTLBinaryArchive: NSObjectProtocol {

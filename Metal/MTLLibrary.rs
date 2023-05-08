@@ -354,6 +354,13 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+#[cfg(feature = "Metal_MTLCompileOptions")]
+impl DefaultId for MTLCompileOptions {
+    #[inline]
+    fn default_id() -> Id<Self> {
+        Self::new()
+    }
+}
 
 extern_static!(MTLLibraryErrorDomain: &'static NSErrorDomain);
 

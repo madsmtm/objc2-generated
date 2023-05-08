@@ -61,6 +61,13 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+#[cfg(feature = "Metal_MTLIntersectionFunctionTableDescriptor")]
+impl DefaultId for MTLIntersectionFunctionTableDescriptor {
+    #[inline]
+    fn default_id() -> Id<Self> {
+        Self::new()
+    }
+}
 
 extern_protocol!(
     pub unsafe trait MTLIntersectionFunctionTable: MTLResource {

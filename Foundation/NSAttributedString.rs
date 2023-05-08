@@ -62,6 +62,13 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+#[cfg(feature = "Foundation_NSAttributedString")]
+impl DefaultId for NSAttributedString {
+    #[inline]
+    fn default_id() -> Id<Self> {
+        Self::new()
+    }
+}
 
 ns_options!(
     #[underlying(NSUInteger)]
@@ -242,6 +249,13 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+#[cfg(feature = "Foundation_NSMutableAttributedString")]
+impl DefaultId for NSMutableAttributedString {
+    #[inline]
+    fn default_id() -> Id<Self> {
+        Self::new()
+    }
+}
 
 extern_methods!(
     /// NSExtendedMutableAttributedString

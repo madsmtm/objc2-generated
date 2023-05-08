@@ -104,6 +104,13 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+#[cfg(feature = "Foundation_NSData")]
+impl DefaultId for NSData {
+    #[inline]
+    fn default_id() -> Id<Self> {
+        Self::new()
+    }
+}
 
 extern_methods!(
     /// NSExtendedData
@@ -591,6 +598,13 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+#[cfg(feature = "Foundation_NSMutableData")]
+impl DefaultId for NSMutableData {
+    #[inline]
+    fn default_id() -> Id<Self> {
+        Self::new()
+    }
+}
 
 extern_methods!(
     /// NSExtendedMutableData

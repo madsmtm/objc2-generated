@@ -61,6 +61,13 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+#[cfg(feature = "Foundation_NSSet")]
+impl<ObjectType: Message> DefaultId for NSSet<ObjectType> {
+    #[inline]
+    fn default_id() -> Id<Self> {
+        Self::new()
+    }
+}
 
 extern_methods!(
     /// NSExtendedSet
@@ -305,6 +312,13 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+#[cfg(feature = "Foundation_NSMutableSet")]
+impl<ObjectType: Message> DefaultId for NSMutableSet<ObjectType> {
+    #[inline]
+    fn default_id() -> Id<Self> {
+        Self::new()
+    }
+}
 
 extern_methods!(
     /// NSExtendedMutableSet

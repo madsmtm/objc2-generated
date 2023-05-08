@@ -80,6 +80,13 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+#[cfg(feature = "Foundation_NSDictionary")]
+impl<KeyType: Message, ObjectType: Message> DefaultId for NSDictionary<KeyType, ObjectType> {
+    #[inline]
+    fn default_id() -> Id<Self> {
+        Self::new()
+    }
+}
 
 extern_methods!(
     /// NSExtendedDictionary
@@ -451,6 +458,13 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+#[cfg(feature = "Foundation_NSMutableDictionary")]
+impl<KeyType: Message, ObjectType: Message> DefaultId for NSMutableDictionary<KeyType, ObjectType> {
+    #[inline]
+    fn default_id() -> Id<Self> {
+        Self::new()
+    }
+}
 
 extern_methods!(
     /// NSExtendedMutableDictionary

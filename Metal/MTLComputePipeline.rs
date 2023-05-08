@@ -194,6 +194,13 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+#[cfg(feature = "Metal_MTLComputePipelineDescriptor")]
+impl DefaultId for MTLComputePipelineDescriptor {
+    #[inline]
+    fn default_id() -> Id<Self> {
+        Self::new()
+    }
+}
 
 extern_protocol!(
     pub unsafe trait MTLComputePipelineState: NSObjectProtocol {

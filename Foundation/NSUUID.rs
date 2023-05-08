@@ -60,3 +60,10 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+#[cfg(feature = "Foundation_NSUUID")]
+impl DefaultId for NSUUID {
+    #[inline]
+    fn default_id() -> Id<Self> {
+        Self::new()
+    }
+}

@@ -145,6 +145,13 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+#[cfg(feature = "Foundation_NSThread")]
+impl DefaultId for NSThread {
+    #[inline]
+    fn default_id() -> Id<Self> {
+        Self::new()
+    }
+}
 
 extern_static!(NSWillBecomeMultiThreadedNotification: &'static NSNotificationName);
 

@@ -542,6 +542,13 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+#[cfg(feature = "CoreAnimation_CALayer")]
+impl DefaultId for CALayer {
+    #[inline]
+    fn default_id() -> Id<Self> {
+        Self::new()
+    }
+}
 
 extern_protocol!(
     pub unsafe trait CALayoutManager: NSObjectProtocol {
