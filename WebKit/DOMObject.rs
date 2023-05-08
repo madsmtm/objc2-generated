@@ -31,7 +31,7 @@ extern_methods!(
     #[cfg(feature = "WebKit_DOMObject")]
     unsafe impl DOMObject {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Option<Id<Self>>;
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }
 );
 
