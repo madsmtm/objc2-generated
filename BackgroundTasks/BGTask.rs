@@ -43,6 +43,15 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "BackgroundTasks_BGTask")]
+    unsafe impl BGTask {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new_class() -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "BackgroundTasks_BGProcessingTask")]
@@ -64,6 +73,24 @@ extern_methods!(
     unsafe impl BGProcessingTask {}
 );
 
+extern_methods!(
+    /// Methods declared on superclass `BGTask`
+    #[cfg(feature = "BackgroundTasks_BGProcessingTask")]
+    unsafe impl BGProcessingTask {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "BackgroundTasks_BGProcessingTask")]
+    unsafe impl BGProcessingTask {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "BackgroundTasks_BGAppRefreshTask")]
@@ -83,4 +110,22 @@ unsafe impl NSObjectProtocol for BGAppRefreshTask {}
 extern_methods!(
     #[cfg(feature = "BackgroundTasks_BGAppRefreshTask")]
     unsafe impl BGAppRefreshTask {}
+);
+
+extern_methods!(
+    /// Methods declared on superclass `BGTask`
+    #[cfg(feature = "BackgroundTasks_BGAppRefreshTask")]
+    unsafe impl BGAppRefreshTask {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "BackgroundTasks_BGAppRefreshTask")]
+    unsafe impl BGAppRefreshTask {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
 );

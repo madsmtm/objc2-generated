@@ -44,6 +44,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "MapKit_MKGeoJSONDecoder")]
+    unsafe impl MKGeoJSONDecoder {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MapKit_MKGeoJSONFeature")]
@@ -76,6 +88,18 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSArray", feature = "MapKit_MKShape"))]
         #[method_id(@__retain_semantics Other geometry)]
         pub unsafe fn geometry(&self) -> Id<NSArray<MKShape>>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "MapKit_MKGeoJSONFeature")]
+    unsafe impl MKGeoJSONFeature {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
     }
 );
 

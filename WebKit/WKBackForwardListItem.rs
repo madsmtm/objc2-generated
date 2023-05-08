@@ -39,3 +39,12 @@ extern_methods!(
         pub unsafe fn initialURL(&self) -> Id<NSURL>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "WebKit_WKBackForwardListItem")]
+    unsafe impl WKBackForwardListItem {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

@@ -37,3 +37,15 @@ extern_methods!(
         pub unsafe fn touchpadSecondary(&self) -> Option<Id<GCControllerDirectionPad>>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "GameController_GCDualShockGamepad")]
+    unsafe impl GCDualShockGamepad {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

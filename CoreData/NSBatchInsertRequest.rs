@@ -192,3 +192,12 @@ extern_methods!(
         ) -> Id<Self>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "CoreData_NSBatchInsertRequest")]
+    unsafe impl NSBatchInsertRequest {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

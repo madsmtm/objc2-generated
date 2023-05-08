@@ -62,3 +62,12 @@ extern_methods!(
         pub unsafe fn isEqualToHandle(&self, handle: &CXHandle) -> bool;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "CallKit_CXHandle")]
+    unsafe impl CXHandle {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

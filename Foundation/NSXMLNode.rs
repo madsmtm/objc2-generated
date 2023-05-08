@@ -276,3 +276,12 @@ extern_methods!(
         ) -> Result<Id<NSArray>, Id<NSError>>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSXMLNode")]
+    unsafe impl NSXMLNode {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

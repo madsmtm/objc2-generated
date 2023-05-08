@@ -45,3 +45,12 @@ extern_methods!(
         pub unsafe fn isEqualToCall(&self, call: &CXCall) -> bool;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "CallKit_CXCall")]
+    unsafe impl CXCall {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

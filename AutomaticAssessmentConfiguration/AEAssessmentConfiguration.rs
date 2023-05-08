@@ -120,3 +120,15 @@ extern_methods!(
         pub unsafe fn removeApplication(&self, application: &AEAssessmentApplication);
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentConfiguration")]
+    unsafe impl AEAssessmentConfiguration {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

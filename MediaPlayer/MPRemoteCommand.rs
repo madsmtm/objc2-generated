@@ -93,6 +93,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `MPRemoteCommand`
+    #[cfg(feature = "MediaPlayer_MPSkipIntervalCommand")]
+    unsafe impl MPSkipIntervalCommand {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MediaPlayer_MPFeedbackCommand")]
@@ -136,6 +148,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `MPRemoteCommand`
+    #[cfg(feature = "MediaPlayer_MPFeedbackCommand")]
+    unsafe impl MPFeedbackCommand {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MediaPlayer_MPRatingCommand")]
@@ -166,6 +190,18 @@ extern_methods!(
 
         #[method(setMaximumRating:)]
         pub unsafe fn setMaximumRating(&self, maximum_rating: c_float);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `MPRemoteCommand`
+    #[cfg(feature = "MediaPlayer_MPRatingCommand")]
+    unsafe impl MPRatingCommand {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }
 );
 
@@ -201,6 +237,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `MPRemoteCommand`
+    #[cfg(feature = "MediaPlayer_MPChangePlaybackRateCommand")]
+    unsafe impl MPChangePlaybackRateCommand {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MediaPlayer_MPChangePlaybackPositionCommand")]
@@ -220,6 +268,18 @@ unsafe impl NSObjectProtocol for MPChangePlaybackPositionCommand {}
 extern_methods!(
     #[cfg(feature = "MediaPlayer_MPChangePlaybackPositionCommand")]
     unsafe impl MPChangePlaybackPositionCommand {}
+);
+
+extern_methods!(
+    /// Methods declared on superclass `MPRemoteCommand`
+    #[cfg(feature = "MediaPlayer_MPChangePlaybackPositionCommand")]
+    unsafe impl MPChangePlaybackPositionCommand {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
 );
 
 extern_class!(
@@ -249,6 +309,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `MPRemoteCommand`
+    #[cfg(feature = "MediaPlayer_MPChangeShuffleModeCommand")]
+    unsafe impl MPChangeShuffleModeCommand {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MediaPlayer_MPChangeRepeatModeCommand")]
@@ -273,5 +345,17 @@ extern_methods!(
 
         #[method(setCurrentRepeatType:)]
         pub unsafe fn setCurrentRepeatType(&self, current_repeat_type: MPRepeatType);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `MPRemoteCommand`
+    #[cfg(feature = "MediaPlayer_MPChangeRepeatModeCommand")]
+    unsafe impl MPChangeRepeatModeCommand {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }
 );

@@ -94,6 +94,18 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSData")]
+    unsafe impl NSData {
+        #[method_id(@__retain_semantics Init init)]
+        pub fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub fn new() -> Id<Self>;
+    }
+);
+
+extern_methods!(
     /// NSExtendedData
     #[cfg(feature = "Foundation_NSData")]
     unsafe impl NSData {
@@ -569,6 +581,18 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSMutableData")]
+    unsafe impl NSMutableData {
+        #[method_id(@__retain_semantics Init init)]
+        pub fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub fn new() -> Id<Self>;
+    }
+);
+
+extern_methods!(
     /// NSExtendedMutableData
     #[cfg(feature = "Foundation_NSMutableData")]
     unsafe impl NSMutableData {
@@ -678,4 +702,16 @@ unsafe impl NSSecureCoding for NSPurgeableData {}
 extern_methods!(
     #[cfg(feature = "Foundation_NSPurgeableData")]
     unsafe impl NSPurgeableData {}
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSPurgeableData")]
+    unsafe impl NSPurgeableData {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
 );

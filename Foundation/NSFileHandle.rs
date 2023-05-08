@@ -94,6 +94,18 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSFileHandle")]
+    unsafe impl NSFileHandle {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
+extern_methods!(
     /// NSFileHandleCreation
     #[cfg(feature = "Foundation_NSFileHandle")]
     unsafe impl NSFileHandle {
@@ -302,5 +314,17 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other pipe)]
         pub unsafe fn pipe() -> Id<NSPipe>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSPipe")]
+    unsafe impl NSPipe {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
     }
 );

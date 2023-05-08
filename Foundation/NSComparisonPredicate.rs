@@ -135,3 +135,15 @@ extern_methods!(
         pub unsafe fn options(&self) -> NSComparisonPredicateOptions;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSComparisonPredicate")]
+    unsafe impl NSComparisonPredicate {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

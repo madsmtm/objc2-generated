@@ -72,6 +72,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "AppKit_NSLayoutAnchor")]
+    unsafe impl<AnchorType: Message> NSLayoutAnchor<AnchorType> {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug)]
     #[cfg(feature = "AppKit_NSLayoutXAxisAnchor")]
@@ -124,6 +136,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "AppKit_NSLayoutXAxisAnchor")]
+    unsafe impl NSLayoutXAxisAnchor {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug)]
     #[cfg(feature = "AppKit_NSLayoutYAxisAnchor")]
@@ -173,6 +197,18 @@ extern_methods!(
             anchor: &NSLayoutYAxisAnchor,
             multiplier: CGFloat,
         ) -> Id<NSLayoutConstraint>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "AppKit_NSLayoutYAxisAnchor")]
+    unsafe impl NSLayoutYAxisAnchor {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
     }
 );
 
@@ -263,5 +299,17 @@ extern_methods!(
             m: CGFloat,
             c: CGFloat,
         ) -> Id<NSLayoutConstraint>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "AppKit_NSLayoutDimension")]
+    unsafe impl NSLayoutDimension {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
     }
 );

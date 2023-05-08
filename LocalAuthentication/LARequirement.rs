@@ -39,6 +39,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "LocalAuthentication_LAAuthenticationRequirement")]
+    unsafe impl LAAuthenticationRequirement {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "LocalAuthentication_LABiometryFallbackRequirement")]
@@ -62,5 +74,17 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other devicePasscodeRequirement)]
         pub unsafe fn devicePasscodeRequirement() -> Id<LABiometryFallbackRequirement>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "LocalAuthentication_LABiometryFallbackRequirement")]
+    unsafe impl LABiometryFallbackRequirement {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
     }
 );

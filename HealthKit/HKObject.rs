@@ -56,6 +56,15 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "HealthKit_HKObject")]
+    unsafe impl HKObject {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_static!(HKPredicateKeyPathUUID: &'static NSString);
 
 extern_static!(HKPredicateKeyPathSource: &'static NSString);

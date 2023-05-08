@@ -27,3 +27,15 @@ extern_methods!(
         pub unsafe fn effectiveContentMode(&self) -> WKContentMode;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "WebKit_WKNavigation")]
+    unsafe impl WKNavigation {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

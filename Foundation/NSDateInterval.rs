@@ -84,3 +84,12 @@ extern_methods!(
         pub unsafe fn containsDate(&self, date: &NSDate) -> bool;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSDateInterval")]
+    unsafe impl NSDateInterval {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

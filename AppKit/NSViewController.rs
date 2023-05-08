@@ -148,6 +148,24 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclass `NSResponder`
+    #[cfg(feature = "AppKit_NSViewController")]
+    unsafe impl NSViewController {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "AppKit_NSViewController")]
+    unsafe impl NSViewController {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
+extern_methods!(
     /// NSViewControllerPresentation
     #[cfg(feature = "AppKit_NSViewController")]
     unsafe impl NSViewController {

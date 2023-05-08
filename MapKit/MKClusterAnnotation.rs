@@ -59,3 +59,12 @@ extern_methods!(
         ) -> Id<Self>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "MapKit_MKClusterAnnotation")]
+    unsafe impl MKClusterAnnotation {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

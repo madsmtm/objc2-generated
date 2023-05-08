@@ -53,7 +53,7 @@ extern_methods!(
         pub unsafe fn keyEnumerator(&self) -> Id<NSEnumerator<KeyType>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithObjects:forKeys:count:)]
         pub unsafe fn initWithObjects_forKeys_count(
@@ -69,6 +69,15 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
         ) -> Option<Id<Self>>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSDictionary")]
+    unsafe impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
+        #[method_id(@__retain_semantics New new)]
+        pub fn new() -> Id<Self>;
     }
 );
 
@@ -403,7 +412,7 @@ extern_methods!(
         pub unsafe fn setObject_forKey(&mut self, an_object: &ObjectType, a_key: &Object);
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithCapacity:)]
         pub unsafe fn initWithCapacity(
@@ -431,6 +440,15 @@ extern_methods!(
             keys: *mut NonNull<Object>,
             cnt: NSUInteger,
         ) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSMutableDictionary")]
+    unsafe impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
+        #[method_id(@__retain_semantics New new)]
+        pub fn new() -> Id<Self>;
     }
 );
 

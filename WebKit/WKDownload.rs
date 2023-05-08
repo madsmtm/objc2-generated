@@ -45,3 +45,15 @@ extern_methods!(
         pub unsafe fn cancel(&self, completion_handler: Option<&Block<(*mut NSData,), ()>>);
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "WebKit_WKDownload")]
+    unsafe impl WKDownload {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

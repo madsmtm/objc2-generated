@@ -605,6 +605,15 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "AppKit_NSCell")]
+    unsafe impl NSCell {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
+extern_methods!(
     /// NSKeyboardUI
     #[cfg(feature = "AppKit_NSCell")]
     unsafe impl NSCell {

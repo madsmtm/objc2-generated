@@ -102,3 +102,12 @@ extern_methods!(
         ) -> Id<NSScriptCommand>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSScriptCommandDescription")]
+    unsafe impl NSScriptCommandDescription {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

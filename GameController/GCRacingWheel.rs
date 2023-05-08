@@ -58,3 +58,12 @@ extern_methods!(
         pub unsafe fn capture(&self) -> Id<GCRacingWheel>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "GameController_GCRacingWheel")]
+    unsafe impl GCRacingWheel {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

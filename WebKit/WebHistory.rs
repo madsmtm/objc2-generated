@@ -81,3 +81,15 @@ extern_methods!(
         pub unsafe fn setHistoryAgeInDaysLimit(&self, history_age_in_days_limit: c_int);
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "WebKit_WebHistory")]
+    unsafe impl WebHistory {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

@@ -33,3 +33,15 @@ extern_methods!(
         pub unsafe fn boundingRegion(&self) -> MKCoordinateRegion;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "MapKit_MKLocalSearchResponse")]
+    unsafe impl MKLocalSearchResponse {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

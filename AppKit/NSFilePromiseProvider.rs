@@ -64,6 +64,15 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "AppKit_NSFilePromiseProvider")]
+    unsafe impl NSFilePromiseProvider {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_protocol!(
     pub unsafe trait NSFilePromiseProviderDelegate: NSObjectProtocol {
         #[cfg(all(

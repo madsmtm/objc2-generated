@@ -122,6 +122,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "CoreData_NSFetchedResultsController")]
+    unsafe impl<ResultType: Message> NSFetchedResultsController<ResultType> {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_protocol!(
     pub unsafe trait NSFetchedResultsSectionInfo {
         #[cfg(feature = "Foundation_NSString")]

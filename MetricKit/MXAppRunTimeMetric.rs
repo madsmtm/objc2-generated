@@ -58,3 +58,15 @@ extern_methods!(
         pub unsafe fn cumulativeBackgroundLocationTime(&self) -> Id<NSMeasurement<NSUnitDuration>>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "MetricKit_MXAppRunTimeMetric")]
+    unsafe impl MXAppRunTimeMetric {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

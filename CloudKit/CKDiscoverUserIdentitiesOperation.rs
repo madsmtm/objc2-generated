@@ -89,3 +89,12 @@ extern_methods!(
         );
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "CloudKit_CKDiscoverUserIdentitiesOperation")]
+    unsafe impl CKDiscoverUserIdentitiesOperation {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

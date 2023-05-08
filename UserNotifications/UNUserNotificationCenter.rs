@@ -155,6 +155,15 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "UserNotifications_UNUserNotificationCenter")]
+    unsafe impl UNUserNotificationCenter {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum UNNotificationPresentationOptions {

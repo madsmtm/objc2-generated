@@ -33,3 +33,21 @@ extern_methods!(
         pub unsafe fn setDatabase(&self, database: Option<&CKDatabase>);
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `CKOperation`
+    #[cfg(feature = "CloudKit_CKDatabaseOperation")]
+    unsafe impl CKDatabaseOperation {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "CloudKit_CKDatabaseOperation")]
+    unsafe impl CKDatabaseOperation {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

@@ -51,6 +51,31 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclass `NSResponder`
+    #[cfg(feature = "GameKit_GKDialogController")]
+    unsafe impl GKDialogController {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[cfg(feature = "Foundation_NSCoder")]
+        #[method_id(@__retain_semantics Init initWithCoder:)]
+        pub unsafe fn initWithCoder(
+            this: Option<Allocated<Self>>,
+            coder: &NSCoder,
+        ) -> Option<Id<Self>>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "GameKit_GKDialogController")]
+    unsafe impl GKDialogController {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
+extern_methods!(
     /// SharedDialogController
     #[cfg(feature = "GameKit_GKDialogController")]
     unsafe impl GKDialogController {

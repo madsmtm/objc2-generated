@@ -85,3 +85,15 @@ extern_methods!(
         pub unsafe fn setShouldRefetchContacts(&self, should_refetch_contacts: bool);
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Contacts_CNSaveRequest")]
+    unsafe impl CNSaveRequest {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

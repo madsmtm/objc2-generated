@@ -89,3 +89,15 @@ extern_methods!(
         pub unsafe fn inputMeterLevel(&self) -> c_float;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "GameKit_GKVoiceChatService")]
+    unsafe impl GKVoiceChatService {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

@@ -38,3 +38,12 @@ extern_methods!(
         pub unsafe fn port(&self) -> NSInteger;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "WebKit_WKSecurityOrigin")]
+    unsafe impl WKSecurityOrigin {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

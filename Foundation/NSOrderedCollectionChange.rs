@@ -89,3 +89,12 @@ extern_methods!(
         ) -> Id<Self>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSOrderedCollectionChange")]
+    unsafe impl<ObjectType: Message> NSOrderedCollectionChange<ObjectType> {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

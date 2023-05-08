@@ -93,6 +93,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Metal_MTLCommandBufferDescriptor")]
+    unsafe impl MTLCommandBufferDescriptor {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_protocol!(
     pub unsafe trait MTLCommandBufferEncoderInfo: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSString")]

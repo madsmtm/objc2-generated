@@ -41,6 +41,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "StoreKit_SKProductSubscriptionPeriod")]
+    unsafe impl SKProductSubscriptionPeriod {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "StoreKit_SKProduct")]
@@ -122,5 +134,17 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSArray", feature = "StoreKit_SKProductDiscount"))]
         #[method_id(@__retain_semantics Other discounts)]
         pub unsafe fn discounts(&self) -> Id<NSArray<SKProductDiscount>>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "StoreKit_SKProduct")]
+    unsafe impl SKProduct {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
     }
 );

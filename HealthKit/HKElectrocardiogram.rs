@@ -80,6 +80,24 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `HKObject`
+    #[cfg(feature = "HealthKit_HKElectrocardiogram")]
+    unsafe impl HKElectrocardiogram {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "HealthKit_HKElectrocardiogram")]
+    unsafe impl HKElectrocardiogram {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_static!(HKPredicateKeyPathAverageHeartRate: &'static NSString);
 
 extern_static!(HKPredicateKeyPathECGClassification: &'static NSString);

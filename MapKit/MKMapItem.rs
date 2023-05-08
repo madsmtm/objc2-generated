@@ -103,6 +103,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "MapKit_MKMapItem")]
+    unsafe impl MKMapItem {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_static!(MKLaunchOptionsDirectionsModeKey: &'static NSString);
 
 extern_static!(MKLaunchOptionsMapTypeKey: &'static NSString);

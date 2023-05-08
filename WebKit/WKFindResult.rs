@@ -33,3 +33,12 @@ extern_methods!(
         pub unsafe fn matchFound(&self) -> bool;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "WebKit_WKFindResult")]
+    unsafe impl WKFindResult {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

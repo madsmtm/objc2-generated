@@ -99,6 +99,15 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "HealthKit_HKObjectType")]
+    unsafe impl HKObjectType {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HealthKit_HKCharacteristicType")]
@@ -127,6 +136,24 @@ unsafe impl NSSecureCoding for HKCharacteristicType {}
 extern_methods!(
     #[cfg(feature = "HealthKit_HKCharacteristicType")]
     unsafe impl HKCharacteristicType {}
+);
+
+extern_methods!(
+    /// Methods declared on superclass `HKObjectType`
+    #[cfg(feature = "HealthKit_HKCharacteristicType")]
+    unsafe impl HKCharacteristicType {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "HealthKit_HKCharacteristicType")]
+    unsafe impl HKCharacteristicType {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
 );
 
 extern_class!(
@@ -174,6 +201,24 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `HKObjectType`
+    #[cfg(feature = "HealthKit_HKSampleType")]
+    unsafe impl HKSampleType {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "HealthKit_HKSampleType")]
+    unsafe impl HKSampleType {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HealthKit_HKCategoryType")]
@@ -202,6 +247,24 @@ unsafe impl NSSecureCoding for HKCategoryType {}
 extern_methods!(
     #[cfg(feature = "HealthKit_HKCategoryType")]
     unsafe impl HKCategoryType {}
+);
+
+extern_methods!(
+    /// Methods declared on superclass `HKObjectType`
+    #[cfg(feature = "HealthKit_HKCategoryType")]
+    unsafe impl HKCategoryType {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "HealthKit_HKCategoryType")]
+    unsafe impl HKCategoryType {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
 );
 
 extern_class!(
@@ -234,6 +297,24 @@ extern_methods!(
     unsafe impl HKCorrelationType {}
 );
 
+extern_methods!(
+    /// Methods declared on superclass `HKObjectType`
+    #[cfg(feature = "HealthKit_HKCorrelationType")]
+    unsafe impl HKCorrelationType {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "HealthKit_HKCorrelationType")]
+    unsafe impl HKCorrelationType {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HealthKit_HKDocumentType")]
@@ -262,6 +343,24 @@ unsafe impl NSSecureCoding for HKDocumentType {}
 extern_methods!(
     #[cfg(feature = "HealthKit_HKDocumentType")]
     unsafe impl HKDocumentType {}
+);
+
+extern_methods!(
+    /// Methods declared on superclass `HKObjectType`
+    #[cfg(feature = "HealthKit_HKDocumentType")]
+    unsafe impl HKDocumentType {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "HealthKit_HKDocumentType")]
+    unsafe impl HKDocumentType {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
 );
 
 extern_class!(
@@ -301,6 +400,24 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `HKObjectType`
+    #[cfg(feature = "HealthKit_HKQuantityType")]
+    unsafe impl HKQuantityType {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "HealthKit_HKQuantityType")]
+    unsafe impl HKQuantityType {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HealthKit_HKWorkoutType")]
@@ -329,6 +446,24 @@ unsafe impl NSSecureCoding for HKWorkoutType {}
 extern_methods!(
     #[cfg(feature = "HealthKit_HKWorkoutType")]
     unsafe impl HKWorkoutType {}
+);
+
+extern_methods!(
+    /// Methods declared on superclass `HKObjectType`
+    #[cfg(feature = "HealthKit_HKWorkoutType")]
+    unsafe impl HKWorkoutType {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "HealthKit_HKWorkoutType")]
+    unsafe impl HKWorkoutType {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
 );
 
 extern_class!(
@@ -367,6 +502,24 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `HKObjectType`
+    #[cfg(feature = "HealthKit_HKSeriesType")]
+    unsafe impl HKSeriesType {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "HealthKit_HKSeriesType")]
+    unsafe impl HKSeriesType {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HealthKit_HKActivitySummaryType")]
@@ -395,6 +548,24 @@ unsafe impl NSSecureCoding for HKActivitySummaryType {}
 extern_methods!(
     #[cfg(feature = "HealthKit_HKActivitySummaryType")]
     unsafe impl HKActivitySummaryType {}
+);
+
+extern_methods!(
+    /// Methods declared on superclass `HKObjectType`
+    #[cfg(feature = "HealthKit_HKActivitySummaryType")]
+    unsafe impl HKActivitySummaryType {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "HealthKit_HKActivitySummaryType")]
+    unsafe impl HKActivitySummaryType {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
 );
 
 extern_class!(
@@ -427,6 +598,24 @@ extern_methods!(
     unsafe impl HKAudiogramSampleType {}
 );
 
+extern_methods!(
+    /// Methods declared on superclass `HKObjectType`
+    #[cfg(feature = "HealthKit_HKAudiogramSampleType")]
+    unsafe impl HKAudiogramSampleType {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "HealthKit_HKAudiogramSampleType")]
+    unsafe impl HKAudiogramSampleType {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HealthKit_HKElectrocardiogramType")]
@@ -457,6 +646,24 @@ extern_methods!(
     unsafe impl HKElectrocardiogramType {}
 );
 
+extern_methods!(
+    /// Methods declared on superclass `HKObjectType`
+    #[cfg(feature = "HealthKit_HKElectrocardiogramType")]
+    unsafe impl HKElectrocardiogramType {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "HealthKit_HKElectrocardiogramType")]
+    unsafe impl HKElectrocardiogramType {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HealthKit_HKPrescriptionType")]
@@ -485,4 +692,22 @@ unsafe impl NSSecureCoding for HKPrescriptionType {}
 extern_methods!(
     #[cfg(feature = "HealthKit_HKPrescriptionType")]
     unsafe impl HKPrescriptionType {}
+);
+
+extern_methods!(
+    /// Methods declared on superclass `HKObjectType`
+    #[cfg(feature = "HealthKit_HKPrescriptionType")]
+    unsafe impl HKPrescriptionType {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "HealthKit_HKPrescriptionType")]
+    unsafe impl HKPrescriptionType {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
 );

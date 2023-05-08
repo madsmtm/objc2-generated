@@ -42,6 +42,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSUserScriptTask")]
+    unsafe impl NSUserScriptTask {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 pub type NSUserUnixTaskCompletionHandler = *mut Block<(*mut NSError,), ()>;
 
 extern_class!(
@@ -110,6 +122,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSUserUnixTask")]
+    unsafe impl NSUserUnixTask {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 pub type NSUserAppleScriptTaskCompletionHandler =
     *mut Block<(*mut NSAppleEventDescriptor, *mut NSError), ()>;
 
@@ -152,6 +176,18 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             url: &NSURL,
         ) -> Result<Id<Self>, Id<NSError>>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSUserAppleScriptTask")]
+    unsafe impl NSUserAppleScriptTask {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
     }
 );
 
@@ -203,5 +239,17 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             url: &NSURL,
         ) -> Result<Id<Self>, Id<NSError>>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSUserAutomatorTask")]
+    unsafe impl NSUserAutomatorTask {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
     }
 );

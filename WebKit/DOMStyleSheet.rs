@@ -58,3 +58,21 @@ extern_methods!(
         pub unsafe fn media(&self) -> Option<Id<DOMMediaList>>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `DOMObject`
+    #[cfg(feature = "WebKit_DOMStyleSheet")]
+    unsafe impl DOMStyleSheet {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "WebKit_DOMStyleSheet")]
+    unsafe impl DOMStyleSheet {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

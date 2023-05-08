@@ -49,3 +49,12 @@ extern_methods!(
         pub unsafe fn lockDate(&self) -> Id<NSDate>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSDistributedLock")]
+    unsafe impl NSDistributedLock {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

@@ -44,3 +44,21 @@ extern_methods!(
         pub unsafe fn setWrap(&self, wrap: bool);
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `DOMObject`
+    #[cfg(feature = "WebKit_DOMHTMLPreElement")]
+    unsafe impl DOMHTMLPreElement {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "WebKit_DOMHTMLPreElement")]
+    unsafe impl DOMHTMLPreElement {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

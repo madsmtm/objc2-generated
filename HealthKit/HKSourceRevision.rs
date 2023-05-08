@@ -71,6 +71,15 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "HealthKit_HKSourceRevision")]
+    unsafe impl HKSourceRevision {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_static!(HKSourceRevisionAnyVersion: &'static NSString);
 
 extern_static!(HKSourceRevisionAnyProductType: &'static NSString);

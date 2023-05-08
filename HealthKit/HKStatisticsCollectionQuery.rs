@@ -50,6 +50,15 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "HealthKit_HKStatisticsCollection")]
+    unsafe impl HKStatisticsCollection {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HealthKit_HKStatisticsCollectionQuery")]
@@ -169,5 +178,23 @@ extern_methods!(
             anchor_date: &NSDate,
             interval_components: &NSDateComponents,
         ) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `HKQuery`
+    #[cfg(feature = "HealthKit_HKStatisticsCollectionQuery")]
+    unsafe impl HKStatisticsCollectionQuery {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "HealthKit_HKStatisticsCollectionQuery")]
+    unsafe impl HKStatisticsCollectionQuery {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
     }
 );

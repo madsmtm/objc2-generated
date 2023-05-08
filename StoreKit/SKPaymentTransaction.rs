@@ -67,3 +67,15 @@ extern_methods!(
         pub unsafe fn transactionState(&self) -> SKPaymentTransactionState;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "StoreKit_SKPaymentTransaction")]
+    unsafe impl SKPaymentTransaction {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

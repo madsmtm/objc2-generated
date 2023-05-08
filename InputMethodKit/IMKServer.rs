@@ -51,3 +51,15 @@ extern_methods!(
         pub unsafe fn lastKeyEventWasDeadKey(&self) -> bool;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "InputMethodKit_IMKServer")]
+    unsafe impl IMKServer {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

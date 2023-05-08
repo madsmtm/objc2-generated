@@ -272,6 +272,15 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSItemProvider")]
+    unsafe impl NSItemProvider {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_static!(NSItemProviderPreferredImageSizeKey: &'static NSString);
 
 extern_methods!(

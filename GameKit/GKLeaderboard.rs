@@ -257,10 +257,6 @@ extern_methods!(
         #[method(isLoading)]
         pub unsafe fn isLoading(&self) -> bool;
 
-        #[deprecated = "Do not instantiate GKLeaderboard directly. Use class method loadLeaderboardsWithIDs:completionHandler: to get the leaderboards."]
-        #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
-
         #[cfg(all(feature = "Foundation_NSArray", feature = "GameKit_GKPlayer"))]
         #[deprecated = "Use instance method loadEntriesForPlayers:timeScope:completionHandler: instead."]
         #[method_id(@__retain_semantics Init initWithPlayers:)]

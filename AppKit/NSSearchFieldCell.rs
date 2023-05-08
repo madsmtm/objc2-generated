@@ -137,3 +137,21 @@ extern_methods!(
         pub unsafe fn setSendsSearchStringImmediately(&self, sends_search_string_immediately: bool);
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSCell`
+    #[cfg(feature = "AppKit_NSSearchFieldCell")]
+    unsafe impl NSSearchFieldCell {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "AppKit_NSSearchFieldCell")]
+    unsafe impl NSSearchFieldCell {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

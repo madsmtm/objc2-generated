@@ -94,6 +94,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `MPMusicPlayerQueueDescriptor`
+    #[cfg(feature = "MediaPlayer_MPMusicPlayerMediaItemQueueDescriptor")]
+    unsafe impl MPMusicPlayerMediaItemQueueDescriptor {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MediaPlayer_MPMusicPlayerStoreQueueDescriptor")]
@@ -154,6 +166,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `MPMusicPlayerQueueDescriptor`
+    #[cfg(feature = "MediaPlayer_MPMusicPlayerStoreQueueDescriptor")]
+    unsafe impl MPMusicPlayerStoreQueueDescriptor {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MediaPlayer_MPMusicPlayerPlayParameters")]
@@ -182,6 +206,18 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other dictionary)]
         pub unsafe fn dictionary(&self) -> Id<NSDictionary<NSString, Object>>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "MediaPlayer_MPMusicPlayerPlayParameters")]
+    unsafe impl MPMusicPlayerPlayParameters {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
     }
 );
 
@@ -257,5 +293,17 @@ extern_methods!(
             end_time: NSTimeInterval,
             play_parameters: &MPMusicPlayerPlayParameters,
         );
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `MPMusicPlayerQueueDescriptor`
+    #[cfg(feature = "MediaPlayer_MPMusicPlayerPlayParametersQueueDescriptor")]
+    unsafe impl MPMusicPlayerPlayParametersQueueDescriptor {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }
 );

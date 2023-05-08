@@ -31,7 +31,7 @@ extern_methods!(
         pub unsafe fn objectAtIndex(&self, index: NSUInteger) -> Id<ObjectType>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithObjects:count:)]
         pub unsafe fn initWithObjects_count(
@@ -46,6 +46,15 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
         ) -> Option<Id<Self>>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSArray")]
+    unsafe impl<ObjectType: Message> NSArray<ObjectType> {
+        #[method_id(@__retain_semantics New new)]
+        pub fn new() -> Id<Self>;
     }
 );
 
@@ -503,7 +512,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithCapacity:)]
         pub unsafe fn initWithCapacity(
@@ -530,6 +539,15 @@ extern_methods!(
             objects: *mut NonNull<ObjectType>,
             cnt: NSUInteger,
         ) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSMutableArray")]
+    unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
+        #[method_id(@__retain_semantics New new)]
+        pub fn new() -> Id<Self>;
     }
 );
 

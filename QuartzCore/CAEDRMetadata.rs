@@ -47,3 +47,12 @@ extern_methods!(
         pub unsafe fn isAvailable() -> bool;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "CoreAnimation_CAEDRMetadata")]
+    unsafe impl CAEDRMetadata {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

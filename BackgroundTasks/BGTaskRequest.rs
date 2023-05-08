@@ -76,6 +76,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `BGTaskRequest`
+    #[cfg(feature = "BackgroundTasks_BGAppRefreshTaskRequest")]
+    unsafe impl BGAppRefreshTaskRequest {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "BackgroundTasks_BGProcessingTaskRequest")]
@@ -116,5 +128,17 @@ extern_methods!(
 
         #[method(setRequiresExternalPower:)]
         pub unsafe fn setRequiresExternalPower(&self, requires_external_power: bool);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `BGTaskRequest`
+    #[cfg(feature = "BackgroundTasks_BGProcessingTaskRequest")]
+    unsafe impl BGProcessingTaskRequest {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
     }
 );

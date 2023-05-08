@@ -58,3 +58,12 @@ extern_methods!(
         pub unsafe fn disableCollectionForType(&self, quantity_type: &HKQuantityType);
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "HealthKit_HKLiveWorkoutDataSource")]
+    unsafe impl HKLiveWorkoutDataSource {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

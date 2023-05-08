@@ -60,6 +60,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "AppKit_NSCollectionViewFlowLayoutInvalidationContext")]
+    unsafe impl NSCollectionViewFlowLayoutInvalidationContext {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_protocol!(
     pub unsafe trait NSCollectionViewDelegateFlowLayout: NSCollectionViewDelegate {
         #[cfg(all(
@@ -241,5 +253,17 @@ extern_methods!(
 
         #[method(expandSectionAtIndex:)]
         pub unsafe fn expandSectionAtIndex(&self, section_index: NSUInteger);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "AppKit_NSCollectionViewFlowLayout")]
+    unsafe impl NSCollectionViewFlowLayout {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
     }
 );

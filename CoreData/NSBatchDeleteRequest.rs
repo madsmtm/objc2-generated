@@ -54,3 +54,12 @@ extern_methods!(
         pub unsafe fn fetchRequest(&self) -> Id<NSFetchRequest>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "CoreData_NSBatchDeleteRequest")]
+    unsafe impl NSBatchDeleteRequest {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

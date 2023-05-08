@@ -93,3 +93,12 @@ extern_methods!(
         pub unsafe fn httpCookieStore(&self) -> Id<WKHTTPCookieStore>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "WebKit_WKWebsiteDataStore")]
+    unsafe impl WKWebsiteDataStore {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new_class() -> Id<Self>;
+    }
+);

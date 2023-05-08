@@ -91,6 +91,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "CoreLocation_CLFloor")]
+    unsafe impl CLFloor {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CoreLocation_CLLocationSourceInformation")]
@@ -130,6 +142,18 @@ extern_methods!(
 
         #[method(isProducedByAccessory)]
         pub unsafe fn isProducedByAccessory(&self) -> bool;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "CoreLocation_CLLocationSourceInformation")]
+    unsafe impl CLLocationSourceInformation {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
     }
 );
 
@@ -263,5 +287,17 @@ extern_methods!(
         #[cfg(feature = "CoreLocation_CLLocationSourceInformation")]
         #[method_id(@__retain_semantics Other sourceInformation)]
         pub unsafe fn sourceInformation(&self) -> Option<Id<CLLocationSourceInformation>>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "CoreLocation_CLLocation")]
+    unsafe impl CLLocation {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
     }
 );

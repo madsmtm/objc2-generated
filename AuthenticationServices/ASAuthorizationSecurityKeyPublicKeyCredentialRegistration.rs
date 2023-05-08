@@ -53,3 +53,17 @@ extern_methods!(
     )]
     unsafe impl ASAuthorizationSecurityKeyPublicKeyCredentialRegistration {}
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(
+        feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialRegistration"
+    )]
+    unsafe impl ASAuthorizationSecurityKeyPublicKeyCredentialRegistration {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

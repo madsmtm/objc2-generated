@@ -63,3 +63,15 @@ extern_methods!(
         pub unsafe fn setTimeout(&self, timeout: NSTimeInterval);
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "LinkPresentation_LPMetadataProvider")]
+    unsafe impl LPMetadataProvider {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

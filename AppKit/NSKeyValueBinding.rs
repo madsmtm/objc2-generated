@@ -63,6 +63,15 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "AppKit_NSBindingSelectionMarker")]
+    unsafe impl NSBindingSelectionMarker {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_static!(NSMultipleValuesMarker: &'static Object);
 
 extern_static!(NSNoSelectionMarker: &'static Object);

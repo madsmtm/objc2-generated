@@ -29,3 +29,15 @@ extern_methods!(
     #[cfg(feature = "IdentityLookup_ILClassificationRequest")]
     unsafe impl ILClassificationRequest {}
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "IdentityLookup_ILClassificationRequest")]
+    unsafe impl ILClassificationRequest {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

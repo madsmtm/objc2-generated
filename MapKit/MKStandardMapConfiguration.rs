@@ -89,3 +89,12 @@ extern_methods!(
         pub unsafe fn setShowsTraffic(&self, shows_traffic: bool);
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `MKMapConfiguration`
+    #[cfg(feature = "MapKit_MKStandardMapConfiguration")]
+    unsafe impl MKStandardMapConfiguration {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

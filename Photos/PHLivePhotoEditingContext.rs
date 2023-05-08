@@ -81,6 +81,15 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "PhotoKit_PHLivePhotoEditingContext")]
+    unsafe impl PHLivePhotoEditingContext {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum PHLivePhotoFrameType {

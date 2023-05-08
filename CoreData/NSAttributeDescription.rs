@@ -110,3 +110,15 @@ extern_methods!(
         pub unsafe fn setAllowsCloudEncryption(&self, allows_cloud_encryption: bool);
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "CoreData_NSAttributeDescription")]
+    unsafe impl NSAttributeDescription {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

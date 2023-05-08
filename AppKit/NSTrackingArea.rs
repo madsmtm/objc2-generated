@@ -69,3 +69,15 @@ extern_methods!(
         pub unsafe fn userInfo(&self) -> Option<Id<NSDictionary<Object, Object>>>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "AppKit_NSTrackingArea")]
+    unsafe impl NSTrackingArea {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

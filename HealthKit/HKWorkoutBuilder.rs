@@ -204,3 +204,12 @@ extern_methods!(
         ) -> Option<Id<HKSeriesBuilder>>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "HealthKit_HKWorkoutBuilder")]
+    unsafe impl HKWorkoutBuilder {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

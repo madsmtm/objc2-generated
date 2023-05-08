@@ -90,6 +90,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Contacts_CNLabeledValue")]
+    unsafe impl<ValueType: Message> CNLabeledValue<ValueType> {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_static!(CNLabelHome: &'static NSString);
 
 extern_static!(CNLabelWork: &'static NSString);

@@ -134,5 +134,17 @@ extern_methods!(
             url: &NSURL,
             options: Option<&NSDictionary>,
         ) -> Id<Self>;
+
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "CoreData_NSIncrementalStore")]
+    unsafe impl NSIncrementalStore {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
     }
 );

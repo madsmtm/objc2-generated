@@ -40,6 +40,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Speech_SFAcousticFeature")]
+    unsafe impl SFAcousticFeature {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Speech_SFVoiceAnalytics")]
@@ -82,5 +94,17 @@ extern_methods!(
         #[cfg(feature = "Speech_SFAcousticFeature")]
         #[method_id(@__retain_semantics Other voicing)]
         pub unsafe fn voicing(&self) -> Id<SFAcousticFeature>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Speech_SFVoiceAnalytics")]
+    unsafe impl SFVoiceAnalytics {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
     }
 );

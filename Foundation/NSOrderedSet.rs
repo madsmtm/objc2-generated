@@ -53,6 +53,15 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSOrderedSet")]
+    unsafe impl<ObjectType: Message> NSOrderedSet<ObjectType> {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
+extern_methods!(
     /// NSExtendedOrderedSet
     #[cfg(feature = "Foundation_NSOrderedSet")]
     unsafe impl<ObjectType: Message> NSOrderedSet<ObjectType> {
@@ -553,6 +562,15 @@ extern_methods!(
             objects: *mut NonNull<ObjectType>,
             cnt: NSUInteger,
         ) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSMutableOrderedSet")]
+    unsafe impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
     }
 );
 

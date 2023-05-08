@@ -40,3 +40,21 @@ extern_methods!(
         pub unsafe fn setText(&self, text: Option<&NSString>);
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `DOMObject`
+    #[cfg(feature = "WebKit_DOMHTMLTitleElement")]
+    unsafe impl DOMHTMLTitleElement {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "WebKit_DOMHTMLTitleElement")]
+    unsafe impl DOMHTMLTitleElement {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

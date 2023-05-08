@@ -555,6 +555,24 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclass `NSResponder`
+    #[cfg(feature = "WebKit_WKWebView")]
+    unsafe impl WKWebView {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "WebKit_WKWebView")]
+    unsafe impl WKWebView {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
+extern_methods!(
     /// WKIBActions
     #[cfg(feature = "WebKit_WKWebView")]
     unsafe impl WKWebView {

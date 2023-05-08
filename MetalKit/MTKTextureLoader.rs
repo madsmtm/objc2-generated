@@ -263,3 +263,12 @@ extern_methods!(
         ) -> Result<Id<ProtocolObject<dyn MTLTexture>>, Id<NSError>>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "MetalKit_MTKTextureLoader")]
+    unsafe impl MTKTextureLoader {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

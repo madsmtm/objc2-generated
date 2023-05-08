@@ -36,6 +36,15 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "WebKit_DOMObject")]
+    unsafe impl DOMObject {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
+extern_methods!(
     /// DOMLinkStyle
     #[cfg(feature = "WebKit_DOMObject")]
     unsafe impl DOMObject {

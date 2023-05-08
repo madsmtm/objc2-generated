@@ -115,6 +115,18 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSSortDescriptor")]
+    unsafe impl NSSortDescriptor {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
+extern_methods!(
     /// NSSortDescriptorSorting
     #[cfg(feature = "Foundation_NSSet")]
     unsafe impl<ObjectType: Message> NSSet<ObjectType> {

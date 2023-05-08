@@ -111,3 +111,15 @@ extern_methods!(
         pub unsafe fn inverseDifference(&self) -> Id<Self>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSOrderedCollectionDifference")]
+    unsafe impl<ObjectType: Message> NSOrderedCollectionDifference<ObjectType> {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

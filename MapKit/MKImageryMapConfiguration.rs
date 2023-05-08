@@ -45,3 +45,12 @@ extern_methods!(
         ) -> Id<Self>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `MKMapConfiguration`
+    #[cfg(feature = "MapKit_MKImageryMapConfiguration")]
+    unsafe impl MKImageryMapConfiguration {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

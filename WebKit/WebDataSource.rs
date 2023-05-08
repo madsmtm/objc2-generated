@@ -92,3 +92,15 @@ extern_methods!(
         pub unsafe fn addSubresource(&self, subresource: Option<&WebResource>);
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "WebKit_WebDataSource")]
+    unsafe impl WebDataSource {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

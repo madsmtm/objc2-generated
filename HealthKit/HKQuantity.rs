@@ -52,3 +52,12 @@ extern_methods!(
         pub unsafe fn compare(&self, quantity: &HKQuantity) -> NSComparisonResult;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "HealthKit_HKQuantity")]
+    unsafe impl HKQuantity {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

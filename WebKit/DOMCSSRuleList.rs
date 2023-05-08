@@ -36,3 +36,21 @@ extern_methods!(
         pub unsafe fn item(&self, index: c_uint) -> Option<Id<DOMCSSRule>>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `DOMObject`
+    #[cfg(feature = "WebKit_DOMCSSRuleList")]
+    unsafe impl DOMCSSRuleList {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "WebKit_DOMCSSRuleList")]
+    unsafe impl DOMCSSRuleList {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

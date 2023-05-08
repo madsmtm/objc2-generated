@@ -60,3 +60,15 @@ extern_methods!(
         pub unsafe fn setRadius(&self, radius: c_double);
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "EventKit_EKStructuredLocation")]
+    unsafe impl EKStructuredLocation {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

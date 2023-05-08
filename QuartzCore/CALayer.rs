@@ -534,6 +534,15 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "CoreAnimation_CALayer")]
+    unsafe impl CALayer {
+        #[method_id(@__retain_semantics New new)]
+        pub fn new() -> Id<Self>;
+    }
+);
+
 extern_protocol!(
     pub unsafe trait CALayoutManager: NSObjectProtocol {
         #[cfg(feature = "CoreAnimation_CALayer")]

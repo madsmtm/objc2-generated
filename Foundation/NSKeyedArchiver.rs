@@ -154,6 +154,15 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSKeyedArchiver")]
+    unsafe impl NSKeyedArchiver {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSKeyedUnarchiver")]
@@ -357,6 +366,15 @@ extern_methods!(
             &self,
             decoding_failure_policy: NSDecodingFailurePolicy,
         );
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSKeyedUnarchiver")]
+    unsafe impl NSKeyedUnarchiver {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
     }
 );
 

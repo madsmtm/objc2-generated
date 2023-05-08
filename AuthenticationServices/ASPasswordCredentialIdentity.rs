@@ -76,3 +76,12 @@ extern_methods!(
         pub unsafe fn setRank(&self, rank: NSInteger);
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "AuthenticationServices_ASPasswordCredentialIdentity")]
+    unsafe impl ASPasswordCredentialIdentity {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

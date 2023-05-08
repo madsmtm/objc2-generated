@@ -70,3 +70,12 @@ extern_methods!(
         );
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "CloudKit_CKMarkNotificationsReadOperation")]
+    unsafe impl CKMarkNotificationsReadOperation {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

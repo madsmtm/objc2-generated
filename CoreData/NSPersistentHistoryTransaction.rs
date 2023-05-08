@@ -85,3 +85,15 @@ extern_methods!(
         pub unsafe fn objectIDNotification(&self) -> Id<NSNotification>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "CoreData_NSPersistentHistoryTransaction")]
+    unsafe impl NSPersistentHistoryTransaction {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

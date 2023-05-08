@@ -50,3 +50,15 @@ extern_methods!(
         pub unsafe fn outputStream(&self) -> Option<Id<NSOutputStream>>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "ExternalAccessory_EASession")]
+    unsafe impl EASession {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

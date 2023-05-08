@@ -40,6 +40,15 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "UserNotifications_UNNotificationTrigger")]
+    unsafe impl UNNotificationTrigger {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UserNotifications_UNPushNotificationTrigger")]
@@ -68,6 +77,24 @@ unsafe impl NSSecureCoding for UNPushNotificationTrigger {}
 extern_methods!(
     #[cfg(feature = "UserNotifications_UNPushNotificationTrigger")]
     unsafe impl UNPushNotificationTrigger {}
+);
+
+extern_methods!(
+    /// Methods declared on superclass `UNNotificationTrigger`
+    #[cfg(feature = "UserNotifications_UNPushNotificationTrigger")]
+    unsafe impl UNPushNotificationTrigger {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "UserNotifications_UNPushNotificationTrigger")]
+    unsafe impl UNPushNotificationTrigger {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
 );
 
 extern_class!(
@@ -110,6 +137,24 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other nextTriggerDate)]
         pub unsafe fn nextTriggerDate(&self) -> Option<Id<NSDate>>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `UNNotificationTrigger`
+    #[cfg(feature = "UserNotifications_UNTimeIntervalNotificationTrigger")]
+    unsafe impl UNTimeIntervalNotificationTrigger {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "UserNotifications_UNTimeIntervalNotificationTrigger")]
+    unsafe impl UNTimeIntervalNotificationTrigger {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
     }
 );
 
@@ -158,6 +203,24 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `UNNotificationTrigger`
+    #[cfg(feature = "UserNotifications_UNCalendarNotificationTrigger")]
+    unsafe impl UNCalendarNotificationTrigger {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "UserNotifications_UNCalendarNotificationTrigger")]
+    unsafe impl UNCalendarNotificationTrigger {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UserNotifications_UNLocationNotificationTrigger")]
@@ -193,5 +256,23 @@ extern_methods!(
         #[cfg(feature = "CoreLocation_CLRegion")]
         #[method_id(@__retain_semantics Other triggerWithRegion:repeats:)]
         pub unsafe fn triggerWithRegion_repeats(region: &CLRegion, repeats: bool) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `UNNotificationTrigger`
+    #[cfg(feature = "UserNotifications_UNLocationNotificationTrigger")]
+    unsafe impl UNLocationNotificationTrigger {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "UserNotifications_UNLocationNotificationTrigger")]
+    unsafe impl UNLocationNotificationTrigger {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
     }
 );

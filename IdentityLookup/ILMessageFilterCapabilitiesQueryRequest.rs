@@ -32,3 +32,12 @@ extern_methods!(
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "IdentityLookup_ILMessageFilterCapabilitiesQueryRequest")]
+    unsafe impl ILMessageFilterCapabilitiesQueryRequest {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

@@ -114,6 +114,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "AppKit_NSAccessibilityCustomRotor")]
+    unsafe impl NSAccessibilityCustomRotor {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSAccessibilityCustomRotorSearchParameters")]
@@ -159,6 +171,18 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method(setFilterString:)]
         pub unsafe fn setFilterString(&self, filter_string: &NSString);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "AppKit_NSAccessibilityCustomRotorSearchParameters")]
+    unsafe impl NSAccessibilityCustomRotorSearchParameters {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
     }
 );
 

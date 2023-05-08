@@ -81,6 +81,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Metal_MTLFunctionDescriptor")]
+    unsafe impl MTLFunctionDescriptor {
+        #[method_id(@__retain_semantics Init init)]
+        pub fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub fn new() -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Metal_MTLIntersectionFunctionDescriptor")]
@@ -103,4 +115,16 @@ unsafe impl NSObjectProtocol for MTLIntersectionFunctionDescriptor {}
 extern_methods!(
     #[cfg(feature = "Metal_MTLIntersectionFunctionDescriptor")]
     unsafe impl MTLIntersectionFunctionDescriptor {}
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Metal_MTLIntersectionFunctionDescriptor")]
+    unsafe impl MTLIntersectionFunctionDescriptor {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
 );

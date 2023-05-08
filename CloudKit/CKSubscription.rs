@@ -147,6 +147,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `CKSubscription`
+    #[cfg(feature = "CloudKit_CKQuerySubscription")]
+    unsafe impl CKQuerySubscription {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CloudKit_CKRecordZoneSubscription")]
@@ -204,6 +216,18 @@ extern_methods!(
 
         #[method(setRecordType:)]
         pub unsafe fn setRecordType(&self, record_type: Option<&CKRecordType>);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `CKSubscription`
+    #[cfg(feature = "CloudKit_CKRecordZoneSubscription")]
+    unsafe impl CKRecordZoneSubscription {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
     }
 );
 
@@ -439,5 +463,17 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCollapseIDKey:)]
         pub unsafe fn setCollapseIDKey(&self, collapse_id_key: Option<&NSString>);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "CloudKit_CKNotificationInfo")]
+    unsafe impl CKNotificationInfo {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
     }
 );

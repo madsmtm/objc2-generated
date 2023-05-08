@@ -62,6 +62,15 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "UserNotifications_UNNotificationAttachment")]
+    unsafe impl UNNotificationAttachment {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_static!(UNNotificationAttachmentOptionsTypeHintKey: &'static NSString);
 
 extern_static!(UNNotificationAttachmentOptionsThumbnailHiddenKey: &'static NSString);

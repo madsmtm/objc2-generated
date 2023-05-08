@@ -197,6 +197,15 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "AppKit_NSTextBlock")]
+    unsafe impl NSTextBlock {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSTextTableBlock")]
@@ -251,6 +260,24 @@ extern_methods!(
 
         #[method(columnSpan)]
         pub unsafe fn columnSpan(&self) -> NSInteger;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSTextBlock`
+    #[cfg(feature = "AppKit_NSTextTableBlock")]
+    unsafe impl NSTextTableBlock {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "AppKit_NSTextTableBlock")]
+    unsafe impl NSTextTableBlock {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
     }
 );
 
@@ -348,5 +375,23 @@ extern_methods!(
             char_range: NSRange,
             layout_manager: &NSLayoutManager,
         );
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSTextBlock`
+    #[cfg(feature = "AppKit_NSTextTable")]
+    unsafe impl NSTextTable {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "AppKit_NSTextTable")]
+    unsafe impl NSTextTable {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
     }
 );

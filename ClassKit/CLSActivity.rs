@@ -63,6 +63,18 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclass `CLSObject`
+    #[cfg(feature = "ClassKit_CLSActivity")]
+    unsafe impl CLSActivity {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
     /// Activation
     #[cfg(feature = "ClassKit_CLSActivity")]
     unsafe impl CLSActivity {

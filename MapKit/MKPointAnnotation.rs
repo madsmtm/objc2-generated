@@ -54,3 +54,12 @@ extern_methods!(
         pub unsafe fn setCoordinate(&self, coordinate: CLLocationCoordinate2D);
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "MapKit_MKPointAnnotation")]
+    unsafe impl MKPointAnnotation {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

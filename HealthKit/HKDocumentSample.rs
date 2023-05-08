@@ -36,3 +36,21 @@ extern_methods!(
         pub unsafe fn documentType(&self) -> Id<HKDocumentType>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `HKObject`
+    #[cfg(feature = "HealthKit_HKDocumentSample")]
+    unsafe impl HKDocumentSample {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "HealthKit_HKDocumentSample")]
+    unsafe impl HKDocumentSample {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

@@ -38,3 +38,15 @@ extern_methods!(
             -> Id<MXHistogram<MXUnitSignalBars>>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "MetricKit_MXCellularConditionMetric")]
+    unsafe impl MXCellularConditionMetric {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

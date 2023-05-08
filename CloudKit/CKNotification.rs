@@ -34,6 +34,18 @@ extern_methods!(
     unsafe impl CKNotificationID {}
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "CloudKit_CKNotificationID")]
+    unsafe impl CKNotificationID {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum CKNotificationType {
@@ -201,6 +213,12 @@ extern_methods!(
     /// Methods declared on superclass `CKNotification`
     #[cfg(feature = "CloudKit_CKQueryNotification")]
     unsafe impl CKQueryNotification {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other notificationFromRemoteNotificationDictionary:)]
         pub unsafe fn notificationFromRemoteNotificationDictionary(
@@ -241,6 +259,12 @@ extern_methods!(
     /// Methods declared on superclass `CKNotification`
     #[cfg(feature = "CloudKit_CKRecordZoneNotification")]
     unsafe impl CKRecordZoneNotification {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other notificationFromRemoteNotificationDictionary:)]
         pub unsafe fn notificationFromRemoteNotificationDictionary(
@@ -277,6 +301,12 @@ extern_methods!(
     /// Methods declared on superclass `CKNotification`
     #[cfg(feature = "CloudKit_CKDatabaseNotification")]
     unsafe impl CKDatabaseNotification {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other notificationFromRemoteNotificationDictionary:)]
         pub unsafe fn notificationFromRemoteNotificationDictionary(

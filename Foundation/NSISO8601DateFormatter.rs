@@ -89,3 +89,12 @@ extern_methods!(
         ) -> Id<NSString>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSISO8601DateFormatter")]
+    unsafe impl NSISO8601DateFormatter {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

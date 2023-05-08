@@ -223,4 +223,13 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "AppKit_NSImageRep")]
+    unsafe impl NSImageRep {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_static!(NSImageRepRegistryDidChangeNotification: &'static NSNotificationName);

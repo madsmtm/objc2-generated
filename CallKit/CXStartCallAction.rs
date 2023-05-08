@@ -81,3 +81,21 @@ extern_methods!(
         pub unsafe fn fulfillWithDateStarted(&self, date_started: &NSDate);
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `CXCallAction`
+    #[cfg(feature = "CallKit_CXStartCallAction")]
+    unsafe impl CXStartCallAction {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "CallKit_CXStartCallAction")]
+    unsafe impl CXStartCallAction {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

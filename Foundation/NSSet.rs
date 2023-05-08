@@ -35,7 +35,7 @@ extern_methods!(
         pub unsafe fn objectEnumerator(&self) -> Id<NSEnumerator<ObjectType>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithObjects:count:)]
         pub unsafe fn initWithObjects_count(
@@ -50,6 +50,15 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             coder: &NSCoder,
         ) -> Option<Id<Self>>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSSet")]
+    unsafe impl<ObjectType: Message> NSSet<ObjectType> {
+        #[method_id(@__retain_semantics New new)]
+        pub fn new() -> Id<Self>;
     }
 );
 
@@ -265,7 +274,7 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithCapacity:)]
         pub unsafe fn initWithCapacity(
@@ -285,6 +294,15 @@ extern_methods!(
             objects: *mut NonNull<ObjectType>,
             cnt: NSUInteger,
         ) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSMutableSet")]
+    unsafe impl<ObjectType: Message> NSMutableSet<ObjectType> {
+        #[method_id(@__retain_semantics New new)]
+        pub fn new() -> Id<Self>;
     }
 );
 
@@ -382,6 +400,22 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclass `NSMutableSet`
+    #[cfg(feature = "Foundation_NSCountedSet")]
+    unsafe impl<ObjectType: Message> NSCountedSet<ObjectType> {
+        #[cfg(feature = "Foundation_NSCoder")]
+        #[method_id(@__retain_semantics Init initWithCoder:)]
+        pub unsafe fn initWithCoder(
+            this: Option<Allocated<Self>>,
+            coder: &NSCoder,
+        ) -> Option<Id<Self>>;
+
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
     /// Methods declared on superclass `NSSet`
     #[cfg(feature = "Foundation_NSCountedSet")]
     unsafe impl<ObjectType: Message> NSCountedSet<ObjectType> {
@@ -391,5 +425,14 @@ extern_methods!(
             objects: *mut NonNull<ObjectType>,
             cnt: NSUInteger,
         ) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSCountedSet")]
+    unsafe impl<ObjectType: Message> NSCountedSet<ObjectType> {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
     }
 );

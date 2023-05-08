@@ -43,3 +43,15 @@ extern_methods!(
         pub unsafe fn setSize(&self, size: CGSize);
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "MapKit_MKLookAroundSnapshotOptions")]
+    unsafe impl MKLookAroundSnapshotOptions {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

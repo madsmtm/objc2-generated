@@ -33,3 +33,15 @@ extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASAuthorizationPasswordRequest")]
     unsafe impl ASAuthorizationPasswordRequest {}
 );
+
+extern_methods!(
+    /// Methods declared on superclass `ASAuthorizationRequest`
+    #[cfg(feature = "AuthenticationServices_ASAuthorizationPasswordRequest")]
+    unsafe impl ASAuthorizationPasswordRequest {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);

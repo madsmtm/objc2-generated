@@ -56,3 +56,15 @@ extern_methods!(
         pub unsafe fn height(&self) -> Option<Id<NSNumber>>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "WebKit_WKWindowFeatures")]
+    unsafe impl WKWindowFeatures {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

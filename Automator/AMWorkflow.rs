@@ -100,3 +100,12 @@ extern_methods!(
         pub unsafe fn output(&self) -> Option<Id<Object>>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Automator_AMWorkflow")]
+    unsafe impl AMWorkflow {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

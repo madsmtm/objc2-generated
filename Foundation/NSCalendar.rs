@@ -559,6 +559,15 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSCalendar")]
+    unsafe impl NSCalendar {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_static!(NSCalendarDayChangedNotification: &'static NSNotificationName);
 
 ns_enum!(
@@ -727,5 +736,17 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSCalendar")]
         #[method(isValidDateInCalendar:)]
         pub unsafe fn isValidDateInCalendar(&self, calendar: &NSCalendar) -> bool;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSDateComponents")]
+    unsafe impl NSDateComponents {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
     }
 );

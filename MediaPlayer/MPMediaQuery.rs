@@ -132,6 +132,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "MediaPlayer_MPMediaQuery")]
+    unsafe impl MPMediaQuery {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MediaPlayer_MPMediaPredicate")]
@@ -156,6 +168,18 @@ unsafe impl NSSecureCoding for MPMediaPredicate {}
 extern_methods!(
     #[cfg(feature = "MediaPlayer_MPMediaPredicate")]
     unsafe impl MPMediaPredicate {}
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "MediaPlayer_MPMediaPredicate")]
+    unsafe impl MPMediaPredicate {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
 );
 
 ns_enum!(
@@ -215,6 +239,18 @@ extern_methods!(
 
         #[method(comparisonType)]
         pub unsafe fn comparisonType(&self) -> MPMediaPredicateComparison;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "MediaPlayer_MPMediaPropertyPredicate")]
+    unsafe impl MPMediaPropertyPredicate {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
     }
 );
 

@@ -75,6 +75,15 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "CoreData_NSMergeConflict")]
+    unsafe impl NSMergeConflict {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CoreData_NSConstraintConflict")]
@@ -132,6 +141,18 @@ extern_methods!(
             conflicting_objects: &NSArray<NSManagedObject>,
             conflicting_snapshots: &NSArray,
         ) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "CoreData_NSConstraintConflict")]
+    unsafe impl NSConstraintConflict {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
     }
 );
 
@@ -205,5 +226,14 @@ extern_methods!(
             &self,
             list: &NSArray<NSConstraintConflict>,
         ) -> Result<(), Id<NSError>>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "CoreData_NSMergePolicy")]
+    unsafe impl NSMergePolicy {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
     }
 );

@@ -36,3 +36,12 @@ extern_methods!(
         pub unsafe fn maximumDegreesOfRotation(&self) -> c_float;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "GameController_GCSteeringWheelElement")]
+    unsafe impl GCSteeringWheelElement {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

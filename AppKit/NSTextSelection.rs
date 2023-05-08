@@ -138,3 +138,12 @@ extern_methods!(
         ) -> Id<NSTextSelection>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "AppKit_NSTextSelection")]
+    unsafe impl NSTextSelection {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

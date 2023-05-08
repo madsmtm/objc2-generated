@@ -51,6 +51,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSAttributedString")]
+    unsafe impl NSAttributedString {
+        #[method_id(@__retain_semantics Init init)]
+        pub fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub fn new() -> Id<Self>;
+    }
+);
+
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSAttributedStringEnumerationOptions {
@@ -220,6 +232,18 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSMutableAttributedString")]
+    unsafe impl NSMutableAttributedString {
+        #[method_id(@__retain_semantics Init init)]
+        pub fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub fn new() -> Id<Self>;
+    }
+);
+
+extern_methods!(
     /// NSExtendedMutableAttributedString
     #[cfg(feature = "Foundation_NSMutableAttributedString")]
     unsafe impl NSMutableAttributedString {
@@ -380,6 +404,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSAttributedStringMarkdownSourcePosition")]
+    unsafe impl NSAttributedStringMarkdownSourcePosition {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSAttributedStringMarkdownParsingOptions")]
@@ -444,6 +480,15 @@ extern_methods!(
             &self,
             applies_source_position_attributes: bool,
         );
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSAttributedStringMarkdownParsingOptions")]
+    unsafe impl NSAttributedStringMarkdownParsingOptions {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
     }
 );
 
@@ -758,5 +803,14 @@ extern_methods!(
         #[method(isEquivalentToPresentationIntent:)]
         pub unsafe fn isEquivalentToPresentationIntent(&self, other: &NSPresentationIntent)
             -> bool;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSPresentationIntent")]
+    unsafe impl NSPresentationIntent {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
     }
 );

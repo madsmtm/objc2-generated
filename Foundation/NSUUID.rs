@@ -51,3 +51,12 @@ extern_methods!(
         pub fn UUIDString(&self) -> Id<NSString>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSUUID")]
+    unsafe impl NSUUID {
+        #[method_id(@__retain_semantics New new)]
+        pub fn new() -> Id<Self>;
+    }
+);

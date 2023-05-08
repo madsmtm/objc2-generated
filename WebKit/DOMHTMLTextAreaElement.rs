@@ -125,3 +125,21 @@ extern_methods!(
         pub unsafe fn setSelectionRange_end(&self, start: c_int, end: c_int);
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `DOMObject`
+    #[cfg(feature = "WebKit_DOMHTMLTextAreaElement")]
+    unsafe impl DOMHTMLTextAreaElement {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "WebKit_DOMHTMLTextAreaElement")]
+    unsafe impl DOMHTMLTextAreaElement {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

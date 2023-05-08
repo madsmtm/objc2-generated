@@ -117,6 +117,15 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Speech_SFSpeechRecognizer")]
+    unsafe impl SFSpeechRecognizer {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_protocol!(
     pub unsafe trait SFSpeechRecognizerDelegate: NSObjectProtocol {
         #[cfg(feature = "Speech_SFSpeechRecognizer")]

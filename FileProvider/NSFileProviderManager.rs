@@ -173,6 +173,15 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "FileProvider_NSFileProviderManager")]
+    unsafe impl NSFileProviderManager {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_static!(NSFileProviderMaterializedSetDidChange: &'static NSNotificationName);
 
 extern_methods!(

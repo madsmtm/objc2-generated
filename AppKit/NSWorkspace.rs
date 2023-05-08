@@ -261,6 +261,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "AppKit_NSWorkspace")]
+    unsafe impl NSWorkspace {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSWorkspaceOpenConfiguration")]
@@ -371,6 +383,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "AppKit_NSWorkspaceOpenConfiguration")]
+    unsafe impl NSWorkspaceOpenConfiguration {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 typed_enum!(
     pub type NSWorkspaceDesktopImageOptionKey = NSString;
 );
@@ -439,6 +463,18 @@ unsafe impl NSObjectProtocol for NSWorkspaceAuthorization {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSWorkspaceAuthorization")]
     unsafe impl NSWorkspaceAuthorization {}
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "AppKit_NSWorkspaceAuthorization")]
+    unsafe impl NSWorkspaceAuthorization {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
 );
 
 extern_methods!(

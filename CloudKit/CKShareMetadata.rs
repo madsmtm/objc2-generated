@@ -71,3 +71,15 @@ extern_methods!(
         pub unsafe fn rootRecordID(&self) -> Id<CKRecordID>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "CloudKit_CKShareMetadata")]
+    unsafe impl CKShareMetadata {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

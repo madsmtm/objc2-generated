@@ -38,6 +38,15 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSInflectionRule")]
+    unsafe impl NSInflectionRule {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSInflectionRuleExplicit")]
@@ -76,6 +85,24 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSMorphology")]
         #[method_id(@__retain_semantics Other morphology)]
         pub unsafe fn morphology(&self) -> Id<NSMorphology>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSInflectionRule`
+    #[cfg(feature = "Foundation_NSInflectionRuleExplicit")]
+    unsafe impl NSInflectionRuleExplicit {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSInflectionRuleExplicit")]
+    unsafe impl NSInflectionRuleExplicit {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
     }
 );
 

@@ -33,3 +33,21 @@ extern_methods!(
         pub unsafe fn document(&self) -> Option<Id<DOMDocument>>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `DOMObject`
+    #[cfg(feature = "WebKit_DOMAbstractView")]
+    unsafe impl DOMAbstractView {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "WebKit_DOMAbstractView")]
+    unsafe impl DOMAbstractView {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

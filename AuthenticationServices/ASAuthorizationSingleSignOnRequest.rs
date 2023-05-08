@@ -50,3 +50,15 @@ extern_methods!(
         pub unsafe fn setUserInterfaceEnabled(&self, user_interface_enabled: bool);
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `ASAuthorizationRequest`
+    #[cfg(feature = "AuthenticationServices_ASAuthorizationSingleSignOnRequest")]
+    unsafe impl ASAuthorizationSingleSignOnRequest {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);

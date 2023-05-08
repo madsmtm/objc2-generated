@@ -106,3 +106,12 @@ extern_methods!(
             -> bool;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "AppKit_NSRulerMarker")]
+    unsafe impl NSRulerMarker {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

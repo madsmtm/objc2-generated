@@ -44,3 +44,15 @@ extern_methods!(
         pub unsafe fn polygons(&self) -> Id<NSArray<MKPolygon>>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "MapKit_MKMultiPolygon")]
+    unsafe impl MKMultiPolygon {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

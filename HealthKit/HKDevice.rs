@@ -102,3 +102,12 @@ extern_methods!(
         pub unsafe fn localDevice() -> Id<HKDevice>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "HealthKit_HKDevice")]
+    unsafe impl HKDevice {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

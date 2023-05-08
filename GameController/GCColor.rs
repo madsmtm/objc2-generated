@@ -53,3 +53,12 @@ extern_methods!(
         pub unsafe fn blue(&self) -> c_float;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "GameController_GCColor")]
+    unsafe impl GCColor {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

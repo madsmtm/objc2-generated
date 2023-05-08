@@ -127,3 +127,15 @@ extern_methods!(
         pub unsafe fn birthdayPersonUniqueID(&self) -> Option<Id<NSString>>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "EventKit_EKEvent")]
+    unsafe impl EKEvent {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

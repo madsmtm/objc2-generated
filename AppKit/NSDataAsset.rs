@@ -57,3 +57,12 @@ extern_methods!(
         pub unsafe fn typeIdentifier(&self) -> Id<NSString>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "AppKit_NSDataAsset")]
+    unsafe impl NSDataAsset {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

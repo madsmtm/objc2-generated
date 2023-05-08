@@ -67,3 +67,12 @@ extern_methods!(
         pub unsafe fn deauthorizeWithCompletion(&self, handler: &Block<(), ()>);
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "LocalAuthentication_LARight")]
+    unsafe impl LARight {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

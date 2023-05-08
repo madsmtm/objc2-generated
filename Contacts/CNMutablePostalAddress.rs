@@ -100,3 +100,15 @@ extern_methods!(
         pub unsafe fn setISOCountryCode(&self, iso_country_code: &NSString);
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Contacts_CNMutablePostalAddress")]
+    unsafe impl CNMutablePostalAddress {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

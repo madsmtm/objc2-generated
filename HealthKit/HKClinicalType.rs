@@ -67,3 +67,21 @@ extern_methods!(
     #[cfg(feature = "HealthKit_HKClinicalType")]
     unsafe impl HKClinicalType {}
 );
+
+extern_methods!(
+    /// Methods declared on superclass `HKObjectType`
+    #[cfg(feature = "HealthKit_HKClinicalType")]
+    unsafe impl HKClinicalType {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "HealthKit_HKClinicalType")]
+    unsafe impl HKClinicalType {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

@@ -71,6 +71,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `MPMusicPlayerControllerQueue`
+    #[cfg(feature = "MediaPlayer_MPMusicPlayerControllerMutableQueue")]
+    unsafe impl MPMusicPlayerControllerMutableQueue {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MediaPlayer_MPMusicPlayerApplicationController")]
@@ -104,6 +116,18 @@ extern_methods!(
             queue_transaction: &Block<(NonNull<MPMusicPlayerControllerMutableQueue>,), ()>,
             completion_handler: &Block<(NonNull<MPMusicPlayerControllerQueue>, *mut NSError), ()>,
         );
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `MPMusicPlayerController`
+    #[cfg(feature = "MediaPlayer_MPMusicPlayerApplicationController")]
+    unsafe impl MPMusicPlayerApplicationController {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }
 );
 

@@ -101,7 +101,7 @@ extern_methods!(
         pub fn mainThread() -> Id<NSThread>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithTarget:selector:object:)]
         pub unsafe fn initWithTarget_selector_object(
@@ -134,6 +134,15 @@ extern_methods!(
 
         #[method(main)]
         pub unsafe fn main(&self);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSThread")]
+    unsafe impl NSThread {
+        #[method_id(@__retain_semantics New new)]
+        pub fn new() -> Id<Self>;
     }
 );
 

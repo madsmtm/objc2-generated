@@ -204,6 +204,24 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSResponder`
+    #[cfg(feature = "MetalKit_MTKView")]
+    unsafe impl MTKView {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "MetalKit_MTKView")]
+    unsafe impl MTKView {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_protocol!(
     pub unsafe trait MTKViewDelegate: NSObjectProtocol {
         #[cfg(feature = "MetalKit_MTKView")]

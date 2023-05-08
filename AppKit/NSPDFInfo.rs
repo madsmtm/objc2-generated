@@ -69,3 +69,15 @@ extern_methods!(
             -> Id<NSMutableDictionary<NSPrintInfoAttributeKey, Object>>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "AppKit_NSPDFInfo")]
+    unsafe impl NSPDFInfo {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

@@ -53,6 +53,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "MetricKit_MXHistogramBucket")]
+    unsafe impl<UnitType: Message> MXHistogramBucket<UnitType> {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MetricKit_MXHistogram")]
@@ -98,5 +110,17 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Other bucketEnumerator)]
         pub unsafe fn bucketEnumerator(&self) -> Id<NSEnumerator<MXHistogramBucket<UnitType>>>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "MetricKit_MXHistogram")]
+    unsafe impl<UnitType: Message> MXHistogram<UnitType> {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
     }
 );

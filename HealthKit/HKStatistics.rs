@@ -131,3 +131,12 @@ extern_methods!(
         pub unsafe fn durationForSource(&self, source: &HKSource) -> Option<Id<HKQuantity>>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "HealthKit_HKStatistics")]
+    unsafe impl HKStatistics {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

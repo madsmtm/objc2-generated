@@ -112,3 +112,12 @@ extern_methods!(
         pub unsafe fn discard(&self);
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "HealthKit_HKQuantitySeriesSampleBuilder")]
+    unsafe impl HKQuantitySeriesSampleBuilder {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

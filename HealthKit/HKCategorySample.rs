@@ -84,4 +84,13 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "HealthKit_HKCategorySample")]
+    unsafe impl HKCategorySample {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_static!(HKPredicateKeyPathCategoryValue: &'static NSString);

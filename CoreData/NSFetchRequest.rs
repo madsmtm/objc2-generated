@@ -259,6 +259,15 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "CoreData_NSFetchRequest")]
+    unsafe impl<ResultType: Message> NSFetchRequest<ResultType> {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 pub type NSPersistentStoreAsynchronousFetchResultCompletionBlock =
     *mut Block<(NonNull<NSAsynchronousFetchResult>,), ()>;
 
@@ -321,5 +330,17 @@ extern_methods!(
             request: &NSFetchRequest<ResultType>,
             blk: Option<&Block<(NonNull<NSAsynchronousFetchResult<ResultType>>,), ()>>,
         ) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "CoreData_NSAsynchronousFetchRequest")]
+    unsafe impl<ResultType: Message> NSAsynchronousFetchRequest<ResultType> {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
     }
 );

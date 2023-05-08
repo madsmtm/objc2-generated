@@ -44,3 +44,15 @@ extern_methods!(
         pub unsafe fn renderedContentURL(&self) -> Id<NSURL>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "PhotoKit_PHContentEditingOutput")]
+    unsafe impl PHContentEditingOutput {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

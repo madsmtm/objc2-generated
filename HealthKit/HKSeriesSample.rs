@@ -35,3 +35,21 @@ extern_methods!(
         pub unsafe fn count(&self) -> NSUInteger;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `HKObject`
+    #[cfg(feature = "HealthKit_HKSeriesSample")]
+    unsafe impl HKSeriesSample {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "HealthKit_HKSeriesSample")]
+    unsafe impl HKSeriesSample {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

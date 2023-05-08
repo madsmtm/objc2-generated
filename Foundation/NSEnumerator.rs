@@ -66,6 +66,18 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSEnumerator")]
+    unsafe impl<ObjectType: Message> NSEnumerator<ObjectType> {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
+extern_methods!(
     /// NSExtendedEnumerator
     #[cfg(feature = "Foundation_NSEnumerator")]
     unsafe impl<ObjectType: Message> NSEnumerator<ObjectType> {

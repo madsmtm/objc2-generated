@@ -59,6 +59,15 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "SoundAnalysis_SNAudioStreamAnalyzer")]
+    unsafe impl SNAudioStreamAnalyzer {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "SoundAnalysis_SNAudioFileAnalyzer")]
@@ -109,5 +118,14 @@ extern_methods!(
 
         #[method(cancelAnalysis)]
         pub unsafe fn cancelAnalysis(&self);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "SoundAnalysis_SNAudioFileAnalyzer")]
+    unsafe impl SNAudioFileAnalyzer {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
     }
 );

@@ -70,6 +70,15 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "PhotoKit_PHLivePhoto")]
+    unsafe impl PHLivePhoto {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
+extern_methods!(
     /// NSItemProvider
     #[cfg(feature = "PhotoKit_PHLivePhoto")]
     unsafe impl PHLivePhoto {}

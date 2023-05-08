@@ -114,6 +114,15 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "AppKit_NSPopover")]
+    unsafe impl NSPopover {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_static!(NSPopoverCloseReasonKey: &'static NSString);
 
 typed_enum!(

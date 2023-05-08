@@ -217,9 +217,6 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localeWithLocaleIdentifier:)]
         pub unsafe fn localeWithLocaleIdentifier(ident: &NSString) -> Id<Self>;
-
-        #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }
 );
 

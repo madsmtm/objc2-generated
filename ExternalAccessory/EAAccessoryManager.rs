@@ -69,3 +69,15 @@ extern_methods!(
         pub unsafe fn connectedAccessories(&self) -> Id<NSArray<EAAccessory>>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "ExternalAccessory_EAAccessoryManager")]
+    unsafe impl EAAccessoryManager {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

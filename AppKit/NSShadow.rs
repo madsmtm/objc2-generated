@@ -59,3 +59,12 @@ extern_methods!(
         pub unsafe fn set(&self);
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "AppKit_NSShadow")]
+    unsafe impl NSShadow {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

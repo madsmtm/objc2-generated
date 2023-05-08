@@ -74,3 +74,15 @@ extern_methods!(
         pub unsafe fn livePhoto(&self) -> Option<Id<PHLivePhoto>>;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "PhotoKit_PHContentEditingInput")]
+    unsafe impl PHContentEditingInput {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

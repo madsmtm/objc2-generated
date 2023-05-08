@@ -105,6 +105,15 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSString")]
+    unsafe impl NSString {
+        #[method_id(@__retain_semantics New new)]
+        pub fn new() -> Id<Self>;
+    }
+);
+
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSStringEnumerationOptions {
@@ -974,6 +983,31 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Methods declared on superclass `NSString`
+    #[cfg(feature = "Foundation_NSMutableString")]
+    unsafe impl NSMutableString {
+        #[method_id(@__retain_semantics Init init)]
+        pub fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[cfg(feature = "Foundation_NSCoder")]
+        #[method_id(@__retain_semantics Init initWithCoder:)]
+        pub unsafe fn initWithCoder(
+            this: Option<Allocated<Self>>,
+            coder: &NSCoder,
+        ) -> Option<Id<Self>>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSMutableString")]
+    unsafe impl NSMutableString {
+        #[method_id(@__retain_semantics New new)]
+        pub fn new() -> Id<Self>;
+    }
+);
+
+extern_methods!(
     /// NSMutableStringExtensionMethods
     #[cfg(feature = "Foundation_NSMutableString")]
     unsafe impl NSMutableString {
@@ -1224,6 +1258,31 @@ extern_methods!(
     unsafe impl NSSimpleCString {}
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSString`
+    #[cfg(feature = "Foundation_NSSimpleCString")]
+    unsafe impl NSSimpleCString {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[cfg(feature = "Foundation_NSCoder")]
+        #[method_id(@__retain_semantics Init initWithCoder:)]
+        pub unsafe fn initWithCoder(
+            this: Option<Allocated<Self>>,
+            coder: &NSCoder,
+        ) -> Option<Id<Self>>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSSimpleCString")]
+    unsafe impl NSSimpleCString {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSConstantString")]
@@ -1249,4 +1308,29 @@ unsafe impl NSSecureCoding for NSConstantString {}
 extern_methods!(
     #[cfg(feature = "Foundation_NSConstantString")]
     unsafe impl NSConstantString {}
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSString`
+    #[cfg(feature = "Foundation_NSConstantString")]
+    unsafe impl NSConstantString {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[cfg(feature = "Foundation_NSCoder")]
+        #[method_id(@__retain_semantics Init initWithCoder:)]
+        pub unsafe fn initWithCoder(
+            this: Option<Allocated<Self>>,
+            coder: &NSCoder,
+        ) -> Option<Id<Self>>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSConstantString")]
+    unsafe impl NSConstantString {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
 );

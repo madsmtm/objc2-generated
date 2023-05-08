@@ -226,6 +226,18 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSConnection")]
+    unsafe impl NSConnection {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_static!(NSConnectionReplyMode: &'static NSString);
 
 extern_static!(NSConnectionDidDieNotification: &'static NSString);
@@ -323,5 +335,17 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSException")]
         #[method(replyWithException:)]
         pub unsafe fn replyWithException(&self, exception: Option<&NSException>);
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSDistantObjectRequest")]
+    unsafe impl NSDistantObjectRequest {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
     }
 );

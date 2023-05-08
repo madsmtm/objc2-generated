@@ -61,6 +61,12 @@ extern_methods!(
     /// Methods declared on superclass `NSUnit`
     #[cfg(feature = "MetricKit_MXUnitSignalBars")]
     unsafe impl MXUnitSignalBars {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithSymbol:)]
         pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
@@ -124,6 +130,12 @@ extern_methods!(
     /// Methods declared on superclass `NSUnit`
     #[cfg(feature = "MetricKit_MXUnitAveragePixelLuminance")]
     unsafe impl MXUnitAveragePixelLuminance {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithSymbol:)]
         pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;

@@ -101,3 +101,21 @@ extern_methods!(
         pub unsafe fn setAlternateImage(&self, alternate_image: Option<&NSImage>);
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSCell`
+    #[cfg(feature = "AppKit_NSBrowserCell")]
+    unsafe impl NSBrowserCell {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "AppKit_NSBrowserCell")]
+    unsafe impl NSBrowserCell {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

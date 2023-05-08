@@ -91,3 +91,12 @@ extern_methods!(
         pub unsafe fn setTransformStruct(&self, transform_struct: NSAffineTransformStruct);
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Foundation_NSAffineTransform")]
+    unsafe impl NSAffineTransform {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

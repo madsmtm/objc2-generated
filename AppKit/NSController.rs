@@ -66,3 +66,12 @@ extern_methods!(
         pub unsafe fn isEditing(&self) -> bool;
     }
 );
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "AppKit_NSController")]
+    unsafe impl NSController {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
