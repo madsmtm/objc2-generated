@@ -70,7 +70,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[method(replacementClassForClass:)]
-        pub unsafe fn replacementClassForClass(cls: &Class) -> &'static Class;
+        pub unsafe fn replacementClassForClass(cls: &AnyClass) -> &'static AnyClass;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other characterEncoding)]
@@ -170,7 +170,7 @@ extern_methods!(
             &self,
             xslt: &NSData,
             arguments: Option<&NSDictionary<NSString, NSString>>,
-        ) -> Result<Id<Object>, Id<NSError>>;
+        ) -> Result<Id<AnyObject>, Id<NSError>>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -182,7 +182,7 @@ extern_methods!(
             &self,
             xslt: &NSString,
             arguments: Option<&NSDictionary<NSString, NSString>>,
-        ) -> Result<Id<Object>, Id<NSError>>;
+        ) -> Result<Id<AnyObject>, Id<NSError>>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -195,7 +195,7 @@ extern_methods!(
             &self,
             xslt_url: &NSURL,
             argument: Option<&NSDictionary<NSString, NSString>>,
-        ) -> Result<Id<Object>, Id<NSError>>;
+        ) -> Result<Id<AnyObject>, Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(validateAndReturnError:_)]

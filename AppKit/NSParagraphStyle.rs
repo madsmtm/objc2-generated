@@ -71,7 +71,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             alignment: NSTextAlignment,
             loc: CGFloat,
-            options: &NSDictionary<NSTextTabOptionKey, Object>,
+            options: &NSDictionary<NSTextTabOptionKey, AnyObject>,
         ) -> Id<Self>;
 
         #[method(alignment)]
@@ -82,7 +82,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other options)]
-        pub unsafe fn options(&self) -> Id<NSDictionary<NSTextTabOptionKey, Object>>;
+        pub unsafe fn options(&self) -> Id<NSDictionary<NSTextTabOptionKey, AnyObject>>;
     }
 );
 

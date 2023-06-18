@@ -88,7 +88,7 @@ extern_methods!(
         pub unsafe fn arrangeObjects(&self, objects: &NSArray) -> Id<NSArray>;
 
         #[method_id(@__retain_semantics Other arrangedObjects)]
-        pub unsafe fn arrangedObjects(&self) -> Id<Object>;
+        pub unsafe fn arrangedObjects(&self) -> Id<AnyObject>;
 
         #[method(avoidsEmptySelection)]
         pub unsafe fn avoidsEmptySelection(&self) -> bool;
@@ -156,22 +156,22 @@ extern_methods!(
         pub unsafe fn removeSelectedObjects(&self, objects: &NSArray) -> bool;
 
         #[method(add:)]
-        pub unsafe fn add(&self, sender: Option<&Object>);
+        pub unsafe fn add(&self, sender: Option<&AnyObject>);
 
         #[method(remove:)]
-        pub unsafe fn remove(&self, sender: Option<&Object>);
+        pub unsafe fn remove(&self, sender: Option<&AnyObject>);
 
         #[method(insert:)]
-        pub unsafe fn insert(&self, sender: Option<&Object>);
+        pub unsafe fn insert(&self, sender: Option<&AnyObject>);
 
         #[method(canInsert)]
         pub unsafe fn canInsert(&self) -> bool;
 
         #[method(selectNext:)]
-        pub unsafe fn selectNext(&self, sender: Option<&Object>);
+        pub unsafe fn selectNext(&self, sender: Option<&AnyObject>);
 
         #[method(selectPrevious:)]
-        pub unsafe fn selectPrevious(&self, sender: Option<&Object>);
+        pub unsafe fn selectPrevious(&self, sender: Option<&AnyObject>);
 
         #[method(canSelectNext)]
         pub unsafe fn canSelectNext(&self) -> bool;
@@ -180,14 +180,18 @@ extern_methods!(
         pub unsafe fn canSelectPrevious(&self) -> bool;
 
         #[method(addObject:)]
-        pub unsafe fn addObject(&self, object: &Object);
+        pub unsafe fn addObject(&self, object: &AnyObject);
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(addObjects:)]
         pub unsafe fn addObjects(&self, objects: &NSArray);
 
         #[method(insertObject:atArrangedObjectIndex:)]
-        pub unsafe fn insertObject_atArrangedObjectIndex(&self, object: &Object, index: NSUInteger);
+        pub unsafe fn insertObject_atArrangedObjectIndex(
+            &self,
+            object: &AnyObject,
+            index: NSUInteger,
+        );
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSIndexSet"))]
         #[method(insertObjects:atArrangedObjectIndexes:)]
@@ -205,7 +209,7 @@ extern_methods!(
         pub unsafe fn removeObjectsAtArrangedObjectIndexes(&self, indexes: &NSIndexSet);
 
         #[method(removeObject:)]
-        pub unsafe fn removeObject(&self, object: &Object);
+        pub unsafe fn removeObject(&self, object: &AnyObject);
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(removeObjects:)]
@@ -220,7 +224,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithContent:)]
         pub unsafe fn initWithContent(
             this: Option<Allocated<Self>>,
-            content: Option<&Object>,
+            content: Option<&AnyObject>,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]

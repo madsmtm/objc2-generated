@@ -24,7 +24,7 @@ extern_methods!(
     #[cfg(feature = "WebKit_WKScriptMessage")]
     unsafe impl WKScriptMessage {
         #[method_id(@__retain_semantics Other body)]
-        pub unsafe fn body(&self) -> Id<Object>;
+        pub unsafe fn body(&self) -> Id<AnyObject>;
 
         #[cfg(feature = "WebKit_WKWebView")]
         #[method_id(@__retain_semantics Other webView)]

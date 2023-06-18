@@ -45,7 +45,7 @@ extern_methods!(
         pub unsafe fn initWithDefaults_initialValues(
             this: Option<Allocated<Self>>,
             defaults: Option<&NSUserDefaults>,
-            initial_values: Option<&NSDictionary<NSString, Object>>,
+            initial_values: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
@@ -61,13 +61,13 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other initialValues)]
-        pub unsafe fn initialValues(&self) -> Option<Id<NSDictionary<NSString, Object>>>;
+        pub unsafe fn initialValues(&self) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setInitialValues:)]
         pub unsafe fn setInitialValues(
             &self,
-            initial_values: Option<&NSDictionary<NSString, Object>>,
+            initial_values: Option<&NSDictionary<NSString, AnyObject>>,
         );
 
         #[method(appliesImmediately)]
@@ -80,16 +80,16 @@ extern_methods!(
         pub unsafe fn hasUnappliedChanges(&self) -> bool;
 
         #[method_id(@__retain_semantics Other values)]
-        pub unsafe fn values(&self) -> Id<Object>;
+        pub unsafe fn values(&self) -> Id<AnyObject>;
 
         #[method(revert:)]
-        pub unsafe fn revert(&self, sender: Option<&Object>);
+        pub unsafe fn revert(&self, sender: Option<&AnyObject>);
 
         #[method(save:)]
-        pub unsafe fn save(&self, sender: Option<&Object>);
+        pub unsafe fn save(&self, sender: Option<&AnyObject>);
 
         #[method(revertToInitialValues:)]
-        pub unsafe fn revertToInitialValues(&self, sender: Option<&Object>);
+        pub unsafe fn revertToInitialValues(&self, sender: Option<&AnyObject>);
     }
 );
 

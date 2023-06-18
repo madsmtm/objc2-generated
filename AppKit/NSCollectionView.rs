@@ -288,11 +288,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other content)]
-        pub unsafe fn content(&self) -> Id<NSArray<Object>>;
+        pub unsafe fn content(&self) -> Id<NSArray<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setContent:)]
-        pub unsafe fn setContent(&self, content: &NSArray<Object>);
+        pub unsafe fn setContent(&self, content: &NSArray<AnyObject>);
 
         #[method(reloadData)]
         pub unsafe fn reloadData(&self);
@@ -427,15 +427,15 @@ extern_methods!(
         pub unsafe fn deselectItemsAtIndexPaths(&self, index_paths: &NSSet<NSIndexPath>);
 
         #[method(selectAll:)]
-        pub unsafe fn selectAll(&self, sender: Option<&Object>);
+        pub unsafe fn selectAll(&self, sender: Option<&AnyObject>);
 
         #[method(deselectAll:)]
-        pub unsafe fn deselectAll(&self, sender: Option<&Object>);
+        pub unsafe fn deselectAll(&self, sender: Option<&AnyObject>);
 
         #[method(registerClass:forItemWithIdentifier:)]
         pub unsafe fn registerClass_forItemWithIdentifier(
             &self,
-            item_class: Option<&Class>,
+            item_class: Option<&AnyClass>,
             identifier: &NSUserInterfaceItemIdentifier,
         );
 
@@ -450,7 +450,7 @@ extern_methods!(
         #[method(registerClass:forSupplementaryViewOfKind:withIdentifier:)]
         pub unsafe fn registerClass_forSupplementaryViewOfKind_withIdentifier(
             &self,
-            view_class: Option<&Class>,
+            view_class: Option<&AnyClass>,
             kind: &NSCollectionViewSupplementaryElementKind,
             identifier: &NSUserInterfaceItemIdentifier,
         );
@@ -588,7 +588,7 @@ extern_methods!(
         );
 
         #[method(toggleSectionCollapse:)]
-        pub unsafe fn toggleSectionCollapse(&self, sender: &Object);
+        pub unsafe fn toggleSectionCollapse(&self, sender: &AnyObject);
 
         #[cfg(all(feature = "Foundation_NSIndexPath", feature = "Foundation_NSSet"))]
         #[method(scrollToItemsAtIndexPaths:scrollPosition:)]
@@ -1227,7 +1227,7 @@ extern_methods!(
         #[method_id(@__retain_semantics New newItemForRepresentedObject:)]
         pub unsafe fn newItemForRepresentedObject(
             &self,
-            object: &Object,
+            object: &AnyObject,
         ) -> Id<NSCollectionViewItem>;
 
         #[cfg(feature = "AppKit_NSCollectionViewItem")]

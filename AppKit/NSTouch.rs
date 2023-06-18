@@ -74,7 +74,7 @@ extern_methods!(
         pub unsafe fn isResting(&self) -> bool;
 
         #[method_id(@__retain_semantics Other device)]
-        pub unsafe fn device(&self) -> Option<Id<Object>>;
+        pub unsafe fn device(&self) -> Option<Id<AnyObject>>;
 
         #[method(deviceSize)]
         pub unsafe fn deviceSize(&self) -> NSSize;

@@ -46,10 +46,10 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTableCellView")]
     unsafe impl NSTableCellView {
         #[method_id(@__retain_semantics Other objectValue)]
-        pub unsafe fn objectValue(&self) -> Option<Id<Object>>;
+        pub unsafe fn objectValue(&self) -> Option<Id<AnyObject>>;
 
         #[method(setObjectValue:)]
-        pub unsafe fn setObjectValue(&self, object_value: Option<&Object>);
+        pub unsafe fn setObjectValue(&self, object_value: Option<&AnyObject>);
 
         #[cfg(feature = "AppKit_NSTextField")]
         #[method_id(@__retain_semantics Other textField)]

@@ -187,7 +187,7 @@ extern_methods!(
         pub unsafe fn runOperationModalForWindow_delegate_didRunSelector_contextInfo(
             &self,
             doc_window: &NSWindow,
-            delegate: Option<&Object>,
+            delegate: Option<&AnyObject>,
             did_run_selector: Option<Sel>,
             context_info: *mut c_void,
         );

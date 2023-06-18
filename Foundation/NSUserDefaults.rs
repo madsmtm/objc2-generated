@@ -53,11 +53,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other objectForKey:)]
-        pub unsafe fn objectForKey(&self, default_name: &NSString) -> Option<Id<Object>>;
+        pub unsafe fn objectForKey(&self, default_name: &NSString) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setObject:forKey:)]
-        pub unsafe fn setObject_forKey(&self, value: Option<&Object>, default_name: &NSString);
+        pub unsafe fn setObject_forKey(&self, value: Option<&AnyObject>, default_name: &NSString);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(removeObjectForKey:)]
@@ -76,7 +76,7 @@ extern_methods!(
         pub unsafe fn dictionaryForKey(
             &self,
             default_name: &NSString,
-        ) -> Option<Id<NSDictionary<NSString, Object>>>;
+        ) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other dataForKey:)]
@@ -133,7 +133,7 @@ extern_methods!(
         #[method(registerDefaults:)]
         pub unsafe fn registerDefaults(
             &self,
-            registration_dictionary: &NSDictionary<NSString, Object>,
+            registration_dictionary: &NSDictionary<NSString, AnyObject>,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -146,7 +146,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other dictionaryRepresentation)]
-        pub unsafe fn dictionaryRepresentation(&self) -> Id<NSDictionary<NSString, Object>>;
+        pub unsafe fn dictionaryRepresentation(&self) -> Id<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other volatileDomainNames)]
@@ -157,13 +157,13 @@ extern_methods!(
         pub unsafe fn volatileDomainForName(
             &self,
             domain_name: &NSString,
-        ) -> Id<NSDictionary<NSString, Object>>;
+        ) -> Id<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setVolatileDomain:forName:)]
         pub unsafe fn setVolatileDomain_forName(
             &self,
-            domain: &NSDictionary<NSString, Object>,
+            domain: &NSDictionary<NSString, AnyObject>,
             domain_name: &NSString,
         );
 
@@ -181,13 +181,13 @@ extern_methods!(
         pub unsafe fn persistentDomainForName(
             &self,
             domain_name: &NSString,
-        ) -> Option<Id<NSDictionary<NSString, Object>>>;
+        ) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setPersistentDomain:forName:)]
         pub unsafe fn setPersistentDomain_forName(
             &self,
-            domain: &NSDictionary<NSString, Object>,
+            domain: &NSDictionary<NSString, AnyObject>,
             domain_name: &NSString,
         );
 

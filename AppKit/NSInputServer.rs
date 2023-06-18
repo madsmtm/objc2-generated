@@ -9,27 +9,31 @@ extern_protocol!(
     pub unsafe trait NSInputServiceProvider {
         #[deprecated]
         #[method(insertText:client:)]
-        unsafe fn insertText_client(&self, string: Option<&Object>, sender: Option<&Object>);
+        unsafe fn insertText_client(&self, string: Option<&AnyObject>, sender: Option<&AnyObject>);
 
         #[deprecated]
         #[method(doCommandBySelector:client:)]
-        unsafe fn doCommandBySelector_client(&self, selector: Option<Sel>, sender: Option<&Object>);
+        unsafe fn doCommandBySelector_client(
+            &self,
+            selector: Option<Sel>,
+            sender: Option<&AnyObject>,
+        );
 
         #[deprecated]
         #[method(markedTextAbandoned:)]
-        unsafe fn markedTextAbandoned(&self, sender: Option<&Object>);
+        unsafe fn markedTextAbandoned(&self, sender: Option<&AnyObject>);
 
         #[deprecated]
         #[method(markedTextSelectionChanged:client:)]
         unsafe fn markedTextSelectionChanged_client(
             &self,
             new_sel: NSRange,
-            sender: Option<&Object>,
+            sender: Option<&AnyObject>,
         );
 
         #[deprecated]
         #[method(terminate:)]
-        unsafe fn terminate(&self, sender: Option<&Object>);
+        unsafe fn terminate(&self, sender: Option<&AnyObject>);
 
         #[deprecated]
         #[method(canBeDisabled)]
@@ -49,25 +53,25 @@ extern_protocol!(
 
         #[deprecated]
         #[method(inputClientBecomeActive:)]
-        unsafe fn inputClientBecomeActive(&self, sender: Option<&Object>);
+        unsafe fn inputClientBecomeActive(&self, sender: Option<&AnyObject>);
 
         #[deprecated]
         #[method(inputClientResignActive:)]
-        unsafe fn inputClientResignActive(&self, sender: Option<&Object>);
+        unsafe fn inputClientResignActive(&self, sender: Option<&AnyObject>);
 
         #[deprecated]
         #[method(inputClientEnabled:)]
-        unsafe fn inputClientEnabled(&self, sender: Option<&Object>);
+        unsafe fn inputClientEnabled(&self, sender: Option<&AnyObject>);
 
         #[deprecated]
         #[method(inputClientDisabled:)]
-        unsafe fn inputClientDisabled(&self, sender: Option<&Object>);
+        unsafe fn inputClientDisabled(&self, sender: Option<&AnyObject>);
 
         #[deprecated]
         #[method(activeConversationWillChange:fromOldConversation:)]
         unsafe fn activeConversationWillChange_fromOldConversation(
             &self,
-            sender: Option<&Object>,
+            sender: Option<&AnyObject>,
             old_conversation: NSInteger,
         );
 
@@ -75,7 +79,7 @@ extern_protocol!(
         #[method(activeConversationChanged:toNewConversation:)]
         unsafe fn activeConversationChanged_toNewConversation(
             &self,
-            sender: Option<&Object>,
+            sender: Option<&AnyObject>,
             new_conversation: NSInteger,
         );
     }
@@ -92,7 +96,7 @@ extern_protocol!(
             index: NSUInteger,
             point: NSPoint,
             flags: NSUInteger,
-            sender: Option<&Object>,
+            sender: Option<&AnyObject>,
         ) -> bool;
 
         #[deprecated]
@@ -102,7 +106,7 @@ extern_protocol!(
             index: NSUInteger,
             point: NSPoint,
             flags: NSUInteger,
-            sender: Option<&Object>,
+            sender: Option<&AnyObject>,
         ) -> bool;
 
         #[deprecated]
@@ -112,7 +116,7 @@ extern_protocol!(
             index: NSUInteger,
             point: NSPoint,
             flags: NSUInteger,
-            sender: Option<&Object>,
+            sender: Option<&AnyObject>,
         );
     }
 
@@ -149,7 +153,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithDelegate:name:)]
         pub unsafe fn initWithDelegate_name(
             this: Option<Allocated<Self>>,
-            delegate: Option<&Object>,
+            delegate: Option<&AnyObject>,
             name: Option<&NSString>,
         ) -> Id<Self>;
     }

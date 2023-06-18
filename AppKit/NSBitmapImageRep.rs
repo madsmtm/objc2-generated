@@ -344,7 +344,7 @@ extern_methods!(
         pub unsafe fn representationOfImageRepsInArray_usingType_properties(
             image_reps: &NSArray<NSImageRep>,
             storage_type: NSBitmapImageFileType,
-            properties: &NSDictionary<NSBitmapImageRepPropertyKey, Object>,
+            properties: &NSDictionary<NSBitmapImageRepPropertyKey, AnyObject>,
         ) -> Option<Id<NSData>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSDictionary"))]
@@ -352,21 +352,21 @@ extern_methods!(
         pub unsafe fn representationUsingType_properties(
             &self,
             storage_type: NSBitmapImageFileType,
-            properties: &NSDictionary<NSBitmapImageRepPropertyKey, Object>,
+            properties: &NSDictionary<NSBitmapImageRepPropertyKey, AnyObject>,
         ) -> Option<Id<NSData>>;
 
         #[method(setProperty:withValue:)]
         pub unsafe fn setProperty_withValue(
             &self,
             property: &NSBitmapImageRepPropertyKey,
-            value: Option<&Object>,
+            value: Option<&AnyObject>,
         );
 
         #[method_id(@__retain_semantics Other valueForProperty:)]
         pub unsafe fn valueForProperty(
             &self,
             property: &NSBitmapImageRepPropertyKey,
-        ) -> Option<Id<Object>>;
+        ) -> Option<Id<AnyObject>>;
     }
 );
 

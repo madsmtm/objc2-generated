@@ -65,22 +65,22 @@ extern_methods!(
         pub unsafe fn setCurrentDirectoryURL(&self, current_directory_url: Option<&NSURL>);
 
         #[method_id(@__retain_semantics Other standardInput)]
-        pub unsafe fn standardInput(&self) -> Option<Id<Object>>;
+        pub unsafe fn standardInput(&self) -> Option<Id<AnyObject>>;
 
         #[method(setStandardInput:)]
-        pub unsafe fn setStandardInput(&self, standard_input: Option<&Object>);
+        pub unsafe fn setStandardInput(&self, standard_input: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other standardOutput)]
-        pub unsafe fn standardOutput(&self) -> Option<Id<Object>>;
+        pub unsafe fn standardOutput(&self) -> Option<Id<AnyObject>>;
 
         #[method(setStandardOutput:)]
-        pub unsafe fn setStandardOutput(&self, standard_output: Option<&Object>);
+        pub unsafe fn setStandardOutput(&self, standard_output: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other standardError)]
-        pub unsafe fn standardError(&self) -> Option<Id<Object>>;
+        pub unsafe fn standardError(&self) -> Option<Id<AnyObject>>;
 
         #[method(setStandardError:)]
-        pub unsafe fn setStandardError(&self, standard_error: Option<&Object>);
+        pub unsafe fn setStandardError(&self, standard_error: Option<&AnyObject>);
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(launchAndReturnError:_)]

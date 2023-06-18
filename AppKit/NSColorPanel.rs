@@ -143,7 +143,7 @@ extern_methods!(
         pub unsafe fn setAction(&self, selector: Option<Sel>);
 
         #[method(setTarget:)]
-        pub unsafe fn setTarget(&self, target: Option<&Object>);
+        pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
 
         #[cfg(feature = "AppKit_NSColorList")]
         #[method(attachColorList:)]
@@ -214,7 +214,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSApplication")]
     unsafe impl NSApplication {
         #[method(orderFrontColorPanel:)]
-        pub unsafe fn orderFrontColorPanel(&self, sender: Option<&Object>);
+        pub unsafe fn orderFrontColorPanel(&self, sender: Option<&AnyObject>);
     }
 );
 

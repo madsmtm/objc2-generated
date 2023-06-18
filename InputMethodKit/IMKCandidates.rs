@@ -105,7 +105,7 @@ extern_methods!(
         pub unsafe fn showSublist_subListDelegate(
             &self,
             candidates: Option<&NSArray>,
-            delegate: Option<&Object>,
+            delegate: Option<&AnyObject>,
         );
 
         #[method(candidateFrame)]
@@ -173,7 +173,7 @@ extern_methods!(
         #[method(candidateStringIdentifier:)]
         pub unsafe fn candidateStringIdentifier(
             &self,
-            candidate_string: Option<&Object>,
+            candidate_string: Option<&AnyObject>,
         ) -> NSInteger;
 
         #[cfg(feature = "Foundation_NSAttributedString")]

@@ -110,7 +110,7 @@ extern_methods!(
         pub unsafe fn peripheralDataWithMeasuredPower(
             &self,
             measured_power: Option<&NSNumber>,
-        ) -> Id<NSMutableDictionary<NSString, Object>>;
+        ) -> Id<NSMutableDictionary<NSString, AnyObject>>;
 
         #[cfg(feature = "CoreLocation_CLBeaconIdentityConstraint")]
         #[method_id(@__retain_semantics Other beaconIdentityConstraint)]

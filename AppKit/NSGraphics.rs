@@ -436,7 +436,7 @@ extern_fn!(
         animation_effect: NSAnimationEffect,
         center_location: NSPoint,
         size: NSSize,
-        animation_delegate: Option<&Object>,
+        animation_delegate: Option<&AnyObject>,
         did_end_selector: Option<Sel>,
         context_info: *mut c_void,
     );

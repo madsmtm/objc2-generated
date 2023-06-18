@@ -40,18 +40,18 @@ extern_methods!(
         #[method_id(@__retain_semantics Other timerWithTimeInterval:target:selector:userInfo:repeats:)]
         pub unsafe fn timerWithTimeInterval_target_selector_userInfo_repeats(
             ti: NSTimeInterval,
-            a_target: &Object,
+            a_target: &AnyObject,
             a_selector: Sel,
-            user_info: Option<&Object>,
+            user_info: Option<&AnyObject>,
             yes_or_no: bool,
         ) -> Id<NSTimer>;
 
         #[method_id(@__retain_semantics Other scheduledTimerWithTimeInterval:target:selector:userInfo:repeats:)]
         pub unsafe fn scheduledTimerWithTimeInterval_target_selector_userInfo_repeats(
             ti: NSTimeInterval,
-            a_target: &Object,
+            a_target: &AnyObject,
             a_selector: Sel,
-            user_info: Option<&Object>,
+            user_info: Option<&AnyObject>,
             yes_or_no: bool,
         ) -> Id<NSTimer>;
 
@@ -85,9 +85,9 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             date: &NSDate,
             ti: NSTimeInterval,
-            t: &Object,
+            t: &AnyObject,
             s: Sel,
-            ui: Option<&Object>,
+            ui: Option<&AnyObject>,
             rep: bool,
         ) -> Id<Self>;
 
@@ -118,7 +118,7 @@ extern_methods!(
         pub unsafe fn isValid(&self) -> bool;
 
         #[method_id(@__retain_semantics Other userInfo)]
-        pub unsafe fn userInfo(&self) -> Option<Id<Object>>;
+        pub unsafe fn userInfo(&self) -> Option<Id<AnyObject>>;
     }
 );
 

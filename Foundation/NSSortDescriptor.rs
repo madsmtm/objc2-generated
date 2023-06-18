@@ -105,12 +105,12 @@ extern_methods!(
         #[method(compareObject:toObject:)]
         pub unsafe fn compareObject_toObject(
             &self,
-            object1: &Object,
-            object2: &Object,
+            object1: &AnyObject,
+            object2: &AnyObject,
         ) -> NSComparisonResult;
 
         #[method_id(@__retain_semantics Other reversedSortDescriptor)]
-        pub unsafe fn reversedSortDescriptor(&self) -> Id<Object>;
+        pub unsafe fn reversedSortDescriptor(&self) -> Id<AnyObject>;
     }
 );
 

@@ -60,7 +60,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithTarget:action:)]
         pub unsafe fn initWithTarget_action(
             this: Option<Allocated<Self>>,
-            target: Option<&Object>,
+            target: Option<&AnyObject>,
             action: Option<Sel>,
         ) -> Id<Self>;
 

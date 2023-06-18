@@ -52,7 +52,7 @@ extern_methods!(
             titles: &NSArray<NSString>,
             selection_mode: NSToolbarItemGroupSelectionMode,
             labels: Option<&NSArray<NSString>>,
-            target: Option<&Object>,
+            target: Option<&AnyObject>,
             action: Option<Sel>,
         ) -> Id<Self>;
 
@@ -67,7 +67,7 @@ extern_methods!(
             images: &NSArray<NSImage>,
             selection_mode: NSToolbarItemGroupSelectionMode,
             labels: Option<&NSArray<NSString>>,
-            target: Option<&Object>,
+            target: Option<&AnyObject>,
             action: Option<Sel>,
         ) -> Id<Self>;
 

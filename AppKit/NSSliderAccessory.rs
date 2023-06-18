@@ -104,7 +104,7 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other behaviorWithTarget:action:)]
         pub unsafe fn behaviorWithTarget_action(
-            target: Option<&Object>,
+            target: Option<&AnyObject>,
             action: Sel,
         ) -> Id<NSSliderAccessoryBehavior>;
 

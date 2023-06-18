@@ -80,7 +80,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSMachBootstrapServer")]
     unsafe impl NSMachBootstrapServer {
         #[method_id(@__retain_semantics Other sharedInstance)]
-        pub unsafe fn sharedInstance() -> Id<Object>;
+        pub unsafe fn sharedInstance() -> Id<AnyObject>;
 
         #[cfg(all(feature = "Foundation_NSPort", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other portForName:)]
@@ -137,7 +137,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSMessagePortNameServer")]
     unsafe impl NSMessagePortNameServer {
         #[method_id(@__retain_semantics Other sharedInstance)]
-        pub unsafe fn sharedInstance() -> Id<Object>;
+        pub unsafe fn sharedInstance() -> Id<AnyObject>;
 
         #[cfg(all(feature = "Foundation_NSPort", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other portForName:)]
@@ -186,7 +186,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSSocketPortNameServer")]
     unsafe impl NSSocketPortNameServer {
         #[method_id(@__retain_semantics Other sharedInstance)]
-        pub unsafe fn sharedInstance() -> Id<Object>;
+        pub unsafe fn sharedInstance() -> Id<AnyObject>;
 
         #[cfg(all(feature = "Foundation_NSPort", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other portForName:)]

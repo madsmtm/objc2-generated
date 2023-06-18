@@ -65,11 +65,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other valueForKey:)]
-        pub unsafe fn valueForKey(key: &NSString) -> Option<Id<Object>>;
+        pub unsafe fn valueForKey(key: &NSString) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setValue:forKey:)]
-        pub unsafe fn setValue_forKey(an_object: Option<&Object>, key: &NSString);
+        pub unsafe fn setValue_forKey(an_object: Option<&AnyObject>, key: &NSString);
     }
 );
 

@@ -45,7 +45,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other metadata)]
-        pub unsafe fn metadata(&self) -> Id<NSDictionary<NSString, Object>>;
+        pub unsafe fn metadata(&self) -> Id<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "HealthKit_HKWorkoutEvent"))]
         #[method_id(@__retain_semantics Other workoutEvents)]
@@ -119,7 +119,7 @@ extern_methods!(
         #[method(addMetadata:completion:)]
         pub unsafe fn addMetadata_completion(
             &self,
-            metadata: &NSDictionary<NSString, Object>,
+            metadata: &NSDictionary<NSString, AnyObject>,
             completion: &Block<(Bool, *mut NSError), ()>,
         );
 
@@ -157,7 +157,7 @@ extern_methods!(
         pub unsafe fn updateActivityWithUUID_addMedatata_completion(
             &self,
             uuid: &NSUUID,
-            metadata: &NSDictionary<NSString, Object>,
+            metadata: &NSDictionary<NSString, AnyObject>,
             completion: &Block<(Bool, *mut NSError), ()>,
         );
 

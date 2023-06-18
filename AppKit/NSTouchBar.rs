@@ -213,6 +213,6 @@ extern_methods!(
         );
 
         #[method(toggleTouchBarCustomizationPalette:)]
-        pub unsafe fn toggleTouchBarCustomizationPalette(&self, sender: Option<&Object>);
+        pub unsafe fn toggleTouchBarCustomizationPalette(&self, sender: Option<&AnyObject>);
     }
 );

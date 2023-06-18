@@ -46,10 +46,10 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other userInfo)]
-        pub unsafe fn userInfo(&self) -> Option<Id<Object>>;
+        pub unsafe fn userInfo(&self) -> Option<Id<AnyObject>>;
 
         #[method(setUserInfo:)]
-        pub unsafe fn setUserInfo(&self, user_info: Option<&Object>);
+        pub unsafe fn setUserInfo(&self, user_info: Option<&AnyObject>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithFileType:delegate:)]

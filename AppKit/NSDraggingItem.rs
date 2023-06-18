@@ -52,10 +52,10 @@ extern_methods!(
         pub unsafe fn setKey(&self, key: &NSDraggingImageComponentKey);
 
         #[method_id(@__retain_semantics Other contents)]
-        pub unsafe fn contents(&self) -> Option<Id<Object>>;
+        pub unsafe fn contents(&self) -> Option<Id<AnyObject>>;
 
         #[method(setContents:)]
-        pub unsafe fn setContents(&self, contents: Option<&Object>);
+        pub unsafe fn setContents(&self, contents: Option<&AnyObject>);
 
         #[method(frame)]
         pub unsafe fn frame(&self) -> NSRect;
@@ -102,7 +102,7 @@ extern_methods!(
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other item)]
-        pub unsafe fn item(&self) -> Id<Object>;
+        pub unsafe fn item(&self) -> Id<AnyObject>;
 
         #[method(draggingFrame)]
         pub unsafe fn draggingFrame(&self) -> NSRect;
@@ -132,7 +132,7 @@ extern_methods!(
         );
 
         #[method(setDraggingFrame:contents:)]
-        pub unsafe fn setDraggingFrame_contents(&self, frame: NSRect, contents: Option<&Object>);
+        pub unsafe fn setDraggingFrame_contents(&self, frame: NSRect, contents: Option<&AnyObject>);
 
         #[cfg(all(
             feature = "AppKit_NSDraggingImageComponent",

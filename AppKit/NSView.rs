@@ -643,7 +643,7 @@ extern_methods!(
         pub unsafe fn addToolTipRect_owner_userData(
             &self,
             rect: NSRect,
-            owner: &Object,
+            owner: &AnyObject,
             data: *mut c_void,
         ) -> NSToolTipTag;
 
@@ -819,7 +819,7 @@ extern_methods!(
         pub unsafe fn dataWithPDFInsideRect(&self, rect: NSRect) -> Id<NSData>;
 
         #[method(print:)]
-        pub unsafe fn print(&self, sender: Option<&Object>);
+        pub unsafe fn print(&self, sender: Option<&AnyObject>);
 
         #[method(knowsPageRange:)]
         pub unsafe fn knowsPageRange(&self, range: NSRangePointer) -> bool;
@@ -941,14 +941,14 @@ extern_methods!(
         pub unsafe fn enterFullScreenMode_withOptions(
             &self,
             screen: &NSScreen,
-            options: Option<&NSDictionary<NSViewFullScreenModeOptionKey, Object>>,
+            options: Option<&NSDictionary<NSViewFullScreenModeOptionKey, AnyObject>>,
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(exitFullScreenModeWithOptions:)]
         pub unsafe fn exitFullScreenModeWithOptions(
             &self,
-            options: Option<&NSDictionary<NSViewFullScreenModeOptionKey, Object>>,
+            options: Option<&NSDictionary<NSViewFullScreenModeOptionKey, AnyObject>>,
         );
 
         #[method(isInFullScreenMode)]
@@ -993,7 +993,7 @@ extern_methods!(
             &self,
             attr_string: Option<&NSAttributedString>,
             target_range: NSRange,
-            options: Option<&NSDictionary<NSDefinitionOptionKey, Object>>,
+            options: Option<&NSDictionary<NSDefinitionOptionKey, AnyObject>>,
             origin_provider: Option<&Block<(NSRange,), NSPoint>>,
         );
     }
@@ -1108,7 +1108,7 @@ extern_methods!(
         pub unsafe fn addTrackingRect_owner_userData_assumeInside(
             &self,
             rect: NSRect,
-            owner: &Object,
+            owner: &AnyObject,
             data: *mut c_void,
             flag: bool,
         ) -> NSTrackingRectTag;
@@ -1136,7 +1136,7 @@ extern_methods!(
             initial_offset: NSSize,
             event: &NSEvent,
             pboard: &NSPasteboard,
-            source_obj: &Object,
+            source_obj: &AnyObject,
             slide_flag: bool,
         );
 
@@ -1162,7 +1162,7 @@ extern_methods!(
             &self,
             type_array: &NSArray<NSString>,
             rect: NSRect,
-            source_object: &Object,
+            source_object: &AnyObject,
             flag: bool,
             event: &NSEvent,
         ) -> bool;

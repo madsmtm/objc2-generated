@@ -461,10 +461,10 @@ extern_methods!(
         pub unsafe fn setAllowsColumnSelection(&self, allows_column_selection: bool);
 
         #[method(selectAll:)]
-        pub unsafe fn selectAll(&self, sender: Option<&Object>);
+        pub unsafe fn selectAll(&self, sender: Option<&AnyObject>);
 
         #[method(deselectAll:)]
-        pub unsafe fn deselectAll(&self, sender: Option<&Object>);
+        pub unsafe fn deselectAll(&self, sender: Option<&AnyObject>);
 
         #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(selectColumnIndexes:byExtendingSelection:)]
@@ -631,7 +631,7 @@ extern_methods!(
         pub unsafe fn makeViewWithIdentifier_owner(
             &self,
             identifier: &NSUserInterfaceItemIdentifier,
-            owner: Option<&Object>,
+            owner: Option<&AnyObject>,
         ) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSTableRowView")]
@@ -812,7 +812,7 @@ extern_protocol!(
         unsafe fn tableView_willDisplayCell_forTableColumn_row(
             &self,
             table_view: &NSTableView,
-            cell: &Object,
+            cell: &AnyObject,
             table_column: Option<&NSTableColumn>,
             row: NSInteger,
         );
@@ -1075,7 +1075,7 @@ extern_protocol!(
             table_view: &NSTableView,
             table_column: Option<&NSTableColumn>,
             row: NSInteger,
-        ) -> Option<Id<Object>>;
+        ) -> Option<Id<AnyObject>>;
 
         #[cfg(all(feature = "AppKit_NSTableColumn", feature = "AppKit_NSTableView"))]
         #[optional]
@@ -1083,7 +1083,7 @@ extern_protocol!(
         unsafe fn tableView_setObjectValue_forTableColumn_row(
             &self,
             table_view: &NSTableView,
-            object: Option<&Object>,
+            object: Option<&AnyObject>,
             table_column: Option<&NSTableColumn>,
             row: NSInteger,
         );

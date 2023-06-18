@@ -7,7 +7,7 @@ use crate::Foundation::*;
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Contacts_CNLabeledValue")]
-    pub struct CNLabeledValue<ValueType: Message = Object> {
+    pub struct CNLabeledValue<ValueType: Message = AnyObject> {
         __superclass: NSObject,
         _inner0: PhantomData<*mut ValueType>,
         notunwindsafe: PhantomData<&'static mut ()>,

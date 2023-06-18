@@ -68,10 +68,10 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other defaultValue)]
-        pub unsafe fn defaultValue(&self) -> Option<Id<Object>>;
+        pub unsafe fn defaultValue(&self) -> Option<Id<AnyObject>>;
 
         #[method(setDefaultValue:)]
-        pub unsafe fn setDefaultValue(&self, default_value: Option<&Object>);
+        pub unsafe fn setDefaultValue(&self, default_value: Option<&AnyObject>);
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other versionHash)]

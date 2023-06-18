@@ -77,7 +77,7 @@ extern_methods!(
             op: NSCompositingOperation,
             requested_alpha: CGFloat,
             respect_context_is_flipped: bool,
-            hints: Option<&NSDictionary<NSImageHintKey, Object>>,
+            hints: Option<&NSDictionary<NSImageHintKey, AnyObject>>,
         ) -> bool;
 
         #[method(size)]
@@ -129,10 +129,10 @@ extern_methods!(
         pub unsafe fn setLayoutDirection(&self, layout_direction: NSImageLayoutDirection);
 
         #[method(registerImageRepClass:)]
-        pub unsafe fn registerImageRepClass(image_rep_class: &Class);
+        pub unsafe fn registerImageRepClass(image_rep_class: &AnyClass);
 
         #[method(unregisterImageRepClass:)]
-        pub unsafe fn unregisterImageRepClass(image_rep_class: &Class);
+        pub unsafe fn unregisterImageRepClass(image_rep_class: &AnyClass);
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other registeredImageRepClasses)]
@@ -141,21 +141,21 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use +imageRepClassForType: instead"]
         #[method(imageRepClassForFileType:)]
-        pub unsafe fn imageRepClassForFileType(r#type: &NSString) -> Option<&'static Class>;
+        pub unsafe fn imageRepClassForFileType(r#type: &NSString) -> Option<&'static AnyClass>;
 
         #[deprecated = "Use +imageRepClassForType: instead"]
         #[method(imageRepClassForPasteboardType:)]
         pub unsafe fn imageRepClassForPasteboardType(
             r#type: &NSPasteboardType,
-        ) -> Option<&'static Class>;
+        ) -> Option<&'static AnyClass>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(imageRepClassForType:)]
-        pub unsafe fn imageRepClassForType(r#type: &NSString) -> Option<&'static Class>;
+        pub unsafe fn imageRepClassForType(r#type: &NSString) -> Option<&'static AnyClass>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method(imageRepClassForData:)]
-        pub unsafe fn imageRepClassForData(data: &NSData) -> Option<&'static Class>;
+        pub unsafe fn imageRepClassForData(data: &NSData) -> Option<&'static AnyClass>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method(canInitWithData:)]

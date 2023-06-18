@@ -38,7 +38,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithDefinition:fromArchive:)]
         pub unsafe fn initWithDefinition_fromArchive(
             this: Option<Allocated<Self>>,
-            dict: Option<&NSDictionary<NSString, Object>>,
+            dict: Option<&NSDictionary<NSString, AnyObject>>,
             archived: bool,
         ) -> Option<Id<Self>>;
 
@@ -83,20 +83,20 @@ extern_methods!(
         #[method_id(@__retain_semantics Other runWithInput:fromAction:error:)]
         pub unsafe fn runWithInput_fromAction_error(
             &self,
-            input: Option<&Object>,
+            input: Option<&AnyObject>,
             an_action: Option<&AMAction>,
-            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>>>>,
-        ) -> Option<Id<Object>>;
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, AnyObject>>>>,
+        ) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other runWithInput:error:_)]
         pub unsafe fn runWithInput_error(
             &self,
-            input: Option<&Object>,
-        ) -> Result<Id<Object>, Id<NSError>>;
+            input: Option<&AnyObject>,
+        ) -> Result<Id<AnyObject>, Id<NSError>>;
 
         #[method(runAsynchronouslyWithInput:)]
-        pub unsafe fn runAsynchronouslyWithInput(&self, input: Option<&Object>);
+        pub unsafe fn runAsynchronouslyWithInput(&self, input: Option<&AnyObject>);
 
         #[method(willFinishRunning)]
         pub unsafe fn willFinishRunning(&self);
@@ -106,7 +106,7 @@ extern_methods!(
         #[method(didFinishRunningWithError:)]
         pub unsafe fn didFinishRunningWithError(
             &self,
-            error_info: Option<&NSDictionary<NSString, Object>>,
+            error_info: Option<&NSDictionary<NSString, AnyObject>>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
@@ -114,10 +114,10 @@ extern_methods!(
         pub unsafe fn finishRunningWithError(&self, error: Option<&NSError>);
 
         #[method_id(@__retain_semantics Other output)]
-        pub unsafe fn output(&self) -> Option<Id<Object>>;
+        pub unsafe fn output(&self) -> Option<Id<AnyObject>>;
 
         #[method(setOutput:)]
-        pub unsafe fn setOutput(&self, output: Option<&Object>);
+        pub unsafe fn setOutput(&self, output: Option<&AnyObject>);
 
         #[method(stop)]
         pub unsafe fn stop(&self);
@@ -130,7 +130,10 @@ extern_methods!(
             feature = "Foundation_NSString"
         ))]
         #[method(writeToDictionary:)]
-        pub unsafe fn writeToDictionary(&self, dictionary: &NSMutableDictionary<NSString, Object>);
+        pub unsafe fn writeToDictionary(
+            &self,
+            dictionary: &NSMutableDictionary<NSString, AnyObject>,
+        );
 
         #[method(opened)]
         pub unsafe fn opened(&self);

@@ -48,7 +48,7 @@ extern_protocol!(
         unsafe fn imageForBounds_attributes_location_textContainer(
             &self,
             bounds: CGRect,
-            attributes: &NSDictionary<NSAttributedStringKey, Object>,
+            attributes: &NSDictionary<NSAttributedStringKey, AnyObject>,
             location: &ProtocolObject<dyn NSTextLocation>,
             text_container: Option<&NSTextContainer>,
         ) -> Option<Id<NSImage>>;
@@ -60,7 +60,7 @@ extern_protocol!(
         #[method(attachmentBoundsForAttributes:location:textContainer:proposedLineFragment:position:)]
         unsafe fn attachmentBoundsForAttributes_location_textContainer_proposedLineFragment_position(
             &self,
-            attributes: &NSDictionary<NSAttributedStringKey, Object>,
+            attributes: &NSDictionary<NSAttributedStringKey, AnyObject>,
             location: &ProtocolObject<dyn NSTextLocation>,
             text_container: Option<&NSTextContainer>,
             proposed_line_fragment: CGRect,
@@ -188,12 +188,12 @@ extern_methods!(
         #[method(textAttachmentViewProviderClassForFileType:)]
         pub unsafe fn textAttachmentViewProviderClassForFileType(
             file_type: &NSString,
-        ) -> Option<&'static Class>;
+        ) -> Option<&'static AnyClass>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(registerTextAttachmentViewProviderClass:forFileType:)]
         pub unsafe fn registerTextAttachmentViewProviderClass_forFileType(
-            text_attachment_view_provider_class: &Class,
+            text_attachment_view_provider_class: &AnyClass,
             file_type: &NSString,
         );
 
@@ -308,7 +308,7 @@ extern_methods!(
         #[method(attachmentBoundsForAttributes:location:textContainer:proposedLineFragment:position:)]
         pub unsafe fn attachmentBoundsForAttributes_location_textContainer_proposedLineFragment_position(
             &self,
-            attributes: &NSDictionary<NSAttributedStringKey, Object>,
+            attributes: &NSDictionary<NSAttributedStringKey, AnyObject>,
             location: &ProtocolObject<dyn NSTextLocation>,
             text_container: Option<&NSTextContainer>,
             proposed_line_fragment: CGRect,

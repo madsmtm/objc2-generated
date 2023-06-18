@@ -180,10 +180,10 @@ extern_methods!(
         pub unsafe fn setTagNames(&self, tag_names: Option<&NSArray<NSString>>);
 
         #[method(ok:)]
-        pub unsafe fn ok(&self, sender: Option<&Object>);
+        pub unsafe fn ok(&self, sender: Option<&AnyObject>);
 
         #[method(cancel:)]
-        pub unsafe fn cancel(&self, sender: Option<&Object>);
+        pub unsafe fn cancel(&self, sender: Option<&AnyObject>);
 
         #[method(beginSheetModalForWindow:completionHandler:)]
         pub unsafe fn beginSheetModalForWindow_completionHandler(
@@ -259,39 +259,39 @@ extern_protocol!(
         #[cfg(feature = "Foundation_NSURL")]
         #[optional]
         #[method(panel:shouldEnableURL:)]
-        unsafe fn panel_shouldEnableURL(&self, sender: &Object, url: &NSURL) -> bool;
+        unsafe fn panel_shouldEnableURL(&self, sender: &AnyObject, url: &NSURL) -> bool;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[optional]
         #[method(panel:validateURL:error:_)]
         unsafe fn panel_validateURL_error(
             &self,
-            sender: &Object,
+            sender: &AnyObject,
             url: &NSURL,
         ) -> Result<(), Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[optional]
         #[method(panel:didChangeToDirectoryURL:)]
-        unsafe fn panel_didChangeToDirectoryURL(&self, sender: &Object, url: Option<&NSURL>);
+        unsafe fn panel_didChangeToDirectoryURL(&self, sender: &AnyObject, url: Option<&NSURL>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method_id(@__retain_semantics Other panel:userEnteredFilename:confirmed:)]
         unsafe fn panel_userEnteredFilename_confirmed(
             &self,
-            sender: &Object,
+            sender: &AnyObject,
             filename: &NSString,
             ok_flag: bool,
         ) -> Option<Id<NSString>>;
 
         #[optional]
         #[method(panel:willExpand:)]
-        unsafe fn panel_willExpand(&self, sender: &Object, expanding: bool);
+        unsafe fn panel_willExpand(&self, sender: &AnyObject, expanding: bool);
 
         #[optional]
         #[method(panelSelectionDidChange:)]
-        unsafe fn panelSelectionDidChange(&self, sender: Option<&Object>);
+        unsafe fn panelSelectionDidChange(&self, sender: Option<&AnyObject>);
     }
 
     unsafe impl ProtocolType for dyn NSOpenSavePanelDelegate {}
@@ -334,7 +334,7 @@ extern_methods!(
             path: &NSString,
             name: Option<&NSString>,
             doc_window: Option<&NSWindow>,
-            delegate: Option<&Object>,
+            delegate: Option<&AnyObject>,
             did_end_selector: Option<Sel>,
             context_info: *mut c_void,
         );
@@ -350,7 +350,7 @@ extern_methods!(
 
         #[deprecated = "Default implementation does nothing."]
         #[method(selectText:)]
-        pub unsafe fn selectText(&self, sender: Option<&Object>);
+        pub unsafe fn selectText(&self, sender: Option<&AnyObject>);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[deprecated = "Use -allowedContentTypes instead"]

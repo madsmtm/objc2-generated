@@ -101,13 +101,13 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other descriptionWithLocale:)]
-        pub unsafe fn descriptionWithLocale(&self, locale: Option<&Object>) -> Id<NSString>;
+        pub unsafe fn descriptionWithLocale(&self, locale: Option<&AnyObject>) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other descriptionWithLocale:indent:)]
         pub unsafe fn descriptionWithLocale_indent(
             &self,
-            locale: Option<&Object>,
+            locale: Option<&AnyObject>,
             level: NSUInteger,
         ) -> Id<NSString>;
 
@@ -206,7 +206,7 @@ extern_methods!(
         pub unsafe fn makeObjectsPerformSelector_withObject(
             &self,
             a_selector: Sel,
-            argument: Option<&Object>,
+            argument: Option<&AnyObject>,
         );
 
         #[cfg(feature = "Foundation_NSIndexSet")]

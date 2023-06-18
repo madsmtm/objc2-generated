@@ -84,7 +84,7 @@ extern_protocol!(
         unsafe fn draggingPasteboard(&self) -> Id<NSPasteboard>;
 
         #[method_id(@__retain_semantics Other draggingSource)]
-        unsafe fn draggingSource(&self) -> Option<Id<Object>>;
+        unsafe fn draggingSource(&self) -> Option<Id<AnyObject>>;
 
         #[method(draggingSequenceNumber)]
         unsafe fn draggingSequenceNumber(&self) -> NSInteger;
@@ -134,7 +134,7 @@ extern_protocol!(
             enum_opts: NSDraggingItemEnumerationOptions,
             view: Option<&NSView>,
             class_array: &NSArray<TodoClass>,
-            search_options: &NSDictionary<NSPasteboardReadingOptionKey, Object>,
+            search_options: &NSDictionary<NSPasteboardReadingOptionKey, AnyObject>,
             block: &Block<(NonNull<NSDraggingItem>, NSInteger, NonNull<Bool>), ()>,
         );
 

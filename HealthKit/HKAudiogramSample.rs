@@ -50,7 +50,7 @@ extern_methods!(
             sensitivity_points: &NSArray<HKAudiogramSensitivityPoint>,
             start_date: &NSDate,
             end_date: &NSDate,
-            metadata: Option<&NSDictionary<NSString, Object>>,
+            metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Id<Self>;
     }
 );

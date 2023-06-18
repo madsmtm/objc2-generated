@@ -120,17 +120,21 @@ extern_methods!(
         );
 
         #[method(addItemWithObjectValue:)]
-        pub unsafe fn addItemWithObjectValue(&self, object: &Object);
+        pub unsafe fn addItemWithObjectValue(&self, object: &AnyObject);
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(addItemsWithObjectValues:)]
         pub unsafe fn addItemsWithObjectValues(&self, objects: &NSArray);
 
         #[method(insertItemWithObjectValue:atIndex:)]
-        pub unsafe fn insertItemWithObjectValue_atIndex(&self, object: &Object, index: NSInteger);
+        pub unsafe fn insertItemWithObjectValue_atIndex(
+            &self,
+            object: &AnyObject,
+            index: NSInteger,
+        );
 
         #[method(removeItemWithObjectValue:)]
-        pub unsafe fn removeItemWithObjectValue(&self, object: &Object);
+        pub unsafe fn removeItemWithObjectValue(&self, object: &AnyObject);
 
         #[method(removeItemAtIndex:)]
         pub unsafe fn removeItemAtIndex(&self, index: NSInteger);
@@ -139,16 +143,16 @@ extern_methods!(
         pub unsafe fn removeAllItems(&self);
 
         #[method(selectItemWithObjectValue:)]
-        pub unsafe fn selectItemWithObjectValue(&self, object: Option<&Object>);
+        pub unsafe fn selectItemWithObjectValue(&self, object: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other itemObjectValueAtIndex:)]
-        pub unsafe fn itemObjectValueAtIndex(&self, index: NSInteger) -> Id<Object>;
+        pub unsafe fn itemObjectValueAtIndex(&self, index: NSInteger) -> Id<AnyObject>;
 
         #[method_id(@__retain_semantics Other objectValueOfSelectedItem)]
-        pub unsafe fn objectValueOfSelectedItem(&self) -> Option<Id<Object>>;
+        pub unsafe fn objectValueOfSelectedItem(&self) -> Option<Id<AnyObject>>;
 
         #[method(indexOfItemWithObjectValue:)]
-        pub unsafe fn indexOfItemWithObjectValue(&self, object: &Object) -> NSInteger;
+        pub unsafe fn indexOfItemWithObjectValue(&self, object: &AnyObject) -> NSInteger;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other objectValues)]
@@ -209,7 +213,7 @@ extern_protocol!(
             &self,
             combo_box_cell: &NSComboBoxCell,
             index: NSInteger,
-        ) -> Id<Object>;
+        ) -> Id<AnyObject>;
 
         #[cfg(all(feature = "AppKit_NSComboBoxCell", feature = "Foundation_NSString"))]
         #[optional]

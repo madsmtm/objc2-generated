@@ -209,10 +209,10 @@ extern_methods!(
         pub unsafe fn setIndentationLevel(&self, indentation_level: NSInteger);
 
         #[method_id(@__retain_semantics Other target)]
-        pub unsafe fn target(&self) -> Option<Id<Object>>;
+        pub unsafe fn target(&self) -> Option<Id<AnyObject>>;
 
         #[method(setTarget:)]
-        pub unsafe fn setTarget(&self, target: Option<&Object>);
+        pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
 
         #[method(action)]
         pub unsafe fn action(&self) -> Option<Sel>;
@@ -227,10 +227,10 @@ extern_methods!(
         pub unsafe fn setTag(&self, tag: NSInteger);
 
         #[method_id(@__retain_semantics Other representedObject)]
-        pub unsafe fn representedObject(&self) -> Option<Id<Object>>;
+        pub unsafe fn representedObject(&self) -> Option<Id<AnyObject>>;
 
         #[method(setRepresentedObject:)]
-        pub unsafe fn setRepresentedObject(&self, represented_object: Option<&Object>);
+        pub unsafe fn setRepresentedObject(&self, represented_object: Option<&AnyObject>);
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other view)]

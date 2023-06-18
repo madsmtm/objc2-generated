@@ -207,8 +207,8 @@ extern_methods!(
         pub unsafe fn observeValueForKeyPath_ofObject_change_context(
             &self,
             key_path: Option<&NSString>,
-            object: Option<&Object>,
-            change: Option<&NSDictionary<NSString, Object>>,
+            object: Option<&AnyObject>,
+            change: Option<&NSDictionary<NSString, AnyObject>>,
             context: *mut c_void,
         );
 
@@ -219,7 +219,7 @@ extern_methods!(
         #[method(assignObject:toPersistentStore:)]
         pub unsafe fn assignObject_toPersistentStore(
             &self,
-            object: &Object,
+            object: &AnyObject,
             store: &NSPersistentStore,
         );
 
@@ -314,10 +314,10 @@ extern_methods!(
         pub unsafe fn setStalenessInterval(&self, staleness_interval: NSTimeInterval);
 
         #[method_id(@__retain_semantics Other mergePolicy)]
-        pub unsafe fn mergePolicy(&self) -> Id<Object>;
+        pub unsafe fn mergePolicy(&self) -> Id<AnyObject>;
 
         #[method(setMergePolicy:)]
-        pub unsafe fn setMergePolicy(&self, merge_policy: &Object);
+        pub unsafe fn setMergePolicy(&self, merge_policy: &AnyObject);
 
         #[cfg(all(
             feature = "CoreData_NSManagedObject",

@@ -32,7 +32,7 @@ extern_methods!(
         pub unsafe fn buttonTouchBarItemWithIdentifier_title_target_action(
             identifier: &NSTouchBarItemIdentifier,
             title: &NSString,
-            target: Option<&Object>,
+            target: Option<&AnyObject>,
             action: Option<Sel>,
         ) -> Id<Self>;
 
@@ -41,7 +41,7 @@ extern_methods!(
         pub unsafe fn buttonTouchBarItemWithIdentifier_image_target_action(
             identifier: &NSTouchBarItemIdentifier,
             image: &NSImage,
-            target: Option<&Object>,
+            target: Option<&AnyObject>,
             action: Option<Sel>,
         ) -> Id<Self>;
 
@@ -51,7 +51,7 @@ extern_methods!(
             identifier: &NSTouchBarItemIdentifier,
             title: &NSString,
             image: &NSImage,
-            target: Option<&Object>,
+            target: Option<&AnyObject>,
             action: Option<Sel>,
         ) -> Id<Self>;
 
@@ -80,10 +80,10 @@ extern_methods!(
         pub unsafe fn setBezelColor(&self, bezel_color: Option<&NSColor>);
 
         #[method_id(@__retain_semantics Other target)]
-        pub unsafe fn target(&self) -> Option<Id<Object>>;
+        pub unsafe fn target(&self) -> Option<Id<AnyObject>>;
 
         #[method(setTarget:)]
-        pub unsafe fn setTarget(&self, target: Option<&Object>);
+        pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
 
         #[method(action)]
         pub unsafe fn action(&self) -> Option<Sel>;

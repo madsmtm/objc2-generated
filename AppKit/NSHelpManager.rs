@@ -43,23 +43,23 @@ extern_methods!(
         pub unsafe fn setContextHelp_forObject(
             &self,
             attr_string: &NSAttributedString,
-            object: &Object,
+            object: &AnyObject,
         );
 
         #[method(removeContextHelpForObject:)]
-        pub unsafe fn removeContextHelpForObject(&self, object: &Object);
+        pub unsafe fn removeContextHelpForObject(&self, object: &AnyObject);
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other contextHelpForObject:)]
         pub unsafe fn contextHelpForObject(
             &self,
-            object: &Object,
+            object: &AnyObject,
         ) -> Option<Id<NSAttributedString>>;
 
         #[method(showContextHelpForObject:locationHint:)]
         pub unsafe fn showContextHelpForObject_locationHint(
             &self,
-            object: &Object,
+            object: &AnyObject,
             pt: NSPoint,
         ) -> bool;
 
@@ -114,9 +114,9 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSApplication")]
     unsafe impl NSApplication {
         #[method(activateContextHelpMode:)]
-        pub unsafe fn activateContextHelpMode(&self, sender: Option<&Object>);
+        pub unsafe fn activateContextHelpMode(&self, sender: Option<&AnyObject>);
 
         #[method(showHelp:)]
-        pub unsafe fn showHelp(&self, sender: Option<&Object>);
+        pub unsafe fn showHelp(&self, sender: Option<&AnyObject>);
     }
 );

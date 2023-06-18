@@ -40,7 +40,7 @@ extern_methods!(
         pub unsafe fn key(&self) -> Id<NSString>;
 
         #[method_id(@__retain_semantics Other value)]
-        pub unsafe fn value(&self) -> Option<Id<Object>>;
+        pub unsafe fn value(&self) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]

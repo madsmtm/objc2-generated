@@ -9,7 +9,7 @@ extern_protocol!(
         unsafe fn countByEnumeratingWithState_objects_count(
             &self,
             state: NonNull<NSFastEnumerationState>,
-            buffer: NonNull<*mut Object>,
+            buffer: NonNull<*mut AnyObject>,
             len: NSUInteger,
         ) -> NSUInteger;
     }

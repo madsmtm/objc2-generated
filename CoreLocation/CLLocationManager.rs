@@ -78,7 +78,7 @@ extern_methods!(
         pub unsafe fn significantLocationChangeMonitoringAvailable() -> bool;
 
         #[method(isMonitoringAvailableForClass:)]
-        pub unsafe fn isMonitoringAvailableForClass(region_class: &Class) -> bool;
+        pub unsafe fn isMonitoringAvailableForClass(region_class: &AnyClass) -> bool;
 
         #[deprecated]
         #[method(regionMonitoringAvailable)]

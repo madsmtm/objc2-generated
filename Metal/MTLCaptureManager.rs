@@ -45,10 +45,10 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLCaptureDescriptor")]
     unsafe impl MTLCaptureDescriptor {
         #[method_id(@__retain_semantics Other captureObject)]
-        pub unsafe fn captureObject(&self) -> Option<Id<Object>>;
+        pub unsafe fn captureObject(&self) -> Option<Id<AnyObject>>;
 
         #[method(setCaptureObject:)]
-        pub unsafe fn setCaptureObject(&self, capture_object: Option<&Object>);
+        pub unsafe fn setCaptureObject(&self, capture_object: Option<&AnyObject>);
 
         #[method(destination)]
         pub fn destination(&self) -> MTLCaptureDestination;

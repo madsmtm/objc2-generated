@@ -95,12 +95,12 @@ extern_methods!(
     unsafe impl NSURLHandle {
         #[deprecated]
         #[method(registerURLHandleClass:)]
-        pub unsafe fn registerURLHandleClass(an_url_handle_subclass: Option<&Class>);
+        pub unsafe fn registerURLHandleClass(an_url_handle_subclass: Option<&AnyClass>);
 
         #[cfg(feature = "Foundation_NSURL")]
         #[deprecated]
         #[method(URLHandleClassForURL:)]
-        pub unsafe fn URLHandleClassForURL(an_url: Option<&NSURL>) -> Option<&'static Class>;
+        pub unsafe fn URLHandleClassForURL(an_url: Option<&NSURL>) -> Option<&'static AnyClass>;
 
         #[deprecated]
         #[method(status)]
@@ -177,7 +177,10 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method_id(@__retain_semantics Other propertyForKey:)]
-        pub unsafe fn propertyForKey(&self, property_key: Option<&NSString>) -> Option<Id<Object>>;
+        pub unsafe fn propertyForKey(
+            &self,
+            property_key: Option<&NSString>,
+        ) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
@@ -185,14 +188,14 @@ extern_methods!(
         pub unsafe fn propertyForKeyIfAvailable(
             &self,
             property_key: Option<&NSString>,
-        ) -> Option<Id<Object>>;
+        ) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method(writeProperty:forKey:)]
         pub unsafe fn writeProperty_forKey(
             &self,
-            property_value: Option<&Object>,
+            property_value: Option<&AnyObject>,
             property_key: Option<&NSString>,
         ) -> bool;
 

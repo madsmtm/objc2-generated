@@ -45,14 +45,14 @@ extern_methods!(
     unsafe impl NSPropertyListSerialization {
         #[method(propertyList:isValidForFormat:)]
         pub unsafe fn propertyList_isValidForFormat(
-            plist: &Object,
+            plist: &AnyObject,
             format: NSPropertyListFormat,
         ) -> bool;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method_id(@__retain_semantics Other dataWithPropertyList:format:options:error:_)]
         pub unsafe fn dataWithPropertyList_format_options_error(
-            plist: &Object,
+            plist: &AnyObject,
             format: NSPropertyListFormat,
             opt: NSPropertyListWriteOptions,
         ) -> Result<Id<NSData>, Id<NSError>>;
@@ -63,7 +63,7 @@ extern_methods!(
             data: &NSData,
             opt: NSPropertyListReadOptions,
             format: *mut NSPropertyListFormat,
-        ) -> Result<Id<Object>, Id<NSError>>;
+        ) -> Result<Id<AnyObject>, Id<NSError>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSInputStream"))]
         #[method_id(@__retain_semantics Other propertyListWithStream:options:format:error:_)]
@@ -71,7 +71,7 @@ extern_methods!(
             stream: &NSInputStream,
             opt: NSPropertyListReadOptions,
             format: *mut NSPropertyListFormat,
-        ) -> Result<Id<Object>, Id<NSError>>;
+        ) -> Result<Id<AnyObject>, Id<NSError>>;
     }
 );
 

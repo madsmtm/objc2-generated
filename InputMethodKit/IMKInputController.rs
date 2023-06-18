@@ -8,35 +8,35 @@ use crate::InputMethodKit::*;
 extern_protocol!(
     pub unsafe trait IMKStateSetting {
         #[method(activateServer:)]
-        unsafe fn activateServer(&self, sender: Option<&Object>);
+        unsafe fn activateServer(&self, sender: Option<&AnyObject>);
 
         #[method(deactivateServer:)]
-        unsafe fn deactivateServer(&self, sender: Option<&Object>);
+        unsafe fn deactivateServer(&self, sender: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other valueForTag:client:)]
         unsafe fn valueForTag_client(
             &self,
             tag: c_long,
-            sender: Option<&Object>,
-        ) -> Option<Id<Object>>;
+            sender: Option<&AnyObject>,
+        ) -> Option<Id<AnyObject>>;
 
         #[method(setValue:forTag:client:)]
         unsafe fn setValue_forTag_client(
             &self,
-            value: Option<&Object>,
+            value: Option<&AnyObject>,
             tag: c_long,
-            sender: Option<&Object>,
+            sender: Option<&AnyObject>,
         );
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other modes:)]
-        unsafe fn modes(&self, sender: Option<&Object>) -> Option<Id<NSDictionary>>;
+        unsafe fn modes(&self, sender: Option<&AnyObject>) -> Option<Id<NSDictionary>>;
 
         #[method(recognizedEvents:)]
-        unsafe fn recognizedEvents(&self, sender: Option<&Object>) -> NSUInteger;
+        unsafe fn recognizedEvents(&self, sender: Option<&AnyObject>) -> NSUInteger;
 
         #[method(showPreferences:)]
-        unsafe fn showPreferences(&self, sender: Option<&Object>);
+        unsafe fn showPreferences(&self, sender: Option<&AnyObject>);
     }
 
     unsafe impl ProtocolType for dyn IMKStateSetting {}
@@ -51,7 +51,7 @@ extern_protocol!(
             point: NSPoint,
             flags: NSUInteger,
             keep_tracking: *mut Bool,
-            sender: Option<&Object>,
+            sender: Option<&AnyObject>,
         ) -> bool;
 
         #[method(mouseUpOnCharacterIndex:coordinate:withModifier:client:)]
@@ -60,7 +60,7 @@ extern_protocol!(
             index: NSUInteger,
             point: NSPoint,
             flags: NSUInteger,
-            sender: Option<&Object>,
+            sender: Option<&AnyObject>,
         ) -> bool;
 
         #[method(mouseMovedOnCharacterIndex:coordinate:withModifier:client:)]
@@ -69,7 +69,7 @@ extern_protocol!(
             index: NSUInteger,
             point: NSPoint,
             flags: NSUInteger,
-            sender: Option<&Object>,
+            sender: Option<&AnyObject>,
         ) -> bool;
     }
 
@@ -105,8 +105,8 @@ extern_methods!(
         pub unsafe fn initWithServer_delegate_client(
             this: Option<Allocated<Self>>,
             server: Option<&IMKServer>,
-            delegate: Option<&Object>,
-            input_client: Option<&Object>,
+            delegate: Option<&AnyObject>,
+            input_client: Option<&AnyObject>,
         ) -> Option<Id<Self>>;
 
         #[method(updateComposition)]
@@ -152,10 +152,10 @@ extern_methods!(
         pub unsafe fn menu(&self) -> Option<Id<NSMenu>>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<Object>>;
+        pub unsafe fn delegate(&self) -> Option<Id<AnyObject>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, new_delegate: Option<&Object>);
+        pub unsafe fn setDelegate(&self, new_delegate: Option<&AnyObject>);
 
         #[cfg(feature = "InputMethodKit_IMKServer")]
         #[method_id(@__retain_semantics Other server)]

@@ -83,7 +83,7 @@ extern_methods!(
         #[method(instantiateNibWithOwner:topLevelObjects:)]
         pub unsafe fn instantiateNibWithOwner_topLevelObjects(
             &self,
-            owner: Option<&Object>,
+            owner: Option<&AnyObject>,
             top_level_objects: Option<&mut Option<Id<NSArray>>>,
         ) -> bool;
     }

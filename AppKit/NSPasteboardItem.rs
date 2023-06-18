@@ -63,7 +63,7 @@ extern_methods!(
         #[method(setPropertyList:forType:)]
         pub unsafe fn setPropertyList_forType(
             &self,
-            property_list: &Object,
+            property_list: &AnyObject,
             r#type: &NSPasteboardType,
         ) -> bool;
 
@@ -76,7 +76,10 @@ extern_methods!(
         pub unsafe fn stringForType(&self, r#type: &NSPasteboardType) -> Option<Id<NSString>>;
 
         #[method_id(@__retain_semantics Other propertyListForType:)]
-        pub unsafe fn propertyListForType(&self, r#type: &NSPasteboardType) -> Option<Id<Object>>;
+        pub unsafe fn propertyListForType(
+            &self,
+            r#type: &NSPasteboardType,
+        ) -> Option<Id<AnyObject>>;
     }
 );
 

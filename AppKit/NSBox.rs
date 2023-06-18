@@ -102,7 +102,7 @@ extern_methods!(
         pub unsafe fn titleRect(&self) -> NSRect;
 
         #[method_id(@__retain_semantics Other titleCell)]
-        pub unsafe fn titleCell(&self) -> Id<Object>;
+        pub unsafe fn titleCell(&self) -> Id<AnyObject>;
 
         #[method(contentViewMargins)]
         pub unsafe fn contentViewMargins(&self) -> NSSize;

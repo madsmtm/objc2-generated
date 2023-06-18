@@ -75,10 +75,10 @@ extern_methods!(
         pub unsafe fn exceptionHangingMask(&self) -> NSUInteger;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, an_object: Option<&Object>);
+        pub unsafe fn setDelegate(&self, an_object: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<Object>>;
+        pub unsafe fn delegate(&self) -> Option<Id<AnyObject>>;
     }
 );
 

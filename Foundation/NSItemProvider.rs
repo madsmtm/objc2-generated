@@ -90,7 +90,7 @@ pub type NSItemProviderCompletionHandler =
 pub type NSItemProviderLoadHandler = *mut Block<
     (
         NSItemProviderCompletionHandler,
-        *const Class,
+        *const AnyClass,
         *mut NSDictionary,
     ),
     (),

@@ -28,12 +28,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithReceiptProperties:)]
         pub unsafe fn initWithReceiptProperties(
             this: Option<Allocated<Self>>,
-            properties: Option<&NSDictionary<NSString, Object>>,
+            properties: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other receiptProperties)]
-        pub unsafe fn receiptProperties(&self) -> Option<Id<NSDictionary<NSString, Object>>>;
+        pub unsafe fn receiptProperties(&self) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
     }
 );
 

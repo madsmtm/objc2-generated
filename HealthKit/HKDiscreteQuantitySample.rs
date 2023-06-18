@@ -83,7 +83,7 @@ extern_methods!(
             quantity: &HKQuantity,
             start_date: &NSDate,
             end_date: &NSDate,
-            metadata: Option<&NSDictionary<NSString, Object>>,
+            metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Id<Self>;
 
         #[cfg(all(
@@ -101,7 +101,7 @@ extern_methods!(
             start_date: &NSDate,
             end_date: &NSDate,
             device: Option<&HKDevice>,
-            metadata: Option<&NSDictionary<NSString, Object>>,
+            metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Id<Self>;
     }
 );

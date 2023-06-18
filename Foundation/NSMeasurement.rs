@@ -6,7 +6,7 @@ use crate::Foundation::*;
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSMeasurement")]
-    pub struct NSMeasurement<UnitType: Message = Object> {
+    pub struct NSMeasurement<UnitType: Message = AnyObject> {
         __superclass: NSObject,
         _inner0: PhantomData<*mut UnitType>,
         notunwindsafe: PhantomData<&'static mut ()>,

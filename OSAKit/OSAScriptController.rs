@@ -81,16 +81,16 @@ extern_methods!(
         pub unsafe fn isCompiling(&self) -> bool;
 
         #[method(compileScript:)]
-        pub unsafe fn compileScript(&self, sender: Option<&Object>);
+        pub unsafe fn compileScript(&self, sender: Option<&AnyObject>);
 
         #[method(recordScript:)]
-        pub unsafe fn recordScript(&self, sender: Option<&Object>);
+        pub unsafe fn recordScript(&self, sender: Option<&AnyObject>);
 
         #[method(runScript:)]
-        pub unsafe fn runScript(&self, sender: Option<&Object>);
+        pub unsafe fn runScript(&self, sender: Option<&AnyObject>);
 
         #[method(stopScript:)]
-        pub unsafe fn stopScript(&self, sender: Option<&Object>);
+        pub unsafe fn stopScript(&self, sender: Option<&AnyObject>);
     }
 );
 

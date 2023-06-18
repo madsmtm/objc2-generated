@@ -56,29 +56,29 @@ extern_methods!(
             &self,
             range: NSRange,
             checking_types: NSTextCheckingTypes,
-            options: &NSDictionary<NSTextCheckingOptionKey, Object>,
+            options: &NSDictionary<NSTextCheckingOptionKey, AnyObject>,
         );
 
         #[method(checkTextInSelection:)]
-        pub unsafe fn checkTextInSelection(&self, sender: Option<&Object>);
+        pub unsafe fn checkTextInSelection(&self, sender: Option<&AnyObject>);
 
         #[method(checkTextInDocument:)]
-        pub unsafe fn checkTextInDocument(&self, sender: Option<&Object>);
+        pub unsafe fn checkTextInDocument(&self, sender: Option<&AnyObject>);
 
         #[method(orderFrontSubstitutionsPanel:)]
-        pub unsafe fn orderFrontSubstitutionsPanel(&self, sender: Option<&Object>);
+        pub unsafe fn orderFrontSubstitutionsPanel(&self, sender: Option<&AnyObject>);
 
         #[method(checkSpelling:)]
-        pub unsafe fn checkSpelling(&self, sender: Option<&Object>);
+        pub unsafe fn checkSpelling(&self, sender: Option<&AnyObject>);
 
         #[method(showGuessPanel:)]
-        pub unsafe fn showGuessPanel(&self, sender: Option<&Object>);
+        pub unsafe fn showGuessPanel(&self, sender: Option<&AnyObject>);
 
         #[method(changeSpelling:)]
-        pub unsafe fn changeSpelling(&self, sender: Option<&Object>);
+        pub unsafe fn changeSpelling(&self, sender: Option<&AnyObject>);
 
         #[method(ignoreSpelling:)]
-        pub unsafe fn ignoreSpelling(&self, sender: Option<&Object>);
+        pub unsafe fn ignoreSpelling(&self, sender: Option<&AnyObject>);
 
         #[method(updateCandidates)]
         pub unsafe fn updateCandidates(&self);

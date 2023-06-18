@@ -8,7 +8,11 @@ use crate::Foundation::*;
 extern_protocol!(
     pub unsafe trait NSTextInputClient {
         #[method(insertText:replacementRange:)]
-        unsafe fn insertText_replacementRange(&self, string: &Object, replacement_range: NSRange);
+        unsafe fn insertText_replacementRange(
+            &self,
+            string: &AnyObject,
+            replacement_range: NSRange,
+        );
 
         #[method(doCommandBySelector:)]
         unsafe fn doCommandBySelector(&self, selector: Sel);
@@ -16,7 +20,7 @@ extern_protocol!(
         #[method(setMarkedText:selectedRange:replacementRange:)]
         unsafe fn setMarkedText_selectedRange_replacementRange(
             &self,
-            string: &Object,
+            string: &AnyObject,
             selected_range: NSRange,
             replacement_range: NSRange,
         );

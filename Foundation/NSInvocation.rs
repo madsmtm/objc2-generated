@@ -36,10 +36,10 @@ extern_methods!(
         pub unsafe fn argumentsRetained(&self) -> bool;
 
         #[method_id(@__retain_semantics Other target)]
-        pub unsafe fn target(&self) -> Option<Id<Object>>;
+        pub unsafe fn target(&self) -> Option<Id<AnyObject>>;
 
         #[method(setTarget:)]
-        pub unsafe fn setTarget(&self, target: Option<&Object>);
+        pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
 
         #[method(selector)]
         pub unsafe fn selector(&self) -> Sel;
@@ -71,7 +71,7 @@ extern_methods!(
         pub unsafe fn invoke(&self);
 
         #[method(invokeWithTarget:)]
-        pub unsafe fn invokeWithTarget(&self, target: &Object);
+        pub unsafe fn invokeWithTarget(&self, target: &AnyObject);
 
         #[method(invokeUsingIMP:)]
         pub unsafe fn invokeUsingIMP(&self, imp: IMP);

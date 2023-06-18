@@ -88,22 +88,22 @@ extern_methods!(
         pub unsafe fn selectTabViewItemAtIndex(&self, index: NSInteger);
 
         #[method(selectTabViewItemWithIdentifier:)]
-        pub unsafe fn selectTabViewItemWithIdentifier(&self, identifier: &Object);
+        pub unsafe fn selectTabViewItemWithIdentifier(&self, identifier: &AnyObject);
 
         #[method(takeSelectedTabViewItemFromSender:)]
-        pub unsafe fn takeSelectedTabViewItemFromSender(&self, sender: Option<&Object>);
+        pub unsafe fn takeSelectedTabViewItemFromSender(&self, sender: Option<&AnyObject>);
 
         #[method(selectFirstTabViewItem:)]
-        pub unsafe fn selectFirstTabViewItem(&self, sender: Option<&Object>);
+        pub unsafe fn selectFirstTabViewItem(&self, sender: Option<&AnyObject>);
 
         #[method(selectLastTabViewItem:)]
-        pub unsafe fn selectLastTabViewItem(&self, sender: Option<&Object>);
+        pub unsafe fn selectLastTabViewItem(&self, sender: Option<&AnyObject>);
 
         #[method(selectNextTabViewItem:)]
-        pub unsafe fn selectNextTabViewItem(&self, sender: Option<&Object>);
+        pub unsafe fn selectNextTabViewItem(&self, sender: Option<&AnyObject>);
 
         #[method(selectPreviousTabViewItem:)]
-        pub unsafe fn selectPreviousTabViewItem(&self, sender: Option<&Object>);
+        pub unsafe fn selectPreviousTabViewItem(&self, sender: Option<&AnyObject>);
 
         #[cfg(feature = "AppKit_NSTabViewItem")]
         #[method_id(@__retain_semantics Other selectedTabViewItem)]
@@ -205,7 +205,7 @@ extern_methods!(
         pub unsafe fn tabViewItemAtIndex(&self, index: NSInteger) -> Id<NSTabViewItem>;
 
         #[method(indexOfTabViewItemWithIdentifier:)]
-        pub unsafe fn indexOfTabViewItemWithIdentifier(&self, identifier: &Object) -> NSInteger;
+        pub unsafe fn indexOfTabViewItemWithIdentifier(&self, identifier: &AnyObject) -> NSInteger;
 
         #[deprecated = "The controlTint property is not respected on 10.14 and later."]
         #[method(controlTint)]

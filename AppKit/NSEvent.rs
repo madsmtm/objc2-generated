@@ -501,7 +501,7 @@ extern_methods!(
         pub unsafe fn tangentialPressure(&self) -> c_float;
 
         #[method_id(@__retain_semantics Other vendorDefined)]
-        pub unsafe fn vendorDefined(&self) -> Id<Object>;
+        pub unsafe fn vendorDefined(&self) -> Id<AnyObject>;
 
         #[method(vendorID)]
         pub unsafe fn vendorID(&self) -> NSUInteger;
@@ -676,16 +676,16 @@ extern_methods!(
         pub unsafe fn addGlobalMonitorForEventsMatchingMask_handler(
             mask: NSEventMask,
             block: &Block<(NonNull<NSEvent>,), ()>,
-        ) -> Option<Id<Object>>;
+        ) -> Option<Id<AnyObject>>;
 
         #[method_id(@__retain_semantics Other addLocalMonitorForEventsMatchingMask:handler:)]
         pub unsafe fn addLocalMonitorForEventsMatchingMask_handler(
             mask: NSEventMask,
             block: &Block<(NonNull<NSEvent>,), *mut NSEvent>,
-        ) -> Option<Id<Object>>;
+        ) -> Option<Id<AnyObject>>;
 
         #[method(removeMonitor:)]
-        pub unsafe fn removeMonitor(event_monitor: &Object);
+        pub unsafe fn removeMonitor(event_monitor: &AnyObject);
     }
 );
 

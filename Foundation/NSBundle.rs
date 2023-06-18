@@ -55,7 +55,7 @@ extern_methods!(
         pub unsafe fn initWithURL(this: Option<Allocated<Self>>, url: &NSURL) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Other bundleForClass:)]
-        pub unsafe fn bundleForClass(a_class: &Class) -> Id<NSBundle>;
+        pub unsafe fn bundleForClass(a_class: &AnyClass) -> Id<NSBundle>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other bundleWithIdentifier:)]
@@ -307,22 +307,24 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other infoDictionary)]
-        pub fn infoDictionary(&self) -> Option<Id<NSDictionary<NSString, Object>>>;
+        pub fn infoDictionary(&self) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other localizedInfoDictionary)]
-        pub unsafe fn localizedInfoDictionary(&self) -> Option<Id<NSDictionary<NSString, Object>>>;
+        pub unsafe fn localizedInfoDictionary(
+            &self,
+        ) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other objectForInfoDictionaryKey:)]
-        pub unsafe fn objectForInfoDictionaryKey(&self, key: &NSString) -> Option<Id<Object>>;
+        pub unsafe fn objectForInfoDictionaryKey(&self, key: &NSString) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(classNamed:)]
-        pub unsafe fn classNamed(&self, class_name: &NSString) -> Option<&'static Class>;
+        pub unsafe fn classNamed(&self, class_name: &NSString) -> Option<&'static AnyClass>;
 
         #[method(principalClass)]
-        pub unsafe fn principalClass(&self) -> Option<&'static Class>;
+        pub unsafe fn principalClass(&self) -> Option<&'static AnyClass>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other preferredLocalizations)]

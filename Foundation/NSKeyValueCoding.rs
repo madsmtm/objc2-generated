@@ -37,11 +37,11 @@ extern_methods!(
     unsafe impl<ObjectType: Message> NSArray<ObjectType> {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other valueForKey:)]
-        pub unsafe fn valueForKey(&self, key: &NSString) -> Id<Object>;
+        pub unsafe fn valueForKey(&self, key: &NSString) -> Id<AnyObject>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setValue:forKey:)]
-        pub unsafe fn setValue_forKey(&self, value: Option<&Object>, key: &NSString);
+        pub unsafe fn setValue_forKey(&self, value: Option<&AnyObject>, key: &NSString);
     }
 );
 
@@ -71,11 +71,11 @@ extern_methods!(
     unsafe impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other valueForKey:)]
-        pub unsafe fn valueForKey(&self, key: &NSString) -> Id<Object>;
+        pub unsafe fn valueForKey(&self, key: &NSString) -> Id<AnyObject>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setValue:forKey:)]
-        pub unsafe fn setValue_forKey(&self, value: Option<&Object>, key: &NSString);
+        pub unsafe fn setValue_forKey(&self, value: Option<&AnyObject>, key: &NSString);
     }
 );
 
@@ -85,10 +85,10 @@ extern_methods!(
     unsafe impl<ObjectType: Message> NSSet<ObjectType> {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other valueForKey:)]
-        pub unsafe fn valueForKey(&self, key: &NSString) -> Id<Object>;
+        pub unsafe fn valueForKey(&self, key: &NSString) -> Id<AnyObject>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setValue:forKey:)]
-        pub unsafe fn setValue_forKey(&self, value: Option<&Object>, key: &NSString);
+        pub unsafe fn setValue_forKey(&self, value: Option<&AnyObject>, key: &NSString);
     }
 );

@@ -163,7 +163,7 @@ extern_protocol!(
         unsafe fn tokenFieldCell_displayStringForRepresentedObject(
             &self,
             token_field_cell: &NSTokenFieldCell,
-            represented_object: &Object,
+            represented_object: &AnyObject,
         ) -> Option<Id<NSString>>;
 
         #[cfg(all(feature = "AppKit_NSTokenFieldCell", feature = "Foundation_NSString"))]
@@ -172,7 +172,7 @@ extern_protocol!(
         unsafe fn tokenFieldCell_editingStringForRepresentedObject(
             &self,
             token_field_cell: &NSTokenFieldCell,
-            represented_object: &Object,
+            represented_object: &AnyObject,
         ) -> Option<Id<NSString>>;
 
         #[cfg(all(feature = "AppKit_NSTokenFieldCell", feature = "Foundation_NSString"))]
@@ -182,7 +182,7 @@ extern_protocol!(
             &self,
             token_field_cell: &NSTokenFieldCell,
             editing_string: &NSString,
-        ) -> Option<Id<Object>>;
+        ) -> Option<Id<AnyObject>>;
 
         #[cfg(all(
             feature = "AppKit_NSPasteboard",
@@ -217,7 +217,7 @@ extern_protocol!(
         unsafe fn tokenFieldCell_menuForRepresentedObject(
             &self,
             token_field_cell: &NSTokenFieldCell,
-            represented_object: &Object,
+            represented_object: &AnyObject,
         ) -> Option<Id<NSMenu>>;
 
         #[cfg(feature = "AppKit_NSTokenFieldCell")]
@@ -226,7 +226,7 @@ extern_protocol!(
         unsafe fn tokenFieldCell_hasMenuForRepresentedObject(
             &self,
             token_field_cell: &NSTokenFieldCell,
-            represented_object: &Object,
+            represented_object: &AnyObject,
         ) -> bool;
 
         #[cfg(feature = "AppKit_NSTokenFieldCell")]
@@ -235,7 +235,7 @@ extern_protocol!(
         unsafe fn tokenFieldCell_styleForRepresentedObject(
             &self,
             token_field_cell: &NSTokenFieldCell,
-            represented_object: &Object,
+            represented_object: &AnyObject,
         ) -> NSTokenStyle;
     }
 

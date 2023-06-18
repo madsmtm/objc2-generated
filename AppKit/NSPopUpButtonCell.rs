@@ -142,12 +142,13 @@ extern_methods!(
         pub unsafe fn indexOfItemWithTag(&self, tag: NSInteger) -> NSInteger;
 
         #[method(indexOfItemWithRepresentedObject:)]
-        pub unsafe fn indexOfItemWithRepresentedObject(&self, obj: Option<&Object>) -> NSInteger;
+        pub unsafe fn indexOfItemWithRepresentedObject(&self, obj: Option<&AnyObject>)
+            -> NSInteger;
 
         #[method(indexOfItemWithTarget:andAction:)]
         pub unsafe fn indexOfItemWithTarget_andAction(
             &self,
-            target: Option<&Object>,
+            target: Option<&AnyObject>,
             action_selector: Option<Sel>,
         ) -> NSInteger;
 

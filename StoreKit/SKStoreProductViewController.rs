@@ -55,7 +55,7 @@ extern_methods!(
         #[method(loadProductWithParameters:completionBlock:)]
         pub unsafe fn loadProductWithParameters_completionBlock(
             &self,
-            parameters: &NSDictionary<NSString, Object>,
+            parameters: &NSDictionary<NSString, AnyObject>,
             block: Option<&Block<(Bool, *mut NSError), ()>>,
         );
 
@@ -68,7 +68,7 @@ extern_methods!(
         #[method(loadProductWithParameters:impression:completionBlock:)]
         pub unsafe fn loadProductWithParameters_impression_completionBlock(
             &self,
-            parameters: &NSDictionary<NSString, Object>,
+            parameters: &NSDictionary<NSString, AnyObject>,
             impression: &SKAdImpression,
             block: Option<&Block<(Bool, *mut NSError), ()>>,
         );

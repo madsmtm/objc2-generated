@@ -31,7 +31,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other metadataForPersistentStoreWithURL:error:_)]
         pub unsafe fn metadataForPersistentStoreWithURL_error(
             url: &NSURL,
-        ) -> Result<Id<NSDictionary<NSString, Object>>, Id<NSError>>;
+        ) -> Result<Id<NSDictionary<NSString, AnyObject>>, Id<NSError>>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -41,12 +41,12 @@ extern_methods!(
         ))]
         #[method(setMetadata:forPersistentStoreWithURL:error:_)]
         pub unsafe fn setMetadata_forPersistentStoreWithURL_error(
-            metadata: Option<&NSDictionary<NSString, Object>>,
+            metadata: Option<&NSDictionary<NSString, AnyObject>>,
             url: &NSURL,
         ) -> Result<(), Id<NSError>>;
 
         #[method(migrationManagerClass)]
-        pub unsafe fn migrationManagerClass() -> &'static Class;
+        pub unsafe fn migrationManagerClass() -> &'static AnyClass;
 
         #[cfg(all(
             feature = "CoreData_NSPersistentStoreCoordinator",
@@ -111,11 +111,11 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other metadata)]
-        pub unsafe fn metadata(&self) -> Option<Id<NSDictionary<NSString, Object>>>;
+        pub unsafe fn metadata(&self) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setMetadata:)]
-        pub unsafe fn setMetadata(&self, metadata: Option<&NSDictionary<NSString, Object>>);
+        pub unsafe fn setMetadata(&self, metadata: Option<&NSDictionary<NSString, AnyObject>>);
 
         #[cfg(feature = "CoreData_NSPersistentStoreCoordinator")]
         #[method(didAddToPersistentStoreCoordinator:)]

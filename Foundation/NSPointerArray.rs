@@ -109,11 +109,11 @@ extern_methods!(
     unsafe impl NSPointerArray {
         #[deprecated = "GC no longer supported"]
         #[method_id(@__retain_semantics Other pointerArrayWithStrongObjects)]
-        pub unsafe fn pointerArrayWithStrongObjects() -> Id<Object>;
+        pub unsafe fn pointerArrayWithStrongObjects() -> Id<AnyObject>;
 
         #[deprecated = "GC no longer supported"]
         #[method_id(@__retain_semantics Other pointerArrayWithWeakObjects)]
-        pub unsafe fn pointerArrayWithWeakObjects() -> Id<Object>;
+        pub unsafe fn pointerArrayWithWeakObjects() -> Id<AnyObject>;
 
         #[method_id(@__retain_semantics Other strongObjectsPointerArray)]
         pub unsafe fn strongObjectsPointerArray() -> Id<NSPointerArray>;

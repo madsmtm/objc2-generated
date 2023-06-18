@@ -83,7 +83,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSScrubberLayout")]
     unsafe impl NSScrubberLayout {
         #[method(layoutAttributesClass)]
-        pub unsafe fn layoutAttributesClass() -> &'static Class;
+        pub unsafe fn layoutAttributesClass() -> &'static AnyClass;
 
         #[cfg(feature = "AppKit_NSScrubber")]
         #[method_id(@__retain_semantics Other scrubber)]

@@ -8,7 +8,7 @@ use crate::Foundation::*;
 extern_protocol!(
     pub unsafe trait NSPreviewRepresentableActivityItem: NSObjectProtocol {
         #[method_id(@__retain_semantics Other item)]
-        unsafe fn item(&self) -> Id<Object>;
+        unsafe fn item(&self) -> Id<AnyObject>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[optional]
@@ -54,7 +54,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithItem:title:image:icon:)]
         pub unsafe fn initWithItem_title_image_icon(
             this: Option<Allocated<Self>>,
-            item: &Object,
+            item: &AnyObject,
             title: Option<&NSString>,
             image: Option<&NSImage>,
             icon: Option<&NSImage>,
@@ -64,7 +64,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithItem:title:imageProvider:iconProvider:)]
         pub unsafe fn initWithItem_title_imageProvider_iconProvider(
             this: Option<Allocated<Self>>,
-            item: &Object,
+            item: &AnyObject,
             title: Option<&NSString>,
             image_provider: Option<&NSItemProvider>,
             icon_provider: Option<&NSItemProvider>,

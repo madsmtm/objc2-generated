@@ -191,7 +191,7 @@ extern_methods!(
     }
 );
 
-pub type NSUserAutomatorTaskCompletionHandler = *mut Block<(*mut Object, *mut NSError), ()>;
+pub type NSUserAutomatorTaskCompletionHandler = *mut Block<(*mut AnyObject, *mut NSError), ()>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -214,11 +214,11 @@ extern_methods!(
     unsafe impl NSUserAutomatorTask {
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other variables)]
-        pub unsafe fn variables(&self) -> Option<Id<NSDictionary<NSString, Object>>>;
+        pub unsafe fn variables(&self) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setVariables:)]
-        pub unsafe fn setVariables(&self, variables: Option<&NSDictionary<NSString, Object>>);
+        pub unsafe fn setVariables(&self, variables: Option<&NSDictionary<NSString, AnyObject>>);
 
         #[method(executeWithInput:completionHandler:)]
         pub unsafe fn executeWithInput_completionHandler(

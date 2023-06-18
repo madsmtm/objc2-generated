@@ -10,23 +10,23 @@ pub type NSTableViewDiffableDataSourceCellProvider = *mut Block<
         NonNull<NSTableView>,
         NonNull<NSTableColumn>,
         NSInteger,
-        NonNull<Object>,
+        NonNull<AnyObject>,
     ),
     NonNull<NSView>,
 >;
 
 pub type NSTableViewDiffableDataSourceRowProvider =
-    *mut Block<(NonNull<NSTableView>, NSInteger, NonNull<Object>), NonNull<NSTableRowView>>;
+    *mut Block<(NonNull<NSTableView>, NSInteger, NonNull<AnyObject>), NonNull<NSTableRowView>>;
 
 pub type NSTableViewDiffableDataSourceSectionHeaderViewProvider =
-    *mut Block<(NonNull<NSTableView>, NSInteger, NonNull<Object>), NonNull<NSView>>;
+    *mut Block<(NonNull<NSTableView>, NSInteger, NonNull<AnyObject>), NonNull<NSView>>;
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSTableViewDiffableDataSource")]
     pub struct NSTableViewDiffableDataSource<
-        SectionIdentifierType: Message = Object,
-        ItemIdentifierType: Message = Object,
+        SectionIdentifierType: Message = AnyObject,
+        ItemIdentifierType: Message = AnyObject,
     > {
         __superclass: NSObject,
         _inner0: PhantomData<*mut SectionIdentifierType>,

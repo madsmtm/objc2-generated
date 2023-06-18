@@ -79,25 +79,25 @@ extern_methods!(
         pub unsafe fn setSortDescriptors(&self, sort_descriptors: &NSArray<NSSortDescriptor>);
 
         #[method_id(@__retain_semantics Other content)]
-        pub unsafe fn content(&self) -> Option<Id<Object>>;
+        pub unsafe fn content(&self) -> Option<Id<AnyObject>>;
 
         #[method(setContent:)]
-        pub unsafe fn setContent(&self, content: Option<&Object>);
+        pub unsafe fn setContent(&self, content: Option<&AnyObject>);
 
         #[method(add:)]
-        pub unsafe fn add(&self, sender: Option<&Object>);
+        pub unsafe fn add(&self, sender: Option<&AnyObject>);
 
         #[method(remove:)]
-        pub unsafe fn remove(&self, sender: Option<&Object>);
+        pub unsafe fn remove(&self, sender: Option<&AnyObject>);
 
         #[method(addChild:)]
-        pub unsafe fn addChild(&self, sender: Option<&Object>);
+        pub unsafe fn addChild(&self, sender: Option<&AnyObject>);
 
         #[method(insert:)]
-        pub unsafe fn insert(&self, sender: Option<&Object>);
+        pub unsafe fn insert(&self, sender: Option<&AnyObject>);
 
         #[method(insertChild:)]
-        pub unsafe fn insertChild(&self, sender: Option<&Object>);
+        pub unsafe fn insertChild(&self, sender: Option<&AnyObject>);
 
         #[method(canInsert)]
         pub unsafe fn canInsert(&self) -> bool;
@@ -112,7 +112,7 @@ extern_methods!(
         #[method(insertObject:atArrangedObjectIndexPath:)]
         pub unsafe fn insertObject_atArrangedObjectIndexPath(
             &self,
-            object: Option<&Object>,
+            object: Option<&AnyObject>,
             index_path: &NSIndexPath,
         );
 
@@ -231,7 +231,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithContent:)]
         pub unsafe fn initWithContent(
             this: Option<Allocated<Self>>,
-            content: Option<&Object>,
+            content: Option<&AnyObject>,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]

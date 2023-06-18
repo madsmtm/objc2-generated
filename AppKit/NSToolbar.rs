@@ -90,7 +90,7 @@ extern_methods!(
         pub unsafe fn setVisible(&self, visible: bool);
 
         #[method(runCustomizationPalette:)]
-        pub unsafe fn runCustomizationPalette(&self, sender: Option<&Object>);
+        pub unsafe fn runCustomizationPalette(&self, sender: Option<&AnyObject>);
 
         #[method(customizationPaletteIsRunning)]
         pub unsafe fn customizationPaletteIsRunning(&self) -> bool;
@@ -173,12 +173,12 @@ extern_methods!(
         #[method(setConfigurationFromDictionary:)]
         pub unsafe fn setConfigurationFromDictionary(
             &self,
-            config_dict: &NSDictionary<NSString, Object>,
+            config_dict: &NSDictionary<NSString, AnyObject>,
         );
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other configurationDictionary)]
-        pub unsafe fn configurationDictionary(&self) -> Id<NSDictionary<NSString, Object>>;
+        pub unsafe fn configurationDictionary(&self) -> Id<NSDictionary<NSString, AnyObject>>;
 
         #[method(validateVisibleItems)]
         pub unsafe fn validateVisibleItems(&self);

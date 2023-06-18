@@ -126,7 +126,7 @@ extern_methods!(
         pub unsafe fn readObjectsForClasses_options(
             &self,
             class_array: &NSArray<TodoClass>,
-            options: Option<&NSDictionary<NSPasteboardReadingOptionKey, Object>>,
+            options: Option<&NSDictionary<NSPasteboardReadingOptionKey, AnyObject>>,
         ) -> Option<Id<NSArray>>;
 
         #[cfg(all(feature = "AppKit_NSPasteboardItem", feature = "Foundation_NSArray"))]
@@ -152,7 +152,7 @@ extern_methods!(
         pub unsafe fn canReadObjectForClasses_options(
             &self,
             class_array: &NSArray<TodoClass>,
-            options: Option<&NSDictionary<NSPasteboardReadingOptionKey, Object>>,
+            options: Option<&NSDictionary<NSPasteboardReadingOptionKey, AnyObject>>,
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSArray")]
@@ -160,7 +160,7 @@ extern_methods!(
         pub unsafe fn declareTypes_owner(
             &self,
             new_types: &NSArray<NSPasteboardType>,
-            new_owner: Option<&Object>,
+            new_owner: Option<&AnyObject>,
         ) -> NSInteger;
 
         #[cfg(feature = "Foundation_NSArray")]
@@ -168,7 +168,7 @@ extern_methods!(
         pub unsafe fn addTypes_owner(
             &self,
             new_types: &NSArray<NSPasteboardType>,
-            new_owner: Option<&Object>,
+            new_owner: Option<&AnyObject>,
         ) -> NSInteger;
 
         #[cfg(feature = "Foundation_NSArray")]
@@ -193,7 +193,7 @@ extern_methods!(
         #[method(setPropertyList:forType:)]
         pub unsafe fn setPropertyList_forType(
             &self,
-            plist: &Object,
+            plist: &AnyObject,
             data_type: &NSPasteboardType,
         ) -> bool;
 
@@ -213,7 +213,7 @@ extern_methods!(
         pub unsafe fn propertyListForType(
             &self,
             data_type: &NSPasteboardType,
-        ) -> Option<Id<Object>>;
+        ) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringForType:)]
@@ -308,7 +308,7 @@ extern_protocol!(
         unsafe fn pasteboardPropertyListForType(
             &self,
             r#type: &NSPasteboardType,
-        ) -> Option<Id<Object>>;
+        ) -> Option<Id<AnyObject>>;
     }
 
     unsafe impl ProtocolType for dyn NSPasteboardWriting {}
@@ -344,7 +344,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Init initWithPasteboardPropertyList:ofType:)]
         unsafe fn initWithPasteboardPropertyList_ofType(
             this: Option<Allocated<Self>>,
-            property_list: &Object,
+            property_list: &AnyObject,
             r#type: &NSPasteboardType,
         ) -> Option<Id<Self>>;
     }

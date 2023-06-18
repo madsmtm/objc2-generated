@@ -7,7 +7,7 @@ use crate::MetricKit::*;
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MetricKit_MXAverage")]
-    pub struct MXAverage<UnitType: Message = Object> {
+    pub struct MXAverage<UnitType: Message = AnyObject> {
         __superclass: NSObject,
         _inner0: PhantomData<*mut UnitType>,
         notunwindsafe: PhantomData<&'static mut ()>,

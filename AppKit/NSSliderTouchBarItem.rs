@@ -102,10 +102,10 @@ extern_methods!(
         pub unsafe fn setValueAccessoryWidth(&self, value_accessory_width: NSSliderAccessoryWidth);
 
         #[method_id(@__retain_semantics Other target)]
-        pub unsafe fn target(&self) -> Option<Id<Object>>;
+        pub unsafe fn target(&self) -> Option<Id<AnyObject>>;
 
         #[method(setTarget:)]
-        pub unsafe fn setTarget(&self, target: Option<&Object>);
+        pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
 
         #[method(action)]
         pub unsafe fn action(&self) -> Option<Sel>;

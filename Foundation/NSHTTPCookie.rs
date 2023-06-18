@@ -65,13 +65,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithProperties:)]
         pub unsafe fn initWithProperties(
             this: Option<Allocated<Self>>,
-            properties: &NSDictionary<NSHTTPCookiePropertyKey, Object>,
+            properties: &NSDictionary<NSHTTPCookiePropertyKey, AnyObject>,
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other cookieWithProperties:)]
         pub unsafe fn cookieWithProperties(
-            properties: &NSDictionary<NSHTTPCookiePropertyKey, Object>,
+            properties: &NSDictionary<NSHTTPCookiePropertyKey, AnyObject>,
         ) -> Option<Id<NSHTTPCookie>>;
 
         #[cfg(all(
@@ -100,7 +100,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other properties)]
         pub unsafe fn properties(
             &self,
-        ) -> Option<Id<NSDictionary<NSHTTPCookiePropertyKey, Object>>>;
+        ) -> Option<Id<NSDictionary<NSHTTPCookiePropertyKey, AnyObject>>>;
 
         #[method(version)]
         pub unsafe fn version(&self) -> NSUInteger;

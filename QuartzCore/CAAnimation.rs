@@ -58,7 +58,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other defaultValueForKey:)]
-        pub unsafe fn defaultValueForKey(key: &NSString) -> Option<Id<Object>>;
+        pub unsafe fn defaultValueForKey(key: &NSString) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(shouldArchiveValueForKey:)]
@@ -250,22 +250,22 @@ extern_methods!(
     #[cfg(feature = "CoreAnimation_CABasicAnimation")]
     unsafe impl CABasicAnimation {
         #[method_id(@__retain_semantics Other fromValue)]
-        pub unsafe fn fromValue(&self) -> Option<Id<Object>>;
+        pub unsafe fn fromValue(&self) -> Option<Id<AnyObject>>;
 
         #[method(setFromValue:)]
-        pub unsafe fn setFromValue(&self, from_value: Option<&Object>);
+        pub unsafe fn setFromValue(&self, from_value: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other toValue)]
-        pub unsafe fn toValue(&self) -> Option<Id<Object>>;
+        pub unsafe fn toValue(&self) -> Option<Id<AnyObject>>;
 
         #[method(setToValue:)]
-        pub unsafe fn setToValue(&self, to_value: Option<&Object>);
+        pub unsafe fn setToValue(&self, to_value: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other byValue)]
-        pub unsafe fn byValue(&self) -> Option<Id<Object>>;
+        pub unsafe fn byValue(&self) -> Option<Id<AnyObject>>;
 
         #[method(setByValue:)]
-        pub unsafe fn setByValue(&self, by_value: Option<&Object>);
+        pub unsafe fn setByValue(&self, by_value: Option<&AnyObject>);
     }
 );
 
@@ -603,10 +603,10 @@ extern_methods!(
         pub unsafe fn setEndProgress(&self, end_progress: c_float);
 
         #[method_id(@__retain_semantics Other filter)]
-        pub unsafe fn filter(&self) -> Option<Id<Object>>;
+        pub unsafe fn filter(&self) -> Option<Id<AnyObject>>;
 
         #[method(setFilter:)]
-        pub unsafe fn setFilter(&self, filter: Option<&Object>);
+        pub unsafe fn setFilter(&self, filter: Option<&AnyObject>);
     }
 );
 

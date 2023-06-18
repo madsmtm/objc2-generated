@@ -169,7 +169,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             obj1: Option<&NSScriptObjectSpecifier>,
             comp_op: NSTestComparisonOperation,
-            obj2: Option<&Object>,
+            obj2: Option<&AnyObject>,
         ) -> Id<Self>;
     }
 );

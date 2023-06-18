@@ -63,7 +63,7 @@ extern_methods!(
         #[method(loadWithOptions:completionHandler:)]
         pub unsafe fn loadWithOptions_completionHandler(
             &self,
-            options: &NSDictionary<SKCloudServiceSetupOptionsKey, Object>,
+            options: &NSDictionary<SKCloudServiceSetupOptionsKey, AnyObject>,
             completion_handler: Option<&Block<(Bool, *mut NSError), ()>>,
         );
     }

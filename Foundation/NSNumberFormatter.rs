@@ -86,7 +86,7 @@ extern_methods!(
         #[method(getObjectValue:forString:range:error:_)]
         pub unsafe fn getObjectValue_forString_range_error(
             &self,
-            obj: Option<&mut Option<Id<Object>>>,
+            obj: Option<&mut Option<Id<AnyObject>>>,
             string: &NSString,
             rangep: *mut NSRange,
         ) -> Result<(), Id<NSError>>;
@@ -150,13 +150,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Other textAttributesForNegativeValues)]
         pub unsafe fn textAttributesForNegativeValues(
             &self,
-        ) -> Option<Id<NSDictionary<NSString, Object>>>;
+        ) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setTextAttributesForNegativeValues:)]
         pub unsafe fn setTextAttributesForNegativeValues(
             &self,
-            text_attributes_for_negative_values: Option<&NSDictionary<NSString, Object>>,
+            text_attributes_for_negative_values: Option<&NSDictionary<NSString, AnyObject>>,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -171,13 +171,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Other textAttributesForPositiveValues)]
         pub unsafe fn textAttributesForPositiveValues(
             &self,
-        ) -> Option<Id<NSDictionary<NSString, Object>>>;
+        ) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setTextAttributesForPositiveValues:)]
         pub unsafe fn setTextAttributesForPositiveValues(
             &self,
-            text_attributes_for_positive_values: Option<&NSDictionary<NSString, Object>>,
+            text_attributes_for_positive_values: Option<&NSDictionary<NSString, AnyObject>>,
         );
 
         #[method(allowsFloats)]
@@ -235,13 +235,14 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other textAttributesForZero)]
-        pub unsafe fn textAttributesForZero(&self) -> Option<Id<NSDictionary<NSString, Object>>>;
+        pub unsafe fn textAttributesForZero(&self)
+            -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setTextAttributesForZero:)]
         pub unsafe fn setTextAttributesForZero(
             &self,
-            text_attributes_for_zero: Option<&NSDictionary<NSString, Object>>,
+            text_attributes_for_zero: Option<&NSDictionary<NSString, AnyObject>>,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -254,13 +255,13 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other textAttributesForNil)]
-        pub unsafe fn textAttributesForNil(&self) -> Option<Id<NSDictionary<NSString, Object>>>;
+        pub unsafe fn textAttributesForNil(&self) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setTextAttributesForNil:)]
         pub unsafe fn setTextAttributesForNil(
             &self,
-            text_attributes_for_nil: Option<&NSDictionary<NSString, Object>>,
+            text_attributes_for_nil: Option<&NSDictionary<NSString, AnyObject>>,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -275,13 +276,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Other textAttributesForNotANumber)]
         pub unsafe fn textAttributesForNotANumber(
             &self,
-        ) -> Option<Id<NSDictionary<NSString, Object>>>;
+        ) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setTextAttributesForNotANumber:)]
         pub unsafe fn setTextAttributesForNotANumber(
             &self,
-            text_attributes_for_not_a_number: Option<&NSDictionary<NSString, Object>>,
+            text_attributes_for_not_a_number: Option<&NSDictionary<NSString, AnyObject>>,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -296,13 +297,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Other textAttributesForPositiveInfinity)]
         pub unsafe fn textAttributesForPositiveInfinity(
             &self,
-        ) -> Option<Id<NSDictionary<NSString, Object>>>;
+        ) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setTextAttributesForPositiveInfinity:)]
         pub unsafe fn setTextAttributesForPositiveInfinity(
             &self,
-            text_attributes_for_positive_infinity: Option<&NSDictionary<NSString, Object>>,
+            text_attributes_for_positive_infinity: Option<&NSDictionary<NSString, AnyObject>>,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -317,13 +318,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Other textAttributesForNegativeInfinity)]
         pub unsafe fn textAttributesForNegativeInfinity(
             &self,
-        ) -> Option<Id<NSDictionary<NSString, Object>>>;
+        ) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setTextAttributesForNegativeInfinity:)]
         pub unsafe fn setTextAttributesForNegativeInfinity(
             &self,
-            text_attributes_for_negative_infinity: Option<&NSDictionary<NSString, Object>>,
+            text_attributes_for_negative_infinity: Option<&NSDictionary<NSString, AnyObject>>,
         );
 
         #[cfg(feature = "Foundation_NSString")]

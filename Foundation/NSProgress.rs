@@ -59,7 +59,7 @@ extern_methods!(
         pub unsafe fn initWithParent_userInfo(
             this: Option<Allocated<Self>>,
             parent_progress_or_nil: Option<&NSProgress>,
-            user_info_or_nil: Option<&NSDictionary<NSProgressUserInfoKey, Object>>,
+            user_info_or_nil: Option<&NSDictionary<NSProgressUserInfoKey, AnyObject>>,
         ) -> Id<Self>;
 
         #[method(becomeCurrentWithPendingUnitCount:)]
@@ -148,7 +148,7 @@ extern_methods!(
         #[method(setUserInfoObject:forKey:)]
         pub unsafe fn setUserInfoObject_forKey(
             &self,
-            object_or_nil: Option<&Object>,
+            object_or_nil: Option<&AnyObject>,
             key: &NSProgressUserInfoKey,
         );
 
@@ -172,7 +172,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other userInfo)]
-        pub unsafe fn userInfo(&self) -> Id<NSDictionary<NSProgressUserInfoKey, Object>>;
+        pub unsafe fn userInfo(&self) -> Id<NSDictionary<NSProgressUserInfoKey, AnyObject>>;
 
         #[method_id(@__retain_semantics Other kind)]
         pub unsafe fn kind(&self) -> Option<Id<NSProgressKind>>;
@@ -240,10 +240,10 @@ extern_methods!(
         pub unsafe fn addSubscriberForFileURL_withPublishingHandler(
             url: &NSURL,
             publishing_handler: NSProgressPublishingHandler,
-        ) -> Id<Object>;
+        ) -> Id<AnyObject>;
 
         #[method(removeSubscriber:)]
-        pub unsafe fn removeSubscriber(subscriber: &Object);
+        pub unsafe fn removeSubscriber(subscriber: &AnyObject);
 
         #[method(isOld)]
         pub unsafe fn isOld(&self) -> bool;

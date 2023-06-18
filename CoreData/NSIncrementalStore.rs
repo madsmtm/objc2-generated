@@ -37,7 +37,7 @@ extern_methods!(
             &self,
             request: &NSPersistentStoreRequest,
             context: Option<&NSManagedObjectContext>,
-        ) -> Result<Id<Object>, Id<NSError>>;
+        ) -> Result<Id<AnyObject>, Id<NSError>>;
 
         #[cfg(all(
             feature = "CoreData_NSIncrementalStoreNode",
@@ -64,11 +64,11 @@ extern_methods!(
             relationship: &NSRelationshipDescription,
             object_id: &NSManagedObjectID,
             context: Option<&NSManagedObjectContext>,
-        ) -> Result<Id<Object>, Id<NSError>>;
+        ) -> Result<Id<AnyObject>, Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other identifierForNewStoreAtURL:)]
-        pub unsafe fn identifierForNewStoreAtURL(store_url: &NSURL) -> Id<Object>;
+        pub unsafe fn identifierForNewStoreAtURL(store_url: &NSURL) -> Id<AnyObject>;
 
         #[cfg(all(
             feature = "CoreData_NSManagedObject",
@@ -104,7 +104,7 @@ extern_methods!(
         pub unsafe fn newObjectIDForEntity_referenceObject(
             &self,
             entity: &NSEntityDescription,
-            data: &Object,
+            data: &AnyObject,
         ) -> Id<NSManagedObjectID>;
 
         #[cfg(feature = "CoreData_NSManagedObjectID")]
@@ -112,7 +112,7 @@ extern_methods!(
         pub unsafe fn referenceObjectForObjectID(
             &self,
             object_id: &NSManagedObjectID,
-        ) -> Id<Object>;
+        ) -> Id<AnyObject>;
     }
 );
 

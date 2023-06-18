@@ -134,7 +134,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithDictionary:)]
         pub unsafe fn initWithDictionary(
             this: Option<Allocated<Self>>,
-            attributes: &NSDictionary<NSPrintInfoAttributeKey, Object>,
+            attributes: &NSDictionary<NSPrintInfoAttributeKey, AnyObject>,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
@@ -146,8 +146,9 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSMutableDictionary")]
         #[method_id(@__retain_semantics Other dictionary)]
-        pub unsafe fn dictionary(&self)
-            -> Id<NSMutableDictionary<NSPrintInfoAttributeKey, Object>>;
+        pub unsafe fn dictionary(
+            &self,
+        ) -> Id<NSMutableDictionary<NSPrintInfoAttributeKey, AnyObject>>;
 
         #[method_id(@__retain_semantics Other paperName)]
         pub unsafe fn paperName(&self) -> Option<Id<NSPrinterPaperName>>;
@@ -256,7 +257,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other printSettings)]
         pub unsafe fn printSettings(
             &self,
-        ) -> Id<NSMutableDictionary<NSPrintInfoSettingKey, Object>>;
+        ) -> Id<NSMutableDictionary<NSPrintInfoSettingKey, AnyObject>>;
 
         #[method(PMPrintSession)]
         pub unsafe fn PMPrintSession(&self) -> NonNull<c_void>;

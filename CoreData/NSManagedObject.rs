@@ -171,19 +171,19 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other valueForKey:)]
-        pub unsafe fn valueForKey(&self, key: &NSString) -> Option<Id<Object>>;
+        pub unsafe fn valueForKey(&self, key: &NSString) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setValue:forKey:)]
-        pub unsafe fn setValue_forKey(&self, value: Option<&Object>, key: &NSString);
+        pub unsafe fn setValue_forKey(&self, value: Option<&AnyObject>, key: &NSString);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other primitiveValueForKey:)]
-        pub unsafe fn primitiveValueForKey(&self, key: &NSString) -> Option<Id<Object>>;
+        pub unsafe fn primitiveValueForKey(&self, key: &NSString) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setPrimitiveValue:forKey:)]
-        pub unsafe fn setPrimitiveValue_forKey(&self, value: Option<&Object>, key: &NSString);
+        pub unsafe fn setPrimitiveValue_forKey(&self, value: Option<&AnyObject>, key: &NSString);
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -194,21 +194,21 @@ extern_methods!(
         pub unsafe fn committedValuesForKeys(
             &self,
             keys: Option<&NSArray<NSString>>,
-        ) -> Id<NSDictionary<NSString, Object>>;
+        ) -> Id<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other changedValues)]
-        pub unsafe fn changedValues(&self) -> Id<NSDictionary<NSString, Object>>;
+        pub unsafe fn changedValues(&self) -> Id<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other changedValuesForCurrentEvent)]
-        pub unsafe fn changedValuesForCurrentEvent(&self) -> Id<NSDictionary<NSString, Object>>;
+        pub unsafe fn changedValuesForCurrentEvent(&self) -> Id<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method(validateValue:forKey:error:_)]
         pub unsafe fn validateValue_forKey_error(
             &self,
-            value: &mut Option<Id<Object>>,
+            value: &mut Option<Id<AnyObject>>,
             key: &NSString,
         ) -> Result<(), Id<NSError>>;
 

@@ -262,20 +262,20 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithViewAnimations:)]
         pub unsafe fn initWithViewAnimations(
             this: Option<Allocated<Self>>,
-            view_animations: &NSArray<NSDictionary<NSViewAnimationKey, Object>>,
+            view_animations: &NSArray<NSDictionary<NSViewAnimationKey, AnyObject>>,
         ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSDictionary"))]
         #[method_id(@__retain_semantics Other viewAnimations)]
         pub unsafe fn viewAnimations(
             &self,
-        ) -> Id<NSArray<NSDictionary<NSViewAnimationKey, Object>>>;
+        ) -> Id<NSArray<NSDictionary<NSViewAnimationKey, AnyObject>>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSDictionary"))]
         #[method(setViewAnimations:)]
         pub unsafe fn setViewAnimations(
             &self,
-            view_animations: &NSArray<NSDictionary<NSViewAnimationKey, Object>>,
+            view_animations: &NSArray<NSDictionary<NSViewAnimationKey, AnyObject>>,
         );
     }
 );
@@ -321,17 +321,20 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other animations)]
-        unsafe fn animations(&self) -> Id<NSDictionary<NSAnimatablePropertyKey, Object>>;
+        unsafe fn animations(&self) -> Id<NSDictionary<NSAnimatablePropertyKey, AnyObject>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setAnimations:)]
-        unsafe fn setAnimations(&self, animations: &NSDictionary<NSAnimatablePropertyKey, Object>);
+        unsafe fn setAnimations(
+            &self,
+            animations: &NSDictionary<NSAnimatablePropertyKey, AnyObject>,
+        );
 
         #[method_id(@__retain_semantics Other animationForKey:)]
-        unsafe fn animationForKey(&self, key: &NSAnimatablePropertyKey) -> Option<Id<Object>>;
+        unsafe fn animationForKey(&self, key: &NSAnimatablePropertyKey) -> Option<Id<AnyObject>>;
 
         #[method_id(@__retain_semantics Other defaultAnimationForKey:)]
-        unsafe fn defaultAnimationForKey(key: &NSAnimatablePropertyKey) -> Option<Id<Object>>;
+        unsafe fn defaultAnimationForKey(key: &NSAnimatablePropertyKey) -> Option<Id<AnyObject>>;
     }
 
     unsafe impl ProtocolType for dyn NSAnimatablePropertyContainer {}

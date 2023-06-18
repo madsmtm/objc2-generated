@@ -106,7 +106,7 @@ extern_methods!(
         pub unsafe fn objectIDForEntity_referenceObject(
             &self,
             entity: &NSEntityDescription,
-            data: &Object,
+            data: &AnyObject,
         ) -> Id<NSManagedObjectID>;
 
         #[cfg(feature = "CoreData_NSManagedObject")]
@@ -114,14 +114,14 @@ extern_methods!(
         pub unsafe fn newReferenceObjectForManagedObject(
             &self,
             managed_object: &NSManagedObject,
-        ) -> Id<Object>;
+        ) -> Id<AnyObject>;
 
         #[cfg(feature = "CoreData_NSManagedObjectID")]
         #[method_id(@__retain_semantics Other referenceObjectForObjectID:)]
         pub unsafe fn referenceObjectForObjectID(
             &self,
             object_id: &NSManagedObjectID,
-        ) -> Id<Object>;
+        ) -> Id<AnyObject>;
     }
 );
 

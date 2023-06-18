@@ -83,19 +83,19 @@ extern_methods!(
         pub unsafe fn setSelectedIndex(&self, selected_index: NSInteger);
 
         #[method(navigateForwardToObject:)]
-        pub unsafe fn navigateForwardToObject(&self, object: &Object);
+        pub unsafe fn navigateForwardToObject(&self, object: &AnyObject);
 
         #[method(completeTransition)]
         pub unsafe fn completeTransition(&self);
 
         #[method(navigateBack:)]
-        pub unsafe fn navigateBack(&self, sender: Option<&Object>);
+        pub unsafe fn navigateBack(&self, sender: Option<&AnyObject>);
 
         #[method(navigateForward:)]
-        pub unsafe fn navigateForward(&self, sender: Option<&Object>);
+        pub unsafe fn navigateForward(&self, sender: Option<&AnyObject>);
 
         #[method(takeSelectedIndexFrom:)]
-        pub unsafe fn takeSelectedIndexFrom(&self, sender: Option<&Object>);
+        pub unsafe fn takeSelectedIndexFrom(&self, sender: Option<&AnyObject>);
     }
 );
 
@@ -146,7 +146,7 @@ extern_protocol!(
         unsafe fn pageController_identifierForObject(
             &self,
             page_controller: &NSPageController,
-            object: &Object,
+            object: &AnyObject,
         ) -> Id<NSPageControllerObjectIdentifier>;
 
         #[cfg(all(
@@ -167,7 +167,7 @@ extern_protocol!(
         unsafe fn pageController_frameForObject(
             &self,
             page_controller: &NSPageController,
-            object: Option<&Object>,
+            object: Option<&AnyObject>,
         ) -> NSRect;
 
         #[cfg(all(
@@ -180,7 +180,7 @@ extern_protocol!(
             &self,
             page_controller: &NSPageController,
             view_controller: &NSViewController,
-            object: Option<&Object>,
+            object: Option<&AnyObject>,
         );
 
         #[cfg(feature = "AppKit_NSPageController")]
@@ -189,7 +189,7 @@ extern_protocol!(
         unsafe fn pageController_didTransitionToObject(
             &self,
             page_controller: &NSPageController,
-            object: &Object,
+            object: &AnyObject,
         );
 
         #[cfg(feature = "AppKit_NSPageController")]

@@ -59,7 +59,7 @@ extern_methods!(
         pub unsafe fn initWithObjects_forKeys_count(
             this: Option<Allocated<Self>>,
             objects: *mut NonNull<ObjectType>,
-            keys: *mut NonNull<Object>,
+            keys: *mut NonNull<AnyObject>,
             cnt: NSUInteger,
         ) -> Id<Self>;
 
@@ -114,13 +114,13 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other descriptionWithLocale:)]
-        pub unsafe fn descriptionWithLocale(&self, locale: Option<&Object>) -> Id<NSString>;
+        pub unsafe fn descriptionWithLocale(&self, locale: Option<&AnyObject>) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other descriptionWithLocale:indent:)]
         pub unsafe fn descriptionWithLocale_indent(
             &self,
-            locale: Option<&Object>,
+            locale: Option<&AnyObject>,
             level: NSUInteger,
         ) -> Id<NSString>;
 
@@ -275,12 +275,13 @@ extern_methods!(
         pub unsafe fn dictionary() -> Id<Self>;
 
         #[method_id(@__retain_semantics Other dictionaryWithObject:forKey:)]
-        pub unsafe fn dictionaryWithObject_forKey(object: &ObjectType, key: &Object) -> Id<Self>;
+        pub unsafe fn dictionaryWithObject_forKey(object: &ObjectType, key: &AnyObject)
+            -> Id<Self>;
 
         #[method_id(@__retain_semantics Other dictionaryWithObjects:forKeys:count:)]
         pub unsafe fn dictionaryWithObjects_forKeys_count(
             objects: *mut NonNull<ObjectType>,
-            keys: *mut NonNull<Object>,
+            keys: *mut NonNull<AnyObject>,
             cnt: NSUInteger,
         ) -> Id<Self>;
 
@@ -293,7 +294,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other dictionaryWithObjects:forKeys:)]
         pub unsafe fn dictionaryWithObjects_forKeys(
             objects: &NSArray<ObjectType>,
-            keys: &NSArray<Object>,
+            keys: &NSArray<AnyObject>,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithDictionary:)]
@@ -314,7 +315,7 @@ extern_methods!(
         pub unsafe fn initWithObjects_forKeys(
             this: Option<Allocated<Self>>,
             objects: &NSArray<ObjectType>,
-            keys: &NSArray<Object>,
+            keys: &NSArray<AnyObject>,
         ) -> Id<Self>;
     }
 );
@@ -329,12 +330,13 @@ extern_methods!(
         pub unsafe fn dictionary() -> Id<Self>;
 
         #[method_id(@__retain_semantics Other dictionaryWithObject:forKey:)]
-        pub unsafe fn dictionaryWithObject_forKey(object: &ObjectType, key: &Object) -> Id<Self>;
+        pub unsafe fn dictionaryWithObject_forKey(object: &ObjectType, key: &AnyObject)
+            -> Id<Self>;
 
         #[method_id(@__retain_semantics Other dictionaryWithObjects:forKeys:count:)]
         pub unsafe fn dictionaryWithObjects_forKeys_count(
             objects: *mut NonNull<ObjectType>,
-            keys: *mut NonNull<Object>,
+            keys: *mut NonNull<AnyObject>,
             cnt: NSUInteger,
         ) -> Id<Self>;
 
@@ -347,7 +349,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other dictionaryWithObjects:forKeys:)]
         pub unsafe fn dictionaryWithObjects_forKeys(
             objects: &NSArray<ObjectType>,
-            keys: &NSArray<Object>,
+            keys: &NSArray<AnyObject>,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithDictionary:)]
@@ -368,7 +370,7 @@ extern_methods!(
         pub unsafe fn initWithObjects_forKeys(
             this: Option<Allocated<Self>>,
             objects: &NSArray<ObjectType>,
-            keys: &NSArray<Object>,
+            keys: &NSArray<AnyObject>,
         ) -> Id<Self>;
     }
 );
@@ -416,7 +418,7 @@ extern_methods!(
         pub fn removeObjectForKey(&mut self, a_key: &KeyType);
 
         #[method(setObject:forKey:)]
-        pub unsafe fn setObject_forKey(&mut self, an_object: &ObjectType, a_key: &Object);
+        pub unsafe fn setObject_forKey(&mut self, an_object: &ObjectType, a_key: &AnyObject);
 
         #[method_id(@__retain_semantics Init init)]
         pub fn init(this: Option<Allocated<Self>>) -> Id<Self>;
@@ -444,7 +446,7 @@ extern_methods!(
         pub unsafe fn initWithObjects_forKeys_count(
             this: Option<Allocated<Self>>,
             objects: *mut NonNull<ObjectType>,
-            keys: *mut NonNull<Object>,
+            keys: *mut NonNull<AnyObject>,
             cnt: NSUInteger,
         ) -> Id<Self>;
     }
@@ -495,7 +497,7 @@ extern_methods!(
         pub unsafe fn setObject_forKeyedSubscript(
             &mut self,
             obj: Option<&ObjectType>,
-            key: &Object,
+            key: &AnyObject,
         );
     }
 );
@@ -541,7 +543,7 @@ extern_methods!(
     unsafe impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other sharedKeySetForKeys:)]
-        pub unsafe fn sharedKeySetForKeys(keys: &NSArray<Object>) -> Id<Object>;
+        pub unsafe fn sharedKeySetForKeys(keys: &NSArray<AnyObject>) -> Id<AnyObject>;
     }
 );
 
@@ -551,7 +553,7 @@ extern_methods!(
     unsafe impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
         #[method_id(@__retain_semantics Other dictionaryWithSharedKeySet:)]
         pub unsafe fn dictionaryWithSharedKeySet(
-            keyset: &Object,
+            keyset: &AnyObject,
         ) -> Id<NSMutableDictionary<KeyType, ObjectType>>;
     }
 );

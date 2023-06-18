@@ -272,10 +272,10 @@ extern_methods!(
         );
 
         #[method(hide:)]
-        pub unsafe fn hide(&self, sender: Option<&Object>);
+        pub unsafe fn hide(&self, sender: Option<&AnyObject>);
 
         #[method(unhide:)]
-        pub unsafe fn unhide(&self, sender: Option<&Object>);
+        pub unsafe fn unhide(&self, sender: Option<&AnyObject>);
 
         #[method(unhideWithoutActivation)]
         pub unsafe fn unhideWithoutActivation(&self);
@@ -308,10 +308,10 @@ extern_methods!(
         pub unsafe fn activateIgnoringOtherApps(&self, flag: bool);
 
         #[method(hideOtherApplications:)]
-        pub unsafe fn hideOtherApplications(&self, sender: Option<&Object>);
+        pub unsafe fn hideOtherApplications(&self, sender: Option<&AnyObject>);
 
         #[method(unhideAllApplications:)]
-        pub unsafe fn unhideAllApplications(&self, sender: Option<&Object>);
+        pub unsafe fn unhideAllApplications(&self, sender: Option<&AnyObject>);
 
         #[method(finishLaunching)]
         pub unsafe fn finishLaunching(&self);
@@ -324,7 +324,7 @@ extern_methods!(
         pub unsafe fn runModalForWindow(&self, window: &NSWindow) -> NSModalResponse;
 
         #[method(stop:)]
-        pub unsafe fn stop(&self, sender: Option<&Object>);
+        pub unsafe fn stop(&self, sender: Option<&AnyObject>);
 
         #[method(stopModal)]
         pub unsafe fn stopModal(&self);
@@ -350,7 +350,7 @@ extern_methods!(
         pub unsafe fn endModalSession(&self, session: NSModalSession);
 
         #[method(terminate:)]
-        pub unsafe fn terminate(&self, sender: Option<&Object>);
+        pub unsafe fn terminate(&self, sender: Option<&AnyObject>);
 
         #[method(requestUserAttention:)]
         pub unsafe fn requestUserAttention(
@@ -426,8 +426,8 @@ extern_methods!(
         #[method(detachDrawingThread:toTarget:withObject:)]
         pub unsafe fn detachDrawingThread_toTarget_withObject(
             selector: Sel,
-            target: &Object,
-            argument: Option<&Object>,
+            target: &AnyObject,
+            argument: Option<&AnyObject>,
         );
 
         #[method(replyToApplicationShouldTerminate:)]
@@ -437,7 +437,7 @@ extern_methods!(
         pub unsafe fn replyToOpenOrPrint(&self, reply: NSApplicationDelegateReply);
 
         #[method(orderFrontCharacterPalette:)]
-        pub unsafe fn orderFrontCharacterPalette(&self, sender: Option<&Object>);
+        pub unsafe fn orderFrontCharacterPalette(&self, sender: Option<&AnyObject>);
 
         #[method(presentationOptions)]
         pub unsafe fn presentationOptions(&self) -> NSApplicationPresentationOptions;
@@ -549,30 +549,30 @@ extern_methods!(
         pub unsafe fn sendAction_to_from(
             &self,
             action: Sel,
-            target: Option<&Object>,
-            sender: Option<&Object>,
+            target: Option<&AnyObject>,
+            sender: Option<&AnyObject>,
         ) -> bool;
 
         #[method_id(@__retain_semantics Other targetForAction:)]
-        pub unsafe fn targetForAction(&self, action: Sel) -> Option<Id<Object>>;
+        pub unsafe fn targetForAction(&self, action: Sel) -> Option<Id<AnyObject>>;
 
         #[method_id(@__retain_semantics Other targetForAction:to:from:)]
         pub unsafe fn targetForAction_to_from(
             &self,
             action: Sel,
-            target: Option<&Object>,
-            sender: Option<&Object>,
-        ) -> Option<Id<Object>>;
+            target: Option<&AnyObject>,
+            sender: Option<&AnyObject>,
+        ) -> Option<Id<AnyObject>>;
 
         #[method(tryToPerform:with:)]
-        pub unsafe fn tryToPerform_with(&self, action: Sel, object: Option<&Object>) -> bool;
+        pub unsafe fn tryToPerform_with(&self, action: Sel, object: Option<&AnyObject>) -> bool;
 
         #[method_id(@__retain_semantics Other validRequestorForSendType:returnType:)]
         pub unsafe fn validRequestorForSendType_returnType(
             &self,
             send_type: Option<&NSPasteboardType>,
             return_type: Option<&NSPasteboardType>,
-        ) -> Option<Id<Object>>;
+        ) -> Option<Id<AnyObject>>;
     }
 );
 
@@ -589,7 +589,7 @@ extern_methods!(
         pub unsafe fn setWindowsMenu(&self, windows_menu: Option<&NSMenu>);
 
         #[method(arrangeInFront:)]
-        pub unsafe fn arrangeInFront(&self, sender: Option<&Object>);
+        pub unsafe fn arrangeInFront(&self, sender: Option<&AnyObject>);
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[method(removeWindowsItem:)]
@@ -618,7 +618,7 @@ extern_methods!(
         pub unsafe fn updateWindowsItem(&self, win: &NSWindow);
 
         #[method(miniaturizeAll:)]
-        pub unsafe fn miniaturizeAll(&self, sender: Option<&Object>);
+        pub unsafe fn miniaturizeAll(&self, sender: Option<&AnyObject>);
     }
 );
 
@@ -711,7 +711,7 @@ extern_protocol!(
         #[method(application:openFileWithoutUI:)]
         unsafe fn application_openFileWithoutUI(
             &self,
-            sender: &Object,
+            sender: &AnyObject,
             filename: &NSString,
         ) -> bool;
 
@@ -733,7 +733,7 @@ extern_protocol!(
             &self,
             application: &NSApplication,
             file_names: &NSArray<NSString>,
-            print_settings: &NSDictionary<NSPrintInfoAttributeKey, Object>,
+            print_settings: &NSDictionary<NSPrintInfoAttributeKey, AnyObject>,
             show_print_panels: bool,
         ) -> NSApplicationPrintReply;
 
@@ -796,7 +796,7 @@ extern_protocol!(
         unsafe fn application_didReceiveRemoteNotification(
             &self,
             application: &NSApplication,
-            user_info: &NSDictionary<NSString, Object>,
+            user_info: &NSDictionary<NSString, AnyObject>,
         );
 
         #[cfg(feature = "AppKit_NSApplication")]
@@ -1026,10 +1026,10 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSApplication")]
     unsafe impl NSApplication {
         #[method_id(@__retain_semantics Other servicesProvider)]
-        pub unsafe fn servicesProvider(&self) -> Option<Id<Object>>;
+        pub unsafe fn servicesProvider(&self) -> Option<Id<AnyObject>>;
 
         #[method(setServicesProvider:)]
-        pub unsafe fn setServicesProvider(&self, services_provider: Option<&Object>);
+        pub unsafe fn setServicesProvider(&self, services_provider: Option<&AnyObject>);
     }
 );
 
@@ -1052,13 +1052,13 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSApplication")]
     unsafe impl NSApplication {
         #[method(orderFrontStandardAboutPanel:)]
-        pub unsafe fn orderFrontStandardAboutPanel(&self, sender: Option<&Object>);
+        pub unsafe fn orderFrontStandardAboutPanel(&self, sender: Option<&AnyObject>);
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(orderFrontStandardAboutPanelWithOptions:)]
         pub unsafe fn orderFrontStandardAboutPanelWithOptions(
             &self,
-            options_dictionary: &NSDictionary<NSAboutPanelOptionKey, Object>,
+            options_dictionary: &NSDictionary<NSAboutPanelOptionKey, AnyObject>,
         );
     }
 );
@@ -1146,7 +1146,7 @@ pub type NSServiceProviderName = NSString;
 
 extern_fn!(
     pub unsafe fn NSRegisterServicesProvider(
-        provider: Option<&Object>,
+        provider: Option<&AnyObject>,
         name: &NSServiceProviderName,
     );
 );
@@ -1249,7 +1249,7 @@ extern_methods!(
             &self,
             sheet: &NSWindow,
             doc_window: &NSWindow,
-            modal_delegate: Option<&Object>,
+            modal_delegate: Option<&AnyObject>,
             did_end_selector: Option<Sel>,
             context_info: *mut c_void,
         );

@@ -57,7 +57,7 @@ extern_methods!(
         #[method(commitEditingWithDelegate:didCommitSelector:contextInfo:)]
         pub unsafe fn commitEditingWithDelegate_didCommitSelector_contextInfo(
             &self,
-            delegate: Option<&Object>,
+            delegate: Option<&AnyObject>,
             did_commit_selector: Option<Sel>,
             context_info: *mut c_void,
         );

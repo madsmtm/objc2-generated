@@ -34,11 +34,11 @@ extern_methods!(
             &self,
             name: Option<&NSString>,
             arguments: Option<&NSArray>,
-        ) -> Option<Id<Object>>;
+        ) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other evaluateWebScript:)]
-        pub unsafe fn evaluateWebScript(&self, script: Option<&NSString>) -> Option<Id<Object>>;
+        pub unsafe fn evaluateWebScript(&self, script: Option<&NSString>) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(removeWebScriptKey:)]
@@ -49,10 +49,14 @@ extern_methods!(
         pub unsafe fn stringRepresentation(&self) -> Option<Id<NSString>>;
 
         #[method_id(@__retain_semantics Other webScriptValueAtIndex:)]
-        pub unsafe fn webScriptValueAtIndex(&self, index: c_uint) -> Option<Id<Object>>;
+        pub unsafe fn webScriptValueAtIndex(&self, index: c_uint) -> Option<Id<AnyObject>>;
 
         #[method(setWebScriptValueAtIndex:value:)]
-        pub unsafe fn setWebScriptValueAtIndex_value(&self, index: c_uint, value: Option<&Object>);
+        pub unsafe fn setWebScriptValueAtIndex_value(
+            &self,
+            index: c_uint,
+            value: Option<&AnyObject>,
+        );
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setException:)]

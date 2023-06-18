@@ -154,7 +154,7 @@ extern_methods!(
         );
 
         #[method(revertDocumentToSaved:)]
-        pub unsafe fn revertDocumentToSaved(&self, sender: Option<&Object>);
+        pub unsafe fn revertDocumentToSaved(&self, sender: Option<&AnyObject>);
 
         #[cfg(all(
             feature = "Foundation_NSError",
@@ -287,7 +287,7 @@ extern_methods!(
             type_name: &NSString,
             save_operation: NSSaveOperationType,
             absolute_original_contents_url: Option<&NSURL>,
-        ) -> Result<Id<NSDictionary<NSString, Object>>, Id<NSError>>;
+        ) -> Result<Id<NSDictionary<NSString, AnyObject>>, Id<NSError>>;
 
         #[method(keepBackupFile)]
         pub unsafe fn keepBackupFile(&self) -> bool;
@@ -297,18 +297,18 @@ extern_methods!(
         pub unsafe fn backupFileURL(&self) -> Option<Id<NSURL>>;
 
         #[method(saveDocument:)]
-        pub unsafe fn saveDocument(&self, sender: Option<&Object>);
+        pub unsafe fn saveDocument(&self, sender: Option<&AnyObject>);
 
         #[method(saveDocumentAs:)]
-        pub unsafe fn saveDocumentAs(&self, sender: Option<&Object>);
+        pub unsafe fn saveDocumentAs(&self, sender: Option<&AnyObject>);
 
         #[method(saveDocumentTo:)]
-        pub unsafe fn saveDocumentTo(&self, sender: Option<&Object>);
+        pub unsafe fn saveDocumentTo(&self, sender: Option<&AnyObject>);
 
         #[method(saveDocumentWithDelegate:didSaveSelector:contextInfo:)]
         pub unsafe fn saveDocumentWithDelegate_didSaveSelector_contextInfo(
             &self,
-            delegate: Option<&Object>,
+            delegate: Option<&AnyObject>,
             did_save_selector: Option<Sel>,
             context_info: *mut c_void,
         );
@@ -317,7 +317,7 @@ extern_methods!(
         pub unsafe fn runModalSavePanelForSaveOperation_delegate_didSaveSelector_contextInfo(
             &self,
             save_operation: NSSaveOperationType,
-            delegate: Option<&Object>,
+            delegate: Option<&AnyObject>,
             did_save_selector: Option<Sel>,
             context_info: *mut c_void,
         );
@@ -343,7 +343,7 @@ extern_methods!(
             url: &NSURL,
             type_name: &NSString,
             save_operation: NSSaveOperationType,
-            delegate: Option<&Object>,
+            delegate: Option<&AnyObject>,
             did_save_selector: Option<Sel>,
             context_info: *mut c_void,
         );
@@ -384,7 +384,7 @@ extern_methods!(
         #[method(autosaveDocumentWithDelegate:didAutosaveSelector:contextInfo:)]
         pub unsafe fn autosaveDocumentWithDelegate_didAutosaveSelector_contextInfo(
             &self,
-            delegate: Option<&Object>,
+            delegate: Option<&AnyObject>,
             did_autosave_selector: Option<Sel>,
             context_info: *mut c_void,
         );
@@ -404,7 +404,7 @@ extern_methods!(
         pub unsafe fn preservesVersions() -> bool;
 
         #[method(browseDocumentVersions:)]
-        pub unsafe fn browseDocumentVersions(&self, sender: Option<&Object>);
+        pub unsafe fn browseDocumentVersions(&self, sender: Option<&AnyObject>);
 
         #[method(isBrowsingVersions)]
         pub unsafe fn isBrowsingVersions(&self) -> bool;
@@ -436,7 +436,7 @@ extern_methods!(
         #[method(canCloseDocumentWithDelegate:shouldCloseSelector:contextInfo:)]
         pub unsafe fn canCloseDocumentWithDelegate_shouldCloseSelector_contextInfo(
             &self,
-            delegate: &Object,
+            delegate: &AnyObject,
             should_close_selector: Option<Sel>,
             context_info: *mut c_void,
         );
@@ -445,12 +445,12 @@ extern_methods!(
         pub unsafe fn close(&self);
 
         #[method(duplicateDocument:)]
-        pub unsafe fn duplicateDocument(&self, sender: Option<&Object>);
+        pub unsafe fn duplicateDocument(&self, sender: Option<&AnyObject>);
 
         #[method(duplicateDocumentWithDelegate:didDuplicateSelector:contextInfo:)]
         pub unsafe fn duplicateDocumentWithDelegate_didDuplicateSelector_contextInfo(
             &self,
-            delegate: Option<&Object>,
+            delegate: Option<&AnyObject>,
             did_duplicate_selector: Option<Sel>,
             context_info: *mut c_void,
         );
@@ -460,13 +460,13 @@ extern_methods!(
         pub unsafe fn duplicateAndReturnError(&self) -> Result<Id<NSDocument>, Id<NSError>>;
 
         #[method(renameDocument:)]
-        pub unsafe fn renameDocument(&self, sender: Option<&Object>);
+        pub unsafe fn renameDocument(&self, sender: Option<&AnyObject>);
 
         #[method(moveDocumentToUbiquityContainer:)]
-        pub unsafe fn moveDocumentToUbiquityContainer(&self, sender: Option<&Object>);
+        pub unsafe fn moveDocumentToUbiquityContainer(&self, sender: Option<&AnyObject>);
 
         #[method(moveDocument:)]
-        pub unsafe fn moveDocument(&self, sender: Option<&Object>);
+        pub unsafe fn moveDocument(&self, sender: Option<&AnyObject>);
 
         #[method(moveDocumentWithCompletionHandler:)]
         pub unsafe fn moveDocumentWithCompletionHandler(
@@ -483,10 +483,10 @@ extern_methods!(
         );
 
         #[method(lockDocument:)]
-        pub unsafe fn lockDocument(&self, sender: Option<&Object>);
+        pub unsafe fn lockDocument(&self, sender: Option<&AnyObject>);
 
         #[method(unlockDocument:)]
-        pub unsafe fn unlockDocument(&self, sender: Option<&Object>);
+        pub unsafe fn unlockDocument(&self, sender: Option<&AnyObject>);
 
         #[method(lockDocumentWithCompletionHandler:)]
         pub unsafe fn lockDocumentWithCompletionHandler(
@@ -518,14 +518,14 @@ extern_methods!(
         pub unsafe fn isLocked(&self) -> bool;
 
         #[method(runPageLayout:)]
-        pub unsafe fn runPageLayout(&self, sender: Option<&Object>);
+        pub unsafe fn runPageLayout(&self, sender: Option<&AnyObject>);
 
         #[cfg(feature = "AppKit_NSPrintInfo")]
         #[method(runModalPageLayoutWithPrintInfo:delegate:didRunSelector:contextInfo:)]
         pub unsafe fn runModalPageLayoutWithPrintInfo_delegate_didRunSelector_contextInfo(
             &self,
             print_info: &NSPrintInfo,
-            delegate: Option<&Object>,
+            delegate: Option<&AnyObject>,
             did_run_selector: Option<Sel>,
             context_info: *mut c_void,
         );
@@ -547,15 +547,15 @@ extern_methods!(
         pub unsafe fn setPrintInfo(&self, print_info: &NSPrintInfo);
 
         #[method(printDocument:)]
-        pub unsafe fn printDocument(&self, sender: Option<&Object>);
+        pub unsafe fn printDocument(&self, sender: Option<&AnyObject>);
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(printDocumentWithSettings:showPrintPanel:delegate:didPrintSelector:contextInfo:)]
         pub unsafe fn printDocumentWithSettings_showPrintPanel_delegate_didPrintSelector_contextInfo(
             &self,
-            print_settings: &NSDictionary<NSPrintInfoAttributeKey, Object>,
+            print_settings: &NSDictionary<NSPrintInfoAttributeKey, AnyObject>,
             show_print_panel: bool,
-            delegate: Option<&Object>,
+            delegate: Option<&AnyObject>,
             did_print_selector: Option<Sel>,
             context_info: *mut c_void,
         );
@@ -568,7 +568,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other printOperationWithSettings:error:_)]
         pub unsafe fn printOperationWithSettings_error(
             &self,
-            print_settings: &NSDictionary<NSPrintInfoAttributeKey, Object>,
+            print_settings: &NSDictionary<NSPrintInfoAttributeKey, AnyObject>,
         ) -> Result<Id<NSPrintOperation>, Id<NSError>>;
 
         #[cfg(feature = "AppKit_NSPrintOperation")]
@@ -576,13 +576,13 @@ extern_methods!(
         pub unsafe fn runModalPrintOperation_delegate_didRunSelector_contextInfo(
             &self,
             print_operation: &NSPrintOperation,
-            delegate: Option<&Object>,
+            delegate: Option<&AnyObject>,
             did_run_selector: Option<Sel>,
             context_info: *mut c_void,
         );
 
         #[method(saveDocumentToPDF:)]
-        pub unsafe fn saveDocumentToPDF(&self, sender: Option<&Object>);
+        pub unsafe fn saveDocumentToPDF(&self, sender: Option<&AnyObject>);
 
         #[cfg(feature = "AppKit_NSPrintOperation")]
         #[method_id(@__retain_semantics Other PDFPrintOperation)]
@@ -619,12 +619,12 @@ extern_methods!(
         pub unsafe fn changeCountTokenForSaveOperation(
             &self,
             save_operation: NSSaveOperationType,
-        ) -> Id<Object>;
+        ) -> Id<AnyObject>;
 
         #[method(updateChangeCountWithToken:forSaveOperation:)]
         pub unsafe fn updateChangeCountWithToken_forSaveOperation(
             &self,
-            change_count_token: &Object,
+            change_count_token: &AnyObject,
             save_operation: NSSaveOperationType,
         );
 
@@ -648,7 +648,7 @@ extern_methods!(
             &self,
             error: &NSError,
             window: &NSWindow,
-            delegate: Option<&Object>,
+            delegate: Option<&AnyObject>,
             did_present_selector: Option<Sel>,
             context_info: *mut c_void,
         );
@@ -703,7 +703,7 @@ extern_methods!(
         pub unsafe fn shouldCloseWindowController_delegate_shouldCloseSelector_contextInfo(
             &self,
             window_controller: &NSWindowController,
-            delegate: Option<&Object>,
+            delegate: Option<&AnyObject>,
             should_close_selector: Option<Sel>,
             context_info: *mut c_void,
         );
@@ -951,7 +951,7 @@ extern_methods!(
             &self,
             file_name: &NSString,
             save_operation: NSSaveOperationType,
-            delegate: Option<&Object>,
+            delegate: Option<&AnyObject>,
             did_save_selector: Option<Sel>,
             context_info: *mut c_void,
         );

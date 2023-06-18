@@ -32,8 +32,8 @@ extern_methods!(
             role: &NSAccessibilityRole,
             frame: NSRect,
             label: Option<&NSString>,
-            parent: Option<&Object>,
-        ) -> Id<Object>;
+            parent: Option<&AnyObject>,
+        ) -> Id<AnyObject>;
 
         #[method(accessibilityAddChildElement:)]
         pub unsafe fn accessibilityAddChildElement(&self, child_element: &NSAccessibilityElement);

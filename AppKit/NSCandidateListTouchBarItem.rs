@@ -8,7 +8,7 @@ use crate::Foundation::*;
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
-    pub struct NSCandidateListTouchBarItem<CandidateType: Message = Object> {
+    pub struct NSCandidateListTouchBarItem<CandidateType: Message = AnyObject> {
         __superclass: NSTouchBarItem,
         _inner0: PhantomData<*mut CandidateType>,
         notunwindsafe: PhantomData<&'static mut ()>,

@@ -219,7 +219,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other resolvedKeyDictionary)]
-        pub unsafe fn resolvedKeyDictionary(&self) -> Id<NSDictionary<NSString, Object>>;
+        pub unsafe fn resolvedKeyDictionary(&self) -> Id<NSDictionary<NSString, AnyObject>>;
     }
 );
 

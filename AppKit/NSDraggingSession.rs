@@ -66,7 +66,7 @@ extern_methods!(
             enum_opts: NSDraggingItemEnumerationOptions,
             view: Option<&NSView>,
             class_array: &NSArray<TodoClass>,
-            search_options: &NSDictionary<NSPasteboardReadingOptionKey, Object>,
+            search_options: &NSDictionary<NSPasteboardReadingOptionKey, AnyObject>,
             block: &Block<(NonNull<NSDraggingItem>, NSInteger, NonNull<Bool>), ()>,
         );
     }

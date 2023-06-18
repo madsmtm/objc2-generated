@@ -53,7 +53,7 @@ extern_methods!(
         #[method(addMetadata:completion:)]
         pub unsafe fn addMetadata_completion(
             &self,
-            metadata: &NSDictionary<NSString, Object>,
+            metadata: &NSDictionary<NSString, AnyObject>,
             completion: &Block<(Bool, *mut NSError), ()>,
         );
 
@@ -68,7 +68,7 @@ extern_methods!(
         pub unsafe fn finishRouteWithWorkout_metadata_completion(
             &self,
             workout: &HKWorkout,
-            metadata: Option<&NSDictionary<NSString, Object>>,
+            metadata: Option<&NSDictionary<NSString, AnyObject>>,
             completion: &Block<(*mut HKWorkoutRoute, *mut NSError), ()>,
         );
     }

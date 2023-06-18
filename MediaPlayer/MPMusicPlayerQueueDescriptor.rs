@@ -200,12 +200,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithDictionary:)]
         pub unsafe fn initWithDictionary(
             this: Option<Allocated<Self>>,
-            dictionary: &NSDictionary<NSString, Object>,
+            dictionary: &NSDictionary<NSString, AnyObject>,
         ) -> Option<Id<Self>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other dictionary)]
-        pub unsafe fn dictionary(&self) -> Id<NSDictionary<NSString, Object>>;
+        pub unsafe fn dictionary(&self) -> Id<NSDictionary<NSString, AnyObject>>;
     }
 );
 

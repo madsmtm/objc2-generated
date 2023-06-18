@@ -74,7 +74,7 @@ extern_methods!(
         pub unsafe fn removeDocument(&self, document: &NSDocument);
 
         #[method(newDocument:)]
-        pub unsafe fn newDocument(&self, sender: Option<&Object>);
+        pub unsafe fn newDocument(&self, sender: Option<&AnyObject>);
 
         #[cfg(all(feature = "AppKit_NSDocument", feature = "Foundation_NSError"))]
         #[method_id(@__retain_semantics Other openUntitledDocumentAndDisplay:error:_)]
@@ -95,7 +95,7 @@ extern_methods!(
         ) -> Result<Id<NSDocument>, Id<NSError>>;
 
         #[method(openDocument:)]
-        pub unsafe fn openDocument(&self, sender: Option<&Object>);
+        pub unsafe fn openDocument(&self, sender: Option<&AnyObject>);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other URLsFromRunningOpenPanel)]
@@ -194,7 +194,7 @@ extern_methods!(
         pub unsafe fn setAutosavingDelay(&self, autosaving_delay: NSTimeInterval);
 
         #[method(saveAllDocuments:)]
-        pub unsafe fn saveAllDocuments(&self, sender: Option<&Object>);
+        pub unsafe fn saveAllDocuments(&self, sender: Option<&AnyObject>);
 
         #[method(hasEditedDocuments)]
         pub unsafe fn hasEditedDocuments(&self) -> bool;
@@ -205,7 +205,7 @@ extern_methods!(
             &self,
             title: Option<&NSString>,
             cancellable: bool,
-            delegate: Option<&Object>,
+            delegate: Option<&AnyObject>,
             did_review_all_selector: Option<Sel>,
             context_info: *mut c_void,
         );
@@ -213,7 +213,7 @@ extern_methods!(
         #[method(closeAllDocumentsWithDelegate:didCloseAllSelector:contextInfo:)]
         pub unsafe fn closeAllDocumentsWithDelegate_didCloseAllSelector_contextInfo(
             &self,
-            delegate: Option<&Object>,
+            delegate: Option<&AnyObject>,
             did_close_all_selector: Option<Sel>,
             context_info: *mut c_void,
         );
@@ -245,7 +245,7 @@ extern_methods!(
             &self,
             error: &NSError,
             window: &NSWindow,
-            delegate: Option<&Object>,
+            delegate: Option<&AnyObject>,
             did_present_selector: Option<Sel>,
             context_info: *mut c_void,
         );
@@ -262,7 +262,7 @@ extern_methods!(
         pub unsafe fn maximumRecentDocumentCount(&self) -> NSUInteger;
 
         #[method(clearRecentDocuments:)]
-        pub unsafe fn clearRecentDocuments(&self, sender: Option<&Object>);
+        pub unsafe fn clearRecentDocuments(&self, sender: Option<&AnyObject>);
 
         #[cfg(feature = "AppKit_NSDocument")]
         #[method(noteNewRecentDocument:)]
@@ -297,7 +297,10 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(documentClassForType:)]
-        pub unsafe fn documentClassForType(&self, type_name: &NSString) -> Option<&'static Class>;
+        pub unsafe fn documentClassForType(
+            &self,
+            type_name: &NSString,
+        ) -> Option<&'static AnyClass>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other displayNameForType:)]
@@ -331,7 +334,7 @@ extern_methods!(
             &self,
             url: &NSURL,
             display_document: bool,
-        ) -> Result<Id<Object>, Id<NSError>>;
+        ) -> Result<Id<AnyObject>, Id<NSError>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[deprecated = "Use -reopenDocumentForURL:withContentsOfURL:display:completionHandler: instead"]
@@ -358,7 +361,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method_id(@__retain_semantics Other documentForFileName:)]
-        pub unsafe fn documentForFileName(&self, file_name: &NSString) -> Option<Id<Object>>;
+        pub unsafe fn documentForFileName(&self, file_name: &NSString) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated]
@@ -372,7 +375,7 @@ extern_methods!(
             &self,
             file_name: &NSString,
             r#type: &NSString,
-        ) -> Option<Id<Object>>;
+        ) -> Option<Id<AnyObject>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
         #[deprecated]
@@ -381,12 +384,13 @@ extern_methods!(
             &self,
             url: &NSURL,
             r#type: Option<&NSString>,
-        ) -> Option<Id<Object>>;
+        ) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method_id(@__retain_semantics Other makeUntitledDocumentOfType:)]
-        pub unsafe fn makeUntitledDocumentOfType(&self, r#type: &NSString) -> Option<Id<Object>>;
+        pub unsafe fn makeUntitledDocumentOfType(&self, r#type: &NSString)
+            -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
@@ -395,7 +399,7 @@ extern_methods!(
             &self,
             file_name: &NSString,
             display: bool,
-        ) -> Option<Id<Object>>;
+        ) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[deprecated]
@@ -404,7 +408,7 @@ extern_methods!(
             &self,
             url: &NSURL,
             display: bool,
-        ) -> Option<Id<Object>>;
+        ) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
@@ -413,7 +417,7 @@ extern_methods!(
             &self,
             r#type: &NSString,
             display: bool,
-        ) -> Option<Id<Object>>;
+        ) -> Option<Id<AnyObject>>;
 
         #[deprecated]
         #[method(setShouldCreateUI:)]

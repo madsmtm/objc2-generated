@@ -65,7 +65,7 @@ extern_methods!(
             start_date: &NSDate,
             end_date: &NSDate,
             objects: &NSSet<HKSample>,
-            metadata: Option<&NSDictionary<NSString, Object>>,
+            metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Id<Self>;
 
         #[cfg(all(
@@ -83,7 +83,7 @@ extern_methods!(
             end_date: &NSDate,
             objects: &NSSet<HKSample>,
             device: Option<&HKDevice>,
-            metadata: Option<&NSDictionary<NSString, Object>>,
+            metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSSet", feature = "HealthKit_HKObjectType"))]

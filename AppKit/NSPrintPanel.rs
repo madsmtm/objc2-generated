@@ -125,7 +125,7 @@ extern_methods!(
             &self,
             print_info: &NSPrintInfo,
             doc_window: &NSWindow,
-            delegate: Option<&Object>,
+            delegate: Option<&AnyObject>,
             did_end_selector: Option<Sel>,
             context_info: *mut c_void,
         );

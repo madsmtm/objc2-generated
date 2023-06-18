@@ -88,24 +88,24 @@ extern_methods!(
         pub unsafe fn removeAllActions(&self);
 
         #[method(removeAllActionsWithTarget:)]
-        pub unsafe fn removeAllActionsWithTarget(&self, target: &Object);
+        pub unsafe fn removeAllActionsWithTarget(&self, target: &AnyObject);
 
         #[method(registerUndoWithTarget:selector:object:)]
         pub unsafe fn registerUndoWithTarget_selector_object(
             &self,
-            target: &Object,
+            target: &AnyObject,
             selector: Sel,
-            an_object: Option<&Object>,
+            an_object: Option<&AnyObject>,
         );
 
         #[method_id(@__retain_semantics Other prepareWithInvocationTarget:)]
-        pub unsafe fn prepareWithInvocationTarget(&self, target: &Object) -> Id<Object>;
+        pub unsafe fn prepareWithInvocationTarget(&self, target: &AnyObject) -> Id<AnyObject>;
 
         #[method(registerUndoWithTarget:handler:)]
         pub unsafe fn registerUndoWithTarget_handler(
             &self,
-            target: &Object,
-            undo_handler: &Block<(NonNull<Object>,), ()>,
+            target: &AnyObject,
+            undo_handler: &Block<(NonNull<AnyObject>,), ()>,
         );
 
         #[method(setActionIsDiscardable:)]

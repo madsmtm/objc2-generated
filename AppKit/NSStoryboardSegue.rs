@@ -28,8 +28,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other segueWithIdentifier:source:destination:performHandler:)]
         pub unsafe fn segueWithIdentifier_source_destination_performHandler(
             identifier: &NSStoryboardSegueIdentifier,
-            source_controller: &Object,
-            destination_controller: &Object,
+            source_controller: &AnyObject,
+            destination_controller: &AnyObject,
             perform_handler: &Block<(), ()>,
         ) -> Id<Self>;
 
@@ -37,18 +37,18 @@ extern_methods!(
         pub unsafe fn initWithIdentifier_source_destination(
             this: Option<Allocated<Self>>,
             identifier: &NSStoryboardSegueIdentifier,
-            source_controller: &Object,
-            destination_controller: &Object,
+            source_controller: &AnyObject,
+            destination_controller: &AnyObject,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Option<Id<NSStoryboardSegueIdentifier>>;
 
         #[method_id(@__retain_semantics Other sourceController)]
-        pub unsafe fn sourceController(&self) -> Id<Object>;
+        pub unsafe fn sourceController(&self) -> Id<AnyObject>;
 
         #[method_id(@__retain_semantics Other destinationController)]
-        pub unsafe fn destinationController(&self) -> Id<Object>;
+        pub unsafe fn destinationController(&self) -> Id<AnyObject>;
 
         #[method(perform)]
         pub unsafe fn perform(&self);
@@ -72,14 +72,18 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSStoryboardSegue")]
         #[optional]
         #[method(prepareForSegue:sender:)]
-        unsafe fn prepareForSegue_sender(&self, segue: &NSStoryboardSegue, sender: Option<&Object>);
+        unsafe fn prepareForSegue_sender(
+            &self,
+            segue: &NSStoryboardSegue,
+            sender: Option<&AnyObject>,
+        );
 
         #[optional]
         #[method(performSegueWithIdentifier:sender:)]
         unsafe fn performSegueWithIdentifier_sender(
             &self,
             identifier: &NSStoryboardSegueIdentifier,
-            sender: Option<&Object>,
+            sender: Option<&AnyObject>,
         );
 
         #[optional]
@@ -87,7 +91,7 @@ extern_protocol!(
         unsafe fn shouldPerformSegueWithIdentifier_sender(
             &self,
             identifier: &NSStoryboardSegueIdentifier,
-            sender: Option<&Object>,
+            sender: Option<&AnyObject>,
         ) -> bool;
     }
 

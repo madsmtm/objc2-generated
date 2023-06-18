@@ -44,7 +44,7 @@ extern_methods!(
             &self,
             print_info: &NSPrintInfo,
             doc_window: &NSWindow,
-            delegate: Option<&Object>,
+            delegate: Option<&AnyObject>,
             did_end_selector: Option<Sel>,
             context_info: *mut c_void,
         );
@@ -103,6 +103,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSApplication")]
     unsafe impl NSApplication {
         #[method(runPageLayout:)]
-        pub unsafe fn runPageLayout(&self, sender: Option<&Object>);
+        pub unsafe fn runPageLayout(&self, sender: Option<&AnyObject>);
     }
 );

@@ -233,7 +233,7 @@ extern_methods!(
         );
 
         #[method(performClick:)]
-        pub unsafe fn performClick(&self, sender: Option<&Object>);
+        pub unsafe fn performClick(&self, sender: Option<&AnyObject>);
 
         #[cfg(feature = "AppKit_NSEvent")]
         #[method(mouseEntered:)]

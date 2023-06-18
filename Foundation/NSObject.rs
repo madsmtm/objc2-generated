@@ -47,37 +47,40 @@ extern_protocol!(
 
 extern_fn!(
     pub unsafe fn NSAllocateObject(
-        a_class: &Class,
+        a_class: &AnyClass,
         extra_bytes: NSUInteger,
         zone: *mut NSZone,
-    ) -> NonNull<Object>;
+    ) -> NonNull<AnyObject>;
 );
 
 extern_fn!(
-    pub unsafe fn NSDeallocateObject(object: &Object);
+    pub unsafe fn NSDeallocateObject(object: &AnyObject);
 );
 
 extern_fn!(
     #[deprecated = "Not supported"]
     pub unsafe fn NSCopyObject(
-        object: &Object,
+        object: &AnyObject,
         extra_bytes: NSUInteger,
         zone: *mut NSZone,
-    ) -> NonNull<Object>;
+    ) -> NonNull<AnyObject>;
 );
 
 extern_fn!(
-    pub unsafe fn NSShouldRetainWithZone(an_object: &Object, requested_zone: *mut NSZone) -> Bool;
+    pub unsafe fn NSShouldRetainWithZone(
+        an_object: &AnyObject,
+        requested_zone: *mut NSZone,
+    ) -> Bool;
 );
 
 extern_fn!(
-    pub unsafe fn NSIncrementExtraRefCount(object: &Object);
+    pub unsafe fn NSIncrementExtraRefCount(object: &AnyObject);
 );
 
 extern_fn!(
-    pub unsafe fn NSDecrementExtraRefCountWasZero(object: &Object) -> Bool;
+    pub unsafe fn NSDecrementExtraRefCountWasZero(object: &AnyObject) -> Bool;
 );
 
 extern_fn!(
-    pub unsafe fn NSExtraRefCount(object: &Object) -> NSUInteger;
+    pub unsafe fn NSExtraRefCount(object: &AnyObject) -> NSUInteger;
 );

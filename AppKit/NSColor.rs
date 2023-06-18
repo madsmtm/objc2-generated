@@ -632,7 +632,7 @@ extern_methods!(
         pub unsafe fn colorUsingColorSpaceName_device(
             &self,
             name: Option<&NSColorSpaceName>,
-            device_description: Option<&NSDictionary<NSDeviceDescriptionKey, Object>>,
+            device_description: Option<&NSDictionary<NSDeviceDescriptionKey, AnyObject>>,
         ) -> Option<Id<NSColor>>;
 
         #[deprecated = "Use -colorUsingType: or -colorUsingColorSpace: instead"]

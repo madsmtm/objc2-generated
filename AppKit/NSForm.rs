@@ -82,7 +82,7 @@ extern_methods!(
         pub unsafe fn setTextFont(&self, font_obj: &NSFont);
 
         #[method_id(@__retain_semantics Other cellAtIndex:)]
-        pub unsafe fn cellAtIndex(&self, index: NSInteger) -> Option<Id<Object>>;
+        pub unsafe fn cellAtIndex(&self, index: NSInteger) -> Option<Id<AnyObject>>;
 
         #[method(drawCellAtIndex:)]
         pub unsafe fn drawCellAtIndex(&self, index: NSInteger);
@@ -148,7 +148,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             frame_rect: NSRect,
             mode: NSMatrixMode,
-            factory_id: Option<&Class>,
+            factory_id: Option<&AnyClass>,
             rows_high: NSInteger,
             cols_wide: NSInteger,
         ) -> Id<Self>;

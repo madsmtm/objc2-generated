@@ -119,18 +119,18 @@ extern_methods!(
         pub unsafe fn objectForKey(
             &self,
             attribute: &NSFontDescriptorAttributeName,
-        ) -> Option<Id<Object>>;
+        ) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other fontAttributes)]
         pub unsafe fn fontAttributes(
             &self,
-        ) -> Id<NSDictionary<NSFontDescriptorAttributeName, Object>>;
+        ) -> Id<NSDictionary<NSFontDescriptorAttributeName, AnyObject>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other fontDescriptorWithFontAttributes:)]
         pub unsafe fn fontDescriptorWithFontAttributes(
-            attributes: Option<&NSDictionary<NSFontDescriptorAttributeName, Object>>,
+            attributes: Option<&NSDictionary<NSFontDescriptorAttributeName, AnyObject>>,
         ) -> Id<NSFontDescriptor>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -154,7 +154,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFontAttributes:)]
         pub unsafe fn initWithFontAttributes(
             this: Option<Allocated<Self>>,
-            attributes: Option<&NSDictionary<NSFontDescriptorAttributeName, Object>>,
+            attributes: Option<&NSDictionary<NSFontDescriptorAttributeName, AnyObject>>,
         ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSSet"))]
@@ -175,7 +175,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fontDescriptorByAddingAttributes:)]
         pub unsafe fn fontDescriptorByAddingAttributes(
             &self,
-            attributes: &NSDictionary<NSFontDescriptorAttributeName, Object>,
+            attributes: &NSDictionary<NSFontDescriptorAttributeName, AnyObject>,
         ) -> Id<NSFontDescriptor>;
 
         #[method_id(@__retain_semantics Other fontDescriptorWithSymbolicTraits:)]
@@ -379,7 +379,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other preferredFontDescriptorForTextStyle:options:)]
         pub unsafe fn preferredFontDescriptorForTextStyle_options(
             style: &NSFontTextStyle,
-            options: &NSDictionary<NSFontTextStyleOptionKey, Object>,
+            options: &NSDictionary<NSFontTextStyleOptionKey, AnyObject>,
         ) -> Id<NSFontDescriptor>;
     }
 );

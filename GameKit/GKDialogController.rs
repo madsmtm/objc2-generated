@@ -46,7 +46,7 @@ extern_methods!(
         pub unsafe fn presentViewController(&self, view_controller: &NSViewController) -> bool;
 
         #[method(dismiss:)]
-        pub unsafe fn dismiss(&self, sender: &Object);
+        pub unsafe fn dismiss(&self, sender: &AnyObject);
     }
 );
 

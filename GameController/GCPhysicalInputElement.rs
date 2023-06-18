@@ -26,7 +26,10 @@ extern_protocol!(
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GameController_GCPhysicalInputElementCollection")]
-    pub struct GCPhysicalInputElementCollection<Key: Message = Object, Element: Message = Object> {
+    pub struct GCPhysicalInputElementCollection<
+        Key: Message = AnyObject,
+        Element: Message = AnyObject,
+    > {
         __superclass: NSObject,
         _inner0: PhantomData<*mut Key>,
         _inner1: PhantomData<*mut Element>,

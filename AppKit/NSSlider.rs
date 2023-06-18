@@ -174,7 +174,7 @@ extern_methods!(
     unsafe impl NSSlider {
         #[method_id(@__retain_semantics Other sliderWithTarget:action:)]
         pub unsafe fn sliderWithTarget_action(
-            target: Option<&Object>,
+            target: Option<&AnyObject>,
             action: Option<Sel>,
         ) -> Id<Self>;
 
@@ -183,7 +183,7 @@ extern_methods!(
             value: c_double,
             min_value: c_double,
             max_value: c_double,
-            target: Option<&Object>,
+            target: Option<&AnyObject>,
             action: Option<Sel>,
         ) -> Id<Self>;
     }
@@ -200,7 +200,7 @@ extern_methods!(
 
         #[deprecated = "-titleCell has returned nil since 10.0"]
         #[method_id(@__retain_semantics Other titleCell)]
-        pub unsafe fn titleCell(&self) -> Option<Id<Object>>;
+        pub unsafe fn titleCell(&self) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[deprecated = "-setTitleColor: had no effect since 10.0"]

@@ -244,7 +244,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other pendingCallActionsOfClass:withCallUUID:)]
         pub unsafe fn pendingCallActionsOfClass_withCallUUID(
             &self,
-            call_action_class: &Class,
+            call_action_class: &AnyClass,
             call_uuid: &NSUUID,
         ) -> Id<NSArray<CXCallAction>>;
     }

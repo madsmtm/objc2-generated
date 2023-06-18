@@ -196,7 +196,7 @@ extern_methods!(
         #[method(setMetadata:forPersistentStore:)]
         pub unsafe fn setMetadata_forPersistentStore(
             &self,
-            metadata: Option<&NSDictionary<NSString, Object>>,
+            metadata: Option<&NSDictionary<NSString, AnyObject>>,
             store: &NSPersistentStore,
         );
 
@@ -209,7 +209,7 @@ extern_methods!(
         pub unsafe fn metadataForPersistentStore(
             &self,
             store: &NSPersistentStore,
-        ) -> Id<NSDictionary<NSString, Object>>;
+        ) -> Id<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(all(feature = "CoreData_NSManagedObjectID", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other managedObjectIDForURIRepresentation:)]
@@ -228,7 +228,7 @@ extern_methods!(
             &self,
             request: &NSPersistentStoreRequest,
             context: &NSManagedObjectContext,
-        ) -> Result<Id<Object>, Id<NSError>>;
+        ) -> Result<Id<AnyObject>, Id<NSError>>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -241,7 +241,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method(registerStoreClass:forStoreType:)]
         pub unsafe fn registerStoreClass_forStoreType(
-            store_class: Option<&Class>,
+            store_class: Option<&AnyClass>,
             store_type: &NSString,
         );
 
@@ -256,7 +256,7 @@ extern_methods!(
             store_type: &NSString,
             url: &NSURL,
             options: Option<&NSDictionary>,
-        ) -> Result<Id<NSDictionary<NSString, Object>>, Id<NSError>>;
+        ) -> Result<Id<NSDictionary<NSString, AnyObject>>, Id<NSError>>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -266,7 +266,7 @@ extern_methods!(
         ))]
         #[method(setMetadata:forPersistentStoreOfType:URL:options:error:_)]
         pub unsafe fn setMetadata_forPersistentStoreOfType_URL_options_error(
-            metadata: Option<&NSDictionary<NSString, Object>>,
+            metadata: Option<&NSDictionary<NSString, AnyObject>>,
             store_type: &NSString,
             url: &NSURL,
             options: Option<&NSDictionary>,
@@ -391,7 +391,7 @@ extern_methods!(
         pub unsafe fn metadataForPersistentStoreOfType_URL_error(
             store_type: Option<&NSString>,
             url: &NSURL,
-        ) -> Result<Id<NSDictionary<NSString, Object>>, Id<NSError>>;
+        ) -> Result<Id<NSDictionary<NSString, AnyObject>>, Id<NSError>>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -402,7 +402,7 @@ extern_methods!(
         #[deprecated = "Use  -setMetadata:forPersistentStoreOfType:URL:options:error: and pass in an options dictionary matching addPersistentStoreWithType"]
         #[method(setMetadata:forPersistentStoreOfType:URL:error:_)]
         pub unsafe fn setMetadata_forPersistentStoreOfType_URL_error(
-            metadata: Option<&NSDictionary<NSString, Object>>,
+            metadata: Option<&NSDictionary<NSString, AnyObject>>,
             store_type: Option<&NSString>,
             url: &NSURL,
         ) -> Result<(), Id<NSError>>;

@@ -35,10 +35,10 @@ extern_methods!(
         pub unsafe fn setKey(&self, key: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other value)]
-        pub unsafe fn value(&self) -> Option<Id<Object>>;
+        pub unsafe fn value(&self) -> Option<Id<AnyObject>>;
 
         #[method(setValue:)]
-        pub unsafe fn setValue(&self, value: Option<&Object>);
+        pub unsafe fn setValue(&self, value: Option<&AnyObject>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedKey)]
@@ -103,10 +103,10 @@ extern_methods!(
         pub unsafe fn setInitialKey(&self, initial_key: &NSString);
 
         #[method_id(@__retain_semantics Other initialValue)]
-        pub unsafe fn initialValue(&self) -> Id<Object>;
+        pub unsafe fn initialValue(&self) -> Id<AnyObject>;
 
         #[method(setInitialValue:)]
-        pub unsafe fn setInitialValue(&self, initial_value: &Object);
+        pub unsafe fn setInitialValue(&self, initial_value: &AnyObject);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other includedKeys)]
@@ -152,7 +152,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithContent:)]
         pub unsafe fn initWithContent(
             this: Option<Allocated<Self>>,
-            content: Option<&Object>,
+            content: Option<&AnyObject>,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]

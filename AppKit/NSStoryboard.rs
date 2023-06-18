@@ -9,7 +9,7 @@ pub type NSStoryboardName = NSString;
 
 pub type NSStoryboardSceneIdentifier = NSString;
 
-pub type NSStoryboardControllerCreator = *mut Block<(NonNull<NSCoder>,), *mut Object>;
+pub type NSStoryboardControllerCreator = *mut Block<(NonNull<NSCoder>,), *mut AnyObject>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -40,26 +40,26 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other instantiateInitialController)]
-        pub unsafe fn instantiateInitialController(&self) -> Option<Id<Object>>;
+        pub unsafe fn instantiateInitialController(&self) -> Option<Id<AnyObject>>;
 
         #[method_id(@__retain_semantics Other instantiateInitialControllerWithCreator:)]
         pub unsafe fn instantiateInitialControllerWithCreator(
             &self,
             block: NSStoryboardControllerCreator,
-        ) -> Option<Id<Object>>;
+        ) -> Option<Id<AnyObject>>;
 
         #[method_id(@__retain_semantics Other instantiateControllerWithIdentifier:)]
         pub unsafe fn instantiateControllerWithIdentifier(
             &self,
             identifier: &NSStoryboardSceneIdentifier,
-        ) -> Id<Object>;
+        ) -> Id<AnyObject>;
 
         #[method_id(@__retain_semantics Other instantiateControllerWithIdentifier:creator:)]
         pub unsafe fn instantiateControllerWithIdentifier_creator(
             &self,
             identifier: &NSStoryboardSceneIdentifier,
             block: NSStoryboardControllerCreator,
-        ) -> Id<Object>;
+        ) -> Id<AnyObject>;
     }
 );
 

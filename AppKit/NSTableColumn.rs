@@ -163,12 +163,12 @@ extern_methods!(
         pub unsafe fn isResizable(&self) -> bool;
 
         #[method_id(@__retain_semantics Other dataCell)]
-        pub unsafe fn dataCell(&self) -> Id<Object>;
+        pub unsafe fn dataCell(&self) -> Id<AnyObject>;
 
         #[method(setDataCell:)]
-        pub unsafe fn setDataCell(&self, data_cell: &Object);
+        pub unsafe fn setDataCell(&self, data_cell: &AnyObject);
 
         #[method_id(@__retain_semantics Other dataCellForRow:)]
-        pub unsafe fn dataCellForRow(&self, row: NSInteger) -> Id<Object>;
+        pub unsafe fn dataCellForRow(&self, row: NSInteger) -> Id<AnyObject>;
     }
 );

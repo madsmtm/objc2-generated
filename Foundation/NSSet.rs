@@ -89,7 +89,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other descriptionWithLocale:)]
-        pub unsafe fn descriptionWithLocale(&self, locale: Option<&Object>) -> Id<NSString>;
+        pub unsafe fn descriptionWithLocale(&self, locale: Option<&AnyObject>) -> Id<NSString>;
 
         #[method(intersectsSet:)]
         pub unsafe fn intersectsSet(&self, other_set: &NSSet<ObjectType>) -> bool;
@@ -107,7 +107,7 @@ extern_methods!(
         pub unsafe fn makeObjectsPerformSelector_withObject(
             &self,
             a_selector: Sel,
-            argument: Option<&Object>,
+            argument: Option<&AnyObject>,
         );
 
         #[method_id(@__retain_semantics Other setByAddingObject:)]

@@ -24,7 +24,7 @@ extern_methods!(
     unsafe impl CADisplayLink {
         #[method_id(@__retain_semantics Other displayLinkWithTarget:selector:)]
         pub unsafe fn displayLinkWithTarget_selector(
-            target: &Object,
+            target: &AnyObject,
             sel: Sel,
         ) -> Id<CADisplayLink>;
 

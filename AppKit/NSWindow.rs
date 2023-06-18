@@ -309,7 +309,7 @@ extern_methods!(
         pub unsafe fn contentLayoutRect(&self) -> NSRect;
 
         #[method_id(@__retain_semantics Other contentLayoutGuide)]
-        pub unsafe fn contentLayoutGuide(&self) -> Option<Id<Object>>;
+        pub unsafe fn contentLayoutGuide(&self) -> Option<Id<AnyObject>>;
 
         #[cfg(all(
             feature = "AppKit_NSTitlebarAccessoryViewController",
@@ -402,11 +402,11 @@ extern_methods!(
         pub unsafe fn fieldEditor_forObject(
             &self,
             create_flag: bool,
-            object: Option<&Object>,
+            object: Option<&AnyObject>,
         ) -> Option<Id<NSText>>;
 
         #[method(endEditingFor:)]
-        pub unsafe fn endEditingFor(&self, object: Option<&Object>);
+        pub unsafe fn endEditingFor(&self, object: Option<&AnyObject>);
 
         #[cfg(feature = "AppKit_NSScreen")]
         #[method(constrainFrameRect:toScreen:)]
@@ -515,29 +515,29 @@ extern_methods!(
         pub unsafe fn setReleasedWhenClosed(&self, released_when_closed: bool);
 
         #[method(miniaturize:)]
-        pub unsafe fn miniaturize(&self, sender: Option<&Object>);
+        pub unsafe fn miniaturize(&self, sender: Option<&AnyObject>);
 
         #[method(deminiaturize:)]
-        pub unsafe fn deminiaturize(&self, sender: Option<&Object>);
+        pub unsafe fn deminiaturize(&self, sender: Option<&AnyObject>);
 
         #[method(isZoomed)]
         pub unsafe fn isZoomed(&self) -> bool;
 
         #[method(zoom:)]
-        pub unsafe fn zoom(&self, sender: Option<&Object>);
+        pub unsafe fn zoom(&self, sender: Option<&AnyObject>);
 
         #[method(isMiniaturized)]
         pub unsafe fn isMiniaturized(&self) -> bool;
 
         #[method(tryToPerform:with:)]
-        pub unsafe fn tryToPerform_with(&self, action: Sel, object: Option<&Object>) -> bool;
+        pub unsafe fn tryToPerform_with(&self, action: Sel, object: Option<&AnyObject>) -> bool;
 
         #[method_id(@__retain_semantics Other validRequestorForSendType:returnType:)]
         pub unsafe fn validRequestorForSendType_returnType(
             &self,
             send_type: Option<&NSPasteboardType>,
             return_type: Option<&NSPasteboardType>,
-        ) -> Option<Id<Object>>;
+        ) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
@@ -598,16 +598,16 @@ extern_methods!(
         pub unsafe fn center(&self);
 
         #[method(makeKeyAndOrderFront:)]
-        pub unsafe fn makeKeyAndOrderFront(&self, sender: Option<&Object>);
+        pub unsafe fn makeKeyAndOrderFront(&self, sender: Option<&AnyObject>);
 
         #[method(orderFront:)]
-        pub unsafe fn orderFront(&self, sender: Option<&Object>);
+        pub unsafe fn orderFront(&self, sender: Option<&AnyObject>);
 
         #[method(orderBack:)]
-        pub unsafe fn orderBack(&self, sender: Option<&Object>);
+        pub unsafe fn orderBack(&self, sender: Option<&AnyObject>);
 
         #[method(orderOut:)]
-        pub unsafe fn orderOut(&self, sender: Option<&Object>);
+        pub unsafe fn orderOut(&self, sender: Option<&AnyObject>);
 
         #[method(orderWindow:relativeTo:)]
         pub unsafe fn orderWindow_relativeTo(
@@ -725,13 +725,13 @@ extern_methods!(
         pub unsafe fn backingScaleFactor(&self) -> CGFloat;
 
         #[method(performClose:)]
-        pub unsafe fn performClose(&self, sender: Option<&Object>);
+        pub unsafe fn performClose(&self, sender: Option<&AnyObject>);
 
         #[method(performMiniaturize:)]
-        pub unsafe fn performMiniaturize(&self, sender: Option<&Object>);
+        pub unsafe fn performMiniaturize(&self, sender: Option<&AnyObject>);
 
         #[method(performZoom:)]
-        pub unsafe fn performZoom(&self, sender: Option<&Object>);
+        pub unsafe fn performZoom(&self, sender: Option<&AnyObject>);
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other dataWithEPSInsideRect:)]
@@ -742,7 +742,7 @@ extern_methods!(
         pub unsafe fn dataWithPDFInsideRect(&self, rect: NSRect) -> Id<NSData>;
 
         #[method(print:)]
-        pub unsafe fn print(&self, sender: Option<&Object>);
+        pub unsafe fn print(&self, sender: Option<&AnyObject>);
 
         #[method(allowsToolTipsWhenApplicationIsInactive)]
         pub unsafe fn allowsToolTipsWhenApplicationIsInactive(&self) -> bool;
@@ -855,7 +855,7 @@ extern_methods!(
         pub unsafe fn isOnActiveSpace(&self) -> bool;
 
         #[method(toggleFullScreen:)]
-        pub unsafe fn toggleFullScreen(&self, sender: Option<&Object>);
+        pub unsafe fn toggleFullScreen(&self, sender: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other stringWithSavedFrame)]
         pub unsafe fn stringWithSavedFrame(&self) -> Id<NSWindowPersistableFrameDescriptor>;
@@ -923,7 +923,9 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other deviceDescription)]
-        pub unsafe fn deviceDescription(&self) -> Id<NSDictionary<NSDeviceDescriptionKey, Object>>;
+        pub unsafe fn deviceDescription(
+            &self,
+        ) -> Id<NSDictionary<NSDeviceDescriptionKey, AnyObject>>;
 
         #[cfg(feature = "AppKit_NSWindowController")]
         #[method_id(@__retain_semantics Other windowController)]
@@ -1072,10 +1074,10 @@ extern_methods!(
         pub unsafe fn setInitialFirstResponder(&self, initial_first_responder: Option<&NSView>);
 
         #[method(selectNextKeyView:)]
-        pub unsafe fn selectNextKeyView(&self, sender: Option<&Object>);
+        pub unsafe fn selectNextKeyView(&self, sender: Option<&AnyObject>);
 
         #[method(selectPreviousKeyView:)]
-        pub unsafe fn selectPreviousKeyView(&self, sender: Option<&Object>);
+        pub unsafe fn selectPreviousKeyView(&self, sender: Option<&AnyObject>);
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(selectKeyViewFollowingView:)]
@@ -1120,10 +1122,10 @@ extern_methods!(
         pub unsafe fn setToolbar(&self, toolbar: Option<&NSToolbar>);
 
         #[method(toggleToolbarShown:)]
-        pub unsafe fn toggleToolbarShown(&self, sender: Option<&Object>);
+        pub unsafe fn toggleToolbarShown(&self, sender: Option<&AnyObject>);
 
         #[method(runToolbarCustomizationPalette:)]
-        pub unsafe fn runToolbarCustomizationPalette(&self, sender: Option<&Object>);
+        pub unsafe fn runToolbarCustomizationPalette(&self, sender: Option<&AnyObject>);
 
         #[deprecated = "This property has no effect"]
         #[method(showsToolbarButton)]
@@ -1155,22 +1157,22 @@ extern_methods!(
         pub unsafe fn setTabbingIdentifier(&self, tabbing_identifier: &NSWindowTabbingIdentifier);
 
         #[method(selectNextTab:)]
-        pub unsafe fn selectNextTab(&self, sender: Option<&Object>);
+        pub unsafe fn selectNextTab(&self, sender: Option<&AnyObject>);
 
         #[method(selectPreviousTab:)]
-        pub unsafe fn selectPreviousTab(&self, sender: Option<&Object>);
+        pub unsafe fn selectPreviousTab(&self, sender: Option<&AnyObject>);
 
         #[method(moveTabToNewWindow:)]
-        pub unsafe fn moveTabToNewWindow(&self, sender: Option<&Object>);
+        pub unsafe fn moveTabToNewWindow(&self, sender: Option<&AnyObject>);
 
         #[method(mergeAllWindows:)]
-        pub unsafe fn mergeAllWindows(&self, sender: Option<&Object>);
+        pub unsafe fn mergeAllWindows(&self, sender: Option<&AnyObject>);
 
         #[method(toggleTabBar:)]
-        pub unsafe fn toggleTabBar(&self, sender: Option<&Object>);
+        pub unsafe fn toggleTabBar(&self, sender: Option<&AnyObject>);
 
         #[method(toggleTabOverview:)]
-        pub unsafe fn toggleTabOverview(&self, sender: Option<&Object>);
+        pub unsafe fn toggleTabOverview(&self, sender: Option<&AnyObject>);
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other tabbedWindows)]
@@ -1321,7 +1323,7 @@ extern_methods!(
             initial_offset: NSSize,
             event: &NSEvent,
             pboard: &NSPasteboard,
-            source_obj: &Object,
+            source_obj: &AnyObject,
             slide_flag: bool,
         );
 
@@ -1362,8 +1364,8 @@ extern_protocol!(
         unsafe fn windowWillReturnFieldEditor_toObject(
             &self,
             sender: &NSWindow,
-            client: Option<&Object>,
-        ) -> Option<Id<Object>>;
+            client: Option<&AnyObject>,
+        ) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[optional]

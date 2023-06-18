@@ -85,7 +85,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other serviceConnectionWithName:rootObject:usingNameServer:)]
         pub unsafe fn serviceConnectionWithName_rootObject_usingNameServer(
             name: &NSString,
-            root: &Object,
+            root: &AnyObject,
             server: &NSPortNameServer,
         ) -> Option<Id<Self>>;
 
@@ -93,7 +93,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other serviceConnectionWithName:rootObject:)]
         pub unsafe fn serviceConnectionWithName_rootObject(
             name: &NSString,
-            root: &Object,
+            root: &AnyObject,
         ) -> Option<Id<Self>>;
 
         #[method(requestTimeout)]
@@ -109,10 +109,10 @@ extern_methods!(
         pub unsafe fn setReplyTimeout(&self, reply_timeout: NSTimeInterval);
 
         #[method_id(@__retain_semantics Other rootObject)]
-        pub unsafe fn rootObject(&self) -> Option<Id<Object>>;
+        pub unsafe fn rootObject(&self) -> Option<Id<AnyObject>>;
 
         #[method(setRootObject:)]
-        pub unsafe fn setRootObject(&self, root_object: Option<&Object>);
+        pub unsafe fn setRootObject(&self, root_object: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSConnectionDelegate>>>;
@@ -177,7 +177,7 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Other currentConversation)]
-        pub unsafe fn currentConversation() -> Option<Id<Object>>;
+        pub unsafe fn currentConversation() -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSPort")]
         #[method_id(@__retain_semantics Init initWithReceivePort:sendPort:)]
@@ -280,7 +280,7 @@ extern_protocol!(
         #[cfg(feature = "Foundation_NSConnection")]
         #[optional]
         #[method_id(@__retain_semantics Other createConversationForConnection:)]
-        unsafe fn createConversationForConnection(&self, conn: &NSConnection) -> Id<Object>;
+        unsafe fn createConversationForConnection(&self, conn: &NSConnection) -> Id<AnyObject>;
 
         #[cfg(all(
             feature = "Foundation_NSConnection",
@@ -330,7 +330,7 @@ extern_methods!(
         pub unsafe fn connection(&self) -> Id<NSConnection>;
 
         #[method_id(@__retain_semantics Other conversation)]
-        pub unsafe fn conversation(&self) -> Id<Object>;
+        pub unsafe fn conversation(&self) -> Id<AnyObject>;
 
         #[cfg(feature = "Foundation_NSException")]
         #[method(replyWithException:)]

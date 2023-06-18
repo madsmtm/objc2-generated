@@ -84,12 +84,12 @@ extern_methods!(
         pub unsafe fn initWithString_locale(
             this: Option<Allocated<Self>>,
             number_value: Option<&NSString>,
-            locale: Option<&Object>,
+            locale: Option<&AnyObject>,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other descriptionWithLocale:)]
-        pub unsafe fn descriptionWithLocale(&self, locale: Option<&Object>) -> Id<NSString>;
+        pub unsafe fn descriptionWithLocale(&self, locale: Option<&AnyObject>) -> Id<NSString>;
 
         #[method(decimalValue)]
         pub unsafe fn decimalValue(&self) -> NSDecimal;
@@ -114,7 +114,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other decimalNumberWithString:locale:)]
         pub unsafe fn decimalNumberWithString_locale(
             number_value: Option<&NSString>,
-            locale: Option<&Object>,
+            locale: Option<&AnyObject>,
         ) -> Id<NSDecimalNumber>;
 
         #[method_id(@__retain_semantics Other zero)]

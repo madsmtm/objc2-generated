@@ -118,7 +118,7 @@ extern_methods!(
             language: Option<&NSString>,
             wrap_flag: bool,
             tag: NSInteger,
-            details: Option<&mut Option<Id<NSArray<NSDictionary<NSString, Object>>>>>,
+            details: Option<&mut Option<Id<NSArray<NSDictionary<NSString, AnyObject>>>>>,
         ) -> NSRange;
 
         #[cfg(all(
@@ -134,7 +134,7 @@ extern_methods!(
             string_to_check: &NSString,
             range: NSRange,
             checking_types: NSTextCheckingTypes,
-            options: Option<&NSDictionary<NSTextCheckingOptionKey, Object>>,
+            options: Option<&NSDictionary<NSTextCheckingOptionKey, AnyObject>>,
             tag: NSInteger,
             orthography: Option<&mut Option<Id<NSOrthography>>>,
             word_count: *mut NSInteger,
@@ -153,7 +153,7 @@ extern_methods!(
             string_to_check: &NSString,
             range: NSRange,
             checking_types: NSTextCheckingTypes,
-            options: Option<&NSDictionary<NSTextCheckingOptionKey, Object>>,
+            options: Option<&NSDictionary<NSTextCheckingOptionKey, AnyObject>>,
             tag: NSInteger,
             completion_handler: Option<
                 &Block<
@@ -180,7 +180,7 @@ extern_methods!(
             selected_range: NSRange,
             string_to_check: &NSString,
             checking_types: NSTextCheckingTypes,
-            options: Option<&NSDictionary<NSTextCheckingOptionKey, Object>>,
+            options: Option<&NSDictionary<NSTextCheckingOptionKey, AnyObject>>,
             tag: NSInteger,
             completion_handler: Option<
                 &Block<(NSInteger, NonNull<NSArray<NSTextCheckingResult>>), ()>,
@@ -199,7 +199,7 @@ extern_methods!(
             &self,
             result: &NSTextCheckingResult,
             checked_string: &NSString,
-            options: Option<&NSDictionary<NSTextCheckingOptionKey, Object>>,
+            options: Option<&NSDictionary<NSTextCheckingOptionKey, AnyObject>>,
             location: NSPoint,
             view: &NSView,
         ) -> Option<Id<NSMenu>>;
@@ -224,7 +224,7 @@ extern_methods!(
         pub unsafe fn updateSpellingPanelWithGrammarString_detail(
             &self,
             string: &NSString,
-            detail: &NSDictionary<NSString, Object>,
+            detail: &NSDictionary<NSString, AnyObject>,
         );
 
         #[cfg(feature = "AppKit_NSPanel")]

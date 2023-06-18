@@ -54,7 +54,7 @@ extern_methods!(
         pub unsafe fn setBadgeLabel(&self, badge_label: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other owner)]
-        pub unsafe fn owner(&self) -> Option<Id<Object>>;
+        pub unsafe fn owner(&self) -> Option<Id<AnyObject>>;
     }
 );
 

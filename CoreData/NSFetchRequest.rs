@@ -59,7 +59,7 @@ unsafe impl NSFetchRequestResult for NSManagedObjectID {}
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CoreData_NSFetchRequest")]
-    pub struct NSFetchRequest<ResultType: Message = Object> {
+    pub struct NSFetchRequest<ResultType: Message = AnyObject> {
         __superclass: NSPersistentStoreRequest,
         _inner0: PhantomData<*mut ResultType>,
         notunwindsafe: PhantomData<&'static mut ()>,
@@ -274,7 +274,7 @@ pub type NSPersistentStoreAsynchronousFetchResultCompletionBlock =
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CoreData_NSAsynchronousFetchRequest")]
-    pub struct NSAsynchronousFetchRequest<ResultType: Message = Object> {
+    pub struct NSAsynchronousFetchRequest<ResultType: Message = AnyObject> {
         __superclass: NSPersistentStoreRequest,
         _inner0: PhantomData<*mut ResultType>,
         notunwindsafe: PhantomData<&'static mut ()>,

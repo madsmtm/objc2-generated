@@ -358,7 +358,7 @@ extern_protocol!(
             &self,
             web_view: Option<&WebView>,
             action: Option<Sel>,
-            sender: Option<&Object>,
+            sender: Option<&AnyObject>,
         ) -> bool;
 
         #[cfg(feature = "WebKit_WebView")]

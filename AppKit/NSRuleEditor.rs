@@ -166,7 +166,7 @@ extern_methods!(
         pub unsafe fn displayValuesForRow(&self, row: NSInteger) -> Id<NSArray>;
 
         #[method(rowForDisplayValue:)]
-        pub unsafe fn rowForDisplayValue(&self, display_value: &Object) -> NSInteger;
+        pub unsafe fn rowForDisplayValue(&self, display_value: &AnyObject) -> NSInteger;
 
         #[method(rowTypeForRow:)]
         pub unsafe fn rowTypeForRow(&self, row_index: NSInteger) -> NSRuleEditorRowType;
@@ -175,7 +175,7 @@ extern_methods!(
         pub unsafe fn parentRowForRow(&self, row_index: NSInteger) -> NSInteger;
 
         #[method(addRow:)]
-        pub unsafe fn addRow(&self, sender: Option<&Object>);
+        pub unsafe fn addRow(&self, sender: Option<&AnyObject>);
 
         #[method(insertRowAtIndex:withType:asSubrowOfRow:animate:)]
         pub unsafe fn insertRowAtIndex_withType_asSubrowOfRow_animate(
@@ -219,10 +219,10 @@ extern_methods!(
         );
 
         #[method(rowClass)]
-        pub unsafe fn rowClass(&self) -> &'static Class;
+        pub unsafe fn rowClass(&self) -> &'static AnyClass;
 
         #[method(setRowClass:)]
-        pub unsafe fn setRowClass(&self, row_class: &Class);
+        pub unsafe fn setRowClass(&self, row_class: &AnyClass);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other rowTypeKeyPath)]
@@ -299,7 +299,7 @@ extern_protocol!(
         unsafe fn ruleEditor_numberOfChildrenForCriterion_withRowType(
             &self,
             editor: &NSRuleEditor,
-            criterion: Option<&Object>,
+            criterion: Option<&AnyObject>,
             row_type: NSRuleEditorRowType,
         ) -> NSInteger;
 
@@ -309,18 +309,18 @@ extern_protocol!(
             &self,
             editor: &NSRuleEditor,
             index: NSInteger,
-            criterion: Option<&Object>,
+            criterion: Option<&AnyObject>,
             row_type: NSRuleEditorRowType,
-        ) -> Id<Object>;
+        ) -> Id<AnyObject>;
 
         #[cfg(feature = "AppKit_NSRuleEditor")]
         #[method_id(@__retain_semantics Other ruleEditor:displayValueForCriterion:inRow:)]
         unsafe fn ruleEditor_displayValueForCriterion_inRow(
             &self,
             editor: &NSRuleEditor,
-            criterion: &Object,
+            criterion: &AnyObject,
             row: NSInteger,
-        ) -> Id<Object>;
+        ) -> Id<AnyObject>;
 
         #[cfg(all(feature = "AppKit_NSRuleEditor", feature = "Foundation_NSDictionary"))]
         #[optional]
@@ -328,10 +328,10 @@ extern_protocol!(
         unsafe fn ruleEditor_predicatePartsForCriterion_withDisplayValue_inRow(
             &self,
             editor: &NSRuleEditor,
-            criterion: &Object,
-            value: &Object,
+            criterion: &AnyObject,
+            value: &AnyObject,
             row: NSInteger,
-        ) -> Option<Id<NSDictionary<NSRuleEditorPredicatePartKey, Object>>>;
+        ) -> Option<Id<NSDictionary<NSRuleEditorPredicatePartKey, AnyObject>>>;
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]

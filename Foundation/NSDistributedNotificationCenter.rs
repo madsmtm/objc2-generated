@@ -68,7 +68,7 @@ extern_methods!(
         #[method(addObserver:selector:name:object:suspensionBehavior:)]
         pub unsafe fn addObserver_selector_name_object_suspensionBehavior(
             &self,
-            observer: &Object,
+            observer: &AnyObject,
             selector: Sel,
             name: Option<&NSNotificationName>,
             object: Option<&NSString>,
@@ -105,7 +105,7 @@ extern_methods!(
         #[method(addObserver:selector:name:object:)]
         pub unsafe fn addObserver_selector_name_object(
             &self,
-            observer: &Object,
+            observer: &AnyObject,
             a_selector: Sel,
             a_name: Option<&NSNotificationName>,
             an_object: Option<&NSString>,
@@ -132,7 +132,7 @@ extern_methods!(
         #[method(removeObserver:name:object:)]
         pub unsafe fn removeObserver_name_object(
             &self,
-            observer: &Object,
+            observer: &AnyObject,
             a_name: Option<&NSNotificationName>,
             an_object: Option<&NSString>,
         );

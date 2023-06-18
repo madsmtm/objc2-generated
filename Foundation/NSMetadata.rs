@@ -126,19 +126,19 @@ extern_methods!(
         pub unsafe fn resultCount(&self) -> NSUInteger;
 
         #[method_id(@__retain_semantics Other resultAtIndex:)]
-        pub unsafe fn resultAtIndex(&self, idx: NSUInteger) -> Id<Object>;
+        pub unsafe fn resultAtIndex(&self, idx: NSUInteger) -> Id<AnyObject>;
 
         #[method(enumerateResultsUsingBlock:)]
         pub unsafe fn enumerateResultsUsingBlock(
             &self,
-            block: &Block<(NonNull<Object>, NSUInteger, NonNull<Bool>), ()>,
+            block: &Block<(NonNull<AnyObject>, NSUInteger, NonNull<Bool>), ()>,
         );
 
         #[method(enumerateResultsWithOptions:usingBlock:)]
         pub unsafe fn enumerateResultsWithOptions_usingBlock(
             &self,
             opts: NSEnumerationOptions,
-            block: &Block<(NonNull<Object>, NSUInteger, NonNull<Bool>), ()>,
+            block: &Block<(NonNull<AnyObject>, NSUInteger, NonNull<Bool>), ()>,
         );
 
         #[cfg(feature = "Foundation_NSArray")]
@@ -146,7 +146,7 @@ extern_methods!(
         pub unsafe fn results(&self) -> Id<NSArray>;
 
         #[method(indexOfResult:)]
-        pub unsafe fn indexOfResult(&self, result: &Object) -> NSUInteger;
+        pub unsafe fn indexOfResult(&self, result: &AnyObject) -> NSUInteger;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -172,7 +172,7 @@ extern_methods!(
             &self,
             attr_name: &NSString,
             idx: NSUInteger,
-        ) -> Option<Id<Object>>;
+        ) -> Option<Id<AnyObject>>;
     }
 );
 
@@ -200,7 +200,7 @@ extern_protocol!(
             &self,
             query: &NSMetadataQuery,
             result: &NSMetadataItem,
-        ) -> Id<Object>;
+        ) -> Id<AnyObject>;
 
         #[cfg(all(
             feature = "Foundation_NSMetadataQuery",
@@ -212,8 +212,8 @@ extern_protocol!(
             &self,
             query: &NSMetadataQuery,
             attr_name: &NSString,
-            attr_value: &Object,
-        ) -> Id<Object>;
+            attr_value: &AnyObject,
+        ) -> Id<AnyObject>;
     }
 
     unsafe impl ProtocolType for dyn NSMetadataQueryDelegate {}
@@ -275,7 +275,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other valueForAttribute:)]
-        pub unsafe fn valueForAttribute(&self, key: &NSString) -> Option<Id<Object>>;
+        pub unsafe fn valueForAttribute(&self, key: &NSString) -> Option<Id<AnyObject>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -286,7 +286,7 @@ extern_methods!(
         pub unsafe fn valuesForAttributes(
             &self,
             keys: &NSArray<NSString>,
-        ) -> Option<Id<NSDictionary<NSString, Object>>>;
+        ) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other attributes)]
@@ -329,7 +329,7 @@ extern_methods!(
         pub unsafe fn attribute(&self) -> Id<NSString>;
 
         #[method_id(@__retain_semantics Other value)]
-        pub unsafe fn value(&self) -> Option<Id<Object>>;
+        pub unsafe fn value(&self) -> Option<Id<AnyObject>>;
 
         #[method(count)]
         pub unsafe fn count(&self) -> NSUInteger;
@@ -371,7 +371,7 @@ extern_methods!(
         pub unsafe fn attribute(&self) -> Id<NSString>;
 
         #[method_id(@__retain_semantics Other value)]
-        pub unsafe fn value(&self) -> Id<Object>;
+        pub unsafe fn value(&self) -> Id<AnyObject>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other subgroups)]
@@ -381,7 +381,7 @@ extern_methods!(
         pub unsafe fn resultCount(&self) -> NSUInteger;
 
         #[method_id(@__retain_semantics Other resultAtIndex:)]
-        pub unsafe fn resultAtIndex(&self, idx: NSUInteger) -> Id<Object>;
+        pub unsafe fn resultAtIndex(&self, idx: NSUInteger) -> Id<AnyObject>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other results)]

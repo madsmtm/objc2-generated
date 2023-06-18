@@ -42,7 +42,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithTarget:action:)]
         pub unsafe fn initWithTarget_action(
             this: Option<Allocated<Self>>,
-            target: Option<&Object>,
+            target: Option<&AnyObject>,
             action: Option<Sel>,
         ) -> Id<Self>;
 
@@ -54,10 +54,10 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Other target)]
-        pub unsafe fn target(&self) -> Option<Id<Object>>;
+        pub unsafe fn target(&self) -> Option<Id<AnyObject>>;
 
         #[method(setTarget:)]
-        pub unsafe fn setTarget(&self, target: Option<&Object>);
+        pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
 
         #[method(action)]
         pub unsafe fn action(&self) -> Option<Sel>;

@@ -27,17 +27,17 @@ extern_methods!(
         #[method_id(@__retain_semantics Other coerceValue:toClass:)]
         pub unsafe fn coerceValue_toClass(
             &self,
-            value: &Object,
-            to_class: &Class,
-        ) -> Option<Id<Object>>;
+            value: &AnyObject,
+            to_class: &AnyClass,
+        ) -> Option<Id<AnyObject>>;
 
         #[method(registerCoercer:selector:toConvertFromClass:toClass:)]
         pub unsafe fn registerCoercer_selector_toConvertFromClass_toClass(
             &self,
-            coercer: &Object,
+            coercer: &AnyObject,
             selector: Sel,
-            from_class: &Class,
-            to_class: &Class,
+            from_class: &AnyClass,
+            to_class: &AnyClass,
         );
     }
 );

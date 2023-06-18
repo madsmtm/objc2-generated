@@ -35,14 +35,14 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSLocale")]
     unsafe impl NSLocale {
         #[method_id(@__retain_semantics Other objectForKey:)]
-        pub unsafe fn objectForKey(&self, key: &NSLocaleKey) -> Option<Id<Object>>;
+        pub unsafe fn objectForKey(&self, key: &NSLocaleKey) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other displayNameForKey:value:)]
         pub unsafe fn displayNameForKey_value(
             &self,
             key: &NSLocaleKey,
-            value: &Object,
+            value: &AnyObject,
         ) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]

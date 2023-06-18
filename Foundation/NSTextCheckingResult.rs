@@ -96,7 +96,9 @@ extern_methods!(
             feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other grammarDetails)]
-        pub unsafe fn grammarDetails(&self) -> Option<Id<NSArray<NSDictionary<NSString, Object>>>>;
+        pub unsafe fn grammarDetails(
+            &self,
+        ) -> Option<Id<NSArray<NSDictionary<NSString, AnyObject>>>>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other date)]
@@ -201,7 +203,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other grammarCheckingResultWithRange:details:)]
         pub unsafe fn grammarCheckingResultWithRange_details(
             range: NSRange,
-            details: &NSArray<NSDictionary<NSString, Object>>,
+            details: &NSArray<NSDictionary<NSString, AnyObject>>,
         ) -> Id<NSTextCheckingResult>;
 
         #[cfg(feature = "Foundation_NSDate")]

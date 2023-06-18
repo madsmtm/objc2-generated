@@ -129,11 +129,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAdditionalValue:forKey:)]
-        pub unsafe fn setAdditionalValue_forKey(&self, value: Option<&Object>, key: &NSString);
+        pub unsafe fn setAdditionalValue_forKey(&self, value: Option<&AnyObject>, key: &NSString);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other additionalValueForKey:)]
-        pub unsafe fn additionalValueForKey(&self, key: &NSString) -> Option<Id<Object>>;
+        pub unsafe fn additionalValueForKey(&self, key: &NSString) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "StoreKit_SKAdImpression")]
         #[method(setAdImpression:)]
@@ -215,10 +215,10 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setAdditionalValue:forKey:)]
-        pub unsafe fn setAdditionalValue_forKey(&self, value: Option<&Object>, key: &NSString);
+        pub unsafe fn setAdditionalValue_forKey(&self, value: Option<&AnyObject>, key: &NSString);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other additionalValueForKey:)]
-        pub unsafe fn additionalValueForKey(&self, key: &NSString) -> Option<Id<Object>>;
+        pub unsafe fn additionalValueForKey(&self, key: &NSString) -> Option<Id<AnyObject>>;
     }
 );

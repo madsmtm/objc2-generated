@@ -373,7 +373,7 @@ extern_methods!(
         #[method(registerClass:forAnnotationViewWithReuseIdentifier:)]
         pub unsafe fn registerClass_forAnnotationViewWithReuseIdentifier(
             &self,
-            view_class: Option<&Class>,
+            view_class: Option<&AnyClass>,
             identifier: &NSString,
         );
 

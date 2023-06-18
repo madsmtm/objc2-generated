@@ -69,7 +69,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSBrowser")]
     unsafe impl NSBrowser {
         #[method(cellClass)]
-        pub unsafe fn cellClass() -> &'static Class;
+        pub unsafe fn cellClass() -> &'static AnyClass;
 
         #[method(loadColumnZero)]
         pub unsafe fn loadColumnZero(&self);
@@ -84,13 +84,13 @@ extern_methods!(
         pub unsafe fn setDoubleAction(&self, double_action: Option<Sel>);
 
         #[method(setCellClass:)]
-        pub unsafe fn setCellClass(&self, factory_id: &Class);
+        pub unsafe fn setCellClass(&self, factory_id: &AnyClass);
 
         #[method_id(@__retain_semantics Other cellPrototype)]
-        pub unsafe fn cellPrototype(&self) -> Option<Id<Object>>;
+        pub unsafe fn cellPrototype(&self) -> Option<Id<AnyObject>>;
 
         #[method(setCellPrototype:)]
-        pub unsafe fn setCellPrototype(&self, cell_prototype: Option<&Object>);
+        pub unsafe fn setCellPrototype(&self, cell_prototype: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSBrowserDelegate>>>;
@@ -175,21 +175,21 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other itemAtIndexPath:)]
-        pub unsafe fn itemAtIndexPath(&self, index_path: &NSIndexPath) -> Option<Id<Object>>;
+        pub unsafe fn itemAtIndexPath(&self, index_path: &NSIndexPath) -> Option<Id<AnyObject>>;
 
         #[method_id(@__retain_semantics Other itemAtRow:inColumn:)]
         pub unsafe fn itemAtRow_inColumn(
             &self,
             row: NSInteger,
             column: NSInteger,
-        ) -> Option<Id<Object>>;
+        ) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other indexPathForColumn:)]
         pub unsafe fn indexPathForColumn(&self, column: NSInteger) -> Id<NSIndexPath>;
 
         #[method(isLeafItem:)]
-        pub unsafe fn isLeafItem(&self, item: Option<&Object>) -> bool;
+        pub unsafe fn isLeafItem(&self, item: Option<&AnyObject>) -> bool;
 
         #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(reloadDataForRowIndexes:inColumn:)]
@@ -200,7 +200,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other parentForItemsInColumn:)]
-        pub unsafe fn parentForItemsInColumn(&self, column: NSInteger) -> Option<Id<Object>>;
+        pub unsafe fn parentForItemsInColumn(&self, column: NSInteger) -> Option<Id<AnyObject>>;
 
         #[method(scrollRowToVisible:inColumn:)]
         pub unsafe fn scrollRowToVisible_inColumn(&self, row: NSInteger, column: NSInteger);
@@ -243,10 +243,10 @@ extern_methods!(
         pub unsafe fn selectedColumn(&self) -> NSInteger;
 
         #[method_id(@__retain_semantics Other selectedCell)]
-        pub unsafe fn selectedCell(&self) -> Option<Id<Object>>;
+        pub unsafe fn selectedCell(&self) -> Option<Id<AnyObject>>;
 
         #[method_id(@__retain_semantics Other selectedCellInColumn:)]
-        pub unsafe fn selectedCellInColumn(&self, column: NSInteger) -> Option<Id<Object>>;
+        pub unsafe fn selectedCellInColumn(&self, column: NSInteger) -> Option<Id<AnyObject>>;
 
         #[cfg(all(feature = "AppKit_NSCell", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other selectedCells)]
@@ -323,19 +323,19 @@ extern_methods!(
             &self,
             row: NSInteger,
             col: NSInteger,
-        ) -> Option<Id<Object>>;
+        ) -> Option<Id<AnyObject>>;
 
         #[method(selectAll:)]
-        pub unsafe fn selectAll(&self, sender: Option<&Object>);
+        pub unsafe fn selectAll(&self, sender: Option<&AnyObject>);
 
         #[method(tile)]
         pub unsafe fn tile(&self);
 
         #[method(doClick:)]
-        pub unsafe fn doClick(&self, sender: Option<&Object>);
+        pub unsafe fn doClick(&self, sender: Option<&AnyObject>);
 
         #[method(doDoubleClick:)]
-        pub unsafe fn doDoubleClick(&self, sender: Option<&Object>);
+        pub unsafe fn doDoubleClick(&self, sender: Option<&AnyObject>);
 
         #[method(sendAction)]
         pub unsafe fn sendAction(&self) -> bool;
@@ -549,7 +549,7 @@ extern_protocol!(
         unsafe fn browser_numberOfChildrenOfItem(
             &self,
             browser: &NSBrowser,
-            item: Option<&Object>,
+            item: Option<&AnyObject>,
         ) -> NSInteger;
 
         #[cfg(feature = "AppKit_NSBrowser")]
@@ -559,13 +559,13 @@ extern_protocol!(
             &self,
             browser: &NSBrowser,
             index: NSInteger,
-            item: Option<&Object>,
-        ) -> Id<Object>;
+            item: Option<&AnyObject>,
+        ) -> Id<AnyObject>;
 
         #[cfg(feature = "AppKit_NSBrowser")]
         #[optional]
         #[method(browser:isLeafItem:)]
-        unsafe fn browser_isLeafItem(&self, browser: &NSBrowser, item: Option<&Object>) -> bool;
+        unsafe fn browser_isLeafItem(&self, browser: &NSBrowser, item: Option<&AnyObject>) -> bool;
 
         #[cfg(feature = "AppKit_NSBrowser")]
         #[optional]
@@ -573,8 +573,8 @@ extern_protocol!(
         unsafe fn browser_objectValueForItem(
             &self,
             browser: &NSBrowser,
-            item: Option<&Object>,
-        ) -> Option<Id<Object>>;
+            item: Option<&AnyObject>,
+        ) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "AppKit_NSBrowser")]
         #[optional]
@@ -589,7 +589,7 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSBrowser")]
         #[optional]
         #[method_id(@__retain_semantics Other rootItemForBrowser:)]
-        unsafe fn rootItemForBrowser(&self, browser: &NSBrowser) -> Option<Id<Object>>;
+        unsafe fn rootItemForBrowser(&self, browser: &NSBrowser) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "AppKit_NSBrowser")]
         #[optional]
@@ -597,15 +597,18 @@ extern_protocol!(
         unsafe fn browser_setObjectValue_forItem(
             &self,
             browser: &NSBrowser,
-            object: Option<&Object>,
-            item: Option<&Object>,
+            object: Option<&AnyObject>,
+            item: Option<&AnyObject>,
         );
 
         #[cfg(feature = "AppKit_NSBrowser")]
         #[optional]
         #[method(browser:shouldEditItem:)]
-        unsafe fn browser_shouldEditItem(&self, browser: &NSBrowser, item: Option<&Object>)
-            -> bool;
+        unsafe fn browser_shouldEditItem(
+            &self,
+            browser: &NSBrowser,
+            item: Option<&AnyObject>,
+        ) -> bool;
 
         #[cfg(feature = "AppKit_NSBrowser")]
         #[optional]
@@ -613,7 +616,7 @@ extern_protocol!(
         unsafe fn browser_willDisplayCell_atRow_column(
             &self,
             sender: &NSBrowser,
-            cell: &Object,
+            cell: &AnyObject,
             row: NSInteger,
             column: NSInteger,
         );
@@ -828,7 +831,7 @@ extern_protocol!(
         unsafe fn browser_previewViewControllerForLeafItem(
             &self,
             browser: &NSBrowser,
-            item: &Object,
+            item: &AnyObject,
         ) -> Option<Id<NSViewController>>;
 
         #[cfg(all(feature = "AppKit_NSBrowser", feature = "AppKit_NSViewController"))]
@@ -837,7 +840,7 @@ extern_protocol!(
         unsafe fn browser_headerViewControllerForItem(
             &self,
             browser: &NSBrowser,
-            item: Option<&Object>,
+            item: Option<&AnyObject>,
         ) -> Option<Id<NSViewController>>;
 
         #[cfg(feature = "AppKit_NSBrowser")]
@@ -895,11 +898,11 @@ extern_methods!(
 
         #[deprecated = "Use the item based NSBrowser instead"]
         #[method(setMatrixClass:)]
-        pub unsafe fn setMatrixClass(&self, factory_id: &Class);
+        pub unsafe fn setMatrixClass(&self, factory_id: &AnyClass);
 
         #[deprecated = "Use the item based NSBrowser instead"]
         #[method(matrixClass)]
-        pub unsafe fn matrixClass(&self) -> &'static Class;
+        pub unsafe fn matrixClass(&self) -> &'static AnyClass;
 
         #[cfg(feature = "AppKit_NSMatrix")]
         #[deprecated = "Use the item based NSBrowser instead"]

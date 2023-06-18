@@ -126,7 +126,7 @@ extern_methods!(
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CoreData_NSAsynchronousFetchResult")]
-    pub struct NSAsynchronousFetchResult<ResultType: Message = Object> {
+    pub struct NSAsynchronousFetchResult<ResultType: Message = AnyObject> {
         __superclass: NSPersistentStoreAsynchronousResult,
         _inner0: PhantomData<*mut ResultType>,
         notunwindsafe: PhantomData<&'static mut ()>,
@@ -196,7 +196,7 @@ extern_methods!(
     #[cfg(feature = "CoreData_NSBatchInsertResult")]
     unsafe impl NSBatchInsertResult {
         #[method_id(@__retain_semantics Other result)]
-        pub unsafe fn result(&self) -> Option<Id<Object>>;
+        pub unsafe fn result(&self) -> Option<Id<AnyObject>>;
 
         #[method(resultType)]
         pub unsafe fn resultType(&self) -> NSBatchInsertRequestResultType;
@@ -235,7 +235,7 @@ extern_methods!(
     #[cfg(feature = "CoreData_NSBatchUpdateResult")]
     unsafe impl NSBatchUpdateResult {
         #[method_id(@__retain_semantics Other result)]
-        pub unsafe fn result(&self) -> Option<Id<Object>>;
+        pub unsafe fn result(&self) -> Option<Id<AnyObject>>;
 
         #[method(resultType)]
         pub unsafe fn resultType(&self) -> NSBatchUpdateRequestResultType;
@@ -274,7 +274,7 @@ extern_methods!(
     #[cfg(feature = "CoreData_NSBatchDeleteResult")]
     unsafe impl NSBatchDeleteResult {
         #[method_id(@__retain_semantics Other result)]
-        pub unsafe fn result(&self) -> Option<Id<Object>>;
+        pub unsafe fn result(&self) -> Option<Id<AnyObject>>;
 
         #[method(resultType)]
         pub unsafe fn resultType(&self) -> NSBatchDeleteRequestResultType;
@@ -313,7 +313,7 @@ extern_methods!(
     #[cfg(feature = "CoreData_NSPersistentHistoryResult")]
     unsafe impl NSPersistentHistoryResult {
         #[method_id(@__retain_semantics Other result)]
-        pub unsafe fn result(&self) -> Option<Id<Object>>;
+        pub unsafe fn result(&self) -> Option<Id<AnyObject>>;
 
         #[method(resultType)]
         pub unsafe fn resultType(&self) -> NSPersistentHistoryResultType;
@@ -360,7 +360,7 @@ extern_methods!(
     #[cfg(feature = "CoreData_NSPersistentCloudKitContainerEventResult")]
     unsafe impl NSPersistentCloudKitContainerEventResult {
         #[method_id(@__retain_semantics Other result)]
-        pub unsafe fn result(&self) -> Option<Id<Object>>;
+        pub unsafe fn result(&self) -> Option<Id<AnyObject>>;
 
         #[method(resultType)]
         pub unsafe fn resultType(&self) -> NSPersistentCloudKitContainerEventResultType;

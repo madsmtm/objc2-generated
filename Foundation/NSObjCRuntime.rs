@@ -25,22 +25,22 @@ extern_fn!(
 
 extern_fn!(
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSStringFromClass(a_class: &Class) -> NonNull<NSString>;
+    pub unsafe fn NSStringFromClass(a_class: &AnyClass) -> NonNull<NSString>;
 );
 
 extern_fn!(
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSClassFromString(a_class_name: &NSString) -> *const Class;
+    pub unsafe fn NSClassFromString(a_class_name: &NSString) -> *const AnyClass;
 );
 
 extern_fn!(
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSStringFromProtocol(proto: &Protocol) -> NonNull<NSString>;
+    pub unsafe fn NSStringFromProtocol(proto: &AnyProtocol) -> NonNull<NSString>;
 );
 
 extern_fn!(
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSProtocolFromString(namestr: &NSString) -> *mut Protocol;
+    pub unsafe fn NSProtocolFromString(namestr: &NSString) -> *mut AnyProtocol;
 );
 
 extern_fn!(
@@ -51,7 +51,7 @@ extern_fn!(
     ) -> NonNull<c_char>;
 );
 
-pub type NSComparator = *mut Block<(NonNull<Object>, NonNull<Object>), NSComparisonResult>;
+pub type NSComparator = *mut Block<(NonNull<AnyObject>, NonNull<AnyObject>), NSComparisonResult>;
 
 ns_options!(
     #[underlying(NSUInteger)]

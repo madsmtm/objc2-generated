@@ -24,14 +24,16 @@ extern_methods!(
         #[method(registerClassDescription:forClass:)]
         pub unsafe fn registerClassDescription_forClass(
             description: &NSClassDescription,
-            a_class: &Class,
+            a_class: &AnyClass,
         );
 
         #[method(invalidateClassDescriptionCache)]
         pub unsafe fn invalidateClassDescriptionCache();
 
         #[method_id(@__retain_semantics Other classDescriptionForClass:)]
-        pub unsafe fn classDescriptionForClass(a_class: &Class) -> Option<Id<NSClassDescription>>;
+        pub unsafe fn classDescriptionForClass(
+            a_class: &AnyClass,
+        ) -> Option<Id<NSClassDescription>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other attributeKeys)]

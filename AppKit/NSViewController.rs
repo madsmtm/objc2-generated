@@ -74,10 +74,10 @@ extern_methods!(
         pub unsafe fn nibBundle(&self) -> Option<Id<NSBundle>>;
 
         #[method_id(@__retain_semantics Other representedObject)]
-        pub unsafe fn representedObject(&self) -> Option<Id<Object>>;
+        pub unsafe fn representedObject(&self) -> Option<Id<AnyObject>>;
 
         #[method(setRepresentedObject:)]
-        pub unsafe fn setRepresentedObject(&self, represented_object: Option<&Object>);
+        pub unsafe fn setRepresentedObject(&self, represented_object: Option<&AnyObject>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
@@ -101,7 +101,7 @@ extern_methods!(
         #[method(commitEditingWithDelegate:didCommitSelector:contextInfo:)]
         pub unsafe fn commitEditingWithDelegate_didCommitSelector_contextInfo(
             &self,
-            delegate: Option<&Object>,
+            delegate: Option<&AnyObject>,
             did_commit_selector: Option<Sel>,
             context_info: *mut c_void,
         );
@@ -180,7 +180,7 @@ extern_methods!(
         pub unsafe fn dismissViewController(&self, view_controller: &NSViewController);
 
         #[method(dismissController:)]
-        pub unsafe fn dismissController(&self, sender: Option<&Object>);
+        pub unsafe fn dismissController(&self, sender: Option<&AnyObject>);
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other presentedViewControllers)]

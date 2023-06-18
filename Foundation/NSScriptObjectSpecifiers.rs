@@ -159,18 +159,18 @@ extern_methods!(
         #[method(indicesOfObjectsByEvaluatingWithContainer:count:)]
         pub unsafe fn indicesOfObjectsByEvaluatingWithContainer_count(
             &self,
-            container: &Object,
+            container: &AnyObject,
             count: NonNull<NSInteger>,
         ) -> *mut NSInteger;
 
         #[method_id(@__retain_semantics Other objectsByEvaluatingWithContainers:)]
         pub unsafe fn objectsByEvaluatingWithContainers(
             &self,
-            containers: &Object,
-        ) -> Option<Id<Object>>;
+            containers: &AnyObject,
+        ) -> Option<Id<AnyObject>>;
 
         #[method_id(@__retain_semantics Other objectsByEvaluatingSpecifier)]
-        pub unsafe fn objectsByEvaluatingSpecifier(&self) -> Option<Id<Object>>;
+        pub unsafe fn objectsByEvaluatingSpecifier(&self) -> Option<Id<AnyObject>>;
 
         #[method(evaluationErrorNumber)]
         pub unsafe fn evaluationErrorNumber(&self) -> NSInteger;
@@ -490,7 +490,7 @@ extern_methods!(
         pub unsafe fn evaluate(&self);
 
         #[method_id(@__retain_semantics Other insertionContainer)]
-        pub unsafe fn insertionContainer(&self) -> Option<Id<Object>>;
+        pub unsafe fn insertionContainer(&self) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other insertionKey)]
@@ -883,14 +883,14 @@ extern_methods!(
             class_desc: &NSScriptClassDescription,
             container: Option<&NSScriptObjectSpecifier>,
             property: &NSString,
-            unique_id: &Object,
+            unique_id: &AnyObject,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other uniqueID)]
-        pub unsafe fn uniqueID(&self) -> Id<Object>;
+        pub unsafe fn uniqueID(&self) -> Id<AnyObject>;
 
         #[method(setUniqueID:)]
-        pub unsafe fn setUniqueID(&self, unique_id: &Object);
+        pub unsafe fn setUniqueID(&self, unique_id: &AnyObject);
     }
 );
 

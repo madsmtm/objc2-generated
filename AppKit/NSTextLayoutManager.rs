@@ -188,7 +188,7 @@ extern_methods!(
             block: &Block<
                 (
                     NonNull<NSTextLayoutManager>,
-                    NonNull<NSDictionary<NSAttributedStringKey, Object>>,
+                    NonNull<NSDictionary<NSAttributedStringKey, AnyObject>>,
                     NonNull<NSTextRange>,
                 ),
                 Bool,
@@ -199,7 +199,7 @@ extern_methods!(
         #[method(setRenderingAttributes:forTextRange:)]
         pub unsafe fn setRenderingAttributes_forTextRange(
             &self,
-            rendering_attributes: &NSDictionary<NSAttributedStringKey, Object>,
+            rendering_attributes: &NSDictionary<NSAttributedStringKey, AnyObject>,
             text_range: &NSTextRange,
         );
 
@@ -208,7 +208,7 @@ extern_methods!(
         pub unsafe fn addRenderingAttribute_value_forTextRange(
             &self,
             rendering_attribute: &NSAttributedStringKey,
-            value: Option<&Object>,
+            value: Option<&AnyObject>,
             text_range: &NSTextRange,
         );
 
@@ -241,15 +241,15 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other linkRenderingAttributes)]
-        pub unsafe fn linkRenderingAttributes() -> Id<NSDictionary<NSAttributedStringKey, Object>>;
+        pub unsafe fn linkRenderingAttributes() -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other renderingAttributesForLink:atLocation:)]
         pub unsafe fn renderingAttributesForLink_atLocation(
             &self,
-            link: &Object,
+            link: &AnyObject,
             location: &ProtocolObject<dyn NSTextLocation>,
-        ) -> Id<NSDictionary<NSAttributedStringKey, Object>>;
+        ) -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         #[cfg(all(feature = "AppKit_NSTextContainer", feature = "AppKit_NSTextRange"))]
         #[method(enumerateTextSegmentsInRange:type:options:usingBlock:)]
@@ -330,10 +330,10 @@ extern_protocol!(
         unsafe fn textLayoutManager_renderingAttributesForLink_atLocation_defaultAttributes(
             &self,
             text_layout_manager: &NSTextLayoutManager,
-            link: &Object,
+            link: &AnyObject,
             location: &ProtocolObject<dyn NSTextLocation>,
-            rendering_attributes: &NSDictionary<NSAttributedStringKey, Object>,
-        ) -> Option<Id<NSDictionary<NSAttributedStringKey, Object>>>;
+            rendering_attributes: &NSDictionary<NSAttributedStringKey, AnyObject>,
+        ) -> Option<Id<NSDictionary<NSAttributedStringKey, AnyObject>>>;
     }
 
     unsafe impl ProtocolType for dyn NSTextLayoutManagerDelegate {}

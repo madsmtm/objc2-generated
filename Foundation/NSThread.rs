@@ -30,8 +30,8 @@ extern_methods!(
         #[method(detachNewThreadSelector:toTarget:withObject:)]
         pub unsafe fn detachNewThreadSelector_toTarget_withObject(
             selector: Sel,
-            target: &Object,
-            argument: Option<&Object>,
+            target: &AnyObject,
+            argument: Option<&AnyObject>,
         );
 
         #[method(isMultiThreaded)]
@@ -106,9 +106,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithTarget:selector:object:)]
         pub unsafe fn initWithTarget_selector_object(
             this: Option<Allocated<Self>>,
-            target: &Object,
+            target: &AnyObject,
             selector: Sel,
-            argument: Option<&Object>,
+            argument: Option<&AnyObject>,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithBlock:)]

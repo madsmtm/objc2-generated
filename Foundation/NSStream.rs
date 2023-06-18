@@ -64,12 +64,12 @@ extern_methods!(
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSStreamDelegate>>);
 
         #[method_id(@__retain_semantics Other propertyForKey:)]
-        pub unsafe fn propertyForKey(&self, key: &NSStreamPropertyKey) -> Option<Id<Object>>;
+        pub unsafe fn propertyForKey(&self, key: &NSStreamPropertyKey) -> Option<Id<AnyObject>>;
 
         #[method(setProperty:forKey:)]
         pub unsafe fn setProperty_forKey(
             &self,
-            property: Option<&Object>,
+            property: Option<&AnyObject>,
             key: &NSStreamPropertyKey,
         ) -> bool;
 

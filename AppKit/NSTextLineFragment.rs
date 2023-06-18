@@ -49,7 +49,7 @@ extern_methods!(
         pub unsafe fn initWithString_attributes_range(
             this: Option<Allocated<Self>>,
             string: &NSString,
-            attributes: &NSDictionary<NSAttributedStringKey, Object>,
+            attributes: &NSDictionary<NSAttributedStringKey, AnyObject>,
             range: NSRange,
         ) -> Id<Self>;
 

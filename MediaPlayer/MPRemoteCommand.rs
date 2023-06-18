@@ -47,20 +47,20 @@ extern_methods!(
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         #[method(addTarget:action:)]
-        pub unsafe fn addTarget_action(&self, target: &Object, action: Sel);
+        pub unsafe fn addTarget_action(&self, target: &AnyObject, action: Sel);
 
         #[method(removeTarget:action:)]
-        pub unsafe fn removeTarget_action(&self, target: &Object, action: Option<Sel>);
+        pub unsafe fn removeTarget_action(&self, target: &AnyObject, action: Option<Sel>);
 
         #[method(removeTarget:)]
-        pub unsafe fn removeTarget(&self, target: Option<&Object>);
+        pub unsafe fn removeTarget(&self, target: Option<&AnyObject>);
 
         #[cfg(feature = "MediaPlayer_MPRemoteCommandEvent")]
         #[method_id(@__retain_semantics Other addTargetWithHandler:)]
         pub unsafe fn addTargetWithHandler(
             &self,
             handler: &Block<(NonNull<MPRemoteCommandEvent>,), MPRemoteCommandHandlerStatus>,
-        ) -> Id<Object>;
+        ) -> Id<AnyObject>;
     }
 );
 

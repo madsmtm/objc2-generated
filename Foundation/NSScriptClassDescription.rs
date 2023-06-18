@@ -24,7 +24,7 @@ extern_methods!(
     unsafe impl NSScriptClassDescription {
         #[method_id(@__retain_semantics Other classDescriptionForClass:)]
         pub unsafe fn classDescriptionForClass(
-            a_class: &Class,
+            a_class: &AnyClass,
         ) -> Option<Id<NSScriptClassDescription>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]

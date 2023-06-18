@@ -218,14 +218,14 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other predicateWithValue:forProperty:)]
         pub unsafe fn predicateWithValue_forProperty(
-            value: Option<&Object>,
+            value: Option<&AnyObject>,
             property: &NSString,
         ) -> Id<MPMediaPropertyPredicate>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other predicateWithValue:forProperty:comparisonType:)]
         pub unsafe fn predicateWithValue_forProperty_comparisonType(
-            value: Option<&Object>,
+            value: Option<&AnyObject>,
             property: &NSString,
             comparison_type: MPMediaPredicateComparison,
         ) -> Id<MPMediaPropertyPredicate>;
@@ -235,7 +235,7 @@ extern_methods!(
         pub unsafe fn property(&self) -> Id<NSString>;
 
         #[method_id(@__retain_semantics Other value)]
-        pub unsafe fn value(&self) -> Option<Id<Object>>;
+        pub unsafe fn value(&self) -> Option<Id<AnyObject>>;
 
         #[method(comparisonType)]
         pub unsafe fn comparisonType(&self) -> MPMediaPredicateComparison;

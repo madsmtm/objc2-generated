@@ -190,7 +190,7 @@ extern_methods!(
         #[method(addSpeechDictionary:)]
         pub unsafe fn addSpeechDictionary(
             &self,
-            speech_dictionary: &NSDictionary<NSSpeechDictionaryKey, Object>,
+            speech_dictionary: &NSDictionary<NSSpeechDictionaryKey, AnyObject>,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -202,13 +202,13 @@ extern_methods!(
         pub unsafe fn objectForProperty_error(
             &self,
             property: &NSSpeechPropertyKey,
-        ) -> Result<Id<Object>, Id<NSError>>;
+        ) -> Result<Id<AnyObject>, Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(setObject:forProperty:error:_)]
         pub unsafe fn setObject_forProperty_error(
             &self,
-            object: Option<&Object>,
+            object: Option<&AnyObject>,
             property: &NSSpeechPropertyKey,
         ) -> Result<(), Id<NSError>>;
 
@@ -226,7 +226,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other attributesForVoice:)]
         pub unsafe fn attributesForVoice(
             voice: &NSSpeechSynthesizerVoiceName,
-        ) -> Id<NSDictionary<NSVoiceAttributeKey, Object>>;
+        ) -> Id<NSDictionary<NSVoiceAttributeKey, AnyObject>>;
     }
 );
 

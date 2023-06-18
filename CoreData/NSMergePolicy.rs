@@ -39,15 +39,15 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other objectSnapshot)]
-        pub unsafe fn objectSnapshot(&self) -> Option<Id<NSDictionary<NSString, Object>>>;
+        pub unsafe fn objectSnapshot(&self) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other cachedSnapshot)]
-        pub unsafe fn cachedSnapshot(&self) -> Option<Id<NSDictionary<NSString, Object>>>;
+        pub unsafe fn cachedSnapshot(&self) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other persistedSnapshot)]
-        pub unsafe fn persistedSnapshot(&self) -> Option<Id<NSDictionary<NSString, Object>>>;
+        pub unsafe fn persistedSnapshot(&self) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
         #[method(newVersionNumber)]
         pub unsafe fn newVersionNumber(&self) -> NSUInteger;
@@ -66,8 +66,8 @@ extern_methods!(
             src_object: &NSManagedObject,
             newvers: NSUInteger,
             oldvers: NSUInteger,
-            cachesnap: Option<&NSDictionary<NSString, Object>>,
-            persnap: Option<&NSDictionary<NSString, Object>>,
+            cachesnap: Option<&NSDictionary<NSString, AnyObject>>,
+            persnap: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
@@ -108,7 +108,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other constraintValues)]
-        pub unsafe fn constraintValues(&self) -> Id<NSDictionary<NSString, Object>>;
+        pub unsafe fn constraintValues(&self) -> Id<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(feature = "CoreData_NSManagedObject")]
         #[method_id(@__retain_semantics Other databaseObject)]
@@ -116,7 +116,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other databaseSnapshot)]
-        pub unsafe fn databaseSnapshot(&self) -> Option<Id<NSDictionary<NSString, Object>>>;
+        pub unsafe fn databaseSnapshot(&self) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(feature = "CoreData_NSManagedObject", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other conflictingObjects)]

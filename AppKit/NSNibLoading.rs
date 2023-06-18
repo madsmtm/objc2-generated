@@ -29,7 +29,7 @@ extern_methods!(
         #[method(loadNibNamed:owner:)]
         pub unsafe fn loadNibNamed_owner(
             nib_name: Option<&NSString>,
-            owner: Option<&Object>,
+            owner: Option<&AnyObject>,
         ) -> bool;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]

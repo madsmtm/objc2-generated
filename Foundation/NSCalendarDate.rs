@@ -34,7 +34,7 @@ extern_methods!(
     unsafe impl NSCalendarDate {
         #[deprecated = "Use NSCalendar instead"]
         #[method_id(@__retain_semantics Other calendarDate)]
-        pub unsafe fn calendarDate() -> Id<Object>;
+        pub unsafe fn calendarDate() -> Id<AnyObject>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use NSDateFormatter instead"]
@@ -42,8 +42,8 @@ extern_methods!(
         pub unsafe fn dateWithString_calendarFormat_locale(
             description: &NSString,
             format: &NSString,
-            locale: Option<&Object>,
-        ) -> Option<Id<Object>>;
+            locale: Option<&AnyObject>,
+        ) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use NSDateFormatter instead"]
@@ -51,7 +51,7 @@ extern_methods!(
         pub unsafe fn dateWithString_calendarFormat(
             description: &NSString,
             format: &NSString,
-        ) -> Option<Id<Object>>;
+        ) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSTimeZone")]
         #[deprecated = "Use NSCalendar and NSDateComponents instead"]
@@ -64,7 +64,7 @@ extern_methods!(
             minute: NSUInteger,
             second: NSUInteger,
             a_time_zone: Option<&NSTimeZone>,
-        ) -> Id<Object>;
+        ) -> Id<AnyObject>;
 
         #[deprecated = "Use NSCalendar instead"]
         #[method_id(@__retain_semantics Other dateByAddingYears:months:days:hours:minutes:seconds:)]
@@ -125,7 +125,7 @@ extern_methods!(
         pub unsafe fn descriptionWithCalendarFormat_locale(
             &self,
             format: &NSString,
-            locale: Option<&Object>,
+            locale: Option<&AnyObject>,
         ) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -136,7 +136,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptionWithLocale:)]
-        pub unsafe fn descriptionWithLocale(&self, locale: Option<&Object>) -> Id<NSString>;
+        pub unsafe fn descriptionWithLocale(&self, locale: Option<&AnyObject>) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSTimeZone")]
         #[deprecated]
@@ -150,7 +150,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             description: &NSString,
             format: &NSString,
-            locale: Option<&Object>,
+            locale: Option<&AnyObject>,
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -257,18 +257,18 @@ extern_methods!(
         #[method_id(@__retain_semantics Other dateWithNaturalLanguageString:locale:)]
         pub unsafe fn dateWithNaturalLanguageString_locale(
             string: &NSString,
-            locale: Option<&Object>,
-        ) -> Option<Id<Object>>;
+            locale: Option<&AnyObject>,
+        ) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Create an NSDateFormatter with `init` and set the dateFormat property instead."]
         #[method_id(@__retain_semantics Other dateWithNaturalLanguageString:)]
-        pub unsafe fn dateWithNaturalLanguageString(string: &NSString) -> Option<Id<Object>>;
+        pub unsafe fn dateWithNaturalLanguageString(string: &NSString) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use NSDateFormatter instead"]
         #[method_id(@__retain_semantics Other dateWithString:)]
-        pub unsafe fn dateWithString(a_string: &NSString) -> Id<Object>;
+        pub unsafe fn dateWithString(a_string: &NSString) -> Id<AnyObject>;
 
         #[cfg(all(
             feature = "Foundation_NSCalendarDate",
@@ -290,7 +290,7 @@ extern_methods!(
             &self,
             format: Option<&NSString>,
             a_time_zone: Option<&NSTimeZone>,
-            locale: Option<&Object>,
+            locale: Option<&AnyObject>,
         ) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]

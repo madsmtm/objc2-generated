@@ -145,7 +145,7 @@ extern_protocol!(
             sender: &NSSpellServer,
             string_to_check: &NSString,
             language: Option<&NSString>,
-            details: Option<&mut Option<Id<NSArray<NSDictionary<NSString, Object>>>>>,
+            details: Option<&mut Option<Id<NSArray<NSDictionary<NSString, AnyObject>>>>>,
         ) -> NSRange;
 
         #[cfg(all(
@@ -164,7 +164,7 @@ extern_protocol!(
             string_to_check: &NSString,
             offset: NSUInteger,
             checking_types: NSTextCheckingTypes,
-            options: Option<&NSDictionary<NSString, Object>>,
+            options: Option<&NSDictionary<NSString, AnyObject>>,
             orthography: Option<&NSOrthography>,
             word_count: NonNull<NSInteger>,
         ) -> Option<Id<NSArray<NSTextCheckingResult>>>;

@@ -109,11 +109,11 @@ extern_methods!(
 
         #[deprecated = "Use the receiver's button.target instead"]
         #[method_id(@__retain_semantics Other target)]
-        pub unsafe fn target(&self) -> Option<Id<Object>>;
+        pub unsafe fn target(&self) -> Option<Id<AnyObject>>;
 
         #[deprecated = "Use the receiver's button.target instead"]
         #[method(setTarget:)]
-        pub unsafe fn setTarget(&self, target: Option<&Object>);
+        pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use the receiver's button.title instead"]

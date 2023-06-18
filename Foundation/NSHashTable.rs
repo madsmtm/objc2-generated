@@ -23,7 +23,7 @@ pub type NSHashTableOptions = NSUInteger;
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSHashTable")]
-    pub struct NSHashTable<ObjectType: Message = Object> {
+    pub struct NSHashTable<ObjectType: Message = AnyObject> {
         __superclass: NSObject,
         _inner0: PhantomData<*mut ObjectType>,
         notunwindsafe: PhantomData<&'static mut ()>,
@@ -84,7 +84,7 @@ extern_methods!(
 
         #[deprecated = "GC no longer supported"]
         #[method_id(@__retain_semantics Other hashTableWithWeakObjects)]
-        pub unsafe fn hashTableWithWeakObjects() -> Id<Object>;
+        pub unsafe fn hashTableWithWeakObjects() -> Id<AnyObject>;
 
         #[method_id(@__retain_semantics Other weakObjectsHashTable)]
         pub unsafe fn weakObjectsHashTable() -> Id<NSHashTable<ObjectType>>;

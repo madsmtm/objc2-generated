@@ -6,7 +6,7 @@ use crate::Foundation::*;
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSCache")]
-    pub struct NSCache<KeyType: Message = Object, ObjectType: Message = Object> {
+    pub struct NSCache<KeyType: Message = AnyObject, ObjectType: Message = AnyObject> {
         __superclass: NSObject,
         _inner0: PhantomData<*mut KeyType>,
         _inner1: PhantomData<*mut ObjectType>,
@@ -106,7 +106,7 @@ extern_protocol!(
         #[cfg(feature = "Foundation_NSCache")]
         #[optional]
         #[method(cache:willEvictObject:)]
-        unsafe fn cache_willEvictObject(&self, cache: &NSCache, obj: &Object);
+        unsafe fn cache_willEvictObject(&self, cache: &NSCache, obj: &AnyObject);
     }
 
     unsafe impl ProtocolType for dyn NSCacheDelegate {}

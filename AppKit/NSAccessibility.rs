@@ -66,7 +66,7 @@ extern_fn!(
 
 extern_fn!(
     #[cfg(feature = "Foundation_NSString")]
-    pub unsafe fn NSAccessibilityRoleDescriptionForUIElement(element: &Object) -> *mut NSString;
+    pub unsafe fn NSAccessibilityRoleDescriptionForUIElement(element: &AnyObject) -> *mut NSString;
 );
 
 extern_fn!(
@@ -79,18 +79,18 @@ extern_fn!(
 extern_fn!(
     #[deprecated = "Exceptions are no longer appropriate for indicating errors in accessibility API. Unexpected values should be handled through appropriate type checking."]
     pub unsafe fn NSAccessibilityRaiseBadArgumentException(
-        element: Option<&Object>,
+        element: Option<&AnyObject>,
         attribute: Option<&NSAccessibilityAttributeName>,
-        value: Option<&Object>,
+        value: Option<&AnyObject>,
     );
 );
 
 extern_fn!(
-    pub unsafe fn NSAccessibilityUnignoredAncestor(element: &Object) -> *mut Object;
+    pub unsafe fn NSAccessibilityUnignoredAncestor(element: &AnyObject) -> *mut AnyObject;
 );
 
 extern_fn!(
-    pub unsafe fn NSAccessibilityUnignoredDescendant(element: &Object) -> *mut Object;
+    pub unsafe fn NSAccessibilityUnignoredDescendant(element: &AnyObject) -> *mut AnyObject;
 );
 
 extern_fn!(
@@ -102,13 +102,13 @@ extern_fn!(
 extern_fn!(
     #[cfg(feature = "Foundation_NSArray")]
     pub unsafe fn NSAccessibilityUnignoredChildrenForOnlyChild(
-        original_child: &Object,
+        original_child: &AnyObject,
     ) -> NonNull<NSArray>;
 );
 
 extern_fn!(
     pub unsafe fn NSAccessibilityPostNotification(
-        element: &Object,
+        element: &AnyObject,
         notification: &NSAccessibilityNotificationName,
     );
 );

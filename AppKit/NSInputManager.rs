@@ -9,7 +9,7 @@ extern_protocol!(
     pub unsafe trait NSTextInput {
         #[deprecated]
         #[method(insertText:)]
-        unsafe fn insertText(&self, string: Option<&Object>);
+        unsafe fn insertText(&self, string: Option<&AnyObject>);
 
         #[deprecated]
         #[method(doCommandBySelector:)]
@@ -17,7 +17,11 @@ extern_protocol!(
 
         #[deprecated]
         #[method(setMarkedText:selectedRange:)]
-        unsafe fn setMarkedText_selectedRange(&self, string: Option<&Object>, sel_range: NSRange);
+        unsafe fn setMarkedText_selectedRange(
+            &self,
+            string: Option<&AnyObject>,
+            sel_range: NSRange,
+        );
 
         #[deprecated]
         #[method(unmarkText)]
@@ -92,11 +96,11 @@ extern_methods!(
 
         #[deprecated]
         #[method(cycleToNextInputLanguage:)]
-        pub unsafe fn cycleToNextInputLanguage(sender: Option<&Object>);
+        pub unsafe fn cycleToNextInputLanguage(sender: Option<&AnyObject>);
 
         #[deprecated]
         #[method(cycleToNextInputServerInLanguage:)]
-        pub unsafe fn cycleToNextInputServerInLanguage(sender: Option<&Object>);
+        pub unsafe fn cycleToNextInputServerInLanguage(sender: Option<&AnyObject>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
@@ -114,14 +118,14 @@ extern_methods!(
 
         #[deprecated]
         #[method(markedTextAbandoned:)]
-        pub unsafe fn markedTextAbandoned(&self, cli: Option<&Object>);
+        pub unsafe fn markedTextAbandoned(&self, cli: Option<&AnyObject>);
 
         #[deprecated]
         #[method(markedTextSelectionChanged:client:)]
         pub unsafe fn markedTextSelectionChanged_client(
             &self,
             new_sel: NSRange,
-            cli: Option<&Object>,
+            cli: Option<&AnyObject>,
         );
 
         #[deprecated]

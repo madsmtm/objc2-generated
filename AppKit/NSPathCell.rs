@@ -70,7 +70,7 @@ extern_methods!(
         pub unsafe fn setURL(&self, url: Option<&NSURL>);
 
         #[method(setObjectValue:)]
-        pub unsafe fn setObjectValue(&self, obj: Option<&Object>);
+        pub unsafe fn setObjectValue(&self, obj: Option<&AnyObject>);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other allowedTypes)]
@@ -87,7 +87,7 @@ extern_methods!(
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSPathCellDelegate>>);
 
         #[method(pathComponentCellClass)]
-        pub unsafe fn pathComponentCellClass() -> &'static Class;
+        pub unsafe fn pathComponentCellClass() -> &'static AnyClass;
 
         #[cfg(all(feature = "AppKit_NSPathComponentCell", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other pathComponentCells)]

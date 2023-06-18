@@ -23,7 +23,7 @@ pub type NSMapTableOptions = NSUInteger;
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSMapTable")]
-    pub struct NSMapTable<KeyType: Message = Object, ObjectType: Message = Object> {
+    pub struct NSMapTable<KeyType: Message = AnyObject, ObjectType: Message = AnyObject> {
         __superclass: NSObject,
         _inner0: PhantomData<*mut KeyType>,
         _inner1: PhantomData<*mut ObjectType>,
@@ -103,19 +103,19 @@ extern_methods!(
 
         #[deprecated = "GC no longer supported"]
         #[method_id(@__retain_semantics Other mapTableWithStrongToStrongObjects)]
-        pub unsafe fn mapTableWithStrongToStrongObjects() -> Id<Object>;
+        pub unsafe fn mapTableWithStrongToStrongObjects() -> Id<AnyObject>;
 
         #[deprecated = "GC no longer supported"]
         #[method_id(@__retain_semantics Other mapTableWithWeakToStrongObjects)]
-        pub unsafe fn mapTableWithWeakToStrongObjects() -> Id<Object>;
+        pub unsafe fn mapTableWithWeakToStrongObjects() -> Id<AnyObject>;
 
         #[deprecated = "GC no longer supported"]
         #[method_id(@__retain_semantics Other mapTableWithStrongToWeakObjects)]
-        pub unsafe fn mapTableWithStrongToWeakObjects() -> Id<Object>;
+        pub unsafe fn mapTableWithStrongToWeakObjects() -> Id<AnyObject>;
 
         #[deprecated = "GC no longer supported"]
         #[method_id(@__retain_semantics Other mapTableWithWeakToWeakObjects)]
-        pub unsafe fn mapTableWithWeakToWeakObjects() -> Id<Object>;
+        pub unsafe fn mapTableWithWeakToWeakObjects() -> Id<AnyObject>;
 
         #[method_id(@__retain_semantics Other strongToStrongObjectsMapTable)]
         pub unsafe fn strongToStrongObjectsMapTable() -> Id<NSMapTable<KeyType, ObjectType>>;

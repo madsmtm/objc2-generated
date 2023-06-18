@@ -49,7 +49,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other predicateWithBlock:)]
         pub unsafe fn predicateWithBlock(
-            block: &Block<(*mut Object, *mut NSDictionary<NSString, Object>), Bool>,
+            block: &Block<(*mut AnyObject, *mut NSDictionary<NSString, AnyObject>), Bool>,
         ) -> Id<NSPredicate>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -60,18 +60,18 @@ extern_methods!(
         #[method_id(@__retain_semantics Other predicateWithSubstitutionVariables:)]
         pub unsafe fn predicateWithSubstitutionVariables(
             &self,
-            variables: &NSDictionary<NSString, Object>,
+            variables: &NSDictionary<NSString, AnyObject>,
         ) -> Id<Self>;
 
         #[method(evaluateWithObject:)]
-        pub unsafe fn evaluateWithObject(&self, object: Option<&Object>) -> bool;
+        pub unsafe fn evaluateWithObject(&self, object: Option<&AnyObject>) -> bool;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(evaluateWithObject:substitutionVariables:)]
         pub unsafe fn evaluateWithObject_substitutionVariables(
             &self,
-            object: Option<&Object>,
-            bindings: Option<&NSDictionary<NSString, Object>>,
+            object: Option<&AnyObject>,
+            bindings: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> bool;
 
         #[method(allowEvaluation)]

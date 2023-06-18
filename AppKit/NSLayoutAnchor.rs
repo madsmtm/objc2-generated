@@ -61,7 +61,7 @@ extern_methods!(
         pub unsafe fn name(&self) -> Id<NSString>;
 
         #[method_id(@__retain_semantics Other item)]
-        pub unsafe fn item(&self) -> Option<Id<Object>>;
+        pub unsafe fn item(&self) -> Option<Id<AnyObject>>;
 
         #[method(hasAmbiguousLayout)]
         pub unsafe fn hasAmbiguousLayout(&self) -> bool;

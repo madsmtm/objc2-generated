@@ -36,7 +36,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other defaultValueForKey:)]
-        pub unsafe fn defaultValueForKey(key: &NSString) -> Option<Id<Object>>;
+        pub unsafe fn defaultValueForKey(key: &NSString) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(shouldArchiveValueForKey:)]
@@ -201,10 +201,10 @@ extern_methods!(
         pub unsafe fn setAlphaSpeed(&self, alpha_speed: c_float);
 
         #[method_id(@__retain_semantics Other contents)]
-        pub unsafe fn contents(&self) -> Option<Id<Object>>;
+        pub unsafe fn contents(&self) -> Option<Id<AnyObject>>;
 
         #[method(setContents:)]
-        pub unsafe fn setContents(&self, contents: Option<&Object>);
+        pub unsafe fn setContents(&self, contents: Option<&AnyObject>);
 
         #[method(contentsRect)]
         pub unsafe fn contentsRect(&self) -> CGRect;

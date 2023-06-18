@@ -53,7 +53,7 @@ extern_methods!(
             feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other parameters)]
-        pub unsafe fn parameters(&self) -> Option<Id<NSMutableDictionary<NSString, Object>>>;
+        pub unsafe fn parameters(&self) -> Option<Id<NSMutableDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(
             feature = "Foundation_NSMutableDictionary",
@@ -62,7 +62,7 @@ extern_methods!(
         #[method(setParameters:)]
         pub unsafe fn setParameters(
             &self,
-            parameters: Option<&NSMutableDictionary<NSString, Object>>,
+            parameters: Option<&NSMutableDictionary<NSString, AnyObject>>,
         );
     }
 );
@@ -75,7 +75,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithDefinition:fromArchive:)]
         pub unsafe fn initWithDefinition_fromArchive(
             this: Option<Allocated<Self>>,
-            dict: Option<&NSDictionary<NSString, Object>>,
+            dict: Option<&NSDictionary<NSString, AnyObject>>,
             archived: bool,
         ) -> Option<Id<Self>>;
 

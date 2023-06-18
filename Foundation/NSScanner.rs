@@ -52,10 +52,10 @@ extern_methods!(
         pub unsafe fn setCaseSensitive(&self, case_sensitive: bool);
 
         #[method_id(@__retain_semantics Other locale)]
-        pub unsafe fn locale(&self) -> Option<Id<Object>>;
+        pub unsafe fn locale(&self) -> Option<Id<AnyObject>>;
 
         #[method(setLocale:)]
-        pub unsafe fn setLocale(&self, locale: Option<&Object>);
+        pub unsafe fn setLocale(&self, locale: Option<&AnyObject>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithString:)]
@@ -150,6 +150,6 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedScannerWithString:)]
-        pub unsafe fn localizedScannerWithString(string: &NSString) -> Id<Object>;
+        pub unsafe fn localizedScannerWithString(string: &NSString) -> Id<AnyObject>;
     }
 );

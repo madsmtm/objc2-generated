@@ -14,7 +14,7 @@ ns_enum!(
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSOrderedCollectionChange")]
-    pub struct NSOrderedCollectionChange<ObjectType: Message = Object> {
+    pub struct NSOrderedCollectionChange<ObjectType: Message = AnyObject> {
         __superclass: NSObject,
         _inner0: PhantomData<*mut ObjectType>,
         notunwindsafe: PhantomData<&'static mut ()>,

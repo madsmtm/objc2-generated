@@ -11,13 +11,13 @@ extern_methods!(
     unsafe impl AVPlayerItem {
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other nowPlayingInfo)]
-        pub unsafe fn nowPlayingInfo(&self) -> Option<Id<NSDictionary<NSString, Object>>>;
+        pub unsafe fn nowPlayingInfo(&self) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setNowPlayingInfo:)]
         pub unsafe fn setNowPlayingInfo(
             &self,
-            now_playing_info: Option<&NSDictionary<NSString, Object>>,
+            now_playing_info: Option<&NSDictionary<NSString, AnyObject>>,
         );
     }
 );

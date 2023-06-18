@@ -42,15 +42,15 @@ extern_methods!(
         pub unsafe fn enumerateValuesForProperties_usingBlock(
             &self,
             properties: &NSSet<NSString>,
-            block: &Block<(NonNull<NSString>, NonNull<Object>, NonNull<Bool>), ()>,
+            block: &Block<(NonNull<NSString>, NonNull<AnyObject>, NonNull<Bool>), ()>,
         );
 
         #[method_id(@__retain_semantics Other objectForKeyedSubscript:)]
-        pub unsafe fn objectForKeyedSubscript(&self, key: &Object) -> Option<Id<Object>>;
+        pub unsafe fn objectForKeyedSubscript(&self, key: &AnyObject) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other valueForProperty:)]
-        pub unsafe fn valueForProperty(&self, property: &NSString) -> Option<Id<Object>>;
+        pub unsafe fn valueForProperty(&self, property: &NSString) -> Option<Id<AnyObject>>;
 
         #[method(persistentID)]
         pub unsafe fn persistentID(&self) -> MPMediaEntityPersistentID;

@@ -219,7 +219,7 @@ extern_protocol!(
         unsafe fn sharingService_sourceFrameOnScreenForShareItem(
             &self,
             sharing_service: &NSSharingService,
-            item: &Object,
+            item: &AnyObject,
         ) -> NSRect;
 
         #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSSharingService"))]
@@ -228,7 +228,7 @@ extern_protocol!(
         unsafe fn sharingService_transitionImageForShareItem_contentRect(
             &self,
             sharing_service: &NSSharingService,
-            item: &Object,
+            item: &AnyObject,
             content_rect: NonNull<NSRect>,
         ) -> Option<Id<NSImage>>;
 

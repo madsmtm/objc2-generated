@@ -96,7 +96,7 @@ extern_methods!(
         #[method(writePlaceholderAtURL:withMetadata:error:_)]
         pub unsafe fn writePlaceholderAtURL_withMetadata_error(
             placeholder_url: &NSURL,
-            metadata: &NSDictionary<NSURLResourceKey, Object>,
+            metadata: &NSDictionary<NSURLResourceKey, AnyObject>,
         ) -> Result<(), Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSURL")]

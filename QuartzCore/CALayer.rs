@@ -87,7 +87,7 @@ extern_methods!(
         pub fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithLayer:)]
-        pub unsafe fn initWithLayer(this: Option<Allocated<Self>>, layer: &Object) -> Id<Self>;
+        pub unsafe fn initWithLayer(this: Option<Allocated<Self>>, layer: &AnyObject) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other presentationLayer)]
         pub unsafe fn presentationLayer(&self) -> Option<Id<Self>>;
@@ -97,7 +97,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other defaultValueForKey:)]
-        pub unsafe fn defaultValueForKey(key: &NSString) -> Option<Id<Object>>;
+        pub unsafe fn defaultValueForKey(key: &NSString) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(needsDisplayForKey:)]
@@ -247,10 +247,10 @@ extern_methods!(
         pub fn containsPoint(&self, p: CGPoint) -> bool;
 
         #[method_id(@__retain_semantics Other contents)]
-        pub unsafe fn contents(&self) -> Option<Id<Object>>;
+        pub unsafe fn contents(&self) -> Option<Id<AnyObject>>;
 
         #[method(setContents:)]
-        pub unsafe fn setContents(&self, contents: Option<&Object>);
+        pub unsafe fn setContents(&self, contents: Option<&AnyObject>);
 
         #[method(contentsRect)]
         pub fn contentsRect(&self) -> CGRect;
@@ -385,10 +385,10 @@ extern_methods!(
         pub fn setAllowsGroupOpacity(&self, allows_group_opacity: bool);
 
         #[method_id(@__retain_semantics Other compositingFilter)]
-        pub unsafe fn compositingFilter(&self) -> Option<Id<Object>>;
+        pub unsafe fn compositingFilter(&self) -> Option<Id<AnyObject>>;
 
         #[method(setCompositingFilter:)]
-        pub unsafe fn setCompositingFilter(&self, compositing_filter: Option<&Object>);
+        pub unsafe fn setCompositingFilter(&self, compositing_filter: Option<&AnyObject>);
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other filters)]
@@ -578,7 +578,7 @@ extern_protocol!(
         unsafe fn runActionForKey_object_arguments(
             &self,
             event: &NSString,
-            an_object: &Object,
+            an_object: &AnyObject,
             dict: Option<&NSDictionary>,
         );
     }

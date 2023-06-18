@@ -42,7 +42,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other metadata)]
-        pub unsafe fn metadata(&self) -> Option<Id<NSDictionary<NSString, Object>>>;
+        pub unsafe fn metadata(&self) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
         #[method(duration)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
@@ -87,7 +87,7 @@ extern_methods!(
             workout_configuration: &HKWorkoutConfiguration,
             start_date: &NSDate,
             end_date: Option<&NSDate>,
-            metadata: Option<&NSDictionary<NSString, Object>>,
+            metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Id<Self>;
     }
 );

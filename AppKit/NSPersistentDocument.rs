@@ -63,7 +63,7 @@ extern_methods!(
             url: &NSURL,
             file_type: &NSString,
             configuration: Option<&NSString>,
-            store_options: Option<&NSDictionary<NSString, Object>>,
+            store_options: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Result<(), Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSString")]

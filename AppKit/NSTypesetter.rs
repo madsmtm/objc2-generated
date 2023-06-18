@@ -145,7 +145,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other attributesForExtraLineFragment)]
         pub unsafe fn attributesForExtraLineFragment(
             &self,
-        ) -> Id<NSDictionary<NSAttributedStringKey, Object>>;
+        ) -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         #[cfg(feature = "AppKit_NSLayoutManager")]
         #[method_id(@__retain_semantics Other layoutManager)]
@@ -208,7 +208,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sharedSystemTypesetterForBehavior:)]
         pub unsafe fn sharedSystemTypesetterForBehavior(
             behavior: NSTypesetterBehavior,
-        ) -> Id<Object>;
+        ) -> Id<AnyObject>;
 
         #[method(defaultTypesetterBehavior)]
         pub unsafe fn defaultTypesetterBehavior() -> NSTypesetterBehavior;

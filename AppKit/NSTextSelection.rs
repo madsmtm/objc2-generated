@@ -121,13 +121,14 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other typingAttributes)]
-        pub unsafe fn typingAttributes(&self) -> Id<NSDictionary<NSAttributedStringKey, Object>>;
+        pub unsafe fn typingAttributes(&self)
+            -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setTypingAttributes:)]
         pub unsafe fn setTypingAttributes(
             &self,
-            typing_attributes: &NSDictionary<NSAttributedStringKey, Object>,
+            typing_attributes: &NSDictionary<NSAttributedStringKey, AnyObject>,
         );
 
         #[cfg(all(feature = "AppKit_NSTextRange", feature = "Foundation_NSArray"))]

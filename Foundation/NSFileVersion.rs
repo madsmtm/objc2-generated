@@ -64,7 +64,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other versionOfItemAtURL:forPersistentIdentifier:)]
         pub unsafe fn versionOfItemAtURL_forPersistentIdentifier(
             url: &NSURL,
-            persistent_identifier: &Object,
+            persistent_identifier: &AnyObject,
         ) -> Option<Id<NSFileVersion>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]

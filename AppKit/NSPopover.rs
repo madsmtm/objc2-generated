@@ -107,7 +107,7 @@ extern_methods!(
         );
 
         #[method(performClose:)]
-        pub unsafe fn performClose(&self, sender: Option<&Object>);
+        pub unsafe fn performClose(&self, sender: Option<&AnyObject>);
 
         #[method(close)]
         pub unsafe fn close(&self);

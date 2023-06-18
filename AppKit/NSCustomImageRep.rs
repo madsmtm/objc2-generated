@@ -45,14 +45,14 @@ extern_methods!(
         pub unsafe fn initWithDrawSelector_delegate(
             this: Option<Allocated<Self>>,
             selector: Sel,
-            delegate: &Object,
+            delegate: &AnyObject,
         ) -> Id<Self>;
 
         #[method(drawSelector)]
         pub unsafe fn drawSelector(&self) -> Option<Sel>;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<Object>>;
+        pub unsafe fn delegate(&self) -> Option<Id<AnyObject>>;
     }
 );
 

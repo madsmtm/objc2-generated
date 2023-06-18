@@ -51,7 +51,7 @@ extern_methods!(
         );
 
         #[method(viewSizeChanged:)]
-        pub unsafe fn viewSizeChanged(&self, sender: Option<&Object>);
+        pub unsafe fn viewSizeChanged(&self, sender: Option<&AnyObject>);
 
         #[cfg(feature = "AppKit_NSColorList")]
         #[method(attachColorList:)]

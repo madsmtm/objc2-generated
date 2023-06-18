@@ -36,7 +36,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithContent:)]
         pub unsafe fn initWithContent(
             this: Option<Allocated<Self>>,
-            content: Option<&Object>,
+            content: Option<&AnyObject>,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
@@ -47,13 +47,13 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Other content)]
-        pub unsafe fn content(&self) -> Option<Id<Object>>;
+        pub unsafe fn content(&self) -> Option<Id<AnyObject>>;
 
         #[method(setContent:)]
-        pub unsafe fn setContent(&self, content: Option<&Object>);
+        pub unsafe fn setContent(&self, content: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other selection)]
-        pub unsafe fn selection(&self) -> Id<Object>;
+        pub unsafe fn selection(&self) -> Id<AnyObject>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other selectedObjects)]
@@ -69,19 +69,19 @@ extern_methods!(
         pub unsafe fn prepareContent(&self);
 
         #[method(objectClass)]
-        pub unsafe fn objectClass(&self) -> Option<&'static Class>;
+        pub unsafe fn objectClass(&self) -> Option<&'static AnyClass>;
 
         #[method(setObjectClass:)]
-        pub unsafe fn setObjectClass(&self, object_class: Option<&Class>);
+        pub unsafe fn setObjectClass(&self, object_class: Option<&AnyClass>);
 
         #[method_id(@__retain_semantics New newObject)]
-        pub unsafe fn newObject(&self) -> Id<Object>;
+        pub unsafe fn newObject(&self) -> Id<AnyObject>;
 
         #[method(addObject:)]
-        pub unsafe fn addObject(&self, object: &Object);
+        pub unsafe fn addObject(&self, object: &AnyObject);
 
         #[method(removeObject:)]
-        pub unsafe fn removeObject(&self, object: &Object);
+        pub unsafe fn removeObject(&self, object: &AnyObject);
 
         #[method(isEditable)]
         pub unsafe fn isEditable(&self) -> bool;
@@ -90,13 +90,13 @@ extern_methods!(
         pub unsafe fn setEditable(&self, editable: bool);
 
         #[method(add:)]
-        pub unsafe fn add(&self, sender: Option<&Object>);
+        pub unsafe fn add(&self, sender: Option<&AnyObject>);
 
         #[method(canAdd)]
         pub unsafe fn canAdd(&self) -> bool;
 
         #[method(remove:)]
-        pub unsafe fn remove(&self, sender: Option<&Object>);
+        pub unsafe fn remove(&self, sender: Option<&AnyObject>);
 
         #[method(canRemove)]
         pub unsafe fn canRemove(&self) -> bool;
@@ -167,7 +167,7 @@ extern_methods!(
         ) -> Result<(), Id<NSError>>;
 
         #[method(fetch:)]
-        pub unsafe fn fetch(&self, sender: Option<&Object>);
+        pub unsafe fn fetch(&self, sender: Option<&AnyObject>);
 
         #[method(usesLazyFetching)]
         pub unsafe fn usesLazyFetching(&self) -> bool;

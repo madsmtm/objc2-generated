@@ -24,16 +24,16 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTreeNode")]
     unsafe impl NSTreeNode {
         #[method_id(@__retain_semantics Other treeNodeWithRepresentedObject:)]
-        pub unsafe fn treeNodeWithRepresentedObject(model_object: Option<&Object>) -> Id<Self>;
+        pub unsafe fn treeNodeWithRepresentedObject(model_object: Option<&AnyObject>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithRepresentedObject:)]
         pub unsafe fn initWithRepresentedObject(
             this: Option<Allocated<Self>>,
-            model_object: Option<&Object>,
+            model_object: Option<&AnyObject>,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other representedObject)]
-        pub unsafe fn representedObject(&self) -> Option<Id<Object>>;
+        pub unsafe fn representedObject(&self) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other indexPath)]

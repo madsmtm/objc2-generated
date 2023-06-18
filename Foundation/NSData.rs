@@ -502,7 +502,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use +dataWithContentsOfURL:options:error: and NSDataReadingMappedIfSafe or NSDataReadingMappedAlways instead."]
         #[method_id(@__retain_semantics Other dataWithContentsOfMappedFile:)]
-        pub unsafe fn dataWithContentsOfMappedFile(path: &NSString) -> Option<Id<Object>>;
+        pub unsafe fn dataWithContentsOfMappedFile(path: &NSString) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use -initWithContentsOfURL:options:error: and NSDataReadingMappedIfSafe or NSDataReadingMappedAlways instead."]

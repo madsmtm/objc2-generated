@@ -55,7 +55,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithDefinition:fromArchive:)]
         pub unsafe fn initWithDefinition_fromArchive(
             this: Option<Allocated<Self>>,
-            dict: Option<&NSDictionary<NSString, Object>>,
+            dict: Option<&NSDictionary<NSString, AnyObject>>,
             archived: bool,
         ) -> Option<Id<Self>>;
 

@@ -47,7 +47,7 @@ extern_methods!(
             name: &NSString,
             content_type: &UTType,
             url: &NSURL,
-            metadata: Option<&NSDictionary<NSString, Object>>,
+            metadata: Option<&NSDictionary<NSString, AnyObject>>,
             completion: &Block<(*mut HKAttachment, *mut NSError), ()>,
         );
 

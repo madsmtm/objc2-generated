@@ -31,8 +31,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other runWorkflowAtURL:withInput:error:_)]
         pub unsafe fn runWorkflowAtURL_withInput_error(
             file_url: &NSURL,
-            input: Option<&Object>,
-        ) -> Result<Id<Object>, Id<NSError>>;
+            input: Option<&AnyObject>,
+        ) -> Result<Id<AnyObject>, Id<NSError>>;
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
@@ -52,7 +52,7 @@ extern_methods!(
         #[method(setValue:forVariableWithName:)]
         pub unsafe fn setValue_forVariableWithName(
             &self,
-            value: Option<&Object>,
+            value: Option<&AnyObject>,
             variable_name: &NSString,
         ) -> bool;
 
@@ -61,7 +61,7 @@ extern_methods!(
         pub unsafe fn valueForVariableWithName(
             &self,
             variable_name: &NSString,
-        ) -> Option<Id<Object>>;
+        ) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Automator_AMAction")]
         #[method(addAction:)]
@@ -91,13 +91,13 @@ extern_methods!(
         pub unsafe fn actions(&self) -> Id<NSArray<AMAction>>;
 
         #[method_id(@__retain_semantics Other input)]
-        pub unsafe fn input(&self) -> Option<Id<Object>>;
+        pub unsafe fn input(&self) -> Option<Id<AnyObject>>;
 
         #[method(setInput:)]
-        pub unsafe fn setInput(&self, input: Option<&Object>);
+        pub unsafe fn setInput(&self, input: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other output)]
-        pub unsafe fn output(&self) -> Option<Id<Object>>;
+        pub unsafe fn output(&self) -> Option<Id<AnyObject>>;
     }
 );
 

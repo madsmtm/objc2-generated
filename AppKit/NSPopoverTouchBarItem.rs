@@ -88,10 +88,10 @@ extern_methods!(
         pub unsafe fn setShowsCloseButton(&self, shows_close_button: bool);
 
         #[method(showPopover:)]
-        pub unsafe fn showPopover(&self, sender: Option<&Object>);
+        pub unsafe fn showPopover(&self, sender: Option<&AnyObject>);
 
         #[method(dismissPopover:)]
-        pub unsafe fn dismissPopover(&self, sender: Option<&Object>);
+        pub unsafe fn dismissPopover(&self, sender: Option<&AnyObject>);
 
         #[cfg(feature = "AppKit_NSGestureRecognizer")]
         #[method_id(@__retain_semantics Other makeStandardActivatePopoverGestureRecognizer)]

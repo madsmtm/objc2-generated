@@ -10,7 +10,7 @@ extern_static!(NSReadAccessURLDocumentOption: &'static NSAttributedStringDocumen
 pub type NSAttributedStringCompletionHandler = *mut Block<
     (
         *mut NSAttributedString,
-        *mut NSDictionary<NSAttributedStringDocumentAttributeKey, Object>,
+        *mut NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>,
         *mut NSError,
     ),
     (),
@@ -27,7 +27,7 @@ extern_methods!(
         #[method(loadFromHTMLWithRequest:options:completionHandler:)]
         pub unsafe fn loadFromHTMLWithRequest_options_completionHandler(
             request: &NSURLRequest,
-            options: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, Object>,
+            options: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, AnyObject>,
             completion_handler: NSAttributedStringCompletionHandler,
         );
 
@@ -35,7 +35,7 @@ extern_methods!(
         #[method(loadFromHTMLWithFileURL:options:completionHandler:)]
         pub unsafe fn loadFromHTMLWithFileURL_options_completionHandler(
             file_url: &NSURL,
-            options: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, Object>,
+            options: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, AnyObject>,
             completion_handler: NSAttributedStringCompletionHandler,
         );
 
@@ -43,7 +43,7 @@ extern_methods!(
         #[method(loadFromHTMLWithString:options:completionHandler:)]
         pub unsafe fn loadFromHTMLWithString_options_completionHandler(
             string: &NSString,
-            options: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, Object>,
+            options: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, AnyObject>,
             completion_handler: NSAttributedStringCompletionHandler,
         );
 
@@ -51,7 +51,7 @@ extern_methods!(
         #[method(loadFromHTMLWithData:options:completionHandler:)]
         pub unsafe fn loadFromHTMLWithData_options_completionHandler(
             data: &NSData,
-            options: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, Object>,
+            options: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, AnyObject>,
             completion_handler: NSAttributedStringCompletionHandler,
         );
     }

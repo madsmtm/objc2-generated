@@ -181,9 +181,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithTarget:selector:object:)]
         pub unsafe fn initWithTarget_selector_object(
             this: Option<Allocated<Self>>,
-            target: &Object,
+            target: &AnyObject,
             sel: Sel,
-            arg: Option<&Object>,
+            arg: Option<&AnyObject>,
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSInvocation")]
@@ -198,7 +198,7 @@ extern_methods!(
         pub unsafe fn invocation(&self) -> Id<NSInvocation>;
 
         #[method_id(@__retain_semantics Other result)]
-        pub unsafe fn result(&self) -> Option<Id<Object>>;
+        pub unsafe fn result(&self) -> Option<Id<AnyObject>>;
     }
 );
 

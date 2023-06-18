@@ -244,7 +244,7 @@ extern_methods!(
         #[method(setCustomAssertionRequestHeaderClaims:returningError:_)]
         pub unsafe fn setCustomAssertionRequestHeaderClaims_returningError(
             &self,
-            claims: &NSDictionary<NSString, Object>,
+            claims: &NSDictionary<NSString, AnyObject>,
         ) -> Result<(), Id<NSError>>;
 
         #[cfg(all(
@@ -255,7 +255,7 @@ extern_methods!(
         #[method(setCustomAssertionRequestBodyClaims:returningError:_)]
         pub unsafe fn setCustomAssertionRequestBodyClaims_returningError(
             &self,
-            claims: &NSDictionary<NSString, Object>,
+            claims: &NSDictionary<NSString, AnyObject>,
         ) -> Result<(), Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -305,7 +305,7 @@ extern_methods!(
         #[method(setCustomLoginRequestHeaderClaims:returningError:_)]
         pub unsafe fn setCustomLoginRequestHeaderClaims_returningError(
             &self,
-            claims: &NSDictionary<NSString, Object>,
+            claims: &NSDictionary<NSString, AnyObject>,
         ) -> Result<(), Id<NSError>>;
 
         #[cfg(all(
@@ -316,7 +316,7 @@ extern_methods!(
         #[method(setCustomLoginRequestBodyClaims:returningError:_)]
         pub unsafe fn setCustomLoginRequestBodyClaims_returningError(
             &self,
-            claims: &NSDictionary<NSString, Object>,
+            claims: &NSDictionary<NSString, AnyObject>,
         ) -> Result<(), Id<NSError>>;
 
         #[cfg(all(

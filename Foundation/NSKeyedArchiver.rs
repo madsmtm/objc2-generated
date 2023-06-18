@@ -37,7 +37,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method_id(@__retain_semantics Other archivedDataWithRootObject:requiringSecureCoding:error:_)]
         pub unsafe fn archivedDataWithRootObject_requiringSecureCoding_error(
-            object: &Object,
+            object: &AnyObject,
             requires_secure_coding: bool,
         ) -> Result<Id<NSData>, Id<NSError>>;
 
@@ -56,12 +56,12 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSData")]
         #[deprecated = "Use +archivedDataWithRootObject:requiringSecureCoding:error: instead"]
         #[method_id(@__retain_semantics Other archivedDataWithRootObject:)]
-        pub unsafe fn archivedDataWithRootObject(root_object: &Object) -> Id<NSData>;
+        pub unsafe fn archivedDataWithRootObject(root_object: &AnyObject) -> Id<NSData>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use +archivedDataWithRootObject:requiringSecureCoding:error: and -writeToURL:options:error: instead"]
         #[method(archiveRootObject:toFile:)]
-        pub unsafe fn archiveRootObject_toFile(root_object: &Object, path: &NSString) -> bool;
+        pub unsafe fn archiveRootObject_toFile(root_object: &AnyObject, path: &NSString) -> bool;
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSKeyedArchiverDelegate>>>;
@@ -87,29 +87,29 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setClassName:forClass:)]
-        pub unsafe fn setClassName_forClass_class(coded_name: Option<&NSString>, cls: &Class);
+        pub unsafe fn setClassName_forClass_class(coded_name: Option<&NSString>, cls: &AnyClass);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setClassName:forClass:)]
-        pub unsafe fn setClassName_forClass(&self, coded_name: Option<&NSString>, cls: &Class);
+        pub unsafe fn setClassName_forClass(&self, coded_name: Option<&NSString>, cls: &AnyClass);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other classNameForClass:)]
-        pub unsafe fn classNameForClass_class(cls: &Class) -> Option<Id<NSString>>;
+        pub unsafe fn classNameForClass_class(cls: &AnyClass) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other classNameForClass:)]
-        pub unsafe fn classNameForClass(&self, cls: &Class) -> Option<Id<NSString>>;
+        pub unsafe fn classNameForClass(&self, cls: &AnyClass) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(encodeObject:forKey:)]
-        pub unsafe fn encodeObject_forKey(&self, object: Option<&Object>, key: &NSString);
+        pub unsafe fn encodeObject_forKey(&self, object: Option<&AnyObject>, key: &NSString);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(encodeConditionalObject:forKey:)]
         pub unsafe fn encodeConditionalObject_forKey(
             &self,
-            object: Option<&Object>,
+            object: Option<&AnyObject>,
             key: &NSString,
         );
 
@@ -192,9 +192,9 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method_id(@__retain_semantics Other unarchivedObjectOfClass:fromData:error:_)]
         pub unsafe fn unarchivedObjectOfClass_fromData_error(
-            cls: &Class,
+            cls: &AnyClass,
             data: &NSData,
-        ) -> Result<Id<Object>, Id<NSError>>;
+        ) -> Result<Id<AnyObject>, Id<NSError>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -203,7 +203,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Other unarchivedArrayOfObjectsOfClass:fromData:error:_)]
         pub unsafe fn unarchivedArrayOfObjectsOfClass_fromData_error(
-            cls: &Class,
+            cls: &AnyClass,
             data: &NSData,
         ) -> Result<Id<NSArray>, Id<NSError>>;
 
@@ -214,8 +214,8 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Other unarchivedDictionaryWithKeysOfClass:objectsOfClass:fromData:error:_)]
         pub unsafe fn unarchivedDictionaryWithKeysOfClass_objectsOfClass_fromData_error(
-            key_cls: &Class,
-            value_cls: &Class,
+            key_cls: &AnyClass,
+            value_cls: &AnyClass,
             data: &NSData,
         ) -> Result<Id<NSDictionary>, Id<NSError>>;
 
@@ -228,7 +228,7 @@ extern_methods!(
         pub unsafe fn unarchivedObjectOfClasses_fromData_error(
             classes: &NSSet<TodoClass>,
             data: &NSData,
-        ) -> Result<Id<Object>, Id<NSError>>;
+        ) -> Result<Id<AnyObject>, Id<NSError>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -270,19 +270,19 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSData")]
         #[deprecated = "Use +unarchivedObjectOfClass:fromData:error: instead"]
         #[method_id(@__retain_semantics Other unarchiveObjectWithData:)]
-        pub unsafe fn unarchiveObjectWithData(data: &NSData) -> Option<Id<Object>>;
+        pub unsafe fn unarchiveObjectWithData(data: &NSData) -> Option<Id<AnyObject>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[deprecated = "Use +unarchivedObjectOfClass:fromData:error: instead"]
         #[method_id(@__retain_semantics Other unarchiveTopLevelObjectWithData:error:_)]
         pub unsafe fn unarchiveTopLevelObjectWithData_error(
             data: &NSData,
-        ) -> Result<Id<Object>, Id<NSError>>;
+        ) -> Result<Id<AnyObject>, Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use +unarchivedObjectOfClass:fromData:error: instead"]
         #[method_id(@__retain_semantics Other unarchiveObjectWithFile:)]
-        pub unsafe fn unarchiveObjectWithFile(path: &NSString) -> Option<Id<Object>>;
+        pub unsafe fn unarchiveObjectWithFile(path: &NSString) -> Option<Id<AnyObject>>;
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSKeyedUnarchiverDelegate>>>;
@@ -298,19 +298,19 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setClass:forClassName:)]
-        pub unsafe fn setClass_forClassName_class(cls: Option<&Class>, coded_name: &NSString);
+        pub unsafe fn setClass_forClassName_class(cls: Option<&AnyClass>, coded_name: &NSString);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setClass:forClassName:)]
-        pub unsafe fn setClass_forClassName(&self, cls: Option<&Class>, coded_name: &NSString);
+        pub unsafe fn setClass_forClassName(&self, cls: Option<&AnyClass>, coded_name: &NSString);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(classForClassName:)]
-        pub unsafe fn classForClassName_class(coded_name: &NSString) -> Option<&'static Class>;
+        pub unsafe fn classForClassName_class(coded_name: &NSString) -> Option<&'static AnyClass>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(classForClassName:)]
-        pub unsafe fn classForClassName(&self, coded_name: &NSString) -> Option<&'static Class>;
+        pub unsafe fn classForClassName(&self, coded_name: &NSString) -> Option<&'static AnyClass>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(containsValueForKey:)]
@@ -318,7 +318,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other decodeObjectForKey:)]
-        pub unsafe fn decodeObjectForKey(&self, key: &NSString) -> Option<Id<Object>>;
+        pub unsafe fn decodeObjectForKey(&self, key: &NSString) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(decodeBoolForKey:)]
@@ -386,8 +386,8 @@ extern_protocol!(
         unsafe fn archiver_willEncodeObject(
             &self,
             archiver: &NSKeyedArchiver,
-            object: &Object,
-        ) -> Option<Id<Object>>;
+            object: &AnyObject,
+        ) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSKeyedArchiver")]
         #[optional]
@@ -395,7 +395,7 @@ extern_protocol!(
         unsafe fn archiver_didEncodeObject(
             &self,
             archiver: &NSKeyedArchiver,
-            object: Option<&Object>,
+            object: Option<&AnyObject>,
         );
 
         #[cfg(feature = "Foundation_NSKeyedArchiver")]
@@ -404,8 +404,8 @@ extern_protocol!(
         unsafe fn archiver_willReplaceObject_withObject(
             &self,
             archiver: &NSKeyedArchiver,
-            object: Option<&Object>,
-            new_object: Option<&Object>,
+            object: Option<&AnyObject>,
+            new_object: Option<&AnyObject>,
         );
 
         #[cfg(feature = "Foundation_NSKeyedArchiver")]
@@ -436,7 +436,7 @@ extern_protocol!(
             unarchiver: &NSKeyedUnarchiver,
             name: &NSString,
             class_names: &NSArray<NSString>,
-        ) -> Option<&'static Class>;
+        ) -> Option<&'static AnyClass>;
 
         #[cfg(feature = "Foundation_NSKeyedUnarchiver")]
         #[optional]
@@ -444,8 +444,8 @@ extern_protocol!(
         unsafe fn unarchiver_willReplaceObject_withObject(
             &self,
             unarchiver: &NSKeyedUnarchiver,
-            object: &Object,
-            new_object: &Object,
+            object: &AnyObject,
+            new_object: &AnyObject,
         );
 
         #[cfg(feature = "Foundation_NSKeyedUnarchiver")]

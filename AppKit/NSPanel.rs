@@ -124,7 +124,7 @@ extern_methods!(
 
 extern_fn!(
     #[deprecated = "Use NSAlert instead"]
-    pub unsafe fn NSReleaseAlertPanel(panel: Option<&Object>);
+    pub unsafe fn NSReleaseAlertPanel(panel: Option<&AnyObject>);
 );
 
 extern_enum!(

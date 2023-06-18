@@ -27,7 +27,7 @@ extern_methods!(
         pub unsafe fn initWithRequest_delegate_startImmediately(
             this: Option<Allocated<Self>>,
             request: &NSURLRequest,
-            delegate: Option<&Object>,
+            delegate: Option<&AnyObject>,
             start_immediately: bool,
         ) -> Option<Id<Self>>;
 
@@ -37,7 +37,7 @@ extern_methods!(
         pub unsafe fn initWithRequest_delegate(
             this: Option<Allocated<Self>>,
             request: &NSURLRequest,
-            delegate: Option<&Object>,
+            delegate: Option<&AnyObject>,
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSURLRequest")]
@@ -45,7 +45,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other connectionWithRequest:delegate:)]
         pub unsafe fn connectionWithRequest_delegate(
             request: &NSURLRequest,
-            delegate: Option<&Object>,
+            delegate: Option<&AnyObject>,
         ) -> Option<Id<NSURLConnection>>;
 
         #[cfg(feature = "Foundation_NSURLRequest")]

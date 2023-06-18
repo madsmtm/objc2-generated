@@ -36,7 +36,7 @@ extern_methods!(
             parent: Option<&NSTextListElement>,
             text_list: &NSTextList,
             contents: Option<&NSAttributedString>,
-            marker_attributes: Option<&NSDictionary<NSAttributedStringKey, Object>>,
+            marker_attributes: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
             children: Option<&NSArray<NSTextListElement>>,
         ) -> Id<Self>;
 
@@ -56,7 +56,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other textListElementWithContents:markerAttributes:textList:childElements:)]
         pub unsafe fn textListElementWithContents_markerAttributes_textList_childElements(
             contents: &NSAttributedString,
-            marker_attributes: Option<&NSDictionary<NSAttributedStringKey, Object>>,
+            marker_attributes: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
             text_list: &NSTextList,
             children: Option<&NSArray<NSTextListElement>>,
         ) -> Id<Self>;
@@ -81,7 +81,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other markerAttributes)]
         pub unsafe fn markerAttributes(
             &self,
-        ) -> Option<Id<NSDictionary<NSAttributedStringKey, Object>>>;
+        ) -> Option<Id<NSDictionary<NSAttributedStringKey, AnyObject>>>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedString)]

@@ -191,6 +191,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSSplitViewController")]
     unsafe impl NSSplitViewController {
         #[method(toggleSidebar:)]
-        pub unsafe fn toggleSidebar(&self, sender: Option<&Object>);
+        pub unsafe fn toggleSidebar(&self, sender: Option<&AnyObject>);
     }
 );

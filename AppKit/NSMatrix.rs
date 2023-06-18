@@ -80,16 +80,16 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             frame_rect: NSRect,
             mode: NSMatrixMode,
-            factory_id: Option<&Class>,
+            factory_id: Option<&AnyClass>,
             rows_high: NSInteger,
             cols_wide: NSInteger,
         ) -> Id<Self>;
 
         #[method(cellClass)]
-        pub unsafe fn cellClass(&self) -> &'static Class;
+        pub unsafe fn cellClass(&self) -> &'static AnyClass;
 
         #[method(setCellClass:)]
-        pub unsafe fn setCellClass(&self, cell_class: &Class);
+        pub unsafe fn setCellClass(&self, cell_class: &AnyClass);
 
         #[cfg(feature = "AppKit_NSCell")]
         #[method_id(@__retain_semantics Other prototype)]
@@ -116,7 +116,12 @@ extern_methods!(
         pub unsafe fn setAllowsEmptySelection(&self, allows_empty_selection: bool);
 
         #[method(sendAction:to:forAllCells:)]
-        pub unsafe fn sendAction_to_forAllCells(&self, selector: Sel, object: &Object, flag: bool);
+        pub unsafe fn sendAction_to_forAllCells(
+            &self,
+            selector: Sel,
+            object: &AnyObject,
+            flag: bool,
+        );
 
         #[cfg(all(feature = "AppKit_NSCell", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other cells)]
@@ -129,8 +134,8 @@ extern_methods!(
         pub unsafe fn sortUsingFunction_context(
             &self,
             compare: unsafe extern "C" fn(
-                NonNull<Object>,
-                NonNull<Object>,
+                NonNull<AnyObject>,
+                NonNull<AnyObject>,
                 *mut c_void,
             ) -> NSInteger,
             context: *mut c_void,
@@ -175,7 +180,7 @@ extern_methods!(
         pub unsafe fn selectCellAtRow_column(&self, row: NSInteger, col: NSInteger);
 
         #[method(selectAll:)]
-        pub unsafe fn selectAll(&self, sender: Option<&Object>);
+        pub unsafe fn selectAll(&self, sender: Option<&AnyObject>);
 
         #[method(selectCellWithTag:)]
         pub unsafe fn selectCellWithTag(&self, tag: NSInteger) -> bool;
@@ -404,7 +409,7 @@ extern_methods!(
         pub unsafe fn textDidChange(&self, notification: &NSNotification);
 
         #[method(selectText:)]
-        pub unsafe fn selectText(&self, sender: Option<&Object>);
+        pub unsafe fn selectText(&self, sender: Option<&AnyObject>);
 
         #[cfg(feature = "AppKit_NSCell")]
         #[method_id(@__retain_semantics Other selectTextAtRow:column:)]

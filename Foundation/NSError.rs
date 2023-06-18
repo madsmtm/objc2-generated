@@ -74,7 +74,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             domain: &NSErrorDomain,
             code: NSInteger,
-            dict: Option<&NSDictionary<NSErrorUserInfoKey, Object>>,
+            dict: Option<&NSDictionary<NSErrorUserInfoKey, AnyObject>>,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
@@ -82,7 +82,7 @@ extern_methods!(
         pub unsafe fn errorWithDomain_code_userInfo(
             domain: &NSErrorDomain,
             code: NSInteger,
-            dict: Option<&NSDictionary<NSErrorUserInfoKey, Object>>,
+            dict: Option<&NSDictionary<NSErrorUserInfoKey, AnyObject>>,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other domain)]
@@ -93,7 +93,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other userInfo)]
-        pub fn userInfo(&self) -> Id<NSDictionary<NSErrorUserInfoKey, Object>>;
+        pub fn userInfo(&self) -> Id<NSDictionary<NSErrorUserInfoKey, AnyObject>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedDescription)]
@@ -112,7 +112,7 @@ extern_methods!(
         pub unsafe fn localizedRecoveryOptions(&self) -> Option<Id<NSArray<NSString>>>;
 
         #[method_id(@__retain_semantics Other recoveryAttempter)]
-        pub unsafe fn recoveryAttempter(&self) -> Option<Id<Object>>;
+        pub unsafe fn recoveryAttempter(&self) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other helpAnchor)]
@@ -125,13 +125,15 @@ extern_methods!(
         #[method(setUserInfoValueProviderForDomain:provider:)]
         pub unsafe fn setUserInfoValueProviderForDomain_provider(
             error_domain: &NSErrorDomain,
-            provider: Option<&Block<(NonNull<NSError>, NonNull<NSErrorUserInfoKey>), *mut Object>>,
+            provider: Option<
+                &Block<(NonNull<NSError>, NonNull<NSErrorUserInfoKey>), *mut AnyObject>,
+            >,
         );
 
         #[method(userInfoValueProviderForDomain:)]
         pub unsafe fn userInfoValueProviderForDomain(
             error_domain: &NSErrorDomain,
-        ) -> *mut Block<(NonNull<NSError>, NonNull<NSErrorUserInfoKey>), *mut Object>;
+        ) -> *mut Block<(NonNull<NSError>, NonNull<NSErrorUserInfoKey>), *mut AnyObject>;
     }
 );
 

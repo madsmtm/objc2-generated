@@ -43,14 +43,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Option<Allocated<Self>>,
-            identifier: Option<&Object>,
+            identifier: Option<&AnyObject>,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other identifier)]
-        pub unsafe fn identifier(&self) -> Option<Id<Object>>;
+        pub unsafe fn identifier(&self) -> Option<Id<AnyObject>>;
 
         #[method(setIdentifier:)]
-        pub unsafe fn setIdentifier(&self, identifier: Option<&Object>);
+        pub unsafe fn setIdentifier(&self, identifier: Option<&AnyObject>);
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other color)]

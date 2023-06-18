@@ -238,64 +238,64 @@ extern_methods!(
         pub unsafe fn sizeToFit(&self);
 
         #[method(copy:)]
-        pub unsafe fn copy(&self, sender: Option<&Object>);
+        pub unsafe fn copy(&self, sender: Option<&AnyObject>);
 
         #[method(copyFont:)]
-        pub unsafe fn copyFont(&self, sender: Option<&Object>);
+        pub unsafe fn copyFont(&self, sender: Option<&AnyObject>);
 
         #[method(copyRuler:)]
-        pub unsafe fn copyRuler(&self, sender: Option<&Object>);
+        pub unsafe fn copyRuler(&self, sender: Option<&AnyObject>);
 
         #[method(cut:)]
-        pub unsafe fn cut(&self, sender: Option<&Object>);
+        pub unsafe fn cut(&self, sender: Option<&AnyObject>);
 
         #[method(delete:)]
-        pub unsafe fn delete(&self, sender: Option<&Object>);
+        pub unsafe fn delete(&self, sender: Option<&AnyObject>);
 
         #[method(paste:)]
-        pub unsafe fn paste(&self, sender: Option<&Object>);
+        pub unsafe fn paste(&self, sender: Option<&AnyObject>);
 
         #[method(pasteFont:)]
-        pub unsafe fn pasteFont(&self, sender: Option<&Object>);
+        pub unsafe fn pasteFont(&self, sender: Option<&AnyObject>);
 
         #[method(pasteRuler:)]
-        pub unsafe fn pasteRuler(&self, sender: Option<&Object>);
+        pub unsafe fn pasteRuler(&self, sender: Option<&AnyObject>);
 
         #[method(selectAll:)]
-        pub unsafe fn selectAll(&self, sender: Option<&Object>);
+        pub unsafe fn selectAll(&self, sender: Option<&AnyObject>);
 
         #[method(changeFont:)]
-        pub unsafe fn changeFont(&self, sender: Option<&Object>);
+        pub unsafe fn changeFont(&self, sender: Option<&AnyObject>);
 
         #[method(alignLeft:)]
-        pub unsafe fn alignLeft(&self, sender: Option<&Object>);
+        pub unsafe fn alignLeft(&self, sender: Option<&AnyObject>);
 
         #[method(alignRight:)]
-        pub unsafe fn alignRight(&self, sender: Option<&Object>);
+        pub unsafe fn alignRight(&self, sender: Option<&AnyObject>);
 
         #[method(alignCenter:)]
-        pub unsafe fn alignCenter(&self, sender: Option<&Object>);
+        pub unsafe fn alignCenter(&self, sender: Option<&AnyObject>);
 
         #[method(subscript:)]
-        pub unsafe fn subscript(&self, sender: Option<&Object>);
+        pub unsafe fn subscript(&self, sender: Option<&AnyObject>);
 
         #[method(superscript:)]
-        pub unsafe fn superscript(&self, sender: Option<&Object>);
+        pub unsafe fn superscript(&self, sender: Option<&AnyObject>);
 
         #[method(underline:)]
-        pub unsafe fn underline(&self, sender: Option<&Object>);
+        pub unsafe fn underline(&self, sender: Option<&AnyObject>);
 
         #[method(unscript:)]
-        pub unsafe fn unscript(&self, sender: Option<&Object>);
+        pub unsafe fn unscript(&self, sender: Option<&AnyObject>);
 
         #[method(showGuessPanel:)]
-        pub unsafe fn showGuessPanel(&self, sender: Option<&Object>);
+        pub unsafe fn showGuessPanel(&self, sender: Option<&AnyObject>);
 
         #[method(checkSpelling:)]
-        pub unsafe fn checkSpelling(&self, sender: Option<&Object>);
+        pub unsafe fn checkSpelling(&self, sender: Option<&AnyObject>);
 
         #[method(toggleRuler:)]
-        pub unsafe fn toggleRuler(&self, sender: Option<&Object>);
+        pub unsafe fn toggleRuler(&self, sender: Option<&AnyObject>);
     }
 );
 

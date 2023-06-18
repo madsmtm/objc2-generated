@@ -113,8 +113,8 @@ extern_methods!(
         pub unsafe fn performSelector_target_argument_order_modes(
             &self,
             a_selector: Sel,
-            target: &Object,
-            arg: Option<&Object>,
+            target: &AnyObject,
+            arg: Option<&AnyObject>,
             order: NSUInteger,
             modes: &NSArray<NSRunLoopMode>,
         );
@@ -123,11 +123,11 @@ extern_methods!(
         pub unsafe fn cancelPerformSelector_target_argument(
             &self,
             a_selector: Sel,
-            target: &Object,
-            arg: Option<&Object>,
+            target: &AnyObject,
+            arg: Option<&AnyObject>,
         );
 
         #[method(cancelPerformSelectorsWithTarget:)]
-        pub unsafe fn cancelPerformSelectorsWithTarget(&self, target: &Object);
+        pub unsafe fn cancelPerformSelectorsWithTarget(&self, target: &AnyObject);
     }
 );

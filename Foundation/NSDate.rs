@@ -79,7 +79,7 @@ extern_methods!(
 
         #[deprecated = "Use dateByAddingTimeInterval instead"]
         #[method_id(@__retain_semantics Other addTimeInterval:)]
-        pub unsafe fn addTimeInterval(&self, seconds: NSTimeInterval) -> Id<Object>;
+        pub unsafe fn addTimeInterval(&self, seconds: NSTimeInterval) -> Id<AnyObject>;
 
         #[method_id(@__retain_semantics Other dateByAddingTimeInterval:)]
         pub unsafe fn dateByAddingTimeInterval(&self, ti: NSTimeInterval) -> Id<Self>;
@@ -102,7 +102,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other descriptionWithLocale:)]
-        pub unsafe fn descriptionWithLocale(&self, locale: Option<&Object>) -> Id<NSString>;
+        pub unsafe fn descriptionWithLocale(&self, locale: Option<&AnyObject>) -> Id<NSString>;
 
         #[method(timeIntervalSinceReferenceDate)]
         pub unsafe fn timeIntervalSinceReferenceDate_class() -> NSTimeInterval;

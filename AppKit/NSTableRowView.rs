@@ -146,7 +146,7 @@ extern_methods!(
         pub unsafe fn drawDraggingDestinationFeedbackInRect(&self, dirty_rect: NSRect);
 
         #[method_id(@__retain_semantics Other viewAtColumn:)]
-        pub unsafe fn viewAtColumn(&self, column: NSInteger) -> Option<Id<Object>>;
+        pub unsafe fn viewAtColumn(&self, column: NSInteger) -> Option<Id<AnyObject>>;
 
         #[method(numberOfColumns)]
         pub unsafe fn numberOfColumns(&self) -> NSInteger;

@@ -53,7 +53,7 @@ extern_methods!(
             date_issued: &NSDate,
             expiration_date: Option<&NSDate>,
             device: Option<&HKDevice>,
-            metadata: Option<&NSDictionary<NSString, Object>>,
+            metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
@@ -74,7 +74,7 @@ extern_methods!(
             date_issued: &NSDate,
             expiration_date: Option<&NSDate>,
             device: Option<&HKDevice>,
-            metadata: Option<&NSDictionary<NSString, Object>>,
+            metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Id<Self>;
     }
 );

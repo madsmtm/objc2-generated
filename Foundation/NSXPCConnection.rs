@@ -6,14 +6,14 @@ use crate::Foundation::*;
 extern_protocol!(
     pub unsafe trait NSXPCProxyCreating {
         #[method_id(@__retain_semantics Other remoteObjectProxy)]
-        unsafe fn remoteObjectProxy(&self) -> Id<Object>;
+        unsafe fn remoteObjectProxy(&self) -> Id<AnyObject>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other remoteObjectProxyWithErrorHandler:)]
         unsafe fn remoteObjectProxyWithErrorHandler(
             &self,
             handler: &Block<(NonNull<NSError>,), ()>,
-        ) -> Id<Object>;
+        ) -> Id<AnyObject>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[optional]
@@ -21,7 +21,7 @@ extern_protocol!(
         unsafe fn synchronousRemoteObjectProxyWithErrorHandler(
             &self,
             handler: &Block<(NonNull<NSError>,), ()>,
-        ) -> Id<Object>;
+        ) -> Id<AnyObject>;
     }
 
     unsafe impl ProtocolType for dyn NSXPCProxyCreating {}
@@ -94,10 +94,10 @@ extern_methods!(
         pub unsafe fn setExportedInterface(&self, exported_interface: Option<&NSXPCInterface>);
 
         #[method_id(@__retain_semantics Other exportedObject)]
-        pub unsafe fn exportedObject(&self) -> Option<Id<Object>>;
+        pub unsafe fn exportedObject(&self) -> Option<Id<AnyObject>>;
 
         #[method(setExportedObject:)]
-        pub unsafe fn setExportedObject(&self, exported_object: Option<&Object>);
+        pub unsafe fn setExportedObject(&self, exported_object: Option<&AnyObject>);
 
         #[cfg(feature = "Foundation_NSXPCInterface")]
         #[method_id(@__retain_semantics Other remoteObjectInterface)]
@@ -111,21 +111,21 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other remoteObjectProxy)]
-        pub unsafe fn remoteObjectProxy(&self) -> Id<Object>;
+        pub unsafe fn remoteObjectProxy(&self) -> Id<AnyObject>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other remoteObjectProxyWithErrorHandler:)]
         pub unsafe fn remoteObjectProxyWithErrorHandler(
             &self,
             handler: &Block<(NonNull<NSError>,), ()>,
-        ) -> Id<Object>;
+        ) -> Id<AnyObject>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other synchronousRemoteObjectProxyWithErrorHandler:)]
         pub unsafe fn synchronousRemoteObjectProxyWithErrorHandler(
             &self,
             handler: &Block<(NonNull<NSError>,), ()>,
-        ) -> Id<Object>;
+        ) -> Id<AnyObject>;
 
         #[method(interruptionHandler)]
         pub unsafe fn interruptionHandler(&self) -> *mut Block<(), ()>;
@@ -286,13 +286,13 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSXPCInterface")]
     unsafe impl NSXPCInterface {
         #[method_id(@__retain_semantics Other interfaceWithProtocol:)]
-        pub unsafe fn interfaceWithProtocol(protocol: &Protocol) -> Id<NSXPCInterface>;
+        pub unsafe fn interfaceWithProtocol(protocol: &AnyProtocol) -> Id<NSXPCInterface>;
 
         #[method_id(@__retain_semantics Other protocol)]
-        pub unsafe fn protocol(&self) -> Id<Protocol>;
+        pub unsafe fn protocol(&self) -> Id<AnyProtocol>;
 
         #[method(setProtocol:)]
-        pub unsafe fn setProtocol(&self, protocol: &Protocol);
+        pub unsafe fn setProtocol(&self, protocol: &AnyProtocol);
 
         #[cfg(feature = "Foundation_NSSet")]
         #[method(setClasses:forSelector:argumentIndex:ofReply:)]

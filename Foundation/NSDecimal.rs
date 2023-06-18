@@ -120,6 +120,6 @@ extern_fn!(
     #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSDecimalString(
         dcm: NonNull<NSDecimal>,
-        locale: Option<&Object>,
+        locale: Option<&AnyObject>,
     ) -> NonNull<NSString>;
 );

@@ -615,7 +615,7 @@ extern_methods!(
         #[method(getResourceValue:forKey:error:_)]
         pub unsafe fn getResourceValue_forKey_error(
             &self,
-            value: &mut Option<Id<Object>>,
+            value: &mut Option<Id<AnyObject>>,
             key: &NSURLResourceKey,
         ) -> Result<(), Id<NSError>>;
 
@@ -628,13 +628,13 @@ extern_methods!(
         pub unsafe fn resourceValuesForKeys_error(
             &self,
             keys: &NSArray<NSURLResourceKey>,
-        ) -> Result<Id<NSDictionary<NSURLResourceKey, Object>>, Id<NSError>>;
+        ) -> Result<Id<NSDictionary<NSURLResourceKey, AnyObject>>, Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(setResourceValue:forKey:error:_)]
         pub unsafe fn setResourceValue_forKey_error(
             &self,
-            value: Option<&Object>,
+            value: Option<&AnyObject>,
             key: &NSURLResourceKey,
         ) -> Result<(), Id<NSError>>;
 
@@ -642,7 +642,7 @@ extern_methods!(
         #[method(setResourceValues:error:_)]
         pub unsafe fn setResourceValues_error(
             &self,
-            keyed_values: &NSDictionary<NSURLResourceKey, Object>,
+            keyed_values: &NSDictionary<NSURLResourceKey, AnyObject>,
         ) -> Result<(), Id<NSError>>;
 
         #[method(removeCachedResourceValueForKey:)]
@@ -654,7 +654,7 @@ extern_methods!(
         #[method(setTemporaryResourceValue:forKey:)]
         pub unsafe fn setTemporaryResourceValue_forKey(
             &self,
-            value: Option<&Object>,
+            value: Option<&AnyObject>,
             key: &NSURLResourceKey,
         );
 
@@ -699,7 +699,7 @@ extern_methods!(
         pub unsafe fn resourceValuesForKeys_fromBookmarkData(
             keys: &NSArray<NSURLResourceKey>,
             bookmark_data: &NSData,
-        ) -> Option<Id<NSDictionary<NSURLResourceKey, Object>>>;
+        ) -> Option<Id<NSDictionary<NSURLResourceKey, AnyObject>>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method(writeBookmarkData:toURL:options:error:_)]
@@ -750,7 +750,7 @@ extern_methods!(
         #[method(getPromisedItemResourceValue:forKey:error:_)]
         pub unsafe fn getPromisedItemResourceValue_forKey_error(
             &self,
-            value: &mut Option<Id<Object>>,
+            value: &mut Option<Id<AnyObject>>,
             key: &NSURLResourceKey,
         ) -> Result<(), Id<NSError>>;
 
@@ -763,7 +763,7 @@ extern_methods!(
         pub unsafe fn promisedItemResourceValuesForKeys_error(
             &self,
             keys: &NSArray<NSURLResourceKey>,
-        ) -> Result<Id<NSDictionary<NSURLResourceKey, Object>>, Id<NSError>>;
+        ) -> Result<Id<NSDictionary<NSURLResourceKey, AnyObject>>, Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(checkPromisedItemIsReachableAndReturnError:_)]
@@ -1258,14 +1258,14 @@ extern_methods!(
         #[method(loadResourceDataNotifyingClient:usingCache:)]
         pub unsafe fn loadResourceDataNotifyingClient_usingCache(
             &self,
-            client: &Object,
+            client: &AnyObject,
             should_use_cache: bool,
         );
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use NSURLConnection instead"]
         #[method_id(@__retain_semantics Other propertyForKey:)]
-        pub unsafe fn propertyForKey(&self, property_key: &NSString) -> Option<Id<Object>>;
+        pub unsafe fn propertyForKey(&self, property_key: &NSString) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[deprecated = "Use NSURLConnection instead"]
@@ -1275,8 +1275,11 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use NSURLConnection instead"]
         #[method(setProperty:forKey:)]
-        pub unsafe fn setProperty_forKey(&self, property: &Object, property_key: &NSString)
-            -> bool;
+        pub unsafe fn setProperty_forKey(
+            &self,
+            property: &AnyObject,
+            property_key: &NSString,
+        ) -> bool;
 
         #[cfg(feature = "Foundation_NSURLHandle")]
         #[deprecated = "Use NSURLConnection instead"]

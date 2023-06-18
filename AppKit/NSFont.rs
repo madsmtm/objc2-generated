@@ -349,7 +349,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other preferredFontForTextStyle:options:)]
         pub unsafe fn preferredFontForTextStyle_options(
             style: &NSFontTextStyle,
-            options: &NSDictionary<NSFontTextStyleOptionKey, Object>,
+            options: &NSDictionary<NSFontTextStyleOptionKey, AnyObject>,
         ) -> Id<NSFont>;
     }
 );

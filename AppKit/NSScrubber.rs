@@ -333,7 +333,7 @@ extern_methods!(
         #[method(registerClass:forItemIdentifier:)]
         pub unsafe fn registerClass_forItemIdentifier(
             &self,
-            item_view_class: Option<&Class>,
+            item_view_class: Option<&AnyClass>,
             item_identifier: &NSUserInterfaceItemIdentifier,
         );
 
@@ -350,7 +350,7 @@ extern_methods!(
         pub unsafe fn makeItemWithIdentifier_owner(
             &self,
             item_identifier: &NSUserInterfaceItemIdentifier,
-            owner: Option<&Object>,
+            owner: Option<&AnyObject>,
         ) -> Option<Id<NSScrubberItemView>>;
     }
 );

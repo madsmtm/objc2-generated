@@ -74,10 +74,10 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSValue")]
     unsafe impl NSValue {
         #[method_id(@__retain_semantics Other valueWithNonretainedObject:)]
-        pub unsafe fn valueWithNonretainedObject(an_object: Option<&Object>) -> Id<NSValue>;
+        pub unsafe fn valueWithNonretainedObject(an_object: Option<&AnyObject>) -> Id<NSValue>;
 
         #[method_id(@__retain_semantics Other nonretainedObjectValue)]
-        pub unsafe fn nonretainedObjectValue(&self) -> Option<Id<Object>>;
+        pub unsafe fn nonretainedObjectValue(&self) -> Option<Id<AnyObject>>;
 
         #[method_id(@__retain_semantics Other valueWithPointer:)]
         pub unsafe fn valueWithPointer(pointer: *mut c_void) -> Id<NSValue>;
@@ -235,7 +235,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other descriptionWithLocale:)]
-        pub unsafe fn descriptionWithLocale(&self, locale: Option<&Object>) -> Id<NSString>;
+        pub unsafe fn descriptionWithLocale(&self, locale: Option<&AnyObject>) -> Id<NSString>;
     }
 );
 

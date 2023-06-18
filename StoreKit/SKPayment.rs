@@ -36,7 +36,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method_id(@__retain_semantics Other paymentWithProductIdentifier:)]
-        pub unsafe fn paymentWithProductIdentifier(identifier: &NSString) -> Id<Object>;
+        pub unsafe fn paymentWithProductIdentifier(identifier: &NSString) -> Id<AnyObject>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other productIdentifier)]

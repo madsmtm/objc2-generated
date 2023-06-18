@@ -194,24 +194,24 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other uniquenessConstraints)]
-        pub unsafe fn uniquenessConstraints(&self) -> Id<NSArray<NSArray<Object>>>;
+        pub unsafe fn uniquenessConstraints(&self) -> Id<NSArray<NSArray<AnyObject>>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(setUniquenessConstraints:)]
         pub unsafe fn setUniquenessConstraints(
             &self,
-            uniqueness_constraints: &NSArray<NSArray<Object>>,
+            uniqueness_constraints: &NSArray<NSArray<AnyObject>>,
         );
 
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated = "Use NSEntityDescription.indexes instead"]
         #[method_id(@__retain_semantics Other compoundIndexes)]
-        pub unsafe fn compoundIndexes(&self) -> Id<NSArray<NSArray<Object>>>;
+        pub unsafe fn compoundIndexes(&self) -> Id<NSArray<NSArray<AnyObject>>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated = "Use NSEntityDescription.indexes instead"]
         #[method(setCompoundIndexes:)]
-        pub unsafe fn setCompoundIndexes(&self, compound_indexes: &NSArray<NSArray<Object>>);
+        pub unsafe fn setCompoundIndexes(&self, compound_indexes: &NSArray<NSArray<AnyObject>>);
 
         #[cfg(feature = "Foundation_NSExpression")]
         #[method_id(@__retain_semantics Other coreSpotlightDisplayNameExpression)]

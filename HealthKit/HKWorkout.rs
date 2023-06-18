@@ -153,7 +153,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other metadata)]
-        pub unsafe fn metadata(&self) -> Option<Id<NSDictionary<NSString, Object>>>;
+        pub unsafe fn metadata(&self) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[deprecated]
@@ -173,7 +173,7 @@ extern_methods!(
         pub unsafe fn workoutEventWithType_date_metadata(
             r#type: HKWorkoutEventType,
             date: &NSDate,
-            metadata: &NSDictionary<NSString, Object>,
+            metadata: &NSDictionary<NSString, AnyObject>,
         ) -> Id<Self>;
 
         #[cfg(all(
@@ -185,7 +185,7 @@ extern_methods!(
         pub unsafe fn workoutEventWithType_dateInterval_metadata(
             r#type: HKWorkoutEventType,
             date_interval: &NSDateInterval,
-            metadata: Option<&NSDictionary<NSString, Object>>,
+            metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
@@ -306,7 +306,7 @@ extern_methods!(
             workout_events: Option<&NSArray<HKWorkoutEvent>>,
             total_energy_burned: Option<&HKQuantity>,
             total_distance: Option<&HKQuantity>,
-            metadata: Option<&NSDictionary<NSString, Object>>,
+            metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Id<Self>;
 
         #[cfg(all(
@@ -327,7 +327,7 @@ extern_methods!(
             total_energy_burned: Option<&HKQuantity>,
             total_distance: Option<&HKQuantity>,
             device: Option<&HKDevice>,
-            metadata: Option<&NSDictionary<NSString, Object>>,
+            metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Id<Self>;
 
         #[cfg(all(
@@ -344,7 +344,7 @@ extern_methods!(
             duration: NSTimeInterval,
             total_energy_burned: Option<&HKQuantity>,
             total_distance: Option<&HKQuantity>,
-            metadata: Option<&NSDictionary<NSString, Object>>,
+            metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Id<Self>;
 
         #[cfg(all(
@@ -363,7 +363,7 @@ extern_methods!(
             total_energy_burned: Option<&HKQuantity>,
             total_distance: Option<&HKQuantity>,
             device: Option<&HKDevice>,
-            metadata: Option<&NSDictionary<NSString, Object>>,
+            metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Id<Self>;
 
         #[cfg(all(
@@ -385,7 +385,7 @@ extern_methods!(
             total_distance: Option<&HKQuantity>,
             total_swimming_stroke_count: Option<&HKQuantity>,
             device: Option<&HKDevice>,
-            metadata: Option<&NSDictionary<NSString, Object>>,
+            metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Id<Self>;
 
         #[cfg(all(
@@ -407,7 +407,7 @@ extern_methods!(
             total_distance: Option<&HKQuantity>,
             total_flights_climbed: Option<&HKQuantity>,
             device: Option<&HKDevice>,
-            metadata: Option<&NSDictionary<NSString, Object>>,
+            metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Id<Self>;
     }
 );

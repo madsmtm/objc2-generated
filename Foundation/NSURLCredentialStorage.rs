@@ -80,7 +80,7 @@ extern_methods!(
             &self,
             credential: &NSURLCredential,
             space: &NSURLProtectionSpace,
-            options: Option<&NSDictionary<NSString, Object>>,
+            options: Option<&NSDictionary<NSString, AnyObject>>,
         );
 
         #[cfg(all(
@@ -162,7 +162,7 @@ extern_methods!(
             &self,
             credential: &NSURLCredential,
             protection_space: &NSURLProtectionSpace,
-            options: Option<&NSDictionary<NSString, Object>>,
+            options: Option<&NSDictionary<NSString, AnyObject>>,
             task: &NSURLSessionTask,
         );
 

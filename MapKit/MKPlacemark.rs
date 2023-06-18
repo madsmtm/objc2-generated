@@ -49,7 +49,7 @@ extern_methods!(
         pub unsafe fn initWithCoordinate_addressDictionary(
             this: Option<Allocated<Self>>,
             coordinate: CLLocationCoordinate2D,
-            address_dictionary: Option<&NSDictionary<NSString, Object>>,
+            address_dictionary: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Id<Self>;
 
         #[cfg(feature = "Contacts_CNPostalAddress")]

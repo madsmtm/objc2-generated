@@ -172,7 +172,7 @@ extern_methods!(
 
         #[deprecated = "Use -insertText:replacementRange: from NSTextInputClient instead. Since the method is designed to be used solely by the input system, the message should never be sent to a text view from applications. Any content modifications should be via either NSTextStorage or NSText methods."]
         #[method(insertText:)]
-        pub unsafe fn insertText(&self, insert_string: &Object);
+        pub unsafe fn insertText(&self, insert_string: &AnyObject);
 
         #[method(setConstrainedFrameSize:)]
         pub unsafe fn setConstrainedFrameSize(&self, desired_size: NSSize);
@@ -188,65 +188,65 @@ extern_methods!(
         );
 
         #[method(turnOffKerning:)]
-        pub unsafe fn turnOffKerning(&self, sender: Option<&Object>);
+        pub unsafe fn turnOffKerning(&self, sender: Option<&AnyObject>);
 
         #[method(tightenKerning:)]
-        pub unsafe fn tightenKerning(&self, sender: Option<&Object>);
+        pub unsafe fn tightenKerning(&self, sender: Option<&AnyObject>);
 
         #[method(loosenKerning:)]
-        pub unsafe fn loosenKerning(&self, sender: Option<&Object>);
+        pub unsafe fn loosenKerning(&self, sender: Option<&AnyObject>);
 
         #[method(useStandardKerning:)]
-        pub unsafe fn useStandardKerning(&self, sender: Option<&Object>);
+        pub unsafe fn useStandardKerning(&self, sender: Option<&AnyObject>);
 
         #[method(turnOffLigatures:)]
-        pub unsafe fn turnOffLigatures(&self, sender: Option<&Object>);
+        pub unsafe fn turnOffLigatures(&self, sender: Option<&AnyObject>);
 
         #[method(useStandardLigatures:)]
-        pub unsafe fn useStandardLigatures(&self, sender: Option<&Object>);
+        pub unsafe fn useStandardLigatures(&self, sender: Option<&AnyObject>);
 
         #[method(useAllLigatures:)]
-        pub unsafe fn useAllLigatures(&self, sender: Option<&Object>);
+        pub unsafe fn useAllLigatures(&self, sender: Option<&AnyObject>);
 
         #[method(raiseBaseline:)]
-        pub unsafe fn raiseBaseline(&self, sender: Option<&Object>);
+        pub unsafe fn raiseBaseline(&self, sender: Option<&AnyObject>);
 
         #[method(lowerBaseline:)]
-        pub unsafe fn lowerBaseline(&self, sender: Option<&Object>);
+        pub unsafe fn lowerBaseline(&self, sender: Option<&AnyObject>);
 
         #[deprecated = "Use the traditional shaped characters encoded in the Unicode standard. Access the characters via the character palette."]
         #[method(toggleTraditionalCharacterShape:)]
-        pub unsafe fn toggleTraditionalCharacterShape(&self, sender: Option<&Object>);
+        pub unsafe fn toggleTraditionalCharacterShape(&self, sender: Option<&AnyObject>);
 
         #[method(outline:)]
-        pub unsafe fn outline(&self, sender: Option<&Object>);
+        pub unsafe fn outline(&self, sender: Option<&AnyObject>);
 
         #[method(performFindPanelAction:)]
-        pub unsafe fn performFindPanelAction(&self, sender: Option<&Object>);
+        pub unsafe fn performFindPanelAction(&self, sender: Option<&AnyObject>);
 
         #[method(alignJustified:)]
-        pub unsafe fn alignJustified(&self, sender: Option<&Object>);
+        pub unsafe fn alignJustified(&self, sender: Option<&AnyObject>);
 
         #[method(changeColor:)]
-        pub unsafe fn changeColor(&self, sender: Option<&Object>);
+        pub unsafe fn changeColor(&self, sender: Option<&AnyObject>);
 
         #[method(changeAttributes:)]
-        pub unsafe fn changeAttributes(&self, sender: Option<&Object>);
+        pub unsafe fn changeAttributes(&self, sender: Option<&AnyObject>);
 
         #[method(changeDocumentBackgroundColor:)]
-        pub unsafe fn changeDocumentBackgroundColor(&self, sender: Option<&Object>);
+        pub unsafe fn changeDocumentBackgroundColor(&self, sender: Option<&AnyObject>);
 
         #[method(orderFrontSpacingPanel:)]
-        pub unsafe fn orderFrontSpacingPanel(&self, sender: Option<&Object>);
+        pub unsafe fn orderFrontSpacingPanel(&self, sender: Option<&AnyObject>);
 
         #[method(orderFrontLinkPanel:)]
-        pub unsafe fn orderFrontLinkPanel(&self, sender: Option<&Object>);
+        pub unsafe fn orderFrontLinkPanel(&self, sender: Option<&AnyObject>);
 
         #[method(orderFrontListPanel:)]
-        pub unsafe fn orderFrontListPanel(&self, sender: Option<&Object>);
+        pub unsafe fn orderFrontListPanel(&self, sender: Option<&AnyObject>);
 
         #[method(orderFrontTablePanel:)]
-        pub unsafe fn orderFrontTablePanel(&self, sender: Option<&Object>);
+        pub unsafe fn orderFrontTablePanel(&self, sender: Option<&AnyObject>);
 
         #[cfg(all(feature = "AppKit_NSRulerMarker", feature = "AppKit_NSRulerView"))]
         #[method(rulerView:didMoveMarker:)]
@@ -341,19 +341,19 @@ extern_methods!(
         ) -> NSRange;
 
         #[method(clickedOnLink:atIndex:)]
-        pub unsafe fn clickedOnLink_atIndex(&self, link: &Object, char_index: NSUInteger);
+        pub unsafe fn clickedOnLink_atIndex(&self, link: &AnyObject, char_index: NSUInteger);
 
         #[method(startSpeaking:)]
-        pub unsafe fn startSpeaking(&self, sender: Option<&Object>);
+        pub unsafe fn startSpeaking(&self, sender: Option<&AnyObject>);
 
         #[method(stopSpeaking:)]
-        pub unsafe fn stopSpeaking(&self, sender: Option<&Object>);
+        pub unsafe fn stopSpeaking(&self, sender: Option<&AnyObject>);
 
         #[method(setLayoutOrientation:)]
         pub unsafe fn setLayoutOrientation(&self, orientation: NSTextLayoutOrientation);
 
         #[method(changeLayoutOrientation:)]
-        pub unsafe fn changeLayoutOrientation(&self, sender: Option<&Object>);
+        pub unsafe fn changeLayoutOrientation(&self, sender: Option<&AnyObject>);
 
         #[method(characterIndexForInsertionAtPoint:)]
         pub unsafe fn characterIndexForInsertionAtPoint(&self, point: NSPoint) -> NSUInteger;
@@ -403,7 +403,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTextView")]
     unsafe impl NSTextView {
         #[method(complete:)]
-        pub unsafe fn complete(&self, sender: Option<&Object>);
+        pub unsafe fn complete(&self, sender: Option<&AnyObject>);
 
         #[method(rangeForUserCompletion)]
         pub unsafe fn rangeForUserCompletion(&self) -> NSRange;
@@ -484,13 +484,13 @@ extern_methods!(
             &self,
             send_type: Option<&NSPasteboardType>,
             return_type: Option<&NSPasteboardType>,
-        ) -> Option<Id<Object>>;
+        ) -> Option<Id<AnyObject>>;
 
         #[method(pasteAsPlainText:)]
-        pub unsafe fn pasteAsPlainText(&self, sender: Option<&Object>);
+        pub unsafe fn pasteAsPlainText(&self, sender: Option<&AnyObject>);
 
         #[method(pasteAsRichText:)]
-        pub unsafe fn pasteAsRichText(&self, sender: Option<&Object>);
+        pub unsafe fn pasteAsRichText(&self, sender: Option<&AnyObject>);
     }
 );
 
@@ -573,13 +573,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Other selectedTextAttributes)]
         pub unsafe fn selectedTextAttributes(
             &self,
-        ) -> Id<NSDictionary<NSAttributedStringKey, Object>>;
+        ) -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setSelectedTextAttributes:)]
         pub unsafe fn setSelectedTextAttributes(
             &self,
-            selected_text_attributes: &NSDictionary<NSAttributedStringKey, Object>,
+            selected_text_attributes: &NSDictionary<NSAttributedStringKey, AnyObject>,
         );
 
         #[cfg(feature = "AppKit_NSColor")]
@@ -597,26 +597,26 @@ extern_methods!(
         #[method_id(@__retain_semantics Other markedTextAttributes)]
         pub unsafe fn markedTextAttributes(
             &self,
-        ) -> Option<Id<NSDictionary<NSAttributedStringKey, Object>>>;
+        ) -> Option<Id<NSDictionary<NSAttributedStringKey, AnyObject>>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setMarkedTextAttributes:)]
         pub unsafe fn setMarkedTextAttributes(
             &self,
-            marked_text_attributes: Option<&NSDictionary<NSAttributedStringKey, Object>>,
+            marked_text_attributes: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
         );
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other linkTextAttributes)]
         pub unsafe fn linkTextAttributes(
             &self,
-        ) -> Option<Id<NSDictionary<NSAttributedStringKey, Object>>>;
+        ) -> Option<Id<NSDictionary<NSAttributedStringKey, AnyObject>>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setLinkTextAttributes:)]
         pub unsafe fn setLinkTextAttributes(
             &self,
-            link_text_attributes: Option<&NSDictionary<NSAttributedStringKey, Object>>,
+            link_text_attributes: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
         );
 
         #[method(displaysLinkToolTips)]
@@ -653,7 +653,7 @@ extern_methods!(
         );
 
         #[method(toggleContinuousSpellChecking:)]
-        pub unsafe fn toggleContinuousSpellChecking(&self, sender: Option<&Object>);
+        pub unsafe fn toggleContinuousSpellChecking(&self, sender: Option<&AnyObject>);
 
         #[method(spellCheckerDocumentTag)]
         pub unsafe fn spellCheckerDocumentTag(&self) -> NSInteger;
@@ -665,20 +665,21 @@ extern_methods!(
         pub unsafe fn setGrammarCheckingEnabled(&self, grammar_checking_enabled: bool);
 
         #[method(toggleGrammarChecking:)]
-        pub unsafe fn toggleGrammarChecking(&self, sender: Option<&Object>);
+        pub unsafe fn toggleGrammarChecking(&self, sender: Option<&AnyObject>);
 
         #[method(setSpellingState:range:)]
         pub unsafe fn setSpellingState_range(&self, value: NSInteger, char_range: NSRange);
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other typingAttributes)]
-        pub unsafe fn typingAttributes(&self) -> Id<NSDictionary<NSAttributedStringKey, Object>>;
+        pub unsafe fn typingAttributes(&self)
+            -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setTypingAttributes:)]
         pub unsafe fn setTypingAttributes(
             &self,
-            typing_attributes: &NSDictionary<NSAttributedStringKey, Object>,
+            typing_attributes: &NSDictionary<NSAttributedStringKey, AnyObject>,
         );
 
         #[cfg(all(
@@ -870,7 +871,7 @@ extern_methods!(
         ) -> NSRange;
 
         #[method(toggleSmartInsertDelete:)]
-        pub unsafe fn toggleSmartInsertDelete(&self, sender: Option<&Object>);
+        pub unsafe fn toggleSmartInsertDelete(&self, sender: Option<&AnyObject>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(smartInsertForString:replacingRange:beforeString:afterString:)]
@@ -908,7 +909,7 @@ extern_methods!(
         );
 
         #[method(toggleAutomaticQuoteSubstitution:)]
-        pub unsafe fn toggleAutomaticQuoteSubstitution(&self, sender: Option<&Object>);
+        pub unsafe fn toggleAutomaticQuoteSubstitution(&self, sender: Option<&AnyObject>);
 
         #[method(isAutomaticLinkDetectionEnabled)]
         pub unsafe fn isAutomaticLinkDetectionEnabled(&self) -> bool;
@@ -920,7 +921,7 @@ extern_methods!(
         );
 
         #[method(toggleAutomaticLinkDetection:)]
-        pub unsafe fn toggleAutomaticLinkDetection(&self, sender: Option<&Object>);
+        pub unsafe fn toggleAutomaticLinkDetection(&self, sender: Option<&AnyObject>);
 
         #[method(isAutomaticDataDetectionEnabled)]
         pub unsafe fn isAutomaticDataDetectionEnabled(&self) -> bool;
@@ -932,7 +933,7 @@ extern_methods!(
         );
 
         #[method(toggleAutomaticDataDetection:)]
-        pub unsafe fn toggleAutomaticDataDetection(&self, sender: Option<&Object>);
+        pub unsafe fn toggleAutomaticDataDetection(&self, sender: Option<&AnyObject>);
 
         #[method(isAutomaticDashSubstitutionEnabled)]
         pub unsafe fn isAutomaticDashSubstitutionEnabled(&self) -> bool;
@@ -944,7 +945,7 @@ extern_methods!(
         );
 
         #[method(toggleAutomaticDashSubstitution:)]
-        pub unsafe fn toggleAutomaticDashSubstitution(&self, sender: Option<&Object>);
+        pub unsafe fn toggleAutomaticDashSubstitution(&self, sender: Option<&AnyObject>);
 
         #[method(isAutomaticTextReplacementEnabled)]
         pub unsafe fn isAutomaticTextReplacementEnabled(&self) -> bool;
@@ -956,7 +957,7 @@ extern_methods!(
         );
 
         #[method(toggleAutomaticTextReplacement:)]
-        pub unsafe fn toggleAutomaticTextReplacement(&self, sender: Option<&Object>);
+        pub unsafe fn toggleAutomaticTextReplacement(&self, sender: Option<&AnyObject>);
 
         #[method(isAutomaticSpellingCorrectionEnabled)]
         pub unsafe fn isAutomaticSpellingCorrectionEnabled(&self) -> bool;
@@ -968,7 +969,7 @@ extern_methods!(
         );
 
         #[method(toggleAutomaticSpellingCorrection:)]
-        pub unsafe fn toggleAutomaticSpellingCorrection(&self, sender: Option<&Object>);
+        pub unsafe fn toggleAutomaticSpellingCorrection(&self, sender: Option<&AnyObject>);
 
         #[method(enabledTextCheckingTypes)]
         pub unsafe fn enabledTextCheckingTypes(&self) -> NSTextCheckingTypes;
@@ -985,7 +986,7 @@ extern_methods!(
             &self,
             range: NSRange,
             checking_types: NSTextCheckingTypes,
-            options: &NSDictionary<NSTextCheckingOptionKey, Object>,
+            options: &NSDictionary<NSTextCheckingOptionKey, AnyObject>,
         );
 
         #[cfg(all(
@@ -1000,19 +1001,19 @@ extern_methods!(
             results: &NSArray<NSTextCheckingResult>,
             range: NSRange,
             checking_types: NSTextCheckingTypes,
-            options: &NSDictionary<NSTextCheckingOptionKey, Object>,
+            options: &NSDictionary<NSTextCheckingOptionKey, AnyObject>,
             orthography: &NSOrthography,
             word_count: NSInteger,
         );
 
         #[method(orderFrontSubstitutionsPanel:)]
-        pub unsafe fn orderFrontSubstitutionsPanel(&self, sender: Option<&Object>);
+        pub unsafe fn orderFrontSubstitutionsPanel(&self, sender: Option<&AnyObject>);
 
         #[method(checkTextInSelection:)]
-        pub unsafe fn checkTextInSelection(&self, sender: Option<&Object>);
+        pub unsafe fn checkTextInSelection(&self, sender: Option<&AnyObject>);
 
         #[method(checkTextInDocument:)]
-        pub unsafe fn checkTextInDocument(&self, sender: Option<&Object>);
+        pub unsafe fn checkTextInDocument(&self, sender: Option<&AnyObject>);
 
         #[method(usesFindPanel)]
         pub unsafe fn usesFindPanel(&self) -> bool;
@@ -1039,7 +1040,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTextView")]
     unsafe impl NSTextView {
         #[method(toggleQuickLookPreviewPanel:)]
-        pub unsafe fn toggleQuickLookPreviewPanel(&self, sender: Option<&Object>);
+        pub unsafe fn toggleQuickLookPreviewPanel(&self, sender: Option<&AnyObject>);
 
         #[method(updateQuickLookPreviewPanel)]
         pub unsafe fn updateQuickLookPreviewPanel(&self);
@@ -1051,7 +1052,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTextView")]
     unsafe impl NSTextView {
         #[method(orderFrontSharingServicePicker:)]
-        pub unsafe fn orderFrontSharingServicePicker(&self, sender: Option<&Object>);
+        pub unsafe fn orderFrontSharingServicePicker(&self, sender: Option<&AnyObject>);
     }
 );
 
@@ -1069,7 +1070,7 @@ extern_methods!(
         );
 
         #[method(toggleAutomaticTextCompletion:)]
-        pub unsafe fn toggleAutomaticTextCompletion(&self, sender: Option<&Object>);
+        pub unsafe fn toggleAutomaticTextCompletion(&self, sender: Option<&AnyObject>);
 
         #[method(allowsCharacterPickerTouchBarItem)]
         pub unsafe fn allowsCharacterPickerTouchBarItem(&self) -> bool;
@@ -1128,7 +1129,7 @@ extern_methods!(
     unsafe impl NSTextView {
         #[deprecated = "Use NSResponder's makeBaseWritingDirectionNatural:, makeBaseWritingDirectionLeftToRight:, and makeBaseWritingDirectionRightToLeft: instead"]
         #[method(toggleBaseWritingDirection:)]
-        pub unsafe fn toggleBaseWritingDirection(&self, sender: Option<&Object>);
+        pub unsafe fn toggleBaseWritingDirection(&self, sender: Option<&AnyObject>);
     }
 );
 
@@ -1140,7 +1141,7 @@ extern_protocol!(
         unsafe fn textView_clickedOnLink_atIndex(
             &self,
             text_view: &NSTextView,
-            link: &Object,
+            link: &AnyObject,
             char_index: NSUInteger,
         ) -> bool;
 
@@ -1249,9 +1250,9 @@ extern_protocol!(
         unsafe fn textView_shouldChangeTypingAttributes_toAttributes(
             &self,
             text_view: &NSTextView,
-            old_typing_attributes: &NSDictionary<NSString, Object>,
-            new_typing_attributes: &NSDictionary<NSAttributedStringKey, Object>,
-        ) -> Id<NSDictionary<NSAttributedStringKey, Object>>;
+            old_typing_attributes: &NSDictionary<NSString, AnyObject>,
+            new_typing_attributes: &NSDictionary<NSAttributedStringKey, AnyObject>,
+        ) -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
@@ -1339,9 +1340,9 @@ extern_protocol!(
             &self,
             view: &NSTextView,
             range: NSRange,
-            options: &NSDictionary<NSTextCheckingOptionKey, Object>,
+            options: &NSDictionary<NSTextCheckingOptionKey, AnyObject>,
             checking_types: NonNull<NSTextCheckingTypes>,
-        ) -> Id<NSDictionary<NSTextCheckingOptionKey, Object>>;
+        ) -> Id<NSDictionary<NSTextCheckingOptionKey, AnyObject>>;
 
         #[cfg(all(
             feature = "AppKit_NSTextView",
@@ -1357,7 +1358,7 @@ extern_protocol!(
             view: &NSTextView,
             range: NSRange,
             checking_types: NSTextCheckingTypes,
-            options: &NSDictionary<NSTextCheckingOptionKey, Object>,
+            options: &NSDictionary<NSTextCheckingOptionKey, AnyObject>,
             results: &NSArray<NSTextCheckingResult>,
             orthography: &NSOrthography,
             word_count: NSInteger,
@@ -1444,7 +1445,7 @@ extern_protocol!(
         unsafe fn textView_clickedOnLink(
             &self,
             text_view: &NSTextView,
-            link: Option<&Object>,
+            link: Option<&AnyObject>,
         ) -> bool;
 
         #[cfg(feature = "AppKit_NSTextView")]

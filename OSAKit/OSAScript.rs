@@ -120,7 +120,7 @@ extern_methods!(
         pub unsafe fn initWithContentsOfURL_error(
             this: Option<Allocated<Self>>,
             url: &NSURL,
-            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>>>>,
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, AnyObject>>>>,
         ) -> Option<Id<Self>>;
 
         #[cfg(all(
@@ -135,7 +135,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             url: &NSURL,
             language: &OSALanguage,
-            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>>>>,
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, AnyObject>>>>,
         ) -> Id<Self>;
 
         #[cfg(all(
@@ -161,7 +161,7 @@ extern_methods!(
         pub unsafe fn initWithCompiledData_error(
             this: Option<Allocated<Self>>,
             data: &NSData,
-            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>>>>,
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, AnyObject>>>>,
         ) -> Id<Self>;
 
         #[cfg(all(
@@ -223,7 +223,7 @@ extern_methods!(
         #[method(compileAndReturnError:)]
         pub unsafe fn compileAndReturnError(
             &self,
-            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>>>>,
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, AnyObject>>>>,
         ) -> bool;
 
         #[cfg(all(
@@ -234,7 +234,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other executeAndReturnError:)]
         pub unsafe fn executeAndReturnError(
             &self,
-            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>>>>,
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, AnyObject>>>>,
         ) -> Option<Id<NSAppleEventDescriptor>>;
 
         #[cfg(all(
@@ -246,7 +246,7 @@ extern_methods!(
         pub unsafe fn executeAppleEvent_error(
             &self,
             event: &NSAppleEventDescriptor,
-            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>>>>,
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, AnyObject>>>>,
         ) -> Option<Id<NSAppleEventDescriptor>>;
 
         #[cfg(all(
@@ -259,7 +259,7 @@ extern_methods!(
         pub unsafe fn executeAndReturnDisplayValue_error(
             &self,
             display_value: &mut Option<Id<NSAttributedString>>,
-            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>>>>,
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, AnyObject>>>>,
         ) -> Option<Id<NSAppleEventDescriptor>>;
 
         #[cfg(all(
@@ -273,7 +273,7 @@ extern_methods!(
             &self,
             name: &NSString,
             arguments: &NSArray,
-            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>>>>,
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, AnyObject>>>>,
         ) -> Option<Id<NSAppleEventDescriptor>>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
@@ -300,7 +300,7 @@ extern_methods!(
             &self,
             url: &NSURL,
             r#type: &NSString,
-            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>>>>,
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, AnyObject>>>>,
         ) -> bool;
 
         #[cfg(all(
@@ -314,7 +314,7 @@ extern_methods!(
             url: &NSURL,
             r#type: &NSString,
             storage_options: OSAStorageOptions,
-            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>>>>,
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, AnyObject>>>>,
         ) -> bool;
 
         #[cfg(all(
@@ -327,7 +327,7 @@ extern_methods!(
             &self,
             r#type: &NSString,
             storage_options: OSAStorageOptions,
-            error_info: Option<&mut Option<Id<NSDictionary<NSString, Object>>>>,
+            error_info: Option<&mut Option<Id<NSDictionary<NSString, AnyObject>>>>,
         ) -> Option<Id<NSData>>;
     }
 );

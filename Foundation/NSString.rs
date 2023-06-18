@@ -213,7 +213,7 @@ extern_methods!(
             string: &NSString,
             mask: NSStringCompareOptions,
             range_of_receiver_to_compare: NSRange,
-            locale: Option<&Object>,
+            locale: Option<&AnyObject>,
         ) -> NSComparisonResult;
 
         #[method(caseInsensitiveCompare:)]
@@ -930,7 +930,7 @@ extern_methods!(
         #[method(stringEncodingForData:encodingOptions:convertedString:usedLossyConversion:)]
         pub unsafe fn stringEncodingForData_encodingOptions_convertedString_usedLossyConversion(
             data: &NSData,
-            opts: Option<&NSDictionary<NSStringEncodingDetectionOptionsKey, Object>>,
+            opts: Option<&NSDictionary<NSStringEncodingDetectionOptionsKey, AnyObject>>,
             string: Option<&mut Option<Id<NSString>>>,
             used_lossy_conversion: *mut Bool,
         ) -> NSStringEncoding;
@@ -1079,7 +1079,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSString")]
     unsafe impl NSString {
         #[method_id(@__retain_semantics Other propertyList)]
-        pub unsafe fn propertyList(&self) -> Id<Object>;
+        pub unsafe fn propertyList(&self) -> Id<AnyObject>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other propertyListFromStringsFileFormat)]
@@ -1151,12 +1151,12 @@ extern_methods!(
 
         #[deprecated = "Use +stringWithContentsOfFile:encoding:error: instead"]
         #[method_id(@__retain_semantics Other stringWithContentsOfFile:)]
-        pub unsafe fn stringWithContentsOfFile(path: &NSString) -> Option<Id<Object>>;
+        pub unsafe fn stringWithContentsOfFile(path: &NSString) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[deprecated = "Use +stringWithContentsOfURL:encoding:error: instead"]
         #[method_id(@__retain_semantics Other stringWithContentsOfURL:)]
-        pub unsafe fn stringWithContentsOfURL(url: &NSURL) -> Option<Id<Object>>;
+        pub unsafe fn stringWithContentsOfURL(url: &NSURL) -> Option<Id<AnyObject>>;
 
         #[deprecated = "Use -initWithCString:encoding: instead"]
         #[method_id(@__retain_semantics Init initWithCStringNoCopy:length:freeWhenDone:)]
@@ -1187,11 +1187,11 @@ extern_methods!(
         pub unsafe fn stringWithCString_length(
             bytes: NonNull<c_char>,
             length: NSUInteger,
-        ) -> Option<Id<Object>>;
+        ) -> Option<Id<AnyObject>>;
 
         #[deprecated = "Use +stringWithCString:encoding: instead"]
         #[method_id(@__retain_semantics Other stringWithCString:)]
-        pub unsafe fn stringWithCString(bytes: NonNull<c_char>) -> Option<Id<Object>>;
+        pub unsafe fn stringWithCString(bytes: NonNull<c_char>) -> Option<Id<AnyObject>>;
 
         #[method(getCharacters:)]
         pub unsafe fn getCharacters(&self, buffer: NonNull<unichar>);

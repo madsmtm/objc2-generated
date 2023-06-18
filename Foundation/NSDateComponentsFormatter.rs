@@ -58,7 +58,7 @@ extern_methods!(
     unsafe impl NSDateComponentsFormatter {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringForObjectValue:)]
-        pub unsafe fn stringForObjectValue(&self, obj: Option<&Object>) -> Option<Id<NSString>>;
+        pub unsafe fn stringForObjectValue(&self, obj: Option<&AnyObject>) -> Option<Id<NSString>>;
 
         #[cfg(all(
             feature = "Foundation_NSDateComponents",
@@ -171,7 +171,7 @@ extern_methods!(
         #[method(getObjectValue:forString:errorDescription:)]
         pub unsafe fn getObjectValue_forString_errorDescription(
             &self,
-            obj: Option<&mut Option<Id<Object>>>,
+            obj: Option<&mut Option<Id<AnyObject>>>,
             string: &NSString,
             error: Option<&mut Option<Id<NSString>>>,
         ) -> bool;

@@ -60,10 +60,10 @@ extern_methods!(
         pub unsafe fn commandDescription(&self) -> Id<NSScriptCommandDescription>;
 
         #[method_id(@__retain_semantics Other directParameter)]
-        pub unsafe fn directParameter(&self) -> Option<Id<Object>>;
+        pub unsafe fn directParameter(&self) -> Option<Id<AnyObject>>;
 
         #[method(setDirectParameter:)]
-        pub unsafe fn setDirectParameter(&self, direct_parameter: Option<&Object>);
+        pub unsafe fn setDirectParameter(&self, direct_parameter: Option<&AnyObject>);
 
         #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
         #[method_id(@__retain_semantics Other receiversSpecifier)]
@@ -77,28 +77,28 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Other evaluatedReceivers)]
-        pub unsafe fn evaluatedReceivers(&self) -> Option<Id<Object>>;
+        pub unsafe fn evaluatedReceivers(&self) -> Option<Id<AnyObject>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other arguments)]
-        pub unsafe fn arguments(&self) -> Option<Id<NSDictionary<NSString, Object>>>;
+        pub unsafe fn arguments(&self) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setArguments:)]
-        pub unsafe fn setArguments(&self, arguments: Option<&NSDictionary<NSString, Object>>);
+        pub unsafe fn setArguments(&self, arguments: Option<&NSDictionary<NSString, AnyObject>>);
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other evaluatedArguments)]
-        pub unsafe fn evaluatedArguments(&self) -> Option<Id<NSDictionary<NSString, Object>>>;
+        pub unsafe fn evaluatedArguments(&self) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
         #[method(isWellFormed)]
         pub unsafe fn isWellFormed(&self) -> bool;
 
         #[method_id(@__retain_semantics Other performDefaultImplementation)]
-        pub unsafe fn performDefaultImplementation(&self) -> Option<Id<Object>>;
+        pub unsafe fn performDefaultImplementation(&self) -> Option<Id<AnyObject>>;
 
         #[method_id(@__retain_semantics Other executeCommand)]
-        pub unsafe fn executeCommand(&self) -> Option<Id<Object>>;
+        pub unsafe fn executeCommand(&self) -> Option<Id<AnyObject>>;
 
         #[method(scriptErrorNumber)]
         pub unsafe fn scriptErrorNumber(&self) -> NSInteger;
@@ -151,7 +151,7 @@ extern_methods!(
         pub unsafe fn suspendExecution(&self);
 
         #[method(resumeExecutionWithResult:)]
-        pub unsafe fn resumeExecutionWithResult(&self, result: Option<&Object>);
+        pub unsafe fn resumeExecutionWithResult(&self, result: Option<&AnyObject>);
     }
 );
 

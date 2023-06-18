@@ -293,7 +293,7 @@ extern_methods!(
         pub unsafe fn segmentedControlWithLabels_trackingMode_target_action(
             labels: &NSArray<NSString>,
             tracking_mode: NSSegmentSwitchTracking,
-            target: Option<&Object>,
+            target: Option<&AnyObject>,
             action: Option<Sel>,
         ) -> Id<Self>;
 
@@ -302,7 +302,7 @@ extern_methods!(
         pub unsafe fn segmentedControlWithImages_trackingMode_target_action(
             images: &NSArray<NSImage>,
             tracking_mode: NSSegmentSwitchTracking,
-            target: Option<&Object>,
+            target: Option<&AnyObject>,
             action: Option<Sel>,
         ) -> Id<Self>;
     }

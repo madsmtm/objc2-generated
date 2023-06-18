@@ -111,10 +111,10 @@ extern_methods!(
         pub unsafe fn setUsesThreadedAnimation(&self, uses_threaded_animation: bool);
 
         #[method(startAnimation:)]
-        pub unsafe fn startAnimation(&self, sender: Option<&Object>);
+        pub unsafe fn startAnimation(&self, sender: Option<&AnyObject>);
 
         #[method(stopAnimation:)]
-        pub unsafe fn stopAnimation(&self, sender: Option<&Object>);
+        pub unsafe fn stopAnimation(&self, sender: Option<&AnyObject>);
 
         #[method(style)]
         pub unsafe fn style(&self) -> NSProgressIndicatorStyle;
@@ -202,6 +202,6 @@ extern_methods!(
 
         #[deprecated = "Use -startAnimation and -stopAnimation instead."]
         #[method(animate:)]
-        pub unsafe fn animate(&self, sender: Option<&Object>);
+        pub unsafe fn animate(&self, sender: Option<&AnyObject>);
     }
 );

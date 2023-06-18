@@ -15,7 +15,7 @@ ns_options!(
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSOrderedCollectionDifference")]
-    pub struct NSOrderedCollectionDifference<ObjectType: Message = Object> {
+    pub struct NSOrderedCollectionDifference<ObjectType: Message = AnyObject> {
         __superclass: NSObject,
         _inner0: PhantomData<*mut ObjectType>,
         notunwindsafe: PhantomData<&'static mut ()>,
@@ -103,9 +103,9 @@ extern_methods!(
             &self,
             block: &Block<
                 (NonNull<NSOrderedCollectionChange<ObjectType>>,),
-                NonNull<NSOrderedCollectionChange<Object>>,
+                NonNull<NSOrderedCollectionChange<AnyObject>>,
             >,
-        ) -> Id<NSOrderedCollectionDifference<Object>>;
+        ) -> Id<NSOrderedCollectionDifference<AnyObject>>;
 
         #[method_id(@__retain_semantics Other inverseDifference)]
         pub unsafe fn inverseDifference(&self) -> Id<Self>;

@@ -78,7 +78,7 @@ extern_methods!(
         pub unsafe fn setBordered(&self, bordered: bool);
 
         #[method(takeColorFrom:)]
-        pub unsafe fn takeColorFrom(&self, sender: Option<&Object>);
+        pub unsafe fn takeColorFrom(&self, sender: Option<&AnyObject>);
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other color)]
@@ -103,10 +103,10 @@ extern_methods!(
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
         #[method_id(@__retain_semantics Other pulldownTarget)]
-        pub unsafe fn pulldownTarget(&self) -> Option<Id<Object>>;
+        pub unsafe fn pulldownTarget(&self) -> Option<Id<AnyObject>>;
 
         #[method(setPulldownTarget:)]
-        pub unsafe fn setPulldownTarget(&self, pulldown_target: Option<&Object>);
+        pub unsafe fn setPulldownTarget(&self, pulldown_target: Option<&AnyObject>);
 
         #[method(pulldownAction)]
         pub unsafe fn pulldownAction(&self) -> Option<Sel>;

@@ -70,8 +70,8 @@ extern_methods!(
         #[method(frameSizeForContentSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle:)]
         pub unsafe fn frameSizeForContentSize_horizontalScrollerClass_verticalScrollerClass_borderType_controlSize_scrollerStyle(
             c_size: NSSize,
-            horizontal_scroller_class: Option<&Class>,
-            vertical_scroller_class: Option<&Class>,
+            horizontal_scroller_class: Option<&AnyClass>,
+            vertical_scroller_class: Option<&AnyClass>,
             r#type: NSBorderType,
             control_size: NSControlSize,
             scroller_style: NSScrollerStyle,
@@ -80,8 +80,8 @@ extern_methods!(
         #[method(contentSizeForFrameSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle:)]
         pub unsafe fn contentSizeForFrameSize_horizontalScrollerClass_verticalScrollerClass_borderType_controlSize_scrollerStyle(
             f_size: NSSize,
-            horizontal_scroller_class: Option<&Class>,
-            vertical_scroller_class: Option<&Class>,
+            horizontal_scroller_class: Option<&AnyClass>,
+            vertical_scroller_class: Option<&AnyClass>,
             r#type: NSBorderType,
             control_size: NSControlSize,
             scroller_style: NSScrollerStyle,
@@ -372,10 +372,10 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSScrollView")]
     unsafe impl NSScrollView {
         #[method(rulerViewClass)]
-        pub unsafe fn rulerViewClass() -> Option<&'static Class>;
+        pub unsafe fn rulerViewClass() -> Option<&'static AnyClass>;
 
         #[method(setRulerViewClass:)]
-        pub unsafe fn setRulerViewClass(ruler_view_class: Option<&Class>);
+        pub unsafe fn setRulerViewClass(ruler_view_class: Option<&AnyClass>);
 
         #[method(rulersVisible)]
         pub unsafe fn rulersVisible(&self) -> bool;

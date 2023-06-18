@@ -167,8 +167,10 @@ extern_methods!(
         pub unsafe fn indexOfItemWithTag(&self, tag: NSInteger) -> NSInteger;
 
         #[method(indexOfItemWithRepresentedObject:)]
-        pub unsafe fn indexOfItemWithRepresentedObject(&self, object: Option<&Object>)
-            -> NSInteger;
+        pub unsafe fn indexOfItemWithRepresentedObject(
+            &self,
+            object: Option<&AnyObject>,
+        ) -> NSInteger;
 
         #[method(indexOfItemWithSubmenu:)]
         pub unsafe fn indexOfItemWithSubmenu(&self, submenu: Option<&NSMenu>) -> NSInteger;
@@ -176,7 +178,7 @@ extern_methods!(
         #[method(indexOfItemWithTarget:andAction:)]
         pub unsafe fn indexOfItemWithTarget_andAction(
             &self,
-            target: Option<&Object>,
+            target: Option<&AnyObject>,
             action_selector: Option<Sel>,
         ) -> NSInteger;
 
@@ -284,7 +286,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSMenu")]
     unsafe impl NSMenu {
         #[method(submenuAction:)]
-        pub unsafe fn submenuAction(&self, sender: Option<&Object>);
+        pub unsafe fn submenuAction(&self, sender: Option<&AnyObject>);
     }
 );
 
@@ -390,27 +392,27 @@ extern_methods!(
     unsafe impl NSMenu {
         #[deprecated]
         #[method(setMenuRepresentation:)]
-        pub unsafe fn setMenuRepresentation(&self, menu_rep: Option<&Object>);
+        pub unsafe fn setMenuRepresentation(&self, menu_rep: Option<&AnyObject>);
 
         #[deprecated]
         #[method_id(@__retain_semantics Other menuRepresentation)]
-        pub unsafe fn menuRepresentation(&self) -> Option<Id<Object>>;
+        pub unsafe fn menuRepresentation(&self) -> Option<Id<AnyObject>>;
 
         #[deprecated]
         #[method(setContextMenuRepresentation:)]
-        pub unsafe fn setContextMenuRepresentation(&self, menu_rep: Option<&Object>);
+        pub unsafe fn setContextMenuRepresentation(&self, menu_rep: Option<&AnyObject>);
 
         #[deprecated]
         #[method_id(@__retain_semantics Other contextMenuRepresentation)]
-        pub unsafe fn contextMenuRepresentation(&self) -> Option<Id<Object>>;
+        pub unsafe fn contextMenuRepresentation(&self) -> Option<Id<AnyObject>>;
 
         #[deprecated]
         #[method(setTearOffMenuRepresentation:)]
-        pub unsafe fn setTearOffMenuRepresentation(&self, menu_rep: Option<&Object>);
+        pub unsafe fn setTearOffMenuRepresentation(&self, menu_rep: Option<&AnyObject>);
 
         #[deprecated]
         #[method_id(@__retain_semantics Other tearOffMenuRepresentation)]
-        pub unsafe fn tearOffMenuRepresentation(&self) -> Option<Id<Object>>;
+        pub unsafe fn tearOffMenuRepresentation(&self) -> Option<Id<AnyObject>>;
 
         #[deprecated]
         #[method(menuZone)]

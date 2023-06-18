@@ -78,7 +78,7 @@ extern_methods!(
         #[method(setDataReceiveHandler:withContext:)]
         pub unsafe fn setDataReceiveHandler_withContext(
             &self,
-            handler: Option<&Object>,
+            handler: Option<&AnyObject>,
             context: *mut c_void,
         );
 

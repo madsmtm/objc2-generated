@@ -47,7 +47,7 @@ extern_methods!(
             document_data: &NSData,
             start_date: &NSDate,
             end_date: &NSDate,
-            metadata: Option<&NSDictionary<NSString, Object>>,
+            metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Result<Id<Self>, Id<NSError>>;
     }
 );

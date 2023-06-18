@@ -87,7 +87,7 @@ extern_methods!(
         #[method(openInMapsWithLaunchOptions:)]
         pub unsafe fn openInMapsWithLaunchOptions(
             &self,
-            launch_options: Option<&NSDictionary<NSString, Object>>,
+            launch_options: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> bool;
 
         #[cfg(all(
@@ -98,7 +98,7 @@ extern_methods!(
         #[method(openMapsWithItems:launchOptions:)]
         pub unsafe fn openMapsWithItems_launchOptions(
             map_items: &NSArray<MKMapItem>,
-            launch_options: Option<&NSDictionary<NSString, Object>>,
+            launch_options: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> bool;
     }
 );

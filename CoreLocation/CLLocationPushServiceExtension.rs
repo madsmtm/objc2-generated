@@ -11,7 +11,7 @@ extern_protocol!(
         #[method(didReceiveLocationPushPayload:completion:)]
         unsafe fn didReceiveLocationPushPayload_completion(
             &self,
-            payload: &NSDictionary<NSString, Object>,
+            payload: &NSDictionary<NSString, AnyObject>,
             completion: &Block<(), ()>,
         );
 

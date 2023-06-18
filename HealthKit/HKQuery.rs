@@ -84,7 +84,7 @@ extern_methods!(
         pub unsafe fn predicateForObjectsWithMetadataKey_operatorType_value(
             key: &NSString,
             operator_type: NSPredicateOperatorType,
-            value: &Object,
+            value: &AnyObject,
         ) -> Id<NSPredicate>;
 
         #[cfg(all(feature = "Foundation_NSPredicate", feature = "HealthKit_HKSource"))]

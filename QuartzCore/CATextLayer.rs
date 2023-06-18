@@ -41,10 +41,10 @@ extern_methods!(
     #[cfg(feature = "CoreAnimation_CATextLayer")]
     unsafe impl CATextLayer {
         #[method_id(@__retain_semantics Other string)]
-        pub unsafe fn string(&self) -> Option<Id<Object>>;
+        pub unsafe fn string(&self) -> Option<Id<AnyObject>>;
 
         #[method(setString:)]
-        pub unsafe fn setString(&self, string: Option<&Object>);
+        pub unsafe fn setString(&self, string: Option<&AnyObject>);
 
         #[method(fontSize)]
         pub unsafe fn fontSize(&self) -> CGFloat;
@@ -92,7 +92,7 @@ extern_methods!(
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithLayer:)]
-        pub unsafe fn initWithLayer(this: Option<Allocated<Self>>, layer: &Object) -> Id<Self>;
+        pub unsafe fn initWithLayer(this: Option<Allocated<Self>>, layer: &AnyObject) -> Id<Self>;
     }
 );
 

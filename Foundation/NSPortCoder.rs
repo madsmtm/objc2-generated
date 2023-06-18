@@ -49,7 +49,7 @@ extern_methods!(
             rcv_port: Option<&NSPort>,
             snd_port: Option<&NSPort>,
             comps: Option<&NSArray>,
-        ) -> Id<Object>;
+        ) -> Id<AnyObject>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSPort"))]
         #[deprecated]

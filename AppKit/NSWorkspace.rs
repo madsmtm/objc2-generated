@@ -420,7 +420,7 @@ extern_methods!(
             &self,
             url: &NSURL,
             screen: &NSScreen,
-            options: &NSDictionary<NSWorkspaceDesktopImageOptionKey, Object>,
+            options: &NSDictionary<NSWorkspaceDesktopImageOptionKey, AnyObject>,
         ) -> Result<(), Id<NSError>>;
 
         #[cfg(all(feature = "AppKit_NSScreen", feature = "Foundation_NSURL"))]
@@ -432,7 +432,7 @@ extern_methods!(
         pub unsafe fn desktopImageOptionsForScreen(
             &self,
             screen: &NSScreen,
-        ) -> Option<Id<NSDictionary<NSWorkspaceDesktopImageOptionKey, Object>>>;
+        ) -> Option<Id<NSDictionary<NSWorkspaceDesktopImageOptionKey, AnyObject>>>;
     }
 );
 
@@ -653,7 +653,7 @@ extern_methods!(
             &self,
             url: &NSURL,
             options: NSWorkspaceLaunchOptions,
-            configuration: &NSDictionary<NSWorkspaceLaunchConfigurationKey, Object>,
+            configuration: &NSDictionary<NSWorkspaceLaunchConfigurationKey, AnyObject>,
         ) -> Result<Id<NSRunningApplication>, Id<NSError>>;
 
         #[cfg(all(
@@ -668,7 +668,7 @@ extern_methods!(
             &self,
             url: &NSURL,
             options: NSWorkspaceLaunchOptions,
-            configuration: &NSDictionary<NSWorkspaceLaunchConfigurationKey, Object>,
+            configuration: &NSDictionary<NSWorkspaceLaunchConfigurationKey, AnyObject>,
         ) -> Result<Id<NSRunningApplication>, Id<NSError>>;
 
         #[cfg(all(
@@ -685,7 +685,7 @@ extern_methods!(
             urls: &NSArray<NSURL>,
             application_url: &NSURL,
             options: NSWorkspaceLaunchOptions,
-            configuration: &NSDictionary<NSWorkspaceLaunchConfigurationKey, Object>,
+            configuration: &NSDictionary<NSWorkspaceLaunchConfigurationKey, AnyObject>,
         ) -> Result<Id<NSRunningApplication>, Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSString")]

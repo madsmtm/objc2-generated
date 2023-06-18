@@ -66,10 +66,10 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSFontManager")]
     unsafe impl NSFontManager {
         #[method(setFontPanelFactory:)]
-        pub unsafe fn setFontPanelFactory(factory_id: Option<&Class>);
+        pub unsafe fn setFontPanelFactory(factory_id: Option<&AnyClass>);
 
         #[method(setFontManagerFactory:)]
-        pub unsafe fn setFontManagerFactory(factory_id: Option<&Class>);
+        pub unsafe fn setFontManagerFactory(factory_id: Option<&AnyClass>);
 
         #[method_id(@__retain_semantics Other sharedFontManager)]
         pub unsafe fn sharedFontManager() -> Id<NSFontManager>;
@@ -188,11 +188,11 @@ extern_methods!(
 
         #[deprecated = "NSFontManager doesn't have any delegate method. This property should not be used."]
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<Object>>;
+        pub unsafe fn delegate(&self) -> Option<Id<AnyObject>>;
 
         #[deprecated = "NSFontManager doesn't have any delegate method. This property should not be used."]
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&Object>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&AnyObject>);
 
         #[method(sendAction)]
         pub unsafe fn sendAction(&self) -> bool;
@@ -209,7 +209,7 @@ extern_methods!(
         #[method(setSelectedAttributes:isMultiple:)]
         pub unsafe fn setSelectedAttributes_isMultiple(
             &self,
-            attributes: &NSDictionary<NSString, Object>,
+            attributes: &NSDictionary<NSString, AnyObject>,
             flag: bool,
         );
 
@@ -217,8 +217,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other convertAttributes:)]
         pub unsafe fn convertAttributes(
             &self,
-            attributes: &NSDictionary<NSString, Object>,
-        ) -> Id<NSDictionary<NSString, Object>>;
+            attributes: &NSDictionary<NSString, AnyObject>,
+        ) -> Id<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(all(feature = "AppKit_NSFontDescriptor", feature = "Foundation_NSArray"))]
         #[deprecated = "Use -[NSFontDescriptor matchingFontDescriptorsWithMandatoryKeys:] instead"]
@@ -280,10 +280,10 @@ extern_methods!(
         pub unsafe fn convertFontTraits(&self, traits: NSFontTraitMask) -> NSFontTraitMask;
 
         #[method_id(@__retain_semantics Other target)]
-        pub unsafe fn target(&self) -> Option<Id<Object>>;
+        pub unsafe fn target(&self) -> Option<Id<AnyObject>>;
 
         #[method(setTarget:)]
-        pub unsafe fn setTarget(&self, target: Option<&Object>);
+        pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
     }
 );
 
@@ -319,21 +319,21 @@ extern_methods!(
         ) -> Option<Id<NSArray<NSString>>>;
 
         #[method(addFontTrait:)]
-        pub unsafe fn addFontTrait(&self, sender: Option<&Object>);
+        pub unsafe fn addFontTrait(&self, sender: Option<&AnyObject>);
 
         #[method(removeFontTrait:)]
-        pub unsafe fn removeFontTrait(&self, sender: Option<&Object>);
+        pub unsafe fn removeFontTrait(&self, sender: Option<&AnyObject>);
 
         #[method(modifyFontViaPanel:)]
-        pub unsafe fn modifyFontViaPanel(&self, sender: Option<&Object>);
+        pub unsafe fn modifyFontViaPanel(&self, sender: Option<&AnyObject>);
 
         #[method(modifyFont:)]
-        pub unsafe fn modifyFont(&self, sender: Option<&Object>);
+        pub unsafe fn modifyFont(&self, sender: Option<&AnyObject>);
 
         #[method(orderFrontFontPanel:)]
-        pub unsafe fn orderFrontFontPanel(&self, sender: Option<&Object>);
+        pub unsafe fn orderFrontFontPanel(&self, sender: Option<&AnyObject>);
 
         #[method(orderFrontStylesPanel:)]
-        pub unsafe fn orderFrontStylesPanel(&self, sender: Option<&Object>);
+        pub unsafe fn orderFrontStylesPanel(&self, sender: Option<&AnyObject>);
     }
 );

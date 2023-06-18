@@ -126,7 +126,7 @@ extern_methods!(
         pub unsafe fn fetchRequestFromTemplateWithName_substitutionVariables(
             &self,
             name: &NSString,
-            variables: &NSDictionary<NSString, Object>,
+            variables: &NSDictionary<NSString, AnyObject>,
         ) -> Option<Id<NSFetchRequest>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
@@ -150,7 +150,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other mergedModelFromBundles:forStoreMetadata:)]
         pub unsafe fn mergedModelFromBundles_forStoreMetadata(
             bundles: Option<&NSArray<NSBundle>>,
-            metadata: &NSDictionary<NSString, Object>,
+            metadata: &NSDictionary<NSString, AnyObject>,
         ) -> Option<Id<NSManagedObjectModel>>;
 
         #[cfg(all(
@@ -161,7 +161,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other modelByMergingModels:forStoreMetadata:)]
         pub unsafe fn modelByMergingModels_forStoreMetadata(
             models: &NSArray<NSManagedObjectModel>,
-            metadata: &NSDictionary<NSString, Object>,
+            metadata: &NSDictionary<NSString, AnyObject>,
         ) -> Option<Id<NSManagedObjectModel>>;
 
         #[cfg(all(
@@ -187,7 +187,7 @@ extern_methods!(
         pub unsafe fn isConfiguration_compatibleWithStoreMetadata(
             &self,
             configuration: Option<&NSString>,
-            metadata: &NSDictionary<NSString, Object>,
+            metadata: &NSDictionary<NSString, AnyObject>,
         ) -> bool;
 
         #[cfg(all(

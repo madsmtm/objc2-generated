@@ -31,7 +31,7 @@ extern_methods!(
         pub unsafe fn initWithObjectID_withValues_version(
             this: Option<Allocated<Self>>,
             object_id: &NSManagedObjectID,
-            values: &NSDictionary<NSString, Object>,
+            values: &NSDictionary<NSString, AnyObject>,
             version: u64,
         ) -> Id<Self>;
 
@@ -39,7 +39,7 @@ extern_methods!(
         #[method(updateWithValues:version:)]
         pub unsafe fn updateWithValues_version(
             &self,
-            values: &NSDictionary<NSString, Object>,
+            values: &NSDictionary<NSString, AnyObject>,
             version: u64,
         );
 
@@ -55,7 +55,7 @@ extern_methods!(
         pub unsafe fn valueForPropertyDescription(
             &self,
             prop: &NSPropertyDescription,
-        ) -> Option<Id<Object>>;
+        ) -> Option<Id<AnyObject>>;
     }
 );
 

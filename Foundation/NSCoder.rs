@@ -75,19 +75,19 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSCoder")]
     unsafe impl NSCoder {
         #[method(encodeObject:)]
-        pub unsafe fn encodeObject(&self, object: Option<&Object>);
+        pub unsafe fn encodeObject(&self, object: Option<&AnyObject>);
 
         #[method(encodeRootObject:)]
-        pub unsafe fn encodeRootObject(&self, root_object: &Object);
+        pub unsafe fn encodeRootObject(&self, root_object: &AnyObject);
 
         #[method(encodeBycopyObject:)]
-        pub unsafe fn encodeBycopyObject(&self, an_object: Option<&Object>);
+        pub unsafe fn encodeBycopyObject(&self, an_object: Option<&AnyObject>);
 
         #[method(encodeByrefObject:)]
-        pub unsafe fn encodeByrefObject(&self, an_object: Option<&Object>);
+        pub unsafe fn encodeByrefObject(&self, an_object: Option<&AnyObject>);
 
         #[method(encodeConditionalObject:)]
-        pub unsafe fn encodeConditionalObject(&self, object: Option<&Object>);
+        pub unsafe fn encodeConditionalObject(&self, object: Option<&AnyObject>);
 
         #[method(encodeArrayOfObjCType:count:at:)]
         pub unsafe fn encodeArrayOfObjCType_count_at(
@@ -101,11 +101,13 @@ extern_methods!(
         pub unsafe fn encodeBytes_length(&self, byteaddr: *mut c_void, length: NSUInteger);
 
         #[method_id(@__retain_semantics Other decodeObject)]
-        pub unsafe fn decodeObject(&self) -> Option<Id<Object>>;
+        pub unsafe fn decodeObject(&self) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other decodeTopLevelObjectAndReturnError:_)]
-        pub unsafe fn decodeTopLevelObjectAndReturnError(&self) -> Result<Id<Object>, Id<NSError>>;
+        pub unsafe fn decodeTopLevelObjectAndReturnError(
+            &self,
+        ) -> Result<Id<AnyObject>, Id<NSError>>;
 
         #[method(decodeArrayOfObjCType:count:at:)]
         pub unsafe fn decodeArrayOfObjCType_count_at(
@@ -122,10 +124,10 @@ extern_methods!(
         ) -> *mut c_void;
 
         #[method(encodePropertyList:)]
-        pub unsafe fn encodePropertyList(&self, a_property_list: &Object);
+        pub unsafe fn encodePropertyList(&self, a_property_list: &AnyObject);
 
         #[method_id(@__retain_semantics Other decodePropertyList)]
-        pub unsafe fn decodePropertyList(&self) -> Option<Id<Object>>;
+        pub unsafe fn decodePropertyList(&self) -> Option<Id<AnyObject>>;
 
         #[method(setObjectZone:)]
         pub unsafe fn setObjectZone(&self, zone: *mut NSZone);
@@ -141,13 +143,13 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(encodeObject:forKey:)]
-        pub unsafe fn encodeObject_forKey(&self, object: Option<&Object>, key: &NSString);
+        pub unsafe fn encodeObject_forKey(&self, object: Option<&AnyObject>, key: &NSString);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(encodeConditionalObject:forKey:)]
         pub unsafe fn encodeConditionalObject_forKey(
             &self,
-            object: Option<&Object>,
+            object: Option<&AnyObject>,
             key: &NSString,
         );
 
@@ -190,14 +192,14 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other decodeObjectForKey:)]
-        pub unsafe fn decodeObjectForKey(&self, key: &NSString) -> Option<Id<Object>>;
+        pub unsafe fn decodeObjectForKey(&self, key: &NSString) -> Option<Id<AnyObject>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other decodeTopLevelObjectForKey:error:_)]
         pub unsafe fn decodeTopLevelObjectForKey_error(
             &self,
             key: &NSString,
-        ) -> Result<Id<Object>, Id<NSError>>;
+        ) -> Result<Id<AnyObject>, Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(decodeBoolForKey:)]
@@ -246,23 +248,23 @@ extern_methods!(
         #[method_id(@__retain_semantics Other decodeObjectOfClass:forKey:)]
         pub unsafe fn decodeObjectOfClass_forKey(
             &self,
-            a_class: &Class,
+            a_class: &AnyClass,
             key: &NSString,
-        ) -> Option<Id<Object>>;
+        ) -> Option<Id<AnyObject>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other decodeTopLevelObjectOfClass:forKey:error:_)]
         pub unsafe fn decodeTopLevelObjectOfClass_forKey_error(
             &self,
-            a_class: &Class,
+            a_class: &AnyClass,
             key: &NSString,
-        ) -> Result<Id<Object>, Id<NSError>>;
+        ) -> Result<Id<AnyObject>, Id<NSError>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other decodeArrayOfObjectsOfClass:forKey:)]
         pub unsafe fn decodeArrayOfObjectsOfClass_forKey(
             &self,
-            cls: &Class,
+            cls: &AnyClass,
             key: &NSString,
         ) -> Option<Id<NSArray>>;
 
@@ -270,8 +272,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other decodeDictionaryWithKeysOfClass:objectsOfClass:forKey:)]
         pub unsafe fn decodeDictionaryWithKeysOfClass_objectsOfClass_forKey(
             &self,
-            key_cls: &Class,
-            object_cls: &Class,
+            key_cls: &AnyClass,
+            object_cls: &AnyClass,
             key: &NSString,
         ) -> Option<Id<NSDictionary>>;
 
@@ -281,7 +283,7 @@ extern_methods!(
             &self,
             classes: Option<&NSSet<TodoClass>>,
             key: &NSString,
-        ) -> Option<Id<Object>>;
+        ) -> Option<Id<AnyObject>>;
 
         #[cfg(all(
             feature = "Foundation_NSError",
@@ -293,7 +295,7 @@ extern_methods!(
             &self,
             classes: Option<&NSSet<TodoClass>>,
             key: &NSString,
-        ) -> Result<Id<Object>, Id<NSError>>;
+        ) -> Result<Id<AnyObject>, Id<NSError>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -322,7 +324,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other decodePropertyListForKey:)]
-        pub unsafe fn decodePropertyListForKey(&self, key: &NSString) -> Option<Id<Object>>;
+        pub unsafe fn decodePropertyListForKey(&self, key: &NSString) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSSet")]
         #[method_id(@__retain_semantics Other allowedClasses)]
@@ -353,11 +355,11 @@ extern_methods!(
     unsafe impl NSCoder {
         #[deprecated = "Not supported"]
         #[method(encodeNXObject:)]
-        pub unsafe fn encodeNXObject(&self, object: &Object);
+        pub unsafe fn encodeNXObject(&self, object: &AnyObject);
 
         #[deprecated = "Not supported"]
         #[method_id(@__retain_semantics Other decodeNXObject)]
-        pub unsafe fn decodeNXObject(&self) -> Option<Id<Object>>;
+        pub unsafe fn decodeNXObject(&self) -> Option<Id<AnyObject>>;
     }
 );
 

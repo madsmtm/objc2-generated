@@ -26,11 +26,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other objectForKey:)]
-        pub unsafe fn objectForKey(&self, a_key: &NSString) -> Option<Id<Object>>;
+        pub unsafe fn objectForKey(&self, a_key: &NSString) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setObject:forKey:)]
-        pub unsafe fn setObject_forKey(&self, an_object: Option<&Object>, a_key: &NSString);
+        pub unsafe fn setObject_forKey(&self, an_object: Option<&AnyObject>, a_key: &NSString);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(removeObjectForKey:)]
@@ -49,7 +49,7 @@ extern_methods!(
         pub unsafe fn dictionaryForKey(
             &self,
             a_key: &NSString,
-        ) -> Option<Id<NSDictionary<NSString, Object>>>;
+        ) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other dataForKey:)]
@@ -83,7 +83,7 @@ extern_methods!(
         #[method(setDictionary:forKey:)]
         pub unsafe fn setDictionary_forKey(
             &self,
-            a_dictionary: Option<&NSDictionary<NSString, Object>>,
+            a_dictionary: Option<&NSDictionary<NSString, AnyObject>>,
             a_key: &NSString,
         );
 
@@ -101,7 +101,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other dictionaryRepresentation)]
-        pub unsafe fn dictionaryRepresentation(&self) -> Id<NSDictionary<NSString, Object>>;
+        pub unsafe fn dictionaryRepresentation(&self) -> Id<NSDictionary<NSString, AnyObject>>;
 
         #[method(synchronize)]
         pub unsafe fn synchronize(&self) -> bool;

@@ -53,7 +53,7 @@ extern_methods!(
             value: NSInteger,
             start_date: &NSDate,
             end_date: &NSDate,
-            metadata: Option<&NSDictionary<NSString, Object>>,
+            metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSDate", feature = "HealthKit_HKCategoryType"))]
@@ -79,7 +79,7 @@ extern_methods!(
             start_date: &NSDate,
             end_date: &NSDate,
             device: Option<&HKDevice>,
-            metadata: Option<&NSDictionary<NSString, Object>>,
+            metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Id<Self>;
     }
 );

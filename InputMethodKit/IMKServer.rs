@@ -36,8 +36,8 @@ extern_methods!(
         pub unsafe fn initWithName_controllerClass_delegateClass(
             this: Option<Allocated<Self>>,
             name: Option<&NSString>,
-            controller_class_id: Option<&Class>,
-            delegate_class_id: Option<&Class>,
+            controller_class_id: Option<&AnyClass>,
+            delegate_class_id: Option<&AnyClass>,
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSBundle")]

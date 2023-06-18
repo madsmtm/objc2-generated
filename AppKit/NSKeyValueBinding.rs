@@ -48,18 +48,18 @@ extern_methods!(
 
         #[method(setDefaultPlaceholder:forMarker:onClass:withBinding:)]
         pub unsafe fn setDefaultPlaceholder_forMarker_onClass_withBinding(
-            placeholder: Option<&Object>,
+            placeholder: Option<&AnyObject>,
             marker: Option<&NSBindingSelectionMarker>,
-            object_class: &Class,
+            object_class: &AnyClass,
             binding: &NSBindingName,
         );
 
         #[method_id(@__retain_semantics Other defaultPlaceholderForMarker:onClass:withBinding:)]
         pub unsafe fn defaultPlaceholderForMarker_onClass_withBinding(
             marker: Option<&NSBindingSelectionMarker>,
-            object_class: &Class,
+            object_class: &AnyClass,
             binding: &NSBindingName,
-        ) -> Option<Id<Object>>;
+        ) -> Option<Id<AnyObject>>;
     }
 );
 
@@ -72,14 +72,14 @@ extern_methods!(
     }
 );
 
-extern_static!(NSMultipleValuesMarker: &'static Object);
+extern_static!(NSMultipleValuesMarker: &'static AnyObject);
 
-extern_static!(NSNoSelectionMarker: &'static Object);
+extern_static!(NSNoSelectionMarker: &'static AnyObject);
 
-extern_static!(NSNotApplicableMarker: &'static Object);
+extern_static!(NSNotApplicableMarker: &'static AnyObject);
 
 extern_fn!(
-    pub unsafe fn NSIsControllerMarker(object: Option<&Object>) -> Bool;
+    pub unsafe fn NSIsControllerMarker(object: Option<&AnyObject>) -> Bool;
 );
 
 typed_enum!(
@@ -103,7 +103,7 @@ extern_protocol!(
         #[method(commitEditingWithDelegate:didCommitSelector:contextInfo:)]
         unsafe fn commitEditingWithDelegate_didCommitSelector_contextInfo(
             &self,
-            delegate: Option<&Object>,
+            delegate: Option<&AnyObject>,
             did_commit_selector: Option<Sel>,
             context_info: *mut c_void,
         );

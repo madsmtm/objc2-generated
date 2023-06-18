@@ -56,10 +56,10 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Other target)]
-        pub unsafe fn target(&self) -> Option<Id<Object>>;
+        pub unsafe fn target(&self) -> Option<Id<AnyObject>>;
 
         #[method(setTarget:)]
-        pub unsafe fn setTarget(&self, target: Option<&Object>);
+        pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
 
         #[method(action)]
         pub unsafe fn action(&self) -> Option<Sel>;
@@ -118,10 +118,10 @@ extern_methods!(
         pub unsafe fn setFormatter(&self, formatter: Option<&NSFormatter>);
 
         #[method_id(@__retain_semantics Other objectValue)]
-        pub unsafe fn objectValue(&self) -> Option<Id<Object>>;
+        pub unsafe fn objectValue(&self) -> Option<Id<AnyObject>>;
 
         #[method(setObjectValue:)]
-        pub unsafe fn setObjectValue(&self, object_value: Option<&Object>);
+        pub unsafe fn setObjectValue(&self, object_value: Option<&AnyObject>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringValue)]
@@ -173,32 +173,33 @@ extern_methods!(
         pub unsafe fn sendActionOn(&self, mask: NSEventMask) -> NSInteger;
 
         #[method(sendAction:to:)]
-        pub unsafe fn sendAction_to(&self, action: Option<Sel>, target: Option<&Object>) -> bool;
+        pub unsafe fn sendAction_to(&self, action: Option<Sel>, target: Option<&AnyObject>)
+            -> bool;
 
         #[method(takeIntValueFrom:)]
-        pub unsafe fn takeIntValueFrom(&self, sender: Option<&Object>);
+        pub unsafe fn takeIntValueFrom(&self, sender: Option<&AnyObject>);
 
         #[method(takeFloatValueFrom:)]
-        pub unsafe fn takeFloatValueFrom(&self, sender: Option<&Object>);
+        pub unsafe fn takeFloatValueFrom(&self, sender: Option<&AnyObject>);
 
         #[method(takeDoubleValueFrom:)]
-        pub unsafe fn takeDoubleValueFrom(&self, sender: Option<&Object>);
+        pub unsafe fn takeDoubleValueFrom(&self, sender: Option<&AnyObject>);
 
         #[method(takeStringValueFrom:)]
-        pub unsafe fn takeStringValueFrom(&self, sender: Option<&Object>);
+        pub unsafe fn takeStringValueFrom(&self, sender: Option<&AnyObject>);
 
         #[method(takeObjectValueFrom:)]
-        pub unsafe fn takeObjectValueFrom(&self, sender: Option<&Object>);
+        pub unsafe fn takeObjectValueFrom(&self, sender: Option<&AnyObject>);
 
         #[method(takeIntegerValueFrom:)]
-        pub unsafe fn takeIntegerValueFrom(&self, sender: Option<&Object>);
+        pub unsafe fn takeIntegerValueFrom(&self, sender: Option<&AnyObject>);
 
         #[cfg(feature = "AppKit_NSEvent")]
         #[method(mouseDown:)]
         pub unsafe fn mouseDown(&self, event: &NSEvent);
 
         #[method(performClick:)]
-        pub unsafe fn performClick(&self, sender: Option<&Object>);
+        pub unsafe fn performClick(&self, sender: Option<&AnyObject>);
 
         #[cfg(feature = "AppKit_NSFont")]
         #[method_id(@__retain_semantics Other font)]
@@ -284,7 +285,7 @@ extern_methods!(
             &self,
             rect: NSRect,
             text_obj: &NSText,
-            delegate: Option<&Object>,
+            delegate: Option<&AnyObject>,
             event: &NSEvent,
         );
 
@@ -294,7 +295,7 @@ extern_methods!(
             &self,
             rect: NSRect,
             text_obj: &NSText,
-            delegate: Option<&Object>,
+            delegate: Option<&AnyObject>,
             sel_start: NSInteger,
             sel_length: NSInteger,
         );
@@ -363,7 +364,11 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSControl")]
         #[optional]
         #[method(control:isValidObject:)]
-        unsafe fn control_isValidObject(&self, control: &NSControl, obj: Option<&Object>) -> bool;
+        unsafe fn control_isValidObject(
+            &self,
+            control: &NSControl,
+            obj: Option<&AnyObject>,
+        ) -> bool;
 
         #[cfg(all(feature = "AppKit_NSControl", feature = "AppKit_NSTextView"))]
         #[optional]
@@ -416,10 +421,10 @@ extern_methods!(
         );
 
         #[method(cellClass)]
-        pub unsafe fn cellClass() -> Option<&'static Class>;
+        pub unsafe fn cellClass() -> Option<&'static AnyClass>;
 
         #[method(setCellClass:)]
-        pub unsafe fn setCellClass(cell_class: Option<&Class>);
+        pub unsafe fn setCellClass(cell_class: Option<&AnyClass>);
 
         #[cfg(feature = "AppKit_NSCell")]
         #[method_id(@__retain_semantics Other cell)]

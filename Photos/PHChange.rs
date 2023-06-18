@@ -61,7 +61,7 @@ extern_methods!(
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PhotoKit_PHObjectChangeDetails")]
-    pub struct PHObjectChangeDetails<ObjectType: Message = Object> {
+    pub struct PHObjectChangeDetails<ObjectType: Message = AnyObject> {
         __superclass: NSObject,
         _inner0: PhantomData<*mut ObjectType>,
         notunwindsafe: PhantomData<&'static mut ()>,
@@ -117,7 +117,7 @@ extern_methods!(
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PhotoKit_PHFetchResultChangeDetails")]
-    pub struct PHFetchResultChangeDetails<ObjectType: Message = Object> {
+    pub struct PHFetchResultChangeDetails<ObjectType: Message = AnyObject> {
         __superclass: NSObject,
         _inner0: PhantomData<*mut ObjectType>,
         notunwindsafe: PhantomData<&'static mut ()>,

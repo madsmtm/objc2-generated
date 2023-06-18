@@ -18,11 +18,11 @@ extern_protocol!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other localizedTitlesForItem:)]
-        unsafe fn localizedTitlesForItem(&self, item: &Object) -> Id<NSArray<NSString>>;
+        unsafe fn localizedTitlesForItem(&self, item: &AnyObject) -> Id<NSArray<NSString>>;
 
         #[optional]
         #[method(performActionForItem:)]
-        unsafe fn performActionForItem(&self, item: &Object);
+        unsafe fn performActionForItem(&self, item: &AnyObject);
 
         #[cfg(feature = "Foundation_NSString")]
         #[optional]

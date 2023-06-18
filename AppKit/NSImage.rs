@@ -219,7 +219,7 @@ extern_methods!(
             op: NSCompositingOperation,
             requested_alpha: CGFloat,
             respect_context_is_flipped: bool,
-            hints: Option<&NSDictionary<NSImageHintKey, Object>>,
+            hints: Option<&NSDictionary<NSImageHintKey, AnyObject>>,
         );
 
         #[cfg(feature = "AppKit_NSImageRep")]
@@ -339,7 +339,7 @@ extern_methods!(
             &self,
             rect: NSRect,
             reference_context: Option<&NSGraphicsContext>,
-            hints: Option<&NSDictionary<NSImageHintKey, Object>>,
+            hints: Option<&NSDictionary<NSImageHintKey, AnyObject>>,
         ) -> Option<Id<NSImageRep>>;
 
         #[cfg(all(
@@ -352,7 +352,7 @@ extern_methods!(
             test_rect_dest_space: NSRect,
             image_rect_dest_space: NSRect,
             context: Option<&NSGraphicsContext>,
-            hints: Option<&NSDictionary<NSImageHintKey, Object>>,
+            hints: Option<&NSDictionary<NSImageHintKey, AnyObject>>,
             flipped: bool,
         ) -> bool;
 
@@ -366,7 +366,7 @@ extern_methods!(
         pub unsafe fn layerContentsForContentsScale(
             &self,
             layer_contents_scale: CGFloat,
-        ) -> Id<Object>;
+        ) -> Id<AnyObject>;
 
         #[method(capInsets)]
         pub unsafe fn capInsets(&self) -> NSEdgeInsets;

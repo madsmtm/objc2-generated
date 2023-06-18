@@ -57,7 +57,7 @@ extern_methods!(
         #[method(sizeWithAttributes:)]
         pub unsafe fn sizeWithAttributes(
             &self,
-            attrs: Option<&NSDictionary<NSAttributedStringKey, Object>>,
+            attrs: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
         ) -> NSSize;
 
         #[cfg(feature = "Foundation_NSDictionary")]
@@ -65,7 +65,7 @@ extern_methods!(
         pub unsafe fn drawAtPoint_withAttributes(
             &self,
             point: NSPoint,
-            attrs: Option<&NSDictionary<NSAttributedStringKey, Object>>,
+            attrs: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
         );
 
         #[cfg(feature = "Foundation_NSDictionary")]
@@ -73,7 +73,7 @@ extern_methods!(
         pub unsafe fn drawInRect_withAttributes(
             &self,
             rect: NSRect,
-            attrs: Option<&NSDictionary<NSAttributedStringKey, Object>>,
+            attrs: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
         );
     }
 );
@@ -120,7 +120,7 @@ extern_methods!(
             &self,
             rect: NSRect,
             options: NSStringDrawingOptions,
-            attributes: Option<&NSDictionary<NSAttributedStringKey, Object>>,
+            attributes: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
             context: Option<&NSStringDrawingContext>,
         );
 
@@ -133,7 +133,7 @@ extern_methods!(
             &self,
             size: NSSize,
             options: NSStringDrawingOptions,
-            attributes: Option<&NSDictionary<NSAttributedStringKey, Object>>,
+            attributes: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
             context: Option<&NSStringDrawingContext>,
         ) -> NSRect;
     }
@@ -173,7 +173,7 @@ extern_methods!(
             &self,
             rect: NSRect,
             options: NSStringDrawingOptions,
-            attributes: Option<&NSDictionary<NSAttributedStringKey, Object>>,
+            attributes: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
         );
 
         #[cfg(feature = "Foundation_NSDictionary")]
@@ -182,7 +182,7 @@ extern_methods!(
             &self,
             size: NSSize,
             options: NSStringDrawingOptions,
-            attributes: Option<&NSDictionary<NSAttributedStringKey, Object>>,
+            attributes: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
         ) -> NSRect;
     }
 );

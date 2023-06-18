@@ -239,10 +239,10 @@ extern_methods!(
             &self,
             predicate: &NSPredicate,
             completion: &Block<(*mut NSArray<EKReminder>,), ()>,
-        ) -> Id<Object>;
+        ) -> Id<AnyObject>;
 
         #[method(cancelFetchRequest:)]
-        pub unsafe fn cancelFetchRequest(&self, fetch_identifier: &Object);
+        pub unsafe fn cancelFetchRequest(&self, fetch_identifier: &AnyObject);
 
         #[cfg(all(
             feature = "EventKit_EKCalendar",

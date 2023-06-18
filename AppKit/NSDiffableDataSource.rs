@@ -9,8 +9,8 @@ __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSDiffableDataSourceSnapshot")]
     pub struct NSDiffableDataSourceSnapshot<
-        SectionIdentifierType: Message = Object,
-        ItemIdentifierType: Message = Object,
+        SectionIdentifierType: Message = AnyObject,
+        ItemIdentifierType: Message = AnyObject,
     > {
         __superclass: NSObject,
         _inner0: PhantomData<*mut SectionIdentifierType>,
@@ -230,8 +230,8 @@ __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSCollectionViewDiffableDataSource")]
     pub struct NSCollectionViewDiffableDataSource<
-        SectionIdentifierType: Message = Object,
-        ItemIdentifierType: Message = Object,
+        SectionIdentifierType: Message = AnyObject,
+        ItemIdentifierType: Message = AnyObject,
     > {
         __superclass: NSObject,
         _inner0: PhantomData<*mut SectionIdentifierType>,

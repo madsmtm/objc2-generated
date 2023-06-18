@@ -184,10 +184,10 @@ extern_methods!(
         pub unsafe fn setState(&self, state: NSControlStateValue);
 
         #[method_id(@__retain_semantics Other target)]
-        pub unsafe fn target(&self) -> Option<Id<Object>>;
+        pub unsafe fn target(&self) -> Option<Id<AnyObject>>;
 
         #[method(setTarget:)]
-        pub unsafe fn setTarget(&self, target: Option<&Object>);
+        pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
 
         #[method(action)]
         pub unsafe fn action(&self) -> Option<Sel>;
@@ -296,10 +296,10 @@ extern_methods!(
         pub unsafe fn setFormatter(&self, formatter: Option<&NSFormatter>);
 
         #[method_id(@__retain_semantics Other objectValue)]
-        pub unsafe fn objectValue(&self) -> Option<Id<Object>>;
+        pub unsafe fn objectValue(&self) -> Option<Id<AnyObject>>;
 
         #[method(setObjectValue:)]
-        pub unsafe fn setObjectValue(&self, object_value: Option<&Object>);
+        pub unsafe fn setObjectValue(&self, object_value: Option<&AnyObject>);
 
         #[method(hasValidObjectValue)]
         pub unsafe fn hasValidObjectValue(&self) -> bool;
@@ -313,7 +313,7 @@ extern_methods!(
         pub unsafe fn setStringValue(&self, string_value: &NSString);
 
         #[method(compare:)]
-        pub unsafe fn compare(&self, other_cell: &Object) -> NSComparisonResult;
+        pub unsafe fn compare(&self, other_cell: &AnyObject) -> NSComparisonResult;
 
         #[method(intValue)]
         pub unsafe fn intValue(&self) -> c_int;
@@ -340,22 +340,22 @@ extern_methods!(
         pub unsafe fn setIntegerValue(&self, integer_value: NSInteger);
 
         #[method(takeIntValueFrom:)]
-        pub unsafe fn takeIntValueFrom(&self, sender: Option<&Object>);
+        pub unsafe fn takeIntValueFrom(&self, sender: Option<&AnyObject>);
 
         #[method(takeFloatValueFrom:)]
-        pub unsafe fn takeFloatValueFrom(&self, sender: Option<&Object>);
+        pub unsafe fn takeFloatValueFrom(&self, sender: Option<&AnyObject>);
 
         #[method(takeDoubleValueFrom:)]
-        pub unsafe fn takeDoubleValueFrom(&self, sender: Option<&Object>);
+        pub unsafe fn takeDoubleValueFrom(&self, sender: Option<&AnyObject>);
 
         #[method(takeStringValueFrom:)]
-        pub unsafe fn takeStringValueFrom(&self, sender: Option<&Object>);
+        pub unsafe fn takeStringValueFrom(&self, sender: Option<&AnyObject>);
 
         #[method(takeObjectValueFrom:)]
-        pub unsafe fn takeObjectValueFrom(&self, sender: Option<&Object>);
+        pub unsafe fn takeObjectValueFrom(&self, sender: Option<&AnyObject>);
 
         #[method(takeIntegerValueFrom:)]
-        pub unsafe fn takeIntegerValueFrom(&self, sender: Option<&Object>);
+        pub unsafe fn takeIntegerValueFrom(&self, sender: Option<&AnyObject>);
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other image)]
@@ -372,10 +372,10 @@ extern_methods!(
         pub unsafe fn setControlSize(&self, control_size: NSControlSize);
 
         #[method_id(@__retain_semantics Other representedObject)]
-        pub unsafe fn representedObject(&self) -> Option<Id<Object>>;
+        pub unsafe fn representedObject(&self) -> Option<Id<AnyObject>>;
 
         #[method(setRepresentedObject:)]
-        pub unsafe fn setRepresentedObject(&self, represented_object: Option<&Object>);
+        pub unsafe fn setRepresentedObject(&self, represented_object: Option<&AnyObject>);
 
         #[method(cellAttribute:)]
         pub unsafe fn cellAttribute(&self, parameter: NSCellAttribute) -> NSInteger;
@@ -492,7 +492,7 @@ extern_methods!(
             rect: NSRect,
             control_view: &NSView,
             text_obj: &NSText,
-            delegate: Option<&Object>,
+            delegate: Option<&AnyObject>,
             event: Option<&NSEvent>,
         );
 
@@ -503,7 +503,7 @@ extern_methods!(
             rect: NSRect,
             control_view: &NSView,
             text_obj: &NSText,
-            delegate: Option<&Object>,
+            delegate: Option<&AnyObject>,
             sel_start: NSInteger,
             sel_length: NSInteger,
         );
@@ -633,7 +633,7 @@ extern_methods!(
         pub unsafe fn setShowsFirstResponder(&self, shows_first_responder: bool);
 
         #[method(performClick:)]
-        pub unsafe fn performClick(&self, sender: Option<&Object>);
+        pub unsafe fn performClick(&self, sender: Option<&AnyObject>);
 
         #[method(focusRingType)]
         pub unsafe fn focusRingType(&self) -> NSFocusRingType;

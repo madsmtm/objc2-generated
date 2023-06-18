@@ -20,7 +20,7 @@ extern_protocol!(
             sender: Option<&WebView>,
             request: Option<&NSURLRequest>,
             data_source: Option<&WebDataSource>,
-        ) -> Option<Id<Object>>;
+        ) -> Option<Id<AnyObject>>;
 
         #[cfg(all(
             feature = "Foundation_NSURLRequest",
@@ -33,7 +33,7 @@ extern_protocol!(
         unsafe fn webView_resource_willSendRequest_redirectResponse_fromDataSource(
             &self,
             sender: Option<&WebView>,
-            identifier: Option<&Object>,
+            identifier: Option<&AnyObject>,
             request: Option<&NSURLRequest>,
             redirect_response: Option<&NSURLResponse>,
             data_source: Option<&WebDataSource>,
@@ -49,7 +49,7 @@ extern_protocol!(
         unsafe fn webView_resource_didReceiveAuthenticationChallenge_fromDataSource(
             &self,
             sender: Option<&WebView>,
-            identifier: Option<&Object>,
+            identifier: Option<&AnyObject>,
             challenge: Option<&NSURLAuthenticationChallenge>,
             data_source: Option<&WebDataSource>,
         );
@@ -64,7 +64,7 @@ extern_protocol!(
         unsafe fn webView_resource_didCancelAuthenticationChallenge_fromDataSource(
             &self,
             sender: Option<&WebView>,
-            identifier: Option<&Object>,
+            identifier: Option<&AnyObject>,
             challenge: Option<&NSURLAuthenticationChallenge>,
             data_source: Option<&WebDataSource>,
         );
@@ -79,7 +79,7 @@ extern_protocol!(
         unsafe fn webView_resource_didReceiveResponse_fromDataSource(
             &self,
             sender: Option<&WebView>,
-            identifier: Option<&Object>,
+            identifier: Option<&AnyObject>,
             response: Option<&NSURLResponse>,
             data_source: Option<&WebDataSource>,
         );
@@ -90,7 +90,7 @@ extern_protocol!(
         unsafe fn webView_resource_didReceiveContentLength_fromDataSource(
             &self,
             sender: Option<&WebView>,
-            identifier: Option<&Object>,
+            identifier: Option<&AnyObject>,
             length: NSInteger,
             data_source: Option<&WebDataSource>,
         );
@@ -101,7 +101,7 @@ extern_protocol!(
         unsafe fn webView_resource_didFinishLoadingFromDataSource(
             &self,
             sender: Option<&WebView>,
-            identifier: Option<&Object>,
+            identifier: Option<&AnyObject>,
             data_source: Option<&WebDataSource>,
         );
 
@@ -115,7 +115,7 @@ extern_protocol!(
         unsafe fn webView_resource_didFailLoadingWithError_fromDataSource(
             &self,
             sender: Option<&WebView>,
-            identifier: Option<&Object>,
+            identifier: Option<&AnyObject>,
             error: Option<&NSError>,
             data_source: Option<&WebDataSource>,
         );

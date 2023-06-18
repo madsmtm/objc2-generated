@@ -55,7 +55,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other graphicsContextWithAttributes:)]
         pub unsafe fn graphicsContextWithAttributes(
-            attributes: &NSDictionary<NSGraphicsContextAttributeKey, Object>,
+            attributes: &NSDictionary<NSGraphicsContextAttributeKey, AnyObject>,
         ) -> Option<Id<NSGraphicsContext>>;
 
         #[cfg(feature = "AppKit_NSWindow")]
@@ -87,7 +87,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other attributes)]
         pub unsafe fn attributes(
             &self,
-        ) -> Option<Id<NSDictionary<NSGraphicsContextAttributeKey, Object>>>;
+        ) -> Option<Id<NSDictionary<NSGraphicsContextAttributeKey, AnyObject>>>;
 
         #[method(isDrawingToScreen)]
         pub unsafe fn isDrawingToScreen(&self) -> bool;
@@ -173,11 +173,11 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Other focusStack)]
-        pub unsafe fn focusStack(&self) -> Option<Id<Object>>;
+        pub unsafe fn focusStack(&self) -> Option<Id<AnyObject>>;
 
         #[deprecated]
         #[method(setFocusStack:)]
-        pub unsafe fn setFocusStack(&self, stack: Option<&Object>);
+        pub unsafe fn setFocusStack(&self, stack: Option<&AnyObject>);
 
         #[deprecated]
         #[method_id(@__retain_semantics Other graphicsContextWithGraphicsPort:flipped:)]

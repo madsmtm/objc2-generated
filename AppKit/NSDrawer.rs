@@ -93,13 +93,13 @@ extern_methods!(
         pub unsafe fn close(&self);
 
         #[method(open:)]
-        pub unsafe fn open_(&self, sender: Option<&Object>);
+        pub unsafe fn open_(&self, sender: Option<&AnyObject>);
 
         #[method(close:)]
-        pub unsafe fn close_(&self, sender: Option<&Object>);
+        pub unsafe fn close_(&self, sender: Option<&AnyObject>);
 
         #[method(toggle:)]
-        pub unsafe fn toggle(&self, sender: Option<&Object>);
+        pub unsafe fn toggle(&self, sender: Option<&AnyObject>);
 
         #[method(state)]
         pub unsafe fn state(&self) -> NSInteger;

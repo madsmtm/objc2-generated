@@ -294,8 +294,8 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method(registerViewClass:representationClass:forMIMEType:)]
         pub unsafe fn registerViewClass_representationClass_forMIMEType(
-            view_class: Option<&Class>,
-            representation_class: Option<&Class>,
+            view_class: Option<&AnyClass>,
+            representation_class: Option<&AnyClass>,
             mime_type: Option<&NSString>,
         );
 
@@ -428,52 +428,52 @@ extern_methods!(
     #[cfg(feature = "WebKit_WebView")]
     unsafe impl WebView {
         #[method(takeStringURLFrom:)]
-        pub unsafe fn takeStringURLFrom(&self, sender: Option<&Object>);
+        pub unsafe fn takeStringURLFrom(&self, sender: Option<&AnyObject>);
 
         #[method(stopLoading:)]
-        pub unsafe fn stopLoading(&self, sender: Option<&Object>);
+        pub unsafe fn stopLoading(&self, sender: Option<&AnyObject>);
 
         #[method(reload:)]
-        pub unsafe fn reload(&self, sender: Option<&Object>);
+        pub unsafe fn reload(&self, sender: Option<&AnyObject>);
 
         #[method(reloadFromOrigin:)]
-        pub unsafe fn reloadFromOrigin(&self, sender: Option<&Object>);
+        pub unsafe fn reloadFromOrigin(&self, sender: Option<&AnyObject>);
 
         #[method(canGoBack)]
         pub unsafe fn canGoBack(&self) -> bool;
 
         #[method(goBack:)]
-        pub unsafe fn goBack_(&self, sender: Option<&Object>);
+        pub unsafe fn goBack_(&self, sender: Option<&AnyObject>);
 
         #[method(canGoForward)]
         pub unsafe fn canGoForward(&self) -> bool;
 
         #[method(goForward:)]
-        pub unsafe fn goForward_(&self, sender: Option<&Object>);
+        pub unsafe fn goForward_(&self, sender: Option<&AnyObject>);
 
         #[method(canMakeTextLarger)]
         pub unsafe fn canMakeTextLarger(&self) -> bool;
 
         #[method(makeTextLarger:)]
-        pub unsafe fn makeTextLarger(&self, sender: Option<&Object>);
+        pub unsafe fn makeTextLarger(&self, sender: Option<&AnyObject>);
 
         #[method(canMakeTextSmaller)]
         pub unsafe fn canMakeTextSmaller(&self) -> bool;
 
         #[method(makeTextSmaller:)]
-        pub unsafe fn makeTextSmaller(&self, sender: Option<&Object>);
+        pub unsafe fn makeTextSmaller(&self, sender: Option<&AnyObject>);
 
         #[method(canMakeTextStandardSize)]
         pub unsafe fn canMakeTextStandardSize(&self) -> bool;
 
         #[method(makeTextStandardSize:)]
-        pub unsafe fn makeTextStandardSize(&self, sender: Option<&Object>);
+        pub unsafe fn makeTextStandardSize(&self, sender: Option<&AnyObject>);
 
         #[method(toggleContinuousSpellChecking:)]
-        pub unsafe fn toggleContinuousSpellChecking(&self, sender: Option<&Object>);
+        pub unsafe fn toggleContinuousSpellChecking(&self, sender: Option<&AnyObject>);
 
         #[method(toggleSmartInsertDelete:)]
-        pub unsafe fn toggleSmartInsertDelete(&self, sender: Option<&Object>);
+        pub unsafe fn toggleSmartInsertDelete(&self, sender: Option<&AnyObject>);
     }
 );
 
@@ -625,84 +625,87 @@ extern_methods!(
     #[cfg(feature = "WebKit_WebView")]
     unsafe impl WebView {
         #[method(copy:)]
-        pub unsafe fn copy(&self, sender: Option<&Object>);
+        pub unsafe fn copy(&self, sender: Option<&AnyObject>);
 
         #[method(cut:)]
-        pub unsafe fn cut(&self, sender: Option<&Object>);
+        pub unsafe fn cut(&self, sender: Option<&AnyObject>);
 
         #[method(paste:)]
-        pub unsafe fn paste(&self, sender: Option<&Object>);
+        pub unsafe fn paste(&self, sender: Option<&AnyObject>);
 
         #[method(copyFont:)]
-        pub unsafe fn copyFont(&self, sender: Option<&Object>);
+        pub unsafe fn copyFont(&self, sender: Option<&AnyObject>);
 
         #[method(pasteFont:)]
-        pub unsafe fn pasteFont(&self, sender: Option<&Object>);
+        pub unsafe fn pasteFont(&self, sender: Option<&AnyObject>);
 
         #[method(delete:)]
-        pub unsafe fn delete(&self, sender: Option<&Object>);
+        pub unsafe fn delete(&self, sender: Option<&AnyObject>);
 
         #[method(pasteAsPlainText:)]
-        pub unsafe fn pasteAsPlainText(&self, sender: Option<&Object>);
+        pub unsafe fn pasteAsPlainText(&self, sender: Option<&AnyObject>);
 
         #[method(pasteAsRichText:)]
-        pub unsafe fn pasteAsRichText(&self, sender: Option<&Object>);
+        pub unsafe fn pasteAsRichText(&self, sender: Option<&AnyObject>);
 
         #[method(changeFont:)]
-        pub unsafe fn changeFont(&self, sender: Option<&Object>);
+        pub unsafe fn changeFont(&self, sender: Option<&AnyObject>);
 
         #[method(changeAttributes:)]
-        pub unsafe fn changeAttributes(&self, sender: Option<&Object>);
+        pub unsafe fn changeAttributes(&self, sender: Option<&AnyObject>);
 
         #[method(changeDocumentBackgroundColor:)]
-        pub unsafe fn changeDocumentBackgroundColor(&self, sender: Option<&Object>);
+        pub unsafe fn changeDocumentBackgroundColor(&self, sender: Option<&AnyObject>);
 
         #[method(changeColor:)]
-        pub unsafe fn changeColor(&self, sender: Option<&Object>);
+        pub unsafe fn changeColor(&self, sender: Option<&AnyObject>);
 
         #[method(alignCenter:)]
-        pub unsafe fn alignCenter(&self, sender: Option<&Object>);
+        pub unsafe fn alignCenter(&self, sender: Option<&AnyObject>);
 
         #[method(alignJustified:)]
-        pub unsafe fn alignJustified(&self, sender: Option<&Object>);
+        pub unsafe fn alignJustified(&self, sender: Option<&AnyObject>);
 
         #[method(alignLeft:)]
-        pub unsafe fn alignLeft(&self, sender: Option<&Object>);
+        pub unsafe fn alignLeft(&self, sender: Option<&AnyObject>);
 
         #[method(alignRight:)]
-        pub unsafe fn alignRight(&self, sender: Option<&Object>);
+        pub unsafe fn alignRight(&self, sender: Option<&AnyObject>);
 
         #[method(checkSpelling:)]
-        pub unsafe fn checkSpelling(&self, sender: Option<&Object>);
+        pub unsafe fn checkSpelling(&self, sender: Option<&AnyObject>);
 
         #[method(showGuessPanel:)]
-        pub unsafe fn showGuessPanel(&self, sender: Option<&Object>);
+        pub unsafe fn showGuessPanel(&self, sender: Option<&AnyObject>);
 
         #[method(performFindPanelAction:)]
-        pub unsafe fn performFindPanelAction(&self, sender: Option<&Object>);
+        pub unsafe fn performFindPanelAction(&self, sender: Option<&AnyObject>);
 
         #[method(startSpeaking:)]
-        pub unsafe fn startSpeaking(&self, sender: Option<&Object>);
+        pub unsafe fn startSpeaking(&self, sender: Option<&AnyObject>);
 
         #[method(stopSpeaking:)]
-        pub unsafe fn stopSpeaking(&self, sender: Option<&Object>);
+        pub unsafe fn stopSpeaking(&self, sender: Option<&AnyObject>);
 
         #[method(moveToBeginningOfSentence:)]
-        pub unsafe fn moveToBeginningOfSentence(&self, sender: Option<&Object>);
+        pub unsafe fn moveToBeginningOfSentence(&self, sender: Option<&AnyObject>);
 
         #[method(moveToBeginningOfSentenceAndModifySelection:)]
-        pub unsafe fn moveToBeginningOfSentenceAndModifySelection(&self, sender: Option<&Object>);
+        pub unsafe fn moveToBeginningOfSentenceAndModifySelection(
+            &self,
+            sender: Option<&AnyObject>,
+        );
 
         #[method(moveToEndOfSentence:)]
-        pub unsafe fn moveToEndOfSentence(&self, sender: Option<&Object>);
+        pub unsafe fn moveToEndOfSentence(&self, sender: Option<&AnyObject>);
 
         #[method(moveToEndOfSentenceAndModifySelection:)]
-        pub unsafe fn moveToEndOfSentenceAndModifySelection(&self, sender: Option<&Object>);
+        pub unsafe fn moveToEndOfSentenceAndModifySelection(&self, sender: Option<&AnyObject>);
 
         #[method(selectSentence:)]
-        pub unsafe fn selectSentence(&self, sender: Option<&Object>);
+        pub unsafe fn selectSentence(&self, sender: Option<&AnyObject>);
 
         #[method(overWrite:)]
-        pub unsafe fn overWrite(&self, sender: Option<&Object>);
+        pub unsafe fn overWrite(&self, sender: Option<&AnyObject>);
     }
 );

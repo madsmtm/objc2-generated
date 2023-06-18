@@ -311,7 +311,7 @@ extern_methods!(
         #[method(registerClass:forDecorationViewOfKind:)]
         pub unsafe fn registerClass_forDecorationViewOfKind(
             &self,
-            view_class: Option<&Class>,
+            view_class: Option<&AnyClass>,
             element_kind: &NSCollectionViewDecorationElementKind,
         );
 
@@ -342,10 +342,10 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionViewLayout")]
     unsafe impl NSCollectionViewLayout {
         #[method(layoutAttributesClass)]
-        pub unsafe fn layoutAttributesClass() -> &'static Class;
+        pub unsafe fn layoutAttributesClass() -> &'static AnyClass;
 
         #[method(invalidationContextClass)]
-        pub unsafe fn invalidationContextClass() -> &'static Class;
+        pub unsafe fn invalidationContextClass() -> &'static AnyClass;
 
         #[method(prepareLayout)]
         pub unsafe fn prepareLayout(&self);

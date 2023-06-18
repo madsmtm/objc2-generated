@@ -198,7 +198,7 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other recordFields)]
-        pub unsafe fn recordFields(&self) -> Option<Id<NSDictionary<NSString, Object>>>;
+        pub unsafe fn recordFields(&self) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(feature = "CloudKit_CKRecordID")]
         #[method_id(@__retain_semantics Other recordID)]

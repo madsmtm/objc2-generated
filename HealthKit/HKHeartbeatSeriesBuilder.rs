@@ -58,7 +58,7 @@ extern_methods!(
         #[method(addMetadata:completion:)]
         pub unsafe fn addMetadata_completion(
             &self,
-            metadata: &NSDictionary<NSString, Object>,
+            metadata: &NSDictionary<NSString, AnyObject>,
             completion: &Block<(Bool, *mut NSError), ()>,
         );
 

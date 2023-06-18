@@ -169,7 +169,7 @@ extern_methods!(
         pub unsafe fn beginSheetModalForWindow_modalDelegate_didEndSelector_contextInfo(
             &self,
             window: &NSWindow,
-            delegate: Option<&Object>,
+            delegate: Option<&AnyObject>,
             did_end_selector: Option<Sel>,
             context_info: *mut c_void,
         );

@@ -146,7 +146,7 @@ extern_methods!(
         pub unsafe fn propertyForKey_inRequest(
             key: &NSString,
             request: &NSURLRequest,
-        ) -> Option<Id<Object>>;
+        ) -> Option<Id<AnyObject>>;
 
         #[cfg(all(
             feature = "Foundation_NSMutableURLRequest",
@@ -154,7 +154,7 @@ extern_methods!(
         ))]
         #[method(setProperty:forKey:inRequest:)]
         pub unsafe fn setProperty_forKey_inRequest(
-            value: &Object,
+            value: &AnyObject,
             key: &NSString,
             request: &NSMutableURLRequest,
         );
@@ -167,10 +167,10 @@ extern_methods!(
         pub unsafe fn removePropertyForKey_inRequest(key: &NSString, request: &NSMutableURLRequest);
 
         #[method(registerClass:)]
-        pub unsafe fn registerClass(protocol_class: &Class) -> bool;
+        pub unsafe fn registerClass(protocol_class: &AnyClass) -> bool;
 
         #[method(unregisterClass:)]
-        pub unsafe fn unregisterClass(protocol_class: &Class);
+        pub unsafe fn unregisterClass(protocol_class: &AnyClass);
     }
 );
 

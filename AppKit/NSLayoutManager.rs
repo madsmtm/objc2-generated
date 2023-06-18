@@ -671,13 +671,13 @@ extern_methods!(
             &self,
             char_index: NSUInteger,
             effective_char_range: NSRangePointer,
-        ) -> Id<NSDictionary<NSAttributedStringKey, Object>>;
+        ) -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setTemporaryAttributes:forCharacterRange:)]
         pub unsafe fn setTemporaryAttributes_forCharacterRange(
             &self,
-            attrs: &NSDictionary<NSAttributedStringKey, Object>,
+            attrs: &NSDictionary<NSAttributedStringKey, AnyObject>,
             char_range: NSRange,
         );
 
@@ -685,7 +685,7 @@ extern_methods!(
         #[method(addTemporaryAttributes:forCharacterRange:)]
         pub unsafe fn addTemporaryAttributes_forCharacterRange(
             &self,
-            attrs: &NSDictionary<NSAttributedStringKey, Object>,
+            attrs: &NSDictionary<NSAttributedStringKey, AnyObject>,
             char_range: NSRange,
         );
 
@@ -702,7 +702,7 @@ extern_methods!(
             attr_name: &NSAttributedStringKey,
             location: NSUInteger,
             range: NSRangePointer,
-        ) -> Option<Id<Object>>;
+        ) -> Option<Id<AnyObject>>;
 
         #[method_id(@__retain_semantics Other temporaryAttribute:atCharacterIndex:longestEffectiveRange:inRange:)]
         pub unsafe fn temporaryAttribute_atCharacterIndex_longestEffectiveRange_inRange(
@@ -711,7 +711,7 @@ extern_methods!(
             location: NSUInteger,
             range: NSRangePointer,
             range_limit: NSRange,
-        ) -> Option<Id<Object>>;
+        ) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other temporaryAttributesAtCharacterIndex:longestEffectiveRange:inRange:)]
@@ -720,13 +720,13 @@ extern_methods!(
             location: NSUInteger,
             range: NSRangePointer,
             range_limit: NSRange,
-        ) -> Id<NSDictionary<NSAttributedStringKey, Object>>;
+        ) -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         #[method(addTemporaryAttribute:value:forCharacterRange:)]
         pub unsafe fn addTemporaryAttribute_value_forCharacterRange(
             &self,
             attr_name: &NSAttributedStringKey,
-            value: &Object,
+            value: &AnyObject,
             char_range: NSRange,
         );
 
@@ -917,11 +917,11 @@ extern_protocol!(
         unsafe fn layoutManager_shouldUseTemporaryAttributes_forDrawingToScreen_atCharacterIndex_effectiveRange(
             &self,
             layout_manager: &NSLayoutManager,
-            attrs: &NSDictionary<NSAttributedStringKey, Object>,
+            attrs: &NSDictionary<NSAttributedStringKey, AnyObject>,
             to_screen: bool,
             char_index: NSUInteger,
             effective_char_range: NSRangePointer,
-        ) -> Option<Id<NSDictionary<NSAttributedStringKey, Object>>>;
+        ) -> Option<Id<NSDictionary<NSAttributedStringKey, AnyObject>>>;
     }
 
     unsafe impl ProtocolType for dyn NSLayoutManagerDelegate {}

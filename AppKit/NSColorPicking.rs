@@ -28,10 +28,10 @@ extern_protocol!(
         );
 
         #[method(viewSizeChanged:)]
-        unsafe fn viewSizeChanged(&self, sender: Option<&Object>);
+        unsafe fn viewSizeChanged(&self, sender: Option<&AnyObject>);
 
         #[method(alphaControlAddedOrRemoved:)]
-        unsafe fn alphaControlAddedOrRemoved(&self, sender: Option<&Object>);
+        unsafe fn alphaControlAddedOrRemoved(&self, sender: Option<&AnyObject>);
 
         #[cfg(feature = "AppKit_NSColorList")]
         #[method(attachColorList:)]

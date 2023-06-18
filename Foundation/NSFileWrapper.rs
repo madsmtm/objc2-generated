@@ -113,11 +113,11 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other fileAttributes)]
-        pub unsafe fn fileAttributes(&self) -> Id<NSDictionary<NSString, Object>>;
+        pub unsafe fn fileAttributes(&self) -> Id<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setFileAttributes:)]
-        pub unsafe fn setFileAttributes(&self, file_attributes: &NSDictionary<NSString, Object>);
+        pub unsafe fn setFileAttributes(&self, file_attributes: &NSDictionary<NSString, AnyObject>);
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(matchesContentsOfURL:)]

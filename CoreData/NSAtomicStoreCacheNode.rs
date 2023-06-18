@@ -38,7 +38,7 @@ extern_methods!(
             feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other propertyCache)]
-        pub unsafe fn propertyCache(&self) -> Option<Id<NSMutableDictionary<NSString, Object>>>;
+        pub unsafe fn propertyCache(&self) -> Option<Id<NSMutableDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(
             feature = "Foundation_NSMutableDictionary",
@@ -47,16 +47,16 @@ extern_methods!(
         #[method(setPropertyCache:)]
         pub unsafe fn setPropertyCache(
             &self,
-            property_cache: Option<&NSMutableDictionary<NSString, Object>>,
+            property_cache: Option<&NSMutableDictionary<NSString, AnyObject>>,
         );
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other valueForKey:)]
-        pub unsafe fn valueForKey(&self, key: &NSString) -> Option<Id<Object>>;
+        pub unsafe fn valueForKey(&self, key: &NSString) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setValue:forKey:)]
-        pub unsafe fn setValue_forKey(&self, value: Option<&Object>, key: &NSString);
+        pub unsafe fn setValue_forKey(&self, value: Option<&AnyObject>, key: &NSString);
     }
 );
 

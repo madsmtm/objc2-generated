@@ -71,19 +71,19 @@ extern_methods!(
         pub unsafe fn isPaused(&self) -> bool;
 
         #[method(run:)]
-        pub unsafe fn run(&self, sender: &Object);
+        pub unsafe fn run(&self, sender: &AnyObject);
 
         #[method(stop:)]
-        pub unsafe fn stop(&self, sender: &Object);
+        pub unsafe fn stop(&self, sender: &AnyObject);
 
         #[method(pause:)]
-        pub unsafe fn pause(&self, sender: &Object);
+        pub unsafe fn pause(&self, sender: &AnyObject);
 
         #[method(step:)]
-        pub unsafe fn step(&self, sender: &Object);
+        pub unsafe fn step(&self, sender: &AnyObject);
 
         #[method(reset:)]
-        pub unsafe fn reset(&self, sender: &Object);
+        pub unsafe fn reset(&self, sender: &AnyObject);
     }
 );
 

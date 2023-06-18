@@ -65,8 +65,9 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSMutableDictionary")]
         #[method_id(@__retain_semantics Other attributes)]
-        pub unsafe fn attributes(&self)
-            -> Id<NSMutableDictionary<NSPrintInfoAttributeKey, Object>>;
+        pub unsafe fn attributes(
+            &self,
+        ) -> Id<NSMutableDictionary<NSPrintInfoAttributeKey, AnyObject>>;
     }
 );
 

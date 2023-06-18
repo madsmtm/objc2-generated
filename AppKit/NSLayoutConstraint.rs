@@ -109,16 +109,16 @@ extern_methods!(
         pub unsafe fn constraintsWithVisualFormat_options_metrics_views(
             format: &NSString,
             opts: NSLayoutFormatOptions,
-            metrics: Option<&NSDictionary<NSString, Object>>,
-            views: &NSDictionary<NSString, Object>,
+            metrics: Option<&NSDictionary<NSString, AnyObject>>,
+            views: &NSDictionary<NSString, AnyObject>,
         ) -> Id<NSArray<NSLayoutConstraint>>;
 
         #[method_id(@__retain_semantics Other constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:)]
         pub unsafe fn constraintWithItem_attribute_relatedBy_toItem_attribute_multiplier_constant(
-            view1: &Object,
+            view1: &AnyObject,
             attr1: NSLayoutAttribute,
             relation: NSLayoutRelation,
-            view2: Option<&Object>,
+            view2: Option<&AnyObject>,
             attr2: NSLayoutAttribute,
             multiplier: CGFloat,
             c: CGFloat,
@@ -137,10 +137,10 @@ extern_methods!(
         pub unsafe fn setShouldBeArchived(&self, should_be_archived: bool);
 
         #[method_id(@__retain_semantics Other firstItem)]
-        pub unsafe fn firstItem(&self) -> Option<Id<Object>>;
+        pub unsafe fn firstItem(&self) -> Option<Id<AnyObject>>;
 
         #[method_id(@__retain_semantics Other secondItem)]
-        pub unsafe fn secondItem(&self) -> Option<Id<Object>>;
+        pub unsafe fn secondItem(&self) -> Option<Id<AnyObject>>;
 
         #[method(firstAttribute)]
         pub unsafe fn firstAttribute(&self) -> NSLayoutAttribute;

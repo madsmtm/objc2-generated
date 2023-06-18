@@ -35,18 +35,18 @@ extern_methods!(
         pub unsafe fn archiverData(&self) -> Id<NSMutableData>;
 
         #[method(encodeRootObject:)]
-        pub unsafe fn encodeRootObject(&self, root_object: &Object);
+        pub unsafe fn encodeRootObject(&self, root_object: &AnyObject);
 
         #[method(encodeConditionalObject:)]
-        pub unsafe fn encodeConditionalObject(&self, object: Option<&Object>);
+        pub unsafe fn encodeConditionalObject(&self, object: Option<&AnyObject>);
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other archivedDataWithRootObject:)]
-        pub unsafe fn archivedDataWithRootObject(root_object: &Object) -> Id<NSData>;
+        pub unsafe fn archivedDataWithRootObject(root_object: &AnyObject) -> Id<NSData>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(archiveRootObject:toFile:)]
-        pub unsafe fn archiveRootObject_toFile(root_object: &Object, path: &NSString) -> bool;
+        pub unsafe fn archiveRootObject_toFile(root_object: &AnyObject, path: &NSString) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(encodeClassName:intoClassName:)]
@@ -64,7 +64,7 @@ extern_methods!(
         ) -> Option<Id<NSString>>;
 
         #[method(replaceObject:withObject:)]
-        pub unsafe fn replaceObject_withObject(&self, object: &Object, new_object: &Object);
+        pub unsafe fn replaceObject_withObject(&self, object: &AnyObject, new_object: &AnyObject);
     }
 );
 
@@ -121,11 +121,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other unarchiveObjectWithData:)]
-        pub unsafe fn unarchiveObjectWithData(data: &NSData) -> Option<Id<Object>>;
+        pub unsafe fn unarchiveObjectWithData(data: &NSData) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other unarchiveObjectWithFile:)]
-        pub unsafe fn unarchiveObjectWithFile(path: &NSString) -> Option<Id<Object>>;
+        pub unsafe fn unarchiveObjectWithFile(path: &NSString) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(decodeClassName:asClassName:)]
@@ -156,7 +156,7 @@ extern_methods!(
         ) -> Id<NSString>;
 
         #[method(replaceObject:withObject:)]
-        pub unsafe fn replaceObject_withObject(&self, object: &Object, new_object: &Object);
+        pub unsafe fn replaceObject_withObject(&self, object: &AnyObject, new_object: &AnyObject);
     }
 );
 

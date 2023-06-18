@@ -308,9 +308,9 @@ extern_methods!(
         pub unsafe fn initWithURL_options_documentAttributes_error(
             this: Option<Allocated<Self>>,
             url: &NSURL,
-            options: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, Object>,
+            options: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, AnyObject>,
             dict: Option<
-                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>>>,
+                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>>,
             >,
         ) -> Result<Id<Self>, Id<NSError>>;
 
@@ -323,9 +323,9 @@ extern_methods!(
         pub unsafe fn initWithData_options_documentAttributes_error(
             this: Option<Allocated<Self>>,
             data: &NSData,
-            options: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, Object>,
+            options: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, AnyObject>,
             dict: Option<
-                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>>>,
+                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>>,
             >,
         ) -> Result<Id<Self>, Id<NSError>>;
 
@@ -338,7 +338,7 @@ extern_methods!(
         pub unsafe fn dataFromRange_documentAttributes_error(
             &self,
             range: NSRange,
-            dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, Object>,
+            dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>,
         ) -> Result<Id<NSData>, Id<NSError>>;
 
         #[cfg(all(
@@ -350,7 +350,7 @@ extern_methods!(
         pub unsafe fn fileWrapperFromRange_documentAttributes_error(
             &self,
             range: NSRange,
-            dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, Object>,
+            dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>,
         ) -> Result<Id<NSFileWrapper>, Id<NSError>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSDictionary"))]
@@ -359,7 +359,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             data: &NSData,
             dict: Option<
-                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>>>,
+                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>>,
             >,
         ) -> Option<Id<Self>>;
 
@@ -369,7 +369,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             data: &NSData,
             dict: Option<
-                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>>>,
+                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>>,
             >,
         ) -> Option<Id<Self>>;
 
@@ -379,7 +379,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             data: &NSData,
             dict: Option<
-                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>>>,
+                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>>,
             >,
         ) -> Option<Id<Self>>;
 
@@ -394,7 +394,7 @@ extern_methods!(
             data: &NSData,
             base: &NSURL,
             dict: Option<
-                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>>>,
+                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>>,
             >,
         ) -> Option<Id<Self>>;
 
@@ -404,7 +404,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             data: &NSData,
             dict: Option<
-                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>>>,
+                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>>,
             >,
         ) -> Option<Id<Self>>;
 
@@ -413,9 +413,9 @@ extern_methods!(
         pub unsafe fn initWithHTML_options_documentAttributes(
             this: Option<Allocated<Self>>,
             data: &NSData,
-            options: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, Object>,
+            options: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, AnyObject>,
             dict: Option<
-                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>>>,
+                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>>,
             >,
         ) -> Option<Id<Self>>;
 
@@ -428,7 +428,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             wrapper: &NSFileWrapper,
             dict: Option<
-                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>>>,
+                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>>,
             >,
         ) -> Option<Id<Self>>;
 
@@ -437,7 +437,7 @@ extern_methods!(
         pub unsafe fn RTFFromRange_documentAttributes(
             &self,
             range: NSRange,
-            dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, Object>,
+            dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>,
         ) -> Option<Id<NSData>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSDictionary"))]
@@ -445,7 +445,7 @@ extern_methods!(
         pub unsafe fn RTFDFromRange_documentAttributes(
             &self,
             range: NSRange,
-            dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, Object>,
+            dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>,
         ) -> Option<Id<NSData>>;
 
         #[cfg(all(
@@ -456,7 +456,7 @@ extern_methods!(
         pub unsafe fn RTFDFileWrapperFromRange_documentAttributes(
             &self,
             range: NSRange,
-            dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, Object>,
+            dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>,
         ) -> Option<Id<NSFileWrapper>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSDictionary"))]
@@ -464,7 +464,7 @@ extern_methods!(
         pub unsafe fn docFormatFromRange_documentAttributes(
             &self,
             range: NSRange,
-            dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, Object>,
+            dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>,
         ) -> Option<Id<NSData>>;
     }
 );
@@ -482,9 +482,9 @@ extern_methods!(
         pub unsafe fn readFromURL_options_documentAttributes_error(
             &mut self,
             url: &NSURL,
-            opts: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, Object>,
+            opts: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, AnyObject>,
             dict: Option<
-                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>>>,
+                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>>,
             >,
         ) -> Result<(), Id<NSError>>;
 
@@ -497,9 +497,9 @@ extern_methods!(
         pub unsafe fn readFromData_options_documentAttributes_error(
             &mut self,
             data: &NSData,
-            opts: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, Object>,
+            opts: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, AnyObject>,
             dict: Option<
-                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, Object>>>,
+                &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>>,
             >,
         ) -> Result<(), Id<NSError>>;
     }
@@ -514,14 +514,14 @@ extern_methods!(
         pub unsafe fn fontAttributesInRange(
             &self,
             range: NSRange,
-        ) -> Id<NSDictionary<NSAttributedStringKey, Object>>;
+        ) -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other rulerAttributesInRange:)]
         pub unsafe fn rulerAttributesInRange(
             &self,
             range: NSRange,
-        ) -> Id<NSDictionary<NSAttributedStringKey, Object>>;
+        ) -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         #[method(containsAttachmentsInRange:)]
         pub unsafe fn containsAttachmentsInRange(&self, range: NSRange) -> bool;

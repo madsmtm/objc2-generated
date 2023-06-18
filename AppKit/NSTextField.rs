@@ -123,7 +123,7 @@ extern_methods!(
         pub unsafe fn setSelectable(&self, selectable: bool);
 
         #[method(selectText:)]
-        pub unsafe fn selectText(&self, sender: Option<&Object>);
+        pub unsafe fn selectText(&self, sender: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSTextFieldDelegate>>>;

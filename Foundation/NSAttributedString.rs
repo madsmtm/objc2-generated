@@ -47,7 +47,7 @@ extern_methods!(
             &self,
             location: NSUInteger,
             range: NSRangePointer,
-        ) -> Id<NSDictionary<NSAttributedStringKey, Object>>;
+        ) -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
     }
 );
 
@@ -91,7 +91,7 @@ extern_methods!(
             attr_name: &NSAttributedStringKey,
             location: NSUInteger,
             range: NSRangePointer,
-        ) -> Option<Id<Object>>;
+        ) -> Option<Id<AnyObject>>;
 
         #[method_id(@__retain_semantics Other attributedSubstringFromRange:)]
         pub unsafe fn attributedSubstringFromRange(&self, range: NSRange)
@@ -104,7 +104,7 @@ extern_methods!(
             location: NSUInteger,
             range: NSRangePointer,
             range_limit: NSRange,
-        ) -> Id<NSDictionary<NSAttributedStringKey, Object>>;
+        ) -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         #[method_id(@__retain_semantics Other attribute:atIndex:longestEffectiveRange:inRange:)]
         pub unsafe fn attribute_atIndex_longestEffectiveRange_inRange(
@@ -113,7 +113,7 @@ extern_methods!(
             location: NSUInteger,
             range: NSRangePointer,
             range_limit: NSRange,
-        ) -> Option<Id<Object>>;
+        ) -> Option<Id<AnyObject>>;
 
         #[method(isEqualToAttributedString:)]
         pub unsafe fn isEqualToAttributedString(&self, other: &NSAttributedString) -> bool;
@@ -127,7 +127,7 @@ extern_methods!(
         pub unsafe fn initWithString_attributes(
             this: Option<Allocated<Self>>,
             str: &NSString,
-            attrs: Option<&NSDictionary<NSAttributedStringKey, Object>>,
+            attrs: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithAttributedString:)]
@@ -144,7 +144,7 @@ extern_methods!(
             opts: NSAttributedStringEnumerationOptions,
             block: &Block<
                 (
-                    NonNull<NSDictionary<NSAttributedStringKey, Object>>,
+                    NonNull<NSDictionary<NSAttributedStringKey, AnyObject>>,
                     NSRange,
                     NonNull<Bool>,
                 ),
@@ -158,7 +158,7 @@ extern_methods!(
             attr_name: &NSAttributedStringKey,
             enumeration_range: NSRange,
             opts: NSAttributedStringEnumerationOptions,
-            block: &Block<(*mut Object, NSRange, NonNull<Bool>), ()>,
+            block: &Block<(*mut AnyObject, NSRange, NonNull<Bool>), ()>,
         );
     }
 );
@@ -178,7 +178,7 @@ extern_methods!(
         pub unsafe fn initWithString_attributes(
             this: Option<Allocated<Self>>,
             str: &NSString,
-            attrs: Option<&NSDictionary<NSAttributedStringKey, Object>>,
+            attrs: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithAttributedString:)]
@@ -232,7 +232,7 @@ extern_methods!(
         #[method(setAttributes:range:)]
         pub unsafe fn setAttributes_range(
             &mut self,
-            attrs: Option<&NSDictionary<NSAttributedStringKey, Object>>,
+            attrs: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
             range: NSRange,
         );
     }
@@ -269,7 +269,7 @@ extern_methods!(
         pub unsafe fn addAttribute_value_range(
             &mut self,
             name: &NSAttributedStringKey,
-            value: &Object,
+            value: &AnyObject,
             range: NSRange,
         );
 
@@ -277,7 +277,7 @@ extern_methods!(
         #[method(addAttributes:range:)]
         pub unsafe fn addAttributes_range(
             &mut self,
-            attrs: &NSDictionary<NSAttributedStringKey, Object>,
+            attrs: &NSDictionary<NSAttributedStringKey, AnyObject>,
             range: NSRange,
         );
 

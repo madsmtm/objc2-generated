@@ -58,7 +58,7 @@ extern_methods!(
         pub unsafe fn prepareLivePhotoForPlaybackWithTargetSize_options_completionHandler(
             &self,
             target_size: CGSize,
-            options: Option<&NSDictionary<NSString, Object>>,
+            options: Option<&NSDictionary<NSString, AnyObject>>,
             handler: &Block<(*mut PHLivePhoto, *mut NSError), ()>,
         );
 
@@ -72,7 +72,7 @@ extern_methods!(
         pub unsafe fn saveLivePhotoToOutput_options_completionHandler(
             &self,
             output: &PHContentEditingOutput,
-            options: Option<&NSDictionary<NSString, Object>>,
+            options: Option<&NSDictionary<NSString, AnyObject>>,
             handler: &Block<(Bool, *mut NSError), ()>,
         );
 

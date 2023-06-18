@@ -51,7 +51,7 @@ extern_methods!(
             identifier: &NSTouchBarItemIdentifier,
             labels: &NSArray<NSString>,
             selection_mode: NSPickerTouchBarItemSelectionMode,
-            target: Option<&Object>,
+            target: Option<&AnyObject>,
             action: Option<Sel>,
         ) -> Id<Self>;
 
@@ -61,7 +61,7 @@ extern_methods!(
             identifier: &NSTouchBarItemIdentifier,
             images: &NSArray<NSImage>,
             selection_mode: NSPickerTouchBarItemSelectionMode,
-            target: Option<&Object>,
+            target: Option<&AnyObject>,
             action: Option<Sel>,
         ) -> Id<Self>;
 
@@ -139,10 +139,10 @@ extern_methods!(
         pub unsafe fn labelAtIndex(&self, index: NSInteger) -> Option<Id<NSString>>;
 
         #[method_id(@__retain_semantics Other target)]
-        pub unsafe fn target(&self) -> Option<Id<Object>>;
+        pub unsafe fn target(&self) -> Option<Id<AnyObject>>;
 
         #[method(setTarget:)]
-        pub unsafe fn setTarget(&self, target: Option<&Object>);
+        pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
 
         #[method(action)]
         pub unsafe fn action(&self) -> Option<Sel>;

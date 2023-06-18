@@ -210,7 +210,7 @@ extern_methods!(
         pub unsafe fn evaluateJavaScript_completionHandler(
             &self,
             java_script_string: &NSString,
-            completion_handler: Option<&Block<(*mut Object, *mut NSError), ()>>,
+            completion_handler: Option<&Block<(*mut AnyObject, *mut NSError), ()>>,
         );
 
         #[cfg(all(
@@ -225,7 +225,7 @@ extern_methods!(
             java_script_string: &NSString,
             frame: Option<&WKFrameInfo>,
             content_world: &WKContentWorld,
-            completion_handler: Option<&Block<(*mut Object, *mut NSError), ()>>,
+            completion_handler: Option<&Block<(*mut AnyObject, *mut NSError), ()>>,
         );
 
         #[cfg(all(
@@ -239,10 +239,10 @@ extern_methods!(
         pub unsafe fn callAsyncJavaScript_arguments_inFrame_inContentWorld_completionHandler(
             &self,
             function_body: &NSString,
-            arguments: Option<&NSDictionary<NSString, Object>>,
+            arguments: Option<&NSDictionary<NSString, AnyObject>>,
             frame: Option<&WKFrameInfo>,
             content_world: &WKContentWorld,
-            completion_handler: Option<&Block<(*mut Object, *mut NSError), ()>>,
+            completion_handler: Option<&Block<(*mut AnyObject, *mut NSError), ()>>,
         );
 
         #[method(closeAllMediaPresentationsWithCompletionHandler:)]
@@ -434,10 +434,10 @@ extern_methods!(
         pub unsafe fn setMediaType(&self, media_type: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other interactionState)]
-        pub unsafe fn interactionState(&self) -> Option<Id<Object>>;
+        pub unsafe fn interactionState(&self) -> Option<Id<AnyObject>>;
 
         #[method(setInteractionState:)]
-        pub unsafe fn setInteractionState(&self, interaction_state: Option<&Object>);
+        pub unsafe fn setInteractionState(&self, interaction_state: Option<&AnyObject>);
 
         #[cfg(all(
             feature = "Foundation_NSData",
@@ -577,19 +577,19 @@ extern_methods!(
     #[cfg(feature = "WebKit_WKWebView")]
     unsafe impl WKWebView {
         #[method(goBack:)]
-        pub unsafe fn goBack_(&self, sender: Option<&Object>);
+        pub unsafe fn goBack_(&self, sender: Option<&AnyObject>);
 
         #[method(goForward:)]
-        pub unsafe fn goForward_(&self, sender: Option<&Object>);
+        pub unsafe fn goForward_(&self, sender: Option<&AnyObject>);
 
         #[method(reload:)]
-        pub unsafe fn reload_(&self, sender: Option<&Object>);
+        pub unsafe fn reload_(&self, sender: Option<&AnyObject>);
 
         #[method(reloadFromOrigin:)]
-        pub unsafe fn reloadFromOrigin_(&self, sender: Option<&Object>);
+        pub unsafe fn reloadFromOrigin_(&self, sender: Option<&AnyObject>);
 
         #[method(stopLoading:)]
-        pub unsafe fn stopLoading_(&self, sender: Option<&Object>);
+        pub unsafe fn stopLoading_(&self, sender: Option<&AnyObject>);
     }
 );
 

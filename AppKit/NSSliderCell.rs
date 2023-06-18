@@ -199,7 +199,7 @@ extern_methods!(
 
         #[deprecated = "-titleCell has returned nil since 10.0"]
         #[method_id(@__retain_semantics Other titleCell)]
-        pub unsafe fn titleCell(&self) -> Option<Id<Object>>;
+        pub unsafe fn titleCell(&self) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[deprecated = "-setTitleColor: had no effect since 10.0"]

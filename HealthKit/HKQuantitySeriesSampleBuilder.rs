@@ -89,7 +89,7 @@ extern_methods!(
         #[method(finishSeriesWithMetadata:endDate:completion:)]
         pub unsafe fn finishSeriesWithMetadata_endDate_completion(
             &self,
-            metadata: Option<&NSDictionary<NSString, Object>>,
+            metadata: Option<&NSDictionary<NSString, AnyObject>>,
             end_date: Option<&NSDate>,
             completion: &Block<(*mut NSArray<HKQuantitySample>, *mut NSError), ()>,
         );
@@ -104,7 +104,7 @@ extern_methods!(
         #[method(finishSeriesWithMetadata:completion:)]
         pub unsafe fn finishSeriesWithMetadata_completion(
             &self,
-            metadata: Option<&NSDictionary<NSString, Object>>,
+            metadata: Option<&NSDictionary<NSString, AnyObject>>,
             completion: &Block<(*mut NSArray<HKQuantitySample>, *mut NSError), ()>,
         );
 

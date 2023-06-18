@@ -96,7 +96,7 @@ extern_methods!(
         pub unsafe fn newTextureWithContentsOfURL_options_completionHandler(
             &self,
             url: &NSURL,
-            options: Option<&NSDictionary<MTKTextureLoaderOption, Object>>,
+            options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
             completion_handler: MTKTextureLoaderCallback,
         );
 
@@ -111,7 +111,7 @@ extern_methods!(
             name: &NSString,
             scale_factor: CGFloat,
             bundle: Option<&NSBundle>,
-            options: Option<&NSDictionary<MTKTextureLoaderOption, Object>>,
+            options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
             completion_handler: MTKTextureLoaderCallback,
         );
 
@@ -127,7 +127,7 @@ extern_methods!(
             scale_factor: CGFloat,
             display_gamut: NSDisplayGamut,
             bundle: Option<&NSBundle>,
-            options: Option<&NSDictionary<MTKTextureLoaderOption, Object>>,
+            options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
             completion_handler: MTKTextureLoaderCallback,
         );
 
@@ -140,7 +140,7 @@ extern_methods!(
         pub unsafe fn newTexturesWithContentsOfURLs_options_completionHandler(
             &self,
             ur_ls: &NSArray<NSURL>,
-            options: Option<&NSDictionary<MTKTextureLoaderOption, Object>>,
+            options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
             completion_handler: MTKTextureLoaderArrayCallback,
         );
 
@@ -156,7 +156,7 @@ extern_methods!(
             names: &NSArray<NSString>,
             scale_factor: CGFloat,
             bundle: Option<&NSBundle>,
-            options: Option<&NSDictionary<MTKTextureLoaderOption, Object>>,
+            options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
             completion_handler: MTKTextureLoaderArrayCallback,
         );
 
@@ -173,7 +173,7 @@ extern_methods!(
             scale_factor: CGFloat,
             display_gamut: NSDisplayGamut,
             bundle: Option<&NSBundle>,
-            options: Option<&NSDictionary<MTKTextureLoaderOption, Object>>,
+            options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
             completion_handler: MTKTextureLoaderArrayCallback,
         );
 
@@ -182,7 +182,7 @@ extern_methods!(
         pub unsafe fn newTextureWithData_options_completionHandler(
             &self,
             data: &NSData,
-            options: Option<&NSDictionary<MTKTextureLoaderOption, Object>>,
+            options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
             completion_handler: MTKTextureLoaderCallback,
         );
 
@@ -191,7 +191,7 @@ extern_methods!(
         pub unsafe fn newTextureWithMDLTexture_options_completionHandler(
             &self,
             texture: &MDLTexture,
-            options: Option<&NSDictionary<MTKTextureLoaderOption, Object>>,
+            options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
             completion_handler: MTKTextureLoaderCallback,
         );
 
@@ -204,7 +204,7 @@ extern_methods!(
         pub unsafe fn newTextureWithContentsOfURL_options_error(
             &self,
             url: &NSURL,
-            options: Option<&NSDictionary<MTKTextureLoaderOption, Object>>,
+            options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
         ) -> Result<Id<ProtocolObject<dyn MTLTexture>>, Id<NSError>>;
 
         #[cfg(all(
@@ -216,7 +216,7 @@ extern_methods!(
         pub unsafe fn newTextureWithData_options_error(
             &self,
             data: &NSData,
-            options: Option<&NSDictionary<MTKTextureLoaderOption, Object>>,
+            options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
         ) -> Result<Id<ProtocolObject<dyn MTLTexture>>, Id<NSError>>;
 
         #[cfg(all(
@@ -228,7 +228,7 @@ extern_methods!(
         pub unsafe fn newTextureWithMDLTexture_options_error(
             &self,
             texture: &MDLTexture,
-            options: Option<&NSDictionary<MTKTextureLoaderOption, Object>>,
+            options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
         ) -> Result<Id<ProtocolObject<dyn MTLTexture>>, Id<NSError>>;
 
         #[cfg(all(
@@ -243,7 +243,7 @@ extern_methods!(
             name: &NSString,
             scale_factor: CGFloat,
             bundle: Option<&NSBundle>,
-            options: Option<&NSDictionary<MTKTextureLoaderOption, Object>>,
+            options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
         ) -> Result<Id<ProtocolObject<dyn MTLTexture>>, Id<NSError>>;
 
         #[cfg(all(
@@ -259,7 +259,7 @@ extern_methods!(
             scale_factor: CGFloat,
             display_gamut: NSDisplayGamut,
             bundle: Option<&NSBundle>,
-            options: Option<&NSDictionary<MTKTextureLoaderOption, Object>>,
+            options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
         ) -> Result<Id<ProtocolObject<dyn MTLTexture>>, Id<NSError>>;
     }
 );

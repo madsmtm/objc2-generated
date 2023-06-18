@@ -76,7 +76,9 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other deviceDescription)]
-        pub unsafe fn deviceDescription(&self) -> Id<NSDictionary<NSDeviceDescriptionKey, Object>>;
+        pub unsafe fn deviceDescription(
+            &self,
+        ) -> Id<NSDictionary<NSDeviceDescriptionKey, AnyObject>>;
     }
 );
 

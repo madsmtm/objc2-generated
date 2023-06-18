@@ -57,7 +57,7 @@ extern_methods!(
         ) -> Id<NSExpression>;
 
         #[method_id(@__retain_semantics Other expressionForConstantValue:)]
-        pub unsafe fn expressionForConstantValue(obj: Option<&Object>) -> Id<NSExpression>;
+        pub unsafe fn expressionForConstantValue(obj: Option<&AnyObject>) -> Id<NSExpression>;
 
         #[method_id(@__retain_semantics Other expressionForEvaluatedObject)]
         pub unsafe fn expressionForEvaluatedObject() -> Id<NSExpression>;
@@ -128,11 +128,11 @@ extern_methods!(
         pub unsafe fn expressionForBlock_arguments(
             block: &Block<
                 (
-                    *mut Object,
+                    *mut AnyObject,
                     NonNull<NSArray<NSExpression>>,
                     *mut NSMutableDictionary,
                 ),
-                NonNull<Object>,
+                NonNull<AnyObject>,
             >,
             arguments: Option<&NSArray<NSExpression>>,
         ) -> Id<NSExpression>;
@@ -162,7 +162,7 @@ extern_methods!(
         pub unsafe fn expressionType(&self) -> NSExpressionType;
 
         #[method_id(@__retain_semantics Other constantValue)]
-        pub unsafe fn constantValue(&self) -> Option<Id<Object>>;
+        pub unsafe fn constantValue(&self) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other keyPath)]
@@ -184,7 +184,7 @@ extern_methods!(
         pub unsafe fn arguments(&self) -> Option<Id<NSArray<NSExpression>>>;
 
         #[method_id(@__retain_semantics Other collection)]
-        pub unsafe fn collection(&self) -> Id<Object>;
+        pub unsafe fn collection(&self) -> Id<AnyObject>;
 
         #[cfg(feature = "Foundation_NSPredicate")]
         #[method_id(@__retain_semantics Other predicate)]
@@ -212,11 +212,11 @@ extern_methods!(
         ) -> NonNull<
             Block<
                 (
-                    *mut Object,
+                    *mut AnyObject,
                     NonNull<NSArray<NSExpression>>,
                     *mut NSMutableDictionary,
                 ),
-                NonNull<Object>,
+                NonNull<AnyObject>,
             >,
         >;
 
@@ -224,9 +224,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Other expressionValueWithObject:context:)]
         pub unsafe fn expressionValueWithObject_context(
             &self,
-            object: Option<&Object>,
+            object: Option<&AnyObject>,
             context: Option<&NSMutableDictionary>,
-        ) -> Option<Id<Object>>;
+        ) -> Option<Id<AnyObject>>;
 
         #[method(allowEvaluation)]
         pub unsafe fn allowEvaluation(&self);

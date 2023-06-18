@@ -54,7 +54,7 @@ extern_methods!(
         pub unsafe fn initWithWindowNibName_owner(
             this: Option<Allocated<Self>>,
             window_nib_name: &NSNibName,
-            owner: &Object,
+            owner: &AnyObject,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -62,7 +62,7 @@ extern_methods!(
         pub unsafe fn initWithWindowNibPath_owner(
             this: Option<Allocated<Self>>,
             window_nib_path: &NSString,
-            owner: &Object,
+            owner: &AnyObject,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other windowNibName)]
@@ -73,7 +73,7 @@ extern_methods!(
         pub unsafe fn windowNibPath(&self) -> Option<Id<NSString>>;
 
         #[method_id(@__retain_semantics Other owner)]
-        pub unsafe fn owner(&self) -> Option<Id<Object>>;
+        pub unsafe fn owner(&self) -> Option<Id<AnyObject>>;
 
         #[method_id(@__retain_semantics Other windowFrameAutosaveName)]
         pub unsafe fn windowFrameAutosaveName(&self) -> Id<NSWindowFrameAutosaveName>;
@@ -91,10 +91,10 @@ extern_methods!(
         pub unsafe fn setShouldCascadeWindows(&self, should_cascade_windows: bool);
 
         #[method_id(@__retain_semantics Other document)]
-        pub unsafe fn document(&self) -> Option<Id<Object>>;
+        pub unsafe fn document(&self) -> Option<Id<AnyObject>>;
 
         #[method(setDocument:)]
-        pub unsafe fn setDocument(&self, document: Option<&Object>);
+        pub unsafe fn setDocument(&self, document: Option<&AnyObject>);
 
         #[method(setDocumentEdited:)]
         pub unsafe fn setDocumentEdited(&self, dirty_flag: bool);
@@ -150,7 +150,7 @@ extern_methods!(
         pub unsafe fn close(&self);
 
         #[method(showWindow:)]
-        pub unsafe fn showWindow(&self, sender: Option<&Object>);
+        pub unsafe fn showWindow(&self, sender: Option<&AnyObject>);
     }
 );
 
@@ -187,6 +187,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSWindowController")]
     unsafe impl NSWindowController {
         #[method(dismissController:)]
-        pub unsafe fn dismissController(&self, sender: Option<&Object>);
+        pub unsafe fn dismissController(&self, sender: Option<&AnyObject>);
     }
 );

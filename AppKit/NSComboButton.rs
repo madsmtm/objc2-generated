@@ -58,7 +58,7 @@ extern_methods!(
         pub unsafe fn comboButtonWithTitle_menu_target_action(
             title: &NSString,
             menu: Option<&NSMenu>,
-            target: Option<&Object>,
+            target: Option<&AnyObject>,
             action: Option<Sel>,
         ) -> Id<Self>;
 
@@ -67,7 +67,7 @@ extern_methods!(
         pub unsafe fn comboButtonWithImage_menu_target_action(
             image: &NSImage,
             menu: Option<&NSMenu>,
-            target: Option<&Object>,
+            target: Option<&AnyObject>,
             action: Option<Sel>,
         ) -> Id<Self>;
 
@@ -81,7 +81,7 @@ extern_methods!(
             title: &NSString,
             image: &NSImage,
             menu: Option<&NSMenu>,
-            target: Option<&Object>,
+            target: Option<&AnyObject>,
             action: Option<Sel>,
         ) -> Id<Self>;
 

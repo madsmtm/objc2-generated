@@ -147,7 +147,7 @@ extern_methods!(
             &self,
             workout_configuration: &HKWorkoutConfiguration,
             date: &NSDate,
-            metadata: Option<&NSDictionary<NSString, Object>>,
+            metadata: Option<&NSDictionary<NSString, AnyObject>>,
         );
 
         #[cfg(feature = "Foundation_NSDate")]

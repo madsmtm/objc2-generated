@@ -165,7 +165,7 @@ extern_methods!(
             &self,
             url: &NSURL,
             create_intermediates: bool,
-            attributes: Option<&NSDictionary<NSFileAttributeKey, Object>>,
+            attributes: Option<&NSDictionary<NSFileAttributeKey, AnyObject>>,
         ) -> Result<(), Id<NSError>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
@@ -193,7 +193,7 @@ extern_methods!(
         #[method(setAttributes:ofItemAtPath:error:_)]
         pub unsafe fn setAttributes_ofItemAtPath_error(
             &self,
-            attributes: &NSDictionary<NSFileAttributeKey, Object>,
+            attributes: &NSDictionary<NSFileAttributeKey, AnyObject>,
             path: &NSString,
         ) -> Result<(), Id<NSError>>;
 
@@ -207,7 +207,7 @@ extern_methods!(
             &self,
             path: &NSString,
             create_intermediates: bool,
-            attributes: Option<&NSDictionary<NSFileAttributeKey, Object>>,
+            attributes: Option<&NSDictionary<NSFileAttributeKey, AnyObject>>,
         ) -> Result<(), Id<NSError>>;
 
         #[cfg(all(
@@ -241,7 +241,7 @@ extern_methods!(
         pub unsafe fn attributesOfItemAtPath_error(
             &self,
             path: &NSString,
-        ) -> Result<Id<NSDictionary<NSFileAttributeKey, Object>>, Id<NSError>>;
+        ) -> Result<Id<NSDictionary<NSFileAttributeKey, AnyObject>>, Id<NSError>>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -252,7 +252,7 @@ extern_methods!(
         pub unsafe fn attributesOfFileSystemForPath_error(
             &self,
             path: &NSString,
-        ) -> Result<Id<NSDictionary<NSFileAttributeKey, Object>>, Id<NSError>>;
+        ) -> Result<Id<NSDictionary<NSFileAttributeKey, AnyObject>>, Id<NSError>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method(createSymbolicLinkAtPath:withDestinationPath:error:_)]
@@ -397,7 +397,7 @@ extern_methods!(
             &self,
             src: &NSString,
             dest: &NSString,
-            handler: Option<&Object>,
+            handler: Option<&AnyObject>,
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -407,7 +407,7 @@ extern_methods!(
             &self,
             src: &NSString,
             dest: &NSString,
-            handler: Option<&Object>,
+            handler: Option<&AnyObject>,
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -417,7 +417,7 @@ extern_methods!(
             &self,
             src: &NSString,
             dest: &NSString,
-            handler: Option<&Object>,
+            handler: Option<&AnyObject>,
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -426,7 +426,7 @@ extern_methods!(
         pub unsafe fn removeFileAtPath_handler(
             &self,
             path: &NSString,
-            handler: Option<&Object>,
+            handler: Option<&AnyObject>,
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -527,7 +527,7 @@ extern_methods!(
             &self,
             path: &NSString,
             data: Option<&NSData>,
-            attr: Option<&NSDictionary<NSFileAttributeKey, Object>>,
+            attr: Option<&NSDictionary<NSFileAttributeKey, AnyObject>>,
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -867,7 +867,7 @@ extern_protocol!(
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSDirectoryEnumerator")]
-    pub struct NSDirectoryEnumerator<ObjectType: Message = Object> {
+    pub struct NSDirectoryEnumerator<ObjectType: Message = AnyObject> {
         __superclass: NSEnumerator<ObjectType>,
         _inner0: PhantomData<*mut ObjectType>,
         notunwindsafe: PhantomData<&'static mut ()>,
@@ -900,14 +900,15 @@ extern_methods!(
     unsafe impl<ObjectType: Message> NSDirectoryEnumerator<ObjectType> {
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other fileAttributes)]
-        pub unsafe fn fileAttributes(&self)
-            -> Option<Id<NSDictionary<NSFileAttributeKey, Object>>>;
+        pub unsafe fn fileAttributes(
+            &self,
+        ) -> Option<Id<NSDictionary<NSFileAttributeKey, AnyObject>>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other directoryAttributes)]
         pub unsafe fn directoryAttributes(
             &self,
-        ) -> Option<Id<NSDictionary<NSFileAttributeKey, Object>>>;
+        ) -> Option<Id<NSDictionary<NSFileAttributeKey, AnyObject>>>;
 
         #[method(isEnumeratingDirectoryPostOrder)]
         pub unsafe fn isEnumeratingDirectoryPostOrder(&self) -> bool;

@@ -7,7 +7,7 @@ use crate::Foundation::*;
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CoreData_NSFetchedResultsController")]
-    pub struct NSFetchedResultsController<ResultType: Message = Object> {
+    pub struct NSFetchedResultsController<ResultType: Message = AnyObject> {
         __superclass: NSObject,
         _inner0: PhantomData<*mut ResultType>,
         notunwindsafe: PhantomData<&'static mut ()>,
@@ -189,7 +189,7 @@ extern_protocol!(
         unsafe fn controller_didChangeObject_atIndexPath_forChangeType_newIndexPath(
             &self,
             controller: &NSFetchedResultsController,
-            an_object: &Object,
+            an_object: &AnyObject,
             index_path: Option<&NSIndexPath>,
             r#type: NSFetchedResultsChangeType,
             new_index_path: Option<&NSIndexPath>,

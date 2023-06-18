@@ -9,7 +9,7 @@ use crate::PhotoKit::*;
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PhotoKit_PHFetchResult")]
-    pub struct PHFetchResult<ObjectType: Message = Object> {
+    pub struct PHFetchResult<ObjectType: Message = AnyObject> {
         __superclass: NSObject,
         _inner0: PhantomData<*mut ObjectType>,
         notunwindsafe: PhantomData<&'static mut ()>,
