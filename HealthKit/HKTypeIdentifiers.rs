@@ -22,9 +22,7 @@ extern_static!(HKQuantityTypeIdentifierLeanBodyMass: &'static HKQuantityTypeIden
 
 extern_static!(HKQuantityTypeIdentifierWaistCircumference: &'static HKQuantityTypeIdentifier);
 
-extern_static!(
-    HKQuantityTypeIdentifierAppleSleepingWristTemperature: &'static HKQuantityTypeIdentifier
-);
+extern_static!(HKQuantityTypeIdentifierAppleSleepingWristTemperature: &'static HKQuantityTypeIdentifier);
 
 extern_static!(HKQuantityTypeIdentifierStepCount: &'static HKQuantityTypeIdentifier);
 
@@ -52,27 +50,19 @@ extern_static!(HKQuantityTypeIdentifierSwimmingStrokeCount: &'static HKQuantityT
 
 extern_static!(HKQuantityTypeIdentifierVO2Max: &'static HKQuantityTypeIdentifier);
 
-extern_static!(
-    HKQuantityTypeIdentifierDistanceDownhillSnowSports: &'static HKQuantityTypeIdentifier
-);
+extern_static!(HKQuantityTypeIdentifierDistanceDownhillSnowSports: &'static HKQuantityTypeIdentifier);
 
 extern_static!(HKQuantityTypeIdentifierAppleStandTime: &'static HKQuantityTypeIdentifier);
 
 extern_static!(HKQuantityTypeIdentifierWalkingSpeed: &'static HKQuantityTypeIdentifier);
 
-extern_static!(
-    HKQuantityTypeIdentifierWalkingDoubleSupportPercentage: &'static HKQuantityTypeIdentifier
-);
+extern_static!(HKQuantityTypeIdentifierWalkingDoubleSupportPercentage: &'static HKQuantityTypeIdentifier);
 
-extern_static!(
-    HKQuantityTypeIdentifierWalkingAsymmetryPercentage: &'static HKQuantityTypeIdentifier
-);
+extern_static!(HKQuantityTypeIdentifierWalkingAsymmetryPercentage: &'static HKQuantityTypeIdentifier);
 
 extern_static!(HKQuantityTypeIdentifierWalkingStepLength: &'static HKQuantityTypeIdentifier);
 
-extern_static!(
-    HKQuantityTypeIdentifierSixMinuteWalkTestDistance: &'static HKQuantityTypeIdentifier
-);
+extern_static!(HKQuantityTypeIdentifierSixMinuteWalkTestDistance: &'static HKQuantityTypeIdentifier);
 
 extern_static!(HKQuantityTypeIdentifierStairAscentSpeed: &'static HKQuantityTypeIdentifier);
 
@@ -84,9 +74,7 @@ extern_static!(HKQuantityTypeIdentifierAppleWalkingSteadiness: &'static HKQuanti
 
 extern_static!(HKQuantityTypeIdentifierRunningStrideLength: &'static HKQuantityTypeIdentifier);
 
-extern_static!(
-    HKQuantityTypeIdentifierRunningVerticalOscillation: &'static HKQuantityTypeIdentifier
-);
+extern_static!(HKQuantityTypeIdentifierRunningVerticalOscillation: &'static HKQuantityTypeIdentifier);
 
 extern_static!(HKQuantityTypeIdentifierRunningGroundContactTime: &'static HKQuantityTypeIdentifier);
 
@@ -112,9 +100,7 @@ extern_static!(HKQuantityTypeIdentifierWalkingHeartRateAverage: &'static HKQuant
 
 extern_static!(HKQuantityTypeIdentifierHeartRateVariabilitySDNN: &'static HKQuantityTypeIdentifier);
 
-extern_static!(
-    HKQuantityTypeIdentifierHeartRateRecoveryOneMinute: &'static HKQuantityTypeIdentifier
-);
+extern_static!(HKQuantityTypeIdentifierHeartRateRecoveryOneMinute: &'static HKQuantityTypeIdentifier);
 
 extern_static!(HKQuantityTypeIdentifierOxygenSaturation: &'static HKQuantityTypeIdentifier);
 
@@ -138,25 +124,17 @@ extern_static!(HKQuantityTypeIdentifierForcedExpiratoryVolume1: &'static HKQuant
 
 extern_static!(HKQuantityTypeIdentifierPeakExpiratoryFlowRate: &'static HKQuantityTypeIdentifier);
 
-extern_static!(
-    HKQuantityTypeIdentifierEnvironmentalAudioExposure: &'static HKQuantityTypeIdentifier
-);
+extern_static!(HKQuantityTypeIdentifierEnvironmentalAudioExposure: &'static HKQuantityTypeIdentifier);
 
 extern_static!(HKQuantityTypeIdentifierHeadphoneAudioExposure: &'static HKQuantityTypeIdentifier);
 
-extern_static!(
-    HKQuantityTypeIdentifierNumberOfAlcoholicBeverages: &'static HKQuantityTypeIdentifier
-);
+extern_static!(HKQuantityTypeIdentifierNumberOfAlcoholicBeverages: &'static HKQuantityTypeIdentifier);
 
 extern_static!(HKQuantityTypeIdentifierDietaryFatTotal: &'static HKQuantityTypeIdentifier);
 
-extern_static!(
-    HKQuantityTypeIdentifierDietaryFatPolyunsaturated: &'static HKQuantityTypeIdentifier
-);
+extern_static!(HKQuantityTypeIdentifierDietaryFatPolyunsaturated: &'static HKQuantityTypeIdentifier);
 
-extern_static!(
-    HKQuantityTypeIdentifierDietaryFatMonounsaturated: &'static HKQuantityTypeIdentifier
-);
+extern_static!(HKQuantityTypeIdentifierDietaryFatMonounsaturated: &'static HKQuantityTypeIdentifier);
 
 extern_static!(HKQuantityTypeIdentifierDietaryFatSaturated: &'static HKQuantityTypeIdentifier);
 
@@ -258,19 +236,13 @@ extern_static!(HKCategoryTypeIdentifierMenstrualFlow: &'static HKCategoryTypeIde
 
 extern_static!(HKCategoryTypeIdentifierIntermenstrualBleeding: &'static HKCategoryTypeIdentifier);
 
-extern_static!(
-    HKCategoryTypeIdentifierPersistentIntermenstrualBleeding: &'static HKCategoryTypeIdentifier
-);
+extern_static!(HKCategoryTypeIdentifierPersistentIntermenstrualBleeding: &'static HKCategoryTypeIdentifier);
 
-extern_static!(
-    HKCategoryTypeIdentifierProlongedMenstrualPeriods: &'static HKCategoryTypeIdentifier
-);
+extern_static!(HKCategoryTypeIdentifierProlongedMenstrualPeriods: &'static HKCategoryTypeIdentifier);
 
 extern_static!(HKCategoryTypeIdentifierIrregularMenstrualCycles: &'static HKCategoryTypeIdentifier);
 
-extern_static!(
-    HKCategoryTypeIdentifierInfrequentMenstrualCycles: &'static HKCategoryTypeIdentifier
-);
+extern_static!(HKCategoryTypeIdentifierInfrequentMenstrualCycles: &'static HKCategoryTypeIdentifier);
 
 extern_static!(HKCategoryTypeIdentifierSexualActivity: &'static HKCategoryTypeIdentifier);
 
@@ -280,9 +252,7 @@ extern_static!(HKCategoryTypeIdentifierHighHeartRateEvent: &'static HKCategoryTy
 
 extern_static!(HKCategoryTypeIdentifierLowHeartRateEvent: &'static HKCategoryTypeIdentifier);
 
-extern_static!(
-    HKCategoryTypeIdentifierIrregularHeartRhythmEvent: &'static HKCategoryTypeIdentifier
-);
+extern_static!(HKCategoryTypeIdentifierIrregularHeartRhythmEvent: &'static HKCategoryTypeIdentifier);
 
 extern_static!(HKCategoryTypeIdentifierAudioExposureEvent: &'static HKCategoryTypeIdentifier);
 
@@ -294,21 +264,15 @@ extern_static!(HKCategoryTypeIdentifierLactation: &'static HKCategoryTypeIdentif
 
 extern_static!(HKCategoryTypeIdentifierContraceptive: &'static HKCategoryTypeIdentifier);
 
-extern_static!(
-    HKCategoryTypeIdentifierEnvironmentalAudioExposureEvent: &'static HKCategoryTypeIdentifier
-);
+extern_static!(HKCategoryTypeIdentifierEnvironmentalAudioExposureEvent: &'static HKCategoryTypeIdentifier);
 
-extern_static!(
-    HKCategoryTypeIdentifierHeadphoneAudioExposureEvent: &'static HKCategoryTypeIdentifier
-);
+extern_static!(HKCategoryTypeIdentifierHeadphoneAudioExposureEvent: &'static HKCategoryTypeIdentifier);
 
 extern_static!(HKCategoryTypeIdentifierHandwashingEvent: &'static HKCategoryTypeIdentifier);
 
 extern_static!(HKCategoryTypeIdentifierLowCardioFitnessEvent: &'static HKCategoryTypeIdentifier);
 
-extern_static!(
-    HKCategoryTypeIdentifierAppleWalkingSteadinessEvent: &'static HKCategoryTypeIdentifier
-);
+extern_static!(HKCategoryTypeIdentifierAppleWalkingSteadinessEvent: &'static HKCategoryTypeIdentifier);
 
 extern_static!(HKCategoryTypeIdentifierAbdominalCramps: &'static HKCategoryTypeIdentifier);
 
@@ -368,9 +332,7 @@ extern_static!(HKCategoryTypeIdentifierNightSweats: &'static HKCategoryTypeIdent
 
 extern_static!(HKCategoryTypeIdentifierPelvicPain: &'static HKCategoryTypeIdentifier);
 
-extern_static!(
-    HKCategoryTypeIdentifierRapidPoundingOrFlutteringHeartbeat: &'static HKCategoryTypeIdentifier
-);
+extern_static!(HKCategoryTypeIdentifierRapidPoundingOrFlutteringHeartbeat: &'static HKCategoryTypeIdentifier);
 
 extern_static!(HKCategoryTypeIdentifierRunnyNose: &'static HKCategoryTypeIdentifier);
 
@@ -394,25 +356,17 @@ typed_enum!(
     pub type HKCharacteristicTypeIdentifier = NSString;
 );
 
-extern_static!(
-    HKCharacteristicTypeIdentifierBiologicalSex: &'static HKCharacteristicTypeIdentifier
-);
+extern_static!(HKCharacteristicTypeIdentifierBiologicalSex: &'static HKCharacteristicTypeIdentifier);
 
 extern_static!(HKCharacteristicTypeIdentifierBloodType: &'static HKCharacteristicTypeIdentifier);
 
 extern_static!(HKCharacteristicTypeIdentifierDateOfBirth: &'static HKCharacteristicTypeIdentifier);
 
-extern_static!(
-    HKCharacteristicTypeIdentifierFitzpatrickSkinType: &'static HKCharacteristicTypeIdentifier
-);
+extern_static!(HKCharacteristicTypeIdentifierFitzpatrickSkinType: &'static HKCharacteristicTypeIdentifier);
 
-extern_static!(
-    HKCharacteristicTypeIdentifierWheelchairUse: &'static HKCharacteristicTypeIdentifier
-);
+extern_static!(HKCharacteristicTypeIdentifierWheelchairUse: &'static HKCharacteristicTypeIdentifier);
 
-extern_static!(
-    HKCharacteristicTypeIdentifierActivityMoveMode: &'static HKCharacteristicTypeIdentifier
-);
+extern_static!(HKCharacteristicTypeIdentifierActivityMoveMode: &'static HKCharacteristicTypeIdentifier);
 
 typed_enum!(
     pub type HKCorrelationTypeIdentifier = NSString;

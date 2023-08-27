@@ -32,88 +32,112 @@ extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLImageElement")]
     unsafe impl DOMHTMLImageElement {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other align)]
         pub unsafe fn align(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setAlign:)]
         pub unsafe fn setAlign(&self, align: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other alt)]
         pub unsafe fn alt(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setAlt:)]
         pub unsafe fn setAlt(&self, alt: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other border)]
         pub unsafe fn border(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setBorder:)]
         pub unsafe fn setBorder(&self, border: Option<&NSString>);
 
+        #[deprecated]
         #[method(height)]
         pub unsafe fn height(&self) -> c_int;
 
+        #[deprecated]
         #[method(setHeight:)]
         pub unsafe fn setHeight(&self, height: c_int);
 
+        #[deprecated]
         #[method(hspace)]
         pub unsafe fn hspace(&self) -> c_int;
 
+        #[deprecated]
         #[method(setHspace:)]
         pub unsafe fn setHspace(&self, hspace: c_int);
 
+        #[deprecated]
         #[method(isMap)]
         pub unsafe fn isMap(&self) -> bool;
 
+        #[deprecated]
         #[method(setIsMap:)]
         pub unsafe fn setIsMap(&self, is_map: bool);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other longDesc)]
         pub unsafe fn longDesc(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setLongDesc:)]
         pub unsafe fn setLongDesc(&self, long_desc: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other src)]
         pub unsafe fn src(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setSrc:)]
         pub unsafe fn setSrc(&self, src: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other useMap)]
         pub unsafe fn useMap(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setUseMap:)]
         pub unsafe fn setUseMap(&self, use_map: Option<&NSString>);
 
+        #[deprecated]
         #[method(vspace)]
         pub unsafe fn vspace(&self) -> c_int;
 
+        #[deprecated]
         #[method(setVspace:)]
         pub unsafe fn setVspace(&self, vspace: c_int);
 
+        #[deprecated]
         #[method(width)]
         pub unsafe fn width(&self) -> c_int;
 
+        #[deprecated]
         #[method(setWidth:)]
         pub unsafe fn setWidth(&self, width: c_int);
 
@@ -154,6 +178,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMHTMLImageElement")]
     unsafe impl DOMHTMLImageElement {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

@@ -466,31 +466,40 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLArgument")]
     unsafe impl MTLArgument {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other name)]
         pub fn name(&self) -> Id<NSString>;
 
+        #[deprecated]
         #[method(type)]
         pub unsafe fn r#type(&self) -> MTLArgumentType;
 
+        #[deprecated]
         #[method(access)]
         pub fn access(&self) -> MTLArgumentAccess;
 
+        #[deprecated]
         #[method(index)]
         pub fn index(&self) -> NSUInteger;
 
+        #[deprecated]
         #[method(isActive)]
         pub fn isActive(&self) -> bool;
 
+        #[deprecated]
         #[method(bufferAlignment)]
         pub fn bufferAlignment(&self) -> NSUInteger;
 
+        #[deprecated]
         #[method(bufferDataSize)]
         pub fn bufferDataSize(&self) -> NSUInteger;
 
+        #[deprecated]
         #[method(bufferDataType)]
         pub fn bufferDataType(&self) -> MTLDataType;
 
         #[cfg(feature = "Metal_MTLStructType")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other bufferStructType)]
         pub fn bufferStructType(&self) -> Option<Id<MTLStructType>>;
 
@@ -498,15 +507,19 @@ extern_methods!(
         #[method_id(@__retain_semantics Other bufferPointerType)]
         pub unsafe fn bufferPointerType(&self) -> Option<Id<MTLPointerType>>;
 
+        #[deprecated]
         #[method(threadgroupMemoryAlignment)]
         pub fn threadgroupMemoryAlignment(&self) -> NSUInteger;
 
+        #[deprecated]
         #[method(threadgroupMemoryDataSize)]
         pub fn threadgroupMemoryDataSize(&self) -> NSUInteger;
 
+        #[deprecated]
         #[method(textureType)]
         pub fn textureType(&self) -> MTLTextureType;
 
+        #[deprecated]
         #[method(textureDataType)]
         pub fn textureDataType(&self) -> MTLDataType;
 

@@ -25,10 +25,12 @@ unsafe impl NSObjectProtocol for CKMarkNotificationsReadOperation {}
 extern_methods!(
     #[cfg(feature = "CloudKit_CKMarkNotificationsReadOperation")]
     unsafe impl CKMarkNotificationsReadOperation {
+        #[deprecated = "Instead of iterating notifications, consider using CKDatabaseSubscription, CKFetchDatabaseChangesOperation, and CKFetchRecordZoneChangesOperation as appropriate"]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(all(feature = "CloudKit_CKNotificationID", feature = "Foundation_NSArray"))]
+        #[deprecated = "Instead of iterating notifications, consider using CKDatabaseSubscription, CKFetchDatabaseChangesOperation, and CKFetchRecordZoneChangesOperation as appropriate"]
         #[method_id(@__retain_semantics Init initWithNotificationIDsToMarkRead:)]
         pub unsafe fn initWithNotificationIDsToMarkRead(
             this: Option<Allocated<Self>>,
@@ -36,10 +38,12 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(all(feature = "CloudKit_CKNotificationID", feature = "Foundation_NSArray"))]
+        #[deprecated = "Instead of iterating notifications, consider using CKDatabaseSubscription, CKFetchDatabaseChangesOperation, and CKFetchRecordZoneChangesOperation as appropriate"]
         #[method_id(@__retain_semantics Other notificationIDs)]
         pub unsafe fn notificationIDs(&self) -> Option<Id<NSArray<CKNotificationID>>>;
 
         #[cfg(all(feature = "CloudKit_CKNotificationID", feature = "Foundation_NSArray"))]
+        #[deprecated = "Instead of iterating notifications, consider using CKDatabaseSubscription, CKFetchDatabaseChangesOperation, and CKFetchRecordZoneChangesOperation as appropriate"]
         #[method(setNotificationIDs:)]
         pub unsafe fn setNotificationIDs(
             &self,
@@ -51,6 +55,7 @@ extern_methods!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSError"
         ))]
+        #[deprecated = "Instead of iterating notifications, consider using CKDatabaseSubscription, CKFetchDatabaseChangesOperation, and CKFetchRecordZoneChangesOperation as appropriate"]
         #[method(markNotificationsReadCompletionBlock)]
         pub unsafe fn markNotificationsReadCompletionBlock(
             &self,
@@ -61,6 +66,7 @@ extern_methods!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSError"
         ))]
+        #[deprecated = "Instead of iterating notifications, consider using CKDatabaseSubscription, CKFetchDatabaseChangesOperation, and CKFetchRecordZoneChangesOperation as appropriate"]
         #[method(setMarkNotificationsReadCompletionBlock:)]
         pub unsafe fn setMarkNotificationsReadCompletionBlock(
             &self,

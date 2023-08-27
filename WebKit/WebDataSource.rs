@@ -25,6 +25,7 @@ extern_methods!(
     #[cfg(feature = "WebKit_WebDataSource")]
     unsafe impl WebDataSource {
         #[cfg(feature = "Foundation_NSURLRequest")]
+        #[deprecated]
         #[method_id(@__retain_semantics Init initWithRequest:)]
         pub unsafe fn initWithRequest(
             this: Option<Allocated<Self>>,
@@ -32,62 +33,77 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSData")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other data)]
         pub unsafe fn data(&self) -> Id<NSData>;
 
+        #[deprecated]
         #[method_id(@__retain_semantics Other representation)]
         pub unsafe fn representation(
             &self,
         ) -> Option<Id<ProtocolObject<dyn WebDocumentRepresentation>>>;
 
         #[cfg(feature = "WebKit_WebFrame")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other webFrame)]
         pub unsafe fn webFrame(&self) -> Option<Id<WebFrame>>;
 
         #[cfg(feature = "Foundation_NSURLRequest")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other initialRequest)]
         pub unsafe fn initialRequest(&self) -> Option<Id<NSURLRequest>>;
 
         #[cfg(feature = "Foundation_NSMutableURLRequest")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other request)]
         pub unsafe fn request(&self) -> Option<Id<NSMutableURLRequest>>;
 
         #[cfg(feature = "Foundation_NSURLResponse")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other response)]
         pub unsafe fn response(&self) -> Option<Id<NSURLResponse>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other textEncodingName)]
         pub unsafe fn textEncodingName(&self) -> Id<NSString>;
 
+        #[deprecated]
         #[method(isLoading)]
         pub unsafe fn isLoading(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other pageTitle)]
         pub unsafe fn pageTitle(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSURL")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other unreachableURL)]
         pub unsafe fn unreachableURL(&self) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "WebKit_WebArchive")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other webArchive)]
         pub unsafe fn webArchive(&self) -> Option<Id<WebArchive>>;
 
         #[cfg(feature = "WebKit_WebResource")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other mainResource)]
         pub unsafe fn mainResource(&self) -> Option<Id<WebResource>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other subresources)]
         pub unsafe fn subresources(&self) -> Id<NSArray>;
 
         #[cfg(all(feature = "Foundation_NSURL", feature = "WebKit_WebResource"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Other subresourceForURL:)]
         pub unsafe fn subresourceForURL(&self, url: Option<&NSURL>) -> Option<Id<WebResource>>;
 
         #[cfg(feature = "WebKit_WebResource")]
+        #[deprecated]
         #[method(addSubresource:)]
         pub unsafe fn addSubresource(&self, subresource: Option<&WebResource>);
     }

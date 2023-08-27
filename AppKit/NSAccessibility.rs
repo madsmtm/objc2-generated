@@ -38,9 +38,7 @@ extern_methods!(
     }
 );
 
-extern_static!(
-    NSWorkspaceAccessibilityDisplayOptionsDidChangeNotification: &'static NSNotificationName
-);
+extern_static!(NSWorkspaceAccessibilityDisplayOptionsDidChangeNotification: &'static NSNotificationName);
 
 extern_fn!(
     #[cfg(feature = "AppKit_NSView")]

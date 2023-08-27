@@ -32,56 +32,70 @@ extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLScriptElement")]
     unsafe impl DOMHTMLScriptElement {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other text)]
         pub unsafe fn text(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setText:)]
         pub unsafe fn setText(&self, text: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other htmlFor)]
         pub unsafe fn htmlFor(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setHtmlFor:)]
         pub unsafe fn setHtmlFor(&self, html_for: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other event)]
         pub unsafe fn event(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setEvent:)]
         pub unsafe fn setEvent(&self, event: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other charset)]
         pub unsafe fn charset(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setCharset:)]
         pub unsafe fn setCharset(&self, charset: Option<&NSString>);
 
+        #[deprecated]
         #[method(defer)]
         pub unsafe fn defer(&self) -> bool;
 
+        #[deprecated]
         #[method(setDefer:)]
         pub unsafe fn setDefer(&self, defer: bool);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other src)]
         pub unsafe fn src(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setSrc:)]
         pub unsafe fn setSrc(&self, src: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other type)]
         pub unsafe fn r#type(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setType:)]
         pub unsafe fn setType(&self, r#type: Option<&NSString>);
     }
@@ -91,6 +105,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMHTMLScriptElement")]
     unsafe impl DOMHTMLScriptElement {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

@@ -28,12 +28,15 @@ unsafe impl NSObjectProtocol for DOMProgressEvent {}
 extern_methods!(
     #[cfg(feature = "WebKit_DOMProgressEvent")]
     unsafe impl DOMProgressEvent {
+        #[deprecated]
         #[method(lengthComputable)]
         pub unsafe fn lengthComputable(&self) -> bool;
 
+        #[deprecated]
         #[method(loaded)]
         pub unsafe fn loaded(&self) -> c_ulonglong;
 
+        #[deprecated]
         #[method(total)]
         pub unsafe fn total(&self) -> c_ulonglong;
     }
@@ -43,6 +46,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMProgressEvent")]
     unsafe impl DOMProgressEvent {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

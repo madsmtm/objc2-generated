@@ -47,31 +47,39 @@ extern_methods!(
     #[cfg(feature = "WebKit_WebFrameView")]
     unsafe impl WebFrameView {
         #[cfg(feature = "WebKit_WebFrame")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other webFrame)]
         pub unsafe fn webFrame(&self) -> Option<Id<WebFrame>>;
 
+        #[deprecated]
         #[method_id(@__retain_semantics Other documentView)]
         pub unsafe fn documentView(&self) -> Option<Id<NSView>>;
 
+        #[deprecated]
         #[method(allowsScrolling)]
         pub unsafe fn allowsScrolling(&self) -> bool;
 
+        #[deprecated]
         #[method(setAllowsScrolling:)]
         pub unsafe fn setAllowsScrolling(&self, allows_scrolling: bool);
 
+        #[deprecated]
         #[method(canPrintHeadersAndFooters)]
         pub unsafe fn canPrintHeadersAndFooters(&self) -> bool;
 
         #[cfg(all(feature = "AppKit_NSPrintInfo", feature = "AppKit_NSPrintOperation"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Other printOperationWithPrintInfo:)]
         pub unsafe fn printOperationWithPrintInfo(
             &self,
             print_info: Option<&NSPrintInfo>,
         ) -> Option<Id<NSPrintOperation>>;
 
+        #[deprecated]
         #[method(documentViewShouldHandlePrint)]
         pub unsafe fn documentViewShouldHandlePrint(&self) -> bool;
 
+        #[deprecated]
         #[method(printDocumentView)]
         pub unsafe fn printDocumentView(&self);
     }

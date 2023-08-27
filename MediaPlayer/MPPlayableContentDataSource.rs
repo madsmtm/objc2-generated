@@ -9,6 +9,7 @@ extern_protocol!(
     #[deprecated = "Use CarPlay framework"]
     pub unsafe trait MPPlayableContentDataSource: NSObjectProtocol {
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSIndexPath"))]
+        #[deprecated = "Use CarPlay framework"]
         #[optional]
         #[method(beginLoadingChildItemsAtIndexPath:completionHandler:)]
         unsafe fn beginLoadingChildItemsAtIndexPath_completionHandler(
@@ -18,6 +19,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "Foundation_NSIndexPath")]
+        #[deprecated = "Use CarPlay framework"]
         #[optional]
         #[method(childItemsDisplayPlaybackProgressAtIndexPath:)]
         unsafe fn childItemsDisplayPlaybackProgressAtIndexPath(
@@ -40,6 +42,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "Foundation_NSIndexPath")]
+        #[deprecated = "Use CarPlay framework"]
         #[method(numberOfChildItemsAtIndexPath:)]
         unsafe fn numberOfChildItemsAtIndexPath(&self, index_path: &NSIndexPath) -> NSInteger;
 
@@ -47,6 +50,7 @@ extern_protocol!(
             feature = "Foundation_NSIndexPath",
             feature = "MediaPlayer_MPContentItem"
         ))]
+        #[deprecated = "Use CarPlay framework"]
         #[method_id(@__retain_semantics Other contentItemAtIndexPath:)]
         unsafe fn contentItemAtIndexPath(
             &self,

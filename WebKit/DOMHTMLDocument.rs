@@ -109,17 +109,21 @@ extern_methods!(
         #[method(setVlinkColor:)]
         pub unsafe fn setVlinkColor(&self, vlink_color: Option<&NSString>);
 
+        #[deprecated]
         #[method(open)]
         pub unsafe fn open(&self);
 
+        #[deprecated]
         #[method(close)]
         pub unsafe fn close(&self);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(write:)]
         pub unsafe fn write(&self, text: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(writeln:)]
         pub unsafe fn writeln(&self, text: Option<&NSString>);
 
@@ -138,6 +142,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMHTMLDocument")]
     unsafe impl DOMHTMLDocument {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

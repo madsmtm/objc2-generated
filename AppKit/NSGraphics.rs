@@ -53,21 +53,13 @@ extern_static!(NSCompositeSourceOut: NSCompositingOperation = NSCompositingOpera
 
 extern_static!(NSCompositeSourceAtop: NSCompositingOperation = NSCompositingOperationSourceAtop);
 
-extern_static!(
-    NSCompositeDestinationOver: NSCompositingOperation = NSCompositingOperationDestinationOver
-);
+extern_static!(NSCompositeDestinationOver: NSCompositingOperation = NSCompositingOperationDestinationOver);
 
-extern_static!(
-    NSCompositeDestinationIn: NSCompositingOperation = NSCompositingOperationDestinationIn
-);
+extern_static!(NSCompositeDestinationIn: NSCompositingOperation = NSCompositingOperationDestinationIn);
 
-extern_static!(
-    NSCompositeDestinationOut: NSCompositingOperation = NSCompositingOperationDestinationOut
-);
+extern_static!(NSCompositeDestinationOut: NSCompositingOperation = NSCompositingOperationDestinationOut);
 
-extern_static!(
-    NSCompositeDestinationAtop: NSCompositingOperation = NSCompositingOperationDestinationAtop
-);
+extern_static!(NSCompositeDestinationAtop: NSCompositingOperation = NSCompositingOperationDestinationAtop);
 
 extern_static!(NSCompositeXOR: NSCompositingOperation = NSCompositingOperationXOR);
 

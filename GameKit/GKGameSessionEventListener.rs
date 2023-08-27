@@ -9,16 +9,19 @@ extern_protocol!(
     #[deprecated = "Use GKLocalPlayerListener for multiplayer event notifications."]
     pub unsafe trait GKGameSessionEventListener: NSObjectProtocol {
         #[cfg(all(feature = "GameKit_GKCloudPlayer", feature = "GameKit_GKGameSession"))]
+        #[deprecated = "Use GKLocalPlayerListener for multiplayer event notifications."]
         #[optional]
         #[method(session:didAddPlayer:)]
         unsafe fn session_didAddPlayer(&self, session: &GKGameSession, player: &GKCloudPlayer);
 
         #[cfg(all(feature = "GameKit_GKCloudPlayer", feature = "GameKit_GKGameSession"))]
+        #[deprecated = "Use GKLocalPlayerListener for multiplayer event notifications."]
         #[optional]
         #[method(session:didRemovePlayer:)]
         unsafe fn session_didRemovePlayer(&self, session: &GKGameSession, player: &GKCloudPlayer);
 
         #[cfg(all(feature = "GameKit_GKCloudPlayer", feature = "GameKit_GKGameSession"))]
+        #[deprecated = "Use GKLocalPlayerListener for multiplayer event notifications."]
         #[optional]
         #[method(session:player:didChangeConnectionState:)]
         unsafe fn session_player_didChangeConnectionState(
@@ -33,6 +36,7 @@ extern_protocol!(
             feature = "GameKit_GKCloudPlayer",
             feature = "GameKit_GKGameSession"
         ))]
+        #[deprecated = "Use GKLocalPlayerListener for multiplayer event notifications."]
         #[optional]
         #[method(session:player:didSaveData:)]
         unsafe fn session_player_didSaveData(
@@ -47,6 +51,7 @@ extern_protocol!(
             feature = "GameKit_GKCloudPlayer",
             feature = "GameKit_GKGameSession"
         ))]
+        #[deprecated = "Use GKLocalPlayerListener for multiplayer event notifications."]
         #[optional]
         #[method(session:didReceiveData:fromPlayer:)]
         unsafe fn session_didReceiveData_fromPlayer(
@@ -62,6 +67,7 @@ extern_protocol!(
             feature = "GameKit_GKCloudPlayer",
             feature = "GameKit_GKGameSession"
         ))]
+        #[deprecated = "Use GKLocalPlayerListener for multiplayer event notifications."]
         #[optional]
         #[method(session:didReceiveMessage:withData:fromPlayer:)]
         unsafe fn session_didReceiveMessage_withData_fromPlayer(

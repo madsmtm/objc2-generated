@@ -29,14 +29,17 @@ extern_methods!(
     #[cfg(feature = "WebKit_DOMCSSImportRule")]
     unsafe impl DOMCSSImportRule {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other href)]
         pub unsafe fn href(&self) -> Id<NSString>;
 
         #[cfg(feature = "WebKit_DOMMediaList")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other media)]
         pub unsafe fn media(&self) -> Option<Id<DOMMediaList>>;
 
         #[cfg(feature = "WebKit_DOMCSSStyleSheet")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other styleSheet)]
         pub unsafe fn styleSheet(&self) -> Option<Id<DOMCSSStyleSheet>>;
     }
@@ -46,6 +49,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMCSSImportRule")]
     unsafe impl DOMCSSImportRule {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

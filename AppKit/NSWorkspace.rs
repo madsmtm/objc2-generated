@@ -594,19 +594,13 @@ typed_enum!(
     pub type NSWorkspaceLaunchConfigurationKey = NSString;
 );
 
-extern_static!(
-    NSWorkspaceLaunchConfigurationAppleEvent: &'static NSWorkspaceLaunchConfigurationKey
-);
+extern_static!(NSWorkspaceLaunchConfigurationAppleEvent: &'static NSWorkspaceLaunchConfigurationKey);
 
 extern_static!(NSWorkspaceLaunchConfigurationArguments: &'static NSWorkspaceLaunchConfigurationKey);
 
-extern_static!(
-    NSWorkspaceLaunchConfigurationEnvironment: &'static NSWorkspaceLaunchConfigurationKey
-);
+extern_static!(NSWorkspaceLaunchConfigurationEnvironment: &'static NSWorkspaceLaunchConfigurationKey);
 
-extern_static!(
-    NSWorkspaceLaunchConfigurationArchitecture: &'static NSWorkspaceLaunchConfigurationKey
-);
+extern_static!(NSWorkspaceLaunchConfigurationArchitecture: &'static NSWorkspaceLaunchConfigurationKey);
 
 extern_methods!(
     /// NSDeprecated

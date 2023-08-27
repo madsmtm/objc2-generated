@@ -32,18 +32,22 @@ extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLBaseElement")]
     unsafe impl DOMHTMLBaseElement {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other href)]
         pub unsafe fn href(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setHref:)]
         pub unsafe fn setHref(&self, href: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other target)]
         pub unsafe fn target(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setTarget:)]
         pub unsafe fn setTarget(&self, target: Option<&NSString>);
     }
@@ -53,6 +57,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMHTMLBaseElement")]
     unsafe impl DOMHTMLBaseElement {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

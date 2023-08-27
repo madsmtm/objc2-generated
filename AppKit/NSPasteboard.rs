@@ -68,9 +68,7 @@ typed_enum!(
 
 extern_static!(NSPasteboardURLReadingFileURLsOnlyKey: &'static NSPasteboardReadingOptionKey);
 
-extern_static!(
-    NSPasteboardURLReadingContentsConformToTypesKey: &'static NSPasteboardReadingOptionKey
-);
+extern_static!(NSPasteboardURLReadingContentsConformToTypesKey: &'static NSPasteboardReadingOptionKey);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

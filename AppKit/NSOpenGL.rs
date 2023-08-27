@@ -157,69 +157,32 @@ ns_enum!(
     }
 );
 
-extern_static!(
-    NSOpenGLCPSwapInterval: NSOpenGLContextParameter = NSOpenGLContextParameterSwapInterval
-);
+extern_static!(NSOpenGLCPSwapInterval: NSOpenGLContextParameter = NSOpenGLContextParameterSwapInterval);
 
-extern_static!(
-    NSOpenGLCPSurfaceOrder: NSOpenGLContextParameter = NSOpenGLContextParameterSurfaceOrder
-);
+extern_static!(NSOpenGLCPSurfaceOrder: NSOpenGLContextParameter = NSOpenGLContextParameterSurfaceOrder);
 
-extern_static!(
-    NSOpenGLCPSurfaceOpacity: NSOpenGLContextParameter = NSOpenGLContextParameterSurfaceOpacity
-);
+extern_static!(NSOpenGLCPSurfaceOpacity: NSOpenGLContextParameter = NSOpenGLContextParameterSurfaceOpacity);
 
-extern_static!(
-    NSOpenGLCPSurfaceBackingSize: NSOpenGLContextParameter =
-        NSOpenGLContextParameterSurfaceBackingSize
-);
+extern_static!(NSOpenGLCPSurfaceBackingSize: NSOpenGLContextParameter = NSOpenGLContextParameterSurfaceBackingSize);
 
-extern_static!(
-    NSOpenGLCPReclaimResources: NSOpenGLContextParameter = NSOpenGLContextParameterReclaimResources
-);
+extern_static!(NSOpenGLCPReclaimResources: NSOpenGLContextParameter = NSOpenGLContextParameterReclaimResources);
 
-extern_static!(
-    NSOpenGLCPCurrentRendererID: NSOpenGLContextParameter =
-        NSOpenGLContextParameterCurrentRendererID
-);
+extern_static!(NSOpenGLCPCurrentRendererID: NSOpenGLContextParameter = NSOpenGLContextParameterCurrentRendererID);
 
-extern_static!(
-    NSOpenGLCPGPUVertexProcessing: NSOpenGLContextParameter =
-        NSOpenGLContextParameterGPUVertexProcessing
-);
+extern_static!(NSOpenGLCPGPUVertexProcessing: NSOpenGLContextParameter = NSOpenGLContextParameterGPUVertexProcessing);
 
-extern_static!(
-    NSOpenGLCPGPUFragmentProcessing: NSOpenGLContextParameter =
-        NSOpenGLContextParameterGPUFragmentProcessing
-);
+extern_static!(NSOpenGLCPGPUFragmentProcessing: NSOpenGLContextParameter = NSOpenGLContextParameterGPUFragmentProcessing);
 
-extern_static!(
-    NSOpenGLCPHasDrawable: NSOpenGLContextParameter = NSOpenGLContextParameterHasDrawable
-);
+extern_static!(NSOpenGLCPHasDrawable: NSOpenGLContextParameter = NSOpenGLContextParameterHasDrawable);
 
-extern_static!(
-    NSOpenGLCPMPSwapsInFlight: NSOpenGLContextParameter = NSOpenGLContextParameterMPSwapsInFlight
-);
+extern_static!(NSOpenGLCPMPSwapsInFlight: NSOpenGLContextParameter = NSOpenGLContextParameterMPSwapsInFlight);
 
-extern_static!(
-    NSOpenGLCPSwapRectangle: NSOpenGLContextParameter = NSOpenGLContextParameterSwapRectangle
-);
+extern_static!(NSOpenGLCPSwapRectangle: NSOpenGLContextParameter = NSOpenGLContextParameterSwapRectangle);
 
-extern_static!(
-    NSOpenGLCPSwapRectangleEnable: NSOpenGLContextParameter =
-        NSOpenGLContextParameterSwapRectangleEnable
-);
+extern_static!(NSOpenGLCPSwapRectangleEnable: NSOpenGLContextParameter = NSOpenGLContextParameterSwapRectangleEnable);
 
-extern_static!(
-    NSOpenGLCPRasterizationEnable: NSOpenGLContextParameter =
-        NSOpenGLContextParameterRasterizationEnable
-);
+extern_static!(NSOpenGLCPRasterizationEnable: NSOpenGLContextParameter = NSOpenGLContextParameterRasterizationEnable);
 
-extern_static!(
-    NSOpenGLCPStateValidation: NSOpenGLContextParameter = NSOpenGLContextParameterStateValidation
-);
+extern_static!(NSOpenGLCPStateValidation: NSOpenGLContextParameter = NSOpenGLContextParameterStateValidation);
 
-extern_static!(
-    NSOpenGLCPSurfaceSurfaceVolatile: NSOpenGLContextParameter =
-        NSOpenGLContextParameterSurfaceSurfaceVolatile
-);
+extern_static!(NSOpenGLCPSurfaceSurfaceVolatile: NSOpenGLContextParameter = NSOpenGLContextParameterSurfaceSurfaceVolatile);

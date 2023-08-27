@@ -120,9 +120,7 @@ extern_methods!(
     }
 );
 
-extern_static!(
-    NSUbiquitousKeyValueStoreDidChangeExternallyNotification: &'static NSNotificationName
-);
+extern_static!(NSUbiquitousKeyValueStoreDidChangeExternallyNotification: &'static NSNotificationName);
 
 extern_static!(NSUbiquitousKeyValueStoreChangeReasonKey: &'static NSString);
 

@@ -105,9 +105,7 @@ extern_static!(NSAccessibilityCriticalValueAttribute: &'static NSAccessibilityAt
 
 extern_static!(NSAccessibilityPlaceholderValueAttribute: &'static NSAccessibilityAttributeName);
 
-extern_static!(
-    NSAccessibilityContainsProtectedContentAttribute: &'static NSAccessibilityAttributeName
-);
+extern_static!(NSAccessibilityContainsProtectedContentAttribute: &'static NSAccessibilityAttributeName);
 
 extern_static!(NSAccessibilityAlternateUIVisibleAttribute: &'static NSAccessibilityAttributeName);
 
@@ -115,9 +113,7 @@ extern_static!(NSAccessibilityRequiredAttribute: &'static NSAccessibilityAttribu
 
 extern_static!(NSAccessibilityTitleUIElementAttribute: &'static NSAccessibilityAttributeName);
 
-extern_static!(
-    NSAccessibilityServesAsTitleForUIElementsAttribute: &'static NSAccessibilityAttributeName
-);
+extern_static!(NSAccessibilityServesAsTitleForUIElementsAttribute: &'static NSAccessibilityAttributeName);
 
 extern_static!(NSAccessibilityLinkedUIElementsAttribute: &'static NSAccessibilityAttributeName);
 
@@ -127,17 +123,13 @@ extern_static!(NSAccessibilitySelectedTextRangeAttribute: &'static NSAccessibili
 
 extern_static!(NSAccessibilityNumberOfCharactersAttribute: &'static NSAccessibilityAttributeName);
 
-extern_static!(
-    NSAccessibilityVisibleCharacterRangeAttribute: &'static NSAccessibilityAttributeName
-);
+extern_static!(NSAccessibilityVisibleCharacterRangeAttribute: &'static NSAccessibilityAttributeName);
 
 extern_static!(NSAccessibilitySharedTextUIElementsAttribute: &'static NSAccessibilityAttributeName);
 
 extern_static!(NSAccessibilitySharedCharacterRangeAttribute: &'static NSAccessibilityAttributeName);
 
-extern_static!(
-    NSAccessibilityInsertionPointLineNumberAttribute: &'static NSAccessibilityAttributeName
-);
+extern_static!(NSAccessibilityInsertionPointLineNumberAttribute: &'static NSAccessibilityAttributeName);
 
 extern_static!(NSAccessibilitySelectedTextRangesAttribute: &'static NSAccessibilityAttributeName);
 
@@ -145,50 +137,23 @@ typed_enum!(
     pub type NSAccessibilityParameterizedAttributeName = NSString;
 );
 
-extern_static!(
-    NSAccessibilityLineForIndexParameterizedAttribute:
-        &'static NSAccessibilityParameterizedAttributeName
-);
+extern_static!(NSAccessibilityLineForIndexParameterizedAttribute: &'static NSAccessibilityParameterizedAttributeName);
 
-extern_static!(
-    NSAccessibilityRangeForLineParameterizedAttribute:
-        &'static NSAccessibilityParameterizedAttributeName
-);
+extern_static!(NSAccessibilityRangeForLineParameterizedAttribute: &'static NSAccessibilityParameterizedAttributeName);
 
-extern_static!(
-    NSAccessibilityStringForRangeParameterizedAttribute:
-        &'static NSAccessibilityParameterizedAttributeName
-);
+extern_static!(NSAccessibilityStringForRangeParameterizedAttribute: &'static NSAccessibilityParameterizedAttributeName);
 
-extern_static!(
-    NSAccessibilityRangeForPositionParameterizedAttribute:
-        &'static NSAccessibilityParameterizedAttributeName
-);
+extern_static!(NSAccessibilityRangeForPositionParameterizedAttribute: &'static NSAccessibilityParameterizedAttributeName);
 
-extern_static!(
-    NSAccessibilityRangeForIndexParameterizedAttribute:
-        &'static NSAccessibilityParameterizedAttributeName
-);
+extern_static!(NSAccessibilityRangeForIndexParameterizedAttribute: &'static NSAccessibilityParameterizedAttributeName);
 
-extern_static!(
-    NSAccessibilityBoundsForRangeParameterizedAttribute:
-        &'static NSAccessibilityParameterizedAttributeName
-);
+extern_static!(NSAccessibilityBoundsForRangeParameterizedAttribute: &'static NSAccessibilityParameterizedAttributeName);
 
-extern_static!(
-    NSAccessibilityRTFForRangeParameterizedAttribute:
-        &'static NSAccessibilityParameterizedAttributeName
-);
+extern_static!(NSAccessibilityRTFForRangeParameterizedAttribute: &'static NSAccessibilityParameterizedAttributeName);
 
-extern_static!(
-    NSAccessibilityStyleRangeForIndexParameterizedAttribute:
-        &'static NSAccessibilityParameterizedAttributeName
-);
+extern_static!(NSAccessibilityStyleRangeForIndexParameterizedAttribute: &'static NSAccessibilityParameterizedAttributeName);
 
-extern_static!(
-    NSAccessibilityAttributedStringForRangeParameterizedAttribute:
-        &'static NSAccessibilityParameterizedAttributeName
-);
+extern_static!(NSAccessibilityAttributedStringForRangeParameterizedAttribute: &'static NSAccessibilityParameterizedAttributeName);
 
 extern_static!(NSAccessibilityFontTextAttribute: &'static NSAttributedStringKey);
 
@@ -352,14 +317,9 @@ extern_static!(NSAccessibilityVisibleCellsAttribute: &'static NSAccessibilityAtt
 
 extern_static!(NSAccessibilityRowHeaderUIElementsAttribute: &'static NSAccessibilityAttributeName);
 
-extern_static!(
-    NSAccessibilityColumnHeaderUIElementsAttribute: &'static NSAccessibilityAttributeName
-);
+extern_static!(NSAccessibilityColumnHeaderUIElementsAttribute: &'static NSAccessibilityAttributeName);
 
-extern_static!(
-    NSAccessibilityCellForColumnAndRowParameterizedAttribute:
-        &'static NSAccessibilityParameterizedAttributeName
-);
+extern_static!(NSAccessibilityCellForColumnAndRowParameterizedAttribute: &'static NSAccessibilityParameterizedAttributeName);
 
 extern_static!(NSAccessibilityRowIndexRangeAttribute: &'static NSAccessibilityAttributeName);
 
@@ -369,33 +329,17 @@ extern_static!(NSAccessibilityHorizontalUnitsAttribute: &'static NSAccessibility
 
 extern_static!(NSAccessibilityVerticalUnitsAttribute: &'static NSAccessibilityAttributeName);
 
-extern_static!(
-    NSAccessibilityHorizontalUnitDescriptionAttribute: &'static NSAccessibilityAttributeName
-);
+extern_static!(NSAccessibilityHorizontalUnitDescriptionAttribute: &'static NSAccessibilityAttributeName);
 
-extern_static!(
-    NSAccessibilityVerticalUnitDescriptionAttribute: &'static NSAccessibilityAttributeName
-);
+extern_static!(NSAccessibilityVerticalUnitDescriptionAttribute: &'static NSAccessibilityAttributeName);
 
-extern_static!(
-    NSAccessibilityLayoutPointForScreenPointParameterizedAttribute:
-        &'static NSAccessibilityParameterizedAttributeName
-);
+extern_static!(NSAccessibilityLayoutPointForScreenPointParameterizedAttribute: &'static NSAccessibilityParameterizedAttributeName);
 
-extern_static!(
-    NSAccessibilityLayoutSizeForScreenSizeParameterizedAttribute:
-        &'static NSAccessibilityParameterizedAttributeName
-);
+extern_static!(NSAccessibilityLayoutSizeForScreenSizeParameterizedAttribute: &'static NSAccessibilityParameterizedAttributeName);
 
-extern_static!(
-    NSAccessibilityScreenPointForLayoutPointParameterizedAttribute:
-        &'static NSAccessibilityParameterizedAttributeName
-);
+extern_static!(NSAccessibilityScreenPointForLayoutPointParameterizedAttribute: &'static NSAccessibilityParameterizedAttributeName);
 
-extern_static!(
-    NSAccessibilityScreenSizeForLayoutSizeParameterizedAttribute:
-        &'static NSAccessibilityParameterizedAttributeName
-);
+extern_static!(NSAccessibilityScreenSizeForLayoutSizeParameterizedAttribute: &'static NSAccessibilityParameterizedAttributeName);
 
 extern_static!(NSAccessibilityHandlesAttribute: &'static NSAccessibilityAttributeName);
 
@@ -403,17 +347,11 @@ typed_enum!(
     pub type NSAccessibilitySortDirectionValue = NSString;
 );
 
-extern_static!(
-    NSAccessibilityAscendingSortDirectionValue: &'static NSAccessibilitySortDirectionValue
-);
+extern_static!(NSAccessibilityAscendingSortDirectionValue: &'static NSAccessibilitySortDirectionValue);
 
-extern_static!(
-    NSAccessibilityDescendingSortDirectionValue: &'static NSAccessibilitySortDirectionValue
-);
+extern_static!(NSAccessibilityDescendingSortDirectionValue: &'static NSAccessibilitySortDirectionValue);
 
-extern_static!(
-    NSAccessibilityUnknownSortDirectionValue: &'static NSAccessibilitySortDirectionValue
-);
+extern_static!(NSAccessibilityUnknownSortDirectionValue: &'static NSAccessibilitySortDirectionValue);
 
 ns_enum!(
     #[underlying(NSInteger)]
@@ -440,9 +378,7 @@ extern_static!(NSAccessibilityLabelValueAttribute: &'static NSAccessibilityAttri
 
 extern_static!(NSAccessibilityMatteHoleAttribute: &'static NSAccessibilityAttributeName);
 
-extern_static!(
-    NSAccessibilityMatteContentUIElementAttribute: &'static NSAccessibilityAttributeName
-);
+extern_static!(NSAccessibilityMatteContentUIElementAttribute: &'static NSAccessibilityAttributeName);
 
 extern_static!(NSAccessibilityMarkerUIElementsAttribute: &'static NSAccessibilityAttributeName);
 
@@ -456,9 +392,7 @@ extern_static!(NSAccessibilityUnitDescriptionAttribute: &'static NSAccessibility
 
 extern_static!(NSAccessibilityMarkerTypeAttribute: &'static NSAccessibilityAttributeName);
 
-extern_static!(
-    NSAccessibilityMarkerTypeDescriptionAttribute: &'static NSAccessibilityAttributeName
-);
+extern_static!(NSAccessibilityMarkerTypeDescriptionAttribute: &'static NSAccessibilityAttributeName);
 
 extern_static!(NSAccessibilityIdentifierAttribute: &'static NSAccessibilityAttributeName);
 
@@ -466,33 +400,19 @@ typed_enum!(
     pub type NSAccessibilityRulerMarkerTypeValue = NSString;
 );
 
-extern_static!(
-    NSAccessibilityLeftTabStopMarkerTypeValue: &'static NSAccessibilityRulerMarkerTypeValue
-);
+extern_static!(NSAccessibilityLeftTabStopMarkerTypeValue: &'static NSAccessibilityRulerMarkerTypeValue);
 
-extern_static!(
-    NSAccessibilityRightTabStopMarkerTypeValue: &'static NSAccessibilityRulerMarkerTypeValue
-);
+extern_static!(NSAccessibilityRightTabStopMarkerTypeValue: &'static NSAccessibilityRulerMarkerTypeValue);
 
-extern_static!(
-    NSAccessibilityCenterTabStopMarkerTypeValue: &'static NSAccessibilityRulerMarkerTypeValue
-);
+extern_static!(NSAccessibilityCenterTabStopMarkerTypeValue: &'static NSAccessibilityRulerMarkerTypeValue);
 
-extern_static!(
-    NSAccessibilityDecimalTabStopMarkerTypeValue: &'static NSAccessibilityRulerMarkerTypeValue
-);
+extern_static!(NSAccessibilityDecimalTabStopMarkerTypeValue: &'static NSAccessibilityRulerMarkerTypeValue);
 
-extern_static!(
-    NSAccessibilityHeadIndentMarkerTypeValue: &'static NSAccessibilityRulerMarkerTypeValue
-);
+extern_static!(NSAccessibilityHeadIndentMarkerTypeValue: &'static NSAccessibilityRulerMarkerTypeValue);
 
-extern_static!(
-    NSAccessibilityTailIndentMarkerTypeValue: &'static NSAccessibilityRulerMarkerTypeValue
-);
+extern_static!(NSAccessibilityTailIndentMarkerTypeValue: &'static NSAccessibilityRulerMarkerTypeValue);
 
-extern_static!(
-    NSAccessibilityFirstLineIndentMarkerTypeValue: &'static NSAccessibilityRulerMarkerTypeValue
-);
+extern_static!(NSAccessibilityFirstLineIndentMarkerTypeValue: &'static NSAccessibilityRulerMarkerTypeValue);
 
 extern_static!(NSAccessibilityUnknownMarkerTypeValue: &'static NSAccessibilityRulerMarkerTypeValue);
 
@@ -565,33 +485,19 @@ typed_enum!(
     pub type NSAccessibilityNotificationName = NSString;
 );
 
-extern_static!(
-    NSAccessibilityMainWindowChangedNotification: &'static NSAccessibilityNotificationName
-);
+extern_static!(NSAccessibilityMainWindowChangedNotification: &'static NSAccessibilityNotificationName);
 
-extern_static!(
-    NSAccessibilityFocusedWindowChangedNotification: &'static NSAccessibilityNotificationName
-);
+extern_static!(NSAccessibilityFocusedWindowChangedNotification: &'static NSAccessibilityNotificationName);
 
-extern_static!(
-    NSAccessibilityFocusedUIElementChangedNotification: &'static NSAccessibilityNotificationName
-);
+extern_static!(NSAccessibilityFocusedUIElementChangedNotification: &'static NSAccessibilityNotificationName);
 
-extern_static!(
-    NSAccessibilityApplicationActivatedNotification: &'static NSAccessibilityNotificationName
-);
+extern_static!(NSAccessibilityApplicationActivatedNotification: &'static NSAccessibilityNotificationName);
 
-extern_static!(
-    NSAccessibilityApplicationDeactivatedNotification: &'static NSAccessibilityNotificationName
-);
+extern_static!(NSAccessibilityApplicationDeactivatedNotification: &'static NSAccessibilityNotificationName);
 
-extern_static!(
-    NSAccessibilityApplicationHiddenNotification: &'static NSAccessibilityNotificationName
-);
+extern_static!(NSAccessibilityApplicationHiddenNotification: &'static NSAccessibilityNotificationName);
 
-extern_static!(
-    NSAccessibilityApplicationShownNotification: &'static NSAccessibilityNotificationName
-);
+extern_static!(NSAccessibilityApplicationShownNotification: &'static NSAccessibilityNotificationName);
 
 extern_static!(NSAccessibilityWindowCreatedNotification: &'static NSAccessibilityNotificationName);
 
@@ -599,21 +505,15 @@ extern_static!(NSAccessibilityWindowMovedNotification: &'static NSAccessibilityN
 
 extern_static!(NSAccessibilityWindowResizedNotification: &'static NSAccessibilityNotificationName);
 
-extern_static!(
-    NSAccessibilityWindowMiniaturizedNotification: &'static NSAccessibilityNotificationName
-);
+extern_static!(NSAccessibilityWindowMiniaturizedNotification: &'static NSAccessibilityNotificationName);
 
-extern_static!(
-    NSAccessibilityWindowDeminiaturizedNotification: &'static NSAccessibilityNotificationName
-);
+extern_static!(NSAccessibilityWindowDeminiaturizedNotification: &'static NSAccessibilityNotificationName);
 
 extern_static!(NSAccessibilityDrawerCreatedNotification: &'static NSAccessibilityNotificationName);
 
 extern_static!(NSAccessibilitySheetCreatedNotification: &'static NSAccessibilityNotificationName);
 
-extern_static!(
-    NSAccessibilityUIElementDestroyedNotification: &'static NSAccessibilityNotificationName
-);
+extern_static!(NSAccessibilityUIElementDestroyedNotification: &'static NSAccessibilityNotificationName);
 
 extern_static!(NSAccessibilityValueChangedNotification: &'static NSAccessibilityNotificationName);
 
@@ -629,43 +529,27 @@ extern_static!(NSAccessibilityLayoutChangedNotification: &'static NSAccessibilit
 
 extern_static!(NSAccessibilityHelpTagCreatedNotification: &'static NSAccessibilityNotificationName);
 
-extern_static!(
-    NSAccessibilitySelectedTextChangedNotification: &'static NSAccessibilityNotificationName
-);
+extern_static!(NSAccessibilitySelectedTextChangedNotification: &'static NSAccessibilityNotificationName);
 
-extern_static!(
-    NSAccessibilityRowCountChangedNotification: &'static NSAccessibilityNotificationName
-);
+extern_static!(NSAccessibilityRowCountChangedNotification: &'static NSAccessibilityNotificationName);
 
-extern_static!(
-    NSAccessibilitySelectedChildrenChangedNotification: &'static NSAccessibilityNotificationName
-);
+extern_static!(NSAccessibilitySelectedChildrenChangedNotification: &'static NSAccessibilityNotificationName);
 
-extern_static!(
-    NSAccessibilitySelectedRowsChangedNotification: &'static NSAccessibilityNotificationName
-);
+extern_static!(NSAccessibilitySelectedRowsChangedNotification: &'static NSAccessibilityNotificationName);
 
-extern_static!(
-    NSAccessibilitySelectedColumnsChangedNotification: &'static NSAccessibilityNotificationName
-);
+extern_static!(NSAccessibilitySelectedColumnsChangedNotification: &'static NSAccessibilityNotificationName);
 
 extern_static!(NSAccessibilityRowExpandedNotification: &'static NSAccessibilityNotificationName);
 
 extern_static!(NSAccessibilityRowCollapsedNotification: &'static NSAccessibilityNotificationName);
 
-extern_static!(
-    NSAccessibilitySelectedCellsChangedNotification: &'static NSAccessibilityNotificationName
-);
+extern_static!(NSAccessibilitySelectedCellsChangedNotification: &'static NSAccessibilityNotificationName);
 
 extern_static!(NSAccessibilityUnitsChangedNotification: &'static NSAccessibilityNotificationName);
 
-extern_static!(
-    NSAccessibilitySelectedChildrenMovedNotification: &'static NSAccessibilityNotificationName
-);
+extern_static!(NSAccessibilitySelectedChildrenMovedNotification: &'static NSAccessibilityNotificationName);
 
-extern_static!(
-    NSAccessibilityAnnouncementRequestedNotification: &'static NSAccessibilityNotificationName
-);
+extern_static!(NSAccessibilityAnnouncementRequestedNotification: &'static NSAccessibilityNotificationName);
 
 typed_enum!(
     pub type NSAccessibilityRole = NSString;

@@ -31,73 +31,91 @@ unsafe impl NSObjectProtocol for DOMHTMLLinkElement {}
 extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLLinkElement")]
     unsafe impl DOMHTMLLinkElement {
+        #[deprecated]
         #[method(disabled)]
         pub unsafe fn disabled(&self) -> bool;
 
+        #[deprecated]
         #[method(setDisabled:)]
         pub unsafe fn setDisabled(&self, disabled: bool);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other charset)]
         pub unsafe fn charset(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setCharset:)]
         pub unsafe fn setCharset(&self, charset: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other href)]
         pub unsafe fn href(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setHref:)]
         pub unsafe fn setHref(&self, href: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other hreflang)]
         pub unsafe fn hreflang(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setHreflang:)]
         pub unsafe fn setHreflang(&self, hreflang: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other media)]
         pub unsafe fn media(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setMedia:)]
         pub unsafe fn setMedia(&self, media: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other rel)]
         pub unsafe fn rel(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setRel:)]
         pub unsafe fn setRel(&self, rel: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other rev)]
         pub unsafe fn rev(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setRev:)]
         pub unsafe fn setRev(&self, rev: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other target)]
         pub unsafe fn target(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setTarget:)]
         pub unsafe fn setTarget(&self, target: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other type)]
         pub unsafe fn r#type(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setType:)]
         pub unsafe fn setType(&self, r#type: Option<&NSString>);
 
@@ -115,6 +133,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMHTMLLinkElement")]
     unsafe impl DOMHTMLLinkElement {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

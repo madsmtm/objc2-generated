@@ -928,9 +928,7 @@ extern_static!(NSFullScreenModeSetting: &'static NSViewFullScreenModeOptionKey);
 
 extern_static!(NSFullScreenModeWindowLevel: &'static NSViewFullScreenModeOptionKey);
 
-extern_static!(
-    NSFullScreenModeApplicationPresentationOptions: &'static NSViewFullScreenModeOptionKey
-);
+extern_static!(NSFullScreenModeApplicationPresentationOptions: &'static NSViewFullScreenModeOptionKey);
 
 extern_methods!(
     /// NSFullScreenMode
@@ -968,9 +966,7 @@ typed_enum!(
 
 extern_static!(NSDefinitionPresentationTypeOverlay: &'static NSDefinitionPresentationType);
 
-extern_static!(
-    NSDefinitionPresentationTypeDictionaryApplication: &'static NSDefinitionPresentationType
-);
+extern_static!(NSDefinitionPresentationTypeDictionaryApplication: &'static NSDefinitionPresentationType);
 
 extern_methods!(
     /// NSDefinition

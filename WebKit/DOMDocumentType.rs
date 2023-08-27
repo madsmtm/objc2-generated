@@ -32,26 +32,32 @@ extern_methods!(
     #[cfg(feature = "WebKit_DOMDocumentType")]
     unsafe impl DOMDocumentType {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSString>;
 
         #[cfg(feature = "WebKit_DOMNamedNodeMap")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other entities)]
         pub unsafe fn entities(&self) -> Option<Id<DOMNamedNodeMap>>;
 
         #[cfg(feature = "WebKit_DOMNamedNodeMap")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other notations)]
         pub unsafe fn notations(&self) -> Option<Id<DOMNamedNodeMap>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other publicId)]
         pub unsafe fn publicId(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other systemId)]
         pub unsafe fn systemId(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other internalSubset)]
         pub unsafe fn internalSubset(&self) -> Id<NSString>;
     }
@@ -61,6 +67,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMDocumentType")]
     unsafe impl DOMDocumentType {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

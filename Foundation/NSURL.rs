@@ -163,9 +163,7 @@ extern_static!(NSURLFileProtectionComplete: &'static NSURLFileProtectionType);
 
 extern_static!(NSURLFileProtectionCompleteUnlessOpen: &'static NSURLFileProtectionType);
 
-extern_static!(
-    NSURLFileProtectionCompleteUntilFirstUserAuthentication: &'static NSURLFileProtectionType
-);
+extern_static!(NSURLFileProtectionCompleteUntilFirstUserAuthentication: &'static NSURLFileProtectionType);
 
 extern_static!(NSURLVolumeLocalizedFormatDescriptionKey: &'static NSURLResourceKey);
 
@@ -287,26 +285,17 @@ extern_static!(NSURLUbiquitousSharedItemCurrentUserPermissionsKey: &'static NSUR
 
 extern_static!(NSURLUbiquitousSharedItemOwnerNameComponentsKey: &'static NSURLResourceKey);
 
-extern_static!(
-    NSURLUbiquitousSharedItemMostRecentEditorNameComponentsKey: &'static NSURLResourceKey
-);
+extern_static!(NSURLUbiquitousSharedItemMostRecentEditorNameComponentsKey: &'static NSURLResourceKey);
 
 typed_enum!(
     pub type NSURLUbiquitousItemDownloadingStatus = NSString;
 );
 
-extern_static!(
-    NSURLUbiquitousItemDownloadingStatusNotDownloaded:
-        &'static NSURLUbiquitousItemDownloadingStatus
-);
+extern_static!(NSURLUbiquitousItemDownloadingStatusNotDownloaded: &'static NSURLUbiquitousItemDownloadingStatus);
 
-extern_static!(
-    NSURLUbiquitousItemDownloadingStatusDownloaded: &'static NSURLUbiquitousItemDownloadingStatus
-);
+extern_static!(NSURLUbiquitousItemDownloadingStatusDownloaded: &'static NSURLUbiquitousItemDownloadingStatus);
 
-extern_static!(
-    NSURLUbiquitousItemDownloadingStatusCurrent: &'static NSURLUbiquitousItemDownloadingStatus
-);
+extern_static!(NSURLUbiquitousItemDownloadingStatusCurrent: &'static NSURLUbiquitousItemDownloadingStatus);
 
 typed_enum!(
     pub type NSURLUbiquitousSharedItemRole = NSString;
@@ -320,13 +309,9 @@ typed_enum!(
     pub type NSURLUbiquitousSharedItemPermissions = NSString;
 );
 
-extern_static!(
-    NSURLUbiquitousSharedItemPermissionsReadOnly: &'static NSURLUbiquitousSharedItemPermissions
-);
+extern_static!(NSURLUbiquitousSharedItemPermissionsReadOnly: &'static NSURLUbiquitousSharedItemPermissions);
 
-extern_static!(
-    NSURLUbiquitousSharedItemPermissionsReadWrite: &'static NSURLUbiquitousSharedItemPermissions
-);
+extern_static!(NSURLUbiquitousSharedItemPermissionsReadWrite: &'static NSURLUbiquitousSharedItemPermissions);
 
 ns_options!(
     #[underlying(NSUInteger)]

@@ -29,31 +29,39 @@ extern_methods!(
     #[cfg(feature = "WebKit_DOMStyleSheet")]
     unsafe impl DOMStyleSheet {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other type)]
         pub unsafe fn r#type(&self) -> Id<NSString>;
 
+        #[deprecated]
         #[method(disabled)]
         pub unsafe fn disabled(&self) -> bool;
 
+        #[deprecated]
         #[method(setDisabled:)]
         pub unsafe fn setDisabled(&self, disabled: bool);
 
         #[cfg(feature = "WebKit_DOMNode")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other ownerNode)]
         pub unsafe fn ownerNode(&self) -> Option<Id<DOMNode>>;
 
+        #[deprecated]
         #[method_id(@__retain_semantics Other parentStyleSheet)]
         pub unsafe fn parentStyleSheet(&self) -> Option<Id<DOMStyleSheet>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other href)]
         pub unsafe fn href(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Id<NSString>;
 
         #[cfg(feature = "WebKit_DOMMediaList")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other media)]
         pub unsafe fn media(&self) -> Option<Id<DOMMediaList>>;
     }
@@ -63,6 +71,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMStyleSheet")]
     unsafe impl DOMStyleSheet {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

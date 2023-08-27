@@ -37,59 +37,75 @@ extern_methods!(
         #[method(setAutofocus:)]
         pub unsafe fn setAutofocus(&self, autofocus: bool);
 
+        #[deprecated]
         #[method(disabled)]
         pub unsafe fn disabled(&self) -> bool;
 
+        #[deprecated]
         #[method(setDisabled:)]
         pub unsafe fn setDisabled(&self, disabled: bool);
 
         #[cfg(feature = "WebKit_DOMHTMLFormElement")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other form)]
         pub unsafe fn form(&self) -> Option<Id<DOMHTMLFormElement>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
+        #[deprecated]
         #[method(readOnly)]
         pub unsafe fn readOnly(&self) -> bool;
 
+        #[deprecated]
         #[method(setReadOnly:)]
         pub unsafe fn setReadOnly(&self, read_only: bool);
 
+        #[deprecated]
         #[method(rows)]
         pub unsafe fn rows(&self) -> c_int;
 
+        #[deprecated]
         #[method(setRows:)]
         pub unsafe fn setRows(&self, rows: c_int);
 
+        #[deprecated]
         #[method(cols)]
         pub unsafe fn cols(&self) -> c_int;
 
+        #[deprecated]
         #[method(setCols:)]
         pub unsafe fn setCols(&self, cols: c_int);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other type)]
         pub unsafe fn r#type(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other defaultValue)]
         pub unsafe fn defaultValue(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setDefaultValue:)]
         pub unsafe fn setDefaultValue(&self, default_value: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other value)]
         pub unsafe fn value(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setValue:)]
         pub unsafe fn setValue(&self, value: Option<&NSString>);
 
@@ -118,6 +134,7 @@ extern_methods!(
         #[method(setAccessKey:)]
         pub unsafe fn setAccessKey(&self, access_key: Option<&NSString>);
 
+        #[deprecated]
         #[method(select)]
         pub unsafe fn select(&self);
 
@@ -130,6 +147,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMHTMLTextAreaElement")]
     unsafe impl DOMHTMLTextAreaElement {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

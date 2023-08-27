@@ -13,13 +13,9 @@ ns_enum!(
     }
 );
 
-extern_static!(
-    NSCollectionElementKindSectionHeader: &'static NSCollectionViewSupplementaryElementKind
-);
+extern_static!(NSCollectionElementKindSectionHeader: &'static NSCollectionViewSupplementaryElementKind);
 
-extern_static!(
-    NSCollectionElementKindSectionFooter: &'static NSCollectionViewSupplementaryElementKind
-);
+extern_static!(NSCollectionElementKindSectionFooter: &'static NSCollectionViewSupplementaryElementKind);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

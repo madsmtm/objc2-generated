@@ -31,48 +31,61 @@ unsafe impl NSObjectProtocol for DOMHTMLOptionElement {}
 extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLOptionElement")]
     unsafe impl DOMHTMLOptionElement {
+        #[deprecated]
         #[method(disabled)]
         pub unsafe fn disabled(&self) -> bool;
 
+        #[deprecated]
         #[method(setDisabled:)]
         pub unsafe fn setDisabled(&self, disabled: bool);
 
         #[cfg(feature = "WebKit_DOMHTMLFormElement")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other form)]
         pub unsafe fn form(&self) -> Option<Id<DOMHTMLFormElement>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other label)]
         pub unsafe fn label(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: Option<&NSString>);
 
+        #[deprecated]
         #[method(defaultSelected)]
         pub unsafe fn defaultSelected(&self) -> bool;
 
+        #[deprecated]
         #[method(setDefaultSelected:)]
         pub unsafe fn setDefaultSelected(&self, default_selected: bool);
 
+        #[deprecated]
         #[method(selected)]
         pub unsafe fn selected(&self) -> bool;
 
+        #[deprecated]
         #[method(setSelected:)]
         pub unsafe fn setSelected(&self, selected: bool);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other value)]
         pub unsafe fn value(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setValue:)]
         pub unsafe fn setValue(&self, value: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other text)]
         pub unsafe fn text(&self) -> Id<NSString>;
 
+        #[deprecated]
         #[method(index)]
         pub unsafe fn index(&self) -> c_int;
     }
@@ -82,6 +95,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMHTMLOptionElement")]
     unsafe impl DOMHTMLOptionElement {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

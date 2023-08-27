@@ -31,9 +31,11 @@ unsafe impl NSObjectProtocol for DOMHTMLMarqueeElement {}
 extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLMarqueeElement")]
     unsafe impl DOMHTMLMarqueeElement {
+        #[deprecated]
         #[method(start)]
         pub unsafe fn start(&self);
 
+        #[deprecated]
         #[method(stop)]
         pub unsafe fn stop(&self);
     }
@@ -43,6 +45,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMHTMLMarqueeElement")]
     unsafe impl DOMHTMLMarqueeElement {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

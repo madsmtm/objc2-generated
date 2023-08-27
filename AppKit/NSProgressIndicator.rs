@@ -184,9 +184,7 @@ ns_enum!(
 
 extern_static!(NSProgressIndicatorBarStyle: NSProgressIndicatorStyle = NSProgressIndicatorStyleBar);
 
-extern_static!(
-    NSProgressIndicatorSpinningStyle: NSProgressIndicatorStyle = NSProgressIndicatorStyleSpinning
-);
+extern_static!(NSProgressIndicatorSpinningStyle: NSProgressIndicatorStyle = NSProgressIndicatorStyleSpinning);
 
 extern_methods!(
     /// NSProgressIndicatorDeprecated

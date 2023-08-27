@@ -29,6 +29,7 @@ extern_methods!(
             feature = "WebKit_WebFrameView",
             feature = "WebKit_WebView"
         ))]
+        #[deprecated]
         #[method_id(@__retain_semantics Init initWithName:webFrameView:webView:)]
         pub unsafe fn initWithName_webFrameView_webView(
             this: Option<Allocated<Self>>,
@@ -38,26 +39,32 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSString>;
 
         #[cfg(feature = "WebKit_WebView")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other webView)]
         pub unsafe fn webView(&self) -> Option<Id<WebView>>;
 
         #[cfg(feature = "WebKit_WebFrameView")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other frameView)]
         pub unsafe fn frameView(&self) -> Option<Id<WebFrameView>>;
 
         #[cfg(feature = "WebKit_DOMDocument")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other DOMDocument)]
         pub unsafe fn DOMDocument(&self) -> Option<Id<DOMDocument>>;
 
         #[cfg(feature = "WebKit_DOMHTMLElement")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other frameElement)]
         pub unsafe fn frameElement(&self) -> Option<Id<DOMHTMLElement>>;
 
         #[cfg(feature = "Foundation_NSURLRequest")]
+        #[deprecated]
         #[method(loadRequest:)]
         pub unsafe fn loadRequest(&self, request: Option<&NSURLRequest>);
 
@@ -66,6 +73,7 @@ extern_methods!(
             feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
+        #[deprecated]
         #[method(loadData:MIMEType:textEncodingName:baseURL:)]
         pub unsafe fn loadData_MIMEType_textEncodingName_baseURL(
             &self,
@@ -76,10 +84,12 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+        #[deprecated]
         #[method(loadHTMLString:baseURL:)]
         pub unsafe fn loadHTMLString_baseURL(&self, string: Option<&NSString>, url: Option<&NSURL>);
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+        #[deprecated]
         #[method(loadAlternateHTMLString:baseURL:forUnreachableURL:)]
         pub unsafe fn loadAlternateHTMLString_baseURL_forUnreachableURL(
             &self,
@@ -89,38 +99,48 @@ extern_methods!(
         );
 
         #[cfg(feature = "WebKit_WebArchive")]
+        #[deprecated]
         #[method(loadArchive:)]
         pub unsafe fn loadArchive(&self, archive: Option<&WebArchive>);
 
         #[cfg(feature = "WebKit_WebDataSource")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other dataSource)]
         pub unsafe fn dataSource(&self) -> Option<Id<WebDataSource>>;
 
         #[cfg(feature = "WebKit_WebDataSource")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other provisionalDataSource)]
         pub unsafe fn provisionalDataSource(&self) -> Option<Id<WebDataSource>>;
 
+        #[deprecated]
         #[method(stopLoading)]
         pub unsafe fn stopLoading(&self);
 
+        #[deprecated]
         #[method(reload)]
         pub unsafe fn reload(&self);
 
+        #[deprecated]
         #[method(reloadFromOrigin)]
         pub unsafe fn reloadFromOrigin(&self);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other findFrameNamed:)]
         pub unsafe fn findFrameNamed(&self, name: Option<&NSString>) -> Option<Id<WebFrame>>;
 
+        #[deprecated]
         #[method_id(@__retain_semantics Other parentFrame)]
         pub unsafe fn parentFrame(&self) -> Option<Id<WebFrame>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other childFrames)]
         pub unsafe fn childFrames(&self) -> Id<NSArray>;
 
         #[cfg(feature = "WebKit_WebScriptObject")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other windowObject)]
         pub unsafe fn windowObject(&self) -> Option<Id<WebScriptObject>>;
     }

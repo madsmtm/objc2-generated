@@ -32,6 +32,7 @@ extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLFieldSetElement")]
     unsafe impl DOMHTMLFieldSetElement {
         #[cfg(feature = "WebKit_DOMHTMLFormElement")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other form)]
         pub unsafe fn form(&self) -> Option<Id<DOMHTMLFormElement>>;
     }
@@ -41,6 +42,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMHTMLFieldSetElement")]
     unsafe impl DOMHTMLFieldSetElement {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

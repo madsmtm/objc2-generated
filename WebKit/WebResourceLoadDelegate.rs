@@ -13,6 +13,7 @@ extern_protocol!(
             feature = "WebKit_WebDataSource",
             feature = "WebKit_WebView"
         ))]
+        #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other webView:identifierForInitialRequest:fromDataSource:)]
         unsafe fn webView_identifierForInitialRequest_fromDataSource(
@@ -28,6 +29,7 @@ extern_protocol!(
             feature = "WebKit_WebDataSource",
             feature = "WebKit_WebView"
         ))]
+        #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other webView:resource:willSendRequest:redirectResponse:fromDataSource:)]
         unsafe fn webView_resource_willSendRequest_redirectResponse_fromDataSource(
@@ -44,6 +46,7 @@ extern_protocol!(
             feature = "WebKit_WebDataSource",
             feature = "WebKit_WebView"
         ))]
+        #[deprecated]
         #[optional]
         #[method(webView:resource:didReceiveAuthenticationChallenge:fromDataSource:)]
         unsafe fn webView_resource_didReceiveAuthenticationChallenge_fromDataSource(
@@ -59,6 +62,7 @@ extern_protocol!(
             feature = "WebKit_WebDataSource",
             feature = "WebKit_WebView"
         ))]
+        #[deprecated]
         #[optional]
         #[method(webView:resource:didCancelAuthenticationChallenge:fromDataSource:)]
         unsafe fn webView_resource_didCancelAuthenticationChallenge_fromDataSource(
@@ -74,6 +78,7 @@ extern_protocol!(
             feature = "WebKit_WebDataSource",
             feature = "WebKit_WebView"
         ))]
+        #[deprecated]
         #[optional]
         #[method(webView:resource:didReceiveResponse:fromDataSource:)]
         unsafe fn webView_resource_didReceiveResponse_fromDataSource(
@@ -85,6 +90,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "WebKit_WebDataSource", feature = "WebKit_WebView"))]
+        #[deprecated]
         #[optional]
         #[method(webView:resource:didReceiveContentLength:fromDataSource:)]
         unsafe fn webView_resource_didReceiveContentLength_fromDataSource(
@@ -96,6 +102,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "WebKit_WebDataSource", feature = "WebKit_WebView"))]
+        #[deprecated]
         #[optional]
         #[method(webView:resource:didFinishLoadingFromDataSource:)]
         unsafe fn webView_resource_didFinishLoadingFromDataSource(
@@ -110,6 +117,7 @@ extern_protocol!(
             feature = "WebKit_WebDataSource",
             feature = "WebKit_WebView"
         ))]
+        #[deprecated]
         #[optional]
         #[method(webView:resource:didFailLoadingWithError:fromDataSource:)]
         unsafe fn webView_resource_didFailLoadingWithError_fromDataSource(
@@ -125,6 +133,7 @@ extern_protocol!(
             feature = "WebKit_WebDataSource",
             feature = "WebKit_WebView"
         ))]
+        #[deprecated]
         #[optional]
         #[method(webView:plugInFailedWithError:dataSource:)]
         unsafe fn webView_plugInFailedWithError_dataSource(

@@ -33,6 +33,7 @@ extern_methods!(
     #[cfg(feature = "HealthKit_HKCumulativeQuantitySeriesSample")]
     unsafe impl HKCumulativeQuantitySeriesSample {
         #[cfg(feature = "HealthKit_HKQuantity")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other sum)]
         pub unsafe fn sum(&self) -> Id<HKQuantity>;
     }

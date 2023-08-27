@@ -35,9 +35,7 @@ typed_enum!(
 
 extern_static!(NSPrintPanelAccessorySummaryItemNameKey: &'static NSPrintPanelAccessorySummaryKey);
 
-extern_static!(
-    NSPrintPanelAccessorySummaryItemDescriptionKey: &'static NSPrintPanelAccessorySummaryKey
-);
+extern_static!(NSPrintPanelAccessorySummaryItemDescriptionKey: &'static NSPrintPanelAccessorySummaryKey);
 
 extern_protocol!(
     pub unsafe trait NSPrintPanelAccessorizing {

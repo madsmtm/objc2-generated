@@ -9,60 +9,30 @@ typed_extensible_enum!(
     pub type ASAuthorizationPublicKeyCredentialUserVerificationPreference = NSString;
 );
 
-extern_static!(
-    ASAuthorizationPublicKeyCredentialUserVerificationPreferencePreferred:
-        Option<&'static ASAuthorizationPublicKeyCredentialUserVerificationPreference>
-);
+extern_static!(ASAuthorizationPublicKeyCredentialUserVerificationPreferencePreferred: Option<&'static ASAuthorizationPublicKeyCredentialUserVerificationPreference>);
 
-extern_static!(
-    ASAuthorizationPublicKeyCredentialUserVerificationPreferenceRequired:
-        Option<&'static ASAuthorizationPublicKeyCredentialUserVerificationPreference>
-);
+extern_static!(ASAuthorizationPublicKeyCredentialUserVerificationPreferenceRequired: Option<&'static ASAuthorizationPublicKeyCredentialUserVerificationPreference>);
 
-extern_static!(
-    ASAuthorizationPublicKeyCredentialUserVerificationPreferenceDiscouraged:
-        Option<&'static ASAuthorizationPublicKeyCredentialUserVerificationPreference>
-);
+extern_static!(ASAuthorizationPublicKeyCredentialUserVerificationPreferenceDiscouraged: Option<&'static ASAuthorizationPublicKeyCredentialUserVerificationPreference>);
 
 typed_extensible_enum!(
     pub type ASAuthorizationPublicKeyCredentialAttestationKind = NSString;
 );
 
-extern_static!(
-    ASAuthorizationPublicKeyCredentialAttestationKindNone:
-        Option<&'static ASAuthorizationPublicKeyCredentialAttestationKind>
-);
+extern_static!(ASAuthorizationPublicKeyCredentialAttestationKindNone: Option<&'static ASAuthorizationPublicKeyCredentialAttestationKind>);
 
-extern_static!(
-    ASAuthorizationPublicKeyCredentialAttestationKindDirect:
-        Option<&'static ASAuthorizationPublicKeyCredentialAttestationKind>
-);
+extern_static!(ASAuthorizationPublicKeyCredentialAttestationKindDirect: Option<&'static ASAuthorizationPublicKeyCredentialAttestationKind>);
 
-extern_static!(
-    ASAuthorizationPublicKeyCredentialAttestationKindIndirect:
-        Option<&'static ASAuthorizationPublicKeyCredentialAttestationKind>
-);
+extern_static!(ASAuthorizationPublicKeyCredentialAttestationKindIndirect: Option<&'static ASAuthorizationPublicKeyCredentialAttestationKind>);
 
-extern_static!(
-    ASAuthorizationPublicKeyCredentialAttestationKindEnterprise:
-        Option<&'static ASAuthorizationPublicKeyCredentialAttestationKind>
-);
+extern_static!(ASAuthorizationPublicKeyCredentialAttestationKindEnterprise: Option<&'static ASAuthorizationPublicKeyCredentialAttestationKind>);
 
 typed_extensible_enum!(
     pub type ASAuthorizationPublicKeyCredentialResidentKeyPreference = NSString;
 );
 
-extern_static!(
-    ASAuthorizationPublicKeyCredentialResidentKeyPreferenceDiscouraged:
-        Option<&'static ASAuthorizationPublicKeyCredentialResidentKeyPreference>
-);
+extern_static!(ASAuthorizationPublicKeyCredentialResidentKeyPreferenceDiscouraged: Option<&'static ASAuthorizationPublicKeyCredentialResidentKeyPreference>);
 
-extern_static!(
-    ASAuthorizationPublicKeyCredentialResidentKeyPreferencePreferred:
-        Option<&'static ASAuthorizationPublicKeyCredentialResidentKeyPreference>
-);
+extern_static!(ASAuthorizationPublicKeyCredentialResidentKeyPreferencePreferred: Option<&'static ASAuthorizationPublicKeyCredentialResidentKeyPreference>);
 
-extern_static!(
-    ASAuthorizationPublicKeyCredentialResidentKeyPreferenceRequired:
-        Option<&'static ASAuthorizationPublicKeyCredentialResidentKeyPreference>
-);
+extern_static!(ASAuthorizationPublicKeyCredentialResidentKeyPreferenceRequired: Option<&'static ASAuthorizationPublicKeyCredentialResidentKeyPreference>);

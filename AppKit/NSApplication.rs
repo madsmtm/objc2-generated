@@ -1183,13 +1183,9 @@ extern_static!(NSApplicationWillTerminateNotification: &'static NSNotificationNa
 
 extern_static!(NSApplicationDidChangeScreenParametersNotification: &'static NSNotificationName);
 
-extern_static!(
-    NSApplicationProtectedDataWillBecomeUnavailableNotification: &'static NSNotificationName
-);
+extern_static!(NSApplicationProtectedDataWillBecomeUnavailableNotification: &'static NSNotificationName);
 
-extern_static!(
-    NSApplicationProtectedDataDidBecomeAvailableNotification: &'static NSNotificationName
-);
+extern_static!(NSApplicationProtectedDataDidBecomeAvailableNotification: &'static NSNotificationName);
 
 extern_static!(NSApplicationLaunchIsDefaultLaunchKey: &'static NSString);
 

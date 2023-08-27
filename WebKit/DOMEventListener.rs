@@ -9,6 +9,7 @@ extern_protocol!(
     #[deprecated]
     pub unsafe trait DOMEventListener: NSObjectProtocol {
         #[cfg(feature = "WebKit_DOMEvent")]
+        #[deprecated]
         #[method(handleEvent:)]
         unsafe fn handleEvent(&self, event: Option<&DOMEvent>);
     }

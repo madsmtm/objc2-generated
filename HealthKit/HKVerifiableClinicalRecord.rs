@@ -10,39 +10,21 @@ typed_enum!(
     pub type HKVerifiableClinicalRecordSourceType = NSString;
 );
 
-extern_static!(
-    HKVerifiableClinicalRecordSourceTypeSMARTHealthCard:
-        &'static HKVerifiableClinicalRecordSourceType
-);
+extern_static!(HKVerifiableClinicalRecordSourceTypeSMARTHealthCard: &'static HKVerifiableClinicalRecordSourceType);
 
-extern_static!(
-    HKVerifiableClinicalRecordSourceTypeEUDigitalCOVIDCertificate:
-        &'static HKVerifiableClinicalRecordSourceType
-);
+extern_static!(HKVerifiableClinicalRecordSourceTypeEUDigitalCOVIDCertificate: &'static HKVerifiableClinicalRecordSourceType);
 
 typed_enum!(
     pub type HKVerifiableClinicalRecordCredentialType = NSString;
 );
 
-extern_static!(
-    HKVerifiableClinicalRecordCredentialTypeCOVID19:
-        &'static HKVerifiableClinicalRecordCredentialType
-);
+extern_static!(HKVerifiableClinicalRecordCredentialTypeCOVID19: &'static HKVerifiableClinicalRecordCredentialType);
 
-extern_static!(
-    HKVerifiableClinicalRecordCredentialTypeImmunization:
-        &'static HKVerifiableClinicalRecordCredentialType
-);
+extern_static!(HKVerifiableClinicalRecordCredentialTypeImmunization: &'static HKVerifiableClinicalRecordCredentialType);
 
-extern_static!(
-    HKVerifiableClinicalRecordCredentialTypeLaboratory:
-        &'static HKVerifiableClinicalRecordCredentialType
-);
+extern_static!(HKVerifiableClinicalRecordCredentialTypeLaboratory: &'static HKVerifiableClinicalRecordCredentialType);
 
-extern_static!(
-    HKVerifiableClinicalRecordCredentialTypeRecovery:
-        &'static HKVerifiableClinicalRecordCredentialType
-);
+extern_static!(HKVerifiableClinicalRecordCredentialTypeRecovery: &'static HKVerifiableClinicalRecordCredentialType);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -32,32 +32,40 @@ extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLHRElement")]
     unsafe impl DOMHTMLHRElement {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other align)]
         pub unsafe fn align(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setAlign:)]
         pub unsafe fn setAlign(&self, align: Option<&NSString>);
 
+        #[deprecated]
         #[method(noShade)]
         pub unsafe fn noShade(&self) -> bool;
 
+        #[deprecated]
         #[method(setNoShade:)]
         pub unsafe fn setNoShade(&self, no_shade: bool);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other size)]
         pub unsafe fn size(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setSize:)]
         pub unsafe fn setSize(&self, size: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other width)]
         pub unsafe fn width(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setWidth:)]
         pub unsafe fn setWidth(&self, width: Option<&NSString>);
     }
@@ -67,6 +75,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMHTMLHRElement")]
     unsafe impl DOMHTMLHRElement {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

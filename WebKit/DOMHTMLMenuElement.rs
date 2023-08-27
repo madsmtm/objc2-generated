@@ -31,9 +31,11 @@ unsafe impl NSObjectProtocol for DOMHTMLMenuElement {}
 extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLMenuElement")]
     unsafe impl DOMHTMLMenuElement {
+        #[deprecated]
         #[method(compact)]
         pub unsafe fn compact(&self) -> bool;
 
+        #[deprecated]
         #[method(setCompact:)]
         pub unsafe fn setCompact(&self, compact: bool);
     }
@@ -43,6 +45,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMHTMLMenuElement")]
     unsafe impl DOMHTMLMenuElement {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

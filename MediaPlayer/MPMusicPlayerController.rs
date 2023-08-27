@@ -170,12 +170,8 @@ extern_methods!(
     }
 );
 
-extern_static!(
-    MPMusicPlayerControllerPlaybackStateDidChangeNotification: &'static NSNotificationName
-);
+extern_static!(MPMusicPlayerControllerPlaybackStateDidChangeNotification: &'static NSNotificationName);
 
-extern_static!(
-    MPMusicPlayerControllerNowPlayingItemDidChangeNotification: &'static NSNotificationName
-);
+extern_static!(MPMusicPlayerControllerNowPlayingItemDidChangeNotification: &'static NSNotificationName);
 
 extern_static!(MPMusicPlayerControllerVolumeDidChangeNotification: &'static NSNotificationName);

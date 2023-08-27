@@ -9,9 +9,7 @@ typed_enum!(
     pub type ASAuthorizationCustomMethod = NSString;
 );
 
-extern_static!(
-    ASAuthorizationCustomMethodVideoSubscriberAccount: &'static ASAuthorizationCustomMethod
-);
+extern_static!(ASAuthorizationCustomMethodVideoSubscriberAccount: &'static ASAuthorizationCustomMethod);
 
 extern_static!(ASAuthorizationCustomMethodRestorePurchase: &'static ASAuthorizationCustomMethod);
 

@@ -1873,19 +1873,13 @@ extern_static!(NSMiniaturizableWindowMask: NSWindowStyleMask = NSWindowStyleMask
 
 extern_static!(NSResizableWindowMask: NSWindowStyleMask = NSWindowStyleMaskResizable);
 
-extern_static!(
-    NSTexturedBackgroundWindowMask: NSWindowStyleMask = NSWindowStyleMaskTexturedBackground
-);
+extern_static!(NSTexturedBackgroundWindowMask: NSWindowStyleMask = NSWindowStyleMaskTexturedBackground);
 
-extern_static!(
-    NSUnifiedTitleAndToolbarWindowMask: NSWindowStyleMask = NSWindowStyleMaskUnifiedTitleAndToolbar
-);
+extern_static!(NSUnifiedTitleAndToolbarWindowMask: NSWindowStyleMask = NSWindowStyleMaskUnifiedTitleAndToolbar);
 
 extern_static!(NSFullScreenWindowMask: NSWindowStyleMask = NSWindowStyleMaskFullScreen);
 
-extern_static!(
-    NSFullSizeContentViewWindowMask: NSWindowStyleMask = NSWindowStyleMaskFullSizeContentView
-);
+extern_static!(NSFullSizeContentViewWindowMask: NSWindowStyleMask = NSWindowStyleMaskFullSizeContentView);
 
 extern_static!(NSUtilityWindowMask: NSWindowStyleMask = NSWindowStyleMaskUtilityWindow);
 
@@ -1895,6 +1889,6 @@ extern_static!(NSNonactivatingPanelMask: NSWindowStyleMask = NSWindowStyleMaskNo
 
 extern_static!(NSHUDWindowMask: NSWindowStyleMask = NSWindowStyleMaskHUDWindow);
 
-extern_static!(NSUnscaledWindowMask: NSWindowStyleMask = 1 << 11);
+extern_static!(NSUnscaledWindowMask: NSWindowStyleMask = 1<<11);
 
 extern_static!(NSWindowFullScreenButton: NSWindowButton = 7);

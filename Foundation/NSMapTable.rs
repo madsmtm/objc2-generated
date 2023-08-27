@@ -5,16 +5,11 @@ use crate::Foundation::*;
 
 extern_static!(NSMapTableStrongMemory: NSPointerFunctionsOptions = NSPointerFunctionsStrongMemory);
 
-extern_static!(
-    NSMapTableZeroingWeakMemory: NSPointerFunctionsOptions = NSPointerFunctionsZeroingWeakMemory
-);
+extern_static!(NSMapTableZeroingWeakMemory: NSPointerFunctionsOptions = NSPointerFunctionsZeroingWeakMemory);
 
 extern_static!(NSMapTableCopyIn: NSPointerFunctionsOptions = NSPointerFunctionsCopyIn);
 
-extern_static!(
-    NSMapTableObjectPointerPersonality: NSPointerFunctionsOptions =
-        NSPointerFunctionsObjectPointerPersonality
-);
+extern_static!(NSMapTableObjectPointerPersonality: NSPointerFunctionsOptions = NSPointerFunctionsObjectPointerPersonality);
 
 extern_static!(NSMapTableWeakMemory: NSPointerFunctionsOptions = NSPointerFunctionsWeakMemory);
 

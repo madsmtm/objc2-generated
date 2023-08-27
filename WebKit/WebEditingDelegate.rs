@@ -22,6 +22,7 @@ extern_protocol!(
     #[deprecated]
     pub unsafe trait WebEditingDelegate: NSObjectProtocol {
         #[cfg(all(feature = "WebKit_DOMRange", feature = "WebKit_WebView"))]
+        #[deprecated]
         #[optional]
         #[method(webView:shouldBeginEditingInDOMRange:)]
         unsafe fn webView_shouldBeginEditingInDOMRange(
@@ -31,6 +32,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(feature = "WebKit_DOMRange", feature = "WebKit_WebView"))]
+        #[deprecated]
         #[optional]
         #[method(webView:shouldEndEditingInDOMRange:)]
         unsafe fn webView_shouldEndEditingInDOMRange(
@@ -44,6 +46,7 @@ extern_protocol!(
             feature = "WebKit_DOMRange",
             feature = "WebKit_WebView"
         ))]
+        #[deprecated]
         #[optional]
         #[method(webView:shouldInsertNode:replacingDOMRange:givenAction:)]
         unsafe fn webView_shouldInsertNode_replacingDOMRange_givenAction(
@@ -59,6 +62,7 @@ extern_protocol!(
             feature = "WebKit_DOMRange",
             feature = "WebKit_WebView"
         ))]
+        #[deprecated]
         #[optional]
         #[method(webView:shouldInsertText:replacingDOMRange:givenAction:)]
         unsafe fn webView_shouldInsertText_replacingDOMRange_givenAction(
@@ -70,6 +74,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(feature = "WebKit_DOMRange", feature = "WebKit_WebView"))]
+        #[deprecated]
         #[optional]
         #[method(webView:shouldDeleteDOMRange:)]
         unsafe fn webView_shouldDeleteDOMRange(
@@ -79,6 +84,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(feature = "WebKit_DOMRange", feature = "WebKit_WebView"))]
+        #[deprecated]
         #[optional]
         #[method(webView:shouldChangeSelectedDOMRange:toDOMRange:affinity:stillSelecting:)]
         unsafe fn webView_shouldChangeSelectedDOMRange_toDOMRange_affinity_stillSelecting(
@@ -95,6 +101,7 @@ extern_protocol!(
             feature = "WebKit_DOMRange",
             feature = "WebKit_WebView"
         ))]
+        #[deprecated]
         #[optional]
         #[method(webView:shouldApplyStyle:toElementsInDOMRange:)]
         unsafe fn webView_shouldApplyStyle_toElementsInDOMRange(
@@ -105,6 +112,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(feature = "WebKit_DOMCSSStyleDeclaration", feature = "WebKit_WebView"))]
+        #[deprecated]
         #[optional]
         #[method(webView:shouldChangeTypingStyle:toStyle:)]
         unsafe fn webView_shouldChangeTypingStyle_toStyle(
@@ -115,6 +123,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "WebKit_WebView")]
+        #[deprecated]
         #[optional]
         #[method(webView:doCommandBySelector:)]
         unsafe fn webView_doCommandBySelector(
@@ -124,31 +133,37 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[deprecated]
         #[optional]
         #[method(webViewDidBeginEditing:)]
         unsafe fn webViewDidBeginEditing(&self, notification: Option<&NSNotification>);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[deprecated]
         #[optional]
         #[method(webViewDidChange:)]
         unsafe fn webViewDidChange(&self, notification: Option<&NSNotification>);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[deprecated]
         #[optional]
         #[method(webViewDidEndEditing:)]
         unsafe fn webViewDidEndEditing(&self, notification: Option<&NSNotification>);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[deprecated]
         #[optional]
         #[method(webViewDidChangeTypingStyle:)]
         unsafe fn webViewDidChangeTypingStyle(&self, notification: Option<&NSNotification>);
 
         #[cfg(feature = "Foundation_NSNotification")]
+        #[deprecated]
         #[optional]
         #[method(webViewDidChangeSelection:)]
         unsafe fn webViewDidChangeSelection(&self, notification: Option<&NSNotification>);
 
         #[cfg(all(feature = "Foundation_NSUndoManager", feature = "WebKit_WebView"))]
+        #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other undoManagerForWebView:)]
         unsafe fn undoManagerForWebView(

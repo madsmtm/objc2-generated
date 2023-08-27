@@ -28,9 +28,11 @@ unsafe impl NSObjectProtocol for DOMCSSValueList {}
 extern_methods!(
     #[cfg(feature = "WebKit_DOMCSSValueList")]
     unsafe impl DOMCSSValueList {
+        #[deprecated]
         #[method(length)]
         pub unsafe fn length(&self) -> c_uint;
 
+        #[deprecated]
         #[method_id(@__retain_semantics Other item:)]
         pub unsafe fn item(&self, index: c_uint) -> Option<Id<DOMCSSValue>>;
     }
@@ -40,6 +42,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMCSSValueList")]
     unsafe impl DOMCSSValueList {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

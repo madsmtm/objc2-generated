@@ -32,14 +32,17 @@ extern_methods!(
     #[cfg(feature = "WebKit_DOMEntity")]
     unsafe impl DOMEntity {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other publicId)]
         pub unsafe fn publicId(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other systemId)]
         pub unsafe fn systemId(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other notationName)]
         pub unsafe fn notationName(&self) -> Id<NSString>;
     }
@@ -49,6 +52,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMEntity")]
     unsafe impl DOMEntity {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

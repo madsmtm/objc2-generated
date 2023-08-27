@@ -189,9 +189,7 @@ extern_static!(NSEditorDocumentAttribute: &'static NSAttributedStringDocumentAtt
 
 extern_static!(NSCreationTimeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
-extern_static!(
-    NSModificationTimeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey
-);
+extern_static!(NSModificationTimeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
 extern_static!(NSManagerDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
@@ -199,13 +197,9 @@ extern_static!(NSCategoryDocumentAttribute: &'static NSAttributedStringDocumentA
 
 extern_static!(NSAppearanceDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
-extern_static!(
-    NSCharacterEncodingDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey
-);
+extern_static!(NSCharacterEncodingDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
-extern_static!(
-    NSDefaultAttributesDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey
-);
+extern_static!(NSDefaultAttributesDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
 extern_static!(NSPaperSizeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
@@ -227,31 +221,21 @@ extern_static!(NSReadOnlyDocumentAttribute: &'static NSAttributedStringDocumentA
 
 extern_static!(NSBackgroundColorDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
-extern_static!(
-    NSHyphenationFactorDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey
-);
+extern_static!(NSHyphenationFactorDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
-extern_static!(
-    NSDefaultTabIntervalDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey
-);
+extern_static!(NSDefaultTabIntervalDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
 extern_static!(NSTextLayoutSectionsAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
-extern_static!(
-    NSExcludedElementsDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey
-);
+extern_static!(NSExcludedElementsDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
-extern_static!(
-    NSTextEncodingNameDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey
-);
+extern_static!(NSTextEncodingNameDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
 extern_static!(NSPrefixSpacesDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
 extern_static!(NSTextScalingDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
-extern_static!(
-    NSSourceTextScalingDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey
-);
+extern_static!(NSSourceTextScalingDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
 typed_extensible_enum!(
     pub type NSAttributedStringDocumentReadingOptionKey = NSString;
@@ -259,17 +243,11 @@ typed_extensible_enum!(
 
 extern_static!(NSDocumentTypeDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey);
 
-extern_static!(
-    NSDefaultAttributesDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey
-);
+extern_static!(NSDefaultAttributesDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey);
 
-extern_static!(
-    NSCharacterEncodingDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey
-);
+extern_static!(NSCharacterEncodingDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey);
 
-extern_static!(
-    NSTextEncodingNameDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey
-);
+extern_static!(NSTextEncodingNameDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey);
 
 extern_static!(NSBaseURLDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey);
 
@@ -277,23 +255,15 @@ extern_static!(NSTimeoutDocumentOption: &'static NSAttributedStringDocumentReadi
 
 extern_static!(NSWebPreferencesDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey);
 
-extern_static!(
-    NSWebResourceLoadDelegateDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey
-);
+extern_static!(NSWebResourceLoadDelegateDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey);
 
-extern_static!(
-    NSTextSizeMultiplierDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey
-);
+extern_static!(NSTextSizeMultiplierDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey);
 
 extern_static!(NSFileTypeDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey);
 
-extern_static!(
-    NSTargetTextScalingDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey
-);
+extern_static!(NSTargetTextScalingDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey);
 
-extern_static!(
-    NSSourceTextScalingDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey
-);
+extern_static!(NSSourceTextScalingDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey);
 
 extern_methods!(
     /// NSAttributedStringDocumentFormats

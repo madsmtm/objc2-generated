@@ -28,14 +28,17 @@ unsafe impl NSObjectProtocol for DOMHTMLCollection {}
 extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLCollection")]
     unsafe impl DOMHTMLCollection {
+        #[deprecated]
         #[method(length)]
         pub unsafe fn length(&self) -> c_uint;
 
         #[cfg(feature = "WebKit_DOMNode")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other item:)]
         pub unsafe fn item(&self, index: c_uint) -> Option<Id<DOMNode>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMNode"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Other namedItem:)]
         pub unsafe fn namedItem(&self, name: Option<&NSString>) -> Option<Id<DOMNode>>;
 
@@ -49,6 +52,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMHTMLCollection")]
     unsafe impl DOMHTMLCollection {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

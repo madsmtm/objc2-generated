@@ -116,6 +116,7 @@ extern_protocol!(
     #[deprecated]
     pub unsafe trait WebOpenPanelResultListener: NSObjectProtocol {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(chooseFilename:)]
         unsafe fn chooseFilename(&self, file_name: Option<&NSString>);
 
@@ -123,6 +124,7 @@ extern_protocol!(
         #[method(chooseFilenames:)]
         unsafe fn chooseFilenames(&self, file_names: Option<&NSArray>);
 
+        #[deprecated]
         #[method(cancel)]
         unsafe fn cancel(&self);
     }
@@ -134,6 +136,7 @@ extern_protocol!(
     #[deprecated]
     pub unsafe trait WebUIDelegate: NSObjectProtocol {
         #[cfg(all(feature = "Foundation_NSURLRequest", feature = "WebKit_WebView"))]
+        #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other webView:createWebViewWithRequest:)]
         unsafe fn webView_createWebViewWithRequest(
@@ -143,11 +146,13 @@ extern_protocol!(
         ) -> Option<Id<WebView>>;
 
         #[cfg(feature = "WebKit_WebView")]
+        #[deprecated]
         #[optional]
         #[method(webViewShow:)]
         unsafe fn webViewShow(&self, sender: Option<&WebView>);
 
         #[cfg(all(feature = "Foundation_NSURLRequest", feature = "WebKit_WebView"))]
+        #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other webView:createWebViewModalDialogWithRequest:)]
         unsafe fn webView_createWebViewModalDialogWithRequest(
@@ -157,32 +162,38 @@ extern_protocol!(
         ) -> Option<Id<WebView>>;
 
         #[cfg(feature = "WebKit_WebView")]
+        #[deprecated]
         #[optional]
         #[method(webViewRunModal:)]
         unsafe fn webViewRunModal(&self, sender: Option<&WebView>);
 
         #[cfg(feature = "WebKit_WebView")]
+        #[deprecated]
         #[optional]
         #[method(webViewClose:)]
         unsafe fn webViewClose(&self, sender: Option<&WebView>);
 
         #[cfg(feature = "WebKit_WebView")]
+        #[deprecated]
         #[optional]
         #[method(webViewFocus:)]
         unsafe fn webViewFocus(&self, sender: Option<&WebView>);
 
         #[cfg(feature = "WebKit_WebView")]
+        #[deprecated]
         #[optional]
         #[method(webViewUnfocus:)]
         unsafe fn webViewUnfocus(&self, sender: Option<&WebView>);
 
         #[cfg(all(feature = "AppKit_NSResponder", feature = "WebKit_WebView"))]
+        #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other webViewFirstResponder:)]
         unsafe fn webViewFirstResponder(&self, sender: Option<&WebView>)
             -> Option<Id<NSResponder>>;
 
         #[cfg(all(feature = "AppKit_NSResponder", feature = "WebKit_WebView"))]
+        #[deprecated]
         #[optional]
         #[method(webView:makeFirstResponder:)]
         unsafe fn webView_makeFirstResponder(
@@ -192,51 +203,61 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_WebView"))]
+        #[deprecated]
         #[optional]
         #[method(webView:setStatusText:)]
         unsafe fn webView_setStatusText(&self, sender: Option<&WebView>, text: Option<&NSString>);
 
         #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_WebView"))]
+        #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other webViewStatusText:)]
         unsafe fn webViewStatusText(&self, sender: Option<&WebView>) -> Option<Id<NSString>>;
 
         #[cfg(feature = "WebKit_WebView")]
+        #[deprecated]
         #[optional]
         #[method(webViewAreToolbarsVisible:)]
         unsafe fn webViewAreToolbarsVisible(&self, sender: Option<&WebView>) -> bool;
 
         #[cfg(feature = "WebKit_WebView")]
+        #[deprecated]
         #[optional]
         #[method(webView:setToolbarsVisible:)]
         unsafe fn webView_setToolbarsVisible(&self, sender: Option<&WebView>, visible: bool);
 
         #[cfg(feature = "WebKit_WebView")]
+        #[deprecated]
         #[optional]
         #[method(webViewIsStatusBarVisible:)]
         unsafe fn webViewIsStatusBarVisible(&self, sender: Option<&WebView>) -> bool;
 
         #[cfg(feature = "WebKit_WebView")]
+        #[deprecated]
         #[optional]
         #[method(webView:setStatusBarVisible:)]
         unsafe fn webView_setStatusBarVisible(&self, sender: Option<&WebView>, visible: bool);
 
         #[cfg(feature = "WebKit_WebView")]
+        #[deprecated]
         #[optional]
         #[method(webViewIsResizable:)]
         unsafe fn webViewIsResizable(&self, sender: Option<&WebView>) -> bool;
 
         #[cfg(feature = "WebKit_WebView")]
+        #[deprecated]
         #[optional]
         #[method(webView:setResizable:)]
         unsafe fn webView_setResizable(&self, sender: Option<&WebView>, resizable: bool);
 
         #[cfg(feature = "WebKit_WebView")]
+        #[deprecated]
         #[optional]
         #[method(webView:setFrame:)]
         unsafe fn webView_setFrame(&self, sender: Option<&WebView>, frame: NSRect);
 
         #[cfg(feature = "WebKit_WebView")]
+        #[deprecated]
         #[optional]
         #[method(webViewFrame:)]
         unsafe fn webViewFrame(&self, sender: Option<&WebView>) -> NSRect;
@@ -246,6 +267,7 @@ extern_protocol!(
             feature = "WebKit_WebFrame",
             feature = "WebKit_WebView"
         ))]
+        #[deprecated]
         #[optional]
         #[method(webView:runJavaScriptAlertPanelWithMessage:initiatedByFrame:)]
         unsafe fn webView_runJavaScriptAlertPanelWithMessage_initiatedByFrame(
@@ -260,6 +282,7 @@ extern_protocol!(
             feature = "WebKit_WebFrame",
             feature = "WebKit_WebView"
         ))]
+        #[deprecated]
         #[optional]
         #[method(webView:runJavaScriptConfirmPanelWithMessage:initiatedByFrame:)]
         unsafe fn webView_runJavaScriptConfirmPanelWithMessage_initiatedByFrame(
@@ -274,6 +297,7 @@ extern_protocol!(
             feature = "WebKit_WebFrame",
             feature = "WebKit_WebView"
         ))]
+        #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other webView:runJavaScriptTextInputPanelWithPrompt:defaultText:initiatedByFrame:)]
         unsafe fn webView_runJavaScriptTextInputPanelWithPrompt_defaultText_initiatedByFrame(
@@ -289,6 +313,7 @@ extern_protocol!(
             feature = "WebKit_WebFrame",
             feature = "WebKit_WebView"
         ))]
+        #[deprecated]
         #[optional]
         #[method(webView:runBeforeUnloadConfirmPanelWithMessage:initiatedByFrame:)]
         unsafe fn webView_runBeforeUnloadConfirmPanelWithMessage_initiatedByFrame(
@@ -299,6 +324,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "WebKit_WebView")]
+        #[deprecated]
         #[optional]
         #[method(webView:runOpenPanelForFileButtonWithResultListener:)]
         unsafe fn webView_runOpenPanelForFileButtonWithResultListener(
@@ -318,6 +344,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "WebKit_WebView"))]
+        #[deprecated]
         #[optional]
         #[method(webView:mouseDidMoveOverElement:modifierFlags:)]
         unsafe fn webView_mouseDidMoveOverElement_modifierFlags(
@@ -332,6 +359,7 @@ extern_protocol!(
             feature = "Foundation_NSDictionary",
             feature = "WebKit_WebView"
         ))]
+        #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other webView:contextMenuItemsForElement:defaultMenuItems:)]
         unsafe fn webView_contextMenuItemsForElement_defaultMenuItems(
@@ -342,6 +370,7 @@ extern_protocol!(
         ) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "WebKit_WebView")]
+        #[deprecated]
         #[optional]
         #[method(webView:validateUserInterfaceItem:defaultValidation:)]
         unsafe fn webView_validateUserInterfaceItem_defaultValidation(
@@ -352,6 +381,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "WebKit_WebView")]
+        #[deprecated]
         #[optional]
         #[method(webView:shouldPerformAction:fromSender:)]
         unsafe fn webView_shouldPerformAction_fromSender(
@@ -362,6 +392,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "WebKit_WebView")]
+        #[deprecated]
         #[optional]
         #[method(webView:dragDestinationActionMaskForDraggingInfo:)]
         unsafe fn webView_dragDestinationActionMaskForDraggingInfo(
@@ -371,6 +402,7 @@ extern_protocol!(
         ) -> NSUInteger;
 
         #[cfg(feature = "WebKit_WebView")]
+        #[deprecated]
         #[optional]
         #[method(webView:willPerformDragDestinationAction:forDraggingInfo:)]
         unsafe fn webView_willPerformDragDestinationAction_forDraggingInfo(
@@ -381,6 +413,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "WebKit_WebView")]
+        #[deprecated]
         #[optional]
         #[method(webView:dragSourceActionMaskForPoint:)]
         unsafe fn webView_dragSourceActionMaskForPoint(
@@ -390,6 +423,7 @@ extern_protocol!(
         ) -> NSUInteger;
 
         #[cfg(all(feature = "AppKit_NSPasteboard", feature = "WebKit_WebView"))]
+        #[deprecated]
         #[optional]
         #[method(webView:willPerformDragSourceAction:fromPoint:withPasteboard:)]
         unsafe fn webView_willPerformDragSourceAction_fromPoint_withPasteboard(
@@ -401,6 +435,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "WebKit_WebFrameView", feature = "WebKit_WebView"))]
+        #[deprecated]
         #[optional]
         #[method(webView:printFrameView:)]
         unsafe fn webView_printFrameView(
@@ -410,21 +445,25 @@ extern_protocol!(
         );
 
         #[cfg(feature = "WebKit_WebView")]
+        #[deprecated]
         #[optional]
         #[method(webViewHeaderHeight:)]
         unsafe fn webViewHeaderHeight(&self, sender: Option<&WebView>) -> c_float;
 
         #[cfg(feature = "WebKit_WebView")]
+        #[deprecated]
         #[optional]
         #[method(webViewFooterHeight:)]
         unsafe fn webViewFooterHeight(&self, sender: Option<&WebView>) -> c_float;
 
         #[cfg(feature = "WebKit_WebView")]
+        #[deprecated]
         #[optional]
         #[method(webView:drawHeaderInRect:)]
         unsafe fn webView_drawHeaderInRect(&self, sender: Option<&WebView>, rect: NSRect);
 
         #[cfg(feature = "WebKit_WebView")]
+        #[deprecated]
         #[optional]
         #[method(webView:drawFooterInRect:)]
         unsafe fn webView_drawFooterInRect(&self, sender: Option<&WebView>, rect: NSRect);

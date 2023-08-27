@@ -9,15 +9,9 @@ typed_extensible_enum!(
     pub type ASAuthorizationProviderAuthorizationOperation = NSString;
 );
 
-extern_static!(
-    ASAuthorizationProviderAuthorizationOperationConfigurationRemoved:
-        &'static ASAuthorizationProviderAuthorizationOperation
-);
+extern_static!(ASAuthorizationProviderAuthorizationOperationConfigurationRemoved: &'static ASAuthorizationProviderAuthorizationOperation);
 
-extern_static!(
-    ASAuthorizationProviderAuthorizationOperationDirectRequest:
-        &'static ASAuthorizationProviderAuthorizationOperation
-);
+extern_static!(ASAuthorizationProviderAuthorizationOperationDirectRequest: &'static ASAuthorizationProviderAuthorizationOperation);
 
 extern_protocol!(
     pub unsafe trait ASAuthorizationProviderExtensionAuthorizationRequestHandler:

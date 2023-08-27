@@ -19,6 +19,7 @@ extern_protocol!(
     #[deprecated]
     pub unsafe trait WebPlugInViewFactory: NSObjectProtocol {
         #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSDictionary"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Other plugInViewWithArguments:)]
         unsafe fn plugInViewWithArguments(arguments: Option<&NSDictionary>) -> Option<Id<NSView>>;
     }

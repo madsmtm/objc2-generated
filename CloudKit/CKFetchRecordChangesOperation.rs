@@ -25,6 +25,7 @@ unsafe impl NSObjectProtocol for CKFetchRecordChangesOperation {}
 extern_methods!(
     #[cfg(feature = "CloudKit_CKFetchRecordChangesOperation")]
     unsafe impl CKFetchRecordChangesOperation {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
@@ -32,6 +33,7 @@ extern_methods!(
             feature = "CloudKit_CKRecordZoneID",
             feature = "CloudKit_CKServerChangeToken"
         ))]
+        #[deprecated]
         #[method_id(@__retain_semantics Init initWithRecordZoneID:previousServerChangeToken:)]
         pub unsafe fn initWithRecordZoneID_previousServerChangeToken(
             this: Option<Allocated<Self>>,
@@ -40,43 +42,53 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other recordZoneID)]
         pub unsafe fn recordZoneID(&self) -> Option<Id<CKRecordZoneID>>;
 
         #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[deprecated]
         #[method(setRecordZoneID:)]
         pub unsafe fn setRecordZoneID(&self, record_zone_id: Option<&CKRecordZoneID>);
 
         #[cfg(feature = "CloudKit_CKServerChangeToken")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other previousServerChangeToken)]
         pub unsafe fn previousServerChangeToken(&self) -> Option<Id<CKServerChangeToken>>;
 
         #[cfg(feature = "CloudKit_CKServerChangeToken")]
+        #[deprecated]
         #[method(setPreviousServerChangeToken:)]
         pub unsafe fn setPreviousServerChangeToken(
             &self,
             previous_server_change_token: Option<&CKServerChangeToken>,
         );
 
+        #[deprecated]
         #[method(resultsLimit)]
         pub unsafe fn resultsLimit(&self) -> NSUInteger;
 
+        #[deprecated]
         #[method(setResultsLimit:)]
         pub unsafe fn setResultsLimit(&self, results_limit: NSUInteger);
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other desiredKeys)]
         pub unsafe fn desiredKeys(&self) -> Option<Id<NSArray<CKRecordFieldKey>>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[deprecated]
         #[method(setDesiredKeys:)]
         pub unsafe fn setDesiredKeys(&self, desired_keys: Option<&NSArray<CKRecordFieldKey>>);
 
         #[cfg(feature = "CloudKit_CKRecord")]
+        #[deprecated]
         #[method(recordChangedBlock)]
         pub unsafe fn recordChangedBlock(&self) -> *mut Block<(NonNull<CKRecord>,), ()>;
 
         #[cfg(feature = "CloudKit_CKRecord")]
+        #[deprecated]
         #[method(setRecordChangedBlock:)]
         pub unsafe fn setRecordChangedBlock(
             &self,
@@ -84,16 +96,19 @@ extern_methods!(
         );
 
         #[cfg(feature = "CloudKit_CKRecordID")]
+        #[deprecated]
         #[method(recordWithIDWasDeletedBlock)]
         pub unsafe fn recordWithIDWasDeletedBlock(&self) -> *mut Block<(NonNull<CKRecordID>,), ()>;
 
         #[cfg(feature = "CloudKit_CKRecordID")]
+        #[deprecated]
         #[method(setRecordWithIDWasDeletedBlock:)]
         pub unsafe fn setRecordWithIDWasDeletedBlock(
             &self,
             record_with_id_was_deleted_block: Option<&Block<(NonNull<CKRecordID>,), ()>>,
         );
 
+        #[deprecated]
         #[method(moreComing)]
         pub unsafe fn moreComing(&self) -> bool;
 
@@ -102,6 +117,7 @@ extern_methods!(
             feature = "Foundation_NSData",
             feature = "Foundation_NSError"
         ))]
+        #[deprecated]
         #[method(fetchRecordChangesCompletionBlock)]
         pub unsafe fn fetchRecordChangesCompletionBlock(
             &self,
@@ -112,6 +128,7 @@ extern_methods!(
             feature = "Foundation_NSData",
             feature = "Foundation_NSError"
         ))]
+        #[deprecated]
         #[method(setFetchRecordChangesCompletionBlock:)]
         pub unsafe fn setFetchRecordChangesCompletionBlock(
             &self,

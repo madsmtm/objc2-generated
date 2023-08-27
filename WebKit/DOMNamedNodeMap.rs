@@ -28,22 +28,27 @@ unsafe impl NSObjectProtocol for DOMNamedNodeMap {}
 extern_methods!(
     #[cfg(feature = "WebKit_DOMNamedNodeMap")]
     unsafe impl DOMNamedNodeMap {
+        #[deprecated]
         #[method(length)]
         pub unsafe fn length(&self) -> c_uint;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMNode"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Other getNamedItem:)]
         pub unsafe fn getNamedItem(&self, name: Option<&NSString>) -> Option<Id<DOMNode>>;
 
         #[cfg(feature = "WebKit_DOMNode")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other setNamedItem:)]
         pub unsafe fn setNamedItem(&self, node: Option<&DOMNode>) -> Option<Id<DOMNode>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMNode"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Other removeNamedItem:)]
         pub unsafe fn removeNamedItem(&self, name: Option<&NSString>) -> Option<Id<DOMNode>>;
 
         #[cfg(feature = "WebKit_DOMNode")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other item:)]
         pub unsafe fn item(&self, index: c_uint) -> Option<Id<DOMNode>>;
 
@@ -56,6 +61,7 @@ extern_methods!(
         ) -> Option<Id<DOMNode>>;
 
         #[cfg(feature = "WebKit_DOMNode")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other setNamedItemNS:)]
         pub unsafe fn setNamedItemNS(&self, node: Option<&DOMNode>) -> Option<Id<DOMNode>>;
 
@@ -73,6 +79,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMNamedNodeMap")]
     unsafe impl DOMNamedNodeMap {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

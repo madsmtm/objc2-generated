@@ -17,9 +17,7 @@ ns_enum!(
 
 pub type NSCollectionViewDecorationElementKind = NSString;
 
-extern_static!(
-    NSCollectionElementKindInterItemGapIndicator: &'static NSCollectionViewSupplementaryElementKind
-);
+extern_static!(NSCollectionElementKindInterItemGapIndicator: &'static NSCollectionViewSupplementaryElementKind);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

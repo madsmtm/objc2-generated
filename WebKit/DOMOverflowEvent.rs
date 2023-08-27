@@ -41,15 +41,19 @@ unsafe impl NSObjectProtocol for DOMOverflowEvent {}
 extern_methods!(
     #[cfg(feature = "WebKit_DOMOverflowEvent")]
     unsafe impl DOMOverflowEvent {
+        #[deprecated]
         #[method(orient)]
         pub unsafe fn orient(&self) -> c_ushort;
 
+        #[deprecated]
         #[method(horizontalOverflow)]
         pub unsafe fn horizontalOverflow(&self) -> bool;
 
+        #[deprecated]
         #[method(verticalOverflow)]
         pub unsafe fn verticalOverflow(&self) -> bool;
 
+        #[deprecated]
         #[method(initOverflowEvent:horizontalOverflow:verticalOverflow:)]
         pub unsafe fn initOverflowEvent_horizontalOverflow_verticalOverflow(
             &self,
@@ -64,6 +68,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMOverflowEvent")]
     unsafe impl DOMOverflowEvent {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

@@ -27,15 +27,9 @@ ns_options!(
     }
 );
 
-extern_static!(
-    NSNotificationDeliverImmediately: NSDistributedNotificationOptions =
-        NSDistributedNotificationDeliverImmediately
-);
+extern_static!(NSNotificationDeliverImmediately: NSDistributedNotificationOptions = NSDistributedNotificationDeliverImmediately);
 
-extern_static!(
-    NSNotificationPostToAllSessions: NSDistributedNotificationOptions =
-        NSDistributedNotificationPostToAllSessions
-);
+extern_static!(NSNotificationPostToAllSessions: NSDistributedNotificationOptions = NSDistributedNotificationPostToAllSessions);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

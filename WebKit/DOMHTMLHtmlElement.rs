@@ -32,10 +32,12 @@ extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLHtmlElement")]
     unsafe impl DOMHTMLHtmlElement {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other version)]
         pub unsafe fn version(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setVersion:)]
         pub unsafe fn setVersion(&self, version: Option<&NSString>);
     }
@@ -45,6 +47,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMHTMLHtmlElement")]
     unsafe impl DOMHTMLHtmlElement {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

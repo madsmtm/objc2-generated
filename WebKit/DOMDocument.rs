@@ -32,14 +32,17 @@ extern_methods!(
     #[cfg(feature = "WebKit_DOMDocument")]
     unsafe impl DOMDocument {
         #[cfg(feature = "WebKit_DOMDocumentType")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other doctype)]
         pub unsafe fn doctype(&self) -> Option<Id<DOMDocumentType>>;
 
         #[cfg(feature = "WebKit_DOMImplementation")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other implementation)]
         pub unsafe fn implementation(&self) -> Option<Id<DOMImplementation>>;
 
         #[cfg(feature = "WebKit_DOMElement")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other documentElement)]
         pub unsafe fn documentElement(&self) -> Option<Id<DOMElement>>;
 
@@ -74,66 +77,82 @@ extern_methods!(
         pub unsafe fn setDocumentURI(&self, document_uri: Option<&NSString>);
 
         #[cfg(feature = "WebKit_DOMAbstractView")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other defaultView)]
         pub unsafe fn defaultView(&self) -> Option<Id<DOMAbstractView>>;
 
         #[cfg(feature = "WebKit_DOMStyleSheetList")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other styleSheets)]
         pub unsafe fn styleSheets(&self) -> Option<Id<DOMStyleSheetList>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other referrer)]
         pub unsafe fn referrer(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other domain)]
         pub unsafe fn domain(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other URL)]
         pub unsafe fn URL(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other cookie)]
         pub unsafe fn cookie(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setCookie:)]
         pub unsafe fn setCookie(&self, cookie: Option<&NSString>);
 
         #[cfg(feature = "WebKit_DOMHTMLElement")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other body)]
         pub unsafe fn body(&self) -> Option<Id<DOMHTMLElement>>;
 
         #[cfg(feature = "WebKit_DOMHTMLElement")]
+        #[deprecated]
         #[method(setBody:)]
         pub unsafe fn setBody(&self, body: Option<&DOMHTMLElement>);
 
         #[cfg(feature = "WebKit_DOMHTMLCollection")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other images)]
         pub unsafe fn images(&self) -> Option<Id<DOMHTMLCollection>>;
 
         #[cfg(feature = "WebKit_DOMHTMLCollection")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other applets)]
         pub unsafe fn applets(&self) -> Option<Id<DOMHTMLCollection>>;
 
         #[cfg(feature = "WebKit_DOMHTMLCollection")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other links)]
         pub unsafe fn links(&self) -> Option<Id<DOMHTMLCollection>>;
 
         #[cfg(feature = "WebKit_DOMHTMLCollection")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other forms)]
         pub unsafe fn forms(&self) -> Option<Id<DOMHTMLCollection>>;
 
         #[cfg(feature = "WebKit_DOMHTMLCollection")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other anchors)]
         pub unsafe fn anchors(&self) -> Option<Id<DOMHTMLCollection>>;
 
@@ -178,22 +197,27 @@ extern_methods!(
         pub unsafe fn activeElement(&self) -> Option<Id<DOMElement>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMElement"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Other createElement:)]
         pub unsafe fn createElement(&self, tag_name: Option<&NSString>) -> Option<Id<DOMElement>>;
 
         #[cfg(feature = "WebKit_DOMDocumentFragment")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other createDocumentFragment)]
         pub unsafe fn createDocumentFragment(&self) -> Option<Id<DOMDocumentFragment>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMText"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Other createTextNode:)]
         pub unsafe fn createTextNode(&self, data: Option<&NSString>) -> Option<Id<DOMText>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMComment"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Other createComment:)]
         pub unsafe fn createComment(&self, data: Option<&NSString>) -> Option<Id<DOMComment>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMCDATASection"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Other createCDATASection:)]
         pub unsafe fn createCDATASection(
             &self,
@@ -212,10 +236,12 @@ extern_methods!(
         ) -> Option<Id<DOMProcessingInstruction>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMAttr"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Other createAttribute:)]
         pub unsafe fn createAttribute(&self, name: Option<&NSString>) -> Option<Id<DOMAttr>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMEntityReference"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Other createEntityReference:)]
         pub unsafe fn createEntityReference(
             &self,
@@ -223,6 +249,7 @@ extern_methods!(
         ) -> Option<Id<DOMEntityReference>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMNodeList"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Other getElementsByTagName:)]
         pub unsafe fn getElementsByTagName(
             &self,
@@ -264,10 +291,12 @@ extern_methods!(
         pub unsafe fn adoptNode(&self, source: Option<&DOMNode>) -> Option<Id<DOMNode>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMEvent"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Other createEvent:)]
         pub unsafe fn createEvent(&self, event_type: Option<&NSString>) -> Option<Id<DOMEvent>>;
 
         #[cfg(feature = "WebKit_DOMRange")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other createRange)]
         pub unsafe fn createRange(&self) -> Option<Id<DOMRange>>;
 
@@ -370,6 +399,7 @@ extern_methods!(
         pub unsafe fn queryCommandValue(&self, command: Option<&NSString>) -> Option<Id<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMNodeList"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Other getElementsByName:)]
         pub unsafe fn getElementsByName(
             &self,
@@ -435,6 +465,7 @@ extern_methods!(
         pub unsafe fn webkitCancelFullScreen(&self);
 
         #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMElement"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Other getElementById:)]
         pub unsafe fn getElementById(
             &self,
@@ -458,6 +489,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMDocument")]
     unsafe impl DOMDocument {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

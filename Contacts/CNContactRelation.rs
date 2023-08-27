@@ -327,23 +327,13 @@ extern_static!(CNLabelContactRelationCousinGrandparentsSiblingsDaughter: &'stati
 
 extern_static!(CNLabelContactRelationCousinGrandparentsSiblingsSon: &'static NSString);
 
-extern_static!(
-    CNLabelContactRelationYoungerCousinMothersSiblingsSonOrFathersSistersSon: &'static NSString
-);
+extern_static!(CNLabelContactRelationYoungerCousinMothersSiblingsSonOrFathersSistersSon: &'static NSString);
 
-extern_static!(
-    CNLabelContactRelationElderCousinMothersSiblingsSonOrFathersSistersSon: &'static NSString
-);
+extern_static!(CNLabelContactRelationElderCousinMothersSiblingsSonOrFathersSistersSon: &'static NSString);
 
-extern_static!(
-    CNLabelContactRelationYoungerCousinMothersSiblingsDaughterOrFathersSistersDaughter:
-        &'static NSString
-);
+extern_static!(CNLabelContactRelationYoungerCousinMothersSiblingsDaughterOrFathersSistersDaughter: &'static NSString);
 
-extern_static!(
-    CNLabelContactRelationElderCousinMothersSiblingsDaughterOrFathersSistersDaughter:
-        &'static NSString
-);
+extern_static!(CNLabelContactRelationElderCousinMothersSiblingsDaughterOrFathersSistersDaughter: &'static NSString);
 
 extern_static!(CNLabelContactRelationParentsSibling: &'static NSString);
 
@@ -431,13 +421,9 @@ extern_static!(CNLabelContactRelationNieceSistersDaughter: &'static NSString);
 
 extern_static!(CNLabelContactRelationNieceBrothersDaughter: &'static NSString);
 
-extern_static!(
-    CNLabelContactRelationNieceSistersDaughterOrWifesSiblingsDaughter: &'static NSString
-);
+extern_static!(CNLabelContactRelationNieceSistersDaughterOrWifesSiblingsDaughter: &'static NSString);
 
-extern_static!(
-    CNLabelContactRelationNieceBrothersDaughterOrHusbandsSiblingsDaughter: &'static NSString
-);
+extern_static!(CNLabelContactRelationNieceBrothersDaughterOrHusbandsSiblingsDaughter: &'static NSString);
 
 extern_static!(CNLabelContactRelationNephew: &'static NSString);
 

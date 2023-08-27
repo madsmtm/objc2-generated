@@ -52,23 +52,29 @@ extern_methods!(
     #[cfg(feature = "WebKit_DOMRange")]
     unsafe impl DOMRange {
         #[cfg(feature = "WebKit_DOMNode")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other startContainer)]
         pub unsafe fn startContainer(&self) -> Option<Id<DOMNode>>;
 
+        #[deprecated]
         #[method(startOffset)]
         pub unsafe fn startOffset(&self) -> c_int;
 
         #[cfg(feature = "WebKit_DOMNode")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other endContainer)]
         pub unsafe fn endContainer(&self) -> Option<Id<DOMNode>>;
 
+        #[deprecated]
         #[method(endOffset)]
         pub unsafe fn endOffset(&self) -> c_int;
 
+        #[deprecated]
         #[method(collapsed)]
         pub unsafe fn collapsed(&self) -> bool;
 
         #[cfg(feature = "WebKit_DOMNode")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other commonAncestorContainer)]
         pub unsafe fn commonAncestorContainer(&self) -> Option<Id<DOMNode>>;
 
@@ -85,29 +91,36 @@ extern_methods!(
         pub unsafe fn setEnd_offset(&self, ref_node: Option<&DOMNode>, offset: c_int);
 
         #[cfg(feature = "WebKit_DOMNode")]
+        #[deprecated]
         #[method(setStartBefore:)]
         pub unsafe fn setStartBefore(&self, ref_node: Option<&DOMNode>);
 
         #[cfg(feature = "WebKit_DOMNode")]
+        #[deprecated]
         #[method(setStartAfter:)]
         pub unsafe fn setStartAfter(&self, ref_node: Option<&DOMNode>);
 
         #[cfg(feature = "WebKit_DOMNode")]
+        #[deprecated]
         #[method(setEndBefore:)]
         pub unsafe fn setEndBefore(&self, ref_node: Option<&DOMNode>);
 
         #[cfg(feature = "WebKit_DOMNode")]
+        #[deprecated]
         #[method(setEndAfter:)]
         pub unsafe fn setEndAfter(&self, ref_node: Option<&DOMNode>);
 
+        #[deprecated]
         #[method(collapse:)]
         pub unsafe fn collapse(&self, to_start: bool);
 
         #[cfg(feature = "WebKit_DOMNode")]
+        #[deprecated]
         #[method(selectNode:)]
         pub unsafe fn selectNode(&self, ref_node: Option<&DOMNode>);
 
         #[cfg(feature = "WebKit_DOMNode")]
+        #[deprecated]
         #[method(selectNodeContents:)]
         pub unsafe fn selectNodeContents(&self, ref_node: Option<&DOMNode>);
 
@@ -118,32 +131,40 @@ extern_methods!(
             source_range: Option<&DOMRange>,
         ) -> c_short;
 
+        #[deprecated]
         #[method(deleteContents)]
         pub unsafe fn deleteContents(&self);
 
         #[cfg(feature = "WebKit_DOMDocumentFragment")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other extractContents)]
         pub unsafe fn extractContents(&self) -> Option<Id<DOMDocumentFragment>>;
 
         #[cfg(feature = "WebKit_DOMDocumentFragment")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other cloneContents)]
         pub unsafe fn cloneContents(&self) -> Option<Id<DOMDocumentFragment>>;
 
         #[cfg(feature = "WebKit_DOMNode")]
+        #[deprecated]
         #[method(insertNode:)]
         pub unsafe fn insertNode(&self, new_node: Option<&DOMNode>);
 
         #[cfg(feature = "WebKit_DOMNode")]
+        #[deprecated]
         #[method(surroundContents:)]
         pub unsafe fn surroundContents(&self, new_parent: Option<&DOMNode>);
 
+        #[deprecated]
         #[method_id(@__retain_semantics Other cloneRange)]
         pub unsafe fn cloneRange(&self) -> Option<Id<DOMRange>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other toString)]
         pub unsafe fn toString(&self) -> Option<Id<NSString>>;
 
+        #[deprecated]
         #[method(detach)]
         pub unsafe fn detach(&self);
 
@@ -187,6 +208,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMRange")]
     unsafe impl DOMRange {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

@@ -95,12 +95,14 @@ unsafe impl NSObjectProtocol for DOMCSSPrimitiveValue {}
 extern_methods!(
     #[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
     unsafe impl DOMCSSPrimitiveValue {
+        #[deprecated]
         #[method(primitiveType)]
         pub unsafe fn primitiveType(&self) -> c_ushort;
 
         #[method(setFloatValue:floatValue:)]
         pub unsafe fn setFloatValue_floatValue(&self, unit_type: c_ushort, float_value: c_float);
 
+        #[deprecated]
         #[method(getFloatValue:)]
         pub unsafe fn getFloatValue(&self, unit_type: c_ushort) -> c_float;
 
@@ -113,18 +115,22 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other getStringValue)]
         pub unsafe fn getStringValue(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "WebKit_DOMCounter")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other getCounterValue)]
         pub unsafe fn getCounterValue(&self) -> Option<Id<DOMCounter>>;
 
         #[cfg(feature = "WebKit_DOMRect")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other getRectValue)]
         pub unsafe fn getRectValue(&self) -> Option<Id<DOMRect>>;
 
         #[cfg(feature = "WebKit_DOMRGBColor")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other getRGBColorValue)]
         pub unsafe fn getRGBColorValue(&self) -> Option<Id<DOMRGBColor>>;
     }
@@ -134,6 +140,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
     unsafe impl DOMCSSPrimitiveValue {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

@@ -28,10 +28,12 @@ unsafe impl NSObjectProtocol for DOMStyleSheetList {}
 extern_methods!(
     #[cfg(feature = "WebKit_DOMStyleSheetList")]
     unsafe impl DOMStyleSheetList {
+        #[deprecated]
         #[method(length)]
         pub unsafe fn length(&self) -> c_uint;
 
         #[cfg(feature = "WebKit_DOMStyleSheet")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other item:)]
         pub unsafe fn item(&self, index: c_uint) -> Option<Id<DOMStyleSheet>>;
     }
@@ -41,6 +43,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMStyleSheetList")]
     unsafe impl DOMStyleSheetList {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

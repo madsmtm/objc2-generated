@@ -31,17 +31,21 @@ unsafe impl NSObjectProtocol for DOMHTMLOptGroupElement {}
 extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLOptGroupElement")]
     unsafe impl DOMHTMLOptGroupElement {
+        #[deprecated]
         #[method(disabled)]
         pub unsafe fn disabled(&self) -> bool;
 
+        #[deprecated]
         #[method(setDisabled:)]
         pub unsafe fn setDisabled(&self, disabled: bool);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other label)]
         pub unsafe fn label(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: Option<&NSString>);
     }
@@ -51,6 +55,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMHTMLOptGroupElement")]
     unsafe impl DOMHTMLOptGroupElement {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

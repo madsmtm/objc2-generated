@@ -893,34 +893,19 @@ typed_enum!(
     pub type NSStringEncodingDetectionOptionsKey = NSString;
 );
 
-extern_static!(
-    NSStringEncodingDetectionSuggestedEncodingsKey: &'static NSStringEncodingDetectionOptionsKey
-);
+extern_static!(NSStringEncodingDetectionSuggestedEncodingsKey: &'static NSStringEncodingDetectionOptionsKey);
 
-extern_static!(
-    NSStringEncodingDetectionDisallowedEncodingsKey: &'static NSStringEncodingDetectionOptionsKey
-);
+extern_static!(NSStringEncodingDetectionDisallowedEncodingsKey: &'static NSStringEncodingDetectionOptionsKey);
 
-extern_static!(
-    NSStringEncodingDetectionUseOnlySuggestedEncodingsKey:
-        &'static NSStringEncodingDetectionOptionsKey
-);
+extern_static!(NSStringEncodingDetectionUseOnlySuggestedEncodingsKey: &'static NSStringEncodingDetectionOptionsKey);
 
-extern_static!(
-    NSStringEncodingDetectionAllowLossyKey: &'static NSStringEncodingDetectionOptionsKey
-);
+extern_static!(NSStringEncodingDetectionAllowLossyKey: &'static NSStringEncodingDetectionOptionsKey);
 
-extern_static!(
-    NSStringEncodingDetectionFromWindowsKey: &'static NSStringEncodingDetectionOptionsKey
-);
+extern_static!(NSStringEncodingDetectionFromWindowsKey: &'static NSStringEncodingDetectionOptionsKey);
 
-extern_static!(
-    NSStringEncodingDetectionLossySubstitutionKey: &'static NSStringEncodingDetectionOptionsKey
-);
+extern_static!(NSStringEncodingDetectionLossySubstitutionKey: &'static NSStringEncodingDetectionOptionsKey);
 
-extern_static!(
-    NSStringEncodingDetectionLikelyLanguageKey: &'static NSStringEncodingDetectionOptionsKey
-);
+extern_static!(NSStringEncodingDetectionLikelyLanguageKey: &'static NSStringEncodingDetectionOptionsKey);
 
 extern_methods!(
     /// NSStringEncodingDetection

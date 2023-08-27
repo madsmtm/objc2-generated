@@ -32,10 +32,12 @@ extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLHeadElement")]
     unsafe impl DOMHTMLHeadElement {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other profile)]
         pub unsafe fn profile(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setProfile:)]
         pub unsafe fn setProfile(&self, profile: Option<&NSString>);
     }
@@ -45,6 +47,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMHTMLHeadElement")]
     unsafe impl DOMHTMLHeadElement {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

@@ -44,24 +44,31 @@ extern_methods!(
     #[cfg(feature = "WebKit_DOMEvent")]
     unsafe impl DOMEvent {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other type)]
         pub unsafe fn r#type(&self) -> Id<NSString>;
 
+        #[deprecated]
         #[method_id(@__retain_semantics Other target)]
         pub unsafe fn target(&self) -> Option<Id<ProtocolObject<dyn DOMEventTarget>>>;
 
+        #[deprecated]
         #[method_id(@__retain_semantics Other currentTarget)]
         pub unsafe fn currentTarget(&self) -> Option<Id<ProtocolObject<dyn DOMEventTarget>>>;
 
+        #[deprecated]
         #[method(eventPhase)]
         pub unsafe fn eventPhase(&self) -> c_ushort;
 
+        #[deprecated]
         #[method(bubbles)]
         pub unsafe fn bubbles(&self) -> bool;
 
+        #[deprecated]
         #[method(cancelable)]
         pub unsafe fn cancelable(&self) -> bool;
 
+        #[deprecated]
         #[method(timeStamp)]
         pub unsafe fn timeStamp(&self) -> DOMTimeStamp;
 
@@ -80,9 +87,11 @@ extern_methods!(
         #[method(setCancelBubble:)]
         pub unsafe fn setCancelBubble(&self, cancel_bubble: bool);
 
+        #[deprecated]
         #[method(stopPropagation)]
         pub unsafe fn stopPropagation(&self);
 
+        #[deprecated]
         #[method(preventDefault)]
         pub unsafe fn preventDefault(&self);
 
@@ -101,6 +110,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMEvent")]
     unsafe impl DOMEvent {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

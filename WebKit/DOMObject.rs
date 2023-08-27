@@ -30,6 +30,7 @@ unsafe impl NSObjectProtocol for DOMObject {}
 extern_methods!(
     #[cfg(feature = "WebKit_DOMObject")]
     unsafe impl DOMObject {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

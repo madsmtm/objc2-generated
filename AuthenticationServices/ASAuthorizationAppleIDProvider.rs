@@ -15,9 +15,7 @@ ns_enum!(
     }
 );
 
-extern_static!(
-    ASAuthorizationAppleIDProviderCredentialRevokedNotification: &'static NSNotificationName
-);
+extern_static!(ASAuthorizationAppleIDProviderCredentialRevokedNotification: &'static NSNotificationName);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

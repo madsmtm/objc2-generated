@@ -32,86 +32,107 @@ extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLIFrameElement")]
     unsafe impl DOMHTMLIFrameElement {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other align)]
         pub unsafe fn align(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setAlign:)]
         pub unsafe fn setAlign(&self, align: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other frameBorder)]
         pub unsafe fn frameBorder(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setFrameBorder:)]
         pub unsafe fn setFrameBorder(&self, frame_border: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other height)]
         pub unsafe fn height(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setHeight:)]
         pub unsafe fn setHeight(&self, height: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other longDesc)]
         pub unsafe fn longDesc(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setLongDesc:)]
         pub unsafe fn setLongDesc(&self, long_desc: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other marginHeight)]
         pub unsafe fn marginHeight(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setMarginHeight:)]
         pub unsafe fn setMarginHeight(&self, margin_height: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other marginWidth)]
         pub unsafe fn marginWidth(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setMarginWidth:)]
         pub unsafe fn setMarginWidth(&self, margin_width: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other scrolling)]
         pub unsafe fn scrolling(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setScrolling:)]
         pub unsafe fn setScrolling(&self, scrolling: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other src)]
         pub unsafe fn src(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setSrc:)]
         pub unsafe fn setSrc(&self, src: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other width)]
         pub unsafe fn width(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setWidth:)]
         pub unsafe fn setWidth(&self, width: Option<&NSString>);
 
         #[cfg(feature = "WebKit_DOMDocument")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other contentDocument)]
         pub unsafe fn contentDocument(&self) -> Option<Id<DOMDocument>>;
 
@@ -125,6 +146,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMHTMLIFrameElement")]
     unsafe impl DOMHTMLIFrameElement {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

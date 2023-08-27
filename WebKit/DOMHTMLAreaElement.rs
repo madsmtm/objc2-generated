@@ -32,40 +32,50 @@ extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLAreaElement")]
     unsafe impl DOMHTMLAreaElement {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other alt)]
         pub unsafe fn alt(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setAlt:)]
         pub unsafe fn setAlt(&self, alt: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other coords)]
         pub unsafe fn coords(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setCoords:)]
         pub unsafe fn setCoords(&self, coords: Option<&NSString>);
 
+        #[deprecated]
         #[method(noHref)]
         pub unsafe fn noHref(&self) -> bool;
 
+        #[deprecated]
         #[method(setNoHref:)]
         pub unsafe fn setNoHref(&self, no_href: bool);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other shape)]
         pub unsafe fn shape(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setShape:)]
         pub unsafe fn setShape(&self, shape: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other target)]
         pub unsafe fn target(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setTarget:)]
         pub unsafe fn setTarget(&self, target: Option<&NSString>);
 
@@ -84,10 +94,12 @@ extern_methods!(
         pub unsafe fn absoluteLinkURL(&self) -> Id<NSURL>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other href)]
         pub unsafe fn href(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setHref:)]
         pub unsafe fn setHref(&self, href: Option<&NSString>);
 
@@ -125,6 +137,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMHTMLAreaElement")]
     unsafe impl DOMHTMLAreaElement {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

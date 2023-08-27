@@ -63,21 +63,26 @@ unsafe impl NSObjectProtocol for DOMCSSRule {}
 extern_methods!(
     #[cfg(feature = "WebKit_DOMCSSRule")]
     unsafe impl DOMCSSRule {
+        #[deprecated]
         #[method(type)]
         pub unsafe fn r#type(&self) -> c_ushort;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other cssText)]
         pub unsafe fn cssText(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setCssText:)]
         pub unsafe fn setCssText(&self, css_text: Option<&NSString>);
 
         #[cfg(feature = "WebKit_DOMCSSStyleSheet")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other parentStyleSheet)]
         pub unsafe fn parentStyleSheet(&self) -> Option<Id<DOMCSSStyleSheet>>;
 
+        #[deprecated]
         #[method_id(@__retain_semantics Other parentRule)]
         pub unsafe fn parentRule(&self) -> Option<Id<DOMCSSRule>>;
     }
@@ -87,6 +92,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMCSSRule")]
     unsafe impl DOMCSSRule {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

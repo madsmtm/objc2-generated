@@ -40,11 +40,13 @@ unsafe impl NSUserInterfaceItemIdentification for GKAchievementViewController {}
 extern_methods!(
     #[cfg(feature = "GameKit_GKAchievementViewController")]
     unsafe impl GKAchievementViewController {
+        #[deprecated = "Use GKGameCenterViewController instead"]
         #[method_id(@__retain_semantics Other achievementDelegate)]
         pub unsafe fn achievementDelegate(
             &self,
         ) -> Option<Id<ProtocolObject<dyn GKAchievementViewControllerDelegate>>>;
 
+        #[deprecated = "Use GKGameCenterViewController instead"]
         #[method(setAchievementDelegate:)]
         pub unsafe fn setAchievementDelegate(
             &self,
@@ -96,6 +98,7 @@ extern_protocol!(
     #[deprecated = "Use GKGameCenterViewController instead"]
     pub unsafe trait GKAchievementViewControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "GameKit_GKAchievementViewController")]
+        #[deprecated = "Use GKGameCenterViewController instead"]
         #[method(achievementViewControllerDidFinish:)]
         unsafe fn achievementViewControllerDidFinish(
             &self,

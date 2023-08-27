@@ -29,6 +29,7 @@ extern_methods!(
     #[cfg(feature = "WebKit_DOMCSSFontFaceRule")]
     unsafe impl DOMCSSFontFaceRule {
         #[cfg(feature = "WebKit_DOMCSSStyleDeclaration")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other style)]
         pub unsafe fn style(&self) -> Option<Id<DOMCSSStyleDeclaration>>;
     }
@@ -38,6 +39,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMCSSFontFaceRule")]
     unsafe impl DOMCSSFontFaceRule {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

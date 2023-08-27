@@ -25,10 +25,12 @@ extern_methods!(
     #[cfg(feature = "WebKit_WebScriptObject")]
     unsafe impl WebScriptObject {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(throwException:)]
         pub unsafe fn throwException(exception_message: Option<&NSString>) -> bool;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Other callWebScriptMethod:withArguments:)]
         pub unsafe fn callWebScriptMethod_withArguments(
             &self,
@@ -37,20 +39,25 @@ extern_methods!(
         ) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other evaluateWebScript:)]
         pub unsafe fn evaluateWebScript(&self, script: Option<&NSString>) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(removeWebScriptKey:)]
         pub unsafe fn removeWebScriptKey(&self, name: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other stringRepresentation)]
         pub unsafe fn stringRepresentation(&self) -> Option<Id<NSString>>;
 
+        #[deprecated]
         #[method_id(@__retain_semantics Other webScriptValueAtIndex:)]
         pub unsafe fn webScriptValueAtIndex(&self, index: c_uint) -> Option<Id<AnyObject>>;
 
+        #[deprecated]
         #[method(setWebScriptValueAtIndex:value:)]
         pub unsafe fn setWebScriptValueAtIndex_value(
             &self,
@@ -59,10 +66,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setException:)]
         pub unsafe fn setException(&self, description: Option<&NSString>);
 
         #[cfg(feature = "WebKit_JSValue")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other JSValue)]
         pub unsafe fn JSValue(&self) -> Option<Id<JSValue>>;
     }
@@ -105,6 +114,7 @@ unsafe impl NSObjectProtocol for WebUndefined {}
 extern_methods!(
     #[cfg(feature = "WebKit_WebUndefined")]
     unsafe impl WebUndefined {
+        #[deprecated]
         #[method_id(@__retain_semantics Other undefined)]
         pub unsafe fn undefined() -> Option<Id<WebUndefined>>;
     }

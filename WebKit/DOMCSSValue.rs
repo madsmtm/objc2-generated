@@ -44,13 +44,16 @@ extern_methods!(
     #[cfg(feature = "WebKit_DOMCSSValue")]
     unsafe impl DOMCSSValue {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other cssText)]
         pub unsafe fn cssText(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setCssText:)]
         pub unsafe fn setCssText(&self, css_text: Option<&NSString>);
 
+        #[deprecated]
         #[method(cssValueType)]
         pub unsafe fn cssValueType(&self) -> c_ushort;
     }
@@ -60,6 +63,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMCSSValue")]
     unsafe impl DOMCSSValue {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

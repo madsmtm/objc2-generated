@@ -63,6 +63,4 @@ extern_methods!(
     }
 );
 
-extern_static!(
-    NSTextAlternativesSelectedAlternativeStringNotification: &'static NSNotificationName
-);
+extern_static!(NSTextAlternativesSelectedAlternativeStringNotification: &'static NSNotificationName);

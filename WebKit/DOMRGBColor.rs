@@ -29,18 +29,22 @@ extern_methods!(
     #[cfg(feature = "WebKit_DOMRGBColor")]
     unsafe impl DOMRGBColor {
         #[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other red)]
         pub unsafe fn red(&self) -> Option<Id<DOMCSSPrimitiveValue>>;
 
         #[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other green)]
         pub unsafe fn green(&self) -> Option<Id<DOMCSSPrimitiveValue>>;
 
         #[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other blue)]
         pub unsafe fn blue(&self) -> Option<Id<DOMCSSPrimitiveValue>>;
 
         #[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other alpha)]
         pub unsafe fn alpha(&self) -> Option<Id<DOMCSSPrimitiveValue>>;
 
@@ -54,6 +58,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMRGBColor")]
     unsafe impl DOMRGBColor {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

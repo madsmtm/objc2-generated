@@ -32,18 +32,22 @@ extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLInputElement")]
     unsafe impl DOMHTMLInputElement {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other accept)]
         pub unsafe fn accept(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setAccept:)]
         pub unsafe fn setAccept(&self, accept: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other alt)]
         pub unsafe fn alt(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setAlt:)]
         pub unsafe fn setAlt(&self, alt: Option<&NSString>);
 
@@ -53,25 +57,32 @@ extern_methods!(
         #[method(setAutofocus:)]
         pub unsafe fn setAutofocus(&self, autofocus: bool);
 
+        #[deprecated]
         #[method(defaultChecked)]
         pub unsafe fn defaultChecked(&self) -> bool;
 
+        #[deprecated]
         #[method(setDefaultChecked:)]
         pub unsafe fn setDefaultChecked(&self, default_checked: bool);
 
+        #[deprecated]
         #[method(checked)]
         pub unsafe fn checked(&self) -> bool;
 
+        #[deprecated]
         #[method(setChecked:)]
         pub unsafe fn setChecked(&self, checked: bool);
 
+        #[deprecated]
         #[method(disabled)]
         pub unsafe fn disabled(&self) -> bool;
 
+        #[deprecated]
         #[method(setDisabled:)]
         pub unsafe fn setDisabled(&self, disabled: bool);
 
         #[cfg(feature = "WebKit_DOMHTMLFormElement")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other form)]
         pub unsafe fn form(&self) -> Option<Id<DOMHTMLFormElement>>;
 
@@ -89,9 +100,11 @@ extern_methods!(
         #[method(setIndeterminate:)]
         pub unsafe fn setIndeterminate(&self, indeterminate: bool);
 
+        #[deprecated]
         #[method(maxLength)]
         pub unsafe fn maxLength(&self) -> c_int;
 
+        #[deprecated]
         #[method(setMaxLength:)]
         pub unsafe fn setMaxLength(&self, max_length: c_int);
 
@@ -102,56 +115,70 @@ extern_methods!(
         pub unsafe fn setMultiple(&self, multiple: bool);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
+        #[deprecated]
         #[method(readOnly)]
         pub unsafe fn readOnly(&self) -> bool;
 
+        #[deprecated]
         #[method(setReadOnly:)]
         pub unsafe fn setReadOnly(&self, read_only: bool);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other size)]
         pub unsafe fn size(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setSize:)]
         pub unsafe fn setSize(&self, size: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other src)]
         pub unsafe fn src(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setSrc:)]
         pub unsafe fn setSrc(&self, src: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other type)]
         pub unsafe fn r#type(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setType:)]
         pub unsafe fn setType(&self, r#type: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other defaultValue)]
         pub unsafe fn defaultValue(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setDefaultValue:)]
         pub unsafe fn setDefaultValue(&self, default_value: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other value)]
         pub unsafe fn value(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setValue:)]
         pub unsafe fn setValue(&self, value: Option<&NSString>);
 
@@ -171,18 +198,22 @@ extern_methods!(
         pub unsafe fn setSelectionEnd(&self, selection_end: c_int);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other align)]
         pub unsafe fn align(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setAlign:)]
         pub unsafe fn setAlign(&self, align: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other useMap)]
         pub unsafe fn useMap(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setUseMap:)]
         pub unsafe fn setUseMap(&self, use_map: Option<&NSString>);
 
@@ -204,12 +235,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other absoluteImageURL)]
         pub unsafe fn absoluteImageURL(&self) -> Id<NSURL>;
 
+        #[deprecated]
         #[method(select)]
         pub unsafe fn select(&self);
 
         #[method(setSelectionRange:end:)]
         pub unsafe fn setSelectionRange_end(&self, start: c_int, end: c_int);
 
+        #[deprecated]
         #[method(click)]
         pub unsafe fn click(&self);
     }
@@ -219,6 +252,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMHTMLInputElement")]
     unsafe impl DOMHTMLInputElement {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

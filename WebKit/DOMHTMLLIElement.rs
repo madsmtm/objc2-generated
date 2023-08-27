@@ -32,16 +32,20 @@ extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLLIElement")]
     unsafe impl DOMHTMLLIElement {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other type)]
         pub unsafe fn r#type(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setType:)]
         pub unsafe fn setType(&self, r#type: Option<&NSString>);
 
+        #[deprecated]
         #[method(value)]
         pub unsafe fn value(&self) -> c_int;
 
+        #[deprecated]
         #[method(setValue:)]
         pub unsafe fn setValue(&self, value: c_int);
     }
@@ -51,6 +55,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMHTMLLIElement")]
     unsafe impl DOMHTMLLIElement {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

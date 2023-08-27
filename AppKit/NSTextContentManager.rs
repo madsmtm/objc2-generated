@@ -376,6 +376,4 @@ extern_methods!(
     }
 );
 
-extern_static!(
-    NSTextContentStorageUnsupportedAttributeAddedNotification: &'static NSNotificationName
-);
+extern_static!(NSTextContentStorageUnsupportedAttributeAddedNotification: &'static NSNotificationName);

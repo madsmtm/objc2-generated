@@ -29,15 +29,19 @@ extern_methods!(
     #[cfg(feature = "WebKit_DOMNodeIterator")]
     unsafe impl DOMNodeIterator {
         #[cfg(feature = "WebKit_DOMNode")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other root)]
         pub unsafe fn root(&self) -> Option<Id<DOMNode>>;
 
+        #[deprecated]
         #[method(whatToShow)]
         pub unsafe fn whatToShow(&self) -> c_uint;
 
+        #[deprecated]
         #[method_id(@__retain_semantics Other filter)]
         pub unsafe fn filter(&self) -> Option<Id<ProtocolObject<dyn DOMNodeFilter>>>;
 
+        #[deprecated]
         #[method(expandEntityReferences)]
         pub unsafe fn expandEntityReferences(&self) -> bool;
 
@@ -49,13 +53,16 @@ extern_methods!(
         pub unsafe fn pointerBeforeReferenceNode(&self) -> bool;
 
         #[cfg(feature = "WebKit_DOMNode")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other nextNode)]
         pub unsafe fn nextNode(&self) -> Option<Id<DOMNode>>;
 
         #[cfg(feature = "WebKit_DOMNode")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other previousNode)]
         pub unsafe fn previousNode(&self) -> Option<Id<DOMNode>>;
 
+        #[deprecated]
         #[method(detach)]
         pub unsafe fn detach(&self);
     }
@@ -65,6 +72,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMNodeIterator")]
     unsafe impl DOMNodeIterator {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

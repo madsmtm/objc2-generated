@@ -32,26 +32,32 @@ extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLBaseFontElement")]
     unsafe impl DOMHTMLBaseFontElement {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other color)]
         pub unsafe fn color(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setColor:)]
         pub unsafe fn setColor(&self, color: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other face)]
         pub unsafe fn face(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setFace:)]
         pub unsafe fn setFace(&self, face: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other size)]
         pub unsafe fn size(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setSize:)]
         pub unsafe fn setSize(&self, size: Option<&NSString>);
     }
@@ -61,6 +67,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMHTMLBaseFontElement")]
     unsafe impl DOMHTMLBaseFontElement {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

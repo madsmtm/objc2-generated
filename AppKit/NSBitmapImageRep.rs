@@ -384,21 +384,13 @@ extern_static!(NSJPEG2000FileType: NSBitmapImageFileType = NSBitmapImageFileType
 
 extern_static!(NSAlphaFirstBitmapFormat: NSBitmapFormat = NSBitmapFormatAlphaFirst);
 
-extern_static!(
-    NSAlphaNonpremultipliedBitmapFormat: NSBitmapFormat = NSBitmapFormatAlphaNonpremultiplied
-);
+extern_static!(NSAlphaNonpremultipliedBitmapFormat: NSBitmapFormat = NSBitmapFormatAlphaNonpremultiplied);
 
-extern_static!(
-    NSFloatingPointSamplesBitmapFormat: NSBitmapFormat = NSBitmapFormatFloatingPointSamples
-);
+extern_static!(NSFloatingPointSamplesBitmapFormat: NSBitmapFormat = NSBitmapFormatFloatingPointSamples);
 
-extern_static!(
-    NS16BitLittleEndianBitmapFormat: NSBitmapFormat = NSBitmapFormatSixteenBitLittleEndian
-);
+extern_static!(NS16BitLittleEndianBitmapFormat: NSBitmapFormat = NSBitmapFormatSixteenBitLittleEndian);
 
-extern_static!(
-    NS32BitLittleEndianBitmapFormat: NSBitmapFormat = NSBitmapFormatThirtyTwoBitLittleEndian
-);
+extern_static!(NS32BitLittleEndianBitmapFormat: NSBitmapFormat = NSBitmapFormatThirtyTwoBitLittleEndian);
 
 extern_static!(NS16BitBigEndianBitmapFormat: NSBitmapFormat = NSBitmapFormatSixteenBitBigEndian);
 

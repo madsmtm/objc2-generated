@@ -44,6 +44,7 @@ extern_methods!(
     #[cfg(feature = "WebKit_DOMKeyboardEvent")]
     unsafe impl DOMKeyboardEvent {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other keyIdentifier)]
         pub unsafe fn keyIdentifier(&self) -> Id<NSString>;
 
@@ -54,28 +55,35 @@ extern_methods!(
         #[method(keyLocation)]
         pub unsafe fn keyLocation(&self) -> c_uint;
 
+        #[deprecated]
         #[method(ctrlKey)]
         pub unsafe fn ctrlKey(&self) -> bool;
 
+        #[deprecated]
         #[method(shiftKey)]
         pub unsafe fn shiftKey(&self) -> bool;
 
+        #[deprecated]
         #[method(altKey)]
         pub unsafe fn altKey(&self) -> bool;
 
+        #[deprecated]
         #[method(metaKey)]
         pub unsafe fn metaKey(&self) -> bool;
 
         #[method(altGraphKey)]
         pub unsafe fn altGraphKey(&self) -> bool;
 
+        #[deprecated]
         #[method(keyCode)]
         pub unsafe fn keyCode(&self) -> c_int;
 
+        #[deprecated]
         #[method(charCode)]
         pub unsafe fn charCode(&self) -> c_int;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(getModifierState:)]
         pub unsafe fn getModifierState(&self, key_identifier_arg: Option<&NSString>) -> bool;
 
@@ -153,6 +161,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMKeyboardEvent")]
     unsafe impl DOMKeyboardEvent {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

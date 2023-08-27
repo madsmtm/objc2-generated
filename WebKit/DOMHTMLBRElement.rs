@@ -32,10 +32,12 @@ extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLBRElement")]
     unsafe impl DOMHTMLBRElement {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other clear)]
         pub unsafe fn clear(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setClear:)]
         pub unsafe fn setClear(&self, clear: Option<&NSString>);
     }
@@ -45,6 +47,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMHTMLBRElement")]
     unsafe impl DOMHTMLBRElement {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

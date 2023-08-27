@@ -5,16 +5,11 @@ use crate::Foundation::*;
 
 extern_static!(NSHashTableStrongMemory: NSPointerFunctionsOptions = NSPointerFunctionsStrongMemory);
 
-extern_static!(
-    NSHashTableZeroingWeakMemory: NSPointerFunctionsOptions = NSPointerFunctionsZeroingWeakMemory
-);
+extern_static!(NSHashTableZeroingWeakMemory: NSPointerFunctionsOptions = NSPointerFunctionsZeroingWeakMemory);
 
 extern_static!(NSHashTableCopyIn: NSPointerFunctionsOptions = NSPointerFunctionsCopyIn);
 
-extern_static!(
-    NSHashTableObjectPointerPersonality: NSPointerFunctionsOptions =
-        NSPointerFunctionsObjectPointerPersonality
-);
+extern_static!(NSHashTableObjectPointerPersonality: NSPointerFunctionsOptions = NSPointerFunctionsObjectPointerPersonality);
 
 extern_static!(NSHashTableWeakMemory: NSPointerFunctionsOptions = NSPointerFunctionsWeakMemory);
 

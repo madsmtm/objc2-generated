@@ -29,14 +29,17 @@ extern_methods!(
     #[cfg(feature = "WebKit_DOMCSSStyleRule")]
     unsafe impl DOMCSSStyleRule {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other selectorText)]
         pub unsafe fn selectorText(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setSelectorText:)]
         pub unsafe fn setSelectorText(&self, selector_text: Option<&NSString>);
 
         #[cfg(feature = "WebKit_DOMCSSStyleDeclaration")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other style)]
         pub unsafe fn style(&self) -> Option<Id<DOMCSSStyleDeclaration>>;
     }
@@ -46,6 +49,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMCSSStyleRule")]
     unsafe impl DOMCSSStyleRule {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

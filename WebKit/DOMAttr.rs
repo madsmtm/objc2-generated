@@ -32,21 +32,26 @@ extern_methods!(
     #[cfg(feature = "WebKit_DOMAttr")]
     unsafe impl DOMAttr {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSString>;
 
+        #[deprecated]
         #[method(specified)]
         pub unsafe fn specified(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other value)]
         pub unsafe fn value(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setValue:)]
         pub unsafe fn setValue(&self, value: Option<&NSString>);
 
         #[cfg(feature = "WebKit_DOMElement")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other ownerElement)]
         pub unsafe fn ownerElement(&self) -> Option<Id<DOMElement>>;
 
@@ -60,6 +65,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMAttr")]
     unsafe impl DOMAttr {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

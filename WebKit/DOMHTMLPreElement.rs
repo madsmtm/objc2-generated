@@ -31,9 +31,11 @@ unsafe impl NSObjectProtocol for DOMHTMLPreElement {}
 extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLPreElement")]
     unsafe impl DOMHTMLPreElement {
+        #[deprecated]
         #[method(width)]
         pub unsafe fn width(&self) -> c_int;
 
+        #[deprecated]
         #[method(setWidth:)]
         pub unsafe fn setWidth(&self, width: c_int);
 
@@ -49,6 +51,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMHTMLPreElement")]
     unsafe impl DOMHTMLPreElement {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

@@ -26,6 +26,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSDistantObject")]
     unsafe impl NSDistantObject {
         #[cfg(feature = "Foundation_NSConnection")]
+        #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Other proxyWithTarget:connection:)]
         pub unsafe fn proxyWithTarget_connection(
             target: &AnyObject,
@@ -33,6 +34,7 @@ extern_methods!(
         ) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSConnection")]
+        #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Init initWithTarget:connection:)]
         pub unsafe fn initWithTarget_connection(
             this: Option<Allocated<Self>>,
@@ -41,6 +43,7 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSConnection")]
+        #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Other proxyWithLocal:connection:)]
         pub unsafe fn proxyWithLocal_connection(
             target: &AnyObject,
@@ -48,6 +51,7 @@ extern_methods!(
         ) -> Id<AnyObject>;
 
         #[cfg(feature = "Foundation_NSConnection")]
+        #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Init initWithLocal:connection:)]
         pub unsafe fn initWithLocal_connection(
             this: Option<Allocated<Self>>,
@@ -56,16 +60,19 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
+        #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Option<Allocated<Self>>,
             in_coder: &NSCoder,
         ) -> Option<Id<Self>>;
 
+        #[deprecated = "Use NSXPCConnection instead"]
         #[method(setProtocolForProxy:)]
         pub unsafe fn setProtocolForProxy(&self, proto: Option<&AnyProtocol>);
 
         #[cfg(feature = "Foundation_NSConnection")]
+        #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Other connectionForProxy)]
         pub unsafe fn connectionForProxy(&self) -> Id<NSConnection>;
     }

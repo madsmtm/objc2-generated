@@ -28,33 +28,43 @@ unsafe impl NSObjectProtocol for DOMMouseEvent {}
 extern_methods!(
     #[cfg(feature = "WebKit_DOMMouseEvent")]
     unsafe impl DOMMouseEvent {
+        #[deprecated]
         #[method(screenX)]
         pub unsafe fn screenX(&self) -> c_int;
 
+        #[deprecated]
         #[method(screenY)]
         pub unsafe fn screenY(&self) -> c_int;
 
+        #[deprecated]
         #[method(clientX)]
         pub unsafe fn clientX(&self) -> c_int;
 
+        #[deprecated]
         #[method(clientY)]
         pub unsafe fn clientY(&self) -> c_int;
 
+        #[deprecated]
         #[method(ctrlKey)]
         pub unsafe fn ctrlKey(&self) -> bool;
 
+        #[deprecated]
         #[method(shiftKey)]
         pub unsafe fn shiftKey(&self) -> bool;
 
+        #[deprecated]
         #[method(altKey)]
         pub unsafe fn altKey(&self) -> bool;
 
+        #[deprecated]
         #[method(metaKey)]
         pub unsafe fn metaKey(&self) -> bool;
 
+        #[deprecated]
         #[method(button)]
         pub unsafe fn button(&self) -> c_short;
 
+        #[deprecated]
         #[method_id(@__retain_semantics Other relatedTarget)]
         pub unsafe fn relatedTarget(&self) -> Option<Id<ProtocolObject<dyn DOMEventTarget>>>;
 
@@ -105,6 +115,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMMouseEvent")]
     unsafe impl DOMMouseEvent {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

@@ -29,6 +29,7 @@ extern_methods!(
     #[cfg(feature = "WebKit_DOMCSSCharsetRule")]
     unsafe impl DOMCSSCharsetRule {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other encoding)]
         pub unsafe fn encoding(&self) -> Id<NSString>;
     }
@@ -38,6 +39,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMCSSCharsetRule")]
     unsafe impl DOMCSSCharsetRule {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

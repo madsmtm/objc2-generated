@@ -32,14 +32,17 @@ extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLLabelElement")]
     unsafe impl DOMHTMLLabelElement {
         #[cfg(feature = "WebKit_DOMHTMLFormElement")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other form)]
         pub unsafe fn form(&self) -> Option<Id<DOMHTMLFormElement>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other htmlFor)]
         pub unsafe fn htmlFor(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setHtmlFor:)]
         pub unsafe fn setHtmlFor(&self, html_for: Option<&NSString>);
 
@@ -59,6 +62,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMHTMLLabelElement")]
     unsafe impl DOMHTMLLabelElement {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

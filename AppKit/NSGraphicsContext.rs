@@ -11,9 +11,7 @@ typed_enum!(
 
 extern_static!(NSGraphicsContextDestinationAttributeName: &'static NSGraphicsContextAttributeKey);
 
-extern_static!(
-    NSGraphicsContextRepresentationFormatAttributeName: &'static NSGraphicsContextAttributeKey
-);
+extern_static!(NSGraphicsContextRepresentationFormatAttributeName: &'static NSGraphicsContextAttributeKey);
 
 typed_enum!(
     pub type NSGraphicsContextRepresentationFormatName = NSString;

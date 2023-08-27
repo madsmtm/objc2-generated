@@ -25,26 +25,32 @@ unsafe impl NSObjectProtocol for CKModifyBadgeOperation {}
 extern_methods!(
     #[cfg(feature = "CloudKit_CKModifyBadgeOperation")]
     unsafe impl CKModifyBadgeOperation {
+        #[deprecated = "No longer supported, will cease working at some point in the future"]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
+        #[deprecated = "No longer supported, will cease working at some point in the future"]
         #[method_id(@__retain_semantics Init initWithBadgeValue:)]
         pub unsafe fn initWithBadgeValue(
             this: Option<Allocated<Self>>,
             badge_value: NSUInteger,
         ) -> Id<Self>;
 
+        #[deprecated = "No longer supported, will cease working at some point in the future"]
         #[method(badgeValue)]
         pub unsafe fn badgeValue(&self) -> NSUInteger;
 
+        #[deprecated = "No longer supported, will cease working at some point in the future"]
         #[method(setBadgeValue:)]
         pub unsafe fn setBadgeValue(&self, badge_value: NSUInteger);
 
         #[cfg(feature = "Foundation_NSError")]
+        #[deprecated = "No longer supported, will cease working at some point in the future"]
         #[method(modifyBadgeCompletionBlock)]
         pub unsafe fn modifyBadgeCompletionBlock(&self) -> *mut Block<(*mut NSError,), ()>;
 
         #[cfg(feature = "Foundation_NSError")]
+        #[deprecated = "No longer supported, will cease working at some point in the future"]
         #[method(setModifyBadgeCompletionBlock:)]
         pub unsafe fn setModifyBadgeCompletionBlock(
             &self,

@@ -41,22 +41,28 @@ extern_methods!(
     #[cfg(feature = "WebKit_DOMElement")]
     unsafe impl DOMElement {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other tagName)]
         pub unsafe fn tagName(&self) -> Id<NSString>;
 
         #[cfg(feature = "WebKit_DOMCSSStyleDeclaration")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other style)]
         pub unsafe fn style(&self) -> Option<Id<DOMCSSStyleDeclaration>>;
 
+        #[deprecated]
         #[method(offsetLeft)]
         pub unsafe fn offsetLeft(&self) -> c_int;
 
+        #[deprecated]
         #[method(offsetTop)]
         pub unsafe fn offsetTop(&self) -> c_int;
 
+        #[deprecated]
         #[method(offsetWidth)]
         pub unsafe fn offsetWidth(&self) -> c_int;
 
+        #[deprecated]
         #[method(offsetHeight)]
         pub unsafe fn offsetHeight(&self) -> c_int;
 
@@ -66,54 +72,69 @@ extern_methods!(
         #[method(clientTop)]
         pub unsafe fn clientTop(&self) -> c_int;
 
+        #[deprecated]
         #[method(clientWidth)]
         pub unsafe fn clientWidth(&self) -> c_int;
 
+        #[deprecated]
         #[method(clientHeight)]
         pub unsafe fn clientHeight(&self) -> c_int;
 
+        #[deprecated]
         #[method(scrollLeft)]
         pub unsafe fn scrollLeft(&self) -> c_int;
 
+        #[deprecated]
         #[method(setScrollLeft:)]
         pub unsafe fn setScrollLeft(&self, scroll_left: c_int);
 
+        #[deprecated]
         #[method(scrollTop)]
         pub unsafe fn scrollTop(&self) -> c_int;
 
+        #[deprecated]
         #[method(setScrollTop:)]
         pub unsafe fn setScrollTop(&self, scroll_top: c_int);
 
+        #[deprecated]
         #[method(scrollWidth)]
         pub unsafe fn scrollWidth(&self) -> c_int;
 
+        #[deprecated]
         #[method(scrollHeight)]
         pub unsafe fn scrollHeight(&self) -> c_int;
 
+        #[deprecated]
         #[method_id(@__retain_semantics Other offsetParent)]
         pub unsafe fn offsetParent(&self) -> Option<Id<DOMElement>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other innerHTML)]
         pub unsafe fn innerHTML(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setInnerHTML:)]
         pub unsafe fn setInnerHTML(&self, inner_html: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other outerHTML)]
         pub unsafe fn outerHTML(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setOuterHTML:)]
         pub unsafe fn setOuterHTML(&self, outer_html: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other className)]
         pub unsafe fn className(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setClassName:)]
         pub unsafe fn setClassName(&self, class_name: Option<&NSString>);
 
@@ -137,6 +158,7 @@ extern_methods!(
         pub unsafe fn childElementCount(&self) -> c_uint;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other getAttribute:)]
         pub unsafe fn getAttribute(&self, name: Option<&NSString>) -> Option<Id<NSString>>;
 
@@ -145,23 +167,28 @@ extern_methods!(
         pub unsafe fn setAttribute_value(&self, name: Option<&NSString>, value: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(removeAttribute:)]
         pub unsafe fn removeAttribute(&self, name: Option<&NSString>);
 
         #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMAttr"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Other getAttributeNode:)]
         pub unsafe fn getAttributeNode(&self, name: Option<&NSString>) -> Option<Id<DOMAttr>>;
 
         #[cfg(feature = "WebKit_DOMAttr")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other setAttributeNode:)]
         pub unsafe fn setAttributeNode(&self, new_attr: Option<&DOMAttr>) -> Option<Id<DOMAttr>>;
 
         #[cfg(feature = "WebKit_DOMAttr")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other removeAttributeNode:)]
         pub unsafe fn removeAttributeNode(&self, old_attr: Option<&DOMAttr>)
             -> Option<Id<DOMAttr>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMNodeList"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Other getElementsByTagName:)]
         pub unsafe fn getElementsByTagName(
             &self,
@@ -210,10 +237,12 @@ extern_methods!(
         ) -> Option<Id<DOMAttr>>;
 
         #[cfg(feature = "WebKit_DOMAttr")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other setAttributeNodeNS:)]
         pub unsafe fn setAttributeNodeNS(&self, new_attr: Option<&DOMAttr>) -> Option<Id<DOMAttr>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(hasAttribute:)]
         pub unsafe fn hasAttribute(&self, name: Option<&NSString>) -> bool;
 
@@ -270,6 +299,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMElement")]
     unsafe impl DOMElement {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

@@ -376,27 +376,33 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKFetchRecordZoneChangesOptions")]
     unsafe impl CKFetchRecordZoneChangesOptions {
         #[cfg(feature = "CloudKit_CKServerChangeToken")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other previousServerChangeToken)]
         pub unsafe fn previousServerChangeToken(&self) -> Option<Id<CKServerChangeToken>>;
 
         #[cfg(feature = "CloudKit_CKServerChangeToken")]
+        #[deprecated]
         #[method(setPreviousServerChangeToken:)]
         pub unsafe fn setPreviousServerChangeToken(
             &self,
             previous_server_change_token: Option<&CKServerChangeToken>,
         );
 
+        #[deprecated]
         #[method(resultsLimit)]
         pub unsafe fn resultsLimit(&self) -> NSUInteger;
 
+        #[deprecated]
         #[method(setResultsLimit:)]
         pub unsafe fn setResultsLimit(&self, results_limit: NSUInteger);
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other desiredKeys)]
         pub unsafe fn desiredKeys(&self) -> Option<Id<NSArray<CKRecordFieldKey>>>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[deprecated]
         #[method(setDesiredKeys:)]
         pub unsafe fn setDesiredKeys(&self, desired_keys: Option<&NSArray<CKRecordFieldKey>>);
     }

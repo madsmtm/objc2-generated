@@ -18,15 +18,11 @@ typed_enum!(
     pub type NSFontCollectionMatchingOptionKey = NSString;
 );
 
-extern_static!(
-    NSFontCollectionIncludeDisabledFontsOption: &'static NSFontCollectionMatchingOptionKey
-);
+extern_static!(NSFontCollectionIncludeDisabledFontsOption: &'static NSFontCollectionMatchingOptionKey);
 
 extern_static!(NSFontCollectionRemoveDuplicatesOption: &'static NSFontCollectionMatchingOptionKey);
 
-extern_static!(
-    NSFontCollectionDisallowAutoActivationOption: &'static NSFontCollectionMatchingOptionKey
-);
+extern_static!(NSFontCollectionDisallowAutoActivationOption: &'static NSFontCollectionMatchingOptionKey);
 
 typed_extensible_enum!(
     pub type NSFontCollectionName = NSString;

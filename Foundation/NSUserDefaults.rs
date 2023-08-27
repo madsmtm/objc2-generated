@@ -227,9 +227,7 @@ extern_static!(NSUbiquitousUserDefaultsNoCloudAccountNotification: &'static NSNo
 
 extern_static!(NSUbiquitousUserDefaultsDidChangeAccountsNotification: &'static NSNotificationName);
 
-extern_static!(
-    NSUbiquitousUserDefaultsCompletedInitialSyncNotification: &'static NSNotificationName
-);
+extern_static!(NSUbiquitousUserDefaultsCompletedInitialSyncNotification: &'static NSNotificationName);
 
 extern_static!(NSUserDefaultsDidChangeNotification: &'static NSNotificationName);
 

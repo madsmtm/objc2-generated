@@ -214,10 +214,7 @@ extern_static!(NSHelpKeyMask: NSEventModifierFlags = NSEventModifierFlagHelp);
 
 extern_static!(NSFunctionKeyMask: NSEventModifierFlags = NSEventModifierFlagFunction);
 
-extern_static!(
-    NSDeviceIndependentModifierFlagsMask: NSEventModifierFlags =
-        NSEventModifierFlagDeviceIndependentFlagsMask
-);
+extern_static!(NSDeviceIndependentModifierFlagsMask: NSEventModifierFlags = NSEventModifierFlagDeviceIndependentFlagsMask);
 
 ns_enum!(
     #[underlying(NSUInteger)]
@@ -300,13 +297,9 @@ ns_enum!(
 
 extern_static!(NSWindowExposedEventType: NSEventSubtype = NSEventSubtypeWindowExposed);
 
-extern_static!(
-    NSApplicationActivatedEventType: NSEventSubtype = NSEventSubtypeApplicationActivated
-);
+extern_static!(NSApplicationActivatedEventType: NSEventSubtype = NSEventSubtypeApplicationActivated);
 
-extern_static!(
-    NSApplicationDeactivatedEventType: NSEventSubtype = NSEventSubtypeApplicationDeactivated
-);
+extern_static!(NSApplicationDeactivatedEventType: NSEventSubtype = NSEventSubtypeApplicationDeactivated);
 
 extern_static!(NSWindowMovedEventType: NSEventSubtype = NSEventSubtypeWindowMoved);
 

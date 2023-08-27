@@ -282,9 +282,7 @@ extern_static!(NSProgressFileOperationKindKey: &'static NSProgressUserInfoKey);
 
 extern_static!(NSProgressFileOperationKindDownloading: &'static NSProgressFileOperationKind);
 
-extern_static!(
-    NSProgressFileOperationKindDecompressingAfterDownloading: &'static NSProgressFileOperationKind
-);
+extern_static!(NSProgressFileOperationKindDecompressingAfterDownloading: &'static NSProgressFileOperationKind);
 
 extern_static!(NSProgressFileOperationKindReceiving: &'static NSProgressFileOperationKind);
 

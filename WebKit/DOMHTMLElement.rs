@@ -32,32 +32,40 @@ extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLElement")]
     unsafe impl DOMHTMLElement {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other lang)]
         pub unsafe fn lang(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setLang:)]
         pub unsafe fn setLang(&self, lang: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other dir)]
         pub unsafe fn dir(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setDir:)]
         pub unsafe fn setDir(&self, dir: Option<&NSString>);
 
+        #[deprecated]
         #[method(tabIndex)]
         pub unsafe fn tabIndex(&self) -> c_int;
 
+        #[deprecated]
         #[method(setTabIndex:)]
         pub unsafe fn setTabIndex(&self, tab_index: c_int);
 
@@ -70,41 +78,51 @@ extern_methods!(
         pub unsafe fn setAccessKey(&self, access_key: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other innerText)]
         pub unsafe fn innerText(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setInnerText:)]
         pub unsafe fn setInnerText(&self, inner_text: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other outerText)]
         pub unsafe fn outerText(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setOuterText:)]
         pub unsafe fn setOuterText(&self, outer_text: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other contentEditable)]
         pub unsafe fn contentEditable(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setContentEditable:)]
         pub unsafe fn setContentEditable(&self, content_editable: Option<&NSString>);
 
+        #[deprecated]
         #[method(isContentEditable)]
         pub unsafe fn isContentEditable(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other idName)]
         pub unsafe fn idName(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setIdName:)]
         pub unsafe fn setIdName(&self, id_name: Option<&NSString>);
 
         #[cfg(feature = "WebKit_DOMHTMLCollection")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other children)]
         pub unsafe fn children(&self) -> Option<Id<DOMHTMLCollection>>;
 
@@ -121,6 +139,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMHTMLElement")]
     unsafe impl DOMHTMLElement {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

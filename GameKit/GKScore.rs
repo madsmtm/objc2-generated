@@ -31,6 +31,7 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKScore")]
     unsafe impl GKScore {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Replaced by GKLeaderboardScore"]
         #[method_id(@__retain_semantics Init initWithLeaderboardIdentifier:)]
         pub unsafe fn initWithLeaderboardIdentifier(
             this: Option<Allocated<Self>>,
@@ -45,13 +46,16 @@ extern_methods!(
             player: &GKPlayer,
         ) -> Id<Self>;
 
+        #[deprecated = "Replaced by GKLeaderboardScore"]
         #[method(value)]
         pub unsafe fn value(&self) -> i64;
 
+        #[deprecated = "Replaced by GKLeaderboardScore"]
         #[method(setValue:)]
         pub unsafe fn setValue(&self, value: i64);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Replaced by GKLeaderboardScore"]
         #[method_id(@__retain_semantics Other formattedValue)]
         pub unsafe fn formattedValue(&self) -> Option<Id<NSString>>;
 
@@ -70,6 +74,7 @@ extern_methods!(
         pub unsafe fn setContext(&self, context: u64);
 
         #[cfg(feature = "Foundation_NSDate")]
+        #[deprecated = "Replaced by GKLeaderboardScore"]
         #[method_id(@__retain_semantics Other date)]
         pub unsafe fn date(&self) -> Id<NSDate>;
 
@@ -77,6 +82,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other player)]
         pub unsafe fn player(&self) -> Option<Id<GKPlayer>>;
 
+        #[deprecated = "Replaced by GKLeaderboardScore"]
         #[method(rank)]
         pub unsafe fn rank(&self) -> NSInteger;
 

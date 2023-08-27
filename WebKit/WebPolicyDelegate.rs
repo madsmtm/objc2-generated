@@ -37,12 +37,15 @@ extern_static!(WebActionOriginalURLKey: Option<&'static NSString>);
 extern_protocol!(
     #[deprecated]
     pub unsafe trait WebPolicyDecisionListener: NSObjectProtocol {
+        #[deprecated]
         #[method(use)]
         unsafe fn r#use(&self);
 
+        #[deprecated]
         #[method(download)]
         unsafe fn download(&self);
 
+        #[deprecated]
         #[method(ignore)]
         unsafe fn ignore(&self);
     }
@@ -59,6 +62,7 @@ extern_protocol!(
             feature = "WebKit_WebFrame",
             feature = "WebKit_WebView"
         ))]
+        #[deprecated]
         #[optional]
         #[method(webView:decidePolicyForNavigationAction:request:frame:decisionListener:)]
         unsafe fn webView_decidePolicyForNavigationAction_request_frame_decisionListener(
@@ -76,6 +80,7 @@ extern_protocol!(
             feature = "Foundation_NSURLRequest",
             feature = "WebKit_WebView"
         ))]
+        #[deprecated]
         #[optional]
         #[method(webView:decidePolicyForNewWindowAction:request:newFrameName:decisionListener:)]
         unsafe fn webView_decidePolicyForNewWindowAction_request_newFrameName_decisionListener(
@@ -93,6 +98,7 @@ extern_protocol!(
             feature = "WebKit_WebFrame",
             feature = "WebKit_WebView"
         ))]
+        #[deprecated]
         #[optional]
         #[method(webView:decidePolicyForMIMEType:request:frame:decisionListener:)]
         unsafe fn webView_decidePolicyForMIMEType_request_frame_decisionListener(
@@ -109,6 +115,7 @@ extern_protocol!(
             feature = "WebKit_WebFrame",
             feature = "WebKit_WebView"
         ))]
+        #[deprecated]
         #[optional]
         #[method(webView:unableToImplementPolicyWithError:frame:)]
         unsafe fn webView_unableToImplementPolicyWithError_frame(

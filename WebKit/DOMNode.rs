@@ -75,60 +75,76 @@ extern_methods!(
     #[cfg(feature = "WebKit_DOMNode")]
     unsafe impl DOMNode {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other nodeName)]
         pub unsafe fn nodeName(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other nodeValue)]
         pub unsafe fn nodeValue(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setNodeValue:)]
         pub unsafe fn setNodeValue(&self, node_value: Option<&NSString>);
 
+        #[deprecated]
         #[method(nodeType)]
         pub unsafe fn nodeType(&self) -> c_ushort;
 
+        #[deprecated]
         #[method_id(@__retain_semantics Other parentNode)]
         pub unsafe fn parentNode(&self) -> Option<Id<DOMNode>>;
 
         #[cfg(feature = "WebKit_DOMNodeList")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other childNodes)]
         pub unsafe fn childNodes(&self) -> Option<Id<DOMNodeList>>;
 
+        #[deprecated]
         #[method_id(@__retain_semantics Other firstChild)]
         pub unsafe fn firstChild(&self) -> Option<Id<DOMNode>>;
 
+        #[deprecated]
         #[method_id(@__retain_semantics Other lastChild)]
         pub unsafe fn lastChild(&self) -> Option<Id<DOMNode>>;
 
+        #[deprecated]
         #[method_id(@__retain_semantics Other previousSibling)]
         pub unsafe fn previousSibling(&self) -> Option<Id<DOMNode>>;
 
+        #[deprecated]
         #[method_id(@__retain_semantics Other nextSibling)]
         pub unsafe fn nextSibling(&self) -> Option<Id<DOMNode>>;
 
         #[cfg(feature = "WebKit_DOMDocument")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other ownerDocument)]
         pub unsafe fn ownerDocument(&self) -> Option<Id<DOMDocument>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other namespaceURI)]
         pub unsafe fn namespaceURI(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other prefix)]
         pub unsafe fn prefix(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setPrefix:)]
         pub unsafe fn setPrefix(&self, prefix: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other localName)]
         pub unsafe fn localName(&self) -> Id<NSString>;
 
         #[cfg(feature = "WebKit_DOMNamedNodeMap")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other attributes)]
         pub unsafe fn attributes(&self) -> Option<Id<DOMNamedNodeMap>>;
 
@@ -165,18 +181,23 @@ extern_methods!(
             old_child: Option<&DOMNode>,
         ) -> Option<Id<DOMNode>>;
 
+        #[deprecated]
         #[method_id(@__retain_semantics Other removeChild:)]
         pub unsafe fn removeChild(&self, old_child: Option<&DOMNode>) -> Option<Id<DOMNode>>;
 
+        #[deprecated]
         #[method_id(@__retain_semantics Other appendChild:)]
         pub unsafe fn appendChild(&self, new_child: Option<&DOMNode>) -> Option<Id<DOMNode>>;
 
+        #[deprecated]
         #[method(hasChildNodes)]
         pub unsafe fn hasChildNodes(&self) -> bool;
 
+        #[deprecated]
         #[method_id(@__retain_semantics Other cloneNode:)]
         pub unsafe fn cloneNode(&self, deep: bool) -> Option<Id<DOMNode>>;
 
+        #[deprecated]
         #[method(normalize)]
         pub unsafe fn normalize(&self);
 
@@ -188,6 +209,7 @@ extern_methods!(
             version: Option<&NSString>,
         ) -> bool;
 
+        #[deprecated]
         #[method(hasAttributes)]
         pub unsafe fn hasAttributes(&self) -> bool;
 
@@ -222,6 +244,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMNode")]
     unsafe impl DOMNode {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

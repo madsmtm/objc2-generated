@@ -32,46 +32,58 @@ extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLEmbedElement")]
     unsafe impl DOMHTMLEmbedElement {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other align)]
         pub unsafe fn align(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setAlign:)]
         pub unsafe fn setAlign(&self, align: Option<&NSString>);
 
+        #[deprecated]
         #[method(height)]
         pub unsafe fn height(&self) -> c_int;
 
+        #[deprecated]
         #[method(setHeight:)]
         pub unsafe fn setHeight(&self, height: c_int);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other src)]
         pub unsafe fn src(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setSrc:)]
         pub unsafe fn setSrc(&self, src: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other type)]
         pub unsafe fn r#type(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setType:)]
         pub unsafe fn setType(&self, r#type: Option<&NSString>);
 
+        #[deprecated]
         #[method(width)]
         pub unsafe fn width(&self) -> c_int;
 
+        #[deprecated]
         #[method(setWidth:)]
         pub unsafe fn setWidth(&self, width: c_int);
     }
@@ -81,6 +93,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMHTMLEmbedElement")]
     unsafe impl DOMHTMLEmbedElement {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

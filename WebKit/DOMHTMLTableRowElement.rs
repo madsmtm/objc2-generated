@@ -31,59 +31,74 @@ unsafe impl NSObjectProtocol for DOMHTMLTableRowElement {}
 extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLTableRowElement")]
     unsafe impl DOMHTMLTableRowElement {
+        #[deprecated]
         #[method(rowIndex)]
         pub unsafe fn rowIndex(&self) -> c_int;
 
+        #[deprecated]
         #[method(sectionRowIndex)]
         pub unsafe fn sectionRowIndex(&self) -> c_int;
 
         #[cfg(feature = "WebKit_DOMHTMLCollection")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other cells)]
         pub unsafe fn cells(&self) -> Option<Id<DOMHTMLCollection>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other align)]
         pub unsafe fn align(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setAlign:)]
         pub unsafe fn setAlign(&self, align: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other bgColor)]
         pub unsafe fn bgColor(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setBgColor:)]
         pub unsafe fn setBgColor(&self, bg_color: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other ch)]
         pub unsafe fn ch(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setCh:)]
         pub unsafe fn setCh(&self, ch: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other chOff)]
         pub unsafe fn chOff(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setChOff:)]
         pub unsafe fn setChOff(&self, ch_off: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other vAlign)]
         pub unsafe fn vAlign(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setVAlign:)]
         pub unsafe fn setVAlign(&self, v_align: Option<&NSString>);
 
+        #[deprecated]
         #[method_id(@__retain_semantics Other insertCell:)]
         pub unsafe fn insertCell(&self, index: c_int) -> Option<Id<DOMHTMLElement>>;
 
+        #[deprecated]
         #[method(deleteCell:)]
         pub unsafe fn deleteCell(&self, index: c_int);
     }
@@ -93,6 +108,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMHTMLTableRowElement")]
     unsafe impl DOMHTMLTableRowElement {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

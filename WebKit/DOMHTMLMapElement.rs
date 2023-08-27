@@ -32,14 +32,17 @@ extern_methods!(
     #[cfg(feature = "WebKit_DOMHTMLMapElement")]
     unsafe impl DOMHTMLMapElement {
         #[cfg(feature = "WebKit_DOMHTMLCollection")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other areas)]
         pub unsafe fn areas(&self) -> Option<Id<DOMHTMLCollection>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
     }
@@ -49,6 +52,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMHTMLMapElement")]
     unsafe impl DOMHTMLMapElement {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

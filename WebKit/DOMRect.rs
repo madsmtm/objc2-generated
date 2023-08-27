@@ -29,18 +29,22 @@ extern_methods!(
     #[cfg(feature = "WebKit_DOMRect")]
     unsafe impl DOMRect {
         #[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other top)]
         pub unsafe fn top(&self) -> Option<Id<DOMCSSPrimitiveValue>>;
 
         #[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other right)]
         pub unsafe fn right(&self) -> Option<Id<DOMCSSPrimitiveValue>>;
 
         #[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other bottom)]
         pub unsafe fn bottom(&self) -> Option<Id<DOMCSSPrimitiveValue>>;
 
         #[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other left)]
         pub unsafe fn left(&self) -> Option<Id<DOMCSSPrimitiveValue>>;
     }
@@ -50,6 +54,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMRect")]
     unsafe impl DOMRect {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

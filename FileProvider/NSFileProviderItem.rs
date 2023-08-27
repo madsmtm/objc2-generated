@@ -12,9 +12,7 @@ typed_extensible_enum!(
 
 extern_static!(NSFileProviderRootContainerItemIdentifier: &'static NSFileProviderItemIdentifier);
 
-extern_static!(
-    NSFileProviderWorkingSetContainerItemIdentifier: &'static NSFileProviderItemIdentifier
-);
+extern_static!(NSFileProviderWorkingSetContainerItemIdentifier: &'static NSFileProviderItemIdentifier);
 
 extern_static!(NSFileProviderTrashContainerItemIdentifier: &'static NSFileProviderItemIdentifier);
 

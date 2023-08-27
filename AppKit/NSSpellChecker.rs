@@ -448,33 +448,19 @@ extern_methods!(
     }
 );
 
-extern_static!(
-    NSSpellCheckerDidChangeAutomaticSpellingCorrectionNotification: &'static NSNotificationName
-);
+extern_static!(NSSpellCheckerDidChangeAutomaticSpellingCorrectionNotification: &'static NSNotificationName);
 
-extern_static!(
-    NSSpellCheckerDidChangeAutomaticTextReplacementNotification: &'static NSNotificationName
-);
+extern_static!(NSSpellCheckerDidChangeAutomaticTextReplacementNotification: &'static NSNotificationName);
 
-extern_static!(
-    NSSpellCheckerDidChangeAutomaticQuoteSubstitutionNotification: &'static NSNotificationName
-);
+extern_static!(NSSpellCheckerDidChangeAutomaticQuoteSubstitutionNotification: &'static NSNotificationName);
 
-extern_static!(
-    NSSpellCheckerDidChangeAutomaticDashSubstitutionNotification: &'static NSNotificationName
-);
+extern_static!(NSSpellCheckerDidChangeAutomaticDashSubstitutionNotification: &'static NSNotificationName);
 
-extern_static!(
-    NSSpellCheckerDidChangeAutomaticCapitalizationNotification: &'static NSNotificationName
-);
+extern_static!(NSSpellCheckerDidChangeAutomaticCapitalizationNotification: &'static NSNotificationName);
 
-extern_static!(
-    NSSpellCheckerDidChangeAutomaticPeriodSubstitutionNotification: &'static NSNotificationName
-);
+extern_static!(NSSpellCheckerDidChangeAutomaticPeriodSubstitutionNotification: &'static NSNotificationName);
 
-extern_static!(
-    NSSpellCheckerDidChangeAutomaticTextCompletionNotification: &'static NSNotificationName
-);
+extern_static!(NSSpellCheckerDidChangeAutomaticTextCompletionNotification: &'static NSNotificationName);
 
 extern_methods!(
     /// NSDeprecated

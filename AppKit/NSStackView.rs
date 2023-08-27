@@ -34,9 +34,7 @@ typed_extensible_enum!(
 
 extern_static!(NSStackViewVisibilityPriorityMustHold: NSStackViewVisibilityPriority = 1000);
 
-extern_static!(
-    NSStackViewVisibilityPriorityDetachOnlyIfNecessary: NSStackViewVisibilityPriority = 900
-);
+extern_static!(NSStackViewVisibilityPriorityDetachOnlyIfNecessary: NSStackViewVisibilityPriority = 900);
 
 extern_static!(NSStackViewVisibilityPriorityNotVisible: NSStackViewVisibilityPriority = 0);
 

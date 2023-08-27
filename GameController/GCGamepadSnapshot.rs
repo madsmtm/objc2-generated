@@ -26,14 +26,17 @@ extern_methods!(
     #[cfg(feature = "GameController_GCGamepadSnapshot")]
     unsafe impl GCGamepadSnapshot {
         #[cfg(feature = "Foundation_NSData")]
+        #[deprecated = "GCGamepad has been deprecated, use GCExtendedGamepad instead"]
         #[method_id(@__retain_semantics Other snapshotData)]
         pub unsafe fn snapshotData(&self) -> Id<NSData>;
 
         #[cfg(feature = "Foundation_NSData")]
+        #[deprecated = "GCGamepad has been deprecated, use GCExtendedGamepad instead"]
         #[method(setSnapshotData:)]
         pub unsafe fn setSnapshotData(&self, snapshot_data: &NSData);
 
         #[cfg(feature = "Foundation_NSData")]
+        #[deprecated = "GCGamepad has been deprecated, use GCExtendedGamepad instead"]
         #[method_id(@__retain_semantics Init initWithSnapshotData:)]
         pub unsafe fn initWithSnapshotData(
             this: Option<Allocated<Self>>,
@@ -41,6 +44,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "GameController_GCController"))]
+        #[deprecated = "GCGamepad has been deprecated, use GCExtendedGamepad instead"]
         #[method_id(@__retain_semantics Init initWithController:snapshotData:)]
         pub unsafe fn initWithController_snapshotData(
             this: Option<Allocated<Self>>,

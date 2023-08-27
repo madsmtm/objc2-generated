@@ -34,13 +34,16 @@ extern_methods!(
         #[method(setSelectedIndex:)]
         pub unsafe fn setSelectedIndex(&self, selected_index: c_int);
 
+        #[deprecated]
         #[method(length)]
         pub unsafe fn length(&self) -> c_uint;
 
+        #[deprecated]
         #[method(setLength:)]
         pub unsafe fn setLength(&self, length: c_uint);
 
         #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMNode"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Other namedItem:)]
         pub unsafe fn namedItem(&self, name: Option<&NSString>) -> Option<Id<DOMNode>>;
 
@@ -52,6 +55,7 @@ extern_methods!(
         pub unsafe fn remove(&self, index: c_uint);
 
         #[cfg(feature = "WebKit_DOMNode")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other item:)]
         pub unsafe fn item(&self, index: c_uint) -> Option<Id<DOMNode>>;
     }
@@ -61,6 +65,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMHTMLOptionsCollection")]
     unsafe impl DOMHTMLOptionsCollection {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

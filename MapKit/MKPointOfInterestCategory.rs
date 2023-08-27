@@ -71,9 +71,7 @@ extern_static!(MKPointOfInterestCategoryPolice: Option<&'static MKPointOfInteres
 
 extern_static!(MKPointOfInterestCategoryPostOffice: Option<&'static MKPointOfInterestCategory>);
 
-extern_static!(
-    MKPointOfInterestCategoryPublicTransport: Option<&'static MKPointOfInterestCategory>
-);
+extern_static!(MKPointOfInterestCategoryPublicTransport: Option<&'static MKPointOfInterestCategory>);
 
 extern_static!(MKPointOfInterestCategoryRestaurant: Option<&'static MKPointOfInterestCategory>);
 

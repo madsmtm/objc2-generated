@@ -29,6 +29,7 @@ extern_methods!(
     #[cfg(feature = "WebKit_DOMAbstractView")]
     unsafe impl DOMAbstractView {
         #[cfg(feature = "WebKit_DOMDocument")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other document)]
         pub unsafe fn document(&self) -> Option<Id<DOMDocument>>;
     }
@@ -38,6 +39,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMAbstractView")]
     unsafe impl DOMAbstractView {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

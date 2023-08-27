@@ -27,6 +27,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "WebKit_DOMEvent")]
+        #[deprecated]
         #[method(dispatchEvent:)]
         unsafe fn dispatchEvent(&self, event: Option<&DOMEvent>) -> bool;
 

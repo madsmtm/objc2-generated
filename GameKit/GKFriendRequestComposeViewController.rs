@@ -84,10 +84,12 @@ extern_methods!(
 extern_methods!(
     #[cfg(feature = "GameKit_GKFriendRequestComposeViewController")]
     unsafe impl GKFriendRequestComposeViewController {
+        #[deprecated]
         #[method(maxNumberOfRecipients)]
         pub unsafe fn maxNumberOfRecipients() -> NSUInteger;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setMessage:)]
         pub unsafe fn setMessage(&self, message: Option<&NSString>);
 
@@ -101,6 +103,7 @@ extern_methods!(
         pub unsafe fn addRecipientsWithPlayerIDs(&self, player_i_ds: &NSArray<NSString>);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[deprecated]
         #[method(addRecipientsWithEmailAddresses:)]
         pub unsafe fn addRecipientsWithEmailAddresses(&self, email_addresses: &NSArray<NSString>);
 

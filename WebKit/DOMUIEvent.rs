@@ -29,9 +29,11 @@ extern_methods!(
     #[cfg(feature = "WebKit_DOMUIEvent")]
     unsafe impl DOMUIEvent {
         #[cfg(feature = "WebKit_DOMAbstractView")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other view)]
         pub unsafe fn view(&self) -> Option<Id<DOMAbstractView>>;
 
+        #[deprecated]
         #[method(detail)]
         pub unsafe fn detail(&self) -> c_int;
 
@@ -75,6 +77,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMUIEvent")]
     unsafe impl DOMUIEvent {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

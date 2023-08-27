@@ -35,6 +35,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other wholeText)]
         pub unsafe fn wholeText(&self) -> Id<NSString>;
 
+        #[deprecated]
         #[method_id(@__retain_semantics Other splitText:)]
         pub unsafe fn splitText(&self, offset: c_uint) -> Option<Id<DOMText>>;
 
@@ -48,6 +49,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMText")]
     unsafe impl DOMText {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

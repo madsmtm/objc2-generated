@@ -32,6 +32,7 @@ extern_methods!(
     #[cfg(feature = "WebKit_DOMProcessingInstruction")]
     unsafe impl DOMProcessingInstruction {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other target)]
         pub unsafe fn target(&self) -> Id<NSString>;
 
@@ -45,6 +46,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMProcessingInstruction")]
     unsafe impl DOMProcessingInstruction {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

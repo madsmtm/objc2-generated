@@ -106,6 +106,4 @@ extern_methods!(
     }
 );
 
-extern_static!(
-    NSTextInputContextKeyboardSelectionDidChangeNotification: &'static NSNotificationName
-);
+extern_static!(NSTextInputContextKeyboardSelectionDidChangeNotification: &'static NSNotificationName);

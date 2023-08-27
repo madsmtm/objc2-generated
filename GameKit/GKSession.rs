@@ -43,10 +43,12 @@ extern_methods!(
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn GKSessionDelegate>>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use MCSession from the MultipeerConnectivity framework instead"]
         #[method_id(@__retain_semantics Other sessionID)]
         pub unsafe fn sessionID(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use MCSession from the MultipeerConnectivity framework instead"]
         #[method_id(@__retain_semantics Other displayName)]
         pub unsafe fn displayName(&self) -> Option<Id<NSString>>;
 
@@ -55,26 +57,33 @@ extern_methods!(
         pub unsafe fn sessionMode(&self) -> GKSessionMode;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use MCSession from the MultipeerConnectivity framework instead"]
         #[method_id(@__retain_semantics Other peerID)]
         pub unsafe fn peerID(&self) -> Option<Id<NSString>>;
 
+        #[deprecated = "Use MCSession from the MultipeerConnectivity framework instead"]
         #[method(isAvailable)]
         pub unsafe fn isAvailable(&self) -> bool;
 
+        #[deprecated = "Use MCSession from the MultipeerConnectivity framework instead"]
         #[method(setAvailable:)]
         pub unsafe fn setAvailable(&self, available: bool);
 
+        #[deprecated = "Use MCSession from the MultipeerConnectivity framework instead"]
         #[method(disconnectTimeout)]
         pub unsafe fn disconnectTimeout(&self) -> NSTimeInterval;
 
+        #[deprecated = "Use MCSession from the MultipeerConnectivity framework instead"]
         #[method(setDisconnectTimeout:)]
         pub unsafe fn setDisconnectTimeout(&self, disconnect_timeout: NSTimeInterval);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use MCSession from the MultipeerConnectivity framework instead"]
         #[method_id(@__retain_semantics Other displayNameForPeer:)]
         pub unsafe fn displayNameForPeer(&self, peer_id: Option<&NSString>)
             -> Option<Id<NSString>>;
 
+        #[deprecated = "Use MCSession from the MultipeerConnectivity framework instead"]
         #[method(setDataReceiveHandler:withContext:)]
         pub unsafe fn setDataReceiveHandler_withContext(
             &self,
@@ -83,6 +92,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use MCSession from the MultipeerConnectivity framework instead"]
         #[method(connectToPeer:withTimeout:)]
         pub unsafe fn connectToPeer_withTimeout(
             &self,
@@ -91,17 +101,21 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use MCSession from the MultipeerConnectivity framework instead"]
         #[method(cancelConnectToPeer:)]
         pub unsafe fn cancelConnectToPeer(&self, peer_id: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use MCSession from the MultipeerConnectivity framework instead"]
         #[method(denyConnectionFromPeer:)]
         pub unsafe fn denyConnectionFromPeer(&self, peer_id: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use MCSession from the MultipeerConnectivity framework instead"]
         #[method(disconnectPeerFromAllPeers:)]
         pub unsafe fn disconnectPeerFromAllPeers(&self, peer_id: Option<&NSString>);
 
+        #[deprecated = "Use MCSession from the MultipeerConnectivity framework instead"]
         #[method(disconnectFromAllPeers)]
         pub unsafe fn disconnectFromAllPeers(&self);
 

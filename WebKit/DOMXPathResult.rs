@@ -55,34 +55,43 @@ unsafe impl NSObjectProtocol for DOMXPathResult {}
 extern_methods!(
     #[cfg(feature = "WebKit_DOMXPathResult")]
     unsafe impl DOMXPathResult {
+        #[deprecated]
         #[method(resultType)]
         pub unsafe fn resultType(&self) -> c_ushort;
 
+        #[deprecated]
         #[method(numberValue)]
         pub unsafe fn numberValue(&self) -> c_double;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other stringValue)]
         pub unsafe fn stringValue(&self) -> Id<NSString>;
 
+        #[deprecated]
         #[method(booleanValue)]
         pub unsafe fn booleanValue(&self) -> bool;
 
         #[cfg(feature = "WebKit_DOMNode")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other singleNodeValue)]
         pub unsafe fn singleNodeValue(&self) -> Option<Id<DOMNode>>;
 
+        #[deprecated]
         #[method(invalidIteratorState)]
         pub unsafe fn invalidIteratorState(&self) -> bool;
 
+        #[deprecated]
         #[method(snapshotLength)]
         pub unsafe fn snapshotLength(&self) -> c_uint;
 
         #[cfg(feature = "WebKit_DOMNode")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other iterateNext)]
         pub unsafe fn iterateNext(&self) -> Option<Id<DOMNode>>;
 
         #[cfg(feature = "WebKit_DOMNode")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other snapshotItem:)]
         pub unsafe fn snapshotItem(&self, index: c_uint) -> Option<Id<DOMNode>>;
     }
@@ -92,6 +101,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMXPathResult")]
     unsafe impl DOMXPathResult {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

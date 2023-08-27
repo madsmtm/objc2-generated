@@ -29,21 +29,26 @@ extern_methods!(
     #[cfg(feature = "WebKit_DOMCSSStyleDeclaration")]
     unsafe impl DOMCSSStyleDeclaration {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other cssText)]
         pub unsafe fn cssText(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setCssText:)]
         pub unsafe fn setCssText(&self, css_text: Option<&NSString>);
 
+        #[deprecated]
         #[method(length)]
         pub unsafe fn length(&self) -> c_uint;
 
         #[cfg(feature = "WebKit_DOMCSSRule")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other parentRule)]
         pub unsafe fn parentRule(&self) -> Option<Id<DOMCSSRule>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other getPropertyValue:)]
         pub unsafe fn getPropertyValue(
             &self,
@@ -51,6 +56,7 @@ extern_methods!(
         ) -> Option<Id<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMCSSValue"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Other getPropertyCSSValue:)]
         pub unsafe fn getPropertyCSSValue(
             &self,
@@ -58,6 +64,7 @@ extern_methods!(
         ) -> Option<Id<DOMCSSValue>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other removeProperty:)]
         pub unsafe fn removeProperty(
             &self,
@@ -65,6 +72,7 @@ extern_methods!(
         ) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other getPropertyPriority:)]
         pub unsafe fn getPropertyPriority(
             &self,
@@ -81,6 +89,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other item:)]
         pub unsafe fn item(&self, index: c_uint) -> Option<Id<NSString>>;
 
@@ -102,6 +111,7 @@ extern_methods!(
     /// Methods declared on superclass `DOMObject`
     #[cfg(feature = "WebKit_DOMCSSStyleDeclaration")]
     unsafe impl DOMCSSStyleDeclaration {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }

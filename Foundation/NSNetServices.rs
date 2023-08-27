@@ -50,6 +50,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSNetService")]
     unsafe impl NSNetService {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method_id(@__retain_semantics Init initWithDomain:type:name:port:)]
         pub unsafe fn initWithDomain_type_name_port(
             this: Option<Allocated<Self>>,
@@ -60,6 +61,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method_id(@__retain_semantics Init initWithDomain:type:name:)]
         pub unsafe fn initWithDomain_type_name(
             this: Option<Allocated<Self>>,
@@ -69,6 +71,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSRunLoop")]
+        #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method(scheduleInRunLoop:forMode:)]
         pub unsafe fn scheduleInRunLoop_forMode(
             &self,
@@ -77,6 +80,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSRunLoop")]
+        #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method(removeFromRunLoop:forMode:)]
         pub unsafe fn removeFromRunLoop_forMode(
             &self,
@@ -84,9 +88,11 @@ extern_methods!(
             mode: &NSRunLoopMode,
         );
 
+        #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSNetServiceDelegate>>>;
 
+        #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -100,28 +106,34 @@ extern_methods!(
         pub unsafe fn setIncludesPeerToPeer(&self, includes_peer_to_peer: bool);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method_id(@__retain_semantics Other type)]
         pub unsafe fn r#type(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method_id(@__retain_semantics Other domain)]
         pub unsafe fn domain(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method_id(@__retain_semantics Other hostName)]
         pub unsafe fn hostName(&self) -> Option<Id<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSData"))]
+        #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method_id(@__retain_semantics Other addresses)]
         pub unsafe fn addresses(&self) -> Option<Id<NSArray<NSData>>>;
 
         #[method(port)]
         pub unsafe fn port(&self) -> NSInteger;
 
+        #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method(publish)]
         pub unsafe fn publish(&self);
 
@@ -132,6 +144,7 @@ extern_methods!(
         #[method(resolve)]
         pub unsafe fn resolve(&self);
 
+        #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method(stop)]
         pub unsafe fn stop(&self);
 
@@ -140,6 +153,7 @@ extern_methods!(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString"
         ))]
+        #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method_id(@__retain_semantics Other dictionaryFromTXTRecordData:)]
         pub unsafe fn dictionaryFromTXTRecordData(
             txt_data: &NSData,
@@ -150,25 +164,31 @@ extern_methods!(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString"
         ))]
+        #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method_id(@__retain_semantics Other dataFromTXTRecordDictionary:)]
         pub unsafe fn dataFromTXTRecordDictionary(
             txt_dictionary: &NSDictionary<NSString, NSData>,
         ) -> Id<NSData>;
 
+        #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method(resolveWithTimeout:)]
         pub unsafe fn resolveWithTimeout(&self, timeout: NSTimeInterval);
 
         #[cfg(feature = "Foundation_NSData")]
+        #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method(setTXTRecordData:)]
         pub unsafe fn setTXTRecordData(&self, record_data: Option<&NSData>) -> bool;
 
         #[cfg(feature = "Foundation_NSData")]
+        #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method_id(@__retain_semantics Other TXTRecordData)]
         pub unsafe fn TXTRecordData(&self) -> Option<Id<NSData>>;
 
+        #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method(startMonitoring)]
         pub unsafe fn startMonitoring(&self);
 
+        #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method(stopMonitoring)]
         pub unsafe fn stopMonitoring(&self);
     }
@@ -205,14 +225,17 @@ unsafe impl NSObjectProtocol for NSNetServiceBrowser {}
 extern_methods!(
     #[cfg(feature = "Foundation_NSNetServiceBrowser")]
     unsafe impl NSNetServiceBrowser {
+        #[deprecated = "Use nw_browser_t in Network framework instead"]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
+        #[deprecated = "Use nw_browser_t in Network framework instead"]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Id<ProtocolObject<dyn NSNetServiceBrowserDelegate>>>;
 
+        #[deprecated = "Use nw_browser_t in Network framework instead"]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -226,6 +249,7 @@ extern_methods!(
         pub unsafe fn setIncludesPeerToPeer(&self, includes_peer_to_peer: bool);
 
         #[cfg(feature = "Foundation_NSRunLoop")]
+        #[deprecated = "Use nw_browser_t in Network framework instead"]
         #[method(scheduleInRunLoop:forMode:)]
         pub unsafe fn scheduleInRunLoop_forMode(
             &self,
@@ -234,6 +258,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSRunLoop")]
+        #[deprecated = "Use nw_browser_t in Network framework instead"]
         #[method(removeFromRunLoop:forMode:)]
         pub unsafe fn removeFromRunLoop_forMode(
             &self,
@@ -241,13 +266,16 @@ extern_methods!(
             mode: &NSRunLoopMode,
         );
 
+        #[deprecated = "Use nw_browser_t in Network framework instead"]
         #[method(searchForBrowsableDomains)]
         pub unsafe fn searchForBrowsableDomains(&self);
 
+        #[deprecated = "Use nw_browser_t in Network framework instead"]
         #[method(searchForRegistrationDomains)]
         pub unsafe fn searchForRegistrationDomains(&self);
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use nw_browser_t in Network framework instead"]
         #[method(searchForServicesOfType:inDomain:)]
         pub unsafe fn searchForServicesOfType_inDomain(
             &self,
@@ -255,6 +283,7 @@ extern_methods!(
             domain_string: &NSString,
         );
 
+        #[deprecated = "Use nw_browser_t in Network framework instead"]
         #[method(stop)]
         pub unsafe fn stop(&self);
     }

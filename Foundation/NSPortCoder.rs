@@ -23,17 +23,21 @@ unsafe impl NSObjectProtocol for NSPortCoder {}
 extern_methods!(
     #[cfg(feature = "Foundation_NSPortCoder")]
     unsafe impl NSPortCoder {
+        #[deprecated = "Use NSXPCConnection instead"]
         #[method(isBycopy)]
         pub unsafe fn isBycopy(&self) -> bool;
 
+        #[deprecated = "Use NSXPCConnection instead"]
         #[method(isByref)]
         pub unsafe fn isByref(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSPort")]
+        #[deprecated = "Use NSXPCConnection instead"]
         #[method(encodePortObject:)]
         pub unsafe fn encodePortObject(&self, aport: &NSPort);
 
         #[cfg(feature = "Foundation_NSPort")]
+        #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Other decodePortObject)]
         pub unsafe fn decodePortObject(&self) -> Option<Id<NSPort>>;
 
