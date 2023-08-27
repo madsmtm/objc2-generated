@@ -9,13 +9,6 @@ extern_protocol!(
     pub unsafe trait ASAuthorizationWebBrowserExternallyAuthenticatableRequest:
         NSObjectProtocol
     {
-        #[cfg(feature = "LocalAuthentication_LAContext")]
-        #[method_id(@__retain_semantics Other authenticatedContext)]
-        unsafe fn authenticatedContext(&self) -> Option<Id<LAContext>>;
-
-        #[cfg(feature = "LocalAuthentication_LAContext")]
-        #[method(setAuthenticatedContext:)]
-        unsafe fn setAuthenticatedContext(&self, authenticated_context: Option<&LAContext>);
     }
 
     unsafe impl ProtocolType for dyn ASAuthorizationWebBrowserExternallyAuthenticatableRequest {}
