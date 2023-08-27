@@ -96,6 +96,15 @@ extern_methods!(
     }
 );
 
+ns_enum!(
+    #[underlying(NSInteger)]
+    pub enum ASAuthorizationProviderExtensionFederationType {
+        ASAuthorizationProviderExtensionFederationTypeNone = 0,
+        ASAuthorizationProviderExtensionFederationTypeWSTrust = 1,
+        ASAuthorizationProviderExtensionFederationTypeDynamicWSTrust = 2,
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionLoginConfiguration")]
@@ -336,6 +345,74 @@ extern_methods!(
         pub unsafe fn setKerberosTicketMappings(
             &self,
             kerberos_ticket_mappings: &NSArray<ASAuthorizationProviderExtensionKerberosMapping>,
+        );
+
+        #[method(federationType)]
+        pub unsafe fn federationType(&self) -> ASAuthorizationProviderExtensionFederationType;
+
+        #[method(setFederationType:)]
+        pub unsafe fn setFederationType(
+            &self,
+            federation_type: ASAuthorizationProviderExtensionFederationType,
+        );
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Other federationRequestURN)]
+        pub unsafe fn federationRequestURN(&self) -> Option<Id<NSString>>;
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method(setFederationRequestURN:)]
+        pub unsafe fn setFederationRequestURN(&self, federation_request_urn: Option<&NSString>);
+
+        #[cfg(feature = "Foundation_NSURL")]
+        #[method_id(@__retain_semantics Other federationMEXURL)]
+        pub unsafe fn federationMEXURL(&self) -> Option<Id<NSURL>>;
+
+        #[cfg(feature = "Foundation_NSURL")]
+        #[method(setFederationMEXURL:)]
+        pub unsafe fn setFederationMEXURL(&self, federation_mexurl: Option<&NSURL>);
+
+        #[cfg(feature = "Foundation_NSURL")]
+        #[method_id(@__retain_semantics Other federationUserPreauthenticationURL)]
+        pub unsafe fn federationUserPreauthenticationURL(&self) -> Option<Id<NSURL>>;
+
+        #[cfg(feature = "Foundation_NSURL")]
+        #[method(setFederationUserPreauthenticationURL:)]
+        pub unsafe fn setFederationUserPreauthenticationURL(
+            &self,
+            federation_user_preauthentication_url: Option<&NSURL>,
+        );
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Other federationMEXURLKeypath)]
+        pub unsafe fn federationMEXURLKeypath(&self) -> Option<Id<NSString>>;
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method(setFederationMEXURLKeypath:)]
+        pub unsafe fn setFederationMEXURLKeypath(
+            &self,
+            federation_mexurl_keypath: Option<&NSString>,
+        );
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Other federationPredicate)]
+        pub unsafe fn federationPredicate(&self) -> Option<Id<NSString>>;
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method(setFederationPredicate:)]
+        pub unsafe fn setFederationPredicate(&self, federation_predicate: Option<&NSString>);
+
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURLQueryItem"))]
+        #[method_id(@__retain_semantics Other customFederationUserPreauthenticationRequestValues)]
+        pub unsafe fn customFederationUserPreauthenticationRequestValues(
+            &self,
+        ) -> Id<NSArray<NSURLQueryItem>>;
+
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURLQueryItem"))]
+        #[method(setCustomFederationUserPreauthenticationRequestValues:)]
+        pub unsafe fn setCustomFederationUserPreauthenticationRequestValues(
+            &self,
+            custom_federation_user_preauthentication_request_values: &NSArray<NSURLQueryItem>,
         );
     }
 );

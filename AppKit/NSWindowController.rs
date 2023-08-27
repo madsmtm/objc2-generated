@@ -90,6 +90,21 @@ extern_methods!(
         #[method(setShouldCascadeWindows:)]
         pub unsafe fn setShouldCascadeWindows(&self, should_cascade_windows: bool);
 
+        #[cfg(feature = "Foundation_NSArray")]
+        #[method_id(@__retain_semantics Other previewRepresentableActivityItems)]
+        pub unsafe fn previewRepresentableActivityItems(
+            &self,
+        ) -> Option<Id<NSArray<ProtocolObject<dyn NSPreviewRepresentableActivityItem>>>>;
+
+        #[cfg(feature = "Foundation_NSArray")]
+        #[method(setPreviewRepresentableActivityItems:)]
+        pub unsafe fn setPreviewRepresentableActivityItems(
+            &self,
+            preview_representable_activity_items: Option<
+                &NSArray<ProtocolObject<dyn NSPreviewRepresentableActivityItem>>,
+            >,
+        );
+
         #[method_id(@__retain_semantics Other document)]
         pub unsafe fn document(&self) -> Option<Id<AnyObject>>;
 

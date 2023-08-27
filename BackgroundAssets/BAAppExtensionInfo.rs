@@ -32,6 +32,10 @@ extern_methods!(
         #[method_id(@__retain_semantics Other restrictedDownloadSizeRemaining)]
         pub unsafe fn restrictedDownloadSizeRemaining(&self) -> Option<Id<NSNumber>>;
 
+        #[cfg(feature = "Foundation_NSNumber")]
+        #[method_id(@__retain_semantics Other restrictedEssentialDownloadSizeRemaining)]
+        pub unsafe fn restrictedEssentialDownloadSizeRemaining(&self) -> Option<Id<NSNumber>>;
+
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 

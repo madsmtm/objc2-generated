@@ -19,7 +19,16 @@ extern_class!(
 );
 
 #[cfg(feature = "HealthKit_HKWorkoutActivity")]
+unsafe impl NSCoding for HKWorkoutActivity {}
+
+#[cfg(feature = "HealthKit_HKWorkoutActivity")]
+unsafe impl NSCopying for HKWorkoutActivity {}
+
+#[cfg(feature = "HealthKit_HKWorkoutActivity")]
 unsafe impl NSObjectProtocol for HKWorkoutActivity {}
+
+#[cfg(feature = "HealthKit_HKWorkoutActivity")]
+unsafe impl NSSecureCoding for HKWorkoutActivity {}
 
 extern_methods!(
     #[cfg(feature = "HealthKit_HKWorkoutActivity")]

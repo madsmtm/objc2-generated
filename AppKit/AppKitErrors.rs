@@ -29,5 +29,10 @@ extern_enum!(
         NSWorkspaceAuthorizationInvalidError = 67328,
         NSWorkspaceErrorMinimum = 67328,
         NSWorkspaceErrorMaximum = 67455,
+        NSWindowSharingRequestAlreadyRequested = 67456,
+        NSWindowSharingRequestNoEligibleSession = 67457,
+        NSWindowSharingRequestUnspecifiedError = 67458,
+        NSWindowSharingErrorMinimum = 67456,
+        NSWindowSharingErrorMaximum = 67466,
     }
 );

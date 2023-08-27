@@ -14,5 +14,6 @@ ns_error_enum!(
         CLLocationPushServiceErrorMissingPushExtension = 1,
         CLLocationPushServiceErrorMissingPushServerEnvironment = 2,
         CLLocationPushServiceErrorMissingEntitlement = 3,
+        CLLocationPushServiceErrorUnsupportedPlatform = 4,
     }
 );

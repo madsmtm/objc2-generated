@@ -81,3 +81,18 @@ extern_methods!(
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
     }
 );
+
+extern_methods!(
+    #[cfg(
+        feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialAssertionRequest"
+    )]
+    unsafe impl ASAuthorizationPlatformPublicKeyCredentialAssertionRequest {}
+);
+
+#[cfg(
+    feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialAssertionRequest"
+)]
+unsafe impl ASAuthorizationWebBrowserExternallyAuthenticatableRequest
+    for ASAuthorizationPlatformPublicKeyCredentialAssertionRequest
+{
+}

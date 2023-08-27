@@ -16,6 +16,10 @@ extern_static!(HKFHIRResourceTypeCondition: &'static HKFHIRResourceType);
 
 extern_static!(HKFHIRResourceTypeCoverage: &'static HKFHIRResourceType);
 
+extern_static!(HKFHIRResourceTypeDiagnosticReport: &'static HKFHIRResourceType);
+
+extern_static!(HKFHIRResourceTypeDocumentReference: &'static HKFHIRResourceType);
+
 extern_static!(HKFHIRResourceTypeImmunization: &'static HKFHIRResourceType);
 
 extern_static!(HKFHIRResourceTypeMedicationDispense: &'static HKFHIRResourceType);

@@ -23,6 +23,9 @@ extern_class!(
 unsafe impl NSCoding for HKContactsPrescription {}
 
 #[cfg(feature = "HealthKit_HKContactsPrescription")]
+unsafe impl NSCopying for HKContactsPrescription {}
+
+#[cfg(feature = "HealthKit_HKContactsPrescription")]
 unsafe impl NSObjectProtocol for HKContactsPrescription {}
 
 #[cfg(feature = "HealthKit_HKContactsPrescription")]

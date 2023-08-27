@@ -33,7 +33,7 @@ extern_protocol!(
             destination_acceleration_structure: Option<
                 &ProtocolObject<dyn MTLAccelerationStructure>,
             >,
-            scratch_buffer: &ProtocolObject<dyn MTLBuffer>,
+            scratch_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
             scratch_buffer_offset: NSUInteger,
         );
 
@@ -46,7 +46,7 @@ extern_protocol!(
             destination_acceleration_structure: Option<
                 &ProtocolObject<dyn MTLAccelerationStructure>,
             >,
-            scratch_buffer: &ProtocolObject<dyn MTLBuffer>,
+            scratch_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
             scratch_buffer_offset: NSUInteger,
             options: MTLAccelerationStructureRefitOptions,
         );

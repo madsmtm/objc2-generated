@@ -102,6 +102,14 @@ extern_methods!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSError"
         ))]
+        #[method_id(@__retain_semantics Other fetchCurrentDownloads:_)]
+        pub unsafe fn fetchCurrentDownloads(&self) -> Result<Id<NSArray<BADownload>>, Id<NSError>>;
+
+        #[cfg(all(
+            feature = "BackgroundAssets_BADownload",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSError"
+        ))]
         #[method(fetchCurrentDownloadsWithCompletionHandler:)]
         pub unsafe fn fetchCurrentDownloadsWithCompletionHandler(
             &self,

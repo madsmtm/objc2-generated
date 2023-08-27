@@ -606,6 +606,21 @@ extern_methods!(
             sharing_service_picker: &NSSharingServicePicker,
         );
 
+        #[cfg(feature = "Foundation_NSArray")]
+        #[method_id(@__retain_semantics Other previewRepresentableActivityItems)]
+        pub unsafe fn previewRepresentableActivityItems(
+            &self,
+        ) -> Option<Id<NSArray<ProtocolObject<dyn NSPreviewRepresentableActivityItem>>>>;
+
+        #[cfg(feature = "Foundation_NSArray")]
+        #[method(setPreviewRepresentableActivityItems:)]
+        pub unsafe fn setPreviewRepresentableActivityItems(
+            &self,
+            preview_representable_activity_items: Option<
+                &NSArray<ProtocolObject<dyn NSPreviewRepresentableActivityItem>>,
+            >,
+        );
+
         #[method(isDocumentEdited)]
         pub unsafe fn isDocumentEdited(&self) -> bool;
 

@@ -53,6 +53,12 @@ extern_methods!(
             fraudulent_website_warning_enabled: bool,
         );
 
+        #[method(shouldPrintBackgrounds)]
+        pub unsafe fn shouldPrintBackgrounds(&self) -> bool;
+
+        #[method(setShouldPrintBackgrounds:)]
+        pub unsafe fn setShouldPrintBackgrounds(&self, should_print_backgrounds: bool);
+
         #[method(tabFocusesLinks)]
         pub unsafe fn tabFocusesLinks(&self) -> bool;
 
@@ -114,11 +120,11 @@ extern_methods!(
         #[method(setPlugInsEnabled:)]
         pub unsafe fn setPlugInsEnabled(&self, plug_ins_enabled: bool);
 
-        #[deprecated = "Use WKWebPagePreferences.allowsContentJavaScript to disable content JavaScript on a per-navigation basis"]
+        #[deprecated = "Use WKWebpagePreferences.allowsContentJavaScript to disable content JavaScript on a per-navigation basis"]
         #[method(javaScriptEnabled)]
         pub unsafe fn javaScriptEnabled(&self) -> bool;
 
-        #[deprecated = "Use WKWebPagePreferences.allowsContentJavaScript to disable content JavaScript on a per-navigation basis"]
+        #[deprecated = "Use WKWebpagePreferences.allowsContentJavaScript to disable content JavaScript on a per-navigation basis"]
         #[method(setJavaScriptEnabled:)]
         pub unsafe fn setJavaScriptEnabled(&self, java_script_enabled: bool);
     }

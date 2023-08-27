@@ -39,6 +39,29 @@ extern_methods!(
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURLRequest"))]
+        #[method_id(@__retain_semantics Init initWithIdentifier:request:fileSize:applicationGroupIdentifier:)]
+        pub unsafe fn initWithIdentifier_request_fileSize_applicationGroupIdentifier(
+            this: Option<Allocated<Self>>,
+            identifier: &NSString,
+            request: &NSURLRequest,
+            file_size: NSUInteger,
+            application_group_identifier: &NSString,
+        ) -> Id<Self>;
+
+        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURLRequest"))]
+        #[method_id(@__retain_semantics Init initWithIdentifier:request:essential:fileSize:applicationGroupIdentifier:priority:)]
+        pub unsafe fn initWithIdentifier_request_essential_fileSize_applicationGroupIdentifier_priority(
+            this: Option<Allocated<Self>>,
+            identifier: &NSString,
+            request: &NSURLRequest,
+            essential: bool,
+            file_size: NSUInteger,
+            application_group_identifier: &NSString,
+            priority: BADownloaderPriority,
+        ) -> Id<Self>;
+
+        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURLRequest"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Init initWithIdentifier:request:applicationGroupIdentifier:)]
         pub unsafe fn initWithIdentifier_request_applicationGroupIdentifier(
             this: Option<Allocated<Self>>,
@@ -48,6 +71,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURLRequest"))]
+        #[deprecated]
         #[method_id(@__retain_semantics Init initWithIdentifier:request:applicationGroupIdentifier:priority:)]
         pub unsafe fn initWithIdentifier_request_applicationGroupIdentifier_priority(
             this: Option<Allocated<Self>>,

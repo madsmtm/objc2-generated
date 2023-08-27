@@ -118,6 +118,7 @@ pub use self::__CLLocationPushServiceError::{
     CLLocationPushServiceError, CLLocationPushServiceErrorMissingEntitlement,
     CLLocationPushServiceErrorMissingPushExtension,
     CLLocationPushServiceErrorMissingPushServerEnvironment, CLLocationPushServiceErrorUnknown,
+    CLLocationPushServiceErrorUnsupportedPlatform,
 };
 pub use self::__CLLocationPushServiceExtension::CLLocationPushServiceExtension;
 #[cfg(feature = "CoreLocation_CLPlacemark")]

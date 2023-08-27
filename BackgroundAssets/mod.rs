@@ -21,20 +21,20 @@ mod __BAURLDownload;
 pub use self::__BAAppExtensionInfo::BAAppExtensionInfo;
 #[cfg(feature = "BackgroundAssets_BADownload")]
 pub use self::__BADownload::BADownload;
+pub use self::__BADownload::BADownloaderPriority;
+pub use self::__BADownload::BADownloaderPriorityDefault;
+pub use self::__BADownload::BADownloaderPriorityMax;
+pub use self::__BADownload::BADownloaderPriorityMin;
+pub use self::__BADownload::{
+    BADownloadState, BADownloadStateCreated, BADownloadStateDownloading, BADownloadStateFailed,
+    BADownloadStateFinished, BADownloadStateWaiting,
+};
 #[cfg(feature = "BackgroundAssets_BADownloadManager")]
 pub use self::__BADownloadManager::BADownloadManager;
 pub use self::__BADownloadManager::BADownloadManagerDelegate;
 pub use self::__BADownloaderExtension::BADownloaderExtension;
-pub use self::__BATypes::BADownloaderPriority;
-pub use self::__BATypes::BADownloaderPriorityDefault;
-pub use self::__BATypes::BADownloaderPriorityMax;
-pub use self::__BATypes::BADownloaderPriorityMin;
 pub use self::__BATypes::{
     BAContentRequest, BAContentRequestInstall, BAContentRequestPeriodic, BAContentRequestUpdate,
-};
-pub use self::__BATypes::{
-    BADownloadState, BADownloadStateCreated, BADownloadStateDownloading, BADownloadStateFailed,
-    BADownloadStateFinished, BADownloadStateWaiting,
 };
 #[cfg(feature = "BackgroundAssets_BAURLDownload")]
 pub use self::__BAURLDownload::BAURLDownload;

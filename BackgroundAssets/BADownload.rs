@@ -4,6 +4,27 @@ use crate::common::*;
 use crate::BackgroundAssets::*;
 use crate::Foundation::*;
 
+ns_enum!(
+    #[underlying(NSInteger)]
+    pub enum BADownloadState {
+        BADownloadStateFailed = -1,
+        BADownloadStateCreated = 0,
+        BADownloadStateWaiting = 1,
+        BADownloadStateDownloading = 2,
+        BADownloadStateFinished = 3,
+    }
+);
+
+typed_extensible_enum!(
+    pub type BADownloaderPriority = NSInteger;
+);
+
+extern_static!(BADownloaderPriorityMin: BADownloaderPriority);
+
+extern_static!(BADownloaderPriorityDefault: BADownloaderPriority);
+
+extern_static!(BADownloaderPriorityMax: BADownloaderPriority);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "BackgroundAssets_BADownload")]
@@ -44,6 +65,12 @@ extern_methods!(
 
         #[method(priority)]
         pub unsafe fn priority(&self) -> BADownloaderPriority;
+
+        #[method(isEssential)]
+        pub unsafe fn isEssential(&self) -> bool;
+
+        #[method_id(@__retain_semantics CopyOrMutCopy copyAsNonEssential)]
+        pub unsafe fn copyAsNonEssential(&self) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;

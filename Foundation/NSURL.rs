@@ -101,6 +101,8 @@ extern_static!(NSURLQuarantinePropertiesKey: &'static NSURLResourceKey);
 
 extern_static!(NSURLFileResourceTypeKey: &'static NSURLResourceKey);
 
+extern_static!(NSURLFileIdentifierKey: &'static NSURLResourceKey);
+
 extern_static!(NSURLFileContentIdentifierKey: &'static NSURLResourceKey);
 
 extern_static!(NSURLMayShareFileContentKey: &'static NSURLResourceKey);
@@ -248,6 +250,12 @@ extern_static!(NSURLVolumeSupportsFileProtectionKey: &'static NSURLResourceKey);
 extern_static!(NSURLVolumeAvailableCapacityForImportantUsageKey: &'static NSURLResourceKey);
 
 extern_static!(NSURLVolumeAvailableCapacityForOpportunisticUsageKey: &'static NSURLResourceKey);
+
+extern_static!(NSURLVolumeTypeNameKey: &'static NSURLResourceKey);
+
+extern_static!(NSURLVolumeSubtypeKey: &'static NSURLResourceKey);
+
+extern_static!(NSURLVolumeMountFromLocationKey: &'static NSURLResourceKey);
 
 extern_static!(NSURLIsUbiquitousItemKey: &'static NSURLResourceKey);
 

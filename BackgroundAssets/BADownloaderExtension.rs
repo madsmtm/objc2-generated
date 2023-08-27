@@ -55,6 +55,7 @@ extern_protocol!(
             file_url: &NSURL,
         );
 
+        #[deprecated = "extensionWillTerminate will not be invoked in all applicable circumstances and should not be relied upon."]
         #[optional]
         #[method(extensionWillTerminate)]
         unsafe fn extensionWillTerminate(&self);

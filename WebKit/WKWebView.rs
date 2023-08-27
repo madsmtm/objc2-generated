@@ -542,6 +542,12 @@ extern_methods!(
             minimum_viewport_inset: NSEdgeInsets,
             maximum_viewport_inset: NSEdgeInsets,
         );
+
+        #[method(isInspectable)]
+        pub unsafe fn isInspectable(&self) -> bool;
+
+        #[method(setInspectable:)]
+        pub unsafe fn setInspectable(&self, inspectable: bool);
     }
 );
 

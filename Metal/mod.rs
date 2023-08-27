@@ -554,6 +554,9 @@ pub use self::__MTLLibrary::MTLLibraryErrorDomain;
 #[cfg(feature = "Metal_MTLVertexAttribute")]
 pub use self::__MTLLibrary::MTLVertexAttribute;
 pub use self::__MTLLibrary::{
+    MTLCompileSymbolVisibility, MTLCompileSymbolVisibilityDefault, MTLCompileSymbolVisibilityHidden,
+};
+pub use self::__MTLLibrary::{
     MTLFunctionType, MTLFunctionTypeFragment, MTLFunctionTypeIntersection, MTLFunctionTypeKernel,
     MTLFunctionTypeMesh, MTLFunctionTypeObject, MTLFunctionTypeVertex, MTLFunctionTypeVisible,
 };

@@ -96,6 +96,12 @@ mod __ASAuthorizationSingleSignOnCredential;
 mod __ASAuthorizationSingleSignOnProvider;
 #[path = "ASAuthorizationSingleSignOnRequest.rs"]
 mod __ASAuthorizationSingleSignOnRequest;
+#[path = "ASAuthorizationWebBrowserExternallyAuthenticatableRequest.rs"]
+mod __ASAuthorizationWebBrowserExternallyAuthenticatableRequest;
+#[path = "ASAuthorizationWebBrowserPlatformPublicKeyCredential.rs"]
+mod __ASAuthorizationWebBrowserPlatformPublicKeyCredential;
+#[path = "ASAuthorizationWebBrowserPublicKeyCredentialManager.rs"]
+mod __ASAuthorizationWebBrowserPublicKeyCredentialManager;
 #[path = "ASCOSEConstants.rs"]
 mod __ASCOSEConstants;
 #[path = "ASCredentialIdentityStore.rs"]
@@ -235,6 +241,12 @@ pub use self::__ASAuthorizationProviderExtensionAuthorizationResult::ASAuthoriza
 pub use self::__ASAuthorizationProviderExtensionLoginConfiguration::ASAuthorizationProviderExtensionKerberosMapping;
 #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionLoginConfiguration")]
 pub use self::__ASAuthorizationProviderExtensionLoginConfiguration::ASAuthorizationProviderExtensionLoginConfiguration;
+pub use self::__ASAuthorizationProviderExtensionLoginConfiguration::{
+    ASAuthorizationProviderExtensionFederationType,
+    ASAuthorizationProviderExtensionFederationTypeDynamicWSTrust,
+    ASAuthorizationProviderExtensionFederationTypeNone,
+    ASAuthorizationProviderExtensionFederationTypeWSTrust,
+};
 #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionLoginManager")]
 pub use self::__ASAuthorizationProviderExtensionLoginManager::ASAuthorizationProviderExtensionLoginManager;
 pub use self::__ASAuthorizationProviderExtensionLoginManager::{
@@ -320,6 +332,17 @@ pub use self::__ASAuthorizationSingleSignOnCredential::ASAuthorizationSingleSign
 pub use self::__ASAuthorizationSingleSignOnProvider::ASAuthorizationSingleSignOnProvider;
 #[cfg(feature = "AuthenticationServices_ASAuthorizationSingleSignOnRequest")]
 pub use self::__ASAuthorizationSingleSignOnRequest::ASAuthorizationSingleSignOnRequest;
+pub use self::__ASAuthorizationWebBrowserExternallyAuthenticatableRequest::ASAuthorizationWebBrowserExternallyAuthenticatableRequest;
+#[cfg(feature = "AuthenticationServices_ASAuthorizationWebBrowserPlatformPublicKeyCredential")]
+pub use self::__ASAuthorizationWebBrowserPlatformPublicKeyCredential::ASAuthorizationWebBrowserPlatformPublicKeyCredential;
+#[cfg(feature = "AuthenticationServices_ASAuthorizationWebBrowserPublicKeyCredentialManager")]
+pub use self::__ASAuthorizationWebBrowserPublicKeyCredentialManager::ASAuthorizationWebBrowserPublicKeyCredentialManager;
+pub use self::__ASAuthorizationWebBrowserPublicKeyCredentialManager::{
+    ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationState,
+    ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationStateAuthorized,
+    ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationStateDenied,
+    ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationStateNotDetermined,
+};
 pub use self::__ASCOSEConstants::ASCOSEAlgorithmIdentifier;
 pub use self::__ASCOSEConstants::ASCOSEAlgorithmIdentifierES256;
 pub use self::__ASCOSEConstants::ASCOSEEllipticCurveIdentifier;

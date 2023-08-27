@@ -563,8 +563,10 @@ pub use self::__AppKitErrors::{
     NSServiceRequestTimedOutError, NSSharingServiceErrorMaximum, NSSharingServiceErrorMinimum,
     NSSharingServiceNotConfiguredError, NSTextReadInapplicableDocumentTypeError,
     NSTextReadWriteErrorMaximum, NSTextReadWriteErrorMinimum,
-    NSTextWriteInapplicableDocumentTypeError, NSWorkspaceAuthorizationInvalidError,
-    NSWorkspaceErrorMaximum, NSWorkspaceErrorMinimum,
+    NSTextWriteInapplicableDocumentTypeError, NSWindowSharingErrorMaximum,
+    NSWindowSharingErrorMinimum, NSWindowSharingRequestAlreadyRequested,
+    NSWindowSharingRequestNoEligibleSession, NSWindowSharingRequestUnspecifiedError,
+    NSWorkspaceAuthorizationInvalidError, NSWorkspaceErrorMaximum, NSWorkspaceErrorMinimum,
 };
 #[cfg(feature = "AppKit_NSATSTypesetter")]
 pub use self::__NSATSTypesetter::NSATSTypesetter;

@@ -12,6 +12,8 @@ typed_enum!(
 
 extern_static!(HKClinicalTypeIdentifierAllergyRecord: &'static HKClinicalTypeIdentifier);
 
+extern_static!(HKClinicalTypeIdentifierClinicalNoteRecord: &'static HKClinicalTypeIdentifier);
+
 extern_static!(HKClinicalTypeIdentifierConditionRecord: &'static HKClinicalTypeIdentifier);
 
 extern_static!(HKClinicalTypeIdentifierImmunizationRecord: &'static HKClinicalTypeIdentifier);

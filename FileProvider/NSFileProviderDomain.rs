@@ -141,6 +141,10 @@ extern_methods!(
 
         #[method(setSupportsSyncingTrash:)]
         pub unsafe fn setSupportsSyncingTrash(&self, supports_syncing_trash: bool);
+
+        #[cfg(feature = "Foundation_NSUUID")]
+        #[method_id(@__retain_semantics Other volumeUUID)]
+        pub unsafe fn volumeUUID(&self) -> Option<Id<NSUUID>>;
     }
 );
 

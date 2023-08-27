@@ -1193,6 +1193,17 @@ extern_methods!(
         #[method_id(@__retain_semantics Other tabGroup)]
         pub unsafe fn tabGroup(&self) -> Option<Id<NSWindowTabGroup>>;
 
+        #[cfg(feature = "Foundation_NSError")]
+        #[method(transferWindowSharingToWindow:completionHandler:)]
+        pub unsafe fn transferWindowSharingToWindow_completionHandler(
+            &self,
+            window: &NSWindow,
+            completion_handler: &Block<(*mut NSError,), ()>,
+        );
+
+        #[method(hasActiveWindowSharingSession)]
+        pub unsafe fn hasActiveWindowSharingSession(&self) -> bool;
+
         #[method(windowTitlebarLayoutDirection)]
         pub unsafe fn windowTitlebarLayoutDirection(&self) -> NSUserInterfaceLayoutDirection;
     }
@@ -1532,6 +1543,14 @@ extern_protocol!(
         #[optional]
         #[method(window:didDecodeRestorableState:)]
         unsafe fn window_didDecodeRestorableState(&self, window: &NSWindow, state: &NSCoder);
+
+        #[cfg(all(feature = "AppKit_NSWindow", feature = "Foundation_NSArray"))]
+        #[optional]
+        #[method_id(@__retain_semantics Other previewRepresentableActivityItemsForWindow:)]
+        unsafe fn previewRepresentableActivityItemsForWindow(
+            &self,
+            window: &NSWindow,
+        ) -> Option<Id<NSArray<ProtocolObject<dyn NSPreviewRepresentableActivityItem>>>>;
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]

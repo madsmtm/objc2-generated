@@ -6,27 +6,6 @@ use crate::Foundation::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
-    pub enum BADownloadState {
-        BADownloadStateFailed = -1,
-        BADownloadStateCreated = 0,
-        BADownloadStateWaiting = 1,
-        BADownloadStateDownloading = 2,
-        BADownloadStateFinished = 3,
-    }
-);
-
-typed_extensible_enum!(
-    pub type BADownloaderPriority = NSInteger;
-);
-
-extern_static!(BADownloaderPriorityMin: BADownloaderPriority);
-
-extern_static!(BADownloaderPriorityDefault: BADownloaderPriority);
-
-extern_static!(BADownloaderPriorityMax: BADownloaderPriority);
-
-ns_enum!(
-    #[underlying(NSInteger)]
     pub enum BAContentRequest {
         BAContentRequestInstall = 1,
         BAContentRequestUpdate = 2,

@@ -288,3 +288,5 @@ extern_static!(HKMetadataKeyQuantityClampedToLowerBound: &'static NSString);
 extern_static!(HKMetadataKeyQuantityClampedToUpperBound: &'static NSString);
 
 extern_static!(HKMetadataKeyGlassesPrescriptionDescription: &'static NSString);
+
+extern_static!(HKMetadataKeyHeadphoneGain: &'static NSString);

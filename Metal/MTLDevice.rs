@@ -884,6 +884,18 @@ extern_protocol!(
 
         #[method(supportsPrimitiveMotionBlur)]
         unsafe fn supportsPrimitiveMotionBlur(&self) -> bool;
+
+        #[method(shouldMaximizeConcurrentCompilation)]
+        unsafe fn shouldMaximizeConcurrentCompilation(&self) -> bool;
+
+        #[method(setShouldMaximizeConcurrentCompilation:)]
+        unsafe fn setShouldMaximizeConcurrentCompilation(
+            &self,
+            should_maximize_concurrent_compilation: bool,
+        );
+
+        #[method(maximumConcurrentCompilationTaskCount)]
+        unsafe fn maximumConcurrentCompilationTaskCount(&self) -> NSUInteger;
     }
 
     unsafe impl ProtocolType for dyn MTLDevice {}

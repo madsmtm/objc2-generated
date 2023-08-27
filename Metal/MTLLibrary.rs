@@ -260,6 +260,14 @@ ns_enum!(
     }
 );
 
+ns_enum!(
+    #[underlying(NSInteger)]
+    pub enum MTLCompileSymbolVisibility {
+        MTLCompileSymbolVisibilityDefault = 0,
+        MTLCompileSymbolVisibilityHidden = 1,
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Metal_MTLCompileOptions")]
@@ -340,6 +348,33 @@ extern_methods!(
 
         #[method(setOptimizationLevel:)]
         pub unsafe fn setOptimizationLevel(&self, optimization_level: MTLLibraryOptimizationLevel);
+
+        #[method(compileSymbolVisibility)]
+        pub unsafe fn compileSymbolVisibility(&self) -> MTLCompileSymbolVisibility;
+
+        #[method(setCompileSymbolVisibility:)]
+        pub unsafe fn setCompileSymbolVisibility(
+            &self,
+            compile_symbol_visibility: MTLCompileSymbolVisibility,
+        );
+
+        #[method(allowReferencingUndefinedSymbols)]
+        pub unsafe fn allowReferencingUndefinedSymbols(&self) -> bool;
+
+        #[method(setAllowReferencingUndefinedSymbols:)]
+        pub unsafe fn setAllowReferencingUndefinedSymbols(
+            &self,
+            allow_referencing_undefined_symbols: bool,
+        );
+
+        #[method(maxTotalThreadsPerThreadgroup)]
+        pub unsafe fn maxTotalThreadsPerThreadgroup(&self) -> NSUInteger;
+
+        #[method(setMaxTotalThreadsPerThreadgroup:)]
+        pub unsafe fn setMaxTotalThreadsPerThreadgroup(
+            &self,
+            max_total_threads_per_threadgroup: NSUInteger,
+        );
     }
 );
 
