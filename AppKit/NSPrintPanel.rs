@@ -66,7 +66,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSPrintPanel")]
     unsafe impl ClassType for NSPrintPanel {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 

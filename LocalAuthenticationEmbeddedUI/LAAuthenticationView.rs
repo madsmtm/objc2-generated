@@ -15,7 +15,7 @@ extern_class!(
     unsafe impl ClassType for LAAuthenticationView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 

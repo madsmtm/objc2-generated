@@ -28,7 +28,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSAlert")]
     unsafe impl ClassType for NSAlert {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 

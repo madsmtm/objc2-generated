@@ -26,7 +26,7 @@ extern_class!(
     unsafe impl ClassType for SKCloudServiceSetupViewController {
         #[inherits(NSResponder, NSObject)]
         type Super = NSViewController;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 

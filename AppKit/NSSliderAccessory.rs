@@ -13,7 +13,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSSliderAccessory")]
     unsafe impl ClassType for NSSliderAccessory {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 
@@ -77,7 +77,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSSliderAccessoryBehavior")]
     unsafe impl ClassType for NSSliderAccessoryBehavior {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 

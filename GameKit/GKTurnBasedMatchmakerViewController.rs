@@ -14,7 +14,7 @@ extern_class!(
     unsafe impl ClassType for GKTurnBasedMatchmakerViewController {
         #[inherits(NSResponder, NSObject)]
         type Super = NSViewController;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 

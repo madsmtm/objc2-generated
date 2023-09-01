@@ -14,7 +14,7 @@ extern_class!(
     unsafe impl ClassType for NSComboBoxCell {
         #[inherits(NSActionCell, NSCell, NSObject)]
         type Super = NSTextFieldCell;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 

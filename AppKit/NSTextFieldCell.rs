@@ -22,7 +22,7 @@ extern_class!(
     unsafe impl ClassType for NSTextFieldCell {
         #[inherits(NSCell, NSObject)]
         type Super = NSActionCell;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 

@@ -14,7 +14,7 @@ extern_class!(
     unsafe impl ClassType for NSBrowserCell {
         #[inherits(NSObject)]
         type Super = NSCell;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 

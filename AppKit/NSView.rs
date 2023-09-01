@@ -70,7 +70,7 @@ extern_class!(
     unsafe impl ClassType for NSView {
         #[inherits(NSObject)]
         type Super = NSResponder;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 

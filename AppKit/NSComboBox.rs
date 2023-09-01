@@ -86,7 +86,7 @@ extern_class!(
     unsafe impl ClassType for NSComboBox {
         #[inherits(NSControl, NSView, NSResponder, NSObject)]
         type Super = NSTextField;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 

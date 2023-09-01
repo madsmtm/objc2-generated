@@ -117,7 +117,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSCell")]
     unsafe impl ClassType for NSCell {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 

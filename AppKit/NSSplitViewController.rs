@@ -16,7 +16,7 @@ extern_class!(
     unsafe impl ClassType for NSSplitViewController {
         #[inherits(NSResponder, NSObject)]
         type Super = NSViewController;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 

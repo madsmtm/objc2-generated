@@ -14,7 +14,7 @@ extern_class!(
     unsafe impl ClassType for OSAScriptView {
         #[inherits(NSText, NSView, NSResponder, NSObject)]
         type Super = NSTextView;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 

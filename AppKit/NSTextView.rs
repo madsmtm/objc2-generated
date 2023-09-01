@@ -33,7 +33,7 @@ extern_class!(
     unsafe impl ClassType for NSTextView {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSText;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 

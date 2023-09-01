@@ -15,7 +15,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSTouchBar")]
     unsafe impl ClassType for NSTouchBar {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 

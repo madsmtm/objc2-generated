@@ -14,7 +14,7 @@ extern_class!(
     unsafe impl ClassType for NSPopUpButton {
         #[inherits(NSControl, NSView, NSResponder, NSObject)]
         type Super = NSButton;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 

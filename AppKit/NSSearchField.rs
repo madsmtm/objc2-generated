@@ -32,7 +32,7 @@ extern_class!(
     unsafe impl ClassType for NSSearchField {
         #[inherits(NSControl, NSView, NSResponder, NSObject)]
         type Super = NSTextField;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 

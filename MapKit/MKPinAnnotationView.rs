@@ -30,7 +30,7 @@ extern_class!(
     unsafe impl ClassType for MKPinAnnotationView {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = MKAnnotationView;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 

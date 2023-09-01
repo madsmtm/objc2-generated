@@ -49,7 +49,7 @@ extern_class!(
     unsafe impl ClassType for NSButtonCell {
         #[inherits(NSCell, NSObject)]
         type Super = NSActionCell;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 

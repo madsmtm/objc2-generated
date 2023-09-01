@@ -32,7 +32,7 @@ extern_class!(
     unsafe impl ClassType for NSToolbarItemGroup {
         #[inherits(NSObject)]
         type Super = NSToolbarItem;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 

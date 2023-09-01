@@ -19,7 +19,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSHelpManager")]
     unsafe impl ClassType for NSHelpManager {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 

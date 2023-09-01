@@ -13,7 +13,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSDocumentController")]
     unsafe impl ClassType for NSDocumentController {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 

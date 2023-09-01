@@ -113,7 +113,7 @@ extern_class!(
     unsafe impl ClassType for NSCollectionViewItem {
         #[inherits(NSResponder, NSObject)]
         type Super = NSViewController;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 
@@ -230,7 +230,7 @@ extern_class!(
     unsafe impl ClassType for NSCollectionView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 

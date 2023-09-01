@@ -23,7 +23,7 @@ extern_class!(
     unsafe impl ClassType for NSPopUpButtonCell {
         #[inherits(NSButtonCell, NSActionCell, NSCell, NSObject)]
         type Super = NSMenuItemCell;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 

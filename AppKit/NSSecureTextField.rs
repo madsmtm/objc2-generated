@@ -14,7 +14,7 @@ extern_class!(
     unsafe impl ClassType for NSSecureTextField {
         #[inherits(NSControl, NSView, NSResponder, NSObject)]
         type Super = NSTextField;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 
@@ -102,7 +102,7 @@ extern_class!(
     unsafe impl ClassType for NSSecureTextFieldCell {
         #[inherits(NSActionCell, NSCell, NSObject)]
         type Super = NSTextFieldCell;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 

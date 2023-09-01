@@ -25,7 +25,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSToolbarItem")]
     unsafe impl ClassType for NSToolbarItem {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 

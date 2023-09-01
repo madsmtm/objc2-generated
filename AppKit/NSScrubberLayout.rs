@@ -69,7 +69,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSScrubberLayout")]
     unsafe impl ClassType for NSScrubberLayout {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 
@@ -177,7 +177,7 @@ extern_class!(
     unsafe impl ClassType for NSScrubberFlowLayout {
         #[inherits(NSObject)]
         type Super = NSScrubberLayout;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 
@@ -239,7 +239,7 @@ extern_class!(
     unsafe impl ClassType for NSScrubberProportionalLayout {
         #[inherits(NSObject)]
         type Super = NSScrubberLayout;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 

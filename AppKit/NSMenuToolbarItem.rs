@@ -14,7 +14,7 @@ extern_class!(
     unsafe impl ClassType for NSMenuToolbarItem {
         #[inherits(NSObject)]
         type Super = NSToolbarItem;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 

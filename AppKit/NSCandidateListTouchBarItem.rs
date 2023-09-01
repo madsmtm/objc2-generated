@@ -18,7 +18,7 @@ __inner_extern_class!(
     unsafe impl<CandidateType: Message> ClassType for NSCandidateListTouchBarItem<CandidateType> {
         #[inherits(NSObject)]
         type Super = NSTouchBarItem;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
 
         fn as_super(&self) -> &Self::Super {
             &self.__superclass

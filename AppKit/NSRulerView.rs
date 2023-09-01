@@ -34,7 +34,7 @@ extern_class!(
     unsafe impl ClassType for NSRulerView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 

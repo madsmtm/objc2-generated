@@ -16,7 +16,7 @@ extern_class!(
     unsafe impl ClassType for MKPitchControl {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 

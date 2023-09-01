@@ -32,7 +32,7 @@ extern_class!(
     unsafe impl ClassType for NSPickerTouchBarItem {
         #[inherits(NSObject)]
         type Super = NSTouchBarItem;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 

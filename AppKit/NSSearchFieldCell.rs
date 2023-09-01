@@ -22,7 +22,7 @@ extern_class!(
     unsafe impl ClassType for NSSearchFieldCell {
         #[inherits(NSActionCell, NSCell, NSObject)]
         type Super = NSTextFieldCell;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 

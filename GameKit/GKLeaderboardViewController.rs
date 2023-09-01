@@ -15,7 +15,7 @@ extern_class!(
     unsafe impl ClassType for GKLeaderboardViewController {
         #[inherits(NSViewController, NSResponder, NSObject)]
         type Super = GKGameCenterViewController;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 

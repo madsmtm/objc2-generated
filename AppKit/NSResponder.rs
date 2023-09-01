@@ -13,7 +13,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl ClassType for NSResponder {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 

@@ -13,7 +13,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSPageLayout")]
     unsafe impl ClassType for NSPageLayout {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 

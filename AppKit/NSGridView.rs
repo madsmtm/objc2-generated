@@ -40,7 +40,7 @@ extern_class!(
     unsafe impl ClassType for NSGridView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 
@@ -226,7 +226,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSGridRow")]
     unsafe impl ClassType for NSGridRow {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 
@@ -311,7 +311,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSGridColumn")]
     unsafe impl ClassType for NSGridColumn {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 
@@ -390,7 +390,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSGridCell")]
     unsafe impl ClassType for NSGridCell {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 

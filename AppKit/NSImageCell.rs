@@ -40,7 +40,7 @@ extern_class!(
     unsafe impl ClassType for NSImageCell {
         #[inherits(NSObject)]
         type Super = NSCell;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 

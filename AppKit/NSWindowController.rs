@@ -14,7 +14,7 @@ extern_class!(
     unsafe impl ClassType for NSWindowController {
         #[inherits(NSObject)]
         type Super = NSResponder;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 
