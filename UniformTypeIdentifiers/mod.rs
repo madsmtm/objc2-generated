@@ -2,6 +2,11 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(
+    feature = "apple",
+    link(name = "UniformTypeIdentifiers", kind = "framework")
+)]
+extern "C" {}
 #[path = "NSItemProvider_UTType.rs"]
 mod __NSItemProvider_UTType;
 #[path = "UTAdditions.rs"]

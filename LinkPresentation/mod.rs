@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(feature = "apple", link(name = "LinkPresentation", kind = "framework"))]
+extern "C" {}
 #[path = "LPError.rs"]
 mod __LPError;
 #[path = "LPFoundation.rs"]

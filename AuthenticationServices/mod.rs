@@ -2,6 +2,11 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(
+    feature = "apple",
+    link(name = "AuthenticationServices", kind = "framework")
+)]
+extern "C" {}
 #[path = "ASAccountAuthenticationModificationController.rs"]
 mod __ASAccountAuthenticationModificationController;
 #[path = "ASAccountAuthenticationModificationExtensionContext.rs"]

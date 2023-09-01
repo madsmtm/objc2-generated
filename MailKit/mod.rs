@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(feature = "apple", link(name = "MailKit", kind = "framework"))]
+extern "C" {}
 #[path = "MEAddressAnnotation.rs"]
 mod __MEAddressAnnotation;
 #[path = "MEComposeContext.rs"]

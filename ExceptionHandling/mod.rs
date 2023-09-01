@@ -2,6 +2,11 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(
+    feature = "apple",
+    link(name = "ExceptionHandling", kind = "framework")
+)]
+extern "C" {}
 #[path = "ExceptionHandlingDefines.rs"]
 mod __ExceptionHandlingDefines;
 #[path = "NSExceptionHandler.rs"]

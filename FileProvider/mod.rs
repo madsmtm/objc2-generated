@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(feature = "apple", link(name = "FileProvider", kind = "framework"))]
+extern "C" {}
 #[path = "NSFileProviderActions.rs"]
 mod __NSFileProviderActions;
 #[path = "NSFileProviderDefines.rs"]

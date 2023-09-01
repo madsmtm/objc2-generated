@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(feature = "apple", link(name = "BackgroundTasks", kind = "framework"))]
+extern "C" {}
 #[path = "BGDefines.rs"]
 mod __BGDefines;
 #[path = "BGTask.rs"]

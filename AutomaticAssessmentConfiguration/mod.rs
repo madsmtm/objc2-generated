@@ -2,6 +2,11 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(
+    feature = "apple",
+    link(name = "AutomaticAssessmentConfiguration", kind = "framework")
+)]
+extern "C" {}
 #[path = "AEAssessmentApplication.rs"]
 mod __AEAssessmentApplication;
 #[path = "AEAssessmentConfiguration.rs"]

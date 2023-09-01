@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(feature = "apple", link(name = "DeviceCheck", kind = "framework"))]
+extern "C" {}
 #[path = "DCAppAttestService.rs"]
 mod __DCAppAttestService;
 #[path = "DCDevice.rs"]

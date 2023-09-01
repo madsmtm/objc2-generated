@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(feature = "apple", link(name = "BusinessChat", kind = "framework"))]
+extern "C" {}
 #[path = "BCChatAction.rs"]
 mod __BCChatAction;
 #[path = "BCChatButton.rs"]

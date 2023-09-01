@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(feature = "apple", link(name = "MetalFX", kind = "framework"))]
+extern "C" {}
 #[path = "MTLFXSpatialScaler.rs"]
 mod __MTLFXSpatialScaler;
 #[path = "MTLFXTemporalScaler.rs"]

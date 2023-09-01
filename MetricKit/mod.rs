@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(feature = "apple", link(name = "MetricKit", kind = "framework"))]
+extern "C" {}
 #[path = "MXAnimationMetric.rs"]
 mod __MXAnimationMetric;
 #[path = "MXAppExitMetric.rs"]

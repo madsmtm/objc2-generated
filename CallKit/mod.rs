@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(feature = "apple", link(name = "CallKit", kind = "framework"))]
+extern "C" {}
 #[path = "CXAction.rs"]
 mod __CXAction;
 #[path = "CXAnswerCallAction.rs"]

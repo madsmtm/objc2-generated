@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(feature = "apple", link(name = "StoreKit", kind = "framework"))]
+extern "C" {}
 #[path = "SKAdImpression.rs"]
 mod __SKAdImpression;
 #[path = "SKAdNetwork.rs"]

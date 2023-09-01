@@ -2,6 +2,11 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(
+    feature = "apple",
+    link(name = "LocalAuthentication", kind = "framework")
+)]
+extern "C" {}
 #[path = "LABase.rs"]
 mod __LABase;
 #[path = "LAContext.rs"]

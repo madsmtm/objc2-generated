@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(feature = "apple", link(name = "IdentityLookup", kind = "framework"))]
+extern "C" {}
 #[path = "ILBase.rs"]
 mod __ILBase;
 #[path = "ILCallClassificationRequest.rs"]

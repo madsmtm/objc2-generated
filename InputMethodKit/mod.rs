@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(feature = "apple", link(name = "InputMethodKit", kind = "framework"))]
+extern "C" {}
 #[path = "IMKCandidates.rs"]
 mod __IMKCandidates;
 #[path = "IMKInputController.rs"]

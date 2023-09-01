@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(feature = "apple", link(name = "MetalKit", kind = "framework"))]
+extern "C" {}
 #[path = "MTKDefines.rs"]
 mod __MTKDefines;
 #[path = "MTKModel.rs"]

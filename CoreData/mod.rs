@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(feature = "apple", link(name = "CoreData", kind = "framework"))]
+extern "C" {}
 #[path = "CoreDataDefines.rs"]
 mod __CoreDataDefines;
 #[path = "CoreDataErrors.rs"]

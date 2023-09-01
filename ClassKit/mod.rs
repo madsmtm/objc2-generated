@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(feature = "apple", link(name = "ClassKit", kind = "framework"))]
+extern "C" {}
 #[path = "CLSActivity.rs"]
 mod __CLSActivity;
 #[path = "CLSActivityItem.rs"]

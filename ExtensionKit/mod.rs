@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(feature = "apple", link(name = "ExtensionKit", kind = "framework"))]
+extern "C" {}
 #[path = "EXAppExtensionBrowserViewController.rs"]
 mod __EXAppExtensionBrowserViewController;
 #[path = "EXHostViewController.rs"]

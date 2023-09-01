@@ -2,6 +2,11 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(
+    feature = "apple",
+    link(name = "LocalAuthenticationEmbeddedUI", kind = "framework")
+)]
+extern "C" {}
 #[path = "LAAuthenticationView.rs"]
 mod __LAAuthenticationView;
 #[path = "LAPresentationContext.rs"]

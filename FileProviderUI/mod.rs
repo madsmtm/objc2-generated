@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(feature = "apple", link(name = "FileProviderUI", kind = "framework"))]
+extern "C" {}
 #[path = "FPUIActionExtensionContext.rs"]
 mod __FPUIActionExtensionContext;
 #[path = "FPUIActionExtensionViewController.rs"]

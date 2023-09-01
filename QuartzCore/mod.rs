@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(feature = "apple", link(name = "QuartzCore", kind = "framework"))]
+extern "C" {}
 #[path = "CAAnimation.rs"]
 mod __CAAnimation;
 #[path = "CABase.rs"]

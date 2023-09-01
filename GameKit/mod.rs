@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(feature = "apple", link(name = "GameKit", kind = "framework"))]
+extern "C" {}
 #[path = "GKAccessPoint.rs"]
 mod __GKAccessPoint;
 #[path = "GKAchievement.rs"]

@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(feature = "apple", link(name = "WebKit", kind = "framework"))]
+extern "C" {}
 #[path = "DOM.rs"]
 mod __DOM;
 #[path = "DOMAbstractView.rs"]

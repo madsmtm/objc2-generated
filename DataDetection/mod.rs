@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(feature = "apple", link(name = "DataDetection", kind = "framework"))]
+extern "C" {}
 #[path = "DDMatch.rs"]
 mod __DDMatch;
 #[path = "DataDetectionBase.rs"]

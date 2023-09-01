@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(feature = "apple", link(name = "EventKit", kind = "framework"))]
+extern "C" {}
 #[path = "EKAlarm.rs"]
 mod __EKAlarm;
 #[path = "EKCalendar.rs"]

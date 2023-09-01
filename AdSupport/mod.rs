@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(feature = "apple", link(name = "AdSupport", kind = "framework"))]
+extern "C" {}
 #[path = "ASIdentifierManager.rs"]
 mod __ASIdentifierManager;
 

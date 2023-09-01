@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(feature = "apple", link(name = "Metal", kind = "framework"))]
+extern "C" {}
 #[path = "MTLAccelerationStructure.rs"]
 mod __MTLAccelerationStructure;
 #[path = "MTLAccelerationStructureCommandEncoder.rs"]

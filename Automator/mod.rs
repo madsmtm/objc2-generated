@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(feature = "apple", link(name = "Automator", kind = "framework"))]
+extern "C" {}
 #[path = "AMAction.rs"]
 mod __AMAction;
 #[path = "AMAppleScriptAction.rs"]

@@ -2,6 +2,9 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(feature = "apple", link(name = "Foundation", kind = "framework"))]
+#[cfg_attr(feature = "gnustep-1-7", link(name = "gnustep-base", kind = "dylib"))]
+extern "C" {}
 #[path = "FoundationErrors.rs"]
 mod __FoundationErrors;
 #[path = "FoundationLegacySwiftCompatibility.rs"]

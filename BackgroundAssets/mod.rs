@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(feature = "apple", link(name = "BackgroundAssets", kind = "framework"))]
+extern "C" {}
 #[path = "BAAppExtensionInfo.rs"]
 mod __BAAppExtensionInfo;
 #[path = "BABase.rs"]

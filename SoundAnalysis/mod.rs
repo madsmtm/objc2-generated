@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(feature = "apple", link(name = "SoundAnalysis", kind = "framework"))]
+extern "C" {}
 #[path = "SNAnalyzer.rs"]
 mod __SNAnalyzer;
 #[path = "SNClassificationResult.rs"]

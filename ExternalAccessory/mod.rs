@@ -2,6 +2,11 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(
+    feature = "apple",
+    link(name = "ExternalAccessory", kind = "framework")
+)]
+extern "C" {}
 #[path = "EAAccessory.rs"]
 mod __EAAccessory;
 #[path = "EAAccessoryManager.rs"]

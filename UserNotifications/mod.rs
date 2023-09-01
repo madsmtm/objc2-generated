@@ -2,6 +2,11 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(
+    feature = "apple",
+    link(name = "UserNotifications", kind = "framework")
+)]
+extern "C" {}
 #[path = "NSString_UserNotifications.rs"]
 mod __NSString_UserNotifications;
 #[path = "UNError.rs"]

@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(feature = "apple", link(name = "OSAKit", kind = "framework"))]
+extern "C" {}
 #[path = "OSALanguage.rs"]
 mod __OSALanguage;
 #[path = "OSALanguageInstance.rs"]

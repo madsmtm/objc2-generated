@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(feature = "apple", link(name = "Contacts", kind = "framework"))]
+extern "C" {}
 #[path = "CNChangeHistoryEvent.rs"]
 mod __CNChangeHistoryEvent;
 #[path = "CNChangeHistoryFetchRequest.rs"]

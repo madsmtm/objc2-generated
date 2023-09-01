@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(feature = "apple", link(name = "Photos", kind = "framework"))]
+extern "C" {}
 #[path = "PHAdjustmentData.rs"]
 mod __PHAdjustmentData;
 #[path = "PHAsset.rs"]

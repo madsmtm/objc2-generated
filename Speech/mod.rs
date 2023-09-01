@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(feature = "apple", link(name = "Speech", kind = "framework"))]
+extern "C" {}
 #[path = "SFSpeechRecognitionMetadata.rs"]
 mod __SFSpeechRecognitionMetadata;
 #[path = "SFSpeechRecognitionRequest.rs"]

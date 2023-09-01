@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(feature = "apple", link(name = "HealthKit", kind = "framework"))]
+extern "C" {}
 #[path = "HKActivitySummary.rs"]
 mod __HKActivitySummary;
 #[path = "HKActivitySummaryQuery.rs"]

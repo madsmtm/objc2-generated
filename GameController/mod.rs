@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(feature = "apple", link(name = "GameController", kind = "framework"))]
+extern "C" {}
 #[path = "GCAxisElement.rs"]
 mod __GCAxisElement;
 #[path = "GCAxisInput.rs"]

@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(feature = "apple", link(name = "CoreLocation", kind = "framework"))]
+extern "C" {}
 #[path = "CLAvailability.rs"]
 mod __CLAvailability;
 #[path = "CLBeaconIdentityConstraint.rs"]

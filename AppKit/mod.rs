@@ -2,6 +2,9 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(feature = "apple", link(name = "AppKit", kind = "framework"))]
+#[cfg_attr(feature = "gnustep-1-7", link(name = "gnustep-gui", kind = "dylib"))]
+extern "C" {}
 #[path = "AppKitDefines.rs"]
 mod __AppKitDefines;
 #[path = "AppKitErrors.rs"]

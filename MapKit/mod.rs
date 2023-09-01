@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(feature = "apple", link(name = "MapKit", kind = "framework"))]
+extern "C" {}
 #[path = "MKAnnotation.rs"]
 mod __MKAnnotation;
 #[path = "MKAnnotationView.rs"]

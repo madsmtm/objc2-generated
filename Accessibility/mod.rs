@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(feature = "apple", link(name = "Accessibility", kind = "framework"))]
+extern "C" {}
 #[path = "AXAudiograph.rs"]
 mod __AXAudiograph;
 #[path = "AXBrailleMap.rs"]

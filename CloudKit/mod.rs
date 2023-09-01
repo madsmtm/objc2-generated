@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(feature = "apple", link(name = "CloudKit", kind = "framework"))]
+extern "C" {}
 #[path = "CKAcceptSharesOperation.rs"]
 mod __CKAcceptSharesOperation;
 #[path = "CKAllowedSharingOptions.rs"]

@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 #![allow(unused_imports)]
 #![allow(deprecated)]
+#[cfg_attr(feature = "apple", link(name = "MediaPlayer", kind = "framework"))]
+extern "C" {}
 #[path = "AVFoundation_MPNowPlayingInfoLanguageOptionAdditions.rs"]
 mod __AVFoundation_MPNowPlayingInfoLanguageOptionAdditions;
 #[path = "AVPlayerItem_MediaPlayerAdditions.rs"]
