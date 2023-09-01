@@ -206,8 +206,6 @@ ns_options!(
 
 pub type NSModalSession = *mut c_void;
 
-extern_static!(NSApp: Option<&'static NSApplication>);
-
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSRequestUserAttentionType {

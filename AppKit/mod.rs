@@ -1093,7 +1093,6 @@ pub use self::__NSApplication::NSAboutPanelOptionApplicationVersion;
 pub use self::__NSApplication::NSAboutPanelOptionCredits;
 pub use self::__NSApplication::NSAboutPanelOptionKey;
 pub use self::__NSApplication::NSAboutPanelOptionVersion;
-pub use self::__NSApplication::NSApp;
 pub use self::__NSApplication::NSAppKitVersion;
 pub use self::__NSApplication::NSAppKitVersionNumber;
 pub use self::__NSApplication::NSAppKitVersionNumber10_0;
