@@ -174,7 +174,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSPathControl")]
     unsafe impl NSPathControl {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 

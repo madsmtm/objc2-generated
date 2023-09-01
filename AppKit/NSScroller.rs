@@ -88,16 +88,17 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSScroller")]
     unsafe impl NSScroller {
         #[method(isCompatibleWithOverlayScrollers)]
-        pub unsafe fn isCompatibleWithOverlayScrollers() -> bool;
+        pub unsafe fn isCompatibleWithOverlayScrollers(mtm: MainThreadMarker) -> bool;
 
         #[method(scrollerWidthForControlSize:scrollerStyle:)]
         pub unsafe fn scrollerWidthForControlSize_scrollerStyle(
             control_size: NSControlSize,
             scroller_style: NSScrollerStyle,
+            mtm: MainThreadMarker,
         ) -> CGFloat;
 
         #[method(preferredScrollerStyle)]
-        pub unsafe fn preferredScrollerStyle() -> NSScrollerStyle;
+        pub unsafe fn preferredScrollerStyle(mtm: MainThreadMarker) -> NSScrollerStyle;
 
         #[method(scrollerStyle)]
         pub unsafe fn scrollerStyle(&self) -> NSScrollerStyle;
@@ -180,7 +181,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSScroller")]
     unsafe impl NSScroller {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 
@@ -212,11 +213,14 @@ extern_methods!(
     unsafe impl NSScroller {
         #[deprecated = "Use +scrollerWidthForControlSize:scrollerStyle: instead"]
         #[method(scrollerWidthForControlSize:)]
-        pub unsafe fn scrollerWidthForControlSize(control_size: NSControlSize) -> CGFloat;
+        pub unsafe fn scrollerWidthForControlSize(
+            control_size: NSControlSize,
+            mtm: MainThreadMarker,
+        ) -> CGFloat;
 
         #[deprecated = "Use +scrollerWidthForControlSize:scrollerStyle: instead"]
         #[method(scrollerWidth)]
-        pub unsafe fn scrollerWidth() -> CGFloat;
+        pub unsafe fn scrollerWidth(mtm: MainThreadMarker) -> CGFloat;
 
         #[deprecated]
         #[method(setFloatValue:knobProportion:)]

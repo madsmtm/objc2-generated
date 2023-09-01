@@ -28,16 +28,21 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSColorPickerTouchBarItem")]
     unsafe impl NSColorPickerTouchBarItem {
         #[method_id(@__retain_semantics Other colorPickerWithIdentifier:)]
-        pub unsafe fn colorPickerWithIdentifier(identifier: &NSTouchBarItemIdentifier) -> Id<Self>;
+        pub unsafe fn colorPickerWithIdentifier(
+            identifier: &NSTouchBarItemIdentifier,
+            mtm: MainThreadMarker,
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other textColorPickerWithIdentifier:)]
         pub unsafe fn textColorPickerWithIdentifier(
             identifier: &NSTouchBarItemIdentifier,
+            mtm: MainThreadMarker,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other strokeColorPickerWithIdentifier:)]
         pub unsafe fn strokeColorPickerWithIdentifier(
             identifier: &NSTouchBarItemIdentifier,
+            mtm: MainThreadMarker,
         ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSImage")]
@@ -45,6 +50,7 @@ extern_methods!(
         pub unsafe fn colorPickerWithIdentifier_buttonImage(
             identifier: &NSTouchBarItemIdentifier,
             image: &NSImage,
+            mtm: MainThreadMarker,
         ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSColor")]
@@ -135,6 +141,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSColorPickerTouchBarItem")]
     unsafe impl NSColorPickerTouchBarItem {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );

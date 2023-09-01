@@ -53,7 +53,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSStatusBarButton")]
         #[method_id(@__retain_semantics Other button)]
-        pub unsafe fn button(&self) -> Option<Id<NSStatusBarButton>>;
+        pub unsafe fn button(&self, mtm: MainThreadMarker) -> Option<Id<NSStatusBarButton>>;
 
         #[method(behavior)]
         pub unsafe fn behavior(&self) -> NSStatusItemBehavior;
@@ -188,7 +188,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSView")]
         #[deprecated = "Use the standard button property instead"]
         #[method_id(@__retain_semantics Other view)]
-        pub unsafe fn view(&self) -> Option<Id<NSView>>;
+        pub unsafe fn view(&self, mtm: MainThreadMarker) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSView")]
         #[deprecated = "Use the standard button property instead"]

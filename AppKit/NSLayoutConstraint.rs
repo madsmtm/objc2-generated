@@ -336,7 +336,7 @@ extern_methods!(
         );
 
         #[method(requiresConstraintBasedLayout)]
-        pub unsafe fn requiresConstraintBasedLayout() -> bool;
+        pub unsafe fn requiresConstraintBasedLayout(mtm: MainThreadMarker) -> bool;
     }
 );
 

@@ -53,7 +53,7 @@ extern_methods!(
     unsafe impl NSImageView {
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other imageViewWithImage:)]
-        pub unsafe fn imageViewWithImage(image: &NSImage) -> Id<Self>;
+        pub unsafe fn imageViewWithImage(image: &NSImage, mtm: MainThreadMarker) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other image)]
@@ -150,6 +150,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSImageView")]
     unsafe impl NSImageView {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );

@@ -122,7 +122,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSSlider")]
     unsafe impl NSSlider {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 
@@ -176,6 +176,7 @@ extern_methods!(
         pub unsafe fn sliderWithTarget_action(
             target: Option<&AnyObject>,
             action: Option<Sel>,
+            mtm: MainThreadMarker,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other sliderWithValue:minValue:maxValue:target:action:)]
@@ -185,6 +186,7 @@ extern_methods!(
             max_value: c_double,
             target: Option<&AnyObject>,
             action: Option<Sel>,
+            mtm: MainThreadMarker,
         ) -> Id<Self>;
     }
 );

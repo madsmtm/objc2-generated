@@ -53,6 +53,7 @@ extern_methods!(
             selection_mode: NSPickerTouchBarItemSelectionMode,
             target: Option<&AnyObject>,
             action: Option<Sel>,
+            mtm: MainThreadMarker,
         ) -> Id<Self>;
 
         #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSArray"))]
@@ -63,6 +64,7 @@ extern_methods!(
             selection_mode: NSPickerTouchBarItemSelectionMode,
             target: Option<&AnyObject>,
             action: Option<Sel>,
+            mtm: MainThreadMarker,
         ) -> Id<Self>;
 
         #[method(controlRepresentation)]
@@ -199,6 +201,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSPickerTouchBarItem")]
     unsafe impl NSPickerTouchBarItem {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );

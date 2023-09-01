@@ -34,7 +34,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other owningView)]
-        pub unsafe fn owningView(&self) -> Option<Id<NSView>>;
+        pub unsafe fn owningView(&self, mtm: MainThreadMarker) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(setOwningView:)]

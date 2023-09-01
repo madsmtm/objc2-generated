@@ -110,7 +110,7 @@ extern_methods!(
     #[cfg(feature = "StoreKit_SKStoreProductViewController")]
     unsafe impl SKStoreProductViewController {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 

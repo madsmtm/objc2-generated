@@ -69,7 +69,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSBrowser")]
     unsafe impl NSBrowser {
         #[method(cellClass)]
-        pub unsafe fn cellClass() -> &'static AnyClass;
+        pub unsafe fn cellClass(mtm: MainThreadMarker) -> &'static AnyClass;
 
         #[method(loadColumnZero)]
         pub unsafe fn loadColumnZero(&self);
@@ -429,7 +429,10 @@ extern_methods!(
         );
 
         #[method(removeSavedColumnsWithAutosaveName:)]
-        pub unsafe fn removeSavedColumnsWithAutosaveName(name: &NSBrowserColumnsAutosaveName);
+        pub unsafe fn removeSavedColumnsWithAutosaveName(
+            name: &NSBrowserColumnsAutosaveName,
+            mtm: MainThreadMarker,
+        );
 
         #[cfg(all(feature = "AppKit_NSEvent", feature = "Foundation_NSIndexSet"))]
         #[method(canDragRowsWithIndexes:inColumn:withEvent:)]
@@ -516,7 +519,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSBrowser")]
     unsafe impl NSBrowser {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 

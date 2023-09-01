@@ -223,12 +223,14 @@ extern_methods!(
         pub unsafe fn frameRectForContentRect_styleMask(
             c_rect: NSRect,
             style: NSWindowStyleMask,
+            mtm: MainThreadMarker,
         ) -> NSRect;
 
         #[method(contentRectForFrameRect:styleMask:)]
         pub unsafe fn contentRectForFrameRect_styleMask(
             f_rect: NSRect,
             style: NSWindowStyleMask,
+            mtm: MainThreadMarker,
         ) -> NSRect;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -236,10 +238,11 @@ extern_methods!(
         pub unsafe fn minFrameWidthWithTitle_styleMask(
             title: &NSString,
             style: NSWindowStyleMask,
+            mtm: MainThreadMarker,
         ) -> CGFloat;
 
         #[method(defaultDepthLimit)]
-        pub unsafe fn defaultDepthLimit() -> NSWindowDepth;
+        pub unsafe fn defaultDepthLimit(mtm: MainThreadMarker) -> NSWindowDepth;
 
         #[method(frameRectForContentRect:)]
         pub unsafe fn frameRectForContentRect(&self, content_rect: NSRect) -> NSRect;
@@ -883,7 +886,7 @@ extern_methods!(
         pub unsafe fn frameAutosaveName(&self) -> Id<NSWindowFrameAutosaveName>;
 
         #[method(removeFrameUsingName:)]
-        pub unsafe fn removeFrameUsingName(name: &NSWindowFrameAutosaveName);
+        pub unsafe fn removeFrameUsingName(name: &NSWindowFrameAutosaveName, mtm: MainThreadMarker);
 
         #[method(minSize)]
         pub unsafe fn minSize(&self) -> NSSize;
@@ -977,6 +980,7 @@ extern_methods!(
         pub unsafe fn standardWindowButton_forStyleMask(
             b: NSWindowButton,
             style_mask: NSWindowStyleMask,
+            mtm: MainThreadMarker,
         ) -> Option<Id<NSButton>>;
 
         #[cfg(feature = "AppKit_NSButton")]
@@ -1024,12 +1028,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other windowNumbersWithOptions:)]
         pub unsafe fn windowNumbersWithOptions(
             options: NSWindowNumberListOptions,
+            mtm: MainThreadMarker,
         ) -> Option<Id<NSArray<NSNumber>>>;
 
         #[method(windowNumberAtPoint:belowWindowWithWindowNumber:)]
         pub unsafe fn windowNumberAtPoint_belowWindowWithWindowNumber(
             point: NSPoint,
             window_number: NSInteger,
+            mtm: MainThreadMarker,
         ) -> NSInteger;
 
         #[method(occlusionState)]
@@ -1136,13 +1142,17 @@ extern_methods!(
         pub unsafe fn setShowsToolbarButton(&self, shows_toolbar_button: bool);
 
         #[method(allowsAutomaticWindowTabbing)]
-        pub unsafe fn allowsAutomaticWindowTabbing() -> bool;
+        pub unsafe fn allowsAutomaticWindowTabbing(mtm: MainThreadMarker) -> bool;
 
         #[method(setAllowsAutomaticWindowTabbing:)]
-        pub unsafe fn setAllowsAutomaticWindowTabbing(allows_automatic_window_tabbing: bool);
+        pub unsafe fn setAllowsAutomaticWindowTabbing(
+            allows_automatic_window_tabbing: bool,
+            mtm: MainThreadMarker,
+        );
 
         #[method(userTabbingPreference)]
-        pub unsafe fn userTabbingPreference() -> NSWindowUserTabbingPreference;
+        pub unsafe fn userTabbingPreference(mtm: MainThreadMarker)
+            -> NSWindowUserTabbingPreference;
 
         #[method(tabbingMode)]
         pub unsafe fn tabbingMode(&self) -> NSWindowTabbingMode;
@@ -1223,7 +1233,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSWindow")]
     unsafe impl NSWindow {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 
@@ -1792,7 +1802,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSMenu")]
         #[deprecated = "This method does not do anything and should not be called."]
         #[method(menuChanged:)]
-        pub unsafe fn menuChanged(menu: &NSMenu);
+        pub unsafe fn menuChanged(menu: &NSMenu, mtm: MainThreadMarker);
 
         #[deprecated = "This method is unused and should not be called."]
         #[method(gState)]

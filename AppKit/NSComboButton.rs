@@ -60,6 +60,7 @@ extern_methods!(
             menu: Option<&NSMenu>,
             target: Option<&AnyObject>,
             action: Option<Sel>,
+            mtm: MainThreadMarker,
         ) -> Id<Self>;
 
         #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSMenu"))]
@@ -69,6 +70,7 @@ extern_methods!(
             menu: Option<&NSMenu>,
             target: Option<&AnyObject>,
             action: Option<Sel>,
+            mtm: MainThreadMarker,
         ) -> Id<Self>;
 
         #[cfg(all(
@@ -83,6 +85,7 @@ extern_methods!(
             menu: Option<&NSMenu>,
             target: Option<&AnyObject>,
             action: Option<Sel>,
+            mtm: MainThreadMarker,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -153,6 +156,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSComboButton")]
     unsafe impl NSComboButton {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );

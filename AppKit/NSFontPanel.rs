@@ -82,10 +82,10 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSFontPanel")]
     unsafe impl NSFontPanel {
         #[method_id(@__retain_semantics Other sharedFontPanel)]
-        pub unsafe fn sharedFontPanel() -> Id<NSFontPanel>;
+        pub unsafe fn sharedFontPanel(mtm: MainThreadMarker) -> Id<NSFontPanel>;
 
         #[method(sharedFontPanelExists)]
-        pub unsafe fn sharedFontPanelExists() -> bool;
+        pub unsafe fn sharedFontPanelExists(mtm: MainThreadMarker) -> bool;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other accessoryView)]
@@ -170,7 +170,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSFontPanel")]
     unsafe impl NSFontPanel {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 

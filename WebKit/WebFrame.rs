@@ -46,12 +46,12 @@ extern_methods!(
         #[cfg(feature = "WebKit_WebView")]
         #[deprecated]
         #[method_id(@__retain_semantics Other webView)]
-        pub unsafe fn webView(&self) -> Option<Id<WebView>>;
+        pub unsafe fn webView(&self, mtm: MainThreadMarker) -> Option<Id<WebView>>;
 
         #[cfg(feature = "WebKit_WebFrameView")]
         #[deprecated]
         #[method_id(@__retain_semantics Other frameView)]
-        pub unsafe fn frameView(&self) -> Option<Id<WebFrameView>>;
+        pub unsafe fn frameView(&self, mtm: MainThreadMarker) -> Option<Id<WebFrameView>>;
 
         #[cfg(feature = "WebKit_DOMDocument")]
         #[deprecated]

@@ -74,7 +74,10 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(canConcurrentlyReadDocumentsOfType:)]
-        pub unsafe fn canConcurrentlyReadDocumentsOfType(type_name: &NSString) -> bool;
+        pub unsafe fn canConcurrentlyReadDocumentsOfType(
+            type_name: &NSString,
+            mtm: MainThreadMarker,
+        ) -> bool;
 
         #[cfg(all(
             feature = "Foundation_NSError",
@@ -398,10 +401,10 @@ extern_methods!(
         );
 
         #[method(autosavesInPlace)]
-        pub unsafe fn autosavesInPlace() -> bool;
+        pub unsafe fn autosavesInPlace(mtm: MainThreadMarker) -> bool;
 
         #[method(preservesVersions)]
-        pub unsafe fn preservesVersions() -> bool;
+        pub unsafe fn preservesVersions(mtm: MainThreadMarker) -> bool;
 
         #[method(browseDocumentVersions:)]
         pub unsafe fn browseDocumentVersions(&self, sender: Option<&AnyObject>);
@@ -416,7 +419,7 @@ extern_methods!(
         );
 
         #[method(autosavesDrafts)]
-        pub unsafe fn autosavesDrafts() -> bool;
+        pub unsafe fn autosavesDrafts(mtm: MainThreadMarker) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other autosavingFileType)]
@@ -737,15 +740,15 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other readableTypes)]
-        pub unsafe fn readableTypes() -> Id<NSArray<NSString>>;
+        pub unsafe fn readableTypes(mtm: MainThreadMarker) -> Id<NSArray<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other writableTypes)]
-        pub unsafe fn writableTypes() -> Id<NSArray<NSString>>;
+        pub unsafe fn writableTypes(mtm: MainThreadMarker) -> Id<NSArray<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(isNativeType:)]
-        pub unsafe fn isNativeType(r#type: &NSString) -> bool;
+        pub unsafe fn isNativeType(r#type: &NSString, mtm: MainThreadMarker) -> bool;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other writableTypesForSaveOperation:)]
@@ -766,10 +769,11 @@ extern_methods!(
         pub unsafe fn validateUserInterfaceItem(
             &self,
             item: &ProtocolObject<dyn NSValidatedUserInterfaceItem>,
+            mtm: MainThreadMarker,
         ) -> bool;
 
         #[method(usesUbiquitousStorage)]
-        pub unsafe fn usesUbiquitousStorage() -> bool;
+        pub unsafe fn usesUbiquitousStorage(mtm: MainThreadMarker) -> bool;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other presentedItemURL)]
@@ -839,7 +843,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSDocument")]
     unsafe impl NSDocument {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 

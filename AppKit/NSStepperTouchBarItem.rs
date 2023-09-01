@@ -32,12 +32,14 @@ extern_methods!(
         pub unsafe fn stepperTouchBarItemWithIdentifier_formatter(
             identifier: &NSTouchBarItemIdentifier,
             formatter: &NSFormatter,
+            mtm: MainThreadMarker,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other stepperTouchBarItemWithIdentifier:drawingHandler:)]
         pub unsafe fn stepperTouchBarItemWithIdentifier_drawingHandler(
             identifier: &NSTouchBarItemIdentifier,
             drawing_handler: &Block<(NSRect, c_double), ()>,
+            mtm: MainThreadMarker,
         ) -> Id<Self>;
 
         #[method(maxValue)]
@@ -113,6 +115,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSStepperTouchBarItem")]
     unsafe impl NSStepperTouchBarItem {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );

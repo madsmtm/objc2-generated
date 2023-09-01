@@ -78,7 +78,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other view)]
-        pub unsafe fn view(&self) -> Option<Id<NSView>>;
+        pub unsafe fn view(&self, mtm: MainThreadMarker) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(setView:)]
@@ -86,7 +86,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSViewController")]
         #[method_id(@__retain_semantics Other viewController)]
-        pub unsafe fn viewController(&self) -> Option<Id<NSViewController>>;
+        pub unsafe fn viewController(&self, mtm: MainThreadMarker) -> Option<Id<NSViewController>>;
 
         #[cfg(feature = "AppKit_NSViewController")]
         #[method(setViewController:)]
@@ -97,11 +97,11 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSTabView")]
         #[method_id(@__retain_semantics Other tabView)]
-        pub unsafe fn tabView(&self) -> Option<Id<NSTabView>>;
+        pub unsafe fn tabView(&self, mtm: MainThreadMarker) -> Option<Id<NSTabView>>;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other initialFirstResponder)]
-        pub unsafe fn initialFirstResponder(&self) -> Option<Id<NSView>>;
+        pub unsafe fn initialFirstResponder(&self, mtm: MainThreadMarker) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(setInitialFirstResponder:)]

@@ -85,11 +85,15 @@ extern_methods!(
         pub unsafe fn gridViewWithNumberOfColumns_rows(
             column_count: NSInteger,
             row_count: NSInteger,
+            mtm: MainThreadMarker,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other gridViewWithViews:)]
-        pub unsafe fn gridViewWithViews(rows: &NSArray<NSArray<NSView>>) -> Id<Self>;
+        pub unsafe fn gridViewWithViews(
+            rows: &NSArray<NSArray<NSView>>,
+            mtm: MainThreadMarker,
+        ) -> Id<Self>;
 
         #[method(numberOfRows)]
         pub unsafe fn numberOfRows(&self) -> NSInteger;
@@ -214,7 +218,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSGridView")]
     unsafe impl NSGridView {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 
@@ -299,7 +303,7 @@ extern_methods!(
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 
@@ -378,7 +382,7 @@ extern_methods!(
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 
@@ -413,7 +417,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other emptyContentView)]
-        pub unsafe fn emptyContentView() -> Id<NSView>;
+        pub unsafe fn emptyContentView(mtm: MainThreadMarker) -> Id<NSView>;
 
         #[cfg(feature = "AppKit_NSGridRow")]
         #[method_id(@__retain_semantics Other row)]
@@ -462,6 +466,6 @@ extern_methods!(
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );

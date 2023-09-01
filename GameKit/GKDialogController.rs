@@ -71,7 +71,7 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKDialogController")]
     unsafe impl GKDialogController {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 
@@ -80,6 +80,6 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKDialogController")]
     unsafe impl GKDialogController {
         #[method_id(@__retain_semantics Other sharedDialogController)]
-        pub unsafe fn sharedDialogController() -> Id<GKDialogController>;
+        pub unsafe fn sharedDialogController(mtm: MainThreadMarker) -> Id<GKDialogController>;
     }
 );

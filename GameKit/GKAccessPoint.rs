@@ -71,7 +71,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[method_id(@__retain_semantics Other parentWindow)]
-        pub unsafe fn parentWindow(&self) -> Option<Id<NSWindow>>;
+        pub unsafe fn parentWindow(&self, mtm: MainThreadMarker) -> Option<Id<NSWindow>>;
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[method(setParentWindow:)]

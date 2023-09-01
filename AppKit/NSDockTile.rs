@@ -30,7 +30,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other contentView)]
-        pub unsafe fn contentView(&self) -> Option<Id<NSView>>;
+        pub unsafe fn contentView(&self, mtm: MainThreadMarker) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(setContentView:)]

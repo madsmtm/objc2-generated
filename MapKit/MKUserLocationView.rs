@@ -93,6 +93,6 @@ extern_methods!(
     #[cfg(feature = "MapKit_MKUserLocationView")]
     unsafe impl MKUserLocationView {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );

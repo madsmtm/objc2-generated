@@ -128,7 +128,10 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other textViewUsingTextLayoutManager:)]
-        pub unsafe fn textViewUsingTextLayoutManager(using_text_layout_manager: bool) -> Id<Self>;
+        pub unsafe fn textViewUsingTextLayoutManager(
+            using_text_layout_manager: bool,
+            mtm: MainThreadMarker,
+        ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSTextContainer")]
         #[method_id(@__retain_semantics Other textContainer)]
@@ -359,7 +362,7 @@ extern_methods!(
         pub unsafe fn characterIndexForInsertionAtPoint(&self, point: NSPoint) -> NSUInteger;
 
         #[method(stronglyReferencesTextStorage)]
-        pub unsafe fn stronglyReferencesTextStorage() -> bool;
+        pub unsafe fn stronglyReferencesTextStorage(mtm: MainThreadMarker) -> bool;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(performValidatedReplacementInRange:withAttributedString:)]
@@ -394,7 +397,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTextView")]
     unsafe impl NSTextView {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 
@@ -477,7 +480,7 @@ extern_methods!(
         pub unsafe fn readSelectionFromPasteboard(&self, pboard: &NSPasteboard) -> bool;
 
         #[method(registerForServices)]
-        pub unsafe fn registerForServices();
+        pub unsafe fn registerForServices(mtm: MainThreadMarker);
 
         #[method_id(@__retain_semantics Other validRequestorForSendType:returnType:)]
         pub unsafe fn validRequestorForSendType_returnType(
@@ -1108,18 +1111,20 @@ extern_methods!(
     unsafe impl NSTextView {
         #[cfg(feature = "AppKit_NSScrollView")]
         #[method_id(@__retain_semantics Other scrollableTextView)]
-        pub unsafe fn scrollableTextView() -> Id<NSScrollView>;
+        pub unsafe fn scrollableTextView(mtm: MainThreadMarker) -> Id<NSScrollView>;
 
         #[method_id(@__retain_semantics Other fieldEditor)]
-        pub unsafe fn fieldEditor() -> Id<Self>;
+        pub unsafe fn fieldEditor(mtm: MainThreadMarker) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSScrollView")]
         #[method_id(@__retain_semantics Other scrollableDocumentContentTextView)]
-        pub unsafe fn scrollableDocumentContentTextView() -> Id<NSScrollView>;
+        pub unsafe fn scrollableDocumentContentTextView(mtm: MainThreadMarker) -> Id<NSScrollView>;
 
         #[cfg(feature = "AppKit_NSScrollView")]
         #[method_id(@__retain_semantics Other scrollablePlainDocumentContentTextView)]
-        pub unsafe fn scrollablePlainDocumentContentTextView() -> Id<NSScrollView>;
+        pub unsafe fn scrollablePlainDocumentContentTextView(
+            mtm: MainThreadMarker,
+        ) -> Id<NSScrollView>;
     }
 );
 

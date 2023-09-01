@@ -30,13 +30,16 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSHelpManager")]
     unsafe impl NSHelpManager {
         #[method_id(@__retain_semantics Other sharedHelpManager)]
-        pub unsafe fn sharedHelpManager() -> Id<NSHelpManager>;
+        pub unsafe fn sharedHelpManager(mtm: MainThreadMarker) -> Id<NSHelpManager>;
 
         #[method(isContextHelpModeActive)]
-        pub unsafe fn isContextHelpModeActive() -> bool;
+        pub unsafe fn isContextHelpModeActive(mtm: MainThreadMarker) -> bool;
 
         #[method(setContextHelpModeActive:)]
-        pub unsafe fn setContextHelpModeActive(context_help_mode_active: bool);
+        pub unsafe fn setContextHelpModeActive(
+            context_help_mode_active: bool,
+            mtm: MainThreadMarker,
+        );
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setContextHelp:forObject:)]
@@ -88,7 +91,7 @@ extern_methods!(
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 

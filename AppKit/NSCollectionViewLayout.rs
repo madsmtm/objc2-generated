@@ -294,7 +294,7 @@ extern_methods!(
     unsafe impl NSCollectionViewLayout {
         #[cfg(feature = "AppKit_NSCollectionView")]
         #[method_id(@__retain_semantics Other collectionView)]
-        pub unsafe fn collectionView(&self) -> Option<Id<NSCollectionView>>;
+        pub unsafe fn collectionView(&self, mtm: MainThreadMarker) -> Option<Id<NSCollectionView>>;
 
         #[method(invalidateLayout)]
         pub unsafe fn invalidateLayout(&self);

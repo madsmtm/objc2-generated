@@ -43,16 +43,24 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[method(objectDidBeginEditing:)]
-        pub unsafe fn objectDidBeginEditing(&self, editor: &ProtocolObject<dyn NSEditor>);
+        pub unsafe fn objectDidBeginEditing(
+            &self,
+            editor: &ProtocolObject<dyn NSEditor>,
+            mtm: MainThreadMarker,
+        );
 
         #[method(objectDidEndEditing:)]
-        pub unsafe fn objectDidEndEditing(&self, editor: &ProtocolObject<dyn NSEditor>);
+        pub unsafe fn objectDidEndEditing(
+            &self,
+            editor: &ProtocolObject<dyn NSEditor>,
+            mtm: MainThreadMarker,
+        );
 
         #[method(discardEditing)]
-        pub unsafe fn discardEditing(&self);
+        pub unsafe fn discardEditing(&self, mtm: MainThreadMarker);
 
         #[method(commitEditing)]
-        pub unsafe fn commitEditing(&self) -> bool;
+        pub unsafe fn commitEditing(&self, mtm: MainThreadMarker) -> bool;
 
         #[method(commitEditingWithDelegate:didCommitSelector:contextInfo:)]
         pub unsafe fn commitEditingWithDelegate_didCommitSelector_contextInfo(
@@ -60,6 +68,7 @@ extern_methods!(
             delegate: Option<&AnyObject>,
             did_commit_selector: Option<Sel>,
             context_info: *mut c_void,
+            mtm: MainThreadMarker,
         );
 
         #[method(isEditing)]

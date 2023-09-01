@@ -48,7 +48,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSRulerView")]
         #[method_id(@__retain_semantics Other ruler)]
-        pub unsafe fn ruler(&self) -> Option<Id<NSRulerView>>;
+        pub unsafe fn ruler(&self, mtm: MainThreadMarker) -> Option<Id<NSRulerView>>;
 
         #[method(markerLocation)]
         pub unsafe fn markerLocation(&self) -> CGFloat;

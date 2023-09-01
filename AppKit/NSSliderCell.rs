@@ -58,7 +58,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSSliderCell")]
     unsafe impl NSSliderCell {
         #[method(prefersTrackingUntilMouseUp)]
-        pub unsafe fn prefersTrackingUntilMouseUp() -> bool;
+        pub unsafe fn prefersTrackingUntilMouseUp(mtm: MainThreadMarker) -> bool;
 
         #[method(minValue)]
         pub unsafe fn minValue(&self) -> c_double;
@@ -139,7 +139,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSSliderCell")]
     unsafe impl NSSliderCell {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 

@@ -70,7 +70,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSViewController")]
         #[method_id(@__retain_semantics Other viewController)]
-        pub unsafe fn viewController(&self) -> Id<NSViewController>;
+        pub unsafe fn viewController(&self, mtm: MainThreadMarker) -> Id<NSViewController>;
 
         #[cfg(feature = "AppKit_NSViewController")]
         #[method(setViewController:)]

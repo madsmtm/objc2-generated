@@ -77,7 +77,7 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKFriendRequestComposeViewController")]
     unsafe impl GKFriendRequestComposeViewController {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 
@@ -86,7 +86,7 @@ extern_methods!(
     unsafe impl GKFriendRequestComposeViewController {
         #[deprecated]
         #[method(maxNumberOfRecipients)]
-        pub unsafe fn maxNumberOfRecipients() -> NSUInteger;
+        pub unsafe fn maxNumberOfRecipients(mtm: MainThreadMarker) -> NSUInteger;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]

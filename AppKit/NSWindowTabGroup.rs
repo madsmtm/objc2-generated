@@ -28,7 +28,7 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSWindow", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other windows)]
-        pub unsafe fn windows(&self) -> Id<NSArray<NSWindow>>;
+        pub unsafe fn windows(&self, mtm: MainThreadMarker) -> Id<NSArray<NSWindow>>;
 
         #[method(isOverviewVisible)]
         pub unsafe fn isOverviewVisible(&self) -> bool;
@@ -41,7 +41,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[method_id(@__retain_semantics Other selectedWindow)]
-        pub unsafe fn selectedWindow(&self) -> Option<Id<NSWindow>>;
+        pub unsafe fn selectedWindow(&self, mtm: MainThreadMarker) -> Option<Id<NSWindow>>;
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[method(setSelectedWindow:)]

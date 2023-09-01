@@ -32,6 +32,7 @@ extern_methods!(
         pub unsafe fn groupItemWithIdentifier_items(
             identifier: &NSTouchBarItemIdentifier,
             items: &NSArray<NSTouchBarItem>,
+            mtm: MainThreadMarker,
         ) -> Id<Self>;
 
         #[cfg(all(
@@ -43,11 +44,13 @@ extern_methods!(
             identifier: &NSTouchBarItemIdentifier,
             items: &NSArray<NSTouchBarItem>,
             allowed_compression_options: &NSUserInterfaceCompressionOptions,
+            mtm: MainThreadMarker,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other alertStyleGroupItemWithIdentifier:)]
         pub unsafe fn alertStyleGroupItemWithIdentifier(
             identifier: &NSTouchBarItemIdentifier,
+            mtm: MainThreadMarker,
         ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSTouchBar")]
@@ -139,6 +142,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSGroupTouchBarItem")]
     unsafe impl NSGroupTouchBarItem {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );

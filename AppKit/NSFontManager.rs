@@ -95,7 +95,11 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSFontPanel")]
         #[method_id(@__retain_semantics Other fontPanel:)]
-        pub unsafe fn fontPanel(&self, create: bool) -> Option<Id<NSFontPanel>>;
+        pub unsafe fn fontPanel(
+            &self,
+            create: bool,
+            mtm: MainThreadMarker,
+        ) -> Option<Id<NSFontPanel>>;
 
         #[cfg(all(feature = "AppKit_NSFont", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other fontWithFamily:traits:weight:size:)]

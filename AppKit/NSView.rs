@@ -411,7 +411,7 @@ extern_methods!(
         pub unsafe fn lockFocusIfCanDrawInContext(&self, context: &NSGraphicsContext) -> bool;
 
         #[method_id(@__retain_semantics Other focusView)]
-        pub unsafe fn focusView() -> Option<Id<NSView>>;
+        pub unsafe fn focusView(mtm: MainThreadMarker) -> Option<Id<NSView>>;
 
         #[method(visibleRect)]
         pub unsafe fn visibleRect(&self) -> NSRect;
@@ -621,7 +621,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method_id(@__retain_semantics Other defaultMenu)]
-        pub unsafe fn defaultMenu() -> Option<Id<NSMenu>>;
+        pub unsafe fn defaultMenu(mtm: MainThreadMarker) -> Option<Id<NSMenu>>;
 
         #[cfg(all(feature = "AppKit_NSEvent", feature = "AppKit_NSMenu"))]
         #[method(willOpenMenu:withEvent:)]
@@ -692,7 +692,7 @@ extern_methods!(
         pub unsafe fn prepareForReuse(&self);
 
         #[method(isCompatibleWithResponsiveScrolling)]
-        pub unsafe fn isCompatibleWithResponsiveScrolling() -> bool;
+        pub unsafe fn isCompatibleWithResponsiveScrolling(mtm: MainThreadMarker) -> bool;
 
         #[method(prepareContentInRect:)]
         pub unsafe fn prepareContentInRect(&self, rect: NSRect);
@@ -725,7 +725,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSView")]
     unsafe impl NSView {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 
@@ -777,7 +777,7 @@ extern_methods!(
         pub unsafe fn setFocusRingType(&self, focus_ring_type: NSFocusRingType);
 
         #[method(defaultFocusRingType)]
-        pub unsafe fn defaultFocusRingType() -> NSFocusRingType;
+        pub unsafe fn defaultFocusRingType(mtm: MainThreadMarker) -> NSFocusRingType;
 
         #[method(drawFocusRingMask)]
         pub unsafe fn drawFocusRingMask(&self);

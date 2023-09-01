@@ -79,10 +79,10 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSColorPanel")]
     unsafe impl NSColorPanel {
         #[method_id(@__retain_semantics Other sharedColorPanel)]
-        pub unsafe fn sharedColorPanel() -> Id<NSColorPanel>;
+        pub unsafe fn sharedColorPanel(mtm: MainThreadMarker) -> Id<NSColorPanel>;
 
         #[method(sharedColorPanelExists)]
-        pub unsafe fn sharedColorPanelExists() -> bool;
+        pub unsafe fn sharedColorPanelExists(mtm: MainThreadMarker) -> bool;
 
         #[cfg(all(
             feature = "AppKit_NSColor",
@@ -97,10 +97,10 @@ extern_methods!(
         ) -> bool;
 
         #[method(setPickerMask:)]
-        pub unsafe fn setPickerMask(mask: NSColorPanelOptions);
+        pub unsafe fn setPickerMask(mask: NSColorPanelOptions, mtm: MainThreadMarker);
 
         #[method(setPickerMode:)]
-        pub unsafe fn setPickerMode(mode: NSColorPanelMode);
+        pub unsafe fn setPickerMode(mode: NSColorPanelMode, mtm: MainThreadMarker);
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other accessoryView)]
@@ -205,7 +205,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSColorPanel")]
     unsafe impl NSColorPanel {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 

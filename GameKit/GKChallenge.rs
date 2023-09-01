@@ -311,6 +311,7 @@ extern_methods!(
             message: Option<&NSString>,
             players: Option<&NSArray<GKPlayer>>,
             completion_handler: GKChallengeComposeCompletionBlock,
+            mtm: MainThreadMarker,
         ) -> Id<NSViewController>;
     }
 );
@@ -331,6 +332,7 @@ extern_methods!(
             message: Option<&NSString>,
             players: Option<&NSArray<GKPlayer>>,
             completion_handler: GKChallengeComposeCompletionBlock,
+            mtm: MainThreadMarker,
         ) -> Id<NSViewController>;
     }
 );
@@ -351,6 +353,7 @@ extern_methods!(
             message: Option<&NSString>,
             players: &NSArray<GKPlayer>,
             completion_handler: GKChallengeComposeCompletionBlock,
+            mtm: MainThreadMarker,
         ) -> Id<NSViewController>;
     }
 );

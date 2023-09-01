@@ -49,7 +49,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other accessoryView)]
-        pub unsafe fn accessoryView(&self) -> Option<Id<NSView>>;
+        pub unsafe fn accessoryView(&self, mtm: MainThreadMarker) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(setAccessoryView:)]

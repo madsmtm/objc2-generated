@@ -111,10 +111,11 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSScrubberSelectionStyle")]
     unsafe impl NSScrubberSelectionStyle {
         #[method_id(@__retain_semantics Other outlineOverlayStyle)]
-        pub unsafe fn outlineOverlayStyle() -> Id<NSScrubberSelectionStyle>;
+        pub unsafe fn outlineOverlayStyle(mtm: MainThreadMarker) -> Id<NSScrubberSelectionStyle>;
 
         #[method_id(@__retain_semantics Other roundedBackgroundStyle)]
-        pub unsafe fn roundedBackgroundStyle() -> Id<NSScrubberSelectionStyle>;
+        pub unsafe fn roundedBackgroundStyle(mtm: MainThreadMarker)
+            -> Id<NSScrubberSelectionStyle>;
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
@@ -134,7 +135,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSScrubberSelectionStyle")]
     unsafe impl NSScrubberSelectionStyle {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 
@@ -369,6 +370,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSScrubber")]
     unsafe impl NSScrubber {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );

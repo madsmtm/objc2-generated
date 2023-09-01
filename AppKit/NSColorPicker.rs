@@ -32,11 +32,12 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             mask: NSUInteger,
             owning_color_panel: &NSColorPanel,
+            mtm: MainThreadMarker,
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "AppKit_NSColorPanel")]
         #[method_id(@__retain_semantics Other colorPanel)]
-        pub unsafe fn colorPanel(&self) -> Id<NSColorPanel>;
+        pub unsafe fn colorPanel(&self, mtm: MainThreadMarker) -> Id<NSColorPanel>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other provideNewButtonImage)]
@@ -48,21 +49,22 @@ extern_methods!(
             &self,
             new_button_image: &NSImage,
             button_cell: &NSButtonCell,
+            mtm: MainThreadMarker,
         );
 
         #[method(viewSizeChanged:)]
-        pub unsafe fn viewSizeChanged(&self, sender: Option<&AnyObject>);
+        pub unsafe fn viewSizeChanged(&self, sender: Option<&AnyObject>, mtm: MainThreadMarker);
 
         #[cfg(feature = "AppKit_NSColorList")]
         #[method(attachColorList:)]
-        pub unsafe fn attachColorList(&self, color_list: &NSColorList);
+        pub unsafe fn attachColorList(&self, color_list: &NSColorList, mtm: MainThreadMarker);
 
         #[cfg(feature = "AppKit_NSColorList")]
         #[method(detachColorList:)]
-        pub unsafe fn detachColorList(&self, color_list: &NSColorList);
+        pub unsafe fn detachColorList(&self, color_list: &NSColorList, mtm: MainThreadMarker);
 
         #[method(setMode:)]
-        pub unsafe fn setMode(&self, mode: NSColorPanelMode);
+        pub unsafe fn setMode(&self, mode: NSColorPanelMode, mtm: MainThreadMarker);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other buttonToolTip)]

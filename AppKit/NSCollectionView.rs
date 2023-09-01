@@ -217,7 +217,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionViewItem")]
     unsafe impl NSCollectionViewItem {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 
@@ -664,7 +664,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionView")]
     unsafe impl NSCollectionView {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 

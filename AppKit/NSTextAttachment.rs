@@ -283,7 +283,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other view)]
-        pub unsafe fn view(&self) -> Option<Id<NSView>>;
+        pub unsafe fn view(&self, mtm: MainThreadMarker) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(setView:)]

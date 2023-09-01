@@ -33,7 +33,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSDocumentController")]
     unsafe impl NSDocumentController {
         #[method_id(@__retain_semantics Other sharedDocumentController)]
-        pub unsafe fn sharedDocumentController() -> Id<NSDocumentController>;
+        pub unsafe fn sharedDocumentController(mtm: MainThreadMarker) -> Id<NSDocumentController>;
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
@@ -310,6 +310,7 @@ extern_methods!(
         pub unsafe fn validateUserInterfaceItem(
             &self,
             item: &ProtocolObject<dyn NSValidatedUserInterfaceItem>,
+            mtm: MainThreadMarker,
         ) -> bool;
     }
 );
@@ -319,7 +320,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSDocumentController")]
     unsafe impl NSDocumentController {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 

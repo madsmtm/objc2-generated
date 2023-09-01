@@ -115,6 +115,6 @@ extern_methods!(
     #[cfg(feature = "WebKit_WebFrameView")]
     unsafe impl WebFrameView {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );

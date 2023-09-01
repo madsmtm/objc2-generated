@@ -49,7 +49,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSSavePanel")]
     unsafe impl NSSavePanel {
         #[method_id(@__retain_semantics Other savePanel)]
-        pub unsafe fn savePanel() -> Id<NSSavePanel>;
+        pub unsafe fn savePanel(mtm: MainThreadMarker) -> Id<NSSavePanel>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other URL)]
@@ -250,7 +250,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSSavePanel")]
     unsafe impl NSSavePanel {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 

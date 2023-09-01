@@ -83,7 +83,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSScrubberLayout")]
     unsafe impl NSScrubberLayout {
         #[method(layoutAttributesClass)]
-        pub unsafe fn layoutAttributesClass() -> &'static AnyClass;
+        pub unsafe fn layoutAttributesClass(mtm: MainThreadMarker) -> &'static AnyClass;
 
         #[cfg(feature = "AppKit_NSScrubber")]
         #[method_id(@__retain_semantics Other scrubber)]
@@ -148,7 +148,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSScrubberLayout")]
     unsafe impl NSScrubberLayout {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 
@@ -226,7 +226,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSScrubberFlowLayout")]
     unsafe impl NSScrubberFlowLayout {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 
@@ -284,6 +284,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSScrubberProportionalLayout")]
     unsafe impl NSScrubberProportionalLayout {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );

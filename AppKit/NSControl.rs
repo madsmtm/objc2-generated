@@ -261,7 +261,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSControl")]
     unsafe impl NSControl {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 
@@ -421,10 +421,10 @@ extern_methods!(
         );
 
         #[method(cellClass)]
-        pub unsafe fn cellClass() -> Option<&'static AnyClass>;
+        pub unsafe fn cellClass(mtm: MainThreadMarker) -> Option<&'static AnyClass>;
 
         #[method(setCellClass:)]
-        pub unsafe fn setCellClass(cell_class: Option<&AnyClass>);
+        pub unsafe fn setCellClass(cell_class: Option<&AnyClass>, mtm: MainThreadMarker);
 
         #[cfg(feature = "AppKit_NSCell")]
         #[method_id(@__retain_semantics Other cell)]

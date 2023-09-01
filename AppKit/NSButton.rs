@@ -61,6 +61,7 @@ extern_methods!(
             image: &NSImage,
             target: Option<&AnyObject>,
             action: Option<Sel>,
+            mtm: MainThreadMarker,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -69,6 +70,7 @@ extern_methods!(
             title: &NSString,
             target: Option<&AnyObject>,
             action: Option<Sel>,
+            mtm: MainThreadMarker,
         ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSImage")]
@@ -77,6 +79,7 @@ extern_methods!(
             image: &NSImage,
             target: Option<&AnyObject>,
             action: Option<Sel>,
+            mtm: MainThreadMarker,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -85,6 +88,7 @@ extern_methods!(
             title: &NSString,
             target: Option<&AnyObject>,
             action: Option<Sel>,
+            mtm: MainThreadMarker,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -93,6 +97,7 @@ extern_methods!(
             title: &NSString,
             target: Option<&AnyObject>,
             action: Option<Sel>,
+            mtm: MainThreadMarker,
         ) -> Id<Self>;
 
         #[method(setButtonType:)]
@@ -352,7 +357,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSButton")]
     unsafe impl NSButton {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 

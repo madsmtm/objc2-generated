@@ -92,6 +92,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSPathComponentCell")]
     unsafe impl NSPathComponentCell {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );

@@ -88,6 +88,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSActionCell")]
     unsafe impl NSActionCell {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );

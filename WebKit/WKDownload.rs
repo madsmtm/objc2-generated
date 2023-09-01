@@ -32,7 +32,7 @@ extern_methods!(
 
         #[cfg(feature = "WebKit_WKWebView")]
         #[method_id(@__retain_semantics Other webView)]
-        pub unsafe fn webView(&self) -> Option<Id<WKWebView>>;
+        pub unsafe fn webView(&self, mtm: MainThreadMarker) -> Option<Id<WKWebView>>;
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn WKDownloadDelegate>>>;

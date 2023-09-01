@@ -54,6 +54,7 @@ extern_methods!(
             labels: Option<&NSArray<NSString>>,
             target: Option<&AnyObject>,
             action: Option<Sel>,
+            mtm: MainThreadMarker,
         ) -> Id<Self>;
 
         #[cfg(all(
@@ -69,6 +70,7 @@ extern_methods!(
             labels: Option<&NSArray<NSString>>,
             target: Option<&AnyObject>,
             action: Option<Sel>,
+            mtm: MainThreadMarker,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSArray")]
@@ -128,6 +130,6 @@ extern_methods!(
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );

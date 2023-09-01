@@ -365,7 +365,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[method_id(@__retain_semantics Other window)]
-        pub unsafe fn window(&self) -> Option<Id<NSWindow>>;
+        pub unsafe fn window(&self, mtm: MainThreadMarker) -> Option<Id<NSWindow>>;
 
         #[method(windowNumber)]
         pub unsafe fn windowNumber(&self) -> NSInteger;

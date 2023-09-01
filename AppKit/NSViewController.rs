@@ -104,13 +104,14 @@ extern_methods!(
             delegate: Option<&AnyObject>,
             did_commit_selector: Option<Sel>,
             context_info: *mut c_void,
+            mtm: MainThreadMarker,
         );
 
         #[method(commitEditing)]
-        pub unsafe fn commitEditing(&self) -> bool;
+        pub unsafe fn commitEditing(&self, mtm: MainThreadMarker) -> bool;
 
         #[method(discardEditing)]
-        pub unsafe fn discardEditing(&self);
+        pub unsafe fn discardEditing(&self, mtm: MainThreadMarker);
 
         #[method(viewDidLoad)]
         pub unsafe fn viewDidLoad(&self);
@@ -161,7 +162,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSViewController")]
     unsafe impl NSViewController {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 

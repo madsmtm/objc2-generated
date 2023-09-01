@@ -789,11 +789,14 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSTextView")]
         #[method_id(@__retain_semantics Other firstTextView)]
-        pub unsafe fn firstTextView(&self) -> Option<Id<NSTextView>>;
+        pub unsafe fn firstTextView(&self, mtm: MainThreadMarker) -> Option<Id<NSTextView>>;
 
         #[cfg(feature = "AppKit_NSTextView")]
         #[method_id(@__retain_semantics Other textViewForBeginningOfSelection)]
-        pub unsafe fn textViewForBeginningOfSelection(&self) -> Option<Id<NSTextView>>;
+        pub unsafe fn textViewForBeginningOfSelection(
+            &self,
+            mtm: MainThreadMarker,
+        ) -> Option<Id<NSTextView>>;
     }
 );
 

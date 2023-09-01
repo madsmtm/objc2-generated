@@ -89,6 +89,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTableHeaderCell")]
     unsafe impl NSTableHeaderCell {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );

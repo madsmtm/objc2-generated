@@ -229,11 +229,11 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSPanel")]
         #[method_id(@__retain_semantics Other spellingPanel)]
-        pub unsafe fn spellingPanel(&self) -> Id<NSPanel>;
+        pub unsafe fn spellingPanel(&self, mtm: MainThreadMarker) -> Id<NSPanel>;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other accessoryView)]
-        pub unsafe fn accessoryView(&self) -> Option<Id<NSView>>;
+        pub unsafe fn accessoryView(&self, mtm: MainThreadMarker) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(setAccessoryView:)]
@@ -241,12 +241,13 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSPanel")]
         #[method_id(@__retain_semantics Other substitutionsPanel)]
-        pub unsafe fn substitutionsPanel(&self) -> Id<NSPanel>;
+        pub unsafe fn substitutionsPanel(&self, mtm: MainThreadMarker) -> Id<NSPanel>;
 
         #[cfg(feature = "AppKit_NSViewController")]
         #[method_id(@__retain_semantics Other substitutionsPanelAccessoryViewController)]
         pub unsafe fn substitutionsPanelAccessoryViewController(
             &self,
+            mtm: MainThreadMarker,
         ) -> Option<Id<NSViewController>>;
 
         #[cfg(feature = "AppKit_NSViewController")]

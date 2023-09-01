@@ -77,7 +77,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSPrintPanel")]
     unsafe impl NSPrintPanel {
         #[method_id(@__retain_semantics Other printPanel)]
-        pub unsafe fn printPanel() -> Id<NSPrintPanel>;
+        pub unsafe fn printPanel(mtm: MainThreadMarker) -> Id<NSPrintPanel>;
 
         #[cfg(feature = "AppKit_NSViewController")]
         #[method(addAccessoryController:)]
@@ -149,7 +149,7 @@ extern_methods!(
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 

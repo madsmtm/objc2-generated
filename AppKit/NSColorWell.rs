@@ -55,7 +55,10 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSColorWell")]
     unsafe impl NSColorWell {
         #[method_id(@__retain_semantics Other colorWellWithStyle:)]
-        pub unsafe fn colorWellWithStyle(style: NSColorWellStyle) -> Id<Self>;
+        pub unsafe fn colorWellWithStyle(
+            style: NSColorWellStyle,
+            mtm: MainThreadMarker,
+        ) -> Id<Self>;
 
         #[method(deactivate)]
         pub unsafe fn deactivate(&self);
@@ -146,6 +149,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSColorWell")]
     unsafe impl NSColorWell {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );

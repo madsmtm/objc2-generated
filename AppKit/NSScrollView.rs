@@ -75,6 +75,7 @@ extern_methods!(
             r#type: NSBorderType,
             control_size: NSControlSize,
             scroller_style: NSScrollerStyle,
+            mtm: MainThreadMarker,
         ) -> NSSize;
 
         #[method(contentSizeForFrameSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle:)]
@@ -85,6 +86,7 @@ extern_methods!(
             r#type: NSBorderType,
             control_size: NSControlSize,
             scroller_style: NSScrollerStyle,
+            mtm: MainThreadMarker,
         ) -> NSSize;
 
         #[deprecated = "Use +frameSizeForContentSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle: instead"]
@@ -94,6 +96,7 @@ extern_methods!(
             h_flag: bool,
             v_flag: bool,
             r#type: NSBorderType,
+            mtm: MainThreadMarker,
         ) -> NSSize;
 
         #[deprecated = "+contentSizeForFrameSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle: instead"]
@@ -103,6 +106,7 @@ extern_methods!(
             h_flag: bool,
             v_flag: bool,
             r#type: NSBorderType,
+            mtm: MainThreadMarker,
         ) -> NSSize;
 
         #[method(documentVisibleRect)]
@@ -353,7 +357,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSScrollView")]
     unsafe impl NSScrollView {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 
@@ -372,10 +376,10 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSScrollView")]
     unsafe impl NSScrollView {
         #[method(rulerViewClass)]
-        pub unsafe fn rulerViewClass() -> Option<&'static AnyClass>;
+        pub unsafe fn rulerViewClass(mtm: MainThreadMarker) -> Option<&'static AnyClass>;
 
         #[method(setRulerViewClass:)]
-        pub unsafe fn setRulerViewClass(ruler_view_class: Option<&AnyClass>);
+        pub unsafe fn setRulerViewClass(ruler_view_class: Option<&AnyClass>, mtm: MainThreadMarker);
 
         #[method(rulersVisible)]
         pub unsafe fn rulersVisible(&self) -> bool;

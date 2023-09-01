@@ -159,7 +159,10 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other textViewUsingTextLayoutManager:)]
-        pub unsafe fn textViewUsingTextLayoutManager(using_text_layout_manager: bool) -> Id<Self>;
+        pub unsafe fn textViewUsingTextLayoutManager(
+            using_text_layout_manager: bool,
+            mtm: MainThreadMarker,
+        ) -> Id<Self>;
     }
 );
 
@@ -177,6 +180,6 @@ extern_methods!(
     #[cfg(feature = "OSAKit_OSAScriptView")]
     unsafe impl OSAScriptView {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );

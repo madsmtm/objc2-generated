@@ -28,7 +28,10 @@ extern_methods!(
     unsafe impl NSSliderAccessory {
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other accessoryWithImage:)]
-        pub unsafe fn accessoryWithImage(image: &NSImage) -> Id<NSSliderAccessory>;
+        pub unsafe fn accessoryWithImage(
+            image: &NSImage,
+            mtm: MainThreadMarker,
+        ) -> Id<NSSliderAccessory>;
 
         #[cfg(feature = "AppKit_NSSliderAccessoryBehavior")]
         #[method_id(@__retain_semantics Other behavior)]
@@ -54,7 +57,7 @@ extern_methods!(
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 
@@ -94,24 +97,26 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSSliderAccessoryBehavior")]
     unsafe impl NSSliderAccessoryBehavior {
         #[method_id(@__retain_semantics Other automaticBehavior)]
-        pub unsafe fn automaticBehavior() -> Id<NSSliderAccessoryBehavior>;
+        pub unsafe fn automaticBehavior(mtm: MainThreadMarker) -> Id<NSSliderAccessoryBehavior>;
 
         #[method_id(@__retain_semantics Other valueStepBehavior)]
-        pub unsafe fn valueStepBehavior() -> Id<NSSliderAccessoryBehavior>;
+        pub unsafe fn valueStepBehavior(mtm: MainThreadMarker) -> Id<NSSliderAccessoryBehavior>;
 
         #[method_id(@__retain_semantics Other valueResetBehavior)]
-        pub unsafe fn valueResetBehavior() -> Id<NSSliderAccessoryBehavior>;
+        pub unsafe fn valueResetBehavior(mtm: MainThreadMarker) -> Id<NSSliderAccessoryBehavior>;
 
         #[method_id(@__retain_semantics Other behaviorWithTarget:action:)]
         pub unsafe fn behaviorWithTarget_action(
             target: Option<&AnyObject>,
             action: Sel,
+            mtm: MainThreadMarker,
         ) -> Id<NSSliderAccessoryBehavior>;
 
         #[cfg(feature = "AppKit_NSSliderAccessory")]
         #[method_id(@__retain_semantics Other behaviorWithHandler:)]
         pub unsafe fn behaviorWithHandler(
             handler: &Block<(NonNull<NSSliderAccessory>,), ()>,
+            mtm: MainThreadMarker,
         ) -> Id<NSSliderAccessoryBehavior>;
 
         #[cfg(feature = "AppKit_NSSliderAccessory")]
@@ -128,6 +133,6 @@ extern_methods!(
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );

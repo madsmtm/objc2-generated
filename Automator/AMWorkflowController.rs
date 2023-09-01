@@ -44,7 +44,7 @@ extern_methods!(
 
         #[cfg(feature = "Automator_AMWorkflowView")]
         #[method_id(@__retain_semantics Other workflowView)]
-        pub unsafe fn workflowView(&self) -> Option<Id<AMWorkflowView>>;
+        pub unsafe fn workflowView(&self, mtm: MainThreadMarker) -> Option<Id<AMWorkflowView>>;
 
         #[cfg(feature = "Automator_AMWorkflowView")]
         #[method(setWorkflowView:)]

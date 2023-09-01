@@ -135,11 +135,12 @@ extern_methods!(
         pub unsafe fn isVisible(&self) -> bool;
 
         #[method(isAutomaticCustomizeTouchBarMenuItemEnabled)]
-        pub unsafe fn isAutomaticCustomizeTouchBarMenuItemEnabled() -> bool;
+        pub unsafe fn isAutomaticCustomizeTouchBarMenuItemEnabled(mtm: MainThreadMarker) -> bool;
 
         #[method(setAutomaticCustomizeTouchBarMenuItemEnabled:)]
         pub unsafe fn setAutomaticCustomizeTouchBarMenuItemEnabled(
             automatic_customize_touch_bar_menu_item_enabled: bool,
+            mtm: MainThreadMarker,
         );
     }
 );
@@ -149,7 +150,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTouchBar")]
     unsafe impl NSTouchBar {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 

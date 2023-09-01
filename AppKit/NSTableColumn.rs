@@ -56,7 +56,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSTableView")]
         #[method_id(@__retain_semantics Other tableView)]
-        pub unsafe fn tableView(&self) -> Option<Id<NSTableView>>;
+        pub unsafe fn tableView(&self, mtm: MainThreadMarker) -> Option<Id<NSTableView>>;
 
         #[cfg(feature = "AppKit_NSTableView")]
         #[method(setTableView:)]
@@ -90,7 +90,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSTableHeaderCell")]
         #[method_id(@__retain_semantics Other headerCell)]
-        pub unsafe fn headerCell(&self) -> Id<NSTableHeaderCell>;
+        pub unsafe fn headerCell(&self, mtm: MainThreadMarker) -> Id<NSTableHeaderCell>;
 
         #[cfg(feature = "AppKit_NSTableHeaderCell")]
         #[method(setHeaderCell:)]

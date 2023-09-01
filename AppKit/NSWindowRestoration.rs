@@ -105,12 +105,13 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other restorableStateKeyPaths)]
-        pub unsafe fn restorableStateKeyPaths() -> Id<NSArray<NSString>>;
+        pub unsafe fn restorableStateKeyPaths(mtm: MainThreadMarker) -> Id<NSArray<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other allowedClassesForRestorableStateKeyPath:)]
         pub unsafe fn allowedClassesForRestorableStateKeyPath(
             key_path: &NSString,
+            mtm: MainThreadMarker,
         ) -> Id<NSArray<TodoClass>>;
     }
 );
@@ -168,12 +169,13 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other restorableStateKeyPaths)]
-        pub unsafe fn restorableStateKeyPaths() -> Id<NSArray<NSString>>;
+        pub unsafe fn restorableStateKeyPaths(mtm: MainThreadMarker) -> Id<NSArray<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other allowedClassesForRestorableStateKeyPath:)]
         pub unsafe fn allowedClassesForRestorableStateKeyPath(
             key_path: &NSString,
+            mtm: MainThreadMarker,
         ) -> Id<NSArray<TodoClass>>;
     }
 );

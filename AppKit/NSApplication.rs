@@ -258,7 +258,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSApplication")]
     unsafe impl NSApplication {
         #[method_id(@__retain_semantics Other sharedApplication)]
-        pub unsafe fn sharedApplication() -> Id<NSApplication>;
+        pub unsafe fn sharedApplication(mtm: MainThreadMarker) -> Id<NSApplication>;
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSApplicationDelegate>>>;
@@ -426,6 +426,7 @@ extern_methods!(
             selector: Sel,
             target: &AnyObject,
             argument: Option<&AnyObject>,
+            mtm: MainThreadMarker,
         );
 
         #[method(replyToApplicationShouldTerminate:)]
@@ -478,7 +479,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSApplication")]
     unsafe impl NSApplication {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 

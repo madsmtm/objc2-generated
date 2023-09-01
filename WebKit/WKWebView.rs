@@ -407,7 +407,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(handlesURLScheme:)]
-        pub unsafe fn handlesURLScheme(url_scheme: &NSString) -> bool;
+        pub unsafe fn handlesURLScheme(url_scheme: &NSString, mtm: MainThreadMarker) -> bool;
 
         #[cfg(all(feature = "Foundation_NSURLRequest", feature = "WebKit_WKDownload"))]
         #[method(startDownloadUsingRequest:completionHandler:)]
@@ -574,7 +574,7 @@ extern_methods!(
     #[cfg(feature = "WebKit_WKWebView")]
     unsafe impl WKWebView {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 

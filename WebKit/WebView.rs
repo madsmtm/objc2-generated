@@ -77,39 +77,46 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method(canShowMIMEType:)]
-        pub unsafe fn canShowMIMEType(mime_type: Option<&NSString>) -> bool;
+        pub unsafe fn canShowMIMEType(mime_type: Option<&NSString>, mtm: MainThreadMarker) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method(canShowMIMETypeAsHTML:)]
-        pub unsafe fn canShowMIMETypeAsHTML(mime_type: Option<&NSString>) -> bool;
+        pub unsafe fn canShowMIMETypeAsHTML(
+            mime_type: Option<&NSString>,
+            mtm: MainThreadMarker,
+        ) -> bool;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method_id(@__retain_semantics Other MIMETypesShownAsHTML)]
-        pub unsafe fn MIMETypesShownAsHTML() -> Option<Id<NSArray>>;
+        pub unsafe fn MIMETypesShownAsHTML(mtm: MainThreadMarker) -> Option<Id<NSArray>>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method(setMIMETypesShownAsHTML:)]
-        pub unsafe fn setMIMETypesShownAsHTML(mime_types: Option<&NSArray>);
+        pub unsafe fn setMIMETypesShownAsHTML(mime_types: Option<&NSArray>, mtm: MainThreadMarker);
 
         #[cfg(all(feature = "AppKit_NSPasteboard", feature = "Foundation_NSURL"))]
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method_id(@__retain_semantics Other URLFromPasteboard:)]
-        pub unsafe fn URLFromPasteboard(pasteboard: Option<&NSPasteboard>) -> Option<Id<NSURL>>;
+        pub unsafe fn URLFromPasteboard(
+            pasteboard: Option<&NSPasteboard>,
+            mtm: MainThreadMarker,
+        ) -> Option<Id<NSURL>>;
 
         #[cfg(all(feature = "AppKit_NSPasteboard", feature = "Foundation_NSString"))]
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method_id(@__retain_semantics Other URLTitleFromPasteboard:)]
         pub unsafe fn URLTitleFromPasteboard(
             pasteboard: Option<&NSPasteboard>,
+            mtm: MainThreadMarker,
         ) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method(registerURLSchemeAsLocal:)]
-        pub unsafe fn registerURLSchemeAsLocal(scheme: Option<&NSString>);
+        pub unsafe fn registerURLSchemeAsLocal(scheme: Option<&NSString>, mtm: MainThreadMarker);
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "No longer supported; please adopt WKWebView."]
@@ -347,6 +354,7 @@ extern_methods!(
             view_class: Option<&AnyClass>,
             representation_class: Option<&AnyClass>,
             mime_type: Option<&NSString>,
+            mtm: MainThreadMarker,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -489,7 +497,7 @@ extern_methods!(
     #[cfg(feature = "WebKit_WebView")]
     unsafe impl WebView {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 

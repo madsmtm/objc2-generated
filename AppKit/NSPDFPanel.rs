@@ -33,7 +33,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSPDFPanel")]
     unsafe impl NSPDFPanel {
         #[method_id(@__retain_semantics Other panel)]
-        pub unsafe fn panel() -> Id<NSPDFPanel>;
+        pub unsafe fn panel(mtm: MainThreadMarker) -> Id<NSPDFPanel>;
 
         #[cfg(feature = "AppKit_NSViewController")]
         #[method_id(@__retain_semantics Other accessoryController)]
@@ -79,6 +79,6 @@ extern_methods!(
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );

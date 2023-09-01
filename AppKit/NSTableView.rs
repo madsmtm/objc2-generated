@@ -757,7 +757,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTableView")]
     unsafe impl NSTableView {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 
@@ -1271,27 +1271,43 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSText")]
         #[deprecated = "Use a View Based TableView with an NSTextField"]
         #[method(textShouldBeginEditing:)]
-        pub unsafe fn textShouldBeginEditing(&self, text_object: &NSText) -> bool;
+        pub unsafe fn textShouldBeginEditing(
+            &self,
+            text_object: &NSText,
+            mtm: MainThreadMarker,
+        ) -> bool;
 
         #[cfg(feature = "AppKit_NSText")]
         #[deprecated = "Use a View Based TableView with an NSTextField"]
         #[method(textShouldEndEditing:)]
-        pub unsafe fn textShouldEndEditing(&self, text_object: &NSText) -> bool;
+        pub unsafe fn textShouldEndEditing(
+            &self,
+            text_object: &NSText,
+            mtm: MainThreadMarker,
+        ) -> bool;
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[deprecated = "Use a View Based TableView with an NSTextField"]
         #[method(textDidBeginEditing:)]
-        pub unsafe fn textDidBeginEditing(&self, notification: &NSNotification);
+        pub unsafe fn textDidBeginEditing(
+            &self,
+            notification: &NSNotification,
+            mtm: MainThreadMarker,
+        );
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[deprecated = "Use a View Based TableView with an NSTextField"]
         #[method(textDidEndEditing:)]
-        pub unsafe fn textDidEndEditing(&self, notification: &NSNotification);
+        pub unsafe fn textDidEndEditing(
+            &self,
+            notification: &NSNotification,
+            mtm: MainThreadMarker,
+        );
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[deprecated = "Use a View Based TableView with an NSTextField"]
         #[method(textDidChange:)]
-        pub unsafe fn textDidChange(&self, notification: &NSNotification);
+        pub unsafe fn textDidChange(&self, notification: &NSNotification, mtm: MainThreadMarker);
 
         #[cfg(feature = "AppKit_NSCell")]
         #[deprecated = "Use a View Based TableView; observe the window’s firstResponder for focus change notifications"]

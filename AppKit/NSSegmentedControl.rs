@@ -280,7 +280,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSSegmentedControl")]
     unsafe impl NSSegmentedControl {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 
@@ -295,6 +295,7 @@ extern_methods!(
             tracking_mode: NSSegmentSwitchTracking,
             target: Option<&AnyObject>,
             action: Option<Sel>,
+            mtm: MainThreadMarker,
         ) -> Id<Self>;
 
         #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSArray"))]
@@ -304,6 +305,7 @@ extern_methods!(
             tracking_mode: NSSegmentSwitchTracking,
             target: Option<&AnyObject>,
             action: Option<Sel>,
+            mtm: MainThreadMarker,
         ) -> Id<Self>;
     }
 );

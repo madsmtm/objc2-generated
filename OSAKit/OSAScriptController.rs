@@ -44,7 +44,7 @@ extern_methods!(
     unsafe impl OSAScriptController {
         #[cfg(feature = "OSAKit_OSAScriptView")]
         #[method_id(@__retain_semantics Other scriptView)]
-        pub unsafe fn scriptView(&self) -> Option<Id<OSAScriptView>>;
+        pub unsafe fn scriptView(&self, mtm: MainThreadMarker) -> Option<Id<OSAScriptView>>;
 
         #[cfg(feature = "OSAKit_OSAScriptView")]
         #[method(setScriptView:)]
@@ -52,7 +52,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSTextView")]
         #[method_id(@__retain_semantics Other resultView)]
-        pub unsafe fn resultView(&self) -> Option<Id<NSTextView>>;
+        pub unsafe fn resultView(&self, mtm: MainThreadMarker) -> Option<Id<NSTextView>>;
 
         #[cfg(feature = "AppKit_NSTextView")]
         #[method(setResultView:)]

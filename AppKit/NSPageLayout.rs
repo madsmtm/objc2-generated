@@ -24,7 +24,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSPageLayout")]
     unsafe impl NSPageLayout {
         #[method_id(@__retain_semantics Other pageLayout)]
-        pub unsafe fn pageLayout() -> Id<NSPageLayout>;
+        pub unsafe fn pageLayout(mtm: MainThreadMarker) -> Id<NSPageLayout>;
 
         #[cfg(feature = "AppKit_NSViewController")]
         #[method(addAccessoryController:)]
@@ -70,7 +70,7 @@ extern_methods!(
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 

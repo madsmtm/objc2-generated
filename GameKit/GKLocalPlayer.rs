@@ -272,6 +272,7 @@ extern_methods!(
         #[method(authenticateHandler)]
         pub unsafe fn authenticateHandler(
             &self,
+            mtm: MainThreadMarker,
         ) -> *mut Block<(*mut NSViewController, *mut NSError), ()>;
 
         #[cfg(all(feature = "AppKit_NSViewController", feature = "Foundation_NSError"))]

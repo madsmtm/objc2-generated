@@ -87,7 +87,7 @@ extern_methods!(
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSPathCellDelegate>>);
 
         #[method(pathComponentCellClass)]
-        pub unsafe fn pathComponentCellClass() -> &'static AnyClass;
+        pub unsafe fn pathComponentCellClass(mtm: MainThreadMarker) -> &'static AnyClass;
 
         #[cfg(all(feature = "AppKit_NSPathComponentCell", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other pathComponentCells)]
@@ -204,7 +204,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSPathCell")]
     unsafe impl NSPathCell {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 

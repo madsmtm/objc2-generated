@@ -191,7 +191,7 @@ extern_methods!(
         pub unsafe fn setCompletionDelay(&self, completion_delay: NSTimeInterval);
 
         #[method(defaultCompletionDelay)]
-        pub unsafe fn defaultCompletionDelay() -> NSTimeInterval;
+        pub unsafe fn defaultCompletionDelay(mtm: MainThreadMarker) -> NSTimeInterval;
 
         #[cfg(feature = "Foundation_NSCharacterSet")]
         #[method_id(@__retain_semantics Other tokenizingCharacterSet)]
@@ -206,7 +206,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSCharacterSet")]
         #[method_id(@__retain_semantics Other defaultTokenizingCharacterSet)]
-        pub unsafe fn defaultTokenizingCharacterSet() -> Id<NSCharacterSet>;
+        pub unsafe fn defaultTokenizingCharacterSet(mtm: MainThreadMarker) -> Id<NSCharacterSet>;
     }
 );
 
@@ -240,6 +240,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTokenField")]
     unsafe impl NSTokenField {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );

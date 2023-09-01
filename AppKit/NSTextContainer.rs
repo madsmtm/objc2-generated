@@ -113,7 +113,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSTextView")]
         #[method_id(@__retain_semantics Other textView)]
-        pub unsafe fn textView(&self) -> Option<Id<NSTextView>>;
+        pub unsafe fn textView(&self, mtm: MainThreadMarker) -> Option<Id<NSTextView>>;
 
         #[cfg(feature = "AppKit_NSTextView")]
         #[method(setTextView:)]

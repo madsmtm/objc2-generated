@@ -77,6 +77,7 @@ extern_methods!(
             conversion_factor: CGFloat,
             step_up_cycle: &NSArray<NSNumber>,
             step_down_cycle: &NSArray<NSNumber>,
+            mtm: MainThreadMarker,
         );
 
         #[cfg(feature = "Foundation_NSCoder")]
@@ -227,7 +228,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSRulerView")]
     unsafe impl NSRulerView {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 

@@ -222,7 +222,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTextField")]
     unsafe impl NSTextField {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 
@@ -256,21 +256,28 @@ extern_methods!(
     unsafe impl NSTextField {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other labelWithString:)]
-        pub unsafe fn labelWithString(string_value: &NSString) -> Id<Self>;
+        pub unsafe fn labelWithString(string_value: &NSString, mtm: MainThreadMarker) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other wrappingLabelWithString:)]
-        pub unsafe fn wrappingLabelWithString(string_value: &NSString) -> Id<Self>;
+        pub unsafe fn wrappingLabelWithString(
+            string_value: &NSString,
+            mtm: MainThreadMarker,
+        ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other labelWithAttributedString:)]
         pub unsafe fn labelWithAttributedString(
             attributed_string_value: &NSAttributedString,
+            mtm: MainThreadMarker,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other textFieldWithString:)]
-        pub unsafe fn textFieldWithString(string_value: &NSString) -> Id<Self>;
+        pub unsafe fn textFieldWithString(
+            string_value: &NSString,
+            mtm: MainThreadMarker,
+        ) -> Id<Self>;
     }
 );
 

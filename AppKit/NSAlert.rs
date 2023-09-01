@@ -40,7 +40,7 @@ extern_methods!(
     unsafe impl NSAlert {
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other alertWithError:)]
-        pub unsafe fn alertWithError(error: &NSError) -> Id<NSAlert>;
+        pub unsafe fn alertWithError(error: &NSError, mtm: MainThreadMarker) -> Id<NSAlert>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other messageText)]
@@ -144,7 +144,7 @@ extern_methods!(
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 

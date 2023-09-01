@@ -35,7 +35,7 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other templateViews)]
-        pub unsafe fn templateViews(&self) -> Id<NSArray<NSView>>;
+        pub unsafe fn templateViews(&self, mtm: MainThreadMarker) -> Id<NSArray<NSView>>;
 
         #[cfg(feature = "Foundation_NSPredicate")]
         #[method(setPredicate:)]

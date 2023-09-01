@@ -49,7 +49,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSOpenPanel")]
     unsafe impl NSOpenPanel {
         #[method_id(@__retain_semantics Other openPanel)]
-        pub unsafe fn openPanel() -> Id<NSOpenPanel>;
+        pub unsafe fn openPanel(mtm: MainThreadMarker) -> Id<NSOpenPanel>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other URLs)]
@@ -155,7 +155,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSOpenPanel")]
     unsafe impl NSOpenPanel {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 

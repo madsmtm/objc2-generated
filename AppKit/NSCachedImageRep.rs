@@ -53,7 +53,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSWindow")]
         #[deprecated]
         #[method_id(@__retain_semantics Other window)]
-        pub unsafe fn window(&self) -> Option<Id<NSWindow>>;
+        pub unsafe fn window(&self, mtm: MainThreadMarker) -> Option<Id<NSWindow>>;
 
         #[deprecated]
         #[method(rect)]

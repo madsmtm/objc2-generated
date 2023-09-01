@@ -144,7 +144,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSClipView")]
     unsafe impl NSClipView {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 

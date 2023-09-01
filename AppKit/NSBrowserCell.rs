@@ -56,11 +56,11 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other branchImage)]
-        pub unsafe fn branchImage() -> Option<Id<NSImage>>;
+        pub unsafe fn branchImage(mtm: MainThreadMarker) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other highlightedBranchImage)]
-        pub unsafe fn highlightedBranchImage() -> Option<Id<NSImage>>;
+        pub unsafe fn highlightedBranchImage(mtm: MainThreadMarker) -> Option<Id<NSImage>>;
 
         #[cfg(all(feature = "AppKit_NSColor", feature = "AppKit_NSView"))]
         #[method_id(@__retain_semantics Other highlightColorInView:)]
@@ -116,6 +116,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSBrowserCell")]
     unsafe impl NSBrowserCell {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );

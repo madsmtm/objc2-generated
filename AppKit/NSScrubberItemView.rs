@@ -93,7 +93,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSScrubberArrangedView")]
     unsafe impl NSScrubberArrangedView {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 
@@ -169,7 +169,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSScrubberSelectionView")]
     unsafe impl NSScrubberSelectionView {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 
@@ -245,7 +245,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSScrubberItemView")]
     unsafe impl NSScrubberItemView {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 
@@ -333,7 +333,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSScrubberTextItemView")]
     unsafe impl NSScrubberTextItemView {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 
@@ -427,6 +427,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSScrubberImageItemView")]
     unsafe impl NSScrubberImageItemView {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );

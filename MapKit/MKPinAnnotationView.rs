@@ -63,15 +63,15 @@ extern_methods!(
     unsafe impl MKPinAnnotationView {
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other redPinColor)]
-        pub unsafe fn redPinColor() -> Id<NSColor>;
+        pub unsafe fn redPinColor(mtm: MainThreadMarker) -> Id<NSColor>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other greenPinColor)]
-        pub unsafe fn greenPinColor() -> Id<NSColor>;
+        pub unsafe fn greenPinColor(mtm: MainThreadMarker) -> Id<NSColor>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other purplePinColor)]
-        pub unsafe fn purplePinColor() -> Id<NSColor>;
+        pub unsafe fn purplePinColor(mtm: MainThreadMarker) -> Id<NSColor>;
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other pinTintColor)]
@@ -143,6 +143,6 @@ extern_methods!(
     #[cfg(feature = "MapKit_MKPinAnnotationView")]
     unsafe impl MKPinAnnotationView {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );

@@ -123,7 +123,7 @@ extern_methods!(
         ) -> Id<NSPrintOperation>;
 
         #[method_id(@__retain_semantics Other currentOperation)]
-        pub unsafe fn currentOperation() -> Option<Id<NSPrintOperation>>;
+        pub unsafe fn currentOperation(mtm: MainThreadMarker) -> Option<Id<NSPrintOperation>>;
 
         #[method(setCurrentOperation:)]
         pub unsafe fn setCurrentOperation(current_operation: Option<&NSPrintOperation>);
@@ -240,7 +240,7 @@ extern_methods!(
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 

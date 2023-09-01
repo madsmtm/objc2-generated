@@ -161,7 +161,7 @@ extern_methods!(
         pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
 
         #[method(prefersTrackingUntilMouseUp)]
-        pub unsafe fn prefersTrackingUntilMouseUp() -> bool;
+        pub unsafe fn prefersTrackingUntilMouseUp(mtm: MainThreadMarker) -> bool;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other controlView)]
@@ -539,7 +539,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method_id(@__retain_semantics Other defaultMenu)]
-        pub unsafe fn defaultMenu() -> Option<Id<NSMenu>>;
+        pub unsafe fn defaultMenu(mtm: MainThreadMarker) -> Option<Id<NSMenu>>;
 
         #[method(sendsActionOnEndEditing)]
         pub unsafe fn sendsActionOnEndEditing(&self) -> bool;
@@ -609,7 +609,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSCell")]
     unsafe impl NSCell {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 
@@ -642,7 +642,7 @@ extern_methods!(
         pub unsafe fn setFocusRingType(&self, focus_ring_type: NSFocusRingType);
 
         #[method(defaultFocusRingType)]
-        pub unsafe fn defaultFocusRingType() -> NSFocusRingType;
+        pub unsafe fn defaultFocusRingType(mtm: MainThreadMarker) -> NSFocusRingType;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(drawFocusRingMaskWithFrame:inView:)]

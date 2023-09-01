@@ -80,7 +80,10 @@ extern_methods!(
     unsafe impl NSStackView {
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other stackViewWithViews:)]
-        pub unsafe fn stackViewWithViews(views: &NSArray<NSView>) -> Id<Self>;
+        pub unsafe fn stackViewWithViews(
+            views: &NSArray<NSView>,
+            mtm: MainThreadMarker,
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSStackViewDelegate>>>;
@@ -221,7 +224,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSStackView")]
     unsafe impl NSStackView {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 
