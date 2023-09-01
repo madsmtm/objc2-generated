@@ -359,6 +359,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSURL")]
+unsafe impl Send for NSURL {}
+
+#[cfg(feature = "Foundation_NSURL")]
+unsafe impl Sync for NSURL {}
+
+#[cfg(feature = "Foundation_NSURL")]
 unsafe impl NSCoding for NSURL {}
 
 #[cfg(feature = "Foundation_NSURL")]
@@ -787,6 +793,12 @@ extern_class!(
         type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Foundation_NSURLQueryItem")]
+unsafe impl Send for NSURLQueryItem {}
+
+#[cfg(feature = "Foundation_NSURLQueryItem")]
+unsafe impl Sync for NSURLQueryItem {}
 
 #[cfg(feature = "Foundation_NSURLQueryItem")]
 unsafe impl NSCoding for NSURLQueryItem {}

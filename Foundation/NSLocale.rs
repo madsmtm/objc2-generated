@@ -20,6 +20,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSLocale")]
+unsafe impl Send for NSLocale {}
+
+#[cfg(feature = "Foundation_NSLocale")]
+unsafe impl Sync for NSLocale {}
+
+#[cfg(feature = "Foundation_NSLocale")]
 unsafe impl NSCoding for NSLocale {}
 
 #[cfg(feature = "Foundation_NSLocale")]

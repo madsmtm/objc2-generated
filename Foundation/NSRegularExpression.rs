@@ -29,6 +29,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSRegularExpression")]
+unsafe impl Send for NSRegularExpression {}
+
+#[cfg(feature = "Foundation_NSRegularExpression")]
+unsafe impl Sync for NSRegularExpression {}
+
+#[cfg(feature = "Foundation_NSRegularExpression")]
 unsafe impl NSCoding for NSRegularExpression {}
 
 #[cfg(feature = "Foundation_NSRegularExpression")]

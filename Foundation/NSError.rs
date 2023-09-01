@@ -54,6 +54,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSError")]
+unsafe impl Send for NSError {}
+
+#[cfg(feature = "Foundation_NSError")]
+unsafe impl Sync for NSError {}
+
+#[cfg(feature = "Foundation_NSError")]
 unsafe impl NSCoding for NSError {}
 
 #[cfg(feature = "Foundation_NSError")]

@@ -37,6 +37,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSDateFormatter")]
+unsafe impl Send for NSDateFormatter {}
+
+#[cfg(feature = "Foundation_NSDateFormatter")]
+unsafe impl Sync for NSDateFormatter {}
+
+#[cfg(feature = "Foundation_NSDateFormatter")]
 unsafe impl NSCoding for NSDateFormatter {}
 
 #[cfg(feature = "Foundation_NSDateFormatter")]

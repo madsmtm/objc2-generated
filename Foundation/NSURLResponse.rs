@@ -16,6 +16,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSURLResponse")]
+unsafe impl Send for NSURLResponse {}
+
+#[cfg(feature = "Foundation_NSURLResponse")]
+unsafe impl Sync for NSURLResponse {}
+
+#[cfg(feature = "Foundation_NSURLResponse")]
 unsafe impl NSCoding for NSURLResponse {}
 
 #[cfg(feature = "Foundation_NSURLResponse")]
@@ -85,6 +91,12 @@ extern_class!(
         type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Foundation_NSHTTPURLResponse")]
+unsafe impl Send for NSHTTPURLResponse {}
+
+#[cfg(feature = "Foundation_NSHTTPURLResponse")]
+unsafe impl Sync for NSHTTPURLResponse {}
 
 #[cfg(feature = "Foundation_NSHTTPURLResponse")]
 unsafe impl NSCoding for NSHTTPURLResponse {}

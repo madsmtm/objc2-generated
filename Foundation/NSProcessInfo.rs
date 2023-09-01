@@ -33,6 +33,10 @@ extern_struct!(
     }
 );
 
+unsafe impl Send for NSOperatingSystemVersion {}
+
+unsafe impl Sync for NSOperatingSystemVersion {}
+
 extern_class!(
     #[derive(PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSProcessInfo")]

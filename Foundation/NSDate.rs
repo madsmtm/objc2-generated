@@ -20,6 +20,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSDate")]
+unsafe impl Send for NSDate {}
+
+#[cfg(feature = "Foundation_NSDate")]
+unsafe impl Sync for NSDate {}
+
+#[cfg(feature = "Foundation_NSDate")]
 unsafe impl NSCoding for NSDate {}
 
 #[cfg(feature = "Foundation_NSDate")]

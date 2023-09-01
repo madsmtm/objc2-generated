@@ -103,6 +103,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSNumber")]
+unsafe impl Send for NSNumber {}
+
+#[cfg(feature = "Foundation_NSNumber")]
+unsafe impl Sync for NSNumber {}
+
+#[cfg(feature = "Foundation_NSNumber")]
 unsafe impl NSCoding for NSNumber {}
 
 #[cfg(feature = "Foundation_NSNumber")]

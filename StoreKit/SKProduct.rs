@@ -28,6 +28,12 @@ extern_class!(
 );
 
 #[cfg(feature = "StoreKit_SKProductSubscriptionPeriod")]
+unsafe impl Send for SKProductSubscriptionPeriod {}
+
+#[cfg(feature = "StoreKit_SKProductSubscriptionPeriod")]
+unsafe impl Sync for SKProductSubscriptionPeriod {}
+
+#[cfg(feature = "StoreKit_SKProductSubscriptionPeriod")]
 unsafe impl NSObjectProtocol for SKProductSubscriptionPeriod {}
 
 extern_methods!(
@@ -64,6 +70,12 @@ extern_class!(
         type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "StoreKit_SKProduct")]
+unsafe impl Send for SKProduct {}
+
+#[cfg(feature = "StoreKit_SKProduct")]
+unsafe impl Sync for SKProduct {}
 
 #[cfg(feature = "StoreKit_SKProduct")]
 unsafe impl NSObjectProtocol for SKProduct {}

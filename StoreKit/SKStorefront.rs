@@ -18,6 +18,12 @@ extern_class!(
 );
 
 #[cfg(feature = "StoreKit_SKStorefront")]
+unsafe impl Send for SKStorefront {}
+
+#[cfg(feature = "StoreKit_SKStorefront")]
+unsafe impl Sync for SKStorefront {}
+
+#[cfg(feature = "StoreKit_SKStorefront")]
 unsafe impl NSObjectProtocol for SKStorefront {}
 
 extern_methods!(

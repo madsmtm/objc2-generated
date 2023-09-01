@@ -18,6 +18,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSURLSession")]
+unsafe impl Send for NSURLSession {}
+
+#[cfg(feature = "Foundation_NSURLSession")]
+unsafe impl Sync for NSURLSession {}
+
+#[cfg(feature = "Foundation_NSURLSession")]
 unsafe impl NSObjectProtocol for NSURLSession {}
 
 extern_methods!(
@@ -372,6 +378,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSURLSessionTask")]
+unsafe impl Send for NSURLSessionTask {}
+
+#[cfg(feature = "Foundation_NSURLSessionTask")]
+unsafe impl Sync for NSURLSessionTask {}
+
+#[cfg(feature = "Foundation_NSURLSessionTask")]
 unsafe impl NSCopying for NSURLSessionTask {}
 
 #[cfg(feature = "Foundation_NSURLSessionTask")]
@@ -515,6 +527,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSURLSessionDataTask")]
+unsafe impl Send for NSURLSessionDataTask {}
+
+#[cfg(feature = "Foundation_NSURLSessionDataTask")]
+unsafe impl Sync for NSURLSessionDataTask {}
+
+#[cfg(feature = "Foundation_NSURLSessionDataTask")]
 unsafe impl NSCopying for NSURLSessionDataTask {}
 
 #[cfg(feature = "Foundation_NSURLSessionDataTask")]
@@ -550,6 +568,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSURLSessionUploadTask")]
+unsafe impl Send for NSURLSessionUploadTask {}
+
+#[cfg(feature = "Foundation_NSURLSessionUploadTask")]
+unsafe impl Sync for NSURLSessionUploadTask {}
+
+#[cfg(feature = "Foundation_NSURLSessionUploadTask")]
 unsafe impl NSCopying for NSURLSessionUploadTask {}
 
 #[cfg(feature = "Foundation_NSURLSessionUploadTask")]
@@ -583,6 +607,12 @@ extern_class!(
         type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Foundation_NSURLSessionDownloadTask")]
+unsafe impl Send for NSURLSessionDownloadTask {}
+
+#[cfg(feature = "Foundation_NSURLSessionDownloadTask")]
+unsafe impl Sync for NSURLSessionDownloadTask {}
 
 #[cfg(feature = "Foundation_NSURLSessionDownloadTask")]
 unsafe impl NSCopying for NSURLSessionDownloadTask {}
@@ -625,6 +655,12 @@ extern_class!(
         type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Foundation_NSURLSessionStreamTask")]
+unsafe impl Send for NSURLSessionStreamTask {}
+
+#[cfg(feature = "Foundation_NSURLSessionStreamTask")]
+unsafe impl Sync for NSURLSessionStreamTask {}
 
 #[cfg(feature = "Foundation_NSURLSessionStreamTask")]
 unsafe impl NSCopying for NSURLSessionStreamTask {}
@@ -704,6 +740,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSURLSessionWebSocketMessage")]
+unsafe impl Send for NSURLSessionWebSocketMessage {}
+
+#[cfg(feature = "Foundation_NSURLSessionWebSocketMessage")]
+unsafe impl Sync for NSURLSessionWebSocketMessage {}
+
+#[cfg(feature = "Foundation_NSURLSessionWebSocketMessage")]
 unsafe impl NSObjectProtocol for NSURLSessionWebSocketMessage {}
 
 extern_methods!(
@@ -767,6 +809,12 @@ extern_class!(
         type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Foundation_NSURLSessionWebSocketTask")]
+unsafe impl Send for NSURLSessionWebSocketTask {}
+
+#[cfg(feature = "Foundation_NSURLSessionWebSocketTask")]
+unsafe impl Sync for NSURLSessionWebSocketTask {}
 
 #[cfg(feature = "Foundation_NSURLSessionWebSocketTask")]
 unsafe impl NSCopying for NSURLSessionWebSocketTask {}
@@ -858,6 +906,12 @@ extern_class!(
         type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Foundation_NSURLSessionConfiguration")]
+unsafe impl Send for NSURLSessionConfiguration {}
+
+#[cfg(feature = "Foundation_NSURLSessionConfiguration")]
+unsafe impl Sync for NSURLSessionConfiguration {}
 
 #[cfg(feature = "Foundation_NSURLSessionConfiguration")]
 unsafe impl NSCopying for NSURLSessionConfiguration {}
@@ -1562,6 +1616,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSURLSessionTaskTransactionMetrics")]
+unsafe impl Send for NSURLSessionTaskTransactionMetrics {}
+
+#[cfg(feature = "Foundation_NSURLSessionTaskTransactionMetrics")]
+unsafe impl Sync for NSURLSessionTaskTransactionMetrics {}
+
+#[cfg(feature = "Foundation_NSURLSessionTaskTransactionMetrics")]
 unsafe impl NSObjectProtocol for NSURLSessionTaskTransactionMetrics {}
 
 extern_methods!(
@@ -1712,6 +1772,12 @@ extern_class!(
         type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Foundation_NSURLSessionTaskMetrics")]
+unsafe impl Send for NSURLSessionTaskMetrics {}
+
+#[cfg(feature = "Foundation_NSURLSessionTaskMetrics")]
+unsafe impl Sync for NSURLSessionTaskMetrics {}
 
 #[cfg(feature = "Foundation_NSURLSessionTaskMetrics")]
 unsafe impl NSObjectProtocol for NSURLSessionTaskMetrics {}

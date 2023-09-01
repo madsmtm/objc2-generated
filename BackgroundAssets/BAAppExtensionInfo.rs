@@ -17,6 +17,12 @@ extern_class!(
 );
 
 #[cfg(feature = "BackgroundAssets_BAAppExtensionInfo")]
+unsafe impl Send for BAAppExtensionInfo {}
+
+#[cfg(feature = "BackgroundAssets_BAAppExtensionInfo")]
+unsafe impl Sync for BAAppExtensionInfo {}
+
+#[cfg(feature = "BackgroundAssets_BAAppExtensionInfo")]
 unsafe impl NSCoding for BAAppExtensionInfo {}
 
 #[cfg(feature = "BackgroundAssets_BAAppExtensionInfo")]

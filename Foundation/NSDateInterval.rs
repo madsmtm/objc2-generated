@@ -16,6 +16,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSDateInterval")]
+unsafe impl Send for NSDateInterval {}
+
+#[cfg(feature = "Foundation_NSDateInterval")]
+unsafe impl Sync for NSDateInterval {}
+
+#[cfg(feature = "Foundation_NSDateInterval")]
 unsafe impl NSCoding for NSDateInterval {}
 
 #[cfg(feature = "Foundation_NSDateInterval")]

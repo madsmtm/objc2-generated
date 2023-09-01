@@ -15,6 +15,10 @@ extern_struct!(
     }
 );
 
+unsafe impl Send for NSAffineTransformStruct {}
+
+unsafe impl Sync for NSAffineTransformStruct {}
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSAffineTransform")]

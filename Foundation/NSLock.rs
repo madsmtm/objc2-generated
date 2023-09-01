@@ -28,6 +28,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSLock")]
+unsafe impl Send for NSLock {}
+
+#[cfg(feature = "Foundation_NSLock")]
+unsafe impl Sync for NSLock {}
+
+#[cfg(feature = "Foundation_NSLock")]
 unsafe impl NSLocking for NSLock {}
 
 #[cfg(feature = "Foundation_NSLock")]
@@ -83,6 +89,12 @@ extern_class!(
         type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Foundation_NSConditionLock")]
+unsafe impl Send for NSConditionLock {}
+
+#[cfg(feature = "Foundation_NSConditionLock")]
+unsafe impl Sync for NSConditionLock {}
 
 #[cfg(feature = "Foundation_NSConditionLock")]
 unsafe impl NSLocking for NSConditionLock {}
@@ -161,6 +173,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSRecursiveLock")]
+unsafe impl Send for NSRecursiveLock {}
+
+#[cfg(feature = "Foundation_NSRecursiveLock")]
+unsafe impl Sync for NSRecursiveLock {}
+
+#[cfg(feature = "Foundation_NSRecursiveLock")]
 unsafe impl NSLocking for NSRecursiveLock {}
 
 #[cfg(feature = "Foundation_NSRecursiveLock")]
@@ -209,6 +227,12 @@ extern_class!(
         type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Foundation_NSCondition")]
+unsafe impl Send for NSCondition {}
+
+#[cfg(feature = "Foundation_NSCondition")]
+unsafe impl Sync for NSCondition {}
 
 #[cfg(feature = "Foundation_NSCondition")]
 unsafe impl NSLocking for NSCondition {}

@@ -18,6 +18,12 @@ extern_class!(
 );
 
 #[cfg(feature = "CloudKit_CKSystemSharingUIObserver")]
+unsafe impl Send for CKSystemSharingUIObserver {}
+
+#[cfg(feature = "CloudKit_CKSystemSharingUIObserver")]
+unsafe impl Sync for CKSystemSharingUIObserver {}
+
+#[cfg(feature = "CloudKit_CKSystemSharingUIObserver")]
 unsafe impl NSObjectProtocol for CKSystemSharingUIObserver {}
 
 extern_methods!(

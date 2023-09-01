@@ -24,6 +24,10 @@ extern_struct!(
     }
 );
 
+unsafe impl Send for NSEdgeInsets {}
+
+unsafe impl Sync for NSEdgeInsets {}
+
 ns_options!(
     #[underlying(c_ulonglong)]
     pub enum NSAlignmentOptions {

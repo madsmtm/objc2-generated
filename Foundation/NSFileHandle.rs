@@ -16,6 +16,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSFileHandle")]
+unsafe impl Send for NSFileHandle {}
+
+#[cfg(feature = "Foundation_NSFileHandle")]
+unsafe impl Sync for NSFileHandle {}
+
+#[cfg(feature = "Foundation_NSFileHandle")]
 unsafe impl NSCoding for NSFileHandle {}
 
 #[cfg(feature = "Foundation_NSFileHandle")]
@@ -297,6 +303,12 @@ extern_class!(
         type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Foundation_NSPipe")]
+unsafe impl Send for NSPipe {}
+
+#[cfg(feature = "Foundation_NSPipe")]
+unsafe impl Sync for NSPipe {}
 
 #[cfg(feature = "Foundation_NSPipe")]
 unsafe impl NSObjectProtocol for NSPipe {}

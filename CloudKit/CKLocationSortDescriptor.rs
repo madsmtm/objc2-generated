@@ -19,6 +19,12 @@ extern_class!(
 );
 
 #[cfg(feature = "CloudKit_CKLocationSortDescriptor")]
+unsafe impl Send for CKLocationSortDescriptor {}
+
+#[cfg(feature = "CloudKit_CKLocationSortDescriptor")]
+unsafe impl Sync for CKLocationSortDescriptor {}
+
+#[cfg(feature = "CloudKit_CKLocationSortDescriptor")]
 unsafe impl NSCoding for CKLocationSortDescriptor {}
 
 #[cfg(feature = "CloudKit_CKLocationSortDescriptor")]

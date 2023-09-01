@@ -25,6 +25,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSHTTPCookieStorage")]
+unsafe impl Send for NSHTTPCookieStorage {}
+
+#[cfg(feature = "Foundation_NSHTTPCookieStorage")]
+unsafe impl Sync for NSHTTPCookieStorage {}
+
+#[cfg(feature = "Foundation_NSHTTPCookieStorage")]
 unsafe impl NSObjectProtocol for NSHTTPCookieStorage {}
 
 extern_methods!(

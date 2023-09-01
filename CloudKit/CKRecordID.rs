@@ -18,6 +18,12 @@ extern_class!(
 );
 
 #[cfg(feature = "CloudKit_CKRecordID")]
+unsafe impl Send for CKRecordID {}
+
+#[cfg(feature = "CloudKit_CKRecordID")]
+unsafe impl Sync for CKRecordID {}
+
+#[cfg(feature = "CloudKit_CKRecordID")]
 unsafe impl NSCoding for CKRecordID {}
 
 #[cfg(feature = "CloudKit_CKRecordID")]

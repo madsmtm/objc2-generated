@@ -17,6 +17,12 @@ extern_class!(
 );
 
 #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+unsafe impl Send for UTType {}
+
+#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+unsafe impl Sync for UTType {}
+
+#[cfg(feature = "UniformTypeIdentifiers_UTType")]
 unsafe impl NSCoding for UTType {}
 
 #[cfg(feature = "UniformTypeIdentifiers_UTType")]

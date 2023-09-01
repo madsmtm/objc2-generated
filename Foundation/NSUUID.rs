@@ -16,6 +16,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSUUID")]
+unsafe impl Send for NSUUID {}
+
+#[cfg(feature = "Foundation_NSUUID")]
+unsafe impl Sync for NSUUID {}
+
+#[cfg(feature = "Foundation_NSUUID")]
 unsafe impl NSCoding for NSUUID {}
 
 #[cfg(feature = "Foundation_NSUUID")]

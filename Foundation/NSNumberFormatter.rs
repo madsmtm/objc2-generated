@@ -65,6 +65,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSNumberFormatter")]
+unsafe impl Send for NSNumberFormatter {}
+
+#[cfg(feature = "Foundation_NSNumberFormatter")]
+unsafe impl Sync for NSNumberFormatter {}
+
+#[cfg(feature = "Foundation_NSNumberFormatter")]
 unsafe impl NSCoding for NSNumberFormatter {}
 
 #[cfg(feature = "Foundation_NSNumberFormatter")]

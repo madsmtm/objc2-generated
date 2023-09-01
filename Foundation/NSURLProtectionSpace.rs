@@ -46,6 +46,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSURLProtectionSpace")]
+unsafe impl Send for NSURLProtectionSpace {}
+
+#[cfg(feature = "Foundation_NSURLProtectionSpace")]
+unsafe impl Sync for NSURLProtectionSpace {}
+
+#[cfg(feature = "Foundation_NSURLProtectionSpace")]
 unsafe impl NSCoding for NSURLProtectionSpace {}
 
 #[cfg(feature = "Foundation_NSURLProtectionSpace")]

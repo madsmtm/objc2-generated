@@ -27,6 +27,12 @@ extern_class!(
 );
 
 #[cfg(feature = "AuthenticationServices_ASAuthorizationWebBrowserPublicKeyCredentialManager")]
+unsafe impl Send for ASAuthorizationWebBrowserPublicKeyCredentialManager {}
+
+#[cfg(feature = "AuthenticationServices_ASAuthorizationWebBrowserPublicKeyCredentialManager")]
+unsafe impl Sync for ASAuthorizationWebBrowserPublicKeyCredentialManager {}
+
+#[cfg(feature = "AuthenticationServices_ASAuthorizationWebBrowserPublicKeyCredentialManager")]
 unsafe impl NSObjectProtocol for ASAuthorizationWebBrowserPublicKeyCredentialManager {}
 
 extern_methods!(

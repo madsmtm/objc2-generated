@@ -25,6 +25,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSCachedURLResponse")]
+unsafe impl Send for NSCachedURLResponse {}
+
+#[cfg(feature = "Foundation_NSCachedURLResponse")]
+unsafe impl Sync for NSCachedURLResponse {}
+
+#[cfg(feature = "Foundation_NSCachedURLResponse")]
 unsafe impl NSCoding for NSCachedURLResponse {}
 
 #[cfg(feature = "Foundation_NSCachedURLResponse")]
@@ -101,6 +107,12 @@ extern_class!(
         type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Foundation_NSURLCache")]
+unsafe impl Send for NSURLCache {}
+
+#[cfg(feature = "Foundation_NSURLCache")]
+unsafe impl Sync for NSURLCache {}
 
 #[cfg(feature = "Foundation_NSURLCache")]
 unsafe impl NSObjectProtocol for NSURLCache {}

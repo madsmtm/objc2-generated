@@ -47,6 +47,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSDecimalNumber")]
+unsafe impl Send for NSDecimalNumber {}
+
+#[cfg(feature = "Foundation_NSDecimalNumber")]
+unsafe impl Sync for NSDecimalNumber {}
+
+#[cfg(feature = "Foundation_NSDecimalNumber")]
 unsafe impl NSCoding for NSDecimalNumber {}
 
 #[cfg(feature = "Foundation_NSDecimalNumber")]
@@ -284,6 +290,12 @@ extern_class!(
         type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Foundation_NSDecimalNumberHandler")]
+unsafe impl Send for NSDecimalNumberHandler {}
+
+#[cfg(feature = "Foundation_NSDecimalNumberHandler")]
+unsafe impl Sync for NSDecimalNumberHandler {}
 
 #[cfg(feature = "Foundation_NSDecimalNumberHandler")]
 unsafe impl NSCoding for NSDecimalNumberHandler {}

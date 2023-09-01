@@ -136,12 +136,20 @@ extern_struct!(
     }
 );
 
+unsafe impl Send for NSSwappedFloat {}
+
+unsafe impl Sync for NSSwappedFloat {}
+
 extern_struct!(
     #[encoding_name("?")]
     pub struct NSSwappedDouble {
         pub v: c_ulonglong,
     }
 );
+
+unsafe impl Send for NSSwappedDouble {}
+
+unsafe impl Sync for NSSwappedDouble {}
 
 inline_fn!(
     pub unsafe fn NSConvertHostFloatToSwapped(x: c_float) -> NSSwappedFloat {

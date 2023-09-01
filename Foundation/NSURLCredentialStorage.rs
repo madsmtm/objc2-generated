@@ -16,6 +16,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSURLCredentialStorage")]
+unsafe impl Send for NSURLCredentialStorage {}
+
+#[cfg(feature = "Foundation_NSURLCredentialStorage")]
+unsafe impl Sync for NSURLCredentialStorage {}
+
+#[cfg(feature = "Foundation_NSURLCredentialStorage")]
 unsafe impl NSObjectProtocol for NSURLCredentialStorage {}
 
 extern_methods!(

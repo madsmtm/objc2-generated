@@ -69,6 +69,12 @@ extern_class!(
 );
 
 #[cfg(feature = "CloudKit_CKNotification")]
+unsafe impl Send for CKNotification {}
+
+#[cfg(feature = "CloudKit_CKNotification")]
+unsafe impl Sync for CKNotification {}
+
+#[cfg(feature = "CloudKit_CKNotification")]
 unsafe impl NSObjectProtocol for CKNotification {}
 
 extern_methods!(
@@ -188,6 +194,12 @@ extern_class!(
 );
 
 #[cfg(feature = "CloudKit_CKQueryNotification")]
+unsafe impl Send for CKQueryNotification {}
+
+#[cfg(feature = "CloudKit_CKQueryNotification")]
+unsafe impl Sync for CKQueryNotification {}
+
+#[cfg(feature = "CloudKit_CKQueryNotification")]
 unsafe impl NSObjectProtocol for CKQueryNotification {}
 
 extern_methods!(
@@ -241,6 +253,12 @@ extern_class!(
 );
 
 #[cfg(feature = "CloudKit_CKRecordZoneNotification")]
+unsafe impl Send for CKRecordZoneNotification {}
+
+#[cfg(feature = "CloudKit_CKRecordZoneNotification")]
+unsafe impl Sync for CKRecordZoneNotification {}
+
+#[cfg(feature = "CloudKit_CKRecordZoneNotification")]
 unsafe impl NSObjectProtocol for CKRecordZoneNotification {}
 
 extern_methods!(
@@ -285,6 +303,12 @@ extern_class!(
         type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "CloudKit_CKDatabaseNotification")]
+unsafe impl Send for CKDatabaseNotification {}
+
+#[cfg(feature = "CloudKit_CKDatabaseNotification")]
+unsafe impl Sync for CKDatabaseNotification {}
 
 #[cfg(feature = "CloudKit_CKDatabaseNotification")]
 unsafe impl NSObjectProtocol for CKDatabaseNotification {}

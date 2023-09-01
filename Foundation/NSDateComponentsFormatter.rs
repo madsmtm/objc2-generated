@@ -45,6 +45,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSDateComponentsFormatter")]
+unsafe impl Send for NSDateComponentsFormatter {}
+
+#[cfg(feature = "Foundation_NSDateComponentsFormatter")]
+unsafe impl Sync for NSDateComponentsFormatter {}
+
+#[cfg(feature = "Foundation_NSDateComponentsFormatter")]
 unsafe impl NSCoding for NSDateComponentsFormatter {}
 
 #[cfg(feature = "Foundation_NSDateComponentsFormatter")]

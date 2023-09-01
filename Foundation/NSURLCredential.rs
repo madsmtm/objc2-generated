@@ -26,6 +26,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSURLCredential")]
+unsafe impl Send for NSURLCredential {}
+
+#[cfg(feature = "Foundation_NSURLCredential")]
+unsafe impl Sync for NSURLCredential {}
+
+#[cfg(feature = "Foundation_NSURLCredential")]
 unsafe impl NSCoding for NSURLCredential {}
 
 #[cfg(feature = "Foundation_NSURLCredential")]

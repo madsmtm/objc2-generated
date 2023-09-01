@@ -33,6 +33,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSProgress")]
+unsafe impl Send for NSProgress {}
+
+#[cfg(feature = "Foundation_NSProgress")]
+unsafe impl Sync for NSProgress {}
+
+#[cfg(feature = "Foundation_NSProgress")]
 unsafe impl NSObjectProtocol for NSProgress {}
 
 extern_methods!(
