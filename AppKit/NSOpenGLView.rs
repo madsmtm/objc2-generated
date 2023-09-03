@@ -15,7 +15,7 @@ extern_methods!(
 
         #[deprecated = "Use NSOpenGLView instead."]
         #[method(setWantsBestResolutionOpenGLSurface:)]
-        pub unsafe fn setWantsBestResolutionOpenGLSurface(
+        pub fn setWantsBestResolutionOpenGLSurface(
             &self,
             wants_best_resolution_open_gl_surface: bool,
         );

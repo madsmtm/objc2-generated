@@ -11,7 +11,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSUUID")]
     unsafe impl ClassType for NSUUID {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
+        type Mutability = Immutable;
     }
 );
 

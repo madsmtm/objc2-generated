@@ -338,7 +338,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSEvent")]
     unsafe impl ClassType for NSEvent {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
+        type Mutability = Immutable;
     }
 );
 

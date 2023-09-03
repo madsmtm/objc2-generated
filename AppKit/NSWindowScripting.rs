@@ -10,7 +10,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSWindow")]
     unsafe impl NSWindow {
         #[method(hasCloseBox)]
-        pub unsafe fn hasCloseBox(&self) -> bool;
+        pub fn hasCloseBox(&self) -> bool;
 
         #[method(hasTitleBar)]
         pub unsafe fn hasTitleBar(&self) -> bool;
@@ -19,13 +19,13 @@ extern_methods!(
         pub unsafe fn isFloatingPanel(&self) -> bool;
 
         #[method(isMiniaturizable)]
-        pub unsafe fn isMiniaturizable(&self) -> bool;
+        pub fn isMiniaturizable(&self) -> bool;
 
         #[method(isModalPanel)]
         pub unsafe fn isModalPanel(&self) -> bool;
 
         #[method(isResizable)]
-        pub unsafe fn isResizable(&self) -> bool;
+        pub fn isResizable(&self) -> bool;
 
         #[method(isZoomable)]
         pub unsafe fn isZoomable(&self) -> bool;

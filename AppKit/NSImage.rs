@@ -94,10 +94,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Init initWithData:)]
-        pub unsafe fn initWithData(
-            this: Option<Allocated<Self>>,
-            data: &NSData,
-        ) -> Option<Id<Self>>;
+        pub fn initWithData(this: Option<Allocated<Self>>, data: &NSData) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithContentsOfFile:)]
@@ -115,7 +112,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initByReferencingFile:)]
-        pub unsafe fn initByReferencingFile(
+        pub fn initByReferencingFile(
             this: Option<Allocated<Self>>,
             file_name: &NSString,
         ) -> Option<Id<Self>>;

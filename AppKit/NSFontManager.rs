@@ -91,7 +91,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method_id(@__retain_semantics Other fontMenu:)]
-        pub unsafe fn fontMenu(&self, create: bool) -> Option<Id<NSMenu>>;
+        pub unsafe fn fontMenu(&self, create: bool, mtm: MainThreadMarker) -> Option<Id<NSMenu>>;
 
         #[cfg(feature = "AppKit_NSFontPanel")]
         #[method_id(@__retain_semantics Other fontPanel:)]

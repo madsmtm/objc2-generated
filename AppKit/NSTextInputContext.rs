@@ -15,7 +15,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSTextInputContext")]
     unsafe impl ClassType for NSTextInputContext {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 
@@ -26,7 +26,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTextInputContext")]
     unsafe impl NSTextInputContext {
         #[method_id(@__retain_semantics Other currentInputContext)]
-        pub unsafe fn currentInputContext() -> Option<Id<NSTextInputContext>>;
+        pub unsafe fn currentInputContext(mtm: MainThreadMarker) -> Option<Id<NSTextInputContext>>;
 
         #[method_id(@__retain_semantics Init initWithClient:)]
         pub unsafe fn initWithClient(
@@ -68,10 +68,10 @@ extern_methods!(
         pub unsafe fn handleEvent(&self, event: &NSEvent) -> bool;
 
         #[method(discardMarkedText)]
-        pub unsafe fn discardMarkedText(&self);
+        pub fn discardMarkedText(&self);
 
         #[method(invalidateCharacterCoordinates)]
-        pub unsafe fn invalidateCharacterCoordinates(&self);
+        pub fn invalidateCharacterCoordinates(&self);
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other keyboardInputSources)]
@@ -80,8 +80,7 @@ extern_methods!(
         ) -> Option<Id<NSArray<NSTextInputSourceIdentifier>>>;
 
         #[method_id(@__retain_semantics Other selectedKeyboardInputSource)]
-        pub unsafe fn selectedKeyboardInputSource(&self)
-            -> Option<Id<NSTextInputSourceIdentifier>>;
+        pub fn selectedKeyboardInputSource(&self) -> Option<Id<NSTextInputSourceIdentifier>>;
 
         #[method(setSelectedKeyboardInputSource:)]
         pub unsafe fn setSelectedKeyboardInputSource(
@@ -93,6 +92,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other localizedNameForInputSource:)]
         pub unsafe fn localizedNameForInputSource(
             input_source_identifier: &NSTextInputSourceIdentifier,
+            mtm: MainThreadMarker,
         ) -> Option<Id<NSString>>;
     }
 );
@@ -102,7 +102,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTextInputContext")]
     unsafe impl NSTextInputContext {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 

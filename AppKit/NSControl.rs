@@ -86,10 +86,10 @@ extern_methods!(
         pub unsafe fn setContinuous(&self, continuous: bool);
 
         #[method(isEnabled)]
-        pub unsafe fn isEnabled(&self) -> bool;
+        pub fn isEnabled(&self) -> bool;
 
         #[method(setEnabled:)]
-        pub unsafe fn setEnabled(&self, enabled: bool);
+        pub fn setEnabled(&self, enabled: bool);
 
         #[method(refusesFirstResponder)]
         pub unsafe fn refusesFirstResponder(&self) -> bool;

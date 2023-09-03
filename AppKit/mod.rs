@@ -18,6 +18,10 @@
 #![doc = include_str!("../../../examples/nspasteboard.rs")]
 //! ```
 
+#[path = "../../additions/AppKit/mod.rs"]
+mod additions;
+pub use self::additions::*;
+
 #[path = "../../fixes/AppKit/mod.rs"]
 mod fixes;
 pub use self::fixes::*;

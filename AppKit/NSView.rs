@@ -113,7 +113,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[method_id(@__retain_semantics Other window)]
-        pub unsafe fn window(&self) -> Option<Id<NSWindow>>;
+        pub fn window(&self) -> Option<Id<NSWindow>>;
 
         #[method_id(@__retain_semantics Other superview)]
         pub unsafe fn superview(&self) -> Option<Id<NSView>>;
@@ -139,7 +139,7 @@ extern_methods!(
         pub unsafe fn isHidden(&self) -> bool;
 
         #[method(setHidden:)]
-        pub unsafe fn setHidden(&self, hidden: bool);
+        pub fn setHidden(&self, hidden: bool);
 
         #[method(isHiddenOrHasHiddenAncestor)]
         pub unsafe fn isHiddenOrHasHiddenAncestor(&self) -> bool;
@@ -220,10 +220,7 @@ extern_methods!(
         pub unsafe fn postsFrameChangedNotifications(&self) -> bool;
 
         #[method(setPostsFrameChangedNotifications:)]
-        pub unsafe fn setPostsFrameChangedNotifications(
-            &self,
-            posts_frame_changed_notifications: bool,
-        );
+        pub fn setPostsFrameChangedNotifications(&self, posts_frame_changed_notifications: bool);
 
         #[method(resizeSubviewsWithOldSize:)]
         pub unsafe fn resizeSubviewsWithOldSize(&self, old_size: NSSize);
@@ -250,7 +247,7 @@ extern_methods!(
         pub unsafe fn setFrameSize(&self, new_size: NSSize);
 
         #[method(frame)]
-        pub unsafe fn frame(&self) -> NSRect;
+        pub fn frame(&self) -> NSRect;
 
         #[method(setFrame:)]
         pub unsafe fn setFrame(&self, frame: NSRect);
@@ -289,7 +286,7 @@ extern_methods!(
         pub unsafe fn rotateByAngle(&self, angle: CGFloat);
 
         #[method(bounds)]
-        pub unsafe fn bounds(&self) -> NSRect;
+        pub fn bounds(&self) -> NSRect;
 
         #[method(setBounds:)]
         pub unsafe fn setBounds(&self, bounds: NSRect);
@@ -307,11 +304,7 @@ extern_methods!(
         pub unsafe fn isOpaque(&self) -> bool;
 
         #[method(convertPoint:fromView:)]
-        pub unsafe fn convertPoint_fromView(
-            &self,
-            point: NSPoint,
-            view: Option<&NSView>,
-        ) -> NSPoint;
+        pub fn convertPoint_fromView(&self, point: NSPoint, view: Option<&NSView>) -> NSPoint;
 
         #[method(convertPoint:toView:)]
         pub unsafe fn convertPoint_toView(&self, point: NSPoint, view: Option<&NSView>) -> NSPoint;
@@ -414,7 +407,7 @@ extern_methods!(
         pub unsafe fn focusView(mtm: MainThreadMarker) -> Option<Id<NSView>>;
 
         #[method(visibleRect)]
-        pub unsafe fn visibleRect(&self) -> NSRect;
+        pub fn visibleRect(&self) -> NSRect;
 
         #[method(display)]
         pub unsafe fn display(&self);
@@ -556,7 +549,7 @@ extern_methods!(
         pub unsafe fn wantsLayer(&self) -> bool;
 
         #[method(setWantsLayer:)]
-        pub unsafe fn setWantsLayer(&self, wants_layer: bool);
+        pub fn setWantsLayer(&self, wants_layer: bool);
 
         #[method(wantsUpdateLayer)]
         pub unsafe fn wantsUpdateLayer(&self) -> bool;
@@ -670,7 +663,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSTextInputContext")]
         #[method_id(@__retain_semantics Other inputContext)]
-        pub unsafe fn inputContext(&self) -> Option<Id<NSTextInputContext>>;
+        pub fn inputContext(&self) -> Option<Id<NSTextInputContext>>;
 
         #[method(rectForSmartMagnificationAtPoint:inRect:)]
         pub unsafe fn rectForSmartMagnificationAtPoint_inRect(
@@ -1088,7 +1081,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSCursor")]
         #[method(addCursorRect:cursor:)]
-        pub unsafe fn addCursorRect_cursor(&self, rect: NSRect, object: &NSCursor);
+        pub fn addCursorRect_cursor(&self, rect: NSRect, object: &NSCursor);
 
         #[cfg(feature = "AppKit_NSCursor")]
         #[method(removeCursorRect:cursor:)]
@@ -1110,7 +1103,7 @@ extern_methods!(
         ) -> NSTrackingRectTag;
 
         #[method(removeTrackingRect:)]
-        pub unsafe fn removeTrackingRect(&self, tag: NSTrackingRectTag);
+        pub fn removeTrackingRect(&self, tag: NSTrackingRectTag);
     }
 );
 

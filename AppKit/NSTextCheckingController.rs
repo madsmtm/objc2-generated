@@ -94,6 +94,7 @@ extern_methods!(
             location: NSUInteger,
             clicked_on_selection: bool,
             effective_range: NSRangePointer,
+            mtm: MainThreadMarker,
         ) -> Option<Id<NSMenu>>;
 
         #[method(spellCheckerDocumentTag)]

@@ -13,7 +13,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSMenuItem")]
     unsafe impl ClassType for NSMenuItem {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 
@@ -42,13 +42,16 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSMenuItem")]
     unsafe impl NSMenuItem {
         #[method(usesUserKeyEquivalents)]
-        pub unsafe fn usesUserKeyEquivalents() -> bool;
+        pub unsafe fn usesUserKeyEquivalents(mtm: MainThreadMarker) -> bool;
 
         #[method(setUsesUserKeyEquivalents:)]
-        pub unsafe fn setUsesUserKeyEquivalents(uses_user_key_equivalents: bool);
+        pub unsafe fn setUsesUserKeyEquivalents(
+            uses_user_key_equivalents: bool,
+            mtm: MainThreadMarker,
+        );
 
         #[method_id(@__retain_semantics Other separatorItem)]
-        pub unsafe fn separatorItem() -> Id<NSMenuItem>;
+        pub fn separatorItem(mtm: MainThreadMarker) -> Id<NSMenuItem>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithTitle:action:keyEquivalent:)]
@@ -80,7 +83,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method(setSubmenu:)]
-        pub unsafe fn setSubmenu(&self, submenu: Option<&NSMenu>);
+        pub fn setSubmenu(&self, submenu: Option<&NSMenu>);
 
         #[method_id(@__retain_semantics Other parentItem)]
         pub unsafe fn parentItem(&self) -> Option<Id<NSMenuItem>>;
@@ -116,7 +119,7 @@ extern_methods!(
         pub unsafe fn keyEquivalentModifierMask(&self) -> NSEventModifierFlags;
 
         #[method(setKeyEquivalentModifierMask:)]
-        pub unsafe fn setKeyEquivalentModifierMask(
+        pub fn setKeyEquivalentModifierMask(
             &self,
             key_equivalent_modifier_mask: NSEventModifierFlags,
         );
@@ -234,7 +237,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other view)]
-        pub unsafe fn view(&self, mtm: MainThreadMarker) -> Option<Id<NSView>>;
+        pub unsafe fn view(&self) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(setView:)]
@@ -267,10 +270,10 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSMenuItem")]
     unsafe impl NSMenuItem {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 

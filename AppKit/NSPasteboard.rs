@@ -208,10 +208,7 @@ extern_methods!(
         pub unsafe fn dataForType(&self, data_type: &NSPasteboardType) -> Option<Id<NSData>>;
 
         #[method_id(@__retain_semantics Other propertyListForType:)]
-        pub unsafe fn propertyListForType(
-            &self,
-            data_type: &NSPasteboardType,
-        ) -> Option<Id<AnyObject>>;
+        pub fn propertyListForType(&self, data_type: &NSPasteboardType) -> Option<Id<AnyObject>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringForType:)]

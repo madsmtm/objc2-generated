@@ -359,7 +359,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSMenuItem")]
         #[method_id(@__retain_semantics Other standardShareMenuItem)]
-        pub unsafe fn standardShareMenuItem(&self) -> Id<NSMenuItem>;
+        pub unsafe fn standardShareMenuItem(&self, mtm: MainThreadMarker) -> Id<NSMenuItem>;
     }
 );
 

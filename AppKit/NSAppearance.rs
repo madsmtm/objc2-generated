@@ -51,7 +51,7 @@ extern_methods!(
         pub unsafe fn performAsCurrentDrawingAppearance(&self, block: &Block<(), ()>);
 
         #[method_id(@__retain_semantics Other appearanceNamed:)]
-        pub unsafe fn appearanceNamed(name: &NSAppearanceName) -> Option<Id<NSAppearance>>;
+        pub fn appearanceNamed(name: &NSAppearanceName) -> Option<Id<NSAppearance>>;
 
         #[cfg(feature = "Foundation_NSBundle")]
         #[method_id(@__retain_semantics Init initWithAppearanceNamed:bundle:)]
@@ -73,7 +73,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other bestMatchFromAppearancesWithNames:)]
-        pub unsafe fn bestMatchFromAppearancesWithNames(
+        pub fn bestMatchFromAppearancesWithNames(
             &self,
             appearances: &NSArray<NSAppearanceName>,
         ) -> Option<Id<NSAppearanceName>>;

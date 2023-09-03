@@ -13,7 +13,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSScreen")]
     unsafe impl ClassType for NSScreen {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 
@@ -25,31 +25,29 @@ extern_methods!(
     unsafe impl NSScreen {
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other screens)]
-        pub unsafe fn screens() -> Id<NSArray<NSScreen>>;
+        pub fn screens(mtm: MainThreadMarker) -> Id<NSArray<NSScreen>>;
 
         #[method_id(@__retain_semantics Other mainScreen)]
-        pub unsafe fn mainScreen() -> Option<Id<NSScreen>>;
+        pub fn mainScreen(mtm: MainThreadMarker) -> Option<Id<NSScreen>>;
 
         #[method_id(@__retain_semantics Other deepestScreen)]
-        pub unsafe fn deepestScreen() -> Option<Id<NSScreen>>;
+        pub unsafe fn deepestScreen(mtm: MainThreadMarker) -> Option<Id<NSScreen>>;
 
         #[method(screensHaveSeparateSpaces)]
-        pub unsafe fn screensHaveSeparateSpaces() -> bool;
+        pub unsafe fn screensHaveSeparateSpaces(mtm: MainThreadMarker) -> bool;
 
         #[method(depth)]
         pub unsafe fn depth(&self) -> NSWindowDepth;
 
         #[method(frame)]
-        pub unsafe fn frame(&self) -> NSRect;
+        pub fn frame(&self) -> NSRect;
 
         #[method(visibleFrame)]
-        pub unsafe fn visibleFrame(&self) -> NSRect;
+        pub fn visibleFrame(&self) -> NSRect;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other deviceDescription)]
-        pub unsafe fn deviceDescription(
-            &self,
-        ) -> Id<NSDictionary<NSDeviceDescriptionKey, AnyObject>>;
+        pub fn deviceDescription(&self) -> Id<NSDictionary<NSDeviceDescriptionKey, AnyObject>>;
 
         #[cfg(feature = "AppKit_NSColorSpace")]
         #[method_id(@__retain_semantics Other colorSpace)]
@@ -75,7 +73,7 @@ extern_methods!(
         ) -> NSRect;
 
         #[method(backingScaleFactor)]
-        pub unsafe fn backingScaleFactor(&self) -> CGFloat;
+        pub fn backingScaleFactor(&self) -> CGFloat;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedName)]
@@ -100,7 +98,7 @@ extern_methods!(
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 

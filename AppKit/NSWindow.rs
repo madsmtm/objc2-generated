@@ -248,7 +248,7 @@ extern_methods!(
         pub unsafe fn frameRectForContentRect(&self, content_rect: NSRect) -> NSRect;
 
         #[method(contentRectForFrameRect:)]
-        pub unsafe fn contentRectForFrameRect(&self, frame_rect: NSRect) -> NSRect;
+        pub fn contentRectForFrameRect(&self, frame_rect: NSRect) -> NSRect;
 
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer(
@@ -276,11 +276,11 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
-        pub unsafe fn title(&self) -> Id<NSString>;
+        pub fn title(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setTitle:)]
-        pub unsafe fn setTitle(&self, title: &NSString);
+        pub fn setTitle(&self, title: &NSString);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other subtitle)]
@@ -294,13 +294,13 @@ extern_methods!(
         pub unsafe fn titleVisibility(&self) -> NSWindowTitleVisibility;
 
         #[method(setTitleVisibility:)]
-        pub unsafe fn setTitleVisibility(&self, title_visibility: NSWindowTitleVisibility);
+        pub fn setTitleVisibility(&self, title_visibility: NSWindowTitleVisibility);
 
         #[method(titlebarAppearsTransparent)]
         pub unsafe fn titlebarAppearsTransparent(&self) -> bool;
 
         #[method(setTitlebarAppearsTransparent:)]
-        pub unsafe fn setTitlebarAppearsTransparent(&self, titlebar_appears_transparent: bool);
+        pub fn setTitlebarAppearsTransparent(&self, titlebar_appears_transparent: bool);
 
         #[method(toolbarStyle)]
         pub unsafe fn toolbarStyle(&self) -> NSWindowToolbarStyle;
@@ -379,26 +379,26 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other contentView)]
-        pub unsafe fn contentView(&self) -> Option<Id<NSView>>;
+        pub fn contentView(&self) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(setContentView:)]
-        pub unsafe fn setContentView(&self, content_view: Option<&NSView>);
+        pub fn setContentView(&self, content_view: Option<&NSView>);
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSWindowDelegate>>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSWindowDelegate>>);
+        pub fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSWindowDelegate>>);
 
         #[method(windowNumber)]
         pub unsafe fn windowNumber(&self) -> NSInteger;
 
         #[method(styleMask)]
-        pub unsafe fn styleMask(&self) -> NSWindowStyleMask;
+        pub fn styleMask(&self) -> NSWindowStyleMask;
 
         #[method(setStyleMask:)]
-        pub unsafe fn setStyleMask(&self, style_mask: NSWindowStyleMask);
+        pub fn setStyleMask(&self, style_mask: NSWindowStyleMask);
 
         #[cfg(feature = "AppKit_NSText")]
         #[method_id(@__retain_semantics Other fieldEditor:forObject:)]
@@ -420,22 +420,22 @@ extern_methods!(
         ) -> NSRect;
 
         #[method(setFrame:display:)]
-        pub unsafe fn setFrame_display(&self, frame_rect: NSRect, flag: bool);
+        pub fn setFrame_display(&self, frame_rect: NSRect, flag: bool);
 
         #[method(setContentSize:)]
-        pub unsafe fn setContentSize(&self, size: NSSize);
+        pub fn setContentSize(&self, size: NSSize);
 
         #[method(setFrameOrigin:)]
         pub unsafe fn setFrameOrigin(&self, point: NSPoint);
 
         #[method(setFrameTopLeftPoint:)]
-        pub unsafe fn setFrameTopLeftPoint(&self, point: NSPoint);
+        pub fn setFrameTopLeftPoint(&self, point: NSPoint);
 
         #[method(cascadeTopLeftFromPoint:)]
         pub unsafe fn cascadeTopLeftFromPoint(&self, top_left_point: NSPoint) -> NSPoint;
 
         #[method(frame)]
-        pub unsafe fn frame(&self) -> NSRect;
+        pub fn frame(&self) -> NSRect;
 
         #[method(animationResizeTime:)]
         pub unsafe fn animationResizeTime(&self, new_frame: NSRect) -> NSTimeInterval;
@@ -455,7 +455,7 @@ extern_methods!(
         pub unsafe fn resizeIncrements(&self) -> NSSize;
 
         #[method(setResizeIncrements:)]
-        pub unsafe fn setResizeIncrements(&self, resize_increments: NSSize);
+        pub fn setResizeIncrements(&self, resize_increments: NSSize);
 
         #[method(aspectRatio)]
         pub unsafe fn aspectRatio(&self) -> NSSize;
@@ -464,10 +464,10 @@ extern_methods!(
         pub unsafe fn setAspectRatio(&self, aspect_ratio: NSSize);
 
         #[method(contentResizeIncrements)]
-        pub unsafe fn contentResizeIncrements(&self) -> NSSize;
+        pub fn contentResizeIncrements(&self) -> NSSize;
 
         #[method(setContentResizeIncrements:)]
-        pub unsafe fn setContentResizeIncrements(&self, content_resize_increments: NSSize);
+        pub fn setContentResizeIncrements(&self, content_resize_increments: NSSize);
 
         #[method(contentAspectRatio)]
         pub unsafe fn contentAspectRatio(&self) -> NSSize;
@@ -500,16 +500,16 @@ extern_methods!(
         pub unsafe fn update(&self);
 
         #[method(makeFirstResponder:)]
-        pub unsafe fn makeFirstResponder(&self, responder: Option<&NSResponder>) -> bool;
+        pub fn makeFirstResponder(&self, responder: Option<&NSResponder>) -> bool;
 
         #[method_id(@__retain_semantics Other firstResponder)]
-        pub unsafe fn firstResponder(&self) -> Option<Id<NSResponder>>;
+        pub fn firstResponder(&self) -> Option<Id<NSResponder>>;
 
         #[method(resizeFlags)]
         pub unsafe fn resizeFlags(&self) -> NSEventModifierFlags;
 
         #[method(close)]
-        pub unsafe fn close(&self);
+        pub fn close(&self);
 
         #[method(isReleasedWhenClosed)]
         pub unsafe fn isReleasedWhenClosed(&self) -> bool;
@@ -518,19 +518,19 @@ extern_methods!(
         pub unsafe fn setReleasedWhenClosed(&self, released_when_closed: bool);
 
         #[method(miniaturize:)]
-        pub unsafe fn miniaturize(&self, sender: Option<&AnyObject>);
+        pub fn miniaturize(&self, sender: Option<&AnyObject>);
 
         #[method(deminiaturize:)]
         pub unsafe fn deminiaturize(&self, sender: Option<&AnyObject>);
 
         #[method(isZoomed)]
-        pub unsafe fn isZoomed(&self) -> bool;
+        pub fn isZoomed(&self) -> bool;
 
         #[method(zoom:)]
-        pub unsafe fn zoom(&self, sender: Option<&AnyObject>);
+        pub fn zoom(&self, sender: Option<&AnyObject>);
 
         #[method(isMiniaturized)]
-        pub unsafe fn isMiniaturized(&self) -> bool;
+        pub fn isMiniaturized(&self) -> bool;
 
         #[method(tryToPerform:with:)]
         pub unsafe fn tryToPerform_with(&self, action: Sel, object: Option<&AnyObject>) -> bool;
@@ -548,7 +548,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setBackgroundColor:)]
-        pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSColor>);
+        pub fn setBackgroundColor(&self, background_color: Option<&NSColor>);
 
         #[method(setContentBorderThickness:forEdge:)]
         pub unsafe fn setContentBorderThickness_forEdge(
@@ -577,13 +577,13 @@ extern_methods!(
         pub unsafe fn isMovable(&self) -> bool;
 
         #[method(setMovable:)]
-        pub unsafe fn setMovable(&self, movable: bool);
+        pub fn setMovable(&self, movable: bool);
 
         #[method(isMovableByWindowBackground)]
         pub unsafe fn isMovableByWindowBackground(&self) -> bool;
 
         #[method(setMovableByWindowBackground:)]
-        pub unsafe fn setMovableByWindowBackground(&self, movable_by_window_background: bool);
+        pub fn setMovableByWindowBackground(&self, movable_by_window_background: bool);
 
         #[method(hidesOnDeactivate)]
         pub unsafe fn hidesOnDeactivate(&self) -> bool;
@@ -598,19 +598,19 @@ extern_methods!(
         pub unsafe fn setCanHide(&self, can_hide: bool);
 
         #[method(center)]
-        pub unsafe fn center(&self);
+        pub fn center(&self);
 
         #[method(makeKeyAndOrderFront:)]
-        pub unsafe fn makeKeyAndOrderFront(&self, sender: Option<&AnyObject>);
+        pub fn makeKeyAndOrderFront(&self, sender: Option<&AnyObject>);
 
         #[method(orderFront:)]
-        pub unsafe fn orderFront(&self, sender: Option<&AnyObject>);
+        pub fn orderFront(&self, sender: Option<&AnyObject>);
 
         #[method(orderBack:)]
         pub unsafe fn orderBack(&self, sender: Option<&AnyObject>);
 
         #[method(orderOut:)]
-        pub unsafe fn orderOut(&self, sender: Option<&AnyObject>);
+        pub fn orderOut(&self, sender: Option<&AnyObject>);
 
         #[method(orderWindow:relativeTo:)]
         pub unsafe fn orderWindow_relativeTo(
@@ -643,16 +643,16 @@ extern_methods!(
         pub unsafe fn dockTile(&self) -> Id<NSDockTile>;
 
         #[method(isDocumentEdited)]
-        pub unsafe fn isDocumentEdited(&self) -> bool;
+        pub fn isDocumentEdited(&self) -> bool;
 
         #[method(setDocumentEdited:)]
-        pub unsafe fn setDocumentEdited(&self, document_edited: bool);
+        pub fn setDocumentEdited(&self, document_edited: bool);
 
         #[method(isVisible)]
-        pub unsafe fn isVisible(&self) -> bool;
+        pub fn isVisible(&self) -> bool;
 
         #[method(isKeyWindow)]
-        pub unsafe fn isKeyWindow(&self) -> bool;
+        pub fn isKeyWindow(&self) -> bool;
 
         #[method(isMainWindow)]
         pub unsafe fn isMainWindow(&self) -> bool;
@@ -725,7 +725,7 @@ extern_methods!(
         ) -> NSRect;
 
         #[method(backingScaleFactor)]
-        pub unsafe fn backingScaleFactor(&self) -> CGFloat;
+        pub fn backingScaleFactor(&self) -> CGFloat;
 
         #[method(performClose:)]
         pub unsafe fn performClose(&self, sender: Option<&AnyObject>);
@@ -766,7 +766,7 @@ extern_methods!(
         pub unsafe fn level(&self) -> NSWindowLevel;
 
         #[method(setLevel:)]
-        pub unsafe fn setLevel(&self, level: NSWindowLevel);
+        pub fn setLevel(&self, level: NSWindowLevel);
 
         #[method(depthLimit)]
         pub unsafe fn depthLimit(&self) -> NSWindowDepth;
@@ -782,17 +782,17 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSScreen")]
         #[method_id(@__retain_semantics Other screen)]
-        pub unsafe fn screen(&self) -> Option<Id<NSScreen>>;
+        pub fn screen(&self) -> Option<Id<NSScreen>>;
 
         #[cfg(feature = "AppKit_NSScreen")]
         #[method_id(@__retain_semantics Other deepestScreen)]
         pub unsafe fn deepestScreen(&self) -> Option<Id<NSScreen>>;
 
         #[method(hasShadow)]
-        pub unsafe fn hasShadow(&self) -> bool;
+        pub fn hasShadow(&self) -> bool;
 
         #[method(setHasShadow:)]
-        pub unsafe fn setHasShadow(&self, has_shadow: bool);
+        pub fn setHasShadow(&self, has_shadow: bool);
 
         #[method(invalidateShadow)]
         pub unsafe fn invalidateShadow(&self);
@@ -807,13 +807,13 @@ extern_methods!(
         pub unsafe fn isOpaque(&self) -> bool;
 
         #[method(setOpaque:)]
-        pub unsafe fn setOpaque(&self, opaque: bool);
+        pub fn setOpaque(&self, opaque: bool);
 
         #[method(sharingType)]
         pub unsafe fn sharingType(&self) -> NSWindowSharingType;
 
         #[method(setSharingType:)]
-        pub unsafe fn setSharingType(&self, sharing_type: NSWindowSharingType);
+        pub fn setSharingType(&self, sharing_type: NSWindowSharingType);
 
         #[method(allowsConcurrentViewDrawing)]
         pub unsafe fn allowsConcurrentViewDrawing(&self) -> bool;
@@ -858,7 +858,7 @@ extern_methods!(
         pub unsafe fn isOnActiveSpace(&self) -> bool;
 
         #[method(toggleFullScreen:)]
-        pub unsafe fn toggleFullScreen(&self, sender: Option<&AnyObject>);
+        pub fn toggleFullScreen(&self, sender: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other stringWithSavedFrame)]
         pub unsafe fn stringWithSavedFrame(&self) -> Id<NSWindowPersistableFrameDescriptor>;
@@ -892,13 +892,13 @@ extern_methods!(
         pub unsafe fn minSize(&self) -> NSSize;
 
         #[method(setMinSize:)]
-        pub unsafe fn setMinSize(&self, min_size: NSSize);
+        pub fn setMinSize(&self, min_size: NSSize);
 
         #[method(maxSize)]
         pub unsafe fn maxSize(&self) -> NSSize;
 
         #[method(setMaxSize:)]
-        pub unsafe fn setMaxSize(&self, max_size: NSSize);
+        pub fn setMaxSize(&self, max_size: NSSize);
 
         #[method(contentMinSize)]
         pub unsafe fn contentMinSize(&self) -> NSSize;
@@ -985,7 +985,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSButton")]
         #[method_id(@__retain_semantics Other standardWindowButton:)]
-        pub unsafe fn standardWindowButton(&self, b: NSWindowButton) -> Option<Id<NSButton>>;
+        pub fn standardWindowButton(&self, b: NSWindowButton) -> Option<Id<NSButton>>;
 
         #[method(addChildWindow:ordered:)]
         pub unsafe fn addChildWindow_ordered(
@@ -1039,7 +1039,7 @@ extern_methods!(
         ) -> NSInteger;
 
         #[method(occlusionState)]
-        pub unsafe fn occlusionState(&self) -> NSWindowOcclusionState;
+        pub fn occlusionState(&self) -> NSWindowOcclusionState;
 
         #[method(titlebarSeparatorStyle)]
         pub unsafe fn titlebarSeparatorStyle(&self) -> NSTitlebarSeparatorStyle;
@@ -1069,7 +1069,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSEvent")]
         #[method(performWindowDragWithEvent:)]
-        pub unsafe fn performWindowDragWithEvent(&self, event: &NSEvent);
+        pub fn performWindowDragWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other initialFirstResponder)]
@@ -1077,13 +1077,13 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(setInitialFirstResponder:)]
-        pub unsafe fn setInitialFirstResponder(&self, initial_first_responder: Option<&NSView>);
+        pub fn setInitialFirstResponder(&self, initial_first_responder: Option<&NSView>);
 
         #[method(selectNextKeyView:)]
-        pub unsafe fn selectNextKeyView(&self, sender: Option<&AnyObject>);
+        pub fn selectNextKeyView(&self, sender: Option<&AnyObject>);
 
         #[method(selectPreviousKeyView:)]
-        pub unsafe fn selectPreviousKeyView(&self, sender: Option<&AnyObject>);
+        pub fn selectPreviousKeyView(&self, sender: Option<&AnyObject>);
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(selectKeyViewFollowingView:)]
@@ -1142,10 +1142,10 @@ extern_methods!(
         pub unsafe fn setShowsToolbarButton(&self, shows_toolbar_button: bool);
 
         #[method(allowsAutomaticWindowTabbing)]
-        pub unsafe fn allowsAutomaticWindowTabbing(mtm: MainThreadMarker) -> bool;
+        pub fn allowsAutomaticWindowTabbing(mtm: MainThreadMarker) -> bool;
 
         #[method(setAllowsAutomaticWindowTabbing:)]
-        pub unsafe fn setAllowsAutomaticWindowTabbing(
+        pub fn setAllowsAutomaticWindowTabbing(
             allows_automatic_window_tabbing: bool,
             mtm: MainThreadMarker,
         );
@@ -1158,16 +1158,16 @@ extern_methods!(
         pub unsafe fn tabbingMode(&self) -> NSWindowTabbingMode;
 
         #[method(setTabbingMode:)]
-        pub unsafe fn setTabbingMode(&self, tabbing_mode: NSWindowTabbingMode);
+        pub fn setTabbingMode(&self, tabbing_mode: NSWindowTabbingMode);
 
         #[method_id(@__retain_semantics Other tabbingIdentifier)]
-        pub unsafe fn tabbingIdentifier(&self) -> Id<NSWindowTabbingIdentifier>;
+        pub fn tabbingIdentifier(&self) -> Id<NSWindowTabbingIdentifier>;
 
         #[method(setTabbingIdentifier:)]
-        pub unsafe fn setTabbingIdentifier(&self, tabbing_identifier: &NSWindowTabbingIdentifier);
+        pub fn setTabbingIdentifier(&self, tabbing_identifier: &NSWindowTabbingIdentifier);
 
         #[method(selectNextTab:)]
-        pub unsafe fn selectNextTab(&self, sender: Option<&AnyObject>);
+        pub fn selectNextTab(&self, sender: Option<&AnyObject>);
 
         #[method(selectPreviousTab:)]
         pub unsafe fn selectPreviousTab(&self, sender: Option<&AnyObject>);
@@ -1201,7 +1201,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSWindowTabGroup")]
         #[method_id(@__retain_semantics Other tabGroup)]
-        pub unsafe fn tabGroup(&self) -> Option<Id<NSWindowTabGroup>>;
+        pub fn tabGroup(&self) -> Option<Id<NSWindowTabGroup>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(transferWindowSharingToWindow:completionHandler:)]
@@ -1279,7 +1279,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSEvent")]
         #[method(sendEvent:)]
-        pub unsafe fn sendEvent(&self, event: &NSEvent);
+        pub fn sendEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "AppKit_NSEvent")]
         #[method_id(@__retain_semantics Other currentEvent)]
@@ -1289,13 +1289,13 @@ extern_methods!(
         pub unsafe fn acceptsMouseMovedEvents(&self) -> bool;
 
         #[method(setAcceptsMouseMovedEvents:)]
-        pub unsafe fn setAcceptsMouseMovedEvents(&self, accepts_mouse_moved_events: bool);
+        pub fn setAcceptsMouseMovedEvents(&self, accepts_mouse_moved_events: bool);
 
         #[method(ignoresMouseEvents)]
         pub unsafe fn ignoresMouseEvents(&self) -> bool;
 
         #[method(setIgnoresMouseEvents:)]
-        pub unsafe fn setIgnoresMouseEvents(&self, ignores_mouse_events: bool);
+        pub fn setIgnoresMouseEvents(&self, ignores_mouse_events: bool);
 
         #[method(mouseLocationOutsideOfEventStream)]
         pub unsafe fn mouseLocationOutsideOfEventStream(&self) -> NSPoint;
@@ -1320,7 +1320,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(invalidateCursorRectsForView:)]
-        pub unsafe fn invalidateCursorRectsForView(&self, view: &NSView);
+        pub fn invalidateCursorRectsForView(&self, view: &NSView);
 
         #[method(resetCursorRects)]
         pub unsafe fn resetCursorRects(&self);
@@ -1350,7 +1350,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(registerForDraggedTypes:)]
-        pub unsafe fn registerForDraggedTypes(&self, new_types: &NSArray<NSPasteboardType>);
+        pub fn registerForDraggedTypes(&self, new_types: &NSArray<NSPasteboardType>);
 
         #[method(unregisterDraggedTypes)]
         pub unsafe fn unregisterDraggedTypes(&self);
@@ -1802,7 +1802,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSMenu")]
         #[deprecated = "This method does not do anything and should not be called."]
         #[method(menuChanged:)]
-        pub unsafe fn menuChanged(menu: &NSMenu, mtm: MainThreadMarker);
+        pub unsafe fn menuChanged(menu: &NSMenu);
 
         #[deprecated = "This method is unused and should not be called."]
         #[method(gState)]

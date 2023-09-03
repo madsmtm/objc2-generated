@@ -13,7 +13,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSMenu")]
     unsafe impl ClassType for NSMenu {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 
@@ -88,10 +88,10 @@ extern_methods!(
         ) -> bool;
 
         #[method(setMenuBarVisible:)]
-        pub unsafe fn setMenuBarVisible(visible: bool);
+        pub unsafe fn setMenuBarVisible(visible: bool, mtm: MainThreadMarker);
 
         #[method(menuBarVisible)]
-        pub unsafe fn menuBarVisible() -> bool;
+        pub unsafe fn menuBarVisible(mtm: MainThreadMarker) -> bool;
 
         #[method_id(@__retain_semantics Other supermenu)]
         pub unsafe fn supermenu(&self) -> Option<Id<NSMenu>>;
@@ -105,7 +105,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSMenuItem")]
         #[method(addItem:)]
-        pub unsafe fn addItem(&self, new_item: &NSMenuItem);
+        pub fn addItem(&self, new_item: &NSMenuItem);
 
         #[cfg(all(feature = "AppKit_NSMenuItem", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other insertItemWithTitle:action:keyEquivalent:atIndex:)]
@@ -274,10 +274,10 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSMenu")]
     unsafe impl NSMenu {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 
@@ -416,11 +416,11 @@ extern_methods!(
 
         #[deprecated]
         #[method(menuZone)]
-        pub unsafe fn menuZone() -> *mut NSZone;
+        pub unsafe fn menuZone(mtm: MainThreadMarker) -> *mut NSZone;
 
         #[deprecated]
         #[method(setMenuZone:)]
-        pub unsafe fn setMenuZone(zone: *mut NSZone);
+        pub unsafe fn setMenuZone(zone: *mut NSZone, mtm: MainThreadMarker);
 
         #[deprecated]
         #[method_id(@__retain_semantics Other attachedMenu)]

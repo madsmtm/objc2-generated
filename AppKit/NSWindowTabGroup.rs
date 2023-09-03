@@ -13,7 +13,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSWindowTabGroup")]
     unsafe impl ClassType for NSWindowTabGroup {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 
@@ -28,7 +28,7 @@ extern_methods!(
 
         #[cfg(all(feature = "AppKit_NSWindow", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other windows)]
-        pub unsafe fn windows(&self, mtm: MainThreadMarker) -> Id<NSArray<NSWindow>>;
+        pub fn windows(&self) -> Id<NSArray<NSWindow>>;
 
         #[method(isOverviewVisible)]
         pub unsafe fn isOverviewVisible(&self) -> bool;
@@ -41,11 +41,11 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[method_id(@__retain_semantics Other selectedWindow)]
-        pub unsafe fn selectedWindow(&self, mtm: MainThreadMarker) -> Option<Id<NSWindow>>;
+        pub unsafe fn selectedWindow(&self) -> Option<Id<NSWindow>>;
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[method(setSelectedWindow:)]
-        pub unsafe fn setSelectedWindow(&self, selected_window: Option<&NSWindow>);
+        pub fn setSelectedWindow(&self, selected_window: Option<&NSWindow>);
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[method(addWindow:)]
@@ -69,6 +69,6 @@ extern_methods!(
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
