@@ -11,7 +11,7 @@ extern_class!(
     #[cfg(feature = "Foundation_NSIndexPath")]
     unsafe impl ClassType for NSIndexPath {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
+        type Mutability = Immutable;
     }
 );
 

@@ -48,7 +48,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSTouch")]
     unsafe impl ClassType for NSTouch {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
+        type Mutability = Immutable;
     }
 );
 

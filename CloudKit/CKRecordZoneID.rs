@@ -13,7 +13,7 @@ extern_class!(
     #[cfg(feature = "CloudKit_CKRecordZoneID")]
     unsafe impl ClassType for CKRecordZoneID {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
+        type Mutability = Immutable;
     }
 );
 
