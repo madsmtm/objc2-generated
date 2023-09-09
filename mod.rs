@@ -30,6 +30,8 @@ pub mod Contacts;
 pub mod CoreData;
 #[cfg(feature = "CoreLocation")]
 pub mod CoreLocation;
+#[cfg(feature = "CoreWLAN")]
+pub mod CoreWLAN;
 #[cfg(feature = "DataDetection")]
 pub mod DataDetection;
 #[cfg(feature = "DeviceCheck")]
