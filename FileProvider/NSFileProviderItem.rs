@@ -297,7 +297,9 @@ extern_protocol!(
         unsafe fn contentPolicy(&self) -> NSFileProviderContentPolicy;
     }
 
-    unsafe impl ProtocolType for dyn NSFileProviderItemProtocol {}
+    unsafe impl ProtocolType for dyn NSFileProviderItemProtocol {
+        const NAME: &'static str = "NSFileProviderItem";
+    }
 );
 
 pub type NSFileProviderItem = ProtocolObject<dyn NSFileProviderItemProtocol>;

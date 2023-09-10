@@ -23,7 +23,9 @@ extern_protocol!(
         unsafe fn accessibilityIdentifier(&self) -> Id<NSString>;
     }
 
-    unsafe impl ProtocolType for dyn NSAccessibilityElementProtocol {}
+    unsafe impl ProtocolType for dyn NSAccessibilityElementProtocol {
+        const NAME: &'static str = "NSAccessibilityElement";
+    }
 );
 
 extern_protocol!(

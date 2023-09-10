@@ -98,7 +98,9 @@ extern_protocol!(
         ) -> NSRect;
     }
 
-    unsafe impl ProtocolType for dyn NSTextAttachmentCellProtocol {}
+    unsafe impl ProtocolType for dyn NSTextAttachmentCellProtocol {
+        const NAME: &'static str = "NSTextAttachmentCell";
+    }
 );
 
 extern_class!(
