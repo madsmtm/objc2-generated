@@ -104,14 +104,13 @@ extern_methods!(
             delegate: Option<&AnyObject>,
             did_commit_selector: Option<Sel>,
             context_info: *mut c_void,
-            mtm: MainThreadMarker,
         );
 
         #[method(commitEditing)]
-        pub unsafe fn commitEditing(&self, mtm: MainThreadMarker) -> bool;
+        pub unsafe fn commitEditing(&self) -> bool;
 
         #[method(discardEditing)]
-        pub unsafe fn discardEditing(&self, mtm: MainThreadMarker);
+        pub unsafe fn discardEditing(&self);
 
         #[method(viewDidLoad)]
         pub unsafe fn viewDidLoad(&self);

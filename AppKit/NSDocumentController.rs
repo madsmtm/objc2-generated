@@ -310,7 +310,6 @@ extern_methods!(
         pub unsafe fn validateUserInterfaceItem(
             &self,
             item: &ProtocolObject<dyn NSValidatedUserInterfaceItem>,
-            mtm: MainThreadMarker,
         ) -> bool;
     }
 );

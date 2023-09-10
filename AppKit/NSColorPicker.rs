@@ -32,7 +32,6 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             mask: NSUInteger,
             owning_color_panel: &NSColorPanel,
-            mtm: MainThreadMarker,
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "AppKit_NSColorPanel")]
@@ -49,7 +48,6 @@ extern_methods!(
             &self,
             new_button_image: &NSImage,
             button_cell: &NSButtonCell,
-            mtm: MainThreadMarker,
         );
 
         #[method(viewSizeChanged:)]

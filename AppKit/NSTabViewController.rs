@@ -130,7 +130,6 @@ extern_methods!(
             &self,
             tab_view: &NSTabView,
             tab_view_item: Option<&NSTabViewItem>,
-            mtm: MainThreadMarker,
         );
 
         #[cfg(all(feature = "AppKit_NSTabView", feature = "AppKit_NSTabViewItem"))]
@@ -139,7 +138,6 @@ extern_methods!(
             &self,
             tab_view: &NSTabView,
             tab_view_item: Option<&NSTabViewItem>,
-            mtm: MainThreadMarker,
         );
 
         #[cfg(all(feature = "AppKit_NSTabView", feature = "AppKit_NSTabViewItem"))]
@@ -148,7 +146,6 @@ extern_methods!(
             &self,
             tab_view: &NSTabView,
             tab_view_item: Option<&NSTabViewItem>,
-            mtm: MainThreadMarker,
         ) -> bool;
 
         #[cfg(all(feature = "AppKit_NSToolbar", feature = "AppKit_NSToolbarItem"))]
@@ -158,7 +155,6 @@ extern_methods!(
             toolbar: &NSToolbar,
             item_identifier: &NSToolbarItemIdentifier,
             flag: bool,
-            mtm: MainThreadMarker,
         ) -> Option<Id<NSToolbarItem>>;
 
         #[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSArray"))]
@@ -166,7 +162,6 @@ extern_methods!(
         pub unsafe fn toolbarDefaultItemIdentifiers(
             &self,
             toolbar: &NSToolbar,
-            mtm: MainThreadMarker,
         ) -> Id<NSArray<NSToolbarItemIdentifier>>;
 
         #[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSArray"))]
@@ -174,7 +169,6 @@ extern_methods!(
         pub unsafe fn toolbarAllowedItemIdentifiers(
             &self,
             toolbar: &NSToolbar,
-            mtm: MainThreadMarker,
         ) -> Id<NSArray<NSToolbarItemIdentifier>>;
 
         #[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSArray"))]
@@ -182,7 +176,6 @@ extern_methods!(
         pub unsafe fn toolbarSelectableItemIdentifiers(
             &self,
             toolbar: &NSToolbar,
-            mtm: MainThreadMarker,
         ) -> Id<NSArray<NSToolbarItemIdentifier>>;
     }
 );

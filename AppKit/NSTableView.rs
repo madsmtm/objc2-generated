@@ -1271,43 +1271,27 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSText")]
         #[deprecated = "Use a View Based TableView with an NSTextField"]
         #[method(textShouldBeginEditing:)]
-        pub unsafe fn textShouldBeginEditing(
-            &self,
-            text_object: &NSText,
-            mtm: MainThreadMarker,
-        ) -> bool;
+        pub unsafe fn textShouldBeginEditing(&self, text_object: &NSText) -> bool;
 
         #[cfg(feature = "AppKit_NSText")]
         #[deprecated = "Use a View Based TableView with an NSTextField"]
         #[method(textShouldEndEditing:)]
-        pub unsafe fn textShouldEndEditing(
-            &self,
-            text_object: &NSText,
-            mtm: MainThreadMarker,
-        ) -> bool;
+        pub unsafe fn textShouldEndEditing(&self, text_object: &NSText) -> bool;
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[deprecated = "Use a View Based TableView with an NSTextField"]
         #[method(textDidBeginEditing:)]
-        pub unsafe fn textDidBeginEditing(
-            &self,
-            notification: &NSNotification,
-            mtm: MainThreadMarker,
-        );
+        pub unsafe fn textDidBeginEditing(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[deprecated = "Use a View Based TableView with an NSTextField"]
         #[method(textDidEndEditing:)]
-        pub unsafe fn textDidEndEditing(
-            &self,
-            notification: &NSNotification,
-            mtm: MainThreadMarker,
-        );
+        pub unsafe fn textDidEndEditing(&self, notification: &NSNotification);
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[deprecated = "Use a View Based TableView with an NSTextField"]
         #[method(textDidChange:)]
-        pub unsafe fn textDidChange(&self, notification: &NSNotification, mtm: MainThreadMarker);
+        pub unsafe fn textDidChange(&self, notification: &NSNotification);
 
         #[cfg(feature = "AppKit_NSCell")]
         #[deprecated = "Use a View Based TableView; observe the window’s firstResponder for focus change notifications"]

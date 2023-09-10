@@ -96,7 +96,6 @@ extern_methods!(
         pub unsafe fn validateUserInterfaceItem(
             &self,
             item: &ProtocolObject<dyn NSValidatedUserInterfaceItem>,
-            mtm: MainThreadMarker,
         ) -> bool;
 
         #[method(viewDidLoad)]
@@ -108,7 +107,6 @@ extern_methods!(
             &self,
             split_view: &NSSplitView,
             subview: &NSView,
-            mtm: MainThreadMarker,
         ) -> bool;
 
         #[cfg(all(feature = "AppKit_NSSplitView", feature = "AppKit_NSView"))]
@@ -127,7 +125,6 @@ extern_methods!(
             &self,
             split_view: &NSSplitView,
             divider_index: NSInteger,
-            mtm: MainThreadMarker,
         ) -> bool;
 
         #[cfg(feature = "AppKit_NSSplitView")]
@@ -138,7 +135,6 @@ extern_methods!(
             proposed_effective_rect: NSRect,
             drawn_rect: NSRect,
             divider_index: NSInteger,
-            mtm: MainThreadMarker,
         ) -> NSRect;
 
         #[cfg(feature = "AppKit_NSSplitView")]
@@ -147,7 +143,6 @@ extern_methods!(
             &self,
             split_view: &NSSplitView,
             divider_index: NSInteger,
-            mtm: MainThreadMarker,
         ) -> NSRect;
     }
 );
