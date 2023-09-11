@@ -142,7 +142,7 @@ extern_static!(NSPopoverWillCloseNotification: &'static NSNotificationName);
 extern_static!(NSPopoverDidCloseNotification: &'static NSNotificationName);
 
 extern_protocol!(
-    pub unsafe trait NSPopoverDelegate: NSObjectProtocol {
+    pub unsafe trait NSPopoverDelegate: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(feature = "AppKit_NSPopover")]
         #[optional]
         #[method(popoverShouldClose:)]

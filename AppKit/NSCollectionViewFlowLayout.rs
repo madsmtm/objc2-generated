@@ -69,7 +69,9 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSCollectionViewDelegateFlowLayout: NSCollectionViewDelegate {
+    pub unsafe trait NSCollectionViewDelegateFlowLayout:
+        NSCollectionViewDelegate + IsMainThreadOnly
+    {
         #[cfg(all(
             feature = "AppKit_NSCollectionView",
             feature = "AppKit_NSCollectionViewLayout",

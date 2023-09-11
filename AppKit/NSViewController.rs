@@ -269,7 +269,9 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSViewControllerPresentationAnimator: NSObjectProtocol {
+    pub unsafe trait NSViewControllerPresentationAnimator:
+        NSObjectProtocol + IsMainThreadOnly
+    {
         #[cfg(feature = "AppKit_NSViewController")]
         #[method(animatePresentationOfViewController:fromViewController:)]
         unsafe fn animatePresentationOfViewController_fromViewController(

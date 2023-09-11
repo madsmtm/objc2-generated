@@ -6,7 +6,7 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub unsafe trait NSScrubberDataSource: NSObjectProtocol {
+    pub unsafe trait NSScrubberDataSource: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(feature = "AppKit_NSScrubber")]
         #[method(numberOfItemsForScrubber:)]
         unsafe fn numberOfItemsForScrubber(&self, scrubber: &NSScrubber) -> NSInteger;
@@ -24,7 +24,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSScrubberDelegate: NSObjectProtocol {
+    pub unsafe trait NSScrubberDelegate: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(feature = "AppKit_NSScrubber")]
         #[optional]
         #[method(scrubber:didSelectItemAtIndex:)]

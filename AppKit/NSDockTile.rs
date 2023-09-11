@@ -79,7 +79,7 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSMenu")]
         #[optional]
         #[method_id(@__retain_semantics Other dockMenu)]
-        unsafe fn dockMenu(&self) -> Option<Id<NSMenu>>;
+        unsafe fn dockMenu(&self, mtm: MainThreadMarker) -> Option<Id<NSMenu>>;
     }
 
     unsafe impl ProtocolType for dyn NSDockTilePlugIn {}

@@ -6,7 +6,7 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub unsafe trait NSUserActivityRestoring: NSObjectProtocol {
+    pub unsafe trait NSUserActivityRestoring: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(feature = "Foundation_NSUserActivity")]
         #[method(restoreUserActivityState:)]
         unsafe fn restoreUserActivityState(&self, user_activity: &NSUserActivity);

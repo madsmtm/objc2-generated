@@ -12,7 +12,7 @@ extern_protocol!(
         unsafe fn drawWithFrame_inView(&self, cell_frame: NSRect, control_view: Option<&NSView>);
 
         #[method(wantsToTrackMouse)]
-        unsafe fn wantsToTrackMouse(&self) -> bool;
+        unsafe fn wantsToTrackMouse(&self, mtm: MainThreadMarker) -> bool;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(highlight:withFrame:inView:)]

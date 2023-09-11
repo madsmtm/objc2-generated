@@ -291,7 +291,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSMenuItemValidation: NSObjectProtocol {
+    pub unsafe trait NSMenuItemValidation: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(feature = "AppKit_NSMenuItem")]
         #[method(validateMenuItem:)]
         unsafe fn validateMenuItem(&self, menu_item: &NSMenuItem) -> bool;
@@ -301,7 +301,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSMenuDelegate: NSObjectProtocol {
+    pub unsafe trait NSMenuDelegate: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(feature = "AppKit_NSMenu")]
         #[optional]
         #[method(menuNeedsUpdate:)]

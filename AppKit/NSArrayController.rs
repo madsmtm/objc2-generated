@@ -14,7 +14,7 @@ extern_class!(
     unsafe impl ClassType for NSArrayController {
         #[inherits(NSController, NSObject)]
         type Super = NSObjectController;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 
@@ -250,6 +250,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSArrayController")]
     unsafe impl NSArrayController {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );

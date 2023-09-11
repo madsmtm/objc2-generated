@@ -95,7 +95,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSSharingServicePickerTouchBarItemDelegate:
-        NSSharingServicePickerDelegate
+        NSSharingServicePickerDelegate + IsMainThreadOnly
     {
         #[cfg(all(
             feature = "AppKit_NSSharingServicePickerTouchBarItem",

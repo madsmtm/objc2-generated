@@ -44,7 +44,7 @@ pub type NSCollectionViewSupplementaryElementKind = NSString;
 
 extern_protocol!(
     pub unsafe trait NSCollectionViewElement:
-        NSObjectProtocol + NSUserInterfaceItemIdentification
+        NSObjectProtocol + NSUserInterfaceItemIdentification + IsMainThreadOnly
     {
         #[optional]
         #[method(prepareForReuse)]
@@ -89,7 +89,9 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSCollectionViewSectionHeaderView: NSCollectionViewElement {
+    pub unsafe trait NSCollectionViewSectionHeaderView:
+        NSCollectionViewElement + IsMainThreadOnly
+    {
         #[cfg(feature = "AppKit_NSButton")]
         #[optional]
         #[method_id(@__retain_semantics Other sectionCollapseButton)]
@@ -669,7 +671,9 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSCollectionViewDataSource: NSObjectProtocol {
+    pub unsafe trait NSCollectionViewDataSource:
+        NSObjectProtocol + IsMainThreadOnly
+    {
         #[cfg(feature = "AppKit_NSCollectionView")]
         #[method(collectionView:numberOfItemsInSection:)]
         unsafe fn collectionView_numberOfItemsInSection(
@@ -717,7 +721,9 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSCollectionViewPrefetching: NSObjectProtocol {
+    pub unsafe trait NSCollectionViewPrefetching:
+        NSObjectProtocol + IsMainThreadOnly
+    {
         #[cfg(all(
             feature = "AppKit_NSCollectionView",
             feature = "Foundation_NSArray",

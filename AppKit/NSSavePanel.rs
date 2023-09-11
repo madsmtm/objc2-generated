@@ -255,7 +255,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSOpenSavePanelDelegate: NSObjectProtocol {
+    pub unsafe trait NSOpenSavePanelDelegate: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(feature = "Foundation_NSURL")]
         #[optional]
         #[method(panel:shouldEnableURL:)]

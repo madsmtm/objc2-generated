@@ -68,7 +68,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSSeguePerforming: NSObjectProtocol {
+    pub unsafe trait NSSeguePerforming: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(feature = "AppKit_NSStoryboardSegue")]
         #[optional]
         #[method(prepareForSegue:sender:)]

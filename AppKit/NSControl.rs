@@ -307,7 +307,9 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSControlTextEditingDelegate: NSObjectProtocol {
+    pub unsafe trait NSControlTextEditingDelegate:
+        NSObjectProtocol + IsMainThreadOnly
+    {
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(controlTextDidBeginEditing:)]

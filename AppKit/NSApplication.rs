@@ -642,7 +642,7 @@ ns_enum!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSApplicationDelegate: NSObjectProtocol {
+    pub unsafe trait NSApplicationDelegate: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(feature = "AppKit_NSApplication")]
         #[optional]
         #[method(applicationShouldTerminate:)]

@@ -6,7 +6,7 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub unsafe trait NSColorPickingDefault {
+    pub unsafe trait NSColorPickingDefault: IsMainThreadOnly {
         #[cfg(feature = "AppKit_NSColorPanel")]
         #[method_id(@__retain_semantics Init initWithPickerMask:colorPanel:)]
         unsafe fn initWithPickerMask_colorPanel(
@@ -56,7 +56,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSColorPickingCustom: NSColorPickingDefault {
+    pub unsafe trait NSColorPickingCustom: NSColorPickingDefault + IsMainThreadOnly {
         #[method(supportsMode:)]
         unsafe fn supportsMode(&self, mode: NSColorPanelMode) -> bool;
 

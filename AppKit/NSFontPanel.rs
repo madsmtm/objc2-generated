@@ -23,7 +23,7 @@ ns_options!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSFontChanging: NSObjectProtocol {
+    pub unsafe trait NSFontChanging: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(feature = "AppKit_NSFontManager")]
         #[optional]
         #[method(changeFont:)]

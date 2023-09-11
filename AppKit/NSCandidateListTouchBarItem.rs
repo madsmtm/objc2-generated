@@ -160,7 +160,9 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSCandidateListTouchBarItemDelegate: NSObjectProtocol {
+    pub unsafe trait NSCandidateListTouchBarItemDelegate:
+        NSObjectProtocol + IsMainThreadOnly
+    {
         #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
         #[optional]
         #[method(candidateListTouchBarItem:beginSelectingCandidateAtIndex:)]

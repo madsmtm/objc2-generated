@@ -26,6 +26,7 @@ extern_protocol!(
         unsafe fn extensionViewControllerForMessageSigners(
             &self,
             message_signers: &NSArray<MEMessageSigner>,
+            mtm: MainThreadMarker,
         ) -> Option<Id<MEExtensionViewController>>;
 
         #[cfg(all(
@@ -36,6 +37,7 @@ extern_protocol!(
         unsafe fn extensionViewControllerForMessageContext(
             &self,
             context: &NSData,
+            mtm: MainThreadMarker,
         ) -> Option<Id<MEExtensionViewController>>;
 
         #[cfg(all(

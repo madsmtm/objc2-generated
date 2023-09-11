@@ -526,7 +526,7 @@ extern_methods!(
 extern_static!(NSBrowserColumnConfigurationDidChangeNotification: &'static NSNotificationName);
 
 extern_protocol!(
-    pub unsafe trait NSBrowserDelegate: NSObjectProtocol {
+    pub unsafe trait NSBrowserDelegate: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(feature = "AppKit_NSBrowser")]
         #[optional]
         #[method(browser:numberOfRowsInColumn:)]

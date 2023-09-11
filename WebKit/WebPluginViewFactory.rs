@@ -21,7 +21,10 @@ extern_protocol!(
         #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSDictionary"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other plugInViewWithArguments:)]
-        unsafe fn plugInViewWithArguments(arguments: Option<&NSDictionary>) -> Option<Id<NSView>>;
+        unsafe fn plugInViewWithArguments(
+            arguments: Option<&NSDictionary>,
+            mtm: MainThreadMarker,
+        ) -> Option<Id<NSView>>;
     }
 
     unsafe impl ProtocolType for dyn WebPlugInViewFactory {}

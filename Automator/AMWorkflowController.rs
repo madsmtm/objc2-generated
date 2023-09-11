@@ -15,7 +15,7 @@ extern_class!(
     unsafe impl ClassType for AMWorkflowController {
         #[inherits(NSObject)]
         type Super = NSController;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 
@@ -44,7 +44,7 @@ extern_methods!(
 
         #[cfg(feature = "Automator_AMWorkflowView")]
         #[method_id(@__retain_semantics Other workflowView)]
-        pub unsafe fn workflowView(&self, mtm: MainThreadMarker) -> Option<Id<AMWorkflowView>>;
+        pub unsafe fn workflowView(&self) -> Option<Id<AMWorkflowView>>;
 
         #[cfg(feature = "Automator_AMWorkflowView")]
         #[method(setWorkflowView:)]
@@ -108,7 +108,7 @@ extern_methods!(
     #[cfg(feature = "Automator_AMWorkflowController")]
     unsafe impl AMWorkflowController {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 

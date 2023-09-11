@@ -258,12 +258,6 @@ __inner_extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSCollectionViewDiffableDataSource")]
-unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSCollectionViewDataSource
-    for NSCollectionViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
-{
-}
-
-#[cfg(feature = "AppKit_NSCollectionViewDiffableDataSource")]
 unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSObjectProtocol
     for NSCollectionViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
 {

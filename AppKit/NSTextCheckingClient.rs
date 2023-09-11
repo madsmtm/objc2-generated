@@ -151,11 +151,15 @@ extern_protocol!(
             range: NSRange,
             first_rect: NSRectPointer,
             actual_range: NSRangePointer,
+            mtm: MainThreadMarker,
         ) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
         #[method_id(@__retain_semantics Other candidateListTouchBarItem)]
-        unsafe fn candidateListTouchBarItem(&self) -> Option<Id<NSCandidateListTouchBarItem>>;
+        unsafe fn candidateListTouchBarItem(
+            &self,
+            mtm: MainThreadMarker,
+        ) -> Option<Id<NSCandidateListTouchBarItem>>;
     }
 
     unsafe impl ProtocolType for dyn NSTextCheckingClient {}

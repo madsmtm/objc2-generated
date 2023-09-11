@@ -74,6 +74,7 @@ extern_protocol!(
         unsafe fn downloadWindowForAuthenticationSheet(
             &self,
             download: Option<&WebDownload>,
+            mtm: MainThreadMarker,
         ) -> Option<Id<NSWindow>>;
     }
 

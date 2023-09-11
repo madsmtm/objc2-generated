@@ -82,7 +82,9 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSSpeechRecognizerDelegate: NSObjectProtocol {
+    pub unsafe trait NSSpeechRecognizerDelegate:
+        NSObjectProtocol + IsMainThreadOnly
+    {
         #[cfg(all(feature = "AppKit_NSSpeechRecognizer", feature = "Foundation_NSString"))]
         #[optional]
         #[method(speechRecognizer:didRecognizeCommand:)]

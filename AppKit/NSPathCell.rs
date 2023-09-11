@@ -209,7 +209,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSPathCellDelegate: NSObjectProtocol {
+    pub unsafe trait NSPathCellDelegate: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(all(feature = "AppKit_NSOpenPanel", feature = "AppKit_NSPathCell"))]
         #[optional]
         #[method(pathCell:willDisplayOpenPanel:)]

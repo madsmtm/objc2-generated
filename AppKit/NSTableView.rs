@@ -762,7 +762,9 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSTableViewDelegate: NSControlTextEditingDelegate {
+    pub unsafe trait NSTableViewDelegate:
+        NSControlTextEditingDelegate + IsMainThreadOnly
+    {
         #[cfg(all(
             feature = "AppKit_NSTableColumn",
             feature = "AppKit_NSTableView",

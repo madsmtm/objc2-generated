@@ -220,7 +220,7 @@ unsafe impl NSMenuItemValidation for NSToolbarItem {}
 unsafe impl NSValidatedUserInterfaceItem for NSToolbarItem {}
 
 extern_protocol!(
-    pub unsafe trait NSToolbarItemValidation: NSObjectProtocol {
+    pub unsafe trait NSToolbarItemValidation: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(feature = "AppKit_NSToolbarItem")]
         #[method(validateToolbarItem:)]
         unsafe fn validateToolbarItem(&self, item: &NSToolbarItem) -> bool;

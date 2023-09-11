@@ -139,7 +139,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSPageControllerDelegate: NSObjectProtocol {
+    pub unsafe trait NSPageControllerDelegate: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(feature = "AppKit_NSPageController")]
         #[optional]
         #[method_id(@__retain_semantics Other pageController:identifierForObject:)]

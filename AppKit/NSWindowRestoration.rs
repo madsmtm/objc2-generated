@@ -6,7 +6,7 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub unsafe trait NSWindowRestoration: NSObjectProtocol {
+    pub unsafe trait NSWindowRestoration: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(all(
             feature = "AppKit_NSWindow",
             feature = "Foundation_NSCoder",
@@ -17,6 +17,7 @@ extern_protocol!(
             identifier: &NSUserInterfaceItemIdentifier,
             state: &NSCoder,
             completion_handler: &Block<(*mut NSWindow, *mut NSError), ()>,
+            mtm: MainThreadMarker,
         );
     }
 

@@ -14,7 +14,7 @@ extern_static!(NSComboBoxSelectionDidChangeNotification: &'static NSNotification
 extern_static!(NSComboBoxSelectionIsChangingNotification: &'static NSNotificationName);
 
 extern_protocol!(
-    pub unsafe trait NSComboBoxDataSource: NSObjectProtocol {
+    pub unsafe trait NSComboBoxDataSource: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(feature = "AppKit_NSComboBox")]
         #[optional]
         #[method(numberOfItemsInComboBox:)]
@@ -52,7 +52,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSComboBoxDelegate: NSTextFieldDelegate {
+    pub unsafe trait NSComboBoxDelegate: NSTextFieldDelegate + IsMainThreadOnly {
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]
         #[method(comboBoxWillPopUp:)]

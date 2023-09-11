@@ -14,7 +14,7 @@ extern_class!(
     unsafe impl ClassType for NSObjectController {
         #[inherits(NSObject)]
         type Super = NSController;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 
@@ -123,7 +123,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSObjectController")]
     unsafe impl NSObjectController {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 

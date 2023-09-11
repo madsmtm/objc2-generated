@@ -477,7 +477,9 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSOutlineViewDelegate: NSControlTextEditingDelegate {
+    pub unsafe trait NSOutlineViewDelegate:
+        NSControlTextEditingDelegate + IsMainThreadOnly
+    {
         #[cfg(all(
             feature = "AppKit_NSOutlineView",
             feature = "AppKit_NSTableColumn",

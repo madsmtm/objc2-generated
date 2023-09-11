@@ -81,6 +81,7 @@ extern_protocol!(
         unsafe fn viewControllerForSession(
             &self,
             session: &MEComposeSession,
+            mtm: MainThreadMarker,
         ) -> Id<MEExtensionViewController>;
 
         #[cfg(all(

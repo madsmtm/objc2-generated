@@ -60,7 +60,7 @@ ns_enum!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSDraggingInfo: NSObjectProtocol {
+    pub unsafe trait NSDraggingInfo: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(feature = "AppKit_NSWindow")]
         #[method_id(@__retain_semantics Other draggingDestinationWindow)]
         unsafe fn draggingDestinationWindow(&self) -> Option<Id<NSWindow>>;
@@ -149,7 +149,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSDraggingDestination: NSObjectProtocol {
+    pub unsafe trait NSDraggingDestination: NSObjectProtocol + IsMainThreadOnly {
         #[optional]
         #[method(draggingEntered:)]
         unsafe fn draggingEntered(
@@ -203,7 +203,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSDraggingSource: NSObjectProtocol {
+    pub unsafe trait NSDraggingSource: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(feature = "AppKit_NSDraggingSession")]
         #[method(draggingSession:sourceOperationMaskForDraggingContext:)]
         unsafe fn draggingSession_sourceOperationMaskForDraggingContext(
@@ -260,7 +260,9 @@ ns_options!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSSpringLoadingDestination: NSObjectProtocol {
+    pub unsafe trait NSSpringLoadingDestination:
+        NSObjectProtocol + IsMainThreadOnly
+    {
         #[method(springLoadingActivated:draggingInfo:)]
         unsafe fn springLoadingActivated_draggingInfo(
             &self,

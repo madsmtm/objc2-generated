@@ -13,7 +13,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSColorPicker")]
     unsafe impl ClassType for NSColorPicker {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 
@@ -36,7 +36,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColorPanel")]
         #[method_id(@__retain_semantics Other colorPanel)]
-        pub unsafe fn colorPanel(&self, mtm: MainThreadMarker) -> Id<NSColorPanel>;
+        pub unsafe fn colorPanel(&self) -> Id<NSColorPanel>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other provideNewButtonImage)]
@@ -51,18 +51,18 @@ extern_methods!(
         );
 
         #[method(viewSizeChanged:)]
-        pub unsafe fn viewSizeChanged(&self, sender: Option<&AnyObject>, mtm: MainThreadMarker);
+        pub unsafe fn viewSizeChanged(&self, sender: Option<&AnyObject>);
 
         #[cfg(feature = "AppKit_NSColorList")]
         #[method(attachColorList:)]
-        pub unsafe fn attachColorList(&self, color_list: &NSColorList, mtm: MainThreadMarker);
+        pub unsafe fn attachColorList(&self, color_list: &NSColorList);
 
         #[cfg(feature = "AppKit_NSColorList")]
         #[method(detachColorList:)]
-        pub unsafe fn detachColorList(&self, color_list: &NSColorList, mtm: MainThreadMarker);
+        pub unsafe fn detachColorList(&self, color_list: &NSColorList);
 
         #[method(setMode:)]
-        pub unsafe fn setMode(&self, mode: NSColorPanelMode, mtm: MainThreadMarker);
+        pub unsafe fn setMode(&self, mode: NSColorPanelMode);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other buttonToolTip)]
@@ -81,6 +81,6 @@ extern_methods!(
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );

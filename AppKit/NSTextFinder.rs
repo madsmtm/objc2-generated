@@ -218,6 +218,7 @@ extern_protocol!(
             &self,
             index: NSUInteger,
             out_range: NSRangePointer,
+            mtm: MainThreadMarker,
         ) -> Id<NSView>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
@@ -243,7 +244,7 @@ extern_protocol!(
     pub unsafe trait NSTextFinderBarContainer: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other findBarView)]
-        unsafe fn findBarView(&self) -> Option<Id<NSView>>;
+        unsafe fn findBarView(&self, mtm: MainThreadMarker) -> Option<Id<NSView>>;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(setFindBarView:)]
@@ -261,7 +262,7 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSView")]
         #[optional]
         #[method_id(@__retain_semantics Other contentView)]
-        unsafe fn contentView(&self) -> Option<Id<NSView>>;
+        unsafe fn contentView(&self, mtm: MainThreadMarker) -> Option<Id<NSView>>;
     }
 
     unsafe impl ProtocolType for dyn NSTextFinderBarContainer {}

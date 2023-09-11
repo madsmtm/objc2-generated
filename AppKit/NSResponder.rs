@@ -250,7 +250,9 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSStandardKeyBindingResponding: NSObjectProtocol {
+    pub unsafe trait NSStandardKeyBindingResponding:
+        NSObjectProtocol + IsMainThreadOnly
+    {
         #[optional]
         #[method(insertText:)]
         unsafe fn insertText(&self, insert_string: &AnyObject);

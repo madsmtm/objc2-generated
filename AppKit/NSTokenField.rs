@@ -6,7 +6,7 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub unsafe trait NSTokenFieldDelegate: NSTextFieldDelegate {
+    pub unsafe trait NSTokenFieldDelegate: NSTextFieldDelegate + IsMainThreadOnly {
         #[cfg(all(
             feature = "AppKit_NSTokenField",
             feature = "Foundation_NSArray",

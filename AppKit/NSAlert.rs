@@ -149,7 +149,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSAlertDelegate: NSObjectProtocol {
+    pub unsafe trait NSAlertDelegate: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(feature = "AppKit_NSAlert")]
         #[optional]
         #[method(alertShowHelp:)]

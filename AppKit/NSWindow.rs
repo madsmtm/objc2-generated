@@ -1373,7 +1373,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSWindowDelegate: NSObjectProtocol {
+    pub unsafe trait NSWindowDelegate: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(feature = "AppKit_NSWindow")]
         #[optional]
         #[method(windowShouldClose:)]

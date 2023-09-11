@@ -173,7 +173,9 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSGestureRecognizerDelegate: NSObjectProtocol {
+    pub unsafe trait NSGestureRecognizerDelegate:
+        NSObjectProtocol + IsMainThreadOnly
+    {
         #[cfg(all(feature = "AppKit_NSEvent", feature = "AppKit_NSGestureRecognizer"))]
         #[optional]
         #[method(gestureRecognizer:shouldAttemptToRecognizeWithEvent:)]

@@ -243,7 +243,9 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSSpeechSynthesizerDelegate: NSObjectProtocol {
+    pub unsafe trait NSSpeechSynthesizerDelegate:
+        NSObjectProtocol + IsMainThreadOnly
+    {
         #[cfg(feature = "AppKit_NSSpeechSynthesizer")]
         #[optional]
         #[method(speechSynthesizer:didFinishSpeaking:)]

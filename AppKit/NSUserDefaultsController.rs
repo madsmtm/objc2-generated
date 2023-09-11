@@ -14,7 +14,7 @@ extern_class!(
     unsafe impl ClassType for NSUserDefaultsController {
         #[inherits(NSObject)]
         type Super = NSController;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 
@@ -34,7 +34,9 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSUserDefaultsController")]
     unsafe impl NSUserDefaultsController {
         #[method_id(@__retain_semantics Other sharedUserDefaultsController)]
-        pub unsafe fn sharedUserDefaultsController() -> Id<NSUserDefaultsController>;
+        pub unsafe fn sharedUserDefaultsController(
+            mtm: MainThreadMarker,
+        ) -> Id<NSUserDefaultsController>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -107,6 +109,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSUserDefaultsController")]
     unsafe impl NSUserDefaultsController {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );

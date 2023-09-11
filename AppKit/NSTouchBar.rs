@@ -155,7 +155,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSTouchBarDelegate: NSObjectProtocol {
+    pub unsafe trait NSTouchBarDelegate: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(all(feature = "AppKit_NSTouchBar", feature = "AppKit_NSTouchBarItem"))]
         #[optional]
         #[method_id(@__retain_semantics Other touchBar:makeItemForIdentifier:)]
@@ -170,7 +170,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSTouchBarProvider: NSObjectProtocol {
+    pub unsafe trait NSTouchBarProvider: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(feature = "AppKit_NSTouchBar")]
         #[method_id(@__retain_semantics Other touchBar)]
         unsafe fn touchBar(&self) -> Option<Id<NSTouchBar>>;

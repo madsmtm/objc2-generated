@@ -229,7 +229,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSStackViewDelegate: NSObjectProtocol {
+    pub unsafe trait NSStackViewDelegate: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(all(
             feature = "AppKit_NSStackView",
             feature = "AppKit_NSView",

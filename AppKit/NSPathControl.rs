@@ -179,7 +179,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSPathControlDelegate: NSObjectProtocol {
+    pub unsafe trait NSPathControlDelegate: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(all(
             feature = "AppKit_NSPasteboard",
             feature = "AppKit_NSPathControl",

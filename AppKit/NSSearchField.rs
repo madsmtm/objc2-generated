@@ -8,7 +8,7 @@ use crate::Foundation::*;
 pub type NSSearchFieldRecentsAutosaveName = NSString;
 
 extern_protocol!(
-    pub unsafe trait NSSearchFieldDelegate: NSTextFieldDelegate {
+    pub unsafe trait NSSearchFieldDelegate: NSTextFieldDelegate + IsMainThreadOnly {
         #[cfg(feature = "AppKit_NSSearchField")]
         #[optional]
         #[method(searchFieldDidStartSearching:)]

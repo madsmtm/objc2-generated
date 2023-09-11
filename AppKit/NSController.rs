@@ -13,7 +13,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSController")]
     unsafe impl ClassType for NSController {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 
@@ -43,24 +43,16 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[method(objectDidBeginEditing:)]
-        pub unsafe fn objectDidBeginEditing(
-            &self,
-            editor: &ProtocolObject<dyn NSEditor>,
-            mtm: MainThreadMarker,
-        );
+        pub unsafe fn objectDidBeginEditing(&self, editor: &ProtocolObject<dyn NSEditor>);
 
         #[method(objectDidEndEditing:)]
-        pub unsafe fn objectDidEndEditing(
-            &self,
-            editor: &ProtocolObject<dyn NSEditor>,
-            mtm: MainThreadMarker,
-        );
+        pub unsafe fn objectDidEndEditing(&self, editor: &ProtocolObject<dyn NSEditor>);
 
         #[method(discardEditing)]
-        pub unsafe fn discardEditing(&self, mtm: MainThreadMarker);
+        pub unsafe fn discardEditing(&self);
 
         #[method(commitEditing)]
-        pub unsafe fn commitEditing(&self, mtm: MainThreadMarker) -> bool;
+        pub unsafe fn commitEditing(&self) -> bool;
 
         #[method(commitEditingWithDelegate:didCommitSelector:contextInfo:)]
         pub unsafe fn commitEditingWithDelegate_didCommitSelector_contextInfo(
@@ -68,7 +60,6 @@ extern_methods!(
             delegate: Option<&AnyObject>,
             did_commit_selector: Option<Sel>,
             context_info: *mut c_void,
-            mtm: MainThreadMarker,
         );
 
         #[method(isEditing)]
@@ -81,6 +72,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSController")]
     unsafe impl NSController {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );

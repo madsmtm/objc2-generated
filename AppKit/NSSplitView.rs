@@ -196,7 +196,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSSplitViewDelegate: NSObjectProtocol {
+    pub unsafe trait NSSplitViewDelegate: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(all(feature = "AppKit_NSSplitView", feature = "AppKit_NSView"))]
         #[optional]
         #[method(splitView:canCollapseSubview:)]

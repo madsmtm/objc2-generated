@@ -180,7 +180,7 @@ ns_enum!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSSharingServiceDelegate: NSObjectProtocol {
+    pub unsafe trait NSSharingServiceDelegate: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(all(feature = "AppKit_NSSharingService", feature = "Foundation_NSArray"))]
         #[optional]
         #[method(sharingService:willShareItems:)]

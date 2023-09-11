@@ -23,7 +23,7 @@ extern_class!(
     unsafe impl ClassType for OSAScriptController {
         #[inherits(NSObject)]
         type Super = NSController;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 
@@ -44,7 +44,7 @@ extern_methods!(
     unsafe impl OSAScriptController {
         #[cfg(feature = "OSAKit_OSAScriptView")]
         #[method_id(@__retain_semantics Other scriptView)]
-        pub unsafe fn scriptView(&self, mtm: MainThreadMarker) -> Option<Id<OSAScriptView>>;
+        pub unsafe fn scriptView(&self) -> Option<Id<OSAScriptView>>;
 
         #[cfg(feature = "OSAKit_OSAScriptView")]
         #[method(setScriptView:)]
@@ -52,7 +52,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSTextView")]
         #[method_id(@__retain_semantics Other resultView)]
-        pub unsafe fn resultView(&self, mtm: MainThreadMarker) -> Option<Id<NSTextView>>;
+        pub unsafe fn resultView(&self) -> Option<Id<NSTextView>>;
 
         #[cfg(feature = "AppKit_NSTextView")]
         #[method(setResultView:)]
@@ -115,6 +115,6 @@ extern_methods!(
     #[cfg(feature = "OSAKit_OSAScriptController")]
     unsafe impl OSAScriptController {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );

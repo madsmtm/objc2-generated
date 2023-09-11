@@ -131,7 +131,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSTokenFieldCellDelegate: NSObjectProtocol {
+    pub unsafe trait NSTokenFieldCellDelegate: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(all(
             feature = "AppKit_NSTokenFieldCell",
             feature = "Foundation_NSArray",

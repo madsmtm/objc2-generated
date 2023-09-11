@@ -201,7 +201,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSToolbarDelegate: NSObjectProtocol {
+    pub unsafe trait NSToolbarDelegate: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(all(feature = "AppKit_NSToolbar", feature = "AppKit_NSToolbarItem"))]
         #[optional]
         #[method_id(@__retain_semantics Other toolbar:itemForItemIdentifier:willBeInsertedIntoToolbar:)]

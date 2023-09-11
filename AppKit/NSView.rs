@@ -723,7 +723,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSViewToolTipOwner: NSObjectProtocol {
+    pub unsafe trait NSViewToolTipOwner: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other view:stringForToolTip:point:userData:)]
         unsafe fn view_stringForToolTip_point_userData(

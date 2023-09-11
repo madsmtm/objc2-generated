@@ -207,7 +207,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSDatePickerCellDelegate: NSObjectProtocol {
+    pub unsafe trait NSDatePickerCellDelegate: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(all(feature = "AppKit_NSDatePickerCell", feature = "Foundation_NSDate"))]
         #[optional]
         #[method(datePickerCell:validateProposedDateValue:timeInterval:)]

@@ -84,6 +84,7 @@ extern_protocol!(
             &self,
             file_promise_provider: &NSFilePromiseProvider,
             file_type: &NSString,
+            mtm: MainThreadMarker,
         ) -> Id<NSString>;
 
         #[cfg(all(
@@ -108,6 +109,7 @@ extern_protocol!(
         unsafe fn operationQueueForFilePromiseProvider(
             &self,
             file_promise_provider: &NSFilePromiseProvider,
+            mtm: MainThreadMarker,
         ) -> Id<NSOperationQueue>;
     }
 

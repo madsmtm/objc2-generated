@@ -38,7 +38,7 @@ extern_static!(NSPrintPanelAccessorySummaryItemNameKey: &'static NSPrintPanelAcc
 extern_static!(NSPrintPanelAccessorySummaryItemDescriptionKey: &'static NSPrintPanelAccessorySummaryKey);
 
 extern_protocol!(
-    pub unsafe trait NSPrintPanelAccessorizing {
+    pub unsafe trait NSPrintPanelAccessorizing: IsMainThreadOnly {
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSDictionary",

@@ -71,7 +71,7 @@ extern_class!(
     unsafe impl ClassType for NSDictionaryController {
         #[inherits(NSObjectController, NSController, NSObject)]
         type Super = NSArrayController;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 
@@ -178,6 +178,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSDictionaryController")]
     unsafe impl NSDictionaryController {
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );

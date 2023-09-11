@@ -52,7 +52,7 @@ extern_class!(
     #[cfg(feature = "AppKit_NSFontManager")]
     unsafe impl ClassType for NSFontManager {
         type Super = NSObject;
-        type Mutability = InteriorMutable;
+        type Mutability = MainThreadOnly;
     }
 );
 
@@ -66,13 +66,13 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSFontManager")]
     unsafe impl NSFontManager {
         #[method(setFontPanelFactory:)]
-        pub unsafe fn setFontPanelFactory(factory_id: Option<&AnyClass>);
+        pub unsafe fn setFontPanelFactory(factory_id: Option<&AnyClass>, mtm: MainThreadMarker);
 
         #[method(setFontManagerFactory:)]
-        pub unsafe fn setFontManagerFactory(factory_id: Option<&AnyClass>);
+        pub unsafe fn setFontManagerFactory(factory_id: Option<&AnyClass>, mtm: MainThreadMarker);
 
         #[method_id(@__retain_semantics Other sharedFontManager)]
-        pub unsafe fn sharedFontManager() -> Id<NSFontManager>;
+        pub unsafe fn sharedFontManager(mtm: MainThreadMarker) -> Id<NSFontManager>;
 
         #[method(isMultiple)]
         pub unsafe fn isMultiple(&self) -> bool;
@@ -91,15 +91,11 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSMenu")]
         #[method_id(@__retain_semantics Other fontMenu:)]
-        pub unsafe fn fontMenu(&self, create: bool, mtm: MainThreadMarker) -> Option<Id<NSMenu>>;
+        pub unsafe fn fontMenu(&self, create: bool) -> Option<Id<NSMenu>>;
 
         #[cfg(feature = "AppKit_NSFontPanel")]
         #[method_id(@__retain_semantics Other fontPanel:)]
-        pub unsafe fn fontPanel(
-            &self,
-            create: bool,
-            mtm: MainThreadMarker,
-        ) -> Option<Id<NSFontPanel>>;
+        pub unsafe fn fontPanel(&self, create: bool) -> Option<Id<NSFontPanel>>;
 
         #[cfg(all(feature = "AppKit_NSFont", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other fontWithFamily:traits:weight:size:)]
@@ -299,7 +295,7 @@ extern_methods!(
         pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 

@@ -293,7 +293,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSRuleEditorDelegate: NSObjectProtocol {
+    pub unsafe trait NSRuleEditorDelegate: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(feature = "AppKit_NSRuleEditor")]
         #[method(ruleEditor:numberOfChildrenForCriterion:withRowType:)]
         unsafe fn ruleEditor_numberOfChildrenForCriterion_withRowType(

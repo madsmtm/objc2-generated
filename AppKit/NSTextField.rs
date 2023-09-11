@@ -300,7 +300,9 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSTextFieldDelegate: NSControlTextEditingDelegate {
+    pub unsafe trait NSTextFieldDelegate:
+        NSControlTextEditingDelegate + IsMainThreadOnly
+    {
         #[cfg(all(
             feature = "AppKit_NSTextField",
             feature = "AppKit_NSTextView",

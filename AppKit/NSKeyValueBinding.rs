@@ -93,7 +93,7 @@ extern_static!(NSObservedKeyPathKey: &'static NSBindingInfoKey);
 extern_static!(NSOptionsKey: &'static NSBindingInfoKey);
 
 extern_protocol!(
-    pub unsafe trait NSEditor: NSObjectProtocol {
+    pub unsafe trait NSEditor: NSObjectProtocol + IsMainThreadOnly {
         #[method(discardEditing)]
         unsafe fn discardEditing(&self);
 
@@ -117,7 +117,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSEditorRegistration: NSObjectProtocol {
+    pub unsafe trait NSEditorRegistration: NSObjectProtocol + IsMainThreadOnly {
         #[optional]
         #[method(objectDidBeginEditing:)]
         unsafe fn objectDidBeginEditing(&self, editor: &ProtocolObject<dyn NSEditor>);
@@ -345,9 +345,3 @@ extern_methods!(
     #[cfg(feature = "CoreData_NSManagedObjectContext")]
     unsafe impl NSManagedObjectContext {}
 );
-
-#[cfg(feature = "CoreData_NSManagedObjectContext")]
-unsafe impl NSEditor for NSManagedObjectContext {}
-
-#[cfg(feature = "CoreData_NSManagedObjectContext")]
-unsafe impl NSEditorRegistration for NSManagedObjectContext {}

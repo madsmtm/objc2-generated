@@ -373,7 +373,7 @@ extern_enum!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSTextDelegate: NSObjectProtocol {
+    pub unsafe trait NSTextDelegate: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(feature = "AppKit_NSText")]
         #[optional]
         #[method(textShouldBeginEditing:)]

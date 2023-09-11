@@ -6,7 +6,7 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 extern_protocol!(
-    pub unsafe trait NSValidatedUserInterfaceItem {
+    pub unsafe trait NSValidatedUserInterfaceItem: IsMainThreadOnly {
         #[method(action)]
         unsafe fn action(&self) -> Option<Sel>;
 
@@ -18,7 +18,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSUserInterfaceValidations {
+    pub unsafe trait NSUserInterfaceValidations: IsMainThreadOnly {
         #[method(validateUserInterfaceItem:)]
         unsafe fn validateUserInterfaceItem(
             &self,

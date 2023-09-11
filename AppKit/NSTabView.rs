@@ -252,7 +252,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSTabViewDelegate: NSObjectProtocol {
+    pub unsafe trait NSTabViewDelegate: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(all(feature = "AppKit_NSTabView", feature = "AppKit_NSTabViewItem"))]
         #[optional]
         #[method(tabView:shouldSelectTabViewItem:)]

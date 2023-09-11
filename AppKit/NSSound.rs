@@ -189,7 +189,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSSoundDelegate: NSObjectProtocol {
+    pub unsafe trait NSSoundDelegate: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(feature = "AppKit_NSSound")]
         #[optional]
         #[method(sound:didFinishPlaying:)]
