@@ -86,10 +86,13 @@ extern_methods!(
         pub unsafe fn isDragging(&self) -> bool;
 
         #[method_id(@__retain_semantics Other representedObject)]
-        pub unsafe fn representedObject(&self) -> Option<Id<AnyObject>>;
+        pub unsafe fn representedObject(&self) -> Option<Id<ProtocolObject<dyn NSCopying>>>;
 
         #[method(setRepresentedObject:)]
-        pub unsafe fn setRepresentedObject(&self, represented_object: Option<&AnyObject>);
+        pub unsafe fn setRepresentedObject(
+            &self,
+            represented_object: Option<&ProtocolObject<dyn NSCopying>>,
+        );
 
         #[method(imageRectInRuler)]
         pub unsafe fn imageRectInRuler(&self) -> NSRect;

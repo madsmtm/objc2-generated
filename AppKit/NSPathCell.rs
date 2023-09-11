@@ -70,7 +70,7 @@ extern_methods!(
         pub unsafe fn setURL(&self, url: Option<&NSURL>);
 
         #[method(setObjectValue:)]
-        pub unsafe fn setObjectValue(&self, obj: Option<&AnyObject>);
+        pub unsafe fn setObjectValue(&self, obj: Option<&ProtocolObject<dyn NSCopying>>);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other allowedTypes)]

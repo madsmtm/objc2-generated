@@ -22,7 +22,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait AXDataAxisDescriptor {
+    pub unsafe trait AXDataAxisDescriptor: NSCopying {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
         unsafe fn title(&self) -> Id<NSString>;

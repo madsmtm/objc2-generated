@@ -59,7 +59,7 @@ extern_methods!(
         pub unsafe fn initWithObjects_forKeys_count(
             this: Option<Allocated<Self>>,
             objects: *mut NonNull<ObjectType>,
-            keys: *mut NonNull<AnyObject>,
+            keys: *mut NonNull<ProtocolObject<dyn NSCopying>>,
             cnt: NSUInteger,
         ) -> Id<Self>;
 
@@ -276,13 +276,15 @@ extern_methods!(
         pub unsafe fn dictionary() -> Id<Self>;
 
         #[method_id(@__retain_semantics Other dictionaryWithObject:forKey:)]
-        pub unsafe fn dictionaryWithObject_forKey(object: &ObjectType, key: &AnyObject)
-            -> Id<Self>;
+        pub unsafe fn dictionaryWithObject_forKey(
+            object: &ObjectType,
+            key: &ProtocolObject<dyn NSCopying>,
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other dictionaryWithObjects:forKeys:count:)]
         pub unsafe fn dictionaryWithObjects_forKeys_count(
             objects: *mut NonNull<ObjectType>,
-            keys: *mut NonNull<AnyObject>,
+            keys: *mut NonNull<ProtocolObject<dyn NSCopying>>,
             cnt: NSUInteger,
         ) -> Id<Self>;
 
@@ -295,7 +297,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other dictionaryWithObjects:forKeys:)]
         pub unsafe fn dictionaryWithObjects_forKeys(
             objects: &NSArray<ObjectType>,
-            keys: &NSArray<AnyObject>,
+            keys: &NSArray<ProtocolObject<dyn NSCopying>>,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithDictionary:)]
@@ -316,7 +318,7 @@ extern_methods!(
         pub unsafe fn initWithObjects_forKeys(
             this: Option<Allocated<Self>>,
             objects: &NSArray<ObjectType>,
-            keys: &NSArray<AnyObject>,
+            keys: &NSArray<ProtocolObject<dyn NSCopying>>,
         ) -> Id<Self>;
     }
 );
@@ -331,13 +333,15 @@ extern_methods!(
         pub unsafe fn dictionary() -> Id<Self>;
 
         #[method_id(@__retain_semantics Other dictionaryWithObject:forKey:)]
-        pub unsafe fn dictionaryWithObject_forKey(object: &ObjectType, key: &AnyObject)
-            -> Id<Self>;
+        pub unsafe fn dictionaryWithObject_forKey(
+            object: &ObjectType,
+            key: &ProtocolObject<dyn NSCopying>,
+        ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other dictionaryWithObjects:forKeys:count:)]
         pub unsafe fn dictionaryWithObjects_forKeys_count(
             objects: *mut NonNull<ObjectType>,
-            keys: *mut NonNull<AnyObject>,
+            keys: *mut NonNull<ProtocolObject<dyn NSCopying>>,
             cnt: NSUInteger,
         ) -> Id<Self>;
 
@@ -350,7 +354,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other dictionaryWithObjects:forKeys:)]
         pub unsafe fn dictionaryWithObjects_forKeys(
             objects: &NSArray<ObjectType>,
-            keys: &NSArray<AnyObject>,
+            keys: &NSArray<ProtocolObject<dyn NSCopying>>,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithDictionary:)]
@@ -371,7 +375,7 @@ extern_methods!(
         pub unsafe fn initWithObjects_forKeys(
             this: Option<Allocated<Self>>,
             objects: &NSArray<ObjectType>,
-            keys: &NSArray<AnyObject>,
+            keys: &NSArray<ProtocolObject<dyn NSCopying>>,
         ) -> Id<Self>;
     }
 );
@@ -419,7 +423,11 @@ extern_methods!(
         pub fn removeObjectForKey(&mut self, a_key: &KeyType);
 
         #[method(setObject:forKey:)]
-        pub unsafe fn setObject_forKey(&mut self, an_object: &ObjectType, a_key: &AnyObject);
+        pub unsafe fn setObject_forKey(
+            &mut self,
+            an_object: &ObjectType,
+            a_key: &ProtocolObject<dyn NSCopying>,
+        );
 
         #[method_id(@__retain_semantics Init init)]
         pub fn init(this: Option<Allocated<Self>>) -> Id<Self>;
@@ -447,7 +455,7 @@ extern_methods!(
         pub unsafe fn initWithObjects_forKeys_count(
             this: Option<Allocated<Self>>,
             objects: *mut NonNull<ObjectType>,
-            keys: *mut NonNull<AnyObject>,
+            keys: *mut NonNull<ProtocolObject<dyn NSCopying>>,
             cnt: NSUInteger,
         ) -> Id<Self>;
     }
@@ -499,7 +507,7 @@ extern_methods!(
         pub unsafe fn setObject_forKeyedSubscript(
             &mut self,
             obj: Option<&ObjectType>,
-            key: &AnyObject,
+            key: &ProtocolObject<dyn NSCopying>,
         );
     }
 );
@@ -545,7 +553,9 @@ extern_methods!(
     unsafe impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other sharedKeySetForKeys:)]
-        pub unsafe fn sharedKeySetForKeys(keys: &NSArray<AnyObject>) -> Id<AnyObject>;
+        pub unsafe fn sharedKeySetForKeys(
+            keys: &NSArray<ProtocolObject<dyn NSCopying>>,
+        ) -> Id<AnyObject>;
     }
 );
 

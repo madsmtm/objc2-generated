@@ -7,7 +7,7 @@ use crate::Foundation::*;
 
 extern_protocol!(
     pub unsafe trait ASAuthorizationPublicKeyCredentialDescriptor:
-        NSObjectProtocol + NSSecureCoding
+        NSCopying + NSObjectProtocol + NSSecureCoding
     {
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other credentialID)]
