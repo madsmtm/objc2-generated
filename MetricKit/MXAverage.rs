@@ -7,14 +7,14 @@ use crate::MetricKit::*;
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MetricKit_MXAverage")]
-    pub struct MXAverage<UnitType: Message = AnyObject> {
+    pub struct MXAverage<UnitType: ?Sized = AnyObject> {
         __superclass: NSObject,
         _inner0: PhantomData<*mut UnitType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     #[cfg(feature = "MetricKit_MXAverage")]
-    unsafe impl<UnitType: Message> ClassType for MXAverage<UnitType> {
+    unsafe impl<UnitType: ?Sized + Message> ClassType for MXAverage<UnitType> {
         type Super = NSObject;
         type Mutability = InteriorMutable;
 
@@ -29,13 +29,13 @@ __inner_extern_class!(
 );
 
 #[cfg(feature = "MetricKit_MXAverage")]
-unsafe impl<UnitType: Message + NSCoding> NSCoding for MXAverage<UnitType> {}
+unsafe impl<UnitType: ?Sized + NSCoding> NSCoding for MXAverage<UnitType> {}
 
 #[cfg(feature = "MetricKit_MXAverage")]
-unsafe impl<UnitType: Message> NSObjectProtocol for MXAverage<UnitType> {}
+unsafe impl<UnitType: ?Sized> NSObjectProtocol for MXAverage<UnitType> {}
 
 #[cfg(feature = "MetricKit_MXAverage")]
-unsafe impl<UnitType: Message + NSSecureCoding> NSSecureCoding for MXAverage<UnitType> {}
+unsafe impl<UnitType: ?Sized + NSSecureCoding> NSSecureCoding for MXAverage<UnitType> {}
 
 extern_methods!(
     #[cfg(feature = "MetricKit_MXAverage")]

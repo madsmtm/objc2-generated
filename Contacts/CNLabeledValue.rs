@@ -7,14 +7,14 @@ use crate::Foundation::*;
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Contacts_CNLabeledValue")]
-    pub struct CNLabeledValue<ValueType: Message = AnyObject> {
+    pub struct CNLabeledValue<ValueType: ?Sized = AnyObject> {
         __superclass: NSObject,
         _inner0: PhantomData<*mut ValueType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     #[cfg(feature = "Contacts_CNLabeledValue")]
-    unsafe impl<ValueType: Message> ClassType for CNLabeledValue<ValueType> {
+    unsafe impl<ValueType: ?Sized + Message> ClassType for CNLabeledValue<ValueType> {
         type Super = NSObject;
         type Mutability = InteriorMutable;
 
@@ -29,16 +29,16 @@ __inner_extern_class!(
 );
 
 #[cfg(feature = "Contacts_CNLabeledValue")]
-unsafe impl<ValueType: Message + NSCoding> NSCoding for CNLabeledValue<ValueType> {}
+unsafe impl<ValueType: ?Sized + NSCoding> NSCoding for CNLabeledValue<ValueType> {}
 
 #[cfg(feature = "Contacts_CNLabeledValue")]
-unsafe impl<ValueType: IsIdCloneable> NSCopying for CNLabeledValue<ValueType> {}
+unsafe impl<ValueType: ?Sized + IsIdCloneable> NSCopying for CNLabeledValue<ValueType> {}
 
 #[cfg(feature = "Contacts_CNLabeledValue")]
-unsafe impl<ValueType: Message> NSObjectProtocol for CNLabeledValue<ValueType> {}
+unsafe impl<ValueType: ?Sized> NSObjectProtocol for CNLabeledValue<ValueType> {}
 
 #[cfg(feature = "Contacts_CNLabeledValue")]
-unsafe impl<ValueType: Message + NSSecureCoding> NSSecureCoding for CNLabeledValue<ValueType> {}
+unsafe impl<ValueType: ?Sized + NSSecureCoding> NSSecureCoding for CNLabeledValue<ValueType> {}
 
 extern_methods!(
     #[cfg(feature = "Contacts_CNLabeledValue")]

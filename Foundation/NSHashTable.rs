@@ -18,14 +18,14 @@ pub type NSHashTableOptions = NSUInteger;
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSHashTable")]
-    pub struct NSHashTable<ObjectType: Message = AnyObject> {
+    pub struct NSHashTable<ObjectType: ?Sized = AnyObject> {
         __superclass: NSObject,
         _inner0: PhantomData<*mut ObjectType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     #[cfg(feature = "Foundation_NSHashTable")]
-    unsafe impl<ObjectType: Message> ClassType for NSHashTable<ObjectType> {
+    unsafe impl<ObjectType: ?Sized + Message> ClassType for NSHashTable<ObjectType> {
         type Super = NSObject;
         type Mutability = InteriorMutable;
 
@@ -40,19 +40,19 @@ __inner_extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSHashTable")]
-unsafe impl<ObjectType: Message + NSCoding> NSCoding for NSHashTable<ObjectType> {}
+unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for NSHashTable<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSHashTable")]
-unsafe impl<ObjectType: IsIdCloneable> NSCopying for NSHashTable<ObjectType> {}
+unsafe impl<ObjectType: ?Sized + IsIdCloneable> NSCopying for NSHashTable<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSHashTable")]
-unsafe impl<ObjectType: Message> NSFastEnumeration for NSHashTable<ObjectType> {}
+unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSHashTable<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSHashTable")]
-unsafe impl<ObjectType: Message> NSObjectProtocol for NSHashTable<ObjectType> {}
+unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSHashTable<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSHashTable")]
-unsafe impl<ObjectType: Message + NSSecureCoding> NSSecureCoding for NSHashTable<ObjectType> {}
+unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding for NSHashTable<ObjectType> {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSHashTable")]

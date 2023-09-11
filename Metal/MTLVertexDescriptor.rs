@@ -125,6 +125,7 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+
 #[cfg(feature = "Metal_MTLVertexBufferLayoutDescriptor")]
 impl DefaultId for MTLVertexBufferLayoutDescriptor {
     #[inline]
@@ -232,6 +233,7 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+
 #[cfg(feature = "Metal_MTLVertexAttributeDescriptor")]
 impl DefaultId for MTLVertexAttributeDescriptor {
     #[inline]

@@ -27,8 +27,8 @@ __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GameController_GCPhysicalInputElementCollection")]
     pub struct GCPhysicalInputElementCollection<
-        Key: Message = AnyObject,
-        Element: Message = AnyObject,
+        Key: ?Sized = AnyObject,
+        Element: ?Sized = AnyObject,
     > {
         __superclass: NSObject,
         _inner0: PhantomData<*mut Key>,
@@ -37,7 +37,7 @@ __inner_extern_class!(
     }
 
     #[cfg(feature = "GameController_GCPhysicalInputElementCollection")]
-    unsafe impl<Key: Message, Element: Message> ClassType
+    unsafe impl<Key: ?Sized + Message, Element: ?Sized + Message> ClassType
         for GCPhysicalInputElementCollection<Key, Element>
     {
         type Super = NSObject;
@@ -54,13 +54,13 @@ __inner_extern_class!(
 );
 
 #[cfg(feature = "GameController_GCPhysicalInputElementCollection")]
-unsafe impl<Key: Message, Element: Message> NSFastEnumeration
+unsafe impl<Key: ?Sized, Element: ?Sized> NSFastEnumeration
     for GCPhysicalInputElementCollection<Key, Element>
 {
 }
 
 #[cfg(feature = "GameController_GCPhysicalInputElementCollection")]
-unsafe impl<Key: Message, Element: Message> NSObjectProtocol
+unsafe impl<Key: ?Sized, Element: ?Sized> NSObjectProtocol
     for GCPhysicalInputElementCollection<Key, Element>
 {
 }

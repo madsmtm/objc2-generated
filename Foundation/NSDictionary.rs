@@ -4,37 +4,37 @@ use crate::common::*;
 use crate::Foundation::*;
 
 #[cfg(feature = "Foundation_NSDictionary")]
-unsafe impl<KeyType: Message + NSCoding, ObjectType: Message + NSCoding> NSCoding
+unsafe impl<KeyType: ?Sized + NSCoding, ObjectType: ?Sized + NSCoding> NSCoding
     for NSDictionary<KeyType, ObjectType>
 {
 }
 
 #[cfg(feature = "Foundation_NSDictionary")]
-unsafe impl<KeyType: IsIdCloneable, ObjectType: IsIdCloneable> NSCopying
+unsafe impl<KeyType: ?Sized + IsIdCloneable, ObjectType: ?Sized + IsIdCloneable> NSCopying
     for NSDictionary<KeyType, ObjectType>
 {
 }
 
 #[cfg(feature = "Foundation_NSDictionary")]
-unsafe impl<KeyType: Message, ObjectType: Message> NSFastEnumeration
+unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSFastEnumeration
     for NSDictionary<KeyType, ObjectType>
 {
 }
 
 #[cfg(feature = "Foundation_NSDictionary")]
-unsafe impl<KeyType: IsIdCloneable, ObjectType: IsIdCloneable> NSMutableCopying
+unsafe impl<KeyType: ?Sized + IsIdCloneable, ObjectType: ?Sized + IsIdCloneable> NSMutableCopying
     for NSDictionary<KeyType, ObjectType>
 {
 }
 
 #[cfg(feature = "Foundation_NSDictionary")]
-unsafe impl<KeyType: Message, ObjectType: Message> NSObjectProtocol
+unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSObjectProtocol
     for NSDictionary<KeyType, ObjectType>
 {
 }
 
 #[cfg(feature = "Foundation_NSDictionary")]
-unsafe impl<KeyType: Message + NSSecureCoding, ObjectType: Message + NSSecureCoding> NSSecureCoding
+unsafe impl<KeyType: ?Sized + NSSecureCoding, ObjectType: ?Sized + NSSecureCoding> NSSecureCoding
     for NSDictionary<KeyType, ObjectType>
 {
 }
@@ -80,6 +80,7 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+
 #[cfg(feature = "Foundation_NSDictionary")]
 impl<KeyType: Message, ObjectType: Message> DefaultId for NSDictionary<KeyType, ObjectType> {
     #[inline]
@@ -376,37 +377,37 @@ extern_methods!(
 );
 
 #[cfg(feature = "Foundation_NSMutableDictionary")]
-unsafe impl<KeyType: Message + NSCoding, ObjectType: Message + NSCoding> NSCoding
+unsafe impl<KeyType: ?Sized + NSCoding, ObjectType: ?Sized + NSCoding> NSCoding
     for NSMutableDictionary<KeyType, ObjectType>
 {
 }
 
 #[cfg(feature = "Foundation_NSMutableDictionary")]
-unsafe impl<KeyType: IsIdCloneable, ObjectType: IsIdCloneable> NSCopying
+unsafe impl<KeyType: ?Sized + IsIdCloneable, ObjectType: ?Sized + IsIdCloneable> NSCopying
     for NSMutableDictionary<KeyType, ObjectType>
 {
 }
 
 #[cfg(feature = "Foundation_NSMutableDictionary")]
-unsafe impl<KeyType: Message, ObjectType: Message> NSFastEnumeration
+unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSFastEnumeration
     for NSMutableDictionary<KeyType, ObjectType>
 {
 }
 
 #[cfg(feature = "Foundation_NSMutableDictionary")]
-unsafe impl<KeyType: IsIdCloneable, ObjectType: IsIdCloneable> NSMutableCopying
+unsafe impl<KeyType: ?Sized + IsIdCloneable, ObjectType: ?Sized + IsIdCloneable> NSMutableCopying
     for NSMutableDictionary<KeyType, ObjectType>
 {
 }
 
 #[cfg(feature = "Foundation_NSMutableDictionary")]
-unsafe impl<KeyType: Message, ObjectType: Message> NSObjectProtocol
+unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSObjectProtocol
     for NSMutableDictionary<KeyType, ObjectType>
 {
 }
 
 #[cfg(feature = "Foundation_NSMutableDictionary")]
-unsafe impl<KeyType: Message + NSSecureCoding, ObjectType: Message + NSSecureCoding> NSSecureCoding
+unsafe impl<KeyType: ?Sized + NSSecureCoding, ObjectType: ?Sized + NSSecureCoding> NSSecureCoding
     for NSMutableDictionary<KeyType, ObjectType>
 {
 }
@@ -460,6 +461,7 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+
 #[cfg(feature = "Foundation_NSMutableDictionary")]
 impl<KeyType: Message, ObjectType: Message> DefaultId for NSMutableDictionary<KeyType, ObjectType> {
     #[inline]

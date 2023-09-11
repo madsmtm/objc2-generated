@@ -92,6 +92,7 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+
 #[cfg(feature = "Metal_MTLLinkedFunctions")]
 impl DefaultId for MTLLinkedFunctions {
     #[inline]

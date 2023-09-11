@@ -867,14 +867,14 @@ extern_protocol!(
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSDirectoryEnumerator")]
-    pub struct NSDirectoryEnumerator<ObjectType: Message = AnyObject> {
+    pub struct NSDirectoryEnumerator<ObjectType: ?Sized = AnyObject> {
         __superclass: NSEnumerator<ObjectType>,
         _inner0: PhantomData<*mut ObjectType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     #[cfg(feature = "Foundation_NSDirectoryEnumerator")]
-    unsafe impl<ObjectType: Message> ClassType for NSDirectoryEnumerator<ObjectType> {
+    unsafe impl<ObjectType: ?Sized + Message> ClassType for NSDirectoryEnumerator<ObjectType> {
         #[inherits(NSObject)]
         type Super = NSEnumerator<ObjectType>;
         type Mutability = Mutable;
@@ -890,10 +890,10 @@ __inner_extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSDirectoryEnumerator")]
-unsafe impl<ObjectType: Message> NSFastEnumeration for NSDirectoryEnumerator<ObjectType> {}
+unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSDirectoryEnumerator<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSDirectoryEnumerator")]
-unsafe impl<ObjectType: Message> NSObjectProtocol for NSDirectoryEnumerator<ObjectType> {}
+unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSDirectoryEnumerator<ObjectType> {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSDirectoryEnumerator")]

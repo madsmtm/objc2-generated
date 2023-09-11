@@ -389,6 +389,7 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+
 #[cfg(feature = "Metal_MTLCompileOptions")]
 impl DefaultId for MTLCompileOptions {
     #[inline]

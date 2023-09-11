@@ -66,6 +66,7 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+
 #[cfg(feature = "Metal_MTLFunctionConstantValues")]
 impl DefaultId for MTLFunctionConstantValues {
     #[inline]

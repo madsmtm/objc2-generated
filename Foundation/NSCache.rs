@@ -6,7 +6,7 @@ use crate::Foundation::*;
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSCache")]
-    pub struct NSCache<KeyType: Message = AnyObject, ObjectType: Message = AnyObject> {
+    pub struct NSCache<KeyType: ?Sized = AnyObject, ObjectType: ?Sized = AnyObject> {
         __superclass: NSObject,
         _inner0: PhantomData<*mut KeyType>,
         _inner1: PhantomData<*mut ObjectType>,
@@ -14,7 +14,9 @@ __inner_extern_class!(
     }
 
     #[cfg(feature = "Foundation_NSCache")]
-    unsafe impl<KeyType: Message, ObjectType: Message> ClassType for NSCache<KeyType, ObjectType> {
+    unsafe impl<KeyType: ?Sized + Message, ObjectType: ?Sized + Message> ClassType
+        for NSCache<KeyType, ObjectType>
+    {
         type Super = NSObject;
         type Mutability = InteriorMutable;
 
@@ -29,10 +31,7 @@ __inner_extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSCache")]
-unsafe impl<KeyType: Message, ObjectType: Message> NSObjectProtocol
-    for NSCache<KeyType, ObjectType>
-{
-}
+unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSObjectProtocol for NSCache<KeyType, ObjectType> {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSCache")]

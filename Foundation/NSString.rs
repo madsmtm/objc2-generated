@@ -113,6 +113,7 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+
 #[cfg(feature = "Foundation_NSString")]
 impl DefaultId for NSString {
     #[inline]
@@ -998,6 +999,7 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+
 #[cfg(feature = "Foundation_NSMutableString")]
 impl DefaultId for NSMutableString {
     #[inline]

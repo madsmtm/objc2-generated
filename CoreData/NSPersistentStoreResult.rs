@@ -126,14 +126,14 @@ extern_methods!(
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CoreData_NSAsynchronousFetchResult")]
-    pub struct NSAsynchronousFetchResult<ResultType: Message = AnyObject> {
+    pub struct NSAsynchronousFetchResult<ResultType: ?Sized = AnyObject> {
         __superclass: NSPersistentStoreAsynchronousResult,
         _inner0: PhantomData<*mut ResultType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     #[cfg(feature = "CoreData_NSAsynchronousFetchResult")]
-    unsafe impl<ResultType: Message> ClassType for NSAsynchronousFetchResult<ResultType> {
+    unsafe impl<ResultType: ?Sized + Message> ClassType for NSAsynchronousFetchResult<ResultType> {
         #[inherits(NSPersistentStoreResult, NSObject)]
         type Super = NSPersistentStoreAsynchronousResult;
         type Mutability = InteriorMutable;
@@ -149,7 +149,7 @@ __inner_extern_class!(
 );
 
 #[cfg(feature = "CoreData_NSAsynchronousFetchResult")]
-unsafe impl<ResultType: Message> NSObjectProtocol for NSAsynchronousFetchResult<ResultType> {}
+unsafe impl<ResultType: ?Sized> NSObjectProtocol for NSAsynchronousFetchResult<ResultType> {}
 
 extern_methods!(
     #[cfg(feature = "CoreData_NSAsynchronousFetchResult")]

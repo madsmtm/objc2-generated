@@ -77,6 +77,7 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+
 #[cfg(feature = "Metal_MTLCaptureDescriptor")]
 impl DefaultId for MTLCaptureDescriptor {
     #[inline]

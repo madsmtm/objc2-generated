@@ -70,6 +70,7 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+
 #[cfg(feature = "Foundation_NSLock")]
 impl DefaultId for NSLock {
     #[inline]

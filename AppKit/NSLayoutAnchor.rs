@@ -6,7 +6,7 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 #[cfg(feature = "AppKit_NSLayoutAnchor")]
-unsafe impl<AnchorType: Message> NSObjectProtocol for NSLayoutAnchor<AnchorType> {}
+unsafe impl<AnchorType: ?Sized> NSObjectProtocol for NSLayoutAnchor<AnchorType> {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSLayoutAnchor")]

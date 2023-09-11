@@ -18,10 +18,10 @@ extern_protocol!(
 );
 
 #[cfg(feature = "Foundation_NSEnumerator")]
-unsafe impl<ObjectType: Message> NSFastEnumeration for NSEnumerator<ObjectType> {}
+unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSEnumerator<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSEnumerator")]
-unsafe impl<ObjectType: Message> NSObjectProtocol for NSEnumerator<ObjectType> {}
+unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSEnumerator<ObjectType> {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSEnumerator")]

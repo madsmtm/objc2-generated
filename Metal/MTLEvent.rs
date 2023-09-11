@@ -52,6 +52,7 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+
 #[cfg(feature = "Metal_MTLSharedEventListener")]
 impl DefaultId for MTLSharedEventListener {
     #[inline]

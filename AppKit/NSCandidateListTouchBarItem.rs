@@ -8,14 +8,16 @@ use crate::Foundation::*;
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
-    pub struct NSCandidateListTouchBarItem<CandidateType: Message = AnyObject> {
+    pub struct NSCandidateListTouchBarItem<CandidateType: ?Sized = AnyObject> {
         __superclass: NSTouchBarItem,
         _inner0: PhantomData<*mut CandidateType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
-    unsafe impl<CandidateType: Message> ClassType for NSCandidateListTouchBarItem<CandidateType> {
+    unsafe impl<CandidateType: ?Sized + Message> ClassType
+        for NSCandidateListTouchBarItem<CandidateType>
+    {
         #[inherits(NSObject)]
         type Super = NSTouchBarItem;
         type Mutability = MainThreadOnly;
@@ -31,16 +33,13 @@ __inner_extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
-unsafe impl<CandidateType: Message + NSCoding> NSCoding
+unsafe impl<CandidateType: ?Sized + NSCoding> NSCoding
     for NSCandidateListTouchBarItem<CandidateType>
 {
 }
 
 #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
-unsafe impl<CandidateType: Message> NSObjectProtocol
-    for NSCandidateListTouchBarItem<CandidateType>
-{
-}
+unsafe impl<CandidateType: ?Sized> NSObjectProtocol for NSCandidateListTouchBarItem<CandidateType> {}
 
 extern_methods!(
     #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]

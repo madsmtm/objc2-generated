@@ -61,14 +61,14 @@ extern_methods!(
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PhotoKit_PHObjectChangeDetails")]
-    pub struct PHObjectChangeDetails<ObjectType: Message = AnyObject> {
+    pub struct PHObjectChangeDetails<ObjectType: ?Sized = AnyObject> {
         __superclass: NSObject,
         _inner0: PhantomData<*mut ObjectType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     #[cfg(feature = "PhotoKit_PHObjectChangeDetails")]
-    unsafe impl<ObjectType: Message> ClassType for PHObjectChangeDetails<ObjectType> {
+    unsafe impl<ObjectType: ?Sized + Message> ClassType for PHObjectChangeDetails<ObjectType> {
         type Super = NSObject;
         type Mutability = InteriorMutable;
 
@@ -83,7 +83,7 @@ __inner_extern_class!(
 );
 
 #[cfg(feature = "PhotoKit_PHObjectChangeDetails")]
-unsafe impl<ObjectType: Message> NSObjectProtocol for PHObjectChangeDetails<ObjectType> {}
+unsafe impl<ObjectType: ?Sized> NSObjectProtocol for PHObjectChangeDetails<ObjectType> {}
 
 extern_methods!(
     #[cfg(feature = "PhotoKit_PHObjectChangeDetails")]
@@ -117,14 +117,14 @@ extern_methods!(
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PhotoKit_PHFetchResultChangeDetails")]
-    pub struct PHFetchResultChangeDetails<ObjectType: Message = AnyObject> {
+    pub struct PHFetchResultChangeDetails<ObjectType: ?Sized = AnyObject> {
         __superclass: NSObject,
         _inner0: PhantomData<*mut ObjectType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     #[cfg(feature = "PhotoKit_PHFetchResultChangeDetails")]
-    unsafe impl<ObjectType: Message> ClassType for PHFetchResultChangeDetails<ObjectType> {
+    unsafe impl<ObjectType: ?Sized + Message> ClassType for PHFetchResultChangeDetails<ObjectType> {
         type Super = NSObject;
         type Mutability = InteriorMutable;
 
@@ -139,7 +139,7 @@ __inner_extern_class!(
 );
 
 #[cfg(feature = "PhotoKit_PHFetchResultChangeDetails")]
-unsafe impl<ObjectType: Message> NSObjectProtocol for PHFetchResultChangeDetails<ObjectType> {}
+unsafe impl<ObjectType: ?Sized> NSObjectProtocol for PHFetchResultChangeDetails<ObjectType> {}
 
 extern_methods!(
     #[cfg(feature = "PhotoKit_PHFetchResultChangeDetails")]

@@ -4,22 +4,22 @@ use crate::common::*;
 use crate::Foundation::*;
 
 #[cfg(feature = "Foundation_NSArray")]
-unsafe impl<ObjectType: Message + NSCoding> NSCoding for NSArray<ObjectType> {}
+unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for NSArray<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSArray")]
-unsafe impl<ObjectType: IsIdCloneable> NSCopying for NSArray<ObjectType> {}
+unsafe impl<ObjectType: ?Sized + IsIdCloneable> NSCopying for NSArray<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSArray")]
-unsafe impl<ObjectType: Message> NSFastEnumeration for NSArray<ObjectType> {}
+unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSArray<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSArray")]
-unsafe impl<ObjectType: IsIdCloneable> NSMutableCopying for NSArray<ObjectType> {}
+unsafe impl<ObjectType: ?Sized + IsIdCloneable> NSMutableCopying for NSArray<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSArray")]
-unsafe impl<ObjectType: Message> NSObjectProtocol for NSArray<ObjectType> {}
+unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSArray<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSArray")]
-unsafe impl<ObjectType: Message + NSSecureCoding> NSSecureCoding for NSArray<ObjectType> {}
+unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding for NSArray<ObjectType> {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSArray")]
@@ -57,6 +57,7 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+
 #[cfg(feature = "Foundation_NSArray")]
 impl<ObjectType: Message> DefaultId for NSArray<ObjectType> {
     #[inline]
@@ -479,22 +480,22 @@ extern_methods!(
 );
 
 #[cfg(feature = "Foundation_NSMutableArray")]
-unsafe impl<ObjectType: Message + NSCoding> NSCoding for NSMutableArray<ObjectType> {}
+unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for NSMutableArray<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSMutableArray")]
-unsafe impl<ObjectType: IsIdCloneable> NSCopying for NSMutableArray<ObjectType> {}
+unsafe impl<ObjectType: ?Sized + IsIdCloneable> NSCopying for NSMutableArray<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSMutableArray")]
-unsafe impl<ObjectType: Message> NSFastEnumeration for NSMutableArray<ObjectType> {}
+unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSMutableArray<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSMutableArray")]
-unsafe impl<ObjectType: IsIdCloneable> NSMutableCopying for NSMutableArray<ObjectType> {}
+unsafe impl<ObjectType: ?Sized + IsIdCloneable> NSMutableCopying for NSMutableArray<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSMutableArray")]
-unsafe impl<ObjectType: Message> NSObjectProtocol for NSMutableArray<ObjectType> {}
+unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSMutableArray<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSMutableArray")]
-unsafe impl<ObjectType: Message + NSSecureCoding> NSSecureCoding for NSMutableArray<ObjectType> {}
+unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding for NSMutableArray<ObjectType> {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSMutableArray")]
@@ -557,6 +558,7 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+
 #[cfg(feature = "Foundation_NSMutableArray")]
 impl<ObjectType: Message> DefaultId for NSMutableArray<ObjectType> {
     #[inline]

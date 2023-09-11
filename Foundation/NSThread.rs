@@ -145,6 +145,7 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+
 #[cfg(feature = "Foundation_NSThread")]
 impl DefaultId for NSThread {
     #[inline]

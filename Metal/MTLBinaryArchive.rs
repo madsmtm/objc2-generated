@@ -59,6 +59,7 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+
 #[cfg(feature = "Metal_MTLBinaryArchiveDescriptor")]
 impl DefaultId for MTLBinaryArchiveDescriptor {
     #[inline]

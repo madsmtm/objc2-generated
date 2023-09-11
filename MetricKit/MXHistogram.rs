@@ -7,14 +7,14 @@ use crate::MetricKit::*;
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MetricKit_MXHistogramBucket")]
-    pub struct MXHistogramBucket<UnitType: Message = AnyObject> {
+    pub struct MXHistogramBucket<UnitType: ?Sized = AnyObject> {
         __superclass: NSObject,
         _inner0: PhantomData<*mut UnitType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     #[cfg(feature = "MetricKit_MXHistogramBucket")]
-    unsafe impl<UnitType: Message> ClassType for MXHistogramBucket<UnitType> {
+    unsafe impl<UnitType: ?Sized + Message> ClassType for MXHistogramBucket<UnitType> {
         type Super = NSObject;
         type Mutability = InteriorMutable;
 
@@ -29,13 +29,13 @@ __inner_extern_class!(
 );
 
 #[cfg(feature = "MetricKit_MXHistogramBucket")]
-unsafe impl<UnitType: Message + NSCoding> NSCoding for MXHistogramBucket<UnitType> {}
+unsafe impl<UnitType: ?Sized + NSCoding> NSCoding for MXHistogramBucket<UnitType> {}
 
 #[cfg(feature = "MetricKit_MXHistogramBucket")]
-unsafe impl<UnitType: Message> NSObjectProtocol for MXHistogramBucket<UnitType> {}
+unsafe impl<UnitType: ?Sized> NSObjectProtocol for MXHistogramBucket<UnitType> {}
 
 #[cfg(feature = "MetricKit_MXHistogramBucket")]
-unsafe impl<UnitType: Message + NSSecureCoding> NSSecureCoding for MXHistogramBucket<UnitType> {}
+unsafe impl<UnitType: ?Sized + NSSecureCoding> NSSecureCoding for MXHistogramBucket<UnitType> {}
 
 extern_methods!(
     #[cfg(feature = "MetricKit_MXHistogramBucket")]
@@ -68,14 +68,14 @@ extern_methods!(
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MetricKit_MXHistogram")]
-    pub struct MXHistogram<UnitType: Message = AnyObject> {
+    pub struct MXHistogram<UnitType: ?Sized = AnyObject> {
         __superclass: NSObject,
         _inner0: PhantomData<*mut UnitType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     #[cfg(feature = "MetricKit_MXHistogram")]
-    unsafe impl<UnitType: Message> ClassType for MXHistogram<UnitType> {
+    unsafe impl<UnitType: ?Sized + Message> ClassType for MXHistogram<UnitType> {
         type Super = NSObject;
         type Mutability = InteriorMutable;
 
@@ -90,13 +90,13 @@ __inner_extern_class!(
 );
 
 #[cfg(feature = "MetricKit_MXHistogram")]
-unsafe impl<UnitType: Message + NSCoding> NSCoding for MXHistogram<UnitType> {}
+unsafe impl<UnitType: ?Sized + NSCoding> NSCoding for MXHistogram<UnitType> {}
 
 #[cfg(feature = "MetricKit_MXHistogram")]
-unsafe impl<UnitType: Message> NSObjectProtocol for MXHistogram<UnitType> {}
+unsafe impl<UnitType: ?Sized> NSObjectProtocol for MXHistogram<UnitType> {}
 
 #[cfg(feature = "MetricKit_MXHistogram")]
-unsafe impl<UnitType: Message + NSSecureCoding> NSSecureCoding for MXHistogram<UnitType> {}
+unsafe impl<UnitType: ?Sized + NSSecureCoding> NSSecureCoding for MXHistogram<UnitType> {}
 
 extern_methods!(
     #[cfg(feature = "MetricKit_MXHistogram")]

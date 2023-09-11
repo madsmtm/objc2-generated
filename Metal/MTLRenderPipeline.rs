@@ -554,6 +554,7 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+
 #[cfg(feature = "Metal_MTLRenderPipelineDescriptor")]
 impl DefaultId for MTLRenderPipelineDescriptor {
     #[inline]

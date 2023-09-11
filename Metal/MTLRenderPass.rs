@@ -196,6 +196,7 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+
 #[cfg(feature = "Metal_MTLRenderPassColorAttachmentDescriptor")]
 impl DefaultId for MTLRenderPassColorAttachmentDescriptor {
     #[inline]

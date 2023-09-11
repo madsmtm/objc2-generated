@@ -4,22 +4,22 @@ use crate::common::*;
 use crate::Foundation::*;
 
 #[cfg(feature = "Foundation_NSSet")]
-unsafe impl<ObjectType: Message + NSCoding> NSCoding for NSSet<ObjectType> {}
+unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for NSSet<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSSet")]
-unsafe impl<ObjectType: IsIdCloneable> NSCopying for NSSet<ObjectType> {}
+unsafe impl<ObjectType: ?Sized + IsIdCloneable> NSCopying for NSSet<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSSet")]
-unsafe impl<ObjectType: Message> NSFastEnumeration for NSSet<ObjectType> {}
+unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSSet<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSSet")]
-unsafe impl<ObjectType: IsIdCloneable> NSMutableCopying for NSSet<ObjectType> {}
+unsafe impl<ObjectType: ?Sized + IsIdCloneable> NSMutableCopying for NSSet<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSSet")]
-unsafe impl<ObjectType: Message> NSObjectProtocol for NSSet<ObjectType> {}
+unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSSet<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSSet")]
-unsafe impl<ObjectType: Message + NSSecureCoding> NSSecureCoding for NSSet<ObjectType> {}
+unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding for NSSet<ObjectType> {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSSet")]
@@ -61,6 +61,7 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+
 #[cfg(feature = "Foundation_NSSet")]
 impl<ObjectType: Message> DefaultId for NSSet<ObjectType> {
     #[inline]
@@ -247,22 +248,22 @@ extern_methods!(
 );
 
 #[cfg(feature = "Foundation_NSMutableSet")]
-unsafe impl<ObjectType: Message + NSCoding> NSCoding for NSMutableSet<ObjectType> {}
+unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for NSMutableSet<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSMutableSet")]
-unsafe impl<ObjectType: IsIdCloneable> NSCopying for NSMutableSet<ObjectType> {}
+unsafe impl<ObjectType: ?Sized + IsIdCloneable> NSCopying for NSMutableSet<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSMutableSet")]
-unsafe impl<ObjectType: Message> NSFastEnumeration for NSMutableSet<ObjectType> {}
+unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSMutableSet<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSMutableSet")]
-unsafe impl<ObjectType: IsIdCloneable> NSMutableCopying for NSMutableSet<ObjectType> {}
+unsafe impl<ObjectType: ?Sized + IsIdCloneable> NSMutableCopying for NSMutableSet<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSMutableSet")]
-unsafe impl<ObjectType: Message> NSObjectProtocol for NSMutableSet<ObjectType> {}
+unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSMutableSet<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSMutableSet")]
-unsafe impl<ObjectType: Message + NSSecureCoding> NSSecureCoding for NSMutableSet<ObjectType> {}
+unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding for NSMutableSet<ObjectType> {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSMutableSet")]
@@ -312,6 +313,7 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+
 #[cfg(feature = "Foundation_NSMutableSet")]
 impl<ObjectType: Message> DefaultId for NSMutableSet<ObjectType> {
     #[inline]
@@ -359,22 +361,22 @@ extern_methods!(
 );
 
 #[cfg(feature = "Foundation_NSCountedSet")]
-unsafe impl<ObjectType: Message + NSCoding> NSCoding for NSCountedSet<ObjectType> {}
+unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for NSCountedSet<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSCountedSet")]
-unsafe impl<ObjectType: IsIdCloneable> NSCopying for NSCountedSet<ObjectType> {}
+unsafe impl<ObjectType: ?Sized + IsIdCloneable> NSCopying for NSCountedSet<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSCountedSet")]
-unsafe impl<ObjectType: Message> NSFastEnumeration for NSCountedSet<ObjectType> {}
+unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSCountedSet<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSCountedSet")]
-unsafe impl<ObjectType: IsIdCloneable> NSMutableCopying for NSCountedSet<ObjectType> {}
+unsafe impl<ObjectType: ?Sized + IsIdCloneable> NSMutableCopying for NSCountedSet<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSCountedSet")]
-unsafe impl<ObjectType: Message> NSObjectProtocol for NSCountedSet<ObjectType> {}
+unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSCountedSet<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSCountedSet")]
-unsafe impl<ObjectType: Message + NSSecureCoding> NSSecureCoding for NSCountedSet<ObjectType> {}
+unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding for NSCountedSet<ObjectType> {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSCountedSet")]

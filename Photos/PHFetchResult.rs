@@ -9,14 +9,14 @@ use crate::PhotoKit::*;
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PhotoKit_PHFetchResult")]
-    pub struct PHFetchResult<ObjectType: Message = AnyObject> {
+    pub struct PHFetchResult<ObjectType: ?Sized = AnyObject> {
         __superclass: NSObject,
         _inner0: PhantomData<*mut ObjectType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     #[cfg(feature = "PhotoKit_PHFetchResult")]
-    unsafe impl<ObjectType: Message> ClassType for PHFetchResult<ObjectType> {
+    unsafe impl<ObjectType: ?Sized + Message> ClassType for PHFetchResult<ObjectType> {
         type Super = NSObject;
         type Mutability = InteriorMutable;
 
@@ -31,13 +31,13 @@ __inner_extern_class!(
 );
 
 #[cfg(feature = "PhotoKit_PHFetchResult")]
-unsafe impl<ObjectType: IsIdCloneable> NSCopying for PHFetchResult<ObjectType> {}
+unsafe impl<ObjectType: ?Sized + IsIdCloneable> NSCopying for PHFetchResult<ObjectType> {}
 
 #[cfg(feature = "PhotoKit_PHFetchResult")]
-unsafe impl<ObjectType: Message> NSFastEnumeration for PHFetchResult<ObjectType> {}
+unsafe impl<ObjectType: ?Sized> NSFastEnumeration for PHFetchResult<ObjectType> {}
 
 #[cfg(feature = "PhotoKit_PHFetchResult")]
-unsafe impl<ObjectType: Message> NSObjectProtocol for PHFetchResult<ObjectType> {}
+unsafe impl<ObjectType: ?Sized> NSObjectProtocol for PHFetchResult<ObjectType> {}
 
 extern_methods!(
     #[cfg(feature = "PhotoKit_PHFetchResult")]

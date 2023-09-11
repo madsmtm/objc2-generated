@@ -92,6 +92,7 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+
 #[cfg(feature = "Metal_MTLFunctionDescriptor")]
 impl DefaultId for MTLFunctionDescriptor {
     #[inline]

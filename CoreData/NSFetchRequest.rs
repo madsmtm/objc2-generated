@@ -59,14 +59,14 @@ unsafe impl NSFetchRequestResult for NSManagedObjectID {}
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CoreData_NSFetchRequest")]
-    pub struct NSFetchRequest<ResultType: Message = AnyObject> {
+    pub struct NSFetchRequest<ResultType: ?Sized = AnyObject> {
         __superclass: NSPersistentStoreRequest,
         _inner0: PhantomData<*mut ResultType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     #[cfg(feature = "CoreData_NSFetchRequest")]
-    unsafe impl<ResultType: Message> ClassType for NSFetchRequest<ResultType> {
+    unsafe impl<ResultType: ?Sized + Message> ClassType for NSFetchRequest<ResultType> {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreRequest;
         type Mutability = InteriorMutable;
@@ -82,13 +82,13 @@ __inner_extern_class!(
 );
 
 #[cfg(feature = "CoreData_NSFetchRequest")]
-unsafe impl<ResultType: Message + NSCoding> NSCoding for NSFetchRequest<ResultType> {}
+unsafe impl<ResultType: ?Sized + NSCoding> NSCoding for NSFetchRequest<ResultType> {}
 
 #[cfg(feature = "CoreData_NSFetchRequest")]
-unsafe impl<ResultType: IsIdCloneable> NSCopying for NSFetchRequest<ResultType> {}
+unsafe impl<ResultType: ?Sized + IsIdCloneable> NSCopying for NSFetchRequest<ResultType> {}
 
 #[cfg(feature = "CoreData_NSFetchRequest")]
-unsafe impl<ResultType: Message> NSObjectProtocol for NSFetchRequest<ResultType> {}
+unsafe impl<ResultType: ?Sized> NSObjectProtocol for NSFetchRequest<ResultType> {}
 
 extern_methods!(
     #[cfg(feature = "CoreData_NSFetchRequest")]
@@ -274,14 +274,14 @@ pub type NSPersistentStoreAsynchronousFetchResultCompletionBlock =
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CoreData_NSAsynchronousFetchRequest")]
-    pub struct NSAsynchronousFetchRequest<ResultType: Message = AnyObject> {
+    pub struct NSAsynchronousFetchRequest<ResultType: ?Sized = AnyObject> {
         __superclass: NSPersistentStoreRequest,
         _inner0: PhantomData<*mut ResultType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     #[cfg(feature = "CoreData_NSAsynchronousFetchRequest")]
-    unsafe impl<ResultType: Message> ClassType for NSAsynchronousFetchRequest<ResultType> {
+    unsafe impl<ResultType: ?Sized + Message> ClassType for NSAsynchronousFetchRequest<ResultType> {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreRequest;
         type Mutability = InteriorMutable;
@@ -297,10 +297,13 @@ __inner_extern_class!(
 );
 
 #[cfg(feature = "CoreData_NSAsynchronousFetchRequest")]
-unsafe impl<ResultType: IsIdCloneable> NSCopying for NSAsynchronousFetchRequest<ResultType> {}
+unsafe impl<ResultType: ?Sized + IsIdCloneable> NSCopying
+    for NSAsynchronousFetchRequest<ResultType>
+{
+}
 
 #[cfg(feature = "CoreData_NSAsynchronousFetchRequest")]
-unsafe impl<ResultType: Message> NSObjectProtocol for NSAsynchronousFetchRequest<ResultType> {}
+unsafe impl<ResultType: ?Sized> NSObjectProtocol for NSAsynchronousFetchRequest<ResultType> {}
 
 extern_methods!(
     #[cfg(feature = "CoreData_NSAsynchronousFetchRequest")]

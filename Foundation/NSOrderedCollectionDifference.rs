@@ -15,14 +15,14 @@ ns_options!(
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSOrderedCollectionDifference")]
-    pub struct NSOrderedCollectionDifference<ObjectType: Message = AnyObject> {
+    pub struct NSOrderedCollectionDifference<ObjectType: ?Sized = AnyObject> {
         __superclass: NSObject,
         _inner0: PhantomData<*mut ObjectType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     #[cfg(feature = "Foundation_NSOrderedCollectionDifference")]
-    unsafe impl<ObjectType: Message> ClassType for NSOrderedCollectionDifference<ObjectType> {
+    unsafe impl<ObjectType: ?Sized + Message> ClassType for NSOrderedCollectionDifference<ObjectType> {
         type Super = NSObject;
         type Mutability = InteriorMutable;
 
@@ -37,10 +37,10 @@ __inner_extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSOrderedCollectionDifference")]
-unsafe impl<ObjectType: Message> NSFastEnumeration for NSOrderedCollectionDifference<ObjectType> {}
+unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSOrderedCollectionDifference<ObjectType> {}
 
 #[cfg(feature = "Foundation_NSOrderedCollectionDifference")]
-unsafe impl<ObjectType: Message> NSObjectProtocol for NSOrderedCollectionDifference<ObjectType> {}
+unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSOrderedCollectionDifference<ObjectType> {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSOrderedCollectionDifference")]

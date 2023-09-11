@@ -9,8 +9,8 @@ __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSDiffableDataSourceSnapshot")]
     pub struct NSDiffableDataSourceSnapshot<
-        SectionIdentifierType: Message = AnyObject,
-        ItemIdentifierType: Message = AnyObject,
+        SectionIdentifierType: ?Sized = AnyObject,
+        ItemIdentifierType: ?Sized = AnyObject,
     > {
         __superclass: NSObject,
         _inner0: PhantomData<*mut SectionIdentifierType>,
@@ -19,8 +19,8 @@ __inner_extern_class!(
     }
 
     #[cfg(feature = "AppKit_NSDiffableDataSourceSnapshot")]
-    unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message> ClassType
-        for NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
+    unsafe impl<SectionIdentifierType: ?Sized + Message, ItemIdentifierType: ?Sized + Message>
+        ClassType for NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
     {
         type Super = NSObject;
         type Mutability = InteriorMutable;
@@ -36,13 +36,13 @@ __inner_extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSDiffableDataSourceSnapshot")]
-unsafe impl<SectionIdentifierType: IsIdCloneable, ItemIdentifierType: IsIdCloneable> NSCopying
-    for NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
+unsafe impl<SectionIdentifierType: ?Sized + IsIdCloneable, ItemIdentifierType: ?Sized + IsIdCloneable>
+    NSCopying for NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
 {
 }
 
 #[cfg(feature = "AppKit_NSDiffableDataSourceSnapshot")]
-unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message> NSObjectProtocol
+unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSObjectProtocol
     for NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
 {
 }
@@ -230,8 +230,8 @@ __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSCollectionViewDiffableDataSource")]
     pub struct NSCollectionViewDiffableDataSource<
-        SectionIdentifierType: Message = AnyObject,
-        ItemIdentifierType: Message = AnyObject,
+        SectionIdentifierType: ?Sized = AnyObject,
+        ItemIdentifierType: ?Sized = AnyObject,
     > {
         __superclass: NSObject,
         _inner0: PhantomData<*mut SectionIdentifierType>,
@@ -240,7 +240,8 @@ __inner_extern_class!(
     }
 
     #[cfg(feature = "AppKit_NSCollectionViewDiffableDataSource")]
-    unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message> ClassType
+    unsafe impl<SectionIdentifierType: ?Sized + Message, ItemIdentifierType: ?Sized + Message>
+        ClassType
         for NSCollectionViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
     {
         type Super = NSObject;
@@ -257,13 +258,13 @@ __inner_extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSCollectionViewDiffableDataSource")]
-unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message> NSCollectionViewDataSource
+unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSCollectionViewDataSource
     for NSCollectionViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
 {
 }
 
 #[cfg(feature = "AppKit_NSCollectionViewDiffableDataSource")]
-unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message> NSObjectProtocol
+unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSObjectProtocol
     for NSCollectionViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
 {
 }

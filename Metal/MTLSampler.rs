@@ -168,6 +168,7 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+
 #[cfg(feature = "Metal_MTLSamplerDescriptor")]
 impl DefaultId for MTLSamplerDescriptor {
     #[inline]

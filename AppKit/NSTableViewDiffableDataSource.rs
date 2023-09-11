@@ -25,8 +25,8 @@ __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSTableViewDiffableDataSource")]
     pub struct NSTableViewDiffableDataSource<
-        SectionIdentifierType: Message = AnyObject,
-        ItemIdentifierType: Message = AnyObject,
+        SectionIdentifierType: ?Sized = AnyObject,
+        ItemIdentifierType: ?Sized = AnyObject,
     > {
         __superclass: NSObject,
         _inner0: PhantomData<*mut SectionIdentifierType>,
@@ -35,8 +35,8 @@ __inner_extern_class!(
     }
 
     #[cfg(feature = "AppKit_NSTableViewDiffableDataSource")]
-    unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message> ClassType
-        for NSTableViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
+    unsafe impl<SectionIdentifierType: ?Sized + Message, ItemIdentifierType: ?Sized + Message>
+        ClassType for NSTableViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
     {
         type Super = NSObject;
         type Mutability = InteriorMutable;
@@ -52,13 +52,13 @@ __inner_extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSTableViewDiffableDataSource")]
-unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message> NSObjectProtocol
+unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSObjectProtocol
     for NSTableViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
 {
 }
 
 #[cfg(feature = "AppKit_NSTableViewDiffableDataSource")]
-unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message> NSTableViewDataSource
+unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSTableViewDataSource
     for NSTableViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
 {
 }

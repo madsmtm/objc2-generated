@@ -6,14 +6,14 @@ use crate::Foundation::*;
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSMeasurement")]
-    pub struct NSMeasurement<UnitType: Message = AnyObject> {
+    pub struct NSMeasurement<UnitType: ?Sized = AnyObject> {
         __superclass: NSObject,
         _inner0: PhantomData<*mut UnitType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     #[cfg(feature = "Foundation_NSMeasurement")]
-    unsafe impl<UnitType: Message> ClassType for NSMeasurement<UnitType> {
+    unsafe impl<UnitType: ?Sized + Message> ClassType for NSMeasurement<UnitType> {
         type Super = NSObject;
         type Mutability = InteriorMutable;
 
@@ -28,16 +28,16 @@ __inner_extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSMeasurement")]
-unsafe impl<UnitType: Message + NSCoding> NSCoding for NSMeasurement<UnitType> {}
+unsafe impl<UnitType: ?Sized + NSCoding> NSCoding for NSMeasurement<UnitType> {}
 
 #[cfg(feature = "Foundation_NSMeasurement")]
-unsafe impl<UnitType: IsIdCloneable> NSCopying for NSMeasurement<UnitType> {}
+unsafe impl<UnitType: ?Sized + IsIdCloneable> NSCopying for NSMeasurement<UnitType> {}
 
 #[cfg(feature = "Foundation_NSMeasurement")]
-unsafe impl<UnitType: Message> NSObjectProtocol for NSMeasurement<UnitType> {}
+unsafe impl<UnitType: ?Sized> NSObjectProtocol for NSMeasurement<UnitType> {}
 
 #[cfg(feature = "Foundation_NSMeasurement")]
-unsafe impl<UnitType: Message + NSSecureCoding> NSSecureCoding for NSMeasurement<UnitType> {}
+unsafe impl<UnitType: ?Sized + NSSecureCoding> NSSecureCoding for NSMeasurement<UnitType> {}
 
 extern_methods!(
     #[cfg(feature = "Foundation_NSMeasurement")]

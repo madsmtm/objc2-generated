@@ -7,14 +7,14 @@ use crate::Foundation::*;
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CoreData_NSFetchedResultsController")]
-    pub struct NSFetchedResultsController<ResultType: Message = AnyObject> {
+    pub struct NSFetchedResultsController<ResultType: ?Sized = AnyObject> {
         __superclass: NSObject,
         _inner0: PhantomData<*mut ResultType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
     #[cfg(feature = "CoreData_NSFetchedResultsController")]
-    unsafe impl<ResultType: Message> ClassType for NSFetchedResultsController<ResultType> {
+    unsafe impl<ResultType: ?Sized + Message> ClassType for NSFetchedResultsController<ResultType> {
         type Super = NSObject;
         type Mutability = InteriorMutable;
 
@@ -29,7 +29,7 @@ __inner_extern_class!(
 );
 
 #[cfg(feature = "CoreData_NSFetchedResultsController")]
-unsafe impl<ResultType: Message> NSObjectProtocol for NSFetchedResultsController<ResultType> {}
+unsafe impl<ResultType: ?Sized> NSObjectProtocol for NSFetchedResultsController<ResultType> {}
 
 extern_methods!(
     #[cfg(feature = "CoreData_NSFetchedResultsController")]

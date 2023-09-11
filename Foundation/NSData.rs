@@ -104,6 +104,7 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+
 #[cfg(feature = "Foundation_NSData")]
 impl DefaultId for NSData {
     #[inline]
@@ -598,6 +599,7 @@ extern_methods!(
         pub fn new() -> Id<Self>;
     }
 );
+
 #[cfg(feature = "Foundation_NSMutableData")]
 impl DefaultId for NSMutableData {
     #[inline]

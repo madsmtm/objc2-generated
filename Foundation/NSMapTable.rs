@@ -18,7 +18,7 @@ pub type NSMapTableOptions = NSUInteger;
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSMapTable")]
-    pub struct NSMapTable<KeyType: Message = AnyObject, ObjectType: Message = AnyObject> {
+    pub struct NSMapTable<KeyType: ?Sized = AnyObject, ObjectType: ?Sized = AnyObject> {
         __superclass: NSObject,
         _inner0: PhantomData<*mut KeyType>,
         _inner1: PhantomData<*mut ObjectType>,
@@ -26,7 +26,9 @@ __inner_extern_class!(
     }
 
     #[cfg(feature = "Foundation_NSMapTable")]
-    unsafe impl<KeyType: Message, ObjectType: Message> ClassType for NSMapTable<KeyType, ObjectType> {
+    unsafe impl<KeyType: ?Sized + Message, ObjectType: ?Sized + Message> ClassType
+        for NSMapTable<KeyType, ObjectType>
+    {
         type Super = NSObject;
         type Mutability = InteriorMutable;
 
@@ -41,31 +43,31 @@ __inner_extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSMapTable")]
-unsafe impl<KeyType: Message + NSCoding, ObjectType: Message + NSCoding> NSCoding
+unsafe impl<KeyType: ?Sized + NSCoding, ObjectType: ?Sized + NSCoding> NSCoding
     for NSMapTable<KeyType, ObjectType>
 {
 }
 
 #[cfg(feature = "Foundation_NSMapTable")]
-unsafe impl<KeyType: IsIdCloneable, ObjectType: IsIdCloneable> NSCopying
+unsafe impl<KeyType: ?Sized + IsIdCloneable, ObjectType: ?Sized + IsIdCloneable> NSCopying
     for NSMapTable<KeyType, ObjectType>
 {
 }
 
 #[cfg(feature = "Foundation_NSMapTable")]
-unsafe impl<KeyType: Message, ObjectType: Message> NSFastEnumeration
+unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSFastEnumeration
     for NSMapTable<KeyType, ObjectType>
 {
 }
 
 #[cfg(feature = "Foundation_NSMapTable")]
-unsafe impl<KeyType: Message, ObjectType: Message> NSObjectProtocol
+unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSObjectProtocol
     for NSMapTable<KeyType, ObjectType>
 {
 }
 
 #[cfg(feature = "Foundation_NSMapTable")]
-unsafe impl<KeyType: Message + NSSecureCoding, ObjectType: Message + NSSecureCoding> NSSecureCoding
+unsafe impl<KeyType: ?Sized + NSSecureCoding, ObjectType: ?Sized + NSSecureCoding> NSSecureCoding
     for NSMapTable<KeyType, ObjectType>
 {
 }
