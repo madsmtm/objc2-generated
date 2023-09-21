@@ -27,7 +27,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ProtocolObject<dyn NSMetadataQueryDelegate>>,
+            delegate: Option<&(impl NSMetadataQueryDelegate + Message)>,
         );
 
         #[cfg(feature = "Foundation_NSPredicate")]

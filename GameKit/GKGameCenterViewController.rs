@@ -104,7 +104,7 @@ extern_methods!(
         #[method(setGameCenterDelegate:)]
         pub unsafe fn setGameCenterDelegate(
             &self,
-            game_center_delegate: Option<&ProtocolObject<dyn GKGameCenterControllerDelegate>>,
+            game_center_delegate: Option<&(impl GKGameCenterControllerDelegate + Message)>,
         );
 
         #[method_id(@__retain_semantics Init initWithState:)]

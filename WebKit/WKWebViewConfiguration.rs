@@ -162,7 +162,7 @@ extern_methods!(
         #[method(setURLSchemeHandler:forURLScheme:)]
         pub unsafe fn setURLSchemeHandler_forURLScheme(
             &self,
-            url_scheme_handler: Option<&ProtocolObject<dyn WKURLSchemeHandler>>,
+            url_scheme_handler: Option<&(impl WKURLSchemeHandler + Message)>,
             url_scheme: &NSString,
         );
 

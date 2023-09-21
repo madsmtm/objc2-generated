@@ -28,7 +28,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithOverlay:)]
         pub unsafe fn initWithOverlay(
             this: Option<Allocated<Self>>,
-            overlay: &ProtocolObject<dyn MKOverlay>,
+            overlay: &(impl MKOverlay + Message),
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other overlay)]

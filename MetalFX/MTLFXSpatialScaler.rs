@@ -79,11 +79,11 @@ extern_methods!(
         #[method_id(@__retain_semantics New newSpatialScalerWithDevice:)]
         pub unsafe fn newSpatialScalerWithDevice(
             &self,
-            device: &ProtocolObject<dyn MTLDevice>,
+            device: &(impl MTLDevice + Message),
         ) -> Option<Id<ProtocolObject<dyn MTLFXSpatialScaler>>>;
 
         #[method(supportsDevice:)]
-        pub unsafe fn supportsDevice(device: &ProtocolObject<dyn MTLDevice>) -> bool;
+        pub unsafe fn supportsDevice(device: &(impl MTLDevice + Message)) -> bool;
     }
 );
 
@@ -123,13 +123,13 @@ extern_protocol!(
         unsafe fn colorTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
 
         #[method(setColorTexture:)]
-        unsafe fn setColorTexture(&self, color_texture: Option<&ProtocolObject<dyn MTLTexture>>);
+        unsafe fn setColorTexture(&self, color_texture: Option<&(impl MTLTexture + Message)>);
 
         #[method_id(@__retain_semantics Other outputTexture)]
         unsafe fn outputTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
 
         #[method(setOutputTexture:)]
-        unsafe fn setOutputTexture(&self, output_texture: Option<&ProtocolObject<dyn MTLTexture>>);
+        unsafe fn setOutputTexture(&self, output_texture: Option<&(impl MTLTexture + Message)>);
 
         #[method(colorTextureFormat)]
         unsafe fn colorTextureFormat(&self) -> MTLPixelFormat;
@@ -156,13 +156,10 @@ extern_protocol!(
         unsafe fn fence(&self) -> Option<Id<ProtocolObject<dyn MTLFence>>>;
 
         #[method(setFence:)]
-        unsafe fn setFence(&self, fence: Option<&ProtocolObject<dyn MTLFence>>);
+        unsafe fn setFence(&self, fence: Option<&(impl MTLFence + Message)>);
 
         #[method(encodeToCommandBuffer:)]
-        unsafe fn encodeToCommandBuffer(
-            &self,
-            command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
-        );
+        unsafe fn encodeToCommandBuffer(&self, command_buffer: &(impl MTLCommandBuffer + Message));
     }
 
     unsafe impl ProtocolType for dyn MTLFXSpatialScaler {}

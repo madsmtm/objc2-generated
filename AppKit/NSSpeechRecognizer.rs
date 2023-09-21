@@ -39,7 +39,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ProtocolObject<dyn NSSpeechRecognizerDelegate>>,
+            delegate: Option<&(impl NSSpeechRecognizerDelegate + Message)>,
         );
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]

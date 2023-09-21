@@ -48,7 +48,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn GKMatchDelegate>>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn GKMatchDelegate>>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&(impl GKMatchDelegate + Message)>);
 
         #[method(expectedPlayerCount)]
         pub unsafe fn expectedPlayerCount(&self) -> NSUInteger;

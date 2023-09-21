@@ -94,10 +94,7 @@ extern_methods!(
 
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(
-            &self,
-            delegate: Option<&ProtocolObject<dyn NSNetServiceDelegate>>,
-        );
+        pub unsafe fn setDelegate(&self, delegate: Option<&(impl NSNetServiceDelegate + Message)>);
 
         #[method(includesPeerToPeer)]
         pub unsafe fn includesPeerToPeer(&self) -> bool;
@@ -239,7 +236,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ProtocolObject<dyn NSNetServiceBrowserDelegate>>,
+            delegate: Option<&(impl NSNetServiceBrowserDelegate + Message)>,
         );
 
         #[method(includesPeerToPeer)]

@@ -56,7 +56,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ProtocolObject<dyn SKCloudServiceSetupViewControllerDelegate>>,
+            delegate: Option<&(impl SKCloudServiceSetupViewControllerDelegate + Message)>,
         );
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSError"))]

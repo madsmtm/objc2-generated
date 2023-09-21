@@ -26,14 +26,14 @@ extern_protocol!(
         #[method(setArgumentBuffer:offset:)]
         unsafe fn setArgumentBuffer_offset(
             &self,
-            argument_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
+            argument_buffer: Option<&(impl MTLBuffer + Message)>,
             offset: NSUInteger,
         );
 
         #[method(setArgumentBuffer:startOffset:arrayElement:)]
         unsafe fn setArgumentBuffer_startOffset_arrayElement(
             &self,
-            argument_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
+            argument_buffer: Option<&(impl MTLBuffer + Message)>,
             start_offset: NSUInteger,
             array_element: NSUInteger,
         );
@@ -41,7 +41,7 @@ extern_protocol!(
         #[method(setBuffer:offset:atIndex:)]
         unsafe fn setBuffer_offset_atIndex(
             &self,
-            buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
+            buffer: Option<&(impl MTLBuffer + Message)>,
             offset: NSUInteger,
             index: NSUInteger,
         );
@@ -57,7 +57,7 @@ extern_protocol!(
         #[method(setTexture:atIndex:)]
         unsafe fn setTexture_atIndex(
             &self,
-            texture: Option<&ProtocolObject<dyn MTLTexture>>,
+            texture: Option<&(impl MTLTexture + Message)>,
             index: NSUInteger,
         );
 
@@ -71,7 +71,7 @@ extern_protocol!(
         #[method(setSamplerState:atIndex:)]
         unsafe fn setSamplerState_atIndex(
             &self,
-            sampler: Option<&ProtocolObject<dyn MTLSamplerState>>,
+            sampler: Option<&(impl MTLSamplerState + Message)>,
             index: NSUInteger,
         );
 
@@ -88,7 +88,7 @@ extern_protocol!(
         #[method(setRenderPipelineState:atIndex:)]
         unsafe fn setRenderPipelineState_atIndex(
             &self,
-            pipeline: Option<&ProtocolObject<dyn MTLRenderPipelineState>>,
+            pipeline: Option<&(impl MTLRenderPipelineState + Message)>,
             index: NSUInteger,
         );
 
@@ -102,7 +102,7 @@ extern_protocol!(
         #[method(setComputePipelineState:atIndex:)]
         unsafe fn setComputePipelineState_atIndex(
             &self,
-            pipeline: Option<&ProtocolObject<dyn MTLComputePipelineState>>,
+            pipeline: Option<&(impl MTLComputePipelineState + Message)>,
             index: NSUInteger,
         );
 
@@ -116,7 +116,7 @@ extern_protocol!(
         #[method(setIndirectCommandBuffer:atIndex:)]
         unsafe fn setIndirectCommandBuffer_atIndex(
             &self,
-            indirect_command_buffer: Option<&ProtocolObject<dyn MTLIndirectCommandBuffer>>,
+            indirect_command_buffer: Option<&(impl MTLIndirectCommandBuffer + Message)>,
             index: NSUInteger,
         );
 
@@ -130,7 +130,7 @@ extern_protocol!(
         #[method(setAccelerationStructure:atIndex:)]
         unsafe fn setAccelerationStructure_atIndex(
             &self,
-            acceleration_structure: Option<&ProtocolObject<dyn MTLAccelerationStructure>>,
+            acceleration_structure: Option<&(impl MTLAccelerationStructure + Message)>,
             index: NSUInteger,
         );
 
@@ -143,7 +143,7 @@ extern_protocol!(
         #[method(setVisibleFunctionTable:atIndex:)]
         unsafe fn setVisibleFunctionTable_atIndex(
             &self,
-            visible_function_table: Option<&ProtocolObject<dyn MTLVisibleFunctionTable>>,
+            visible_function_table: Option<&(impl MTLVisibleFunctionTable + Message)>,
             index: NSUInteger,
         );
 
@@ -157,7 +157,7 @@ extern_protocol!(
         #[method(setIntersectionFunctionTable:atIndex:)]
         unsafe fn setIntersectionFunctionTable_atIndex(
             &self,
-            intersection_function_table: Option<&ProtocolObject<dyn MTLIntersectionFunctionTable>>,
+            intersection_function_table: Option<&(impl MTLIntersectionFunctionTable + Message)>,
             index: NSUInteger,
         );
 

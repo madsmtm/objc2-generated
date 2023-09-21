@@ -83,7 +83,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ProtocolObject<dyn NSOpenSavePanelDelegate>>,
+            delegate: Option<&(impl NSOpenSavePanelDelegate + Message)>,
         );
 
         #[method(isExpanded)]

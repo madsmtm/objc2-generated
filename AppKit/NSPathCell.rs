@@ -70,7 +70,7 @@ extern_methods!(
         pub unsafe fn setURL(&self, url: Option<&NSURL>);
 
         #[method(setObjectValue:)]
-        pub unsafe fn setObjectValue(&self, obj: Option<&ProtocolObject<dyn NSCopying>>);
+        pub unsafe fn setObjectValue(&self, obj: Option<&(impl NSCopying + Message)>);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other allowedTypes)]
@@ -84,7 +84,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSPathCellDelegate>>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSPathCellDelegate>>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&(impl NSPathCellDelegate + Message)>);
 
         #[method(pathComponentCellClass)]
         pub unsafe fn pathComponentCellClass(mtm: MainThreadMarker) -> &'static AnyClass;

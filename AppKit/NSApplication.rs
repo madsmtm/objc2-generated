@@ -264,7 +264,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSApplicationDelegate>>>;
 
         #[method(setDelegate:)]
-        pub fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSApplicationDelegate>>);
+        pub fn setDelegate(&self, delegate: Option<&(impl NSApplicationDelegate + Message)>);
 
         #[method(hide:)]
         pub fn hide(&self, sender: Option<&AnyObject>);

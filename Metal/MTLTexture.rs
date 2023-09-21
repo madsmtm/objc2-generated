@@ -417,7 +417,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics New newRemoteTextureViewForDevice:)]
         unsafe fn newRemoteTextureViewForDevice(
             &self,
-            device: &ProtocolObject<dyn MTLDevice>,
+            device: &(impl MTLDevice + Message),
         ) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
 
         #[method(swizzle)]

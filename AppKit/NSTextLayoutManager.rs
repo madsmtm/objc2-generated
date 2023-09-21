@@ -71,7 +71,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ProtocolObject<dyn NSTextLayoutManagerDelegate>>,
+            delegate: Option<&(impl NSTextLayoutManagerDelegate + Message)>,
         );
 
         #[method(usesFontLeading)]
@@ -148,14 +148,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other textLayoutFragmentForLocation:)]
         pub unsafe fn textLayoutFragmentForLocation(
             &self,
-            location: &ProtocolObject<dyn NSTextLocation>,
+            location: &(impl NSTextLocation + Message),
         ) -> Option<Id<NSTextLayoutFragment>>;
 
         #[cfg(feature = "AppKit_NSTextLayoutFragment")]
         #[method_id(@__retain_semantics Other enumerateTextLayoutFragmentsFromLocation:options:usingBlock:)]
         pub unsafe fn enumerateTextLayoutFragmentsFromLocation_options_usingBlock(
             &self,
-            location: Option<&ProtocolObject<dyn NSTextLocation>>,
+            location: Option<&(impl NSTextLocation + Message)>,
             options: NSTextLayoutFragmentEnumerationOptions,
             block: &Block<(NonNull<NSTextLayoutFragment>,), Bool>,
         ) -> Option<Id<ProtocolObject<dyn NSTextLocation>>>;
@@ -183,7 +183,7 @@ extern_methods!(
         #[method(enumerateRenderingAttributesFromLocation:reverse:usingBlock:)]
         pub unsafe fn enumerateRenderingAttributesFromLocation_reverse_usingBlock(
             &self,
-            location: &ProtocolObject<dyn NSTextLocation>,
+            location: &(impl NSTextLocation + Message),
             reverse: bool,
             block: &Block<
                 (
@@ -248,7 +248,7 @@ extern_methods!(
         pub unsafe fn renderingAttributesForLink_atLocation(
             &self,
             link: &AnyObject,
-            location: &ProtocolObject<dyn NSTextLocation>,
+            location: &(impl NSTextLocation + Message),
         ) -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         #[cfg(all(feature = "AppKit_NSTextContainer", feature = "AppKit_NSTextRange"))]
@@ -307,7 +307,7 @@ extern_protocol!(
         unsafe fn textLayoutManager_textLayoutFragmentForLocation_inTextElement(
             &self,
             text_layout_manager: &NSTextLayoutManager,
-            location: &ProtocolObject<dyn NSTextLocation>,
+            location: &(impl NSTextLocation + Message),
             text_element: &NSTextElement,
         ) -> Id<NSTextLayoutFragment>;
 
@@ -317,7 +317,7 @@ extern_protocol!(
         unsafe fn textLayoutManager_shouldBreakLineBeforeLocation_hyphenating(
             &self,
             text_layout_manager: &NSTextLayoutManager,
-            location: &ProtocolObject<dyn NSTextLocation>,
+            location: &(impl NSTextLocation + Message),
             hyphenating: bool,
         ) -> bool;
 
@@ -331,7 +331,7 @@ extern_protocol!(
             &self,
             text_layout_manager: &NSTextLayoutManager,
             link: &AnyObject,
-            location: &ProtocolObject<dyn NSTextLocation>,
+            location: &(impl NSTextLocation + Message),
             rendering_attributes: &NSDictionary<NSAttributedStringKey, AnyObject>,
         ) -> Option<Id<NSDictionary<NSAttributedStringKey, AnyObject>>>;
     }

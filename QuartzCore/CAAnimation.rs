@@ -76,10 +76,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn CAAnimationDelegate>>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(
-            &self,
-            delegate: Option<&ProtocolObject<dyn CAAnimationDelegate>>,
-        );
+        pub unsafe fn setDelegate(&self, delegate: Option<&(impl CAAnimationDelegate + Message)>);
 
         #[method(isRemovedOnCompletion)]
         pub unsafe fn isRemovedOnCompletion(&self) -> bool;

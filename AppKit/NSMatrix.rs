@@ -386,7 +386,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSMatrixDelegate>>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSMatrixDelegate>>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&(impl NSMatrixDelegate + Message)>);
 
         #[cfg(feature = "AppKit_NSText")]
         #[method(textShouldBeginEditing:)]

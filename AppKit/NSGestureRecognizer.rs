@@ -73,7 +73,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ProtocolObject<dyn NSGestureRecognizerDelegate>>,
+            delegate: Option<&(impl NSGestureRecognizerDelegate + Message)>,
         );
 
         #[method(isEnabled)]

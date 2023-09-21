@@ -563,20 +563,20 @@ extern_protocol!(
         #[method_id(@__retain_semantics New newComputePipelineStateWithFunction:error:_)]
         fn newComputePipelineStateWithFunction_error(
             &self,
-            compute_function: &ProtocolObject<dyn MTLFunction>,
+            compute_function: &(impl MTLFunction + Message),
         ) -> Result<Id<ProtocolObject<dyn MTLComputePipelineState>>, Id<NSError>>;
 
         #[method(newComputePipelineStateWithFunction:completionHandler:)]
         unsafe fn newComputePipelineStateWithFunction_completionHandler(
             &self,
-            compute_function: &ProtocolObject<dyn MTLFunction>,
+            compute_function: &(impl MTLFunction + Message),
             completion_handler: MTLNewComputePipelineStateCompletionHandler,
         );
 
         #[method(newComputePipelineStateWithFunction:options:completionHandler:)]
         unsafe fn newComputePipelineStateWithFunction_options_completionHandler(
             &self,
-            compute_function: &ProtocolObject<dyn MTLFunction>,
+            compute_function: &(impl MTLFunction + Message),
             options: MTLPipelineOption,
             completion_handler: MTLNewComputePipelineStateWithReflectionCompletionHandler,
         );
@@ -798,7 +798,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics New newArgumentEncoderWithBufferBinding:)]
         unsafe fn newArgumentEncoderWithBufferBinding(
             &self,
-            buffer_binding: &ProtocolObject<dyn MTLBufferBinding>,
+            buffer_binding: &(impl MTLBufferBinding + Message),
         ) -> Id<ProtocolObject<dyn MTLArgumentEncoder>>;
 
         #[method(supportsCounterSampling:)]
@@ -817,7 +817,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics New newDynamicLibrary:error:_)]
         fn newDynamicLibrary_error(
             &self,
-            library: &ProtocolObject<dyn MTLLibrary>,
+            library: &(impl MTLLibrary + Message),
         ) -> Result<Id<ProtocolObject<dyn MTLDynamicLibrary>>, Id<NSError>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]

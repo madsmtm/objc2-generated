@@ -50,7 +50,7 @@ extern_methods!(
         #[method(setAchievementDelegate:)]
         pub unsafe fn setAchievementDelegate(
             &self,
-            achievement_delegate: Option<&ProtocolObject<dyn GKAchievementViewControllerDelegate>>,
+            achievement_delegate: Option<&(impl GKAchievementViewControllerDelegate + Message)>,
         );
     }
 );

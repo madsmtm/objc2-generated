@@ -113,13 +113,13 @@ extern_methods!(
         #[method_id(@__retain_semantics New newCaptureScopeWithDevice:)]
         pub fn newCaptureScopeWithDevice(
             &self,
-            device: &ProtocolObject<dyn MTLDevice>,
+            device: &(impl MTLDevice + Message),
         ) -> Id<ProtocolObject<dyn MTLCaptureScope>>;
 
         #[method_id(@__retain_semantics New newCaptureScopeWithCommandQueue:)]
         pub fn newCaptureScopeWithCommandQueue(
             &self,
-            command_queue: &ProtocolObject<dyn MTLCommandQueue>,
+            command_queue: &(impl MTLCommandQueue + Message),
         ) -> Id<ProtocolObject<dyn MTLCaptureScope>>;
 
         #[method(supportsDestination:)]
@@ -134,18 +134,18 @@ extern_methods!(
 
         #[deprecated = "Use startCaptureWithDescriptor:error: instead"]
         #[method(startCaptureWithDevice:)]
-        pub fn startCaptureWithDevice(&self, device: &ProtocolObject<dyn MTLDevice>);
+        pub fn startCaptureWithDevice(&self, device: &(impl MTLDevice + Message));
 
         #[deprecated = "Use startCaptureWithDescriptor:error: instead"]
         #[method(startCaptureWithCommandQueue:)]
         pub fn startCaptureWithCommandQueue(
             &self,
-            command_queue: &ProtocolObject<dyn MTLCommandQueue>,
+            command_queue: &(impl MTLCommandQueue + Message),
         );
 
         #[deprecated = "Use startCaptureWithDescriptor:error: instead"]
         #[method(startCaptureWithScope:)]
-        pub fn startCaptureWithScope(&self, capture_scope: &ProtocolObject<dyn MTLCaptureScope>);
+        pub fn startCaptureWithScope(&self, capture_scope: &(impl MTLCaptureScope + Message));
 
         #[method(stopCapture)]
         pub fn stopCapture(&self);
@@ -156,7 +156,7 @@ extern_methods!(
         #[method(setDefaultCaptureScope:)]
         pub fn setDefaultCaptureScope(
             &self,
-            default_capture_scope: Option<&ProtocolObject<dyn MTLCaptureScope>>,
+            default_capture_scope: Option<&(impl MTLCaptureScope + Message)>,
         );
 
         #[method(isCapturing)]

@@ -131,10 +131,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSSearchFieldDelegate>>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(
-            &self,
-            delegate: Option<&ProtocolObject<dyn NSSearchFieldDelegate>>,
-        );
+        pub unsafe fn setDelegate(&self, delegate: Option<&(impl NSSearchFieldDelegate + Message)>);
     }
 );
 

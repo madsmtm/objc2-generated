@@ -179,19 +179,19 @@ extern_protocol!(
         unsafe fn addScheduledHandler(&self, block: MTLCommandBufferHandler);
 
         #[method(presentDrawable:)]
-        fn presentDrawable(&self, drawable: &ProtocolObject<dyn MTLDrawable>);
+        fn presentDrawable(&self, drawable: &(impl MTLDrawable + Message));
 
         #[method(presentDrawable:atTime:)]
         unsafe fn presentDrawable_atTime(
             &self,
-            drawable: &ProtocolObject<dyn MTLDrawable>,
+            drawable: &(impl MTLDrawable + Message),
             presentation_time: CFTimeInterval,
         );
 
         #[method(presentDrawable:afterMinimumDuration:)]
         unsafe fn presentDrawable_afterMinimumDuration(
             &self,
-            drawable: &ProtocolObject<dyn MTLDrawable>,
+            drawable: &(impl MTLDrawable + Message),
             duration: CFTimeInterval,
         );
 
@@ -246,10 +246,10 @@ extern_protocol!(
         ) -> Option<Id<ProtocolObject<dyn MTLComputeCommandEncoder>>>;
 
         #[method(encodeWaitForEvent:value:)]
-        fn encodeWaitForEvent_value(&self, event: &ProtocolObject<dyn MTLEvent>, value: u64);
+        fn encodeWaitForEvent_value(&self, event: &(impl MTLEvent + Message), value: u64);
 
         #[method(encodeSignalEvent:value:)]
-        fn encodeSignalEvent_value(&self, event: &ProtocolObject<dyn MTLEvent>, value: u64);
+        fn encodeSignalEvent_value(&self, event: &(impl MTLEvent + Message), value: u64);
 
         #[cfg(feature = "Metal_MTLRenderPassDescriptor")]
         #[method_id(@__retain_semantics Other parallelRenderCommandEncoderWithDescriptor:)]

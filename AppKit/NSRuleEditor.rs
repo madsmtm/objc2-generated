@@ -85,10 +85,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSRuleEditorDelegate>>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(
-            &self,
-            delegate: Option<&ProtocolObject<dyn NSRuleEditorDelegate>>,
-        );
+        pub unsafe fn setDelegate(&self, delegate: Option<&(impl NSRuleEditorDelegate + Message)>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other formattingStringsFilename)]

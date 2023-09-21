@@ -58,7 +58,7 @@ extern_methods!(
         pub unsafe fn setProjectPreviewImage(&self, preview_image: &NSImage);
 
         #[method(removeAssets:)]
-        pub unsafe fn removeAssets(&self, assets: &ProtocolObject<dyn NSFastEnumeration>);
+        pub unsafe fn removeAssets(&self, assets: &(impl NSFastEnumeration + Message));
     }
 );
 

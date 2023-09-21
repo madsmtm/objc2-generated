@@ -125,7 +125,7 @@ extern_methods!(
         #[method(setPrimitiveDataBuffer:)]
         pub fn setPrimitiveDataBuffer(
             &self,
-            primitive_data_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
+            primitive_data_buffer: Option<&(impl MTLBuffer + Message)>,
         );
 
         #[method(primitiveDataBufferOffset)]
@@ -285,7 +285,7 @@ extern_methods!(
         pub unsafe fn vertexBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
         #[method(setVertexBuffer:)]
-        pub fn setVertexBuffer(&self, vertex_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
+        pub fn setVertexBuffer(&self, vertex_buffer: Option<&(impl MTLBuffer + Message)>);
 
         #[method(vertexBufferOffset)]
         pub unsafe fn vertexBufferOffset(&self) -> NSUInteger;
@@ -309,7 +309,7 @@ extern_methods!(
         pub unsafe fn indexBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
         #[method(setIndexBuffer:)]
-        pub fn setIndexBuffer(&self, index_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
+        pub fn setIndexBuffer(&self, index_buffer: Option<&(impl MTLBuffer + Message)>);
 
         #[method(indexBufferOffset)]
         pub unsafe fn indexBufferOffset(&self) -> NSUInteger;
@@ -337,7 +337,7 @@ extern_methods!(
         #[method(setTransformationMatrixBuffer:)]
         pub unsafe fn setTransformationMatrixBuffer(
             &self,
-            transformation_matrix_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
+            transformation_matrix_buffer: Option<&(impl MTLBuffer + Message)>,
         );
 
         #[method(transformationMatrixBufferOffset)]
@@ -394,7 +394,7 @@ extern_methods!(
         #[method(setBoundingBoxBuffer:)]
         pub fn setBoundingBoxBuffer(
             &self,
-            bounding_box_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
+            bounding_box_buffer: Option<&(impl MTLBuffer + Message)>,
         );
 
         #[method(boundingBoxBufferOffset)]
@@ -454,7 +454,7 @@ extern_methods!(
         pub unsafe fn buffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
         #[method(setBuffer:)]
-        pub unsafe fn setBuffer(&self, buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
+        pub unsafe fn setBuffer(&self, buffer: Option<&(impl MTLBuffer + Message)>);
 
         #[method(offset)]
         pub unsafe fn offset(&self) -> NSUInteger;
@@ -531,7 +531,7 @@ extern_methods!(
         pub unsafe fn indexBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
         #[method(setIndexBuffer:)]
-        pub unsafe fn setIndexBuffer(&self, index_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
+        pub unsafe fn setIndexBuffer(&self, index_buffer: Option<&(impl MTLBuffer + Message)>);
 
         #[method(indexBufferOffset)]
         pub unsafe fn indexBufferOffset(&self) -> NSUInteger;
@@ -559,7 +559,7 @@ extern_methods!(
         #[method(setTransformationMatrixBuffer:)]
         pub unsafe fn setTransformationMatrixBuffer(
             &self,
-            transformation_matrix_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
+            transformation_matrix_buffer: Option<&(impl MTLBuffer + Message)>,
         );
 
         #[method(transformationMatrixBufferOffset)]
@@ -733,7 +733,7 @@ extern_methods!(
         #[method(setInstanceDescriptorBuffer:)]
         pub fn setInstanceDescriptorBuffer(
             &self,
-            instance_descriptor_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
+            instance_descriptor_buffer: Option<&(impl MTLBuffer + Message)>,
         );
 
         #[method(instanceDescriptorBufferOffset)]
@@ -789,7 +789,7 @@ extern_methods!(
         #[method(setMotionTransformBuffer:)]
         pub unsafe fn setMotionTransformBuffer(
             &self,
-            motion_transform_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
+            motion_transform_buffer: Option<&(impl MTLBuffer + Message)>,
         );
 
         #[method(motionTransformBufferOffset)]

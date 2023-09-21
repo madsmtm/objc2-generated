@@ -120,11 +120,11 @@ extern_protocol!(
     pub unsafe trait NSEditorRegistration: NSObjectProtocol + IsMainThreadOnly {
         #[optional]
         #[method(objectDidBeginEditing:)]
-        unsafe fn objectDidBeginEditing(&self, editor: &ProtocolObject<dyn NSEditor>);
+        unsafe fn objectDidBeginEditing(&self, editor: &(impl NSEditor + Message));
 
         #[optional]
         #[method(objectDidEndEditing:)]
-        unsafe fn objectDidEndEditing(&self, editor: &ProtocolObject<dyn NSEditor>);
+        unsafe fn objectDidEndEditing(&self, editor: &(impl NSEditor + Message));
     }
 
     unsafe impl ProtocolType for dyn NSEditorRegistration {}

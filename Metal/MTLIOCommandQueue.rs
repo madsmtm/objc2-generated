@@ -130,7 +130,7 @@ extern_methods!(
         #[method(setScratchBufferAllocator:)]
         pub unsafe fn setScratchBufferAllocator(
             &self,
-            scratch_buffer_allocator: Option<&ProtocolObject<dyn MTLIOScratchBufferAllocator>>,
+            scratch_buffer_allocator: Option<&(impl MTLIOScratchBufferAllocator + Message)>,
         );
     }
 );

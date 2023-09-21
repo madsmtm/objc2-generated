@@ -148,7 +148,7 @@ extern_methods!(
         pub unsafe fn decimalNumberByAdding_withBehavior(
             &self,
             decimal_number: &NSDecimalNumber,
-            behavior: Option<&ProtocolObject<dyn NSDecimalNumberBehaviors>>,
+            behavior: Option<&(impl NSDecimalNumberBehaviors + Message)>,
         ) -> Id<NSDecimalNumber>;
 
         #[method_id(@__retain_semantics Other decimalNumberBySubtracting:)]
@@ -161,7 +161,7 @@ extern_methods!(
         pub unsafe fn decimalNumberBySubtracting_withBehavior(
             &self,
             decimal_number: &NSDecimalNumber,
-            behavior: Option<&ProtocolObject<dyn NSDecimalNumberBehaviors>>,
+            behavior: Option<&(impl NSDecimalNumberBehaviors + Message)>,
         ) -> Id<NSDecimalNumber>;
 
         #[method_id(@__retain_semantics Other decimalNumberByMultiplyingBy:)]
@@ -174,7 +174,7 @@ extern_methods!(
         pub unsafe fn decimalNumberByMultiplyingBy_withBehavior(
             &self,
             decimal_number: &NSDecimalNumber,
-            behavior: Option<&ProtocolObject<dyn NSDecimalNumberBehaviors>>,
+            behavior: Option<&(impl NSDecimalNumberBehaviors + Message)>,
         ) -> Id<NSDecimalNumber>;
 
         #[method_id(@__retain_semantics Other decimalNumberByDividingBy:)]
@@ -187,7 +187,7 @@ extern_methods!(
         pub unsafe fn decimalNumberByDividingBy_withBehavior(
             &self,
             decimal_number: &NSDecimalNumber,
-            behavior: Option<&ProtocolObject<dyn NSDecimalNumberBehaviors>>,
+            behavior: Option<&(impl NSDecimalNumberBehaviors + Message)>,
         ) -> Id<NSDecimalNumber>;
 
         #[method_id(@__retain_semantics Other decimalNumberByRaisingToPower:)]
@@ -200,7 +200,7 @@ extern_methods!(
         pub unsafe fn decimalNumberByRaisingToPower_withBehavior(
             &self,
             power: NSUInteger,
-            behavior: Option<&ProtocolObject<dyn NSDecimalNumberBehaviors>>,
+            behavior: Option<&(impl NSDecimalNumberBehaviors + Message)>,
         ) -> Id<NSDecimalNumber>;
 
         #[method_id(@__retain_semantics Other decimalNumberByMultiplyingByPowerOf10:)]
@@ -213,13 +213,13 @@ extern_methods!(
         pub unsafe fn decimalNumberByMultiplyingByPowerOf10_withBehavior(
             &self,
             power: c_short,
-            behavior: Option<&ProtocolObject<dyn NSDecimalNumberBehaviors>>,
+            behavior: Option<&(impl NSDecimalNumberBehaviors + Message)>,
         ) -> Id<NSDecimalNumber>;
 
         #[method_id(@__retain_semantics Other decimalNumberByRoundingAccordingToBehavior:)]
         pub unsafe fn decimalNumberByRoundingAccordingToBehavior(
             &self,
-            behavior: Option<&ProtocolObject<dyn NSDecimalNumberBehaviors>>,
+            behavior: Option<&(impl NSDecimalNumberBehaviors + Message)>,
         ) -> Id<NSDecimalNumber>;
 
         #[method(compare:)]
@@ -230,7 +230,7 @@ extern_methods!(
 
         #[method(setDefaultBehavior:)]
         pub unsafe fn setDefaultBehavior(
-            default_behavior: &ProtocolObject<dyn NSDecimalNumberBehaviors>,
+            default_behavior: &(impl NSDecimalNumberBehaviors + Message),
         );
 
         #[method(objCType)]

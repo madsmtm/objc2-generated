@@ -84,7 +84,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ProtocolObject<dyn NSTextViewportLayoutControllerDelegate>>,
+            delegate: Option<&(impl NSTextViewportLayoutControllerDelegate + Message)>,
         );
 
         #[cfg(feature = "AppKit_NSTextLayoutManager")]
@@ -104,7 +104,7 @@ extern_methods!(
         #[method(relocateViewportToTextLocation:)]
         pub unsafe fn relocateViewportToTextLocation(
             &self,
-            text_location: &ProtocolObject<dyn NSTextLocation>,
+            text_location: &(impl NSTextLocation + Message),
         ) -> CGFloat;
 
         #[method(adjustViewportByVerticalOffset:)]

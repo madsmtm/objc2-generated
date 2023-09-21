@@ -49,7 +49,7 @@ extern_protocol!(
             &self,
             bounds: CGRect,
             attributes: &NSDictionary<NSAttributedStringKey, AnyObject>,
-            location: &ProtocolObject<dyn NSTextLocation>,
+            location: &(impl NSTextLocation + Message),
             text_container: Option<&NSTextContainer>,
         ) -> Option<Id<NSImage>>;
 
@@ -61,7 +61,7 @@ extern_protocol!(
         unsafe fn attachmentBoundsForAttributes_location_textContainer_proposedLineFragment_position(
             &self,
             attributes: &NSDictionary<NSAttributedStringKey, AnyObject>,
-            location: &ProtocolObject<dyn NSTextLocation>,
+            location: &(impl NSTextLocation + Message),
             text_container: Option<&NSTextContainer>,
             proposed_line_fragment: CGRect,
             position: CGPoint,
@@ -76,7 +76,7 @@ extern_protocol!(
         unsafe fn viewProviderForParentView_location_textContainer(
             &self,
             parent_view: Option<&NSView>,
-            location: &ProtocolObject<dyn NSTextLocation>,
+            location: &(impl NSTextLocation + Message),
             text_container: Option<&NSTextContainer>,
         ) -> Option<Id<NSTextAttachmentViewProvider>>;
     }
@@ -175,7 +175,7 @@ extern_methods!(
         #[method(setAttachmentCell:)]
         pub unsafe fn setAttachmentCell(
             &self,
-            attachment_cell: Option<&ProtocolObject<dyn NSTextAttachmentCellProtocol>>,
+            attachment_cell: Option<&(impl NSTextAttachmentCellProtocol + Message)>,
         );
 
         #[method(lineLayoutPadding)]
@@ -261,7 +261,7 @@ extern_methods!(
             text_attachment: &NSTextAttachment,
             parent_view: Option<&NSView>,
             text_layout_manager: Option<&NSTextLayoutManager>,
-            location: &ProtocolObject<dyn NSTextLocation>,
+            location: &(impl NSTextLocation + Message),
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
@@ -309,7 +309,7 @@ extern_methods!(
         pub unsafe fn attachmentBoundsForAttributes_location_textContainer_proposedLineFragment_position(
             &self,
             attributes: &NSDictionary<NSAttributedStringKey, AnyObject>,
-            location: &ProtocolObject<dyn NSTextLocation>,
+            location: &(impl NSTextLocation + Message),
             text_container: Option<&NSTextContainer>,
             proposed_line_fragment: CGRect,
             position: CGPoint,

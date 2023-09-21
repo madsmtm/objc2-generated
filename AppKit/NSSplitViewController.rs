@@ -95,7 +95,7 @@ extern_methods!(
         #[method(validateUserInterfaceItem:)]
         pub unsafe fn validateUserInterfaceItem(
             &self,
-            item: &ProtocolObject<dyn NSValidatedUserInterfaceItem>,
+            item: &(impl NSValidatedUserInterfaceItem + Message),
         ) -> bool;
 
         #[method(viewDidLoad)]

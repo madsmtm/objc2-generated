@@ -76,7 +76,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithDataSource:)]
         pub unsafe fn initWithDataSource(
             this: Option<Allocated<Self>>,
-            data_source: &ProtocolObject<dyn NSTextSelectionDataSource>,
+            data_source: &(impl NSTextSelectionDataSource + Message),
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
@@ -124,7 +124,7 @@ extern_methods!(
         pub unsafe fn textSelectionsInteractingAtPoint_inContainerAtLocation_anchors_modifiers_selecting_bounds(
             &self,
             point: CGPoint,
-            container_location: &ProtocolObject<dyn NSTextLocation>,
+            container_location: &(impl NSTextLocation + Message),
             anchors: &NSArray<NSTextSelection>,
             modifiers: NSTextSelectionNavigationModifier,
             selecting: bool,
@@ -145,7 +145,7 @@ extern_methods!(
             &self,
             selection_granularity: NSTextSelectionGranularity,
             point: CGPoint,
-            location: &ProtocolObject<dyn NSTextLocation>,
+            location: &(impl NSTextLocation + Message),
         ) -> Option<Id<NSTextSelection>>;
 
         #[cfg(feature = "AppKit_NSTextSelection")]
@@ -182,7 +182,7 @@ extern_protocol!(
         #[method(enumerateSubstringsFromLocation:options:usingBlock:)]
         unsafe fn enumerateSubstringsFromLocation_options_usingBlock(
             &self,
-            location: &ProtocolObject<dyn NSTextLocation>,
+            location: &(impl NSTextLocation + Message),
             options: NSStringEnumerationOptions,
             block: &Block<
                 (
@@ -200,33 +200,33 @@ extern_protocol!(
         unsafe fn textRangeForSelectionGranularity_enclosingLocation(
             &self,
             selection_granularity: NSTextSelectionGranularity,
-            location: &ProtocolObject<dyn NSTextLocation>,
+            location: &(impl NSTextLocation + Message),
         ) -> Option<Id<NSTextRange>>;
 
         #[method_id(@__retain_semantics Other locationFromLocation:withOffset:)]
         unsafe fn locationFromLocation_withOffset(
             &self,
-            location: &ProtocolObject<dyn NSTextLocation>,
+            location: &(impl NSTextLocation + Message),
             offset: NSInteger,
         ) -> Option<Id<ProtocolObject<dyn NSTextLocation>>>;
 
         #[method(offsetFromLocation:toLocation:)]
         unsafe fn offsetFromLocation_toLocation(
             &self,
-            from: &ProtocolObject<dyn NSTextLocation>,
-            to: &ProtocolObject<dyn NSTextLocation>,
+            from: &(impl NSTextLocation + Message),
+            to: &(impl NSTextLocation + Message),
         ) -> NSInteger;
 
         #[method(baseWritingDirectionAtLocation:)]
         unsafe fn baseWritingDirectionAtLocation(
             &self,
-            location: &ProtocolObject<dyn NSTextLocation>,
+            location: &(impl NSTextLocation + Message),
         ) -> NSTextSelectionNavigationWritingDirection;
 
         #[method(enumerateCaretOffsetsInLineFragmentAtLocation:usingBlock:)]
         unsafe fn enumerateCaretOffsetsInLineFragmentAtLocation_usingBlock(
             &self,
-            location: &ProtocolObject<dyn NSTextLocation>,
+            location: &(impl NSTextLocation + Message),
             block: &Block<
                 (
                     CGFloat,
@@ -243,14 +243,14 @@ extern_protocol!(
         unsafe fn lineFragmentRangeForPoint_inContainerAtLocation(
             &self,
             point: CGPoint,
-            location: &ProtocolObject<dyn NSTextLocation>,
+            location: &(impl NSTextLocation + Message),
         ) -> Option<Id<NSTextRange>>;
 
         #[optional]
         #[method(enumerateContainerBoundariesFromLocation:reverse:usingBlock:)]
         unsafe fn enumerateContainerBoundariesFromLocation_reverse_usingBlock(
             &self,
-            location: &ProtocolObject<dyn NSTextLocation>,
+            location: &(impl NSTextLocation + Message),
             reverse: bool,
             block: &Block<(NonNull<ProtocolObject<dyn NSTextLocation>>, NonNull<Bool>), ()>,
         );
@@ -259,7 +259,7 @@ extern_protocol!(
         #[method(textLayoutOrientationAtLocation:)]
         unsafe fn textLayoutOrientationAtLocation(
             &self,
-            location: &ProtocolObject<dyn NSTextLocation>,
+            location: &(impl NSTextLocation + Message),
         ) -> NSTextSelectionNavigationLayoutOrientation;
     }
 

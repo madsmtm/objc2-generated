@@ -146,7 +146,7 @@ extern_methods!(
 
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method(setUIDelegate:)]
-        pub unsafe fn setUIDelegate(&self, ui_delegate: Option<&ProtocolObject<dyn WebUIDelegate>>);
+        pub unsafe fn setUIDelegate(&self, ui_delegate: Option<&(impl WebUIDelegate + Message)>);
 
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method_id(@__retain_semantics Other resourceLoadDelegate)]
@@ -158,7 +158,7 @@ extern_methods!(
         #[method(setResourceLoadDelegate:)]
         pub unsafe fn setResourceLoadDelegate(
             &self,
-            resource_load_delegate: Option<&ProtocolObject<dyn WebResourceLoadDelegate>>,
+            resource_load_delegate: Option<&(impl WebResourceLoadDelegate + Message)>,
         );
 
         #[deprecated = "No longer supported; please adopt WKWebView."]
@@ -171,7 +171,7 @@ extern_methods!(
         #[method(setDownloadDelegate:)]
         pub unsafe fn setDownloadDelegate(
             &self,
-            download_delegate: Option<&ProtocolObject<dyn WebDownloadDelegate>>,
+            download_delegate: Option<&(impl WebDownloadDelegate + Message)>,
         );
 
         #[deprecated = "No longer supported; please adopt WKWebView."]
@@ -184,7 +184,7 @@ extern_methods!(
         #[method(setFrameLoadDelegate:)]
         pub unsafe fn setFrameLoadDelegate(
             &self,
-            frame_load_delegate: Option<&ProtocolObject<dyn WebFrameLoadDelegate>>,
+            frame_load_delegate: Option<&(impl WebFrameLoadDelegate + Message)>,
         );
 
         #[deprecated = "No longer supported; please adopt WKWebView."]
@@ -195,7 +195,7 @@ extern_methods!(
         #[method(setPolicyDelegate:)]
         pub unsafe fn setPolicyDelegate(
             &self,
-            policy_delegate: Option<&ProtocolObject<dyn WebPolicyDelegate>>,
+            policy_delegate: Option<&(impl WebPolicyDelegate + Message)>,
         );
 
         #[cfg(feature = "WebKit_WebFrame")]
@@ -688,7 +688,7 @@ extern_methods!(
         #[method(setEditingDelegate:)]
         pub unsafe fn setEditingDelegate(
             &self,
-            editing_delegate: Option<&ProtocolObject<dyn WebEditingDelegate>>,
+            editing_delegate: Option<&(impl WebEditingDelegate + Message)>,
         );
 
         #[cfg(all(

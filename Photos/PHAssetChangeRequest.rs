@@ -46,7 +46,7 @@ extern_methods!(
         pub unsafe fn placeholderForCreatedAsset(&self) -> Option<Id<PHObjectPlaceholder>>;
 
         #[method(deleteAssets:)]
-        pub unsafe fn deleteAssets(assets: &ProtocolObject<dyn NSFastEnumeration>);
+        pub unsafe fn deleteAssets(assets: &(impl NSFastEnumeration + Message));
 
         #[cfg(feature = "PhotoKit_PHAsset")]
         #[method_id(@__retain_semantics Other changeRequestForAsset:)]

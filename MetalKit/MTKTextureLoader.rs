@@ -88,7 +88,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Option<Allocated<Self>>,
-            device: &ProtocolObject<dyn MTLDevice>,
+            device: &(impl MTLDevice + Message),
         ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSURL"))]

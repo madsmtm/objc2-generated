@@ -60,7 +60,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ProtocolObject<dyn NSCandidateListTouchBarItemDelegate>>,
+            delegate: Option<&(impl NSCandidateListTouchBarItemDelegate + Message)>,
         );
 
         #[method(isCollapsed)]

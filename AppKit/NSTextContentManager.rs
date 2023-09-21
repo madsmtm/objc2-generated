@@ -23,7 +23,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other enumerateTextElementsFromLocation:options:usingBlock:)]
         unsafe fn enumerateTextElementsFromLocation_options_usingBlock(
             &self,
-            text_location: Option<&ProtocolObject<dyn NSTextLocation>>,
+            text_location: Option<&(impl NSTextLocation + Message)>,
             options: NSTextContentManagerEnumerationOptions,
             block: &Block<(NonNull<NSTextElement>,), Bool>,
         ) -> Option<Id<ProtocolObject<dyn NSTextLocation>>>;
@@ -51,7 +51,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other locationFromLocation:withOffset:)]
         unsafe fn locationFromLocation_withOffset(
             &self,
-            location: &ProtocolObject<dyn NSTextLocation>,
+            location: &(impl NSTextLocation + Message),
             offset: NSInteger,
         ) -> Option<Id<ProtocolObject<dyn NSTextLocation>>>;
 
@@ -59,8 +59,8 @@ extern_protocol!(
         #[method(offsetFromLocation:toLocation:)]
         unsafe fn offsetFromLocation_toLocation(
             &self,
-            from: &ProtocolObject<dyn NSTextLocation>,
-            to: &ProtocolObject<dyn NSTextLocation>,
+            from: &(impl NSTextLocation + Message),
+            to: &(impl NSTextLocation + Message),
         ) -> NSInteger;
 
         #[cfg(feature = "AppKit_NSTextRange")]
@@ -121,7 +121,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ProtocolObject<dyn NSTextContentManagerDelegate>>,
+            delegate: Option<&(impl NSTextContentManagerDelegate + Message)>,
         );
 
         #[cfg(all(feature = "AppKit_NSTextLayoutManager", feature = "Foundation_NSArray"))]
@@ -219,7 +219,7 @@ extern_protocol!(
         unsafe fn textContentManager_textElementAtLocation(
             &self,
             text_content_manager: &NSTextContentManager,
-            location: &ProtocolObject<dyn NSTextLocation>,
+            location: &(impl NSTextLocation + Message),
         ) -> Option<Id<NSTextElement>>;
 
         #[cfg(all(
@@ -296,7 +296,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ProtocolObject<dyn NSTextContentStorageDelegate>>,
+            delegate: Option<&(impl NSTextContentStorageDelegate + Message)>,
         );
 
         #[cfg(feature = "Foundation_NSAttributedString")]
@@ -330,15 +330,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Other locationFromLocation:withOffset:)]
         pub unsafe fn locationFromLocation_withOffset(
             &self,
-            location: &ProtocolObject<dyn NSTextLocation>,
+            location: &(impl NSTextLocation + Message),
             offset: NSInteger,
         ) -> Option<Id<ProtocolObject<dyn NSTextLocation>>>;
 
         #[method(offsetFromLocation:toLocation:)]
         pub unsafe fn offsetFromLocation_toLocation(
             &self,
-            from: &ProtocolObject<dyn NSTextLocation>,
-            to: &ProtocolObject<dyn NSTextLocation>,
+            from: &(impl NSTextLocation + Message),
+            to: &(impl NSTextLocation + Message),
         ) -> NSInteger;
 
         #[cfg(feature = "AppKit_NSTextRange")]

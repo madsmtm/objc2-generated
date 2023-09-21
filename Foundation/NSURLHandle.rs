@@ -113,11 +113,11 @@ extern_methods!(
 
         #[deprecated]
         #[method(addClient:)]
-        pub unsafe fn addClient(&self, client: Option<&ProtocolObject<dyn NSURLHandleClient>>);
+        pub unsafe fn addClient(&self, client: Option<&(impl NSURLHandleClient + Message)>);
 
         #[deprecated]
         #[method(removeClient:)]
-        pub unsafe fn removeClient(&self, client: Option<&ProtocolObject<dyn NSURLHandleClient>>);
+        pub unsafe fn removeClient(&self, client: Option<&(impl NSURLHandleClient + Message)>);
 
         #[deprecated]
         #[method(loadInBackground)]

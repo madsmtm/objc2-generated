@@ -81,7 +81,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSToolbarDelegate>>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSToolbarDelegate>>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&(impl NSToolbarDelegate + Message)>);
 
         #[method(isVisible)]
         pub unsafe fn isVisible(&self) -> bool;

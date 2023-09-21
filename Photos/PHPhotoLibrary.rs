@@ -92,25 +92,25 @@ extern_methods!(
         #[method(registerAvailabilityObserver:)]
         pub unsafe fn registerAvailabilityObserver(
             &self,
-            observer: &ProtocolObject<dyn PHPhotoLibraryAvailabilityObserver>,
+            observer: &(impl PHPhotoLibraryAvailabilityObserver + Message),
         );
 
         #[method(unregisterAvailabilityObserver:)]
         pub unsafe fn unregisterAvailabilityObserver(
             &self,
-            observer: &ProtocolObject<dyn PHPhotoLibraryAvailabilityObserver>,
+            observer: &(impl PHPhotoLibraryAvailabilityObserver + Message),
         );
 
         #[method(registerChangeObserver:)]
         pub unsafe fn registerChangeObserver(
             &self,
-            observer: &ProtocolObject<dyn PHPhotoLibraryChangeObserver>,
+            observer: &(impl PHPhotoLibraryChangeObserver + Message),
         );
 
         #[method(unregisterChangeObserver:)]
         pub unsafe fn unregisterChangeObserver(
             &self,
-            observer: &ProtocolObject<dyn PHPhotoLibraryChangeObserver>,
+            observer: &(impl PHPhotoLibraryChangeObserver + Message),
         );
 
         #[cfg(all(

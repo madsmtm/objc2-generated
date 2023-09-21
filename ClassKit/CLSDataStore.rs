@@ -60,10 +60,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn CLSDataStoreDelegate>>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(
-            &self,
-            delegate: Option<&ProtocolObject<dyn CLSDataStoreDelegate>>,
-        );
+        pub unsafe fn setDelegate(&self, delegate: Option<&(impl CLSDataStoreDelegate + Message)>);
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

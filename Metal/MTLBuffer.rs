@@ -37,7 +37,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics New newRemoteBufferViewForDevice:)]
         fn newRemoteBufferViewForDevice(
             &self,
-            device: &ProtocolObject<dyn MTLDevice>,
+            device: &(impl MTLDevice + Message),
         ) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
         #[method(gpuAddress)]

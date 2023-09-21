@@ -71,7 +71,7 @@ extern_protocol!(
             action_information: Option<&NSDictionary>,
             request: Option<&NSURLRequest>,
             frame: Option<&WebFrame>,
-            listener: Option<&ProtocolObject<dyn WebPolicyDecisionListener>>,
+            listener: Option<&(impl WebPolicyDecisionListener + Message)>,
         );
 
         #[cfg(all(
@@ -89,7 +89,7 @@ extern_protocol!(
             action_information: Option<&NSDictionary>,
             request: Option<&NSURLRequest>,
             frame_name: Option<&NSString>,
-            listener: Option<&ProtocolObject<dyn WebPolicyDecisionListener>>,
+            listener: Option<&(impl WebPolicyDecisionListener + Message)>,
         );
 
         #[cfg(all(
@@ -107,7 +107,7 @@ extern_protocol!(
             r#type: Option<&NSString>,
             request: Option<&NSURLRequest>,
             frame: Option<&WebFrame>,
-            listener: Option<&ProtocolObject<dyn WebPolicyDecisionListener>>,
+            listener: Option<&(impl WebPolicyDecisionListener + Message)>,
         );
 
         #[cfg(all(

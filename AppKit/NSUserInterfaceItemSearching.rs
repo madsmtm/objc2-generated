@@ -40,13 +40,13 @@ extern_methods!(
         #[method(registerUserInterfaceItemSearchHandler:)]
         pub unsafe fn registerUserInterfaceItemSearchHandler(
             &self,
-            handler: &ProtocolObject<dyn NSUserInterfaceItemSearching>,
+            handler: &(impl NSUserInterfaceItemSearching + Message),
         );
 
         #[method(unregisterUserInterfaceItemSearchHandler:)]
         pub unsafe fn unregisterUserInterfaceItemSearchHandler(
             &self,
-            handler: &ProtocolObject<dyn NSUserInterfaceItemSearching>,
+            handler: &(impl NSUserInterfaceItemSearching + Message),
         );
 
         #[cfg(feature = "Foundation_NSString")]

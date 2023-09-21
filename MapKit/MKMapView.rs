@@ -64,7 +64,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn MKMapViewDelegate>>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn MKMapViewDelegate>>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&(impl MKMapViewDelegate + Message)>);
 
         #[deprecated]
         #[method(mapType)]
@@ -317,7 +317,7 @@ extern_methods!(
         pub unsafe fn isUserLocationVisible(&self) -> bool;
 
         #[method(addAnnotation:)]
-        pub unsafe fn addAnnotation(&self, annotation: &ProtocolObject<dyn MKAnnotation>);
+        pub unsafe fn addAnnotation(&self, annotation: &(impl MKAnnotation + Message));
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(addAnnotations:)]
@@ -327,7 +327,7 @@ extern_methods!(
         );
 
         #[method(removeAnnotation:)]
-        pub unsafe fn removeAnnotation(&self, annotation: &ProtocolObject<dyn MKAnnotation>);
+        pub unsafe fn removeAnnotation(&self, annotation: &(impl MKAnnotation + Message));
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(removeAnnotations:)]
@@ -351,7 +351,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other viewForAnnotation:)]
         pub unsafe fn viewForAnnotation(
             &self,
-            annotation: &ProtocolObject<dyn MKAnnotation>,
+            annotation: &(impl MKAnnotation + Message),
         ) -> Option<Id<MKAnnotationView>>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "MapKit_MKAnnotationView"))]
@@ -366,7 +366,7 @@ extern_methods!(
         pub unsafe fn dequeueReusableAnnotationViewWithIdentifier_forAnnotation(
             &self,
             identifier: &NSString,
-            annotation: &ProtocolObject<dyn MKAnnotation>,
+            annotation: &(impl MKAnnotation + Message),
         ) -> Id<MKAnnotationView>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -380,14 +380,14 @@ extern_methods!(
         #[method(selectAnnotation:animated:)]
         pub unsafe fn selectAnnotation_animated(
             &self,
-            annotation: &ProtocolObject<dyn MKAnnotation>,
+            annotation: &(impl MKAnnotation + Message),
             animated: bool,
         );
 
         #[method(deselectAnnotation:animated:)]
         pub unsafe fn deselectAnnotation_animated(
             &self,
-            annotation: Option<&ProtocolObject<dyn MKAnnotation>>,
+            annotation: Option<&(impl MKAnnotation + Message)>,
             animated: bool,
         );
 
@@ -464,7 +464,7 @@ extern_methods!(
         #[method(addOverlay:level:)]
         pub unsafe fn addOverlay_level(
             &self,
-            overlay: &ProtocolObject<dyn MKOverlay>,
+            overlay: &(impl MKOverlay + Message),
             level: MKOverlayLevel,
         );
 
@@ -477,7 +477,7 @@ extern_methods!(
         );
 
         #[method(removeOverlay:)]
-        pub unsafe fn removeOverlay(&self, overlay: &ProtocolObject<dyn MKOverlay>);
+        pub unsafe fn removeOverlay(&self, overlay: &(impl MKOverlay + Message));
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(removeOverlays:)]
@@ -486,7 +486,7 @@ extern_methods!(
         #[method(insertOverlay:atIndex:level:)]
         pub unsafe fn insertOverlay_atIndex_level(
             &self,
-            overlay: &ProtocolObject<dyn MKOverlay>,
+            overlay: &(impl MKOverlay + Message),
             index: NSUInteger,
             level: MKOverlayLevel,
         );
@@ -494,22 +494,22 @@ extern_methods!(
         #[method(insertOverlay:aboveOverlay:)]
         pub unsafe fn insertOverlay_aboveOverlay(
             &self,
-            overlay: &ProtocolObject<dyn MKOverlay>,
-            sibling: &ProtocolObject<dyn MKOverlay>,
+            overlay: &(impl MKOverlay + Message),
+            sibling: &(impl MKOverlay + Message),
         );
 
         #[method(insertOverlay:belowOverlay:)]
         pub unsafe fn insertOverlay_belowOverlay(
             &self,
-            overlay: &ProtocolObject<dyn MKOverlay>,
-            sibling: &ProtocolObject<dyn MKOverlay>,
+            overlay: &(impl MKOverlay + Message),
+            sibling: &(impl MKOverlay + Message),
         );
 
         #[method(exchangeOverlay:withOverlay:)]
         pub unsafe fn exchangeOverlay_withOverlay(
             &self,
-            overlay1: &ProtocolObject<dyn MKOverlay>,
-            overlay2: &ProtocolObject<dyn MKOverlay>,
+            overlay1: &(impl MKOverlay + Message),
+            overlay2: &(impl MKOverlay + Message),
         );
 
         #[cfg(feature = "Foundation_NSArray")]
@@ -527,11 +527,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other rendererForOverlay:)]
         pub unsafe fn rendererForOverlay(
             &self,
-            overlay: &ProtocolObject<dyn MKOverlay>,
+            overlay: &(impl MKOverlay + Message),
         ) -> Option<Id<MKOverlayRenderer>>;
 
         #[method(addOverlay:)]
-        pub unsafe fn addOverlay(&self, overlay: &ProtocolObject<dyn MKOverlay>);
+        pub unsafe fn addOverlay(&self, overlay: &(impl MKOverlay + Message));
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(addOverlays:)]
@@ -540,7 +540,7 @@ extern_methods!(
         #[method(insertOverlay:atIndex:)]
         pub unsafe fn insertOverlay_atIndex(
             &self,
-            overlay: &ProtocolObject<dyn MKOverlay>,
+            overlay: &(impl MKOverlay + Message),
             index: NSUInteger,
         );
 
@@ -605,7 +605,7 @@ extern_protocol!(
         unsafe fn mapView_viewForAnnotation(
             &self,
             map_view: &MKMapView,
-            annotation: &ProtocolObject<dyn MKAnnotation>,
+            annotation: &(impl MKAnnotation + Message),
         ) -> Option<Id<MKAnnotationView>>;
 
         #[cfg(all(
@@ -645,7 +645,7 @@ extern_protocol!(
         unsafe fn mapView_didSelectAnnotation(
             &self,
             map_view: &MKMapView,
-            annotation: &ProtocolObject<dyn MKAnnotation>,
+            annotation: &(impl MKAnnotation + Message),
         );
 
         #[cfg(feature = "MapKit_MKMapView")]
@@ -654,7 +654,7 @@ extern_protocol!(
         unsafe fn mapView_didDeselectAnnotation(
             &self,
             map_view: &MKMapView,
-            annotation: &ProtocolObject<dyn MKAnnotation>,
+            annotation: &(impl MKAnnotation + Message),
         );
 
         #[cfg(feature = "MapKit_MKMapView")]
@@ -712,7 +712,7 @@ extern_protocol!(
         unsafe fn mapView_rendererForOverlay(
             &self,
             map_view: &MKMapView,
-            overlay: &ProtocolObject<dyn MKOverlay>,
+            overlay: &(impl MKOverlay + Message),
         ) -> Id<MKOverlayRenderer>;
 
         #[cfg(all(

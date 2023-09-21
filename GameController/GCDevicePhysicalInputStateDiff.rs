@@ -19,7 +19,7 @@ extern_protocol!(
         #[method(changeForElement:)]
         unsafe fn changeForElement(
             &self,
-            element: &ProtocolObject<dyn GCPhysicalInputElement>,
+            element: &(impl GCPhysicalInputElement + Message),
         ) -> GCDevicePhysicalInputElementChange;
 
         #[cfg(feature = "Foundation_NSEnumerator")]

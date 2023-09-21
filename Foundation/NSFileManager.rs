@@ -180,10 +180,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSFileManagerDelegate>>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(
-            &self,
-            delegate: Option<&ProtocolObject<dyn NSFileManagerDelegate>>,
-        );
+        pub unsafe fn setDelegate(&self, delegate: Option<&(impl NSFileManagerDelegate + Message)>);
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",

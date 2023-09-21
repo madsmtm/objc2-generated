@@ -214,7 +214,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSMenuDelegate>>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSMenuDelegate>>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&(impl NSMenuDelegate + Message)>);
 
         #[method(menuBarHeight)]
         pub unsafe fn menuBarHeight(&self) -> CGFloat;

@@ -8,10 +8,7 @@ use crate::Foundation::*;
 extern_protocol!(
     pub unsafe trait NSTextLocation: NSObjectProtocol {
         #[method(compare:)]
-        unsafe fn compare(
-            &self,
-            location: &ProtocolObject<dyn NSTextLocation>,
-        ) -> NSComparisonResult;
+        unsafe fn compare(&self, location: &(impl NSTextLocation + Message)) -> NSComparisonResult;
     }
 
     unsafe impl ProtocolType for dyn NSTextLocation {}
@@ -38,14 +35,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithLocation:endLocation:)]
         pub unsafe fn initWithLocation_endLocation(
             this: Option<Allocated<Self>>,
-            location: &ProtocolObject<dyn NSTextLocation>,
-            end_location: Option<&ProtocolObject<dyn NSTextLocation>>,
+            location: &(impl NSTextLocation + Message),
+            end_location: Option<&(impl NSTextLocation + Message)>,
         ) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Init initWithLocation:)]
         pub unsafe fn initWithLocation(
             this: Option<Allocated<Self>>,
-            location: &ProtocolObject<dyn NSTextLocation>,
+            location: &(impl NSTextLocation + Message),
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
@@ -67,10 +64,7 @@ extern_methods!(
         pub unsafe fn isEqualToTextRange(&self, text_range: &NSTextRange) -> bool;
 
         #[method(containsLocation:)]
-        pub unsafe fn containsLocation(
-            &self,
-            location: &ProtocolObject<dyn NSTextLocation>,
-        ) -> bool;
+        pub unsafe fn containsLocation(&self, location: &(impl NSTextLocation + Message)) -> bool;
 
         #[method(containsRange:)]
         pub unsafe fn containsRange(&self, text_range: &NSTextRange) -> bool;

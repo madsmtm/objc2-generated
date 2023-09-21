@@ -100,11 +100,11 @@ extern_methods!(
         #[method_id(@__retain_semantics New newTemporalScalerWithDevice:)]
         pub unsafe fn newTemporalScalerWithDevice(
             &self,
-            device: &ProtocolObject<dyn MTLDevice>,
+            device: &(impl MTLDevice + Message),
         ) -> Option<Id<ProtocolObject<dyn MTLFXTemporalScaler>>>;
 
         #[method(supportsDevice:)]
-        pub unsafe fn supportsDevice(device: &ProtocolObject<dyn MTLDevice>) -> bool;
+        pub unsafe fn supportsDevice(device: &(impl MTLDevice + Message)) -> bool;
     }
 );
 
@@ -150,34 +150,31 @@ extern_protocol!(
         unsafe fn colorTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
 
         #[method(setColorTexture:)]
-        unsafe fn setColorTexture(&self, color_texture: Option<&ProtocolObject<dyn MTLTexture>>);
+        unsafe fn setColorTexture(&self, color_texture: Option<&(impl MTLTexture + Message)>);
 
         #[method_id(@__retain_semantics Other depthTexture)]
         unsafe fn depthTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
 
         #[method(setDepthTexture:)]
-        unsafe fn setDepthTexture(&self, depth_texture: Option<&ProtocolObject<dyn MTLTexture>>);
+        unsafe fn setDepthTexture(&self, depth_texture: Option<&(impl MTLTexture + Message)>);
 
         #[method_id(@__retain_semantics Other motionTexture)]
         unsafe fn motionTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
 
         #[method(setMotionTexture:)]
-        unsafe fn setMotionTexture(&self, motion_texture: Option<&ProtocolObject<dyn MTLTexture>>);
+        unsafe fn setMotionTexture(&self, motion_texture: Option<&(impl MTLTexture + Message)>);
 
         #[method_id(@__retain_semantics Other outputTexture)]
         unsafe fn outputTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
 
         #[method(setOutputTexture:)]
-        unsafe fn setOutputTexture(&self, output_texture: Option<&ProtocolObject<dyn MTLTexture>>);
+        unsafe fn setOutputTexture(&self, output_texture: Option<&(impl MTLTexture + Message)>);
 
         #[method_id(@__retain_semantics Other exposureTexture)]
         unsafe fn exposureTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
 
         #[method(setExposureTexture:)]
-        unsafe fn setExposureTexture(
-            &self,
-            exposure_texture: Option<&ProtocolObject<dyn MTLTexture>>,
-        );
+        unsafe fn setExposureTexture(&self, exposure_texture: Option<&(impl MTLTexture + Message)>);
 
         #[method(preExposure)]
         unsafe fn preExposure(&self) -> c_float;
@@ -255,13 +252,10 @@ extern_protocol!(
         unsafe fn fence(&self) -> Option<Id<ProtocolObject<dyn MTLFence>>>;
 
         #[method(setFence:)]
-        unsafe fn setFence(&self, fence: Option<&ProtocolObject<dyn MTLFence>>);
+        unsafe fn setFence(&self, fence: Option<&(impl MTLFence + Message)>);
 
         #[method(encodeToCommandBuffer:)]
-        unsafe fn encodeToCommandBuffer(
-            &self,
-            command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
-        );
+        unsafe fn encodeToCommandBuffer(&self, command_buffer: &(impl MTLCommandBuffer + Message));
     }
 
     unsafe impl ProtocolType for dyn MTLFXTemporalScaler {}

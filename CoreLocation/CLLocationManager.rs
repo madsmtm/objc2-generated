@@ -110,7 +110,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ProtocolObject<dyn CLLocationManagerDelegate>>,
+            delegate: Option<&(impl CLLocationManagerDelegate + Message)>,
         );
 
         #[deprecated]

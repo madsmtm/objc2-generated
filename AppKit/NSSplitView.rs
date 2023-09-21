@@ -78,10 +78,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSSplitViewDelegate>>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(
-            &self,
-            delegate: Option<&ProtocolObject<dyn NSSplitViewDelegate>>,
-        );
+        pub unsafe fn setDelegate(&self, delegate: Option<&(impl NSSplitViewDelegate + Message)>);
 
         #[method(drawDividerInRect:)]
         pub unsafe fn drawDividerInRect(&self, rect: NSRect);

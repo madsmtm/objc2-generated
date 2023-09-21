@@ -95,7 +95,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithPasteboardWriter:)]
         pub unsafe fn initWithPasteboardWriter(
             this: Option<Allocated<Self>>,
-            pasteboard_writer: &ProtocolObject<dyn NSPasteboardWriting>,
+            pasteboard_writer: &(impl NSPasteboardWriting + Message),
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]

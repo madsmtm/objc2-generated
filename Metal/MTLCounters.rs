@@ -130,7 +130,7 @@ extern_methods!(
         pub unsafe fn counterSet(&self) -> Option<Id<ProtocolObject<dyn MTLCounterSet>>>;
 
         #[method(setCounterSet:)]
-        pub unsafe fn setCounterSet(&self, counter_set: Option<&ProtocolObject<dyn MTLCounterSet>>);
+        pub unsafe fn setCounterSet(&self, counter_set: Option<&(impl MTLCounterSet + Message)>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]

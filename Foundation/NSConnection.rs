@@ -132,10 +132,7 @@ extern_methods!(
 
         #[deprecated = "Use NSXPCConnection instead"]
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(
-            &self,
-            delegate: Option<&ProtocolObject<dyn NSConnectionDelegate>>,
-        );
+        pub unsafe fn setDelegate(&self, delegate: Option<&(impl NSConnectionDelegate + Message)>);
 
         #[deprecated = "Use NSXPCConnection instead"]
         #[method(independentConversationQueueing)]

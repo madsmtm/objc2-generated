@@ -895,7 +895,7 @@ extern_methods!(
             &self,
             items: &NSArray<NSDraggingItem>,
             event: &NSEvent,
-            source: &ProtocolObject<dyn NSDraggingSource>,
+            source: &(impl NSDraggingSource + Message),
         ) -> Id<NSDraggingSession>;
 
         #[cfg(feature = "Foundation_NSArray")]

@@ -73,7 +73,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ProtocolObject<dyn NSSharingServiceDelegate>>,
+            delegate: Option<&(impl NSSharingServiceDelegate + Message)>,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -335,7 +335,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ProtocolObject<dyn NSSharingServicePickerDelegate>>,
+            delegate: Option<&(impl NSSharingServicePickerDelegate + Message)>,
         );
 
         #[cfg(feature = "Foundation_NSArray")]

@@ -30,7 +30,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ProtocolObject<dyn AEAssessmentSessionDelegate>>,
+            delegate: Option<&(impl AEAssessmentSessionDelegate + Message)>,
         );
 
         #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentConfiguration")]

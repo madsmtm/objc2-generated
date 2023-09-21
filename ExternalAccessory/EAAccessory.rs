@@ -72,10 +72,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn EAAccessoryDelegate>>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(
-            &self,
-            delegate: Option<&ProtocolObject<dyn EAAccessoryDelegate>>,
-        );
+        pub unsafe fn setDelegate(&self, delegate: Option<&(impl EAAccessoryDelegate + Message)>);
     }
 );
 

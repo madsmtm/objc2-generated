@@ -32,7 +32,7 @@ extern_protocol!(
         #[method(updateTextureMappings:mode:regions:mipLevels:slices:numRegions:)]
         unsafe fn updateTextureMappings_mode_regions_mipLevels_slices_numRegions(
             &self,
-            texture: &ProtocolObject<dyn MTLTexture>,
+            texture: &(impl MTLTexture + Message),
             mode: MTLSparseTextureMappingMode,
             regions: NonNull<MTLRegion>,
             mip_levels: NonNull<NSUInteger>,
@@ -44,7 +44,7 @@ extern_protocol!(
         #[method(updateTextureMapping:mode:region:mipLevel:slice:)]
         unsafe fn updateTextureMapping_mode_region_mipLevel_slice(
             &self,
-            texture: &ProtocolObject<dyn MTLTexture>,
+            texture: &(impl MTLTexture + Message),
             mode: MTLSparseTextureMappingMode,
             region: MTLRegion,
             mip_level: NSUInteger,
@@ -55,30 +55,30 @@ extern_protocol!(
         #[method(updateTextureMapping:mode:indirectBuffer:indirectBufferOffset:)]
         unsafe fn updateTextureMapping_mode_indirectBuffer_indirectBufferOffset(
             &self,
-            texture: &ProtocolObject<dyn MTLTexture>,
+            texture: &(impl MTLTexture + Message),
             mode: MTLSparseTextureMappingMode,
-            indirect_buffer: &ProtocolObject<dyn MTLBuffer>,
+            indirect_buffer: &(impl MTLBuffer + Message),
             indirect_buffer_offset: NSUInteger,
         );
 
         #[optional]
         #[method(updateFence:)]
-        unsafe fn updateFence(&self, fence: &ProtocolObject<dyn MTLFence>);
+        unsafe fn updateFence(&self, fence: &(impl MTLFence + Message));
 
         #[optional]
         #[method(waitForFence:)]
-        unsafe fn waitForFence(&self, fence: &ProtocolObject<dyn MTLFence>);
+        unsafe fn waitForFence(&self, fence: &(impl MTLFence + Message));
 
         #[optional]
         #[method(moveTextureMappingsFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:)]
         unsafe fn moveTextureMappingsFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin(
             &self,
-            source_texture: &ProtocolObject<dyn MTLTexture>,
+            source_texture: &(impl MTLTexture + Message),
             source_slice: NSUInteger,
             source_level: NSUInteger,
             source_origin: MTLOrigin,
             source_size: MTLSize,
-            destination_texture: &ProtocolObject<dyn MTLTexture>,
+            destination_texture: &(impl MTLTexture + Message),
             destination_slice: NSUInteger,
             destination_level: NSUInteger,
             destination_origin: MTLOrigin,

@@ -128,7 +128,7 @@ extern_methods!(
         #[method(frameForTextAttachmentAtLocation:)]
         pub unsafe fn frameForTextAttachmentAtLocation(
             &self,
-            location: &ProtocolObject<dyn NSTextLocation>,
+            location: &(impl NSTextLocation + Message),
         ) -> CGRect;
     }
 );

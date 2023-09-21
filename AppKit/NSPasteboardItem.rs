@@ -44,7 +44,7 @@ extern_methods!(
         #[method(setDataProvider:forTypes:)]
         pub unsafe fn setDataProvider_forTypes(
             &self,
-            data_provider: &ProtocolObject<dyn NSPasteboardItemDataProvider>,
+            data_provider: &(impl NSPasteboardItemDataProvider + Message),
             types: &NSArray<NSPasteboardType>,
         ) -> bool;
 

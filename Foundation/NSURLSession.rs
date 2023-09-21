@@ -45,7 +45,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sessionWithConfiguration:delegate:delegateQueue:)]
         pub unsafe fn sessionWithConfiguration_delegate_delegateQueue(
             configuration: &NSURLSessionConfiguration,
-            delegate: Option<&ProtocolObject<dyn NSURLSessionDelegate>>,
+            delegate: Option<&(impl NSURLSessionDelegate + Message)>,
             queue: Option<&NSOperationQueue>,
         ) -> Id<NSURLSession>;
 
@@ -416,7 +416,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ProtocolObject<dyn NSURLSessionTaskDelegate>>,
+            delegate: Option<&(impl NSURLSessionTaskDelegate + Message)>,
         );
 
         #[cfg(feature = "Foundation_NSProgress")]

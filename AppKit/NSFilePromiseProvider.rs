@@ -42,7 +42,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ProtocolObject<dyn NSFilePromiseProviderDelegate>>,
+            delegate: Option<&(impl NSFilePromiseProviderDelegate + Message)>,
         );
 
         #[method_id(@__retain_semantics Other userInfo)]
@@ -56,7 +56,7 @@ extern_methods!(
         pub unsafe fn initWithFileType_delegate(
             this: Option<Allocated<Self>>,
             file_type: &NSString,
-            delegate: &ProtocolObject<dyn NSFilePromiseProviderDelegate>,
+            delegate: &(impl NSFilePromiseProviderDelegate + Message),
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]

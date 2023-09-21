@@ -122,13 +122,10 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKLocalPlayer")]
     unsafe impl GKLocalPlayer {
         #[method(registerListener:)]
-        pub unsafe fn registerListener(&self, listener: &ProtocolObject<dyn GKLocalPlayerListener>);
+        pub unsafe fn registerListener(&self, listener: &(impl GKLocalPlayerListener + Message));
 
         #[method(unregisterListener:)]
-        pub unsafe fn unregisterListener(
-            &self,
-            listener: &ProtocolObject<dyn GKLocalPlayerListener>,
-        );
+        pub unsafe fn unregisterListener(&self, listener: &(impl GKLocalPlayerListener + Message));
 
         #[method(unregisterAllListeners)]
         pub unsafe fn unregisterAllListeners(&self);

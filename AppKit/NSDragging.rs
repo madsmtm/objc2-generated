@@ -154,38 +154,35 @@ extern_protocol!(
         #[method(draggingEntered:)]
         unsafe fn draggingEntered(
             &self,
-            sender: &ProtocolObject<dyn NSDraggingInfo>,
+            sender: &(impl NSDraggingInfo + Message),
         ) -> NSDragOperation;
 
         #[optional]
         #[method(draggingUpdated:)]
         unsafe fn draggingUpdated(
             &self,
-            sender: &ProtocolObject<dyn NSDraggingInfo>,
+            sender: &(impl NSDraggingInfo + Message),
         ) -> NSDragOperation;
 
         #[optional]
         #[method(draggingExited:)]
-        unsafe fn draggingExited(&self, sender: Option<&ProtocolObject<dyn NSDraggingInfo>>);
+        unsafe fn draggingExited(&self, sender: Option<&(impl NSDraggingInfo + Message)>);
 
         #[optional]
         #[method(prepareForDragOperation:)]
-        unsafe fn prepareForDragOperation(
-            &self,
-            sender: &ProtocolObject<dyn NSDraggingInfo>,
-        ) -> bool;
+        unsafe fn prepareForDragOperation(&self, sender: &(impl NSDraggingInfo + Message)) -> bool;
 
         #[optional]
         #[method(performDragOperation:)]
-        unsafe fn performDragOperation(&self, sender: &ProtocolObject<dyn NSDraggingInfo>) -> bool;
+        unsafe fn performDragOperation(&self, sender: &(impl NSDraggingInfo + Message)) -> bool;
 
         #[optional]
         #[method(concludeDragOperation:)]
-        unsafe fn concludeDragOperation(&self, sender: Option<&ProtocolObject<dyn NSDraggingInfo>>);
+        unsafe fn concludeDragOperation(&self, sender: Option<&(impl NSDraggingInfo + Message)>);
 
         #[optional]
         #[method(draggingEnded:)]
-        unsafe fn draggingEnded(&self, sender: &ProtocolObject<dyn NSDraggingInfo>);
+        unsafe fn draggingEnded(&self, sender: &(impl NSDraggingInfo + Message));
 
         #[optional]
         #[method(wantsPeriodicDraggingUpdates)]
@@ -195,7 +192,7 @@ extern_protocol!(
         #[method(updateDraggingItemsForDrag:)]
         unsafe fn updateDraggingItemsForDrag(
             &self,
-            sender: Option<&ProtocolObject<dyn NSDraggingInfo>>,
+            sender: Option<&(impl NSDraggingInfo + Message)>,
         );
     }
 
@@ -267,36 +264,36 @@ extern_protocol!(
         unsafe fn springLoadingActivated_draggingInfo(
             &self,
             activated: bool,
-            dragging_info: &ProtocolObject<dyn NSDraggingInfo>,
+            dragging_info: &(impl NSDraggingInfo + Message),
         );
 
         #[method(springLoadingHighlightChanged:)]
         unsafe fn springLoadingHighlightChanged(
             &self,
-            dragging_info: &ProtocolObject<dyn NSDraggingInfo>,
+            dragging_info: &(impl NSDraggingInfo + Message),
         );
 
         #[optional]
         #[method(springLoadingEntered:)]
         unsafe fn springLoadingEntered(
             &self,
-            dragging_info: &ProtocolObject<dyn NSDraggingInfo>,
+            dragging_info: &(impl NSDraggingInfo + Message),
         ) -> NSSpringLoadingOptions;
 
         #[optional]
         #[method(springLoadingUpdated:)]
         unsafe fn springLoadingUpdated(
             &self,
-            dragging_info: &ProtocolObject<dyn NSDraggingInfo>,
+            dragging_info: &(impl NSDraggingInfo + Message),
         ) -> NSSpringLoadingOptions;
 
         #[optional]
         #[method(springLoadingExited:)]
-        unsafe fn springLoadingExited(&self, dragging_info: &ProtocolObject<dyn NSDraggingInfo>);
+        unsafe fn springLoadingExited(&self, dragging_info: &(impl NSDraggingInfo + Message));
 
         #[optional]
         #[method(draggingEnded:)]
-        unsafe fn draggingEnded(&self, dragging_info: &ProtocolObject<dyn NSDraggingInfo>);
+        unsafe fn draggingEnded(&self, dragging_info: &(impl NSDraggingInfo + Message));
     }
 
     unsafe impl ProtocolType for dyn NSSpringLoadingDestination {}

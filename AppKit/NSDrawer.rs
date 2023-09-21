@@ -81,7 +81,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSDrawerDelegate>>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSDrawerDelegate>>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&(impl NSDrawerDelegate + Message)>);
 
         #[method(open)]
         pub unsafe fn open(&self);

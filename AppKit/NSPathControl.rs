@@ -122,10 +122,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSPathControlDelegate>>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(
-            &self,
-            delegate: Option<&ProtocolObject<dyn NSPathControlDelegate>>,
-        );
+        pub unsafe fn setDelegate(&self, delegate: Option<&(impl NSPathControlDelegate + Message)>);
 
         #[method(setDraggingSourceOperationMask:forLocal:)]
         pub unsafe fn setDraggingSourceOperationMask_forLocal(
@@ -214,7 +211,7 @@ extern_protocol!(
         unsafe fn pathControl_validateDrop(
             &self,
             path_control: &NSPathControl,
-            info: &ProtocolObject<dyn NSDraggingInfo>,
+            info: &(impl NSDraggingInfo + Message),
         ) -> NSDragOperation;
 
         #[cfg(feature = "AppKit_NSPathControl")]
@@ -223,7 +220,7 @@ extern_protocol!(
         unsafe fn pathControl_acceptDrop(
             &self,
             path_control: &NSPathControl,
-            info: &ProtocolObject<dyn NSDraggingInfo>,
+            info: &(impl NSDraggingInfo + Message),
         ) -> bool;
 
         #[cfg(all(feature = "AppKit_NSOpenPanel", feature = "AppKit_NSPathControl"))]

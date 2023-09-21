@@ -27,38 +27,38 @@ extern_protocol!(
             &self,
             pointer: NonNull<c_void>,
             size: NSUInteger,
-            source_handle: &ProtocolObject<dyn MTLIOFileHandle>,
+            source_handle: &(impl MTLIOFileHandle + Message),
             source_handle_offset: NSUInteger,
         );
 
         #[method(loadBuffer:offset:size:sourceHandle:sourceHandleOffset:)]
         unsafe fn loadBuffer_offset_size_sourceHandle_sourceHandleOffset(
             &self,
-            buffer: &ProtocolObject<dyn MTLBuffer>,
+            buffer: &(impl MTLBuffer + Message),
             offset: NSUInteger,
             size: NSUInteger,
-            source_handle: &ProtocolObject<dyn MTLIOFileHandle>,
+            source_handle: &(impl MTLIOFileHandle + Message),
             source_handle_offset: NSUInteger,
         );
 
         #[method(loadTexture:slice:level:size:sourceBytesPerRow:sourceBytesPerImage:destinationOrigin:sourceHandle:sourceHandleOffset:)]
         unsafe fn loadTexture_slice_level_size_sourceBytesPerRow_sourceBytesPerImage_destinationOrigin_sourceHandle_sourceHandleOffset(
             &self,
-            texture: &ProtocolObject<dyn MTLTexture>,
+            texture: &(impl MTLTexture + Message),
             slice: NSUInteger,
             level: NSUInteger,
             size: MTLSize,
             source_bytes_per_row: NSUInteger,
             source_bytes_per_image: NSUInteger,
             destination_origin: MTLOrigin,
-            source_handle: &ProtocolObject<dyn MTLIOFileHandle>,
+            source_handle: &(impl MTLIOFileHandle + Message),
             source_handle_offset: NSUInteger,
         );
 
         #[method(copyStatusToBuffer:offset:)]
         unsafe fn copyStatusToBuffer_offset(
             &self,
-            buffer: &ProtocolObject<dyn MTLBuffer>,
+            buffer: &(impl MTLBuffer + Message),
             offset: NSUInteger,
         );
 
@@ -85,10 +85,10 @@ extern_protocol!(
         unsafe fn enqueue(&self);
 
         #[method(waitForEvent:value:)]
-        unsafe fn waitForEvent_value(&self, event: &ProtocolObject<dyn MTLSharedEvent>, value: u64);
+        unsafe fn waitForEvent_value(&self, event: &(impl MTLSharedEvent + Message), value: u64);
 
         #[method(signalEvent:value:)]
-        unsafe fn signalEvent_value(&self, event: &ProtocolObject<dyn MTLSharedEvent>, value: u64);
+        unsafe fn signalEvent_value(&self, event: &(impl MTLSharedEvent + Message), value: u64);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]

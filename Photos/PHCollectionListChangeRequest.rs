@@ -34,9 +34,7 @@ extern_methods!(
         pub unsafe fn placeholderForCreatedCollectionList(&self) -> Id<PHObjectPlaceholder>;
 
         #[method(deleteCollectionLists:)]
-        pub unsafe fn deleteCollectionLists(
-            collection_lists: &ProtocolObject<dyn NSFastEnumeration>,
-        );
+        pub unsafe fn deleteCollectionLists(collection_lists: &(impl NSFastEnumeration + Message));
 
         #[cfg(feature = "PhotoKit_PHCollectionList")]
         #[method_id(@__retain_semantics Other changeRequestForCollectionList:)]
@@ -70,23 +68,20 @@ extern_methods!(
         pub unsafe fn setTitle(&self, title: &NSString);
 
         #[method(addChildCollections:)]
-        pub unsafe fn addChildCollections(
-            &self,
-            collections: &ProtocolObject<dyn NSFastEnumeration>,
-        );
+        pub unsafe fn addChildCollections(&self, collections: &(impl NSFastEnumeration + Message));
 
         #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(insertChildCollections:atIndexes:)]
         pub unsafe fn insertChildCollections_atIndexes(
             &self,
-            collections: &ProtocolObject<dyn NSFastEnumeration>,
+            collections: &(impl NSFastEnumeration + Message),
             indexes: &NSIndexSet,
         );
 
         #[method(removeChildCollections:)]
         pub unsafe fn removeChildCollections(
             &self,
-            collections: &ProtocolObject<dyn NSFastEnumeration>,
+            collections: &(impl NSFastEnumeration + Message),
         );
 
         #[cfg(feature = "Foundation_NSIndexSet")]
@@ -98,7 +93,7 @@ extern_methods!(
         pub unsafe fn replaceChildCollectionsAtIndexes_withChildCollections(
             &self,
             indexes: &NSIndexSet,
-            collections: &ProtocolObject<dyn NSFastEnumeration>,
+            collections: &(impl NSFastEnumeration + Message),
         );
 
         #[cfg(feature = "Foundation_NSIndexSet")]

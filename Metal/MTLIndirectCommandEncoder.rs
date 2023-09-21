@@ -9,13 +9,13 @@ extern_protocol!(
         #[method(setRenderPipelineState:)]
         unsafe fn setRenderPipelineState(
             &self,
-            pipeline_state: &ProtocolObject<dyn MTLRenderPipelineState>,
+            pipeline_state: &(impl MTLRenderPipelineState + Message),
         );
 
         #[method(setVertexBuffer:offset:atIndex:)]
         unsafe fn setVertexBuffer_offset_atIndex(
             &self,
-            buffer: &ProtocolObject<dyn MTLBuffer>,
+            buffer: &(impl MTLBuffer + Message),
             offset: NSUInteger,
             index: NSUInteger,
         );
@@ -23,7 +23,7 @@ extern_protocol!(
         #[method(setFragmentBuffer:offset:atIndex:)]
         unsafe fn setFragmentBuffer_offset_atIndex(
             &self,
-            buffer: &ProtocolObject<dyn MTLBuffer>,
+            buffer: &(impl MTLBuffer + Message),
             offset: NSUInteger,
             index: NSUInteger,
         );
@@ -34,11 +34,11 @@ extern_protocol!(
             number_of_patch_control_points: NSUInteger,
             patch_start: NSUInteger,
             patch_count: NSUInteger,
-            patch_index_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
+            patch_index_buffer: Option<&(impl MTLBuffer + Message)>,
             patch_index_buffer_offset: NSUInteger,
             instance_count: NSUInteger,
             base_instance: NSUInteger,
-            buffer: &ProtocolObject<dyn MTLBuffer>,
+            buffer: &(impl MTLBuffer + Message),
             offset: NSUInteger,
             instance_stride: NSUInteger,
         );
@@ -49,13 +49,13 @@ extern_protocol!(
             number_of_patch_control_points: NSUInteger,
             patch_start: NSUInteger,
             patch_count: NSUInteger,
-            patch_index_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
+            patch_index_buffer: Option<&(impl MTLBuffer + Message)>,
             patch_index_buffer_offset: NSUInteger,
-            control_point_index_buffer: &ProtocolObject<dyn MTLBuffer>,
+            control_point_index_buffer: &(impl MTLBuffer + Message),
             control_point_index_buffer_offset: NSUInteger,
             instance_count: NSUInteger,
             base_instance: NSUInteger,
-            buffer: &ProtocolObject<dyn MTLBuffer>,
+            buffer: &(impl MTLBuffer + Message),
             offset: NSUInteger,
             instance_stride: NSUInteger,
         );
@@ -76,7 +76,7 @@ extern_protocol!(
             primitive_type: MTLPrimitiveType,
             index_count: NSUInteger,
             index_type: MTLIndexType,
-            index_buffer: &ProtocolObject<dyn MTLBuffer>,
+            index_buffer: &(impl MTLBuffer + Message),
             index_buffer_offset: NSUInteger,
             instance_count: NSUInteger,
             base_vertex: NSInteger,
@@ -95,13 +95,13 @@ extern_protocol!(
         #[method(setComputePipelineState:)]
         unsafe fn setComputePipelineState(
             &self,
-            pipeline_state: &ProtocolObject<dyn MTLComputePipelineState>,
+            pipeline_state: &(impl MTLComputePipelineState + Message),
         );
 
         #[method(setKernelBuffer:offset:atIndex:)]
         unsafe fn setKernelBuffer_offset_atIndex(
             &self,
-            buffer: &ProtocolObject<dyn MTLBuffer>,
+            buffer: &(impl MTLBuffer + Message),
             offset: NSUInteger,
             index: NSUInteger,
         );

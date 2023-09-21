@@ -99,7 +99,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ProtocolObject<dyn ASAuthorizationControllerDelegate>>,
+            delegate: Option<&(impl ASAuthorizationControllerDelegate + Message)>,
         );
 
         #[method_id(@__retain_semantics Other presentationContextProvider)]
@@ -111,7 +111,7 @@ extern_methods!(
         pub unsafe fn setPresentationContextProvider(
             &self,
             presentation_context_provider: Option<
-                &ProtocolObject<dyn ASAuthorizationControllerPresentationContextProviding>,
+                &(impl ASAuthorizationControllerPresentationContextProviding + Message),
             >,
         );
 

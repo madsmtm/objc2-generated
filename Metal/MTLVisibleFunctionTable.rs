@@ -56,7 +56,7 @@ extern_protocol!(
         #[method(setFunction:atIndex:)]
         unsafe fn setFunction_atIndex(
             &self,
-            function: Option<&ProtocolObject<dyn MTLFunctionHandle>>,
+            function: Option<&(impl MTLFunctionHandle + Message)>,
             index: NSUInteger,
         );
 

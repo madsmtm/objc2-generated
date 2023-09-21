@@ -53,10 +53,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSXMLParserDelegate>>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(
-            &self,
-            delegate: Option<&ProtocolObject<dyn NSXMLParserDelegate>>,
-        );
+        pub unsafe fn setDelegate(&self, delegate: Option<&(impl NSXMLParserDelegate + Message)>);
 
         #[method(shouldProcessNamespaces)]
         pub unsafe fn shouldProcessNamespaces(&self) -> bool;

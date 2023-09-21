@@ -110,7 +110,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSTextDelegate>>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSTextDelegate>>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&(impl NSTextDelegate + Message)>);
 
         #[method(isEditable)]
         pub unsafe fn isEditable(&self) -> bool;

@@ -99,7 +99,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn SKOverlayDelegate>>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn SKOverlayDelegate>>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&(impl SKOverlayDelegate + Message)>);
 
         #[cfg(feature = "StoreKit_SKOverlayConfiguration")]
         #[method_id(@__retain_semantics Other configuration)]

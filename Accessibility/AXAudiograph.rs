@@ -548,7 +548,7 @@ extern_methods!(
         pub unsafe fn xAxis(&self) -> Id<ProtocolObject<dyn AXDataAxisDescriptor>>;
 
         #[method(setXAxis:)]
-        pub unsafe fn setXAxis(&self, x_axis: &ProtocolObject<dyn AXDataAxisDescriptor>);
+        pub unsafe fn setXAxis(&self, x_axis: &(impl AXDataAxisDescriptor + Message));
 
         #[cfg(feature = "Accessibility_AXNumericDataAxisDescriptor")]
         #[method_id(@__retain_semantics Other yAxis)]
@@ -582,7 +582,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             title: Option<&NSString>,
             summary: Option<&NSString>,
-            x_axis: &ProtocolObject<dyn AXDataAxisDescriptor>,
+            x_axis: &(impl AXDataAxisDescriptor + Message),
             y_axis: Option<&AXNumericDataAxisDescriptor>,
             series: &NSArray<AXDataSeriesDescriptor>,
         ) -> Id<Self>;
@@ -599,7 +599,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             attributed_title: Option<&NSAttributedString>,
             summary: Option<&NSString>,
-            x_axis: &ProtocolObject<dyn AXDataAxisDescriptor>,
+            x_axis: &(impl AXDataAxisDescriptor + Message),
             y_axis: &AXNumericDataAxisDescriptor,
             series: &NSArray<AXDataSeriesDescriptor>,
         ) -> Id<Self>;
@@ -615,7 +615,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             title: Option<&NSString>,
             summary: Option<&NSString>,
-            x_axis: &ProtocolObject<dyn AXDataAxisDescriptor>,
+            x_axis: &(impl AXDataAxisDescriptor + Message),
             y_axis: Option<&AXNumericDataAxisDescriptor>,
             additional_axes: Option<&NSArray<ProtocolObject<dyn AXDataAxisDescriptor>>>,
             series: &NSArray<AXDataSeriesDescriptor>,
@@ -633,7 +633,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             attributed_title: Option<&NSAttributedString>,
             summary: Option<&NSString>,
-            x_axis: &ProtocolObject<dyn AXDataAxisDescriptor>,
+            x_axis: &(impl AXDataAxisDescriptor + Message),
             y_axis: Option<&AXNumericDataAxisDescriptor>,
             additional_axes: Option<&NSArray<ProtocolObject<dyn AXDataAxisDescriptor>>>,
             series: &NSArray<AXDataSeriesDescriptor>,

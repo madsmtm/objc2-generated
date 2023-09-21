@@ -122,7 +122,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSTouchBarDelegate>>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSTouchBarDelegate>>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&(impl NSTouchBarDelegate + Message)>);
 
         #[cfg(feature = "AppKit_NSTouchBarItem")]
         #[method_id(@__retain_semantics Other itemForIdentifier:)]

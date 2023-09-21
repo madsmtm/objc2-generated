@@ -123,7 +123,7 @@ extern_protocol!(
         unsafe fn addFunctionWithDescriptor_library_error(
             &self,
             descriptor: &MTLFunctionDescriptor,
-            library: &ProtocolObject<dyn MTLLibrary>,
+            library: &(impl MTLLibrary + Message),
         ) -> Result<(), Id<NSError>>;
     }
 

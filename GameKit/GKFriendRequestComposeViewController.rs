@@ -118,7 +118,7 @@ extern_methods!(
         pub unsafe fn setComposeViewDelegate(
             &self,
             compose_view_delegate: Option<
-                &ProtocolObject<dyn GKFriendRequestComposeViewControllerDelegate>,
+                &(impl GKFriendRequestComposeViewControllerDelegate + Message),
             >,
         );
     }

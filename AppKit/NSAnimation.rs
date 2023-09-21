@@ -117,10 +117,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSAnimationDelegate>>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(
-            &self,
-            delegate: Option<&ProtocolObject<dyn NSAnimationDelegate>>,
-        );
+        pub unsafe fn setDelegate(&self, delegate: Option<&(impl NSAnimationDelegate + Message)>);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method_id(@__retain_semantics Other progressMarks)]

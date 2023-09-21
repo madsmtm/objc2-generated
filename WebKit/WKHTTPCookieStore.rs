@@ -61,13 +61,10 @@ extern_methods!(
         );
 
         #[method(addObserver:)]
-        pub unsafe fn addObserver(&self, observer: &ProtocolObject<dyn WKHTTPCookieStoreObserver>);
+        pub unsafe fn addObserver(&self, observer: &(impl WKHTTPCookieStoreObserver + Message));
 
         #[method(removeObserver:)]
-        pub unsafe fn removeObserver(
-            &self,
-            observer: &ProtocolObject<dyn WKHTTPCookieStoreObserver>,
-        );
+        pub unsafe fn removeObserver(&self, observer: &(impl WKHTTPCookieStoreObserver + Message));
     }
 );
 

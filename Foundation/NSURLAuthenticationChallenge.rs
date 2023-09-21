@@ -85,14 +85,14 @@ extern_methods!(
             previous_failure_count: NSInteger,
             response: Option<&NSURLResponse>,
             error: Option<&NSError>,
-            sender: &ProtocolObject<dyn NSURLAuthenticationChallengeSender>,
+            sender: &(impl NSURLAuthenticationChallengeSender + Message),
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithAuthenticationChallenge:sender:)]
         pub unsafe fn initWithAuthenticationChallenge_sender(
             this: Option<Allocated<Self>>,
             challenge: &NSURLAuthenticationChallenge,
-            sender: &ProtocolObject<dyn NSURLAuthenticationChallengeSender>,
+            sender: &(impl NSURLAuthenticationChallengeSender + Message),
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSURLProtectionSpace")]

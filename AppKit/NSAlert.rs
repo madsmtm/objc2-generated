@@ -96,7 +96,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSAlertDelegate>>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSAlertDelegate>>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&(impl NSAlertDelegate + Message)>);
 
         #[method(showsSuppressionButton)]
         pub unsafe fn showsSuppressionButton(&self) -> bool;

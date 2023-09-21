@@ -86,7 +86,7 @@ extern_methods!(
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<
-                &ProtocolObject<dyn ASAccountAuthenticationModificationControllerDelegate>,
+                &(impl ASAccountAuthenticationModificationControllerDelegate + Message),
             >,
         );
 
@@ -105,9 +105,8 @@ extern_methods!(
         pub unsafe fn setPresentationContextProvider(
             &self,
             presentation_context_provider: Option<
-                &ProtocolObject<
-                    dyn ASAccountAuthenticationModificationControllerPresentationContextProviding,
-                >,
+                &(impl ASAccountAuthenticationModificationControllerPresentationContextProviding
+                      + Message),
             >,
         );
 

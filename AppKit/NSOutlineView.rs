@@ -77,10 +77,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSOutlineViewDelegate>>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(
-            &self,
-            delegate: Option<&ProtocolObject<dyn NSOutlineViewDelegate>>,
-        );
+        pub unsafe fn setDelegate(&self, delegate: Option<&(impl NSOutlineViewDelegate + Message)>);
 
         #[method_id(@__retain_semantics Other dataSource)]
         pub unsafe fn dataSource(&self) -> Option<Id<ProtocolObject<dyn NSOutlineViewDataSource>>>;
@@ -88,7 +85,7 @@ extern_methods!(
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(
             &self,
-            data_source: Option<&ProtocolObject<dyn NSOutlineViewDataSource>>,
+            data_source: Option<&(impl NSOutlineViewDataSource + Message)>,
         );
 
         #[cfg(feature = "AppKit_NSTableColumn")]
@@ -431,7 +428,7 @@ extern_protocol!(
         unsafe fn outlineView_updateDraggingItemsForDrag(
             &self,
             outline_view: &NSOutlineView,
-            dragging_info: &ProtocolObject<dyn NSDraggingInfo>,
+            dragging_info: &(impl NSDraggingInfo + Message),
         );
 
         #[cfg(feature = "AppKit_NSOutlineView")]
@@ -440,7 +437,7 @@ extern_protocol!(
         unsafe fn outlineView_validateDrop_proposedItem_proposedChildIndex(
             &self,
             outline_view: &NSOutlineView,
-            info: &ProtocolObject<dyn NSDraggingInfo>,
+            info: &(impl NSDraggingInfo + Message),
             item: Option<&AnyObject>,
             index: NSInteger,
         ) -> NSDragOperation;
@@ -451,7 +448,7 @@ extern_protocol!(
         unsafe fn outlineView_acceptDrop_item_childIndex(
             &self,
             outline_view: &NSOutlineView,
-            info: &ProtocolObject<dyn NSDraggingInfo>,
+            info: &(impl NSDraggingInfo + Message),
             item: Option<&AnyObject>,
             index: NSInteger,
         ) -> bool;

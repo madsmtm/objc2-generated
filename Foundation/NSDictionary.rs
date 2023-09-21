@@ -278,7 +278,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other dictionaryWithObject:forKey:)]
         pub unsafe fn dictionaryWithObject_forKey(
             object: &ObjectType,
-            key: &ProtocolObject<dyn NSCopying>,
+            key: &(impl NSCopying + Message),
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other dictionaryWithObjects:forKeys:count:)]
@@ -335,7 +335,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other dictionaryWithObject:forKey:)]
         pub unsafe fn dictionaryWithObject_forKey(
             object: &ObjectType,
-            key: &ProtocolObject<dyn NSCopying>,
+            key: &(impl NSCopying + Message),
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other dictionaryWithObjects:forKeys:count:)]
@@ -426,7 +426,7 @@ extern_methods!(
         pub unsafe fn setObject_forKey(
             &mut self,
             an_object: &ObjectType,
-            a_key: &ProtocolObject<dyn NSCopying>,
+            a_key: &(impl NSCopying + Message),
         );
 
         #[method_id(@__retain_semantics Init init)]
@@ -507,7 +507,7 @@ extern_methods!(
         pub unsafe fn setObject_forKeyedSubscript(
             &mut self,
             obj: Option<&ObjectType>,
-            key: &ProtocolObject<dyn NSCopying>,
+            key: &(impl NSCopying + Message),
         );
     }
 );

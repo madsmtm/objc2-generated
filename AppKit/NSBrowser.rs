@@ -96,7 +96,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSBrowserDelegate>>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSBrowserDelegate>>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&(impl NSBrowserDelegate + Message)>);
 
         #[method(reusesColumns)]
         pub unsafe fn reusesColumns(&self) -> bool;
@@ -774,7 +774,7 @@ extern_protocol!(
         unsafe fn browser_validateDrop_proposedRow_column_dropOperation(
             &self,
             browser: &NSBrowser,
-            info: &ProtocolObject<dyn NSDraggingInfo>,
+            info: &(impl NSDraggingInfo + Message),
             row: NonNull<NSInteger>,
             column: NonNull<NSInteger>,
             drop_operation: NonNull<NSBrowserDropOperation>,
@@ -786,7 +786,7 @@ extern_protocol!(
         unsafe fn browser_acceptDrop_atRow_column_dropOperation(
             &self,
             browser: &NSBrowser,
-            info: &ProtocolObject<dyn NSDraggingInfo>,
+            info: &(impl NSDraggingInfo + Message),
             row: NSInteger,
             column: NSInteger,
             drop_operation: NSBrowserDropOperation,

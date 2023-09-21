@@ -277,7 +277,7 @@ extern_protocol!(
         #[method(copyParameterDataToBuffer:offset:)]
         unsafe fn copyParameterDataToBuffer_offset(
             &self,
-            buffer: &ProtocolObject<dyn MTLBuffer>,
+            buffer: &(impl MTLBuffer + Message),
             offset: NSUInteger,
         );
 

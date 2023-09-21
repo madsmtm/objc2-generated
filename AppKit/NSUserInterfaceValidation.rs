@@ -22,7 +22,7 @@ extern_protocol!(
         #[method(validateUserInterfaceItem:)]
         unsafe fn validateUserInterfaceItem(
             &self,
-            item: &ProtocolObject<dyn NSValidatedUserInterfaceItem>,
+            item: &(impl NSValidatedUserInterfaceItem + Message),
         ) -> bool;
     }
 

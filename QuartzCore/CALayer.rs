@@ -446,10 +446,7 @@ extern_methods!(
         pub fn layoutManager(&self) -> Option<Id<ProtocolObject<dyn CALayoutManager>>>;
 
         #[method(setLayoutManager:)]
-        pub fn setLayoutManager(
-            &self,
-            layout_manager: Option<&ProtocolObject<dyn CALayoutManager>>,
-        );
+        pub fn setLayoutManager(&self, layout_manager: Option<&(impl CALayoutManager + Message)>);
 
         #[method(preferredFrameSize)]
         pub fn preferredFrameSize(&self) -> CGSize;
@@ -522,7 +519,7 @@ extern_methods!(
         pub fn delegate(&self) -> Option<Id<ProtocolObject<dyn CALayerDelegate>>>;
 
         #[method(setDelegate:)]
-        pub fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn CALayerDelegate>>);
+        pub fn setDelegate(&self, delegate: Option<&(impl CALayerDelegate + Message)>);
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other style)]

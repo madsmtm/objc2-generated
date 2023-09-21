@@ -330,7 +330,7 @@ extern_protocol!(
         unsafe fn webView_runOpenPanelForFileButtonWithResultListener(
             &self,
             sender: Option<&WebView>,
-            result_listener: Option<&ProtocolObject<dyn WebOpenPanelResultListener>>,
+            result_listener: Option<&(impl WebOpenPanelResultListener + Message)>,
         );
 
         #[cfg(feature = "WebKit_WebView")]
@@ -339,7 +339,7 @@ extern_protocol!(
         unsafe fn webView_runOpenPanelForFileButtonWithResultListener_allowMultipleFiles(
             &self,
             sender: Option<&WebView>,
-            result_listener: Option<&ProtocolObject<dyn WebOpenPanelResultListener>>,
+            result_listener: Option<&(impl WebOpenPanelResultListener + Message)>,
             allow_multiple_files: bool,
         );
 
@@ -376,7 +376,7 @@ extern_protocol!(
         unsafe fn webView_validateUserInterfaceItem_defaultValidation(
             &self,
             web_view: Option<&WebView>,
-            item: Option<&ProtocolObject<dyn NSValidatedUserInterfaceItem>>,
+            item: Option<&(impl NSValidatedUserInterfaceItem + Message)>,
             default_validation: bool,
         ) -> bool;
 
@@ -398,7 +398,7 @@ extern_protocol!(
         unsafe fn webView_dragDestinationActionMaskForDraggingInfo(
             &self,
             web_view: Option<&WebView>,
-            dragging_info: Option<&ProtocolObject<dyn NSDraggingInfo>>,
+            dragging_info: Option<&(impl NSDraggingInfo + Message)>,
         ) -> NSUInteger;
 
         #[cfg(feature = "WebKit_WebView")]
@@ -409,7 +409,7 @@ extern_protocol!(
             &self,
             web_view: Option<&WebView>,
             action: WebDragDestinationAction,
-            dragging_info: Option<&ProtocolObject<dyn NSDraggingInfo>>,
+            dragging_info: Option<&(impl NSDraggingInfo + Message)>,
         );
 
         #[cfg(feature = "WebKit_WebView")]

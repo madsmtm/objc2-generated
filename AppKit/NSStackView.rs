@@ -89,10 +89,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSStackViewDelegate>>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(
-            &self,
-            delegate: Option<&ProtocolObject<dyn NSStackViewDelegate>>,
-        );
+        pub unsafe fn setDelegate(&self, delegate: Option<&(impl NSStackViewDelegate + Message)>);
 
         #[method(orientation)]
         pub unsafe fn orientation(&self) -> NSUserInterfaceLayoutOrientation;

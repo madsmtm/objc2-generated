@@ -112,7 +112,7 @@ extern_methods!(
         #[method(setLeaderboardDelegate:)]
         pub unsafe fn setLeaderboardDelegate(
             &self,
-            leaderboard_delegate: Option<&ProtocolObject<dyn GKLeaderboardViewControllerDelegate>>,
+            leaderboard_delegate: Option<&(impl GKLeaderboardViewControllerDelegate + Message)>,
         );
     }
 );

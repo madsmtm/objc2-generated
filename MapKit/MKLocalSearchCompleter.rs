@@ -92,7 +92,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ProtocolObject<dyn MKLocalSearchCompleterDelegate>>,
+            delegate: Option<&(impl MKLocalSearchCompleterDelegate + Message)>,
         );
 
         #[cfg(all(

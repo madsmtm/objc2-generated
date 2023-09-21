@@ -54,7 +54,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSPopoverDelegate>>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSPopoverDelegate>>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&(impl NSPopoverDelegate + Message)>);
 
         #[method(behavior)]
         pub unsafe fn behavior(&self) -> NSPopoverBehavior;

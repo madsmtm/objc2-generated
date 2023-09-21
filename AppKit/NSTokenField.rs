@@ -173,10 +173,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSTokenFieldDelegate>>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(
-            &self,
-            delegate: Option<&ProtocolObject<dyn NSTokenFieldDelegate>>,
-        );
+        pub unsafe fn setDelegate(&self, delegate: Option<&(impl NSTokenFieldDelegate + Message)>);
 
         #[method(tokenStyle)]
         pub unsafe fn tokenStyle(&self) -> NSTokenStyle;

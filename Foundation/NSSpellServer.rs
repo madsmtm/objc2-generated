@@ -25,10 +25,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSSpellServerDelegate>>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(
-            &self,
-            delegate: Option<&ProtocolObject<dyn NSSpellServerDelegate>>,
-        );
+        pub unsafe fn setDelegate(&self, delegate: Option<&(impl NSSpellServerDelegate + Message)>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(registerLanguage:byVendor:)]

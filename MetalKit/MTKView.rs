@@ -50,7 +50,7 @@ extern_methods!(
         pub unsafe fn initWithFrame_device(
             this: Option<Allocated<Self>>,
             frame_rect: CGRect,
-            device: Option<&ProtocolObject<dyn MTLDevice>>,
+            device: Option<&(impl MTLDevice + Message)>,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
@@ -61,13 +61,13 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn MTKViewDelegate>>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn MTKViewDelegate>>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&(impl MTKViewDelegate + Message)>);
 
         #[method_id(@__retain_semantics Other device)]
         pub unsafe fn device(&self) -> Option<Id<ProtocolObject<dyn MTLDevice>>>;
 
         #[method(setDevice:)]
-        pub unsafe fn setDevice(&self, device: Option<&ProtocolObject<dyn MTLDevice>>);
+        pub unsafe fn setDevice(&self, device: Option<&(impl MTLDevice + Message)>);
 
         #[method(framebufferOnly)]
         pub unsafe fn framebufferOnly(&self) -> bool;

@@ -38,7 +38,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn WKDownloadDelegate>>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn WKDownloadDelegate>>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&(impl WKDownloadDelegate + Message)>);
 
         #[cfg(feature = "Foundation_NSData")]
         #[method(cancel:)]

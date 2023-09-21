@@ -76,7 +76,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithLocation:affinity:)]
         pub unsafe fn initWithLocation_affinity(
             this: Option<Allocated<Self>>,
-            location: &ProtocolObject<dyn NSTextLocation>,
+            location: &(impl NSTextLocation + Message),
             affinity: NSTextSelectionAffinity,
         ) -> Id<Self>;
 
@@ -116,7 +116,7 @@ extern_methods!(
         #[method(setSecondarySelectionLocation:)]
         pub unsafe fn setSecondarySelectionLocation(
             &self,
-            secondary_selection_location: Option<&ProtocolObject<dyn NSTextLocation>>,
+            secondary_selection_location: Option<&(impl NSTextLocation + Message)>,
         );
 
         #[cfg(feature = "Foundation_NSDictionary")]

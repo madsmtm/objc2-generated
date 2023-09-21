@@ -163,7 +163,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ProtocolObject<dyn NSDatePickerCellDelegate>>,
+            delegate: Option<&(impl NSDatePickerCellDelegate + Message)>,
         );
     }
 );

@@ -34,7 +34,7 @@ extern_methods!(
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(
             &self,
-            data_source: Option<&ProtocolObject<dyn MPPlayableContentDataSource>>,
+            data_source: Option<&(impl MPPlayableContentDataSource + Message)>,
         );
 
         #[deprecated = "Use CarPlay framework"]
@@ -45,7 +45,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ProtocolObject<dyn MPPlayableContentDelegate>>,
+            delegate: Option<&(impl MPPlayableContentDelegate + Message)>,
         );
 
         #[cfg(feature = "MediaPlayer_MPPlayableContentManagerContext")]

@@ -44,7 +44,7 @@ extern_methods!(
         #[method(addScriptMessageHandler:contentWorld:name:)]
         pub unsafe fn addScriptMessageHandler_contentWorld_name(
             &self,
-            script_message_handler: &ProtocolObject<dyn WKScriptMessageHandler>,
+            script_message_handler: &(impl WKScriptMessageHandler + Message),
             world: &WKContentWorld,
             name: &NSString,
         );
@@ -53,7 +53,7 @@ extern_methods!(
         #[method(addScriptMessageHandlerWithReply:contentWorld:name:)]
         pub unsafe fn addScriptMessageHandlerWithReply_contentWorld_name(
             &self,
-            script_message_handler_with_reply: &ProtocolObject<dyn WKScriptMessageHandlerWithReply>,
+            script_message_handler_with_reply: &(impl WKScriptMessageHandlerWithReply + Message),
             content_world: &WKContentWorld,
             name: &NSString,
         );
@@ -62,7 +62,7 @@ extern_methods!(
         #[method(addScriptMessageHandler:name:)]
         pub unsafe fn addScriptMessageHandler_name(
             &self,
-            script_message_handler: &ProtocolObject<dyn WKScriptMessageHandler>,
+            script_message_handler: &(impl WKScriptMessageHandler + Message),
             name: &NSString,
         );
 

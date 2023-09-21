@@ -199,7 +199,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSComboBoxDelegate>>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSComboBoxDelegate>>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&(impl NSComboBoxDelegate + Message)>);
 
         #[method_id(@__retain_semantics Other dataSource)]
         pub unsafe fn dataSource(&self) -> Option<Id<ProtocolObject<dyn NSComboBoxDataSource>>>;
@@ -207,7 +207,7 @@ extern_methods!(
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(
             &self,
-            data_source: Option<&ProtocolObject<dyn NSComboBoxDataSource>>,
+            data_source: Option<&(impl NSComboBoxDataSource + Message)>,
         );
 
         #[method(addItemWithObjectValue:)]

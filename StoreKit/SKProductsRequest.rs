@@ -54,7 +54,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ProtocolObject<dyn SKProductsRequestDelegate>>,
+            delegate: Option<&(impl SKProductsRequestDelegate + Message)>,
         );
     }
 );

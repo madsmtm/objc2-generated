@@ -184,7 +184,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSTabViewDelegate>>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSTabViewDelegate>>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&(impl NSTabViewDelegate + Message)>);
 
         #[cfg(feature = "AppKit_NSTabViewItem")]
         #[method_id(@__retain_semantics Other tabViewItemAtPoint:)]

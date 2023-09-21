@@ -79,7 +79,7 @@ extern_methods!(
         pub fn texture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
 
         #[method(setTexture:)]
-        pub fn setTexture(&self, texture: Option<&ProtocolObject<dyn MTLTexture>>);
+        pub fn setTexture(&self, texture: Option<&(impl MTLTexture + Message)>);
 
         #[method(level)]
         pub fn level(&self) -> NSUInteger;
@@ -103,7 +103,7 @@ extern_methods!(
         pub fn resolveTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
 
         #[method(setResolveTexture:)]
-        pub fn setResolveTexture(&self, resolve_texture: Option<&ProtocolObject<dyn MTLTexture>>);
+        pub fn setResolveTexture(&self, resolve_texture: Option<&(impl MTLTexture + Message)>);
 
         #[method(resolveLevel)]
         pub fn resolveLevel(&self) -> NSUInteger;
@@ -395,7 +395,7 @@ extern_methods!(
         #[method(setSampleBuffer:)]
         pub fn setSampleBuffer(
             &self,
-            sample_buffer: Option<&ProtocolObject<dyn MTLCounterSampleBuffer>>,
+            sample_buffer: Option<&(impl MTLCounterSampleBuffer + Message)>,
         );
 
         #[method(startOfVertexSampleIndex)]
@@ -542,7 +542,7 @@ extern_methods!(
         #[method(setVisibilityResultBuffer:)]
         pub fn setVisibilityResultBuffer(
             &self,
-            visibility_result_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
+            visibility_result_buffer: Option<&(impl MTLBuffer + Message)>,
         );
 
         #[method(renderTargetArrayLength)]
@@ -615,7 +615,7 @@ extern_methods!(
         #[method(setRasterizationRateMap:)]
         pub fn setRasterizationRateMap(
             &self,
-            rasterization_rate_map: Option<&ProtocolObject<dyn MTLRasterizationRateMap>>,
+            rasterization_rate_map: Option<&(impl MTLRasterizationRateMap + Message)>,
         );
 
         #[cfg(feature = "Metal_MTLRenderPassSampleBufferAttachmentDescriptorArray")]

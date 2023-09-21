@@ -38,7 +38,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Option<Allocated<Self>>,
-            device: &ProtocolObject<dyn MTLDevice>,
+            device: &(impl MTLDevice + Message),
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other device)]
@@ -186,7 +186,7 @@ extern_methods!(
         pub unsafe fn initWithMesh_device_error(
             this: Option<Allocated<Self>>,
             mesh: &MDLMesh,
-            device: &ProtocolObject<dyn MTLDevice>,
+            device: &(impl MTLDevice + Message),
         ) -> Result<Id<Self>, Id<NSError>>;
 
         #[cfg(all(
@@ -198,7 +198,7 @@ extern_methods!(
         #[method_id(@__retain_semantics New newMeshesFromAsset:device:sourceMeshes:error:_)]
         pub unsafe fn newMeshesFromAsset_device_sourceMeshes_error(
             asset: &MDLAsset,
-            device: &ProtocolObject<dyn MTLDevice>,
+            device: &(impl MTLDevice + Message),
             source_meshes: Option<&mut Option<Id<NSArray<MDLMesh>>>>,
         ) -> Result<Id<NSArray<MTKMesh>>, Id<NSError>>;
 

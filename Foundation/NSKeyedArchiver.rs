@@ -69,7 +69,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ProtocolObject<dyn NSKeyedArchiverDelegate>>,
+            delegate: Option<&(impl NSKeyedArchiverDelegate + Message)>,
         );
 
         #[method(outputFormat)]
@@ -290,7 +290,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ProtocolObject<dyn NSKeyedUnarchiverDelegate>>,
+            delegate: Option<&(impl NSKeyedUnarchiverDelegate + Message)>,
         );
 
         #[method(finishDecoding)]

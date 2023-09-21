@@ -228,13 +228,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithObject:)]
         pub unsafe fn initWithObject(
             this: Option<Allocated<Self>>,
-            object: &ProtocolObject<dyn NSItemProviderWriting>,
+            object: &(impl NSItemProviderWriting + Message),
         ) -> Id<Self>;
 
         #[method(registerObject:visibility:)]
         pub unsafe fn registerObject_visibility(
             &self,
-            object: &ProtocolObject<dyn NSItemProviderWriting>,
+            object: &(impl NSItemProviderWriting + Message),
             visibility: NSItemProviderRepresentationVisibility,
         );
 
@@ -242,7 +242,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithItem:typeIdentifier:)]
         pub unsafe fn initWithItem_typeIdentifier(
             this: Option<Allocated<Self>>,
-            item: Option<&ProtocolObject<dyn NSSecureCoding>>,
+            item: Option<&(impl NSSecureCoding + Message)>,
             type_identifier: Option<&NSString>,
         ) -> Id<Self>;
 

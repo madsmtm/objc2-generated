@@ -65,7 +65,7 @@ extern_methods!(
         #[method(generateGlyphsForGlyphStorage:desiredNumberOfCharacters:glyphIndex:characterIndex:)]
         pub unsafe fn generateGlyphsForGlyphStorage_desiredNumberOfCharacters_glyphIndex_characterIndex(
             &self,
-            glyph_storage: &ProtocolObject<dyn NSGlyphStorage>,
+            glyph_storage: &(impl NSGlyphStorage + Message),
             n_chars: NSUInteger,
             glyph_index: *mut NSUInteger,
             char_index: *mut NSUInteger,

@@ -58,7 +58,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ProtocolObject<dyn AMWorkflowControllerDelegate>>,
+            delegate: Option<&(impl AMWorkflowControllerDelegate + Message)>,
         );
 
         #[method(canRun)]

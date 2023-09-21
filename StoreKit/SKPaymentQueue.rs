@@ -35,7 +35,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ProtocolObject<dyn SKPaymentQueueDelegate>>,
+            delegate: Option<&(impl SKPaymentQueueDelegate + Message)>,
         );
 
         #[cfg(feature = "StoreKit_SKStorefront")]
@@ -89,13 +89,13 @@ extern_methods!(
         #[method(addTransactionObserver:)]
         pub unsafe fn addTransactionObserver(
             &self,
-            observer: &ProtocolObject<dyn SKPaymentTransactionObserver>,
+            observer: &(impl SKPaymentTransactionObserver + Message),
         );
 
         #[method(removeTransactionObserver:)]
         pub unsafe fn removeTransactionObserver(
             &self,
-            observer: &ProtocolObject<dyn SKPaymentTransactionObserver>,
+            observer: &(impl SKPaymentTransactionObserver + Message),
         );
 
         #[cfg(feature = "Foundation_NSArray")]

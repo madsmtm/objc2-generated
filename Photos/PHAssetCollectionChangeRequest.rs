@@ -35,7 +35,7 @@ extern_methods!(
 
         #[method(deleteAssetCollections:)]
         pub unsafe fn deleteAssetCollections(
-            asset_collections: &ProtocolObject<dyn NSFastEnumeration>,
+            asset_collections: &(impl NSFastEnumeration + Message),
         );
 
         #[cfg(feature = "PhotoKit_PHAssetCollection")]
@@ -64,18 +64,18 @@ extern_methods!(
         pub unsafe fn setTitle(&self, title: &NSString);
 
         #[method(addAssets:)]
-        pub unsafe fn addAssets(&self, assets: &ProtocolObject<dyn NSFastEnumeration>);
+        pub unsafe fn addAssets(&self, assets: &(impl NSFastEnumeration + Message));
 
         #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(insertAssets:atIndexes:)]
         pub unsafe fn insertAssets_atIndexes(
             &self,
-            assets: &ProtocolObject<dyn NSFastEnumeration>,
+            assets: &(impl NSFastEnumeration + Message),
             indexes: &NSIndexSet,
         );
 
         #[method(removeAssets:)]
-        pub unsafe fn removeAssets(&self, assets: &ProtocolObject<dyn NSFastEnumeration>);
+        pub unsafe fn removeAssets(&self, assets: &(impl NSFastEnumeration + Message));
 
         #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(removeAssetsAtIndexes:)]
@@ -86,7 +86,7 @@ extern_methods!(
         pub unsafe fn replaceAssetsAtIndexes_withAssets(
             &self,
             indexes: &NSIndexSet,
-            assets: &ProtocolObject<dyn NSFastEnumeration>,
+            assets: &(impl NSFastEnumeration + Message),
         );
 
         #[cfg(feature = "Foundation_NSIndexSet")]

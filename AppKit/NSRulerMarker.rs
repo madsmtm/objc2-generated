@@ -91,7 +91,7 @@ extern_methods!(
         #[method(setRepresentedObject:)]
         pub unsafe fn setRepresentedObject(
             &self,
-            represented_object: Option<&ProtocolObject<dyn NSCopying>>,
+            represented_object: Option<&(impl NSCopying + Message)>,
         );
 
         #[method(imageRectInRuler)]

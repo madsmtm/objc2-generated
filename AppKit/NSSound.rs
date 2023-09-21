@@ -114,7 +114,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSSoundDelegate>>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSSoundDelegate>>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&(impl NSSoundDelegate + Message)>);
 
         #[method(duration)]
         pub unsafe fn duration(&self) -> NSTimeInterval;

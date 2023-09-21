@@ -106,7 +106,7 @@ extern_methods!(
             shift_key: bool,
             meta_key: bool,
             button: c_ushort,
-            related_target: Option<&ProtocolObject<dyn DOMEventTarget>>,
+            related_target: Option<&(impl DOMEventTarget + Message)>,
         );
     }
 );
@@ -153,7 +153,7 @@ extern_methods!(
             shift_key: bool,
             meta_key: bool,
             button: c_ushort,
-            related_target: Option<&ProtocolObject<dyn DOMEventTarget>>,
+            related_target: Option<&(impl DOMEventTarget + Message)>,
         );
     }
 );

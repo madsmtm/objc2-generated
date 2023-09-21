@@ -135,7 +135,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ProtocolObject<dyn NSLayoutManagerDelegate>>,
+            delegate: Option<&(impl NSLayoutManagerDelegate + Message)>,
         );
 
         #[method(showsInvisibleCharacters)]

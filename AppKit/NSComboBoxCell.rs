@@ -116,7 +116,7 @@ extern_methods!(
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(
             &self,
-            data_source: Option<&ProtocolObject<dyn NSComboBoxCellDataSource>>,
+            data_source: Option<&(impl NSComboBoxCellDataSource + Message)>,
         );
 
         #[method(addItemWithObjectValue:)]

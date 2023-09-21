@@ -187,7 +187,7 @@ extern_methods!(
         ) -> Id<ProtocolObject<dyn NSObjectProtocol>>;
 
         #[method(endActivity:)]
-        pub unsafe fn endActivity(&self, activity: &ProtocolObject<dyn NSObjectProtocol>);
+        pub unsafe fn endActivity(&self, activity: &(impl NSObjectProtocol + Message));
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(performActivityWithOptions:reason:usingBlock:)]

@@ -78,10 +78,7 @@ extern_methods!(
         pub fn computeFunction(&self) -> Option<Id<ProtocolObject<dyn MTLFunction>>>;
 
         #[method(setComputeFunction:)]
-        pub fn setComputeFunction(
-            &self,
-            compute_function: Option<&ProtocolObject<dyn MTLFunction>>,
-        );
+        pub fn setComputeFunction(&self, compute_function: Option<&(impl MTLFunction + Message)>);
 
         #[method(threadGroupSizeIsMultipleOfThreadExecutionWidth)]
         pub fn threadGroupSizeIsMultipleOfThreadExecutionWidth(&self) -> bool;
@@ -236,7 +233,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other functionHandleWithFunction:)]
         fn functionHandleWithFunction(
             &self,
-            function: &ProtocolObject<dyn MTLFunction>,
+            function: &(impl MTLFunction + Message),
         ) -> Option<Id<ProtocolObject<dyn MTLFunctionHandle>>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSError"))]

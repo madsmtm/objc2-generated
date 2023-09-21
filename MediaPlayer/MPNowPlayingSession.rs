@@ -77,7 +77,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ProtocolObject<dyn MPNowPlayingSessionDelegate>>,
+            delegate: Option<&(impl MPNowPlayingSessionDelegate + Message)>,
         );
 
         #[method(automaticallyPublishesNowPlayingInfo)]

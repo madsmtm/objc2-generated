@@ -65,7 +65,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &mut self,
-            delegate: Option<&ProtocolObject<dyn NSTextStorageDelegate>>,
+            delegate: Option<&(impl NSTextStorageDelegate + Message)>,
         );
 
         #[method(edited:range:changeInLength:)]
@@ -96,7 +96,7 @@ extern_methods!(
         #[method(setTextStorageObserver:)]
         pub unsafe fn setTextStorageObserver(
             &mut self,
-            text_storage_observer: Option<&ProtocolObject<dyn NSTextStorageObserving>>,
+            text_storage_observer: Option<&(impl NSTextStorageObserving + Message)>,
         );
     }
 );

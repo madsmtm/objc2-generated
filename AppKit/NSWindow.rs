@@ -389,7 +389,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSWindowDelegate>>>;
 
         #[method(setDelegate:)]
-        pub fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSWindowDelegate>>);
+        pub fn setDelegate(&self, delegate: Option<&(impl NSWindowDelegate + Message)>);
 
         #[method(windowNumber)]
         pub unsafe fn windowNumber(&self) -> NSInteger;

@@ -159,7 +159,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ProtocolObject<dyn NSSpeechSynthesizerDelegate>>,
+            delegate: Option<&(impl NSSpeechSynthesizerDelegate + Message)>,
         );
 
         #[method_id(@__retain_semantics Other voice)]

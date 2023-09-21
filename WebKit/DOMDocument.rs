@@ -306,7 +306,7 @@ extern_methods!(
             &self,
             root: Option<&DOMNode>,
             what_to_show: c_uint,
-            filter: Option<&ProtocolObject<dyn DOMNodeFilter>>,
+            filter: Option<&(impl DOMNodeFilter + Message)>,
             expand_entity_references: bool,
         ) -> Option<Id<DOMNodeIterator>>;
 
@@ -316,7 +316,7 @@ extern_methods!(
             &self,
             root: Option<&DOMNode>,
             what_to_show: c_uint,
-            filter: Option<&ProtocolObject<dyn DOMNodeFilter>>,
+            filter: Option<&(impl DOMNodeFilter + Message)>,
             expand_entity_references: bool,
         ) -> Option<Id<DOMTreeWalker>>;
 
@@ -337,7 +337,7 @@ extern_methods!(
         pub unsafe fn createExpression_resolver(
             &self,
             expression: Option<&NSString>,
-            resolver: Option<&ProtocolObject<dyn DOMXPathNSResolver>>,
+            resolver: Option<&(impl DOMXPathNSResolver + Message)>,
         ) -> Option<Id<DOMXPathExpression>>;
 
         #[method_id(@__retain_semantics Other createNSResolver:)]
@@ -352,7 +352,7 @@ extern_methods!(
             &self,
             expression: Option<&NSString>,
             context_node: Option<&DOMNode>,
-            resolver: Option<&ProtocolObject<dyn DOMXPathNSResolver>>,
+            resolver: Option<&(impl DOMXPathNSResolver + Message)>,
             r#type: c_ushort,
             in_result: Option<&DOMXPathResult>,
         ) -> Option<Id<DOMXPathResult>>;
@@ -563,7 +563,7 @@ extern_methods!(
             &self,
             root: Option<&DOMNode>,
             what_to_show: c_uint,
-            filter: Option<&ProtocolObject<dyn DOMNodeFilter>>,
+            filter: Option<&(impl DOMNodeFilter + Message)>,
             expand_entity_references: bool,
         ) -> Option<Id<DOMNodeIterator>>;
 
@@ -574,7 +574,7 @@ extern_methods!(
             &self,
             root: Option<&DOMNode>,
             what_to_show: c_uint,
-            filter: Option<&ProtocolObject<dyn DOMNodeFilter>>,
+            filter: Option<&(impl DOMNodeFilter + Message)>,
             expand_entity_references: bool,
         ) -> Option<Id<DOMTreeWalker>>;
 
@@ -597,7 +597,7 @@ extern_methods!(
         pub unsafe fn createExpression(
             &self,
             expression: Option<&NSString>,
-            resolver: Option<&ProtocolObject<dyn DOMXPathNSResolver>>,
+            resolver: Option<&(impl DOMXPathNSResolver + Message)>,
         ) -> Option<Id<DOMXPathExpression>>;
 
         #[cfg(all(
@@ -611,7 +611,7 @@ extern_methods!(
             &self,
             expression: Option<&NSString>,
             context_node: Option<&DOMNode>,
-            resolver: Option<&ProtocolObject<dyn DOMXPathNSResolver>>,
+            resolver: Option<&(impl DOMXPathNSResolver + Message)>,
             r#type: c_ushort,
             in_result: Option<&DOMXPathResult>,
         ) -> Option<Id<DOMXPathResult>>;

@@ -36,12 +36,12 @@ extern_methods!(
         #[method(addRequest:withObserver:error:_)]
         pub unsafe fn addRequest_withObserver_error(
             &self,
-            request: &ProtocolObject<dyn SNRequest>,
-            observer: &ProtocolObject<dyn SNResultsObserving>,
+            request: &(impl SNRequest + Message),
+            observer: &(impl SNResultsObserving + Message),
         ) -> Result<(), Id<NSError>>;
 
         #[method(removeRequest:)]
-        pub unsafe fn removeRequest(&self, request: &ProtocolObject<dyn SNRequest>);
+        pub unsafe fn removeRequest(&self, request: &(impl SNRequest + Message));
 
         #[method(removeAllRequests)]
         pub unsafe fn removeAllRequests(&self);
@@ -100,12 +100,12 @@ extern_methods!(
         #[method(addRequest:withObserver:error:_)]
         pub unsafe fn addRequest_withObserver_error(
             &self,
-            request: &ProtocolObject<dyn SNRequest>,
-            observer: &ProtocolObject<dyn SNResultsObserving>,
+            request: &(impl SNRequest + Message),
+            observer: &(impl SNResultsObserving + Message),
         ) -> Result<(), Id<NSError>>;
 
         #[method(removeRequest:)]
-        pub unsafe fn removeRequest(&self, request: &ProtocolObject<dyn SNRequest>);
+        pub unsafe fn removeRequest(&self, request: &(impl SNRequest + Message));
 
         #[method(removeAllRequests)]
         pub unsafe fn removeAllRequests(&self);

@@ -33,7 +33,7 @@ extern_methods!(
         pub unsafe fn client(&self) -> Option<Id<ProtocolObject<dyn GKVoiceChatClient>>>;
 
         #[method(setClient:)]
-        pub unsafe fn setClient(&self, client: Option<&ProtocolObject<dyn GKVoiceChatClient>>);
+        pub unsafe fn setClient(&self, client: Option<&(impl GKVoiceChatClient + Message)>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(stopVoiceChatWithParticipantID:)]

@@ -40,7 +40,7 @@ extern_methods!(
 
         #[deprecated]
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn GKSessionDelegate>>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&(impl GKSessionDelegate + Message)>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use MCSession from the MultipeerConnectivity framework instead"]

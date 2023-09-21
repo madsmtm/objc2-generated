@@ -80,7 +80,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ProtocolObject<dyn MKLookAroundViewControllerDelegate>>,
+            delegate: Option<&(impl MKLookAroundViewControllerDelegate + Message)>,
         );
 
         #[cfg(feature = "MapKit_MKLookAroundScene")]

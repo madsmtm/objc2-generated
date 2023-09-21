@@ -60,7 +60,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ProtocolObject<dyn HKWorkoutSessionDelegate>>,
+            delegate: Option<&(impl HKWorkoutSessionDelegate + Message)>,
         );
 
         #[method(state)]

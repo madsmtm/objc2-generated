@@ -44,7 +44,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ProtocolObject<dyn EXHostViewControllerDelegate>>,
+            delegate: Option<&(impl EXHostViewControllerDelegate + Message)>,
         );
 
         #[cfg(feature = "AppKit_NSView")]

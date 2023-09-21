@@ -75,7 +75,7 @@ extern_protocol!(
         #[method(setBuffer:offset:atIndex:)]
         unsafe fn setBuffer_offset_atIndex(
             &self,
-            buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
+            buffer: Option<&(impl MTLBuffer + Message)>,
             offset: NSUInteger,
             index: NSUInteger,
         );
@@ -94,7 +94,7 @@ extern_protocol!(
         #[method(setFunction:atIndex:)]
         fn setFunction_atIndex(
             &self,
-            function: Option<&ProtocolObject<dyn MTLFunctionHandle>>,
+            function: Option<&(impl MTLFunctionHandle + Message)>,
             index: NSUInteger,
         );
 
@@ -122,7 +122,7 @@ extern_protocol!(
         #[method(setVisibleFunctionTable:atBufferIndex:)]
         unsafe fn setVisibleFunctionTable_atBufferIndex(
             &self,
-            function_table: Option<&ProtocolObject<dyn MTLVisibleFunctionTable>>,
+            function_table: Option<&(impl MTLVisibleFunctionTable + Message)>,
             buffer_index: NSUInteger,
         );
 

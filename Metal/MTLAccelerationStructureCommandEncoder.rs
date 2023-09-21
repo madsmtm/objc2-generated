@@ -18,9 +18,9 @@ extern_protocol!(
         #[method(buildAccelerationStructure:descriptor:scratchBuffer:scratchBufferOffset:)]
         fn buildAccelerationStructure_descriptor_scratchBuffer_scratchBufferOffset(
             &self,
-            acceleration_structure: &ProtocolObject<dyn MTLAccelerationStructure>,
+            acceleration_structure: &(impl MTLAccelerationStructure + Message),
             descriptor: &MTLAccelerationStructureDescriptor,
-            scratch_buffer: &ProtocolObject<dyn MTLBuffer>,
+            scratch_buffer: &(impl MTLBuffer + Message),
             scratch_buffer_offset: NSUInteger,
         );
 
@@ -28,12 +28,10 @@ extern_protocol!(
         #[method(refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:)]
         unsafe fn refitAccelerationStructure_descriptor_destination_scratchBuffer_scratchBufferOffset(
             &self,
-            source_acceleration_structure: &ProtocolObject<dyn MTLAccelerationStructure>,
+            source_acceleration_structure: &(impl MTLAccelerationStructure + Message),
             descriptor: &MTLAccelerationStructureDescriptor,
-            destination_acceleration_structure: Option<
-                &ProtocolObject<dyn MTLAccelerationStructure>,
-            >,
-            scratch_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
+            destination_acceleration_structure: Option<&(impl MTLAccelerationStructure + Message)>,
+            scratch_buffer: Option<&(impl MTLBuffer + Message)>,
             scratch_buffer_offset: NSUInteger,
         );
 
@@ -41,12 +39,10 @@ extern_protocol!(
         #[method(refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:options:)]
         unsafe fn refitAccelerationStructure_descriptor_destination_scratchBuffer_scratchBufferOffset_options(
             &self,
-            source_acceleration_structure: &ProtocolObject<dyn MTLAccelerationStructure>,
+            source_acceleration_structure: &(impl MTLAccelerationStructure + Message),
             descriptor: &MTLAccelerationStructureDescriptor,
-            destination_acceleration_structure: Option<
-                &ProtocolObject<dyn MTLAccelerationStructure>,
-            >,
-            scratch_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
+            destination_acceleration_structure: Option<&(impl MTLAccelerationStructure + Message)>,
+            scratch_buffer: Option<&(impl MTLBuffer + Message)>,
             scratch_buffer_offset: NSUInteger,
             options: MTLAccelerationStructureRefitOptions,
         );
@@ -54,23 +50,23 @@ extern_protocol!(
         #[method(copyAccelerationStructure:toAccelerationStructure:)]
         unsafe fn copyAccelerationStructure_toAccelerationStructure(
             &self,
-            source_acceleration_structure: &ProtocolObject<dyn MTLAccelerationStructure>,
-            destination_acceleration_structure: &ProtocolObject<dyn MTLAccelerationStructure>,
+            source_acceleration_structure: &(impl MTLAccelerationStructure + Message),
+            destination_acceleration_structure: &(impl MTLAccelerationStructure + Message),
         );
 
         #[method(writeCompactedAccelerationStructureSize:toBuffer:offset:)]
         fn writeCompactedAccelerationStructureSize_toBuffer_offset(
             &self,
-            acceleration_structure: &ProtocolObject<dyn MTLAccelerationStructure>,
-            buffer: &ProtocolObject<dyn MTLBuffer>,
+            acceleration_structure: &(impl MTLAccelerationStructure + Message),
+            buffer: &(impl MTLBuffer + Message),
             offset: NSUInteger,
         );
 
         #[method(writeCompactedAccelerationStructureSize:toBuffer:offset:sizeDataType:)]
         unsafe fn writeCompactedAccelerationStructureSize_toBuffer_offset_sizeDataType(
             &self,
-            acceleration_structure: &ProtocolObject<dyn MTLAccelerationStructure>,
-            buffer: &ProtocolObject<dyn MTLBuffer>,
+            acceleration_structure: &(impl MTLAccelerationStructure + Message),
+            buffer: &(impl MTLBuffer + Message),
             offset: NSUInteger,
             size_data_type: MTLDataType,
         );
@@ -78,20 +74,20 @@ extern_protocol!(
         #[method(copyAndCompactAccelerationStructure:toAccelerationStructure:)]
         fn copyAndCompactAccelerationStructure_toAccelerationStructure(
             &self,
-            source_acceleration_structure: &ProtocolObject<dyn MTLAccelerationStructure>,
-            destination_acceleration_structure: &ProtocolObject<dyn MTLAccelerationStructure>,
+            source_acceleration_structure: &(impl MTLAccelerationStructure + Message),
+            destination_acceleration_structure: &(impl MTLAccelerationStructure + Message),
         );
 
         #[method(updateFence:)]
-        unsafe fn updateFence(&self, fence: &ProtocolObject<dyn MTLFence>);
+        unsafe fn updateFence(&self, fence: &(impl MTLFence + Message));
 
         #[method(waitForFence:)]
-        unsafe fn waitForFence(&self, fence: &ProtocolObject<dyn MTLFence>);
+        unsafe fn waitForFence(&self, fence: &(impl MTLFence + Message));
 
         #[method(useResource:usage:)]
         unsafe fn useResource_usage(
             &self,
-            resource: &ProtocolObject<dyn MTLResource>,
+            resource: &(impl MTLResource + Message),
             usage: MTLResourceUsage,
         );
 
@@ -104,7 +100,7 @@ extern_protocol!(
         );
 
         #[method(useHeap:)]
-        unsafe fn useHeap(&self, heap: &ProtocolObject<dyn MTLHeap>);
+        unsafe fn useHeap(&self, heap: &(impl MTLHeap + Message));
 
         #[method(useHeaps:count:)]
         unsafe fn useHeaps_count(
@@ -116,7 +112,7 @@ extern_protocol!(
         #[method(sampleCountersInBuffer:atSampleIndex:withBarrier:)]
         unsafe fn sampleCountersInBuffer_atSampleIndex_withBarrier(
             &self,
-            sample_buffer: &ProtocolObject<dyn MTLCounterSampleBuffer>,
+            sample_buffer: &(impl MTLCounterSampleBuffer + Message),
             sample_index: NSUInteger,
             barrier: bool,
         );
@@ -153,7 +149,7 @@ extern_methods!(
         #[method(setSampleBuffer:)]
         pub unsafe fn setSampleBuffer(
             &self,
-            sample_buffer: Option<&ProtocolObject<dyn MTLCounterSampleBuffer>>,
+            sample_buffer: Option<&(impl MTLCounterSampleBuffer + Message)>,
         );
 
         #[method(startOfEncoderSampleIndex)]

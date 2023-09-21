@@ -48,7 +48,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ProtocolObject<dyn CXCallDirectoryExtensionContextDelegate>>,
+            delegate: Option<&(impl CXCallDirectoryExtensionContextDelegate + Message)>,
         );
 
         #[method(isIncremental)]

@@ -17,12 +17,12 @@ ns_options!(
 extern_protocol!(
     pub unsafe trait MTLBlitCommandEncoder: MTLCommandEncoder {
         #[method(synchronizeResource:)]
-        fn synchronizeResource(&self, resource: &ProtocolObject<dyn MTLResource>);
+        fn synchronizeResource(&self, resource: &(impl MTLResource + Message));
 
         #[method(synchronizeTexture:slice:level:)]
         unsafe fn synchronizeTexture_slice_level(
             &self,
-            texture: &ProtocolObject<dyn MTLTexture>,
+            texture: &(impl MTLTexture + Message),
             slice: NSUInteger,
             level: NSUInteger,
         );
@@ -30,12 +30,12 @@ extern_protocol!(
         #[method(copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:)]
         unsafe fn copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin(
             &self,
-            source_texture: &ProtocolObject<dyn MTLTexture>,
+            source_texture: &(impl MTLTexture + Message),
             source_slice: NSUInteger,
             source_level: NSUInteger,
             source_origin: MTLOrigin,
             source_size: MTLSize,
-            destination_texture: &ProtocolObject<dyn MTLTexture>,
+            destination_texture: &(impl MTLTexture + Message),
             destination_slice: NSUInteger,
             destination_level: NSUInteger,
             destination_origin: MTLOrigin,
@@ -44,12 +44,12 @@ extern_protocol!(
         #[method(copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:)]
         unsafe fn copyFromBuffer_sourceOffset_sourceBytesPerRow_sourceBytesPerImage_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin(
             &self,
-            source_buffer: &ProtocolObject<dyn MTLBuffer>,
+            source_buffer: &(impl MTLBuffer + Message),
             source_offset: NSUInteger,
             source_bytes_per_row: NSUInteger,
             source_bytes_per_image: NSUInteger,
             source_size: MTLSize,
-            destination_texture: &ProtocolObject<dyn MTLTexture>,
+            destination_texture: &(impl MTLTexture + Message),
             destination_slice: NSUInteger,
             destination_level: NSUInteger,
             destination_origin: MTLOrigin,
@@ -58,12 +58,12 @@ extern_protocol!(
         #[method(copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:options:)]
         unsafe fn copyFromBuffer_sourceOffset_sourceBytesPerRow_sourceBytesPerImage_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin_options(
             &self,
-            source_buffer: &ProtocolObject<dyn MTLBuffer>,
+            source_buffer: &(impl MTLBuffer + Message),
             source_offset: NSUInteger,
             source_bytes_per_row: NSUInteger,
             source_bytes_per_image: NSUInteger,
             source_size: MTLSize,
-            destination_texture: &ProtocolObject<dyn MTLTexture>,
+            destination_texture: &(impl MTLTexture + Message),
             destination_slice: NSUInteger,
             destination_level: NSUInteger,
             destination_origin: MTLOrigin,
@@ -73,12 +73,12 @@ extern_protocol!(
         #[method(copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toBuffer:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:)]
         unsafe fn copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toBuffer_destinationOffset_destinationBytesPerRow_destinationBytesPerImage(
             &self,
-            source_texture: &ProtocolObject<dyn MTLTexture>,
+            source_texture: &(impl MTLTexture + Message),
             source_slice: NSUInteger,
             source_level: NSUInteger,
             source_origin: MTLOrigin,
             source_size: MTLSize,
-            destination_buffer: &ProtocolObject<dyn MTLBuffer>,
+            destination_buffer: &(impl MTLBuffer + Message),
             destination_offset: NSUInteger,
             destination_bytes_per_row: NSUInteger,
             destination_bytes_per_image: NSUInteger,
@@ -87,12 +87,12 @@ extern_protocol!(
         #[method(copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toBuffer:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:options:)]
         unsafe fn copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toBuffer_destinationOffset_destinationBytesPerRow_destinationBytesPerImage_options(
             &self,
-            source_texture: &ProtocolObject<dyn MTLTexture>,
+            source_texture: &(impl MTLTexture + Message),
             source_slice: NSUInteger,
             source_level: NSUInteger,
             source_origin: MTLOrigin,
             source_size: MTLSize,
-            destination_buffer: &ProtocolObject<dyn MTLBuffer>,
+            destination_buffer: &(impl MTLBuffer + Message),
             destination_offset: NSUInteger,
             destination_bytes_per_row: NSUInteger,
             destination_bytes_per_image: NSUInteger,
@@ -100,12 +100,12 @@ extern_protocol!(
         );
 
         #[method(generateMipmapsForTexture:)]
-        fn generateMipmapsForTexture(&self, texture: &ProtocolObject<dyn MTLTexture>);
+        fn generateMipmapsForTexture(&self, texture: &(impl MTLTexture + Message));
 
         #[method(fillBuffer:range:value:)]
         fn fillBuffer_range_value(
             &self,
-            buffer: &ProtocolObject<dyn MTLBuffer>,
+            buffer: &(impl MTLBuffer + Message),
             range: NSRange,
             value: u8,
         );
@@ -113,10 +113,10 @@ extern_protocol!(
         #[method(copyFromTexture:sourceSlice:sourceLevel:toTexture:destinationSlice:destinationLevel:sliceCount:levelCount:)]
         unsafe fn copyFromTexture_sourceSlice_sourceLevel_toTexture_destinationSlice_destinationLevel_sliceCount_levelCount(
             &self,
-            source_texture: &ProtocolObject<dyn MTLTexture>,
+            source_texture: &(impl MTLTexture + Message),
             source_slice: NSUInteger,
             source_level: NSUInteger,
-            destination_texture: &ProtocolObject<dyn MTLTexture>,
+            destination_texture: &(impl MTLTexture + Message),
             destination_slice: NSUInteger,
             destination_level: NSUInteger,
             slice_count: NSUInteger,
@@ -126,36 +126,36 @@ extern_protocol!(
         #[method(copyFromTexture:toTexture:)]
         unsafe fn copyFromTexture_toTexture(
             &self,
-            source_texture: &ProtocolObject<dyn MTLTexture>,
-            destination_texture: &ProtocolObject<dyn MTLTexture>,
+            source_texture: &(impl MTLTexture + Message),
+            destination_texture: &(impl MTLTexture + Message),
         );
 
         #[method(copyFromBuffer:sourceOffset:toBuffer:destinationOffset:size:)]
         unsafe fn copyFromBuffer_sourceOffset_toBuffer_destinationOffset_size(
             &self,
-            source_buffer: &ProtocolObject<dyn MTLBuffer>,
+            source_buffer: &(impl MTLBuffer + Message),
             source_offset: NSUInteger,
-            destination_buffer: &ProtocolObject<dyn MTLBuffer>,
+            destination_buffer: &(impl MTLBuffer + Message),
             destination_offset: NSUInteger,
             size: NSUInteger,
         );
 
         #[method(updateFence:)]
-        fn updateFence(&self, fence: &ProtocolObject<dyn MTLFence>);
+        fn updateFence(&self, fence: &(impl MTLFence + Message));
 
         #[method(waitForFence:)]
-        fn waitForFence(&self, fence: &ProtocolObject<dyn MTLFence>);
+        fn waitForFence(&self, fence: &(impl MTLFence + Message));
 
         #[optional]
         #[method(getTextureAccessCounters:region:mipLevel:slice:resetCounters:countersBuffer:countersBufferOffset:)]
         unsafe fn getTextureAccessCounters_region_mipLevel_slice_resetCounters_countersBuffer_countersBufferOffset(
             &self,
-            texture: &ProtocolObject<dyn MTLTexture>,
+            texture: &(impl MTLTexture + Message),
             region: MTLRegion,
             mip_level: NSUInteger,
             slice: NSUInteger,
             reset_counters: bool,
-            counters_buffer: &ProtocolObject<dyn MTLBuffer>,
+            counters_buffer: &(impl MTLBuffer + Message),
             counters_buffer_offset: NSUInteger,
         );
 
@@ -163,30 +163,30 @@ extern_protocol!(
         #[method(resetTextureAccessCounters:region:mipLevel:slice:)]
         unsafe fn resetTextureAccessCounters_region_mipLevel_slice(
             &self,
-            texture: &ProtocolObject<dyn MTLTexture>,
+            texture: &(impl MTLTexture + Message),
             region: MTLRegion,
             mip_level: NSUInteger,
             slice: NSUInteger,
         );
 
         #[method(optimizeContentsForGPUAccess:)]
-        fn optimizeContentsForGPUAccess(&self, texture: &ProtocolObject<dyn MTLTexture>);
+        fn optimizeContentsForGPUAccess(&self, texture: &(impl MTLTexture + Message));
 
         #[method(optimizeContentsForGPUAccess:slice:level:)]
         unsafe fn optimizeContentsForGPUAccess_slice_level(
             &self,
-            texture: &ProtocolObject<dyn MTLTexture>,
+            texture: &(impl MTLTexture + Message),
             slice: NSUInteger,
             level: NSUInteger,
         );
 
         #[method(optimizeContentsForCPUAccess:)]
-        unsafe fn optimizeContentsForCPUAccess(&self, texture: &ProtocolObject<dyn MTLTexture>);
+        unsafe fn optimizeContentsForCPUAccess(&self, texture: &(impl MTLTexture + Message));
 
         #[method(optimizeContentsForCPUAccess:slice:level:)]
         unsafe fn optimizeContentsForCPUAccess_slice_level(
             &self,
-            texture: &ProtocolObject<dyn MTLTexture>,
+            texture: &(impl MTLTexture + Message),
             slice: NSUInteger,
             level: NSUInteger,
         );
@@ -194,30 +194,30 @@ extern_protocol!(
         #[method(resetCommandsInBuffer:withRange:)]
         unsafe fn resetCommandsInBuffer_withRange(
             &self,
-            buffer: &ProtocolObject<dyn MTLIndirectCommandBuffer>,
+            buffer: &(impl MTLIndirectCommandBuffer + Message),
             range: NSRange,
         );
 
         #[method(copyIndirectCommandBuffer:sourceRange:destination:destinationIndex:)]
         unsafe fn copyIndirectCommandBuffer_sourceRange_destination_destinationIndex(
             &self,
-            source: &ProtocolObject<dyn MTLIndirectCommandBuffer>,
+            source: &(impl MTLIndirectCommandBuffer + Message),
             source_range: NSRange,
-            destination: &ProtocolObject<dyn MTLIndirectCommandBuffer>,
+            destination: &(impl MTLIndirectCommandBuffer + Message),
             destination_index: NSUInteger,
         );
 
         #[method(optimizeIndirectCommandBuffer:withRange:)]
         unsafe fn optimizeIndirectCommandBuffer_withRange(
             &self,
-            indirect_command_buffer: &ProtocolObject<dyn MTLIndirectCommandBuffer>,
+            indirect_command_buffer: &(impl MTLIndirectCommandBuffer + Message),
             range: NSRange,
         );
 
         #[method(sampleCountersInBuffer:atSampleIndex:withBarrier:)]
         unsafe fn sampleCountersInBuffer_atSampleIndex_withBarrier(
             &self,
-            sample_buffer: &ProtocolObject<dyn MTLCounterSampleBuffer>,
+            sample_buffer: &(impl MTLCounterSampleBuffer + Message),
             sample_index: NSUInteger,
             barrier: bool,
         );
@@ -225,9 +225,9 @@ extern_protocol!(
         #[method(resolveCounters:inRange:destinationBuffer:destinationOffset:)]
         unsafe fn resolveCounters_inRange_destinationBuffer_destinationOffset(
             &self,
-            sample_buffer: &ProtocolObject<dyn MTLCounterSampleBuffer>,
+            sample_buffer: &(impl MTLCounterSampleBuffer + Message),
             range: NSRange,
-            destination_buffer: &ProtocolObject<dyn MTLBuffer>,
+            destination_buffer: &(impl MTLBuffer + Message),
             destination_offset: NSUInteger,
         );
     }

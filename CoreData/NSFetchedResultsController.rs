@@ -76,7 +76,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ProtocolObject<dyn NSFetchedResultsControllerDelegate>>,
+            delegate: Option<&(impl NSFetchedResultsControllerDelegate + Message)>,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -201,7 +201,7 @@ extern_protocol!(
         unsafe fn controller_didChangeSection_atIndex_forChangeType(
             &self,
             controller: &NSFetchedResultsController,
-            section_info: &ProtocolObject<dyn NSFetchedResultsSectionInfo>,
+            section_info: &(impl NSFetchedResultsSectionInfo + Message),
             section_index: NSUInteger,
             r#type: NSFetchedResultsChangeType,
         );

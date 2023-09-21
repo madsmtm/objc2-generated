@@ -119,7 +119,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ProtocolObject<dyn NSUserActivityDelegate>>,
+            delegate: Option<&(impl NSUserActivityDelegate + Message)>,
         );
 
         #[cfg(feature = "Foundation_NSString")]

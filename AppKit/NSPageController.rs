@@ -56,7 +56,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ProtocolObject<dyn NSPageControllerDelegate>>,
+            delegate: Option<&(impl NSPageControllerDelegate + Message)>,
         );
 
         #[method_id(@__retain_semantics Other selectedViewController)]

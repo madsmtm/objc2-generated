@@ -74,7 +74,7 @@ extern_methods!(
         pub unsafe fn client(&self) -> Option<Id<ProtocolObject<dyn NSTextFinderClient>>>;
 
         #[method(setClient:)]
-        pub unsafe fn setClient(&self, client: Option<&ProtocolObject<dyn NSTextFinderClient>>);
+        pub unsafe fn setClient(&self, client: Option<&(impl NSTextFinderClient + Message)>);
 
         #[method(performAction:)]
         pub unsafe fn performAction(&self, op: NSTextFinderAction);
@@ -90,7 +90,7 @@ extern_methods!(
         #[method(setFindBarContainer:)]
         pub unsafe fn setFindBarContainer(
             &self,
-            find_bar_container: Option<&ProtocolObject<dyn NSTextFinderBarContainer>>,
+            find_bar_container: Option<&(impl NSTextFinderBarContainer + Message)>,
         );
 
         #[method(cancelFindIndicator)]

@@ -129,10 +129,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSTextFieldDelegate>>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(
-            &self,
-            delegate: Option<&ProtocolObject<dyn NSTextFieldDelegate>>,
-        );
+        pub unsafe fn setDelegate(&self, delegate: Option<&(impl NSTextFieldDelegate + Message)>);
 
         #[cfg(feature = "AppKit_NSText")]
         #[method(textShouldBeginEditing:)]

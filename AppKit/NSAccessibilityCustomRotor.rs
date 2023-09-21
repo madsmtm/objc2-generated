@@ -64,14 +64,14 @@ extern_methods!(
         pub unsafe fn initWithLabel_itemSearchDelegate(
             this: Option<Allocated<Self>>,
             label: &NSString,
-            item_search_delegate: &ProtocolObject<dyn NSAccessibilityCustomRotorItemSearchDelegate>,
+            item_search_delegate: &(impl NSAccessibilityCustomRotorItemSearchDelegate + Message),
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithRotorType:itemSearchDelegate:)]
         pub unsafe fn initWithRotorType_itemSearchDelegate(
             this: Option<Allocated<Self>>,
             rotor_type: NSAccessibilityCustomRotorType,
-            item_search_delegate: &ProtocolObject<dyn NSAccessibilityCustomRotorItemSearchDelegate>,
+            item_search_delegate: &(impl NSAccessibilityCustomRotorItemSearchDelegate + Message),
         ) -> Id<Self>;
 
         #[method(type)]
@@ -97,7 +97,7 @@ extern_methods!(
         pub unsafe fn setItemSearchDelegate(
             &self,
             item_search_delegate: Option<
-                &ProtocolObject<dyn NSAccessibilityCustomRotorItemSearchDelegate>,
+                &(impl NSAccessibilityCustomRotorItemSearchDelegate + Message),
             >,
         );
 
@@ -109,7 +109,7 @@ extern_methods!(
         #[method(setItemLoadingDelegate:)]
         pub unsafe fn setItemLoadingDelegate(
             &self,
-            item_loading_delegate: Option<&ProtocolObject<dyn NSAccessibilityElementLoading>>,
+            item_loading_delegate: Option<&(impl NSAccessibilityElementLoading + Message)>,
         );
     }
 );
@@ -213,7 +213,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithTargetElement:)]
         pub unsafe fn initWithTargetElement(
             this: Option<Allocated<Self>>,
-            target_element: &ProtocolObject<dyn NSAccessibilityElementProtocol>,
+            target_element: &(impl NSAccessibilityElementProtocol + Message),
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]

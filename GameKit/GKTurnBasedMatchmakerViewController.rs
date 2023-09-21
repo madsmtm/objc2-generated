@@ -92,7 +92,7 @@ extern_methods!(
         pub unsafe fn setTurnBasedMatchmakerDelegate(
             &self,
             turn_based_matchmaker_delegate: Option<
-                &ProtocolObject<dyn GKTurnBasedMatchmakerViewControllerDelegate>,
+                &(impl GKTurnBasedMatchmakerViewControllerDelegate + Message),
             >,
         );
 

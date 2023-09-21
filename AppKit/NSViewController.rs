@@ -173,7 +173,7 @@ extern_methods!(
         pub unsafe fn presentViewController_animator(
             &self,
             view_controller: &NSViewController,
-            animator: &ProtocolObject<dyn NSViewControllerPresentationAnimator>,
+            animator: &(impl NSViewControllerPresentationAnimator + Message),
         );
 
         #[method(dismissViewController:)]

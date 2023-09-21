@@ -106,7 +106,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             request: &NSURLRequest,
             cached_response: Option<&NSCachedURLResponse>,
-            client: Option<&ProtocolObject<dyn NSURLProtocolClient>>,
+            client: Option<&(impl NSURLProtocolClient + Message)>,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other client)]
@@ -203,7 +203,7 @@ extern_methods!(
             this: Option<Allocated<Self>>,
             task: &NSURLSessionTask,
             cached_response: Option<&NSCachedURLResponse>,
-            client: Option<&ProtocolObject<dyn NSURLProtocolClient>>,
+            client: Option<&(impl NSURLProtocolClient + Message)>,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSURLSessionTask")]

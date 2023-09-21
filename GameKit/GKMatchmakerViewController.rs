@@ -57,7 +57,7 @@ extern_methods!(
         #[method(setMatchmakerDelegate:)]
         pub unsafe fn setMatchmakerDelegate(
             &self,
-            matchmaker_delegate: Option<&ProtocolObject<dyn GKMatchmakerViewControllerDelegate>>,
+            matchmaker_delegate: Option<&(impl GKMatchmakerViewControllerDelegate + Message)>,
         );
 
         #[cfg(feature = "GameKit_GKMatchRequest")]

@@ -290,16 +290,13 @@ extern_methods!(
         pub fn vertexFunction(&self) -> Option<Id<ProtocolObject<dyn MTLFunction>>>;
 
         #[method(setVertexFunction:)]
-        pub fn setVertexFunction(&self, vertex_function: Option<&ProtocolObject<dyn MTLFunction>>);
+        pub fn setVertexFunction(&self, vertex_function: Option<&(impl MTLFunction + Message)>);
 
         #[method_id(@__retain_semantics Other fragmentFunction)]
         pub fn fragmentFunction(&self) -> Option<Id<ProtocolObject<dyn MTLFunction>>>;
 
         #[method(setFragmentFunction:)]
-        pub fn setFragmentFunction(
-            &self,
-            fragment_function: Option<&ProtocolObject<dyn MTLFunction>>,
-        );
+        pub fn setFragmentFunction(&self, fragment_function: Option<&(impl MTLFunction + Message)>);
 
         #[cfg(feature = "Metal_MTLVertexDescriptor")]
         #[method_id(@__retain_semantics Other vertexDescriptor)]
@@ -685,7 +682,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other functionHandleWithFunction:stage:)]
         unsafe fn functionHandleWithFunction_stage(
             &self,
-            function: &ProtocolObject<dyn MTLFunction>,
+            function: &(impl MTLFunction + Message),
             stage: MTLRenderStages,
         ) -> Option<Id<ProtocolObject<dyn MTLFunctionHandle>>>;
 
@@ -887,7 +884,7 @@ extern_methods!(
         pub unsafe fn tileFunction(&self) -> Id<ProtocolObject<dyn MTLFunction>>;
 
         #[method(setTileFunction:)]
-        pub unsafe fn setTileFunction(&self, tile_function: &ProtocolObject<dyn MTLFunction>);
+        pub unsafe fn setTileFunction(&self, tile_function: &(impl MTLFunction + Message));
 
         #[method(rasterSampleCount)]
         pub unsafe fn rasterSampleCount(&self) -> NSUInteger;
@@ -1021,17 +1018,14 @@ extern_methods!(
         #[method(setObjectFunction:)]
         pub unsafe fn setObjectFunction(
             &self,
-            object_function: Option<&ProtocolObject<dyn MTLFunction>>,
+            object_function: Option<&(impl MTLFunction + Message)>,
         );
 
         #[method_id(@__retain_semantics Other meshFunction)]
         pub unsafe fn meshFunction(&self) -> Option<Id<ProtocolObject<dyn MTLFunction>>>;
 
         #[method(setMeshFunction:)]
-        pub unsafe fn setMeshFunction(
-            &self,
-            mesh_function: Option<&ProtocolObject<dyn MTLFunction>>,
-        );
+        pub unsafe fn setMeshFunction(&self, mesh_function: Option<&(impl MTLFunction + Message)>);
 
         #[method_id(@__retain_semantics Other fragmentFunction)]
         pub unsafe fn fragmentFunction(&self) -> Option<Id<ProtocolObject<dyn MTLFunction>>>;
@@ -1039,7 +1033,7 @@ extern_methods!(
         #[method(setFragmentFunction:)]
         pub unsafe fn setFragmentFunction(
             &self,
-            fragment_function: Option<&ProtocolObject<dyn MTLFunction>>,
+            fragment_function: Option<&(impl MTLFunction + Message)>,
         );
 
         #[method(maxTotalThreadsPerObjectThreadgroup)]

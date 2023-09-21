@@ -96,7 +96,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ProtocolObject<dyn GKChallengeEventHandlerDelegate>>,
+            delegate: Option<&(impl GKChallengeEventHandlerDelegate + Message)>,
         );
     }
 );

@@ -31,7 +31,7 @@ extern_methods!(
         pub unsafe fn initWithRequest_delegate(
             this: Option<Allocated<Self>>,
             request: &NSURLRequest,
-            delegate: Option<&ProtocolObject<dyn NSURLDownloadDelegate>>,
+            delegate: Option<&(impl NSURLDownloadDelegate + Message)>,
         ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSString"))]
@@ -40,7 +40,7 @@ extern_methods!(
         pub unsafe fn initWithResumeData_delegate_path(
             this: Option<Allocated<Self>>,
             resume_data: &NSData,
-            delegate: Option<&ProtocolObject<dyn NSURLDownloadDelegate>>,
+            delegate: Option<&(impl NSURLDownloadDelegate + Message)>,
             path: &NSString,
         ) -> Id<Self>;
 

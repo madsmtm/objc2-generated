@@ -85,7 +85,7 @@ extern_protocol!(
         #[method(enumerateItemsForObserver:startingAtPage:)]
         unsafe fn enumerateItemsForObserver_startingAtPage(
             &self,
-            observer: &ProtocolObject<dyn NSFileProviderEnumerationObserver>,
+            observer: &(impl NSFileProviderEnumerationObserver + Message),
             page: &NSFileProviderPage,
         );
 
@@ -93,7 +93,7 @@ extern_protocol!(
         #[method(enumerateChangesForObserver:fromSyncAnchor:)]
         unsafe fn enumerateChangesForObserver_fromSyncAnchor(
             &self,
-            observer: &ProtocolObject<dyn NSFileProviderChangeObserver>,
+            observer: &(impl NSFileProviderChangeObserver + Message),
             sync_anchor: &NSFileProviderSyncAnchor,
         );
 

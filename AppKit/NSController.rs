@@ -43,10 +43,10 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[method(objectDidBeginEditing:)]
-        pub unsafe fn objectDidBeginEditing(&self, editor: &ProtocolObject<dyn NSEditor>);
+        pub unsafe fn objectDidBeginEditing(&self, editor: &(impl NSEditor + Message));
 
         #[method(objectDidEndEditing:)]
-        pub unsafe fn objectDidEndEditing(&self, editor: &ProtocolObject<dyn NSEditor>);
+        pub unsafe fn objectDidEndEditing(&self, editor: &(impl NSEditor + Message));
 
         #[method(discardEditing)]
         pub unsafe fn discardEditing(&self);

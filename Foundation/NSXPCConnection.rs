@@ -210,10 +210,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSXPCListenerDelegate>>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(
-            &self,
-            delegate: Option<&ProtocolObject<dyn NSXPCListenerDelegate>>,
-        );
+        pub unsafe fn setDelegate(&self, delegate: Option<&(impl NSXPCListenerDelegate + Message)>);
 
         #[cfg(feature = "Foundation_NSXPCListenerEndpoint")]
         #[method_id(@__retain_semantics Other endpoint)]
@@ -405,7 +402,7 @@ extern_methods!(
         pub unsafe fn userInfo(&self) -> Option<Id<ProtocolObject<dyn NSObjectProtocol>>>;
 
         #[method(setUserInfo:)]
-        pub unsafe fn setUserInfo(&self, user_info: Option<&ProtocolObject<dyn NSObjectProtocol>>);
+        pub unsafe fn setUserInfo(&self, user_info: Option<&(impl NSObjectProtocol + Message)>);
 
         #[cfg(feature = "Foundation_NSXPCConnection")]
         #[method_id(@__retain_semantics Other connection)]

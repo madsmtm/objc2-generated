@@ -174,17 +174,14 @@ extern_methods!(
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(
             &self,
-            data_source: Option<&ProtocolObject<dyn NSTableViewDataSource>>,
+            data_source: Option<&(impl NSTableViewDataSource + Message)>,
         );
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSTableViewDelegate>>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(
-            &self,
-            delegate: Option<&ProtocolObject<dyn NSTableViewDelegate>>,
-        );
+        pub unsafe fn setDelegate(&self, delegate: Option<&(impl NSTableViewDelegate + Message)>);
 
         #[cfg(feature = "AppKit_NSTableHeaderView")]
         #[method_id(@__retain_semantics Other headerView)]
@@ -1144,7 +1141,7 @@ extern_protocol!(
         unsafe fn tableView_updateDraggingItemsForDrag(
             &self,
             table_view: &NSTableView,
-            dragging_info: &ProtocolObject<dyn NSDraggingInfo>,
+            dragging_info: &(impl NSDraggingInfo + Message),
         );
 
         #[cfg(all(
@@ -1168,7 +1165,7 @@ extern_protocol!(
         unsafe fn tableView_validateDrop_proposedRow_proposedDropOperation(
             &self,
             table_view: &NSTableView,
-            info: &ProtocolObject<dyn NSDraggingInfo>,
+            info: &(impl NSDraggingInfo + Message),
             row: NSInteger,
             drop_operation: NSTableViewDropOperation,
         ) -> NSDragOperation;
@@ -1179,7 +1176,7 @@ extern_protocol!(
         unsafe fn tableView_acceptDrop_row_dropOperation(
             &self,
             table_view: &NSTableView,
-            info: &ProtocolObject<dyn NSDraggingInfo>,
+            info: &(impl NSDraggingInfo + Message),
             row: NSInteger,
             drop_operation: NSTableViewDropOperation,
         ) -> bool;

@@ -34,7 +34,7 @@ extern_methods!(
         #[method(acceptEventVisitor:)]
         pub unsafe fn acceptEventVisitor(
             &self,
-            visitor: &ProtocolObject<dyn CNChangeHistoryEventVisitor>,
+            visitor: &(impl CNChangeHistoryEventVisitor + Message),
         );
     }
 );

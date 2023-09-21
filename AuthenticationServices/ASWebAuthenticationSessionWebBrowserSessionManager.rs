@@ -34,9 +34,7 @@ extern_methods!(
         #[method(setSessionHandler:)]
         pub unsafe fn setSessionHandler(
             &self,
-            session_handler: &ProtocolObject<
-                dyn ASWebAuthenticationSessionWebBrowserSessionHandling,
-            >,
+            session_handler: &(impl ASWebAuthenticationSessionWebBrowserSessionHandling + Message),
         );
 
         #[method(wasLaunchedByAuthenticationServices)]

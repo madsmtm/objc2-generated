@@ -12,7 +12,7 @@ extern_protocol!(
         unsafe fn webView_startURLSchemeTask(
             &self,
             web_view: &WKWebView,
-            url_scheme_task: &ProtocolObject<dyn WKURLSchemeTask>,
+            url_scheme_task: &(impl WKURLSchemeTask + Message),
         );
 
         #[cfg(feature = "WebKit_WKWebView")]
@@ -20,7 +20,7 @@ extern_protocol!(
         unsafe fn webView_stopURLSchemeTask(
             &self,
             web_view: &WKWebView,
-            url_scheme_task: &ProtocolObject<dyn WKURLSchemeTask>,
+            url_scheme_task: &(impl WKURLSchemeTask + Message),
         );
     }
 

@@ -121,7 +121,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other contentByUpdatingWithProvider:error:_)]
         pub unsafe fn contentByUpdatingWithProvider_error(
             &self,
-            provider: &ProtocolObject<dyn UNNotificationContentProviding>,
+            provider: &(impl UNNotificationContentProviding + Message),
         ) -> Result<Id<UNNotificationContent>, Id<NSError>>;
     }
 );

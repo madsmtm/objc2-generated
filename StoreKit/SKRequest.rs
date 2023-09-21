@@ -27,7 +27,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn SKRequestDelegate>>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn SKRequestDelegate>>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&(impl SKRequestDelegate + Message)>);
 
         #[method(cancel)]
         pub unsafe fn cancel(&self);

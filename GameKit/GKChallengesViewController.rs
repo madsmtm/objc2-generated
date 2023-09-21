@@ -50,7 +50,7 @@ extern_methods!(
         #[method(setChallengeDelegate:)]
         pub unsafe fn setChallengeDelegate(
             &self,
-            challenge_delegate: Option<&ProtocolObject<dyn GKChallengesViewControllerDelegate>>,
+            challenge_delegate: Option<&(impl GKChallengesViewControllerDelegate + Message)>,
         );
     }
 );

@@ -54,7 +54,7 @@ extern_methods!(
         pub unsafe fn setPresentationContextProvider(
             &self,
             presentation_context_provider: Option<
-                &ProtocolObject<dyn ASWebAuthenticationPresentationContextProviding>,
+                &(impl ASWebAuthenticationPresentationContextProviding + Message),
             >,
         );
 

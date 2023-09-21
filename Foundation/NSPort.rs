@@ -41,7 +41,7 @@ extern_methods!(
         pub unsafe fn isValid(&self) -> bool;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, an_object: Option<&ProtocolObject<dyn NSPortDelegate>>);
+        pub unsafe fn setDelegate(&self, an_object: Option<&(impl NSPortDelegate + Message)>);
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSPortDelegate>>>;
@@ -164,10 +164,7 @@ extern_methods!(
         pub unsafe fn initWithMachPort(this: Option<Allocated<Self>>, mach_port: u32) -> Id<Self>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(
-            &self,
-            an_object: Option<&ProtocolObject<dyn NSMachPortDelegate>>,
-        );
+        pub unsafe fn setDelegate(&self, an_object: Option<&(impl NSMachPortDelegate + Message)>);
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSMachPortDelegate>>>;

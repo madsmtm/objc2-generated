@@ -85,7 +85,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ProtocolObject<dyn ASWebAuthenticationSessionRequestDelegate>>,
+            delegate: Option<&(impl ASWebAuthenticationSessionRequestDelegate + Message)>,
         );
 
         #[method_id(@__retain_semantics New new)]

@@ -32,7 +32,7 @@ extern_methods!(
         #[method(setSampleBuffer:)]
         pub unsafe fn setSampleBuffer(
             &self,
-            sample_buffer: Option<&ProtocolObject<dyn MTLCounterSampleBuffer>>,
+            sample_buffer: Option<&(impl MTLCounterSampleBuffer + Message)>,
         );
 
         #[method(startOfEncoderSampleIndex)]

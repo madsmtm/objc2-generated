@@ -44,7 +44,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ProtocolObject<dyn SKStoreProductViewControllerDelegate>>,
+            delegate: Option<&(impl SKStoreProductViewControllerDelegate + Message)>,
         );
 
         #[cfg(all(

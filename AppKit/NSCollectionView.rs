@@ -274,7 +274,7 @@ extern_methods!(
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(
             &self,
-            data_source: Option<&ProtocolObject<dyn NSCollectionViewDataSource>>,
+            data_source: Option<&(impl NSCollectionViewDataSource + Message)>,
         );
 
         #[method_id(@__retain_semantics Other prefetchDataSource)]
@@ -285,7 +285,7 @@ extern_methods!(
         #[method(setPrefetchDataSource:)]
         pub unsafe fn setPrefetchDataSource(
             &self,
-            prefetch_data_source: Option<&ProtocolObject<dyn NSCollectionViewPrefetching>>,
+            prefetch_data_source: Option<&(impl NSCollectionViewPrefetching + Message)>,
         );
 
         #[cfg(feature = "Foundation_NSArray")]
@@ -305,7 +305,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ProtocolObject<dyn NSCollectionViewDelegate>>,
+            delegate: Option<&(impl NSCollectionViewDelegate + Message)>,
         );
 
         #[method_id(@__retain_semantics Other backgroundView)]
@@ -892,7 +892,7 @@ extern_protocol!(
         unsafe fn collectionView_validateDrop_proposedIndexPath_dropOperation(
             &self,
             collection_view: &NSCollectionView,
-            dragging_info: &ProtocolObject<dyn NSDraggingInfo>,
+            dragging_info: &(impl NSDraggingInfo + Message),
             proposed_drop_index_path: &mut Id<NSIndexPath>,
             proposed_drop_operation: NonNull<NSCollectionViewDropOperation>,
         ) -> NSDragOperation;
@@ -903,7 +903,7 @@ extern_protocol!(
         unsafe fn collectionView_validateDrop_proposedIndex_dropOperation(
             &self,
             collection_view: &NSCollectionView,
-            dragging_info: &ProtocolObject<dyn NSDraggingInfo>,
+            dragging_info: &(impl NSDraggingInfo + Message),
             proposed_drop_index: NonNull<NSInteger>,
             proposed_drop_operation: NonNull<NSCollectionViewDropOperation>,
         ) -> NSDragOperation;
@@ -917,7 +917,7 @@ extern_protocol!(
         unsafe fn collectionView_acceptDrop_indexPath_dropOperation(
             &self,
             collection_view: &NSCollectionView,
-            dragging_info: &ProtocolObject<dyn NSDraggingInfo>,
+            dragging_info: &(impl NSDraggingInfo + Message),
             index_path: &NSIndexPath,
             drop_operation: NSCollectionViewDropOperation,
         ) -> bool;
@@ -928,7 +928,7 @@ extern_protocol!(
         unsafe fn collectionView_acceptDrop_index_dropOperation(
             &self,
             collection_view: &NSCollectionView,
-            dragging_info: &ProtocolObject<dyn NSDraggingInfo>,
+            dragging_info: &(impl NSDraggingInfo + Message),
             index: NSInteger,
             drop_operation: NSCollectionViewDropOperation,
         ) -> bool;
@@ -1005,7 +1005,7 @@ extern_protocol!(
         unsafe fn collectionView_updateDraggingItemsForDrag(
             &self,
             collection_view: &NSCollectionView,
-            dragging_info: &ProtocolObject<dyn NSDraggingInfo>,
+            dragging_info: &(impl NSDraggingInfo + Message),
         );
 
         #[cfg(all(

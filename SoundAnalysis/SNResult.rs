@@ -15,8 +15,8 @@ extern_protocol!(
         #[method(request:didProduceResult:)]
         unsafe fn request_didProduceResult(
             &self,
-            request: &ProtocolObject<dyn SNRequest>,
-            result: &ProtocolObject<dyn SNResult>,
+            request: &(impl SNRequest + Message),
+            result: &(impl SNResult + Message),
         );
 
         #[cfg(feature = "Foundation_NSError")]
@@ -24,13 +24,13 @@ extern_protocol!(
         #[method(request:didFailWithError:)]
         unsafe fn request_didFailWithError(
             &self,
-            request: &ProtocolObject<dyn SNRequest>,
+            request: &(impl SNRequest + Message),
             error: &NSError,
         );
 
         #[optional]
         #[method(requestDidComplete:)]
-        unsafe fn requestDidComplete(&self, request: &ProtocolObject<dyn SNRequest>);
+        unsafe fn requestDidComplete(&self, request: &(impl SNRequest + Message));
     }
 
     unsafe impl ProtocolType for dyn SNResultsObserving {}

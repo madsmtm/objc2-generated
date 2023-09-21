@@ -86,14 +86,14 @@ extern_methods!(
         #[method(setNavigationDelegate:)]
         pub unsafe fn setNavigationDelegate(
             &self,
-            navigation_delegate: Option<&ProtocolObject<dyn WKNavigationDelegate>>,
+            navigation_delegate: Option<&(impl WKNavigationDelegate + Message)>,
         );
 
         #[method_id(@__retain_semantics Other UIDelegate)]
         pub unsafe fn UIDelegate(&self) -> Option<Id<ProtocolObject<dyn WKUIDelegate>>>;
 
         #[method(setUIDelegate:)]
-        pub unsafe fn setUIDelegate(&self, ui_delegate: Option<&ProtocolObject<dyn WKUIDelegate>>);
+        pub unsafe fn setUIDelegate(&self, ui_delegate: Option<&(impl WKUIDelegate + Message)>);
 
         #[cfg(feature = "WebKit_WKBackForwardList")]
         #[method_id(@__retain_semantics Other backForwardList)]

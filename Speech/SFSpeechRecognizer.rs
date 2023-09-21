@@ -74,7 +74,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
-            delegate: Option<&ProtocolObject<dyn SFSpeechRecognizerDelegate>>,
+            delegate: Option<&(impl SFSpeechRecognizerDelegate + Message)>,
         );
 
         #[method(defaultTaskHint)]
@@ -104,7 +104,7 @@ extern_methods!(
         pub unsafe fn recognitionTaskWithRequest_delegate(
             &self,
             request: &SFSpeechRecognitionRequest,
-            delegate: &ProtocolObject<dyn SFSpeechRecognitionTaskDelegate>,
+            delegate: &(impl SFSpeechRecognitionTaskDelegate + Message),
         ) -> Id<SFSpeechRecognitionTask>;
 
         #[cfg(feature = "Foundation_NSOperationQueue")]

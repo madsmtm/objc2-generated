@@ -112,7 +112,7 @@ extern_methods!(
         #[method(setObject:forKey:)]
         pub unsafe fn setObject_forKey(
             &self,
-            object: Option<&ProtocolObject<dyn CKRecordValue>>,
+            object: Option<&(impl CKRecordValue + Message)>,
             key: &CKRecordFieldKey,
         );
 
@@ -133,7 +133,7 @@ extern_methods!(
         #[method(setObject:forKeyedSubscript:)]
         pub unsafe fn setObject_forKeyedSubscript(
             &self,
-            object: Option<&ProtocolObject<dyn CKRecordValue>>,
+            object: Option<&(impl CKRecordValue + Message)>,
             key: &CKRecordFieldKey,
         );
 
@@ -249,7 +249,7 @@ extern_protocol!(
         #[method(setObject:forKey:)]
         unsafe fn setObject_forKey(
             &self,
-            object: Option<&ProtocolObject<dyn CKRecordValue>>,
+            object: Option<&(impl CKRecordValue + Message)>,
             key: &CKRecordFieldKey,
         );
 
@@ -262,7 +262,7 @@ extern_protocol!(
         #[method(setObject:forKeyedSubscript:)]
         unsafe fn setObject_forKeyedSubscript(
             &self,
-            object: Option<&ProtocolObject<dyn CKRecordValue>>,
+            object: Option<&(impl CKRecordValue + Message)>,
             key: &CKRecordFieldKey,
         );
 

@@ -37,15 +37,12 @@ extern_methods!(
         pub unsafe fn sharedManager() -> Id<MXMetricManager>;
 
         #[method(addSubscriber:)]
-        pub unsafe fn addSubscriber(
-            &self,
-            subscriber: &ProtocolObject<dyn MXMetricManagerSubscriber>,
-        );
+        pub unsafe fn addSubscriber(&self, subscriber: &(impl MXMetricManagerSubscriber + Message));
 
         #[method(removeSubscriber:)]
         pub unsafe fn removeSubscriber(
             &self,
-            subscriber: &ProtocolObject<dyn MXMetricManagerSubscriber>,
+            subscriber: &(impl MXMetricManagerSubscriber + Message),
         );
     }
 );

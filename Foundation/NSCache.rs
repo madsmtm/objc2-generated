@@ -48,7 +48,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSCacheDelegate>>>;
 
         #[method(setDelegate:)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSCacheDelegate>>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&(impl NSCacheDelegate + Message)>);
 
         #[method_id(@__retain_semantics Other objectForKey:)]
         pub unsafe fn objectForKey(&self, key: &KeyType) -> Option<Id<ObjectType>>;

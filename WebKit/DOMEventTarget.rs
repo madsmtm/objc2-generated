@@ -13,7 +13,7 @@ extern_protocol!(
         unsafe fn addEventListener_listener_useCapture(
             &self,
             r#type: Option<&NSString>,
-            listener: Option<&ProtocolObject<dyn DOMEventListener>>,
+            listener: Option<&(impl DOMEventListener + Message)>,
             use_capture: bool,
         );
 
@@ -22,7 +22,7 @@ extern_protocol!(
         unsafe fn removeEventListener_listener_useCapture(
             &self,
             r#type: Option<&NSString>,
-            listener: Option<&ProtocolObject<dyn DOMEventListener>>,
+            listener: Option<&(impl DOMEventListener + Message)>,
             use_capture: bool,
         );
 
@@ -37,7 +37,7 @@ extern_protocol!(
         unsafe fn addEventListener(
             &self,
             r#type: Option<&NSString>,
-            listener: Option<&ProtocolObject<dyn DOMEventListener>>,
+            listener: Option<&(impl DOMEventListener + Message)>,
             use_capture: bool,
         );
 
@@ -47,7 +47,7 @@ extern_protocol!(
         unsafe fn removeEventListener(
             &self,
             r#type: Option<&NSString>,
-            listener: Option<&ProtocolObject<dyn DOMEventListener>>,
+            listener: Option<&(impl DOMEventListener + Message)>,
             use_capture: bool,
         );
     }
