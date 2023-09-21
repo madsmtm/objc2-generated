@@ -763,6 +763,6 @@ ns_enum!(
     }
 );
 
-pub type NSAccessibilityLoadingToken = TodoProtocols;
+pub type NSAccessibilityLoadingToken = ProtocolObject<dyn NSSecureCoding + NSObjectProtocol>;
 
 extern_static!(NSAccessibilitySortButtonRole: &'static NSAccessibilityRole);

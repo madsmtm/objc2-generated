@@ -602,7 +602,9 @@ extern_methods!(
         ) -> Result<Id<NSURL>, Id<NSError>>;
 
         #[method_id(@__retain_semantics Other ubiquityIdentityToken)]
-        pub unsafe fn ubiquityIdentityToken(&self) -> Option<Id<TodoProtocols>>;
+        pub unsafe fn ubiquityIdentityToken(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn NSObjectProtocol + NSCopying + NSCoding>>>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",

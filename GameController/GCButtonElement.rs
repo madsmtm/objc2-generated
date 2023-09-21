@@ -8,7 +8,9 @@ use crate::GameController::*;
 extern_protocol!(
     pub unsafe trait GCButtonElement: GCPhysicalInputElement {
         #[method_id(@__retain_semantics Other pressedInput)]
-        unsafe fn pressedInput(&self) -> Id<TodoProtocols>;
+        unsafe fn pressedInput(
+            &self,
+        ) -> Id<ProtocolObject<dyn GCPressedStateInput + GCLinearInput>>;
 
         #[method_id(@__retain_semantics Other touchedInput)]
         unsafe fn touchedInput(&self) -> Option<Id<ProtocolObject<dyn GCTouchedStateInput>>>;

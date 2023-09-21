@@ -43,7 +43,7 @@ pub type MTLDeviceNotificationHandler = *mut Block<
 >;
 
 extern_fn!(
-    pub unsafe fn MTLRemoveDeviceObserver(observer: &NSObject);
+    pub unsafe fn MTLRemoveDeviceObserver(observer: &ProtocolObject<dyn NSObjectProtocol>);
 );
 
 ns_enum!(

@@ -58,7 +58,11 @@ extern_protocol!(
         unsafe fn setInputStateQueueDepth(&self, input_state_queue_depth: NSInteger);
 
         #[method_id(@__retain_semantics Other nextInputState)]
-        unsafe fn nextInputState(&self) -> Option<Id<TodoProtocols>>;
+        unsafe fn nextInputState(
+            &self,
+        ) -> Option<
+            Id<ProtocolObject<dyn GCDevicePhysicalInputState + GCDevicePhysicalInputStateDiff>>,
+        >;
     }
 
     unsafe impl ProtocolType for dyn GCDevicePhysicalInput {}

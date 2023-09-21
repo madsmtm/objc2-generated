@@ -151,7 +151,7 @@ extern_methods!(
             obj: Option<&AnyObject>,
             queue: Option<&NSOperationQueue>,
             block: &Block<(NonNull<NSNotification>,), ()>,
-        ) -> Id<NSObject>;
+        ) -> Id<ProtocolObject<dyn NSObjectProtocol>>;
     }
 );
 

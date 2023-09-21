@@ -402,10 +402,10 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSXPCCoder")]
     unsafe impl NSXPCCoder {
         #[method_id(@__retain_semantics Other userInfo)]
-        pub unsafe fn userInfo(&self) -> Option<Id<NSObject>>;
+        pub unsafe fn userInfo(&self) -> Option<Id<ProtocolObject<dyn NSObjectProtocol>>>;
 
         #[method(setUserInfo:)]
-        pub unsafe fn setUserInfo(&self, user_info: Option<&NSObject>);
+        pub unsafe fn setUserInfo(&self, user_info: Option<&ProtocolObject<dyn NSObjectProtocol>>);
 
         #[cfg(feature = "Foundation_NSXPCConnection")]
         #[method_id(@__retain_semantics Other connection)]

@@ -162,7 +162,9 @@ extern_methods!(
         pub unsafe fn server(&self) -> Option<Id<IMKServer>>;
 
         #[method_id(@__retain_semantics Other client)]
-        pub unsafe fn client(&self) -> Option<Id<TodoProtocols>>;
+        pub unsafe fn client(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn IMKTextInput + NSObjectProtocol>>>;
 
         #[method(inputControllerWillClose)]
         pub unsafe fn inputControllerWillClose(&self);

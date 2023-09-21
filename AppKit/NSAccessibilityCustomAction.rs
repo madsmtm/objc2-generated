@@ -36,7 +36,7 @@ extern_methods!(
         pub unsafe fn initWithName_target_selector(
             this: Option<Allocated<Self>>,
             name: &NSString,
-            target: &NSObject,
+            target: &ProtocolObject<dyn NSObjectProtocol>,
             selector: Sel,
         ) -> Id<Self>;
 
@@ -55,10 +55,10 @@ extern_methods!(
         pub unsafe fn setHandler(&self, handler: Option<&Block<(), Bool>>);
 
         #[method_id(@__retain_semantics Other target)]
-        pub unsafe fn target(&self) -> Option<Id<NSObject>>;
+        pub unsafe fn target(&self) -> Option<Id<ProtocolObject<dyn NSObjectProtocol>>>;
 
         #[method(setTarget:)]
-        pub unsafe fn setTarget(&self, target: Option<&NSObject>);
+        pub unsafe fn setTarget(&self, target: Option<&ProtocolObject<dyn NSObjectProtocol>>);
 
         #[method(selector)]
         pub unsafe fn selector(&self) -> Option<Sel>;

@@ -62,7 +62,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTouch")]
     unsafe impl NSTouch {
         #[method_id(@__retain_semantics Other identity)]
-        pub unsafe fn identity(&self) -> Id<TodoProtocols>;
+        pub unsafe fn identity(&self) -> Id<ProtocolObject<dyn NSObjectProtocol + NSCopying>>;
 
         #[method(phase)]
         pub unsafe fn phase(&self) -> NSTouchPhase;

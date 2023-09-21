@@ -14,16 +14,16 @@ extern_protocol!(
         unsafe fn yAxis(&self) -> Id<ProtocolObject<dyn GCAxisInput>>;
 
         #[method_id(@__retain_semantics Other up)]
-        unsafe fn up(&self) -> Id<TodoProtocols>;
+        unsafe fn up(&self) -> Id<ProtocolObject<dyn GCLinearInput + GCPressedStateInput>>;
 
         #[method_id(@__retain_semantics Other down)]
-        unsafe fn down(&self) -> Id<TodoProtocols>;
+        unsafe fn down(&self) -> Id<ProtocolObject<dyn GCLinearInput + GCPressedStateInput>>;
 
         #[method_id(@__retain_semantics Other left)]
-        unsafe fn left(&self) -> Id<TodoProtocols>;
+        unsafe fn left(&self) -> Id<ProtocolObject<dyn GCLinearInput + GCPressedStateInput>>;
 
         #[method_id(@__retain_semantics Other right)]
-        unsafe fn right(&self) -> Id<TodoProtocols>;
+        unsafe fn right(&self) -> Id<ProtocolObject<dyn GCLinearInput + GCPressedStateInput>>;
     }
 
     unsafe impl ProtocolType for dyn GCDirectionPadElement {}
