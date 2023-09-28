@@ -46,7 +46,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Init initWithICCProfileData:)]
         pub unsafe fn initWithICCProfileData(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             icc_data: &NSData,
         ) -> Option<Id<Self>>;
 
@@ -56,7 +56,7 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Init initWithColorSyncProfile:)]
         pub unsafe fn initWithColorSyncProfile(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             prof: NonNull<c_void>,
         ) -> Option<Id<Self>>;
 
@@ -122,7 +122,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSColorSpace")]
     unsafe impl NSColorSpace {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

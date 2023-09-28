@@ -45,7 +45,7 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Init initWithControlPoints::::)]
         pub unsafe fn initWithControlPoints(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             c1x: c_float,
             c1y: c_float,
             c2x: c_float,
@@ -59,7 +59,7 @@ extern_methods!(
     #[cfg(feature = "CoreAnimation_CAMediaTimingFunction")]
     unsafe impl CAMediaTimingFunction {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

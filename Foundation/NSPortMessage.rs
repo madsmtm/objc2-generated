@@ -24,7 +24,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSPort"))]
         #[method_id(@__retain_semantics Init initWithSendPort:receivePort:components:)]
         pub unsafe fn initWithSendPort_receivePort_components(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             send_port: Option<&NSPort>,
             reply_port: Option<&NSPort>,
             components: Option<&NSArray>,
@@ -59,7 +59,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSPortMessage")]
     unsafe impl NSPortMessage {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

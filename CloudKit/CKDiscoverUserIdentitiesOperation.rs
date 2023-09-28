@@ -25,7 +25,7 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKDiscoverUserIdentitiesOperation")]
     unsafe impl CKDiscoverUserIdentitiesOperation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(all(
             feature = "CloudKit_CKUserIdentityLookupInfo",
@@ -33,7 +33,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithUserIdentityLookupInfos:)]
         pub unsafe fn initWithUserIdentityLookupInfos(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             user_identity_lookup_infos: &NSArray<CKUserIdentityLookupInfo>,
         ) -> Id<Self>;
 

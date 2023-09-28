@@ -101,21 +101,18 @@ extern_methods!(
         pub fn mainThread() -> Id<NSThread>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithTarget:selector:object:)]
         pub unsafe fn initWithTarget_selector_object(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             target: &AnyObject,
             selector: Sel,
             argument: Option<&AnyObject>,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithBlock:)]
-        pub unsafe fn initWithBlock(
-            this: Option<Allocated<Self>>,
-            block: &Block<(), ()>,
-        ) -> Id<Self>;
+        pub unsafe fn initWithBlock(this: Allocated<Self>, block: &Block<(), ()>) -> Id<Self>;
 
         #[method(isExecuting)]
         pub unsafe fn isExecuting(&self) -> bool;

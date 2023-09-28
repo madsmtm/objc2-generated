@@ -81,7 +81,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithType:predicate:anchor:limit:resultsHandler:)]
         pub unsafe fn initWithType_predicate_anchor_limit_resultsHandler(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             r#type: &HKSampleType,
             predicate: Option<&NSPredicate>,
             anchor: Option<&HKQueryAnchor>,
@@ -108,7 +108,7 @@ extern_methods!(
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithType:predicate:anchor:limit:completionHandler:)]
         pub unsafe fn initWithType_predicate_anchor_limit_completionHandler(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             r#type: &HKSampleType,
             predicate: Option<&NSPredicate>,
             anchor: NSUInteger,
@@ -134,7 +134,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithQueryDescriptors:anchor:limit:resultsHandler:)]
         pub unsafe fn initWithQueryDescriptors_anchor_limit_resultsHandler(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             query_descriptors: &NSArray<HKQueryDescriptor>,
             anchor: Option<&HKQueryAnchor>,
             limit: NSInteger,
@@ -157,7 +157,7 @@ extern_methods!(
     #[cfg(feature = "HealthKit_HKAnchoredObjectQuery")]
     unsafe impl HKAnchoredObjectQuery {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 

@@ -34,7 +34,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithSampleType:samplePredicate:completionHandler:)]
         pub unsafe fn initWithSampleType_samplePredicate_completionHandler(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             sample_type: &HKSampleType,
             object_predicate: Option<&NSPredicate>,
             completion_handler: &Block<
@@ -50,7 +50,7 @@ extern_methods!(
     #[cfg(feature = "HealthKit_HKSourceQuery")]
     unsafe impl HKSourceQuery {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 

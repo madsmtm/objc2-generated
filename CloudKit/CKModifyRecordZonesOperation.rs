@@ -25,7 +25,7 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKModifyRecordZonesOperation")]
     unsafe impl CKModifyRecordZonesOperation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(all(
             feature = "CloudKit_CKRecordZone",
@@ -34,7 +34,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithRecordZonesToSave:recordZoneIDsToDelete:)]
         pub unsafe fn initWithRecordZonesToSave_recordZoneIDsToDelete(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             record_zones_to_save: Option<&NSArray<CKRecordZone>>,
             record_zone_i_ds_to_delete: Option<&NSArray<CKRecordZoneID>>,
         ) -> Id<Self>;

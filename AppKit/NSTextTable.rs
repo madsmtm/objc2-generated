@@ -80,7 +80,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTextBlock")]
     unsafe impl NSTextBlock {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method(setValue:type:forDimension:)]
         pub unsafe fn setValue_type_forDimension(
@@ -237,7 +237,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSTextTable")]
         #[method_id(@__retain_semantics Init initWithTable:startingRow:rowSpan:startingColumn:columnSpan:)]
         pub unsafe fn initWithTable_startingRow_rowSpan_startingColumn_columnSpan(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             table: &NSTextTable,
             row: NSInteger,
             row_span: NSInteger,
@@ -268,7 +268,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTextTableBlock")]
     unsafe impl NSTextTableBlock {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 
@@ -383,7 +383,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTextTable")]
     unsafe impl NSTextTable {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 

@@ -47,12 +47,12 @@ extern_methods!(
         pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithTitle:primaryActionTitle:dismissable:)]
         pub unsafe fn initWithTitle_primaryActionTitle_dismissable(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             title: &NSString,
             primary_action_title: &NSString,
             dismissable: bool,

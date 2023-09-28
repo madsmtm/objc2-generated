@@ -25,7 +25,7 @@ extern_methods!(
     #[cfg(feature = "HealthKit_HKLiveWorkoutDataSource")]
     unsafe impl HKLiveWorkoutDataSource {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSSet", feature = "HealthKit_HKQuantityType"))]
         #[method_id(@__retain_semantics Other typesToCollect)]
@@ -37,7 +37,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithHealthStore:workoutConfiguration:)]
         pub unsafe fn initWithHealthStore_workoutConfiguration(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             health_store: &HKHealthStore,
             configuration: Option<&HKWorkoutConfiguration>,
         ) -> Id<Self>;

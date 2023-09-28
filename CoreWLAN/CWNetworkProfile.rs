@@ -49,11 +49,11 @@ extern_methods!(
         pub unsafe fn networkProfile() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithNetworkProfile:)]
         pub unsafe fn initWithNetworkProfile(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             network_profile: &CWNetworkProfile,
         ) -> Id<Self>;
 
@@ -131,11 +131,11 @@ extern_methods!(
         pub unsafe fn networkProfile() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithNetworkProfile:)]
         pub unsafe fn initWithNetworkProfile(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             network_profile: &CWNetworkProfile,
         ) -> Id<Self>;
 

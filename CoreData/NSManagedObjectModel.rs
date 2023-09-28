@@ -44,14 +44,12 @@ extern_methods!(
         ) -> Option<Id<NSManagedObjectModel>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
-        pub unsafe fn initWithContentsOfURL(
-            this: Option<Allocated<Self>>,
-            url: &NSURL,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithContentsOfURL(this: Allocated<Self>, url: &NSURL)
+            -> Option<Id<Self>>;
 
         #[cfg(all(
             feature = "CoreData_NSEntityDescription",

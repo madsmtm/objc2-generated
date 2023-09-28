@@ -25,12 +25,12 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKFetchRecordsOperation")]
     unsafe impl CKFetchRecordsOperation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(all(feature = "CloudKit_CKRecordID", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Init initWithRecordIDs:)]
         pub unsafe fn initWithRecordIDs(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             record_i_ds: &NSArray<CKRecordID>,
         ) -> Id<Self>;
 

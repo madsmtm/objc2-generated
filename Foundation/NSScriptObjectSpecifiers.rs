@@ -76,7 +76,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithContainerSpecifier:key:)]
         pub unsafe fn initWithContainerSpecifier_key(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             container: &NSScriptObjectSpecifier,
             property: &NSString,
         ) -> Id<Self>;
@@ -87,7 +87,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithContainerClassDescription:containerSpecifier:key:)]
         pub unsafe fn initWithContainerClassDescription_containerSpecifier_key(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             class_desc: &NSScriptClassDescription,
             container: Option<&NSScriptObjectSpecifier>,
             property: &NSString,
@@ -95,10 +95,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            in_coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, in_coder: &NSCoder) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Other childSpecifier)]
         pub unsafe fn childSpecifier(&self) -> Option<Id<NSScriptObjectSpecifier>>;
@@ -192,7 +189,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
     unsafe impl NSScriptObjectSpecifier {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -227,7 +224,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithContainerClassDescription:containerSpecifier:key:index:)]
         pub unsafe fn initWithContainerClassDescription_containerSpecifier_key_index(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             class_desc: &NSScriptClassDescription,
             container: Option<&NSScriptObjectSpecifier>,
             property: &NSString,
@@ -249,7 +246,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithContainerSpecifier:key:)]
         pub unsafe fn initWithContainerSpecifier_key(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             container: &NSScriptObjectSpecifier,
             property: &NSString,
         ) -> Id<Self>;
@@ -260,7 +257,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithContainerClassDescription:containerSpecifier:key:)]
         pub unsafe fn initWithContainerClassDescription_containerSpecifier_key(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             class_desc: &NSScriptClassDescription,
             container: Option<&NSScriptObjectSpecifier>,
             property: &NSString,
@@ -268,10 +265,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            in_coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, in_coder: &NSCoder) -> Option<Id<Self>>;
     }
 );
 
@@ -280,7 +274,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSIndexSpecifier")]
     unsafe impl NSIndexSpecifier {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -318,7 +312,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithContainerSpecifier:key:)]
         pub unsafe fn initWithContainerSpecifier_key(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             container: &NSScriptObjectSpecifier,
             property: &NSString,
         ) -> Id<Self>;
@@ -329,7 +323,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithContainerClassDescription:containerSpecifier:key:)]
         pub unsafe fn initWithContainerClassDescription_containerSpecifier_key(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             class_desc: &NSScriptClassDescription,
             container: Option<&NSScriptObjectSpecifier>,
             property: &NSString,
@@ -337,10 +331,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            in_coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, in_coder: &NSCoder) -> Option<Id<Self>>;
     }
 );
 
@@ -349,7 +340,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSMiddleSpecifier")]
     unsafe impl NSMiddleSpecifier {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -380,10 +371,7 @@ extern_methods!(
     unsafe impl NSNameSpecifier {
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            in_coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, in_coder: &NSCoder) -> Option<Id<Self>>;
 
         #[cfg(all(
             feature = "Foundation_NSScriptClassDescription",
@@ -391,7 +379,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithContainerClassDescription:containerSpecifier:key:name:)]
         pub unsafe fn initWithContainerClassDescription_containerSpecifier_key_name(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             class_desc: &NSScriptClassDescription,
             container: Option<&NSScriptObjectSpecifier>,
             property: &NSString,
@@ -415,7 +403,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithContainerSpecifier:key:)]
         pub unsafe fn initWithContainerSpecifier_key(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             container: &NSScriptObjectSpecifier,
             property: &NSString,
         ) -> Id<Self>;
@@ -426,7 +414,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithContainerClassDescription:containerSpecifier:key:)]
         pub unsafe fn initWithContainerClassDescription_containerSpecifier_key(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             class_desc: &NSScriptClassDescription,
             container: Option<&NSScriptObjectSpecifier>,
             property: &NSString,
@@ -439,7 +427,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSNameSpecifier")]
     unsafe impl NSNameSpecifier {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -467,7 +455,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
         #[method_id(@__retain_semantics Init initWithPosition:objectSpecifier:)]
         pub unsafe fn initWithPosition_objectSpecifier(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             position: NSInsertionPosition,
             specifier: &NSScriptObjectSpecifier,
         ) -> Id<Self>;
@@ -509,7 +497,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSPositionalSpecifier")]
     unsafe impl NSPositionalSpecifier {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -547,7 +535,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithContainerSpecifier:key:)]
         pub unsafe fn initWithContainerSpecifier_key(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             container: &NSScriptObjectSpecifier,
             property: &NSString,
         ) -> Id<Self>;
@@ -558,7 +546,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithContainerClassDescription:containerSpecifier:key:)]
         pub unsafe fn initWithContainerClassDescription_containerSpecifier_key(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             class_desc: &NSScriptClassDescription,
             container: Option<&NSScriptObjectSpecifier>,
             property: &NSString,
@@ -566,10 +554,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            in_coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, in_coder: &NSCoder) -> Option<Id<Self>>;
     }
 );
 
@@ -578,7 +563,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSPropertySpecifier")]
     unsafe impl NSPropertySpecifier {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -616,7 +601,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithContainerSpecifier:key:)]
         pub unsafe fn initWithContainerSpecifier_key(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             container: &NSScriptObjectSpecifier,
             property: &NSString,
         ) -> Id<Self>;
@@ -627,7 +612,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithContainerClassDescription:containerSpecifier:key:)]
         pub unsafe fn initWithContainerClassDescription_containerSpecifier_key(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             class_desc: &NSScriptClassDescription,
             container: Option<&NSScriptObjectSpecifier>,
             property: &NSString,
@@ -635,10 +620,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            in_coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, in_coder: &NSCoder) -> Option<Id<Self>>;
     }
 );
 
@@ -647,7 +629,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSRandomSpecifier")]
     unsafe impl NSRandomSpecifier {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -678,10 +660,7 @@ extern_methods!(
     unsafe impl NSRangeSpecifier {
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            in_coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, in_coder: &NSCoder) -> Option<Id<Self>>;
 
         #[cfg(all(
             feature = "Foundation_NSScriptClassDescription",
@@ -689,7 +668,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithContainerClassDescription:containerSpecifier:key:startSpecifier:endSpecifier:)]
         pub unsafe fn initWithContainerClassDescription_containerSpecifier_key_startSpecifier_endSpecifier(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             class_desc: &NSScriptClassDescription,
             container: Option<&NSScriptObjectSpecifier>,
             property: &NSString,
@@ -718,7 +697,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithContainerSpecifier:key:)]
         pub unsafe fn initWithContainerSpecifier_key(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             container: &NSScriptObjectSpecifier,
             property: &NSString,
         ) -> Id<Self>;
@@ -729,7 +708,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithContainerClassDescription:containerSpecifier:key:)]
         pub unsafe fn initWithContainerClassDescription_containerSpecifier_key(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             class_desc: &NSScriptClassDescription,
             container: Option<&NSScriptObjectSpecifier>,
             property: &NSString,
@@ -742,7 +721,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSRangeSpecifier")]
     unsafe impl NSRangeSpecifier {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -773,10 +752,7 @@ extern_methods!(
     unsafe impl NSRelativeSpecifier {
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            in_coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, in_coder: &NSCoder) -> Option<Id<Self>>;
 
         #[cfg(all(
             feature = "Foundation_NSScriptClassDescription",
@@ -784,7 +760,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithContainerClassDescription:containerSpecifier:key:relativePosition:baseSpecifier:)]
         pub unsafe fn initWithContainerClassDescription_containerSpecifier_key_relativePosition_baseSpecifier(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             class_desc: &NSScriptClassDescription,
             container: Option<&NSScriptObjectSpecifier>,
             property: &NSString,
@@ -813,7 +789,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithContainerSpecifier:key:)]
         pub unsafe fn initWithContainerSpecifier_key(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             container: &NSScriptObjectSpecifier,
             property: &NSString,
         ) -> Id<Self>;
@@ -824,7 +800,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithContainerClassDescription:containerSpecifier:key:)]
         pub unsafe fn initWithContainerClassDescription_containerSpecifier_key(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             class_desc: &NSScriptClassDescription,
             container: Option<&NSScriptObjectSpecifier>,
             property: &NSString,
@@ -837,7 +813,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSRelativeSpecifier")]
     unsafe impl NSRelativeSpecifier {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -868,10 +844,7 @@ extern_methods!(
     unsafe impl NSUniqueIDSpecifier {
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            in_coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, in_coder: &NSCoder) -> Option<Id<Self>>;
 
         #[cfg(all(
             feature = "Foundation_NSScriptClassDescription",
@@ -879,7 +852,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithContainerClassDescription:containerSpecifier:key:uniqueID:)]
         pub unsafe fn initWithContainerClassDescription_containerSpecifier_key_uniqueID(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             class_desc: &NSScriptClassDescription,
             container: Option<&NSScriptObjectSpecifier>,
             property: &NSString,
@@ -901,7 +874,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithContainerSpecifier:key:)]
         pub unsafe fn initWithContainerSpecifier_key(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             container: &NSScriptObjectSpecifier,
             property: &NSString,
         ) -> Id<Self>;
@@ -912,7 +885,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithContainerClassDescription:containerSpecifier:key:)]
         pub unsafe fn initWithContainerClassDescription_containerSpecifier_key(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             class_desc: &NSScriptClassDescription,
             container: Option<&NSScriptObjectSpecifier>,
             property: &NSString,
@@ -925,7 +898,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSUniqueIDSpecifier")]
     unsafe impl NSUniqueIDSpecifier {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -956,10 +929,7 @@ extern_methods!(
     unsafe impl NSWhoseSpecifier {
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            in_coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, in_coder: &NSCoder) -> Option<Id<Self>>;
 
         #[cfg(all(
             feature = "Foundation_NSScriptClassDescription",
@@ -968,7 +938,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithContainerClassDescription:containerSpecifier:key:test:)]
         pub unsafe fn initWithContainerClassDescription_containerSpecifier_key_test(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             class_desc: &NSScriptClassDescription,
             container: Option<&NSScriptObjectSpecifier>,
             property: &NSString,
@@ -1022,7 +992,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithContainerSpecifier:key:)]
         pub unsafe fn initWithContainerSpecifier_key(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             container: &NSScriptObjectSpecifier,
             property: &NSString,
         ) -> Id<Self>;
@@ -1033,7 +1003,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithContainerClassDescription:containerSpecifier:key:)]
         pub unsafe fn initWithContainerClassDescription_containerSpecifier_key(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             class_desc: &NSScriptClassDescription,
             container: Option<&NSScriptObjectSpecifier>,
             property: &NSString,
@@ -1046,7 +1016,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSWhoseSpecifier")]
     unsafe impl NSWhoseSpecifier {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

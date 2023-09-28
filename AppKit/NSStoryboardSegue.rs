@@ -35,7 +35,7 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Init initWithIdentifier:source:destination:)]
         pub unsafe fn initWithIdentifier_source_destination(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             identifier: &NSStoryboardSegueIdentifier,
             source_controller: &AnyObject,
             destination_controller: &AnyObject,
@@ -60,7 +60,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSStoryboardSegue")]
     unsafe impl NSStoryboardSegue {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

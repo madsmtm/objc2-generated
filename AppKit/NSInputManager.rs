@@ -106,7 +106,7 @@ extern_methods!(
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithName:host:)]
         pub unsafe fn initWithName_host(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             input_server_name: Option<&NSString>,
             host_name: Option<&NSString>,
         ) -> Option<Id<NSInputManager>>;
@@ -167,7 +167,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSInputManager")]
     unsafe impl NSInputManager {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

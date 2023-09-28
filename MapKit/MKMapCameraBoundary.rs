@@ -36,22 +36,19 @@ extern_methods!(
     unsafe impl MKMapCameraBoundary {
         #[method_id(@__retain_semantics Init initWithMapRect:)]
         pub unsafe fn initWithMapRect(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             map_rect: MKMapRect,
         ) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Init initWithCoordinateRegion:)]
         pub unsafe fn initWithCoordinateRegion(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             region: MKCoordinateRegion,
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
 
         #[method(mapRect)]
         pub unsafe fn mapRect(&self) -> MKMapRect;
@@ -66,7 +63,7 @@ extern_methods!(
     #[cfg(feature = "MapKit_MKMapCameraBoundary")]
     unsafe impl MKMapCameraBoundary {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

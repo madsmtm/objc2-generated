@@ -33,7 +33,7 @@ extern_methods!(
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithURLString:title:lastVisitedTimeInterval:)]
         pub unsafe fn initWithURLString_title_lastVisitedTimeInterval(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             url_string: Option<&NSString>,
             title: Option<&NSString>,
             time: NSTimeInterval,
@@ -80,7 +80,7 @@ extern_methods!(
     #[cfg(feature = "WebKit_WebHistoryItem")]
     unsafe impl WebHistoryItem {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

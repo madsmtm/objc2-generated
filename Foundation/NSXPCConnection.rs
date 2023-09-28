@@ -58,7 +58,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithServiceName:)]
         pub unsafe fn initWithServiceName(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             service_name: &NSString,
         ) -> Id<Self>;
 
@@ -69,7 +69,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithMachServiceName:options:)]
         pub unsafe fn initWithMachServiceName_options(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             name: &NSString,
             options: NSXPCConnectionOptions,
         ) -> Id<Self>;
@@ -77,7 +77,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSXPCListenerEndpoint")]
         #[method_id(@__retain_semantics Init initWithListenerEndpoint:)]
         pub unsafe fn initWithListenerEndpoint(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             endpoint: &NSXPCListenerEndpoint,
         ) -> Id<Self>;
 
@@ -168,7 +168,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSXPCConnection")]
     unsafe impl NSXPCConnection {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -201,10 +201,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithMachServiceName:)]
-        pub unsafe fn initWithMachServiceName(
-            this: Option<Allocated<Self>>,
-            name: &NSString,
-        ) -> Id<Self>;
+        pub unsafe fn initWithMachServiceName(this: Allocated<Self>, name: &NSString) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSXPCListenerDelegate>>>;
@@ -242,7 +239,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSXPCListener")]
     unsafe impl NSXPCListener {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -337,7 +334,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSXPCInterface")]
     unsafe impl NSXPCInterface {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -375,7 +372,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSXPCListenerEndpoint")]
     unsafe impl NSXPCListenerEndpoint {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -418,7 +415,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSXPCCoder")]
     unsafe impl NSXPCCoder {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

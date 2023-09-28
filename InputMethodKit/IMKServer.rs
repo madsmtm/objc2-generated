@@ -26,7 +26,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithName:bundleIdentifier:)]
         pub unsafe fn initWithName_bundleIdentifier(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             name: Option<&NSString>,
             bundle_identifier: Option<&NSString>,
         ) -> Option<Id<Self>>;
@@ -34,7 +34,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithName:controllerClass:delegateClass:)]
         pub unsafe fn initWithName_controllerClass_delegateClass(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             name: Option<&NSString>,
             controller_class_id: Option<&AnyClass>,
             delegate_class_id: Option<&AnyClass>,
@@ -57,7 +57,7 @@ extern_methods!(
     #[cfg(feature = "InputMethodKit_IMKServer")]
     unsafe impl IMKServer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

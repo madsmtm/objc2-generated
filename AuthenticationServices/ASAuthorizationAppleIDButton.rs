@@ -63,7 +63,7 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Init initWithAuthorizationButtonType:authorizationButtonStyle:)]
         pub unsafe fn initWithAuthorizationButtonType_authorizationButtonStyle(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             r#type: ASAuthorizationAppleIDButtonType,
             style: ASAuthorizationAppleIDButtonStyle,
         ) -> Id<Self>;
@@ -81,14 +81,11 @@ extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDButton")]
     unsafe impl ASAuthorizationAppleIDButton {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
     }
 );
 
@@ -97,7 +94,7 @@ extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDButton")]
     unsafe impl ASAuthorizationAppleIDButton {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 

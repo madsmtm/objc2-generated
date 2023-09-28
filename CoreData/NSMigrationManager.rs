@@ -25,7 +25,7 @@ extern_methods!(
         #[cfg(feature = "CoreData_NSManagedObjectModel")]
         #[method_id(@__retain_semantics Init initWithSourceModel:destinationModel:)]
         pub unsafe fn initWithSourceModel_destinationModel(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             source_model: &NSManagedObjectModel,
             destination_model: &NSManagedObjectModel,
         ) -> Id<Self>;
@@ -163,7 +163,7 @@ extern_methods!(
     #[cfg(feature = "CoreData_NSMigrationManager")]
     unsafe impl NSMigrationManager {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

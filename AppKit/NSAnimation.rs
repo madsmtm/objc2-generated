@@ -56,17 +56,14 @@ extern_methods!(
     unsafe impl NSAnimation {
         #[method_id(@__retain_semantics Init initWithDuration:animationCurve:)]
         pub unsafe fn initWithDuration_animationCurve(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             duration: NSTimeInterval,
             animation_curve: NSAnimationCurve,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
 
         #[method(startAnimation)]
         pub unsafe fn startAnimation(&self);
@@ -167,7 +164,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSAnimation")]
     unsafe impl NSAnimation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -261,7 +258,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSDictionary"))]
         #[method_id(@__retain_semantics Init initWithViewAnimations:)]
         pub unsafe fn initWithViewAnimations(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             view_animations: &NSArray<NSDictionary<NSViewAnimationKey, AnyObject>>,
         ) -> Id<Self>;
 
@@ -286,17 +283,14 @@ extern_methods!(
     unsafe impl NSViewAnimation {
         #[method_id(@__retain_semantics Init initWithDuration:animationCurve:)]
         pub unsafe fn initWithDuration_animationCurve(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             duration: NSTimeInterval,
             animation_curve: NSAnimationCurve,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
     }
 );
 
@@ -305,7 +299,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSViewAnimation")]
     unsafe impl NSViewAnimation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

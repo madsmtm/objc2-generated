@@ -99,10 +99,10 @@ extern_methods!(
         ) -> Id<NSAppleEventDescriptor>;
 
         #[method_id(@__retain_semantics Init initListDescriptor)]
-        pub unsafe fn initListDescriptor(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn initListDescriptor(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initRecordDescriptor)]
-        pub unsafe fn initRecordDescriptor(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn initRecordDescriptor(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other data)]
@@ -164,7 +164,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
     unsafe impl NSAppleEventDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

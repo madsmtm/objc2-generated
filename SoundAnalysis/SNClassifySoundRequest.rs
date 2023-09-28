@@ -42,19 +42,19 @@ extern_methods!(
         #[cfg(all(feature = "CoreML_MLModel", feature = "Foundation_NSError"))]
         #[method_id(@__retain_semantics Init initWithMLModel:error:_)]
         pub unsafe fn initWithMLModel_error(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             ml_model: &MLModel,
         ) -> Result<Id<Self>, Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Init initWithClassifierIdentifier:error:_)]
         pub unsafe fn initWithClassifierIdentifier_error(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             classifier_identifier: &SNClassifierIdentifier,
         ) -> Result<Id<Self>, Id<NSError>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

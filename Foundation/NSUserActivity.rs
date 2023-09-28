@@ -26,13 +26,13 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithActivityType:)]
         pub unsafe fn initWithActivityType(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             activity_type: &NSString,
         ) -> Id<Self>;
 
         #[deprecated = "Use initWithActivityType: with a specific activity type string"]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other activityType)]

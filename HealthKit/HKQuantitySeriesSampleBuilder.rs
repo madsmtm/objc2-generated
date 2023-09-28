@@ -32,7 +32,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithHealthStore:quantityType:startDate:device:)]
         pub unsafe fn initWithHealthStore_quantityType_startDate_device(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             health_store: &HKHealthStore,
             quantity_type: &HKQuantityType,
             start_date: &NSDate,
@@ -40,7 +40,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "HealthKit_HKQuantityType")]
         #[method_id(@__retain_semantics Other quantityType)]

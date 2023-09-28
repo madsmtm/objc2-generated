@@ -33,7 +33,7 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKQueryCursor")]
     unsafe impl CKQueryCursor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -62,18 +62,15 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKQueryOperation")]
     unsafe impl CKQueryOperation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "CloudKit_CKQuery")]
         #[method_id(@__retain_semantics Init initWithQuery:)]
-        pub unsafe fn initWithQuery(this: Option<Allocated<Self>>, query: &CKQuery) -> Id<Self>;
+        pub unsafe fn initWithQuery(this: Allocated<Self>, query: &CKQuery) -> Id<Self>;
 
         #[cfg(feature = "CloudKit_CKQueryCursor")]
         #[method_id(@__retain_semantics Init initWithCursor:)]
-        pub unsafe fn initWithCursor(
-            this: Option<Allocated<Self>>,
-            cursor: &CKQueryCursor,
-        ) -> Id<Self>;
+        pub unsafe fn initWithCursor(this: Allocated<Self>, cursor: &CKQueryCursor) -> Id<Self>;
 
         #[cfg(feature = "CloudKit_CKQuery")]
         #[method_id(@__retain_semantics Other query)]

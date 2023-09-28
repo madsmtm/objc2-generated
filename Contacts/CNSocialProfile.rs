@@ -50,7 +50,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithUrlString:username:userIdentifier:service:)]
         pub unsafe fn initWithUrlString_username_userIdentifier_service(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             url_string: Option<&NSString>,
             username: Option<&NSString>,
             user_identifier: Option<&NSString>,
@@ -72,7 +72,7 @@ extern_methods!(
     #[cfg(feature = "Contacts_CNSocialProfile")]
     unsafe impl CNSocialProfile {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

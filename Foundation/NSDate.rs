@@ -44,20 +44,17 @@ extern_methods!(
         pub unsafe fn timeIntervalSinceReferenceDate(&self) -> NSTimeInterval;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithTimeIntervalSinceReferenceDate:)]
         pub unsafe fn initWithTimeIntervalSinceReferenceDate(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             ti: NSTimeInterval,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
     }
 );
 
@@ -148,19 +145,19 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Init initWithTimeIntervalSinceNow:)]
         pub unsafe fn initWithTimeIntervalSinceNow(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             secs: NSTimeInterval,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithTimeIntervalSince1970:)]
         pub unsafe fn initWithTimeIntervalSince1970(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             secs: NSTimeInterval,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithTimeInterval:sinceDate:)]
         pub unsafe fn initWithTimeInterval_sinceDate(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             secs_to_be_added: NSTimeInterval,
             date: &NSDate,
         ) -> Id<Self>;

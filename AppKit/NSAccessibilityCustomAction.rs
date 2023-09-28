@@ -26,7 +26,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithName:handler:)]
         pub unsafe fn initWithName_handler(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             name: &NSString,
             handler: Option<&Block<(), Bool>>,
         ) -> Id<Self>;
@@ -34,7 +34,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithName:target:selector:)]
         pub unsafe fn initWithName_target_selector(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             name: &NSString,
             target: &NSObject,
             selector: Sel,
@@ -73,7 +73,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSAccessibilityCustomAction")]
     unsafe impl NSAccessibilityCustomAction {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

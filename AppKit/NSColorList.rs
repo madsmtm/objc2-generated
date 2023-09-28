@@ -41,15 +41,12 @@ extern_methods!(
         pub unsafe fn colorListNamed(name: &NSColorListName) -> Option<Id<NSColorList>>;
 
         #[method_id(@__retain_semantics Init initWithName:)]
-        pub unsafe fn initWithName(
-            this: Option<Allocated<Self>>,
-            name: &NSColorListName,
-        ) -> Id<Self>;
+        pub unsafe fn initWithName(this: Allocated<Self>, name: &NSColorListName) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithName:fromFile:)]
         pub unsafe fn initWithName_fromFile(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             name: &NSColorListName,
             path: Option<&NSString>,
         ) -> Option<Id<Self>>;
@@ -103,7 +100,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSColorList")]
     unsafe impl NSColorList {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -51,12 +51,12 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Init initWithTransform:)]
         pub unsafe fn initWithTransform(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             transform: &NSAffineTransform,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method(translateXBy:yBy:)]
         pub unsafe fn translateXBy_yBy(&self, delta_x: CGFloat, delta_y: CGFloat);

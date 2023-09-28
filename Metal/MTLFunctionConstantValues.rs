@@ -60,7 +60,7 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLFunctionConstantValues")]
     unsafe impl MTLFunctionConstantValues {
         #[method_id(@__retain_semantics Init init)]
-        pub fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub fn new() -> Id<Self>;

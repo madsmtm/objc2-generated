@@ -78,10 +78,8 @@ extern_methods!(
 
         #[cfg(feature = "MapKit_MKPlacemark")]
         #[method_id(@__retain_semantics Init initWithPlacemark:)]
-        pub unsafe fn initWithPlacemark(
-            this: Option<Allocated<Self>>,
-            placemark: &MKPlacemark,
-        ) -> Id<Self>;
+        pub unsafe fn initWithPlacemark(this: Allocated<Self>, placemark: &MKPlacemark)
+            -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(openInMapsWithLaunchOptions:)]
@@ -108,7 +106,7 @@ extern_methods!(
     #[cfg(feature = "MapKit_MKMapItem")]
     unsafe impl MKMapItem {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

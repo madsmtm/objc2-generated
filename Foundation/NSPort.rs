@@ -105,7 +105,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSPort")]
     unsafe impl NSPort {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -161,7 +161,7 @@ extern_methods!(
         pub unsafe fn portWithMachPort(mach_port: u32) -> Id<NSPort>;
 
         #[method_id(@__retain_semantics Init initWithMachPort:)]
-        pub unsafe fn initWithMachPort(this: Option<Allocated<Self>>, mach_port: u32) -> Id<Self>;
+        pub unsafe fn initWithMachPort(this: Allocated<Self>, mach_port: u32) -> Id<Self>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -177,7 +177,7 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Init initWithMachPort:options:)]
         pub unsafe fn initWithMachPort_options(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             mach_port: u32,
             f: NSMachPortOptions,
         ) -> Id<Self>;
@@ -200,7 +200,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSMachPort")]
     unsafe impl NSMachPort {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -249,7 +249,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSMessagePort")]
     unsafe impl NSMessagePort {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -282,18 +282,15 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSSocketPort")]
     unsafe impl NSSocketPort {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithTCPPort:)]
-        pub unsafe fn initWithTCPPort(
-            this: Option<Allocated<Self>>,
-            port: c_ushort,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithTCPPort(this: Allocated<Self>, port: c_ushort) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Init initWithProtocolFamily:socketType:protocol:address:)]
         pub unsafe fn initWithProtocolFamily_socketType_protocol_address(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             family: c_int,
             r#type: c_int,
             protocol: c_int,
@@ -302,7 +299,7 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Init initWithProtocolFamily:socketType:protocol:socket:)]
         pub unsafe fn initWithProtocolFamily_socketType_protocol_socket(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             family: c_int,
             r#type: c_int,
             protocol: c_int,
@@ -312,7 +309,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initRemoteWithTCPPort:host:)]
         pub unsafe fn initRemoteWithTCPPort_host(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             port: c_ushort,
             host_name: Option<&NSString>,
         ) -> Option<Id<Self>>;
@@ -320,7 +317,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Init initRemoteWithProtocolFamily:socketType:protocol:address:)]
         pub unsafe fn initRemoteWithProtocolFamily_socketType_protocol_address(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             family: c_int,
             r#type: c_int,
             protocol: c_int,

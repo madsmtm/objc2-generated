@@ -44,7 +44,7 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKSubscription")]
     unsafe impl CKSubscription {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -106,7 +106,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSPredicate")]
         #[method_id(@__retain_semantics Init initWithRecordType:predicate:options:)]
         pub unsafe fn initWithRecordType_predicate_options(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             record_type: &CKRecordType,
             predicate: &NSPredicate,
             query_subscription_options: CKQuerySubscriptionOptions,
@@ -115,7 +115,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSPredicate")]
         #[method_id(@__retain_semantics Init initWithRecordType:predicate:subscriptionID:options:)]
         pub unsafe fn initWithRecordType_predicate_subscriptionID_options(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             record_type: &CKRecordType,
             predicate: &NSPredicate,
             subscription_id: &CKSubscriptionID,
@@ -124,8 +124,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, a_decoder: &NSCoder)
-            -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other recordType)]
         pub unsafe fn recordType(&self) -> Id<CKRecordType>;
@@ -152,7 +151,7 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKQuerySubscription")]
     unsafe impl CKQuerySubscription {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -189,23 +188,19 @@ extern_methods!(
     unsafe impl CKRecordZoneSubscription {
         #[cfg(feature = "CloudKit_CKRecordZoneID")]
         #[method_id(@__retain_semantics Init initWithZoneID:)]
-        pub unsafe fn initWithZoneID(
-            this: Option<Allocated<Self>>,
-            zone_id: &CKRecordZoneID,
-        ) -> Id<Self>;
+        pub unsafe fn initWithZoneID(this: Allocated<Self>, zone_id: &CKRecordZoneID) -> Id<Self>;
 
         #[cfg(feature = "CloudKit_CKRecordZoneID")]
         #[method_id(@__retain_semantics Init initWithZoneID:subscriptionID:)]
         pub unsafe fn initWithZoneID_subscriptionID(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             zone_id: &CKRecordZoneID,
             subscription_id: &CKSubscriptionID,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, a_decoder: &NSCoder)
-            -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Id<Self>;
 
         #[cfg(feature = "CloudKit_CKRecordZoneID")]
         #[method_id(@__retain_semantics Other zoneID)]
@@ -224,7 +219,7 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKRecordZoneSubscription")]
     unsafe impl CKRecordZoneSubscription {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -260,21 +255,20 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKDatabaseSubscription")]
     unsafe impl CKDatabaseSubscription {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithSubscriptionID:)]
         pub unsafe fn initWithSubscriptionID(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             subscription_id: &CKSubscriptionID,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, a_decoder: &NSCoder)
-            -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other recordType)]
         pub unsafe fn recordType(&self) -> Option<Id<CKRecordType>>;
@@ -471,7 +465,7 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKNotificationInfo")]
     unsafe impl CKNotificationInfo {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

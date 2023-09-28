@@ -33,11 +33,11 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTextContainer")]
     unsafe impl NSTextContainer {
         #[method_id(@__retain_semantics Init initWithSize:)]
-        pub unsafe fn initWithSize(this: Option<Allocated<Self>>, size: NSSize) -> Id<Self>;
+        pub unsafe fn initWithSize(this: Allocated<Self>, size: NSSize) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSLayoutManager")]
         #[method_id(@__retain_semantics Other layoutManager)]
@@ -126,7 +126,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTextContainer")]
     unsafe impl NSTextContainer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -160,7 +160,7 @@ extern_methods!(
     unsafe impl NSTextContainer {
         #[method_id(@__retain_semantics Init initWithContainerSize:)]
         pub unsafe fn initWithContainerSize(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             a_container_size: NSSize,
         ) -> Id<Self>;
 

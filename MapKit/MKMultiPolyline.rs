@@ -35,7 +35,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSArray", feature = "MapKit_MKPolyline"))]
         #[method_id(@__retain_semantics Init initWithPolylines:)]
         pub unsafe fn initWithPolylines(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             polylines: &NSArray<MKPolyline>,
         ) -> Id<Self>;
 
@@ -50,7 +50,7 @@ extern_methods!(
     #[cfg(feature = "MapKit_MKMultiPolyline")]
     unsafe impl MKMultiPolyline {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

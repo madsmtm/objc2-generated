@@ -32,14 +32,11 @@ extern_methods!(
         pub unsafe fn lockWithPath(path: &NSString) -> Option<Id<NSDistributedLock>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithPath:)]
-        pub unsafe fn initWithPath(
-            this: Option<Allocated<Self>>,
-            path: &NSString,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithPath(this: Allocated<Self>, path: &NSString) -> Option<Id<Self>>;
 
         #[method(tryLock)]
         pub unsafe fn tryLock(&self) -> bool;

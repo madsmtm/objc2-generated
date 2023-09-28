@@ -57,11 +57,11 @@ extern_methods!(
         pub unsafe fn configuration() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithConfiguration:)]
         pub unsafe fn initWithConfiguration(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             configuration: &CWConfiguration,
         ) -> Id<Self>;
 
@@ -169,11 +169,11 @@ extern_methods!(
         pub unsafe fn configuration() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithConfiguration:)]
         pub unsafe fn initWithConfiguration(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             configuration: &CWConfiguration,
         ) -> Id<Self>;
 

@@ -53,7 +53,7 @@ extern_methods!(
     #[cfg(feature = "MetricKit_MXForegroundExitData")]
     unsafe impl MXForegroundExitData {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -121,7 +121,7 @@ extern_methods!(
     #[cfg(feature = "MetricKit_MXBackgroundExitData")]
     unsafe impl MXBackgroundExitData {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -168,7 +168,7 @@ extern_methods!(
     #[cfg(feature = "MetricKit_MXAppExitMetric")]
     unsafe impl MXAppExitMetric {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

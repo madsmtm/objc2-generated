@@ -33,16 +33,14 @@ extern_methods!(
     #[cfg(feature = "CoreLocation_CLPlacemark")]
     unsafe impl CLPlacemark {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithPlacemark:)]
-        pub unsafe fn initWithPlacemark(
-            this: Option<Allocated<Self>>,
-            placemark: &CLPlacemark,
-        ) -> Id<Self>;
+        pub unsafe fn initWithPlacemark(this: Allocated<Self>, placemark: &CLPlacemark)
+            -> Id<Self>;
 
         #[cfg(feature = "CoreLocation_CLLocation")]
         #[method_id(@__retain_semantics Other location)]

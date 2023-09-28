@@ -47,7 +47,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithSource:injectionTime:forMainFrameOnly:)]
         pub unsafe fn initWithSource_injectionTime_forMainFrameOnly(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             source: &NSString,
             injection_time: WKUserScriptInjectionTime,
             for_main_frame_only: bool,
@@ -56,7 +56,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_WKContentWorld"))]
         #[method_id(@__retain_semantics Init initWithSource:injectionTime:forMainFrameOnly:inContentWorld:)]
         pub unsafe fn initWithSource_injectionTime_forMainFrameOnly_inContentWorld(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             source: &NSString,
             injection_time: WKUserScriptInjectionTime,
             for_main_frame_only: bool,
@@ -70,7 +70,7 @@ extern_methods!(
     #[cfg(feature = "WebKit_WKUserScript")]
     unsafe impl WKUserScript {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

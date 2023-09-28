@@ -45,17 +45,14 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithDefaults:initialValues:)]
         pub unsafe fn initWithDefaults_initialValues(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             defaults: Option<&NSUserDefaults>,
             initial_values: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSUserDefaults")]
         #[method_id(@__retain_semantics Other defaults)]
@@ -100,7 +97,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSUserDefaultsController")]
     unsafe impl NSUserDefaultsController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 

@@ -68,7 +68,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Init initWithTextAlignment:location:options:)]
         pub unsafe fn initWithTextAlignment_location_options(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             alignment: NSTextAlignment,
             loc: CGFloat,
             options: &NSDictionary<NSTextTabOptionKey, AnyObject>,
@@ -91,7 +91,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTextTab")]
     unsafe impl NSTextTab {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -213,7 +213,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSParagraphStyle")]
     unsafe impl NSParagraphStyle {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -413,7 +413,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSMutableParagraphStyle")]
     unsafe impl NSMutableParagraphStyle {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -436,7 +436,7 @@ extern_methods!(
     unsafe impl NSTextTab {
         #[method_id(@__retain_semantics Init initWithType:location:)]
         pub unsafe fn initWithType_location(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             r#type: NSTextTabType,
             loc: CGFloat,
         ) -> Id<Self>;

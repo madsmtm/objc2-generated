@@ -50,7 +50,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:byReference:)]
         pub unsafe fn initWithContentsOfURL_byReference(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             url: &NSURL,
             by_ref: bool,
         ) -> Option<Id<Self>>;
@@ -58,17 +58,14 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithContentsOfFile:byReference:)]
         pub unsafe fn initWithContentsOfFile_byReference(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             path: &NSString,
             by_ref: bool,
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Init initWithData:)]
-        pub unsafe fn initWithData(
-            this: Option<Allocated<Self>>,
-            data: &NSData,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithData(this: Allocated<Self>, data: &NSData) -> Option<Id<Self>>;
 
         #[method(setName:)]
         pub unsafe fn setName(&self, string: Option<&NSSoundName>) -> bool;
@@ -87,7 +84,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSPasteboard")]
         #[method_id(@__retain_semantics Init initWithPasteboard:)]
         pub unsafe fn initWithPasteboard(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             pasteboard: &NSPasteboard,
         ) -> Option<Id<Self>>;
 
@@ -165,7 +162,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSSound")]
     unsafe impl NSSound {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

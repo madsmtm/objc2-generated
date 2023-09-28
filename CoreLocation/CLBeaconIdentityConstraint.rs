@@ -50,12 +50,12 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSUUID")]
         #[method_id(@__retain_semantics Init initWithUUID:)]
-        pub unsafe fn initWithUUID(this: Option<Allocated<Self>>, uuid: &NSUUID) -> Id<Self>;
+        pub unsafe fn initWithUUID(this: Allocated<Self>, uuid: &NSUUID) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSUUID")]
         #[method_id(@__retain_semantics Init initWithUUID:major:)]
         pub unsafe fn initWithUUID_major(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             uuid: &NSUUID,
             major: CLBeaconMajorValue,
         ) -> Id<Self>;
@@ -63,7 +63,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSUUID")]
         #[method_id(@__retain_semantics Init initWithUUID:major:minor:)]
         pub unsafe fn initWithUUID_major_minor(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             uuid: &NSUUID,
             major: CLBeaconMajorValue,
             minor: CLBeaconMinorValue,
@@ -76,7 +76,7 @@ extern_methods!(
     #[cfg(feature = "CoreLocation_CLBeaconIdentityConstraint")]
     unsafe impl CLBeaconIdentityConstraint {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -90,7 +90,7 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKTurnBasedParticipant")]
     unsafe impl GKTurnBasedParticipant {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -521,7 +521,7 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKTurnBasedMatch")]
     unsafe impl GKTurnBasedMatch {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -641,7 +641,7 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKTurnBasedExchange")]
     unsafe impl GKTurnBasedExchange {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -689,7 +689,7 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKTurnBasedExchangeReply")]
     unsafe impl GKTurnBasedExchangeReply {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -767,7 +767,7 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKTurnBasedEventHandler")]
     unsafe impl GKTurnBasedEventHandler {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -25,12 +25,12 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKModifySubscriptionsOperation")]
     unsafe impl CKModifySubscriptionsOperation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(all(feature = "CloudKit_CKSubscription", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Init initWithSubscriptionsToSave:subscriptionIDsToDelete:)]
         pub unsafe fn initWithSubscriptionsToSave_subscriptionIDsToDelete(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             subscriptions_to_save: Option<&NSArray<CKSubscription>>,
             subscription_i_ds_to_delete: Option<&NSArray<CKSubscriptionID>>,
         ) -> Id<Self>;

@@ -24,7 +24,7 @@ extern_methods!(
     #[cfg(feature = "WebKit_WKBackForwardListItem")]
     unsafe impl WKBackForwardListItem {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other URL)]

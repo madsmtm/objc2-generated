@@ -45,13 +45,13 @@ extern_methods!(
         #[cfg(all(feature = "CallKit_CXAction", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Init initWithActions:)]
         pub unsafe fn initWithActions(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             actions: &NSArray<CXAction>,
         ) -> Id<Self>;
 
         #[cfg(feature = "CallKit_CXAction")]
         #[method_id(@__retain_semantics Init initWithAction:)]
-        pub unsafe fn initWithAction(this: Option<Allocated<Self>>, action: &CXAction) -> Id<Self>;
+        pub unsafe fn initWithAction(this: Allocated<Self>, action: &CXAction) -> Id<Self>;
 
         #[cfg(feature = "CallKit_CXAction")]
         #[method(addAction:)]
@@ -64,7 +64,7 @@ extern_methods!(
     #[cfg(feature = "CallKit_CXTransaction")]
     unsafe impl CXTransaction {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

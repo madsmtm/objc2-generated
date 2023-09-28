@@ -62,7 +62,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithSource:newVersion:oldVersion:cachedSnapshot:persistedSnapshot:)]
         pub unsafe fn initWithSource_newVersion_oldVersion_cachedSnapshot_persistedSnapshot(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             src_object: &NSManagedObject,
             newvers: NSUInteger,
             oldvers: NSUInteger,
@@ -71,7 +71,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 
@@ -134,7 +134,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithConstraint:databaseObject:databaseSnapshot:conflictingObjects:conflictingSnapshots:)]
         pub unsafe fn initWithConstraint_databaseObject_databaseSnapshot_conflictingObjects_conflictingSnapshots(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             contraint: &NSArray<NSString>,
             database_object: Option<&NSManagedObject>,
             database_snapshot: Option<&NSDictionary>,
@@ -149,7 +149,7 @@ extern_methods!(
     #[cfg(feature = "CoreData_NSConstraintConflict")]
     unsafe impl NSConstraintConflict {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -193,13 +193,10 @@ extern_methods!(
         pub unsafe fn mergeType(&self) -> NSMergePolicyType;
 
         #[method_id(@__retain_semantics Init initWithMergeType:)]
-        pub unsafe fn initWithMergeType(
-            this: Option<Allocated<Self>>,
-            ty: NSMergePolicyType,
-        ) -> Id<Self>;
+        pub unsafe fn initWithMergeType(this: Allocated<Self>, ty: NSMergePolicyType) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSError"))]
         #[method(resolveConflicts:error:_)]

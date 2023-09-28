@@ -74,7 +74,7 @@ extern_methods!(
     unsafe impl NSPanel {
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             content_rect: NSRect,
             style: NSWindowStyleMask,
             backing_store_type: NSBackingStoreType,
@@ -84,7 +84,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSScreen")]
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:screen:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer_screen(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             content_rect: NSRect,
             style: NSWindowStyleMask,
             backing_store_type: NSBackingStoreType,
@@ -94,7 +94,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSViewController")]
         #[method_id(@__retain_semantics Other windowWithContentViewController:)]
@@ -109,7 +109,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSPanel")]
     unsafe impl NSPanel {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 

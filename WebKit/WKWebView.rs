@@ -102,17 +102,14 @@ extern_methods!(
         #[cfg(feature = "WebKit_WKWebViewConfiguration")]
         #[method_id(@__retain_semantics Init initWithFrame:configuration:)]
         pub unsafe fn initWithFrame_configuration(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             frame: CGRect,
             configuration: &WKWebViewConfiguration,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
 
         #[cfg(all(feature = "Foundation_NSURLRequest", feature = "WebKit_WKNavigation"))]
         #[method_id(@__retain_semantics Other loadRequest:)]
@@ -556,7 +553,7 @@ extern_methods!(
     #[cfg(feature = "WebKit_WKWebView")]
     unsafe impl WKWebView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
     }
 );
 
@@ -565,7 +562,7 @@ extern_methods!(
     #[cfg(feature = "WebKit_WKWebView")]
     unsafe impl WKWebView {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 

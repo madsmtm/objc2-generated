@@ -40,14 +40,14 @@ extern_methods!(
     unsafe impl MKPlacemark {
         #[method_id(@__retain_semantics Init initWithCoordinate:)]
         pub unsafe fn initWithCoordinate(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             coordinate: CLLocationCoordinate2D,
         ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithCoordinate:addressDictionary:)]
         pub unsafe fn initWithCoordinate_addressDictionary(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             coordinate: CLLocationCoordinate2D,
             address_dictionary: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Id<Self>;
@@ -55,7 +55,7 @@ extern_methods!(
         #[cfg(feature = "Contacts_CNPostalAddress")]
         #[method_id(@__retain_semantics Init initWithCoordinate:postalAddress:)]
         pub unsafe fn initWithCoordinate_postalAddress(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             coordinate: CLLocationCoordinate2D,
             postal_address: &CNPostalAddress,
         ) -> Id<Self>;
@@ -71,15 +71,13 @@ extern_methods!(
     #[cfg(feature = "MapKit_MKPlacemark")]
     unsafe impl MKPlacemark {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithPlacemark:)]
-        pub unsafe fn initWithPlacemark(
-            this: Option<Allocated<Self>>,
-            placemark: &CLPlacemark,
-        ) -> Id<Self>;
+        pub unsafe fn initWithPlacemark(this: Allocated<Self>, placemark: &CLPlacemark)
+            -> Id<Self>;
     }
 );

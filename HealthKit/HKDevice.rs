@@ -84,7 +84,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithName:manufacturer:model:hardwareVersion:firmwareVersion:softwareVersion:localIdentifier:UDIDeviceIdentifier:)]
         pub unsafe fn initWithName_manufacturer_model_hardwareVersion_firmwareVersion_softwareVersion_localIdentifier_UDIDeviceIdentifier(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             name: Option<&NSString>,
             manufacturer: Option<&NSString>,
             model: Option<&NSString>,
@@ -96,7 +96,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other localDevice)]
         pub unsafe fn localDevice() -> Id<HKDevice>;

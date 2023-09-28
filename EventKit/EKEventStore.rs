@@ -45,17 +45,17 @@ extern_methods!(
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithAccessToEntityTypes:)]
         pub unsafe fn initWithAccessToEntityTypes(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             entity_types: EKEntityMask,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(all(feature = "EventKit_EKSource", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Init initWithSources:)]
         pub unsafe fn initWithSources(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             sources: &NSArray<EKSource>,
         ) -> Id<Self>;
 

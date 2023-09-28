@@ -29,7 +29,7 @@ extern_methods!(
         #[cfg(feature = "MapKit_MKMultiPolyline")]
         #[method_id(@__retain_semantics Init initWithMultiPolyline:)]
         pub unsafe fn initWithMultiPolyline(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             multi_polyline: &MKMultiPolyline,
         ) -> Id<Self>;
 
@@ -45,7 +45,7 @@ extern_methods!(
     unsafe impl MKMultiPolylineRenderer {
         #[method_id(@__retain_semantics Init initWithOverlay:)]
         pub unsafe fn initWithOverlay(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             overlay: &ProtocolObject<dyn MKOverlay>,
         ) -> Id<Self>;
     }
@@ -56,7 +56,7 @@ extern_methods!(
     #[cfg(feature = "MapKit_MKMultiPolylineRenderer")]
     unsafe impl MKMultiPolylineRenderer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

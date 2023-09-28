@@ -59,7 +59,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithPattern:options:error:_)]
         pub unsafe fn initWithPattern_options_error(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             pattern: &NSString,
             options: NSRegularExpressionOptions,
         ) -> Result<Id<Self>, Id<NSError>>;
@@ -85,7 +85,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSRegularExpression")]
     unsafe impl NSRegularExpression {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -259,7 +259,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Init initWithTypes:error:_)]
         pub unsafe fn initWithTypes_error(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             checking_types: NSTextCheckingTypes,
         ) -> Result<Id<Self>, Id<NSError>>;
 
@@ -275,7 +275,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithPattern:options:error:_)]
         pub unsafe fn initWithPattern_options_error(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             pattern: &NSString,
             options: NSRegularExpressionOptions,
         ) -> Result<Id<Self>, Id<NSError>>;
@@ -287,7 +287,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSDataDetector")]
     unsafe impl NSDataDetector {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

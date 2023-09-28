@@ -31,12 +31,12 @@ extern_methods!(
         #[cfg(feature = "PhotoKit_PHContentEditingInput")]
         #[method_id(@__retain_semantics Init initWithLivePhotoEditingInput:)]
         pub unsafe fn initWithLivePhotoEditingInput(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             live_photo_input: &PHContentEditingInput,
         ) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "CoreImage_CIImage")]
         #[method_id(@__retain_semantics Other fullSizeImage)]

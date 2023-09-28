@@ -44,7 +44,7 @@ extern_methods!(
     #[cfg(feature = "MapKit_MKDirectionsResponse")]
     unsafe impl MKDirectionsResponse {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -107,7 +107,7 @@ extern_methods!(
     #[cfg(feature = "MapKit_MKRoute")]
     unsafe impl MKRoute {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -157,7 +157,7 @@ extern_methods!(
     #[cfg(feature = "MapKit_MKRouteStep")]
     unsafe impl MKRouteStep {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -214,7 +214,7 @@ extern_methods!(
     #[cfg(feature = "MapKit_MKETAResponse")]
     unsafe impl MKETAResponse {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

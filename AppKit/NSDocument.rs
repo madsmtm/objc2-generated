@@ -63,12 +63,12 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSDocument")]
     unsafe impl NSDocument {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithType:error:_)]
         pub unsafe fn initWithType_error(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             type_name: &NSString,
         ) -> Result<Id<Self>, Id<NSError>>;
 
@@ -86,7 +86,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:ofType:error:_)]
         pub unsafe fn initWithContentsOfURL_ofType_error(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             url: &NSURL,
             type_name: &NSString,
         ) -> Result<Id<Self>, Id<NSError>>;
@@ -98,7 +98,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initForURL:withContentsOfURL:ofType:error:_)]
         pub unsafe fn initForURL_withContentsOfURL_ofType_error(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             url_or_nil: Option<&NSURL>,
             contents_url: &NSURL,
             type_name: &NSString,
@@ -896,7 +896,7 @@ extern_methods!(
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithContentsOfFile:ofType:)]
         pub unsafe fn initWithContentsOfFile_ofType(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             absolute_path: &NSString,
             type_name: &NSString,
         ) -> Option<Id<Self>>;
@@ -905,7 +905,7 @@ extern_methods!(
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:ofType:)]
         pub unsafe fn initWithContentsOfURL_ofType(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             url: &NSURL,
             type_name: &NSString,
         ) -> Option<Id<Self>>;

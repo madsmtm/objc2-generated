@@ -55,7 +55,7 @@ extern_methods!(
         pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -64,7 +64,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithSigners:isEncrypted:signingError:encryptionError:)]
         pub unsafe fn initWithSigners_isEncrypted_signingError_encryptionError(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             signers: &NSArray<MEMessageSigner>,
             is_encrypted: bool,
             signing_error: Option<&NSError>,
@@ -79,7 +79,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithSigners:isEncrypted:signingError:encryptionError:shouldBlockRemoteContent:localizedRemoteContentBlockingReason:)]
         pub unsafe fn initWithSigners_isEncrypted_signingError_encryptionError_shouldBlockRemoteContent_localizedRemoteContentBlockingReason(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             signers: &NSArray<MEMessageSigner>,
             is_encrypted: bool,
             signing_error: Option<&NSError>,

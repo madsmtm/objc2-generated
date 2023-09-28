@@ -141,7 +141,7 @@ extern_methods!(
         #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithTitle:image:alternateImage:handler:)]
         pub unsafe fn initWithTitle_image_alternateImage_handler(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             title: &NSString,
             image: &NSImage,
             alternate_image: Option<&NSImage>,
@@ -149,7 +149,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method(canPerformWithItems:)]
@@ -340,10 +340,10 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Init initWithItems:)]
-        pub unsafe fn initWithItems(this: Option<Allocated<Self>>, items: &NSArray) -> Id<Self>;
+        pub unsafe fn initWithItems(this: Allocated<Self>, items: &NSArray) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method(showRelativeToRect:ofView:preferredEdge:)]

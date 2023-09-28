@@ -28,7 +28,7 @@ extern_methods!(
         #[cfg(all(feature = "HealthKit_HKDevice", feature = "HealthKit_HKHealthStore"))]
         #[method_id(@__retain_semantics Init initWithHealthStore:device:)]
         pub unsafe fn initWithHealthStore_device(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             health_store: &HKHealthStore,
             device: Option<&HKDevice>,
         ) -> Id<Self>;
@@ -79,7 +79,7 @@ extern_methods!(
     #[cfg(feature = "HealthKit_HKWorkoutRouteBuilder")]
     unsafe impl HKWorkoutRouteBuilder {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 

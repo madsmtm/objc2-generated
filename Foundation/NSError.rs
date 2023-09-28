@@ -77,7 +77,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Init initWithDomain:code:userInfo:)]
         pub unsafe fn initWithDomain_code_userInfo(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             domain: &NSErrorDomain,
             code: NSInteger,
             dict: Option<&NSDictionary<NSErrorUserInfoKey, AnyObject>>,
@@ -148,6 +148,6 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSError")]
     unsafe impl NSError {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );

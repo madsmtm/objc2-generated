@@ -38,13 +38,13 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithStringValue:)]
         pub unsafe fn initWithStringValue(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             string: &NSString,
         ) -> Option<Id<Self>>;
 
         #[deprecated = "Use initWithStringValue:"]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[deprecated = "Use phoneNumberWithStringValue:"]
         #[method_id(@__retain_semantics New new)]

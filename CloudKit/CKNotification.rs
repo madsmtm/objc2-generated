@@ -39,7 +39,7 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKNotificationID")]
     unsafe impl CKNotificationID {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -81,7 +81,7 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKNotification")]
     unsafe impl CKNotification {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -226,7 +226,7 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKQueryNotification")]
     unsafe impl CKQueryNotification {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -278,7 +278,7 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKRecordZoneNotification")]
     unsafe impl CKRecordZoneNotification {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -326,7 +326,7 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKDatabaseNotification")]
     unsafe impl CKDatabaseNotification {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

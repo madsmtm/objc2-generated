@@ -26,7 +26,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSTextContentManager")]
         #[method_id(@__retain_semantics Init initWithTextContentManager:)]
         pub unsafe fn initWithTextContentManager(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             text_content_manager: Option<&NSTextContentManager>,
         ) -> Id<Self>;
 
@@ -66,7 +66,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTextElement")]
     unsafe impl NSTextElement {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -95,7 +95,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Init initWithAttributedString:)]
         pub unsafe fn initWithAttributedString(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             attributed_string: Option<&NSAttributedString>,
         ) -> Id<Self>;
 
@@ -120,7 +120,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSTextContentManager")]
         #[method_id(@__retain_semantics Init initWithTextContentManager:)]
         pub unsafe fn initWithTextContentManager(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             text_content_manager: Option<&NSTextContentManager>,
         ) -> Id<Self>;
     }
@@ -131,7 +131,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTextParagraph")]
     unsafe impl NSTextParagraph {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

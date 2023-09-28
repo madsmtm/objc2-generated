@@ -47,7 +47,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
         ) -> Id<Self>;
@@ -62,14 +62,14 @@ extern_methods!(
     #[cfg(feature = "MetricKit_MXUnitSignalBars")]
     unsafe impl MXUnitSignalBars {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithSymbol:)]
-        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
+        pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Id<Self>;
     }
 );
 
@@ -116,7 +116,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
         ) -> Id<Self>;
@@ -131,13 +131,13 @@ extern_methods!(
     #[cfg(feature = "MetricKit_MXUnitAveragePixelLuminance")]
     unsafe impl MXUnitAveragePixelLuminance {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithSymbol:)]
-        pub unsafe fn initWithSymbol(this: Option<Allocated<Self>>, symbol: &NSString) -> Id<Self>;
+        pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Id<Self>;
     }
 );

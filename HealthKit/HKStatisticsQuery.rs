@@ -33,7 +33,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithQuantityType:quantitySamplePredicate:options:completionHandler:)]
         pub unsafe fn initWithQuantityType_quantitySamplePredicate_options_completionHandler(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             quantity_type: &HKQuantityType,
             quantity_sample_predicate: Option<&NSPredicate>,
             options: HKStatisticsOptions,
@@ -47,7 +47,7 @@ extern_methods!(
     #[cfg(feature = "HealthKit_HKStatisticsQuery")]
     unsafe impl HKStatisticsQuery {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 

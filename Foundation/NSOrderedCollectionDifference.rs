@@ -51,7 +51,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithChanges:)]
         pub unsafe fn initWithChanges(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             changes: &NSArray<NSOrderedCollectionChange<ObjectType>>,
         ) -> Id<Self>;
 
@@ -62,7 +62,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithInsertIndexes:insertedObjects:removeIndexes:removedObjects:additionalChanges:)]
         pub unsafe fn initWithInsertIndexes_insertedObjects_removeIndexes_removedObjects_additionalChanges(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             inserts: &NSIndexSet,
             inserted_objects: Option<&NSArray<ObjectType>>,
             removes: &NSIndexSet,
@@ -73,7 +73,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSIndexSet"))]
         #[method_id(@__retain_semantics Init initWithInsertIndexes:insertedObjects:removeIndexes:removedObjects:)]
         pub unsafe fn initWithInsertIndexes_insertedObjects_removeIndexes_removedObjects(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             inserts: &NSIndexSet,
             inserted_objects: Option<&NSArray<ObjectType>>,
             removes: &NSIndexSet,
@@ -117,7 +117,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSOrderedCollectionDifference")]
     unsafe impl<ObjectType: Message> NSOrderedCollectionDifference<ObjectType> {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

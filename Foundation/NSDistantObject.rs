@@ -37,7 +37,7 @@ extern_methods!(
         #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Init initWithTarget:connection:)]
         pub unsafe fn initWithTarget_connection(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             target: &AnyObject,
             connection: &NSConnection,
         ) -> Option<Id<Self>>;
@@ -54,7 +54,7 @@ extern_methods!(
         #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Init initWithLocal:connection:)]
         pub unsafe fn initWithLocal_connection(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             target: &AnyObject,
             connection: &NSConnection,
         ) -> Id<Self>;
@@ -62,10 +62,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSCoder")]
         #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            in_coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, in_coder: &NSCoder) -> Option<Id<Self>>;
 
         #[deprecated = "Use NSXPCConnection instead"]
         #[method(setProtocolForProxy:)]

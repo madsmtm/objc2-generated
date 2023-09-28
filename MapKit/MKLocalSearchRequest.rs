@@ -37,19 +37,19 @@ extern_methods!(
     #[cfg(feature = "MapKit_MKLocalSearchRequest")]
     unsafe impl MKLocalSearchRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithNaturalLanguageQuery:)]
         pub unsafe fn initWithNaturalLanguageQuery(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             natural_language_query: &NSString,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithNaturalLanguageQuery:region:)]
         pub unsafe fn initWithNaturalLanguageQuery_region(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             natural_language_query: &NSString,
             region: MKCoordinateRegion,
         ) -> Id<Self>;

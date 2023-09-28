@@ -42,20 +42,20 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithBundleIdentifier:)]
         pub unsafe fn initWithBundleIdentifier(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             bundle_identifier: &NSString,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithBundleIdentifier:teamIdentifier:)]
         pub unsafe fn initWithBundleIdentifier_teamIdentifier(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             bundle_identifier: &NSString,
             team_identifier: Option<&NSString>,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

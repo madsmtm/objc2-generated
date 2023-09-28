@@ -29,7 +29,7 @@ extern_methods!(
         #[cfg(all(feature = "CoreData_NSManagedObject", feature = "Foundation_NSSet"))]
         #[method_id(@__retain_semantics Init initWithInsertedObjects:updatedObjects:deletedObjects:lockedObjects:)]
         pub unsafe fn initWithInsertedObjects_updatedObjects_deletedObjects_lockedObjects(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             inserted_objects: Option<&NSSet<NSManagedObject>>,
             updated_objects: Option<&NSSet<NSManagedObject>>,
             deleted_objects: Option<&NSSet<NSManagedObject>>,
@@ -59,7 +59,7 @@ extern_methods!(
     #[cfg(feature = "CoreData_NSSaveChangesRequest")]
     unsafe impl NSSaveChangesRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

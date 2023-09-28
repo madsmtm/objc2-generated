@@ -32,7 +32,7 @@ extern_methods!(
     unsafe impl NSCustomImageRep {
         #[method_id(@__retain_semantics Init initWithSize:flipped:drawingHandler:)]
         pub unsafe fn initWithSize_flipped_drawingHandler(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             size: NSSize,
             drawing_handler_should_be_called_with_flipped_context: bool,
             drawing_handler: &Block<(NSRect,), Bool>,
@@ -43,7 +43,7 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Init initWithDrawSelector:delegate:)]
         pub unsafe fn initWithDrawSelector_delegate(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             selector: Sel,
             delegate: &AnyObject,
         ) -> Id<Self>;
@@ -61,14 +61,11 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSCustomImageRep")]
     unsafe impl NSCustomImageRep {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
     }
 );
 

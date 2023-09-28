@@ -32,29 +32,27 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Init initWithAttributedString:range:)]
         pub unsafe fn initWithAttributedString_range(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             attributed_string: &NSAttributedString,
             range: NSRange,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            a_decoder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder)
+            -> Option<Id<Self>>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithString:attributes:range:)]
         pub unsafe fn initWithString_attributes_range(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             string: &NSString,
             attributes: &NSDictionary<NSAttributedStringKey, AnyObject>,
             range: NSRange,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedString)]

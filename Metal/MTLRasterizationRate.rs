@@ -37,7 +37,7 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLRasterizationRateSampleArray")]
     unsafe impl MTLRasterizationRateSampleArray {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -66,17 +66,15 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLRasterizationRateLayerDescriptor")]
     unsafe impl MTLRasterizationRateLayerDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithSampleCount:)]
-        pub unsafe fn initWithSampleCount(
-            this: Option<Allocated<Self>>,
-            sample_count: MTLSize,
-        ) -> Id<Self>;
+        pub unsafe fn initWithSampleCount(this: Allocated<Self>, sample_count: MTLSize)
+            -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithSampleCount:horizontal:vertical:)]
         pub unsafe fn initWithSampleCount_horizontal_vertical(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             sample_count: MTLSize,
             horizontal: NonNull<c_float>,
             vertical: NonNull<c_float>,
@@ -155,7 +153,7 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLRasterizationRateLayerArray")]
     unsafe impl MTLRasterizationRateLayerArray {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -246,7 +244,7 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLRasterizationRateMapDescriptor")]
     unsafe impl MTLRasterizationRateMapDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

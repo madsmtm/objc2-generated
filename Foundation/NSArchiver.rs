@@ -27,7 +27,7 @@ extern_methods!(
         #[deprecated = "Use NSKeyedArchiver instead"]
         #[method_id(@__retain_semantics Init initForWritingWithMutableData:)]
         pub unsafe fn initForWritingWithMutableData(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             mdata: &NSMutableData,
         ) -> Id<Self>;
 
@@ -82,7 +82,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSArchiver")]
     unsafe impl NSArchiver {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -113,7 +113,7 @@ extern_methods!(
         #[deprecated = "Use NSKeyedUnarchiver instead"]
         #[method_id(@__retain_semantics Init initForReadingWithData:)]
         pub unsafe fn initForReadingWithData(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             data: &NSData,
         ) -> Option<Id<Self>>;
 
@@ -186,7 +186,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSUnarchiver")]
     unsafe impl NSUnarchiver {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

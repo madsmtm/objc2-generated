@@ -33,21 +33,16 @@ extern_methods!(
     unsafe impl NSXMLParser {
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
-        pub unsafe fn initWithContentsOfURL(
-            this: Option<Allocated<Self>>,
-            url: &NSURL,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithContentsOfURL(this: Allocated<Self>, url: &NSURL)
+            -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Init initWithData:)]
-        pub unsafe fn initWithData(this: Option<Allocated<Self>>, data: &NSData) -> Id<Self>;
+        pub unsafe fn initWithData(this: Allocated<Self>, data: &NSData) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSInputStream")]
         #[method_id(@__retain_semantics Init initWithStream:)]
-        pub unsafe fn initWithStream(
-            this: Option<Allocated<Self>>,
-            stream: &NSInputStream,
-        ) -> Id<Self>;
+        pub unsafe fn initWithStream(this: Allocated<Self>, stream: &NSInputStream) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSXMLParserDelegate>>>;
@@ -121,7 +116,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSXMLParser")]
     unsafe impl NSXMLParser {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -30,7 +30,7 @@ extern_methods!(
     unsafe impl NSKeyedArchiver {
         #[method_id(@__retain_semantics Init initRequiringSecureCoding:)]
         pub unsafe fn initRequiringSecureCoding(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             requires_secure_coding: bool,
         ) -> Id<Self>;
 
@@ -43,13 +43,13 @@ extern_methods!(
 
         #[deprecated = "Use -initRequiringSecureCoding: instead"]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSMutableData")]
         #[deprecated = "Use -initRequiringSecureCoding: instead"]
         #[method_id(@__retain_semantics Init initForWritingWithMutableData:)]
         pub unsafe fn initForWritingWithMutableData(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             data: &NSMutableData,
         ) -> Id<Self>;
 
@@ -185,7 +185,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method_id(@__retain_semantics Init initForReadingFromData:error:_)]
         pub unsafe fn initForReadingFromData_error(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             data: &NSData,
         ) -> Result<Id<Self>, Id<NSError>>;
 
@@ -257,15 +257,12 @@ extern_methods!(
 
         #[deprecated = "Use -initForReadingFromData:error: instead"]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[deprecated = "Use -initForReadingFromData:error: instead"]
         #[method_id(@__retain_semantics Init initForReadingWithData:)]
-        pub unsafe fn initForReadingWithData(
-            this: Option<Allocated<Self>>,
-            data: &NSData,
-        ) -> Id<Self>;
+        pub unsafe fn initForReadingWithData(this: Allocated<Self>, data: &NSData) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[deprecated = "Use +unarchivedObjectOfClass:fromData:error: instead"]

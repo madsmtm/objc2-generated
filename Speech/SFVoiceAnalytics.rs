@@ -45,7 +45,7 @@ extern_methods!(
     #[cfg(feature = "Speech_SFAcousticFeature")]
     unsafe impl SFAcousticFeature {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -102,7 +102,7 @@ extern_methods!(
     #[cfg(feature = "Speech_SFVoiceAnalytics")]
     unsafe impl SFVoiceAnalytics {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

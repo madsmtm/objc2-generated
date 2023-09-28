@@ -51,7 +51,7 @@ extern_methods!(
     #[cfg(feature = "PhotoKit_PHChange")]
     unsafe impl PHChange {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -107,7 +107,7 @@ extern_methods!(
     #[cfg(feature = "PhotoKit_PHObjectChangeDetails")]
     unsafe impl<ObjectType: Message> PHObjectChangeDetails<ObjectType> {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -200,7 +200,7 @@ extern_methods!(
     #[cfg(feature = "PhotoKit_PHFetchResultChangeDetails")]
     unsafe impl<ObjectType: Message> PHFetchResultChangeDetails<ObjectType> {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -29,14 +29,11 @@ extern_methods!(
     unsafe impl NSMovie {
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
 
         #[deprecated = "As of macOS 10.15 this method always returns nil."]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Option<Id<Self>>;
+        pub unsafe fn init(this: Allocated<Self>) -> Option<Id<Self>>;
     }
 );
 

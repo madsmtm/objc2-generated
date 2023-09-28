@@ -36,7 +36,7 @@ extern_methods!(
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithMainResource:subresources:subframeArchives:)]
         pub unsafe fn initWithMainResource_subresources_subframeArchives(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             main_resource: Option<&WebResource>,
             subresources: Option<&NSArray>,
             subframe_archives: Option<&NSArray>,
@@ -46,7 +46,7 @@ extern_methods!(
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithData:)]
         pub unsafe fn initWithData(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             data: Option<&NSData>,
         ) -> Option<Id<Self>>;
 
@@ -77,7 +77,7 @@ extern_methods!(
     #[cfg(feature = "WebKit_WebArchive")]
     unsafe impl WebArchive {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

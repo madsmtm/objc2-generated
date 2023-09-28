@@ -50,7 +50,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithQuantityType:predicate:quantityHandler:)]
         pub unsafe fn initWithQuantityType_predicate_quantityHandler(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             quantity_type: &HKQuantityType,
             predicate: Option<&NSPredicate>,
             quantity_handler: &Block<
@@ -75,7 +75,7 @@ extern_methods!(
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithSample:quantityHandler:)]
         pub unsafe fn initWithSample_quantityHandler(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             quantity_sample: &HKQuantitySample,
             quantity_handler: &Block<
                 (
@@ -96,7 +96,7 @@ extern_methods!(
     #[cfg(feature = "HealthKit_HKQuantitySeriesSampleQuery")]
     unsafe impl HKQuantitySeriesSampleQuery {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 

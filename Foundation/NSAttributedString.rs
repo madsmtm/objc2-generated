@@ -56,7 +56,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSAttributedString")]
     unsafe impl NSAttributedString {
         #[method_id(@__retain_semantics Init init)]
-        pub fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub fn new() -> Id<Self>;
@@ -121,19 +121,19 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithString:)]
-        pub fn initWithString(this: Option<Allocated<Self>>, str: &NSString) -> Id<Self>;
+        pub fn initWithString(this: Allocated<Self>, str: &NSString) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithString:attributes:)]
         pub unsafe fn initWithString_attributes(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             str: &NSString,
             attrs: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithAttributedString:)]
         pub fn initWithAttributedString(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             attr_str: &NSAttributedString,
         ) -> Id<Self>;
 
@@ -172,19 +172,19 @@ extern_methods!(
     unsafe impl NSMutableAttributedString {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithString:)]
-        pub fn initWithString(this: Option<Allocated<Self>>, str: &NSString) -> Id<Self>;
+        pub fn initWithString(this: Allocated<Self>, str: &NSString) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithString:attributes:)]
         pub unsafe fn initWithString_attributes(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             str: &NSString,
             attrs: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithAttributedString:)]
         pub fn initWithAttributedString(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             attr_str: &NSAttributedString,
         ) -> Id<Self>;
     }
@@ -244,7 +244,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSMutableAttributedString")]
     unsafe impl NSMutableAttributedString {
         #[method_id(@__retain_semantics Init init)]
-        pub fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub fn new() -> Id<Self>;
@@ -407,7 +407,7 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Init initWithStartLine:startColumn:endLine:endColumn:)]
         pub unsafe fn initWithStartLine_startColumn_endLine_endColumn(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             start_line: NSInteger,
             start_column: NSInteger,
             end_line: NSInteger,
@@ -425,7 +425,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSAttributedStringMarkdownSourcePosition")]
     unsafe impl NSAttributedStringMarkdownSourcePosition {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -454,7 +454,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSAttributedStringMarkdownParsingOptions")]
     unsafe impl NSAttributedStringMarkdownParsingOptions {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method(allowsExtendedAttributes)]
         pub unsafe fn allowsExtendedAttributes(&self) -> bool;
@@ -519,7 +519,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithContentsOfMarkdownFileAtURL:options:baseURL:error:_)]
         pub unsafe fn initWithContentsOfMarkdownFileAtURL_options_baseURL_error(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             markdown_file: &NSURL,
             options: Option<&NSAttributedStringMarkdownParsingOptions>,
             base_url: Option<&NSURL>,
@@ -533,7 +533,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithMarkdown:options:baseURL:error:_)]
         pub unsafe fn initWithMarkdown_options_baseURL_error(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             markdown: &NSData,
             options: Option<&NSAttributedStringMarkdownParsingOptions>,
             base_url: Option<&NSURL>,
@@ -547,7 +547,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithMarkdownString:options:baseURL:error:_)]
         pub unsafe fn initWithMarkdownString_options_baseURL_error(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             markdown_string: &NSString,
             options: Option<&NSAttributedStringMarkdownParsingOptions>,
             base_url: Option<&NSURL>,
@@ -568,7 +568,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithContentsOfMarkdownFileAtURL:options:baseURL:error:_)]
         pub unsafe fn initWithContentsOfMarkdownFileAtURL_options_baseURL_error(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             markdown_file: &NSURL,
             options: Option<&NSAttributedStringMarkdownParsingOptions>,
             base_url: Option<&NSURL>,
@@ -582,7 +582,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithMarkdown:options:baseURL:error:_)]
         pub unsafe fn initWithMarkdown_options_baseURL_error(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             markdown: &NSData,
             options: Option<&NSAttributedStringMarkdownParsingOptions>,
             base_url: Option<&NSURL>,
@@ -596,7 +596,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithMarkdownString:options:baseURL:error:_)]
         pub unsafe fn initWithMarkdownString_options_baseURL_error(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             markdown_string: &NSString,
             options: Option<&NSAttributedStringMarkdownParsingOptions>,
             base_url: Option<&NSURL>,
@@ -701,7 +701,7 @@ extern_methods!(
         pub unsafe fn intentKind(&self) -> NSPresentationIntentKind;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other parentIntent)]
         pub unsafe fn parentIntent(&self) -> Option<Id<NSPresentationIntent>>;

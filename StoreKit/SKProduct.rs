@@ -52,7 +52,7 @@ extern_methods!(
     #[cfg(feature = "StoreKit_SKProductSubscriptionPeriod")]
     unsafe impl SKProductSubscriptionPeriod {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -154,7 +154,7 @@ extern_methods!(
     #[cfg(feature = "StoreKit_SKProduct")]
     unsafe impl SKProduct {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

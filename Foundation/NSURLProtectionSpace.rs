@@ -69,7 +69,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithHost:port:protocol:realm:authenticationMethod:)]
         pub unsafe fn initWithHost_port_protocol_realm_authenticationMethod(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             host: &NSString,
             port: NSInteger,
             protocol: Option<&NSString>,
@@ -80,7 +80,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithProxyHost:port:type:realm:authenticationMethod:)]
         pub unsafe fn initWithProxyHost_port_type_realm_authenticationMethod(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             host: &NSString,
             port: NSInteger,
             r#type: Option<&NSString>,
@@ -124,7 +124,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSURLProtectionSpace")]
     unsafe impl NSURLProtectionSpace {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

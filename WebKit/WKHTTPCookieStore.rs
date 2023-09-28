@@ -35,7 +35,7 @@ extern_methods!(
     #[cfg(feature = "WebKit_WKHTTPCookieStore")]
     unsafe impl WKHTTPCookieStore {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSHTTPCookie"))]
         #[method(getAllCookies:)]

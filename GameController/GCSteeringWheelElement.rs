@@ -30,7 +30,7 @@ extern_methods!(
     #[cfg(feature = "GameController_GCSteeringWheelElement")]
     unsafe impl GCSteeringWheelElement {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method(maximumDegreesOfRotation)]
         pub unsafe fn maximumDegreesOfRotation(&self) -> c_float;

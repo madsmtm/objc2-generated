@@ -121,13 +121,13 @@ extern_methods!(
         #[deprecated = "Use -[NSView cacheDisplayInRect:toBitmapImageRep:] to snapshot a view."]
         #[method_id(@__retain_semantics Init initWithFocusedViewRect:)]
         pub unsafe fn initWithFocusedViewRect(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             rect: NSRect,
         ) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Init initWithBitmapDataPlanes:pixelsWide:pixelsHigh:bitsPerSample:samplesPerPixel:hasAlpha:isPlanar:colorSpaceName:bytesPerRow:bitsPerPixel:)]
         pub unsafe fn initWithBitmapDataPlanes_pixelsWide_pixelsHigh_bitsPerSample_samplesPerPixel_hasAlpha_isPlanar_colorSpaceName_bytesPerRow_bitsPerPixel(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             planes: *mut *mut c_uchar,
             width: NSInteger,
             height: NSInteger,
@@ -142,7 +142,7 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Init initWithBitmapDataPlanes:pixelsWide:pixelsHigh:bitsPerSample:samplesPerPixel:hasAlpha:isPlanar:colorSpaceName:bitmapFormat:bytesPerRow:bitsPerPixel:)]
         pub unsafe fn initWithBitmapDataPlanes_pixelsWide_pixelsHigh_bitsPerSample_samplesPerPixel_hasAlpha_isPlanar_colorSpaceName_bitmapFormat_bytesPerRow_bitsPerPixel(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             planes: *mut *mut c_uchar,
             width: NSInteger,
             height: NSInteger,
@@ -166,10 +166,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Init initWithData:)]
-        pub unsafe fn initWithData(
-            this: Option<Allocated<Self>>,
-            data: &NSData,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithData(this: Allocated<Self>, data: &NSData) -> Option<Id<Self>>;
 
         #[method(bitmapData)]
         pub unsafe fn bitmapData(&self) -> *mut c_uchar;
@@ -260,7 +257,7 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Init initForIncrementalLoad)]
-        pub unsafe fn initForIncrementalLoad(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn initForIncrementalLoad(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method(incrementalLoadFromData:complete:)]
@@ -310,14 +307,11 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSBitmapImageRep")]
     unsafe impl NSBitmapImageRep {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
     }
 );
 

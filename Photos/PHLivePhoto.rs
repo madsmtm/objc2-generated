@@ -44,7 +44,7 @@ extern_methods!(
     #[cfg(feature = "PhotoKit_PHLivePhoto")]
     unsafe impl PHLivePhoto {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method(size)]
         pub unsafe fn size(&self) -> CGSize;

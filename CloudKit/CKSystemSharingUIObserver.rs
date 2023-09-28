@@ -30,17 +30,15 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKSystemSharingUIObserver")]
     unsafe impl CKSystemSharingUIObserver {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
         #[cfg(feature = "CloudKit_CKContainer")]
         #[method_id(@__retain_semantics Init initWithContainer:)]
-        pub unsafe fn initWithContainer(
-            this: Option<Allocated<Self>>,
-            container: &CKContainer,
-        ) -> Id<Self>;
+        pub unsafe fn initWithContainer(this: Allocated<Self>, container: &CKContainer)
+            -> Id<Self>;
 
         #[cfg(all(
             feature = "CloudKit_CKRecordID",

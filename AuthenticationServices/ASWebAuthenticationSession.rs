@@ -39,7 +39,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Init initWithURL:callbackURLScheme:completionHandler:)]
         pub unsafe fn initWithURL_callbackURLScheme_completionHandler(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             url: &NSURL,
             callback_url_scheme: Option<&NSString>,
             completion_handler: ASWebAuthenticationSessionCompletionHandler,
@@ -80,7 +80,7 @@ extern_methods!(
         pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 

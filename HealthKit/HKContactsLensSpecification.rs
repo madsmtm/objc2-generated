@@ -45,7 +45,7 @@ extern_methods!(
         #[cfg(feature = "HealthKit_HKQuantity")]
         #[method_id(@__retain_semantics Init initWithSphere:cylinder:axis:addPower:baseCurve:diameter:)]
         pub unsafe fn initWithSphere_cylinder_axis_addPower_baseCurve_diameter(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             sphere: &HKQuantity,
             cylinder: Option<&HKQuantity>,
             axis: Option<&HKQuantity>,
@@ -55,7 +55,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

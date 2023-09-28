@@ -42,7 +42,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithUsername:service:)]
         pub unsafe fn initWithUsername_service(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             username: &NSString,
             service: &NSString,
         ) -> Id<Self>;
@@ -62,7 +62,7 @@ extern_methods!(
     #[cfg(feature = "Contacts_CNInstantMessageAddress")]
     unsafe impl CNInstantMessageAddress {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

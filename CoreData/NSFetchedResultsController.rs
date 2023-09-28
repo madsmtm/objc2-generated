@@ -41,7 +41,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithFetchRequest:managedObjectContext:sectionNameKeyPath:cacheName:)]
         pub unsafe fn initWithFetchRequest_managedObjectContext_sectionNameKeyPath_cacheName(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             fetch_request: &NSFetchRequest<ResultType>,
             context: &NSManagedObjectContext,
             section_name_key_path: Option<&NSString>,
@@ -127,7 +127,7 @@ extern_methods!(
     #[cfg(feature = "CoreData_NSFetchedResultsController")]
     unsafe impl<ResultType: Message> NSFetchedResultsController<ResultType> {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

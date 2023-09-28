@@ -35,14 +35,14 @@ extern_methods!(
     unsafe impl NSPointerArray {
         #[method_id(@__retain_semantics Init initWithOptions:)]
         pub unsafe fn initWithOptions(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             options: NSPointerFunctionsOptions,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSPointerFunctions")]
         #[method_id(@__retain_semantics Init initWithPointerFunctions:)]
         pub unsafe fn initWithPointerFunctions(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             functions: &NSPointerFunctions,
         ) -> Id<Self>;
 
@@ -96,7 +96,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSPointerArray")]
     unsafe impl NSPointerArray {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

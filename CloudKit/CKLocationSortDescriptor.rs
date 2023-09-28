@@ -40,7 +40,7 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKLocationSortDescriptor")]
     unsafe impl CKLocationSortDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -48,15 +48,14 @@ extern_methods!(
         #[cfg(all(feature = "CoreLocation_CLLocation", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithKey:relativeLocation:)]
         pub unsafe fn initWithKey_relativeLocation(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             key: &NSString,
             relative_location: &CLLocation,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, a_decoder: &NSCoder)
-            -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Id<Self>;
 
         #[cfg(feature = "CoreLocation_CLLocation")]
         #[method_id(@__retain_semantics Other relativeLocation)]
@@ -86,7 +85,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithKey:ascending:)]
         pub unsafe fn initWithKey_ascending(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             key: Option<&NSString>,
             ascending: bool,
         ) -> Id<Self>;
@@ -94,7 +93,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithKey:ascending:selector:)]
         pub unsafe fn initWithKey_ascending_selector(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             key: Option<&NSString>,
             ascending: bool,
             selector: Option<Sel>,
@@ -111,7 +110,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithKey:ascending:comparator:)]
         pub unsafe fn initWithKey_ascending_comparator(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             key: Option<&NSString>,
             ascending: bool,
             cmptr: NSComparator,

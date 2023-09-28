@@ -62,7 +62,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithLeftExpressions:rightExpressions:modifier:operators:options:)]
         pub unsafe fn initWithLeftExpressions_rightExpressions_modifier_operators_options(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             left_expressions: &NSArray<NSExpression>,
             right_expressions: &NSArray<NSExpression>,
             modifier: NSComparisonPredicateModifier,
@@ -77,7 +77,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithLeftExpressions:rightExpressionAttributeType:modifier:operators:options:)]
         pub unsafe fn initWithLeftExpressions_rightExpressionAttributeType_modifier_operators_options(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             left_expressions: &NSArray<NSExpression>,
             attribute_type: NSAttributeType,
             modifier: NSComparisonPredicateModifier,
@@ -88,7 +88,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
         #[method_id(@__retain_semantics Init initWithCompoundTypes:)]
         pub unsafe fn initWithCompoundTypes(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             compound_types: &NSArray<NSNumber>,
         ) -> Id<Self>;
 
@@ -135,7 +135,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSPredicateEditorRowTemplate")]
     unsafe impl NSPredicateEditorRowTemplate {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

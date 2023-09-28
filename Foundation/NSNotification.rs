@@ -44,7 +44,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Init initWithName:object:userInfo:)]
         pub unsafe fn initWithName_object_userInfo(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             name: &NSNotificationName,
             object: Option<&AnyObject>,
             user_info: Option<&NSDictionary>,
@@ -52,10 +52,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
     }
 );
 
@@ -160,7 +157,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSNotificationCenter")]
     unsafe impl NSNotificationCenter {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -51,7 +51,7 @@ extern_methods!(
         #[cfg(all(feature = "AppKit_NSTextRange", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Init initWithRanges:affinity:granularity:)]
         pub unsafe fn initWithRanges_affinity_granularity(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             text_ranges: &NSArray<NSTextRange>,
             affinity: NSTextSelectionAffinity,
             granularity: NSTextSelectionGranularity,
@@ -59,15 +59,12 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
 
         #[cfg(feature = "AppKit_NSTextRange")]
         #[method_id(@__retain_semantics Init initWithRange:affinity:granularity:)]
         pub unsafe fn initWithRange_affinity_granularity(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             range: &NSTextRange,
             affinity: NSTextSelectionAffinity,
             granularity: NSTextSelectionGranularity,
@@ -75,13 +72,13 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Init initWithLocation:affinity:)]
         pub unsafe fn initWithLocation_affinity(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             location: &ProtocolObject<dyn NSTextLocation>,
             affinity: NSTextSelectionAffinity,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(all(feature = "AppKit_NSTextRange", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other textRanges)]

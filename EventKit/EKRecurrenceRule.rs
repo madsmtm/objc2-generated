@@ -32,7 +32,7 @@ extern_methods!(
         #[cfg(feature = "EventKit_EKRecurrenceEnd")]
         #[method_id(@__retain_semantics Init initRecurrenceWithFrequency:interval:end:)]
         pub unsafe fn initRecurrenceWithFrequency_interval_end(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             r#type: EKRecurrenceFrequency,
             interval: NSInteger,
             end: Option<&EKRecurrenceEnd>,
@@ -46,7 +46,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initRecurrenceWithFrequency:interval:daysOfTheWeek:daysOfTheMonth:monthsOfTheYear:weeksOfTheYear:daysOfTheYear:setPositions:end:)]
         pub unsafe fn initRecurrenceWithFrequency_interval_daysOfTheWeek_daysOfTheMonth_monthsOfTheYear_weeksOfTheYear_daysOfTheYear_setPositions_end(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             r#type: EKRecurrenceFrequency,
             interval: NSInteger,
             days: Option<&NSArray<EKRecurrenceDayOfWeek>>,
@@ -113,7 +113,7 @@ extern_methods!(
     #[cfg(feature = "EventKit_EKRecurrenceRule")]
     unsafe impl EKRecurrenceRule {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

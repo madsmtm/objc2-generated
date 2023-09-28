@@ -28,7 +28,7 @@ extern_methods!(
     unsafe impl MKCircleRenderer {
         #[cfg(feature = "MapKit_MKCircle")]
         #[method_id(@__retain_semantics Init initWithCircle:)]
-        pub unsafe fn initWithCircle(this: Option<Allocated<Self>>, circle: &MKCircle) -> Id<Self>;
+        pub unsafe fn initWithCircle(this: Allocated<Self>, circle: &MKCircle) -> Id<Self>;
 
         #[cfg(feature = "MapKit_MKCircle")]
         #[method_id(@__retain_semantics Other circle)]
@@ -54,7 +54,7 @@ extern_methods!(
     unsafe impl MKCircleRenderer {
         #[method_id(@__retain_semantics Init initWithOverlay:)]
         pub unsafe fn initWithOverlay(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             overlay: &ProtocolObject<dyn MKOverlay>,
         ) -> Id<Self>;
     }
@@ -65,7 +65,7 @@ extern_methods!(
     #[cfg(feature = "MapKit_MKCircleRenderer")]
     unsafe impl MKCircleRenderer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

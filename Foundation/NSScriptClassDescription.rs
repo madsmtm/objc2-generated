@@ -30,7 +30,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithSuiteName:className:dictionary:)]
         pub unsafe fn initWithSuiteName_className_dictionary(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             suite_name: &NSString,
             class_name: &NSString,
             class_declaration: Option<&NSDictionary>,
@@ -127,7 +127,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSScriptClassDescription")]
     unsafe impl NSScriptClassDescription {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

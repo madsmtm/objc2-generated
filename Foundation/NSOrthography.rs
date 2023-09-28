@@ -49,17 +49,14 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithDominantScript:languageMap:)]
         pub unsafe fn initWithDominantScript_languageMap(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             script: &NSString,
             map: &NSDictionary<NSString, NSArray<NSString>>,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
     }
 );
 
@@ -68,7 +65,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSOrthography")]
     unsafe impl NSOrthography {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

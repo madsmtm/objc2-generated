@@ -49,12 +49,12 @@ extern_methods!(
         pub unsafe fn memberAnnotations(&self) -> Id<NSArray<ProtocolObject<dyn MKAnnotation>>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Init initWithMemberAnnotations:)]
         pub unsafe fn initWithMemberAnnotations(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             member_annotations: &NSArray<ProtocolObject<dyn MKAnnotation>>,
         ) -> Id<Self>;
     }

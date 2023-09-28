@@ -24,10 +24,8 @@ extern_methods!(
     unsafe impl NSAtomicStoreCacheNode {
         #[cfg(feature = "CoreData_NSManagedObjectID")]
         #[method_id(@__retain_semantics Init initWithObjectID:)]
-        pub unsafe fn initWithObjectID(
-            this: Option<Allocated<Self>>,
-            moid: &NSManagedObjectID,
-        ) -> Id<Self>;
+        pub unsafe fn initWithObjectID(this: Allocated<Self>, moid: &NSManagedObjectID)
+            -> Id<Self>;
 
         #[cfg(feature = "CoreData_NSManagedObjectID")]
         #[method_id(@__retain_semantics Other objectID)]
@@ -65,7 +63,7 @@ extern_methods!(
     #[cfg(feature = "CoreData_NSAtomicStoreCacheNode")]
     unsafe impl NSAtomicStoreCacheNode {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

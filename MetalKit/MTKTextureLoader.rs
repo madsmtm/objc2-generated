@@ -83,11 +83,11 @@ extern_methods!(
         pub unsafe fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Id<Self>;
 

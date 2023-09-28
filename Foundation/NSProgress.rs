@@ -63,7 +63,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Init initWithParent:userInfo:)]
         pub unsafe fn initWithParent_userInfo(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             parent_progress_or_nil: Option<&NSProgress>,
             user_info_or_nil: Option<&NSDictionary<NSProgressUserInfoKey, AnyObject>>,
         ) -> Id<Self>;
@@ -261,7 +261,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSProgress")]
     unsafe impl NSProgress {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

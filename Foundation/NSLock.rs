@@ -64,7 +64,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSLock")]
     unsafe impl NSLock {
         #[method_id(@__retain_semantics Init init)]
-        pub fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub fn new() -> Id<Self>;
@@ -107,10 +107,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSConditionLock")]
     unsafe impl NSConditionLock {
         #[method_id(@__retain_semantics Init initWithCondition:)]
-        pub unsafe fn initWithCondition(
-            this: Option<Allocated<Self>>,
-            condition: NSInteger,
-        ) -> Id<Self>;
+        pub unsafe fn initWithCondition(this: Allocated<Self>, condition: NSInteger) -> Id<Self>;
 
         #[method(condition)]
         pub unsafe fn condition(&self) -> NSInteger;
@@ -154,7 +151,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSConditionLock")]
     unsafe impl NSConditionLock {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -210,7 +207,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSRecursiveLock")]
     unsafe impl NSRecursiveLock {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -272,7 +269,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSCondition")]
     unsafe impl NSCondition {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

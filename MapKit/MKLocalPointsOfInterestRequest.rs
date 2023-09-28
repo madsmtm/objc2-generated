@@ -31,18 +31,18 @@ extern_methods!(
     #[cfg(feature = "MapKit_MKLocalPointsOfInterestRequest")]
     unsafe impl MKLocalPointsOfInterestRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithCenterCoordinate:radius:)]
         pub unsafe fn initWithCenterCoordinate_radius(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             coordinate: CLLocationCoordinate2D,
             radius: CLLocationDistance,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoordinateRegion:)]
         pub unsafe fn initWithCoordinateRegion(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             region: MKCoordinateRegion,
         ) -> Id<Self>;
 

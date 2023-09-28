@@ -47,7 +47,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithSampleType:predicate:limit:sortDescriptors:resultsHandler:)]
         pub unsafe fn initWithSampleType_predicate_limit_sortDescriptors_resultsHandler(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             sample_type: &HKSampleType,
             predicate: Option<&NSPredicate>,
             limit: NSUInteger,
@@ -66,7 +66,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithQueryDescriptors:limit:resultsHandler:)]
         pub unsafe fn initWithQueryDescriptors_limit_resultsHandler(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             query_descriptors: &NSArray<HKQueryDescriptor>,
             limit: NSInteger,
             results_handler: &Block<
@@ -84,7 +84,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithQueryDescriptors:limit:sortDescriptors:resultsHandler:)]
         pub unsafe fn initWithQueryDescriptors_limit_sortDescriptors_resultsHandler(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             query_descriptors: &NSArray<HKQueryDescriptor>,
             limit: NSInteger,
             sort_descriptors: &NSArray<NSSortDescriptor>,
@@ -101,7 +101,7 @@ extern_methods!(
     #[cfg(feature = "HealthKit_HKSampleQuery")]
     unsafe impl HKSampleQuery {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 

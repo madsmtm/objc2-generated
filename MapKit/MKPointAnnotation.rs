@@ -30,18 +30,18 @@ extern_methods!(
     #[cfg(feature = "MapKit_MKPointAnnotation")]
     unsafe impl MKPointAnnotation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoordinate:)]
         pub unsafe fn initWithCoordinate(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             coordinate: CLLocationCoordinate2D,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithCoordinate:title:subtitle:)]
         pub unsafe fn initWithCoordinate_title_subtitle(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             coordinate: CLLocationCoordinate2D,
             title: Option<&NSString>,
             subtitle: Option<&NSString>,

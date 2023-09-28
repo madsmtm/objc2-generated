@@ -74,7 +74,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSTimeZone")]
     unsafe impl NSTimeZone {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -181,15 +181,12 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithName:)]
-        pub unsafe fn initWithName(
-            this: Option<Allocated<Self>>,
-            tz_name: &NSString,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithName(this: Allocated<Self>, tz_name: &NSString) -> Option<Id<Self>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithName:data:)]
         pub unsafe fn initWithName_data(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             tz_name: &NSString,
             a_data: Option<&NSData>,
         ) -> Option<Id<Self>>;

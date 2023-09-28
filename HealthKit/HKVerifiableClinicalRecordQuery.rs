@@ -34,7 +34,7 @@ extern_methods!(
         pub unsafe fn sourceTypes(&self) -> Id<NSArray<HKVerifiableClinicalRecordSourceType>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -48,7 +48,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithRecordTypes:predicate:resultsHandler:)]
         pub unsafe fn initWithRecordTypes_predicate_resultsHandler(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             record_types: &NSArray<NSString>,
             predicate: Option<&NSPredicate>,
             results_handler: &Block<
@@ -70,7 +70,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithRecordTypes:sourceTypes:predicate:resultsHandler:)]
         pub unsafe fn initWithRecordTypes_sourceTypes_predicate_resultsHandler(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             record_types: &NSArray<NSString>,
             source_types: &NSArray<HKVerifiableClinicalRecordSourceType>,
             predicate: Option<&NSPredicate>,

@@ -41,10 +41,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithPath:)]
-        pub unsafe fn initWithPath(
-            this: Option<Allocated<Self>>,
-            path: &NSString,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithPath(this: Allocated<Self>, path: &NSString) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other bundleWithURL:)]
@@ -52,7 +49,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Init initWithURL:)]
-        pub unsafe fn initWithURL(this: Option<Allocated<Self>>, url: &NSURL) -> Option<Id<Self>>;
+        pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Other bundleForClass:)]
         pub unsafe fn bundleForClass(a_class: &AnyClass) -> Id<NSBundle>;
@@ -362,7 +359,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSBundle")]
     unsafe impl NSBundle {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -404,14 +401,11 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSBundleResourceRequest")]
     unsafe impl NSBundleResourceRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithTags:)]
-        pub unsafe fn initWithTags(
-            this: Option<Allocated<Self>>,
-            tags: &NSSet<NSString>,
-        ) -> Id<Self>;
+        pub unsafe fn initWithTags(this: Allocated<Self>, tags: &NSSet<NSString>) -> Id<Self>;
 
         #[cfg(all(
             feature = "Foundation_NSBundle",
@@ -420,7 +414,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithTags:bundle:)]
         pub unsafe fn initWithTags_bundle(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             tags: &NSSet<NSString>,
             bundle: &NSBundle,
         ) -> Id<Self>;

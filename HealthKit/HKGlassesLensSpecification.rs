@@ -53,7 +53,7 @@ extern_methods!(
         #[cfg(all(feature = "HealthKit_HKQuantity", feature = "HealthKit_HKVisionPrism"))]
         #[method_id(@__retain_semantics Init initWithSphere:cylinder:axis:addPower:vertexDistance:prism:farPupillaryDistance:nearPupillaryDistance:)]
         pub unsafe fn initWithSphere_cylinder_axis_addPower_vertexDistance_prism_farPupillaryDistance_nearPupillaryDistance(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             sphere: &HKQuantity,
             cylinder: Option<&HKQuantity>,
             axis: Option<&HKQuantity>,
@@ -65,7 +65,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -45,7 +45,7 @@ extern_methods!(
         pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(all(
             feature = "Foundation_NSError",
@@ -53,7 +53,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithEncodedMessage:signingError:encryptionError:)]
         pub unsafe fn initWithEncodedMessage_signingError_encryptionError(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             encoded_message: Option<&MEEncodedOutgoingMessage>,
             signing_error: Option<&NSError>,
             encryption_error: Option<&NSError>,

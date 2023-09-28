@@ -41,7 +41,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithStringValue:)]
         pub unsafe fn initWithStringValue(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             string_value: &NSString,
         ) -> Id<Self>;
     }
@@ -52,7 +52,7 @@ extern_methods!(
     #[cfg(feature = "PhotoKit_PHCloudIdentifier")]
     unsafe impl PHCloudIdentifier {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -92,7 +92,7 @@ extern_methods!(
     #[cfg(feature = "PhotoKit_PHCloudIdentifierMapping")]
     unsafe impl PHCloudIdentifierMapping {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -132,7 +132,7 @@ extern_methods!(
     #[cfg(feature = "PhotoKit_PHLocalIdentifierMapping")]
     unsafe impl PHLocalIdentifierMapping {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

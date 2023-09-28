@@ -24,7 +24,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSSpeechRecognizer")]
     unsafe impl NSSpeechRecognizer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Option<Id<Self>>;
+        pub unsafe fn init(this: Allocated<Self>) -> Option<Id<Self>>;
 
         #[method(startListening)]
         pub unsafe fn startListening(&self);

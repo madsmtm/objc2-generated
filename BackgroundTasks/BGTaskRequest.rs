@@ -38,7 +38,7 @@ extern_methods!(
         pub unsafe fn setEarliestBeginDate(&self, earliest_begin_date: Option<&NSDate>);
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -69,10 +69,7 @@ extern_methods!(
     unsafe impl BGAppRefreshTaskRequest {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
-        pub unsafe fn initWithIdentifier(
-            this: Option<Allocated<Self>>,
-            identifier: &NSString,
-        ) -> Id<Self>;
+        pub unsafe fn initWithIdentifier(this: Allocated<Self>, identifier: &NSString) -> Id<Self>;
     }
 );
 
@@ -81,7 +78,7 @@ extern_methods!(
     #[cfg(feature = "BackgroundTasks_BGAppRefreshTaskRequest")]
     unsafe impl BGAppRefreshTaskRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -112,10 +109,7 @@ extern_methods!(
     unsafe impl BGProcessingTaskRequest {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
-        pub unsafe fn initWithIdentifier(
-            this: Option<Allocated<Self>>,
-            identifier: &NSString,
-        ) -> Id<Self>;
+        pub unsafe fn initWithIdentifier(this: Allocated<Self>, identifier: &NSString) -> Id<Self>;
 
         #[method(requiresNetworkConnectivity)]
         pub unsafe fn requiresNetworkConnectivity(&self) -> bool;
@@ -136,7 +130,7 @@ extern_methods!(
     #[cfg(feature = "BackgroundTasks_BGProcessingTaskRequest")]
     unsafe impl BGProcessingTaskRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -57,7 +57,7 @@ extern_methods!(
     unsafe impl NSTrackingSeparatorToolbarItem {
         #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
         pub unsafe fn initWithItemIdentifier(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             item_identifier: &NSToolbarItemIdentifier,
         ) -> Id<Self>;
     }
@@ -68,7 +68,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTrackingSeparatorToolbarItem")]
     unsafe impl NSTrackingSeparatorToolbarItem {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

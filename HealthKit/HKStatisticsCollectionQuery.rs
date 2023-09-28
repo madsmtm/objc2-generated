@@ -25,7 +25,7 @@ extern_methods!(
     #[cfg(feature = "HealthKit_HKStatisticsCollection")]
     unsafe impl HKStatisticsCollection {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSDate", feature = "HealthKit_HKStatistics"))]
         #[method_id(@__retain_semantics Other statisticsForDate:)]
@@ -171,7 +171,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithQuantityType:quantitySamplePredicate:options:anchorDate:intervalComponents:)]
         pub unsafe fn initWithQuantityType_quantitySamplePredicate_options_anchorDate_intervalComponents(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             quantity_type: &HKQuantityType,
             quantity_sample_predicate: Option<&NSPredicate>,
             options: HKStatisticsOptions,
@@ -186,7 +186,7 @@ extern_methods!(
     #[cfg(feature = "HealthKit_HKStatisticsCollectionQuery")]
     unsafe impl HKStatisticsCollectionQuery {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 

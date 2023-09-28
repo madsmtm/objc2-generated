@@ -36,7 +36,7 @@ extern_methods!(
         pub unsafe fn indexName(&self) -> Option<Id<NSString>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(all(
             feature = "CoreData_NSPersistentStoreCoordinator",
@@ -44,7 +44,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initForStoreWithDescription:coordinator:)]
         pub unsafe fn initForStoreWithDescription_coordinator(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             description: &NSPersistentStoreDescription,
             psc: &NSPersistentStoreCoordinator,
         ) -> Id<Self>;
@@ -56,7 +56,7 @@ extern_methods!(
         #[deprecated]
         #[method_id(@__retain_semantics Init initForStoreWithDescription:model:)]
         pub unsafe fn initForStoreWithDescription_model(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             description: &NSPersistentStoreDescription,
             model: &NSManagedObjectModel,
         ) -> Id<Self>;

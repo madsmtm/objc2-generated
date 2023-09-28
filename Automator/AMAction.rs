@@ -37,7 +37,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithDefinition:fromArchive:)]
         pub unsafe fn initWithDefinition_fromArchive(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             dict: Option<&NSDictionary<NSString, AnyObject>>,
             archived: bool,
         ) -> Option<Id<Self>>;
@@ -45,7 +45,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:error:_)]
         pub unsafe fn initWithContentsOfURL_error(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             file_url: &NSURL,
         ) -> Result<Id<Self>, Id<NSError>>;
 
@@ -160,7 +160,7 @@ extern_methods!(
     #[cfg(feature = "Automator_AMAction")]
     unsafe impl AMAction {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

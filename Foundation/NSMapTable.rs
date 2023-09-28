@@ -77,7 +77,7 @@ extern_methods!(
     unsafe impl<KeyType: Message, ObjectType: Message> NSMapTable<KeyType, ObjectType> {
         #[method_id(@__retain_semantics Init initWithKeyOptions:valueOptions:capacity:)]
         pub unsafe fn initWithKeyOptions_valueOptions_capacity(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             key_options: NSPointerFunctionsOptions,
             value_options: NSPointerFunctionsOptions,
             initial_capacity: NSUInteger,
@@ -86,7 +86,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSPointerFunctions")]
         #[method_id(@__retain_semantics Init initWithKeyPointerFunctions:valuePointerFunctions:capacity:)]
         pub unsafe fn initWithKeyPointerFunctions_valuePointerFunctions_capacity(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             key_functions: &NSPointerFunctions,
             value_functions: &NSPointerFunctions,
             initial_capacity: NSUInteger,
@@ -172,7 +172,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSMapTable")]
     unsafe impl<KeyType: Message, ObjectType: Message> NSMapTable<KeyType, ObjectType> {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -85,16 +85,13 @@ extern_methods!(
         #[cfg(feature = "GameKit_GKMatchRequest")]
         #[method_id(@__retain_semantics Init initWithMatchRequest:)]
         pub unsafe fn initWithMatchRequest(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             request: &GKMatchRequest,
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "GameKit_GKInvite")]
         #[method_id(@__retain_semantics Init initWithInvite:)]
-        pub unsafe fn initWithInvite(
-            this: Option<Allocated<Self>>,
-            invite: &GKInvite,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithInvite(this: Allocated<Self>, invite: &GKInvite) -> Option<Id<Self>>;
 
         #[cfg(feature = "GameKit_GKMatch")]
         #[method(addPlayersToMatch:)]
@@ -126,17 +123,14 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSBundle")]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             nib_name_or_nil: Option<&NSNibName>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
     }
 );
 
@@ -145,7 +139,7 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKMatchmakerViewController")]
     unsafe impl GKMatchmakerViewController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 

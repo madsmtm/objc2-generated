@@ -118,7 +118,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSItemProvider")]
     unsafe impl NSItemProvider {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(all(
             feature = "Foundation_NSData",
@@ -227,7 +227,7 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Init initWithObject:)]
         pub unsafe fn initWithObject(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             object: &ProtocolObject<dyn NSItemProviderWriting>,
         ) -> Id<Self>;
 
@@ -241,7 +241,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithItem:typeIdentifier:)]
         pub unsafe fn initWithItem_typeIdentifier(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             item: Option<&ProtocolObject<dyn NSSecureCoding>>,
             type_identifier: Option<&NSString>,
         ) -> Id<Self>;
@@ -249,7 +249,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
         pub unsafe fn initWithContentsOfURL(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             file_url: Option<&NSURL>,
         ) -> Option<Id<Self>>;
 

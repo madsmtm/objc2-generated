@@ -66,7 +66,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSTextLayoutManager")]
         #[method_id(@__retain_semantics Init initWithTextLayoutManager:)]
         pub unsafe fn initWithTextLayoutManager(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             text_layout_manager: &NSTextLayoutManager,
         ) -> Id<Self>;
 
@@ -74,7 +74,7 @@ extern_methods!(
         pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(

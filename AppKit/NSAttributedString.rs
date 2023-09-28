@@ -276,7 +276,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithURL:options:documentAttributes:error:_)]
         pub unsafe fn initWithURL_options_documentAttributes_error(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             url: &NSURL,
             options: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, AnyObject>,
             dict: Option<
@@ -291,7 +291,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithData:options:documentAttributes:error:_)]
         pub unsafe fn initWithData_options_documentAttributes_error(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             data: &NSData,
             options: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, AnyObject>,
             dict: Option<
@@ -326,7 +326,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSDictionary"))]
         #[method_id(@__retain_semantics Init initWithRTF:documentAttributes:)]
         pub unsafe fn initWithRTF_documentAttributes(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             data: &NSData,
             dict: Option<
                 &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>>,
@@ -336,7 +336,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSDictionary"))]
         #[method_id(@__retain_semantics Init initWithRTFD:documentAttributes:)]
         pub unsafe fn initWithRTFD_documentAttributes(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             data: &NSData,
             dict: Option<
                 &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>>,
@@ -346,7 +346,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSDictionary"))]
         #[method_id(@__retain_semantics Init initWithHTML:documentAttributes:)]
         pub unsafe fn initWithHTML_documentAttributes(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             data: &NSData,
             dict: Option<
                 &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>>,
@@ -360,7 +360,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithHTML:baseURL:documentAttributes:)]
         pub unsafe fn initWithHTML_baseURL_documentAttributes(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             data: &NSData,
             base: &NSURL,
             dict: Option<
@@ -371,7 +371,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSDictionary"))]
         #[method_id(@__retain_semantics Init initWithDocFormat:documentAttributes:)]
         pub unsafe fn initWithDocFormat_documentAttributes(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             data: &NSData,
             dict: Option<
                 &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>>,
@@ -381,7 +381,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSDictionary"))]
         #[method_id(@__retain_semantics Init initWithHTML:options:documentAttributes:)]
         pub unsafe fn initWithHTML_options_documentAttributes(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             data: &NSData,
             options: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, AnyObject>,
             dict: Option<
@@ -395,7 +395,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithRTFDFileWrapper:documentAttributes:)]
         pub unsafe fn initWithRTFDFileWrapper_documentAttributes(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             wrapper: &NSFileWrapper,
             dict: Option<
                 &mut Option<Id<NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>>>,
@@ -663,7 +663,7 @@ extern_methods!(
         #[deprecated = "Use -initWithURL:options:documentAttributes:error: instead"]
         #[method_id(@__retain_semantics Init initWithURL:documentAttributes:)]
         pub unsafe fn initWithURL_documentAttributes(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             url: &NSURL,
             dict: Option<&mut Option<Id<NSDictionary>>>,
         ) -> Option<Id<Self>>;
@@ -672,7 +672,7 @@ extern_methods!(
         #[deprecated = "Use -initWithURL:options:documentAttributes:error: instead"]
         #[method_id(@__retain_semantics Init initWithPath:documentAttributes:)]
         pub unsafe fn initWithPath_documentAttributes(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             path: &NSString,
             dict: Option<&mut Option<Id<NSDictionary>>>,
         ) -> Option<Id<Self>>;

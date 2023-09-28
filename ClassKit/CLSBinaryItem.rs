@@ -51,7 +51,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithIdentifier:title:type:)]
         pub unsafe fn initWithIdentifier_title_type(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             identifier: &NSString,
             title: &NSString,
             value_type: CLSBinaryValueType,
@@ -67,6 +67,6 @@ extern_methods!(
         pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );

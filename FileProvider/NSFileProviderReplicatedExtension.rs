@@ -58,10 +58,7 @@ extern_protocol!(
     {
         #[cfg(feature = "FileProvider_NSFileProviderDomain")]
         #[method_id(@__retain_semantics Init initWithDomain:)]
-        unsafe fn initWithDomain(
-            this: Option<Allocated<Self>>,
-            domain: &NSFileProviderDomain,
-        ) -> Id<Self>;
+        unsafe fn initWithDomain(this: Allocated<Self>, domain: &NSFileProviderDomain) -> Id<Self>;
 
         #[method(invalidate)]
         unsafe fn invalidate(&self);

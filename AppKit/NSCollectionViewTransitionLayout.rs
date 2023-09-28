@@ -43,7 +43,7 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Init initWithCurrentLayout:nextLayout:)]
         pub unsafe fn initWithCurrentLayout_nextLayout(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             current_layout: &NSCollectionViewLayout,
             new_layout: &NSCollectionViewLayout,
         ) -> Id<Self>;
@@ -68,7 +68,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSCollectionViewTransitionLayout")]
     unsafe impl NSCollectionViewTransitionLayout {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

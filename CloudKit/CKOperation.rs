@@ -27,7 +27,7 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKOperation")]
     unsafe impl CKOperation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "CloudKit_CKOperationConfiguration")]
         #[method_id(@__retain_semantics Other configuration)]
@@ -137,7 +137,7 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKOperationConfiguration")]
     unsafe impl CKOperationConfiguration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

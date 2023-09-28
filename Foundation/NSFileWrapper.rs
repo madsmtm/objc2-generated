@@ -46,7 +46,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Init initWithURL:options:error:_)]
         pub unsafe fn initWithURL_options_error(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             url: &NSURL,
             options: NSFileWrapperReadingOptions,
         ) -> Result<Id<Self>, Id<NSError>>;
@@ -54,37 +54,34 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initDirectoryWithFileWrappers:)]
         pub unsafe fn initDirectoryWithFileWrappers(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             children_by_preferred_name: &NSDictionary<NSString, NSFileWrapper>,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Init initRegularFileWithContents:)]
         pub unsafe fn initRegularFileWithContents(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             contents: &NSData,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Init initSymbolicLinkWithDestinationURL:)]
         pub unsafe fn initSymbolicLinkWithDestinationURL(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             url: &NSURL,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Init initWithSerializedRepresentation:)]
         pub unsafe fn initWithSerializedRepresentation(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             serialize_representation: &NSData,
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            in_coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, in_coder: &NSCoder) -> Option<Id<Self>>;
 
         #[method(isDirectory)]
         pub unsafe fn isDirectory(&self) -> bool;
@@ -182,7 +179,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSFileWrapper")]
     unsafe impl NSFileWrapper {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -196,16 +193,13 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use -initWithURL:options:error: instead."]
         #[method_id(@__retain_semantics Init initWithPath:)]
-        pub unsafe fn initWithPath(
-            this: Option<Allocated<Self>>,
-            path: &NSString,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithPath(this: Allocated<Self>, path: &NSString) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use -initSymbolicLinkWithDestinationURL: and -setPreferredFileName:, if necessary, instead."]
         #[method_id(@__retain_semantics Init initSymbolicLinkWithDestination:)]
         pub unsafe fn initSymbolicLinkWithDestination(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             path: &NSString,
         ) -> Id<Self>;
 

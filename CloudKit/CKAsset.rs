@@ -24,14 +24,14 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKAsset")]
     unsafe impl CKAsset {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Init initWithFileURL:)]
-        pub unsafe fn initWithFileURL(this: Option<Allocated<Self>>, file_url: &NSURL) -> Id<Self>;
+        pub unsafe fn initWithFileURL(this: Allocated<Self>, file_url: &NSURL) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other fileURL)]

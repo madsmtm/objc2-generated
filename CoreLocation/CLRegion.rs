@@ -55,7 +55,7 @@ extern_methods!(
         #[deprecated = "Please see CLCircularRegion"]
         #[method_id(@__retain_semantics Init initCircularRegionWithCenter:radius:identifier:)]
         pub unsafe fn initCircularRegionWithCenter_radius_identifier(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             center: CLLocationCoordinate2D,
             radius: CLLocationDistance,
             identifier: &NSString,
@@ -96,7 +96,7 @@ extern_methods!(
     #[cfg(feature = "CoreLocation_CLRegion")]
     unsafe impl CLRegion {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

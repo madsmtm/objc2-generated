@@ -25,12 +25,12 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKFetchShareMetadataOperation")]
     unsafe impl CKFetchShareMetadataOperation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Init initWithShareURLs:)]
         pub unsafe fn initWithShareURLs(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             share_ur_ls: &NSArray<NSURL>,
         ) -> Id<Self>;
 

@@ -64,7 +64,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithLabel:value:)]
         pub unsafe fn initWithLabel_value(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             label: Option<&NSString>,
             value: &ValueType,
         ) -> Id<Self>;
@@ -95,7 +95,7 @@ extern_methods!(
     #[cfg(feature = "Contacts_CNLabeledValue")]
     unsafe impl<ValueType: Message> CNLabeledValue<ValueType> {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

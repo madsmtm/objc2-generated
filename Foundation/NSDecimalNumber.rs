@@ -69,26 +69,26 @@ extern_methods!(
     unsafe impl NSDecimalNumber {
         #[method_id(@__retain_semantics Init initWithMantissa:exponent:isNegative:)]
         pub unsafe fn initWithMantissa_exponent_isNegative(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             mantissa: c_ulonglong,
             exponent: c_short,
             flag: bool,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithDecimal:)]
-        pub unsafe fn initWithDecimal(this: Option<Allocated<Self>>, dcm: NSDecimal) -> Id<Self>;
+        pub unsafe fn initWithDecimal(this: Allocated<Self>, dcm: NSDecimal) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithString:)]
         pub unsafe fn initWithString(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             number_value: Option<&NSString>,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithString:locale:)]
         pub unsafe fn initWithString_locale(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             number_value: Option<&NSString>,
             locale: Option<&AnyObject>,
         ) -> Id<Self>;
@@ -247,10 +247,7 @@ extern_methods!(
     unsafe impl NSDecimalNumber {
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
     }
 );
 
@@ -260,7 +257,7 @@ extern_methods!(
     unsafe impl NSDecimalNumber {
         #[method_id(@__retain_semantics Init initWithBytes:objCType:)]
         pub unsafe fn initWithBytes_objCType(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             value: NonNull<c_void>,
             r#type: NonNull<c_char>,
         ) -> Id<Self>;
@@ -272,7 +269,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSDecimalNumber")]
     unsafe impl NSDecimalNumber {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -314,7 +311,7 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Init initWithRoundingMode:scale:raiseOnExactness:raiseOnOverflow:raiseOnUnderflow:raiseOnDivideByZero:)]
         pub unsafe fn initWithRoundingMode_scale_raiseOnExactness_raiseOnOverflow_raiseOnUnderflow_raiseOnDivideByZero(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             rounding_mode: NSRoundingMode,
             scale: c_short,
             exact: bool,
@@ -340,7 +337,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSDecimalNumberHandler")]
     unsafe impl NSDecimalNumberHandler {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

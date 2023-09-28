@@ -31,21 +31,18 @@ extern_methods!(
         pub unsafe fn objectAtIndex(&self, index: NSUInteger) -> Id<ObjectType>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithObjects:count:)]
         pub unsafe fn initWithObjects_count(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             objects: *mut NonNull<ObjectType>,
             cnt: NSUInteger,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
     }
 );
 
@@ -329,14 +326,12 @@ extern_methods!(
         pub unsafe fn arrayWithArray(array: &NSArray<ObjectType>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithArray:)]
-        pub unsafe fn initWithArray(
-            this: Option<Allocated<Self>>,
-            array: &NSArray<ObjectType>,
-        ) -> Id<Self>;
+        pub unsafe fn initWithArray(this: Allocated<Self>, array: &NSArray<ObjectType>)
+            -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithArray:copyItems:)]
         pub unsafe fn initWithArray_copyItems(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             array: &NSArray<ObjectType>,
             flag: bool,
         ) -> Id<Self>;
@@ -344,7 +339,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:error:_)]
         pub unsafe fn initWithContentsOfURL_error(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             url: &NSURL,
         ) -> Result<Id<NSArray<ObjectType>>, Id<NSError>>;
 
@@ -378,14 +373,12 @@ extern_methods!(
         pub unsafe fn arrayWithArray(array: &NSArray<ObjectType>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithArray:)]
-        pub unsafe fn initWithArray(
-            this: Option<Allocated<Self>>,
-            array: &NSArray<ObjectType>,
-        ) -> Id<Self>;
+        pub unsafe fn initWithArray(this: Allocated<Self>, array: &NSArray<ObjectType>)
+            -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithArray:copyItems:)]
         pub unsafe fn initWithArray_copyItems(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             array: &NSArray<ObjectType>,
             flag: bool,
         ) -> Id<Self>;
@@ -451,7 +444,7 @@ extern_methods!(
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithContentsOfFile:)]
         pub unsafe fn initWithContentsOfFile(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             path: &NSString,
         ) -> Option<Id<NSArray<ObjectType>>>;
 
@@ -459,7 +452,7 @@ extern_methods!(
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
         pub unsafe fn initWithContentsOfURL(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             url: &NSURL,
         ) -> Option<Id<NSArray<ObjectType>>>;
 
@@ -520,20 +513,14 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Init init)]
-        pub fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithCapacity:)]
-        pub unsafe fn initWithCapacity(
-            this: Option<Allocated<Self>>,
-            num_items: NSUInteger,
-        ) -> Id<Self>;
+        pub unsafe fn initWithCapacity(this: Allocated<Self>, num_items: NSUInteger) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
     }
 );
 
@@ -543,7 +530,7 @@ extern_methods!(
     unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
         #[method_id(@__retain_semantics Init initWithObjects:count:)]
         pub unsafe fn initWithObjects_count(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             objects: *mut NonNull<ObjectType>,
             cnt: NSUInteger,
         ) -> Id<Self>;
@@ -707,14 +694,14 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithContentsOfFile:)]
         pub unsafe fn initWithContentsOfFile(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             path: &NSString,
         ) -> Option<Id<NSMutableArray<ObjectType>>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
         pub unsafe fn initWithContentsOfURL(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             url: &NSURL,
         ) -> Option<Id<NSMutableArray<ObjectType>>>;
     }

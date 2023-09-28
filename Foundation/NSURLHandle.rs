@@ -169,7 +169,7 @@ extern_methods!(
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithURL:cached:)]
         pub unsafe fn initWithURL_cached(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             an_url: Option<&NSURL>,
             will_cache: bool,
         ) -> Option<Id<Self>>;
@@ -224,7 +224,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSURLHandle")]
     unsafe impl NSURLHandle {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

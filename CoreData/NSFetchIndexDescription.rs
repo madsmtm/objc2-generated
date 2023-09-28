@@ -35,7 +35,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithName:elements:)]
         pub unsafe fn initWithName_elements(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             name: &NSString,
             elements: Option<&NSArray<NSFetchIndexElementDescription>>,
         ) -> Id<Self>;
@@ -84,7 +84,7 @@ extern_methods!(
     #[cfg(feature = "CoreData_NSFetchIndexDescription")]
     unsafe impl NSFetchIndexDescription {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

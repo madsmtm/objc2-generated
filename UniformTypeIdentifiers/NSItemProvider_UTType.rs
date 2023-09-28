@@ -14,7 +14,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:contentType:openInPlace:coordinated:visibility:)]
         pub unsafe fn initWithContentsOfURL_contentType_openInPlace_coordinated_visibility(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             file_url: &NSURL,
             content_type: Option<&UTType>,
             open_in_place: bool,

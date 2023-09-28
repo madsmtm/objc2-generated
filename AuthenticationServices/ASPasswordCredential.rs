@@ -38,7 +38,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithUser:password:)]
         pub unsafe fn initWithUser_password(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             user: &NSString,
             password: &NSString,
         ) -> Id<Self>;
@@ -63,7 +63,7 @@ extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASPasswordCredential")]
     unsafe impl ASPasswordCredential {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

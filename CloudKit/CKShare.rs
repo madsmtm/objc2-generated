@@ -44,15 +44,13 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKShare")]
     unsafe impl CKShare {
         #[method_id(@__retain_semantics Init initWithRootRecord:)]
-        pub unsafe fn initWithRootRecord(
-            this: Option<Allocated<Self>>,
-            root_record: &CKRecord,
-        ) -> Id<Self>;
+        pub unsafe fn initWithRootRecord(this: Allocated<Self>, root_record: &CKRecord)
+            -> Id<Self>;
 
         #[cfg(feature = "CloudKit_CKRecordID")]
         #[method_id(@__retain_semantics Init initWithRootRecord:shareID:)]
         pub unsafe fn initWithRootRecord_shareID(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             root_record: &CKRecord,
             share_id: &CKRecordID,
         ) -> Id<Self>;
@@ -60,14 +58,13 @@ extern_methods!(
         #[cfg(feature = "CloudKit_CKRecordZoneID")]
         #[method_id(@__retain_semantics Init initWithRecordZoneID:)]
         pub unsafe fn initWithRecordZoneID(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             record_zone_id: &CKRecordZoneID,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, a_decoder: &NSCoder)
-            -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Id<Self>;
 
         #[method(publicPermission)]
         pub unsafe fn publicPermission(&self) -> CKShareParticipantPermission;
@@ -103,21 +100,21 @@ extern_methods!(
         pub unsafe fn removeParticipant(&self, participant: &CKShareParticipant);
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithRecordType:)]
         pub unsafe fn initWithRecordType(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             record_type: &CKRecordType,
         ) -> Id<Self>;
 
         #[cfg(feature = "CloudKit_CKRecordID")]
         #[method_id(@__retain_semantics Init initWithRecordType:recordID:)]
         pub unsafe fn initWithRecordType_recordID(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             record_type: &CKRecordType,
             record_id: &CKRecordID,
         ) -> Id<Self>;
@@ -125,7 +122,7 @@ extern_methods!(
         #[cfg(feature = "CloudKit_CKRecordZoneID")]
         #[method_id(@__retain_semantics Init initWithRecordType:zoneID:)]
         pub unsafe fn initWithRecordType_zoneID(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             record_type: &CKRecordType,
             zone_id: &CKRecordZoneID,
         ) -> Id<Self>;

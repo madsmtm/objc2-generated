@@ -84,10 +84,10 @@ extern_methods!(
         pub fn layer() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithLayer:)]
-        pub unsafe fn initWithLayer(this: Option<Allocated<Self>>, layer: &AnyObject) -> Id<Self>;
+        pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other presentationLayer)]
         pub unsafe fn presentationLayer(&self) -> Option<Id<Self>>;

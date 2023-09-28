@@ -27,13 +27,13 @@ extern_methods!(
     unsafe impl CKMarkNotificationsReadOperation {
         #[deprecated = "Instead of iterating notifications, consider using CKDatabaseSubscription, CKFetchDatabaseChangesOperation, and CKFetchRecordZoneChangesOperation as appropriate"]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(all(feature = "CloudKit_CKNotificationID", feature = "Foundation_NSArray"))]
         #[deprecated = "Instead of iterating notifications, consider using CKDatabaseSubscription, CKFetchDatabaseChangesOperation, and CKFetchRecordZoneChangesOperation as appropriate"]
         #[method_id(@__retain_semantics Init initWithNotificationIDsToMarkRead:)]
         pub unsafe fn initWithNotificationIDsToMarkRead(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             notification_i_ds: &NSArray<CKNotificationID>,
         ) -> Id<Self>;
 

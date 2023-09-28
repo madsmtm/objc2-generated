@@ -44,7 +44,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithProductIdentifiers:)]
         pub unsafe fn initWithProductIdentifiers(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             product_identifiers: &NSSet<NSString>,
         ) -> Id<Self>;
 
@@ -64,7 +64,7 @@ extern_methods!(
     #[cfg(feature = "StoreKit_SKProductsRequest")]
     unsafe impl SKProductsRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -110,7 +110,7 @@ extern_methods!(
     #[cfg(feature = "StoreKit_SKProductsResponse")]
     unsafe impl SKProductsResponse {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

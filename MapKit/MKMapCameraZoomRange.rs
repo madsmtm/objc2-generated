@@ -38,20 +38,20 @@ extern_methods!(
     unsafe impl MKMapCameraZoomRange {
         #[method_id(@__retain_semantics Init initWithMinCenterCoordinateDistance:maxCenterCoordinateDistance:)]
         pub unsafe fn initWithMinCenterCoordinateDistance_maxCenterCoordinateDistance(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             min_distance: CLLocationDistance,
             max_distance: CLLocationDistance,
         ) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Init initWithMinCenterCoordinateDistance:)]
         pub unsafe fn initWithMinCenterCoordinateDistance(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             min_distance: CLLocationDistance,
         ) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Init initWithMaxCenterCoordinateDistance:)]
         pub unsafe fn initWithMaxCenterCoordinateDistance(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             max_distance: CLLocationDistance,
         ) -> Option<Id<Self>>;
 
@@ -68,7 +68,7 @@ extern_methods!(
     #[cfg(feature = "MapKit_MKMapCameraZoomRange")]
     unsafe impl MKMapCameraZoomRange {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

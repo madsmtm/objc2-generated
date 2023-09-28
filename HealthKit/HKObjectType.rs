@@ -38,7 +38,7 @@ extern_methods!(
         pub unsafe fn identifier(&self) -> Id<NSString>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "HealthKit_HKQuantityType")]
         #[method_id(@__retain_semantics Other quantityTypeForIdentifier:)]
@@ -143,7 +143,7 @@ extern_methods!(
     #[cfg(feature = "HealthKit_HKCharacteristicType")]
     unsafe impl HKCharacteristicType {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 
@@ -206,7 +206,7 @@ extern_methods!(
     #[cfg(feature = "HealthKit_HKSampleType")]
     unsafe impl HKSampleType {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 
@@ -254,7 +254,7 @@ extern_methods!(
     #[cfg(feature = "HealthKit_HKCategoryType")]
     unsafe impl HKCategoryType {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 
@@ -302,7 +302,7 @@ extern_methods!(
     #[cfg(feature = "HealthKit_HKCorrelationType")]
     unsafe impl HKCorrelationType {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 
@@ -350,7 +350,7 @@ extern_methods!(
     #[cfg(feature = "HealthKit_HKDocumentType")]
     unsafe impl HKDocumentType {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 
@@ -405,7 +405,7 @@ extern_methods!(
     #[cfg(feature = "HealthKit_HKQuantityType")]
     unsafe impl HKQuantityType {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 
@@ -453,7 +453,7 @@ extern_methods!(
     #[cfg(feature = "HealthKit_HKWorkoutType")]
     unsafe impl HKWorkoutType {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 
@@ -507,7 +507,7 @@ extern_methods!(
     #[cfg(feature = "HealthKit_HKSeriesType")]
     unsafe impl HKSeriesType {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 
@@ -555,7 +555,7 @@ extern_methods!(
     #[cfg(feature = "HealthKit_HKActivitySummaryType")]
     unsafe impl HKActivitySummaryType {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 
@@ -603,7 +603,7 @@ extern_methods!(
     #[cfg(feature = "HealthKit_HKAudiogramSampleType")]
     unsafe impl HKAudiogramSampleType {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 
@@ -651,7 +651,7 @@ extern_methods!(
     #[cfg(feature = "HealthKit_HKElectrocardiogramType")]
     unsafe impl HKElectrocardiogramType {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 
@@ -699,7 +699,7 @@ extern_methods!(
     #[cfg(feature = "HealthKit_HKPrescriptionType")]
     unsafe impl HKPrescriptionType {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 

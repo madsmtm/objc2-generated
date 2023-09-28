@@ -98,14 +98,12 @@ extern_methods!(
         pub unsafe fn fetchRequestWithEntityName(entity_name: &NSString) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithEntityName:)]
-        pub unsafe fn initWithEntityName(
-            this: Option<Allocated<Self>>,
-            entity_name: &NSString,
-        ) -> Id<Self>;
+        pub unsafe fn initWithEntityName(this: Allocated<Self>, entity_name: &NSString)
+            -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSError"))]
         #[method_id(@__retain_semantics Other execute:_)]
@@ -329,7 +327,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithFetchRequest:completionBlock:)]
         pub unsafe fn initWithFetchRequest_completionBlock(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             request: &NSFetchRequest<ResultType>,
             blk: Option<&Block<(NonNull<NSAsynchronousFetchResult<ResultType>>,), ()>>,
         ) -> Id<Self>;
@@ -341,7 +339,7 @@ extern_methods!(
     #[cfg(feature = "CoreData_NSAsynchronousFetchRequest")]
     unsafe impl<ResultType: Message> NSAsynchronousFetchRequest<ResultType> {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

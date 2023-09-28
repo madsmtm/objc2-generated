@@ -36,11 +36,11 @@ extern_methods!(
     #[cfg(feature = "MapKit_MKImageryMapConfiguration")]
     unsafe impl MKImageryMapConfiguration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithElevationStyle:)]
         pub unsafe fn initWithElevationStyle(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             elevation_style: MKMapElevationStyle,
         ) -> Id<Self>;
     }

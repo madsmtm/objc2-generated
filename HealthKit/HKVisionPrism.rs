@@ -80,7 +80,7 @@ extern_methods!(
         #[cfg(feature = "HealthKit_HKQuantity")]
         #[method_id(@__retain_semantics Init initWithAmount:angle:eye:)]
         pub unsafe fn initWithAmount_angle_eye(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             amount: &HKQuantity,
             angle: &HKQuantity,
             eye: HKVisionEye,
@@ -89,7 +89,7 @@ extern_methods!(
         #[cfg(feature = "HealthKit_HKQuantity")]
         #[method_id(@__retain_semantics Init initWithVerticalAmount:verticalBase:horizontalAmount:horizontalBase:eye:)]
         pub unsafe fn initWithVerticalAmount_verticalBase_horizontalAmount_horizontalBase_eye(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             vertical_amount: &HKQuantity,
             vertical_base: HKPrismBase,
             horizontal_amount: &HKQuantity,
@@ -98,7 +98,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

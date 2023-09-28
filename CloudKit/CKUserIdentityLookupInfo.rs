@@ -33,7 +33,7 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKUserIdentityLookupInfo")]
     unsafe impl CKUserIdentityLookupInfo {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -41,21 +41,21 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithEmailAddress:)]
         pub unsafe fn initWithEmailAddress(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             email_address: &NSString,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithPhoneNumber:)]
         pub unsafe fn initWithPhoneNumber(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             phone_number: &NSString,
         ) -> Id<Self>;
 
         #[cfg(feature = "CloudKit_CKRecordID")]
         #[method_id(@__retain_semantics Init initWithUserRecordID:)]
         pub unsafe fn initWithUserRecordID(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             user_record_id: &CKRecordID,
         ) -> Id<Self>;
 

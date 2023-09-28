@@ -38,12 +38,12 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Init initWithKey:)]
         pub unsafe fn initWithKey(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             key: &NSDraggingImageComponentKey,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other key)]
         pub unsafe fn key(&self) -> Id<NSDraggingImageComponentKey>;
@@ -94,12 +94,12 @@ extern_methods!(
     unsafe impl NSDraggingItem {
         #[method_id(@__retain_semantics Init initWithPasteboardWriter:)]
         pub unsafe fn initWithPasteboardWriter(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             pasteboard_writer: &ProtocolObject<dyn NSPasteboardWriting>,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other item)]
         pub unsafe fn item(&self) -> Id<AnyObject>;

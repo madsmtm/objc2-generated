@@ -41,13 +41,13 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Init initWithIndexes:length:)]
         pub unsafe fn initWithIndexes_length(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             indexes: *mut NSUInteger,
             length: NSUInteger,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithIndex:)]
-        pub unsafe fn initWithIndex(this: Option<Allocated<Self>>, index: NSUInteger) -> Id<Self>;
+        pub unsafe fn initWithIndex(this: Allocated<Self>, index: NSUInteger) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other indexPathByAddingIndex:)]
         pub unsafe fn indexPathByAddingIndex(&self, index: NSUInteger) -> Id<NSIndexPath>;
@@ -78,7 +78,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSIndexPath")]
     unsafe impl NSIndexPath {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

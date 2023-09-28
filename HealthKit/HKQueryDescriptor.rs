@@ -42,7 +42,7 @@ extern_methods!(
         pub unsafe fn predicate(&self) -> Option<Id<NSPredicate>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -50,7 +50,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSPredicate", feature = "HealthKit_HKSampleType"))]
         #[method_id(@__retain_semantics Init initWithSampleType:predicate:)]
         pub unsafe fn initWithSampleType_predicate(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             sample_type: &HKSampleType,
             predicate: Option<&NSPredicate>,
         ) -> Id<Self>;

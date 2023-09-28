@@ -28,7 +28,7 @@ extern_methods!(
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithSessionID:displayName:sessionMode:)]
         pub unsafe fn initWithSessionID_displayName_sessionMode(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             session_id: Option<&NSString>,
             name: Option<&NSString>,
             mode: GKSessionMode,
@@ -134,7 +134,7 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKSession")]
     unsafe impl GKSession {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

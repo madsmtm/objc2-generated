@@ -87,12 +87,12 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithSource:)]
-        pub unsafe fn initWithSource(this: Option<Allocated<Self>>, source: &NSString) -> Id<Self>;
+        pub unsafe fn initWithSource(this: Allocated<Self>, source: &NSString) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "OSAKit_OSALanguage"))]
         #[method_id(@__retain_semantics Init initWithSource:language:)]
         pub unsafe fn initWithSource_language(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             source: &NSString,
             language: Option<&OSALanguage>,
         ) -> Id<Self>;
@@ -104,7 +104,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithSource:fromURL:languageInstance:usingStorageOptions:)]
         pub unsafe fn initWithSource_fromURL_languageInstance_usingStorageOptions(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             source: &NSString,
             url: Option<&NSURL>,
             instance: Option<&OSALanguageInstance>,
@@ -118,7 +118,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:error:)]
         pub unsafe fn initWithContentsOfURL_error(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             url: &NSURL,
             error_info: Option<&mut Option<Id<NSDictionary<NSString, AnyObject>>>>,
         ) -> Option<Id<Self>>;
@@ -132,7 +132,7 @@ extern_methods!(
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:language:error:)]
         pub unsafe fn initWithContentsOfURL_language_error(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             url: &NSURL,
             language: &OSALanguage,
             error_info: Option<&mut Option<Id<NSDictionary<NSString, AnyObject>>>>,
@@ -145,7 +145,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:languageInstance:usingStorageOptions:error:_)]
         pub unsafe fn initWithContentsOfURL_languageInstance_usingStorageOptions_error(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             url: &NSURL,
             instance: Option<&OSALanguageInstance>,
             storage_options: OSAStorageOptions,
@@ -159,7 +159,7 @@ extern_methods!(
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithCompiledData:error:)]
         pub unsafe fn initWithCompiledData_error(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             data: &NSData,
             error_info: Option<&mut Option<Id<NSDictionary<NSString, AnyObject>>>>,
         ) -> Id<Self>;
@@ -171,7 +171,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithCompiledData:fromURL:usingStorageOptions:error:_)]
         pub unsafe fn initWithCompiledData_fromURL_usingStorageOptions_error(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             data: &NSData,
             url: Option<&NSURL>,
             storage_options: OSAStorageOptions,
@@ -185,7 +185,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithScriptDataDescriptor:fromURL:languageInstance:usingStorageOptions:error:_)]
         pub unsafe fn initWithScriptDataDescriptor_fromURL_languageInstance_usingStorageOptions_error(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             data: &NSAppleEventDescriptor,
             url: Option<&NSURL>,
             instance: Option<&OSALanguageInstance>,
@@ -337,7 +337,7 @@ extern_methods!(
     #[cfg(feature = "OSAKit_OSAScript")]
     unsafe impl OSAScript {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

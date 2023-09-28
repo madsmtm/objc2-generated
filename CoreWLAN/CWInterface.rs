@@ -107,7 +107,7 @@ extern_methods!(
         #[deprecated = "Use -[CWWiFiClient interfaceWithName:] instead"]
         #[method_id(@__retain_semantics Init initWithInterfaceName:)]
         pub unsafe fn initWithInterfaceName(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             name: Option<&NSString>,
         ) -> Id<Self>;
 
@@ -234,7 +234,7 @@ extern_methods!(
     #[cfg(feature = "CoreWLAN_CWInterface")]
     unsafe impl CWInterface {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

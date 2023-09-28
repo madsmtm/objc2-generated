@@ -103,7 +103,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithRequest:cachedResponse:client:)]
         pub unsafe fn initWithRequest_cachedResponse_client(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             request: &NSURLRequest,
             cached_response: Option<&NSCachedURLResponse>,
             client: Option<&ProtocolObject<dyn NSURLProtocolClient>>,
@@ -179,7 +179,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSURLProtocol")]
     unsafe impl NSURLProtocol {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -200,7 +200,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithTask:cachedResponse:client:)]
         pub unsafe fn initWithTask_cachedResponse_client(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             task: &NSURLSessionTask,
             cached_response: Option<&NSCachedURLResponse>,
             client: Option<&ProtocolObject<dyn NSURLProtocolClient>>,

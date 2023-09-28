@@ -43,14 +43,14 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Init initIncludingCategories:)]
         pub unsafe fn initIncludingCategories(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             categories: &NSArray<MKPointOfInterestCategory>,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Init initExcludingCategories:)]
         pub unsafe fn initExcludingCategories(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             categories: &NSArray<MKPointOfInterestCategory>,
         ) -> Id<Self>;
 
@@ -67,7 +67,7 @@ extern_methods!(
     #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
     unsafe impl MKPointOfInterestFilter {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

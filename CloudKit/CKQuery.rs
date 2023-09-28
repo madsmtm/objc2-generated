@@ -33,20 +33,19 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKQuery")]
     unsafe impl CKQuery {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, a_decoder: &NSCoder)
-            -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSPredicate")]
         #[method_id(@__retain_semantics Init initWithRecordType:predicate:)]
         pub unsafe fn initWithRecordType_predicate(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             record_type: &CKRecordType,
             predicate: &NSPredicate,
         ) -> Id<Self>;

@@ -31,7 +31,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithPersistentStoreCoordinator:configurationName:URL:options:)]
         pub unsafe fn initWithPersistentStoreCoordinator_configurationName_URL_options(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             coordinator: Option<&NSPersistentStoreCoordinator>,
             configuration_name: Option<&NSString>,
             url: &NSURL,
@@ -130,7 +130,7 @@ extern_methods!(
     #[cfg(feature = "CoreData_NSAtomicStore")]
     unsafe impl NSAtomicStore {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 

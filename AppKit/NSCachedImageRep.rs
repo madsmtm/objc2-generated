@@ -35,7 +35,7 @@ extern_methods!(
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithWindow:rect:)]
         pub unsafe fn initWithWindow_rect(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             win: Option<&NSWindow>,
             rect: NSRect,
         ) -> Option<Id<Self>>;
@@ -43,7 +43,7 @@ extern_methods!(
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithSize:depth:separate:alpha:)]
         pub unsafe fn initWithSize_depth_separate_alpha(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             size: NSSize,
             depth: NSWindowDepth,
             flag: bool,
@@ -66,14 +66,11 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSCachedImageRep")]
     unsafe impl NSCachedImageRep {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
     }
 );
 

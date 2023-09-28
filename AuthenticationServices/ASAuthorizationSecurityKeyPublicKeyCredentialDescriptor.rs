@@ -63,7 +63,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSData"))]
         #[method_id(@__retain_semantics Init initWithCredentialID:transports:)]
         pub unsafe fn initWithCredentialID_transports(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             credential_id: &NSData,
             allowed_transports: &NSArray<
                 ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport,
@@ -87,6 +87,6 @@ extern_methods!(
         pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );

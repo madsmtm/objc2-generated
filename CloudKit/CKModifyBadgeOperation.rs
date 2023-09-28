@@ -27,12 +27,12 @@ extern_methods!(
     unsafe impl CKModifyBadgeOperation {
         #[deprecated = "No longer supported, will cease working at some point in the future"]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[deprecated = "No longer supported, will cease working at some point in the future"]
         #[method_id(@__retain_semantics Init initWithBadgeValue:)]
         pub unsafe fn initWithBadgeValue(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             badge_value: NSUInteger,
         ) -> Id<Self>;
 

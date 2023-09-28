@@ -25,7 +25,7 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKFetchRecordZoneChangesOperation")]
     unsafe impl CKFetchRecordZoneChangesOperation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(all(
             feature = "CloudKit_CKFetchRecordZoneChangesConfiguration",
@@ -35,7 +35,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithRecordZoneIDs:configurationsByRecordZoneID:)]
         pub unsafe fn initWithRecordZoneIDs_configurationsByRecordZoneID(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             record_zone_i_ds: &NSArray<CKRecordZoneID>,
             configurations_by_record_zone_id: Option<
                 &NSDictionary<CKRecordZoneID, CKFetchRecordZoneChangesConfiguration>,
@@ -247,7 +247,7 @@ extern_methods!(
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithRecordZoneIDs:optionsByRecordZoneID:)]
         pub unsafe fn initWithRecordZoneIDs_optionsByRecordZoneID(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             record_zone_i_ds: &NSArray<CKRecordZoneID>,
             options_by_record_zone_id: Option<
                 &NSDictionary<CKRecordZoneID, CKFetchRecordZoneChangesOptions>,
@@ -340,7 +340,7 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKFetchRecordZoneChangesConfiguration")]
     unsafe impl CKFetchRecordZoneChangesConfiguration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -413,7 +413,7 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKFetchRecordZoneChangesOptions")]
     unsafe impl CKFetchRecordZoneChangesOptions {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -36,7 +36,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUUID"))]
         #[method_id(@__retain_semantics Init initWithUUID:identifier:)]
         pub unsafe fn initWithUUID_identifier(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             uuid: &NSUUID,
             identifier: &NSString,
         ) -> Id<Self>;
@@ -45,7 +45,7 @@ extern_methods!(
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithProximityUUID:identifier:)]
         pub unsafe fn initWithProximityUUID_identifier(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             proximity_uuid: &NSUUID,
             identifier: &NSString,
         ) -> Id<Self>;
@@ -53,7 +53,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUUID"))]
         #[method_id(@__retain_semantics Init initWithUUID:major:identifier:)]
         pub unsafe fn initWithUUID_major_identifier(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             uuid: &NSUUID,
             major: CLBeaconMajorValue,
             identifier: &NSString,
@@ -63,7 +63,7 @@ extern_methods!(
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithProximityUUID:major:identifier:)]
         pub unsafe fn initWithProximityUUID_major_identifier(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             proximity_uuid: &NSUUID,
             major: CLBeaconMajorValue,
             identifier: &NSString,
@@ -72,7 +72,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSUUID"))]
         #[method_id(@__retain_semantics Init initWithUUID:major:minor:identifier:)]
         pub unsafe fn initWithUUID_major_minor_identifier(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             uuid: &NSUUID,
             major: CLBeaconMajorValue,
             minor: CLBeaconMinorValue,
@@ -83,7 +83,7 @@ extern_methods!(
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithProximityUUID:major:minor:identifier:)]
         pub unsafe fn initWithProximityUUID_major_minor_identifier(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             proximity_uuid: &NSUUID,
             major: CLBeaconMajorValue,
             minor: CLBeaconMinorValue,
@@ -96,7 +96,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithBeaconIdentityConstraint:identifier:)]
         pub unsafe fn initWithBeaconIdentityConstraint_identifier(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             beacon_identity_constraint: &CLBeaconIdentityConstraint,
             identifier: &NSString,
         ) -> Id<Self>;
@@ -149,7 +149,7 @@ extern_methods!(
         #[deprecated = "Please see CLCircularRegion"]
         #[method_id(@__retain_semantics Init initCircularRegionWithCenter:radius:identifier:)]
         pub unsafe fn initCircularRegionWithCenter_radius_identifier(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             center: CLLocationCoordinate2D,
             radius: CLLocationDistance,
             identifier: &NSString,
@@ -162,7 +162,7 @@ extern_methods!(
     #[cfg(feature = "CoreLocation_CLBeaconRegion")]
     unsafe impl CLBeaconRegion {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -233,7 +233,7 @@ extern_methods!(
     #[cfg(feature = "CoreLocation_CLBeacon")]
     unsafe impl CLBeacon {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

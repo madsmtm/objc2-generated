@@ -49,7 +49,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSSet", feature = "MediaPlayer_MPMediaPredicate"))]
         #[method_id(@__retain_semantics Init initWithFilterPredicates:)]
         pub unsafe fn initWithFilterPredicates(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             filter_predicates: Option<&NSSet<MPMediaPredicate>>,
         ) -> Id<Self>;
 
@@ -137,7 +137,7 @@ extern_methods!(
     #[cfg(feature = "MediaPlayer_MPMediaQuery")]
     unsafe impl MPMediaQuery {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -175,7 +175,7 @@ extern_methods!(
     #[cfg(feature = "MediaPlayer_MPMediaPredicate")]
     unsafe impl MPMediaPredicate {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -247,7 +247,7 @@ extern_methods!(
     #[cfg(feature = "MediaPlayer_MPMediaPropertyPredicate")]
     unsafe impl MPMediaPropertyPredicate {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

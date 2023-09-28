@@ -27,12 +27,12 @@ extern_methods!(
     unsafe impl NSXMLElement {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithName:)]
-        pub unsafe fn initWithName(this: Option<Allocated<Self>>, name: &NSString) -> Id<Self>;
+        pub unsafe fn initWithName(this: Allocated<Self>, name: &NSString) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithName:URI:)]
         pub unsafe fn initWithName_URI(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             name: &NSString,
             uri: Option<&NSString>,
         ) -> Id<Self>;
@@ -40,7 +40,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithName:stringValue:)]
         pub unsafe fn initWithName_stringValue(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             name: &NSString,
             string: Option<&NSString>,
         ) -> Id<Self>;
@@ -48,13 +48,13 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithXMLString:error:_)]
         pub unsafe fn initWithXMLString_error(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             string: &NSString,
         ) -> Result<Id<Self>, Id<NSError>>;
 
         #[method_id(@__retain_semantics Init initWithKind:options:)]
         pub unsafe fn initWithKind_options(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             kind: NSXMLNodeKind,
             options: NSXMLNodeOptions,
         ) -> Id<Self>;
@@ -169,10 +169,10 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSXMLElement")]
     unsafe impl NSXMLElement {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithKind:)]
-        pub unsafe fn initWithKind(this: Option<Allocated<Self>>, kind: NSXMLNodeKind) -> Id<Self>;
+        pub unsafe fn initWithKind(this: Allocated<Self>, kind: NSXMLNodeKind) -> Id<Self>;
     }
 );
 

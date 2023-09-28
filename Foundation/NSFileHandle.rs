@@ -39,17 +39,14 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Init initWithFileDescriptor:closeOnDealloc:)]
         pub unsafe fn initWithFileDescriptor_closeOnDealloc(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             fd: c_int,
             closeopt: bool,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method_id(@__retain_semantics Other readDataToEndOfFileAndReturnError:_)]
@@ -104,7 +101,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSFileHandle")]
     unsafe impl NSFileHandle {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -241,7 +238,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSFileHandle")]
     unsafe impl NSFileHandle {
         #[method_id(@__retain_semantics Init initWithFileDescriptor:)]
-        pub unsafe fn initWithFileDescriptor(this: Option<Allocated<Self>>, fd: c_int) -> Id<Self>;
+        pub unsafe fn initWithFileDescriptor(this: Allocated<Self>, fd: c_int) -> Id<Self>;
 
         #[method(fileDescriptor)]
         pub unsafe fn fileDescriptor(&self) -> c_int;
@@ -334,7 +331,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSPipe")]
     unsafe impl NSPipe {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -32,7 +32,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithPrimaryString:alternativeStrings:)]
         pub unsafe fn initWithPrimaryString_alternativeStrings(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             primary_string: &NSString,
             alternative_strings: &NSArray<NSString>,
         ) -> Id<Self>;
@@ -56,7 +56,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTextAlternatives")]
     unsafe impl NSTextAlternatives {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

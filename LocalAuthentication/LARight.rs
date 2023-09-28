@@ -42,12 +42,12 @@ extern_methods!(
         pub unsafe fn setTag(&self, tag: NSInteger);
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "LocalAuthentication_LAAuthenticationRequirement")]
         #[method_id(@__retain_semantics Init initWithRequirement:)]
         pub unsafe fn initWithRequirement(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             requirement: &LAAuthenticationRequirement,
         ) -> Id<Self>;
 

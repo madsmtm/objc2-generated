@@ -33,7 +33,7 @@ extern_methods!(
         pub unsafe fn setExpirationHandler(&self, expiration_handler: Option<&Block<(), ()>>);
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(&self) -> Id<Self>;
@@ -78,7 +78,7 @@ extern_methods!(
     #[cfg(feature = "BackgroundTasks_BGProcessingTask")]
     unsafe impl BGProcessingTask {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 
@@ -117,7 +117,7 @@ extern_methods!(
     #[cfg(feature = "BackgroundTasks_BGAppRefreshTask")]
     unsafe impl BGAppRefreshTask {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 

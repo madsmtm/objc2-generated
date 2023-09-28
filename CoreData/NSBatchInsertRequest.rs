@@ -123,7 +123,7 @@ extern_methods!(
 
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -132,7 +132,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithEntityName:objects:)]
         pub unsafe fn initWithEntityName_objects(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             entity_name: &NSString,
             dictionaries: &NSArray<NSDictionary<NSString, AnyObject>>,
         ) -> Id<Self>;
@@ -145,7 +145,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithEntity:objects:)]
         pub unsafe fn initWithEntity_objects(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             entity: &NSEntityDescription,
             dictionaries: &NSArray<NSDictionary<NSString, AnyObject>>,
         ) -> Id<Self>;
@@ -157,7 +157,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithEntity:dictionaryHandler:)]
         pub unsafe fn initWithEntity_dictionaryHandler(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             entity: &NSEntityDescription,
             handler: &Block<(NonNull<NSMutableDictionary<NSString, AnyObject>>,), Bool>,
         ) -> Id<Self>;
@@ -168,7 +168,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithEntity:managedObjectHandler:)]
         pub unsafe fn initWithEntity_managedObjectHandler(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             entity: &NSEntityDescription,
             handler: &Block<(NonNull<NSManagedObject>,), Bool>,
         ) -> Id<Self>;
@@ -179,7 +179,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithEntityName:dictionaryHandler:)]
         pub unsafe fn initWithEntityName_dictionaryHandler(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             entity_name: &NSString,
             handler: &Block<(NonNull<NSMutableDictionary<NSString, AnyObject>>,), Bool>,
         ) -> Id<Self>;
@@ -187,7 +187,7 @@ extern_methods!(
         #[cfg(all(feature = "CoreData_NSManagedObject", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithEntityName:managedObjectHandler:)]
         pub unsafe fn initWithEntityName_managedObjectHandler(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             entity_name: &NSString,
             handler: &Block<(NonNull<NSManagedObject>,), Bool>,
         ) -> Id<Self>;

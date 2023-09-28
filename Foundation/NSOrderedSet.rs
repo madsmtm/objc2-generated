@@ -34,21 +34,18 @@ extern_methods!(
         pub unsafe fn indexOfObject(&self, object: &ObjectType) -> NSUInteger;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithObjects:count:)]
         pub unsafe fn initWithObjects_count(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             objects: *mut NonNull<ObjectType>,
             cnt: NSUInteger,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
     }
 );
 
@@ -277,27 +274,24 @@ extern_methods!(
         pub unsafe fn orderedSetWithSet_copyItems(set: &NSSet<ObjectType>, flag: bool) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithObject:)]
-        pub unsafe fn initWithObject(
-            this: Option<Allocated<Self>>,
-            object: &ObjectType,
-        ) -> Id<Self>;
+        pub unsafe fn initWithObject(this: Allocated<Self>, object: &ObjectType) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithOrderedSet:)]
         pub unsafe fn initWithOrderedSet(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             set: &NSOrderedSet<ObjectType>,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithOrderedSet:copyItems:)]
         pub unsafe fn initWithOrderedSet_copyItems(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             set: &NSOrderedSet<ObjectType>,
             flag: bool,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithOrderedSet:range:copyItems:)]
         pub unsafe fn initWithOrderedSet_range_copyItems(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             set: &NSOrderedSet<ObjectType>,
             range: NSRange,
             flag: bool,
@@ -305,15 +299,13 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Init initWithArray:)]
-        pub unsafe fn initWithArray(
-            this: Option<Allocated<Self>>,
-            array: &NSArray<ObjectType>,
-        ) -> Id<Self>;
+        pub unsafe fn initWithArray(this: Allocated<Self>, array: &NSArray<ObjectType>)
+            -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Init initWithArray:copyItems:)]
         pub unsafe fn initWithArray_copyItems(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             set: &NSArray<ObjectType>,
             flag: bool,
         ) -> Id<Self>;
@@ -321,7 +313,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Init initWithArray:range:copyItems:)]
         pub unsafe fn initWithArray_range_copyItems(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             set: &NSArray<ObjectType>,
             range: NSRange,
             flag: bool,
@@ -329,15 +321,12 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSSet")]
         #[method_id(@__retain_semantics Init initWithSet:)]
-        pub unsafe fn initWithSet(
-            this: Option<Allocated<Self>>,
-            set: &NSSet<ObjectType>,
-        ) -> Id<Self>;
+        pub unsafe fn initWithSet(this: Allocated<Self>, set: &NSSet<ObjectType>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSSet")]
         #[method_id(@__retain_semantics Init initWithSet:copyItems:)]
         pub unsafe fn initWithSet_copyItems(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             set: &NSSet<ObjectType>,
             flag: bool,
         ) -> Id<Self>;
@@ -393,27 +382,24 @@ extern_methods!(
         pub unsafe fn orderedSetWithSet_copyItems(set: &NSSet<ObjectType>, flag: bool) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithObject:)]
-        pub unsafe fn initWithObject(
-            this: Option<Allocated<Self>>,
-            object: &ObjectType,
-        ) -> Id<Self>;
+        pub unsafe fn initWithObject(this: Allocated<Self>, object: &ObjectType) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithOrderedSet:)]
         pub unsafe fn initWithOrderedSet(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             set: &NSOrderedSet<ObjectType>,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithOrderedSet:copyItems:)]
         pub unsafe fn initWithOrderedSet_copyItems(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             set: &NSOrderedSet<ObjectType>,
             flag: bool,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithOrderedSet:range:copyItems:)]
         pub unsafe fn initWithOrderedSet_range_copyItems(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             set: &NSOrderedSet<ObjectType>,
             range: NSRange,
             flag: bool,
@@ -421,15 +407,13 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Init initWithArray:)]
-        pub unsafe fn initWithArray(
-            this: Option<Allocated<Self>>,
-            array: &NSArray<ObjectType>,
-        ) -> Id<Self>;
+        pub unsafe fn initWithArray(this: Allocated<Self>, array: &NSArray<ObjectType>)
+            -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Init initWithArray:copyItems:)]
         pub unsafe fn initWithArray_copyItems(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             set: &NSArray<ObjectType>,
             flag: bool,
         ) -> Id<Self>;
@@ -437,7 +421,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Init initWithArray:range:copyItems:)]
         pub unsafe fn initWithArray_range_copyItems(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             set: &NSArray<ObjectType>,
             range: NSRange,
             flag: bool,
@@ -445,15 +429,12 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSSet")]
         #[method_id(@__retain_semantics Init initWithSet:)]
-        pub unsafe fn initWithSet(
-            this: Option<Allocated<Self>>,
-            set: &NSSet<ObjectType>,
-        ) -> Id<Self>;
+        pub unsafe fn initWithSet(this: Allocated<Self>, set: &NSSet<ObjectType>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSSet")]
         #[method_id(@__retain_semantics Init initWithSet:copyItems:)]
         pub unsafe fn initWithSet_copyItems(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             set: &NSSet<ObjectType>,
             flag: bool,
         ) -> Id<Self>;
@@ -539,19 +520,13 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithCapacity:)]
-        pub unsafe fn initWithCapacity(
-            this: Option<Allocated<Self>>,
-            num_items: NSUInteger,
-        ) -> Id<Self>;
+        pub unsafe fn initWithCapacity(this: Allocated<Self>, num_items: NSUInteger) -> Id<Self>;
     }
 );
 
@@ -561,7 +536,7 @@ extern_methods!(
     unsafe impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
         #[method_id(@__retain_semantics Init initWithObjects:count:)]
         pub unsafe fn initWithObjects_count(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             objects: *mut NonNull<ObjectType>,
             cnt: NSUInteger,
         ) -> Id<Self>;

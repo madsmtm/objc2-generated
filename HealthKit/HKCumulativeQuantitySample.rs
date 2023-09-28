@@ -95,7 +95,7 @@ extern_methods!(
     #[cfg(feature = "HealthKit_HKCumulativeQuantitySample")]
     unsafe impl HKCumulativeQuantitySample {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 

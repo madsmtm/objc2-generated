@@ -56,7 +56,7 @@ extern_methods!(
     #[cfg(feature = "MapKit_MKDirectionsRequest")]
     unsafe impl MKDirectionsRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -115,8 +115,7 @@ extern_methods!(
     unsafe impl MKDirectionsRequest {
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
-        pub unsafe fn initWithContentsOfURL(this: Option<Allocated<Self>>, url: &NSURL)
-            -> Id<Self>;
+        pub unsafe fn initWithContentsOfURL(this: Allocated<Self>, url: &NSURL) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method(isDirectionsRequestURL:)]

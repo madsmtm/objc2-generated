@@ -32,15 +32,13 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithEntityName:)]
-        pub unsafe fn initWithEntityName(
-            this: Option<Allocated<Self>>,
-            entity_name: &NSString,
-        ) -> Id<Self>;
+        pub unsafe fn initWithEntityName(this: Allocated<Self>, entity_name: &NSString)
+            -> Id<Self>;
 
         #[cfg(feature = "CoreData_NSEntityDescription")]
         #[method_id(@__retain_semantics Init initWithEntity:)]
         pub unsafe fn initWithEntity(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             entity: &NSEntityDescription,
         ) -> Id<Self>;
 
@@ -87,7 +85,7 @@ extern_methods!(
     #[cfg(feature = "CoreData_NSBatchUpdateRequest")]
     unsafe impl NSBatchUpdateRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -34,22 +34,19 @@ extern_methods!(
         pub unsafe fn resetStandardUserDefaults();
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithSuiteName:)]
         pub unsafe fn initWithSuiteName(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             suitename: Option<&NSString>,
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use -init instead"]
         #[method_id(@__retain_semantics Init initWithUser:)]
-        pub unsafe fn initWithUser(
-            this: Option<Allocated<Self>>,
-            username: &NSString,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithUser(this: Allocated<Self>, username: &NSString) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other objectForKey:)]

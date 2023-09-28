@@ -71,7 +71,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithName:reason:userInfo:)]
         pub unsafe fn initWithName_reason_userInfo(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             a_name: &NSExceptionName,
             a_reason: Option<&NSString>,
             a_user_info: Option<&NSDictionary>,
@@ -103,7 +103,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSException")]
     unsafe impl NSException {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 
@@ -153,7 +153,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSAssertionHandler")]
     unsafe impl NSAssertionHandler {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

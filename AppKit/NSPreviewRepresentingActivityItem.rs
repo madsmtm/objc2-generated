@@ -53,7 +53,7 @@ extern_methods!(
         #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithItem:title:image:icon:)]
         pub unsafe fn initWithItem_title_image_icon(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             item: &AnyObject,
             title: Option<&NSString>,
             image: Option<&NSImage>,
@@ -63,7 +63,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSItemProvider", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithItem:title:imageProvider:iconProvider:)]
         pub unsafe fn initWithItem_title_imageProvider_iconProvider(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             item: &AnyObject,
             title: Option<&NSString>,
             image_provider: Option<&NSItemProvider>,
@@ -71,7 +71,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

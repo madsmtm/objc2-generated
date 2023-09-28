@@ -53,7 +53,7 @@ extern_methods!(
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method_id(@__retain_semantics Init initWithDomain:type:name:port:)]
         pub unsafe fn initWithDomain_type_name_port(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             domain: &NSString,
             r#type: &NSString,
             name: &NSString,
@@ -64,7 +64,7 @@ extern_methods!(
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method_id(@__retain_semantics Init initWithDomain:type:name:)]
         pub unsafe fn initWithDomain_type_name(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             domain: &NSString,
             r#type: &NSString,
             name: &NSString,
@@ -199,7 +199,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSNetService")]
     unsafe impl NSNetService {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -227,7 +227,7 @@ extern_methods!(
     unsafe impl NSNetServiceBrowser {
         #[deprecated = "Use nw_browser_t in Network framework instead"]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[deprecated = "Use nw_browser_t in Network framework instead"]
         #[method_id(@__retain_semantics Other delegate)]

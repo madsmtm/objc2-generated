@@ -32,7 +32,7 @@ extern_methods!(
     #[cfg(feature = "StoreKit_SKOverlayConfiguration")]
     unsafe impl SKOverlayConfiguration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -59,7 +59,7 @@ extern_methods!(
     #[cfg(feature = "StoreKit_SKOverlayAppConfiguration")]
     unsafe impl SKOverlayAppConfiguration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -67,7 +67,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithAppIdentifier:position:)]
         pub unsafe fn initWithAppIdentifier_position(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             app_identifier: &NSString,
             position: SKOverlayPosition,
         ) -> Id<Self>;
@@ -161,14 +161,14 @@ extern_methods!(
     #[cfg(feature = "StoreKit_SKOverlayAppClipConfiguration")]
     unsafe impl SKOverlayAppClipConfiguration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithPosition:)]
         pub unsafe fn initWithPosition(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             position: SKOverlayPosition,
         ) -> Id<Self>;
 

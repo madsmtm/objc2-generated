@@ -79,13 +79,13 @@ extern_methods!(
         pub unsafe fn setSupportedHandleTypes(&self, supported_handle_types: &NSSet<NSNumber>);
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithLocalizedName:)]
         pub unsafe fn initWithLocalizedName(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             localized_name: &NSString,
         ) -> Id<Self>;
     }

@@ -44,14 +44,14 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             identifier: Option<&NSString>,
         ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "GameKit_GKPlayer"))]
         #[method_id(@__retain_semantics Init initWithIdentifier:player:)]
         pub unsafe fn initWithIdentifier_player(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             identifier: Option<&NSString>,
             player: &GKPlayer,
         ) -> Id<Self>;
@@ -101,7 +101,7 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKAchievement")]
     unsafe impl GKAchievement {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -133,7 +133,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithIdentifier:forPlayer:)]
         pub unsafe fn initWithIdentifier_forPlayer(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             identifier: Option<&NSString>,
             player_id: &NSString,
         ) -> Option<Id<Self>>;

@@ -147,16 +147,13 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Init initWithExpressionType:)]
         pub unsafe fn initWithExpressionType(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             r#type: NSExpressionType,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
 
         #[method(expressionType)]
         pub unsafe fn expressionType(&self) -> NSExpressionType;
@@ -238,7 +235,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSExpression")]
     unsafe impl NSExpression {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

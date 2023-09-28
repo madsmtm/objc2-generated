@@ -34,7 +34,7 @@ extern_methods!(
     #[cfg(feature = "HealthKit_HKQuantity")]
     unsafe impl HKQuantity {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "HealthKit_HKUnit")]
         #[method_id(@__retain_semantics Other quantityWithUnit:doubleValue:)]

@@ -36,7 +36,7 @@ extern_methods!(
         pub unsafe fn repeats(&self) -> bool;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 
@@ -84,7 +84,7 @@ extern_methods!(
     #[cfg(feature = "UserNotifications_UNPushNotificationTrigger")]
     unsafe impl UNPushNotificationTrigger {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 
@@ -145,7 +145,7 @@ extern_methods!(
     #[cfg(feature = "UserNotifications_UNTimeIntervalNotificationTrigger")]
     unsafe impl UNTimeIntervalNotificationTrigger {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 
@@ -208,7 +208,7 @@ extern_methods!(
     #[cfg(feature = "UserNotifications_UNCalendarNotificationTrigger")]
     unsafe impl UNCalendarNotificationTrigger {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 
@@ -264,7 +264,7 @@ extern_methods!(
     #[cfg(feature = "UserNotifications_UNLocationNotificationTrigger")]
     unsafe impl UNLocationNotificationTrigger {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 

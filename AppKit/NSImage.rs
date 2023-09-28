@@ -86,52 +86,50 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Init initWithSize:)]
-        pub unsafe fn initWithSize(this: Option<Allocated<Self>>, size: NSSize) -> Id<Self>;
+        pub unsafe fn initWithSize(this: Allocated<Self>, size: NSSize) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Init initWithData:)]
-        pub fn initWithData(this: Option<Allocated<Self>>, data: &NSData) -> Option<Id<Self>>;
+        pub fn initWithData(this: Allocated<Self>, data: &NSData) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithContentsOfFile:)]
         pub unsafe fn initWithContentsOfFile(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             file_name: &NSString,
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
-        pub unsafe fn initWithContentsOfURL(
-            this: Option<Allocated<Self>>,
-            url: &NSURL,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithContentsOfURL(this: Allocated<Self>, url: &NSURL)
+            -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initByReferencingFile:)]
         pub fn initByReferencingFile(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             file_name: &NSString,
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Init initByReferencingURL:)]
-        pub unsafe fn initByReferencingURL(this: Option<Allocated<Self>>, url: &NSURL) -> Id<Self>;
+        pub unsafe fn initByReferencingURL(this: Allocated<Self>, url: &NSURL) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSPasteboard")]
         #[method_id(@__retain_semantics Init initWithPasteboard:)]
         pub unsafe fn initWithPasteboard(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             pasteboard: &NSPasteboard,
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Init initWithDataIgnoringOrientation:)]
         pub unsafe fn initWithDataIgnoringOrientation(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             data: &NSData,
         ) -> Option<Id<Self>>;
 
@@ -395,7 +393,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSImage")]
     unsafe impl NSImage {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -986,7 +984,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
     unsafe impl NSImageSymbolConfiguration {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

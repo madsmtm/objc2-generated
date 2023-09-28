@@ -27,10 +27,7 @@ extern_methods!(
     unsafe impl PHProjectChangeRequest {
         #[cfg(feature = "PhotoKit_PHProject")]
         #[method_id(@__retain_semantics Init initWithProject:)]
-        pub unsafe fn initWithProject(
-            this: Option<Allocated<Self>>,
-            project: &PHProject,
-        ) -> Id<Self>;
+        pub unsafe fn initWithProject(this: Allocated<Self>, project: &PHProject) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
@@ -67,7 +64,7 @@ extern_methods!(
     #[cfg(feature = "PhotoKit_PHProjectChangeRequest")]
     unsafe impl PHProjectChangeRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -53,11 +53,11 @@ extern_methods!(
         pub unsafe fn keyEnumerator(&self) -> Id<NSEnumerator<KeyType>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithObjects:forKeys:count:)]
         pub unsafe fn initWithObjects_forKeys_count(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             objects: *mut NonNull<ObjectType>,
             keys: *mut NonNull<ProtocolObject<dyn NSCopying>>,
             cnt: NSUInteger,
@@ -65,10 +65,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
     }
 );
 
@@ -240,7 +237,7 @@ extern_methods!(
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithContentsOfFile:)]
         pub unsafe fn initWithContentsOfFile(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             path: &NSString,
         ) -> Option<Id<NSDictionary<KeyType, ObjectType>>>;
 
@@ -248,7 +245,7 @@ extern_methods!(
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
         pub unsafe fn initWithContentsOfURL(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             url: &NSURL,
         ) -> Option<Id<NSDictionary<KeyType, ObjectType>>>;
 
@@ -302,13 +299,13 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Init initWithDictionary:)]
         pub unsafe fn initWithDictionary(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             other_dictionary: &NSDictionary<KeyType, ObjectType>,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithDictionary:copyItems:)]
         pub unsafe fn initWithDictionary_copyItems(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             other_dictionary: &NSDictionary<KeyType, ObjectType>,
             flag: bool,
         ) -> Id<Self>;
@@ -316,7 +313,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Init initWithObjects:forKeys:)]
         pub unsafe fn initWithObjects_forKeys(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             objects: &NSArray<ObjectType>,
             keys: &NSArray<ProtocolObject<dyn NSCopying>>,
         ) -> Id<Self>;
@@ -359,13 +356,13 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Init initWithDictionary:)]
         pub unsafe fn initWithDictionary(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             other_dictionary: &NSDictionary<KeyType, ObjectType>,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithDictionary:copyItems:)]
         pub unsafe fn initWithDictionary_copyItems(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             other_dictionary: &NSDictionary<KeyType, ObjectType>,
             flag: bool,
         ) -> Id<Self>;
@@ -373,7 +370,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Init initWithObjects:forKeys:)]
         pub unsafe fn initWithObjects_forKeys(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             objects: &NSArray<ObjectType>,
             keys: &NSArray<ProtocolObject<dyn NSCopying>>,
         ) -> Id<Self>;
@@ -430,20 +427,14 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Init init)]
-        pub fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithCapacity:)]
-        pub unsafe fn initWithCapacity(
-            this: Option<Allocated<Self>>,
-            num_items: NSUInteger,
-        ) -> Id<Self>;
+        pub unsafe fn initWithCapacity(this: Allocated<Self>, num_items: NSUInteger) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
     }
 );
 
@@ -453,7 +444,7 @@ extern_methods!(
     unsafe impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
         #[method_id(@__retain_semantics Init initWithObjects:forKeys:count:)]
         pub unsafe fn initWithObjects_forKeys_count(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             objects: *mut NonNull<ObjectType>,
             keys: *mut NonNull<ProtocolObject<dyn NSCopying>>,
             cnt: NSUInteger,
@@ -534,14 +525,14 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithContentsOfFile:)]
         pub unsafe fn initWithContentsOfFile(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             path: &NSString,
         ) -> Option<Id<NSMutableDictionary<KeyType, ObjectType>>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
         pub unsafe fn initWithContentsOfURL(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             url: &NSURL,
         ) -> Option<Id<NSMutableDictionary<KeyType, ObjectType>>>;
     }

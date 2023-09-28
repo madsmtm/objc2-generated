@@ -35,7 +35,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithHealthStore:device:startDate:)]
         pub unsafe fn initWithHealthStore_device_startDate(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             health_store: &HKHealthStore,
             device: Option<&HKDevice>,
             start_date: &NSDate,
@@ -79,7 +79,7 @@ extern_methods!(
     #[cfg(feature = "HealthKit_HKHeartbeatSeriesBuilder")]
     unsafe impl HKHeartbeatSeriesBuilder {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 

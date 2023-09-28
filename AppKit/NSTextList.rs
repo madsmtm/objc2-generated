@@ -79,7 +79,7 @@ extern_methods!(
     unsafe impl NSTextList {
         #[method_id(@__retain_semantics Init initWithMarkerFormat:options:startingItemNumber:)]
         pub unsafe fn initWithMarkerFormat_options_startingItemNumber(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             marker_format: &NSTextListMarkerFormat,
             options: NSTextListOptions,
             starting_item_number: NSInteger,
@@ -87,17 +87,14 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Init initWithMarkerFormat:options:)]
         pub unsafe fn initWithMarkerFormat_options(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             marker_format: &NSTextListMarkerFormat,
             options: NSUInteger,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Other markerFormat)]
         pub unsafe fn markerFormat(&self) -> Id<NSTextListMarkerFormat>;
@@ -125,7 +122,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTextList")]
     unsafe impl NSTextList {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

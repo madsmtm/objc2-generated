@@ -43,19 +43,13 @@ extern_methods!(
         pub unsafe fn indexSetWithIndexesInRange(range: NSRange) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithIndexesInRange:)]
-        pub unsafe fn initWithIndexesInRange(
-            this: Option<Allocated<Self>>,
-            range: NSRange,
-        ) -> Id<Self>;
+        pub unsafe fn initWithIndexesInRange(this: Allocated<Self>, range: NSRange) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithIndexSet:)]
-        pub unsafe fn initWithIndexSet(
-            this: Option<Allocated<Self>>,
-            index_set: &NSIndexSet,
-        ) -> Id<Self>;
+        pub unsafe fn initWithIndexSet(this: Allocated<Self>, index_set: &NSIndexSet) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithIndex:)]
-        pub unsafe fn initWithIndex(this: Option<Allocated<Self>>, value: NSUInteger) -> Id<Self>;
+        pub unsafe fn initWithIndex(this: Allocated<Self>, value: NSUInteger) -> Id<Self>;
 
         #[method(isEqualToIndexSet:)]
         pub unsafe fn isEqualToIndexSet(&self, index_set: &NSIndexSet) -> bool;
@@ -192,7 +186,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSIndexSet")]
     unsafe impl NSIndexSet {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -274,19 +268,13 @@ extern_methods!(
         pub unsafe fn indexSetWithIndexesInRange(range: NSRange) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithIndexesInRange:)]
-        pub unsafe fn initWithIndexesInRange(
-            this: Option<Allocated<Self>>,
-            range: NSRange,
-        ) -> Id<Self>;
+        pub unsafe fn initWithIndexesInRange(this: Allocated<Self>, range: NSRange) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithIndexSet:)]
-        pub unsafe fn initWithIndexSet(
-            this: Option<Allocated<Self>>,
-            index_set: &NSIndexSet,
-        ) -> Id<Self>;
+        pub unsafe fn initWithIndexSet(this: Allocated<Self>, index_set: &NSIndexSet) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithIndex:)]
-        pub unsafe fn initWithIndex(this: Option<Allocated<Self>>, value: NSUInteger) -> Id<Self>;
+        pub unsafe fn initWithIndex(this: Allocated<Self>, value: NSUInteger) -> Id<Self>;
     }
 );
 
@@ -295,7 +283,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSMutableIndexSet")]
     unsafe impl NSMutableIndexSet {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -40,14 +40,11 @@ extern_methods!(
         pub fn UUID() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithUUIDString:)]
-        pub fn initWithUUIDString(
-            this: Option<Allocated<Self>>,
-            string: &NSString,
-        ) -> Option<Id<Self>>;
+        pub fn initWithUUIDString(this: Allocated<Self>, string: &NSString) -> Option<Id<Self>>;
 
         #[method(compare:)]
         pub unsafe fn compare(&self, other_uuid: &NSUUID) -> NSComparisonResult;

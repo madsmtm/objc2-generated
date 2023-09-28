@@ -77,7 +77,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithName:)]
-        pub unsafe fn initWithName(this: Option<Allocated<Self>>, name: &NSString) -> Id<Self>;
+        pub unsafe fn initWithName(this: Allocated<Self>, name: &NSString) -> Id<Self>;
 
         #[cfg(all(
             feature = "CoreData_NSManagedObjectModel",
@@ -85,7 +85,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithName:managedObjectModel:)]
         pub unsafe fn initWithName_managedObjectModel(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             name: &NSString,
             model: &NSManagedObjectModel,
         ) -> Id<Self>;
@@ -118,7 +118,7 @@ extern_methods!(
     #[cfg(feature = "CoreData_NSPersistentContainer")]
     unsafe impl NSPersistentContainer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

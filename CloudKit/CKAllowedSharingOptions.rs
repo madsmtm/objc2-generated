@@ -54,7 +54,7 @@ extern_methods!(
     unsafe impl CKAllowedSharingOptions {
         #[method_id(@__retain_semantics Init initWithAllowedParticipantPermissionOptions:allowedParticipantAccessOptions:)]
         pub unsafe fn initWithAllowedParticipantPermissionOptions_allowedParticipantAccessOptions(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             allowed_participant_permission_options: CKSharingParticipantPermissionOption,
             allowed_participant_access_options: CKSharingParticipantAccessOption,
         ) -> Id<Self>;
@@ -89,7 +89,7 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKAllowedSharingOptions")]
     unsafe impl CKAllowedSharingOptions {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

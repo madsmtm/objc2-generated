@@ -34,7 +34,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithSampleType:predicate:updateHandler:)]
         pub unsafe fn initWithSampleType_predicate_updateHandler(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             sample_type: &HKSampleType,
             predicate: Option<&NSPredicate>,
             update_handler: &Block<
@@ -56,7 +56,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithQueryDescriptors:updateHandler:)]
         pub unsafe fn initWithQueryDescriptors_updateHandler(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             query_descriptors: &NSArray<HKQueryDescriptor>,
             update_handler: &Block<
                 (
@@ -76,7 +76,7 @@ extern_methods!(
     #[cfg(feature = "HealthKit_HKObserverQuery")]
     unsafe impl HKObserverQuery {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 

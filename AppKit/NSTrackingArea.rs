@@ -48,7 +48,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Init initWithRect:options:owner:userInfo:)]
         pub unsafe fn initWithRect_options_owner_userInfo(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             rect: NSRect,
             options: NSTrackingAreaOptions,
             owner: Option<&AnyObject>,
@@ -75,7 +75,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTrackingArea")]
     unsafe impl NSTrackingArea {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

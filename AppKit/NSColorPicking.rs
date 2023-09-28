@@ -10,7 +10,7 @@ extern_protocol!(
         #[cfg(feature = "AppKit_NSColorPanel")]
         #[method_id(@__retain_semantics Init initWithPickerMask:colorPanel:)]
         unsafe fn initWithPickerMask_colorPanel(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             mask: NSUInteger,
             owning_color_panel: &NSColorPanel,
         ) -> Option<Id<Self>>;

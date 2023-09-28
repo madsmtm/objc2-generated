@@ -119,7 +119,7 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLVertexBufferLayoutDescriptor")]
     unsafe impl MTLVertexBufferLayoutDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub fn new() -> Id<Self>;
@@ -174,7 +174,7 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLVertexBufferLayoutDescriptorArray")]
     unsafe impl MTLVertexBufferLayoutDescriptorArray {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -227,7 +227,7 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLVertexAttributeDescriptor")]
     unsafe impl MTLVertexAttributeDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub fn new() -> Id<Self>;
@@ -282,7 +282,7 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLVertexAttributeDescriptorArray")]
     unsafe impl MTLVertexAttributeDescriptorArray {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -331,7 +331,7 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLVertexDescriptor")]
     unsafe impl MTLVertexDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

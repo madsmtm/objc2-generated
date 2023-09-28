@@ -34,14 +34,14 @@ extern_methods!(
         #[deprecated = "Replaced by GKLeaderboardScore"]
         #[method_id(@__retain_semantics Init initWithLeaderboardIdentifier:)]
         pub unsafe fn initWithLeaderboardIdentifier(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             identifier: &NSString,
         ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "GameKit_GKPlayer"))]
         #[method_id(@__retain_semantics Init initWithLeaderboardIdentifier:player:)]
         pub unsafe fn initWithLeaderboardIdentifier_player(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             identifier: &NSString,
             player: &GKPlayer,
         ) -> Id<Self>;
@@ -106,7 +106,7 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKScore")]
     unsafe impl GKScore {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -129,7 +129,7 @@ extern_methods!(
         #[deprecated = "Use initWithLeaderboardIdentifier: instead"]
         #[method_id(@__retain_semantics Init initWithCategory:)]
         pub unsafe fn initWithCategory(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             category: Option<&NSString>,
         ) -> Id<Self>;
 
@@ -152,7 +152,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithLeaderboardIdentifier:forPlayer:)]
         pub unsafe fn initWithLeaderboardIdentifier_forPlayer(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             identifier: &NSString,
             player_id: &NSString,
         ) -> Option<Id<Self>>;

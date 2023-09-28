@@ -103,7 +103,7 @@ extern_methods!(
         #[cfg(feature = "InputMethodKit_IMKServer")]
         #[method_id(@__retain_semantics Init initWithServer:delegate:client:)]
         pub unsafe fn initWithServer_delegate_client(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             server: Option<&IMKServer>,
             delegate: Option<&AnyObject>,
             input_client: Option<&AnyObject>,
@@ -193,7 +193,7 @@ extern_methods!(
     #[cfg(feature = "InputMethodKit_IMKInputController")]
     unsafe impl IMKInputController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

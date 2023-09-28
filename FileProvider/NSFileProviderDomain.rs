@@ -50,7 +50,7 @@ extern_methods!(
     #[cfg(feature = "FileProvider_NSFileProviderDomainVersion")]
     unsafe impl NSFileProviderDomainVersion {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -86,7 +86,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithIdentifier:displayName:pathRelativeToDocumentStorage:)]
         pub unsafe fn initWithIdentifier_displayName_pathRelativeToDocumentStorage(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             identifier: &NSFileProviderDomainIdentifier,
             display_name: &NSString,
             path_relative_to_document_storage: &NSString,
@@ -95,7 +95,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithIdentifier:displayName:)]
         pub unsafe fn initWithIdentifier_displayName(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             identifier: &NSFileProviderDomainIdentifier,
             display_name: &NSString,
         ) -> Id<Self>;
@@ -153,7 +153,7 @@ extern_methods!(
     #[cfg(feature = "FileProvider_NSFileProviderDomain")]
     unsafe impl NSFileProviderDomain {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

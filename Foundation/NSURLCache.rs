@@ -48,7 +48,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSURLResponse"))]
         #[method_id(@__retain_semantics Init initWithResponse:data:)]
         pub unsafe fn initWithResponse_data(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             response: &NSURLResponse,
             data: &NSData,
         ) -> Id<Self>;
@@ -60,7 +60,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithResponse:data:userInfo:storagePolicy:)]
         pub unsafe fn initWithResponse_data_userInfo_storagePolicy(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             response: &NSURLResponse,
             data: &NSData,
             user_info: Option<&NSDictionary>,
@@ -89,7 +89,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSCachedURLResponse")]
     unsafe impl NSCachedURLResponse {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -130,7 +130,7 @@ extern_methods!(
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithMemoryCapacity:diskCapacity:diskPath:)]
         pub unsafe fn initWithMemoryCapacity_diskCapacity_diskPath(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             memory_capacity: NSUInteger,
             disk_capacity: NSUInteger,
             path: Option<&NSString>,
@@ -139,7 +139,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Init initWithMemoryCapacity:diskCapacity:directoryURL:)]
         pub unsafe fn initWithMemoryCapacity_diskCapacity_directoryURL(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             memory_capacity: NSUInteger,
             disk_capacity: NSUInteger,
             directory_url: Option<&NSURL>,
@@ -202,7 +202,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSURLCache")]
     unsafe impl NSURLCache {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

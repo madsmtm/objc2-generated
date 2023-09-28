@@ -26,7 +26,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithHTTPAuthorizationHeaders:)]
         pub unsafe fn initWithHTTPAuthorizationHeaders(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             http_authorization_headers: &NSDictionary<NSString, NSString>,
         ) -> Id<Self>;
 
@@ -36,7 +36,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithHTTPResponse:httpBody:)]
         pub unsafe fn initWithHTTPResponse_httpBody(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             http_response: &NSHTTPURLResponse,
             http_body: Option<&NSData>,
         ) -> Id<Self>;
@@ -85,7 +85,7 @@ extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionAuthorizationResult")]
     unsafe impl ASAuthorizationProviderExtensionAuthorizationResult {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

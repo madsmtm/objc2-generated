@@ -49,7 +49,7 @@ extern_methods!(
     #[cfg(feature = "MapKit_MKGeoJSONDecoder")]
     unsafe impl MKGeoJSONDecoder {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -96,7 +96,7 @@ extern_methods!(
     #[cfg(feature = "MapKit_MKGeoJSONFeature")]
     unsafe impl MKGeoJSONFeature {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

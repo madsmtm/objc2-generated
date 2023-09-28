@@ -34,12 +34,12 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSFontAssetRequest")]
     unsafe impl NSFontAssetRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(all(feature = "AppKit_NSFontDescriptor", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Init initWithFontDescriptors:options:)]
         pub unsafe fn initWithFontDescriptors_options(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             font_descriptors: &NSArray<NSFontDescriptor>,
             options: NSFontAssetRequestOptions,
         ) -> Id<Self>;

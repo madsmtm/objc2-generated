@@ -78,7 +78,7 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKChallenge")]
     unsafe impl GKChallenge {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -137,7 +137,7 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKScoreChallenge")]
     unsafe impl GKScoreChallenge {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -180,7 +180,7 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKAchievementChallenge")]
     unsafe impl GKAchievementChallenge {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

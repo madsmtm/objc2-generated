@@ -27,13 +27,13 @@ extern_methods!(
     unsafe impl CKFetchNotificationChangesOperation {
         #[deprecated = "Instead of iterating notifications to enumerate changed record zones, use CKDatabaseSubscription, CKFetchDatabaseChangesOperation, and CKFetchRecordZoneChangesOperation"]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "CloudKit_CKServerChangeToken")]
         #[deprecated = "Instead of iterating notifications to enumerate changed record zones, use CKDatabaseSubscription, CKFetchDatabaseChangesOperation, and CKFetchRecordZoneChangesOperation"]
         #[method_id(@__retain_semantics Init initWithPreviousServerChangeToken:)]
         pub unsafe fn initWithPreviousServerChangeToken(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             previous_server_change_token: Option<&CKServerChangeToken>,
         ) -> Id<Self>;
 

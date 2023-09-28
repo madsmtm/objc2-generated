@@ -25,7 +25,7 @@ extern_methods!(
         #[deprecated = "Use NSURLSession (see NSURLSession.h)"]
         #[method_id(@__retain_semantics Init initWithRequest:delegate:startImmediately:)]
         pub unsafe fn initWithRequest_delegate_startImmediately(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             request: &NSURLRequest,
             delegate: Option<&AnyObject>,
             start_immediately: bool,
@@ -35,7 +35,7 @@ extern_methods!(
         #[deprecated = "Use NSURLSession (see NSURLSession.h)"]
         #[method_id(@__retain_semantics Init initWithRequest:delegate:)]
         pub unsafe fn initWithRequest_delegate(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             request: &NSURLRequest,
             delegate: Option<&AnyObject>,
         ) -> Option<Id<Self>>;
@@ -93,7 +93,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSURLConnection")]
     unsafe impl NSURLConnection {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

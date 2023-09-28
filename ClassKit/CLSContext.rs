@@ -77,7 +77,7 @@ extern_methods!(
         pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other identifierPath)]
@@ -164,7 +164,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithType:identifier:title:)]
         pub unsafe fn initWithType_identifier_title(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             r#type: CLSContextType,
             identifier: &NSString,
             title: &NSString,

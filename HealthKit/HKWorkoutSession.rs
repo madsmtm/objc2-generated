@@ -81,7 +81,7 @@ extern_methods!(
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithActivityType:locationType:)]
         pub unsafe fn initWithActivityType_locationType(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             activity_type: HKWorkoutActivityType,
             location_type: HKWorkoutSessionLocationType,
         ) -> Id<Self>;
@@ -93,7 +93,7 @@ extern_methods!(
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithConfiguration:error:_)]
         pub unsafe fn initWithConfiguration_error(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             workout_configuration: &HKWorkoutConfiguration,
         ) -> Result<Id<Self>, Id<NSError>>;
 
@@ -104,13 +104,13 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithHealthStore:configuration:error:_)]
         pub unsafe fn initWithHealthStore_configuration_error(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             health_store: &HKHealthStore,
             workout_configuration: &HKWorkoutConfiguration,
         ) -> Result<Id<Self>, Id<NSError>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method(prepare)]
         pub unsafe fn prepare(&self);

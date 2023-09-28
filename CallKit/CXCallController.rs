@@ -23,7 +23,7 @@ extern_methods!(
     #[cfg(feature = "CallKit_CXCallController")]
     unsafe impl CXCallController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "CallKit_CXCallObserver")]
         #[method_id(@__retain_semantics Other callObserver)]

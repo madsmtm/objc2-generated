@@ -56,7 +56,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSURLCredential")]
     unsafe impl NSURLCredential {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -70,7 +70,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithUser:password:persistence:)]
         pub unsafe fn initWithUser_password_persistence(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             user: &NSString,
             password: &NSString,
             persistence: NSURLCredentialPersistence,

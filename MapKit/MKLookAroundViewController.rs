@@ -52,25 +52,19 @@ extern_methods!(
     unsafe impl MKLookAroundViewController {
         #[cfg(feature = "MapKit_MKLookAroundScene")]
         #[method_id(@__retain_semantics Init initWithScene:)]
-        pub unsafe fn initWithScene(
-            this: Option<Allocated<Self>>,
-            scene: &MKLookAroundScene,
-        ) -> Id<Self>;
+        pub unsafe fn initWithScene(this: Allocated<Self>, scene: &MKLookAroundScene) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSBundle", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
@@ -127,7 +121,7 @@ extern_methods!(
     #[cfg(feature = "MapKit_MKLookAroundViewController")]
     unsafe impl MKLookAroundViewController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 

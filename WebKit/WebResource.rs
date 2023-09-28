@@ -36,7 +36,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithData:URL:MIMEType:textEncodingName:frameName:)]
         pub unsafe fn initWithData_URL_MIMEType_textEncodingName_frameName(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             data: Option<&NSData>,
             url: Option<&NSURL>,
             mime_type: Option<&NSString>,
@@ -71,7 +71,7 @@ extern_methods!(
     #[cfg(feature = "WebKit_WebResource")]
     unsafe impl WebResource {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

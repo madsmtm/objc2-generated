@@ -101,7 +101,7 @@ extern_methods!(
     #[cfg(feature = "PhotoKit_PHAssetChangeRequest")]
     unsafe impl PHAssetChangeRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -163,7 +163,7 @@ extern_methods!(
     #[cfg(feature = "PhotoKit_PHContentEditingInputRequestOptions")]
     unsafe impl PHContentEditingInputRequestOptions {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -207,7 +207,7 @@ extern_methods!(
         #[cfg(feature = "PhotoKit_PHObjectPlaceholder")]
         #[method_id(@__retain_semantics Init initWithPlaceholderForCreatedAsset:)]
         pub unsafe fn initWithPlaceholderForCreatedAsset(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             placeholder_for_created_asset: &PHObjectPlaceholder,
         ) -> Id<Self>;
     }

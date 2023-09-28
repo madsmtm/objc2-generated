@@ -128,7 +128,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithPersistentStoreCoordinator:configurationName:URL:options:)]
         pub unsafe fn initWithPersistentStoreCoordinator_configurationName_URL_options(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             root: Option<&NSPersistentStoreCoordinator>,
             name: Option<&NSString>,
             url: &NSURL,
@@ -136,7 +136,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 

@@ -50,7 +50,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithType:predicate:samplePredicates:completion:)]
         pub unsafe fn initWithType_predicate_samplePredicates_completion(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             correlation_type: &HKCorrelationType,
             predicate: Option<&NSPredicate>,
             sample_predicates: Option<&NSDictionary<HKSampleType, NSPredicate>>,
@@ -71,7 +71,7 @@ extern_methods!(
     #[cfg(feature = "HealthKit_HKCorrelationQuery")]
     unsafe impl HKCorrelationQuery {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 

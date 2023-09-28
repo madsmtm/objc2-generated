@@ -31,7 +31,7 @@ extern_methods!(
     #[cfg(feature = "GameController_GCRacingWheel")]
     unsafe impl GCRacingWheel {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSSet")]
         #[method_id(@__retain_semantics Other connectedRacingWheels)]

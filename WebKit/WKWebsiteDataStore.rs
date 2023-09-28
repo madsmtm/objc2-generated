@@ -39,7 +39,7 @@ extern_methods!(
         pub unsafe fn new(&self) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method(isPersistent)]
         pub unsafe fn isPersistent(&self) -> bool;

@@ -69,7 +69,7 @@ extern_methods!(
     #[cfg(feature = "MetricKit_MXSignpostIntervalData")]
     unsafe impl MXSignpostIntervalData {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -123,7 +123,7 @@ extern_methods!(
     #[cfg(feature = "MetricKit_MXSignpostMetric")]
     unsafe impl MXSignpostMetric {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

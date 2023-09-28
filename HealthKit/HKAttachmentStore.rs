@@ -27,7 +27,7 @@ extern_methods!(
         #[cfg(feature = "HealthKit_HKHealthStore")]
         #[method_id(@__retain_semantics Init initWithHealthStore:)]
         pub unsafe fn initWithHealthStore(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             health_store: &HKHealthStore,
         ) -> Id<Self>;
 
@@ -110,7 +110,7 @@ extern_methods!(
     #[cfg(feature = "HealthKit_HKAttachmentStore")]
     unsafe impl HKAttachmentStore {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -29,18 +29,18 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSDataAsset")]
     unsafe impl NSDataAsset {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithName:)]
         pub unsafe fn initWithName(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             name: &NSDataAssetName,
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSBundle")]
         #[method_id(@__retain_semantics Init initWithName:bundle:)]
         pub unsafe fn initWithName_bundle(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             name: &NSDataAssetName,
             bundle: &NSBundle,
         ) -> Option<Id<Self>>;

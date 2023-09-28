@@ -71,7 +71,7 @@ extern_methods!(
     #[cfg(feature = "PhotoKit_PHCollection")]
     unsafe impl PHCollection {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -224,7 +224,7 @@ extern_methods!(
     #[cfg(feature = "PhotoKit_PHAssetCollection")]
     unsafe impl PHAssetCollection {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -349,7 +349,7 @@ extern_methods!(
     #[cfg(feature = "PhotoKit_PHCollectionList")]
     unsafe impl PHCollectionList {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

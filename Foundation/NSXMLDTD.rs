@@ -26,11 +26,11 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSXMLDTD")]
     unsafe impl NSXMLDTD {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithKind:options:)]
         pub unsafe fn initWithKind_options(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             kind: NSXMLNodeKind,
             options: NSXMLNodeOptions,
         ) -> Id<Self>;
@@ -38,7 +38,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:options:error:_)]
         pub unsafe fn initWithContentsOfURL_options_error(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             url: &NSURL,
             mask: NSXMLNodeOptions,
         ) -> Result<Id<Self>, Id<NSError>>;
@@ -46,7 +46,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method_id(@__retain_semantics Init initWithData:options:error:_)]
         pub unsafe fn initWithData_options_error(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             data: &NSData,
             mask: NSXMLNodeOptions,
         ) -> Result<Id<Self>, Id<NSError>>;
@@ -128,7 +128,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSXMLDTD")]
     unsafe impl NSXMLDTD {
         #[method_id(@__retain_semantics Init initWithKind:)]
-        pub unsafe fn initWithKind(this: Option<Allocated<Self>>, kind: NSXMLNodeKind) -> Id<Self>;
+        pub unsafe fn initWithKind(this: Allocated<Self>, kind: NSXMLNodeKind) -> Id<Self>;
     }
 );
 

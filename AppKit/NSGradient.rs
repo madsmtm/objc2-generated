@@ -43,7 +43,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Init initWithStartingColor:endingColor:)]
         pub unsafe fn initWithStartingColor_endingColor(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             starting_color: &NSColor,
             ending_color: &NSColor,
         ) -> Option<Id<Self>>;
@@ -51,7 +51,7 @@ extern_methods!(
         #[cfg(all(feature = "AppKit_NSColor", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Init initWithColors:)]
         pub unsafe fn initWithColors(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             color_array: &NSArray<NSColor>,
         ) -> Option<Id<Self>>;
 
@@ -62,7 +62,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithColors:atLocations:colorSpace:)]
         pub unsafe fn initWithColors_atLocations_colorSpace(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             color_array: &NSArray<NSColor>,
             locations: *mut CGFloat,
             color_space: &NSColorSpace,
@@ -70,7 +70,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
 
         #[method(drawFromPoint:toPoint:options:)]
         pub unsafe fn drawFromPoint_toPoint_options(
@@ -139,7 +139,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSGradient")]
     unsafe impl NSGradient {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

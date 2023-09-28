@@ -34,7 +34,7 @@ extern_methods!(
     unsafe impl ASAuthorizationPublicKeyCredentialParameters {
         #[method_id(@__retain_semantics Init initWithAlgorithm:)]
         pub unsafe fn initWithAlgorithm(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             algorithm: ASCOSEAlgorithmIdentifier,
         ) -> Id<Self>;
 
@@ -45,6 +45,6 @@ extern_methods!(
         pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );

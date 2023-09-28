@@ -96,7 +96,7 @@ extern_methods!(
     #[cfg(feature = "CoreLocation_CLFloor")]
     unsafe impl CLFloor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -132,7 +132,7 @@ extern_methods!(
     unsafe impl CLLocationSourceInformation {
         #[method_id(@__retain_semantics Init initWithSoftwareSimulationState:andExternalAccessoryState:)]
         pub unsafe fn initWithSoftwareSimulationState_andExternalAccessoryState(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             is_software: bool,
             is_accessory: bool,
         ) -> Id<Self>;
@@ -150,7 +150,7 @@ extern_methods!(
     #[cfg(feature = "CoreLocation_CLLocationSourceInformation")]
     unsafe impl CLLocationSourceInformation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -186,7 +186,7 @@ extern_methods!(
     unsafe impl CLLocation {
         #[method_id(@__retain_semantics Init initWithLatitude:longitude:)]
         pub unsafe fn initWithLatitude_longitude(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             latitude: CLLocationDegrees,
             longitude: CLLocationDegrees,
         ) -> Id<Self>;
@@ -194,7 +194,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Init initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:timestamp:)]
         pub unsafe fn initWithCoordinate_altitude_horizontalAccuracy_verticalAccuracy_timestamp(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             coordinate: CLLocationCoordinate2D,
             altitude: CLLocationDistance,
             h_accuracy: CLLocationAccuracy,
@@ -205,7 +205,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Init initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:course:speed:timestamp:)]
         pub unsafe fn initWithCoordinate_altitude_horizontalAccuracy_verticalAccuracy_course_speed_timestamp(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             coordinate: CLLocationCoordinate2D,
             altitude: CLLocationDistance,
             h_accuracy: CLLocationAccuracy,
@@ -218,7 +218,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Init initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:course:courseAccuracy:speed:speedAccuracy:timestamp:)]
         pub unsafe fn initWithCoordinate_altitude_horizontalAccuracy_verticalAccuracy_course_courseAccuracy_speed_speedAccuracy_timestamp(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             coordinate: CLLocationCoordinate2D,
             altitude: CLLocationDistance,
             h_accuracy: CLLocationAccuracy,
@@ -236,7 +236,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:course:courseAccuracy:speed:speedAccuracy:timestamp:sourceInfo:)]
         pub unsafe fn initWithCoordinate_altitude_horizontalAccuracy_verticalAccuracy_course_courseAccuracy_speed_speedAccuracy_timestamp_sourceInfo(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             coordinate: CLLocationCoordinate2D,
             altitude: CLLocationDistance,
             h_accuracy: CLLocationAccuracy,
@@ -295,7 +295,7 @@ extern_methods!(
     #[cfg(feature = "CoreLocation_CLLocation")]
     unsafe impl CLLocation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

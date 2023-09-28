@@ -180,7 +180,7 @@ extern_methods!(
         #[deprecated = "Use initWithPlayers: instead"]
         #[method_id(@__retain_semantics Init initWithPlayerIDs:)]
         pub unsafe fn initWithPlayerIDs(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             player_i_ds: Option<&NSArray<NSString>>,
         ) -> Option<Id<Self>>;
 
@@ -261,7 +261,7 @@ extern_methods!(
         #[deprecated = "Use instance method loadEntriesForPlayers:timeScope:completionHandler: instead."]
         #[method_id(@__retain_semantics Init initWithPlayers:)]
         pub unsafe fn initWithPlayers(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             players: &NSArray<GKPlayer>,
         ) -> Id<Self>;
 

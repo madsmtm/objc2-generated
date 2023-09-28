@@ -27,7 +27,7 @@ extern_methods!(
         #[cfg(feature = "PhotoKit_PHContentEditingInput")]
         #[method_id(@__retain_semantics Init initWithContentEditingInput:)]
         pub unsafe fn initWithContentEditingInput(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             content_editing_input: &PHContentEditingInput,
         ) -> Id<Self>;
 
@@ -50,7 +50,7 @@ extern_methods!(
     #[cfg(feature = "PhotoKit_PHContentEditingOutput")]
     unsafe impl PHContentEditingOutput {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

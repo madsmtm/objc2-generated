@@ -113,7 +113,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSOperation")]
     unsafe impl NSOperation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -152,7 +152,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSBlockOperation")]
     unsafe impl NSBlockOperation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -180,7 +180,7 @@ extern_methods!(
     unsafe impl NSInvocationOperation {
         #[method_id(@__retain_semantics Init initWithTarget:selector:object:)]
         pub unsafe fn initWithTarget_selector_object(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             target: &AnyObject,
             sel: Sel,
             arg: Option<&AnyObject>,
@@ -188,10 +188,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSInvocation")]
         #[method_id(@__retain_semantics Init initWithInvocation:)]
-        pub unsafe fn initWithInvocation(
-            this: Option<Allocated<Self>>,
-            inv: &NSInvocation,
-        ) -> Id<Self>;
+        pub unsafe fn initWithInvocation(this: Allocated<Self>, inv: &NSInvocation) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSInvocation")]
         #[method_id(@__retain_semantics Other invocation)]
@@ -207,7 +204,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSInvocationOperation")]
     unsafe impl NSInvocationOperation {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -311,7 +308,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSOperationQueue")]
     unsafe impl NSOperationQueue {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -267,7 +267,7 @@ extern_methods!(
     #[cfg(feature = "MediaPlayer_MPMediaItem")]
     unsafe impl MPMediaItem {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -296,12 +296,12 @@ extern_methods!(
         pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Init initWithBoundsSize:requestHandler:)]
         pub unsafe fn initWithBoundsSize_requestHandler(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             bounds_size: CGSize,
             request_handler: &Block<(CGSize,), NonNull<NSImage>>,
         ) -> Id<Self>;

@@ -30,7 +30,7 @@ extern_methods!(
         pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 
@@ -55,7 +55,7 @@ extern_methods!(
         #[cfg(all(feature = "AVFoundation_AVPlayer", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Init initWithPlayers:)]
         pub unsafe fn initWithPlayers(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             players: &NSArray<AVPlayer>,
         ) -> Id<Self>;
 
@@ -63,7 +63,7 @@ extern_methods!(
         pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(all(feature = "AVFoundation_AVPlayer", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other players)]

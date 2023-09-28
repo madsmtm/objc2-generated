@@ -41,7 +41,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Init initWithContentVersion:metadataVersion:)]
         pub unsafe fn initWithContentVersion_metadataVersion(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             content_version: &NSData,
             metadata_version: &NSData,
         ) -> Id<Self>;
@@ -61,7 +61,7 @@ extern_methods!(
     #[cfg(feature = "FileProvider_NSFileProviderItemVersion")]
     unsafe impl NSFileProviderItemVersion {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

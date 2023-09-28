@@ -48,16 +48,16 @@ extern_methods!(
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Init initWithStartDate:duration:)]
         pub unsafe fn initWithStartDate_duration(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             start_date: &NSDate,
             duration: NSTimeInterval,
         ) -> Id<Self>;
@@ -65,7 +65,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Init initWithStartDate:endDate:)]
         pub unsafe fn initWithStartDate_endDate(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             start_date: &NSDate,
             end_date: &NSDate,
         ) -> Id<Self>;

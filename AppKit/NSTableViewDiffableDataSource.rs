@@ -71,13 +71,13 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSTableView")]
         #[method_id(@__retain_semantics Init initWithTableView:cellProvider:)]
         pub unsafe fn initWithTableView_cellProvider(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             table_view: &NSTableView,
             cell_provider: NSTableViewDiffableDataSourceCellProvider,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

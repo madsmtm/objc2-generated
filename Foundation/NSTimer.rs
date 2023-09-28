@@ -72,7 +72,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Init initWithFireDate:interval:repeats:block:)]
         pub unsafe fn initWithFireDate_interval_repeats_block(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             date: &NSDate,
             interval: NSTimeInterval,
             repeats: bool,
@@ -82,7 +82,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Init initWithFireDate:interval:target:selector:userInfo:repeats:)]
         pub unsafe fn initWithFireDate_interval_target_selector_userInfo_repeats(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             date: &NSDate,
             ti: NSTimeInterval,
             t: &AnyObject,
@@ -127,7 +127,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSTimer")]
     unsafe impl NSTimer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

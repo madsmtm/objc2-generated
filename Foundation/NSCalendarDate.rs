@@ -147,7 +147,7 @@ extern_methods!(
         #[deprecated = "Use NSDateFormatter instead"]
         #[method_id(@__retain_semantics Init initWithString:calendarFormat:locale:)]
         pub unsafe fn initWithString_calendarFormat_locale(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             description: &NSString,
             format: &NSString,
             locale: Option<&AnyObject>,
@@ -157,7 +157,7 @@ extern_methods!(
         #[deprecated = "Use NSDateFormatter instead"]
         #[method_id(@__retain_semantics Init initWithString:calendarFormat:)]
         pub unsafe fn initWithString_calendarFormat(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             description: &NSString,
             format: &NSString,
         ) -> Option<Id<Self>>;
@@ -166,7 +166,7 @@ extern_methods!(
         #[deprecated = "Use NSDateFormatter instead"]
         #[method_id(@__retain_semantics Init initWithString:)]
         pub unsafe fn initWithString(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             description: &NSString,
         ) -> Option<Id<Self>>;
 
@@ -174,7 +174,7 @@ extern_methods!(
         #[deprecated = "Use NSCalendar and NSDateComponents instead"]
         #[method_id(@__retain_semantics Init initWithYear:month:day:hour:minute:second:timeZone:)]
         pub unsafe fn initWithYear_month_day_hour_minute_second_timeZone(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             year: NSInteger,
             month: NSUInteger,
             day: NSUInteger,
@@ -222,20 +222,17 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSCalendarDate")]
     unsafe impl NSCalendarDate {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithTimeIntervalSinceReferenceDate:)]
         pub unsafe fn initWithTimeIntervalSinceReferenceDate(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             ti: NSTimeInterval,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
     }
 );
 
@@ -297,7 +294,7 @@ extern_methods!(
         #[deprecated = "Use NSDateFormatter instead"]
         #[method_id(@__retain_semantics Init initWithString:)]
         pub unsafe fn initWithString(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             description: &NSString,
         ) -> Option<Id<Self>>;
     }

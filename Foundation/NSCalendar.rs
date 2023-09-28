@@ -146,11 +146,11 @@ extern_methods!(
         ) -> Option<Id<NSCalendar>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithCalendarIdentifier:)]
         pub unsafe fn initWithCalendarIdentifier(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             ident: &NSCalendarIdentifier,
         ) -> Option<Id<Self>>;
 
@@ -744,7 +744,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSDateComponents")]
     unsafe impl NSDateComponents {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

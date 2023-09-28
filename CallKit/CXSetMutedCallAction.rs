@@ -35,24 +35,19 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSUUID")]
         #[method_id(@__retain_semantics Init initWithCallUUID:muted:)]
         pub unsafe fn initWithCallUUID_muted(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             call_uuid: &NSUUID,
             muted: bool,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            a_decoder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder)
+            -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSUUID")]
         #[method_id(@__retain_semantics Init initWithCallUUID:)]
-        pub unsafe fn initWithCallUUID(
-            this: Option<Allocated<Self>>,
-            call_uuid: &NSUUID,
-        ) -> Id<Self>;
+        pub unsafe fn initWithCallUUID(this: Allocated<Self>, call_uuid: &NSUUID) -> Id<Self>;
 
         #[method(isMuted)]
         pub unsafe fn isMuted(&self) -> bool;
@@ -67,7 +62,7 @@ extern_methods!(
     #[cfg(feature = "CallKit_CXSetMutedCallAction")]
     unsafe impl CXSetMutedCallAction {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 

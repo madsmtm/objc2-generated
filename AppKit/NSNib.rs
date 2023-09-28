@@ -31,7 +31,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSBundle")]
         #[method_id(@__retain_semantics Init initWithNibNamed:bundle:)]
         pub unsafe fn initWithNibNamed_bundle(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             nib_name: &NSNibName,
             bundle: Option<&NSBundle>,
         ) -> Option<Id<Self>>;
@@ -39,7 +39,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSBundle", feature = "Foundation_NSData"))]
         #[method_id(@__retain_semantics Init initWithNibData:bundle:)]
         pub unsafe fn initWithNibData_bundle(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             nib_data: &NSData,
             bundle: Option<&NSBundle>,
         ) -> Id<Self>;
@@ -51,7 +51,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSNib")]
     unsafe impl NSNib {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -66,7 +66,7 @@ extern_methods!(
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
         pub unsafe fn initWithContentsOfURL(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             nib_file_url: Option<&NSURL>,
         ) -> Option<Id<Self>>;
 

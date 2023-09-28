@@ -25,12 +25,12 @@ extern_methods!(
     unsafe impl NSTextCheckingController {
         #[method_id(@__retain_semantics Init initWithClient:)]
         pub unsafe fn initWithClient(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             client: &ProtocolObject<dyn NSTextCheckingClient>,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other client)]
         pub unsafe fn client(&self) -> Id<ProtocolObject<dyn NSTextCheckingClient>>;

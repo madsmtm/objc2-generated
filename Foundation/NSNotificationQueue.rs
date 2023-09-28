@@ -45,7 +45,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSNotificationCenter")]
         #[method_id(@__retain_semantics Init initWithNotificationCenter:)]
         pub unsafe fn initWithNotificationCenter(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             notification_center: &NSNotificationCenter,
         ) -> Id<Self>;
 
@@ -82,7 +82,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSNotificationQueue")]
     unsafe impl NSNotificationQueue {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

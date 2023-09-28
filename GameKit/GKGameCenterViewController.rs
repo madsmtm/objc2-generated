@@ -61,17 +61,14 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSBundle")]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             nib_name_or_nil: Option<&NSNibName>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
     }
 );
 
@@ -80,7 +77,7 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKGameCenterViewController")]
     unsafe impl GKGameCenterViewController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 
@@ -109,14 +106,14 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Init initWithState:)]
         pub unsafe fn initWithState(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             state: GKGameCenterViewControllerState,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithLeaderboardID:playerScope:timeScope:)]
         pub unsafe fn initWithLeaderboardID_playerScope_timeScope(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             leaderboard_id: &NSString,
             player_scope: GKLeaderboardPlayerScope,
             time_scope: GKLeaderboardTimeScope,
@@ -125,7 +122,7 @@ extern_methods!(
         #[cfg(feature = "GameKit_GKLeaderboard")]
         #[method_id(@__retain_semantics Init initWithLeaderboard:playerScope:)]
         pub unsafe fn initWithLeaderboard_playerScope(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             leaderboard: &GKLeaderboard,
             player_scope: GKLeaderboardPlayerScope,
         ) -> Id<Self>;
@@ -133,7 +130,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithAchievementID:)]
         pub unsafe fn initWithAchievementID(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             achievement_id: &NSString,
         ) -> Id<Self>;
     }

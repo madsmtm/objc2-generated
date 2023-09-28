@@ -29,10 +29,7 @@ extern_methods!(
 
         #[cfg(feature = "OSAKit_OSALanguage")]
         #[method_id(@__retain_semantics Init initWithLanguage:)]
-        pub unsafe fn initWithLanguage(
-            this: Option<Allocated<Self>>,
-            language: &OSALanguage,
-        ) -> Id<Self>;
+        pub unsafe fn initWithLanguage(this: Allocated<Self>, language: &OSALanguage) -> Id<Self>;
 
         #[cfg(feature = "OSAKit_OSALanguage")]
         #[method_id(@__retain_semantics Other language)]
@@ -63,7 +60,7 @@ extern_methods!(
     #[cfg(feature = "OSAKit_OSALanguageInstance")]
     unsafe impl OSALanguageInstance {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

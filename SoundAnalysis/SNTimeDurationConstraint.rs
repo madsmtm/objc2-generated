@@ -40,12 +40,12 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Init initWithEnumeratedDurations:)]
         pub unsafe fn initWithEnumeratedDurations(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             enumerated_durations: &NSArray<NSValue>,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

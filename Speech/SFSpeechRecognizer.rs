@@ -45,14 +45,11 @@ extern_methods!(
         );
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Option<Id<Self>>;
+        pub unsafe fn init(this: Allocated<Self>) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSLocale")]
         #[method_id(@__retain_semantics Init initWithLocale:)]
-        pub unsafe fn initWithLocale(
-            this: Option<Allocated<Self>>,
-            locale: &NSLocale,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithLocale(this: Allocated<Self>, locale: &NSLocale) -> Option<Id<Self>>;
 
         #[method(isAvailable)]
         pub unsafe fn isAvailable(&self) -> bool;

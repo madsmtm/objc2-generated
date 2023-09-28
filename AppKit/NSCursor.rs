@@ -89,14 +89,14 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Init initWithImage:hotSpot:)]
         pub fn initWithImage_hotSpot(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             new_image: &NSImage,
             point: NSPoint,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
 
         #[method(hide)]
         pub unsafe fn hide();
@@ -133,7 +133,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSCursor")]
     unsafe impl NSCursor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -150,7 +150,7 @@ extern_methods!(
         #[deprecated = "Color hints are ignored. Use -initWithImage:hotSpot: instead"]
         #[method_id(@__retain_semantics Init initWithImage:foregroundColorHint:backgroundColorHint:hotSpot:)]
         pub unsafe fn initWithImage_foregroundColorHint_backgroundColorHint_hotSpot(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             new_image: &NSImage,
             fg: Option<&NSColor>,
             bg: Option<&NSColor>,

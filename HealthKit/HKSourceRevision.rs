@@ -51,7 +51,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSString", feature = "HealthKit_HKSource"))]
         #[method_id(@__retain_semantics Init initWithSource:version:productType:operatingSystemVersion:)]
         pub unsafe fn initWithSource_version_productType_operatingSystemVersion(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             source: &HKSource,
             version: Option<&NSString>,
             product_type: Option<&NSString>,
@@ -61,13 +61,13 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSString", feature = "HealthKit_HKSource"))]
         #[method_id(@__retain_semantics Init initWithSource:version:)]
         pub unsafe fn initWithSource_version(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             source: &HKSource,
             version: Option<&NSString>,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 

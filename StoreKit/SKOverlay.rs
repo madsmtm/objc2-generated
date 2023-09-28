@@ -83,7 +83,7 @@ extern_methods!(
     #[cfg(feature = "StoreKit_SKOverlay")]
     unsafe impl SKOverlay {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -91,7 +91,7 @@ extern_methods!(
         #[cfg(feature = "StoreKit_SKOverlayConfiguration")]
         #[method_id(@__retain_semantics Init initWithConfiguration:)]
         pub unsafe fn initWithConfiguration(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             configuration: &SKOverlayConfiguration,
         ) -> Id<Self>;
 

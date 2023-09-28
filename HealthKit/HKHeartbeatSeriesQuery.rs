@@ -31,7 +31,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithHeartbeatSeries:dataHandler:)]
         pub unsafe fn initWithHeartbeatSeries_dataHandler(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             heartbeat_series: &HKHeartbeatSeriesSample,
             data_handler: &Block<
                 (
@@ -52,7 +52,7 @@ extern_methods!(
     #[cfg(feature = "HealthKit_HKHeartbeatSeriesQuery")]
     unsafe impl HKHeartbeatSeriesQuery {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 

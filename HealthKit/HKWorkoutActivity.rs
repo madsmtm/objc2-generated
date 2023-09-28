@@ -79,7 +79,7 @@ extern_methods!(
         ) -> Option<Id<HKStatistics>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -92,7 +92,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithWorkoutConfiguration:startDate:endDate:metadata:)]
         pub unsafe fn initWithWorkoutConfiguration_startDate_endDate_metadata(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             workout_configuration: &HKWorkoutConfiguration,
             start_date: &NSDate,
             end_date: Option<&NSDate>,

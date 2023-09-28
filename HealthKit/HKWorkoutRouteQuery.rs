@@ -33,7 +33,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithRoute:dataHandler:)]
         pub unsafe fn initWithRoute_dataHandler(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             workout_route: &HKWorkoutRoute,
             data_handler: &Block<
                 (
@@ -55,7 +55,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithRoute:dateInterval:dataHandler:)]
         pub unsafe fn initWithRoute_dateInterval_dataHandler(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             workout_route: &HKWorkoutRoute,
             date_interval: &NSDateInterval,
             data_handler: &Block<
@@ -76,7 +76,7 @@ extern_methods!(
     #[cfg(feature = "HealthKit_HKWorkoutRouteQuery")]
     unsafe impl HKWorkoutRouteQuery {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 

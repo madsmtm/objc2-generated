@@ -27,7 +27,7 @@ extern_methods!(
         pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 
@@ -52,15 +52,12 @@ extern_methods!(
     unsafe impl MPMusicPlayerMediaItemQueueDescriptor {
         #[cfg(feature = "MediaPlayer_MPMediaQuery")]
         #[method_id(@__retain_semantics Init initWithQuery:)]
-        pub unsafe fn initWithQuery(
-            this: Option<Allocated<Self>>,
-            query: &MPMediaQuery,
-        ) -> Id<Self>;
+        pub unsafe fn initWithQuery(this: Allocated<Self>, query: &MPMediaQuery) -> Id<Self>;
 
         #[cfg(feature = "MediaPlayer_MPMediaItemCollection")]
         #[method_id(@__retain_semantics Init initWithItemCollection:)]
         pub unsafe fn initWithItemCollection(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             item_collection: &MPMediaItemCollection,
         ) -> Id<Self>;
 
@@ -102,7 +99,7 @@ extern_methods!(
         pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 
@@ -128,7 +125,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithStoreIDs:)]
         pub unsafe fn initWithStoreIDs(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             store_i_ds: &NSArray<NSString>,
         ) -> Id<Self>;
 
@@ -174,7 +171,7 @@ extern_methods!(
         pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 
@@ -199,7 +196,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithDictionary:)]
         pub unsafe fn initWithDictionary(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             dictionary: &NSDictionary<NSString, AnyObject>,
         ) -> Option<Id<Self>>;
 
@@ -214,7 +211,7 @@ extern_methods!(
     #[cfg(feature = "MediaPlayer_MPMusicPlayerPlayParameters")]
     unsafe impl MPMusicPlayerPlayParameters {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -246,7 +243,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithPlayParametersQueue:)]
         pub unsafe fn initWithPlayParametersQueue(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             play_parameters_queue: &NSArray<MPMusicPlayerPlayParameters>,
         ) -> Id<Self>;
 
@@ -304,6 +301,6 @@ extern_methods!(
         pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );

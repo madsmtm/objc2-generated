@@ -30,7 +30,7 @@ extern_methods!(
         #[cfg(feature = "MapKit_MKMapSnapshotOptions")]
         #[method_id(@__retain_semantics Init initWithOptions:)]
         pub unsafe fn initWithOptions(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             options: &MKMapSnapshotOptions,
         ) -> Id<Self>;
 
@@ -53,7 +53,7 @@ extern_methods!(
     #[cfg(feature = "MapKit_MKMapSnapshotter")]
     unsafe impl MKMapSnapshotter {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

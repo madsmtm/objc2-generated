@@ -27,7 +27,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithFormatIdentifier:formatVersion:data:)]
         pub unsafe fn initWithFormatIdentifier_formatVersion_data(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             format_identifier: &NSString,
             format_version: &NSString,
             data: &NSData,
@@ -52,7 +52,7 @@ extern_methods!(
     #[cfg(feature = "PhotoKit_PHAdjustmentData")]
     unsafe impl PHAdjustmentData {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

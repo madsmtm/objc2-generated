@@ -27,7 +27,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithReceiptProperties:)]
         pub unsafe fn initWithReceiptProperties(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             properties: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Id<Self>;
 
@@ -42,7 +42,7 @@ extern_methods!(
     #[cfg(feature = "StoreKit_SKReceiptRefreshRequest")]
     unsafe impl SKReceiptRefreshRequest {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

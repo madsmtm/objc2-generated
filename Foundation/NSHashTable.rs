@@ -59,7 +59,7 @@ extern_methods!(
     unsafe impl<ObjectType: Message> NSHashTable<ObjectType> {
         #[method_id(@__retain_semantics Init initWithOptions:capacity:)]
         pub unsafe fn initWithOptions_capacity(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             options: NSPointerFunctionsOptions,
             initial_capacity: NSUInteger,
         ) -> Id<Self>;
@@ -67,7 +67,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSPointerFunctions")]
         #[method_id(@__retain_semantics Init initWithPointerFunctions:capacity:)]
         pub unsafe fn initWithPointerFunctions_capacity(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             functions: &NSPointerFunctions,
             initial_capacity: NSUInteger,
         ) -> Id<Self>;
@@ -146,7 +146,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSHashTable")]
     unsafe impl<ObjectType: Message> NSHashTable<ObjectType> {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

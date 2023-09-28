@@ -117,7 +117,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithData:ofType:)]
         pub unsafe fn initWithData_ofType(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             content_data: Option<&NSData>,
             uti: Option<&NSString>,
         ) -> Id<Self>;
@@ -125,7 +125,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSFileWrapper")]
         #[method_id(@__retain_semantics Init initWithFileWrapper:)]
         pub unsafe fn initWithFileWrapper(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             file_wrapper: Option<&NSFileWrapper>,
         ) -> Id<Self>;
 
@@ -213,7 +213,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTextAttachment")]
     unsafe impl NSTextAttachment {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -257,7 +257,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithTextAttachment:parentView:textLayoutManager:location:)]
         pub unsafe fn initWithTextAttachment_parentView_textLayoutManager_location(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             text_attachment: &NSTextAttachment,
             parent_view: Option<&NSView>,
             text_layout_manager: Option<&NSTextLayoutManager>,
@@ -265,7 +265,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

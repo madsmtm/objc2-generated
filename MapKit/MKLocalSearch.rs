@@ -31,14 +31,14 @@ extern_methods!(
         #[cfg(feature = "MapKit_MKLocalSearchRequest")]
         #[method_id(@__retain_semantics Init initWithRequest:)]
         pub unsafe fn initWithRequest(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             request: &MKLocalSearchRequest,
         ) -> Id<Self>;
 
         #[cfg(feature = "MapKit_MKLocalPointsOfInterestRequest")]
         #[method_id(@__retain_semantics Init initWithPointsOfInterestRequest:)]
         pub unsafe fn initWithPointsOfInterestRequest(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             request: &MKLocalPointsOfInterestRequest,
         ) -> Id<Self>;
 
@@ -61,7 +61,7 @@ extern_methods!(
     #[cfg(feature = "MapKit_MKLocalSearch")]
     unsafe impl MKLocalSearch {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -28,7 +28,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithAccessory:forProtocol:)]
         pub unsafe fn initWithAccessory_forProtocol(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             accessory: &EAAccessory,
             protocol_string: &NSString,
         ) -> Option<Id<Self>>;
@@ -56,7 +56,7 @@ extern_methods!(
     #[cfg(feature = "ExternalAccessory_EASession")]
     unsafe impl EASession {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -118,7 +118,7 @@ extern_methods!(
         #[cfg(feature = "CoreData_NSManagedObjectModel")]
         #[method_id(@__retain_semantics Init initWithManagedObjectModel:)]
         pub unsafe fn initWithManagedObjectModel(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             model: &NSManagedObjectModel,
         ) -> Id<Self>;
 
@@ -426,7 +426,7 @@ extern_methods!(
     #[cfg(feature = "CoreData_NSPersistentStoreCoordinator")]
     unsafe impl NSPersistentStoreCoordinator {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

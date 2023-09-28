@@ -124,7 +124,7 @@ extern_methods!(
     unsafe impl NSSpeechSynthesizer {
         #[method_id(@__retain_semantics Init initWithVoice:)]
         pub unsafe fn initWithVoice(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             voice: Option<&NSSpeechSynthesizerVoiceName>,
         ) -> Option<Id<Self>>;
 
@@ -235,7 +235,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSSpeechSynthesizer")]
     unsafe impl NSSpeechSynthesizer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -48,14 +48,14 @@ extern_methods!(
     unsafe impl MTKView {
         #[method_id(@__retain_semantics Init initWithFrame:device:)]
         pub unsafe fn initWithFrame_device(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             frame_rect: CGRect,
             device: Option<&ProtocolObject<dyn MTLDevice>>,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn MTKViewDelegate>>>;
@@ -200,7 +200,7 @@ extern_methods!(
     #[cfg(feature = "MetalKit_MTKView")]
     unsafe impl MTKView {
         #[method_id(@__retain_semantics Init initWithFrame:)]
-        pub unsafe fn initWithFrame(this: Option<Allocated<Self>>, frame_rect: NSRect) -> Id<Self>;
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
     }
 );
 
@@ -209,7 +209,7 @@ extern_methods!(
     #[cfg(feature = "MetalKit_MTKView")]
     unsafe impl MTKView {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 

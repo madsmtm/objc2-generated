@@ -59,7 +59,7 @@ extern_methods!(
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithReceivePort:sendPort:components:)]
         pub unsafe fn initWithReceivePort_sendPort_components(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             rcv_port: Option<&NSPort>,
             snd_port: Option<&NSPort>,
             comps: Option<&NSArray>,
@@ -76,7 +76,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSPortCoder")]
     unsafe impl NSPortCoder {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

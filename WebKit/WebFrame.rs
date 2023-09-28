@@ -32,7 +32,7 @@ extern_methods!(
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithName:webFrameView:webView:)]
         pub unsafe fn initWithName_webFrameView_webView(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             name: Option<&NSString>,
             view: Option<&WebFrameView>,
             web_view: Option<&WebView>,
@@ -151,7 +151,7 @@ extern_methods!(
     #[cfg(feature = "WebKit_WebFrame")]
     unsafe impl WebFrame {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -27,7 +27,7 @@ extern_methods!(
         pub unsafe fn matchedString(&self) -> Id<NSString>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 
@@ -70,7 +70,7 @@ extern_methods!(
     #[cfg(feature = "DataDetection_DDMatchLink")]
     unsafe impl DDMatchLink {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 
@@ -117,7 +117,7 @@ extern_methods!(
     #[cfg(feature = "DataDetection_DDMatchPhoneNumber")]
     unsafe impl DDMatchPhoneNumber {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 
@@ -164,7 +164,7 @@ extern_methods!(
     #[cfg(feature = "DataDetection_DDMatchEmailAddress")]
     unsafe impl DDMatchEmailAddress {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 
@@ -223,7 +223,7 @@ extern_methods!(
     #[cfg(feature = "DataDetection_DDMatchPostalAddress")]
     unsafe impl DDMatchPostalAddress {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 
@@ -281,7 +281,7 @@ extern_methods!(
     #[cfg(feature = "DataDetection_DDMatchCalendarEvent")]
     unsafe impl DDMatchCalendarEvent {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 
@@ -328,7 +328,7 @@ extern_methods!(
     #[cfg(feature = "DataDetection_DDMatchShipmentTrackingNumber")]
     unsafe impl DDMatchShipmentTrackingNumber {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 
@@ -375,7 +375,7 @@ extern_methods!(
     #[cfg(feature = "DataDetection_DDMatchFlightNumber")]
     unsafe impl DDMatchFlightNumber {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 
@@ -421,7 +421,7 @@ extern_methods!(
     #[cfg(feature = "DataDetection_DDMatchMoneyAmount")]
     unsafe impl DDMatchMoneyAmount {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 

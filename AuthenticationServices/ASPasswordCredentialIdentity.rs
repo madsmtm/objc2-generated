@@ -33,7 +33,7 @@ extern_methods!(
     #[cfg(feature = "AuthenticationServices_ASPasswordCredentialIdentity")]
     unsafe impl ASPasswordCredentialIdentity {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(all(
             feature = "AuthenticationServices_ASCredentialServiceIdentifier",
@@ -41,7 +41,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithServiceIdentifier:user:recordIdentifier:)]
         pub unsafe fn initWithServiceIdentifier_user_recordIdentifier(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             service_identifier: &ASCredentialServiceIdentifier,
             user: &NSString,
             record_identifier: Option<&NSString>,

@@ -48,7 +48,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithDocumentType:predicate:limit:sortDescriptors:includeDocumentData:resultsHandler:)]
         pub unsafe fn initWithDocumentType_predicate_limit_sortDescriptors_includeDocumentData_resultsHandler(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             document_type: &HKDocumentType,
             predicate: Option<&NSPredicate>,
             limit: NSUInteger,
@@ -72,7 +72,7 @@ extern_methods!(
     #[cfg(feature = "HealthKit_HKDocumentQuery")]
     unsafe impl HKDocumentQuery {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 

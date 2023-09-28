@@ -47,7 +47,7 @@ extern_methods!(
         pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -56,7 +56,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithCanSign:canEncrypt:securityError:addressesFailingEncryption:)]
         pub unsafe fn initWithCanSign_canEncrypt_securityError_addressesFailingEncryption(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             can_sign: bool,
             can_encrypt: bool,
             security_error: Option<&NSError>,

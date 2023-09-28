@@ -122,7 +122,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithTitle:lowerBound:upperBound:gridlinePositions:valueDescriptionProvider:)]
         pub unsafe fn initWithTitle_lowerBound_upperBound_gridlinePositions_valueDescriptionProvider(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             title: &NSString,
             lowerbound: c_double,
             upper_bound: c_double,
@@ -138,7 +138,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithAttributedTitle:lowerBound:upperBound:gridlinePositions:valueDescriptionProvider:)]
         pub unsafe fn initWithAttributedTitle_lowerBound_upperBound_gridlinePositions_valueDescriptionProvider(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             attributed_title: &NSAttributedString,
             lowerbound: c_double,
             upper_bound: c_double,
@@ -147,7 +147,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -189,7 +189,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithTitle:categoryOrder:)]
         pub unsafe fn initWithTitle_categoryOrder(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             title: &NSString,
             category_order: &NSArray<NSString>,
         ) -> Id<Self>;
@@ -201,13 +201,13 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithAttributedTitle:categoryOrder:)]
         pub unsafe fn initWithAttributedTitle_categoryOrder(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             attributed_title: &NSAttributedString,
             category_order: &NSArray<NSString>,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -257,7 +257,7 @@ extern_methods!(
         pub unsafe fn valueWithCategory(category: &NSString) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -334,7 +334,7 @@ extern_methods!(
         #[cfg(feature = "Accessibility_AXDataPointValue")]
         #[method_id(@__retain_semantics Init initWithX:y:)]
         pub unsafe fn initWithX_y(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             x_value: &AXDataPointValue,
             y_value: Option<&AXDataPointValue>,
         ) -> Id<Self>;
@@ -345,7 +345,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithX:y:additionalValues:)]
         pub unsafe fn initWithX_y_additionalValues(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             x_value: &AXDataPointValue,
             y_value: Option<&AXDataPointValue>,
             additional_values: Option<&NSArray<AXDataPointValue>>,
@@ -358,7 +358,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithX:y:additionalValues:label:)]
         pub unsafe fn initWithX_y_additionalValues_label(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             x_value: &AXDataPointValue,
             y_value: Option<&AXDataPointValue>,
             additional_values: Option<&NSArray<AXDataPointValue>>,
@@ -366,7 +366,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -431,7 +431,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithName:isContinuous:dataPoints:)]
         pub unsafe fn initWithName_isContinuous_dataPoints(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             name: &NSString,
             is_continuous: bool,
             data_points: &NSArray<AXDataPoint>,
@@ -444,14 +444,14 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithAttributedName:isContinuous:dataPoints:)]
         pub unsafe fn initWithAttributedName_isContinuous_dataPoints(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             attributed_name: &NSAttributedString,
             is_continuous: bool,
             data_points: &NSArray<AXDataPoint>,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -579,7 +579,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithTitle:summary:xAxisDescriptor:yAxisDescriptor:series:)]
         pub unsafe fn initWithTitle_summary_xAxisDescriptor_yAxisDescriptor_series(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             title: Option<&NSString>,
             summary: Option<&NSString>,
             x_axis: &ProtocolObject<dyn AXDataAxisDescriptor>,
@@ -596,7 +596,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithAttributedTitle:summary:xAxisDescriptor:yAxisDescriptor:series:)]
         pub unsafe fn initWithAttributedTitle_summary_xAxisDescriptor_yAxisDescriptor_series(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             attributed_title: Option<&NSAttributedString>,
             summary: Option<&NSString>,
             x_axis: &ProtocolObject<dyn AXDataAxisDescriptor>,
@@ -612,7 +612,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithTitle:summary:xAxisDescriptor:yAxisDescriptor:additionalAxes:series:)]
         pub unsafe fn initWithTitle_summary_xAxisDescriptor_yAxisDescriptor_additionalAxes_series(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             title: Option<&NSString>,
             summary: Option<&NSString>,
             x_axis: &ProtocolObject<dyn AXDataAxisDescriptor>,
@@ -630,7 +630,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithAttributedTitle:summary:xAxisDescriptor:yAxisDescriptor:additionalAxes:series:)]
         pub unsafe fn initWithAttributedTitle_summary_xAxisDescriptor_yAxisDescriptor_additionalAxes_series(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             attributed_title: Option<&NSAttributedString>,
             summary: Option<&NSString>,
             x_axis: &ProtocolObject<dyn AXDataAxisDescriptor>,
@@ -640,7 +640,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -681,7 +681,7 @@ extern_methods!(
     #[cfg(feature = "Accessibility_AXLiveAudioGraph")]
     unsafe impl AXLiveAudioGraph {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -44,7 +44,7 @@ extern_methods!(
     #[cfg(feature = "Contacts_CNChangeHistoryEvent")]
     unsafe impl CNChangeHistoryEvent {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -86,7 +86,7 @@ extern_methods!(
     #[cfg(feature = "Contacts_CNChangeHistoryDropEverythingEvent")]
     unsafe impl CNChangeHistoryDropEverythingEvent {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -136,7 +136,7 @@ extern_methods!(
     #[cfg(feature = "Contacts_CNChangeHistoryAddContactEvent")]
     unsafe impl CNChangeHistoryAddContactEvent {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -182,7 +182,7 @@ extern_methods!(
     #[cfg(feature = "Contacts_CNChangeHistoryUpdateContactEvent")]
     unsafe impl CNChangeHistoryUpdateContactEvent {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -228,7 +228,7 @@ extern_methods!(
     #[cfg(feature = "Contacts_CNChangeHistoryDeleteContactEvent")]
     unsafe impl CNChangeHistoryDeleteContactEvent {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -278,7 +278,7 @@ extern_methods!(
     #[cfg(feature = "Contacts_CNChangeHistoryAddGroupEvent")]
     unsafe impl CNChangeHistoryAddGroupEvent {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -324,7 +324,7 @@ extern_methods!(
     #[cfg(feature = "Contacts_CNChangeHistoryUpdateGroupEvent")]
     unsafe impl CNChangeHistoryUpdateGroupEvent {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -370,7 +370,7 @@ extern_methods!(
     #[cfg(feature = "Contacts_CNChangeHistoryDeleteGroupEvent")]
     unsafe impl CNChangeHistoryDeleteGroupEvent {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -420,7 +420,7 @@ extern_methods!(
     #[cfg(feature = "Contacts_CNChangeHistoryAddMemberToGroupEvent")]
     unsafe impl CNChangeHistoryAddMemberToGroupEvent {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -470,7 +470,7 @@ extern_methods!(
     #[cfg(feature = "Contacts_CNChangeHistoryRemoveMemberFromGroupEvent")]
     unsafe impl CNChangeHistoryRemoveMemberFromGroupEvent {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -520,7 +520,7 @@ extern_methods!(
     #[cfg(feature = "Contacts_CNChangeHistoryAddSubgroupToGroupEvent")]
     unsafe impl CNChangeHistoryAddSubgroupToGroupEvent {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -570,7 +570,7 @@ extern_methods!(
     #[cfg(feature = "Contacts_CNChangeHistoryRemoveSubgroupFromGroupEvent")]
     unsafe impl CNChangeHistoryRemoveSubgroupFromGroupEvent {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

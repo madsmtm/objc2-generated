@@ -48,7 +48,7 @@ extern_methods!(
     #[cfg(feature = "MetricKit_MXMetric")]
     unsafe impl MXMetric {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -383,7 +383,7 @@ extern_methods!(
         #[deprecated = "Use NSURLComponents instead, which lets you create a valid URL with any valid combination of URL components and subcomponents (not just scheme, host and path), and lets you set components and subcomponents with either percent-encoded or un-percent-encoded strings."]
         #[method_id(@__retain_semantics Init initWithScheme:host:path:)]
         pub unsafe fn initWithScheme_host_path(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             scheme: &NSString,
             host: Option<&NSString>,
             path: &NSString,
@@ -392,7 +392,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initFileURLWithPath:isDirectory:relativeToURL:)]
         pub unsafe fn initFileURLWithPath_isDirectory_relativeToURL(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             path: &NSString,
             is_dir: bool,
             base_url: Option<&NSURL>,
@@ -401,7 +401,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initFileURLWithPath:relativeToURL:)]
         pub unsafe fn initFileURLWithPath_relativeToURL(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             path: &NSString,
             base_url: Option<&NSURL>,
         ) -> Id<Self>;
@@ -409,17 +409,14 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initFileURLWithPath:isDirectory:)]
         pub unsafe fn initFileURLWithPath_isDirectory(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             path: &NSString,
             is_dir: bool,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initFileURLWithPath:)]
-        pub unsafe fn initFileURLWithPath(
-            this: Option<Allocated<Self>>,
-            path: &NSString,
-        ) -> Id<Self>;
+        pub unsafe fn initFileURLWithPath(this: Allocated<Self>, path: &NSString) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fileURLWithPath:isDirectory:relativeToURL:)]
@@ -446,7 +443,7 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Init initFileURLWithFileSystemRepresentation:isDirectory:relativeToURL:)]
         pub unsafe fn initFileURLWithFileSystemRepresentation_isDirectory_relativeToURL(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             path: NonNull<c_char>,
             is_dir: bool,
             base_url: Option<&NSURL>,
@@ -462,14 +459,14 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithString:)]
         pub unsafe fn initWithString(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             url_string: &NSString,
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithString:relativeToURL:)]
         pub unsafe fn initWithString_relativeToURL(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             url_string: &NSString,
             base_url: Option<&NSURL>,
         ) -> Option<Id<Self>>;
@@ -488,7 +485,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Init initWithDataRepresentation:relativeToURL:)]
         pub unsafe fn initWithDataRepresentation_relativeToURL(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             data: &NSData,
             base_url: Option<&NSURL>,
         ) -> Id<Self>;
@@ -503,7 +500,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Init initAbsoluteURLWithDataRepresentation:relativeToURL:)]
         pub unsafe fn initAbsoluteURLWithDataRepresentation_relativeToURL(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             data: &NSData,
             base_url: Option<&NSURL>,
         ) -> Id<Self>;
@@ -673,7 +670,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method_id(@__retain_semantics Init initByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:_)]
         pub unsafe fn initByResolvingBookmarkData_options_relativeToURL_bookmarkDataIsStale_error(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             bookmark_data: &NSData,
             options: NSURLBookmarkResolutionOptions,
             relative_url: Option<&NSURL>,
@@ -734,7 +731,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSURL")]
     unsafe impl NSURL {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -818,7 +815,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithName:value:)]
         pub unsafe fn initWithName_value(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             name: &NSString,
             value: Option<&NSString>,
         ) -> Id<Self>;
@@ -845,7 +842,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSURLQueryItem")]
     unsafe impl NSURLQueryItem {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -874,12 +871,12 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSURLComponents")]
     unsafe impl NSURLComponents {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Init initWithURL:resolvingAgainstBaseURL:)]
         pub unsafe fn initWithURL_resolvingAgainstBaseURL(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             url: &NSURL,
             resolve: bool,
         ) -> Option<Id<Self>>;
@@ -894,7 +891,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithString:)]
         pub unsafe fn initWithString(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             url_string: &NSString,
         ) -> Option<Id<Self>>;
 
@@ -1231,10 +1228,7 @@ extern_methods!(
     unsafe impl NSFileSecurity {
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
     }
 );
 
@@ -1243,7 +1237,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSFileSecurity")]
     unsafe impl NSFileSecurity {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

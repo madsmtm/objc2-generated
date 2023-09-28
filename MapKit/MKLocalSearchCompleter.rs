@@ -115,7 +115,7 @@ extern_methods!(
     #[cfg(feature = "MapKit_MKLocalSearchCompleter")]
     unsafe impl MKLocalSearchCompleter {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -186,7 +186,7 @@ extern_methods!(
     #[cfg(feature = "MapKit_MKLocalSearchCompletion")]
     unsafe impl MKLocalSearchCompletion {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -199,7 +199,7 @@ extern_methods!(
         #[cfg(feature = "MapKit_MKLocalSearchCompletion")]
         #[method_id(@__retain_semantics Init initWithCompletion:)]
         pub unsafe fn initWithCompletion(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             completion: &MKLocalSearchCompletion,
         ) -> Id<Self>;
     }

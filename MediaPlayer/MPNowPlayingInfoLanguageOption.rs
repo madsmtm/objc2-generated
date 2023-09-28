@@ -54,7 +54,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithType:languageTag:characteristics:displayName:identifier:)]
         pub unsafe fn initWithType_languageTag_characteristics_displayName_identifier(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             language_option_type: MPNowPlayingInfoLanguageOptionType,
             language_tag: &NSString,
             language_option_characteristics: Option<&NSArray<NSString>>,
@@ -94,7 +94,7 @@ extern_methods!(
     #[cfg(feature = "MediaPlayer_MPNowPlayingInfoLanguageOption")]
     unsafe impl MPNowPlayingInfoLanguageOption {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -125,7 +125,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithLanguageOptions:defaultLanguageOption:allowEmptySelection:)]
         pub unsafe fn initWithLanguageOptions_defaultLanguageOption_allowEmptySelection(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             language_options: &NSArray<MPNowPlayingInfoLanguageOption>,
             default_language_option: Option<&MPNowPlayingInfoLanguageOption>,
             allow_empty_selection: bool,
@@ -152,7 +152,7 @@ extern_methods!(
     #[cfg(feature = "MediaPlayer_MPNowPlayingInfoLanguageOptionGroup")]
     unsafe impl MPNowPlayingInfoLanguageOptionGroup {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

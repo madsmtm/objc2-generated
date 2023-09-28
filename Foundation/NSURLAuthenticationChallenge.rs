@@ -79,7 +79,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithProtectionSpace:proposedCredential:previousFailureCount:failureResponse:error:sender:)]
         pub unsafe fn initWithProtectionSpace_proposedCredential_previousFailureCount_failureResponse_error_sender(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             space: &NSURLProtectionSpace,
             credential: Option<&NSURLCredential>,
             previous_failure_count: NSInteger,
@@ -90,7 +90,7 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Init initWithAuthenticationChallenge:sender:)]
         pub unsafe fn initWithAuthenticationChallenge_sender(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             challenge: &NSURLAuthenticationChallenge,
             sender: &ProtocolObject<dyn NSURLAuthenticationChallengeSender>,
         ) -> Id<Self>;
@@ -126,7 +126,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSURLAuthenticationChallenge")]
     unsafe impl NSURLAuthenticationChallenge {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

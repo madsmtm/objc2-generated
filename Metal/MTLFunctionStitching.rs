@@ -38,7 +38,7 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLFunctionStitchingAttributeAlwaysInline")]
     unsafe impl MTLFunctionStitchingAttributeAlwaysInline {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -83,7 +83,7 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Init initWithArgumentIndex:)]
         pub unsafe fn initWithArgumentIndex(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             argument: NSUInteger,
         ) -> Id<Self>;
     }
@@ -94,7 +94,7 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLFunctionStitchingInputNode")]
     unsafe impl MTLFunctionStitchingInputNode {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -159,7 +159,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithName:arguments:controlDependencies:)]
         pub unsafe fn initWithName_arguments_controlDependencies(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             name: &NSString,
             arguments: &NSArray<ProtocolObject<dyn MTLFunctionStitchingNode>>,
             control_dependencies: &NSArray<MTLFunctionStitchingFunctionNode>,
@@ -172,7 +172,7 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLFunctionStitchingFunctionNode")]
     unsafe impl MTLFunctionStitchingFunctionNode {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -250,7 +250,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithFunctionName:nodes:outputNode:attributes:)]
         pub unsafe fn initWithFunctionName_nodes_outputNode_attributes(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             function_name: &NSString,
             nodes: &NSArray<MTLFunctionStitchingFunctionNode>,
             output_node: Option<&MTLFunctionStitchingFunctionNode>,
@@ -264,7 +264,7 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLFunctionStitchingGraph")]
     unsafe impl MTLFunctionStitchingGraph {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -324,7 +324,7 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLStitchedLibraryDescriptor")]
     unsafe impl MTLStitchedLibraryDescriptor {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

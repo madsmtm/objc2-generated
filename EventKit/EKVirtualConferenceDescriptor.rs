@@ -30,7 +30,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithTitle:identifier:)]
         pub unsafe fn initWithTitle_identifier(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             title: &NSString,
             identifier: &EKVirtualConferenceRoomTypeIdentifier,
         ) -> Id<Self>;
@@ -43,7 +43,7 @@ extern_methods!(
         pub unsafe fn identifier(&self) -> Id<EKVirtualConferenceRoomTypeIdentifier>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -71,7 +71,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Init initWithTitle:URL:)]
         pub unsafe fn initWithTitle_URL(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             title: Option<&NSString>,
             url: &NSURL,
         ) -> Id<Self>;
@@ -85,7 +85,7 @@ extern_methods!(
         pub unsafe fn URL(&self) -> Id<NSURL>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -117,7 +117,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithTitle:URLDescriptors:conferenceDetails:)]
         pub unsafe fn initWithTitle_URLDescriptors_conferenceDetails(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             title: Option<&NSString>,
             url_descriptors: &NSArray<EKVirtualConferenceURLDescriptor>,
             conference_details: Option<&NSString>,
@@ -139,7 +139,7 @@ extern_methods!(
         pub unsafe fn conferenceDetails(&self) -> Option<Id<NSString>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

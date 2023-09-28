@@ -32,27 +32,21 @@ extern_methods!(
     unsafe impl NSWindowController {
         #[cfg(feature = "AppKit_NSWindow")]
         #[method_id(@__retain_semantics Init initWithWindow:)]
-        pub unsafe fn initWithWindow(
-            this: Option<Allocated<Self>>,
-            window: Option<&NSWindow>,
-        ) -> Id<Self>;
+        pub unsafe fn initWithWindow(this: Allocated<Self>, window: Option<&NSWindow>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(
-            this: Option<Allocated<Self>>,
-            coder: &NSCoder,
-        ) -> Option<Id<Self>>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Init initWithWindowNibName:)]
         pub unsafe fn initWithWindowNibName(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             window_nib_name: &NSNibName,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithWindowNibName:owner:)]
         pub unsafe fn initWithWindowNibName_owner(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             window_nib_name: &NSNibName,
             owner: &AnyObject,
         ) -> Id<Self>;
@@ -60,7 +54,7 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithWindowNibPath:owner:)]
         pub unsafe fn initWithWindowNibPath_owner(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             window_nib_path: &NSString,
             owner: &AnyObject,
         ) -> Id<Self>;
@@ -174,7 +168,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSWindowController")]
     unsafe impl NSWindowController {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
 

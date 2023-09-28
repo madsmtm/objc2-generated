@@ -32,7 +32,7 @@ extern_methods!(
         #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSRulerView"))]
         #[method_id(@__retain_semantics Init initWithRulerView:markerLocation:image:imageOrigin:)]
         pub unsafe fn initWithRulerView_markerLocation_image_imageOrigin(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             ruler: &NSRulerView,
             location: CGFloat,
             image: &NSImage,
@@ -41,10 +41,10 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder) -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSRulerView")]
         #[method_id(@__retain_semantics Other ruler)]

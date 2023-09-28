@@ -29,7 +29,7 @@ extern_methods!(
         #[deprecated = "Use NSURLSession downloadTask (see NSURLSession.h)"]
         #[method_id(@__retain_semantics Init initWithRequest:delegate:)]
         pub unsafe fn initWithRequest_delegate(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             request: &NSURLRequest,
             delegate: Option<&ProtocolObject<dyn NSURLDownloadDelegate>>,
         ) -> Id<Self>;
@@ -38,7 +38,7 @@ extern_methods!(
         #[deprecated = "Use NSURLSession downloadTask (see NSURLSession.h)"]
         #[method_id(@__retain_semantics Init initWithResumeData:delegate:path:)]
         pub unsafe fn initWithResumeData_delegate_path(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             resume_data: &NSData,
             delegate: Option<&ProtocolObject<dyn NSURLDownloadDelegate>>,
             path: &NSString,
@@ -72,7 +72,7 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSURLDownload")]
     unsafe impl NSURLDownload {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

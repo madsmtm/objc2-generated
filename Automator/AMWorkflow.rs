@@ -35,12 +35,12 @@ extern_methods!(
         ) -> Result<Id<AnyObject>, Id<NSError>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:error:_)]
         pub unsafe fn initWithContentsOfURL_error(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             file_url: &NSURL,
         ) -> Result<Id<Self>, Id<NSError>>;
 

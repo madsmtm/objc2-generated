@@ -57,7 +57,7 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLVertexAttribute")]
     unsafe impl MTLVertexAttribute {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -108,7 +108,7 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLAttribute")]
     unsafe impl MTLAttribute {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -166,7 +166,7 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLFunctionConstant")]
     unsafe impl MTLFunctionConstant {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -383,7 +383,7 @@ extern_methods!(
     #[cfg(feature = "Metal_MTLCompileOptions")]
     unsafe impl MTLCompileOptions {
         #[method_id(@__retain_semantics Init init)]
-        pub fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub fn new() -> Id<Self>;

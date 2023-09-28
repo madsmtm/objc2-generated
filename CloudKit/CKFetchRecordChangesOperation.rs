@@ -27,7 +27,7 @@ extern_methods!(
     unsafe impl CKFetchRecordChangesOperation {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(all(
             feature = "CloudKit_CKRecordZoneID",
@@ -36,7 +36,7 @@ extern_methods!(
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithRecordZoneID:previousServerChangeToken:)]
         pub unsafe fn initWithRecordZoneID_previousServerChangeToken(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             record_zone_id: &CKRecordZoneID,
             previous_server_change_token: Option<&CKServerChangeToken>,
         ) -> Id<Self>;

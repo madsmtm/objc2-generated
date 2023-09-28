@@ -50,7 +50,7 @@ extern_methods!(
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             an_identifier: Option<&NSString>,
         ) -> Option<Id<Self>>;
 
@@ -318,7 +318,7 @@ extern_methods!(
     #[cfg(feature = "WebKit_WebPreferences")]
     unsafe impl WebPreferences {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

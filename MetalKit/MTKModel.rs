@@ -33,11 +33,11 @@ extern_methods!(
     #[cfg(feature = "MetalKit_MTKMeshBufferAllocator")]
     unsafe impl MTKMeshBufferAllocator {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Id<Self>;
 
@@ -77,7 +77,7 @@ extern_methods!(
     #[cfg(feature = "MetalKit_MTKMeshBuffer")]
     unsafe impl MTKMeshBuffer {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method(length)]
         pub unsafe fn length(&self) -> NSUInteger;
@@ -122,7 +122,7 @@ extern_methods!(
     #[cfg(feature = "MetalKit_MTKSubmesh")]
     unsafe impl MTKSubmesh {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method(primitiveType)]
         pub unsafe fn primitiveType(&self) -> MTLPrimitiveType;
@@ -179,12 +179,12 @@ extern_methods!(
     #[cfg(feature = "MetalKit_MTKMesh")]
     unsafe impl MTKMesh {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "ModelIO_MDLMesh"))]
         #[method_id(@__retain_semantics Init initWithMesh:device:error:_)]
         pub unsafe fn initWithMesh_device_error(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             mesh: &MDLMesh,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Result<Id<Self>, Id<NSError>>;

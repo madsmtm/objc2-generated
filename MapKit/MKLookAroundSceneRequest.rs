@@ -29,20 +29,17 @@ extern_methods!(
         pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithCoordinate:)]
         pub unsafe fn initWithCoordinate(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             coordinate: CLLocationCoordinate2D,
         ) -> Id<Self>;
 
         #[cfg(feature = "MapKit_MKMapItem")]
         #[method_id(@__retain_semantics Init initWithMapItem:)]
-        pub unsafe fn initWithMapItem(
-            this: Option<Allocated<Self>>,
-            map_item: &MKMapItem,
-        ) -> Id<Self>;
+        pub unsafe fn initWithMapItem(this: Allocated<Self>, map_item: &MKMapItem) -> Id<Self>;
 
         #[method(coordinate)]
         pub unsafe fn coordinate(&self) -> CLLocationCoordinate2D;

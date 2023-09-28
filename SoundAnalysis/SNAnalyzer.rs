@@ -24,13 +24,10 @@ extern_methods!(
     unsafe impl SNAudioStreamAnalyzer {
         #[cfg(feature = "AVFAudio_AVAudioFormat")]
         #[method_id(@__retain_semantics Init initWithFormat:)]
-        pub unsafe fn initWithFormat(
-            this: Option<Allocated<Self>>,
-            format: &AVAudioFormat,
-        ) -> Id<Self>;
+        pub unsafe fn initWithFormat(this: Allocated<Self>, format: &AVAudioFormat) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(addRequest:withObserver:error:_)]
@@ -89,12 +86,12 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Init initWithURL:error:_)]
         pub unsafe fn initWithURL_error(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             url: &NSURL,
         ) -> Result<Id<Self>, Id<NSError>>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(addRequest:withObserver:error:_)]

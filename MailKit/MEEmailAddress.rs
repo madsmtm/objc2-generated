@@ -44,13 +44,10 @@ extern_methods!(
         pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithRawString:)]
-        pub unsafe fn initWithRawString(
-            this: Option<Allocated<Self>>,
-            raw_string: &NSString,
-        ) -> Id<Self>;
+        pub unsafe fn initWithRawString(this: Allocated<Self>, raw_string: &NSString) -> Id<Self>;
     }
 );

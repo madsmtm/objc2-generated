@@ -27,12 +27,12 @@ extern_methods!(
         pub unsafe fn containerIdentifier(&self) -> Id<NSString>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithContainerIdentifier:)]
         pub unsafe fn initWithContainerIdentifier(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             container_identifier: &NSString,
         ) -> Id<Self>;
     }

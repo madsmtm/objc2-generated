@@ -28,12 +28,12 @@ extern_methods!(
         pub unsafe fn fetchAllRecordZonesOperation() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(all(feature = "CloudKit_CKRecordZoneID", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Init initWithRecordZoneIDs:)]
         pub unsafe fn initWithRecordZoneIDs(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             zone_i_ds: &NSArray<CKRecordZoneID>,
         ) -> Id<Self>;
 

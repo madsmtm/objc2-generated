@@ -29,7 +29,7 @@ extern_methods!(
         pub unsafe fn new() -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(all(
             feature = "MapKit_MKLookAroundScene",
@@ -37,7 +37,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithScene:options:)]
         pub unsafe fn initWithScene_options(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             scene: &MKLookAroundScene,
             options: &MKLookAroundSnapshotOptions,
         ) -> Id<Self>;

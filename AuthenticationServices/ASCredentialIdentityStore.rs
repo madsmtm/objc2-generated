@@ -38,7 +38,7 @@ extern_methods!(
         pub unsafe fn sharedStore() -> Id<ASCredentialIdentityStore>;
 
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "AuthenticationServices_ASCredentialIdentityStoreState")]
         #[method(getCredentialIdentityStoreStateWithCompletion:)]

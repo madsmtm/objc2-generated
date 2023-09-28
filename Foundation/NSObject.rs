@@ -11,8 +11,7 @@ extern_protocol!(
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        unsafe fn initWithCoder(this: Option<Allocated<Self>>, coder: &NSCoder)
-            -> Option<Id<Self>>;
+        unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
     }
 
     unsafe impl ProtocolType for dyn NSCoding {}

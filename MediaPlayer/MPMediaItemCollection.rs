@@ -39,7 +39,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSArray", feature = "MediaPlayer_MPMediaItem"))]
         #[method_id(@__retain_semantics Init initWithItems:)]
         pub unsafe fn initWithItems(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             items: &NSArray<MPMediaItem>,
         ) -> Id<Self>;
 
@@ -64,7 +64,7 @@ extern_methods!(
     #[cfg(feature = "MediaPlayer_MPMediaItemCollection")]
     unsafe impl MPMediaItemCollection {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

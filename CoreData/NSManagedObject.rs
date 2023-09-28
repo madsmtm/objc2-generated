@@ -51,7 +51,7 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Init initWithEntity:insertIntoManagedObjectContext:)]
         pub unsafe fn initWithEntity_insertIntoManagedObjectContext(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             entity: &NSEntityDescription,
             context: Option<&NSManagedObjectContext>,
         ) -> Id<NSManagedObject>;
@@ -59,7 +59,7 @@ extern_methods!(
         #[cfg(feature = "CoreData_NSManagedObjectContext")]
         #[method_id(@__retain_semantics Init initWithContext:)]
         pub unsafe fn initWithContext(
-            this: Option<Allocated<Self>>,
+            this: Allocated<Self>,
             moc: &NSManagedObjectContext,
         ) -> Id<Self>;
 
@@ -237,7 +237,7 @@ extern_methods!(
     #[cfg(feature = "CoreData_NSManagedObject")]
     unsafe impl NSManagedObject {
         #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Option<Allocated<Self>>) -> Id<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
