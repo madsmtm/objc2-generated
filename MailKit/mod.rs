@@ -55,17 +55,19 @@ mod __MEOutgoingMessageEncodingStatus;
 pub use self::__MEAddressAnnotation::MEAddressAnnotation;
 #[cfg(feature = "MailKit_MEComposeContext")]
 pub use self::__MEComposeContext::MEComposeContext;
+pub use self::__MEComposeContext::MEComposeUserAction;
 pub use self::__MEComposeContext::{
-    MEComposeUserAction, MEComposeUserActionForward, MEComposeUserActionNewMessage,
-    MEComposeUserActionReply, MEComposeUserActionReplyAll,
+    MEComposeUserActionForward, MEComposeUserActionNewMessage, MEComposeUserActionReply,
+    MEComposeUserActionReplyAll,
 };
 #[cfg(feature = "MailKit_MEComposeSession")]
 pub use self::__MEComposeSession::MEComposeSession;
+pub use self::__MEComposeSession::MEComposeSessionErrorCode;
 pub use self::__MEComposeSession::MEComposeSessionErrorDomain;
 pub use self::__MEComposeSession::MEComposeSessionHandler;
 pub use self::__MEComposeSession::{
-    MEComposeSessionErrorCode, MEComposeSessionErrorCodeInvalidBody,
-    MEComposeSessionErrorCodeInvalidHeaders, MEComposeSessionErrorCodeInvalidRecipients,
+    MEComposeSessionErrorCodeInvalidBody, MEComposeSessionErrorCodeInvalidHeaders,
+    MEComposeSessionErrorCodeInvalidRecipients,
 };
 pub use self::__MEContentBlocker::MEContentBlocker;
 #[cfg(feature = "MailKit_MEDecodedMessage")]
@@ -83,23 +85,24 @@ pub use self::__MEExtensionManager::MEExtensionManager;
 pub use self::__MEExtensionViewController::MEExtensionViewController;
 #[cfg(feature = "MailKit_MEMessage")]
 pub use self::__MEMessage::MEMessage;
+pub use self::__MEMessage::MEMessageEncryptionState;
+pub use self::__MEMessage::MEMessageState;
 pub use self::__MEMessage::{
-    MEMessageEncryptionState, MEMessageEncryptionStateEncrypted,
-    MEMessageEncryptionStateNotEncrypted, MEMessageEncryptionStateUnknown,
+    MEMessageEncryptionStateEncrypted, MEMessageEncryptionStateNotEncrypted,
+    MEMessageEncryptionStateUnknown,
 };
-pub use self::__MEMessage::{
-    MEMessageState, MEMessageStateDraft, MEMessageStateReceived, MEMessageStateSending,
-};
+pub use self::__MEMessage::{MEMessageStateDraft, MEMessageStateReceived, MEMessageStateSending};
 #[cfg(feature = "MailKit_MEMessageAction")]
 pub use self::__MEMessageAction::MEMessageAction;
+pub use self::__MEMessageAction::MEMessageActionFlag;
+pub use self::__MEMessageAction::MEMessageActionMessageColor;
 pub use self::__MEMessageAction::{
-    MEMessageActionFlag, MEMessageActionFlagBlue, MEMessageActionFlagDefaultColor,
-    MEMessageActionFlagGray, MEMessageActionFlagGreen, MEMessageActionFlagNone,
-    MEMessageActionFlagOrange, MEMessageActionFlagPurple, MEMessageActionFlagRed,
-    MEMessageActionFlagYellow,
+    MEMessageActionFlagBlue, MEMessageActionFlagDefaultColor, MEMessageActionFlagGray,
+    MEMessageActionFlagGreen, MEMessageActionFlagNone, MEMessageActionFlagOrange,
+    MEMessageActionFlagPurple, MEMessageActionFlagRed, MEMessageActionFlagYellow,
 };
 pub use self::__MEMessageAction::{
-    MEMessageActionMessageColor, MEMessageActionMessageColorBlue, MEMessageActionMessageColorGray,
+    MEMessageActionMessageColorBlue, MEMessageActionMessageColorGray,
     MEMessageActionMessageColorGreen, MEMessageActionMessageColorNone,
     MEMessageActionMessageColorOrange, MEMessageActionMessageColorPurple,
     MEMessageActionMessageColorRed, MEMessageActionMessageColorYellow,
@@ -111,10 +114,11 @@ pub use self::__MEMessageDecoder::MEMessageDecoder;
 pub use self::__MEMessageEncoder::MEMessageEncoder;
 #[cfg(feature = "MailKit_MEMessageEncodingResult")]
 pub use self::__MEMessageEncodingResult::MEMessageEncodingResult;
+pub use self::__MEMessageSecurityHandler::MEMessageSecurityErrorCode;
 pub use self::__MEMessageSecurityHandler::MEMessageSecurityErrorDomain;
 pub use self::__MEMessageSecurityHandler::MEMessageSecurityHandler;
 pub use self::__MEMessageSecurityHandler::{
-    MEMessageSecurityDecodingError, MEMessageSecurityEncodingError, MEMessageSecurityErrorCode,
+    MEMessageSecurityDecodingError, MEMessageSecurityEncodingError,
 };
 #[cfg(feature = "MailKit_MEMessageSecurityInformation")]
 pub use self::__MEMessageSecurityInformation::MEMessageSecurityInformation;

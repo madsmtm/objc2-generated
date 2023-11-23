@@ -52,6 +52,7 @@ pub use self::__CLBeaconRegion::CLBeaconRegion;
 #[cfg(feature = "CoreLocation_CLCircularRegion")]
 pub use self::__CLCircularRegion::CLCircularRegion;
 pub use self::__CLError::kCLErrorUserInfoAlternateRegionKey;
+pub use self::__CLError::CLError;
 pub use self::__CLError::{
     kCLErrorDeferredAccuracyTooLow, kCLErrorDeferredCanceled, kCLErrorDeferredDistanceFiltered,
     kCLErrorDeferredFailed, kCLErrorDeferredNotUpdatingLocation, kCLErrorDenied,
@@ -59,7 +60,7 @@ pub use self::__CLError::{
     kCLErrorHeadingFailure, kCLErrorHistoricalLocationError, kCLErrorLocationUnknown,
     kCLErrorNetwork, kCLErrorPromptDeclined, kCLErrorRangingFailure, kCLErrorRangingUnavailable,
     kCLErrorRegionMonitoringDenied, kCLErrorRegionMonitoringFailure,
-    kCLErrorRegionMonitoringResponseDelayed, kCLErrorRegionMonitoringSetupDelayed, CLError,
+    kCLErrorRegionMonitoringResponseDelayed, kCLErrorRegionMonitoringSetupDelayed,
 };
 pub use self::__CLErrorDomain::kCLErrorDomain;
 pub use self::__CLGeocoder::CLGeocodeCompletionHandler;
@@ -96,44 +97,47 @@ pub use self::__CLLocation::CLLocationSourceInformation;
 pub use self::__CLLocation::CLLocationSpeed;
 pub use self::__CLLocation::CLLocationSpeedAccuracy;
 pub use self::__CLLocation::CLTimeIntervalMax;
+pub use self::__CLLocationManager::CLAccuracyAuthorization;
+pub use self::__CLLocationManager::CLActivityType;
+pub use self::__CLLocationManager::CLAuthorizationStatus;
+pub use self::__CLLocationManager::CLDeviceOrientation;
 #[cfg(feature = "CoreLocation_CLLocationManager")]
 pub use self::__CLLocationManager::CLLocationManager;
 pub use self::__CLLocationManager::{
     kCLAuthorizationStatusAuthorized, kCLAuthorizationStatusAuthorizedAlways,
     kCLAuthorizationStatusAuthorizedWhenInUse, kCLAuthorizationStatusDenied,
-    kCLAuthorizationStatusNotDetermined, kCLAuthorizationStatusRestricted, CLAuthorizationStatus,
+    kCLAuthorizationStatusNotDetermined, kCLAuthorizationStatusRestricted,
 };
 pub use self::__CLLocationManager::{
-    CLAccuracyAuthorization, CLAccuracyAuthorizationFullAccuracy,
-    CLAccuracyAuthorizationReducedAccuracy,
+    CLAccuracyAuthorizationFullAccuracy, CLAccuracyAuthorizationReducedAccuracy,
 };
 pub use self::__CLLocationManager::{
-    CLActivityType, CLActivityTypeAirborne, CLActivityTypeAutomotiveNavigation,
-    CLActivityTypeFitness, CLActivityTypeOther, CLActivityTypeOtherNavigation,
+    CLActivityTypeAirborne, CLActivityTypeAutomotiveNavigation, CLActivityTypeFitness,
+    CLActivityTypeOther, CLActivityTypeOtherNavigation,
 };
 pub use self::__CLLocationManager::{
-    CLDeviceOrientation, CLDeviceOrientationFaceDown, CLDeviceOrientationFaceUp,
-    CLDeviceOrientationLandscapeLeft, CLDeviceOrientationLandscapeRight,
-    CLDeviceOrientationPortrait, CLDeviceOrientationPortraitUpsideDown, CLDeviceOrientationUnknown,
+    CLDeviceOrientationFaceDown, CLDeviceOrientationFaceUp, CLDeviceOrientationLandscapeLeft,
+    CLDeviceOrientationLandscapeRight, CLDeviceOrientationPortrait,
+    CLDeviceOrientationPortraitUpsideDown, CLDeviceOrientationUnknown,
 };
 pub use self::__CLLocationManagerDelegate::CLLocationManagerDelegate;
+pub use self::__CLLocationPushServiceError::CLLocationPushServiceError;
 pub use self::__CLLocationPushServiceError::CLLocationPushServiceErrorDomain;
 pub use self::__CLLocationPushServiceError::{
-    CLLocationPushServiceError, CLLocationPushServiceErrorMissingEntitlement,
-    CLLocationPushServiceErrorMissingPushExtension,
+    CLLocationPushServiceErrorMissingEntitlement, CLLocationPushServiceErrorMissingPushExtension,
     CLLocationPushServiceErrorMissingPushServerEnvironment, CLLocationPushServiceErrorUnknown,
     CLLocationPushServiceErrorUnsupportedPlatform,
 };
 pub use self::__CLLocationPushServiceExtension::CLLocationPushServiceExtension;
 #[cfg(feature = "CoreLocation_CLPlacemark")]
 pub use self::__CLPlacemark::CLPlacemark;
+pub use self::__CLRegion::CLProximity;
 #[cfg(feature = "CoreLocation_CLRegion")]
 pub use self::__CLRegion::CLRegion;
+pub use self::__CLRegion::CLRegionState;
 pub use self::__CLRegion::{
-    CLProximity, CLProximityFar, CLProximityImmediate, CLProximityNear, CLProximityUnknown,
+    CLProximityFar, CLProximityImmediate, CLProximityNear, CLProximityUnknown,
 };
-pub use self::__CLRegion::{
-    CLRegionState, CLRegionStateInside, CLRegionStateOutside, CLRegionStateUnknown,
-};
+pub use self::__CLRegion::{CLRegionStateInside, CLRegionStateOutside, CLRegionStateUnknown};
 #[cfg(feature = "CoreLocation_CLVisit")]
 pub use self::__CLVisit::CLVisit;

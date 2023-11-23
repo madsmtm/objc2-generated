@@ -113,11 +113,11 @@ pub use self::__MXDiskIOMetric::MXDiskIOMetric;
 pub use self::__MXDiskWriteExceptionDiagnostic::MXDiskWriteExceptionDiagnostic;
 #[cfg(feature = "MetricKit_MXDisplayMetric")]
 pub use self::__MXDisplayMetric::MXDisplayMetric;
+pub use self::__MXError::MXErrorCode;
 pub use self::__MXError::MXErrorDomain;
 pub use self::__MXError::{
-    MXErrorCode, MXErrorLaunchTaskDuplicated, MXErrorLaunchTaskInternalFailure,
-    MXErrorLaunchTaskInvalidID, MXErrorLaunchTaskMaxCount, MXErrorLaunchTaskPastDeadline,
-    MXErrorLaunchTaskUnknown,
+    MXErrorLaunchTaskDuplicated, MXErrorLaunchTaskInternalFailure, MXErrorLaunchTaskInvalidID,
+    MXErrorLaunchTaskMaxCount, MXErrorLaunchTaskPastDeadline, MXErrorLaunchTaskUnknown,
 };
 #[cfg(feature = "MetricKit_MXGPUMetric")]
 pub use self::__MXGPUMetric::MXGPUMetric;
@@ -146,6 +146,7 @@ pub use self::__MXNetworkTransferMetric::MXNetworkTransferMetric;
 pub use self::__MXSignpostMetric::MXSignpostIntervalData;
 #[cfg(feature = "MetricKit_MXSignpostMetric")]
 pub use self::__MXSignpostMetric::MXSignpostMetric;
+pub(crate) use self::__MXSignpost_Private::_MXSignpostMetricsSnapshot;
 #[cfg(feature = "MetricKit_MXUnitAveragePixelLuminance")]
 pub use self::__MXUnit::MXUnitAveragePixelLuminance;
 #[cfg(feature = "MetricKit_MXUnitSignalBars")]

@@ -29,9 +29,8 @@ mod __AutomatorErrors;
 
 #[cfg(feature = "Automator_AMAction")]
 pub use self::__AMAction::AMAction;
-pub use self::__AMAction::{
-    AMLogLevel, AMLogLevelDebug, AMLogLevelError, AMLogLevelInfo, AMLogLevelWarn,
-};
+pub use self::__AMAction::AMLogLevel;
+pub use self::__AMAction::{AMLogLevelDebug, AMLogLevelError, AMLogLevelInfo, AMLogLevelWarn};
 #[cfg(feature = "Automator_AMAppleScriptAction")]
 pub use self::__AMAppleScriptAction::AMAppleScriptAction;
 #[cfg(feature = "Automator_AMBundleAction")]
@@ -47,6 +46,7 @@ pub use self::__AMWorkflowController::AMWorkflowControllerDelegate;
 pub use self::__AMWorkflowView::AMWorkflowView;
 #[cfg(feature = "Automator_AMWorkspace")]
 pub use self::__AMWorkspace::AMWorkspace;
+pub use self::__AutomatorErrors::AMErrorCode;
 pub use self::__AutomatorErrors::{
     AMActionApplicationResourceError, AMActionApplicationVersionResourceError,
     AMActionArchitectureMismatchError, AMActionExceptionError, AMActionExecutionError,
@@ -56,7 +56,7 @@ pub use self::__AutomatorErrors::{
     AMActionPropertyListInvalidError, AMActionQuarantineError, AMActionRequiredActionResourceError,
     AMActionRuntimeMismatchError, AMActionSignatureCorruptError,
     AMActionThirdPartyActionsNotAllowedError, AMActionXPCError, AMActionXProtectError,
-    AMConversionFailedError, AMConversionNoDataError, AMConversionNotPossibleError, AMErrorCode,
+    AMConversionFailedError, AMConversionNoDataError, AMConversionNotPossibleError,
     AMNoSuchActionError, AMUserCanceledError, AMWorkflowActionsNotLoadedError,
     AMWorkflowNewerActionVersionError, AMWorkflowNewerVersionError,
     AMWorkflowNoEnabledActionsError, AMWorkflowOlderActionVersionError,

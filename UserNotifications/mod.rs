@@ -40,9 +40,10 @@ mod __UNNotificationTrigger;
 #[path = "UNUserNotificationCenter.rs"]
 mod __UNUserNotificationCenter;
 
+pub use self::__UNError::UNErrorCode;
 pub use self::__UNError::UNErrorDomain;
 pub use self::__UNError::{
-    UNErrorCode, UNErrorCodeAttachmentCorrupt, UNErrorCodeAttachmentInvalidFileSize,
+    UNErrorCodeAttachmentCorrupt, UNErrorCodeAttachmentInvalidFileSize,
     UNErrorCodeAttachmentInvalidURL, UNErrorCodeAttachmentMoveIntoDataStoreFailed,
     UNErrorCodeAttachmentNotInDataStore, UNErrorCodeAttachmentUnrecognizedType,
     UNErrorCodeBadgeInputInvalid, UNErrorCodeContentProvidingInvalid,
@@ -54,11 +55,12 @@ pub use self::__UNNotification::UNNotification;
 #[cfg(feature = "UserNotifications_UNNotificationAction")]
 pub use self::__UNNotificationAction::UNNotificationAction;
 pub use self::__UNNotificationAction::UNNotificationActionOptionNone;
+pub use self::__UNNotificationAction::UNNotificationActionOptions;
 #[cfg(feature = "UserNotifications_UNTextInputNotificationAction")]
 pub use self::__UNNotificationAction::UNTextInputNotificationAction;
 pub use self::__UNNotificationAction::{
     UNNotificationActionOptionAuthenticationRequired, UNNotificationActionOptionDestructive,
-    UNNotificationActionOptionForeground, UNNotificationActionOptions,
+    UNNotificationActionOptionForeground,
 };
 #[cfg(feature = "UserNotifications_UNNotificationActionIcon")]
 pub use self::__UNNotificationActionIcon::UNNotificationActionIcon;
@@ -71,21 +73,22 @@ pub use self::__UNNotificationAttachment::UNNotificationAttachmentOptionsTypeHin
 #[cfg(feature = "UserNotifications_UNNotificationCategory")]
 pub use self::__UNNotificationCategory::UNNotificationCategory;
 pub use self::__UNNotificationCategory::UNNotificationCategoryOptionNone;
+pub use self::__UNNotificationCategory::UNNotificationCategoryOptions;
 pub use self::__UNNotificationCategory::{
     UNNotificationCategoryOptionAllowAnnouncement, UNNotificationCategoryOptionAllowInCarPlay,
     UNNotificationCategoryOptionCustomDismissAction,
     UNNotificationCategoryOptionHiddenPreviewsShowSubtitle,
-    UNNotificationCategoryOptionHiddenPreviewsShowTitle, UNNotificationCategoryOptions,
+    UNNotificationCategoryOptionHiddenPreviewsShowTitle,
 };
 #[cfg(feature = "UserNotifications_UNMutableNotificationContent")]
 pub use self::__UNNotificationContent::UNMutableNotificationContent;
 #[cfg(feature = "UserNotifications_UNNotificationContent")]
 pub use self::__UNNotificationContent::UNNotificationContent;
 pub use self::__UNNotificationContent::UNNotificationContentProviding;
+pub use self::__UNNotificationContent::UNNotificationInterruptionLevel;
 pub use self::__UNNotificationContent::{
-    UNNotificationInterruptionLevel, UNNotificationInterruptionLevelActive,
-    UNNotificationInterruptionLevelCritical, UNNotificationInterruptionLevelPassive,
-    UNNotificationInterruptionLevelTimeSensitive,
+    UNNotificationInterruptionLevelActive, UNNotificationInterruptionLevelCritical,
+    UNNotificationInterruptionLevelPassive, UNNotificationInterruptionLevelTimeSensitive,
 };
 #[cfg(feature = "UserNotifications_UNNotificationRequest")]
 pub use self::__UNNotificationRequest::UNNotificationRequest;
@@ -97,23 +100,22 @@ pub use self::__UNNotificationResponse::UNNotificationResponse;
 pub use self::__UNNotificationResponse::UNTextInputNotificationResponse;
 #[cfg(feature = "UserNotifications_UNNotificationServiceExtension")]
 pub use self::__UNNotificationServiceExtension::UNNotificationServiceExtension;
+pub use self::__UNNotificationSettings::UNAlertStyle;
+pub use self::__UNNotificationSettings::UNAuthorizationStatus;
+pub use self::__UNNotificationSettings::UNNotificationSetting;
 #[cfg(feature = "UserNotifications_UNNotificationSettings")]
 pub use self::__UNNotificationSettings::UNNotificationSettings;
+pub use self::__UNNotificationSettings::UNShowPreviewsSetting;
+pub use self::__UNNotificationSettings::{UNAlertStyleAlert, UNAlertStyleBanner, UNAlertStyleNone};
 pub use self::__UNNotificationSettings::{
-    UNAlertStyle, UNAlertStyleAlert, UNAlertStyleBanner, UNAlertStyleNone,
+    UNAuthorizationStatusAuthorized, UNAuthorizationStatusDenied, UNAuthorizationStatusEphemeral,
+    UNAuthorizationStatusNotDetermined, UNAuthorizationStatusProvisional,
 };
 pub use self::__UNNotificationSettings::{
-    UNAuthorizationStatus, UNAuthorizationStatusAuthorized, UNAuthorizationStatusDenied,
-    UNAuthorizationStatusEphemeral, UNAuthorizationStatusNotDetermined,
-    UNAuthorizationStatusProvisional,
+    UNNotificationSettingDisabled, UNNotificationSettingEnabled, UNNotificationSettingNotSupported,
 };
 pub use self::__UNNotificationSettings::{
-    UNNotificationSetting, UNNotificationSettingDisabled, UNNotificationSettingEnabled,
-    UNNotificationSettingNotSupported,
-};
-pub use self::__UNNotificationSettings::{
-    UNShowPreviewsSetting, UNShowPreviewsSettingAlways, UNShowPreviewsSettingNever,
-    UNShowPreviewsSettingWhenAuthenticated,
+    UNShowPreviewsSettingAlways, UNShowPreviewsSettingNever, UNShowPreviewsSettingWhenAuthenticated,
 };
 #[cfg(feature = "UserNotifications_UNNotificationSound")]
 pub use self::__UNNotificationSound::UNNotificationSound;
@@ -129,7 +131,9 @@ pub use self::__UNNotificationTrigger::UNPushNotificationTrigger;
 #[cfg(feature = "UserNotifications_UNTimeIntervalNotificationTrigger")]
 pub use self::__UNNotificationTrigger::UNTimeIntervalNotificationTrigger;
 pub use self::__UNUserNotificationCenter::UNAuthorizationOptionNone;
+pub use self::__UNUserNotificationCenter::UNAuthorizationOptions;
 pub use self::__UNUserNotificationCenter::UNNotificationPresentationOptionNone;
+pub use self::__UNUserNotificationCenter::UNNotificationPresentationOptions;
 #[cfg(feature = "UserNotifications_UNUserNotificationCenter")]
 pub use self::__UNUserNotificationCenter::UNUserNotificationCenter;
 pub use self::__UNUserNotificationCenter::UNUserNotificationCenterDelegate;
@@ -137,10 +141,10 @@ pub use self::__UNUserNotificationCenter::{
     UNAuthorizationOptionAlert, UNAuthorizationOptionAnnouncement, UNAuthorizationOptionBadge,
     UNAuthorizationOptionCarPlay, UNAuthorizationOptionCriticalAlert,
     UNAuthorizationOptionProvidesAppNotificationSettings, UNAuthorizationOptionProvisional,
-    UNAuthorizationOptionSound, UNAuthorizationOptionTimeSensitive, UNAuthorizationOptions,
+    UNAuthorizationOptionSound, UNAuthorizationOptionTimeSensitive,
 };
 pub use self::__UNUserNotificationCenter::{
     UNNotificationPresentationOptionAlert, UNNotificationPresentationOptionBadge,
     UNNotificationPresentationOptionBanner, UNNotificationPresentationOptionList,
-    UNNotificationPresentationOptionSound, UNNotificationPresentationOptions,
+    UNNotificationPresentationOptionSound,
 };

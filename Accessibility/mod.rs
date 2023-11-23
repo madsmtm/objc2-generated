@@ -24,6 +24,7 @@ pub use self::__AXAudiograph::AXCategoricalDataAxisDescriptor;
 pub use self::__AXAudiograph::AXChart;
 #[cfg(feature = "Accessibility_AXChartDescriptor")]
 pub use self::__AXAudiograph::AXChartDescriptor;
+pub use self::__AXAudiograph::AXChartDescriptorContentDirection;
 pub use self::__AXAudiograph::AXDataAxisDescriptor;
 #[cfg(feature = "Accessibility_AXDataPoint")]
 pub use self::__AXAudiograph::AXDataPoint;
@@ -35,24 +36,24 @@ pub use self::__AXAudiograph::AXDataSeriesDescriptor;
 pub use self::__AXAudiograph::AXLiveAudioGraph;
 #[cfg(feature = "Accessibility_AXNumericDataAxisDescriptor")]
 pub use self::__AXAudiograph::AXNumericDataAxisDescriptor;
+pub use self::__AXAudiograph::AXNumericDataAxisDescriptorScale;
 pub use self::__AXAudiograph::{
     AXChartContentDirectionBottomToTop, AXChartContentDirectionLeftToRight,
     AXChartContentDirectionRadialClockwise, AXChartContentDirectionRadialCounterClockwise,
     AXChartContentDirectionRightToLeft, AXChartContentDirectionTopToBottom,
-    AXChartDescriptorContentDirection,
 };
-pub use self::__AXAudiograph::{
-    AXNumericDataAxisDescriptorScale, AXScaleTypeLinear, AXScaleTypeLn, AXScaleTypeLog10,
-};
+pub use self::__AXAudiograph::{AXScaleTypeLinear, AXScaleTypeLn, AXScaleTypeLog10};
 #[cfg(feature = "Accessibility_AXBrailleMap")]
 pub use self::__AXBrailleMap::AXBrailleMap;
 pub use self::__AXBrailleMap::AXBrailleMapRenderer;
 #[cfg(feature = "Accessibility_AXCustomContent")]
 pub use self::__AXCustomContent::AXCustomContent;
+pub use self::__AXCustomContent::AXCustomContentImportance;
 pub use self::__AXCustomContent::AXCustomContentProvider;
 pub use self::__AXCustomContent::{
-    AXCustomContentImportance, AXCustomContentImportanceDefault, AXCustomContentImportanceHigh,
+    AXCustomContentImportanceDefault, AXCustomContentImportanceHigh,
 };
+pub use self::__AXHearingUtilities::AXHearingDeviceEar;
 #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSUUID"))]
 pub use self::__AXHearingUtilities::AXMFiHearingDevicePairedUUIDs;
 pub use self::__AXHearingUtilities::AXMFiHearingDevicePairedUUIDsDidChangeNotification;
@@ -60,6 +61,5 @@ pub use self::__AXHearingUtilities::AXMFiHearingDeviceStreamingEar;
 pub use self::__AXHearingUtilities::AXMFiHearingDeviceStreamingEarDidChangeNotification;
 pub use self::__AXHearingUtilities::AXSupportsBidirectionalAXMFiHearingDeviceStreaming;
 pub use self::__AXHearingUtilities::{
-    AXHearingDeviceEar, AXHearingDeviceEarBoth, AXHearingDeviceEarLeft, AXHearingDeviceEarNone,
-    AXHearingDeviceEarRight,
+    AXHearingDeviceEarBoth, AXHearingDeviceEarLeft, AXHearingDeviceEarNone, AXHearingDeviceEarRight,
 };

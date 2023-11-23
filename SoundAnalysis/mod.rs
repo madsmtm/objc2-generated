@@ -35,9 +35,10 @@ pub use self::__SNClassificationResult::SNClassification;
 pub use self::__SNClassificationResult::SNClassificationResult;
 #[cfg(feature = "SoundAnalysis_SNClassifySoundRequest")]
 pub use self::__SNClassifySoundRequest::SNClassifySoundRequest;
+pub use self::__SNError::SNErrorCode;
 pub use self::__SNError::SNErrorDomain;
 pub use self::__SNError::{
-    SNErrorCode, SNErrorCodeInvalidFile, SNErrorCodeInvalidFormat, SNErrorCodeInvalidModel,
+    SNErrorCodeInvalidFile, SNErrorCodeInvalidFormat, SNErrorCodeInvalidModel,
     SNErrorCodeOperationFailed, SNErrorCodeUnknownError,
 };
 pub use self::__SNRequest::SNRequest;
@@ -45,9 +46,9 @@ pub use self::__SNResult::SNResult;
 pub use self::__SNResult::SNResultsObserving;
 #[cfg(feature = "SoundAnalysis_SNTimeDurationConstraint")]
 pub use self::__SNTimeDurationConstraint::SNTimeDurationConstraint;
+pub use self::__SNTimeDurationConstraint::SNTimeDurationConstraintType;
 pub use self::__SNTimeDurationConstraint::{
-    SNTimeDurationConstraintType, SNTimeDurationConstraintTypeEnumerated,
-    SNTimeDurationConstraintTypeRange,
+    SNTimeDurationConstraintTypeEnumerated, SNTimeDurationConstraintTypeRange,
 };
 pub use self::__SNTypes::SNClassifierIdentifier;
 pub use self::__SNTypes::SNClassifierIdentifierVersion1;

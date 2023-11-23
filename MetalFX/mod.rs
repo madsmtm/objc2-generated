@@ -12,11 +12,12 @@ mod __MTLFXSpatialScaler;
 mod __MTLFXTemporalScaler;
 
 pub use self::__MTLFXSpatialScaler::MTLFXSpatialScaler;
+pub use self::__MTLFXSpatialScaler::MTLFXSpatialScalerColorProcessingMode;
 #[cfg(feature = "MetalFX_MTLFXSpatialScalerDescriptor")]
 pub use self::__MTLFXSpatialScaler::MTLFXSpatialScalerDescriptor;
 pub use self::__MTLFXSpatialScaler::{
-    MTLFXSpatialScalerColorProcessingMode, MTLFXSpatialScalerColorProcessingModeHDR,
-    MTLFXSpatialScalerColorProcessingModeLinear, MTLFXSpatialScalerColorProcessingModePerceptual,
+    MTLFXSpatialScalerColorProcessingModeHDR, MTLFXSpatialScalerColorProcessingModeLinear,
+    MTLFXSpatialScalerColorProcessingModePerceptual,
 };
 pub use self::__MTLFXTemporalScaler::MTLFXTemporalScaler;
 #[cfg(feature = "MetalFX_MTLFXTemporalScalerDescriptor")]

@@ -142,9 +142,10 @@ pub use self::__NSAtomicStore::NSAtomicStore;
 pub use self::__NSAtomicStoreCacheNode::NSAtomicStoreCacheNode;
 #[cfg(feature = "CoreData_NSAttributeDescription")]
 pub use self::__NSAttributeDescription::NSAttributeDescription;
+pub use self::__NSAttributeDescription::NSAttributeType;
 pub use self::__NSAttributeDescription::{
-    NSAttributeType, NSBinaryDataAttributeType, NSBooleanAttributeType, NSDateAttributeType,
-    NSDecimalAttributeType, NSDoubleAttributeType, NSFloatAttributeType, NSInteger16AttributeType,
+    NSBinaryDataAttributeType, NSBooleanAttributeType, NSDateAttributeType, NSDecimalAttributeType,
+    NSDoubleAttributeType, NSFloatAttributeType, NSInteger16AttributeType,
     NSInteger32AttributeType, NSInteger64AttributeType, NSObjectIDAttributeType,
     NSStringAttributeType, NSTransformableAttributeType, NSURIAttributeType, NSUUIDAttributeType,
     NSUndefinedAttributeType,
@@ -164,10 +165,10 @@ pub use self::__NSDerivedAttributeDescription::NSDerivedAttributeDescription;
 pub use self::__NSEntityDescription::NSEntityDescription;
 #[cfg(feature = "CoreData_NSEntityMapping")]
 pub use self::__NSEntityMapping::NSEntityMapping;
+pub use self::__NSEntityMapping::NSEntityMappingType;
 pub use self::__NSEntityMapping::{
     NSAddEntityMappingType, NSCopyEntityMappingType, NSCustomEntityMappingType,
-    NSEntityMappingType, NSRemoveEntityMappingType, NSTransformEntityMappingType,
-    NSUndefinedEntityMappingType,
+    NSRemoveEntityMappingType, NSTransformEntityMappingType, NSUndefinedEntityMappingType,
 };
 #[cfg(feature = "CoreData_NSEntityMigrationPolicy")]
 pub use self::__NSEntityMigrationPolicy::NSEntityMigrationPolicy;
@@ -183,31 +184,34 @@ pub use self::__NSExpressionDescription::NSExpressionDescription;
 pub use self::__NSFetchIndexDescription::NSFetchIndexDescription;
 #[cfg(feature = "CoreData_NSFetchIndexElementDescription")]
 pub use self::__NSFetchIndexElementDescription::NSFetchIndexElementDescription;
+pub use self::__NSFetchIndexElementDescription::NSFetchIndexElementType;
 pub use self::__NSFetchIndexElementDescription::{
-    NSFetchIndexElementType, NSFetchIndexElementTypeBinary, NSFetchIndexElementTypeRTree,
+    NSFetchIndexElementTypeBinary, NSFetchIndexElementTypeRTree,
 };
 #[cfg(feature = "CoreData_NSAsynchronousFetchRequest")]
 pub use self::__NSFetchRequest::NSAsynchronousFetchRequest;
 #[cfg(feature = "CoreData_NSFetchRequest")]
 pub use self::__NSFetchRequest::NSFetchRequest;
 pub use self::__NSFetchRequest::NSFetchRequestResult;
+pub use self::__NSFetchRequest::NSFetchRequestResultType;
 pub use self::__NSFetchRequest::NSPersistentStoreAsynchronousFetchResultCompletionBlock;
 pub use self::__NSFetchRequest::{
-    NSCountResultType, NSDictionaryResultType, NSFetchRequestResultType,
-    NSManagedObjectIDResultType, NSManagedObjectResultType,
+    NSCountResultType, NSDictionaryResultType, NSManagedObjectIDResultType,
+    NSManagedObjectResultType,
 };
 #[cfg(feature = "CoreData_NSFetchRequestExpression")]
 pub use self::__NSFetchRequestExpression::NSFetchRequestExpression;
 pub use self::__NSFetchRequestExpression::NSFetchRequestExpressionType;
 #[cfg(feature = "CoreData_NSFetchedPropertyDescription")]
 pub use self::__NSFetchedPropertyDescription::NSFetchedPropertyDescription;
+pub use self::__NSFetchedResultsController::NSFetchedResultsChangeType;
 #[cfg(feature = "CoreData_NSFetchedResultsController")]
 pub use self::__NSFetchedResultsController::NSFetchedResultsController;
 pub use self::__NSFetchedResultsController::NSFetchedResultsControllerDelegate;
 pub use self::__NSFetchedResultsController::NSFetchedResultsSectionInfo;
 pub use self::__NSFetchedResultsController::{
     NSFetchedResultsChangeDelete, NSFetchedResultsChangeInsert, NSFetchedResultsChangeMove,
-    NSFetchedResultsChangeType, NSFetchedResultsChangeUpdate,
+    NSFetchedResultsChangeUpdate,
 };
 #[cfg(feature = "CoreData_NSIncrementalStore")]
 pub use self::__NSIncrementalStore::NSIncrementalStore;
@@ -215,10 +219,10 @@ pub use self::__NSIncrementalStore::NSIncrementalStore;
 pub use self::__NSIncrementalStoreNode::NSIncrementalStoreNode;
 #[cfg(feature = "CoreData_NSManagedObject")]
 pub use self::__NSManagedObject::NSManagedObject;
+pub use self::__NSManagedObject::NSSnapshotEventType;
 pub use self::__NSManagedObject::{
     NSSnapshotEventMergePolicy, NSSnapshotEventRefresh, NSSnapshotEventRollback,
-    NSSnapshotEventType, NSSnapshotEventUndoDeletion, NSSnapshotEventUndoInsertion,
-    NSSnapshotEventUndoUpdate,
+    NSSnapshotEventUndoDeletion, NSSnapshotEventUndoInsertion, NSSnapshotEventUndoUpdate,
 };
 pub use self::__NSManagedObjectContext::NSDeletedObjectIDsKey;
 pub use self::__NSManagedObjectContext::NSDeletedObjectsKey;
@@ -229,6 +233,7 @@ pub use self::__NSManagedObjectContext::NSInvalidatedObjectIDsKey;
 pub use self::__NSManagedObjectContext::NSInvalidatedObjectsKey;
 #[cfg(feature = "CoreData_NSManagedObjectContext")]
 pub use self::__NSManagedObjectContext::NSManagedObjectContext;
+pub use self::__NSManagedObjectContext::NSManagedObjectContextConcurrencyType;
 pub use self::__NSManagedObjectContext::NSManagedObjectContextDidMergeChangesObjectIDsNotification;
 pub use self::__NSManagedObjectContext::NSManagedObjectContextDidSaveNotification;
 pub use self::__NSManagedObjectContext::NSManagedObjectContextDidSaveObjectIDsNotification;
@@ -240,8 +245,7 @@ pub use self::__NSManagedObjectContext::NSRefreshedObjectsKey;
 pub use self::__NSManagedObjectContext::NSUpdatedObjectIDsKey;
 pub use self::__NSManagedObjectContext::NSUpdatedObjectsKey;
 pub use self::__NSManagedObjectContext::{
-    NSConfinementConcurrencyType, NSMainQueueConcurrencyType,
-    NSManagedObjectContextConcurrencyType, NSPrivateQueueConcurrencyType,
+    NSConfinementConcurrencyType, NSMainQueueConcurrencyType, NSPrivateQueueConcurrencyType,
 };
 #[cfg(feature = "CoreData_NSManagedObjectID")]
 pub use self::__NSManagedObjectID::NSManagedObjectID;
@@ -255,17 +259,18 @@ pub use self::__NSMergePolicy::NSConstraintConflict;
 pub use self::__NSMergePolicy::NSMergeConflict;
 #[cfg(feature = "CoreData_NSMergePolicy")]
 pub use self::__NSMergePolicy::NSMergePolicy;
+pub use self::__NSMergePolicy::NSMergePolicyType;
 pub use self::__NSMergePolicy::{
     NSErrorMergePolicyType, NSMergeByPropertyObjectTrumpMergePolicyType,
-    NSMergeByPropertyStoreTrumpMergePolicyType, NSMergePolicyType, NSOverwriteMergePolicyType,
+    NSMergeByPropertyStoreTrumpMergePolicyType, NSOverwriteMergePolicyType,
     NSRollbackMergePolicyType,
 };
 #[cfg(feature = "CoreData_NSMigrationManager")]
 pub use self::__NSMigrationManager::NSMigrationManager;
 #[cfg(feature = "CoreData_NSPersistentCloudKitContainer")]
 pub use self::__NSPersistentCloudKitContainer::NSPersistentCloudKitContainer;
+pub use self::__NSPersistentCloudKitContainer::NSPersistentCloudKitContainerSchemaInitializationOptions;
 pub use self::__NSPersistentCloudKitContainer::{
-    NSPersistentCloudKitContainerSchemaInitializationOptions,
     NSPersistentCloudKitContainerSchemaInitializationOptionsDryRun,
     NSPersistentCloudKitContainerSchemaInitializationOptionsNone,
     NSPersistentCloudKitContainerSchemaInitializationOptionsPrintSchema,
@@ -273,10 +278,11 @@ pub use self::__NSPersistentCloudKitContainer::{
 #[cfg(feature = "CoreData_NSPersistentCloudKitContainerEvent")]
 pub use self::__NSPersistentCloudKitContainerEvent::NSPersistentCloudKitContainerEvent;
 pub use self::__NSPersistentCloudKitContainerEvent::NSPersistentCloudKitContainerEventChangedNotification;
+pub use self::__NSPersistentCloudKitContainerEvent::NSPersistentCloudKitContainerEventType;
 pub use self::__NSPersistentCloudKitContainerEvent::NSPersistentCloudKitContainerEventUserInfoKey;
 pub use self::__NSPersistentCloudKitContainerEvent::{
-    NSPersistentCloudKitContainerEventType, NSPersistentCloudKitContainerEventTypeExport,
-    NSPersistentCloudKitContainerEventTypeImport, NSPersistentCloudKitContainerEventTypeSetup,
+    NSPersistentCloudKitContainerEventTypeExport, NSPersistentCloudKitContainerEventTypeImport,
+    NSPersistentCloudKitContainerEventTypeSetup,
 };
 #[cfg(feature = "CoreData_NSPersistentCloudKitContainerEventRequest")]
 pub use self::__NSPersistentCloudKitContainerEventRequest::NSPersistentCloudKitContainerEventRequest;
@@ -286,9 +292,10 @@ pub use self::__NSPersistentCloudKitContainerOptions::NSPersistentCloudKitContai
 pub use self::__NSPersistentContainer::NSPersistentContainer;
 #[cfg(feature = "CoreData_NSPersistentHistoryChange")]
 pub use self::__NSPersistentHistoryChange::NSPersistentHistoryChange;
+pub use self::__NSPersistentHistoryChange::NSPersistentHistoryChangeType;
 pub use self::__NSPersistentHistoryChange::{
-    NSPersistentHistoryChangeType, NSPersistentHistoryChangeTypeDelete,
-    NSPersistentHistoryChangeTypeInsert, NSPersistentHistoryChangeTypeUpdate,
+    NSPersistentHistoryChangeTypeDelete, NSPersistentHistoryChangeTypeInsert,
+    NSPersistentHistoryChangeTypeUpdate,
 };
 #[cfg(feature = "CoreData_NSPersistentHistoryChangeRequest")]
 pub use self::__NSPersistentHistoryChangeRequest::NSPersistentHistoryChangeRequest;
@@ -336,6 +343,7 @@ pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreUbiquitousContain
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreUbiquitousContentNameKey;
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreUbiquitousContentURLKey;
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreUbiquitousPeerTokenOption;
+pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreUbiquitousTransitionType;
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreUbiquitousTransitionTypeKey;
 pub use self::__NSPersistentStoreCoordinator::NSReadOnlyPersistentStoreOption;
 pub use self::__NSPersistentStoreCoordinator::NSRemovedPersistentStoresKey;
@@ -354,7 +362,6 @@ pub use self::__NSPersistentStoreCoordinator::NSValidateXMLStoreOption;
 pub use self::__NSPersistentStoreCoordinator::NSXMLExternalRecordType;
 pub use self::__NSPersistentStoreCoordinator::NSXMLStoreType;
 pub use self::__NSPersistentStoreCoordinator::{
-    NSPersistentStoreUbiquitousTransitionType,
     NSPersistentStoreUbiquitousTransitionTypeAccountAdded,
     NSPersistentStoreUbiquitousTransitionTypeAccountRemoved,
     NSPersistentStoreUbiquitousTransitionTypeContentRemoved,
@@ -364,48 +371,52 @@ pub use self::__NSPersistentStoreCoordinator::{
 pub use self::__NSPersistentStoreDescription::NSPersistentStoreDescription;
 #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
 pub use self::__NSPersistentStoreRequest::NSPersistentStoreRequest;
+pub use self::__NSPersistentStoreRequest::NSPersistentStoreRequestType;
 pub use self::__NSPersistentStoreRequest::{
     NSBatchDeleteRequestType, NSBatchInsertRequestType, NSBatchUpdateRequestType,
-    NSFetchRequestType, NSPersistentStoreRequestType, NSSaveRequestType,
+    NSFetchRequestType, NSSaveRequestType,
 };
 #[cfg(feature = "CoreData_NSAsynchronousFetchResult")]
 pub use self::__NSPersistentStoreResult::NSAsynchronousFetchResult;
+pub use self::__NSPersistentStoreResult::NSBatchDeleteRequestResultType;
 #[cfg(feature = "CoreData_NSBatchDeleteResult")]
 pub use self::__NSPersistentStoreResult::NSBatchDeleteResult;
+pub use self::__NSPersistentStoreResult::NSBatchInsertRequestResultType;
 #[cfg(feature = "CoreData_NSBatchInsertResult")]
 pub use self::__NSPersistentStoreResult::NSBatchInsertResult;
+pub use self::__NSPersistentStoreResult::NSBatchUpdateRequestResultType;
 #[cfg(feature = "CoreData_NSBatchUpdateResult")]
 pub use self::__NSPersistentStoreResult::NSBatchUpdateResult;
 #[cfg(feature = "CoreData_NSPersistentCloudKitContainerEventResult")]
 pub use self::__NSPersistentStoreResult::NSPersistentCloudKitContainerEventResult;
+pub use self::__NSPersistentStoreResult::NSPersistentCloudKitContainerEventResultType;
 #[cfg(feature = "CoreData_NSPersistentHistoryResult")]
 pub use self::__NSPersistentStoreResult::NSPersistentHistoryResult;
+pub use self::__NSPersistentStoreResult::NSPersistentHistoryResultType;
 #[cfg(feature = "CoreData_NSPersistentStoreAsynchronousResult")]
 pub use self::__NSPersistentStoreResult::NSPersistentStoreAsynchronousResult;
 #[cfg(feature = "CoreData_NSPersistentStoreResult")]
 pub use self::__NSPersistentStoreResult::NSPersistentStoreResult;
 pub use self::__NSPersistentStoreResult::{
-    NSBatchDeleteRequestResultType, NSBatchDeleteResultTypeCount, NSBatchDeleteResultTypeObjectIDs,
+    NSBatchDeleteResultTypeCount, NSBatchDeleteResultTypeObjectIDs,
     NSBatchDeleteResultTypeStatusOnly,
 };
 pub use self::__NSPersistentStoreResult::{
-    NSBatchInsertRequestResultType, NSBatchInsertRequestResultTypeCount,
-    NSBatchInsertRequestResultTypeObjectIDs, NSBatchInsertRequestResultTypeStatusOnly,
+    NSBatchInsertRequestResultTypeCount, NSBatchInsertRequestResultTypeObjectIDs,
+    NSBatchInsertRequestResultTypeStatusOnly,
 };
 pub use self::__NSPersistentStoreResult::{
-    NSBatchUpdateRequestResultType, NSStatusOnlyResultType, NSUpdatedObjectIDsResultType,
-    NSUpdatedObjectsCountResultType,
-};
-pub use self::__NSPersistentStoreResult::{
-    NSPersistentCloudKitContainerEventResultType,
     NSPersistentCloudKitContainerEventResultTypeCountEvents,
     NSPersistentCloudKitContainerEventResultTypeEvents,
 };
 pub use self::__NSPersistentStoreResult::{
-    NSPersistentHistoryResultType, NSPersistentHistoryResultTypeChangesOnly,
-    NSPersistentHistoryResultTypeCount, NSPersistentHistoryResultTypeObjectIDs,
-    NSPersistentHistoryResultTypeStatusOnly, NSPersistentHistoryResultTypeTransactionsAndChanges,
+    NSPersistentHistoryResultTypeChangesOnly, NSPersistentHistoryResultTypeCount,
+    NSPersistentHistoryResultTypeObjectIDs, NSPersistentHistoryResultTypeStatusOnly,
+    NSPersistentHistoryResultTypeTransactionsAndChanges,
     NSPersistentHistoryResultTypeTransactionsOnly,
+};
+pub use self::__NSPersistentStoreResult::{
+    NSStatusOnlyResultType, NSUpdatedObjectIDsResultType, NSUpdatedObjectsCountResultType,
 };
 #[cfg(feature = "CoreData_NSPropertyDescription")]
 pub use self::__NSPropertyDescription::NSPropertyDescription;
@@ -413,10 +424,11 @@ pub use self::__NSPropertyDescription::NSPropertyDescription;
 pub use self::__NSPropertyMapping::NSPropertyMapping;
 #[cfg(feature = "CoreData_NSQueryGenerationToken")]
 pub use self::__NSQueryGenerationToken::NSQueryGenerationToken;
+pub use self::__NSRelationshipDescription::NSDeleteRule;
 #[cfg(feature = "CoreData_NSRelationshipDescription")]
 pub use self::__NSRelationshipDescription::NSRelationshipDescription;
 pub use self::__NSRelationshipDescription::{
-    NSCascadeDeleteRule, NSDeleteRule, NSDenyDeleteRule, NSNoActionDeleteRule, NSNullifyDeleteRule,
+    NSCascadeDeleteRule, NSDenyDeleteRule, NSNoActionDeleteRule, NSNullifyDeleteRule,
 };
 #[cfg(feature = "CoreData_NSSaveChangesRequest")]
 pub use self::__NSSaveChangesRequest::NSSaveChangesRequest;

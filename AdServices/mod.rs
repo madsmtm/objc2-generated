@@ -11,8 +11,9 @@ mod __AAAttribution;
 
 #[cfg(feature = "AdServices_AAAttribution")]
 pub use self::__AAAttribution::AAAttribution;
+pub use self::__AAAttribution::AAAttributionErrorCode;
 pub use self::__AAAttribution::AAAttributionErrorDomain;
 pub use self::__AAAttribution::{
-    AAAttributionErrorCode, AAAttributionErrorCodeInternalError,
-    AAAttributionErrorCodeNetworkError, AAAttributionErrorCodePlatformNotSupported,
+    AAAttributionErrorCodeInternalError, AAAttributionErrorCodeNetworkError,
+    AAAttributionErrorCodePlatformNotSupported,
 };

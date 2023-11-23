@@ -33,32 +33,34 @@ pub use self::__EAAccessoryManager::EAAccessoryKey;
 pub use self::__EAAccessoryManager::EAAccessoryManager;
 pub use self::__EAAccessoryManager::EAAccessorySelectedKey;
 pub use self::__EAAccessoryManager::EABluetoothAccessoryPickerCompletion;
+pub use self::__EAAccessoryManager::EABluetoothAccessoryPickerErrorCode;
 pub use self::__EAAccessoryManager::EABluetoothAccessoryPickerErrorDomain;
 pub use self::__EAAccessoryManager::{
-    EABluetoothAccessoryPickerAlreadyConnected, EABluetoothAccessoryPickerErrorCode,
-    EABluetoothAccessoryPickerResultCancelled, EABluetoothAccessoryPickerResultFailed,
-    EABluetoothAccessoryPickerResultNotFound,
+    EABluetoothAccessoryPickerAlreadyConnected, EABluetoothAccessoryPickerResultCancelled,
+    EABluetoothAccessoryPickerResultFailed, EABluetoothAccessoryPickerResultNotFound,
 };
 #[cfg(feature = "ExternalAccessory_EASession")]
 pub use self::__EASession::EASession;
 #[cfg(feature = "ExternalAccessory_EAWiFiUnconfiguredAccessory")]
 pub use self::__EAWiFiUnconfiguredAccessory::EAWiFiUnconfiguredAccessory;
+pub use self::__EAWiFiUnconfiguredAccessory::EAWiFiUnconfiguredAccessoryProperties;
 pub use self::__EAWiFiUnconfiguredAccessory::{
-    EAWiFiUnconfiguredAccessoryProperties, EAWiFiUnconfiguredAccessoryPropertySupportsAirPlay,
+    EAWiFiUnconfiguredAccessoryPropertySupportsAirPlay,
     EAWiFiUnconfiguredAccessoryPropertySupportsAirPrint,
     EAWiFiUnconfiguredAccessoryPropertySupportsHomeKit,
 };
 #[cfg(feature = "ExternalAccessory_EAWiFiUnconfiguredAccessoryBrowser")]
 pub use self::__EAWiFiUnconfiguredAccessoryBrowser::EAWiFiUnconfiguredAccessoryBrowser;
 pub use self::__EAWiFiUnconfiguredAccessoryBrowser::EAWiFiUnconfiguredAccessoryBrowserDelegate;
+pub use self::__EAWiFiUnconfiguredAccessoryBrowser::EAWiFiUnconfiguredAccessoryBrowserState;
+pub use self::__EAWiFiUnconfiguredAccessoryBrowser::EAWiFiUnconfiguredAccessoryConfigurationStatus;
 pub use self::__EAWiFiUnconfiguredAccessoryBrowser::{
-    EAWiFiUnconfiguredAccessoryBrowserState, EAWiFiUnconfiguredAccessoryBrowserStateConfiguring,
+    EAWiFiUnconfiguredAccessoryBrowserStateConfiguring,
     EAWiFiUnconfiguredAccessoryBrowserStateSearching,
     EAWiFiUnconfiguredAccessoryBrowserStateStopped,
     EAWiFiUnconfiguredAccessoryBrowserStateWiFiUnavailable,
 };
 pub use self::__EAWiFiUnconfiguredAccessoryBrowser::{
-    EAWiFiUnconfiguredAccessoryConfigurationStatus,
     EAWiFiUnconfiguredAccessoryConfigurationStatusFailed,
     EAWiFiUnconfiguredAccessoryConfigurationStatusSuccess,
     EAWiFiUnconfiguredAccessoryConfigurationStatusUserCancelledConfiguration,

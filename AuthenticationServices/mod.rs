@@ -165,28 +165,30 @@ pub use self::__ASAuthorization::ASAuthorization;
 pub use self::__ASAuthorization::ASAuthorizationScope;
 pub use self::__ASAuthorization::ASAuthorizationScopeEmail;
 pub use self::__ASAuthorization::ASAuthorizationScopeFullName;
+pub use self::__ASAuthorizationAppleIDButton::ASAuthorizationAppleIDButtonStyle;
+pub use self::__ASAuthorizationAppleIDButton::ASAuthorizationAppleIDButtonType;
 pub use self::__ASAuthorizationAppleIDButton::{
-    ASAuthorizationAppleIDButtonStyle, ASAuthorizationAppleIDButtonStyleBlack,
-    ASAuthorizationAppleIDButtonStyleWhite, ASAuthorizationAppleIDButtonStyleWhiteOutline,
+    ASAuthorizationAppleIDButtonStyleBlack, ASAuthorizationAppleIDButtonStyleWhite,
+    ASAuthorizationAppleIDButtonStyleWhiteOutline,
 };
 pub use self::__ASAuthorizationAppleIDButton::{
-    ASAuthorizationAppleIDButtonType, ASAuthorizationAppleIDButtonTypeContinue,
-    ASAuthorizationAppleIDButtonTypeDefault, ASAuthorizationAppleIDButtonTypeSignIn,
-    ASAuthorizationAppleIDButtonTypeSignUp,
+    ASAuthorizationAppleIDButtonTypeContinue, ASAuthorizationAppleIDButtonTypeDefault,
+    ASAuthorizationAppleIDButtonTypeSignIn, ASAuthorizationAppleIDButtonTypeSignUp,
 };
 #[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDCredential")]
 pub use self::__ASAuthorizationAppleIDCredential::ASAuthorizationAppleIDCredential;
+pub use self::__ASAuthorizationAppleIDCredential::ASUserDetectionStatus;
 pub use self::__ASAuthorizationAppleIDCredential::{
-    ASUserDetectionStatus, ASUserDetectionStatusLikelyReal, ASUserDetectionStatusUnknown,
-    ASUserDetectionStatusUnsupported,
+    ASUserDetectionStatusLikelyReal, ASUserDetectionStatusUnknown, ASUserDetectionStatusUnsupported,
 };
 #[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDProvider")]
 pub use self::__ASAuthorizationAppleIDProvider::ASAuthorizationAppleIDProvider;
 pub use self::__ASAuthorizationAppleIDProvider::ASAuthorizationAppleIDProviderCredentialRevokedNotification;
+pub use self::__ASAuthorizationAppleIDProvider::ASAuthorizationAppleIDProviderCredentialState;
 pub use self::__ASAuthorizationAppleIDProvider::{
     ASAuthorizationAppleIDProviderCredentialAuthorized,
     ASAuthorizationAppleIDProviderCredentialNotFound,
-    ASAuthorizationAppleIDProviderCredentialRevoked, ASAuthorizationAppleIDProviderCredentialState,
+    ASAuthorizationAppleIDProviderCredentialRevoked,
     ASAuthorizationAppleIDProviderCredentialTransferred,
 };
 #[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDRequest")]
@@ -195,20 +197,19 @@ pub use self::__ASAuthorizationAppleIDRequest::ASAuthorizationAppleIDRequest;
 pub use self::__ASAuthorizationController::ASAuthorizationController;
 pub use self::__ASAuthorizationController::ASAuthorizationControllerDelegate;
 pub use self::__ASAuthorizationController::ASAuthorizationControllerPresentationContextProviding;
-pub use self::__ASAuthorizationController::{
-    ASAuthorizationControllerRequestOptionPreferImmediatelyAvailableCredentials,
-    ASAuthorizationControllerRequestOptions,
-};
+pub use self::__ASAuthorizationController::ASAuthorizationControllerRequestOptionPreferImmediatelyAvailableCredentials;
+pub use self::__ASAuthorizationController::ASAuthorizationControllerRequestOptions;
 pub use self::__ASAuthorizationCredential::ASAuthorizationCredential;
 pub use self::__ASAuthorizationCustomMethod::ASAuthorizationCustomMethod;
 pub use self::__ASAuthorizationCustomMethod::ASAuthorizationCustomMethodOther;
 pub use self::__ASAuthorizationCustomMethod::ASAuthorizationCustomMethodRestorePurchase;
 pub use self::__ASAuthorizationCustomMethod::ASAuthorizationCustomMethodVideoSubscriberAccount;
+pub use self::__ASAuthorizationError::ASAuthorizationError;
 pub use self::__ASAuthorizationError::ASAuthorizationErrorDomain;
 pub use self::__ASAuthorizationError::{
-    ASAuthorizationError, ASAuthorizationErrorCanceled, ASAuthorizationErrorFailed,
-    ASAuthorizationErrorInvalidResponse, ASAuthorizationErrorNotHandled,
-    ASAuthorizationErrorNotInteractive, ASAuthorizationErrorUnknown,
+    ASAuthorizationErrorCanceled, ASAuthorizationErrorFailed, ASAuthorizationErrorInvalidResponse,
+    ASAuthorizationErrorNotHandled, ASAuthorizationErrorNotInteractive,
+    ASAuthorizationErrorUnknown,
 };
 pub use self::__ASAuthorizationOpenIDRequest::ASAuthorizationOpenIDOperation;
 #[cfg(feature = "AuthenticationServices_ASAuthorizationOpenIDRequest")]
@@ -248,39 +249,39 @@ pub use self::__ASAuthorizationProviderExtensionAuthorizationRequest::ASAuthoriz
 pub use self::__ASAuthorizationProviderExtensionAuthorizationRequest::ASAuthorizationProviderExtensionAuthorizationRequestHandler;
 #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionAuthorizationResult")]
 pub use self::__ASAuthorizationProviderExtensionAuthorizationResult::ASAuthorizationProviderExtensionAuthorizationResult;
+pub use self::__ASAuthorizationProviderExtensionLoginConfiguration::ASAuthorizationProviderExtensionFederationType;
 #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionKerberosMapping")]
 pub use self::__ASAuthorizationProviderExtensionLoginConfiguration::ASAuthorizationProviderExtensionKerberosMapping;
 #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionLoginConfiguration")]
 pub use self::__ASAuthorizationProviderExtensionLoginConfiguration::ASAuthorizationProviderExtensionLoginConfiguration;
 pub use self::__ASAuthorizationProviderExtensionLoginConfiguration::{
-    ASAuthorizationProviderExtensionFederationType,
     ASAuthorizationProviderExtensionFederationTypeDynamicWSTrust,
     ASAuthorizationProviderExtensionFederationTypeNone,
     ASAuthorizationProviderExtensionFederationTypeWSTrust,
 };
+pub use self::__ASAuthorizationProviderExtensionLoginManager::ASAuthorizationProviderExtensionKeyType;
 #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionLoginManager")]
 pub use self::__ASAuthorizationProviderExtensionLoginManager::ASAuthorizationProviderExtensionLoginManager;
 pub use self::__ASAuthorizationProviderExtensionLoginManager::{
-    ASAuthorizationProviderExtensionKeyType,
     ASAuthorizationProviderExtensionKeyTypeUserDeviceEncryption,
     ASAuthorizationProviderExtensionKeyTypeUserDeviceSigning,
     ASAuthorizationProviderExtensionKeyTypeUserSecureEnclaveKey,
 };
+pub use self::__ASAuthorizationProviderExtensionRegistrationHandler::ASAuthorizationProviderExtensionAuthenticationMethod;
 pub use self::__ASAuthorizationProviderExtensionRegistrationHandler::ASAuthorizationProviderExtensionRegistrationHandler;
+pub use self::__ASAuthorizationProviderExtensionRegistrationHandler::ASAuthorizationProviderExtensionRegistrationResult;
+pub use self::__ASAuthorizationProviderExtensionRegistrationHandler::ASAuthorizationProviderExtensionRequestOptions;
 pub use self::__ASAuthorizationProviderExtensionRegistrationHandler::{
-    ASAuthorizationProviderExtensionAuthenticationMethod,
     ASAuthorizationProviderExtensionAuthenticationMethodPassword,
     ASAuthorizationProviderExtensionAuthenticationMethodUserSecureEnclaveKey,
 };
 pub use self::__ASAuthorizationProviderExtensionRegistrationHandler::{
-    ASAuthorizationProviderExtensionRegistrationResult,
     ASAuthorizationProviderExtensionRegistrationResultFailed,
     ASAuthorizationProviderExtensionRegistrationResultFailedNoRetry,
     ASAuthorizationProviderExtensionRegistrationResultSuccess,
     ASAuthorizationProviderExtensionRegistrationResultUserInterfaceRequired,
 };
 pub use self::__ASAuthorizationProviderExtensionRegistrationHandler::{
-    ASAuthorizationProviderExtensionRequestOptions,
     ASAuthorizationProviderExtensionRequestOptionsNone,
     ASAuthorizationProviderExtensionRequestOptionsRegistrationRepair,
     ASAuthorizationProviderExtensionRequestOptionsUserInteractionEnabled,
@@ -348,8 +349,8 @@ pub use self::__ASAuthorizationWebBrowserExternallyAuthenticatableRequest::ASAut
 pub use self::__ASAuthorizationWebBrowserPlatformPublicKeyCredential::ASAuthorizationWebBrowserPlatformPublicKeyCredential;
 #[cfg(feature = "AuthenticationServices_ASAuthorizationWebBrowserPublicKeyCredentialManager")]
 pub use self::__ASAuthorizationWebBrowserPublicKeyCredentialManager::ASAuthorizationWebBrowserPublicKeyCredentialManager;
+pub use self::__ASAuthorizationWebBrowserPublicKeyCredentialManager::ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationState;
 pub use self::__ASAuthorizationWebBrowserPublicKeyCredentialManager::{
-    ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationState,
     ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationStateAuthorized,
     ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationStateDenied,
     ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationStateNotDetermined,
@@ -360,10 +361,11 @@ pub use self::__ASCOSEConstants::ASCOSEEllipticCurveIdentifier;
 pub use self::__ASCOSEConstants::ASCOSEEllipticCurveIdentifierP256;
 #[cfg(feature = "AuthenticationServices_ASCredentialIdentityStore")]
 pub use self::__ASCredentialIdentityStore::ASCredentialIdentityStore;
+pub use self::__ASCredentialIdentityStore::ASCredentialIdentityStoreErrorCode;
 pub use self::__ASCredentialIdentityStore::ASCredentialIdentityStoreErrorDomain;
 pub use self::__ASCredentialIdentityStore::{
-    ASCredentialIdentityStoreErrorCode, ASCredentialIdentityStoreErrorCodeInternalError,
-    ASCredentialIdentityStoreErrorCodeStoreBusy, ASCredentialIdentityStoreErrorCodeStoreDisabled,
+    ASCredentialIdentityStoreErrorCodeInternalError, ASCredentialIdentityStoreErrorCodeStoreBusy,
+    ASCredentialIdentityStoreErrorCodeStoreDisabled,
 };
 #[cfg(feature = "AuthenticationServices_ASCredentialIdentityStoreState")]
 pub use self::__ASCredentialIdentityStoreState::ASCredentialIdentityStoreState;
@@ -371,16 +373,16 @@ pub use self::__ASCredentialIdentityStoreState::ASCredentialIdentityStoreState;
 pub use self::__ASCredentialProviderExtensionContext::ASCredentialProviderExtensionContext;
 #[cfg(feature = "AuthenticationServices_ASCredentialServiceIdentifier")]
 pub use self::__ASCredentialServiceIdentifier::ASCredentialServiceIdentifier;
+pub use self::__ASCredentialServiceIdentifier::ASCredentialServiceIdentifierType;
 pub use self::__ASCredentialServiceIdentifier::{
-    ASCredentialServiceIdentifierType, ASCredentialServiceIdentifierTypeDomain,
-    ASCredentialServiceIdentifierTypeURL,
+    ASCredentialServiceIdentifierTypeDomain, ASCredentialServiceIdentifierTypeURL,
 };
+pub use self::__ASExtensionErrors::ASExtensionErrorCode;
 pub use self::__ASExtensionErrors::ASExtensionErrorDomain;
 pub use self::__ASExtensionErrors::ASExtensionLocalizedFailureReasonErrorKey;
 pub use self::__ASExtensionErrors::{
-    ASExtensionErrorCode, ASExtensionErrorCodeCredentialIdentityNotFound,
-    ASExtensionErrorCodeFailed, ASExtensionErrorCodeUserCanceled,
-    ASExtensionErrorCodeUserInteractionRequired,
+    ASExtensionErrorCodeCredentialIdentityNotFound, ASExtensionErrorCodeFailed,
+    ASExtensionErrorCodeUserCanceled, ASExtensionErrorCodeUserInteractionRequired,
 };
 #[cfg(feature = "AuthenticationServices_ASPasswordCredential")]
 pub use self::__ASPasswordCredential::ASPasswordCredential;
@@ -391,9 +393,10 @@ pub use self::__ASWebAuthenticationSession::ASWebAuthenticationPresentationConte
 #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSession")]
 pub use self::__ASWebAuthenticationSession::ASWebAuthenticationSession;
 pub use self::__ASWebAuthenticationSession::ASWebAuthenticationSessionCompletionHandler;
+pub use self::__ASWebAuthenticationSession::ASWebAuthenticationSessionErrorCode;
 pub use self::__ASWebAuthenticationSession::ASWebAuthenticationSessionErrorDomain;
 pub use self::__ASWebAuthenticationSession::{
-    ASWebAuthenticationSessionErrorCode, ASWebAuthenticationSessionErrorCodeCanceledLogin,
+    ASWebAuthenticationSessionErrorCodeCanceledLogin,
     ASWebAuthenticationSessionErrorCodePresentationContextInvalid,
     ASWebAuthenticationSessionErrorCodePresentationContextNotProvided,
 };

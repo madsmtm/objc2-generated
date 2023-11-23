@@ -75,11 +75,12 @@ mod __NSUserActivity_MediaPlayerAdditions;
 
 #[cfg(feature = "MediaPlayer_MPContentItem")]
 pub use self::__MPContentItem::MPContentItem;
+pub use self::__MPError::MPErrorCode;
 pub use self::__MPError::MPErrorDomain;
 pub use self::__MPError::{
-    MPErrorCancelled, MPErrorCloudServiceCapabilityMissing, MPErrorCode,
-    MPErrorNetworkConnectionFailed, MPErrorNotFound, MPErrorNotSupported, MPErrorPermissionDenied,
-    MPErrorRequestTimedOut, MPErrorUnknown,
+    MPErrorCancelled, MPErrorCloudServiceCapabilityMissing, MPErrorNetworkConnectionFailed,
+    MPErrorNotFound, MPErrorNotSupported, MPErrorPermissionDenied, MPErrorRequestTimedOut,
+    MPErrorUnknown,
 };
 #[cfg(feature = "MediaPlayer_MPMediaEntity")]
 pub use self::__MPMediaEntity::MPMediaEntity;
@@ -128,8 +129,9 @@ pub use self::__MPMediaItem::MPMediaItemPropertyReleaseDate;
 pub use self::__MPMediaItem::MPMediaItemPropertySkipCount;
 pub use self::__MPMediaItem::MPMediaItemPropertyTitle;
 pub use self::__MPMediaItem::MPMediaItemPropertyUserGrouping;
+pub use self::__MPMediaItem::MPMediaType;
 pub use self::__MPMediaItem::{
-    MPMediaType, MPMediaTypeAny, MPMediaTypeAnyAudio, MPMediaTypeAnyVideo, MPMediaTypeAudioBook,
+    MPMediaTypeAny, MPMediaTypeAnyAudio, MPMediaTypeAnyVideo, MPMediaTypeAudioBook,
     MPMediaTypeAudioITunesU, MPMediaTypeHomeVideo, MPMediaTypeMovie, MPMediaTypeMusic,
     MPMediaTypeMusicVideo, MPMediaTypePodcast, MPMediaTypeTVShow, MPMediaTypeVideoITunesU,
     MPMediaTypeVideoPodcast,
@@ -138,16 +140,17 @@ pub use self::__MPMediaItem::{
 pub use self::__MPMediaItemCollection::MPMediaItemCollection;
 #[cfg(feature = "MediaPlayer_MPMediaLibrary")]
 pub use self::__MPMediaLibrary::MPMediaLibrary;
+pub use self::__MPMediaLibrary::MPMediaLibraryAuthorizationStatus;
 pub use self::__MPMediaLibrary::MPMediaLibraryDidChangeNotification;
 pub use self::__MPMediaLibrary::{
-    MPMediaLibraryAuthorizationStatus, MPMediaLibraryAuthorizationStatusAuthorized,
-    MPMediaLibraryAuthorizationStatusDenied, MPMediaLibraryAuthorizationStatusNotDetermined,
-    MPMediaLibraryAuthorizationStatusRestricted,
+    MPMediaLibraryAuthorizationStatusAuthorized, MPMediaLibraryAuthorizationStatusDenied,
+    MPMediaLibraryAuthorizationStatusNotDetermined, MPMediaLibraryAuthorizationStatusRestricted,
 };
 pub use self::__MPMediaPlayback::MPMediaPlayback;
 pub use self::__MPMediaPlayback::MPMediaPlaybackIsPreparedToPlayDidChangeNotification;
 #[cfg(feature = "MediaPlayer_MPMediaPlaylist")]
 pub use self::__MPMediaPlaylist::MPMediaPlaylist;
+pub use self::__MPMediaPlaylist::MPMediaPlaylistAttribute;
 #[cfg(feature = "MediaPlayer_MPMediaPlaylistCreationMetadata")]
 pub use self::__MPMediaPlaylist::MPMediaPlaylistCreationMetadata;
 pub use self::__MPMediaPlaylist::MPMediaPlaylistPropertyAuthorDisplayName;
@@ -158,23 +161,24 @@ pub use self::__MPMediaPlaylist::MPMediaPlaylistPropertyPersistentID;
 pub use self::__MPMediaPlaylist::MPMediaPlaylistPropertyPlaylistAttributes;
 pub use self::__MPMediaPlaylist::MPMediaPlaylistPropertySeedItems;
 pub use self::__MPMediaPlaylist::{
-    MPMediaPlaylistAttribute, MPMediaPlaylistAttributeGenius, MPMediaPlaylistAttributeNone,
-    MPMediaPlaylistAttributeOnTheGo, MPMediaPlaylistAttributeSmart,
+    MPMediaPlaylistAttributeGenius, MPMediaPlaylistAttributeNone, MPMediaPlaylistAttributeOnTheGo,
+    MPMediaPlaylistAttributeSmart,
 };
+pub use self::__MPMediaQuery::MPMediaGrouping;
 #[cfg(feature = "MediaPlayer_MPMediaPredicate")]
 pub use self::__MPMediaQuery::MPMediaPredicate;
+pub use self::__MPMediaQuery::MPMediaPredicateComparison;
 #[cfg(feature = "MediaPlayer_MPMediaPropertyPredicate")]
 pub use self::__MPMediaQuery::MPMediaPropertyPredicate;
 #[cfg(feature = "MediaPlayer_MPMediaQuery")]
 pub use self::__MPMediaQuery::MPMediaQuery;
 pub use self::__MPMediaQuery::{
-    MPMediaGrouping, MPMediaGroupingAlbum, MPMediaGroupingAlbumArtist, MPMediaGroupingArtist,
+    MPMediaGroupingAlbum, MPMediaGroupingAlbumArtist, MPMediaGroupingArtist,
     MPMediaGroupingComposer, MPMediaGroupingGenre, MPMediaGroupingPlaylist,
     MPMediaGroupingPodcastTitle, MPMediaGroupingTitle,
 };
 pub use self::__MPMediaQuery::{
-    MPMediaPredicateComparison, MPMediaPredicateComparisonContains,
-    MPMediaPredicateComparisonEqualTo,
+    MPMediaPredicateComparisonContains, MPMediaPredicateComparisonEqualTo,
 };
 #[cfg(feature = "MediaPlayer_MPMediaQuerySection")]
 pub use self::__MPMediaQuerySection::MPMediaQuerySection;
@@ -185,23 +189,25 @@ pub use self::__MPMusicPlayerApplicationController::MPMusicPlayerControllerMutab
 #[cfg(feature = "MediaPlayer_MPMusicPlayerControllerQueue")]
 pub use self::__MPMusicPlayerApplicationController::MPMusicPlayerControllerQueue;
 pub use self::__MPMusicPlayerApplicationController::MPMusicPlayerControllerQueueDidChangeNotification;
+pub use self::__MPMusicPlayerController::MPMusicPlaybackState;
 #[cfg(feature = "MediaPlayer_MPMusicPlayerController")]
 pub use self::__MPMusicPlayerController::MPMusicPlayerController;
 pub use self::__MPMusicPlayerController::MPMusicPlayerControllerNowPlayingItemDidChangeNotification;
 pub use self::__MPMusicPlayerController::MPMusicPlayerControllerPlaybackStateDidChangeNotification;
 pub use self::__MPMusicPlayerController::MPMusicPlayerControllerVolumeDidChangeNotification;
+pub use self::__MPMusicPlayerController::MPMusicRepeatMode;
+pub use self::__MPMusicPlayerController::MPMusicShuffleMode;
 pub use self::__MPMusicPlayerController::MPSystemMusicPlayerController;
 pub use self::__MPMusicPlayerController::{
-    MPMusicPlaybackState, MPMusicPlaybackStateInterrupted, MPMusicPlaybackStatePaused,
-    MPMusicPlaybackStatePlaying, MPMusicPlaybackStateSeekingBackward,
-    MPMusicPlaybackStateSeekingForward, MPMusicPlaybackStateStopped,
+    MPMusicPlaybackStateInterrupted, MPMusicPlaybackStatePaused, MPMusicPlaybackStatePlaying,
+    MPMusicPlaybackStateSeekingBackward, MPMusicPlaybackStateSeekingForward,
+    MPMusicPlaybackStateStopped,
 };
 pub use self::__MPMusicPlayerController::{
-    MPMusicRepeatMode, MPMusicRepeatModeAll, MPMusicRepeatModeDefault, MPMusicRepeatModeNone,
-    MPMusicRepeatModeOne,
+    MPMusicRepeatModeAll, MPMusicRepeatModeDefault, MPMusicRepeatModeNone, MPMusicRepeatModeOne,
 };
 pub use self::__MPMusicPlayerController::{
-    MPMusicShuffleMode, MPMusicShuffleModeAlbums, MPMusicShuffleModeDefault, MPMusicShuffleModeOff,
+    MPMusicShuffleModeAlbums, MPMusicShuffleModeDefault, MPMusicShuffleModeOff,
     MPMusicShuffleModeSongs,
 };
 #[cfg(feature = "MediaPlayer_MPMusicPlayerMediaItemQueueDescriptor")]
@@ -217,6 +223,7 @@ pub use self::__MPMusicPlayerQueueDescriptor::MPMusicPlayerStoreQueueDescriptor;
 #[cfg(feature = "MediaPlayer_MPNowPlayingInfoCenter")]
 pub use self::__MPNowPlayingInfoCenter::MPNowPlayingInfoCenter;
 pub use self::__MPNowPlayingInfoCenter::MPNowPlayingInfoCollectionIdentifier;
+pub use self::__MPNowPlayingInfoCenter::MPNowPlayingInfoMediaType;
 pub use self::__MPNowPlayingInfoCenter::MPNowPlayingInfoPropertyAdTimeRanges;
 pub use self::__MPNowPlayingInfoCenter::MPNowPlayingInfoPropertyAssetURL;
 pub use self::__MPNowPlayingInfoCenter::MPNowPlayingInfoPropertyAvailableLanguageOptions;
@@ -236,14 +243,14 @@ pub use self::__MPNowPlayingInfoCenter::MPNowPlayingInfoPropertyPlaybackQueueCou
 pub use self::__MPNowPlayingInfoCenter::MPNowPlayingInfoPropertyPlaybackQueueIndex;
 pub use self::__MPNowPlayingInfoCenter::MPNowPlayingInfoPropertyPlaybackRate;
 pub use self::__MPNowPlayingInfoCenter::MPNowPlayingInfoPropertyServiceIdentifier;
+pub use self::__MPNowPlayingInfoCenter::MPNowPlayingPlaybackState;
 pub use self::__MPNowPlayingInfoCenter::{
-    MPNowPlayingInfoMediaType, MPNowPlayingInfoMediaTypeAudio, MPNowPlayingInfoMediaTypeNone,
-    MPNowPlayingInfoMediaTypeVideo,
+    MPNowPlayingInfoMediaTypeAudio, MPNowPlayingInfoMediaTypeNone, MPNowPlayingInfoMediaTypeVideo,
 };
 pub use self::__MPNowPlayingInfoCenter::{
-    MPNowPlayingPlaybackState, MPNowPlayingPlaybackStateInterrupted,
-    MPNowPlayingPlaybackStatePaused, MPNowPlayingPlaybackStatePlaying,
-    MPNowPlayingPlaybackStateStopped, MPNowPlayingPlaybackStateUnknown,
+    MPNowPlayingPlaybackStateInterrupted, MPNowPlayingPlaybackStatePaused,
+    MPNowPlayingPlaybackStatePlaying, MPNowPlayingPlaybackStateStopped,
+    MPNowPlayingPlaybackStateUnknown,
 };
 pub use self::__MPNowPlayingInfoLanguageOption::MPLanguageOptionCharacteristicContainsOnlyForcedSubtitles;
 pub use self::__MPNowPlayingInfoLanguageOption::MPLanguageOptionCharacteristicDescribesMusicAndSound;
@@ -259,9 +266,9 @@ pub use self::__MPNowPlayingInfoLanguageOption::MPLanguageOptionCharacteristicVo
 pub use self::__MPNowPlayingInfoLanguageOption::MPNowPlayingInfoLanguageOption;
 #[cfg(feature = "MediaPlayer_MPNowPlayingInfoLanguageOptionGroup")]
 pub use self::__MPNowPlayingInfoLanguageOption::MPNowPlayingInfoLanguageOptionGroup;
+pub use self::__MPNowPlayingInfoLanguageOption::MPNowPlayingInfoLanguageOptionType;
 pub use self::__MPNowPlayingInfoLanguageOption::{
-    MPNowPlayingInfoLanguageOptionType, MPNowPlayingInfoLanguageOptionTypeAudible,
-    MPNowPlayingInfoLanguageOptionTypeLegible,
+    MPNowPlayingInfoLanguageOptionTypeAudible, MPNowPlayingInfoLanguageOptionTypeLegible,
 };
 #[cfg(feature = "MediaPlayer_MPAdTimeRange")]
 pub use self::__MPNowPlayingSession::MPAdTimeRange;
@@ -288,11 +295,11 @@ pub use self::__MPRemoteCommand::MPFeedbackCommand;
 pub use self::__MPRemoteCommand::MPRatingCommand;
 #[cfg(feature = "MediaPlayer_MPRemoteCommand")]
 pub use self::__MPRemoteCommand::MPRemoteCommand;
+pub use self::__MPRemoteCommand::MPRemoteCommandHandlerStatus;
 #[cfg(feature = "MediaPlayer_MPSkipIntervalCommand")]
 pub use self::__MPRemoteCommand::MPSkipIntervalCommand;
 pub use self::__MPRemoteCommand::{
-    MPRemoteCommandHandlerStatus, MPRemoteCommandHandlerStatusCommandFailed,
-    MPRemoteCommandHandlerStatusDeviceNotFound,
+    MPRemoteCommandHandlerStatusCommandFailed, MPRemoteCommandHandlerStatusDeviceNotFound,
     MPRemoteCommandHandlerStatusNoActionableNowPlayingItem,
     MPRemoteCommandHandlerStatusNoSuchContent, MPRemoteCommandHandlerStatusSuccess,
 };
@@ -316,20 +323,22 @@ pub use self::__MPRemoteCommandEvent::MPRatingCommandEvent;
 pub use self::__MPRemoteCommandEvent::MPRemoteCommandEvent;
 #[cfg(feature = "MediaPlayer_MPSeekCommandEvent")]
 pub use self::__MPRemoteCommandEvent::MPSeekCommandEvent;
+pub use self::__MPRemoteCommandEvent::MPSeekCommandEventType;
 #[cfg(feature = "MediaPlayer_MPSkipIntervalCommandEvent")]
 pub use self::__MPRemoteCommandEvent::MPSkipIntervalCommandEvent;
 pub use self::__MPRemoteCommandEvent::{
-    MPSeekCommandEventType, MPSeekCommandEventTypeBeginSeeking, MPSeekCommandEventTypeEndSeeking,
+    MPSeekCommandEventTypeBeginSeeking, MPSeekCommandEventTypeEndSeeking,
 };
+pub use self::__MPRemoteControlTypes::MPChangeLanguageOptionSetting;
+pub use self::__MPRemoteControlTypes::MPRepeatType;
+pub use self::__MPRemoteControlTypes::MPShuffleType;
 pub use self::__MPRemoteControlTypes::{
-    MPChangeLanguageOptionSetting, MPChangeLanguageOptionSettingNone,
-    MPChangeLanguageOptionSettingNowPlayingItemOnly, MPChangeLanguageOptionSettingPermanent,
+    MPChangeLanguageOptionSettingNone, MPChangeLanguageOptionSettingNowPlayingItemOnly,
+    MPChangeLanguageOptionSettingPermanent,
 };
+pub use self::__MPRemoteControlTypes::{MPRepeatTypeAll, MPRepeatTypeOff, MPRepeatTypeOne};
 pub use self::__MPRemoteControlTypes::{
-    MPRepeatType, MPRepeatTypeAll, MPRepeatTypeOff, MPRepeatTypeOne,
-};
-pub use self::__MPRemoteControlTypes::{
-    MPShuffleType, MPShuffleTypeCollections, MPShuffleTypeItems, MPShuffleTypeOff,
+    MPShuffleTypeCollections, MPShuffleTypeItems, MPShuffleTypeOff,
 };
 pub use self::__MPVolumeSettings::MPVolumeSettingsAlertHide;
 pub use self::__MPVolumeSettings::MPVolumeSettingsAlertIsVisible;

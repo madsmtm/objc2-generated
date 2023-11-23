@@ -29,8 +29,9 @@ pub use self::__BGTaskRequest::BGProcessingTaskRequest;
 pub use self::__BGTaskRequest::BGTaskRequest;
 #[cfg(feature = "BackgroundTasks_BGTaskScheduler")]
 pub use self::__BGTaskScheduler::BGTaskScheduler;
+pub use self::__BGTaskScheduler::BGTaskSchedulerErrorCode;
 pub use self::__BGTaskScheduler::BGTaskSchedulerErrorDomain;
 pub use self::__BGTaskScheduler::{
-    BGTaskSchedulerErrorCode, BGTaskSchedulerErrorCodeNotPermitted,
-    BGTaskSchedulerErrorCodeTooManyPendingTaskRequests, BGTaskSchedulerErrorCodeUnavailable,
+    BGTaskSchedulerErrorCodeNotPermitted, BGTaskSchedulerErrorCodeTooManyPendingTaskRequests,
+    BGTaskSchedulerErrorCodeUnavailable,
 };

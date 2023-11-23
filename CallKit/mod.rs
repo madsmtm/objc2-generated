@@ -68,11 +68,12 @@ pub use self::__CXCallDirectory::CXCallDirectoryPhoneNumberMax;
 #[cfg(feature = "CallKit_CXCallDirectoryExtensionContext")]
 pub use self::__CXCallDirectoryExtensionContext::CXCallDirectoryExtensionContext;
 pub use self::__CXCallDirectoryExtensionContext::CXCallDirectoryExtensionContextDelegate;
+pub use self::__CXCallDirectoryManager::CXCallDirectoryEnabledStatus;
 #[cfg(feature = "CallKit_CXCallDirectoryManager")]
 pub use self::__CXCallDirectoryManager::CXCallDirectoryManager;
 pub use self::__CXCallDirectoryManager::{
-    CXCallDirectoryEnabledStatus, CXCallDirectoryEnabledStatusDisabled,
-    CXCallDirectoryEnabledStatusEnabled, CXCallDirectoryEnabledStatusUnknown,
+    CXCallDirectoryEnabledStatusDisabled, CXCallDirectoryEnabledStatusEnabled,
+    CXCallDirectoryEnabledStatusUnknown,
 };
 #[cfg(feature = "CallKit_CXCallDirectoryProvider")]
 pub use self::__CXCallDirectoryProvider::CXCallDirectoryProvider;
@@ -83,17 +84,18 @@ pub use self::__CXCallObserver::CXCallObserverDelegate;
 pub use self::__CXCallUpdate::CXCallUpdate;
 #[cfg(feature = "CallKit_CXEndCallAction")]
 pub use self::__CXEndCallAction::CXEndCallAction;
+pub use self::__CXError::CXErrorCode;
+pub use self::__CXError::CXErrorCodeCallDirectoryManagerError;
+pub use self::__CXError::CXErrorCodeIncomingCallError;
+pub use self::__CXError::CXErrorCodeNotificationServiceExtensionError;
+pub use self::__CXError::CXErrorCodeRequestTransactionError;
 pub use self::__CXError::CXErrorDomain;
 pub use self::__CXError::CXErrorDomainCallDirectoryManager;
 pub use self::__CXError::CXErrorDomainIncomingCall;
 pub use self::__CXError::CXErrorDomainNotificationServiceExtension;
 pub use self::__CXError::CXErrorDomainRequestTransaction;
 pub use self::__CXError::{
-    CXErrorCode, CXErrorCodeInvalidArgument, CXErrorCodeMissingVoIPBackgroundMode,
-    CXErrorCodeUnentitled, CXErrorCodeUnknownError,
-};
-pub use self::__CXError::{
-    CXErrorCodeCallDirectoryManagerError, CXErrorCodeCallDirectoryManagerErrorCurrentlyLoading,
+    CXErrorCodeCallDirectoryManagerErrorCurrentlyLoading,
     CXErrorCodeCallDirectoryManagerErrorDuplicateEntries,
     CXErrorCodeCallDirectoryManagerErrorEntriesOutOfOrder,
     CXErrorCodeCallDirectoryManagerErrorExtensionDisabled,
@@ -104,19 +106,22 @@ pub use self::__CXError::{
     CXErrorCodeCallDirectoryManagerErrorUnknown,
 };
 pub use self::__CXError::{
-    CXErrorCodeIncomingCallError, CXErrorCodeIncomingCallErrorCallUUIDAlreadyExists,
+    CXErrorCodeIncomingCallErrorCallUUIDAlreadyExists,
     CXErrorCodeIncomingCallErrorFilteredByBlockList,
     CXErrorCodeIncomingCallErrorFilteredByDoNotDisturb, CXErrorCodeIncomingCallErrorUnentitled,
     CXErrorCodeIncomingCallErrorUnknown,
 };
 pub use self::__CXError::{
-    CXErrorCodeNotificationServiceExtensionError,
+    CXErrorCodeInvalidArgument, CXErrorCodeMissingVoIPBackgroundMode, CXErrorCodeUnentitled,
+    CXErrorCodeUnknownError,
+};
+pub use self::__CXError::{
     CXErrorCodeNotificationServiceExtensionErrorInvalidClientProcess,
     CXErrorCodeNotificationServiceExtensionErrorMissingNotificationFilteringEntitlement,
     CXErrorCodeNotificationServiceExtensionErrorUnknown,
 };
 pub use self::__CXError::{
-    CXErrorCodeRequestTransactionError, CXErrorCodeRequestTransactionErrorCallUUIDAlreadyExists,
+    CXErrorCodeRequestTransactionErrorCallUUIDAlreadyExists,
     CXErrorCodeRequestTransactionErrorEmptyTransaction,
     CXErrorCodeRequestTransactionErrorInvalidAction,
     CXErrorCodeRequestTransactionErrorMaximumCallGroupsReached,
@@ -126,20 +131,23 @@ pub use self::__CXError::{
 };
 #[cfg(feature = "CallKit_CXHandle")]
 pub use self::__CXHandle::CXHandle;
+pub use self::__CXHandle::CXHandleType;
 pub use self::__CXHandle::{
-    CXHandleType, CXHandleTypeEmailAddress, CXHandleTypeGeneric, CXHandleTypePhoneNumber,
+    CXHandleTypeEmailAddress, CXHandleTypeGeneric, CXHandleTypePhoneNumber,
 };
 #[cfg(feature = "CallKit_CXPlayDTMFCallAction")]
 pub use self::__CXPlayDTMFCallAction::CXPlayDTMFCallAction;
+pub use self::__CXPlayDTMFCallAction::CXPlayDTMFCallActionType;
 pub use self::__CXPlayDTMFCallAction::{
-    CXPlayDTMFCallActionType, CXPlayDTMFCallActionTypeHardPause,
-    CXPlayDTMFCallActionTypeSingleTone, CXPlayDTMFCallActionTypeSoftPause,
+    CXPlayDTMFCallActionTypeHardPause, CXPlayDTMFCallActionTypeSingleTone,
+    CXPlayDTMFCallActionTypeSoftPause,
 };
+pub use self::__CXProvider::CXCallEndedReason;
 #[cfg(feature = "CallKit_CXProvider")]
 pub use self::__CXProvider::CXProvider;
 pub use self::__CXProvider::CXProviderDelegate;
 pub use self::__CXProvider::{
-    CXCallEndedReason, CXCallEndedReasonAnsweredElsewhere, CXCallEndedReasonDeclinedElsewhere,
+    CXCallEndedReasonAnsweredElsewhere, CXCallEndedReasonDeclinedElsewhere,
     CXCallEndedReasonFailed, CXCallEndedReasonRemoteEnded, CXCallEndedReasonUnanswered,
 };
 #[cfg(feature = "CallKit_CXProviderConfiguration")]

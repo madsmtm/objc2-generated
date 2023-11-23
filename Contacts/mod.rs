@@ -124,27 +124,30 @@ pub use self::__CNContact::CNContactPreviousFamilyNameKey;
 pub use self::__CNContact::CNContactPropertyNotFetchedExceptionName;
 pub use self::__CNContact::CNContactRelationsKey;
 pub use self::__CNContact::CNContactSocialProfilesKey;
+pub use self::__CNContact::CNContactSortOrder;
 pub use self::__CNContact::CNContactThumbnailImageDataKey;
+pub use self::__CNContact::CNContactType;
 pub use self::__CNContact::CNContactTypeKey;
 pub use self::__CNContact::CNContactUrlAddressesKey;
 pub use self::__CNContact::CNKeyDescriptor;
 pub use self::__CNContact::{
-    CNContactSortOrder, CNContactSortOrderFamilyName, CNContactSortOrderGivenName,
-    CNContactSortOrderNone, CNContactSortOrderUserDefault,
+    CNContactSortOrderFamilyName, CNContactSortOrderGivenName, CNContactSortOrderNone,
+    CNContactSortOrderUserDefault,
 };
-pub use self::__CNContact::{CNContactType, CNContactTypeOrganization, CNContactTypePerson};
+pub use self::__CNContact::{CNContactTypeOrganization, CNContactTypePerson};
 #[cfg(feature = "Contacts_CNContactFetchRequest")]
 pub use self::__CNContactFetchRequest::CNContactFetchRequest;
+pub use self::__CNContactFormatter::CNContactDisplayNameOrder;
 #[cfg(feature = "Contacts_CNContactFormatter")]
 pub use self::__CNContactFormatter::CNContactFormatter;
+pub use self::__CNContactFormatter::CNContactFormatterStyle;
 pub use self::__CNContactFormatter::CNContactPropertyAttribute;
 pub use self::__CNContactFormatter::{
-    CNContactDisplayNameOrder, CNContactDisplayNameOrderFamilyNameFirst,
-    CNContactDisplayNameOrderGivenNameFirst, CNContactDisplayNameOrderUserDefault,
+    CNContactDisplayNameOrderFamilyNameFirst, CNContactDisplayNameOrderGivenNameFirst,
+    CNContactDisplayNameOrderUserDefault,
 };
 pub use self::__CNContactFormatter::{
-    CNContactFormatterStyle, CNContactFormatterStyleFullName,
-    CNContactFormatterStylePhoneticFullName,
+    CNContactFormatterStyleFullName, CNContactFormatterStylePhoneticFullName,
 };
 #[cfg(feature = "Contacts_CNContactProperty")]
 pub use self::__CNContactProperty::CNContactProperty;
@@ -366,14 +369,16 @@ pub use self::__CNContactRelation::CNLabelContactRelationYoungerSister;
 pub use self::__CNContactRelation::CNLabelContactRelationYoungerSisterInLaw;
 pub use self::__CNContactRelation::CNLabelContactRelationYoungestBrother;
 pub use self::__CNContactRelation::CNLabelContactRelationYoungestSister;
+pub use self::__CNContactStore::CNAuthorizationStatus;
 #[cfg(feature = "Contacts_CNContactStore")]
 pub use self::__CNContactStore::CNContactStore;
 pub use self::__CNContactStore::CNContactStoreDidChangeNotification;
+pub use self::__CNContactStore::CNEntityType;
+pub use self::__CNContactStore::CNEntityTypeContacts;
 pub use self::__CNContactStore::{
-    CNAuthorizationStatus, CNAuthorizationStatusAuthorized, CNAuthorizationStatusDenied,
+    CNAuthorizationStatusAuthorized, CNAuthorizationStatusDenied,
     CNAuthorizationStatusNotDetermined, CNAuthorizationStatusRestricted,
 };
-pub use self::__CNContactStore::{CNEntityType, CNEntityTypeContacts};
 #[cfg(feature = "Contacts_CNContactVCardSerialization")]
 pub use self::__CNContactVCardSerialization::CNContactVCardSerialization;
 #[cfg(feature = "Contacts_CNContactsUserDefaults")]
@@ -382,18 +387,20 @@ pub use self::__CNContactsUserDefaults::CNContactsUserDefaults;
 pub use self::__CNContainer::CNContainer;
 pub use self::__CNContainer::CNContainerIdentifierKey;
 pub use self::__CNContainer::CNContainerNameKey;
+pub use self::__CNContainer::CNContainerType;
 pub use self::__CNContainer::CNContainerTypeKey;
 pub use self::__CNContainer::{
-    CNContainerType, CNContainerTypeCardDAV, CNContainerTypeExchange, CNContainerTypeLocal,
+    CNContainerTypeCardDAV, CNContainerTypeExchange, CNContainerTypeLocal,
     CNContainerTypeUnassigned,
 };
+pub use self::__CNError::CNErrorCode;
 pub use self::__CNError::CNErrorDomain;
 pub use self::__CNError::CNErrorUserInfoAffectedRecordIdentifiersKey;
 pub use self::__CNError::CNErrorUserInfoAffectedRecordsKey;
 pub use self::__CNError::CNErrorUserInfoKeyPathsKey;
 pub use self::__CNError::CNErrorUserInfoValidationErrorsKey;
 pub use self::__CNError::{
-    CNErrorCode, CNErrorCodeAuthorizationDenied, CNErrorCodeChangeHistoryExpired,
+    CNErrorCodeAuthorizationDenied, CNErrorCodeChangeHistoryExpired,
     CNErrorCodeChangeHistoryInvalidAnchor, CNErrorCodeChangeHistoryInvalidFetchRequest,
     CNErrorCodeClientIdentifierCollision, CNErrorCodeClientIdentifierDoesNotExist,
     CNErrorCodeClientIdentifierInvalid, CNErrorCodeCommunicationError, CNErrorCodeContainmentCycle,
@@ -465,11 +472,10 @@ pub use self::__CNPostalAddress::CNPostalAddressSubAdministrativeAreaKey;
 pub use self::__CNPostalAddress::CNPostalAddressSubLocalityKey;
 #[cfg(feature = "Contacts_CNPostalAddressFormatter")]
 pub use self::__CNPostalAddressFormatter::CNPostalAddressFormatter;
+pub use self::__CNPostalAddressFormatter::CNPostalAddressFormatterStyle;
+pub use self::__CNPostalAddressFormatter::CNPostalAddressFormatterStyleMailingAddress;
 pub use self::__CNPostalAddressFormatter::CNPostalAddressLocalizedPropertyNameAttribute;
 pub use self::__CNPostalAddressFormatter::CNPostalAddressPropertyAttribute;
-pub use self::__CNPostalAddressFormatter::{
-    CNPostalAddressFormatterStyle, CNPostalAddressFormatterStyleMailingAddress,
-};
 #[cfg(feature = "Contacts_CNSaveRequest")]
 pub use self::__CNSaveRequest::CNSaveRequest;
 #[cfg(feature = "Contacts_CNSocialProfile")]

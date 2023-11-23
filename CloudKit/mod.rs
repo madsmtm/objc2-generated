@@ -101,39 +101,41 @@ mod __NSItemProvider_CKSharingSupport;
 pub use self::__CKAcceptSharesOperation::CKAcceptSharesOperation;
 #[cfg(feature = "CloudKit_CKAllowedSharingOptions")]
 pub use self::__CKAllowedSharingOptions::CKAllowedSharingOptions;
+pub use self::__CKAllowedSharingOptions::CKSharingParticipantAccessOption;
+pub use self::__CKAllowedSharingOptions::CKSharingParticipantPermissionOption;
 pub use self::__CKAllowedSharingOptions::{
-    CKSharingParticipantAccessOption, CKSharingParticipantAccessOptionAny,
-    CKSharingParticipantAccessOptionAnyoneWithLink,
+    CKSharingParticipantAccessOptionAny, CKSharingParticipantAccessOptionAnyoneWithLink,
     CKSharingParticipantAccessOptionSpecifiedRecipientsOnly,
 };
 pub use self::__CKAllowedSharingOptions::{
-    CKSharingParticipantPermissionOption, CKSharingParticipantPermissionOptionAny,
-    CKSharingParticipantPermissionOptionReadOnly, CKSharingParticipantPermissionOptionReadWrite,
+    CKSharingParticipantPermissionOptionAny, CKSharingParticipantPermissionOptionReadOnly,
+    CKSharingParticipantPermissionOptionReadWrite,
 };
 #[cfg(feature = "CloudKit_CKAsset")]
 pub use self::__CKAsset::CKAsset;
 pub use self::__CKContainer::CKAccountChangedNotification;
+pub use self::__CKContainer::CKAccountStatus;
 pub use self::__CKContainer::CKApplicationPermissionBlock;
+pub use self::__CKContainer::CKApplicationPermissionStatus;
+pub use self::__CKContainer::CKApplicationPermissionUserDiscoverability;
+pub use self::__CKContainer::CKApplicationPermissions;
 #[cfg(feature = "CloudKit_CKContainer")]
 pub use self::__CKContainer::CKContainer;
 pub use self::__CKContainer::CKCurrentUserDefaultName;
 pub use self::__CKContainer::CKOwnerDefaultName;
 pub use self::__CKContainer::{
-    CKAccountStatus, CKAccountStatusAvailable, CKAccountStatusCouldNotDetermine,
-    CKAccountStatusNoAccount, CKAccountStatusRestricted, CKAccountStatusTemporarilyUnavailable,
+    CKAccountStatusAvailable, CKAccountStatusCouldNotDetermine, CKAccountStatusNoAccount,
+    CKAccountStatusRestricted, CKAccountStatusTemporarilyUnavailable,
 };
 pub use self::__CKContainer::{
-    CKApplicationPermissionStatus, CKApplicationPermissionStatusCouldNotComplete,
-    CKApplicationPermissionStatusDenied, CKApplicationPermissionStatusGranted,
-    CKApplicationPermissionStatusInitialState,
-};
-pub use self::__CKContainer::{
-    CKApplicationPermissionUserDiscoverability, CKApplicationPermissions,
+    CKApplicationPermissionStatusCouldNotComplete, CKApplicationPermissionStatusDenied,
+    CKApplicationPermissionStatusGranted, CKApplicationPermissionStatusInitialState,
 };
 #[cfg(feature = "CloudKit_CKDatabase")]
 pub use self::__CKDatabase::CKDatabase;
+pub use self::__CKDatabase::CKDatabaseScope;
 pub use self::__CKDatabase::{
-    CKDatabaseScope, CKDatabaseScopePrivate, CKDatabaseScopePublic, CKDatabaseScopeShared,
+    CKDatabaseScopePrivate, CKDatabaseScopePublic, CKDatabaseScopeShared,
 };
 #[cfg(feature = "CloudKit_CKDatabaseOperation")]
 pub use self::__CKDatabaseOperation::CKDatabaseOperation;
@@ -141,6 +143,7 @@ pub use self::__CKDatabaseOperation::CKDatabaseOperation;
 pub use self::__CKDiscoverAllUserIdentitiesOperation::CKDiscoverAllUserIdentitiesOperation;
 #[cfg(feature = "CloudKit_CKDiscoverUserIdentitiesOperation")]
 pub use self::__CKDiscoverUserIdentitiesOperation::CKDiscoverUserIdentitiesOperation;
+pub use self::__CKError::CKErrorCode;
 pub use self::__CKError::CKErrorDomain;
 pub use self::__CKError::CKErrorRetryAfterKey;
 pub use self::__CKError::CKErrorUserDidResetEncryptedDataKey;
@@ -151,7 +154,7 @@ pub use self::__CKError::CKRecordChangedErrorServerRecordKey;
 pub use self::__CKError::{
     CKErrorAccountTemporarilyUnavailable, CKErrorAlreadyShared, CKErrorAssetFileModified,
     CKErrorAssetFileNotFound, CKErrorAssetNotAvailable, CKErrorBadContainer, CKErrorBadDatabase,
-    CKErrorBatchRequestFailed, CKErrorChangeTokenExpired, CKErrorCode, CKErrorConstraintViolation,
+    CKErrorBatchRequestFailed, CKErrorChangeTokenExpired, CKErrorConstraintViolation,
     CKErrorIncompatibleVersion, CKErrorInternalError, CKErrorInvalidArguments,
     CKErrorLimitExceeded, CKErrorManagedAccountRestricted, CKErrorMissingEntitlement,
     CKErrorNetworkFailure, CKErrorNetworkUnavailable, CKErrorNotAuthenticated,
@@ -196,9 +199,9 @@ pub use self::__CKModifyBadgeOperation::CKModifyBadgeOperation;
 pub use self::__CKModifyRecordZonesOperation::CKModifyRecordZonesOperation;
 #[cfg(feature = "CloudKit_CKModifyRecordsOperation")]
 pub use self::__CKModifyRecordsOperation::CKModifyRecordsOperation;
+pub use self::__CKModifyRecordsOperation::CKRecordSavePolicy;
 pub use self::__CKModifyRecordsOperation::{
     CKRecordSaveAllKeys, CKRecordSaveChangedKeys, CKRecordSaveIfServerRecordUnchanged,
-    CKRecordSavePolicy,
 };
 #[cfg(feature = "CloudKit_CKModifySubscriptionsOperation")]
 pub use self::__CKModifySubscriptionsOperation::CKModifySubscriptionsOperation;
@@ -208,17 +211,19 @@ pub use self::__CKNotification::CKDatabaseNotification;
 pub use self::__CKNotification::CKNotification;
 #[cfg(feature = "CloudKit_CKNotificationID")]
 pub use self::__CKNotification::CKNotificationID;
+pub use self::__CKNotification::CKNotificationType;
 #[cfg(feature = "CloudKit_CKQueryNotification")]
 pub use self::__CKNotification::CKQueryNotification;
+pub use self::__CKNotification::CKQueryNotificationReason;
 #[cfg(feature = "CloudKit_CKRecordZoneNotification")]
 pub use self::__CKNotification::CKRecordZoneNotification;
 pub use self::__CKNotification::{
-    CKNotificationType, CKNotificationTypeDatabase, CKNotificationTypeQuery,
-    CKNotificationTypeReadNotification, CKNotificationTypeRecordZone,
+    CKNotificationTypeDatabase, CKNotificationTypeQuery, CKNotificationTypeReadNotification,
+    CKNotificationTypeRecordZone,
 };
 pub use self::__CKNotification::{
-    CKQueryNotificationReason, CKQueryNotificationReasonRecordCreated,
-    CKQueryNotificationReasonRecordDeleted, CKQueryNotificationReasonRecordUpdated,
+    CKQueryNotificationReasonRecordCreated, CKQueryNotificationReasonRecordDeleted,
+    CKQueryNotificationReasonRecordUpdated,
 };
 #[cfg(feature = "CloudKit_CKOperation")]
 pub use self::__CKOperation::CKOperation;
@@ -227,9 +232,9 @@ pub use self::__CKOperation::CKOperationConfiguration;
 pub use self::__CKOperation::CKOperationID;
 #[cfg(feature = "CloudKit_CKOperationGroup")]
 pub use self::__CKOperationGroup::CKOperationGroup;
+pub use self::__CKOperationGroup::CKOperationGroupTransferSize;
 pub use self::__CKOperationGroup::{
-    CKOperationGroupTransferSize, CKOperationGroupTransferSizeGigabytes,
-    CKOperationGroupTransferSizeHundredsOfGigabytes,
+    CKOperationGroupTransferSizeGigabytes, CKOperationGroupTransferSizeHundredsOfGigabytes,
     CKOperationGroupTransferSizeHundredsOfMegabytes, CKOperationGroupTransferSizeKilobytes,
     CKOperationGroupTransferSizeMegabytes, CKOperationGroupTransferSizeTensOfGigabytes,
     CKOperationGroupTransferSizeTensOfMegabytes, CKOperationGroupTransferSizeUnknown,
@@ -254,18 +259,18 @@ pub use self::__CKRecord::CKRecordValue;
 pub use self::__CKRecordID::CKRecordID;
 #[cfg(feature = "CloudKit_CKRecordZone")]
 pub use self::__CKRecordZone::CKRecordZone;
+pub use self::__CKRecordZone::CKRecordZoneCapabilities;
 pub use self::__CKRecordZone::CKRecordZoneDefaultName;
 pub use self::__CKRecordZone::{
-    CKRecordZoneCapabilities, CKRecordZoneCapabilityAtomic, CKRecordZoneCapabilityFetchChanges,
+    CKRecordZoneCapabilityAtomic, CKRecordZoneCapabilityFetchChanges,
     CKRecordZoneCapabilitySharing, CKRecordZoneCapabilityZoneWideSharing,
 };
 #[cfg(feature = "CloudKit_CKRecordZoneID")]
 pub use self::__CKRecordZoneID::CKRecordZoneID;
 #[cfg(feature = "CloudKit_CKReference")]
 pub use self::__CKReference::CKReference;
-pub use self::__CKReference::{
-    CKReferenceAction, CKReferenceActionDeleteSelf, CKReferenceActionNone,
-};
+pub use self::__CKReference::CKReferenceAction;
+pub use self::__CKReference::{CKReferenceActionDeleteSelf, CKReferenceActionNone};
 #[cfg(feature = "CloudKit_CKServerChangeToken")]
 pub use self::__CKServerChangeToken::CKServerChangeToken;
 pub use self::__CKShare::CKRecordNameZoneWideShare;
@@ -279,22 +284,24 @@ pub use self::__CKShare::CKShareTypeKey;
 pub use self::__CKShareMetadata::CKShareMetadata;
 #[cfg(feature = "CloudKit_CKShareParticipant")]
 pub use self::__CKShareParticipant::CKShareParticipant;
+pub use self::__CKShareParticipant::CKShareParticipantAcceptanceStatus;
+pub use self::__CKShareParticipant::CKShareParticipantPermission;
+pub use self::__CKShareParticipant::CKShareParticipantRole;
+pub use self::__CKShareParticipant::CKShareParticipantType;
 pub use self::__CKShareParticipant::{
-    CKShareParticipantAcceptanceStatus, CKShareParticipantAcceptanceStatusAccepted,
-    CKShareParticipantAcceptanceStatusPending, CKShareParticipantAcceptanceStatusRemoved,
-    CKShareParticipantAcceptanceStatusUnknown,
+    CKShareParticipantAcceptanceStatusAccepted, CKShareParticipantAcceptanceStatusPending,
+    CKShareParticipantAcceptanceStatusRemoved, CKShareParticipantAcceptanceStatusUnknown,
 };
 pub use self::__CKShareParticipant::{
-    CKShareParticipantPermission, CKShareParticipantPermissionNone,
-    CKShareParticipantPermissionReadOnly, CKShareParticipantPermissionReadWrite,
-    CKShareParticipantPermissionUnknown,
+    CKShareParticipantPermissionNone, CKShareParticipantPermissionReadOnly,
+    CKShareParticipantPermissionReadWrite, CKShareParticipantPermissionUnknown,
 };
 pub use self::__CKShareParticipant::{
-    CKShareParticipantRole, CKShareParticipantRoleOwner, CKShareParticipantRolePrivateUser,
+    CKShareParticipantRoleOwner, CKShareParticipantRolePrivateUser,
     CKShareParticipantRolePublicUser, CKShareParticipantRoleUnknown,
 };
 pub use self::__CKShareParticipant::{
-    CKShareParticipantType, CKShareParticipantTypeOwner, CKShareParticipantTypePrivateUser,
+    CKShareParticipantTypeOwner, CKShareParticipantTypePrivateUser,
     CKShareParticipantTypePublicUser, CKShareParticipantTypeUnknown,
 };
 #[cfg(feature = "CloudKit_CKDatabaseSubscription")]
@@ -303,19 +310,20 @@ pub use self::__CKSubscription::CKDatabaseSubscription;
 pub use self::__CKSubscription::CKNotificationInfo;
 #[cfg(feature = "CloudKit_CKQuerySubscription")]
 pub use self::__CKSubscription::CKQuerySubscription;
+pub use self::__CKSubscription::CKQuerySubscriptionOptions;
 #[cfg(feature = "CloudKit_CKRecordZoneSubscription")]
 pub use self::__CKSubscription::CKRecordZoneSubscription;
 #[cfg(feature = "CloudKit_CKSubscription")]
 pub use self::__CKSubscription::CKSubscription;
 pub use self::__CKSubscription::CKSubscriptionID;
+pub use self::__CKSubscription::CKSubscriptionType;
 pub use self::__CKSubscription::{
-    CKQuerySubscriptionOptions, CKQuerySubscriptionOptionsFiresOnRecordCreation,
+    CKQuerySubscriptionOptionsFiresOnRecordCreation,
     CKQuerySubscriptionOptionsFiresOnRecordDeletion, CKQuerySubscriptionOptionsFiresOnRecordUpdate,
     CKQuerySubscriptionOptionsFiresOnce,
 };
 pub use self::__CKSubscription::{
-    CKSubscriptionType, CKSubscriptionTypeDatabase, CKSubscriptionTypeQuery,
-    CKSubscriptionTypeRecordZone,
+    CKSubscriptionTypeDatabase, CKSubscriptionTypeQuery, CKSubscriptionTypeRecordZone,
 };
 #[cfg(feature = "CloudKit_CKSystemSharingUIObserver")]
 pub use self::__CKSystemSharingUIObserver::CKSystemSharingUIObserver;

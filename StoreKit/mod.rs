@@ -73,19 +73,19 @@ pub use self::__SKAdNetwork::SKStoreProductParameterAdNetworkTimestamp;
 pub use self::__SKAdNetwork::SKStoreProductParameterAdNetworkVersion;
 #[cfg(feature = "StoreKit_SKArcadeService")]
 pub use self::__SKArcadeService::SKArcadeService;
+pub use self::__SKCloudServiceController::SKCloudServiceAuthorizationStatus;
 pub use self::__SKCloudServiceController::SKCloudServiceCapabilitiesDidChangeNotification;
+pub use self::__SKCloudServiceController::SKCloudServiceCapability;
 #[cfg(feature = "StoreKit_SKCloudServiceController")]
 pub use self::__SKCloudServiceController::SKCloudServiceController;
 pub use self::__SKCloudServiceController::SKStorefrontCountryCodeDidChangeNotification;
 pub use self::__SKCloudServiceController::SKStorefrontIdentifierDidChangeNotification;
 pub use self::__SKCloudServiceController::{
-    SKCloudServiceAuthorizationStatus, SKCloudServiceAuthorizationStatusAuthorized,
-    SKCloudServiceAuthorizationStatusDenied, SKCloudServiceAuthorizationStatusNotDetermined,
-    SKCloudServiceAuthorizationStatusRestricted,
+    SKCloudServiceAuthorizationStatusAuthorized, SKCloudServiceAuthorizationStatusDenied,
+    SKCloudServiceAuthorizationStatusNotDetermined, SKCloudServiceAuthorizationStatusRestricted,
 };
 pub use self::__SKCloudServiceController::{
-    SKCloudServiceCapability, SKCloudServiceCapabilityAddToCloudMusicLibrary,
-    SKCloudServiceCapabilityMusicCatalogPlayback,
+    SKCloudServiceCapabilityAddToCloudMusicLibrary, SKCloudServiceCapabilityMusicCatalogPlayback,
     SKCloudServiceCapabilityMusicCatalogSubscriptionEligible, SKCloudServiceCapabilityNone,
 };
 pub use self::__SKCloudServiceSetupViewController::SKCloudServiceSetupAction;
@@ -106,20 +106,21 @@ pub use self::__SKCloudServiceSetupViewController::SKCloudServiceSetupViewContro
 pub use self::__SKCloudServiceSetupViewController::SKCloudServiceSetupViewControllerDelegate;
 #[cfg(feature = "StoreKit_SKDownload")]
 pub use self::__SKDownload::SKDownload;
+pub use self::__SKDownload::SKDownloadState;
 pub use self::__SKDownload::SKDownloadTimeRemainingUnknown;
 pub use self::__SKDownload::{
-    SKDownloadState, SKDownloadStateActive, SKDownloadStateCancelled, SKDownloadStateFailed,
+    SKDownloadStateActive, SKDownloadStateCancelled, SKDownloadStateFailed,
     SKDownloadStateFinished, SKDownloadStatePaused, SKDownloadStateWaiting,
 };
+pub use self::__SKError::SKErrorCode;
 pub use self::__SKError::SKErrorDomain;
 pub use self::__SKError::{
     SKErrorClientInvalid, SKErrorCloudServiceNetworkConnectionFailed,
-    SKErrorCloudServicePermissionDenied, SKErrorCloudServiceRevoked, SKErrorCode,
-    SKErrorIneligibleForOffer, SKErrorInvalidOfferIdentifier, SKErrorInvalidOfferPrice,
-    SKErrorInvalidSignature, SKErrorMissingOfferParams, SKErrorOverlayCancelled,
-    SKErrorOverlayInvalidConfiguration, SKErrorOverlayPresentedInBackgroundScene,
-    SKErrorOverlayTimeout, SKErrorPaymentCancelled, SKErrorPaymentInvalid,
-    SKErrorPaymentNotAllowed, SKErrorPrivacyAcknowledgementRequired,
+    SKErrorCloudServicePermissionDenied, SKErrorCloudServiceRevoked, SKErrorIneligibleForOffer,
+    SKErrorInvalidOfferIdentifier, SKErrorInvalidOfferPrice, SKErrorInvalidSignature,
+    SKErrorMissingOfferParams, SKErrorOverlayCancelled, SKErrorOverlayInvalidConfiguration,
+    SKErrorOverlayPresentedInBackgroundScene, SKErrorOverlayTimeout, SKErrorPaymentCancelled,
+    SKErrorPaymentInvalid, SKErrorPaymentNotAllowed, SKErrorPrivacyAcknowledgementRequired,
     SKErrorStoreProductNotAvailable, SKErrorUnauthorizedRequestData, SKErrorUnknown,
     SKErrorUnsupportedPlatform,
 };
@@ -132,9 +133,8 @@ pub use self::__SKOverlayConfiguration::SKOverlayAppClipConfiguration;
 pub use self::__SKOverlayConfiguration::SKOverlayAppConfiguration;
 #[cfg(feature = "StoreKit_SKOverlayConfiguration")]
 pub use self::__SKOverlayConfiguration::SKOverlayConfiguration;
-pub use self::__SKOverlayConfiguration::{
-    SKOverlayPosition, SKOverlayPositionBottom, SKOverlayPositionBottomRaised,
-};
+pub use self::__SKOverlayConfiguration::SKOverlayPosition;
+pub use self::__SKOverlayConfiguration::{SKOverlayPositionBottom, SKOverlayPositionBottomRaised};
 #[cfg(feature = "StoreKit_SKOverlayTransitionContext")]
 pub use self::__SKOverlayTransitionContext::SKOverlayTransitionContext;
 #[cfg(feature = "StoreKit_SKMutablePayment")]
@@ -149,33 +149,38 @@ pub use self::__SKPaymentQueue::SKPaymentQueueDelegate;
 pub use self::__SKPaymentQueue::SKPaymentTransactionObserver;
 #[cfg(feature = "StoreKit_SKPaymentTransaction")]
 pub use self::__SKPaymentTransaction::SKPaymentTransaction;
+pub use self::__SKPaymentTransaction::SKPaymentTransactionState;
 pub use self::__SKPaymentTransaction::{
-    SKPaymentTransactionState, SKPaymentTransactionStateDeferred, SKPaymentTransactionStateFailed,
+    SKPaymentTransactionStateDeferred, SKPaymentTransactionStateFailed,
     SKPaymentTransactionStatePurchased, SKPaymentTransactionStatePurchasing,
     SKPaymentTransactionStateRestored,
 };
 #[cfg(feature = "StoreKit_SKProduct")]
 pub use self::__SKProduct::SKProduct;
+pub use self::__SKProduct::SKProductPeriodUnit;
 #[cfg(feature = "StoreKit_SKProductSubscriptionPeriod")]
 pub use self::__SKProduct::SKProductSubscriptionPeriod;
 pub use self::__SKProduct::{
-    SKProductPeriodUnit, SKProductPeriodUnitDay, SKProductPeriodUnitMonth, SKProductPeriodUnitWeek,
+    SKProductPeriodUnitDay, SKProductPeriodUnitMonth, SKProductPeriodUnitWeek,
     SKProductPeriodUnitYear,
 };
 #[cfg(feature = "StoreKit_SKProductDiscount")]
 pub use self::__SKProductDiscount::SKProductDiscount;
+pub use self::__SKProductDiscount::SKProductDiscountPaymentMode;
+pub use self::__SKProductDiscount::SKProductDiscountType;
 pub use self::__SKProductDiscount::{
-    SKProductDiscountPaymentMode, SKProductDiscountPaymentModeFreeTrial,
-    SKProductDiscountPaymentModePayAsYouGo, SKProductDiscountPaymentModePayUpFront,
+    SKProductDiscountPaymentModeFreeTrial, SKProductDiscountPaymentModePayAsYouGo,
+    SKProductDiscountPaymentModePayUpFront,
 };
 pub use self::__SKProductDiscount::{
-    SKProductDiscountType, SKProductDiscountTypeIntroductory, SKProductDiscountTypeSubscription,
+    SKProductDiscountTypeIntroductory, SKProductDiscountTypeSubscription,
 };
 #[cfg(feature = "StoreKit_SKProductStorePromotionController")]
 pub use self::__SKProductStorePromotionController::SKProductStorePromotionController;
+pub use self::__SKProductStorePromotionController::SKProductStorePromotionVisibility;
 pub use self::__SKProductStorePromotionController::{
-    SKProductStorePromotionVisibility, SKProductStorePromotionVisibilityDefault,
-    SKProductStorePromotionVisibilityHide, SKProductStorePromotionVisibilityShow,
+    SKProductStorePromotionVisibilityDefault, SKProductStorePromotionVisibilityHide,
+    SKProductStorePromotionVisibilityShow,
 };
 #[cfg(feature = "StoreKit_SKProductsRequest")]
 pub use self::__SKProductsRequest::SKProductsRequest;

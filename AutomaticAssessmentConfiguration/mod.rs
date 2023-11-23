@@ -28,16 +28,15 @@ mod __AEVisibility;
 pub use self::__AEAssessmentApplication::AEAssessmentApplication;
 #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentConfiguration")]
 pub use self::__AEAssessmentConfiguration::AEAssessmentConfiguration;
+pub use self::__AEAssessmentConfiguration::AEAutocorrectMode;
 pub use self::__AEAssessmentConfiguration::{
-    AEAutocorrectMode, AEAutocorrectModeNone, AEAutocorrectModePunctuation,
-    AEAutocorrectModeSpelling,
+    AEAutocorrectModeNone, AEAutocorrectModePunctuation, AEAutocorrectModeSpelling,
 };
 #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentParticipantConfiguration")]
 pub use self::__AEAssessmentParticipantConfiguration::AEAssessmentParticipantConfiguration;
 #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentSession")]
 pub use self::__AEAssessmentSession::AEAssessmentSession;
 pub use self::__AEAssessmentSessionDelegate::AEAssessmentSessionDelegate;
+pub use self::__AEErrors::AEAssessmentErrorCode;
 pub use self::__AEErrors::AEAssessmentErrorDomain;
-pub use self::__AEErrors::{
-    AEAssessmentErrorCode, AEAssessmentErrorUnknown, AEAssessmentErrorUnsupportedPlatform,
-};
+pub use self::__AEErrors::{AEAssessmentErrorUnknown, AEAssessmentErrorUnsupportedPlatform};

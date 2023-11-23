@@ -19,4 +19,5 @@ pub use self::__BCChatAction::BCParameterNameGroup;
 pub use self::__BCChatAction::BCParameterNameIntent;
 #[cfg(feature = "BusinessChat_BCChatButton")]
 pub use self::__BCChatButton::BCChatButton;
-pub use self::__BCChatButton::{BCChatButtonStyle, BCChatButtonStyleDark, BCChatButtonStyleLight};
+pub use self::__BCChatButton::BCChatButtonStyle;
+pub use self::__BCChatButton::{BCChatButtonStyleDark, BCChatButtonStyleLight};

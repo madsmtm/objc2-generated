@@ -110,12 +110,12 @@ pub use self::__CAAnimation::CATransitionType;
 pub use self::__CABase::CACurrentMediaTime;
 #[cfg(feature = "CoreAnimation_CAConstraint")]
 pub use self::__CAConstraintLayoutManager::CAConstraint;
+pub use self::__CAConstraintLayoutManager::CAConstraintAttribute;
 #[cfg(feature = "CoreAnimation_CAConstraintLayoutManager")]
 pub use self::__CAConstraintLayoutManager::CAConstraintLayoutManager;
 pub use self::__CAConstraintLayoutManager::{
     kCAConstraintHeight, kCAConstraintMaxX, kCAConstraintMaxY, kCAConstraintMidX,
     kCAConstraintMidY, kCAConstraintMinX, kCAConstraintMinY, kCAConstraintWidth,
-    CAConstraintAttribute,
 };
 #[cfg(feature = "CoreAnimation_CADisplayLink")]
 pub use self::__CADisplayLink::CADisplayLink;
@@ -177,6 +177,9 @@ pub use self::__CALayer::kCAOnOrderIn;
 pub use self::__CALayer::kCAOnOrderOut;
 pub use self::__CALayer::kCATransition;
 pub use self::__CALayer::CAAction;
+pub use self::__CALayer::CAAutoresizingMask;
+pub use self::__CALayer::CACornerMask;
+pub use self::__CALayer::CAEdgeAntialiasingMask;
 #[cfg(feature = "CoreAnimation_CALayer")]
 pub use self::__CALayer::CALayer;
 pub use self::__CALayer::CALayerContentsFilter;
@@ -187,15 +190,13 @@ pub use self::__CALayer::CALayerDelegate;
 pub use self::__CALayer::CALayoutManager;
 pub use self::__CALayer::{
     kCALayerBottomEdge, kCALayerLeftEdge, kCALayerRightEdge, kCALayerTopEdge,
-    CAEdgeAntialiasingMask,
 };
 pub use self::__CALayer::{
     kCALayerHeightSizable, kCALayerMaxXMargin, kCALayerMaxYMargin, kCALayerMinXMargin,
-    kCALayerMinYMargin, kCALayerNotSizable, kCALayerWidthSizable, CAAutoresizingMask,
+    kCALayerMinYMargin, kCALayerNotSizable, kCALayerWidthSizable,
 };
 pub use self::__CALayer::{
     kCALayerMaxXMaxYCorner, kCALayerMaxXMinYCorner, kCALayerMinXMaxYCorner, kCALayerMinXMinYCorner,
-    CACornerMask,
 };
 pub use self::__CAMediaTiming::kCAFillModeBackwards;
 pub use self::__CAMediaTiming::kCAFillModeBoth;

@@ -51,8 +51,9 @@ mod __ILNetworkResponse;
 pub use self::__ILCallClassificationRequest::ILCallClassificationRequest;
 #[cfg(feature = "IdentityLookup_ILCallCommunication")]
 pub use self::__ILCallCommunication::ILCallCommunication;
+pub use self::__ILClassificationActions::ILClassificationAction;
 pub use self::__ILClassificationActions::{
-    ILClassificationAction, ILClassificationActionNone, ILClassificationActionReportJunk,
+    ILClassificationActionNone, ILClassificationActionReportJunk,
     ILClassificationActionReportJunkAndBlockSender, ILClassificationActionReportNotJunk,
 };
 #[cfg(feature = "IdentityLookup_ILClassificationRequest")]
@@ -65,17 +66,18 @@ pub use self::__ILCommunication::ILCommunication;
 pub use self::__ILMessageClassificationRequest::ILMessageClassificationRequest;
 #[cfg(feature = "IdentityLookup_ILMessageCommunication")]
 pub use self::__ILMessageCommunication::ILMessageCommunication;
+pub use self::__ILMessageFilterAction::ILMessageFilterAction;
+pub use self::__ILMessageFilterAction::ILMessageFilterSubAction;
 pub use self::__ILMessageFilterAction::{
-    ILMessageFilterAction, ILMessageFilterActionAllow, ILMessageFilterActionFilter,
-    ILMessageFilterActionJunk, ILMessageFilterActionNone, ILMessageFilterActionPromotion,
-    ILMessageFilterActionTransaction,
+    ILMessageFilterActionAllow, ILMessageFilterActionFilter, ILMessageFilterActionJunk,
+    ILMessageFilterActionNone, ILMessageFilterActionPromotion, ILMessageFilterActionTransaction,
 };
 pub use self::__ILMessageFilterAction::{
-    ILMessageFilterSubAction, ILMessageFilterSubActionNone,
-    ILMessageFilterSubActionPromotionalCoupons, ILMessageFilterSubActionPromotionalOffers,
-    ILMessageFilterSubActionPromotionalOthers, ILMessageFilterSubActionTransactionalCarrier,
-    ILMessageFilterSubActionTransactionalFinance, ILMessageFilterSubActionTransactionalHealth,
-    ILMessageFilterSubActionTransactionalOrders, ILMessageFilterSubActionTransactionalOthers,
+    ILMessageFilterSubActionNone, ILMessageFilterSubActionPromotionalCoupons,
+    ILMessageFilterSubActionPromotionalOffers, ILMessageFilterSubActionPromotionalOthers,
+    ILMessageFilterSubActionTransactionalCarrier, ILMessageFilterSubActionTransactionalFinance,
+    ILMessageFilterSubActionTransactionalHealth, ILMessageFilterSubActionTransactionalOrders,
+    ILMessageFilterSubActionTransactionalOthers,
     ILMessageFilterSubActionTransactionalPublicServices,
     ILMessageFilterSubActionTransactionalReminders, ILMessageFilterSubActionTransactionalRewards,
     ILMessageFilterSubActionTransactionalWeather,
@@ -85,11 +87,12 @@ pub use self::__ILMessageFilterCapabilitiesQueryHandling::ILMessageFilterCapabil
 pub use self::__ILMessageFilterCapabilitiesQueryRequest::ILMessageFilterCapabilitiesQueryRequest;
 #[cfg(feature = "IdentityLookup_ILMessageFilterCapabilitiesQueryResponse")]
 pub use self::__ILMessageFilterCapabilitiesQueryResponse::ILMessageFilterCapabilitiesQueryResponse;
+pub use self::__ILMessageFilterError::ILMessageFilterError;
 pub use self::__ILMessageFilterError::ILMessageFilterErrorDomain;
 pub use self::__ILMessageFilterError::{
-    ILMessageFilterError, ILMessageFilterErrorInvalidNetworkURL,
-    ILMessageFilterErrorNetworkRequestFailed, ILMessageFilterErrorNetworkURLUnauthorized,
-    ILMessageFilterErrorRedundantNetworkDeferral, ILMessageFilterErrorSystem,
+    ILMessageFilterErrorInvalidNetworkURL, ILMessageFilterErrorNetworkRequestFailed,
+    ILMessageFilterErrorNetworkURLUnauthorized, ILMessageFilterErrorRedundantNetworkDeferral,
+    ILMessageFilterErrorSystem,
 };
 #[cfg(feature = "IdentityLookup_ILMessageFilterExtension")]
 pub use self::__ILMessageFilterExtension::ILMessageFilterExtension;

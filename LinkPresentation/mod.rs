@@ -17,10 +17,11 @@ mod __LPLinkView;
 #[path = "LPMetadataProvider.rs"]
 mod __LPMetadataProvider;
 
+pub use self::__LPError::LPErrorCode;
 pub use self::__LPError::LPErrorDomain;
 pub use self::__LPError::{
-    LPErrorCode, LPErrorMetadataFetchCancelled, LPErrorMetadataFetchFailed,
-    LPErrorMetadataFetchTimedOut, LPErrorUnknown,
+    LPErrorMetadataFetchCancelled, LPErrorMetadataFetchFailed, LPErrorMetadataFetchTimedOut,
+    LPErrorUnknown,
 };
 #[cfg(feature = "LinkPresentation_LPLinkMetadata")]
 pub use self::__LPLinkMetadata::LPLinkMetadata;

@@ -19,10 +19,10 @@ mod __OSAScriptView;
 
 #[cfg(feature = "OSAKit_OSALanguage")]
 pub use self::__OSALanguage::OSALanguage;
+pub use self::__OSALanguage::OSALanguageFeatures;
 pub use self::__OSALanguage::{
-    OSALanguageFeatures, OSASupportsAECoercion, OSASupportsAESending, OSASupportsCompiling,
-    OSASupportsConvenience, OSASupportsDialects, OSASupportsEventHandling, OSASupportsGetSource,
-    OSASupportsRecording,
+    OSASupportsAECoercion, OSASupportsAESending, OSASupportsCompiling, OSASupportsConvenience,
+    OSASupportsDialects, OSASupportsEventHandling, OSASupportsGetSource, OSASupportsRecording,
 };
 #[cfg(feature = "OSAKit_OSALanguageInstance")]
 pub use self::__OSALanguageInstance::OSALanguageInstance;
@@ -44,17 +44,17 @@ pub use self::__OSAScript::OSAScriptErrorRange;
 pub use self::__OSAScript::OSAScriptErrorRangeKey;
 pub use self::__OSAScript::OSAStorageApplicationBundleType;
 pub use self::__OSAScript::OSAStorageApplicationType;
+pub use self::__OSAScript::OSAStorageOptions;
 pub use self::__OSAScript::OSAStorageScriptBundleType;
 pub use self::__OSAScript::OSAStorageScriptType;
 pub use self::__OSAScript::OSAStorageTextType;
 pub use self::__OSAScript::{
     OSACompileIntoContext, OSADontSetScriptLocation, OSANull, OSAPreventGetSource,
-    OSAShowStartupScreen, OSAStayOpenApplet, OSAStorageOptions,
+    OSAShowStartupScreen, OSAStayOpenApplet,
 };
 #[cfg(feature = "OSAKit_OSAScriptController")]
 pub use self::__OSAScriptController::OSAScriptController;
-pub use self::__OSAScriptController::{
-    OSAScriptRecording, OSAScriptRunning, OSAScriptState, OSAScriptStopped,
-};
+pub use self::__OSAScriptController::OSAScriptState;
+pub use self::__OSAScriptController::{OSAScriptRecording, OSAScriptRunning, OSAScriptStopped};
 #[cfg(feature = "OSAKit_OSAScriptView")]
 pub use self::__OSAScriptView::OSAScriptView;

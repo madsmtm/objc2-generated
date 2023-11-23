@@ -38,22 +38,23 @@ pub use self::__SFSpeechRecognitionResult::SFSpeechRecognitionResult;
 #[cfg(feature = "Speech_SFSpeechRecognitionTask")]
 pub use self::__SFSpeechRecognitionTask::SFSpeechRecognitionTask;
 pub use self::__SFSpeechRecognitionTask::SFSpeechRecognitionTaskDelegate;
+pub use self::__SFSpeechRecognitionTask::SFSpeechRecognitionTaskState;
 pub use self::__SFSpeechRecognitionTask::{
-    SFSpeechRecognitionTaskState, SFSpeechRecognitionTaskStateCanceling,
-    SFSpeechRecognitionTaskStateCompleted, SFSpeechRecognitionTaskStateFinishing,
-    SFSpeechRecognitionTaskStateRunning, SFSpeechRecognitionTaskStateStarting,
+    SFSpeechRecognitionTaskStateCanceling, SFSpeechRecognitionTaskStateCompleted,
+    SFSpeechRecognitionTaskStateFinishing, SFSpeechRecognitionTaskStateRunning,
+    SFSpeechRecognitionTaskStateStarting,
 };
+pub use self::__SFSpeechRecognitionTaskHint::SFSpeechRecognitionTaskHint;
 pub use self::__SFSpeechRecognitionTaskHint::{
-    SFSpeechRecognitionTaskHint, SFSpeechRecognitionTaskHintConfirmation,
-    SFSpeechRecognitionTaskHintDictation, SFSpeechRecognitionTaskHintSearch,
-    SFSpeechRecognitionTaskHintUnspecified,
+    SFSpeechRecognitionTaskHintConfirmation, SFSpeechRecognitionTaskHintDictation,
+    SFSpeechRecognitionTaskHintSearch, SFSpeechRecognitionTaskHintUnspecified,
 };
 #[cfg(feature = "Speech_SFSpeechRecognizer")]
 pub use self::__SFSpeechRecognizer::SFSpeechRecognizer;
+pub use self::__SFSpeechRecognizer::SFSpeechRecognizerAuthorizationStatus;
 pub use self::__SFSpeechRecognizer::SFSpeechRecognizerDelegate;
 pub use self::__SFSpeechRecognizer::{
-    SFSpeechRecognizerAuthorizationStatus, SFSpeechRecognizerAuthorizationStatusAuthorized,
-    SFSpeechRecognizerAuthorizationStatusDenied,
+    SFSpeechRecognizerAuthorizationStatusAuthorized, SFSpeechRecognizerAuthorizationStatusDenied,
     SFSpeechRecognizerAuthorizationStatusNotDetermined,
     SFSpeechRecognizerAuthorizationStatusRestricted,
 };
