@@ -5,6 +5,36 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+__inner_extern_class!(
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSLayoutAnchor")]
+    pub struct NSLayoutAnchor<AnchorType: ?Sized = AnyObject> {
+        __superclass: NSObject,
+        _inner0: PhantomData<*mut AnchorType>,
+        notunwindsafe: PhantomData<&'static mut ()>,
+    }
+
+    #[cfg(feature = "AppKit_NSLayoutAnchor")]
+    unsafe impl<AnchorType: ?Sized + Message> ClassType for NSLayoutAnchor<AnchorType> {
+        type Super = NSObject;
+        type Mutability = InteriorMutable;
+
+        fn as_super(&self) -> &Self::Super {
+            &self.__superclass
+        }
+
+        fn as_super_mut(&mut self) -> &mut Self::Super {
+            &mut self.__superclass
+        }
+    }
+);
+
+#[cfg(feature = "AppKit_NSLayoutAnchor")]
+unsafe impl<AnchorType: ?Sized + NSCoding> NSCoding for NSLayoutAnchor<AnchorType> {}
+
+#[cfg(feature = "AppKit_NSLayoutAnchor")]
+unsafe impl<AnchorType: ?Sized + IsIdCloneable> NSCopying for NSLayoutAnchor<AnchorType> {}
+
 #[cfg(feature = "AppKit_NSLayoutAnchor")]
 unsafe impl<AnchorType: ?Sized> NSObjectProtocol for NSLayoutAnchor<AnchorType> {}
 
@@ -98,6 +128,12 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSLayoutXAxisAnchor")]
+unsafe impl NSCoding for NSLayoutXAxisAnchor {}
+
+#[cfg(feature = "AppKit_NSLayoutXAxisAnchor")]
+unsafe impl NSCopying for NSLayoutXAxisAnchor {}
+
+#[cfg(feature = "AppKit_NSLayoutXAxisAnchor")]
 unsafe impl NSObjectProtocol for NSLayoutXAxisAnchor {}
 
 extern_methods!(
@@ -162,6 +198,12 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSLayoutYAxisAnchor")]
+unsafe impl NSCoding for NSLayoutYAxisAnchor {}
+
+#[cfg(feature = "AppKit_NSLayoutYAxisAnchor")]
+unsafe impl NSCopying for NSLayoutYAxisAnchor {}
+
+#[cfg(feature = "AppKit_NSLayoutYAxisAnchor")]
 unsafe impl NSObjectProtocol for NSLayoutYAxisAnchor {}
 
 extern_methods!(
@@ -224,6 +266,12 @@ extern_class!(
         type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "AppKit_NSLayoutDimension")]
+unsafe impl NSCoding for NSLayoutDimension {}
+
+#[cfg(feature = "AppKit_NSLayoutDimension")]
+unsafe impl NSCopying for NSLayoutDimension {}
 
 #[cfg(feature = "AppKit_NSLayoutDimension")]
 unsafe impl NSObjectProtocol for NSLayoutDimension {}

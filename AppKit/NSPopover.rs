@@ -25,11 +25,27 @@ ns_enum!(
     }
 );
 
+extern_class!(
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "AppKit_NSPopover")]
+    pub struct NSPopover;
+
+    #[cfg(feature = "AppKit_NSPopover")]
+    unsafe impl ClassType for NSPopover {
+        #[inherits(NSObject)]
+        type Super = NSResponder;
+        type Mutability = MainThreadOnly;
+    }
+);
+
 #[cfg(feature = "AppKit_NSPopover")]
 unsafe impl NSAccessibility for NSPopover {}
 
 #[cfg(feature = "AppKit_NSPopover")]
 unsafe impl NSAccessibilityElementProtocol for NSPopover {}
+
+#[cfg(feature = "AppKit_NSPopover")]
+unsafe impl NSAppearanceCustomization for NSPopover {}
 
 #[cfg(feature = "AppKit_NSPopover")]
 unsafe impl NSCoding for NSPopover {}
@@ -52,6 +68,18 @@ extern_methods!(
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSPopoverDelegate>>);
+
+        #[cfg(feature = "AppKit_NSAppearance")]
+        #[method_id(@__retain_semantics Other appearance)]
+        pub unsafe fn appearance(&self) -> Option<Id<NSAppearance>>;
+
+        #[cfg(feature = "AppKit_NSAppearance")]
+        #[method(setAppearance:)]
+        pub unsafe fn setAppearance(&self, appearance: Option<&NSAppearance>);
+
+        #[cfg(feature = "AppKit_NSAppearance")]
+        #[method_id(@__retain_semantics Other effectiveAppearance)]
+        pub unsafe fn effectiveAppearance(&self) -> Id<NSAppearance>;
 
         #[method(behavior)]
         pub unsafe fn behavior(&self) -> NSPopoverBehavior;

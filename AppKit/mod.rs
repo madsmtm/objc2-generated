@@ -2810,6 +2810,8 @@ pub use self::__NSKeyValueBinding::NSValueURLBinding;
 pub use self::__NSKeyValueBinding::NSVisibleBinding;
 pub use self::__NSKeyValueBinding::NSWarningValueBinding;
 pub use self::__NSKeyValueBinding::NSWidthBinding;
+#[cfg(feature = "AppKit_NSLayoutAnchor")]
+pub use self::__NSLayoutAnchor::NSLayoutAnchor;
 #[cfg(feature = "AppKit_NSLayoutDimension")]
 pub use self::__NSLayoutAnchor::NSLayoutDimension;
 #[cfg(feature = "AppKit_NSLayoutXAxisAnchor")]
@@ -3168,6 +3170,8 @@ pub use self::__NSPopUpButtonCell::NSPopUpButtonCellWillPopUpNotification;
 pub use self::__NSPopUpButtonCell::{
     NSPopUpArrowAtBottom, NSPopUpArrowAtCenter, NSPopUpArrowPosition, NSPopUpNoArrow,
 };
+#[cfg(feature = "AppKit_NSPopover")]
+pub use self::__NSPopover::NSPopover;
 pub use self::__NSPopover::NSPopoverCloseReasonDetachToWindow;
 pub use self::__NSPopover::NSPopoverCloseReasonKey;
 pub use self::__NSPopover::NSPopoverCloseReasonStandard;
