@@ -97,6 +97,7 @@ ns_enum!(
         MTLGPUFamilyApple6 = 1006,
         MTLGPUFamilyApple7 = 1007,
         MTLGPUFamilyApple8 = 1008,
+        MTLGPUFamilyApple9 = 1009,
         #[deprecated]
         MTLGPUFamilyMac1 = 2001,
         MTLGPUFamilyMac2 = 2002,
@@ -273,10 +274,10 @@ extern_methods!(
         pub unsafe fn setArrayLength(&self, array_length: NSUInteger);
 
         #[method(access)]
-        pub unsafe fn access(&self) -> MTLArgumentAccess;
+        pub unsafe fn access(&self) -> MTLBindingAccess;
 
         #[method(setAccess:)]
-        pub fn setAccess(&self, access: MTLArgumentAccess);
+        pub fn setAccess(&self, access: MTLBindingAccess);
 
         #[method(textureType)]
         pub unsafe fn textureType(&self) -> MTLTextureType;
@@ -304,6 +305,45 @@ extern_methods!(
     }
 );
 
+extern_class!(
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLArchitecture")]
+    pub struct MTLArchitecture;
+
+    #[cfg(feature = "Metal_MTLArchitecture")]
+    unsafe impl ClassType for MTLArchitecture {
+        type Super = NSObject;
+        type Mutability = InteriorMutable;
+    }
+);
+
+#[cfg(feature = "Metal_MTLArchitecture")]
+unsafe impl NSCopying for MTLArchitecture {}
+
+#[cfg(feature = "Metal_MTLArchitecture")]
+unsafe impl NSObjectProtocol for MTLArchitecture {}
+
+extern_methods!(
+    #[cfg(feature = "Metal_MTLArchitecture")]
+    unsafe impl MTLArchitecture {
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Other name)]
+        pub unsafe fn name(&self) -> Id<NSString>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Metal_MTLArchitecture")]
+    unsafe impl MTLArchitecture {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 pub type MTLTimestamp = u64;
 
 extern_protocol!(
@@ -314,6 +354,10 @@ extern_protocol!(
 
         #[method(registryID)]
         fn registryID(&self) -> u64;
+
+        #[cfg(feature = "Metal_MTLArchitecture")]
+        #[method_id(@__retain_semantics Other architecture)]
+        unsafe fn architecture(&self) -> Id<MTLArchitecture>;
 
         #[method(maxThreadsPerThreadgroup)]
         fn maxThreadsPerThreadgroup(&self) -> MTLSize;
@@ -700,6 +744,7 @@ extern_protocol!(
         unsafe fn peerCount(&self) -> u32;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[deprecated]
         #[method_id(@__retain_semantics New newIOHandleWithURL:error:_)]
         unsafe fn newIOHandleWithURL_error(
             &self,
@@ -717,8 +762,24 @@ extern_protocol!(
         ) -> Result<Id<ProtocolObject<dyn MTLIOCommandQueue>>, Id<NSError>>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[deprecated]
         #[method_id(@__retain_semantics New newIOHandleWithURL:compressionMethod:error:_)]
         unsafe fn newIOHandleWithURL_compressionMethod_error(
+            &self,
+            url: &NSURL,
+            compression_method: MTLIOCompressionMethod,
+        ) -> Result<Id<ProtocolObject<dyn MTLIOFileHandle>>, Id<NSError>>;
+
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[method_id(@__retain_semantics New newIOFileHandleWithURL:error:_)]
+        unsafe fn newIOFileHandleWithURL_error(
+            &self,
+            url: &NSURL,
+        ) -> Result<Id<ProtocolObject<dyn MTLIOFileHandle>>, Id<NSError>>;
+
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[method_id(@__retain_semantics New newIOFileHandleWithURL:compressionMethod:error:_)]
+        unsafe fn newIOFileHandleWithURL_compressionMethod_error(
             &self,
             url: &NSURL,
             compression_method: MTLIOCompressionMethod,

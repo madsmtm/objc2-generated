@@ -396,3 +396,15 @@ extern_methods!(
         pub unsafe fn degreeAngleUnit() -> Id<Self>;
     }
 );
+
+extern_methods!(
+    /// Illuminance
+    #[cfg(feature = "HealthKit_HKUnit")]
+    unsafe impl HKUnit {
+        #[method_id(@__retain_semantics Other luxUnitWithMetricPrefix:)]
+        pub unsafe fn luxUnitWithMetricPrefix(prefix: HKMetricPrefix) -> Id<Self>;
+
+        #[method_id(@__retain_semantics Other luxUnit)]
+        pub unsafe fn luxUnit() -> Id<Self>;
+    }
+);

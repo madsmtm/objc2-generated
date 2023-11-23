@@ -74,6 +74,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Other buttons)]
         pub unsafe fn buttons(&self) -> Id<NSArray<NSButton>>;
 
+        #[method(alertStyle)]
+        pub unsafe fn alertStyle(&self) -> NSAlertStyle;
+
+        #[method(setAlertStyle:)]
+        pub unsafe fn setAlertStyle(&self, alert_style: NSAlertStyle);
+
         #[method(showsHelp)]
         pub unsafe fn showsHelp(&self) -> bool;
 
@@ -86,27 +92,11 @@ extern_methods!(
         #[method(setHelpAnchor:)]
         pub unsafe fn setHelpAnchor(&self, help_anchor: Option<&NSHelpAnchorName>);
 
-        #[method(alertStyle)]
-        pub unsafe fn alertStyle(&self) -> NSAlertStyle;
-
-        #[method(setAlertStyle:)]
-        pub unsafe fn setAlertStyle(&self, alert_style: NSAlertStyle);
-
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSAlertDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSAlertDelegate>>);
-
-        #[method(showsSuppressionButton)]
-        pub unsafe fn showsSuppressionButton(&self) -> bool;
-
-        #[method(setShowsSuppressionButton:)]
-        pub unsafe fn setShowsSuppressionButton(&self, shows_suppression_button: bool);
-
-        #[cfg(feature = "AppKit_NSButton")]
-        #[method_id(@__retain_semantics Other suppressionButton)]
-        pub unsafe fn suppressionButton(&self) -> Option<Id<NSButton>>;
 
         #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other accessoryView)]
@@ -121,6 +111,16 @@ extern_methods!(
 
         #[method(runModal)]
         pub unsafe fn runModal(&self) -> NSModalResponse;
+
+        #[method(showsSuppressionButton)]
+        pub unsafe fn showsSuppressionButton(&self) -> bool;
+
+        #[method(setShowsSuppressionButton:)]
+        pub unsafe fn setShowsSuppressionButton(&self, shows_suppression_button: bool);
+
+        #[cfg(feature = "AppKit_NSButton")]
+        #[method_id(@__retain_semantics Other suppressionButton)]
+        pub unsafe fn suppressionButton(&self) -> Option<Id<NSButton>>;
 
         #[cfg(feature = "AppKit_NSWindow")]
         #[method(beginSheetModalForWindow:completionHandler:)]

@@ -27,6 +27,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSBundle")]
+unsafe impl Send for NSBundle {}
+
+#[cfg(feature = "Foundation_NSBundle")]
+unsafe impl Sync for NSBundle {}
+
+#[cfg(feature = "Foundation_NSBundle")]
 unsafe impl NSObjectProtocol for NSBundle {}
 
 extern_methods!(

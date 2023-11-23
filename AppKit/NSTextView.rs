@@ -588,7 +588,7 @@ extern_methods!(
 
         #[cfg(feature = "AppKit_NSColor")]
         #[method(setInsertionPointColor:)]
-        pub unsafe fn setInsertionPointColor(&self, insertion_point_color: &NSColor);
+        pub unsafe fn setInsertionPointColor(&self, insertion_point_color: Option<&NSColor>);
 
         #[method(updateInsertionPointStateAndRestartTimer:)]
         pub unsafe fn updateInsertionPointStateAndRestartTimer(&self, restart_flag: bool);
@@ -1032,6 +1032,12 @@ extern_methods!(
 
         #[method(setIncrementalSearchingEnabled:)]
         pub unsafe fn setIncrementalSearchingEnabled(&self, incremental_searching_enabled: bool);
+
+        #[method(inlinePredictionType)]
+        pub unsafe fn inlinePredictionType(&self) -> NSTextInputTraitType;
+
+        #[method(setInlinePredictionType:)]
+        pub unsafe fn setInlinePredictionType(&self, inline_prediction_type: NSTextInputTraitType);
     }
 );
 

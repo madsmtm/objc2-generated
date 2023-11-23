@@ -92,8 +92,15 @@ extern_methods!(
         #[method(setView:)]
         pub unsafe fn setView(&self, view: &NSView);
 
+        #[cfg(feature = "AppKit_NSView")]
+        #[method_id(@__retain_semantics Other viewIfLoaded)]
+        pub unsafe fn viewIfLoaded(&self) -> Option<Id<NSView>>;
+
         #[method(loadView)]
         pub unsafe fn loadView(&self);
+
+        #[method(loadViewIfNeeded)]
+        pub unsafe fn loadViewIfNeeded(&self);
 
         #[method(commitEditingWithDelegate:didCommitSelector:contextInfo:)]
         pub unsafe fn commitEditingWithDelegate_didCommitSelector_contextInfo(
@@ -207,6 +214,18 @@ extern_methods!(
             positioning_view: &NSView,
             preferred_edge: NSRectEdge,
             behavior: NSPopoverBehavior,
+        );
+
+        #[cfg(feature = "AppKit_NSView")]
+        #[method(presentViewController:asPopoverRelativeToRect:ofView:preferredEdge:behavior:hasFullSizeContent:)]
+        pub unsafe fn presentViewController_asPopoverRelativeToRect_ofView_preferredEdge_behavior_hasFullSizeContent(
+            &self,
+            view_controller: &NSViewController,
+            positioning_rect: NSRect,
+            positioning_view: &NSView,
+            preferred_edge: NSRectEdge,
+            behavior: NSPopoverBehavior,
+            has_full_size_content: bool,
         );
 
         #[method(transitionFromViewController:toViewController:options:completionHandler:)]

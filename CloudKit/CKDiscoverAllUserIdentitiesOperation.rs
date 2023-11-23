@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CloudKit_CKDiscoverAllUserIdentitiesOperation")]
+    #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
     pub struct CKDiscoverAllUserIdentitiesOperation;
 
     #[cfg(feature = "CloudKit_CKDiscoverAllUserIdentitiesOperation")]
@@ -24,16 +25,19 @@ unsafe impl NSObjectProtocol for CKDiscoverAllUserIdentitiesOperation {}
 extern_methods!(
     #[cfg(feature = "CloudKit_CKDiscoverAllUserIdentitiesOperation")]
     unsafe impl CKDiscoverAllUserIdentitiesOperation {
+        #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(feature = "CloudKit_CKUserIdentity")]
+        #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(userIdentityDiscoveredBlock)]
         pub unsafe fn userIdentityDiscoveredBlock(
             &self,
         ) -> *mut Block<(NonNull<CKUserIdentity>,), ()>;
 
         #[cfg(feature = "CloudKit_CKUserIdentity")]
+        #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(setUserIdentityDiscoveredBlock:)]
         pub unsafe fn setUserIdentityDiscoveredBlock(
             &self,
@@ -41,12 +45,14 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSError")]
+        #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(discoverAllUserIdentitiesCompletionBlock)]
         pub unsafe fn discoverAllUserIdentitiesCompletionBlock(
             &self,
         ) -> *mut Block<(*mut NSError,), ()>;
 
         #[cfg(feature = "Foundation_NSError")]
+        #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(setDiscoverAllUserIdentitiesCompletionBlock:)]
         pub unsafe fn setDiscoverAllUserIdentitiesCompletionBlock(
             &self,

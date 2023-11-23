@@ -79,6 +79,10 @@ extern_methods!(
         #[method(setPlayerIndex:)]
         pub unsafe fn setPlayerIndex(&self, player_index: GCControllerPlayerIndex);
 
+        #[cfg(feature = "GameController_GCControllerLiveInput")]
+        #[method_id(@__retain_semantics Other input)]
+        pub unsafe fn input(&self) -> Id<GCControllerLiveInput>;
+
         #[cfg(feature = "GameController_GCDeviceBattery")]
         #[method_id(@__retain_semantics Other battery)]
         pub unsafe fn battery(&self) -> Option<Id<GCDeviceBattery>>;

@@ -24,6 +24,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSTask")]
+unsafe impl Send for NSTask {}
+
+#[cfg(feature = "Foundation_NSTask")]
+unsafe impl Sync for NSTask {}
+
+#[cfg(feature = "Foundation_NSTask")]
 unsafe impl NSObjectProtocol for NSTask {}
 
 extern_methods!(

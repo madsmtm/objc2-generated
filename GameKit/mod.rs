@@ -64,6 +64,8 @@ mod __GKMatchmaker;
 mod __GKMatchmakerViewController;
 #[path = "GKNotificationBanner.rs"]
 mod __GKNotificationBanner;
+#[path = "GKPeerPickerController.rs"]
+mod __GKPeerPickerController;
 #[path = "GKPlayer.rs"]
 mod __GKPlayer;
 #[path = "GKPublicConstants.rs"]
@@ -110,6 +112,7 @@ pub use self::__GKChallenge::GKAchievementChallenge;
 #[cfg(feature = "GameKit_GKChallenge")]
 pub use self::__GKChallenge::GKChallenge;
 pub use self::__GKChallenge::GKChallengeComposeCompletionBlock;
+pub use self::__GKChallenge::GKChallengeComposeHandler;
 pub use self::__GKChallenge::GKChallengeState;
 #[cfg(feature = "GameKit_GKScoreChallenge")]
 pub use self::__GKChallenge::GKScoreChallenge;

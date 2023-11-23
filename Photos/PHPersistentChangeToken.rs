@@ -19,6 +19,12 @@ extern_class!(
 );
 
 #[cfg(feature = "PhotoKit_PHPersistentChangeToken")]
+unsafe impl Send for PHPersistentChangeToken {}
+
+#[cfg(feature = "PhotoKit_PHPersistentChangeToken")]
+unsafe impl Sync for PHPersistentChangeToken {}
+
+#[cfg(feature = "PhotoKit_PHPersistentChangeToken")]
 unsafe impl NSCoding for PHPersistentChangeToken {}
 
 #[cfg(feature = "PhotoKit_PHPersistentChangeToken")]

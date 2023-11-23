@@ -29,6 +29,10 @@ extern_struct!(
     }
 );
 
+unsafe impl Send for NSDirectionalEdgeInsets {}
+
+unsafe impl Sync for NSDirectionalEdgeInsets {}
+
 extern_static!(NSDirectionalEdgeInsetsZero: NSDirectionalEdgeInsets);
 
 ns_enum!(

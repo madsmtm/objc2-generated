@@ -417,6 +417,7 @@ extern_fn!(
 
 ns_enum!(
     #[underlying(NSUInteger)]
+    #[deprecated = "Use +[NSCursor disappearingItemCursor] instead"]
     pub enum NSAnimationEffect {
         NSAnimationEffectDisappearingItemDefault = 0,
         NSAnimationEffectPoof = 10,
@@ -424,6 +425,7 @@ ns_enum!(
 );
 
 extern_fn!(
+    #[deprecated = "Use +[NSCursor disappearingItemCursor] instead"]
     pub unsafe fn NSShowAnimationEffect(
         animation_effect: NSAnimationEffect,
         center_location: NSPoint,

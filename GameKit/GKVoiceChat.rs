@@ -102,14 +102,14 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKVoiceChat")]
     unsafe impl GKVoiceChat {
         #[cfg(feature = "Foundation_NSString")]
-        #[deprecated = "use setPlayerVoiceChatStateDidChangeHandler:"]
+        #[deprecated]
         #[method(playerStateUpdateHandler)]
         pub unsafe fn playerStateUpdateHandler(
             &self,
         ) -> NonNull<Block<(NonNull<NSString>, GKVoiceChatPlayerState), ()>>;
 
         #[cfg(feature = "Foundation_NSString")]
-        #[deprecated = "use setPlayerVoiceChatStateDidChangeHandler:"]
+        #[deprecated]
         #[method(setPlayerStateUpdateHandler:)]
         pub unsafe fn setPlayerStateUpdateHandler(
             &self,
@@ -123,12 +123,12 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKVoiceChat")]
     unsafe impl GKVoiceChat {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
-        #[deprecated = "use players"]
+        #[deprecated]
         #[method_id(@__retain_semantics Other playerIDs)]
         pub unsafe fn playerIDs(&self) -> Option<Id<NSArray<NSString>>>;
 
         #[cfg(feature = "Foundation_NSString")]
-        #[deprecated = "This is never invoked and its implementation does nothing, use setPlayer:muted:"]
+        #[deprecated]
         #[method(setMute:forPlayer:)]
         pub unsafe fn setMute_forPlayer(&self, is_muted: bool, player_id: &NSString);
     }

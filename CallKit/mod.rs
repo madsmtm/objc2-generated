@@ -108,8 +108,9 @@ pub use self::__CXError::{
 pub use self::__CXError::{
     CXErrorCodeIncomingCallErrorCallUUIDAlreadyExists,
     CXErrorCodeIncomingCallErrorFilteredByBlockList,
-    CXErrorCodeIncomingCallErrorFilteredByDoNotDisturb, CXErrorCodeIncomingCallErrorUnentitled,
-    CXErrorCodeIncomingCallErrorUnknown,
+    CXErrorCodeIncomingCallErrorFilteredByDoNotDisturb,
+    CXErrorCodeIncomingCallErrorFilteredDuringRestrictedSharingMode,
+    CXErrorCodeIncomingCallErrorUnentitled, CXErrorCodeIncomingCallErrorUnknown,
 };
 pub use self::__CXError::{
     CXErrorCodeInvalidArgument, CXErrorCodeMissingVoIPBackgroundMode, CXErrorCodeUnentitled,

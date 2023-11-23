@@ -28,6 +28,17 @@ unsafe impl NSObjectProtocol for MKMapSnapshotOptions {}
 extern_methods!(
     #[cfg(feature = "MapKit_MKMapSnapshotOptions")]
     unsafe impl MKMapSnapshotOptions {
+        #[cfg(feature = "MapKit_MKMapConfiguration")]
+        #[method_id(@__retain_semantics Other preferredConfiguration)]
+        pub unsafe fn preferredConfiguration(&self) -> Id<MKMapConfiguration>;
+
+        #[cfg(feature = "MapKit_MKMapConfiguration")]
+        #[method(setPreferredConfiguration:)]
+        pub unsafe fn setPreferredConfiguration(
+            &self,
+            preferred_configuration: &MKMapConfiguration,
+        );
+
         #[cfg(feature = "MapKit_MKMapCamera")]
         #[method_id(@__retain_semantics Other camera)]
         pub unsafe fn camera(&self) -> Id<MKMapCamera>;
@@ -48,34 +59,40 @@ extern_methods!(
         #[method(setRegion:)]
         pub unsafe fn setRegion(&self, region: MKCoordinateRegion);
 
+        #[deprecated = "Use preferredConfiguration"]
         #[method(mapType)]
         pub unsafe fn mapType(&self) -> MKMapType;
 
+        #[deprecated = "Use preferredConfiguration"]
         #[method(setMapType:)]
         pub unsafe fn setMapType(&self, map_type: MKMapType);
 
         #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
+        #[deprecated = "Use preferredConfiguration"]
         #[method_id(@__retain_semantics Other pointOfInterestFilter)]
         pub unsafe fn pointOfInterestFilter(&self) -> Option<Id<MKPointOfInterestFilter>>;
 
         #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
+        #[deprecated = "Use preferredConfiguration"]
         #[method(setPointOfInterestFilter:)]
         pub unsafe fn setPointOfInterestFilter(
             &self,
             point_of_interest_filter: Option<&MKPointOfInterestFilter>,
         );
 
-        #[deprecated = "Use pointOfInterestFilter"]
+        #[deprecated = "Use preferredConfiguration"]
         #[method(showsPointsOfInterest)]
         pub unsafe fn showsPointsOfInterest(&self) -> bool;
 
-        #[deprecated = "Use pointOfInterestFilter"]
+        #[deprecated = "Use preferredConfiguration"]
         #[method(setShowsPointsOfInterest:)]
         pub unsafe fn setShowsPointsOfInterest(&self, shows_points_of_interest: bool);
 
+        #[deprecated = "No longer supported."]
         #[method(showsBuildings)]
         pub unsafe fn showsBuildings(&self) -> bool;
 
+        #[deprecated = "No longer supported."]
         #[method(setShowsBuildings:)]
         pub unsafe fn setShowsBuildings(&self, shows_buildings: bool);
 

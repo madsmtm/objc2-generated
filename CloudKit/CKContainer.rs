@@ -110,16 +110,22 @@ extern_methods!(
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum CKApplicationPermissions {
+        #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         CKApplicationPermissionUserDiscoverability = 1 << 0,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
+    #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
     pub enum CKApplicationPermissionStatus {
+        #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         CKApplicationPermissionStatusInitialState = 0,
+        #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         CKApplicationPermissionStatusCouldNotComplete = 1,
+        #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         CKApplicationPermissionStatusDenied = 2,
+        #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         CKApplicationPermissionStatusGranted = 3,
     }
 );
@@ -131,6 +137,7 @@ extern_methods!(
     /// ApplicationPermission
     #[cfg(feature = "CloudKit_CKContainer")]
     unsafe impl CKContainer {
+        #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(statusForApplicationPermission:completionHandler:)]
         pub unsafe fn statusForApplicationPermission_completionHandler(
             &self,
@@ -138,6 +145,7 @@ extern_methods!(
             completion_handler: CKApplicationPermissionBlock,
         );
 
+        #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(requestApplicationPermission:completionHandler:)]
         pub unsafe fn requestApplicationPermission_completionHandler(
             &self,
@@ -163,6 +171,7 @@ extern_methods!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSError"
         ))]
+        #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(discoverAllIdentitiesWithCompletionHandler:)]
         pub unsafe fn discoverAllIdentitiesWithCompletionHandler(
             &self,
@@ -174,6 +183,7 @@ extern_methods!(
             feature = "Foundation_NSError",
             feature = "Foundation_NSString"
         ))]
+        #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(discoverUserIdentityWithEmailAddress:completionHandler:)]
         pub unsafe fn discoverUserIdentityWithEmailAddress_completionHandler(
             &self,
@@ -186,6 +196,7 @@ extern_methods!(
             feature = "Foundation_NSError",
             feature = "Foundation_NSString"
         ))]
+        #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(discoverUserIdentityWithPhoneNumber:completionHandler:)]
         pub unsafe fn discoverUserIdentityWithPhoneNumber_completionHandler(
             &self,
@@ -198,6 +209,7 @@ extern_methods!(
             feature = "CloudKit_CKUserIdentity",
             feature = "Foundation_NSError"
         ))]
+        #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(discoverUserIdentityWithUserRecordID:completionHandler:)]
         pub unsafe fn discoverUserIdentityWithUserRecordID_completionHandler(
             &self,

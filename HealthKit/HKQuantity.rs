@@ -19,6 +19,12 @@ extern_class!(
 );
 
 #[cfg(feature = "HealthKit_HKQuantity")]
+unsafe impl Send for HKQuantity {}
+
+#[cfg(feature = "HealthKit_HKQuantity")]
+unsafe impl Sync for HKQuantity {}
+
+#[cfg(feature = "HealthKit_HKQuantity")]
 unsafe impl NSCoding for HKQuantity {}
 
 #[cfg(feature = "HealthKit_HKQuantity")]

@@ -149,6 +149,12 @@ extern_methods!(
             limits_navigations_to_app_bound_domains: bool,
         );
 
+        #[method(allowsInlinePredictions)]
+        pub unsafe fn allowsInlinePredictions(&self) -> bool;
+
+        #[method(setAllowsInlinePredictions:)]
+        pub unsafe fn setAllowsInlinePredictions(&self, allows_inline_predictions: bool);
+
         #[method(userInterfaceDirectionPolicy)]
         pub unsafe fn userInterfaceDirectionPolicy(&self) -> WKUserInterfaceDirectionPolicy;
 

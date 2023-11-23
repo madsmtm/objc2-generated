@@ -54,6 +54,41 @@ extern_protocol!(
             range: NSRange,
         );
 
+        #[method(setBuffer:offset:attributeStride:atIndex:)]
+        unsafe fn setBuffer_offset_attributeStride_atIndex(
+            &self,
+            buffer: &ProtocolObject<dyn MTLBuffer>,
+            offset: NSUInteger,
+            stride: NSUInteger,
+            index: NSUInteger,
+        );
+
+        #[method(setBuffers:offsets:attributeStrides:withRange:)]
+        unsafe fn setBuffers_offsets_attributeStrides_withRange(
+            &self,
+            buffers: NonNull<*const ProtocolObject<dyn MTLBuffer>>,
+            offsets: NonNull<NSUInteger>,
+            strides: NonNull<NSUInteger>,
+            range: NSRange,
+        );
+
+        #[method(setBufferOffset:attributeStride:atIndex:)]
+        unsafe fn setBufferOffset_attributeStride_atIndex(
+            &self,
+            offset: NSUInteger,
+            stride: NSUInteger,
+            index: NSUInteger,
+        );
+
+        #[method(setBytes:length:attributeStride:atIndex:)]
+        unsafe fn setBytes_length_attributeStride_atIndex(
+            &self,
+            bytes: NonNull<c_void>,
+            length: NSUInteger,
+            stride: NSUInteger,
+            index: NSUInteger,
+        );
+
         #[method(setVisibleFunctionTable:atBufferIndex:)]
         unsafe fn setVisibleFunctionTable_atBufferIndex(
             &self,

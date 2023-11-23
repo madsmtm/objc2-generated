@@ -14,5 +14,6 @@ ns_error_enum!(
         LPErrorMetadataFetchFailed = 2,
         LPErrorMetadataFetchCancelled = 3,
         LPErrorMetadataFetchTimedOut = 4,
+        LPErrorMetadataFetchNotAllowed = 5,
     }
 );

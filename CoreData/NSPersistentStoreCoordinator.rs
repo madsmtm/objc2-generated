@@ -56,6 +56,8 @@ extern_static!(NSPersistentStoreConnectionPoolMaxSizeKey: &'static NSString);
 
 extern_static!(NSCoreDataCoreSpotlightExporter: &'static NSString);
 
+extern_static!(NSPersistentStoreStagedMigrationManagerOptionKey: &'static NSString);
+
 extern_static!(NSXMLExternalRecordType: &'static NSString);
 
 extern_static!(NSBinaryExternalRecordType: &'static NSString);
@@ -94,6 +96,8 @@ extern_static!(NSPersistentStoreURLKey: &'static NSString);
 
 extern_static!(NSPersistentHistoryTokenKey: &'static NSString);
 
+extern_static!(NSPersistentStoreDeferredLightweightMigrationOptionKey: &'static NSString);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CoreData_NSPersistentStoreCoordinator")]
@@ -105,6 +109,12 @@ extern_class!(
         type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "CoreData_NSPersistentStoreCoordinator")]
+unsafe impl Send for NSPersistentStoreCoordinator {}
+
+#[cfg(feature = "CoreData_NSPersistentStoreCoordinator")]
+unsafe impl Sync for NSPersistentStoreCoordinator {}
 
 #[cfg(feature = "CoreData_NSPersistentStoreCoordinator")]
 unsafe impl NSLocking for NSPersistentStoreCoordinator {}
@@ -356,6 +366,14 @@ extern_methods!(
             &self,
             stores: Option<&NSArray>,
         ) -> Option<Id<NSPersistentHistoryToken>>;
+
+        #[cfg(feature = "Foundation_NSError")]
+        #[method(finishDeferredLightweightMigration:_)]
+        pub unsafe fn finishDeferredLightweightMigration(&self) -> Result<(), Id<NSError>>;
+
+        #[cfg(feature = "Foundation_NSError")]
+        #[method(finishDeferredLightweightMigrationTask:_)]
+        pub unsafe fn finishDeferredLightweightMigrationTask(&self) -> Result<(), Id<NSError>>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",

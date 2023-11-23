@@ -34,6 +34,10 @@ extern_methods!(
         pub unsafe fn name(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Other customTitle)]
+        pub unsafe fn customTitle(&self) -> Option<Id<NSString>>;
+
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other relyingParty)]
         pub unsafe fn relyingParty(&self) -> Id<NSString>;
 
@@ -44,5 +48,9 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other userHandle)]
         pub unsafe fn userHandle(&self) -> Id<NSData>;
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Other providerName)]
+        pub unsafe fn providerName(&self) -> Id<NSString>;
     }
 );

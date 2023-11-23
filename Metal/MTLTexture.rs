@@ -106,6 +106,7 @@ ns_options!(
         MTLTextureUsageShaderWrite = 0x0002,
         MTLTextureUsageRenderTarget = 0x0004,
         MTLTextureUsagePixelFormatView = 0x0010,
+        MTLTextureUsageShaderAtomic = 0x0020,
     }
 );
 

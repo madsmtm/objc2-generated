@@ -18,6 +18,14 @@ ns_enum!(
     }
 );
 
+ns_enum!(
+    #[underlying(NSInteger)]
+    pub enum HKWorkoutSessionType {
+        HKWorkoutSessionTypePrimary = 0,
+        HKWorkoutSessionTypeMirrored = 1,
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HealthKit_HKWorkoutSession")]
@@ -65,6 +73,9 @@ extern_methods!(
 
         #[method(state)]
         pub unsafe fn state(&self) -> HKWorkoutSessionState;
+
+        #[method(type)]
+        pub unsafe fn r#type(&self) -> HKWorkoutSessionType;
 
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other startDate)]
@@ -153,6 +164,28 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSDate")]
         #[method(endCurrentActivityOnDate:)]
         pub unsafe fn endCurrentActivityOnDate(&self, date: &NSDate);
+
+        #[cfg(feature = "Foundation_NSError")]
+        #[method(startMirroringToCompanionDeviceWithCompletion:)]
+        pub unsafe fn startMirroringToCompanionDeviceWithCompletion(
+            &self,
+            completion: &Block<(Bool, *mut NSError), ()>,
+        );
+
+        #[cfg(feature = "Foundation_NSError")]
+        #[method(stopMirroringToCompanionDeviceWithCompletion:)]
+        pub unsafe fn stopMirroringToCompanionDeviceWithCompletion(
+            &self,
+            completion: &Block<(Bool, *mut NSError), ()>,
+        );
+
+        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
+        #[method(sendDataToRemoteWorkoutSession:completion:)]
+        pub unsafe fn sendDataToRemoteWorkoutSession_completion(
+            &self,
+            data: &NSData,
+            completion: &Block<(Bool, *mut NSError), ()>,
+        );
     }
 );
 
@@ -223,6 +256,28 @@ extern_protocol!(
             workout_session: &HKWorkoutSession,
             workout_configuration: &HKWorkoutConfiguration,
             date: &NSDate,
+        );
+
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSData",
+            feature = "HealthKit_HKWorkoutSession"
+        ))]
+        #[optional]
+        #[method(workoutSession:didReceiveDataFromRemoteWorkoutSession:)]
+        unsafe fn workoutSession_didReceiveDataFromRemoteWorkoutSession(
+            &self,
+            workout_session: &HKWorkoutSession,
+            data: &NSArray<NSData>,
+        );
+
+        #[cfg(all(feature = "Foundation_NSError", feature = "HealthKit_HKWorkoutSession"))]
+        #[optional]
+        #[method(workoutSession:didDisconnectFromRemoteDeviceWithError:)]
+        unsafe fn workoutSession_didDisconnectFromRemoteDeviceWithError(
+            &self,
+            workout_session: &HKWorkoutSession,
+            error: Option<&NSError>,
         );
     }
 

@@ -71,5 +71,8 @@ extern_enum!(
         NSInferredMappingModelError = 134190,
         NSExternalRecordImportError = 134200,
         NSPersistentHistoryTokenExpiredError = 134301,
+        NSManagedObjectModelReferenceNotFoundError = 134504,
+        NSStagedMigrationFrameworkVersionMismatchError = 134505,
+        NSStagedMigrationBackwardMigrationError = 134506,
     }
 );

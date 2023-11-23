@@ -5,6 +5,23 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+ns_enum!(
+    #[underlying(NSInteger)]
+    pub enum NSMenuPresentationStyle {
+        NSMenuPresentationStyleRegular = 0,
+        NSMenuPresentationStylePalette = 1,
+    }
+);
+
+ns_enum!(
+    #[underlying(NSInteger)]
+    pub enum NSMenuSelectionMode {
+        NSMenuSelectionModeAutomatic = 0,
+        NSMenuSelectionModeSelectOne = 1,
+        NSMenuSelectionModeSelectAny = 2,
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSMenu")]
@@ -278,6 +295,60 @@ extern_methods!(
 
         #[method_id(@__retain_semantics New new)]
         pub fn new(mtm: MainThreadMarker) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// NSPaletteMenus
+    #[cfg(feature = "AppKit_NSMenu")]
+    unsafe impl NSMenu {
+        #[cfg(all(
+            feature = "AppKit_NSColor",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
+        #[method_id(@__retain_semantics Other paletteMenuWithColors:titles:selectionHandler:)]
+        pub unsafe fn paletteMenuWithColors_titles_selectionHandler(
+            colors: &NSArray<NSColor>,
+            item_titles: &NSArray<NSString>,
+            on_selection_change: Option<&Block<(NonNull<NSMenu>,), ()>>,
+            mtm: MainThreadMarker,
+        ) -> Id<Self>;
+
+        #[cfg(all(
+            feature = "AppKit_NSColor",
+            feature = "AppKit_NSImage",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
+        #[method_id(@__retain_semantics Other paletteMenuWithColors:titles:templateImage:selectionHandler:)]
+        pub unsafe fn paletteMenuWithColors_titles_templateImage_selectionHandler(
+            colors: &NSArray<NSColor>,
+            item_titles: &NSArray<NSString>,
+            image: &NSImage,
+            on_selection_change: Option<&Block<(NonNull<NSMenu>,), ()>>,
+            mtm: MainThreadMarker,
+        ) -> Id<Self>;
+
+        #[method(presentationStyle)]
+        pub unsafe fn presentationStyle(&self) -> NSMenuPresentationStyle;
+
+        #[method(setPresentationStyle:)]
+        pub unsafe fn setPresentationStyle(&self, presentation_style: NSMenuPresentationStyle);
+
+        #[method(selectionMode)]
+        pub unsafe fn selectionMode(&self) -> NSMenuSelectionMode;
+
+        #[method(setSelectionMode:)]
+        pub unsafe fn setSelectionMode(&self, selection_mode: NSMenuSelectionMode);
+
+        #[cfg(all(feature = "AppKit_NSMenuItem", feature = "Foundation_NSArray"))]
+        #[method_id(@__retain_semantics Other selectedItems)]
+        pub unsafe fn selectedItems(&self) -> Id<NSArray<NSMenuItem>>;
+
+        #[cfg(all(feature = "AppKit_NSMenuItem", feature = "Foundation_NSArray"))]
+        #[method(setSelectedItems:)]
+        pub unsafe fn setSelectedItems(&self, selected_items: &NSArray<NSMenuItem>);
     }
 );
 

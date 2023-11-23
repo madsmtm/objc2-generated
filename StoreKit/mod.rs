@@ -6,6 +6,8 @@
 #[cfg_attr(feature = "apple", link(name = "StoreKit", kind = "framework"))]
 extern "C" {}
 
+#[path = "SKANError.rs"]
+mod __SKANError;
 #[path = "SKAdImpression.rs"]
 mod __SKAdImpression;
 #[path = "SKAdNetwork.rs"]
@@ -55,6 +57,15 @@ mod __SKStorefront;
 #[path = "StoreKitDefines.rs"]
 mod __StoreKitDefines;
 
+pub use self::__SKANError::SKANError;
+pub use self::__SKANError::SKANErrorDomain;
+pub use self::__SKANError::{
+    SKANErrorAdNetworkIdMissing, SKANErrorImpressionMissingRequiredValue,
+    SKANErrorImpressionNotFound, SKANErrorImpressionTooShort, SKANErrorInvalidAdvertisedAppId,
+    SKANErrorInvalidCampaignId, SKANErrorInvalidConversionValue, SKANErrorInvalidSourceAppId,
+    SKANErrorInvalidVersion, SKANErrorMismatchedSourceAppId, SKANErrorUnknown,
+    SKANErrorUnsupported,
+};
 #[cfg(feature = "StoreKit_SKAdImpression")]
 pub use self::__SKAdImpression::SKAdImpression;
 #[cfg(feature = "StoreKit_SKAdNetwork")]

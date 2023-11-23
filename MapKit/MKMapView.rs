@@ -9,6 +9,14 @@ use crate::MapKit::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
+    pub enum MKOverlayLevel {
+        MKOverlayLevelAboveRoads = 0,
+        MKOverlayLevelAboveLabels = 1,
+    }
+);
+
+ns_enum!(
+    #[underlying(NSInteger)]
     pub enum MKUserTrackingMode {
         MKUserTrackingModeNone = 0,
         MKUserTrackingModeFollow = 1,
@@ -233,6 +241,18 @@ extern_methods!(
         #[method(setPitchEnabled:)]
         pub unsafe fn setPitchEnabled(&self, pitch_enabled: bool);
 
+        #[method(showsUserTrackingButton)]
+        pub unsafe fn showsUserTrackingButton(&self) -> bool;
+
+        #[method(setShowsUserTrackingButton:)]
+        pub unsafe fn setShowsUserTrackingButton(&self, shows_user_tracking_button: bool);
+
+        #[method(pitchButtonVisibility)]
+        pub unsafe fn pitchButtonVisibility(&self) -> MKFeatureVisibility;
+
+        #[method(setPitchButtonVisibility:)]
+        pub unsafe fn setPitchButtonVisibility(&self, pitch_button_visibility: MKFeatureVisibility);
+
         #[method(showsPitchControl)]
         pub unsafe fn showsPitchControl(&self) -> bool;
 
@@ -443,14 +463,6 @@ extern_methods!(
     unsafe impl MKMapView {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
-    }
-);
-
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum MKOverlayLevel {
-        MKOverlayLevelAboveRoads = 0,
-        MKOverlayLevelAboveLabels = 1,
     }
 );
 

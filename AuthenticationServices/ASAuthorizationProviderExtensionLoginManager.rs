@@ -11,6 +11,11 @@ ns_enum!(
         ASAuthorizationProviderExtensionKeyTypeUserDeviceSigning = 1,
         ASAuthorizationProviderExtensionKeyTypeUserDeviceEncryption = 2,
         ASAuthorizationProviderExtensionKeyTypeUserSecureEnclaveKey = 3,
+        ASAuthorizationProviderExtensionKeyTypeSharedDeviceSigning = 4,
+        ASAuthorizationProviderExtensionKeyTypeSharedDeviceEncryption = 5,
+        ASAuthorizationProviderExtensionKeyTypeCurrentDeviceSigning = 10,
+        ASAuthorizationProviderExtensionKeyTypeCurrentDeviceEncryption = 11,
+        ASAuthorizationProviderExtensionKeyTypeUserSmartCard = 20,
     }
 );
 
@@ -48,13 +53,37 @@ extern_methods!(
         #[method_id(@__retain_semantics Other registrationToken)]
         pub unsafe fn registrationToken(&self) -> Option<Id<NSString>>;
 
+        #[cfg(feature = "Foundation_NSDictionary")]
+        #[method_id(@__retain_semantics Other extensionData)]
+        pub unsafe fn extensionData(&self) -> Id<NSDictionary>;
+
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other loginUserName)]
         pub unsafe fn loginUserName(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method(setLoginUserName:)]
         pub unsafe fn setLoginUserName(&self, login_user_name: Option<&NSString>);
+
+        #[cfg(
+            feature = "AuthenticationServices_ASAuthorizationProviderExtensionUserLoginConfiguration"
+        )]
+        #[method_id(@__retain_semantics Other userLoginConfiguration)]
+        pub unsafe fn userLoginConfiguration(
+            &self,
+        ) -> Option<Id<ASAuthorizationProviderExtensionUserLoginConfiguration>>;
+
+        #[cfg(all(
+            feature = "AuthenticationServices_ASAuthorizationProviderExtensionUserLoginConfiguration",
+            feature = "Foundation_NSError"
+        ))]
+        #[method(saveUserLoginConfiguration:error:_)]
+        pub unsafe fn saveUserLoginConfiguration_error(
+            &self,
+            user_login_configuration: &ASAuthorizationProviderExtensionUserLoginConfiguration,
+        ) -> Result<(), Id<NSError>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other ssoTokens)]
@@ -95,8 +124,17 @@ extern_methods!(
         #[method(userRegistrationsNeedsRepair)]
         pub unsafe fn userRegistrationsNeedsRepair(&self);
 
+        #[method(decryptionKeysNeedRepair)]
+        pub unsafe fn decryptionKeysNeedRepair(&self);
+
         #[method(resetKeys)]
         pub unsafe fn resetKeys(&self);
+
+        #[method(resetDeviceKeys)]
+        pub unsafe fn resetDeviceKeys(&self);
+
+        #[method(resetUserSecureEnclaveKey)]
+        pub unsafe fn resetUserSecureEnclaveKey(&self);
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(presentRegistrationViewControllerWithCompletion:)]

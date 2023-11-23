@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CoreLocation_CLCircularRegion")]
+    #[deprecated]
     pub struct CLCircularRegion;
 
     #[cfg(feature = "CoreLocation_CLCircularRegion")]
@@ -34,6 +35,7 @@ extern_methods!(
     #[cfg(feature = "CoreLocation_CLCircularRegion")]
     unsafe impl CLCircularRegion {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Init initWithCenter:radius:identifier:)]
         pub unsafe fn initWithCenter_radius_identifier(
             this: Allocated<Self>,
@@ -42,12 +44,15 @@ extern_methods!(
             identifier: &NSString,
         ) -> Id<Self>;
 
+        #[deprecated]
         #[method(center)]
         pub unsafe fn center(&self) -> CLLocationCoordinate2D;
 
+        #[deprecated]
         #[method(radius)]
         pub unsafe fn radius(&self) -> CLLocationDistance;
 
+        #[deprecated]
         #[method(containsCoordinate:)]
         pub unsafe fn containsCoordinate(&self, coordinate: CLLocationCoordinate2D) -> bool;
     }

@@ -167,17 +167,17 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKLeaderboard")]
     unsafe impl GKLeaderboard {
         #[cfg(feature = "Foundation_NSString")]
-        #[deprecated = "Use identifier instead"]
+        #[deprecated]
         #[method_id(@__retain_semantics Other category)]
         pub unsafe fn category(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
-        #[deprecated = "Use identifier instead"]
+        #[deprecated]
         #[method(setCategory:)]
         pub unsafe fn setCategory(&self, category: Option<&NSString>);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
-        #[deprecated = "Use initWithPlayers: instead"]
+        #[deprecated]
         #[method_id(@__retain_semantics Init initWithPlayerIDs:)]
         pub unsafe fn initWithPlayerIDs(
             this: Allocated<Self>,
@@ -189,7 +189,7 @@ extern_methods!(
             feature = "Foundation_NSError",
             feature = "Foundation_NSString"
         ))]
-        #[deprecated = "Use loadLeaderboardsWithIDs:completionHandler: instead"]
+        #[deprecated]
         #[method(loadCategoriesWithCompletionHandler:)]
         pub unsafe fn loadCategoriesWithCompletionHandler(
             completion_handler: Option<
@@ -198,67 +198,67 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
-        #[deprecated = "Use setDefaultLeaderboardIdentifier:completionHandler: on GKLocalPlayer instead"]
+        #[deprecated]
         #[method(setDefaultLeaderboard:withCompletionHandler:)]
         pub unsafe fn setDefaultLeaderboard_withCompletionHandler(
             leaderboard_identifier: Option<&NSString>,
             completion_handler: Option<&Block<(*mut NSError,), ()>>,
         );
 
-        #[deprecated = "Use loadEntriesForPlayerScope:timeScope:range:completionHandler: instead."]
+        #[deprecated]
         #[method(timeScope)]
         pub unsafe fn timeScope(&self) -> GKLeaderboardTimeScope;
 
-        #[deprecated = "Use loadEntriesForPlayerScope:timeScope:range:completionHandler: instead."]
+        #[deprecated]
         #[method(setTimeScope:)]
         pub unsafe fn setTimeScope(&self, time_scope: GKLeaderboardTimeScope);
 
-        #[deprecated = "Use loadEntriesForPlayerScope:timeScope:range:completionHandler: instead."]
+        #[deprecated]
         #[method(playerScope)]
         pub unsafe fn playerScope(&self) -> GKLeaderboardPlayerScope;
 
-        #[deprecated = "Use loadEntriesForPlayerScope:timeScope:range:completionHandler: instead."]
+        #[deprecated]
         #[method(setPlayerScope:)]
         pub unsafe fn setPlayerScope(&self, player_scope: GKLeaderboardPlayerScope);
 
         #[cfg(feature = "Foundation_NSString")]
-        #[deprecated = "Use loadEntriesForPlayerScope:timeScope:range:completionHandler: instead."]
+        #[deprecated]
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
-        #[deprecated = "Use loadEntriesForPlayerScope:timeScope:range:completionHandler: instead."]
+        #[deprecated]
         #[method(setIdentifier:)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&NSString>);
 
-        #[deprecated = "Use loadEntriesForPlayerScope:timeScope:range:completionHandler: instead."]
+        #[deprecated]
         #[method(range)]
         pub unsafe fn range(&self) -> NSRange;
 
-        #[deprecated = "Use loadEntriesForPlayerScope:timeScope:range:completionHandler: instead."]
+        #[deprecated]
         #[method(setRange:)]
         pub unsafe fn setRange(&self, range: NSRange);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "GameKit_GKScore"))]
-        #[deprecated = "Use loadEntriesForPlayerScope:timeScope:range:completionHandler: to obtain scores."]
+        #[deprecated]
         #[method_id(@__retain_semantics Other scores)]
         pub unsafe fn scores(&self) -> Option<Id<NSArray<GKScore>>>;
 
-        #[deprecated = "Use loadEntriesForPlayerScope:timeScope:range:completionHandler: method to obtain the size of the leaderboard."]
+        #[deprecated]
         #[method(maxRange)]
         pub unsafe fn maxRange(&self) -> NSUInteger;
 
         #[cfg(feature = "GameKit_GKScore")]
-        #[deprecated = "Use loadEntriesForPlayerScope:timeScope:range:completionHandler: method to obtain scores."]
+        #[deprecated]
         #[method_id(@__retain_semantics Other localPlayerScore)]
         pub unsafe fn localPlayerScore(&self) -> Option<Id<GKScore>>;
 
-        #[deprecated = "Use loadEntriesForPlayerScope:timeScope:range:completionHandler: method to obtain scores."]
+        #[deprecated]
         #[method(isLoading)]
         pub unsafe fn isLoading(&self) -> bool;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "GameKit_GKPlayer"))]
-        #[deprecated = "Use instance method loadEntriesForPlayers:timeScope:completionHandler: instead."]
+        #[deprecated]
         #[method_id(@__retain_semantics Init initWithPlayers:)]
         pub unsafe fn initWithPlayers(
             this: Allocated<Self>,
@@ -270,7 +270,7 @@ extern_methods!(
             feature = "Foundation_NSError",
             feature = "GameKit_GKScore"
         ))]
-        #[deprecated = "Use loadEntriesForPlayerScope:timeScope:range:completionHandler:."]
+        #[deprecated]
         #[method(loadScoresWithCompletionHandler:)]
         pub unsafe fn loadScoresWithCompletionHandler(
             &self,
@@ -278,7 +278,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSError"))]
-        #[deprecated = "Use class method loadLeaderboardsWithIDs:completionHandler:"]
+        #[deprecated]
         #[method(loadLeaderboardsWithCompletionHandler:)]
         pub unsafe fn loadLeaderboardsWithCompletionHandler(
             completion_handler: Option<&Block<(*mut NSArray<GKLeaderboard>, *mut NSError), ()>>,

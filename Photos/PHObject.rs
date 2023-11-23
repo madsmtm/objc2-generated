@@ -19,6 +19,12 @@ extern_class!(
 );
 
 #[cfg(feature = "PhotoKit_PHObject")]
+unsafe impl Send for PHObject {}
+
+#[cfg(feature = "PhotoKit_PHObject")]
+unsafe impl Sync for PHObject {}
+
+#[cfg(feature = "PhotoKit_PHObject")]
 unsafe impl NSCopying for PHObject {}
 
 #[cfg(feature = "PhotoKit_PHObject")]
@@ -57,6 +63,12 @@ extern_class!(
         type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "PhotoKit_PHObjectPlaceholder")]
+unsafe impl Send for PHObjectPlaceholder {}
+
+#[cfg(feature = "PhotoKit_PHObjectPlaceholder")]
+unsafe impl Sync for PHObjectPlaceholder {}
 
 #[cfg(feature = "PhotoKit_PHObjectPlaceholder")]
 unsafe impl NSCopying for PHObjectPlaceholder {}

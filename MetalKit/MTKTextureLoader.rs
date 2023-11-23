@@ -50,6 +50,8 @@ extern_static!(MTKTextureLoaderOriginBottomLeft: &'static MTKTextureLoaderOrigin
 
 extern_static!(MTKTextureLoaderOriginFlippedVertically: &'static MTKTextureLoaderOrigin);
 
+extern_static!(MTKTextureLoaderOptionLoadAsArray: &'static MTKTextureLoaderOption);
+
 pub type MTKTextureLoaderCallback =
     *mut Block<(*mut ProtocolObject<dyn MTLTexture>, *mut NSError), ()>;
 

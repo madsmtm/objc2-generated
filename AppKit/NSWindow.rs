@@ -1372,6 +1372,12 @@ extern_methods!(
     }
 );
 
+extern_methods!(
+    /// NSDisplayLink
+    #[cfg(feature = "AppKit_NSWindow")]
+    unsafe impl NSWindow {}
+);
+
 extern_protocol!(
     pub unsafe trait NSWindowDelegate: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(feature = "AppKit_NSWindow")]

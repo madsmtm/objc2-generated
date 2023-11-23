@@ -19,6 +19,12 @@ extern_class!(
 );
 
 #[cfg(feature = "HealthKit_HKHealthStore")]
+unsafe impl Send for HKHealthStore {}
+
+#[cfg(feature = "HealthKit_HKHealthStore")]
+unsafe impl Sync for HKHealthStore {}
+
+#[cfg(feature = "HealthKit_HKHealthStore")]
 unsafe impl NSObjectProtocol for HKHealthStore {}
 
 extern_methods!(
@@ -240,12 +246,28 @@ extern_methods!(
     /// HKWorkout
     #[cfg(feature = "HealthKit_HKHealthStore")]
     unsafe impl HKHealthStore {
+        #[cfg(feature = "HealthKit_HKWorkoutSession")]
+        #[method(workoutSessionMirroringStartHandler)]
+        pub unsafe fn workoutSessionMirroringStartHandler(
+            &self,
+        ) -> *mut Block<(NonNull<HKWorkoutSession>,), ()>;
+
+        #[cfg(feature = "HealthKit_HKWorkoutSession")]
+        #[method(setWorkoutSessionMirroringStartHandler:)]
+        pub unsafe fn setWorkoutSessionMirroringStartHandler(
+            &self,
+            workout_session_mirroring_start_handler: Option<
+                &Block<(NonNull<HKWorkoutSession>,), ()>,
+            >,
+        );
+
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSError",
             feature = "HealthKit_HKSample",
             feature = "HealthKit_HKWorkout"
         ))]
+        #[deprecated = "Use HKWorkoutBuilder"]
         #[method(addSamples:toWorkout:completion:)]
         pub unsafe fn addSamples_toWorkout_completion(
             &self,

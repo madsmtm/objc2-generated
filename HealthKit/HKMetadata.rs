@@ -116,6 +116,8 @@ extern_static!(HKMetadataKeyWorkoutBrandName: &'static NSString);
 
 extern_static!(HKMetadataKeyGroupFitness: &'static NSString);
 
+extern_static!(HKMetadataKeyAppleFitnessPlusSession: &'static NSString);
+
 extern_static!(HKMetadataKeyIndoorWorkout: &'static NSString);
 
 extern_static!(HKMetadataKeyCoachedWorkout: &'static NSString);
@@ -289,4 +291,40 @@ extern_static!(HKMetadataKeyQuantityClampedToUpperBound: &'static NSString);
 
 extern_static!(HKMetadataKeyGlassesPrescriptionDescription: &'static NSString);
 
+ns_enum!(
+    #[underlying(NSInteger)]
+    pub enum HKWaterSalinity {
+        HKWaterSalinityFreshWater = 1,
+        HKWaterSalinitySaltWater = 2,
+    }
+);
+
+extern_static!(HKMetadataKeyWaterSalinity: &'static NSString);
+
 extern_static!(HKMetadataKeyHeadphoneGain: &'static NSString);
+
+extern_static!(HKMetadataKeyCyclingFunctionalThresholdPowerTestType: &'static NSString);
+
+ns_enum!(
+    #[underlying(NSInteger)]
+    pub enum HKCyclingFunctionalThresholdPowerTestType {
+        HKCyclingFunctionalThresholdPowerTestTypeMaxExercise60Minute = 1,
+        HKCyclingFunctionalThresholdPowerTestTypeMaxExercise20Minute = 2,
+        HKCyclingFunctionalThresholdPowerTestTypeRampTest = 3,
+        HKCyclingFunctionalThresholdPowerTestTypePredictionExercise = 4,
+    }
+);
+
+extern_static!(HKMetadataKeyActivityType: &'static NSString);
+
+extern_static!(HKMetadataKeyPhysicalEffortEstimationType: &'static NSString);
+
+ns_enum!(
+    #[underlying(NSInteger)]
+    pub enum HKPhysicalEffortEstimationType {
+        HKPhysicalEffortEstimationTypeActivityLookup = 1,
+        HKPhysicalEffortEstimationTypeDeviceSensed = 2,
+    }
+);
+
+extern_static!(HKMetadataKeyMaximumLightIntensity: &'static NSString);

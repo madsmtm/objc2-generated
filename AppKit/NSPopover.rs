@@ -122,6 +122,12 @@ extern_methods!(
         #[method(setPositioningRect:)]
         pub unsafe fn setPositioningRect(&self, positioning_rect: NSRect);
 
+        #[method(hasFullSizeContent)]
+        pub unsafe fn hasFullSizeContent(&self) -> bool;
+
+        #[method(setHasFullSizeContent:)]
+        pub unsafe fn setHasFullSizeContent(&self, has_full_size_content: bool);
+
         #[cfg(feature = "AppKit_NSView")]
         #[method(showRelativeToRect:ofView:preferredEdge:)]
         pub unsafe fn showRelativeToRect_ofView_preferredEdge(
@@ -130,6 +136,10 @@ extern_methods!(
             positioning_view: &NSView,
             preferred_edge: NSRectEdge,
         );
+
+        #[cfg(feature = "AppKit_NSToolbarItem")]
+        #[method(showRelativeToToolbarItem:)]
+        pub unsafe fn showRelativeToToolbarItem(&self, toolbar_item: &NSToolbarItem);
 
         #[method(performClose:)]
         pub unsafe fn performClose(&self, sender: Option<&AnyObject>);

@@ -157,7 +157,7 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKMatchmakerViewController")]
     unsafe impl GKMatchmakerViewController {
         #[cfg(feature = "Foundation_NSString")]
-        #[deprecated = "This is never invoked and its implementation does nothing, use setHostedPlayer:didConnect:"]
+        #[deprecated]
         #[method(setHostedPlayer:connected:)]
         pub unsafe fn setHostedPlayer_connected(&self, player_id: &NSString, connected: bool);
     }
@@ -225,7 +225,7 @@ extern_protocol!(
             feature = "Foundation_NSString",
             feature = "GameKit_GKMatchmakerViewController"
         ))]
-        #[deprecated = "This is never invoked and its implementation does nothing, use matchmakerViewController:didFindHostedPlayers:"]
+        #[deprecated]
         #[optional]
         #[method(matchmakerViewController:didFindPlayers:)]
         unsafe fn matchmakerViewController_didFindPlayers(
@@ -238,7 +238,7 @@ extern_protocol!(
             feature = "Foundation_NSString",
             feature = "GameKit_GKMatchmakerViewController"
         ))]
-        #[deprecated = "This is never invoked and its implementation does nothing, use matchmakerViewController:hostedPlayerDidAccept:"]
+        #[deprecated]
         #[optional]
         #[method(matchmakerViewController:didReceiveAcceptFromHostedPlayer:)]
         unsafe fn matchmakerViewController_didReceiveAcceptFromHostedPlayer(

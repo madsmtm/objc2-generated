@@ -91,6 +91,27 @@ extern_methods!(
         #[cfg(feature = "WebKit_WKHTTPCookieStore")]
         #[method_id(@__retain_semantics Other httpCookieStore)]
         pub unsafe fn httpCookieStore(&self) -> Id<WKHTTPCookieStore>;
+
+        #[cfg(feature = "Foundation_NSUUID")]
+        #[method_id(@__retain_semantics Other identifier)]
+        pub unsafe fn identifier(&self) -> Option<Id<NSUUID>>;
+
+        #[cfg(feature = "Foundation_NSUUID")]
+        #[method_id(@__retain_semantics Other dataStoreForIdentifier:)]
+        pub unsafe fn dataStoreForIdentifier(identifier: &NSUUID) -> Id<WKWebsiteDataStore>;
+
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSUUID"))]
+        #[method(removeDataStoreForIdentifier:completionHandler:)]
+        pub unsafe fn removeDataStoreForIdentifier_completionHandler(
+            identifier: &NSUUID,
+            completion_handler: &Block<(*mut NSError,), ()>,
+        );
+
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSUUID"))]
+        #[method(fetchAllDataStoreIdentifiers:)]
+        pub unsafe fn fetchAllDataStoreIdentifiers(
+            completion_handler: &Block<(NonNull<NSArray<NSUUID>>,), ()>,
+        );
     }
 );
 

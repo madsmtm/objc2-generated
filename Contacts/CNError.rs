@@ -15,6 +15,7 @@ ns_enum!(
         CNErrorCodeNoAccessableWritableContainers = 101,
         CNErrorCodeUnauthorizedKeys = 102,
         CNErrorCodeFeatureDisabledByUser = 103,
+        CNErrorCodeFeatureNotAvailable = 104,
         CNErrorCodeRecordDoesNotExist = 200,
         CNErrorCodeInsertedRecordAlreadyExists = 201,
         CNErrorCodeContainmentCycle = 202,

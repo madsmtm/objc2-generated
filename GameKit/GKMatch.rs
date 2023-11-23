@@ -170,7 +170,7 @@ extern_protocol!(
             feature = "Foundation_NSString",
             feature = "GameKit_GKMatch"
         ))]
-        #[deprecated = "This is never invoked and its implementation does nothing, use match:didReceiveData:fromRemotePlayer:"]
+        #[deprecated]
         #[optional]
         #[method(match:didReceiveData:fromPlayer:)]
         unsafe fn match_didReceiveData_fromPlayer(
@@ -181,7 +181,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "Foundation_NSString", feature = "GameKit_GKMatch"))]
-        #[deprecated = "This is never invoked and its implementation does nothing, use match:player:didChangeConnectionState:"]
+        #[deprecated]
         #[optional]
         #[method(match:player:didChangeState:)]
         unsafe fn match_player_didChangeState(
@@ -192,7 +192,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "Foundation_NSString", feature = "GameKit_GKMatch"))]
-        #[deprecated = "This is never invoked and its implementation does nothing, use shouldReinviteDisconnectedPlayer:"]
+        #[deprecated]
         #[optional]
         #[method(match:shouldReinvitePlayer:)]
         unsafe fn match_shouldReinvitePlayer(
@@ -210,7 +210,7 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKMatch")]
     unsafe impl GKMatch {
         #[cfg(feature = "Foundation_NSString")]
-        #[deprecated = "This is never invoked and its implementation does nothing, use chooseBestHostingPlayerWithCompletionHandler:"]
+        #[deprecated]
         #[method(chooseBestHostPlayerWithCompletionHandler:)]
         pub unsafe fn chooseBestHostPlayerWithCompletionHandler(
             &self,
@@ -223,7 +223,7 @@ extern_methods!(
             feature = "Foundation_NSError",
             feature = "Foundation_NSString"
         ))]
-        #[deprecated = "This is never invoked and its implementation does nothing, use sendData:toPlayers:dataMode:error:"]
+        #[deprecated]
         #[method(sendData:toPlayers:withDataMode:error:_)]
         pub unsafe fn sendData_toPlayers_withDataMode_error(
             &self,
@@ -233,7 +233,7 @@ extern_methods!(
         ) -> Result<(), Id<NSError>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
-        #[deprecated = "This is never invoked and its implementation does nothing, use players instead."]
+        #[deprecated]
         #[method_id(@__retain_semantics Other playerIDs)]
         pub unsafe fn playerIDs(&self) -> Option<Id<NSArray<NSString>>>;
     }

@@ -5,6 +5,15 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::WebKit::*;
 
+ns_enum!(
+    #[underlying(NSInteger)]
+    pub enum WKInactiveSchedulingPolicy {
+        WKInactiveSchedulingPolicySuspend = 0,
+        WKInactiveSchedulingPolicyThrottle = 1,
+        WKInactiveSchedulingPolicyNone = 2,
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "WebKit_WKPreferences")]
@@ -85,6 +94,15 @@ extern_methods!(
 
         #[method(setElementFullscreenEnabled:)]
         pub unsafe fn setElementFullscreenEnabled(&self, element_fullscreen_enabled: bool);
+
+        #[method(inactiveSchedulingPolicy)]
+        pub unsafe fn inactiveSchedulingPolicy(&self) -> WKInactiveSchedulingPolicy;
+
+        #[method(setInactiveSchedulingPolicy:)]
+        pub unsafe fn setInactiveSchedulingPolicy(
+            &self,
+            inactive_scheduling_policy: WKInactiveSchedulingPolicy,
+        );
     }
 );
 

@@ -15,6 +15,86 @@ extern_static!(NSTextContentTypePassword: &'static NSTextContentType);
 
 extern_static!(NSTextContentTypeOneTimeCode: &'static NSTextContentType);
 
+extern_static!(NSTextContentTypeNewPassword: &'static NSTextContentType);
+
+extern_static!(NSTextContentTypeName: &'static NSTextContentType);
+
+extern_static!(NSTextContentTypeNamePrefix: &'static NSTextContentType);
+
+extern_static!(NSTextContentTypeGivenName: &'static NSTextContentType);
+
+extern_static!(NSTextContentTypeMiddleName: &'static NSTextContentType);
+
+extern_static!(NSTextContentTypeFamilyName: &'static NSTextContentType);
+
+extern_static!(NSTextContentTypeNameSuffix: &'static NSTextContentType);
+
+extern_static!(NSTextContentTypeNickname: &'static NSTextContentType);
+
+extern_static!(NSTextContentTypeJobTitle: &'static NSTextContentType);
+
+extern_static!(NSTextContentTypeOrganizationName: &'static NSTextContentType);
+
+extern_static!(NSTextContentTypeLocation: &'static NSTextContentType);
+
+extern_static!(NSTextContentTypeFullStreetAddress: &'static NSTextContentType);
+
+extern_static!(NSTextContentTypeStreetAddressLine1: &'static NSTextContentType);
+
+extern_static!(NSTextContentTypeStreetAddressLine2: &'static NSTextContentType);
+
+extern_static!(NSTextContentTypeAddressCity: &'static NSTextContentType);
+
+extern_static!(NSTextContentTypeAddressState: &'static NSTextContentType);
+
+extern_static!(NSTextContentTypeAddressCityAndState: &'static NSTextContentType);
+
+extern_static!(NSTextContentTypeSublocality: &'static NSTextContentType);
+
+extern_static!(NSTextContentTypeCountryName: &'static NSTextContentType);
+
+extern_static!(NSTextContentTypePostalCode: &'static NSTextContentType);
+
+extern_static!(NSTextContentTypeTelephoneNumber: &'static NSTextContentType);
+
+extern_static!(NSTextContentTypeEmailAddress: &'static NSTextContentType);
+
+extern_static!(NSTextContentTypeURL: &'static NSTextContentType);
+
+extern_static!(NSTextContentTypeCreditCardNumber: &'static NSTextContentType);
+
+extern_static!(NSTextContentTypeCreditCardName: &'static NSTextContentType);
+
+extern_static!(NSTextContentTypeCreditCardGivenName: &'static NSTextContentType);
+
+extern_static!(NSTextContentTypeCreditCardMiddleName: &'static NSTextContentType);
+
+extern_static!(NSTextContentTypeCreditCardFamilyName: &'static NSTextContentType);
+
+extern_static!(NSTextContentTypeCreditCardSecurityCode: &'static NSTextContentType);
+
+extern_static!(NSTextContentTypeCreditCardExpiration: &'static NSTextContentType);
+
+extern_static!(NSTextContentTypeCreditCardExpirationMonth: &'static NSTextContentType);
+
+extern_static!(NSTextContentTypeCreditCardExpirationYear: &'static NSTextContentType);
+
+extern_static!(NSTextContentTypeCreditCardType: &'static NSTextContentType);
+
+extern_static!(NSTextContentTypeShipmentTrackingNumber: &'static NSTextContentType);
+
+extern_static!(NSTextContentTypeFlightNumber: &'static NSTextContentType);
+
+extern_static!(NSTextContentTypeDateTime: &'static NSTextContentType);
+
+extern_static!(NSTextContentTypeBirthdate: &'static NSTextContentType);
+
+extern_static!(NSTextContentTypeBirthdateDay: &'static NSTextContentType);
+
+extern_static!(NSTextContentTypeBirthdateMonth: &'static NSTextContentType);
+
+extern_static!(NSTextContentTypeBirthdateYear: &'static NSTextContentType);
+
 extern_protocol!(
     pub unsafe trait NSTextContent {
         #[method_id(@__retain_semantics Other contentType)]

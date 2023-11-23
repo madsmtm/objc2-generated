@@ -5,6 +5,21 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+ns_enum!(
+    #[underlying(NSInteger)]
+    pub enum NSTextCursorAccessoryPlacement {
+        NSTextCursorAccessoryPlacementUnspecified = 0,
+        NSTextCursorAccessoryPlacementBackward = 1,
+        NSTextCursorAccessoryPlacementForward = 2,
+        NSTextCursorAccessoryPlacementInvisible = 3,
+        NSTextCursorAccessoryPlacementCenter = 4,
+        NSTextCursorAccessoryPlacementOffscreenLeft = 5,
+        NSTextCursorAccessoryPlacementOffscreenTop = 6,
+        NSTextCursorAccessoryPlacementOffscreenRight = 7,
+        NSTextCursorAccessoryPlacementOffscreenBottom = 8,
+    }
+);
+
 extern_protocol!(
     pub unsafe trait NSTextInputClient {
         #[method(insertText:replacementRange:)]
@@ -79,6 +94,18 @@ extern_protocol!(
         #[optional]
         #[method(drawsVerticallyForCharacterAtIndex:)]
         unsafe fn drawsVerticallyForCharacterAtIndex(&self, char_index: NSUInteger) -> bool;
+
+        #[optional]
+        #[method(preferredTextAccessoryPlacement)]
+        unsafe fn preferredTextAccessoryPlacement(&self) -> NSTextCursorAccessoryPlacement;
+
+        #[optional]
+        #[method(unionRectInVisibleSelectedRange)]
+        unsafe fn unionRectInVisibleSelectedRange(&self) -> NSRect;
+
+        #[optional]
+        #[method(documentVisibleRect)]
+        unsafe fn documentVisibleRect(&self) -> NSRect;
     }
 
     unsafe impl ProtocolType for dyn NSTextInputClient {}

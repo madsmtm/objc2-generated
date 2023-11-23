@@ -91,6 +91,11 @@ extern_methods!(
         ) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Other languageIdentifier)]
+        pub unsafe fn languageIdentifier(&self) -> Id<NSString>;
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other countryCode)]
         pub unsafe fn countryCode(&self) -> Option<Id<NSString>>;
 
@@ -100,6 +105,10 @@ extern_methods!(
             &self,
             country_code: &NSString,
         ) -> Option<Id<NSString>>;
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Other regionCode)]
+        pub unsafe fn regionCode(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other scriptCode)]

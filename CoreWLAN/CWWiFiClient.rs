@@ -99,7 +99,12 @@ extern_methods!(
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other interfaceNames)]
-        pub unsafe fn interfaceNames() -> Option<Id<NSArray<NSString>>>;
+        pub unsafe fn interfaceNames(&self) -> Option<Id<NSArray<NSString>>>;
+
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[deprecated = "Use -[CWWiFiClient interfaceNames] instead"]
+        #[method_id(@__retain_semantics Other interfaceNames)]
+        pub unsafe fn interfaceNames_class() -> Option<Id<NSArray<NSString>>>;
 
         #[cfg(all(feature = "CoreWLAN_CWInterface", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other interfaceWithName:)]

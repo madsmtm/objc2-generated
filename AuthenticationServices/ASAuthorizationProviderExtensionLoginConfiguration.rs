@@ -210,6 +210,25 @@ extern_methods!(
         #[method(setJwksEndpointURL:)]
         pub unsafe fn setJwksEndpointURL(&self, jwks_endpoint_url: &NSURL);
 
+        #[cfg(feature = "Foundation_NSArray")]
+        #[method_id(@__retain_semantics Other jwksTrustedRootCertificates)]
+        pub unsafe fn jwksTrustedRootCertificates(&self) -> Id<NSArray>;
+
+        #[cfg(feature = "Foundation_NSArray")]
+        #[method(setJwksTrustedRootCertificates:)]
+        pub unsafe fn setJwksTrustedRootCertificates(
+            &self,
+            jwks_trusted_root_certificates: &NSArray,
+        );
+
+        #[cfg(feature = "Foundation_NSData")]
+        #[method_id(@__retain_semantics Other deviceContext)]
+        pub unsafe fn deviceContext(&self) -> Option<Id<NSData>>;
+
+        #[cfg(feature = "Foundation_NSData")]
+        #[method(setDeviceContext:)]
+        pub unsafe fn setDeviceContext(&self, device_context: Option<&NSData>);
+
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other nonceEndpointURL)]
         pub unsafe fn nonceEndpointURL(&self) -> Id<NSURL>;
@@ -275,6 +294,17 @@ extern_methods!(
         #[method(setAdditionalScopes:)]
         pub unsafe fn setAdditionalScopes(&self, additional_scopes: &NSString);
 
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Other additionalAuthorizationScopes)]
+        pub unsafe fn additionalAuthorizationScopes(&self) -> Option<Id<NSString>>;
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method(setAdditionalAuthorizationScopes:)]
+        pub unsafe fn setAdditionalAuthorizationScopes(
+            &self,
+            additional_authorization_scopes: Option<&NSString>,
+        );
+
         #[method(includePreviousRefreshTokenInLoginRequest)]
         pub unsafe fn includePreviousRefreshTokenInLoginRequest(&self) -> bool;
 
@@ -293,6 +323,17 @@ extern_methods!(
         pub unsafe fn setPreviousRefreshTokenClaimName(
             &self,
             previous_refresh_token_claim_name: &NSString,
+        );
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Other customRequestJWTParameterName)]
+        pub unsafe fn customRequestJWTParameterName(&self) -> Option<Id<NSString>>;
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method(setCustomRequestJWTParameterName:)]
+        pub unsafe fn setCustomRequestJWTParameterName(
+            &self,
+            custom_request_jwt_parameter_name: Option<&NSString>,
         );
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURLQueryItem"))]
@@ -328,6 +369,36 @@ extern_methods!(
             claims: &NSDictionary<NSString, AnyObject>,
         ) -> Result<(), Id<NSError>>;
 
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Other uniqueIdentifierClaimName)]
+        pub unsafe fn uniqueIdentifierClaimName(&self) -> Option<Id<NSString>>;
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method(setUniqueIdentifierClaimName:)]
+        pub unsafe fn setUniqueIdentifierClaimName(
+            &self,
+            unique_identifier_claim_name: Option<&NSString>,
+        );
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Other groupRequestClaimName)]
+        pub unsafe fn groupRequestClaimName(&self) -> Option<Id<NSString>>;
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method(setGroupRequestClaimName:)]
+        pub unsafe fn setGroupRequestClaimName(&self, group_request_claim_name: Option<&NSString>);
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Other groupResponseClaimName)]
+        pub unsafe fn groupResponseClaimName(&self) -> Option<Id<NSString>>;
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method(setGroupResponseClaimName:)]
+        pub unsafe fn setGroupResponseClaimName(
+            &self,
+            group_response_claim_name: Option<&NSString>,
+        );
+
         #[cfg(all(
             feature = "AuthenticationServices_ASAuthorizationProviderExtensionKerberosMapping",
             feature = "Foundation_NSArray"
@@ -346,6 +417,47 @@ extern_methods!(
             &self,
             kerberos_ticket_mappings: &NSArray<ASAuthorizationProviderExtensionKerberosMapping>,
         );
+
+        #[cfg(feature = "Foundation_NSURL")]
+        #[method_id(@__retain_semantics Other refreshEndpointURL)]
+        pub unsafe fn refreshEndpointURL(&self) -> Option<Id<NSURL>>;
+
+        #[cfg(feature = "Foundation_NSURL")]
+        #[method(setRefreshEndpointURL:)]
+        pub unsafe fn setRefreshEndpointURL(&self, refresh_endpoint_url: Option<&NSURL>);
+
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURLQueryItem"))]
+        #[method_id(@__retain_semantics Other customRefreshRequestValues)]
+        pub unsafe fn customRefreshRequestValues(&self) -> Id<NSArray<NSURLQueryItem>>;
+
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURLQueryItem"))]
+        #[method(setCustomRefreshRequestValues:)]
+        pub unsafe fn setCustomRefreshRequestValues(
+            &self,
+            custom_refresh_request_values: &NSArray<NSURLQueryItem>,
+        );
+
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
+        ))]
+        #[method(setCustomRefreshRequestHeaderClaims:returningError:_)]
+        pub unsafe fn setCustomRefreshRequestHeaderClaims_returningError(
+            &self,
+            claims: &NSDictionary<NSString, AnyObject>,
+        ) -> Result<(), Id<NSError>>;
+
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
+        ))]
+        #[method(setCustomRefreshRequestBodyClaims:returningError:_)]
+        pub unsafe fn setCustomRefreshRequestBodyClaims_returningError(
+            &self,
+            claims: &NSDictionary<NSString, AnyObject>,
+        ) -> Result<(), Id<NSError>>;
 
         #[method(federationType)]
         pub unsafe fn federationType(&self) -> ASAuthorizationProviderExtensionFederationType;
@@ -414,5 +526,90 @@ extern_methods!(
             &self,
             custom_federation_user_preauthentication_request_values: &NSArray<NSURLQueryItem>,
         );
+
+        #[cfg(feature = "Foundation_NSData")]
+        #[method_id(@__retain_semantics Other loginRequestEncryptionAPVPrefix)]
+        pub unsafe fn loginRequestEncryptionAPVPrefix(&self) -> Option<Id<NSData>>;
+
+        #[cfg(feature = "Foundation_NSData")]
+        #[method(setLoginRequestEncryptionAPVPrefix:)]
+        pub unsafe fn setLoginRequestEncryptionAPVPrefix(
+            &self,
+            login_request_encryption_apv_prefix: Option<&NSData>,
+        );
+
+        #[cfg(feature = "Foundation_NSURL")]
+        #[method_id(@__retain_semantics Other keyEndpointURL)]
+        pub unsafe fn keyEndpointURL(&self) -> Option<Id<NSURL>>;
+
+        #[cfg(feature = "Foundation_NSURL")]
+        #[method(setKeyEndpointURL:)]
+        pub unsafe fn setKeyEndpointURL(&self, key_endpoint_url: Option<&NSURL>);
+
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURLQueryItem"))]
+        #[method_id(@__retain_semantics Other customKeyExchangeRequestValues)]
+        pub unsafe fn customKeyExchangeRequestValues(&self) -> Id<NSArray<NSURLQueryItem>>;
+
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURLQueryItem"))]
+        #[method(setCustomKeyExchangeRequestValues:)]
+        pub unsafe fn setCustomKeyExchangeRequestValues(
+            &self,
+            custom_key_exchange_request_values: &NSArray<NSURLQueryItem>,
+        );
+
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
+        ))]
+        #[method(setCustomKeyExchangeRequestHeaderClaims:returningError:_)]
+        pub unsafe fn setCustomKeyExchangeRequestHeaderClaims_returningError(
+            &self,
+            claims: &NSDictionary<NSString, AnyObject>,
+        ) -> Result<(), Id<NSError>>;
+
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
+        ))]
+        #[method(setCustomKeyExchangeRequestBodyClaims:returningError:_)]
+        pub unsafe fn setCustomKeyExchangeRequestBodyClaims_returningError(
+            &self,
+            claims: &NSDictionary<NSString, AnyObject>,
+        ) -> Result<(), Id<NSError>>;
+
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURLQueryItem"))]
+        #[method_id(@__retain_semantics Other customKeyRequestValues)]
+        pub unsafe fn customKeyRequestValues(&self) -> Id<NSArray<NSURLQueryItem>>;
+
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURLQueryItem"))]
+        #[method(setCustomKeyRequestValues:)]
+        pub unsafe fn setCustomKeyRequestValues(
+            &self,
+            custom_key_request_values: &NSArray<NSURLQueryItem>,
+        );
+
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
+        ))]
+        #[method(setCustomKeyRequestHeaderClaims:returningError:_)]
+        pub unsafe fn setCustomKeyRequestHeaderClaims_returningError(
+            &self,
+            claims: &NSDictionary<NSString, AnyObject>,
+        ) -> Result<(), Id<NSError>>;
+
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
+        ))]
+        #[method(setCustomKeyRequestBodyClaims:returningError:_)]
+        pub unsafe fn setCustomKeyRequestBodyClaims_returningError(
+            &self,
+            claims: &NSDictionary<NSString, AnyObject>,
+        ) -> Result<(), Id<NSError>>;
     }
 );

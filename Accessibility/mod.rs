@@ -18,6 +18,8 @@ mod __AXCustomContent;
 mod __AXFoundation;
 #[path = "AXHearingUtilities.rs"]
 mod __AXHearingUtilities;
+#[path = "AXSettings.rs"]
+mod __AXSettings;
 
 #[cfg(feature = "Accessibility_AXCategoricalDataAxisDescriptor")]
 pub use self::__AXAudiograph::AXCategoricalDataAxisDescriptor;
@@ -50,6 +52,7 @@ pub use self::__AXBrailleMap::AXBrailleMapRenderer;
 pub use self::__AXCustomContent::AXCustomContent;
 pub use self::__AXCustomContent::AXCustomContentImportance;
 pub use self::__AXCustomContent::AXCustomContentProvider;
+pub use self::__AXCustomContent::AXCustomContentReturnBlock;
 pub use self::__AXCustomContent::{
     AXCustomContentImportanceDefault, AXCustomContentImportanceHigh,
 };
@@ -63,3 +66,7 @@ pub use self::__AXHearingUtilities::AXSupportsBidirectionalAXMFiHearingDeviceStr
 pub use self::__AXHearingUtilities::{
     AXHearingDeviceEarBoth, AXHearingDeviceEarLeft, AXHearingDeviceEarNone, AXHearingDeviceEarRight,
 };
+pub use self::__AXSettings::AXAnimatedImagesEnabled;
+pub use self::__AXSettings::AXAnimatedImagesEnabledDidChangeNotification;
+pub use self::__AXSettings::AXPrefersHorizontalTextLayout;
+pub use self::__AXSettings::AXPrefersHorizontalTextLayoutDidChangeNotification;

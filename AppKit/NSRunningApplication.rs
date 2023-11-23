@@ -9,6 +9,7 @@ ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSApplicationActivationOptions {
         NSApplicationActivateAllWindows = 1 << 0,
+        #[deprecated = "ignoringOtherApps is deprecated in macOS 14 and will have no effect."]
         NSApplicationActivateIgnoringOtherApps = 1 << 1,
     }
 );
@@ -90,6 +91,13 @@ extern_methods!(
 
         #[method(unhide)]
         pub unsafe fn unhide(&self) -> bool;
+
+        #[method(activateFromApplication:options:)]
+        pub unsafe fn activateFromApplication_options(
+            &self,
+            application: &NSRunningApplication,
+            options: NSApplicationActivationOptions,
+        ) -> bool;
 
         #[method(activateWithOptions:)]
         pub unsafe fn activateWithOptions(&self, options: NSApplicationActivationOptions) -> bool;

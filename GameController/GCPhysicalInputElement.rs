@@ -7,17 +7,17 @@ use crate::GameController::*;
 
 extern_protocol!(
     pub unsafe trait GCPhysicalInputElement: NSObjectProtocol {
-        #[cfg(feature = "Foundation_NSString")]
-        #[method_id(@__retain_semantics Other sfSymbolsName)]
-        unsafe fn sfSymbolsName(&self) -> Option<Id<NSString>>;
+        #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
+        #[method_id(@__retain_semantics Other aliases)]
+        unsafe fn aliases(&self) -> Id<NSSet<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localizedName)]
         unsafe fn localizedName(&self) -> Option<Id<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
-        #[method_id(@__retain_semantics Other aliases)]
-        unsafe fn aliases(&self) -> Id<NSSet<NSString>>;
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Other sfSymbolsName)]
+        unsafe fn sfSymbolsName(&self) -> Option<Id<NSString>>;
     }
 
     unsafe impl ProtocolType for dyn GCPhysicalInputElement {}

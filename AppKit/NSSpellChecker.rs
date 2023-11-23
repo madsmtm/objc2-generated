@@ -29,6 +29,8 @@ extern_static!(NSTextCheckingRegularExpressionsKey: &'static NSTextCheckingOptio
 
 extern_static!(NSTextCheckingSelectedRangeKey: &'static NSTextCheckingOptionKey);
 
+extern_static!(NSTextCheckingGenerateInlinePredictionsKey: &'static NSTextCheckingOptionKey);
+
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSCorrectionResponse {
@@ -356,6 +358,17 @@ extern_methods!(
         #[method(dismissCorrectionIndicatorForView:)]
         pub unsafe fn dismissCorrectionIndicatorForView(&self, view: &NSView);
 
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSTextCheckingResult"
+        ))]
+        #[method(showInlinePredictionForCandidates:client:)]
+        pub unsafe fn showInlinePredictionForCandidates_client(
+            &self,
+            candidates: &NSArray<NSTextCheckingResult>,
+            client: &ProtocolObject<dyn NSTextInputClient>,
+        );
+
         #[cfg(feature = "Foundation_NSString")]
         #[method(preventsAutocorrectionBeforeString:language:)]
         pub unsafe fn preventsAutocorrectionBeforeString_language(
@@ -427,6 +440,9 @@ extern_methods!(
         #[method(isAutomaticTextCompletionEnabled)]
         pub unsafe fn isAutomaticTextCompletionEnabled() -> bool;
 
+        #[method(isAutomaticInlinePredictionEnabled)]
+        pub unsafe fn isAutomaticInlinePredictionEnabled() -> bool;
+
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other language)]
         pub unsafe fn language(&self) -> Id<NSString>;
@@ -462,6 +478,8 @@ extern_static!(NSSpellCheckerDidChangeAutomaticCapitalizationNotification: &'sta
 extern_static!(NSSpellCheckerDidChangeAutomaticPeriodSubstitutionNotification: &'static NSNotificationName);
 
 extern_static!(NSSpellCheckerDidChangeAutomaticTextCompletionNotification: &'static NSNotificationName);
+
+extern_static!(NSSpellCheckerDidChangeAutomaticInlinePredictionNotification: &'static NSNotificationName);
 
 extern_methods!(
     /// NSDeprecated

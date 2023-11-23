@@ -5,18 +5,16 @@ use crate::Contacts::*;
 use crate::CoreLocation::*;
 use crate::Foundation::*;
 
-pub type CLBeaconMajorValue = u16;
-
-pub type CLBeaconMinorValue = u16;
-
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CoreLocation_CLBeaconIdentityConstraint")]
+    #[deprecated]
     pub struct CLBeaconIdentityConstraint;
 
     #[cfg(feature = "CoreLocation_CLBeaconIdentityConstraint")]
     unsafe impl ClassType for CLBeaconIdentityConstraint {
-        type Super = NSObject;
+        #[inherits(CLCondition, NSObject)]
+        type Super = CLBeaconIdentityCondition;
         type Mutability = InteriorMutable;
     }
 );
@@ -35,19 +33,13 @@ unsafe impl NSSecureCoding for CLBeaconIdentityConstraint {}
 
 extern_methods!(
     #[cfg(feature = "CoreLocation_CLBeaconIdentityConstraint")]
+    unsafe impl CLBeaconIdentityConstraint {}
+);
+
+extern_methods!(
+    /// Methods declared on superclass `CLBeaconIdentityCondition`
+    #[cfg(feature = "CoreLocation_CLBeaconIdentityConstraint")]
     unsafe impl CLBeaconIdentityConstraint {
-        #[cfg(feature = "Foundation_NSUUID")]
-        #[method_id(@__retain_semantics Other UUID)]
-        pub unsafe fn UUID(&self) -> Id<NSUUID>;
-
-        #[cfg(feature = "Foundation_NSNumber")]
-        #[method_id(@__retain_semantics Other major)]
-        pub unsafe fn major(&self) -> Option<Id<NSNumber>>;
-
-        #[cfg(feature = "Foundation_NSNumber")]
-        #[method_id(@__retain_semantics Other minor)]
-        pub unsafe fn minor(&self) -> Option<Id<NSNumber>>;
-
         #[cfg(feature = "Foundation_NSUUID")]
         #[method_id(@__retain_semantics Init initWithUUID:)]
         pub unsafe fn initWithUUID(this: Allocated<Self>, uuid: &NSUUID) -> Id<Self>;
@@ -72,7 +64,7 @@ extern_methods!(
 );
 
 extern_methods!(
-    /// Methods declared on superclass `NSObject`
+    /// Methods declared on superclass `CLCondition`
     #[cfg(feature = "CoreLocation_CLBeaconIdentityConstraint")]
     unsafe impl CLBeaconIdentityConstraint {
         #[method_id(@__retain_semantics Init init)]

@@ -42,6 +42,28 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other renderedContentURL)]
         pub unsafe fn renderedContentURL(&self) -> Id<NSURL>;
+
+        #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+        #[method_id(@__retain_semantics Other defaultRenderedContentType)]
+        pub unsafe fn defaultRenderedContentType(&self) -> Option<Id<UTType>>;
+
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "UniformTypeIdentifiers_UTType"
+        ))]
+        #[method_id(@__retain_semantics Other supportedRenderedContentTypes)]
+        pub unsafe fn supportedRenderedContentTypes(&self) -> Id<NSArray<UTType>>;
+
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSURL",
+            feature = "UniformTypeIdentifiers_UTType"
+        ))]
+        #[method_id(@__retain_semantics Other renderedContentURLForType:error:_)]
+        pub unsafe fn renderedContentURLForType_error(
+            &self,
+            r#type: &UTType,
+        ) -> Result<Id<NSURL>, Id<NSError>>;
     }
 );
 

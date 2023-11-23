@@ -19,6 +19,12 @@ extern_class!(
 );
 
 #[cfg(feature = "PhotoKit_PHPersistentChange")]
+unsafe impl Send for PHPersistentChange {}
+
+#[cfg(feature = "PhotoKit_PHPersistentChange")]
+unsafe impl Sync for PHPersistentChange {}
+
+#[cfg(feature = "PhotoKit_PHPersistentChange")]
 unsafe impl NSObjectProtocol for PHPersistentChange {}
 
 extern_methods!(

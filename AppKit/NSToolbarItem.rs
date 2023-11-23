@@ -241,9 +241,13 @@ extern_static!(NSToolbarPrintItemIdentifier: &'static NSToolbarItemIdentifier);
 
 extern_static!(NSToolbarToggleSidebarItemIdentifier: &'static NSToolbarItemIdentifier);
 
+extern_static!(NSToolbarToggleInspectorItemIdentifier: &'static NSToolbarItemIdentifier);
+
 extern_static!(NSToolbarCloudSharingItemIdentifier: &'static NSToolbarItemIdentifier);
 
 extern_static!(NSToolbarSidebarTrackingSeparatorItemIdentifier: &'static NSToolbarItemIdentifier);
+
+extern_static!(NSToolbarInspectorTrackingSeparatorItemIdentifier: &'static NSToolbarItemIdentifier);
 
 extern_static!(NSToolbarSeparatorItemIdentifier: &'static NSToolbarItemIdentifier);
 

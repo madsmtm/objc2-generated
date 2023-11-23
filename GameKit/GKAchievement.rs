@@ -113,14 +113,14 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKAchievement")]
     unsafe impl GKAchievement {
         #[cfg(feature = "Foundation_NSError")]
-        #[deprecated = "Use +reportAchievements:withCompletionHandler:"]
+        #[deprecated]
         #[method(reportAchievementWithCompletionHandler:)]
         pub unsafe fn reportAchievementWithCompletionHandler(
             &self,
             completion_handler: Option<&Block<(*mut NSError,), ()>>,
         );
 
-        #[deprecated = "Use isHidden on the GKAchievementDescription class instead"]
+        #[deprecated]
         #[method(isHidden)]
         pub unsafe fn isHidden(&self) -> bool;
     }
@@ -131,6 +131,7 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKAchievement")]
     unsafe impl GKAchievement {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Init initWithIdentifier:forPlayer:)]
         pub unsafe fn initWithIdentifier_forPlayer(
             this: Allocated<Self>,
@@ -139,6 +140,7 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other playerID)]
         pub unsafe fn playerID(&self) -> Option<Id<NSString>>;
     }

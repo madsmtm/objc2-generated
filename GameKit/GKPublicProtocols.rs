@@ -6,10 +6,10 @@ use crate::Foundation::*;
 use crate::GameKit::*;
 
 extern_protocol!(
-    #[deprecated = "Use MCSession in association with MCSessionDelegate from the MultipeerConnectivity framework instead"]
+    #[deprecated]
     pub unsafe trait GKSessionDelegate: NSObjectProtocol {
         #[cfg(all(feature = "Foundation_NSString", feature = "GameKit_GKSession"))]
-        #[deprecated = "Use MCSession in association with MCSessionDelegate from the MultipeerConnectivity framework instead"]
+        #[deprecated]
         #[optional]
         #[method(session:peer:didChangeState:)]
         unsafe fn session_peer_didChangeState(
@@ -20,7 +20,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "Foundation_NSString", feature = "GameKit_GKSession"))]
-        #[deprecated = "Use MCSession in association with MCSessionDelegate from the MultipeerConnectivity framework instead"]
+        #[deprecated]
         #[optional]
         #[method(session:didReceiveConnectionRequestFromPeer:)]
         unsafe fn session_didReceiveConnectionRequestFromPeer(
@@ -34,7 +34,7 @@ extern_protocol!(
             feature = "Foundation_NSString",
             feature = "GameKit_GKSession"
         ))]
-        #[deprecated = "Use MCSession in association with MCSessionDelegate from the MultipeerConnectivity framework instead"]
+        #[deprecated]
         #[optional]
         #[method(session:connectionWithPeerFailed:withError:)]
         unsafe fn session_connectionWithPeerFailed_withError(
@@ -45,7 +45,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "GameKit_GKSession"))]
-        #[deprecated = "Use MCSession in association with MCSessionDelegate from the MultipeerConnectivity framework instead"]
+        #[deprecated]
         #[optional]
         #[method(session:didFailWithError:)]
         unsafe fn session_didFailWithError(&self, session: &GKSession, error: &NSError);
@@ -55,12 +55,14 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    #[deprecated]
     pub unsafe trait GKVoiceChatClient: NSObjectProtocol {
         #[cfg(all(
             feature = "Foundation_NSData",
             feature = "Foundation_NSString",
             feature = "GameKit_GKVoiceChatService"
         ))]
+        #[deprecated]
         #[method(voiceChatService:sendData:toParticipantID:)]
         unsafe fn voiceChatService_sendData_toParticipantID(
             &self,
@@ -70,6 +72,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other participantID)]
         unsafe fn participantID(&self) -> Id<NSString>;
 
@@ -78,6 +81,7 @@ extern_protocol!(
             feature = "Foundation_NSString",
             feature = "GameKit_GKVoiceChatService"
         ))]
+        #[deprecated]
         #[optional]
         #[method(voiceChatService:sendRealTimeData:toParticipantID:)]
         unsafe fn voiceChatService_sendRealTimeData_toParticipantID(
@@ -91,6 +95,7 @@ extern_protocol!(
             feature = "Foundation_NSString",
             feature = "GameKit_GKVoiceChatService"
         ))]
+        #[deprecated]
         #[optional]
         #[method(voiceChatService:didStartWithParticipantID:)]
         unsafe fn voiceChatService_didStartWithParticipantID(
@@ -104,6 +109,7 @@ extern_protocol!(
             feature = "Foundation_NSString",
             feature = "GameKit_GKVoiceChatService"
         ))]
+        #[deprecated]
         #[optional]
         #[method(voiceChatService:didNotStartWithParticipantID:error:)]
         unsafe fn voiceChatService_didNotStartWithParticipantID_error(
@@ -118,6 +124,7 @@ extern_protocol!(
             feature = "Foundation_NSString",
             feature = "GameKit_GKVoiceChatService"
         ))]
+        #[deprecated]
         #[optional]
         #[method(voiceChatService:didStopWithParticipantID:error:)]
         unsafe fn voiceChatService_didStopWithParticipantID_error(
@@ -131,6 +138,7 @@ extern_protocol!(
             feature = "Foundation_NSString",
             feature = "GameKit_GKVoiceChatService"
         ))]
+        #[deprecated]
         #[optional]
         #[method(voiceChatService:didReceiveInvitationFromParticipantID:callID:)]
         unsafe fn voiceChatService_didReceiveInvitationFromParticipantID_callID(

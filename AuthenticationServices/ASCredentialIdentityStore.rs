@@ -52,10 +52,19 @@ extern_methods!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSError"
         ))]
+        #[deprecated]
         #[method(saveCredentialIdentities:completion:)]
         pub unsafe fn saveCredentialIdentities_completion(
             &self,
             credential_identities: &NSArray<ASPasswordCredentialIdentity>,
+            completion: Option<&Block<(Bool, *mut NSError), ()>>,
+        );
+
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSError"))]
+        #[method(saveCredentialIdentityEntries:completion:)]
+        pub unsafe fn saveCredentialIdentityEntries_completion(
+            &self,
+            credential_identities: &NSArray<ProtocolObject<dyn ASCredentialIdentity>>,
             completion: Option<&Block<(Bool, *mut NSError), ()>>,
         );
 
@@ -64,10 +73,19 @@ extern_methods!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSError"
         ))]
+        #[deprecated]
         #[method(removeCredentialIdentities:completion:)]
         pub unsafe fn removeCredentialIdentities_completion(
             &self,
             credential_identities: &NSArray<ASPasswordCredentialIdentity>,
+            completion: Option<&Block<(Bool, *mut NSError), ()>>,
+        );
+
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSError"))]
+        #[method(removeCredentialIdentityEntries:completion:)]
+        pub unsafe fn removeCredentialIdentityEntries_completion(
+            &self,
+            credential_identities: &NSArray<ProtocolObject<dyn ASCredentialIdentity>>,
             completion: Option<&Block<(Bool, *mut NSError), ()>>,
         );
 
@@ -83,10 +101,19 @@ extern_methods!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSError"
         ))]
+        #[deprecated]
         #[method(replaceCredentialIdentitiesWithIdentities:completion:)]
         pub unsafe fn replaceCredentialIdentitiesWithIdentities_completion(
             &self,
             new_credential_identities: &NSArray<ASPasswordCredentialIdentity>,
+            completion: Option<&Block<(Bool, *mut NSError), ()>>,
+        );
+
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSError"))]
+        #[method(replaceCredentialIdentityEntries:completion:)]
+        pub unsafe fn replaceCredentialIdentityEntries_completion(
+            &self,
+            new_credential_identities: &NSArray<ProtocolObject<dyn ASCredentialIdentity>>,
             completion: Option<&Block<(Bool, *mut NSError), ()>>,
         );
     }

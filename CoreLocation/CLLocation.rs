@@ -170,6 +170,12 @@ extern_class!(
 );
 
 #[cfg(feature = "CoreLocation_CLLocation")]
+unsafe impl Send for CLLocation {}
+
+#[cfg(feature = "CoreLocation_CLLocation")]
+unsafe impl Sync for CLLocation {}
+
+#[cfg(feature = "CoreLocation_CLLocation")]
 unsafe impl NSCoding for CLLocation {}
 
 #[cfg(feature = "CoreLocation_CLLocation")]

@@ -98,11 +98,11 @@ extern_methods!(
         #[method(setDefaultNumberOfPlayers:)]
         pub unsafe fn setDefaultNumberOfPlayers(&self, default_number_of_players: NSUInteger);
 
-        #[deprecated = "Set the matchmakingMode of GKMatchmakerViewController instead."]
+        #[deprecated]
         #[method(restrictToAutomatch)]
         pub unsafe fn restrictToAutomatch(&self) -> bool;
 
-        #[deprecated = "Set the matchmakingMode of GKMatchmakerViewController instead."]
+        #[deprecated]
         #[method(setRestrictToAutomatch:)]
         pub unsafe fn setRestrictToAutomatch(&self, restrict_to_automatch: bool);
 
@@ -122,14 +122,14 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSString")]
-        #[deprecated = "use recipientResponseHandler"]
+        #[deprecated]
         #[method(inviteeResponseHandler)]
         pub unsafe fn inviteeResponseHandler(
             &self,
         ) -> *mut Block<(NonNull<NSString>, GKInviteeResponse), ()>;
 
         #[cfg(feature = "Foundation_NSString")]
-        #[deprecated = "use recipientResponseHandler"]
+        #[deprecated]
         #[method(setInviteeResponseHandler:)]
         pub unsafe fn setInviteeResponseHandler(
             &self,
@@ -140,12 +140,12 @@ extern_methods!(
         pub unsafe fn maxPlayersAllowedForMatchOfType(match_type: GKMatchType) -> NSUInteger;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
-        #[deprecated = "This property is obsolete, use recipients instead"]
+        #[deprecated]
         #[method_id(@__retain_semantics Other playersToInvite)]
         pub unsafe fn playersToInvite(&self) -> Option<Id<NSArray<NSString>>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
-        #[deprecated = "This property is obsolete, use recipients instead"]
+        #[deprecated]
         #[method(setPlayersToInvite:)]
         pub unsafe fn setPlayersToInvite(&self, players_to_invite: Option<&NSArray<NSString>>);
     }
@@ -195,7 +195,7 @@ extern_methods!(
         pub unsafe fn playerAttributes(&self) -> u32;
 
         #[cfg(feature = "Foundation_NSString")]
-        #[deprecated = "This property is obsolete, use sender instead"]
+        #[deprecated]
         #[method_id(@__retain_semantics Other inviter)]
         pub unsafe fn inviter(&self) -> Id<NSString>;
     }
@@ -234,6 +234,7 @@ extern_protocol!(
             feature = "Foundation_NSString",
             feature = "GameKit_GKPlayer"
         ))]
+        #[deprecated]
         #[optional]
         #[method(player:didRequestMatchWithPlayers:)]
         unsafe fn player_didRequestMatchWithPlayers(
@@ -382,12 +383,12 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKMatchmaker")]
     unsafe impl GKMatchmaker {
         #[cfg(all(feature = "Foundation_NSArray", feature = "GameKit_GKInvite"))]
-        #[deprecated = "Use registerListener on GKLocalPlayer to register an object that implements the GKInviteEventListenerProtocol instead"]
+        #[deprecated = "Use registerListener on GKLocalPlayer to register an object that implements the GKInviteEventListenerProtocol instead."]
         #[method(inviteHandler)]
         pub unsafe fn inviteHandler(&self) -> *mut Block<(NonNull<GKInvite>, *mut NSArray), ()>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "GameKit_GKInvite"))]
-        #[deprecated = "Use registerListener on GKLocalPlayer to register an object that implements the GKInviteEventListenerProtocol instead"]
+        #[deprecated = "Use registerListener on GKLocalPlayer to register an object that implements the GKInviteEventListenerProtocol instead."]
         #[method(setInviteHandler:)]
         pub unsafe fn setInviteHandler(
             &self,
@@ -401,7 +402,7 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKMatchmaker")]
     unsafe impl GKMatchmaker {
         #[cfg(feature = "Foundation_NSString")]
-        #[deprecated = "This is never invoked and its implementation does nothing, Use startBrowsingForNearbyPlayersWithHandler: instead"]
+        #[deprecated]
         #[method(startBrowsingForNearbyPlayersWithReachableHandler:)]
         pub unsafe fn startBrowsingForNearbyPlayersWithReachableHandler(
             &self,
@@ -409,7 +410,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSString")]
-        #[deprecated = "This is never invoked and its implementation does nothing, use cancelPendingInviteToPlayer:"]
+        #[deprecated]
         #[method(cancelInviteToPlayer:)]
         pub unsafe fn cancelInviteToPlayer(&self, player_id: &NSString);
 
@@ -419,7 +420,7 @@ extern_methods!(
             feature = "Foundation_NSString",
             feature = "GameKit_GKMatchRequest"
         ))]
-        #[deprecated = "This is never invoked and its implementation does nothing, use findPlayersForHostedRequest:"]
+        #[deprecated]
         #[method(findPlayersForHostedMatchRequest:withCompletionHandler:)]
         pub unsafe fn findPlayersForHostedMatchRequest_withCompletionHandler(
             &self,

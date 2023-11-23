@@ -24,7 +24,7 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKBasePlayer")]
     unsafe impl GKBasePlayer {
         #[cfg(feature = "Foundation_NSString")]
-        #[deprecated = "use the teamPlayerID property to identify a player"]
+        #[deprecated = "Use either the gamePlayerID or teamPlayerID property to identify a player."]
         #[method_id(@__retain_semantics Other playerID)]
         pub unsafe fn playerID(&self) -> Option<Id<NSString>>;
 

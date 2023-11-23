@@ -151,6 +151,16 @@ extern_methods!(
         ) -> Id<NSURLSessionUploadTask>;
 
         #[cfg(all(
+            feature = "Foundation_NSData",
+            feature = "Foundation_NSURLSessionUploadTask"
+        ))]
+        #[method_id(@__retain_semantics Other uploadTaskWithResumeData:)]
+        pub unsafe fn uploadTaskWithResumeData(
+            &self,
+            resume_data: &NSData,
+        ) -> Id<NSURLSessionUploadTask>;
+
+        #[cfg(all(
             feature = "Foundation_NSURLRequest",
             feature = "Foundation_NSURLSessionUploadTask"
         ))]
@@ -309,6 +319,19 @@ extern_methods!(
             &self,
             request: &NSURLRequest,
             body_data: Option<&NSData>,
+            completion_handler: &Block<(*mut NSData, *mut NSURLResponse, *mut NSError), ()>,
+        ) -> Id<NSURLSessionUploadTask>;
+
+        #[cfg(all(
+            feature = "Foundation_NSData",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSURLResponse",
+            feature = "Foundation_NSURLSessionUploadTask"
+        ))]
+        #[method_id(@__retain_semantics Other uploadTaskWithResumeData:completionHandler:)]
+        pub unsafe fn uploadTaskWithResumeData_completionHandler(
+            &self,
+            resume_data: &NSData,
             completion_handler: &Block<(*mut NSData, *mut NSURLResponse, *mut NSError), ()>,
         ) -> Id<NSURLSessionUploadTask>;
 
@@ -592,6 +615,13 @@ extern_methods!(
         #[deprecated = "Please use -[NSURLSession uploadTaskWithStreamedRequest:] or other NSURLSession methods to create instances"]
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
+
+        #[cfg(feature = "Foundation_NSData")]
+        #[method(cancelByProducingResumeData:)]
+        pub unsafe fn cancelByProducingResumeData(
+            &self,
+            completion_handler: &Block<(*mut NSData,), ()>,
+        );
     }
 );
 
@@ -1302,6 +1332,21 @@ extern_protocol!(
         );
 
         #[cfg(all(
+            feature = "Foundation_NSInputStream",
+            feature = "Foundation_NSURLSession",
+            feature = "Foundation_NSURLSessionTask"
+        ))]
+        #[optional]
+        #[method(URLSession:task:needNewBodyStreamFromOffset:completionHandler:)]
+        unsafe fn URLSession_task_needNewBodyStreamFromOffset_completionHandler(
+            &self,
+            session: &NSURLSession,
+            task: &NSURLSessionTask,
+            offset: i64,
+            completion_handler: &Block<(*mut NSInputStream,), ()>,
+        );
+
+        #[cfg(all(
             feature = "Foundation_NSURLSession",
             feature = "Foundation_NSURLSessionTask"
         ))]
@@ -1314,6 +1359,20 @@ extern_protocol!(
             bytes_sent: i64,
             total_bytes_sent: i64,
             total_bytes_expected_to_send: i64,
+        );
+
+        #[cfg(all(
+            feature = "Foundation_NSHTTPURLResponse",
+            feature = "Foundation_NSURLSession",
+            feature = "Foundation_NSURLSessionTask"
+        ))]
+        #[optional]
+        #[method(URLSession:task:didReceiveInformationalResponse:)]
+        unsafe fn URLSession_task_didReceiveInformationalResponse(
+            &self,
+            session: &NSURLSession,
+            task: &NSURLSessionTask,
+            response: &NSHTTPURLResponse,
         );
 
         #[cfg(all(
@@ -1568,6 +1627,8 @@ extern_protocol!(
 );
 
 extern_static!(NSURLSessionDownloadTaskResumeData: &'static NSString);
+
+extern_static!(NSURLSessionUploadTaskResumeData: &'static NSString);
 
 extern_methods!(
     /// NSURLSessionDeprecated

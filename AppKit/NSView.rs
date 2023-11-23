@@ -592,6 +592,12 @@ extern_methods!(
         #[method(setShadow:)]
         pub unsafe fn setShadow(&self, shadow: Option<&NSShadow>);
 
+        #[method(clipsToBounds)]
+        pub unsafe fn clipsToBounds(&self) -> bool;
+
+        #[method(setClipsToBounds:)]
+        pub unsafe fn setClipsToBounds(&self, clips_to_bounds: bool);
+
         #[method(postsBoundsChangedNotifications)]
         pub unsafe fn postsBoundsChangedNotifications(&self) -> bool;
 
@@ -1102,6 +1108,12 @@ extern_methods!(
         #[method(removeTrackingRect:)]
         pub fn removeTrackingRect(&self, tag: NSTrackingRectTag);
     }
+);
+
+extern_methods!(
+    /// NSDisplayLink
+    #[cfg(feature = "AppKit_NSView")]
+    unsafe impl NSView {}
 );
 
 extern_methods!(

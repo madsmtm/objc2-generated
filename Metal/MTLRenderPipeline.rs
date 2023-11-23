@@ -1162,6 +1162,39 @@ extern_methods!(
             stencil_attachment_pixel_format: MTLPixelFormat,
         );
 
+        #[cfg(feature = "Metal_MTLLinkedFunctions")]
+        #[method_id(@__retain_semantics Other objectLinkedFunctions)]
+        pub unsafe fn objectLinkedFunctions(&self) -> Id<MTLLinkedFunctions>;
+
+        #[cfg(feature = "Metal_MTLLinkedFunctions")]
+        #[method(setObjectLinkedFunctions:)]
+        pub unsafe fn setObjectLinkedFunctions(
+            &self,
+            object_linked_functions: Option<&MTLLinkedFunctions>,
+        );
+
+        #[cfg(feature = "Metal_MTLLinkedFunctions")]
+        #[method_id(@__retain_semantics Other meshLinkedFunctions)]
+        pub unsafe fn meshLinkedFunctions(&self) -> Id<MTLLinkedFunctions>;
+
+        #[cfg(feature = "Metal_MTLLinkedFunctions")]
+        #[method(setMeshLinkedFunctions:)]
+        pub unsafe fn setMeshLinkedFunctions(
+            &self,
+            mesh_linked_functions: Option<&MTLLinkedFunctions>,
+        );
+
+        #[cfg(feature = "Metal_MTLLinkedFunctions")]
+        #[method_id(@__retain_semantics Other fragmentLinkedFunctions)]
+        pub unsafe fn fragmentLinkedFunctions(&self) -> Id<MTLLinkedFunctions>;
+
+        #[cfg(feature = "Metal_MTLLinkedFunctions")]
+        #[method(setFragmentLinkedFunctions:)]
+        pub unsafe fn setFragmentLinkedFunctions(
+            &self,
+            fragment_linked_functions: Option<&MTLLinkedFunctions>,
+        );
+
         #[method(reset)]
         pub unsafe fn reset(&self);
     }

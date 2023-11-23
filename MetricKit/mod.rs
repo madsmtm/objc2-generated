@@ -34,6 +34,8 @@ mod __MXCallStackTree;
 mod __MXCellularConditionMetric;
 #[path = "MXCrashDiagnostic.rs"]
 mod __MXCrashDiagnostic;
+#[path = "MXCrashDiagnosticObjectiveCExceptionReason.rs"]
+mod __MXCrashDiagnosticObjectiveCExceptionReason;
 #[path = "MXDiagnostic.rs"]
 mod __MXDiagnostic;
 #[path = "MXDiagnosticPayload.rs"]
@@ -70,6 +72,8 @@ mod __MXNetworkTransferMetric;
 mod __MXSignpost;
 #[path = "MXSignpostMetric.rs"]
 mod __MXSignpostMetric;
+#[path = "MXSignpostRecord.rs"]
+mod __MXSignpostRecord;
 #[path = "MXSignpost_Private.rs"]
 mod __MXSignpost_Private;
 #[path = "MXUnit.rs"]
@@ -103,6 +107,8 @@ pub use self::__MXCallStackTree::MXCallStackTree;
 pub use self::__MXCellularConditionMetric::MXCellularConditionMetric;
 #[cfg(feature = "MetricKit_MXCrashDiagnostic")]
 pub use self::__MXCrashDiagnostic::MXCrashDiagnostic;
+#[cfg(feature = "MetricKit_MXCrashDiagnosticObjectiveCExceptionReason")]
+pub use self::__MXCrashDiagnosticObjectiveCExceptionReason::MXCrashDiagnosticObjectiveCExceptionReason;
 #[cfg(feature = "MetricKit_MXDiagnostic")]
 pub use self::__MXDiagnostic::MXDiagnostic;
 #[cfg(feature = "MetricKit_MXDiagnosticPayload")]
@@ -146,6 +152,8 @@ pub use self::__MXNetworkTransferMetric::MXNetworkTransferMetric;
 pub use self::__MXSignpostMetric::MXSignpostIntervalData;
 #[cfg(feature = "MetricKit_MXSignpostMetric")]
 pub use self::__MXSignpostMetric::MXSignpostMetric;
+#[cfg(feature = "MetricKit_MXSignpostRecord")]
+pub use self::__MXSignpostRecord::MXSignpostRecord;
 pub(crate) use self::__MXSignpost_Private::_MXSignpostMetricsSnapshot;
 #[cfg(feature = "MetricKit_MXUnitAveragePixelLuminance")]
 pub use self::__MXUnit::MXUnitAveragePixelLuminance;

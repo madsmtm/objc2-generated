@@ -27,6 +27,12 @@ extern_static!(WKWebsiteDataTypeServiceWorkerRegistrations: &'static NSString);
 
 extern_static!(WKWebsiteDataTypeFileSystem: &'static NSString);
 
+extern_static!(WKWebsiteDataTypeSearchFieldRecentSearches: &'static NSString);
+
+extern_static!(WKWebsiteDataTypeMediaKeys: &'static NSString);
+
+extern_static!(WKWebsiteDataTypeHashSalt: &'static NSString);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "WebKit_WKWebsiteDataRecord")]

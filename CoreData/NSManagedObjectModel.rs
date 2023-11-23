@@ -195,6 +195,21 @@ extern_methods!(
         ))]
         #[method_id(@__retain_semantics Other entityVersionHashesByName)]
         pub unsafe fn entityVersionHashesByName(&self) -> Id<NSDictionary<NSString, NSData>>;
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Other versionChecksum)]
+        pub unsafe fn versionChecksum(&self) -> Id<NSString>;
+
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSURL"
+        ))]
+        #[method_id(@__retain_semantics Other checksumsForVersionedModelAtURL:error:_)]
+        pub unsafe fn checksumsForVersionedModelAtURL_error(
+            model_url: &NSURL,
+        ) -> Result<Id<NSDictionary<NSString, NSString>>, Id<NSError>>;
     }
 );
 

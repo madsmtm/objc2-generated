@@ -8,12 +8,20 @@ extern "C" {}
 
 #[path = "CLAvailability.rs"]
 mod __CLAvailability;
+#[path = "CLBackgroundActivitySession.rs"]
+mod __CLBackgroundActivitySession;
+#[path = "CLBeaconIdentityCondition.rs"]
+mod __CLBeaconIdentityCondition;
 #[path = "CLBeaconIdentityConstraint.rs"]
 mod __CLBeaconIdentityConstraint;
 #[path = "CLBeaconRegion.rs"]
 mod __CLBeaconRegion;
+#[path = "CLCircularGeographicCondition.rs"]
+mod __CLCircularGeographicCondition;
 #[path = "CLCircularRegion.rs"]
 mod __CLCircularRegion;
+#[path = "CLCondition.rs"]
+mod __CLCondition;
 #[path = "CLError.rs"]
 mod __CLError;
 #[path = "CLErrorDomain.rs"]
@@ -34,6 +42,16 @@ mod __CLLocationManager_CLVisitExtensions;
 mod __CLLocationPushServiceError;
 #[path = "CLLocationPushServiceExtension.rs"]
 mod __CLLocationPushServiceExtension;
+#[path = "CLLocationUpdater.rs"]
+mod __CLLocationUpdater;
+#[path = "CLMonitor.rs"]
+mod __CLMonitor;
+#[path = "CLMonitorConfiguration.rs"]
+mod __CLMonitorConfiguration;
+#[path = "CLMonitoringEvent.rs"]
+mod __CLMonitoringEvent;
+#[path = "CLMonitoringRecord.rs"]
+mod __CLMonitoringRecord;
 #[path = "CLPlacemark.rs"]
 mod __CLPlacemark;
 #[path = "CLRegion.rs"]
@@ -41,16 +59,24 @@ mod __CLRegion;
 #[path = "CLVisit.rs"]
 mod __CLVisit;
 
+#[cfg(feature = "CoreLocation_CLBackgroundActivitySession")]
+pub use self::__CLBackgroundActivitySession::CLBackgroundActivitySession;
+#[cfg(feature = "CoreLocation_CLBeaconIdentityCondition")]
+pub use self::__CLBeaconIdentityCondition::CLBeaconIdentityCondition;
+pub use self::__CLBeaconIdentityCondition::CLBeaconMajorValue;
+pub use self::__CLBeaconIdentityCondition::CLBeaconMinorValue;
 #[cfg(feature = "CoreLocation_CLBeaconIdentityConstraint")]
 pub use self::__CLBeaconIdentityConstraint::CLBeaconIdentityConstraint;
-pub use self::__CLBeaconIdentityConstraint::CLBeaconMajorValue;
-pub use self::__CLBeaconIdentityConstraint::CLBeaconMinorValue;
 #[cfg(feature = "CoreLocation_CLBeacon")]
 pub use self::__CLBeaconRegion::CLBeacon;
 #[cfg(feature = "CoreLocation_CLBeaconRegion")]
 pub use self::__CLBeaconRegion::CLBeaconRegion;
+#[cfg(feature = "CoreLocation_CLCircularGeographicCondition")]
+pub use self::__CLCircularGeographicCondition::CLCircularGeographicCondition;
 #[cfg(feature = "CoreLocation_CLCircularRegion")]
 pub use self::__CLCircularRegion::CLCircularRegion;
+#[cfg(feature = "CoreLocation_CLCondition")]
+pub use self::__CLCondition::CLCondition;
 pub use self::__CLError::kCLErrorUserInfoAlternateRegionKey;
 pub use self::__CLError::CLError;
 pub use self::__CLError::{
@@ -129,6 +155,28 @@ pub use self::__CLLocationPushServiceError::{
     CLLocationPushServiceErrorUnsupportedPlatform,
 };
 pub use self::__CLLocationPushServiceExtension::CLLocationPushServiceExtension;
+pub use self::__CLLocationUpdater::CLLiveUpdateConfiguration;
+#[cfg(feature = "CoreLocation_CLLocationUpdater")]
+pub use self::__CLLocationUpdater::CLLocationUpdater;
+#[cfg(feature = "CoreLocation_CLUpdate")]
+pub use self::__CLLocationUpdater::CLUpdate;
+pub use self::__CLLocationUpdater::{
+    CLLiveUpdateConfigurationAirborne, CLLiveUpdateConfigurationAutomotiveNavigation,
+    CLLiveUpdateConfigurationDefault, CLLiveUpdateConfigurationFitness,
+    CLLiveUpdateConfigurationOtherNavigation,
+};
+#[cfg(feature = "CoreLocation_CLMonitor")]
+pub use self::__CLMonitor::CLMonitor;
+#[cfg(feature = "CoreLocation_CLMonitorConfiguration")]
+pub use self::__CLMonitorConfiguration::CLMonitorConfiguration;
+#[cfg(feature = "CoreLocation_CLMonitoringEvent")]
+pub use self::__CLMonitoringEvent::CLMonitoringEvent;
+pub use self::__CLMonitoringEvent::CLMonitoringState;
+pub use self::__CLMonitoringEvent::{
+    CLMonitoringStateSatisfied, CLMonitoringStateUnknown, CLMonitoringStateUnsatisfied,
+};
+#[cfg(feature = "CoreLocation_CLMonitoringRecord")]
+pub use self::__CLMonitoringRecord::CLMonitoringRecord;
 #[cfg(feature = "CoreLocation_CLPlacemark")]
 pub use self::__CLPlacemark::CLPlacemark;
 pub use self::__CLRegion::CLProximity;

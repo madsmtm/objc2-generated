@@ -59,6 +59,8 @@ ns_enum!(
         MTLAttributeFormatUShortNormalized = 51,
         MTLAttributeFormatShortNormalized = 52,
         MTLAttributeFormatHalf = 53,
+        MTLAttributeFormatFloatRG11B10 = 54,
+        MTLAttributeFormatFloatRGB9E5 = 55,
     }
 );
 

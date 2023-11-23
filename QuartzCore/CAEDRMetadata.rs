@@ -49,6 +49,10 @@ extern_methods!(
             scale: c_float,
         ) -> Id<CAEDRMetadata>;
 
+        #[cfg(feature = "Foundation_NSData")]
+        #[method_id(@__retain_semantics Other HLGMetadataWithAmbientViewingEnvironment:)]
+        pub unsafe fn HLGMetadataWithAmbientViewingEnvironment(data: &NSData) -> Id<CAEDRMetadata>;
+
         #[method_id(@__retain_semantics Other HLGMetadata)]
         pub unsafe fn HLGMetadata() -> Id<CAEDRMetadata>;
 

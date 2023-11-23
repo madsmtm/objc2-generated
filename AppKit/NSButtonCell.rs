@@ -24,19 +24,36 @@ ns_enum!(
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSBezelStyle {
-        NSBezelStyleRounded = 1,
-        NSBezelStyleRegularSquare = 2,
+        NSBezelStyleAutomatic = 0,
+        NSBezelStylePush = 1,
+        NSBezelStyleFlexiblePush = 2,
         NSBezelStyleDisclosure = 5,
-        NSBezelStyleShadowlessSquare = 6,
         NSBezelStyleCircular = 7,
-        NSBezelStyleTexturedSquare = 8,
         NSBezelStyleHelpButton = 9,
         NSBezelStyleSmallSquare = 10,
-        NSBezelStyleTexturedRounded = 11,
-        NSBezelStyleRoundRect = 12,
-        NSBezelStyleRecessed = 13,
-        NSBezelStyleRoundedDisclosure = 14,
-        NSBezelStyleInline = 15,
+        NSBezelStyleToolbar = 11,
+        NSBezelStyleAccessoryBarAction = 12,
+        NSBezelStyleAccessoryBar = 13,
+        NSBezelStylePushDisclosure = 14,
+        NSBezelStyleBadge = 15,
+        #[deprecated]
+        NSBezelStyleShadowlessSquare = 6,
+        #[deprecated]
+        NSBezelStyleTexturedSquare = 8,
+        #[deprecated]
+        NSBezelStyleRounded = NSBezelStylePush,
+        #[deprecated]
+        NSBezelStyleRegularSquare = NSBezelStyleFlexiblePush,
+        #[deprecated]
+        NSBezelStyleTexturedRounded = NSBezelStyleToolbar,
+        #[deprecated]
+        NSBezelStyleRoundRect = NSBezelStyleAccessoryBarAction,
+        #[deprecated]
+        NSBezelStyleRecessed = NSBezelStyleAccessoryBar,
+        #[deprecated]
+        NSBezelStyleRoundedDisclosure = NSBezelStylePushDisclosure,
+        #[deprecated]
+        NSBezelStyleInline = NSBezelStyleBadge,
     }
 );
 
@@ -318,9 +335,9 @@ extern_static!(NSMomentaryPushButton: NSButtonType = NSButtonTypeMomentaryLight)
 
 extern_static!(NSMomentaryLight: NSButtonType = NSButtonTypeMomentaryPushIn);
 
-extern_static!(NSRoundedBezelStyle: NSBezelStyle = NSBezelStyleRounded);
+extern_static!(NSRoundedBezelStyle: NSBezelStyle = NSBezelStylePush);
 
-extern_static!(NSRegularSquareBezelStyle: NSBezelStyle = NSBezelStyleRegularSquare);
+extern_static!(NSRegularSquareBezelStyle: NSBezelStyle = NSBezelStyleFlexiblePush);
 
 extern_static!(NSDisclosureBezelStyle: NSBezelStyle = NSBezelStyleDisclosure);
 
@@ -334,15 +351,15 @@ extern_static!(NSHelpButtonBezelStyle: NSBezelStyle = NSBezelStyleHelpButton);
 
 extern_static!(NSSmallSquareBezelStyle: NSBezelStyle = NSBezelStyleSmallSquare);
 
-extern_static!(NSTexturedRoundedBezelStyle: NSBezelStyle = NSBezelStyleTexturedRounded);
+extern_static!(NSTexturedRoundedBezelStyle: NSBezelStyle = NSBezelStyleToolbar);
 
-extern_static!(NSRoundRectBezelStyle: NSBezelStyle = NSBezelStyleRoundRect);
+extern_static!(NSRoundRectBezelStyle: NSBezelStyle = NSBezelStyleAccessoryBarAction);
 
-extern_static!(NSRecessedBezelStyle: NSBezelStyle = NSBezelStyleRecessed);
+extern_static!(NSRecessedBezelStyle: NSBezelStyle = NSBezelStyleAccessoryBar);
 
-extern_static!(NSRoundedDisclosureBezelStyle: NSBezelStyle = NSBezelStyleRoundedDisclosure);
+extern_static!(NSRoundedDisclosureBezelStyle: NSBezelStyle = NSBezelStylePushDisclosure);
 
-extern_static!(NSInlineBezelStyle: NSBezelStyle = NSBezelStyleInline);
+extern_static!(NSInlineBezelStyle: NSBezelStyle = NSBezelStyleBadge);
 
 extern_static!(NSSmallIconButtonBezelStyle: NSBezelStyle = 2);
 

@@ -19,6 +19,12 @@ extern_class!(
 );
 
 #[cfg(feature = "PhotoKit_PHCloudIdentifier")]
+unsafe impl Send for PHCloudIdentifier {}
+
+#[cfg(feature = "PhotoKit_PHCloudIdentifier")]
+unsafe impl Sync for PHCloudIdentifier {}
+
+#[cfg(feature = "PhotoKit_PHCloudIdentifier")]
 unsafe impl NSCoding for PHCloudIdentifier {}
 
 #[cfg(feature = "PhotoKit_PHCloudIdentifier")]
@@ -72,6 +78,12 @@ extern_class!(
 );
 
 #[cfg(feature = "PhotoKit_PHCloudIdentifierMapping")]
+unsafe impl Send for PHCloudIdentifierMapping {}
+
+#[cfg(feature = "PhotoKit_PHCloudIdentifierMapping")]
+unsafe impl Sync for PHCloudIdentifierMapping {}
+
+#[cfg(feature = "PhotoKit_PHCloudIdentifierMapping")]
 unsafe impl NSObjectProtocol for PHCloudIdentifierMapping {}
 
 extern_methods!(
@@ -110,6 +122,12 @@ extern_class!(
         type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "PhotoKit_PHLocalIdentifierMapping")]
+unsafe impl Send for PHLocalIdentifierMapping {}
+
+#[cfg(feature = "PhotoKit_PHLocalIdentifierMapping")]
+unsafe impl Sync for PHLocalIdentifierMapping {}
 
 #[cfg(feature = "PhotoKit_PHLocalIdentifierMapping")]
 unsafe impl NSObjectProtocol for PHLocalIdentifierMapping {}

@@ -88,6 +88,16 @@ mod __CKShareMetadata;
 mod __CKShareParticipant;
 #[path = "CKSubscription.rs"]
 mod __CKSubscription;
+#[path = "CKSyncEngine.rs"]
+mod __CKSyncEngine;
+#[path = "CKSyncEngineConfiguration.rs"]
+mod __CKSyncEngineConfiguration;
+#[path = "CKSyncEngineEvent.rs"]
+mod __CKSyncEngineEvent;
+#[path = "CKSyncEngineRecordZoneChangeBatch.rs"]
+mod __CKSyncEngineRecordZoneChangeBatch;
+#[path = "CKSyncEngineState.rs"]
+mod __CKSyncEngineState;
 #[path = "CKSystemSharingUIObserver.rs"]
 mod __CKSystemSharingUIObserver;
 #[path = "CKUserIdentity.rs"]
@@ -248,9 +258,14 @@ pub use self::__CKQueryOperation::CKQueryOperation;
 pub use self::__CKQueryOperation::CKQueryOperationMaximumResults;
 #[cfg(feature = "CloudKit_CKRecord")]
 pub use self::__CKRecord::CKRecord;
+pub use self::__CKRecord::CKRecordCreationDateKey;
+pub use self::__CKRecord::CKRecordCreatorUserRecordIDKey;
 pub use self::__CKRecord::CKRecordFieldKey;
 pub use self::__CKRecord::CKRecordKeyValueSetting;
+pub use self::__CKRecord::CKRecordLastModifiedUserRecordIDKey;
+pub use self::__CKRecord::CKRecordModificationDateKey;
 pub use self::__CKRecord::CKRecordParentKey;
+pub use self::__CKRecord::CKRecordRecordIDKey;
 pub use self::__CKRecord::CKRecordShareKey;
 pub use self::__CKRecord::CKRecordType;
 pub use self::__CKRecord::CKRecordTypeUserRecord;
@@ -324,6 +339,101 @@ pub use self::__CKSubscription::{
 };
 pub use self::__CKSubscription::{
     CKSubscriptionTypeDatabase, CKSubscriptionTypeQuery, CKSubscriptionTypeRecordZone,
+};
+#[cfg(feature = "CloudKit_CKSyncEngine")]
+pub use self::__CKSyncEngine::CKSyncEngine;
+pub use self::__CKSyncEngine::CKSyncEngineDelegate;
+#[cfg(feature = "CloudKit_CKSyncEngineFetchChangesContext")]
+pub use self::__CKSyncEngine::CKSyncEngineFetchChangesContext;
+#[cfg(feature = "CloudKit_CKSyncEngineFetchChangesOptions")]
+pub use self::__CKSyncEngine::CKSyncEngineFetchChangesOptions;
+#[cfg(feature = "CloudKit_CKSyncEngineFetchChangesScope")]
+pub use self::__CKSyncEngine::CKSyncEngineFetchChangesScope;
+#[cfg(feature = "CloudKit_CKSyncEngineSendChangesContext")]
+pub use self::__CKSyncEngine::CKSyncEngineSendChangesContext;
+#[cfg(feature = "CloudKit_CKSyncEngineSendChangesOptions")]
+pub use self::__CKSyncEngine::CKSyncEngineSendChangesOptions;
+#[cfg(feature = "CloudKit_CKSyncEngineSendChangesScope")]
+pub use self::__CKSyncEngine::CKSyncEngineSendChangesScope;
+pub use self::__CKSyncEngine::CKSyncEngineSyncReason;
+pub use self::__CKSyncEngine::{CKSyncEngineSyncReasonManual, CKSyncEngineSyncReasonScheduled};
+#[cfg(feature = "CloudKit_CKSyncEngineConfiguration")]
+pub use self::__CKSyncEngineConfiguration::CKSyncEngineConfiguration;
+#[cfg(feature = "CloudKit_CKSyncEngineAccountChangeEvent")]
+pub use self::__CKSyncEngineEvent::CKSyncEngineAccountChangeEvent;
+pub use self::__CKSyncEngineEvent::CKSyncEngineAccountChangeType;
+#[cfg(feature = "CloudKit_CKSyncEngineDidFetchChangesEvent")]
+pub use self::__CKSyncEngineEvent::CKSyncEngineDidFetchChangesEvent;
+#[cfg(feature = "CloudKit_CKSyncEngineDidFetchRecordZoneChangesEvent")]
+pub use self::__CKSyncEngineEvent::CKSyncEngineDidFetchRecordZoneChangesEvent;
+#[cfg(feature = "CloudKit_CKSyncEngineDidSendChangesEvent")]
+pub use self::__CKSyncEngineEvent::CKSyncEngineDidSendChangesEvent;
+#[cfg(feature = "CloudKit_CKSyncEngineEvent")]
+pub use self::__CKSyncEngineEvent::CKSyncEngineEvent;
+pub use self::__CKSyncEngineEvent::CKSyncEngineEventType;
+#[cfg(feature = "CloudKit_CKSyncEngineFailedRecordSave")]
+pub use self::__CKSyncEngineEvent::CKSyncEngineFailedRecordSave;
+#[cfg(feature = "CloudKit_CKSyncEngineFailedZoneSave")]
+pub use self::__CKSyncEngineEvent::CKSyncEngineFailedZoneSave;
+#[cfg(feature = "CloudKit_CKSyncEngineFetchedDatabaseChangesEvent")]
+pub use self::__CKSyncEngineEvent::CKSyncEngineFetchedDatabaseChangesEvent;
+#[cfg(feature = "CloudKit_CKSyncEngineFetchedRecordDeletion")]
+pub use self::__CKSyncEngineEvent::CKSyncEngineFetchedRecordDeletion;
+#[cfg(feature = "CloudKit_CKSyncEngineFetchedRecordZoneChangesEvent")]
+pub use self::__CKSyncEngineEvent::CKSyncEngineFetchedRecordZoneChangesEvent;
+#[cfg(feature = "CloudKit_CKSyncEngineFetchedZoneDeletion")]
+pub use self::__CKSyncEngineEvent::CKSyncEngineFetchedZoneDeletion;
+#[cfg(feature = "CloudKit_CKSyncEngineSentDatabaseChangesEvent")]
+pub use self::__CKSyncEngineEvent::CKSyncEngineSentDatabaseChangesEvent;
+#[cfg(feature = "CloudKit_CKSyncEngineSentRecordZoneChangesEvent")]
+pub use self::__CKSyncEngineEvent::CKSyncEngineSentRecordZoneChangesEvent;
+#[cfg(feature = "CloudKit_CKSyncEngineStateUpdateEvent")]
+pub use self::__CKSyncEngineEvent::CKSyncEngineStateUpdateEvent;
+#[cfg(feature = "CloudKit_CKSyncEngineWillFetchChangesEvent")]
+pub use self::__CKSyncEngineEvent::CKSyncEngineWillFetchChangesEvent;
+#[cfg(feature = "CloudKit_CKSyncEngineWillFetchRecordZoneChangesEvent")]
+pub use self::__CKSyncEngineEvent::CKSyncEngineWillFetchRecordZoneChangesEvent;
+#[cfg(feature = "CloudKit_CKSyncEngineWillSendChangesEvent")]
+pub use self::__CKSyncEngineEvent::CKSyncEngineWillSendChangesEvent;
+pub use self::__CKSyncEngineEvent::CKSyncEngineZoneDeletionReason;
+pub use self::__CKSyncEngineEvent::{
+    CKSyncEngineAccountChangeTypeSignIn, CKSyncEngineAccountChangeTypeSignOut,
+    CKSyncEngineAccountChangeTypeSwitchAccounts,
+};
+pub use self::__CKSyncEngineEvent::{
+    CKSyncEngineEventTypeAccountChange, CKSyncEngineEventTypeDidFetchChanges,
+    CKSyncEngineEventTypeDidFetchRecordZoneChanges, CKSyncEngineEventTypeDidSendChanges,
+    CKSyncEngineEventTypeFetchedDatabaseChanges, CKSyncEngineEventTypeFetchedRecordZoneChanges,
+    CKSyncEngineEventTypeSentDatabaseChanges, CKSyncEngineEventTypeSentRecordZoneChanges,
+    CKSyncEngineEventTypeStateUpdate, CKSyncEngineEventTypeWillFetchChanges,
+    CKSyncEngineEventTypeWillFetchRecordZoneChanges, CKSyncEngineEventTypeWillSendChanges,
+};
+pub use self::__CKSyncEngineEvent::{
+    CKSyncEngineZoneDeletionReasonDeleted, CKSyncEngineZoneDeletionReasonEncryptedDataReset,
+    CKSyncEngineZoneDeletionReasonPurged,
+};
+#[cfg(feature = "CloudKit_CKSyncEngineRecordZoneChangeBatch")]
+pub use self::__CKSyncEngineRecordZoneChangeBatch::CKSyncEngineRecordZoneChangeBatch;
+#[cfg(feature = "CloudKit_CKSyncEnginePendingDatabaseChange")]
+pub use self::__CKSyncEngineState::CKSyncEnginePendingDatabaseChange;
+pub use self::__CKSyncEngineState::CKSyncEnginePendingDatabaseChangeType;
+#[cfg(feature = "CloudKit_CKSyncEnginePendingRecordZoneChange")]
+pub use self::__CKSyncEngineState::CKSyncEnginePendingRecordZoneChange;
+pub use self::__CKSyncEngineState::CKSyncEnginePendingRecordZoneChangeType;
+#[cfg(feature = "CloudKit_CKSyncEnginePendingZoneDelete")]
+pub use self::__CKSyncEngineState::CKSyncEnginePendingZoneDelete;
+#[cfg(feature = "CloudKit_CKSyncEnginePendingZoneSave")]
+pub use self::__CKSyncEngineState::CKSyncEnginePendingZoneSave;
+#[cfg(feature = "CloudKit_CKSyncEngineState")]
+pub use self::__CKSyncEngineState::CKSyncEngineState;
+#[cfg(feature = "CloudKit_CKSyncEngineStateSerialization")]
+pub use self::__CKSyncEngineState::CKSyncEngineStateSerialization;
+pub use self::__CKSyncEngineState::{
+    CKSyncEnginePendingDatabaseChangeTypeDeleteZone, CKSyncEnginePendingDatabaseChangeTypeSaveZone,
+};
+pub use self::__CKSyncEngineState::{
+    CKSyncEnginePendingRecordZoneChangeTypeDeleteRecord,
+    CKSyncEnginePendingRecordZoneChangeTypeSaveRecord,
 };
 #[cfg(feature = "CloudKit_CKSystemSharingUIObserver")]
 pub use self::__CKSystemSharingUIObserver::CKSystemSharingUIObserver;

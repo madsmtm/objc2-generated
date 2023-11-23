@@ -89,6 +89,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSNotificationCenter")]
+unsafe impl Send for NSNotificationCenter {}
+
+#[cfg(feature = "Foundation_NSNotificationCenter")]
+unsafe impl Sync for NSNotificationCenter {}
+
+#[cfg(feature = "Foundation_NSNotificationCenter")]
 unsafe impl NSObjectProtocol for NSNotificationCenter {}
 
 extern_methods!(

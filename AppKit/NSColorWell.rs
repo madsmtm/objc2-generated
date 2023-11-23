@@ -116,6 +116,12 @@ extern_methods!(
 
         #[method(setPulldownAction:)]
         pub unsafe fn setPulldownAction(&self, pulldown_action: Option<Sel>);
+
+        #[method(supportsAlpha)]
+        pub unsafe fn supportsAlpha(&self) -> bool;
+
+        #[method(setSupportsAlpha:)]
+        pub unsafe fn setSupportsAlpha(&self, supports_alpha: bool);
     }
 );
 

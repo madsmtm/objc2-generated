@@ -98,12 +98,12 @@ extern_methods!(
     /// Deprecated
     #[cfg(feature = "GameKit_GKPlayer")]
     unsafe impl GKPlayer {
-        #[deprecated = "use -[GKLocalPlayer loadFriendPlayers...]"]
+        #[deprecated]
         #[method(isFriend)]
         pub unsafe fn isFriend(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
-        #[deprecated = "use the teamPlayerID property to identify a player"]
+        #[deprecated = "Use either the gamePlayerID or teamPlayerID property to identify a player."]
         #[method_id(@__retain_semantics Other playerID)]
         pub unsafe fn playerID(&self) -> Id<NSString>;
 
@@ -112,7 +112,7 @@ extern_methods!(
             feature = "Foundation_NSError",
             feature = "Foundation_NSString"
         ))]
-        #[deprecated = "use GKLocalPlayer.loadFriendsWithIdentifiers to load a friend's GKPlayer object."]
+        #[deprecated]
         #[method(loadPlayersForIdentifiers:withCompletionHandler:)]
         pub unsafe fn loadPlayersForIdentifiers_withCompletionHandler(
             identifiers: &NSArray<NSString>,

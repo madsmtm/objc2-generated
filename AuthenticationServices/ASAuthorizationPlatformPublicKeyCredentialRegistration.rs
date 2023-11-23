@@ -55,5 +55,16 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+
+        #[method(attachment)]
+        pub unsafe fn attachment(&self) -> ASAuthorizationPublicKeyCredentialAttachment;
+
+        #[cfg(
+            feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput"
+        )]
+        #[method_id(@__retain_semantics Other largeBlob)]
+        pub unsafe fn largeBlob(
+            &self,
+        ) -> Option<Id<ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput>>;
     }
 );

@@ -28,6 +28,8 @@ mod __GCControllerButtonInput;
 mod __GCControllerDirectionPad;
 #[path = "GCControllerElement.rs"]
 mod __GCControllerElement;
+#[path = "GCControllerInput.rs"]
+mod __GCControllerInput;
 #[path = "GCControllerTouchpad.rs"]
 mod __GCControllerTouchpad;
 #[path = "GCDevice.rs"]
@@ -96,6 +98,8 @@ mod __GCMouseInput;
 mod __GCPhysicalInputElement;
 #[path = "GCPhysicalInputProfile.rs"]
 mod __GCPhysicalInputProfile;
+#[path = "GCPhysicalInputSource.rs"]
+mod __GCPhysicalInputSource;
 #[path = "GCPressedStateInput.rs"]
 mod __GCPressedStateInput;
 #[path = "GCProductCategories.rs"]
@@ -116,8 +120,6 @@ mod __GCSwitchPositionInput;
 mod __GCSyntheticDeviceKeys;
 #[path = "GCTouchedStateInput.rs"]
 mod __GCTouchedStateInput;
-#[path = "GCVirtualController.rs"]
-mod __GCVirtualController;
 #[path = "GCXboxGamepad.rs"]
 mod __GCXboxGamepad;
 
@@ -154,6 +156,10 @@ pub use self::__GCControllerElement::GCSystemGestureState;
 pub use self::__GCControllerElement::{
     GCSystemGestureStateAlwaysReceive, GCSystemGestureStateDisabled, GCSystemGestureStateEnabled,
 };
+#[cfg(feature = "GameController_GCControllerInputState")]
+pub use self::__GCControllerInput::GCControllerInputState;
+#[cfg(feature = "GameController_GCControllerLiveInput")]
+pub use self::__GCControllerInput::GCControllerLiveInput;
 #[cfg(feature = "GameController_GCControllerTouchpad")]
 pub use self::__GCControllerTouchpad::GCControllerTouchpad;
 pub use self::__GCControllerTouchpad::GCControllerTouchpadHandler;
@@ -582,7 +588,15 @@ pub use self::__GCPhysicalInputElement::GCPhysicalInputElement;
 pub use self::__GCPhysicalInputElement::GCPhysicalInputElementCollection;
 #[cfg(feature = "GameController_GCPhysicalInputProfile")]
 pub use self::__GCPhysicalInputProfile::GCPhysicalInputProfile;
+pub use self::__GCPhysicalInputSource::GCPhysicalInputSource;
+pub use self::__GCPhysicalInputSource::GCPhysicalInputSourceDirection;
+pub use self::__GCPhysicalInputSource::{
+    GCPhysicalInputSourceDirectionDown, GCPhysicalInputSourceDirectionLeft,
+    GCPhysicalInputSourceDirectionNotApplicable, GCPhysicalInputSourceDirectionRight,
+    GCPhysicalInputSourceDirectionUp,
+};
 pub use self::__GCPressedStateInput::GCPressedStateInput;
+pub use self::__GCProductCategories::GCProductCategoryArcadeStick;
 pub use self::__GCProductCategories::GCProductCategoryCoalescedRemote;
 pub use self::__GCProductCategories::GCProductCategoryControlCenterRemote;
 pub use self::__GCProductCategories::GCProductCategoryDualSense;

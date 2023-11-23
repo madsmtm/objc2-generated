@@ -11,6 +11,16 @@ pub type CKRecordFieldKey = NSString;
 
 extern_static!(CKRecordTypeUserRecord: &'static CKRecordType);
 
+extern_static!(CKRecordRecordIDKey: &'static CKRecordFieldKey);
+
+extern_static!(CKRecordCreatorUserRecordIDKey: &'static CKRecordFieldKey);
+
+extern_static!(CKRecordCreationDateKey: &'static CKRecordFieldKey);
+
+extern_static!(CKRecordLastModifiedUserRecordIDKey: &'static CKRecordFieldKey);
+
+extern_static!(CKRecordModificationDateKey: &'static CKRecordFieldKey);
+
 extern_static!(CKRecordParentKey: &'static CKRecordFieldKey);
 
 extern_static!(CKRecordShareKey: &'static CKRecordFieldKey);

@@ -60,5 +60,37 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+
+        #[cfg(
+            feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput"
+        )]
+        #[method_id(@__retain_semantics Other largeBlob)]
+        pub unsafe fn largeBlob(
+            &self,
+        ) -> Option<Id<ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput>>;
+
+        #[cfg(
+            feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput"
+        )]
+        #[method(setLargeBlob:)]
+        pub unsafe fn setLargeBlob(
+            &self,
+            large_blob: Option<&ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput>,
+        );
     }
 );
+
+extern_methods!(
+    #[cfg(
+        feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest"
+    )]
+    unsafe impl ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest {}
+);
+
+#[cfg(
+    feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest"
+)]
+unsafe impl ASAuthorizationWebBrowserPlatformPublicKeyCredentialRegistrationRequest
+    for ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest
+{
+}

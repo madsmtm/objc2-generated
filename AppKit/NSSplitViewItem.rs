@@ -11,6 +11,7 @@ ns_enum!(
         NSSplitViewItemBehaviorDefault = 0,
         NSSplitViewItemBehaviorSidebar = 1,
         NSSplitViewItemBehaviorContentList = 2,
+        NSSplitViewItemBehaviorInspector = 3,
     }
 );
 
@@ -64,6 +65,10 @@ extern_methods!(
         #[method_id(@__retain_semantics Other contentListWithViewController:)]
         pub unsafe fn contentListWithViewController(view_controller: &NSViewController)
             -> Id<Self>;
+
+        #[cfg(feature = "AppKit_NSViewController")]
+        #[method_id(@__retain_semantics Other inspectorWithViewController:)]
+        pub unsafe fn inspectorWithViewController(view_controller: &NSViewController) -> Id<Self>;
 
         #[method(behavior)]
         pub unsafe fn behavior(&self) -> NSSplitViewItemBehavior;
@@ -132,6 +137,12 @@ extern_methods!(
 
         #[method(setSpringLoaded:)]
         pub unsafe fn setSpringLoaded(&self, spring_loaded: bool);
+
+        #[method(canCollapseFromWindowResize)]
+        pub unsafe fn canCollapseFromWindowResize(&self) -> bool;
+
+        #[method(setCanCollapseFromWindowResize:)]
+        pub unsafe fn setCanCollapseFromWindowResize(&self, can_collapse_from_window_resize: bool);
 
         #[method(allowsFullHeightLayout)]
         pub unsafe fn allowsFullHeightLayout(&self) -> bool;

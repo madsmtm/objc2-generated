@@ -52,6 +52,12 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSNumber")]
         #[method_id(@__retain_semantics Other signal)]
         pub unsafe fn signal(&self) -> Option<Id<NSNumber>>;
+
+        #[cfg(feature = "MetricKit_MXCrashDiagnosticObjectiveCExceptionReason")]
+        #[method_id(@__retain_semantics Other exceptionReason)]
+        pub unsafe fn exceptionReason(
+            &self,
+        ) -> Option<Id<MXCrashDiagnosticObjectiveCExceptionReason>>;
     }
 );
 

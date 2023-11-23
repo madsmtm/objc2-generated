@@ -58,6 +58,12 @@ extern_class!(
 );
 
 #[cfg(feature = "PhotoKit_PHPhotoLibrary")]
+unsafe impl Send for PHPhotoLibrary {}
+
+#[cfg(feature = "PhotoKit_PHPhotoLibrary")]
+unsafe impl Sync for PHPhotoLibrary {}
+
+#[cfg(feature = "PhotoKit_PHPhotoLibrary")]
 unsafe impl NSObjectProtocol for PHPhotoLibrary {}
 
 extern_methods!(

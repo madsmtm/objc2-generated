@@ -73,6 +73,12 @@ extern_methods!(
         #[method(invalidateCharacterCoordinates)]
         pub fn invalidateCharacterCoordinates(&self);
 
+        #[method(textInputClientWillStartScrollingOrZooming)]
+        pub unsafe fn textInputClientWillStartScrollingOrZooming(&self);
+
+        #[method(textInputClientDidEndScrollingOrZooming)]
+        pub unsafe fn textInputClientDidEndScrollingOrZooming(&self);
+
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other keyboardInputSources)]
         pub unsafe fn keyboardInputSources(

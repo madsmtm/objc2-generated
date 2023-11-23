@@ -40,6 +40,12 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSColor")]
+unsafe impl Send for NSColor {}
+
+#[cfg(feature = "AppKit_NSColor")]
+unsafe impl Sync for NSColor {}
+
+#[cfg(feature = "AppKit_NSColor")]
 unsafe impl NSCoding for NSColor {}
 
 #[cfg(feature = "AppKit_NSColor")]
@@ -268,6 +274,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Other quaternaryLabelColor)]
         pub unsafe fn quaternaryLabelColor() -> Id<NSColor>;
 
+        #[method_id(@__retain_semantics Other quinaryLabelColor)]
+        pub unsafe fn quinaryLabelColor() -> Id<NSColor>;
+
         #[method_id(@__retain_semantics Other linkColor)]
         pub unsafe fn linkColor() -> Id<NSColor>;
 
@@ -319,6 +328,9 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other textBackgroundColor)]
         pub unsafe fn textBackgroundColor() -> Id<NSColor>;
+
+        #[method_id(@__retain_semantics Other textInsertionPointColor)]
+        pub unsafe fn textInsertionPointColor() -> Id<NSColor>;
 
         #[method_id(@__retain_semantics Other selectedTextColor)]
         pub unsafe fn selectedTextColor() -> Id<NSColor>;
@@ -391,6 +403,21 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other systemCyanColor)]
         pub unsafe fn systemCyanColor() -> Id<NSColor>;
+
+        #[method_id(@__retain_semantics Other systemFillColor)]
+        pub unsafe fn systemFillColor() -> Id<NSColor>;
+
+        #[method_id(@__retain_semantics Other secondarySystemFillColor)]
+        pub unsafe fn secondarySystemFillColor() -> Id<NSColor>;
+
+        #[method_id(@__retain_semantics Other tertiarySystemFillColor)]
+        pub unsafe fn tertiarySystemFillColor() -> Id<NSColor>;
+
+        #[method_id(@__retain_semantics Other quaternarySystemFillColor)]
+        pub unsafe fn quaternarySystemFillColor() -> Id<NSColor>;
+
+        #[method_id(@__retain_semantics Other quinarySystemFillColor)]
+        pub unsafe fn quinarySystemFillColor() -> Id<NSColor>;
 
         #[method_id(@__retain_semantics Other controlAccentColor)]
         pub unsafe fn controlAccentColor() -> Id<NSColor>;
@@ -545,11 +572,13 @@ extern_methods!(
         #[method(drawSwatchInRect:)]
         pub unsafe fn drawSwatchInRect(&self, rect: NSRect);
 
+        #[deprecated = "Use `showsAlpha` in `NSColorPanel` and `supportsAlpha` in `NSColorWell` to control alpha behavior for individual controls."]
         #[method(ignoresAlpha)]
-        pub unsafe fn ignoresAlpha() -> bool;
+        pub unsafe fn ignoresAlpha(mtm: MainThreadMarker) -> bool;
 
+        #[deprecated = "Use `showsAlpha` in `NSColorPanel` and `supportsAlpha` in `NSColorWell` to control alpha behavior for individual controls."]
         #[method(setIgnoresAlpha:)]
-        pub unsafe fn setIgnoresAlpha(ignores_alpha: bool);
+        pub unsafe fn setIgnoresAlpha(ignores_alpha: bool, mtm: MainThreadMarker);
     }
 );
 

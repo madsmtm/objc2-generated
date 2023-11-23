@@ -32,6 +32,22 @@ extern_methods!(
             completion_handler: Option<&Block<(Bool,), ()>>,
         );
 
+        #[cfg(feature = "AuthenticationServices_ASPasskeyAssertionCredential")]
+        #[method(completeAssertionRequestWithSelectedPasskeyCredential:completionHandler:)]
+        pub unsafe fn completeAssertionRequestWithSelectedPasskeyCredential_completionHandler(
+            &self,
+            credential: &ASPasskeyAssertionCredential,
+            completion_handler: Option<&Block<(Bool,), ()>>,
+        );
+
+        #[cfg(feature = "AuthenticationServices_ASPasskeyRegistrationCredential")]
+        #[method(completeRegistrationRequestWithSelectedPasskeyCredential:completionHandler:)]
+        pub unsafe fn completeRegistrationRequestWithSelectedPasskeyCredential_completionHandler(
+            &self,
+            credential: &ASPasskeyRegistrationCredential,
+            completion_handler: Option<&Block<(Bool,), ()>>,
+        );
+
         #[method(completeExtensionConfigurationRequest)]
         pub unsafe fn completeExtensionConfigurationRequest(&self);
 

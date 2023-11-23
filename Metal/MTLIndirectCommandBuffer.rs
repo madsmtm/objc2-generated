@@ -90,11 +90,29 @@ extern_methods!(
         #[method(setMaxKernelBufferBindCount:)]
         pub fn setMaxKernelBufferBindCount(&self, max_kernel_buffer_bind_count: NSUInteger);
 
+        #[method(maxKernelThreadgroupMemoryBindCount)]
+        pub unsafe fn maxKernelThreadgroupMemoryBindCount(&self) -> NSUInteger;
+
+        #[method(setMaxKernelThreadgroupMemoryBindCount:)]
+        pub unsafe fn setMaxKernelThreadgroupMemoryBindCount(
+            &self,
+            max_kernel_threadgroup_memory_bind_count: NSUInteger,
+        );
+
         #[method(supportRayTracing)]
         pub unsafe fn supportRayTracing(&self) -> bool;
 
         #[method(setSupportRayTracing:)]
         pub unsafe fn setSupportRayTracing(&self, support_ray_tracing: bool);
+
+        #[method(supportDynamicAttributeStride)]
+        pub unsafe fn supportDynamicAttributeStride(&self) -> bool;
+
+        #[method(setSupportDynamicAttributeStride:)]
+        pub unsafe fn setSupportDynamicAttributeStride(
+            &self,
+            support_dynamic_attribute_stride: bool,
+        );
     }
 );
 

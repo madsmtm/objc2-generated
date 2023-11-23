@@ -48,7 +48,8 @@ pub use self::__LAContext::{
     LAAccessControlOperationUseKeyKeyExchange, LAAccessControlOperationUseKeySign,
 };
 pub use self::__LAContext::{
-    LABiometryNone, LABiometryTypeFaceID, LABiometryTypeNone, LABiometryTypeTouchID,
+    LABiometryNone, LABiometryTypeFaceID, LABiometryTypeNone, LABiometryTypeOpticID,
+    LABiometryTypeTouchID,
 };
 pub use self::__LAContext::{
     LAPolicyDeviceOwnerAuthentication, LAPolicyDeviceOwnerAuthenticationWithBiometrics,

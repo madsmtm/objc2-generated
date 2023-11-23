@@ -80,6 +80,8 @@ extern_methods!(
     }
 );
 
+pub type AXCustomContentReturnBlock = *mut Block<(), *mut NSArray<AXCustomContent>>;
+
 extern_protocol!(
     pub unsafe trait AXCustomContentProvider: NSObjectProtocol {
         #[cfg(all(
@@ -97,6 +99,17 @@ extern_protocol!(
         unsafe fn setAccessibilityCustomContent(
             &self,
             accessibility_custom_content: Option<&NSArray<AXCustomContent>>,
+        );
+
+        #[optional]
+        #[method(accessibilityCustomContentBlock)]
+        unsafe fn accessibilityCustomContentBlock(&self) -> AXCustomContentReturnBlock;
+
+        #[optional]
+        #[method(setAccessibilityCustomContentBlock:)]
+        unsafe fn setAccessibilityCustomContentBlock(
+            &self,
+            accessibility_custom_content_block: AXCustomContentReturnBlock,
         );
     }
 

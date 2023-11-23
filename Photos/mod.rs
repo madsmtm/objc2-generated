@@ -290,7 +290,7 @@ pub use self::__PhotosTypes::{
     PHAssetResourceTypeAlternatePhoto, PHAssetResourceTypeAudio,
     PHAssetResourceTypeFullSizePairedVideo, PHAssetResourceTypeFullSizePhoto,
     PHAssetResourceTypeFullSizeVideo, PHAssetResourceTypePairedVideo, PHAssetResourceTypePhoto,
-    PHAssetResourceTypeVideo,
+    PHAssetResourceTypePhotoProxy, PHAssetResourceTypeVideo,
 };
 pub use self::__PhotosTypes::{
     PHAssetSourceTypeCloudShared, PHAssetSourceTypeNone, PHAssetSourceTypeUserLibrary,

@@ -189,5 +189,8 @@ extern_methods!(
     unsafe impl NSSplitViewController {
         #[method(toggleSidebar:)]
         pub unsafe fn toggleSidebar(&self, sender: Option<&AnyObject>);
+
+        #[method(toggleInspector:)]
+        pub unsafe fn toggleInspector(&self, sender: Option<&AnyObject>);
     }
 );

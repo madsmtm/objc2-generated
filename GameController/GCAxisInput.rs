@@ -48,6 +48,10 @@ extern_protocol!(
 
         #[method(lastValueLatency)]
         unsafe fn lastValueLatency(&self) -> NSTimeInterval;
+
+        #[cfg(feature = "Foundation_NSSet")]
+        #[method_id(@__retain_semantics Other sources)]
+        unsafe fn sources(&self) -> Id<NSSet<ProtocolObject<dyn GCPhysicalInputSource>>>;
     }
 
     unsafe impl ProtocolType for dyn GCAxisInput {}

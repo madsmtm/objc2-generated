@@ -59,6 +59,8 @@ ns_enum!(
         MTLVertexFormatUShortNormalized = 51,
         MTLVertexFormatShortNormalized = 52,
         MTLVertexFormatHalf = 53,
+        MTLVertexFormatFloatRG11B10 = 54,
+        MTLVertexFormatFloatRGB9E5 = 55,
     }
 );
 

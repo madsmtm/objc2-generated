@@ -293,6 +293,8 @@ mod __NSStream;
 mod __NSString;
 #[path = "NSTask.rs"]
 mod __NSTask;
+#[path = "NSTermOfAddress.rs"]
+mod __NSTermOfAddress;
 #[path = "NSTextCheckingResult.rs"]
 mod __NSTextCheckingResult;
 #[path = "NSThread.rs"]
@@ -439,6 +441,7 @@ pub use self::__NSAttributedString::NSAlternateDescriptionAttributeName;
 #[cfg(feature = "Foundation_NSAttributedString")]
 pub use self::__NSAttributedString::NSAttributedString;
 pub use self::__NSAttributedString::NSAttributedStringEnumerationOptions;
+pub use self::__NSAttributedString::NSAttributedStringFormattingContextKey;
 pub use self::__NSAttributedString::NSAttributedStringFormattingOptions;
 pub use self::__NSAttributedString::NSAttributedStringKey;
 pub use self::__NSAttributedString::NSAttributedStringMarkdownInterpretedSyntax;
@@ -448,7 +451,11 @@ pub use self::__NSAttributedString::NSAttributedStringMarkdownParsingOptions;
 #[cfg(feature = "Foundation_NSAttributedStringMarkdownSourcePosition")]
 pub use self::__NSAttributedString::NSAttributedStringMarkdownSourcePosition;
 pub use self::__NSAttributedString::NSImageURLAttributeName;
+pub use self::__NSAttributedString::NSInflectionAgreementArgumentAttributeName;
+pub use self::__NSAttributedString::NSInflectionAgreementConceptAttributeName;
 pub use self::__NSAttributedString::NSInflectionAlternativeAttributeName;
+pub use self::__NSAttributedString::NSInflectionConceptsKey;
+pub use self::__NSAttributedString::NSInflectionReferentConceptAttributeName;
 pub use self::__NSAttributedString::NSInflectionRuleAttributeName;
 pub use self::__NSAttributedString::NSInlinePresentationIntent;
 pub use self::__NSAttributedString::NSInlinePresentationIntentAttributeName;
@@ -650,8 +657,8 @@ pub use self::__NSData::{
     NSAtomicWrite, NSDataWritingAtomic, NSDataWritingFileProtectionComplete,
     NSDataWritingFileProtectionCompleteUnlessOpen,
     NSDataWritingFileProtectionCompleteUntilFirstUserAuthentication,
-    NSDataWritingFileProtectionMask, NSDataWritingFileProtectionNone,
-    NSDataWritingWithoutOverwriting,
+    NSDataWritingFileProtectionCompleteWhenUserInactive, NSDataWritingFileProtectionMask,
+    NSDataWritingFileProtectionNone, NSDataWritingWithoutOverwriting,
 };
 pub use self::__NSData::{
     NSDataBase64Encoding64CharacterLineLength, NSDataBase64Encoding76CharacterLineLength,
@@ -887,6 +894,7 @@ pub use self::__NSFileManager::NSFilePosixPermissions;
 pub use self::__NSFileManager::NSFileProtectionComplete;
 pub use self::__NSFileManager::NSFileProtectionCompleteUnlessOpen;
 pub use self::__NSFileManager::NSFileProtectionCompleteUntilFirstUserAuthentication;
+pub use self::__NSFileManager::NSFileProtectionCompleteWhenUserInactive;
 pub use self::__NSFileManager::NSFileProtectionKey;
 pub use self::__NSFileManager::NSFileProtectionNone;
 pub use self::__NSFileManager::NSFileProtectionType;
@@ -1590,13 +1598,35 @@ pub use self::__NSMetadataAttributes::NSMetadataUbiquitousSharedItemRoleOwner;
 pub use self::__NSMetadataAttributes::NSMetadataUbiquitousSharedItemRoleParticipant;
 #[cfg(feature = "Foundation_NSMethodSignature")]
 pub use self::__NSMethodSignature::NSMethodSignature;
+pub use self::__NSMorphology::NSGrammaticalCase;
+pub use self::__NSMorphology::NSGrammaticalDefiniteness;
+pub use self::__NSMorphology::NSGrammaticalDetermination;
 pub use self::__NSMorphology::NSGrammaticalGender;
 pub use self::__NSMorphology::NSGrammaticalNumber;
 pub use self::__NSMorphology::NSGrammaticalPartOfSpeech;
+pub use self::__NSMorphology::NSGrammaticalPerson;
+pub use self::__NSMorphology::NSGrammaticalPronounType;
 #[cfg(feature = "Foundation_NSMorphology")]
 pub use self::__NSMorphology::NSMorphology;
 #[cfg(feature = "Foundation_NSMorphologyCustomPronoun")]
 pub use self::__NSMorphology::NSMorphologyCustomPronoun;
+#[cfg(feature = "Foundation_NSMorphologyPronoun")]
+pub use self::__NSMorphology::NSMorphologyPronoun;
+pub use self::__NSMorphology::{
+    NSGrammaticalCaseAblative, NSGrammaticalCaseAccusative, NSGrammaticalCaseAdessive,
+    NSGrammaticalCaseAllative, NSGrammaticalCaseDative, NSGrammaticalCaseElative,
+    NSGrammaticalCaseEssive, NSGrammaticalCaseGenitive, NSGrammaticalCaseIllative,
+    NSGrammaticalCaseInessive, NSGrammaticalCaseLocative, NSGrammaticalCaseNominative,
+    NSGrammaticalCaseNotSet, NSGrammaticalCasePrepositional, NSGrammaticalCaseTranslative,
+};
+pub use self::__NSMorphology::{
+    NSGrammaticalDefinitenessDefinite, NSGrammaticalDefinitenessIndefinite,
+    NSGrammaticalDefinitenessNotSet,
+};
+pub use self::__NSMorphology::{
+    NSGrammaticalDeterminationDependent, NSGrammaticalDeterminationIndependent,
+    NSGrammaticalDeterminationNotSet,
+};
 pub use self::__NSMorphology::{
     NSGrammaticalGenderFeminine, NSGrammaticalGenderMasculine, NSGrammaticalGenderNeuter,
     NSGrammaticalGenderNotSet,
@@ -1615,6 +1645,14 @@ pub use self::__NSMorphology::{
     NSGrammaticalPartOfSpeechNumeral, NSGrammaticalPartOfSpeechParticle,
     NSGrammaticalPartOfSpeechPreposition, NSGrammaticalPartOfSpeechPronoun,
     NSGrammaticalPartOfSpeechVerb,
+};
+pub use self::__NSMorphology::{
+    NSGrammaticalPersonFirst, NSGrammaticalPersonNotSet, NSGrammaticalPersonSecond,
+    NSGrammaticalPersonThird,
+};
+pub use self::__NSMorphology::{
+    NSGrammaticalPronounTypeNotSet, NSGrammaticalPronounTypePersonal,
+    NSGrammaticalPronounTypePossessive, NSGrammaticalPronounTypeReflexive,
 };
 #[cfg(feature = "Foundation_NSNetService")]
 pub use self::__NSNetServices::NSNetService;
@@ -2155,6 +2193,8 @@ pub use self::__NSTask::NSTask;
 pub use self::__NSTask::NSTaskDidTerminateNotification;
 pub use self::__NSTask::NSTaskTerminationReason;
 pub use self::__NSTask::{NSTaskTerminationReasonExit, NSTaskTerminationReasonUncaughtSignal};
+#[cfg(feature = "Foundation_NSTermOfAddress")]
+pub use self::__NSTermOfAddress::NSTermOfAddress;
 pub use self::__NSTextCheckingResult::NSTextCheckingAirlineKey;
 pub use self::__NSTextCheckingResult::NSTextCheckingCityKey;
 pub use self::__NSTextCheckingResult::NSTextCheckingCountryKey;
@@ -2365,6 +2405,7 @@ pub use self::__NSURLSession::NSURLSessionTaskTransactionMetrics;
 pub use self::__NSURLSession::NSURLSessionTransferSizeUnknown;
 #[cfg(feature = "Foundation_NSURLSessionUploadTask")]
 pub use self::__NSURLSession::NSURLSessionUploadTask;
+pub use self::__NSURLSession::NSURLSessionUploadTaskResumeData;
 pub use self::__NSURLSession::NSURLSessionWebSocketCloseCode;
 pub use self::__NSURLSession::NSURLSessionWebSocketDelegate;
 #[cfg(feature = "Foundation_NSURLSessionWebSocketMessage")]
@@ -2727,6 +2768,7 @@ pub use self::__NSURL::NSURLContentModificationDateKey;
 pub use self::__NSURL::NSURLContentTypeKey;
 pub use self::__NSURL::NSURLCreationDateKey;
 pub use self::__NSURL::NSURLCustomIconKey;
+pub use self::__NSURL::NSURLDirectoryEntryCountKey;
 pub use self::__NSURL::NSURLDocumentIdentifierKey;
 pub use self::__NSURL::NSURLEffectiveIconKey;
 pub use self::__NSURL::NSURLFileAllocatedSizeKey;
@@ -2735,6 +2777,7 @@ pub use self::__NSURL::NSURLFileIdentifierKey;
 pub use self::__NSURL::NSURLFileProtectionComplete;
 pub use self::__NSURL::NSURLFileProtectionCompleteUnlessOpen;
 pub use self::__NSURL::NSURLFileProtectionCompleteUntilFirstUserAuthentication;
+pub use self::__NSURL::NSURLFileProtectionCompleteWhenUserInactive;
 pub use self::__NSURL::NSURLFileProtectionKey;
 pub use self::__NSURL::NSURLFileProtectionNone;
 pub use self::__NSURL::NSURLFileProtectionType;

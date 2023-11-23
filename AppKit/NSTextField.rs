@@ -349,7 +349,7 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSTextField")]
     unsafe impl NSTextField {
         #[cfg(feature = "Foundation_NSString")]
-        #[deprecated]
+        #[deprecated = "Use `-setTitle:` instead"]
         #[method(setTitleWithMnemonic:)]
         pub unsafe fn setTitleWithMnemonic(&self, string_with_ampersand: Option<&NSString>);
     }

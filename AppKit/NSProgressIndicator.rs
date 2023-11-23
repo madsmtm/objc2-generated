@@ -65,18 +65,6 @@ extern_methods!(
         #[method(setIndeterminate:)]
         pub unsafe fn setIndeterminate(&self, indeterminate: bool);
 
-        #[method(isBezeled)]
-        pub unsafe fn isBezeled(&self) -> bool;
-
-        #[method(setBezeled:)]
-        pub unsafe fn setBezeled(&self, bezeled: bool);
-
-        #[method(controlTint)]
-        pub unsafe fn controlTint(&self) -> NSControlTint;
-
-        #[method(setControlTint:)]
-        pub unsafe fn setControlTint(&self, control_tint: NSControlTint);
-
         #[method(controlSize)]
         pub unsafe fn controlSize(&self) -> NSControlSize;
 
@@ -103,6 +91,14 @@ extern_methods!(
 
         #[method(setMaxValue:)]
         pub unsafe fn setMaxValue(&self, max_value: c_double);
+
+        #[cfg(feature = "Foundation_NSProgress")]
+        #[method_id(@__retain_semantics Other observedProgress)]
+        pub unsafe fn observedProgress(&self) -> Option<Id<NSProgress>>;
+
+        #[cfg(feature = "Foundation_NSProgress")]
+        #[method(setObservedProgress:)]
+        pub unsafe fn setObservedProgress(&self, observed_progress: Option<&NSProgress>);
 
         #[method(usesThreadedAnimation)]
         pub unsafe fn usesThreadedAnimation(&self) -> bool;
@@ -198,5 +194,21 @@ extern_methods!(
         #[deprecated = "Use -startAnimation and -stopAnimation instead."]
         #[method(animate:)]
         pub unsafe fn animate(&self, sender: Option<&AnyObject>);
+
+        #[deprecated = "The bezeled property is not respected on 10.15 and later"]
+        #[method(isBezeled)]
+        pub unsafe fn isBezeled(&self) -> bool;
+
+        #[deprecated = "The bezeled property is not respected on 10.15 and later"]
+        #[method(setBezeled:)]
+        pub unsafe fn setBezeled(&self, bezeled: bool);
+
+        #[deprecated = "The controlTint property is not respected on 10.15 and later"]
+        #[method(controlTint)]
+        pub unsafe fn controlTint(&self) -> NSControlTint;
+
+        #[deprecated = "The controlTint property is not respected on 10.15 and later"]
+        #[method(setControlTint:)]
+        pub unsafe fn setControlTint(&self, control_tint: NSControlTint);
     }
 );

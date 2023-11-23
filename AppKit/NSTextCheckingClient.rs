@@ -95,6 +95,14 @@ extern_protocol!(
         #[optional]
         #[method(setTextCompletionType:)]
         unsafe fn setTextCompletionType(&self, text_completion_type: NSTextInputTraitType);
+
+        #[optional]
+        #[method(inlinePredictionType)]
+        unsafe fn inlinePredictionType(&self) -> NSTextInputTraitType;
+
+        #[optional]
+        #[method(setInlinePredictionType:)]
+        unsafe fn setInlinePredictionType(&self, inline_prediction_type: NSTextInputTraitType);
     }
 
     unsafe impl ProtocolType for dyn NSTextInputTraits {}

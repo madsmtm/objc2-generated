@@ -7,6 +7,12 @@ typed_extensible_enum!(
     pub type NSAttributedStringKey = NSString;
 );
 
+typed_extensible_enum!(
+    pub type NSAttributedStringFormattingContextKey = NSString;
+);
+
+extern_static!(NSInflectionConceptsKey: &'static NSAttributedStringFormattingContextKey);
+
 extern_class!(
     #[derive(PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSAttributedString")]
@@ -638,6 +644,12 @@ extern_methods!(
 extern_static!(NSMorphologyAttributeName: &'static NSAttributedStringKey);
 
 extern_static!(NSInflectionRuleAttributeName: &'static NSAttributedStringKey);
+
+extern_static!(NSInflectionAgreementArgumentAttributeName: &'static NSAttributedStringKey);
+
+extern_static!(NSInflectionAgreementConceptAttributeName: &'static NSAttributedStringKey);
+
+extern_static!(NSInflectionReferentConceptAttributeName: &'static NSAttributedStringKey);
 
 extern_static!(NSInflectionAlternativeAttributeName: &'static NSAttributedStringKey);
 

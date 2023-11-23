@@ -656,6 +656,325 @@ extern_methods!(
     }
 );
 
+ns_enum!(
+    #[underlying(NSInteger)]
+    pub enum MTLCurveType {
+        MTLCurveTypeRound = 0,
+        MTLCurveTypeFlat = 1,
+    }
+);
+
+ns_enum!(
+    #[underlying(NSInteger)]
+    pub enum MTLCurveBasis {
+        MTLCurveBasisBSpline = 0,
+        MTLCurveBasisCatmullRom = 1,
+        MTLCurveBasisLinear = 2,
+        MTLCurveBasisBezier = 3,
+    }
+);
+
+ns_enum!(
+    #[underlying(NSInteger)]
+    pub enum MTLCurveEndCaps {
+        MTLCurveEndCapsNone = 0,
+        MTLCurveEndCapsDisk = 1,
+        MTLCurveEndCapsSphere = 2,
+    }
+);
+
+extern_class!(
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLAccelerationStructureCurveGeometryDescriptor")]
+    pub struct MTLAccelerationStructureCurveGeometryDescriptor;
+
+    #[cfg(feature = "Metal_MTLAccelerationStructureCurveGeometryDescriptor")]
+    unsafe impl ClassType for MTLAccelerationStructureCurveGeometryDescriptor {
+        #[inherits(NSObject)]
+        type Super = MTLAccelerationStructureGeometryDescriptor;
+        type Mutability = InteriorMutable;
+    }
+);
+
+#[cfg(feature = "Metal_MTLAccelerationStructureCurveGeometryDescriptor")]
+unsafe impl NSCopying for MTLAccelerationStructureCurveGeometryDescriptor {}
+
+#[cfg(feature = "Metal_MTLAccelerationStructureCurveGeometryDescriptor")]
+unsafe impl NSObjectProtocol for MTLAccelerationStructureCurveGeometryDescriptor {}
+
+extern_methods!(
+    #[cfg(feature = "Metal_MTLAccelerationStructureCurveGeometryDescriptor")]
+    unsafe impl MTLAccelerationStructureCurveGeometryDescriptor {
+        #[method_id(@__retain_semantics Other controlPointBuffer)]
+        pub unsafe fn controlPointBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
+
+        #[method(setControlPointBuffer:)]
+        pub unsafe fn setControlPointBuffer(
+            &self,
+            control_point_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
+        );
+
+        #[method(controlPointBufferOffset)]
+        pub unsafe fn controlPointBufferOffset(&self) -> NSUInteger;
+
+        #[method(setControlPointBufferOffset:)]
+        pub unsafe fn setControlPointBufferOffset(&self, control_point_buffer_offset: NSUInteger);
+
+        #[method(controlPointCount)]
+        pub unsafe fn controlPointCount(&self) -> NSUInteger;
+
+        #[method(setControlPointCount:)]
+        pub unsafe fn setControlPointCount(&self, control_point_count: NSUInteger);
+
+        #[method(controlPointStride)]
+        pub unsafe fn controlPointStride(&self) -> NSUInteger;
+
+        #[method(setControlPointStride:)]
+        pub unsafe fn setControlPointStride(&self, control_point_stride: NSUInteger);
+
+        #[method(controlPointFormat)]
+        pub unsafe fn controlPointFormat(&self) -> MTLAttributeFormat;
+
+        #[method(setControlPointFormat:)]
+        pub unsafe fn setControlPointFormat(&self, control_point_format: MTLAttributeFormat);
+
+        #[method_id(@__retain_semantics Other radiusBuffer)]
+        pub unsafe fn radiusBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
+
+        #[method(setRadiusBuffer:)]
+        pub unsafe fn setRadiusBuffer(&self, radius_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
+
+        #[method(radiusBufferOffset)]
+        pub unsafe fn radiusBufferOffset(&self) -> NSUInteger;
+
+        #[method(setRadiusBufferOffset:)]
+        pub unsafe fn setRadiusBufferOffset(&self, radius_buffer_offset: NSUInteger);
+
+        #[method(radiusFormat)]
+        pub unsafe fn radiusFormat(&self) -> MTLAttributeFormat;
+
+        #[method(setRadiusFormat:)]
+        pub unsafe fn setRadiusFormat(&self, radius_format: MTLAttributeFormat);
+
+        #[method(radiusStride)]
+        pub unsafe fn radiusStride(&self) -> NSUInteger;
+
+        #[method(setRadiusStride:)]
+        pub unsafe fn setRadiusStride(&self, radius_stride: NSUInteger);
+
+        #[method_id(@__retain_semantics Other indexBuffer)]
+        pub unsafe fn indexBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
+
+        #[method(setIndexBuffer:)]
+        pub unsafe fn setIndexBuffer(&self, index_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
+
+        #[method(indexBufferOffset)]
+        pub unsafe fn indexBufferOffset(&self) -> NSUInteger;
+
+        #[method(setIndexBufferOffset:)]
+        pub unsafe fn setIndexBufferOffset(&self, index_buffer_offset: NSUInteger);
+
+        #[method(indexType)]
+        pub unsafe fn indexType(&self) -> MTLIndexType;
+
+        #[method(setIndexType:)]
+        pub unsafe fn setIndexType(&self, index_type: MTLIndexType);
+
+        #[method(segmentCount)]
+        pub unsafe fn segmentCount(&self) -> NSUInteger;
+
+        #[method(setSegmentCount:)]
+        pub unsafe fn setSegmentCount(&self, segment_count: NSUInteger);
+
+        #[method(segmentControlPointCount)]
+        pub unsafe fn segmentControlPointCount(&self) -> NSUInteger;
+
+        #[method(setSegmentControlPointCount:)]
+        pub unsafe fn setSegmentControlPointCount(&self, segment_control_point_count: NSUInteger);
+
+        #[method(curveType)]
+        pub unsafe fn curveType(&self) -> MTLCurveType;
+
+        #[method(setCurveType:)]
+        pub unsafe fn setCurveType(&self, curve_type: MTLCurveType);
+
+        #[method(curveBasis)]
+        pub unsafe fn curveBasis(&self) -> MTLCurveBasis;
+
+        #[method(setCurveBasis:)]
+        pub unsafe fn setCurveBasis(&self, curve_basis: MTLCurveBasis);
+
+        #[method(curveEndCaps)]
+        pub unsafe fn curveEndCaps(&self) -> MTLCurveEndCaps;
+
+        #[method(setCurveEndCaps:)]
+        pub unsafe fn setCurveEndCaps(&self, curve_end_caps: MTLCurveEndCaps);
+
+        #[method_id(@__retain_semantics Other descriptor)]
+        pub unsafe fn descriptor() -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Metal_MTLAccelerationStructureCurveGeometryDescriptor")]
+    unsafe impl MTLAccelerationStructureCurveGeometryDescriptor {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
+extern_class!(
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLAccelerationStructureMotionCurveGeometryDescriptor")]
+    pub struct MTLAccelerationStructureMotionCurveGeometryDescriptor;
+
+    #[cfg(feature = "Metal_MTLAccelerationStructureMotionCurveGeometryDescriptor")]
+    unsafe impl ClassType for MTLAccelerationStructureMotionCurveGeometryDescriptor {
+        #[inherits(NSObject)]
+        type Super = MTLAccelerationStructureGeometryDescriptor;
+        type Mutability = InteriorMutable;
+    }
+);
+
+#[cfg(feature = "Metal_MTLAccelerationStructureMotionCurveGeometryDescriptor")]
+unsafe impl NSCopying for MTLAccelerationStructureMotionCurveGeometryDescriptor {}
+
+#[cfg(feature = "Metal_MTLAccelerationStructureMotionCurveGeometryDescriptor")]
+unsafe impl NSObjectProtocol for MTLAccelerationStructureMotionCurveGeometryDescriptor {}
+
+extern_methods!(
+    #[cfg(feature = "Metal_MTLAccelerationStructureMotionCurveGeometryDescriptor")]
+    unsafe impl MTLAccelerationStructureMotionCurveGeometryDescriptor {
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Metal_MTLMotionKeyframeData"
+        ))]
+        #[method_id(@__retain_semantics Other controlPointBuffers)]
+        pub unsafe fn controlPointBuffers(&self) -> Id<NSArray<MTLMotionKeyframeData>>;
+
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Metal_MTLMotionKeyframeData"
+        ))]
+        #[method(setControlPointBuffers:)]
+        pub unsafe fn setControlPointBuffers(
+            &self,
+            control_point_buffers: &NSArray<MTLMotionKeyframeData>,
+        );
+
+        #[method(controlPointCount)]
+        pub unsafe fn controlPointCount(&self) -> NSUInteger;
+
+        #[method(setControlPointCount:)]
+        pub unsafe fn setControlPointCount(&self, control_point_count: NSUInteger);
+
+        #[method(controlPointStride)]
+        pub unsafe fn controlPointStride(&self) -> NSUInteger;
+
+        #[method(setControlPointStride:)]
+        pub unsafe fn setControlPointStride(&self, control_point_stride: NSUInteger);
+
+        #[method(controlPointFormat)]
+        pub unsafe fn controlPointFormat(&self) -> MTLAttributeFormat;
+
+        #[method(setControlPointFormat:)]
+        pub unsafe fn setControlPointFormat(&self, control_point_format: MTLAttributeFormat);
+
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Metal_MTLMotionKeyframeData"
+        ))]
+        #[method_id(@__retain_semantics Other radiusBuffers)]
+        pub unsafe fn radiusBuffers(&self) -> Id<NSArray<MTLMotionKeyframeData>>;
+
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Metal_MTLMotionKeyframeData"
+        ))]
+        #[method(setRadiusBuffers:)]
+        pub unsafe fn setRadiusBuffers(&self, radius_buffers: &NSArray<MTLMotionKeyframeData>);
+
+        #[method(radiusFormat)]
+        pub unsafe fn radiusFormat(&self) -> MTLAttributeFormat;
+
+        #[method(setRadiusFormat:)]
+        pub unsafe fn setRadiusFormat(&self, radius_format: MTLAttributeFormat);
+
+        #[method(radiusStride)]
+        pub unsafe fn radiusStride(&self) -> NSUInteger;
+
+        #[method(setRadiusStride:)]
+        pub unsafe fn setRadiusStride(&self, radius_stride: NSUInteger);
+
+        #[method_id(@__retain_semantics Other indexBuffer)]
+        pub unsafe fn indexBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
+
+        #[method(setIndexBuffer:)]
+        pub unsafe fn setIndexBuffer(&self, index_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
+
+        #[method(indexBufferOffset)]
+        pub unsafe fn indexBufferOffset(&self) -> NSUInteger;
+
+        #[method(setIndexBufferOffset:)]
+        pub unsafe fn setIndexBufferOffset(&self, index_buffer_offset: NSUInteger);
+
+        #[method(indexType)]
+        pub unsafe fn indexType(&self) -> MTLIndexType;
+
+        #[method(setIndexType:)]
+        pub unsafe fn setIndexType(&self, index_type: MTLIndexType);
+
+        #[method(segmentCount)]
+        pub unsafe fn segmentCount(&self) -> NSUInteger;
+
+        #[method(setSegmentCount:)]
+        pub unsafe fn setSegmentCount(&self, segment_count: NSUInteger);
+
+        #[method(segmentControlPointCount)]
+        pub unsafe fn segmentControlPointCount(&self) -> NSUInteger;
+
+        #[method(setSegmentControlPointCount:)]
+        pub unsafe fn setSegmentControlPointCount(&self, segment_control_point_count: NSUInteger);
+
+        #[method(curveType)]
+        pub unsafe fn curveType(&self) -> MTLCurveType;
+
+        #[method(setCurveType:)]
+        pub unsafe fn setCurveType(&self, curve_type: MTLCurveType);
+
+        #[method(curveBasis)]
+        pub unsafe fn curveBasis(&self) -> MTLCurveBasis;
+
+        #[method(setCurveBasis:)]
+        pub unsafe fn setCurveBasis(&self, curve_basis: MTLCurveBasis);
+
+        #[method(curveEndCaps)]
+        pub unsafe fn curveEndCaps(&self) -> MTLCurveEndCaps;
+
+        #[method(setCurveEndCaps:)]
+        pub unsafe fn setCurveEndCaps(&self, curve_end_caps: MTLCurveEndCaps);
+
+        #[method_id(@__retain_semantics Other descriptor)]
+        pub unsafe fn descriptor() -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Metal_MTLAccelerationStructureMotionCurveGeometryDescriptor")]
+    unsafe impl MTLAccelerationStructureMotionCurveGeometryDescriptor {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
 extern_struct!(
     #[encoding_name("?")]
     pub struct MTLAccelerationStructureInstanceDescriptor {
@@ -685,6 +1004,8 @@ ns_enum!(
         MTLAccelerationStructureInstanceDescriptorTypeDefault = 0,
         MTLAccelerationStructureInstanceDescriptorTypeUserID = 1,
         MTLAccelerationStructureInstanceDescriptorTypeMotion = 2,
+        MTLAccelerationStructureInstanceDescriptorTypeIndirect = 3,
+        MTLAccelerationStructureInstanceDescriptorTypeIndirectMotion = 4,
     }
 );
 
@@ -696,6 +1017,35 @@ extern_struct!(
         pub intersectionFunctionTableOffset: u32,
         pub accelerationStructureIndex: u32,
         pub userID: u32,
+        pub motionTransformsStartIndex: u32,
+        pub motionTransformsCount: u32,
+        pub motionStartBorderMode: MTLMotionBorderMode,
+        pub motionEndBorderMode: MTLMotionBorderMode,
+        pub motionStartTime: c_float,
+        pub motionEndTime: c_float,
+    }
+);
+
+extern_struct!(
+    #[encoding_name("?")]
+    pub struct MTLIndirectAccelerationStructureInstanceDescriptor {
+        pub transformationMatrix: MTLPackedFloat4x3,
+        pub options: MTLAccelerationStructureInstanceOptions,
+        pub mask: u32,
+        pub intersectionFunctionTableOffset: u32,
+        pub userID: u32,
+        pub accelerationStructureID: MTLResourceID,
+    }
+);
+
+extern_struct!(
+    #[encoding_name("?")]
+    pub struct MTLIndirectAccelerationStructureMotionInstanceDescriptor {
+        pub options: MTLAccelerationStructureInstanceOptions,
+        pub mask: u32,
+        pub intersectionFunctionTableOffset: u32,
+        pub userID: u32,
+        pub accelerationStructureID: MTLResourceID,
         pub motionTransformsStartIndex: u32,
         pub motionTransformsCount: u32,
         pub motionStartBorderMode: MTLMotionBorderMode,
@@ -816,6 +1166,145 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "Metal_MTLInstanceAccelerationStructureDescriptor")]
     unsafe impl MTLInstanceAccelerationStructureDescriptor {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
+extern_class!(
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "Metal_MTLIndirectInstanceAccelerationStructureDescriptor")]
+    pub struct MTLIndirectInstanceAccelerationStructureDescriptor;
+
+    #[cfg(feature = "Metal_MTLIndirectInstanceAccelerationStructureDescriptor")]
+    unsafe impl ClassType for MTLIndirectInstanceAccelerationStructureDescriptor {
+        #[inherits(NSObject)]
+        type Super = MTLAccelerationStructureDescriptor;
+        type Mutability = InteriorMutable;
+    }
+);
+
+#[cfg(feature = "Metal_MTLIndirectInstanceAccelerationStructureDescriptor")]
+unsafe impl NSCopying for MTLIndirectInstanceAccelerationStructureDescriptor {}
+
+#[cfg(feature = "Metal_MTLIndirectInstanceAccelerationStructureDescriptor")]
+unsafe impl NSObjectProtocol for MTLIndirectInstanceAccelerationStructureDescriptor {}
+
+extern_methods!(
+    #[cfg(feature = "Metal_MTLIndirectInstanceAccelerationStructureDescriptor")]
+    unsafe impl MTLIndirectInstanceAccelerationStructureDescriptor {
+        #[method_id(@__retain_semantics Other instanceDescriptorBuffer)]
+        pub unsafe fn instanceDescriptorBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
+
+        #[method(setInstanceDescriptorBuffer:)]
+        pub unsafe fn setInstanceDescriptorBuffer(
+            &self,
+            instance_descriptor_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
+        );
+
+        #[method(instanceDescriptorBufferOffset)]
+        pub unsafe fn instanceDescriptorBufferOffset(&self) -> NSUInteger;
+
+        #[method(setInstanceDescriptorBufferOffset:)]
+        pub unsafe fn setInstanceDescriptorBufferOffset(
+            &self,
+            instance_descriptor_buffer_offset: NSUInteger,
+        );
+
+        #[method(instanceDescriptorStride)]
+        pub unsafe fn instanceDescriptorStride(&self) -> NSUInteger;
+
+        #[method(setInstanceDescriptorStride:)]
+        pub unsafe fn setInstanceDescriptorStride(&self, instance_descriptor_stride: NSUInteger);
+
+        #[method(maxInstanceCount)]
+        pub unsafe fn maxInstanceCount(&self) -> NSUInteger;
+
+        #[method(setMaxInstanceCount:)]
+        pub unsafe fn setMaxInstanceCount(&self, max_instance_count: NSUInteger);
+
+        #[method_id(@__retain_semantics Other instanceCountBuffer)]
+        pub unsafe fn instanceCountBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
+
+        #[method(setInstanceCountBuffer:)]
+        pub unsafe fn setInstanceCountBuffer(
+            &self,
+            instance_count_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
+        );
+
+        #[method(instanceCountBufferOffset)]
+        pub unsafe fn instanceCountBufferOffset(&self) -> NSUInteger;
+
+        #[method(setInstanceCountBufferOffset:)]
+        pub unsafe fn setInstanceCountBufferOffset(&self, instance_count_buffer_offset: NSUInteger);
+
+        #[method(instanceDescriptorType)]
+        pub unsafe fn instanceDescriptorType(
+            &self,
+        ) -> MTLAccelerationStructureInstanceDescriptorType;
+
+        #[method(setInstanceDescriptorType:)]
+        pub unsafe fn setInstanceDescriptorType(
+            &self,
+            instance_descriptor_type: MTLAccelerationStructureInstanceDescriptorType,
+        );
+
+        #[method_id(@__retain_semantics Other motionTransformBuffer)]
+        pub unsafe fn motionTransformBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
+
+        #[method(setMotionTransformBuffer:)]
+        pub unsafe fn setMotionTransformBuffer(
+            &self,
+            motion_transform_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
+        );
+
+        #[method(motionTransformBufferOffset)]
+        pub unsafe fn motionTransformBufferOffset(&self) -> NSUInteger;
+
+        #[method(setMotionTransformBufferOffset:)]
+        pub unsafe fn setMotionTransformBufferOffset(
+            &self,
+            motion_transform_buffer_offset: NSUInteger,
+        );
+
+        #[method(maxMotionTransformCount)]
+        pub unsafe fn maxMotionTransformCount(&self) -> NSUInteger;
+
+        #[method(setMaxMotionTransformCount:)]
+        pub unsafe fn setMaxMotionTransformCount(&self, max_motion_transform_count: NSUInteger);
+
+        #[method_id(@__retain_semantics Other motionTransformCountBuffer)]
+        pub unsafe fn motionTransformCountBuffer(
+            &self,
+        ) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
+
+        #[method(setMotionTransformCountBuffer:)]
+        pub unsafe fn setMotionTransformCountBuffer(
+            &self,
+            motion_transform_count_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
+        );
+
+        #[method(motionTransformCountBufferOffset)]
+        pub unsafe fn motionTransformCountBufferOffset(&self) -> NSUInteger;
+
+        #[method(setMotionTransformCountBufferOffset:)]
+        pub unsafe fn setMotionTransformCountBufferOffset(
+            &self,
+            motion_transform_count_buffer_offset: NSUInteger,
+        );
+
+        #[method_id(@__retain_semantics Other descriptor)]
+        pub unsafe fn descriptor() -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "Metal_MTLIndirectInstanceAccelerationStructureDescriptor")]
+    unsafe impl MTLIndirectInstanceAccelerationStructureDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 

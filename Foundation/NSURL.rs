@@ -167,6 +167,10 @@ extern_static!(NSURLFileProtectionCompleteUnlessOpen: &'static NSURLFileProtecti
 
 extern_static!(NSURLFileProtectionCompleteUntilFirstUserAuthentication: &'static NSURLFileProtectionType);
 
+extern_static!(NSURLFileProtectionCompleteWhenUserInactive: &'static NSURLFileProtectionType);
+
+extern_static!(NSURLDirectoryEntryCountKey: &'static NSURLResourceKey);
+
 extern_static!(NSURLVolumeLocalizedFormatDescriptionKey: &'static NSURLResourceKey);
 
 extern_static!(NSURLVolumeTotalCapacityKey: &'static NSURLResourceKey);
@@ -480,6 +484,21 @@ extern_methods!(
         pub unsafe fn URLWithString_relativeToURL(
             url_string: &NSString,
             base_url: Option<&NSURL>,
+        ) -> Option<Id<Self>>;
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Init initWithString:encodingInvalidCharacters:)]
+        pub unsafe fn initWithString_encodingInvalidCharacters(
+            this: Allocated<Self>,
+            url_string: &NSString,
+            encoding_invalid_characters: bool,
+        ) -> Option<Id<Self>>;
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Other URLWithString:encodingInvalidCharacters:)]
+        pub unsafe fn URLWithString_encodingInvalidCharacters(
+            url_string: &NSString,
+            encoding_invalid_characters: bool,
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSData")]
@@ -898,6 +917,21 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other componentsWithString:)]
         pub unsafe fn componentsWithString(url_string: &NSString) -> Option<Id<Self>>;
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Init initWithString:encodingInvalidCharacters:)]
+        pub unsafe fn initWithString_encodingInvalidCharacters(
+            this: Allocated<Self>,
+            url_string: &NSString,
+            encoding_invalid_characters: bool,
+        ) -> Option<Id<Self>>;
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Other componentsWithString:encodingInvalidCharacters:)]
+        pub unsafe fn componentsWithString_encodingInvalidCharacters(
+            url_string: &NSString,
+            encoding_invalid_characters: bool,
+        ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other URL)]

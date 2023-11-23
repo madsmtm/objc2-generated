@@ -73,6 +73,8 @@ mod __ASAuthorizationProviderExtensionLoginConfiguration;
 mod __ASAuthorizationProviderExtensionLoginManager;
 #[path = "ASAuthorizationProviderExtensionRegistrationHandler.rs"]
 mod __ASAuthorizationProviderExtensionRegistrationHandler;
+#[path = "ASAuthorizationProviderExtensionUserLoginConfiguration.rs"]
+mod __ASAuthorizationProviderExtensionUserLoginConfiguration;
 #[path = "ASAuthorizationPublicKeyCredentialAssertion.rs"]
 mod __ASAuthorizationPublicKeyCredentialAssertion;
 #[path = "ASAuthorizationPublicKeyCredentialAssertionRequest.rs"]
@@ -81,6 +83,14 @@ mod __ASAuthorizationPublicKeyCredentialAssertionRequest;
 mod __ASAuthorizationPublicKeyCredentialConstants;
 #[path = "ASAuthorizationPublicKeyCredentialDescriptor.rs"]
 mod __ASAuthorizationPublicKeyCredentialDescriptor;
+#[path = "ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput.rs"]
+mod __ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput;
+#[path = "ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput.rs"]
+mod __ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput;
+#[path = "ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput.rs"]
+mod __ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput;
+#[path = "ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput.rs"]
+mod __ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput;
 #[path = "ASAuthorizationPublicKeyCredentialParameters.rs"]
 mod __ASAuthorizationPublicKeyCredentialParameters;
 #[path = "ASAuthorizationPublicKeyCredentialRegistration.rs"]
@@ -111,10 +121,18 @@ mod __ASAuthorizationSingleSignOnRequest;
 mod __ASAuthorizationWebBrowserExternallyAuthenticatableRequest;
 #[path = "ASAuthorizationWebBrowserPlatformPublicKeyCredential.rs"]
 mod __ASAuthorizationWebBrowserPlatformPublicKeyCredential;
+#[path = "ASAuthorizationWebBrowserPlatformPublicKeyCredentialAssertionRequest.rs"]
+mod __ASAuthorizationWebBrowserPlatformPublicKeyCredentialAssertionRequest;
+#[path = "ASAuthorizationWebBrowserPlatformPublicKeyCredentialProvider.rs"]
+mod __ASAuthorizationWebBrowserPlatformPublicKeyCredentialProvider;
+#[path = "ASAuthorizationWebBrowserPlatformPublicKeyCredentialRegistrationRequest.rs"]
+mod __ASAuthorizationWebBrowserPlatformPublicKeyCredentialRegistrationRequest;
 #[path = "ASAuthorizationWebBrowserPublicKeyCredentialManager.rs"]
 mod __ASAuthorizationWebBrowserPublicKeyCredentialManager;
 #[path = "ASCOSEConstants.rs"]
 mod __ASCOSEConstants;
+#[path = "ASCredentialIdentity.rs"]
+mod __ASCredentialIdentity;
 #[path = "ASCredentialIdentityStore.rs"]
 mod __ASCredentialIdentityStore;
 #[path = "ASCredentialIdentityStoreState.rs"]
@@ -123,18 +141,36 @@ mod __ASCredentialIdentityStoreState;
 mod __ASCredentialProviderExtensionContext;
 #[path = "ASCredentialProviderViewController.rs"]
 mod __ASCredentialProviderViewController;
+#[path = "ASCredentialRequest.rs"]
+mod __ASCredentialRequest;
 #[path = "ASCredentialServiceIdentifier.rs"]
 mod __ASCredentialServiceIdentifier;
 #[path = "ASExtensionErrors.rs"]
 mod __ASExtensionErrors;
 #[path = "ASFoundation.rs"]
 mod __ASFoundation;
+#[path = "ASPasskeyAssertionCredential.rs"]
+mod __ASPasskeyAssertionCredential;
+#[path = "ASPasskeyCredentialIdentity.rs"]
+mod __ASPasskeyCredentialIdentity;
+#[path = "ASPasskeyCredentialRequest.rs"]
+mod __ASPasskeyCredentialRequest;
+#[path = "ASPasskeyCredentialRequestParameters.rs"]
+mod __ASPasskeyCredentialRequestParameters;
+#[path = "ASPasskeyRegistrationCredential.rs"]
+mod __ASPasskeyRegistrationCredential;
 #[path = "ASPasswordCredential.rs"]
 mod __ASPasswordCredential;
 #[path = "ASPasswordCredentialIdentity.rs"]
 mod __ASPasswordCredentialIdentity;
+#[path = "ASPasswordCredentialRequest.rs"]
+mod __ASPasswordCredentialRequest;
 #[path = "ASPublicKeyCredential.rs"]
 mod __ASPublicKeyCredential;
+#[path = "ASPublicKeyCredentialClientData.rs"]
+mod __ASPublicKeyCredentialClientData;
+#[path = "ASSettingsHelper.rs"]
+mod __ASSettingsHelper;
 #[path = "ASWebAuthenticationSession.rs"]
 mod __ASWebAuthenticationSession;
 #[path = "ASWebAuthenticationSessionRequest.rs"]
@@ -263,17 +299,29 @@ pub use self::__ASAuthorizationProviderExtensionLoginManager::ASAuthorizationPro
 #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionLoginManager")]
 pub use self::__ASAuthorizationProviderExtensionLoginManager::ASAuthorizationProviderExtensionLoginManager;
 pub use self::__ASAuthorizationProviderExtensionLoginManager::{
+    ASAuthorizationProviderExtensionKeyTypeCurrentDeviceEncryption,
+    ASAuthorizationProviderExtensionKeyTypeCurrentDeviceSigning,
+    ASAuthorizationProviderExtensionKeyTypeSharedDeviceEncryption,
+    ASAuthorizationProviderExtensionKeyTypeSharedDeviceSigning,
     ASAuthorizationProviderExtensionKeyTypeUserDeviceEncryption,
     ASAuthorizationProviderExtensionKeyTypeUserDeviceSigning,
     ASAuthorizationProviderExtensionKeyTypeUserSecureEnclaveKey,
+    ASAuthorizationProviderExtensionKeyTypeUserSmartCard,
 };
 pub use self::__ASAuthorizationProviderExtensionRegistrationHandler::ASAuthorizationProviderExtensionAuthenticationMethod;
+pub use self::__ASAuthorizationProviderExtensionRegistrationHandler::ASAuthorizationProviderExtensionPlatformSSOProtocolVersion;
 pub use self::__ASAuthorizationProviderExtensionRegistrationHandler::ASAuthorizationProviderExtensionRegistrationHandler;
 pub use self::__ASAuthorizationProviderExtensionRegistrationHandler::ASAuthorizationProviderExtensionRegistrationResult;
 pub use self::__ASAuthorizationProviderExtensionRegistrationHandler::ASAuthorizationProviderExtensionRequestOptions;
+pub use self::__ASAuthorizationProviderExtensionRegistrationHandler::ASAuthorizationProviderExtensionSupportedGrantTypes;
 pub use self::__ASAuthorizationProviderExtensionRegistrationHandler::{
     ASAuthorizationProviderExtensionAuthenticationMethodPassword,
+    ASAuthorizationProviderExtensionAuthenticationMethodSmartCard,
     ASAuthorizationProviderExtensionAuthenticationMethodUserSecureEnclaveKey,
+};
+pub use self::__ASAuthorizationProviderExtensionRegistrationHandler::{
+    ASAuthorizationProviderExtensionPlatformSSOProtocolVersion1_0,
+    ASAuthorizationProviderExtensionPlatformSSOProtocolVersion2_0,
 };
 pub use self::__ASAuthorizationProviderExtensionRegistrationHandler::{
     ASAuthorizationProviderExtensionRegistrationResultFailed,
@@ -283,11 +331,25 @@ pub use self::__ASAuthorizationProviderExtensionRegistrationHandler::{
 };
 pub use self::__ASAuthorizationProviderExtensionRegistrationHandler::{
     ASAuthorizationProviderExtensionRequestOptionsNone,
+    ASAuthorizationProviderExtensionRequestOptionsRegistrationDeviceKeyMigration,
     ASAuthorizationProviderExtensionRequestOptionsRegistrationRepair,
+    ASAuthorizationProviderExtensionRequestOptionsRegistrationSharedDeviceKeys,
     ASAuthorizationProviderExtensionRequestOptionsUserInteractionEnabled,
 };
+pub use self::__ASAuthorizationProviderExtensionRegistrationHandler::{
+    ASAuthorizationProviderExtensionSupportedGrantTypesJWTBearer,
+    ASAuthorizationProviderExtensionSupportedGrantTypesNone,
+    ASAuthorizationProviderExtensionSupportedGrantTypesPassword,
+    ASAuthorizationProviderExtensionSupportedGrantTypesSAML1_1,
+    ASAuthorizationProviderExtensionSupportedGrantTypesSAML2_0,
+};
+#[cfg(
+    feature = "AuthenticationServices_ASAuthorizationProviderExtensionUserLoginConfiguration"
+)]
+pub use self::__ASAuthorizationProviderExtensionUserLoginConfiguration::ASAuthorizationProviderExtensionUserLoginConfiguration;
 pub use self::__ASAuthorizationPublicKeyCredentialAssertion::ASAuthorizationPublicKeyCredentialAssertion;
 pub use self::__ASAuthorizationPublicKeyCredentialAssertionRequest::ASAuthorizationPublicKeyCredentialAssertionRequest;
+pub use self::__ASAuthorizationPublicKeyCredentialConstants::ASAuthorizationPublicKeyCredentialAttachment;
 pub use self::__ASAuthorizationPublicKeyCredentialConstants::ASAuthorizationPublicKeyCredentialAttestationKind;
 pub use self::__ASAuthorizationPublicKeyCredentialConstants::ASAuthorizationPublicKeyCredentialAttestationKindDirect;
 pub use self::__ASAuthorizationPublicKeyCredentialConstants::ASAuthorizationPublicKeyCredentialAttestationKindEnterprise;
@@ -301,7 +363,37 @@ pub use self::__ASAuthorizationPublicKeyCredentialConstants::ASAuthorizationPubl
 pub use self::__ASAuthorizationPublicKeyCredentialConstants::ASAuthorizationPublicKeyCredentialUserVerificationPreferenceDiscouraged;
 pub use self::__ASAuthorizationPublicKeyCredentialConstants::ASAuthorizationPublicKeyCredentialUserVerificationPreferencePreferred;
 pub use self::__ASAuthorizationPublicKeyCredentialConstants::ASAuthorizationPublicKeyCredentialUserVerificationPreferenceRequired;
+pub use self::__ASAuthorizationPublicKeyCredentialConstants::{
+    ASAuthorizationPublicKeyCredentialAttachmentCrossPlatform,
+    ASAuthorizationPublicKeyCredentialAttachmentPlatform,
+};
 pub use self::__ASAuthorizationPublicKeyCredentialDescriptor::ASAuthorizationPublicKeyCredentialDescriptor;
+#[cfg(
+    feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput"
+)]
+pub use self::__ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput::ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput;
+pub use self::__ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput::ASAuthorizationPublicKeyCredentialLargeBlobAssertionOperation;
+pub use self::__ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput::{
+    ASAuthorizationPublicKeyCredentialLargeBlobAssertionOperationRead,
+    ASAuthorizationPublicKeyCredentialLargeBlobAssertionOperationWrite,
+};
+#[cfg(
+    feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput"
+)]
+pub use self::__ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput::ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput;
+#[cfg(
+    feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput"
+)]
+pub use self::__ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput::ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput;
+pub use self::__ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput::ASAuthorizationPublicKeyCredentialLargeBlobSupportRequirement;
+pub use self::__ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput::{
+    ASAuthorizationPublicKeyCredentialLargeBlobSupportRequirementPreferred,
+    ASAuthorizationPublicKeyCredentialLargeBlobSupportRequirementRequired,
+};
+#[cfg(
+    feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput"
+)]
+pub use self::__ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput::ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput;
 #[cfg(feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialParameters")]
 pub use self::__ASAuthorizationPublicKeyCredentialParameters::ASAuthorizationPublicKeyCredentialParameters;
 pub use self::__ASAuthorizationPublicKeyCredentialRegistration::ASAuthorizationPublicKeyCredentialRegistration;
@@ -347,6 +439,9 @@ pub use self::__ASAuthorizationSingleSignOnRequest::ASAuthorizationSingleSignOnR
 pub use self::__ASAuthorizationWebBrowserExternallyAuthenticatableRequest::ASAuthorizationWebBrowserExternallyAuthenticatableRequest;
 #[cfg(feature = "AuthenticationServices_ASAuthorizationWebBrowserPlatformPublicKeyCredential")]
 pub use self::__ASAuthorizationWebBrowserPlatformPublicKeyCredential::ASAuthorizationWebBrowserPlatformPublicKeyCredential;
+pub use self::__ASAuthorizationWebBrowserPlatformPublicKeyCredentialAssertionRequest::ASAuthorizationWebBrowserPlatformPublicKeyCredentialAssertionRequest;
+pub use self::__ASAuthorizationWebBrowserPlatformPublicKeyCredentialProvider::ASAuthorizationWebBrowserPlatformPublicKeyCredentialProvider;
+pub use self::__ASAuthorizationWebBrowserPlatformPublicKeyCredentialRegistrationRequest::ASAuthorizationWebBrowserPlatformPublicKeyCredentialRegistrationRequest;
 #[cfg(feature = "AuthenticationServices_ASAuthorizationWebBrowserPublicKeyCredentialManager")]
 pub use self::__ASAuthorizationWebBrowserPublicKeyCredentialManager::ASAuthorizationWebBrowserPublicKeyCredentialManager;
 pub use self::__ASAuthorizationWebBrowserPublicKeyCredentialManager::ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationState;
@@ -359,6 +454,7 @@ pub use self::__ASCOSEConstants::ASCOSEAlgorithmIdentifier;
 pub use self::__ASCOSEConstants::ASCOSEAlgorithmIdentifierES256;
 pub use self::__ASCOSEConstants::ASCOSEEllipticCurveIdentifier;
 pub use self::__ASCOSEConstants::ASCOSEEllipticCurveIdentifierP256;
+pub use self::__ASCredentialIdentity::ASCredentialIdentity;
 #[cfg(feature = "AuthenticationServices_ASCredentialIdentityStore")]
 pub use self::__ASCredentialIdentityStore::ASCredentialIdentityStore;
 pub use self::__ASCredentialIdentityStore::ASCredentialIdentityStoreErrorCode;
@@ -371,6 +467,11 @@ pub use self::__ASCredentialIdentityStore::{
 pub use self::__ASCredentialIdentityStoreState::ASCredentialIdentityStoreState;
 #[cfg(feature = "AuthenticationServices_ASCredentialProviderExtensionContext")]
 pub use self::__ASCredentialProviderExtensionContext::ASCredentialProviderExtensionContext;
+pub use self::__ASCredentialRequest::ASCredentialRequest;
+pub use self::__ASCredentialRequest::ASCredentialRequestType;
+pub use self::__ASCredentialRequest::{
+    ASCredentialRequestTypePasskeyAssertion, ASCredentialRequestTypePassword,
+};
 #[cfg(feature = "AuthenticationServices_ASCredentialServiceIdentifier")]
 pub use self::__ASCredentialServiceIdentifier::ASCredentialServiceIdentifier;
 pub use self::__ASCredentialServiceIdentifier::ASCredentialServiceIdentifierType;
@@ -384,11 +485,33 @@ pub use self::__ASExtensionErrors::{
     ASExtensionErrorCodeCredentialIdentityNotFound, ASExtensionErrorCodeFailed,
     ASExtensionErrorCodeUserCanceled, ASExtensionErrorCodeUserInteractionRequired,
 };
+#[cfg(feature = "AuthenticationServices_ASPasskeyAssertionCredential")]
+pub use self::__ASPasskeyAssertionCredential::ASPasskeyAssertionCredential;
+#[cfg(feature = "AuthenticationServices_ASPasskeyCredentialIdentity")]
+pub use self::__ASPasskeyCredentialIdentity::ASPasskeyCredentialIdentity;
+#[cfg(feature = "AuthenticationServices_ASPasskeyCredentialRequest")]
+pub use self::__ASPasskeyCredentialRequest::ASPasskeyCredentialRequest;
+#[cfg(feature = "AuthenticationServices_ASPasskeyCredentialRequestParameters")]
+pub use self::__ASPasskeyCredentialRequestParameters::ASPasskeyCredentialRequestParameters;
+#[cfg(feature = "AuthenticationServices_ASPasskeyRegistrationCredential")]
+pub use self::__ASPasskeyRegistrationCredential::ASPasskeyRegistrationCredential;
 #[cfg(feature = "AuthenticationServices_ASPasswordCredential")]
 pub use self::__ASPasswordCredential::ASPasswordCredential;
 #[cfg(feature = "AuthenticationServices_ASPasswordCredentialIdentity")]
 pub use self::__ASPasswordCredentialIdentity::ASPasswordCredentialIdentity;
+#[cfg(feature = "AuthenticationServices_ASPasswordCredentialRequest")]
+pub use self::__ASPasswordCredentialRequest::ASPasswordCredentialRequest;
 pub use self::__ASPublicKeyCredential::ASPublicKeyCredential;
+#[cfg(feature = "AuthenticationServices_ASPublicKeyCredentialClientData")]
+pub use self::__ASPublicKeyCredentialClientData::ASPublicKeyCredentialClientData;
+pub use self::__ASPublicKeyCredentialClientData::ASPublicKeyCredentialClientDataCrossOriginValue;
+pub use self::__ASPublicKeyCredentialClientData::{
+    ASPublicKeyCredentialClientDataCrossOriginValueCrossOrigin,
+    ASPublicKeyCredentialClientDataCrossOriginValueNotSet,
+    ASPublicKeyCredentialClientDataCrossOriginValueSameOriginWithAncestors,
+};
+#[cfg(feature = "AuthenticationServices_ASSettingsHelper")]
+pub use self::__ASSettingsHelper::ASSettingsHelper;
 pub use self::__ASWebAuthenticationSession::ASWebAuthenticationPresentationContextProviding;
 #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSession")]
 pub use self::__ASWebAuthenticationSession::ASWebAuthenticationSession;

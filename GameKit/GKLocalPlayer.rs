@@ -142,7 +142,7 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKLocalPlayer")]
     unsafe impl GKLocalPlayer {
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
-        #[deprecated = "Use setDefaultLeaderboardIdentifier:completionHandler: instead"]
+        #[deprecated]
         #[method(setDefaultLeaderboardCategoryID:completionHandler:)]
         pub unsafe fn setDefaultLeaderboardCategoryID_completionHandler(
             &self,
@@ -151,7 +151,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
-        #[deprecated = "Use loadDefaultLeaderboardIdentifierWithCompletionHandler: instead"]
+        #[deprecated]
         #[method(loadDefaultLeaderboardCategoryIDWithCompletionHandler:)]
         pub unsafe fn loadDefaultLeaderboardCategoryIDWithCompletionHandler(
             &self,
@@ -159,7 +159,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSError")]
-        #[deprecated = "Set the authenticateHandler instead"]
+        #[deprecated]
         #[method(authenticateWithCompletionHandler:)]
         pub unsafe fn authenticateWithCompletionHandler(
             &self,
@@ -183,7 +183,7 @@ extern_methods!(
             feature = "Foundation_NSError",
             feature = "Foundation_NSURL"
         ))]
-        #[deprecated = "API deprecated. Use fetchItemsForIdentityVerificationSignature: and the teamPlayerID value to verify a user identity."]
+        #[deprecated]
         #[method(generateIdentityVerificationSignatureWithCompletionHandler:)]
         pub unsafe fn generateIdentityVerificationSignatureWithCompletionHandler(
             &self,
@@ -203,7 +203,7 @@ extern_methods!(
             feature = "Foundation_NSError",
             feature = "Foundation_NSString"
         ))]
-        #[deprecated = "This is never invoked and its implementation does nothing, use loadRecentPlayersWithCompletionHandler: instead"]
+        #[deprecated]
         #[method(loadFriendsWithCompletionHandler:)]
         pub unsafe fn loadFriendsWithCompletionHandler(
             &self,
@@ -211,7 +211,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
-        #[deprecated = " This property is obsolete, Use loadFriendPlayersWithCompletionHandler: instead"]
+        #[deprecated]
         #[method_id(@__retain_semantics Other friends)]
         pub unsafe fn friends(&self) -> Option<Id<NSArray<NSString>>>;
     }

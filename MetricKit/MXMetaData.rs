@@ -48,6 +48,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Other platformArchitecture)]
         pub unsafe fn platformArchitecture(&self) -> Id<NSString>;
 
+        #[method(lowPowerModeEnabled)]
+        pub unsafe fn lowPowerModeEnabled(&self) -> bool;
+
+        #[method(isTestFlightApp)]
+        pub unsafe fn isTestFlightApp(&self) -> bool;
+
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other JSONRepresentation)]
         pub unsafe fn JSONRepresentation(&self) -> Id<NSData>;

@@ -41,13 +41,7 @@ extern_static!(NSUnderlineColorAttributeName: &'static NSAttributedStringKey);
 
 extern_static!(NSStrikethroughColorAttributeName: &'static NSAttributedStringKey);
 
-extern_static!(NSObliquenessAttributeName: &'static NSAttributedStringKey);
-
-extern_static!(NSExpansionAttributeName: &'static NSAttributedStringKey);
-
 extern_static!(NSWritingDirectionAttributeName: &'static NSAttributedStringKey);
-
-extern_static!(NSVerticalGlyphFormAttributeName: &'static NSAttributedStringKey);
 
 extern_static!(NSCursorAttributeName: &'static NSAttributedStringKey);
 
@@ -232,6 +226,8 @@ extern_static!(NSExcludedElementsDocumentAttribute: &'static NSAttributedStringD
 extern_static!(NSTextEncodingNameDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
 extern_static!(NSPrefixSpacesDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
+
+extern_static!(NSDefaultFontExcludedDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
 extern_static!(NSTextScalingDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey);
 
@@ -617,6 +613,12 @@ extern_static!(NSUnderlineByWord: NSUnderlineStyle = NSUnderlineStyleByWord);
 extern_static!(NSCharacterShapeAttributeName: &'static NSAttributedStringKey);
 
 extern_static!(NSUsesScreenFontsDocumentAttribute: &'static NSAttributedStringKey);
+
+extern_static!(NSObliquenessAttributeName: &'static NSAttributedStringKey);
+
+extern_static!(NSExpansionAttributeName: &'static NSAttributedStringKey);
+
+extern_static!(NSVerticalGlyphFormAttributeName: &'static NSAttributedStringKey);
 
 extern_enum!(
     #[underlying(c_uint)]

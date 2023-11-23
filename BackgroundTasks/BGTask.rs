@@ -93,6 +93,45 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "BackgroundTasks_BGHealthResearchTask")]
+    pub struct BGHealthResearchTask;
+
+    #[cfg(feature = "BackgroundTasks_BGHealthResearchTask")]
+    unsafe impl ClassType for BGHealthResearchTask {
+        #[inherits(BGTask, NSObject)]
+        type Super = BGProcessingTask;
+        type Mutability = InteriorMutable;
+    }
+);
+
+#[cfg(feature = "BackgroundTasks_BGHealthResearchTask")]
+unsafe impl NSObjectProtocol for BGHealthResearchTask {}
+
+extern_methods!(
+    #[cfg(feature = "BackgroundTasks_BGHealthResearchTask")]
+    unsafe impl BGHealthResearchTask {}
+);
+
+extern_methods!(
+    /// Methods declared on superclass `BGTask`
+    #[cfg(feature = "BackgroundTasks_BGHealthResearchTask")]
+    unsafe impl BGHealthResearchTask {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "BackgroundTasks_BGHealthResearchTask")]
+    unsafe impl BGHealthResearchTask {
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);
+
+extern_class!(
+    #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "BackgroundTasks_BGAppRefreshTask")]
     pub struct BGAppRefreshTask;
 

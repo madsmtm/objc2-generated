@@ -138,7 +138,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics New newTextureWithDescriptor:)]
         fn newTextureWithDescriptor(
             &self,
-            desc: &MTLTextureDescriptor,
+            descriptor: &MTLTextureDescriptor,
         ) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
 
         #[method(setPurgeableState:)]

@@ -138,7 +138,7 @@ extern_protocol!(
             feature = "GameKit_GKTurnBasedMatch",
             feature = "GameKit_GKTurnBasedMatchmakerViewController"
         ))]
-        #[deprecated = "use GKTurnBasedEventListener player:receivedTurnEventForMatch:didBecomeActive:"]
+        #[deprecated]
         #[optional]
         #[method(turnBasedMatchmakerViewController:didFindMatch:)]
         unsafe fn turnBasedMatchmakerViewController_didFindMatch(
@@ -151,7 +151,7 @@ extern_protocol!(
             feature = "GameKit_GKTurnBasedMatch",
             feature = "GameKit_GKTurnBasedMatchmakerViewController"
         ))]
-        #[deprecated = "use GKTurnBasedEventListener player:wantsToQuitMatch:"]
+        #[deprecated]
         #[optional]
         #[method(turnBasedMatchmakerViewController:playerQuitForMatch:)]
         unsafe fn turnBasedMatchmakerViewController_playerQuitForMatch(

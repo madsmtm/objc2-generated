@@ -36,3 +36,11 @@ extern_static!(ASAuthorizationPublicKeyCredentialResidentKeyPreferenceDiscourage
 extern_static!(ASAuthorizationPublicKeyCredentialResidentKeyPreferencePreferred: Option<&'static ASAuthorizationPublicKeyCredentialResidentKeyPreference>);
 
 extern_static!(ASAuthorizationPublicKeyCredentialResidentKeyPreferenceRequired: Option<&'static ASAuthorizationPublicKeyCredentialResidentKeyPreference>);
+
+ns_enum!(
+    #[underlying(NSInteger)]
+    pub enum ASAuthorizationPublicKeyCredentialAttachment {
+        ASAuthorizationPublicKeyCredentialAttachmentPlatform = 0,
+        ASAuthorizationPublicKeyCredentialAttachmentCrossPlatform = 1,
+    }
+);

@@ -15,6 +15,8 @@ extern_static!(GCProductCategoryXboxOne: Option<&'static NSString>);
 
 extern_static!(GCProductCategoryHID: Option<&'static NSString>);
 
+extern_static!(GCProductCategoryArcadeStick: Option<&'static NSString>);
+
 extern_static!(GCProductCategorySiriRemote1stGen: Option<&'static NSString>);
 
 extern_static!(GCProductCategorySiriRemote2ndGen: Option<&'static NSString>);

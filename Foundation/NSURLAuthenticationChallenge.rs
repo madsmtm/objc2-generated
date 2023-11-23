@@ -60,6 +60,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSURLAuthenticationChallenge")]
+unsafe impl Send for NSURLAuthenticationChallenge {}
+
+#[cfg(feature = "Foundation_NSURLAuthenticationChallenge")]
+unsafe impl Sync for NSURLAuthenticationChallenge {}
+
+#[cfg(feature = "Foundation_NSURLAuthenticationChallenge")]
 unsafe impl NSCoding for NSURLAuthenticationChallenge {}
 
 #[cfg(feature = "Foundation_NSURLAuthenticationChallenge")]

@@ -36,6 +36,10 @@ extern_methods!(
         #[method_id(@__retain_semantics Other applicationVersion)]
         pub unsafe fn applicationVersion(&self) -> Id<NSString>;
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "MetricKit_MXSignpostRecord"))]
+        #[method_id(@__retain_semantics Other signpostData)]
+        pub unsafe fn signpostData(&self) -> Option<Id<NSArray<MXSignpostRecord>>>;
+
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other JSONRepresentation)]
         pub unsafe fn JSONRepresentation(&self) -> Id<NSData>;

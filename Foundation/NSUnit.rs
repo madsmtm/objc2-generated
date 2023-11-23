@@ -218,6 +218,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSUnitAcceleration")]
+unsafe impl Send for NSUnitAcceleration {}
+
+#[cfg(feature = "Foundation_NSUnitAcceleration")]
+unsafe impl Sync for NSUnitAcceleration {}
+
+#[cfg(feature = "Foundation_NSUnitAcceleration")]
 unsafe impl NSCoding for NSUnitAcceleration {}
 
 #[cfg(feature = "Foundation_NSUnitAcceleration")]
@@ -288,6 +294,12 @@ extern_class!(
         type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Foundation_NSUnitAngle")]
+unsafe impl Send for NSUnitAngle {}
+
+#[cfg(feature = "Foundation_NSUnitAngle")]
+unsafe impl Sync for NSUnitAngle {}
 
 #[cfg(feature = "Foundation_NSUnitAngle")]
 unsafe impl NSCoding for NSUnitAngle {}
@@ -372,6 +384,12 @@ extern_class!(
         type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Foundation_NSUnitArea")]
+unsafe impl Send for NSUnitArea {}
+
+#[cfg(feature = "Foundation_NSUnitArea")]
+unsafe impl Sync for NSUnitArea {}
 
 #[cfg(feature = "Foundation_NSUnitArea")]
 unsafe impl NSCoding for NSUnitArea {}
@@ -482,6 +500,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSUnitConcentrationMass")]
+unsafe impl Send for NSUnitConcentrationMass {}
+
+#[cfg(feature = "Foundation_NSUnitConcentrationMass")]
+unsafe impl Sync for NSUnitConcentrationMass {}
+
+#[cfg(feature = "Foundation_NSUnitConcentrationMass")]
 unsafe impl NSCoding for NSUnitConcentrationMass {}
 
 #[cfg(feature = "Foundation_NSUnitConcentrationMass")]
@@ -559,6 +583,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSUnitDispersion")]
+unsafe impl Send for NSUnitDispersion {}
+
+#[cfg(feature = "Foundation_NSUnitDispersion")]
+unsafe impl Sync for NSUnitDispersion {}
+
+#[cfg(feature = "Foundation_NSUnitDispersion")]
 unsafe impl NSCoding for NSUnitDispersion {}
 
 #[cfg(feature = "Foundation_NSUnitDispersion")]
@@ -626,6 +656,12 @@ extern_class!(
         type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Foundation_NSUnitDuration")]
+unsafe impl Send for NSUnitDuration {}
+
+#[cfg(feature = "Foundation_NSUnitDuration")]
+unsafe impl Sync for NSUnitDuration {}
 
 #[cfg(feature = "Foundation_NSUnitDuration")]
 unsafe impl NSCoding for NSUnitDuration {}
@@ -715,6 +751,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSUnitElectricCharge")]
+unsafe impl Send for NSUnitElectricCharge {}
+
+#[cfg(feature = "Foundation_NSUnitElectricCharge")]
+unsafe impl Sync for NSUnitElectricCharge {}
+
+#[cfg(feature = "Foundation_NSUnitElectricCharge")]
 unsafe impl NSCoding for NSUnitElectricCharge {}
 
 #[cfg(feature = "Foundation_NSUnitElectricCharge")]
@@ -799,6 +841,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSUnitElectricCurrent")]
+unsafe impl Send for NSUnitElectricCurrent {}
+
+#[cfg(feature = "Foundation_NSUnitElectricCurrent")]
+unsafe impl Sync for NSUnitElectricCurrent {}
+
+#[cfg(feature = "Foundation_NSUnitElectricCurrent")]
 unsafe impl NSCoding for NSUnitElectricCurrent {}
 
 #[cfg(feature = "Foundation_NSUnitElectricCurrent")]
@@ -878,6 +926,12 @@ extern_class!(
         type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Foundation_NSUnitElectricPotentialDifference")]
+unsafe impl Send for NSUnitElectricPotentialDifference {}
+
+#[cfg(feature = "Foundation_NSUnitElectricPotentialDifference")]
+unsafe impl Sync for NSUnitElectricPotentialDifference {}
 
 #[cfg(feature = "Foundation_NSUnitElectricPotentialDifference")]
 unsafe impl NSCoding for NSUnitElectricPotentialDifference {}
@@ -961,6 +1015,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSUnitElectricResistance")]
+unsafe impl Send for NSUnitElectricResistance {}
+
+#[cfg(feature = "Foundation_NSUnitElectricResistance")]
+unsafe impl Sync for NSUnitElectricResistance {}
+
+#[cfg(feature = "Foundation_NSUnitElectricResistance")]
 unsafe impl NSCoding for NSUnitElectricResistance {}
 
 #[cfg(feature = "Foundation_NSUnitElectricResistance")]
@@ -1042,6 +1102,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSUnitEnergy")]
+unsafe impl Send for NSUnitEnergy {}
+
+#[cfg(feature = "Foundation_NSUnitEnergy")]
+unsafe impl Sync for NSUnitEnergy {}
+
+#[cfg(feature = "Foundation_NSUnitEnergy")]
 unsafe impl NSCoding for NSUnitEnergy {}
 
 #[cfg(feature = "Foundation_NSUnitEnergy")]
@@ -1121,6 +1187,12 @@ extern_class!(
         type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Foundation_NSUnitFrequency")]
+unsafe impl Send for NSUnitFrequency {}
+
+#[cfg(feature = "Foundation_NSUnitFrequency")]
+unsafe impl Sync for NSUnitFrequency {}
 
 #[cfg(feature = "Foundation_NSUnitFrequency")]
 unsafe impl NSCoding for NSUnitFrequency {}
@@ -1216,6 +1288,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSUnitFuelEfficiency")]
+unsafe impl Send for NSUnitFuelEfficiency {}
+
+#[cfg(feature = "Foundation_NSUnitFuelEfficiency")]
+unsafe impl Sync for NSUnitFuelEfficiency {}
+
+#[cfg(feature = "Foundation_NSUnitFuelEfficiency")]
 unsafe impl NSCoding for NSUnitFuelEfficiency {}
 
 #[cfg(feature = "Foundation_NSUnitFuelEfficiency")]
@@ -1289,6 +1367,12 @@ extern_class!(
         type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Foundation_NSUnitInformationStorage")]
+unsafe impl Send for NSUnitInformationStorage {}
+
+#[cfg(feature = "Foundation_NSUnitInformationStorage")]
+unsafe impl Sync for NSUnitInformationStorage {}
 
 #[cfg(feature = "Foundation_NSUnitInformationStorage")]
 unsafe impl NSCoding for NSUnitInformationStorage {}
@@ -1462,6 +1546,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSUnitLength")]
+unsafe impl Send for NSUnitLength {}
+
+#[cfg(feature = "Foundation_NSUnitLength")]
+unsafe impl Sync for NSUnitLength {}
+
+#[cfg(feature = "Foundation_NSUnitLength")]
 unsafe impl NSCoding for NSUnitLength {}
 
 #[cfg(feature = "Foundation_NSUnitLength")]
@@ -1594,6 +1684,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSUnitIlluminance")]
+unsafe impl Send for NSUnitIlluminance {}
+
+#[cfg(feature = "Foundation_NSUnitIlluminance")]
+unsafe impl Sync for NSUnitIlluminance {}
+
+#[cfg(feature = "Foundation_NSUnitIlluminance")]
 unsafe impl NSCoding for NSUnitIlluminance {}
 
 #[cfg(feature = "Foundation_NSUnitIlluminance")]
@@ -1661,6 +1757,12 @@ extern_class!(
         type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Foundation_NSUnitMass")]
+unsafe impl Send for NSUnitMass {}
+
+#[cfg(feature = "Foundation_NSUnitMass")]
+unsafe impl Sync for NSUnitMass {}
 
 #[cfg(feature = "Foundation_NSUnitMass")]
 unsafe impl NSCoding for NSUnitMass {}
@@ -1777,6 +1879,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSUnitPower")]
+unsafe impl Send for NSUnitPower {}
+
+#[cfg(feature = "Foundation_NSUnitPower")]
+unsafe impl Sync for NSUnitPower {}
+
+#[cfg(feature = "Foundation_NSUnitPower")]
 unsafe impl NSCoding for NSUnitPower {}
 
 #[cfg(feature = "Foundation_NSUnitPower")]
@@ -1876,6 +1984,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSUnitPressure")]
+unsafe impl Send for NSUnitPressure {}
+
+#[cfg(feature = "Foundation_NSUnitPressure")]
+unsafe impl Sync for NSUnitPressure {}
+
+#[cfg(feature = "Foundation_NSUnitPressure")]
 unsafe impl NSCoding for NSUnitPressure {}
 
 #[cfg(feature = "Foundation_NSUnitPressure")]
@@ -1972,6 +2086,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSUnitSpeed")]
+unsafe impl Send for NSUnitSpeed {}
+
+#[cfg(feature = "Foundation_NSUnitSpeed")]
+unsafe impl Sync for NSUnitSpeed {}
+
+#[cfg(feature = "Foundation_NSUnitSpeed")]
 unsafe impl NSCoding for NSUnitSpeed {}
 
 #[cfg(feature = "Foundation_NSUnitSpeed")]
@@ -2050,6 +2170,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSUnitTemperature")]
+unsafe impl Send for NSUnitTemperature {}
+
+#[cfg(feature = "Foundation_NSUnitTemperature")]
+unsafe impl Sync for NSUnitTemperature {}
+
+#[cfg(feature = "Foundation_NSUnitTemperature")]
 unsafe impl NSCoding for NSUnitTemperature {}
 
 #[cfg(feature = "Foundation_NSUnitTemperature")]
@@ -2123,6 +2249,12 @@ extern_class!(
         type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Foundation_NSUnitVolume")]
+unsafe impl Send for NSUnitVolume {}
+
+#[cfg(feature = "Foundation_NSUnitVolume")]
+unsafe impl Sync for NSUnitVolume {}
 
 #[cfg(feature = "Foundation_NSUnitVolume")]
 unsafe impl NSCoding for NSUnitVolume {}

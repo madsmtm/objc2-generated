@@ -98,8 +98,11 @@ extern_static!(NSVoiceLanguage: &'static NSVoiceAttributeKey);
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSSpeechBoundary {
+        #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         NSSpeechImmediateBoundary = 0,
+        #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         NSSpeechWordBoundary = 1,
+        #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         NSSpeechSentenceBoundary = 2,
     }
 );
@@ -107,6 +110,7 @@ ns_enum!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+    #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
     pub struct NSSpeechSynthesizer;
 
     #[cfg(feature = "AppKit_NSSpeechSynthesizer")]
@@ -122,6 +126,7 @@ unsafe impl NSObjectProtocol for NSSpeechSynthesizer {}
 extern_methods!(
     #[cfg(feature = "AppKit_NSSpeechSynthesizer")]
     unsafe impl NSSpeechSynthesizer {
+        #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         #[method_id(@__retain_semantics Init initWithVoice:)]
         pub unsafe fn initWithVoice(
             this: Allocated<Self>,
@@ -129,16 +134,20 @@ extern_methods!(
         ) -> Option<Id<Self>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         #[method(startSpeakingString:)]
         pub unsafe fn startSpeakingString(&self, string: &NSString) -> bool;
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+        #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         #[method(startSpeakingString:toURL:)]
         pub unsafe fn startSpeakingString_toURL(&self, string: &NSString, url: &NSURL) -> bool;
 
+        #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         #[method(isSpeaking)]
         pub unsafe fn isSpeaking(&self) -> bool;
 
+        #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         #[method(stopSpeaking)]
         pub unsafe fn stopSpeaking(&self);
 
@@ -151,20 +160,24 @@ extern_methods!(
         #[method(continueSpeaking)]
         pub unsafe fn continueSpeaking(&self);
 
+        #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Id<ProtocolObject<dyn NSSpeechSynthesizerDelegate>>>;
 
+        #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn NSSpeechSynthesizerDelegate>>,
         );
 
+        #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         #[method_id(@__retain_semantics Other voice)]
         pub unsafe fn voice(&self) -> Option<Id<NSSpeechSynthesizerVoiceName>>;
 
+        #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         #[method(setVoice:)]
         pub unsafe fn setVoice(&self, voice: Option<&NSSpeechSynthesizerVoiceName>) -> bool;
 
@@ -180,9 +193,11 @@ extern_methods!(
         #[method(setVolume:)]
         pub unsafe fn setVolume(&self, volume: c_float);
 
+        #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         #[method(usesFeedbackWindow)]
         pub unsafe fn usesFeedbackWindow(&self) -> bool;
 
+        #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         #[method(setUsesFeedbackWindow:)]
         pub unsafe fn setUsesFeedbackWindow(&self, uses_feedback_window: bool);
 
@@ -212,17 +227,21 @@ extern_methods!(
             property: &NSSpeechPropertyKey,
         ) -> Result<(), Id<NSError>>;
 
+        #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         #[method(isAnyApplicationSpeaking)]
         pub unsafe fn isAnyApplicationSpeaking() -> bool;
 
+        #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         #[method_id(@__retain_semantics Other defaultVoice)]
         pub unsafe fn defaultVoice() -> Id<NSSpeechSynthesizerVoiceName>;
 
         #[cfg(feature = "Foundation_NSArray")]
+        #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         #[method_id(@__retain_semantics Other availableVoices)]
         pub unsafe fn availableVoices() -> Id<NSArray<NSSpeechSynthesizerVoiceName>>;
 
         #[cfg(feature = "Foundation_NSDictionary")]
+        #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         #[method_id(@__retain_semantics Other attributesForVoice:)]
         pub unsafe fn attributesForVoice(
             voice: &NSSpeechSynthesizerVoiceName,
@@ -243,10 +262,12 @@ extern_methods!(
 );
 
 extern_protocol!(
+    #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
     pub unsafe trait NSSpeechSynthesizerDelegate:
         NSObjectProtocol + IsMainThreadOnly
     {
         #[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+        #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         #[optional]
         #[method(speechSynthesizer:didFinishSpeaking:)]
         unsafe fn speechSynthesizer_didFinishSpeaking(
@@ -259,6 +280,7 @@ extern_protocol!(
             feature = "AppKit_NSSpeechSynthesizer",
             feature = "Foundation_NSString"
         ))]
+        #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         #[optional]
         #[method(speechSynthesizer:willSpeakWord:ofString:)]
         unsafe fn speechSynthesizer_willSpeakWord_ofString(
@@ -269,6 +291,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "AppKit_NSSpeechSynthesizer")]
+        #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         #[optional]
         #[method(speechSynthesizer:willSpeakPhoneme:)]
         unsafe fn speechSynthesizer_willSpeakPhoneme(

@@ -474,9 +474,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSOutlineViewDelegate:
-        NSControlTextEditingDelegate + IsMainThreadOnly
-    {
+    pub unsafe trait NSOutlineViewDelegate: NSControlTextEditingDelegate {
         #[cfg(all(
             feature = "AppKit_NSOutlineView",
             feature = "AppKit_NSTableColumn",
@@ -782,6 +780,28 @@ extern_protocol!(
             outline_view: &NSOutlineView,
             item: &AnyObject,
         ) -> bool;
+
+        #[cfg(all(feature = "AppKit_NSOutlineView", feature = "AppKit_NSTableColumn"))]
+        #[optional]
+        #[method(outlineView:userCanChangeVisibilityOfTableColumn:)]
+        unsafe fn outlineView_userCanChangeVisibilityOfTableColumn(
+            &self,
+            outline_view: &NSOutlineView,
+            column: &NSTableColumn,
+        ) -> bool;
+
+        #[cfg(all(
+            feature = "AppKit_NSOutlineView",
+            feature = "AppKit_NSTableColumn",
+            feature = "Foundation_NSArray"
+        ))]
+        #[optional]
+        #[method(outlineView:userDidChangeVisibilityOfTableColumns:)]
+        unsafe fn outlineView_userDidChangeVisibilityOfTableColumns(
+            &self,
+            outline_view: &NSOutlineView,
+            columns: &NSArray<NSTableColumn>,
+        );
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]

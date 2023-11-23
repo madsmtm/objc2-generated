@@ -85,7 +85,7 @@ extern_methods!(
             feature = "Foundation_NSError",
             feature = "GameKit_GKLeaderboard"
         ))]
-        #[deprecated = "Use loadLeaderboardsWithHandler: instead."]
+        #[deprecated]
         #[method(loadLeaderboardsWithCompletionHandler:)]
         pub unsafe fn loadLeaderboardsWithCompletionHandler(
             &self,

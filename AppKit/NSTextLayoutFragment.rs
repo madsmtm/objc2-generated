@@ -81,6 +81,22 @@ extern_methods!(
         #[method_id(@__retain_semantics Other textLineFragments)]
         pub unsafe fn textLineFragments(&self) -> Id<NSArray<NSTextLineFragment>>;
 
+        #[cfg(feature = "AppKit_NSTextLineFragment")]
+        #[method_id(@__retain_semantics Other textLineFragmentForVerticalOffset:requiresExactMatch:)]
+        pub unsafe fn textLineFragmentForVerticalOffset_requiresExactMatch(
+            &self,
+            vertical_offset: CGFloat,
+            requires_exact_match: bool,
+        ) -> Option<Id<NSTextLineFragment>>;
+
+        #[cfg(feature = "AppKit_NSTextLineFragment")]
+        #[method_id(@__retain_semantics Other textLineFragmentForTextLocation:isUpstreamAffinity:)]
+        pub unsafe fn textLineFragmentForTextLocation_isUpstreamAffinity(
+            &self,
+            text_location: &ProtocolObject<dyn NSTextLocation>,
+            is_upstream_affinity: bool,
+        ) -> Option<Id<NSTextLineFragment>>;
+
         #[cfg(feature = "Foundation_NSOperationQueue")]
         #[method_id(@__retain_semantics Other layoutQueue)]
         pub unsafe fn layoutQueue(&self) -> Option<Id<NSOperationQueue>>;

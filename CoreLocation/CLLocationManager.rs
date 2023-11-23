@@ -280,14 +280,17 @@ extern_methods!(
         );
 
         #[cfg(feature = "CoreLocation_CLRegion")]
+        #[deprecated]
         #[method(stopMonitoringForRegion:)]
         pub unsafe fn stopMonitoringForRegion(&self, region: &CLRegion);
 
         #[cfg(feature = "CoreLocation_CLRegion")]
+        #[deprecated]
         #[method(startMonitoringForRegion:)]
         pub unsafe fn startMonitoringForRegion(&self, region: &CLRegion);
 
         #[cfg(feature = "CoreLocation_CLRegion")]
+        #[deprecated]
         #[method(requestStateForRegion:)]
         pub unsafe fn requestStateForRegion(&self, region: &CLRegion);
 

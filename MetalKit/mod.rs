@@ -61,6 +61,7 @@ pub use self::__MTKTextureLoader::MTKTextureLoaderOption;
 pub use self::__MTKTextureLoader::MTKTextureLoaderOptionAllocateMipmaps;
 pub use self::__MTKTextureLoader::MTKTextureLoaderOptionCubeLayout;
 pub use self::__MTKTextureLoader::MTKTextureLoaderOptionGenerateMipmaps;
+pub use self::__MTKTextureLoader::MTKTextureLoaderOptionLoadAsArray;
 pub use self::__MTKTextureLoader::MTKTextureLoaderOptionOrigin;
 pub use self::__MTKTextureLoader::MTKTextureLoaderOptionSRGB;
 pub use self::__MTKTextureLoader::MTKTextureLoaderOptionTextureCPUCacheMode;

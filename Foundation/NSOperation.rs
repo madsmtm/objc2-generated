@@ -27,6 +27,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSOperation")]
+unsafe impl Send for NSOperation {}
+
+#[cfg(feature = "Foundation_NSOperation")]
+unsafe impl Sync for NSOperation {}
+
+#[cfg(feature = "Foundation_NSOperation")]
 unsafe impl NSObjectProtocol for NSOperation {}
 
 extern_methods!(
@@ -134,6 +140,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSBlockOperation")]
+unsafe impl Send for NSBlockOperation {}
+
+#[cfg(feature = "Foundation_NSBlockOperation")]
+unsafe impl Sync for NSBlockOperation {}
+
+#[cfg(feature = "Foundation_NSBlockOperation")]
 unsafe impl NSObjectProtocol for NSBlockOperation {}
 
 extern_methods!(
@@ -228,6 +240,12 @@ extern_class!(
         type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "Foundation_NSOperationQueue")]
+unsafe impl Send for NSOperationQueue {}
+
+#[cfg(feature = "Foundation_NSOperationQueue")]
+unsafe impl Sync for NSOperationQueue {}
 
 #[cfg(feature = "Foundation_NSOperationQueue")]
 unsafe impl NSObjectProtocol for NSOperationQueue {}

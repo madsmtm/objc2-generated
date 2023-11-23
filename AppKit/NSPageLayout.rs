@@ -5,6 +5,14 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+ns_enum!(
+    #[underlying(NSInteger)]
+    pub enum NSPageLayoutResult {
+        NSPageLayoutResultCancelled = 0,
+        NSPageLayoutResultChanged = 1,
+    }
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSPageLayout")]
@@ -39,6 +47,16 @@ extern_methods!(
         pub unsafe fn accessoryControllers(&self) -> Id<NSArray<NSViewController>>;
 
         #[cfg(all(feature = "AppKit_NSPrintInfo", feature = "AppKit_NSWindow"))]
+        #[method(beginSheetUsingPrintInfo:onWindow:completionHandler:)]
+        pub unsafe fn beginSheetUsingPrintInfo_onWindow_completionHandler(
+            &self,
+            print_info: &NSPrintInfo,
+            parent_window: &NSWindow,
+            handler: Option<&Block<(NSPageLayoutResult,), ()>>,
+        );
+
+        #[cfg(all(feature = "AppKit_NSPrintInfo", feature = "AppKit_NSWindow"))]
+        #[deprecated]
         #[method(beginSheetWithPrintInfo:modalForWindow:delegate:didEndSelector:contextInfo:)]
         pub unsafe fn beginSheetWithPrintInfo_modalForWindow_delegate_didEndSelector_contextInfo(
             &self,

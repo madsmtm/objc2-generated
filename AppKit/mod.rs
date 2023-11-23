@@ -262,6 +262,8 @@ mod __NSMediaLibraryBrowserController;
 mod __NSMenu;
 #[path = "NSMenuItem.rs"]
 mod __NSMenuItem;
+#[path = "NSMenuItemBadge.rs"]
+mod __NSMenuItemBadge;
 #[path = "NSMenuItemCell.rs"]
 mod __NSMenuItemCell;
 #[path = "NSMenuToolbarItem.rs"]
@@ -492,6 +494,8 @@ mod __NSTextFinder;
 mod __NSTextInputClient;
 #[path = "NSTextInputContext.rs"]
 mod __NSTextInputContext;
+#[path = "NSTextInsertionIndicator.rs"]
+mod __NSTextInsertionIndicator;
 #[path = "NSTextLayoutFragment.rs"]
 mod __NSTextLayoutFragment;
 #[path = "NSTextLayoutManager.rs"]
@@ -1279,6 +1283,7 @@ pub use self::__NSAttributedString::NSCreationTimeDocumentAttribute;
 pub use self::__NSAttributedString::NSCursorAttributeName;
 pub use self::__NSAttributedString::NSDefaultAttributesDocumentAttribute;
 pub use self::__NSAttributedString::NSDefaultAttributesDocumentOption;
+pub use self::__NSAttributedString::NSDefaultFontExcludedDocumentAttribute;
 pub use self::__NSAttributedString::NSDefaultTabIntervalDocumentAttribute;
 pub use self::__NSAttributedString::NSDocFormatTextDocumentType;
 pub use self::__NSAttributedString::NSDocumentTypeDocumentAttribute;
@@ -1394,8 +1399,8 @@ pub use self::__NSBezierPath::NSRoundLineJoinStyle;
 pub use self::__NSBezierPath::NSSquareLineCapStyle;
 pub use self::__NSBezierPath::NSWindingRule;
 pub use self::__NSBezierPath::{
-    NSBezierPathElementClosePath, NSBezierPathElementCurveTo, NSBezierPathElementLineTo,
-    NSBezierPathElementMoveTo,
+    NSBezierPathElementClosePath, NSBezierPathElementCubicCurveTo, NSBezierPathElementCurveTo,
+    NSBezierPathElementLineTo, NSBezierPathElementMoveTo, NSBezierPathElementQuadraticCurveTo,
 };
 pub use self::__NSBezierPath::{NSLineCapStyleButt, NSLineCapStyleRound, NSLineCapStyleSquare};
 pub use self::__NSBezierPath::{NSLineJoinStyleBevel, NSLineJoinStyleMiter, NSLineJoinStyleRound};
@@ -1516,10 +1521,12 @@ pub use self::__NSButtonCell::NSThickSquareBezelStyle;
 pub use self::__NSButtonCell::NSThickerSquareBezelStyle;
 pub use self::__NSButtonCell::NSToggleButton;
 pub use self::__NSButtonCell::{
-    NSBezelStyleCircular, NSBezelStyleDisclosure, NSBezelStyleHelpButton, NSBezelStyleInline,
+    NSBezelStyleAccessoryBar, NSBezelStyleAccessoryBarAction, NSBezelStyleAutomatic,
+    NSBezelStyleBadge, NSBezelStyleCircular, NSBezelStyleDisclosure, NSBezelStyleFlexiblePush,
+    NSBezelStyleHelpButton, NSBezelStyleInline, NSBezelStylePush, NSBezelStylePushDisclosure,
     NSBezelStyleRecessed, NSBezelStyleRegularSquare, NSBezelStyleRoundRect, NSBezelStyleRounded,
     NSBezelStyleRoundedDisclosure, NSBezelStyleShadowlessSquare, NSBezelStyleSmallSquare,
-    NSBezelStyleTexturedRounded, NSBezelStyleTexturedSquare,
+    NSBezelStyleTexturedRounded, NSBezelStyleTexturedSquare, NSBezelStyleToolbar,
 };
 pub use self::__NSButtonCell::{
     NSButtonTypeAccelerator, NSButtonTypeMomentaryChange, NSButtonTypeMomentaryLight,
@@ -2728,8 +2735,13 @@ pub use self::__NSImageRep::{
     NSImageLayoutDirectionLeftToRight, NSImageLayoutDirectionRightToLeft,
     NSImageLayoutDirectionUnspecified,
 };
+pub use self::__NSImageView::NSImageDynamicRange;
 #[cfg(feature = "AppKit_NSImageView")]
 pub use self::__NSImageView::NSImageView;
+pub use self::__NSImageView::{
+    NSImageDynamicRangeConstrainedHigh, NSImageDynamicRangeHigh, NSImageDynamicRangeStandard,
+    NSImageDynamicRangeUnspecified,
+};
 #[cfg(feature = "AppKit_NSInputManager")]
 pub use self::__NSInputManager::NSInputManager;
 pub use self::__NSInputManager::NSTextInput;
@@ -2993,16 +3005,29 @@ pub use self::__NSMenu::NSMenuDidEndTrackingNotification;
 pub use self::__NSMenu::NSMenuDidRemoveItemNotification;
 pub use self::__NSMenu::NSMenuDidSendActionNotification;
 pub use self::__NSMenu::NSMenuItemValidation;
+pub use self::__NSMenu::NSMenuPresentationStyle;
 pub use self::__NSMenu::NSMenuProperties;
+pub use self::__NSMenu::NSMenuSelectionMode;
 pub use self::__NSMenu::NSMenuWillSendActionNotification;
+pub use self::__NSMenu::{NSMenuPresentationStylePalette, NSMenuPresentationStyleRegular};
 pub use self::__NSMenu::{
     NSMenuPropertyItemAccessibilityDescription, NSMenuPropertyItemAttributedTitle,
     NSMenuPropertyItemEnabled, NSMenuPropertyItemImage, NSMenuPropertyItemKeyEquivalent,
     NSMenuPropertyItemTitle,
 };
+pub use self::__NSMenu::{
+    NSMenuSelectionModeAutomatic, NSMenuSelectionModeSelectAny, NSMenuSelectionModeSelectOne,
+};
 #[cfg(feature = "AppKit_NSMenuItem")]
 pub use self::__NSMenuItem::NSMenuItem;
 pub use self::__NSMenuItem::NSMenuItemImportFromDeviceIdentifier;
+#[cfg(feature = "AppKit_NSMenuItemBadge")]
+pub use self::__NSMenuItemBadge::NSMenuItemBadge;
+pub use self::__NSMenuItemBadge::NSMenuItemBadgeType;
+pub use self::__NSMenuItemBadge::{
+    NSMenuItemBadgeTypeAlerts, NSMenuItemBadgeTypeNewItems, NSMenuItemBadgeTypeNone,
+    NSMenuItemBadgeTypeUpdates,
+};
 #[cfg(feature = "AppKit_NSMenuItemCell")]
 pub use self::__NSMenuItemCell::NSMenuItemCell;
 #[cfg(feature = "AppKit_NSMenuToolbarItem")]
@@ -3104,6 +3129,8 @@ pub use self::__NSPageController::{
 };
 #[cfg(feature = "AppKit_NSPageLayout")]
 pub use self::__NSPageLayout::NSPageLayout;
+pub use self::__NSPageLayout::NSPageLayoutResult;
+pub use self::__NSPageLayout::{NSPageLayoutResultCancelled, NSPageLayoutResultChanged};
 #[cfg(feature = "AppKit_NSPanGestureRecognizer")]
 pub use self::__NSPanGestureRecognizer::NSPanGestureRecognizer;
 #[cfg(feature = "AppKit_NSPanel")]
@@ -3352,7 +3379,9 @@ pub use self::__NSPrintPanel::NSPrintPanelAccessorySummaryItemNameKey;
 pub use self::__NSPrintPanel::NSPrintPanelAccessorySummaryKey;
 pub use self::__NSPrintPanel::NSPrintPanelJobStyleHint;
 pub use self::__NSPrintPanel::NSPrintPanelOptions;
+pub use self::__NSPrintPanel::NSPrintPanelResult;
 pub use self::__NSPrintPanel::NSPrintPhotoJobStyleHint;
+pub use self::__NSPrintPanel::{NSPrintPanelResultCancelled, NSPrintPanelResultPrinted};
 pub use self::__NSPrintPanel::{
     NSPrintPanelShowsCopies, NSPrintPanelShowsOrientation, NSPrintPanelShowsPageRange,
     NSPrintPanelShowsPageSetupAccessory, NSPrintPanelShowsPaperSize, NSPrintPanelShowsPreview,
@@ -3698,6 +3727,7 @@ pub use self::__NSSpellChecker::NSCorrectionResponse;
 pub use self::__NSSpellChecker::NSSpellChecker;
 pub use self::__NSSpellChecker::NSSpellCheckerDidChangeAutomaticCapitalizationNotification;
 pub use self::__NSSpellChecker::NSSpellCheckerDidChangeAutomaticDashSubstitutionNotification;
+pub use self::__NSSpellChecker::NSSpellCheckerDidChangeAutomaticInlinePredictionNotification;
 pub use self::__NSSpellChecker::NSSpellCheckerDidChangeAutomaticPeriodSubstitutionNotification;
 pub use self::__NSSpellChecker::NSSpellCheckerDidChangeAutomaticQuoteSubstitutionNotification;
 pub use self::__NSSpellChecker::NSSpellCheckerDidChangeAutomaticSpellingCorrectionNotification;
@@ -3706,6 +3736,7 @@ pub use self::__NSSpellChecker::NSSpellCheckerDidChangeAutomaticTextReplacementN
 pub use self::__NSSpellChecker::NSTextCheckingDocumentAuthorKey;
 pub use self::__NSSpellChecker::NSTextCheckingDocumentTitleKey;
 pub use self::__NSSpellChecker::NSTextCheckingDocumentURLKey;
+pub use self::__NSSpellChecker::NSTextCheckingGenerateInlinePredictionsKey;
 pub use self::__NSSpellChecker::NSTextCheckingOptionKey;
 pub use self::__NSSpellChecker::NSTextCheckingOrthographyKey;
 pub use self::__NSSpellChecker::NSTextCheckingQuotesKey;
@@ -3744,7 +3775,7 @@ pub use self::__NSSplitViewItem::NSSplitViewItemCollapseBehavior;
 pub use self::__NSSplitViewItem::NSSplitViewItemUnspecifiedDimension;
 pub use self::__NSSplitViewItem::{
     NSSplitViewItemBehaviorContentList, NSSplitViewItemBehaviorDefault,
-    NSSplitViewItemBehaviorSidebar,
+    NSSplitViewItemBehaviorInspector, NSSplitViewItemBehaviorSidebar,
 };
 pub use self::__NSSplitViewItem::{
     NSSplitViewItemCollapseBehaviorDefault,
@@ -3981,8 +4012,48 @@ pub use self::__NSTextContainer::{
 };
 pub use self::__NSTextContent::NSTextContent;
 pub use self::__NSTextContent::NSTextContentType;
+pub use self::__NSTextContent::NSTextContentTypeAddressCity;
+pub use self::__NSTextContent::NSTextContentTypeAddressCityAndState;
+pub use self::__NSTextContent::NSTextContentTypeAddressState;
+pub use self::__NSTextContent::NSTextContentTypeBirthdate;
+pub use self::__NSTextContent::NSTextContentTypeBirthdateDay;
+pub use self::__NSTextContent::NSTextContentTypeBirthdateMonth;
+pub use self::__NSTextContent::NSTextContentTypeBirthdateYear;
+pub use self::__NSTextContent::NSTextContentTypeCountryName;
+pub use self::__NSTextContent::NSTextContentTypeCreditCardExpiration;
+pub use self::__NSTextContent::NSTextContentTypeCreditCardExpirationMonth;
+pub use self::__NSTextContent::NSTextContentTypeCreditCardExpirationYear;
+pub use self::__NSTextContent::NSTextContentTypeCreditCardFamilyName;
+pub use self::__NSTextContent::NSTextContentTypeCreditCardGivenName;
+pub use self::__NSTextContent::NSTextContentTypeCreditCardMiddleName;
+pub use self::__NSTextContent::NSTextContentTypeCreditCardName;
+pub use self::__NSTextContent::NSTextContentTypeCreditCardNumber;
+pub use self::__NSTextContent::NSTextContentTypeCreditCardSecurityCode;
+pub use self::__NSTextContent::NSTextContentTypeCreditCardType;
+pub use self::__NSTextContent::NSTextContentTypeDateTime;
+pub use self::__NSTextContent::NSTextContentTypeEmailAddress;
+pub use self::__NSTextContent::NSTextContentTypeFamilyName;
+pub use self::__NSTextContent::NSTextContentTypeFlightNumber;
+pub use self::__NSTextContent::NSTextContentTypeFullStreetAddress;
+pub use self::__NSTextContent::NSTextContentTypeGivenName;
+pub use self::__NSTextContent::NSTextContentTypeJobTitle;
+pub use self::__NSTextContent::NSTextContentTypeLocation;
+pub use self::__NSTextContent::NSTextContentTypeMiddleName;
+pub use self::__NSTextContent::NSTextContentTypeName;
+pub use self::__NSTextContent::NSTextContentTypeNamePrefix;
+pub use self::__NSTextContent::NSTextContentTypeNameSuffix;
+pub use self::__NSTextContent::NSTextContentTypeNewPassword;
+pub use self::__NSTextContent::NSTextContentTypeNickname;
 pub use self::__NSTextContent::NSTextContentTypeOneTimeCode;
+pub use self::__NSTextContent::NSTextContentTypeOrganizationName;
 pub use self::__NSTextContent::NSTextContentTypePassword;
+pub use self::__NSTextContent::NSTextContentTypePostalCode;
+pub use self::__NSTextContent::NSTextContentTypeShipmentTrackingNumber;
+pub use self::__NSTextContent::NSTextContentTypeStreetAddressLine1;
+pub use self::__NSTextContent::NSTextContentTypeStreetAddressLine2;
+pub use self::__NSTextContent::NSTextContentTypeSublocality;
+pub use self::__NSTextContent::NSTextContentTypeTelephoneNumber;
+pub use self::__NSTextContent::NSTextContentTypeURL;
 pub use self::__NSTextContent::NSTextContentTypeUsername;
 #[cfg(feature = "AppKit_NSTextContentManager")]
 pub use self::__NSTextContentManager::NSTextContentManager;
@@ -4028,11 +4099,31 @@ pub use self::__NSTextFinder::{
     NSTextFinderMatchingTypeContains, NSTextFinderMatchingTypeEndsWith,
     NSTextFinderMatchingTypeFullWord, NSTextFinderMatchingTypeStartsWith,
 };
+pub use self::__NSTextInputClient::NSTextCursorAccessoryPlacement;
 pub use self::__NSTextInputClient::NSTextInputClient;
+pub use self::__NSTextInputClient::{
+    NSTextCursorAccessoryPlacementBackward, NSTextCursorAccessoryPlacementCenter,
+    NSTextCursorAccessoryPlacementForward, NSTextCursorAccessoryPlacementInvisible,
+    NSTextCursorAccessoryPlacementOffscreenBottom, NSTextCursorAccessoryPlacementOffscreenLeft,
+    NSTextCursorAccessoryPlacementOffscreenRight, NSTextCursorAccessoryPlacementOffscreenTop,
+    NSTextCursorAccessoryPlacementUnspecified,
+};
 #[cfg(feature = "AppKit_NSTextInputContext")]
 pub use self::__NSTextInputContext::NSTextInputContext;
 pub use self::__NSTextInputContext::NSTextInputContextKeyboardSelectionDidChangeNotification;
 pub use self::__NSTextInputContext::NSTextInputSourceIdentifier;
+#[cfg(feature = "AppKit_NSTextInsertionIndicator")]
+pub use self::__NSTextInsertionIndicator::NSTextInsertionIndicator;
+pub use self::__NSTextInsertionIndicator::NSTextInsertionIndicatorAutomaticModeOptions;
+pub use self::__NSTextInsertionIndicator::NSTextInsertionIndicatorDisplayMode;
+pub use self::__NSTextInsertionIndicator::{
+    NSTextInsertionIndicatorAutomaticModeOptionsShowEffectsView,
+    NSTextInsertionIndicatorAutomaticModeOptionsShowWhileTracking,
+};
+pub use self::__NSTextInsertionIndicator::{
+    NSTextInsertionIndicatorDisplayModeAutomatic, NSTextInsertionIndicatorDisplayModeHidden,
+    NSTextInsertionIndicatorDisplayModeVisible,
+};
 #[cfg(feature = "AppKit_NSTextLayoutFragment")]
 pub use self::__NSTextLayoutFragment::NSTextLayoutFragment;
 pub use self::__NSTextLayoutFragment::NSTextLayoutFragmentEnumerationOptions;
@@ -4246,6 +4337,7 @@ pub use self::__NSToolbar::{
 pub use self::__NSToolbarItem::NSToolbarCloudSharingItemIdentifier;
 pub use self::__NSToolbarItem::NSToolbarCustomizeToolbarItemIdentifier;
 pub use self::__NSToolbarItem::NSToolbarFlexibleSpaceItemIdentifier;
+pub use self::__NSToolbarItem::NSToolbarInspectorTrackingSeparatorItemIdentifier;
 #[cfg(feature = "AppKit_NSToolbarItem")]
 pub use self::__NSToolbarItem::NSToolbarItem;
 pub use self::__NSToolbarItem::NSToolbarItemValidation;
@@ -4260,6 +4352,7 @@ pub use self::__NSToolbarItem::NSToolbarShowColorsItemIdentifier;
 pub use self::__NSToolbarItem::NSToolbarShowFontsItemIdentifier;
 pub use self::__NSToolbarItem::NSToolbarSidebarTrackingSeparatorItemIdentifier;
 pub use self::__NSToolbarItem::NSToolbarSpaceItemIdentifier;
+pub use self::__NSToolbarItem::NSToolbarToggleInspectorItemIdentifier;
 pub use self::__NSToolbarItem::NSToolbarToggleSidebarItemIdentifier;
 #[cfg(feature = "AppKit_NSToolbarItemGroup")]
 pub use self::__NSToolbarItemGroup::NSToolbarItemGroup;

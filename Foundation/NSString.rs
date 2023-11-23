@@ -1100,7 +1100,7 @@ extern_methods!(
             leftover_range: NSRangePointer,
         );
 
-        #[deprecated = "Use -writeToFile:atomically:error: instead"]
+        #[deprecated = "Use -writeToFile:atomically:encoding:error: instead"]
         #[method(writeToFile:atomically:)]
         pub unsafe fn writeToFile_atomically(
             &self,
@@ -1109,7 +1109,7 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "Foundation_NSURL")]
-        #[deprecated = "Use -writeToURL:atomically:error: instead"]
+        #[deprecated = "Use -writeToURL:atomically:encoding:error: instead"]
         #[method(writeToURL:atomically:)]
         pub unsafe fn writeToURL_atomically(&self, url: &NSURL, atomically: bool) -> bool;
 

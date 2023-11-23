@@ -745,9 +745,11 @@ pub use self::__WKFindConfiguration::WKFindConfiguration;
 pub use self::__WKFindResult::WKFindResult;
 #[cfg(feature = "WebKit_WKFrameInfo")]
 pub use self::__WKFrameInfo::WKFrameInfo;
+pub use self::__WKHTTPCookieStore::WKCookiePolicy;
 #[cfg(feature = "WebKit_WKHTTPCookieStore")]
 pub use self::__WKHTTPCookieStore::WKHTTPCookieStore;
 pub use self::__WKHTTPCookieStore::WKHTTPCookieStoreObserver;
+pub use self::__WKHTTPCookieStore::{WKCookiePolicyAllow, WKCookiePolicyDisallow};
 #[cfg(feature = "WebKit_WKNavigation")]
 pub use self::__WKNavigation::WKNavigation;
 #[cfg(feature = "WebKit_WKNavigationAction")]
@@ -773,8 +775,13 @@ pub use self::__WKNavigationResponse::WKNavigationResponse;
 pub use self::__WKOpenPanelParameters::WKOpenPanelParameters;
 #[cfg(feature = "WebKit_WKPDFConfiguration")]
 pub use self::__WKPDFConfiguration::WKPDFConfiguration;
+pub use self::__WKPreferences::WKInactiveSchedulingPolicy;
 #[cfg(feature = "WebKit_WKPreferences")]
 pub use self::__WKPreferences::WKPreferences;
+pub use self::__WKPreferences::{
+    WKInactiveSchedulingPolicyNone, WKInactiveSchedulingPolicySuspend,
+    WKInactiveSchedulingPolicyThrottle,
+};
 #[cfg(feature = "WebKit_WKProcessPool")]
 pub use self::__WKProcessPool::WKProcessPool;
 #[cfg(feature = "WebKit_WKScriptMessage")]
@@ -847,10 +854,13 @@ pub use self::__WKWebsiteDataRecord::WKWebsiteDataTypeCookies;
 pub use self::__WKWebsiteDataRecord::WKWebsiteDataTypeDiskCache;
 pub use self::__WKWebsiteDataRecord::WKWebsiteDataTypeFetchCache;
 pub use self::__WKWebsiteDataRecord::WKWebsiteDataTypeFileSystem;
+pub use self::__WKWebsiteDataRecord::WKWebsiteDataTypeHashSalt;
 pub use self::__WKWebsiteDataRecord::WKWebsiteDataTypeIndexedDBDatabases;
 pub use self::__WKWebsiteDataRecord::WKWebsiteDataTypeLocalStorage;
+pub use self::__WKWebsiteDataRecord::WKWebsiteDataTypeMediaKeys;
 pub use self::__WKWebsiteDataRecord::WKWebsiteDataTypeMemoryCache;
 pub use self::__WKWebsiteDataRecord::WKWebsiteDataTypeOfflineWebApplicationCache;
+pub use self::__WKWebsiteDataRecord::WKWebsiteDataTypeSearchFieldRecentSearches;
 pub use self::__WKWebsiteDataRecord::WKWebsiteDataTypeServiceWorkerRegistrations;
 pub use self::__WKWebsiteDataRecord::WKWebsiteDataTypeSessionStorage;
 pub use self::__WKWebsiteDataRecord::WKWebsiteDataTypeWebSQLDatabases;

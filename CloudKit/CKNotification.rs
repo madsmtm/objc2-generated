@@ -110,15 +110,27 @@ extern_methods!(
         #[method(isPruned)]
         pub unsafe fn isPruned(&self) -> bool;
 
+        #[method_id(@__retain_semantics Other subscriptionID)]
+        pub unsafe fn subscriptionID(&self) -> Option<Id<CKSubscriptionID>>;
+    }
+);
+
+extern_methods!(
+    /// DeprecatedAPSProperties
+    #[cfg(feature = "CloudKit_CKNotification")]
+    unsafe impl CKNotification {
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Interact with UI elements of a CloudKit-server-generated push message via UserNotifications.framework"]
         #[method_id(@__retain_semantics Other alertBody)]
         pub unsafe fn alertBody(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Interact with UI elements of a CloudKit-server-generated push message via UserNotifications.framework"]
         #[method_id(@__retain_semantics Other alertLocalizationKey)]
         pub unsafe fn alertLocalizationKey(&self) -> Option<Id<NSString>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[deprecated = "Interact with UI elements of a CloudKit-server-generated push message via UserNotifications.framework"]
         #[method_id(@__retain_semantics Other alertLocalizationArgs)]
         pub unsafe fn alertLocalizationArgs(&self) -> Option<Id<NSArray<NSString>>>;
 
@@ -147,23 +159,24 @@ extern_methods!(
         pub unsafe fn subtitleLocalizationArgs(&self) -> Option<Id<NSArray<NSString>>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Interact with UI elements of a CloudKit-server-generated push message via UserNotifications.framework"]
         #[method_id(@__retain_semantics Other alertActionLocalizationKey)]
         pub unsafe fn alertActionLocalizationKey(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Interact with UI elements of a CloudKit-server-generated push message via UserNotifications.framework"]
         #[method_id(@__retain_semantics Other alertLaunchImage)]
         pub unsafe fn alertLaunchImage(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSNumber")]
+        #[deprecated = "Interact with UI elements of a CloudKit-server-generated push message via UserNotifications.framework"]
         #[method_id(@__retain_semantics Other badge)]
         pub unsafe fn badge(&self) -> Option<Id<NSNumber>>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Interact with UI elements of a CloudKit-server-generated push message via UserNotifications.framework"]
         #[method_id(@__retain_semantics Other soundName)]
         pub unsafe fn soundName(&self) -> Option<Id<NSString>>;
-
-        #[method_id(@__retain_semantics Other subscriptionID)]
-        pub unsafe fn subscriptionID(&self) -> Option<Id<CKSubscriptionID>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other category)]

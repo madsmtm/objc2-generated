@@ -32,6 +32,12 @@ unsafe impl NSSecureCoding for CKShareMetadata {}
 extern_methods!(
     #[cfg(feature = "CloudKit_CKShareMetadata")]
     unsafe impl CKShareMetadata {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other containerIdentifier)]
         pub unsafe fn containerIdentifier(&self) -> Id<NSString>;
@@ -69,17 +75,5 @@ extern_methods!(
         #[deprecated]
         #[method_id(@__retain_semantics Other rootRecordID)]
         pub unsafe fn rootRecordID(&self) -> Id<CKRecordID>;
-    }
-);
-
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CloudKit_CKShareMetadata")]
-    unsafe impl CKShareMetadata {
-        #[method_id(@__retain_semantics Init init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
-
-        #[method_id(@__retain_semantics New new)]
-        pub unsafe fn new() -> Id<Self>;
     }
 );

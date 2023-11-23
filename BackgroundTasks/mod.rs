@@ -17,12 +17,16 @@ mod __BGTaskScheduler;
 
 #[cfg(feature = "BackgroundTasks_BGAppRefreshTask")]
 pub use self::__BGTask::BGAppRefreshTask;
+#[cfg(feature = "BackgroundTasks_BGHealthResearchTask")]
+pub use self::__BGTask::BGHealthResearchTask;
 #[cfg(feature = "BackgroundTasks_BGProcessingTask")]
 pub use self::__BGTask::BGProcessingTask;
 #[cfg(feature = "BackgroundTasks_BGTask")]
 pub use self::__BGTask::BGTask;
 #[cfg(feature = "BackgroundTasks_BGAppRefreshTaskRequest")]
 pub use self::__BGTaskRequest::BGAppRefreshTaskRequest;
+#[cfg(feature = "BackgroundTasks_BGHealthResearchTaskRequest")]
+pub use self::__BGTaskRequest::BGHealthResearchTaskRequest;
 #[cfg(feature = "BackgroundTasks_BGProcessingTaskRequest")]
 pub use self::__BGTaskRequest::BGProcessingTaskRequest;
 #[cfg(feature = "BackgroundTasks_BGTaskRequest")]

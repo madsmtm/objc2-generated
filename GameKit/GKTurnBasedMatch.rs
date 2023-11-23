@@ -102,7 +102,7 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKTurnBasedParticipant")]
     unsafe impl GKTurnBasedParticipant {
         #[cfg(feature = "Foundation_NSString")]
-        #[deprecated = "use player"]
+        #[deprecated]
         #[method_id(@__retain_semantics Other playerID)]
         pub unsafe fn playerID(&self) -> Option<Id<NSString>>;
     }
@@ -189,6 +189,7 @@ extern_protocol!(
             feature = "Foundation_NSString",
             feature = "GameKit_GKPlayer"
         ))]
+        #[deprecated]
         #[optional]
         #[method(player:didRequestMatchWithPlayers:)]
         unsafe fn player_didRequestMatchWithPlayers(
@@ -404,7 +405,7 @@ extern_methods!(
             feature = "GameKit_GKAchievement",
             feature = "GameKit_GKScore"
         ))]
-        #[deprecated = "pass GKLeaderboardScore to endMatchInTurnWithMatchData:scores:completionHandler instead"]
+        #[deprecated]
         #[method(endMatchInTurnWithMatchData:scores:achievements:completionHandler:)]
         pub unsafe fn endMatchInTurnWithMatchData_scores_achievements_completionHandler(
             &self,
@@ -490,7 +491,7 @@ extern_methods!(
             feature = "Foundation_NSError",
             feature = "GameKit_GKTurnBasedParticipant"
         ))]
-        #[deprecated = "Use endTurnWithNextParticipants:... instead"]
+        #[deprecated]
         #[method(endTurnWithNextParticipant:matchData:completionHandler:)]
         pub unsafe fn endTurnWithNextParticipant_matchData_completionHandler(
             &self,
@@ -504,7 +505,7 @@ extern_methods!(
             feature = "Foundation_NSError",
             feature = "GameKit_GKTurnBasedParticipant"
         ))]
-        #[deprecated = "Use participantQuitInTurnWithOutcome:nextParticipants:turnTimeout:... instead"]
+        #[deprecated]
         #[method(participantQuitInTurnWithOutcome:nextParticipant:matchData:completionHandler:)]
         pub unsafe fn participantQuitInTurnWithOutcome_nextParticipant_matchData_completionHandler(
             &self,
@@ -697,7 +698,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    #[deprecated = "Use registerListener on GKLocalPlayer with an object that implements the GKTurnBasedEventListener protocol"]
+    #[deprecated]
     pub unsafe trait GKTurnBasedEventHandlerDelegate {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[deprecated]
@@ -732,7 +733,7 @@ extern_protocol!(
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GameKit_GKTurnBasedEventHandler")]
-    #[deprecated = "Use registerListener on GKLocalPlayer with an object that implements the GKTurnBasedEventListener protocol"]
+    #[deprecated]
     pub struct GKTurnBasedEventHandler;
 
     #[cfg(feature = "GameKit_GKTurnBasedEventHandler")]

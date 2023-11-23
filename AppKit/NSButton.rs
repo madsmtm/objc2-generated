@@ -201,6 +201,22 @@ extern_methods!(
             shows_border_only_while_mouse_inside: bool,
         );
 
+        #[cfg(feature = "AppKit_NSColor")]
+        #[method_id(@__retain_semantics Other bezelColor)]
+        pub unsafe fn bezelColor(&self) -> Option<Id<NSColor>>;
+
+        #[cfg(feature = "AppKit_NSColor")]
+        #[method(setBezelColor:)]
+        pub unsafe fn setBezelColor(&self, bezel_color: Option<&NSColor>);
+
+        #[cfg(feature = "AppKit_NSColor")]
+        #[method_id(@__retain_semantics Other contentTintColor)]
+        pub unsafe fn contentTintColor(&self) -> Option<Id<NSColor>>;
+
+        #[cfg(feature = "AppKit_NSColor")]
+        #[method(setContentTintColor:)]
+        pub unsafe fn setContentTintColor(&self, content_tint_color: Option<&NSColor>);
+
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Option<Id<NSImage>>;
@@ -245,22 +261,6 @@ extern_methods!(
             &self,
             symbol_configuration: Option<&NSImageSymbolConfiguration>,
         );
-
-        #[cfg(feature = "AppKit_NSColor")]
-        #[method_id(@__retain_semantics Other bezelColor)]
-        pub unsafe fn bezelColor(&self) -> Option<Id<NSColor>>;
-
-        #[cfg(feature = "AppKit_NSColor")]
-        #[method(setBezelColor:)]
-        pub unsafe fn setBezelColor(&self, bezel_color: Option<&NSColor>);
-
-        #[cfg(feature = "AppKit_NSColor")]
-        #[method_id(@__retain_semantics Other contentTintColor)]
-        pub unsafe fn contentTintColor(&self) -> Option<Id<NSColor>>;
-
-        #[cfg(feature = "AppKit_NSColor")]
-        #[method(setContentTintColor:)]
-        pub unsafe fn setContentTintColor(&self, content_tint_color: Option<&NSColor>);
 
         #[method(state)]
         pub unsafe fn state(&self) -> NSControlStateValue;

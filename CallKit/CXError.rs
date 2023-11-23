@@ -32,6 +32,7 @@ ns_error_enum!(
         CXErrorCodeIncomingCallErrorCallUUIDAlreadyExists = 2,
         CXErrorCodeIncomingCallErrorFilteredByDoNotDisturb = 3,
         CXErrorCodeIncomingCallErrorFilteredByBlockList = 4,
+        CXErrorCodeIncomingCallErrorFilteredDuringRestrictedSharingMode = 5,
     }
 );
 

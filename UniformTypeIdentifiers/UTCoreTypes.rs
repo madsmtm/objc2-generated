@@ -265,3 +265,5 @@ extern_static!(UTTypeX509Certificate: &'static UTType);
 extern_static!(UTTypeEPUB: &'static UTType);
 
 extern_static!(UTTypeLog: &'static UTType);
+
+extern_static!(UTTypeAHAP: &'static UTType);

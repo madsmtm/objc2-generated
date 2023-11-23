@@ -262,18 +262,6 @@ extern_methods!(
         #[method(isValid)]
         pub unsafe fn isValid(&self) -> bool;
 
-        #[deprecated = "This method is incompatible with resolution-independent drawing and should not be used. Instead, use +[NSImage imageWithSize:flipped:drawingHandler:] to create a block-based image describing the desired image drawing, or use +[NSGraphicsContext graphicsContextWithBitmapImageRep:] to manipulate specific bitmap image representations."]
-        #[method(lockFocus)]
-        pub unsafe fn lockFocus(&self);
-
-        #[deprecated = "This method is incompatible with resolution-independent drawing and should not be used. Instead, use +[NSImage imageWithSize:flipped:drawingHandler:] to create a block-based image describing the desired image drawing, or use +[NSGraphicsContext graphicsContextWithBitmapImageRep:] to manipulate specific bitmap image representations."]
-        #[method(lockFocusFlipped:)]
-        pub unsafe fn lockFocusFlipped(&self, flipped: bool);
-
-        #[deprecated = "This method is incompatible with resolution-independent drawing and should not be used. Instead, use +[NSImage imageWithSize:flipped:drawingHandler:] to create a block-based image describing the desired image drawing, or use +[NSGraphicsContext graphicsContextWithBitmapImageRep:] to manipulate specific bitmap image representations."]
-        #[method(unlockFocus)]
-        pub unsafe fn unlockFocus(&self);
-
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSImageDelegate>>>;
 
@@ -291,9 +279,6 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSPasteboard")]
         #[method(canInitWithPasteboard:)]
         pub unsafe fn canInitWithPasteboard(pasteboard: &NSPasteboard) -> bool;
-
-        #[method(cancelIncrementalLoad)]
-        pub unsafe fn cancelIncrementalLoad(&self);
 
         #[method(cacheMode)]
         pub unsafe fn cacheMode(&self) -> NSImageCacheMode;
@@ -385,6 +370,14 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
         #[method_id(@__retain_semantics Other symbolConfiguration)]
         pub unsafe fn symbolConfiguration(&self) -> Id<NSImageSymbolConfiguration>;
+
+        #[cfg(feature = "Foundation_NSLocale")]
+        #[method_id(@__retain_semantics Other imageWithLocale:)]
+        pub unsafe fn imageWithLocale(&self, locale: Option<&NSLocale>) -> Id<NSImage>;
+
+        #[cfg(feature = "Foundation_NSLocale")]
+        #[method_id(@__retain_semantics Other locale)]
+        pub unsafe fn locale(&self) -> Option<Id<NSLocale>>;
     }
 );
 
@@ -440,16 +433,19 @@ extern_protocol!(
         ) -> Option<Id<NSImage>>;
 
         #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSImageRep"))]
+        #[deprecated = "This method is no longer called on 10.4 or later."]
         #[optional]
         #[method(image:willLoadRepresentation:)]
         unsafe fn image_willLoadRepresentation(&self, image: &NSImage, rep: &NSImageRep);
 
         #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSImageRep"))]
+        #[deprecated = "This method is no longer called on 10.4 or later."]
         #[optional]
         #[method(image:didLoadRepresentationHeader:)]
         unsafe fn image_didLoadRepresentationHeader(&self, image: &NSImage, rep: &NSImageRep);
 
         #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSImageRep"))]
+        #[deprecated = "This method is no longer called on 10.4 or later."]
         #[optional]
         #[method(image:didLoadPartOfRepresentation:withValidRows:)]
         unsafe fn image_didLoadPartOfRepresentation_withValidRows(
@@ -460,6 +456,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSImageRep"))]
+        #[deprecated = "This method is no longer called on 10.4 or later."]
         #[optional]
         #[method(image:didLoadRepresentation:withStatus:)]
         unsafe fn image_didLoadRepresentation_withStatus(
@@ -492,16 +489,9 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// Deprecated
     #[cfg(feature = "AppKit_NSImage")]
     unsafe impl NSImage {
-        #[cfg(all(feature = "AppKit_NSImageRep", feature = "Foundation_NSDictionary"))]
-        #[deprecated = "Use -[NSImage bestRepresentationForRect:context:hints:] instead.  Any deviceDescription dictionary is also a valid hints dictionary."]
-        #[method_id(@__retain_semantics Other bestRepresentationForDevice:)]
-        pub unsafe fn bestRepresentationForDevice(
-            &self,
-            device_description: Option<&NSDictionary>,
-        ) -> Option<Id<NSImageRep>>;
-
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[deprecated = "Use +imageUnfilteredTypes instead"]
         #[method_id(@__retain_semantics Other imageUnfilteredFileTypes)]
@@ -522,6 +512,26 @@ extern_methods!(
         #[method_id(@__retain_semantics Other imagePasteboardTypes)]
         pub unsafe fn imagePasteboardTypes() -> Id<NSArray<NSPasteboardType>>;
 
+        #[cfg(all(feature = "AppKit_NSImageRep", feature = "Foundation_NSDictionary"))]
+        #[deprecated = "Use -[NSImage bestRepresentationForRect:context:hints:] instead.  Any deviceDescription dictionary is also a valid hints dictionary."]
+        #[method_id(@__retain_semantics Other bestRepresentationForDevice:)]
+        pub unsafe fn bestRepresentationForDevice(
+            &self,
+            device_description: Option<&NSDictionary>,
+        ) -> Option<Id<NSImageRep>>;
+
+        #[deprecated = "This method is incompatible with resolution-independent drawing and should not be used. Instead, use +[NSImage imageWithSize:flipped:drawingHandler:] to create a block-based image describing the desired image drawing, or use +[NSGraphicsContext graphicsContextWithBitmapImageRep:] to manipulate specific bitmap image representations."]
+        #[method(lockFocus)]
+        pub unsafe fn lockFocus(&self);
+
+        #[deprecated = "This method is incompatible with resolution-independent drawing and should not be used. Instead, use +[NSImage imageWithSize:flipped:drawingHandler:] to create a block-based image describing the desired image drawing, or use +[NSGraphicsContext graphicsContextWithBitmapImageRep:] to manipulate specific bitmap image representations."]
+        #[method(lockFocusFlipped:)]
+        pub unsafe fn lockFocusFlipped(&self, flipped: bool);
+
+        #[deprecated = "This method is incompatible with resolution-independent drawing and should not be used. Instead, use +[NSImage imageWithSize:flipped:drawingHandler:] to create a block-based image describing the desired image drawing, or use +[NSGraphicsContext graphicsContextWithBitmapImageRep:] to manipulate specific bitmap image representations."]
+        #[method(unlockFocus)]
+        pub unsafe fn unlockFocus(&self);
+
         #[deprecated = "The concept of flippedness for NSImage is deprecated.  Please see the AppKit 10.6 release notes for a discussion of why and for how to replace existing usage."]
         #[method(setFlipped:)]
         pub unsafe fn setFlipped(&self, flag: bool);
@@ -529,56 +539,6 @@ extern_methods!(
         #[deprecated = "The concept of flippedness for NSImage is deprecated.  Please see the AppKit 10.6 release notes for a discussion of why and for how to replace existing usage."]
         #[method(isFlipped)]
         pub unsafe fn isFlipped(&self) -> bool;
-
-        #[deprecated = "Use -drawAtPoint:... or -drawInRect:... methods instead"]
-        #[method(dissolveToPoint:fraction:)]
-        pub unsafe fn dissolveToPoint_fraction(&self, point: NSPoint, fraction: CGFloat);
-
-        #[deprecated = "Use -drawAtPoint:... or -drawInRect:... methods instead"]
-        #[method(dissolveToPoint:fromRect:fraction:)]
-        pub unsafe fn dissolveToPoint_fromRect_fraction(
-            &self,
-            point: NSPoint,
-            rect: NSRect,
-            fraction: CGFloat,
-        );
-
-        #[deprecated = "Use -drawAtPoint:... or -drawInRect:... methods instead"]
-        #[method(compositeToPoint:operation:)]
-        pub unsafe fn compositeToPoint_operation(&self, point: NSPoint, op: NSCompositingOperation);
-
-        #[deprecated = "Use -drawAtPoint:... or -drawInRect:... methods instead"]
-        #[method(compositeToPoint:fromRect:operation:)]
-        pub unsafe fn compositeToPoint_fromRect_operation(
-            &self,
-            point: NSPoint,
-            rect: NSRect,
-            op: NSCompositingOperation,
-        );
-
-        #[deprecated = "Use -drawAtPoint:... or -drawInRect:... methods instead"]
-        #[method(compositeToPoint:operation:fraction:)]
-        pub unsafe fn compositeToPoint_operation_fraction(
-            &self,
-            point: NSPoint,
-            op: NSCompositingOperation,
-            delta: CGFloat,
-        );
-
-        #[deprecated = "Use -drawAtPoint:... or -drawInRect:... methods instead"]
-        #[method(compositeToPoint:fromRect:operation:fraction:)]
-        pub unsafe fn compositeToPoint_fromRect_operation_fraction(
-            &self,
-            point: NSPoint,
-            rect: NSRect,
-            op: NSCompositingOperation,
-            delta: CGFloat,
-        );
-
-        #[cfg(feature = "AppKit_NSImageRep")]
-        #[deprecated = "Create an image using +[NSImage imageWithSize:flipped:drawingHandler:], and begin your custom drawing with -[NSImageRep drawInRect:] instead."]
-        #[method(lockFocusOnRepresentation:)]
-        pub unsafe fn lockFocusOnRepresentation(&self, image_representation: Option<&NSImageRep>);
 
         #[deprecated = "You should be able to remove use of this method without any replacement.  See 10.6 AppKit release notes for details."]
         #[method(setScalesWhenResized:)]
@@ -611,6 +571,64 @@ extern_methods!(
         #[deprecated = "You should be able to remove use of this method without any replacement.  See 10.6 AppKit release notes for details."]
         #[method(cacheDepthMatchesImageDepth)]
         pub unsafe fn cacheDepthMatchesImageDepth(&self) -> bool;
+
+        #[deprecated = "Use -drawAtPoint:... or -drawInRect:... methods instead"]
+        #[method(dissolveToPoint:fraction:)]
+        pub unsafe fn dissolveToPoint_fraction(&self, point: NSPoint, fraction: CGFloat);
+
+        #[deprecated = "Use -drawAtPoint:... or -drawInRect:... methods instead"]
+        #[method(dissolveToPoint:fromRect:fraction:)]
+        pub unsafe fn dissolveToPoint_fromRect_fraction(
+            &self,
+            point: NSPoint,
+            rect: NSRect,
+            fraction: CGFloat,
+        );
+
+        #[deprecated = "Use -drawAtPoint:... or -drawInRect:... methods instead"]
+        #[method(compositeToPoint:operation:)]
+        pub unsafe fn compositeToPoint_operation(
+            &self,
+            point: NSPoint,
+            operation: NSCompositingOperation,
+        );
+
+        #[deprecated = "Use -drawAtPoint:... or -drawInRect:... methods instead"]
+        #[method(compositeToPoint:fromRect:operation:)]
+        pub unsafe fn compositeToPoint_fromRect_operation(
+            &self,
+            point: NSPoint,
+            rect: NSRect,
+            operation: NSCompositingOperation,
+        );
+
+        #[deprecated = "Use -drawAtPoint:... or -drawInRect:... methods instead"]
+        #[method(compositeToPoint:operation:fraction:)]
+        pub unsafe fn compositeToPoint_operation_fraction(
+            &self,
+            point: NSPoint,
+            operation: NSCompositingOperation,
+            fraction: CGFloat,
+        );
+
+        #[deprecated = "Use -drawAtPoint:... or -drawInRect:... methods instead"]
+        #[method(compositeToPoint:fromRect:operation:fraction:)]
+        pub unsafe fn compositeToPoint_fromRect_operation_fraction(
+            &self,
+            point: NSPoint,
+            rect: NSRect,
+            operation: NSCompositingOperation,
+            fraction: CGFloat,
+        );
+
+        #[cfg(feature = "AppKit_NSImageRep")]
+        #[deprecated = "Create an image using +[NSImage imageWithSize:flipped:drawingHandler:], and begin your custom drawing with -[NSImageRep drawInRect:] instead."]
+        #[method(lockFocusOnRepresentation:)]
+        pub unsafe fn lockFocusOnRepresentation(&self, image_representation: Option<&NSImageRep>);
+
+        #[deprecated = "This method does not perform any operation on 10.4 or later."]
+        #[method(cancelIncrementalLoad)]
+        pub unsafe fn cancelIncrementalLoad(&self);
     }
 );
 

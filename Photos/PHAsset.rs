@@ -20,6 +20,12 @@ extern_class!(
 );
 
 #[cfg(feature = "PhotoKit_PHAsset")]
+unsafe impl Send for PHAsset {}
+
+#[cfg(feature = "PhotoKit_PHAsset")]
+unsafe impl Sync for PHAsset {}
+
+#[cfg(feature = "PhotoKit_PHAsset")]
 unsafe impl NSCopying for PHAsset {}
 
 #[cfg(feature = "PhotoKit_PHAsset")]

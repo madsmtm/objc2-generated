@@ -405,13 +405,13 @@ pub use self::__CNError::{
     CNErrorCodeClientIdentifierCollision, CNErrorCodeClientIdentifierDoesNotExist,
     CNErrorCodeClientIdentifierInvalid, CNErrorCodeCommunicationError, CNErrorCodeContainmentCycle,
     CNErrorCodeContainmentScope, CNErrorCodeDataAccessError, CNErrorCodeFeatureDisabledByUser,
-    CNErrorCodeInsertedRecordAlreadyExists, CNErrorCodeNoAccessableWritableContainers,
-    CNErrorCodeParentContainerNotWritable, CNErrorCodeParentRecordDoesNotExist,
-    CNErrorCodePolicyViolation, CNErrorCodePredicateInvalid, CNErrorCodeRecordDoesNotExist,
-    CNErrorCodeRecordIdentifierInvalid, CNErrorCodeRecordNotWritable, CNErrorCodeUnauthorizedKeys,
-    CNErrorCodeVCardMalformed, CNErrorCodeVCardSummarizationError,
-    CNErrorCodeValidationConfigurationError, CNErrorCodeValidationMultipleErrors,
-    CNErrorCodeValidationTypeMismatch,
+    CNErrorCodeFeatureNotAvailable, CNErrorCodeInsertedRecordAlreadyExists,
+    CNErrorCodeNoAccessableWritableContainers, CNErrorCodeParentContainerNotWritable,
+    CNErrorCodeParentRecordDoesNotExist, CNErrorCodePolicyViolation, CNErrorCodePredicateInvalid,
+    CNErrorCodeRecordDoesNotExist, CNErrorCodeRecordIdentifierInvalid,
+    CNErrorCodeRecordNotWritable, CNErrorCodeUnauthorizedKeys, CNErrorCodeVCardMalformed,
+    CNErrorCodeVCardSummarizationError, CNErrorCodeValidationConfigurationError,
+    CNErrorCodeValidationMultipleErrors, CNErrorCodeValidationTypeMismatch,
 };
 #[cfg(feature = "Contacts_CNFetchRequest")]
 pub use self::__CNFetchRequest::CNFetchRequest;

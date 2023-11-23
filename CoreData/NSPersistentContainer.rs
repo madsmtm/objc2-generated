@@ -17,6 +17,12 @@ extern_class!(
 );
 
 #[cfg(feature = "CoreData_NSPersistentContainer")]
+unsafe impl Send for NSPersistentContainer {}
+
+#[cfg(feature = "CoreData_NSPersistentContainer")]
+unsafe impl Sync for NSPersistentContainer {}
+
+#[cfg(feature = "CoreData_NSPersistentContainer")]
 unsafe impl NSObjectProtocol for NSPersistentContainer {}
 
 extern_methods!(

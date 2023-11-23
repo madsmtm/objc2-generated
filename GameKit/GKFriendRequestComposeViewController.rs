@@ -95,7 +95,7 @@ extern_methods!(
         pub unsafe fn addRecipientPlayers(&self, players: &NSArray<GKPlayer>);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
-        #[deprecated = "use addRecipientPlayers:"]
+        #[deprecated]
         #[method(addRecipientsWithPlayerIDs:)]
         pub unsafe fn addRecipientsWithPlayerIDs(&self, player_i_ds: &NSArray<NSString>);
 

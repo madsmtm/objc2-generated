@@ -23,6 +23,7 @@ mod __UTTagClass;
 mod __UTType;
 
 pub use self::__UTCoreTypes::UTType3DContent;
+pub use self::__UTCoreTypes::UTTypeAHAP;
 pub use self::__UTCoreTypes::UTTypeAIFF;
 pub use self::__UTCoreTypes::UTTypeARReferenceObject;
 pub use self::__UTCoreTypes::UTTypeAVI;

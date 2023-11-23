@@ -63,6 +63,19 @@ extern_methods!(
 
         #[method(setAddsPunctuation:)]
         pub unsafe fn setAddsPunctuation(&self, adds_punctuation: bool);
+
+        #[cfg(feature = "Speech_SFSpeechLanguageModelConfiguration")]
+        #[method_id(@__retain_semantics Other customizedLanguageModel)]
+        pub unsafe fn customizedLanguageModel(
+            &self,
+        ) -> Option<Id<SFSpeechLanguageModelConfiguration>>;
+
+        #[cfg(feature = "Speech_SFSpeechLanguageModelConfiguration")]
+        #[method(setCustomizedLanguageModel:)]
+        pub unsafe fn setCustomizedLanguageModel(
+            &self,
+            customized_language_model: Option<&SFSpeechLanguageModelConfiguration>,
+        );
     }
 );
 

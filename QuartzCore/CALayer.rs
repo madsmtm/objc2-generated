@@ -282,6 +282,15 @@ extern_methods!(
         #[method(setContentsFormat:)]
         pub fn setContentsFormat(&self, contents_format: &CALayerContentsFormat);
 
+        #[method(wantsExtendedDynamicRangeContent)]
+        pub unsafe fn wantsExtendedDynamicRangeContent(&self) -> bool;
+
+        #[method(setWantsExtendedDynamicRangeContent:)]
+        pub unsafe fn setWantsExtendedDynamicRangeContent(
+            &self,
+            wants_extended_dynamic_range_content: bool,
+        );
+
         #[method_id(@__retain_semantics Other minificationFilter)]
         pub fn minificationFilter(&self) -> Id<CALayerContentsFilter>;
 

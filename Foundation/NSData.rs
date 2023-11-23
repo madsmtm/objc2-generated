@@ -27,6 +27,7 @@ ns_options!(
         NSDataWritingFileProtectionComplete = 0x20000000,
         NSDataWritingFileProtectionCompleteUnlessOpen = 0x30000000,
         NSDataWritingFileProtectionCompleteUntilFirstUserAuthentication = 0x40000000,
+        NSDataWritingFileProtectionCompleteWhenUserInactive = 0x50000000,
         NSDataWritingFileProtectionMask = 0xf0000000,
         #[deprecated]
         NSAtomicWrite = NSDataWritingAtomic,

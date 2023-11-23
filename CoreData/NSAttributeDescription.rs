@@ -22,6 +22,7 @@ ns_enum!(
         NSURIAttributeType = 1200,
         NSTransformableAttributeType = 1800,
         NSObjectIDAttributeType = 2000,
+        NSCompositeAttributeType = 2100,
     }
 );
 

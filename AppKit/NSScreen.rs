@@ -139,6 +139,12 @@ extern_methods!(
 );
 
 extern_methods!(
+    /// NSDisplayLink
+    #[cfg(feature = "AppKit_NSScreen")]
+    unsafe impl NSScreen {}
+);
+
+extern_methods!(
     /// NSDeprecated
     #[cfg(feature = "AppKit_NSScreen")]
     unsafe impl NSScreen {

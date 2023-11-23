@@ -36,8 +36,11 @@ ns_enum!(
     pub enum NSBezierPathElement {
         NSBezierPathElementMoveTo = 0,
         NSBezierPathElementLineTo = 1,
-        NSBezierPathElementCurveTo = 2,
+        NSBezierPathElementCubicCurveTo = 2,
         NSBezierPathElementClosePath = 3,
+        NSBezierPathElementQuadraticCurveTo = 4,
+        #[deprecated]
+        NSBezierPathElementCurveTo = NSBezierPathElementCubicCurveTo,
     }
 );
 
@@ -149,6 +152,9 @@ extern_methods!(
             control_point2: NSPoint,
         );
 
+        #[method(curveToPoint:controlPoint:)]
+        pub unsafe fn curveToPoint_controlPoint(&self, end_point: NSPoint, control_point: NSPoint);
+
         #[method(closePath)]
         pub unsafe fn closePath(&self);
 
@@ -167,6 +173,13 @@ extern_methods!(
             end_point: NSPoint,
             control_point1: NSPoint,
             control_point2: NSPoint,
+        );
+
+        #[method(relativeCurveToPoint:controlPoint:)]
+        pub unsafe fn relativeCurveToPoint_controlPoint(
+            &self,
+            end_point: NSPoint,
+            control_point: NSPoint,
         );
 
         #[method(lineWidth)]

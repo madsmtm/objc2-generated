@@ -74,6 +74,23 @@ extern_methods!(
             allowed_credentials: &NSArray<ASAuthorizationPlatformPublicKeyCredentialDescriptor>,
         );
 
+        #[cfg(
+            feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput"
+        )]
+        #[method_id(@__retain_semantics Other largeBlob)]
+        pub unsafe fn largeBlob(
+            &self,
+        ) -> Option<Id<ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput>>;
+
+        #[cfg(
+            feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput"
+        )]
+        #[method(setLargeBlob:)]
+        pub unsafe fn setLargeBlob(
+            &self,
+            large_blob: Option<&ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput>,
+        );
+
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
@@ -93,6 +110,21 @@ extern_methods!(
     feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialAssertionRequest"
 )]
 unsafe impl ASAuthorizationWebBrowserExternallyAuthenticatableRequest
+    for ASAuthorizationPlatformPublicKeyCredentialAssertionRequest
+{
+}
+
+extern_methods!(
+    #[cfg(
+        feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialAssertionRequest"
+    )]
+    unsafe impl ASAuthorizationPlatformPublicKeyCredentialAssertionRequest {}
+);
+
+#[cfg(
+    feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialAssertionRequest"
+)]
+unsafe impl ASAuthorizationWebBrowserPlatformPublicKeyCredentialAssertionRequest
     for ASAuthorizationPlatformPublicKeyCredentialAssertionRequest
 {
 }

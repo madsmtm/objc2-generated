@@ -98,6 +98,12 @@ extern_methods!(
 
         #[method(setProgressHandler:)]
         pub unsafe fn setProgressHandler(&self, progress_handler: PHAssetImageProgressHandler);
+
+        #[method(allowSecondaryDegradedImage)]
+        pub unsafe fn allowSecondaryDegradedImage(&self) -> bool;
+
+        #[method(setAllowSecondaryDegradedImage:)]
+        pub unsafe fn setAllowSecondaryDegradedImage(&self, allow_secondary_degraded_image: bool);
     }
 );
 
@@ -204,6 +210,9 @@ extern_class!(
         type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "PhotoKit_PHVideoRequestOptions")]
+unsafe impl NSCopying for PHVideoRequestOptions {}
 
 #[cfg(feature = "PhotoKit_PHVideoRequestOptions")]
 unsafe impl NSObjectProtocol for PHVideoRequestOptions {}

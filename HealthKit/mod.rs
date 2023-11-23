@@ -24,8 +24,12 @@ mod __HKAudiogramSample;
 mod __HKCDADocumentSample;
 #[path = "HKCategorySample.rs"]
 mod __HKCategorySample;
+#[path = "HKCategoryValues.rs"]
+mod __HKCategoryValues;
 #[path = "HKCharacteristicObjects.rs"]
 mod __HKCharacteristicObjects;
+#[path = "HKCharacteristicValues.rs"]
+mod __HKCharacteristicValues;
 #[path = "HKClinicalRecord.rs"]
 mod __HKClinicalRecord;
 #[path = "HKClinicalType.rs"]
@@ -195,6 +199,85 @@ pub use self::__HKCDADocumentSample::HKPredicateKeyPathCDATitle;
 #[cfg(feature = "HealthKit_HKCategorySample")]
 pub use self::__HKCategorySample::HKCategorySample;
 pub use self::__HKCategorySample::HKPredicateKeyPathCategoryValue;
+pub use self::__HKCategoryValues::HKCategoryValue;
+pub use self::__HKCategoryValues::HKCategoryValueAppetiteChanges;
+pub use self::__HKCategoryValues::HKCategoryValueAppleStandHour;
+pub use self::__HKCategoryValues::HKCategoryValueAppleWalkingSteadinessEvent;
+pub use self::__HKCategoryValues::HKCategoryValueAudioExposureEvent;
+pub use self::__HKCategoryValues::HKCategoryValueAudioExposureEventLoudEnvironment;
+pub use self::__HKCategoryValues::HKCategoryValueCervicalMucusQuality;
+pub use self::__HKCategoryValues::HKCategoryValueContraceptive;
+pub use self::__HKCategoryValues::HKCategoryValueEnvironmentalAudioExposureEvent;
+pub use self::__HKCategoryValues::HKCategoryValueEnvironmentalAudioExposureEventMomentaryLimit;
+pub use self::__HKCategoryValues::HKCategoryValueHeadphoneAudioExposureEvent;
+pub use self::__HKCategoryValues::HKCategoryValueHeadphoneAudioExposureEventSevenDayLimit;
+pub use self::__HKCategoryValues::HKCategoryValueLowCardioFitnessEvent;
+pub use self::__HKCategoryValues::HKCategoryValueLowCardioFitnessEventLowFitness;
+pub use self::__HKCategoryValues::HKCategoryValueMenstrualFlow;
+pub use self::__HKCategoryValues::HKCategoryValueNotApplicable;
+pub use self::__HKCategoryValues::HKCategoryValueOvulationTestResult;
+pub use self::__HKCategoryValues::HKCategoryValuePregnancyTestResult;
+pub use self::__HKCategoryValues::HKCategoryValuePresence;
+pub use self::__HKCategoryValues::HKCategoryValueProgesteroneTestResult;
+pub use self::__HKCategoryValues::HKCategoryValueSeverity;
+pub use self::__HKCategoryValues::HKCategoryValueSleepAnalysis;
+pub use self::__HKCategoryValues::{
+    HKCategoryValueAppetiteChangesDecreased, HKCategoryValueAppetiteChangesIncreased,
+    HKCategoryValueAppetiteChangesNoChange, HKCategoryValueAppetiteChangesUnspecified,
+};
+pub use self::__HKCategoryValues::{
+    HKCategoryValueAppleStandHourIdle, HKCategoryValueAppleStandHourStood,
+};
+pub use self::__HKCategoryValues::{
+    HKCategoryValueAppleWalkingSteadinessEventInitialLow,
+    HKCategoryValueAppleWalkingSteadinessEventInitialVeryLow,
+    HKCategoryValueAppleWalkingSteadinessEventRepeatLow,
+    HKCategoryValueAppleWalkingSteadinessEventRepeatVeryLow,
+};
+pub use self::__HKCategoryValues::{
+    HKCategoryValueCervicalMucusQualityCreamy, HKCategoryValueCervicalMucusQualityDry,
+    HKCategoryValueCervicalMucusQualityEggWhite, HKCategoryValueCervicalMucusQualitySticky,
+    HKCategoryValueCervicalMucusQualityWatery,
+};
+pub use self::__HKCategoryValues::{
+    HKCategoryValueContraceptiveImplant, HKCategoryValueContraceptiveInjection,
+    HKCategoryValueContraceptiveIntrauterineDevice, HKCategoryValueContraceptiveIntravaginalRing,
+    HKCategoryValueContraceptiveOral, HKCategoryValueContraceptivePatch,
+    HKCategoryValueContraceptiveUnspecified,
+};
+pub use self::__HKCategoryValues::{
+    HKCategoryValueMenstrualFlowHeavy, HKCategoryValueMenstrualFlowLight,
+    HKCategoryValueMenstrualFlowMedium, HKCategoryValueMenstrualFlowNone,
+    HKCategoryValueMenstrualFlowUnspecified,
+};
+pub use self::__HKCategoryValues::{
+    HKCategoryValueOvulationTestResultEstrogenSurge,
+    HKCategoryValueOvulationTestResultIndeterminate,
+    HKCategoryValueOvulationTestResultLuteinizingHormoneSurge,
+    HKCategoryValueOvulationTestResultNegative, HKCategoryValueOvulationTestResultPositive,
+};
+pub use self::__HKCategoryValues::{
+    HKCategoryValuePregnancyTestResultIndeterminate, HKCategoryValuePregnancyTestResultNegative,
+    HKCategoryValuePregnancyTestResultPositive,
+};
+pub use self::__HKCategoryValues::{
+    HKCategoryValuePresenceNotPresent, HKCategoryValuePresencePresent,
+};
+pub use self::__HKCategoryValues::{
+    HKCategoryValueProgesteroneTestResultIndeterminate,
+    HKCategoryValueProgesteroneTestResultNegative, HKCategoryValueProgesteroneTestResultPositive,
+};
+pub use self::__HKCategoryValues::{
+    HKCategoryValueSeverityMild, HKCategoryValueSeverityModerate,
+    HKCategoryValueSeverityNotPresent, HKCategoryValueSeveritySevere,
+    HKCategoryValueSeverityUnspecified,
+};
+pub use self::__HKCategoryValues::{
+    HKCategoryValueSleepAnalysisAsleep, HKCategoryValueSleepAnalysisAsleepCore,
+    HKCategoryValueSleepAnalysisAsleepDeep, HKCategoryValueSleepAnalysisAsleepREM,
+    HKCategoryValueSleepAnalysisAsleepUnspecified, HKCategoryValueSleepAnalysisAwake,
+    HKCategoryValueSleepAnalysisInBed,
+};
 #[cfg(feature = "HealthKit_HKActivityMoveModeObject")]
 pub use self::__HKCharacteristicObjects::HKActivityMoveModeObject;
 #[cfg(feature = "HealthKit_HKBiologicalSexObject")]
@@ -205,6 +288,30 @@ pub use self::__HKCharacteristicObjects::HKBloodTypeObject;
 pub use self::__HKCharacteristicObjects::HKFitzpatrickSkinTypeObject;
 #[cfg(feature = "HealthKit_HKWheelchairUseObject")]
 pub use self::__HKCharacteristicObjects::HKWheelchairUseObject;
+pub use self::__HKCharacteristicValues::HKActivityMoveMode;
+pub use self::__HKCharacteristicValues::HKBiologicalSex;
+pub use self::__HKCharacteristicValues::HKBloodType;
+pub use self::__HKCharacteristicValues::HKFitzpatrickSkinType;
+pub use self::__HKCharacteristicValues::HKWheelchairUse;
+pub use self::__HKCharacteristicValues::{
+    HKActivityMoveModeActiveEnergy, HKActivityMoveModeAppleMoveTime,
+};
+pub use self::__HKCharacteristicValues::{
+    HKBiologicalSexFemale, HKBiologicalSexMale, HKBiologicalSexNotSet, HKBiologicalSexOther,
+};
+pub use self::__HKCharacteristicValues::{
+    HKBloodTypeABNegative, HKBloodTypeABPositive, HKBloodTypeANegative, HKBloodTypeAPositive,
+    HKBloodTypeBNegative, HKBloodTypeBPositive, HKBloodTypeNotSet, HKBloodTypeONegative,
+    HKBloodTypeOPositive,
+};
+pub use self::__HKCharacteristicValues::{
+    HKFitzpatrickSkinTypeI, HKFitzpatrickSkinTypeII, HKFitzpatrickSkinTypeIII,
+    HKFitzpatrickSkinTypeIV, HKFitzpatrickSkinTypeNotSet, HKFitzpatrickSkinTypeV,
+    HKFitzpatrickSkinTypeVI,
+};
+pub use self::__HKCharacteristicValues::{
+    HKWheelchairUseNo, HKWheelchairUseNotSet, HKWheelchairUseYes,
+};
 #[cfg(feature = "HealthKit_HKClinicalRecord")]
 pub use self::__HKClinicalRecord::HKClinicalRecord;
 pub use self::__HKClinicalRecord::HKPredicateKeyPathClinicalRecordFHIRResourceIdentifier;
@@ -234,41 +341,13 @@ pub use self::__HKCumulativeQuantitySample::HKCumulativeQuantitySample;
 pub use self::__HKCumulativeQuantitySample::HKPredicateKeyPathSum;
 #[cfg(feature = "HealthKit_HKCumulativeQuantitySeriesSample")]
 pub use self::__HKCumulativeQuantitySeriesSample::HKCumulativeQuantitySeriesSample;
-pub use self::__HKDefines::HKActivityMoveMode;
 pub use self::__HKDefines::HKAuthorizationRequestStatus;
 pub use self::__HKDefines::HKAuthorizationStatus;
-pub use self::__HKDefines::HKBiologicalSex;
-pub use self::__HKDefines::HKBloodType;
-pub use self::__HKDefines::HKCategoryValue;
-pub use self::__HKDefines::HKCategoryValueAppetiteChanges;
-pub use self::__HKDefines::HKCategoryValueAppleStandHour;
-pub use self::__HKDefines::HKCategoryValueAppleWalkingSteadinessEvent;
-pub use self::__HKDefines::HKCategoryValueAudioExposureEvent;
-pub use self::__HKDefines::HKCategoryValueAudioExposureEventLoudEnvironment;
-pub use self::__HKDefines::HKCategoryValueCervicalMucusQuality;
-pub use self::__HKDefines::HKCategoryValueContraceptive;
-pub use self::__HKDefines::HKCategoryValueEnvironmentalAudioExposureEvent;
-pub use self::__HKDefines::HKCategoryValueEnvironmentalAudioExposureEventMomentaryLimit;
-pub use self::__HKDefines::HKCategoryValueHeadphoneAudioExposureEvent;
-pub use self::__HKDefines::HKCategoryValueHeadphoneAudioExposureEventSevenDayLimit;
-pub use self::__HKDefines::HKCategoryValueLowCardioFitnessEvent;
-pub use self::__HKDefines::HKCategoryValueLowCardioFitnessEventLowFitness;
-pub use self::__HKDefines::HKCategoryValueMenstrualFlow;
-pub use self::__HKDefines::HKCategoryValueNotApplicable;
-pub use self::__HKDefines::HKCategoryValueOvulationTestResult;
-pub use self::__HKDefines::HKCategoryValuePregnancyTestResult;
-pub use self::__HKDefines::HKCategoryValuePresence;
-pub use self::__HKDefines::HKCategoryValueProgesteroneTestResult;
-pub use self::__HKDefines::HKCategoryValueSeverity;
-pub use self::__HKDefines::HKCategoryValueSleepAnalysis;
 #[cfg(all(feature = "Foundation_NSNumber", feature = "Foundation_NSSet"))]
 pub use self::__HKDefines::HKCategoryValueSleepAnalysisAsleepValues;
 pub use self::__HKDefines::HKErrorCode;
 pub use self::__HKDefines::HKErrorDomain;
-pub use self::__HKDefines::HKFitzpatrickSkinType;
 pub use self::__HKDefines::HKUpdateFrequency;
-pub use self::__HKDefines::HKWheelchairUse;
-pub use self::__HKDefines::{HKActivityMoveModeActiveEnergy, HKActivityMoveModeAppleMoveTime};
 pub use self::__HKDefines::{
     HKAuthorizationRequestStatusShouldRequest, HKAuthorizationRequestStatusUnknown,
     HKAuthorizationRequestStatusUnnecessary,
@@ -278,85 +357,17 @@ pub use self::__HKDefines::{
     HKAuthorizationStatusSharingDenied,
 };
 pub use self::__HKDefines::{
-    HKBiologicalSexFemale, HKBiologicalSexMale, HKBiologicalSexNotSet, HKBiologicalSexOther,
-};
-pub use self::__HKDefines::{
-    HKBloodTypeABNegative, HKBloodTypeABPositive, HKBloodTypeANegative, HKBloodTypeAPositive,
-    HKBloodTypeBNegative, HKBloodTypeBPositive, HKBloodTypeNotSet, HKBloodTypeONegative,
-    HKBloodTypeOPositive,
-};
-pub use self::__HKDefines::{
-    HKCategoryValueAppetiteChangesDecreased, HKCategoryValueAppetiteChangesIncreased,
-    HKCategoryValueAppetiteChangesNoChange, HKCategoryValueAppetiteChangesUnspecified,
-};
-pub use self::__HKDefines::{
-    HKCategoryValueAppleStandHourIdle, HKCategoryValueAppleStandHourStood,
-};
-pub use self::__HKDefines::{
-    HKCategoryValueAppleWalkingSteadinessEventInitialLow,
-    HKCategoryValueAppleWalkingSteadinessEventInitialVeryLow,
-    HKCategoryValueAppleWalkingSteadinessEventRepeatLow,
-    HKCategoryValueAppleWalkingSteadinessEventRepeatVeryLow,
-};
-pub use self::__HKDefines::{
-    HKCategoryValueCervicalMucusQualityCreamy, HKCategoryValueCervicalMucusQualityDry,
-    HKCategoryValueCervicalMucusQualityEggWhite, HKCategoryValueCervicalMucusQualitySticky,
-    HKCategoryValueCervicalMucusQualityWatery,
-};
-pub use self::__HKDefines::{
-    HKCategoryValueContraceptiveImplant, HKCategoryValueContraceptiveInjection,
-    HKCategoryValueContraceptiveIntrauterineDevice, HKCategoryValueContraceptiveIntravaginalRing,
-    HKCategoryValueContraceptiveOral, HKCategoryValueContraceptivePatch,
-    HKCategoryValueContraceptiveUnspecified,
-};
-pub use self::__HKDefines::{
-    HKCategoryValueMenstrualFlowHeavy, HKCategoryValueMenstrualFlowLight,
-    HKCategoryValueMenstrualFlowMedium, HKCategoryValueMenstrualFlowNone,
-    HKCategoryValueMenstrualFlowUnspecified,
-};
-pub use self::__HKDefines::{
-    HKCategoryValueOvulationTestResultEstrogenSurge,
-    HKCategoryValueOvulationTestResultIndeterminate,
-    HKCategoryValueOvulationTestResultLuteinizingHormoneSurge,
-    HKCategoryValueOvulationTestResultNegative, HKCategoryValueOvulationTestResultPositive,
-};
-pub use self::__HKDefines::{
-    HKCategoryValuePregnancyTestResultIndeterminate, HKCategoryValuePregnancyTestResultNegative,
-    HKCategoryValuePregnancyTestResultPositive,
-};
-pub use self::__HKDefines::{HKCategoryValuePresenceNotPresent, HKCategoryValuePresencePresent};
-pub use self::__HKDefines::{
-    HKCategoryValueProgesteroneTestResultIndeterminate,
-    HKCategoryValueProgesteroneTestResultNegative, HKCategoryValueProgesteroneTestResultPositive,
-};
-pub use self::__HKDefines::{
-    HKCategoryValueSeverityMild, HKCategoryValueSeverityModerate,
-    HKCategoryValueSeverityNotPresent, HKCategoryValueSeveritySevere,
-    HKCategoryValueSeverityUnspecified,
-};
-pub use self::__HKDefines::{
-    HKCategoryValueSleepAnalysisAsleep, HKCategoryValueSleepAnalysisAsleepCore,
-    HKCategoryValueSleepAnalysisAsleepDeep, HKCategoryValueSleepAnalysisAsleepREM,
-    HKCategoryValueSleepAnalysisAsleepUnspecified, HKCategoryValueSleepAnalysisAwake,
-    HKCategoryValueSleepAnalysisInBed,
-};
-pub use self::__HKDefines::{
     HKErrorAnotherWorkoutSessionStarted, HKErrorAuthorizationDenied,
-    HKErrorAuthorizationNotDetermined, HKErrorDatabaseInaccessible, HKErrorHealthDataRestricted,
+    HKErrorAuthorizationNotDetermined, HKErrorBackgroundWorkoutSessionNotAllowed,
+    HKErrorDataSizeExceeded, HKErrorDatabaseInaccessible, HKErrorHealthDataRestricted,
     HKErrorHealthDataUnavailable, HKErrorInvalidArgument, HKErrorNoData,
     HKErrorRequiredAuthorizationDenied, HKErrorUserCanceled, HKErrorUserExitedWorkoutSession,
-    HKNoError,
-};
-pub use self::__HKDefines::{
-    HKFitzpatrickSkinTypeI, HKFitzpatrickSkinTypeII, HKFitzpatrickSkinTypeIII,
-    HKFitzpatrickSkinTypeIV, HKFitzpatrickSkinTypeNotSet, HKFitzpatrickSkinTypeV,
-    HKFitzpatrickSkinTypeVI,
+    HKErrorWorkoutActivityNotAllowed, HKNoError, HKUnknownError,
 };
 pub use self::__HKDefines::{
     HKUpdateFrequencyDaily, HKUpdateFrequencyHourly, HKUpdateFrequencyImmediate,
     HKUpdateFrequencyWeekly,
 };
-pub use self::__HKDefines::{HKWheelchairUseNo, HKWheelchairUseNotSet, HKWheelchairUseYes};
 #[cfg(feature = "HealthKit_HKDeletedObject")]
 pub use self::__HKDeletedObject::HKDeletedObject;
 #[cfg(feature = "HealthKit_HKDevice")]
@@ -452,15 +463,18 @@ pub use self::__HKLiveWorkoutDataSource::HKLiveWorkoutDataSource;
 pub use self::__HKMetadata::HKAppleECGAlgorithmVersion;
 pub use self::__HKMetadata::HKBloodGlucoseMealTime;
 pub use self::__HKMetadata::HKBodyTemperatureSensorLocation;
+pub use self::__HKMetadata::HKCyclingFunctionalThresholdPowerTestType;
 pub use self::__HKMetadata::HKDevicePlacementSide;
 pub use self::__HKMetadata::HKHeartRateMotionContext;
 pub use self::__HKMetadata::HKHeartRateRecoveryTestType;
 pub use self::__HKMetadata::HKHeartRateSensorLocation;
 pub use self::__HKMetadata::HKInsulinDeliveryReason;
+pub use self::__HKMetadata::HKMetadataKeyActivityType;
 pub use self::__HKMetadata::HKMetadataKeyAlgorithmVersion;
 pub use self::__HKMetadata::HKMetadataKeyAlpineSlopeGrade;
 pub use self::__HKMetadata::HKMetadataKeyAppleDeviceCalibrated;
 pub use self::__HKMetadata::HKMetadataKeyAppleECGAlgorithmVersion;
+pub use self::__HKMetadata::HKMetadataKeyAppleFitnessPlusSession;
 pub use self::__HKMetadata::HKMetadataKeyAudioExposureDuration;
 pub use self::__HKMetadata::HKMetadataKeyAudioExposureLevel;
 pub use self::__HKMetadata::HKMetadataKeyAverageMETs;
@@ -470,6 +484,7 @@ pub use self::__HKMetadata::HKMetadataKeyBloodGlucoseMealTime;
 pub use self::__HKMetadata::HKMetadataKeyBodyTemperatureSensorLocation;
 pub use self::__HKMetadata::HKMetadataKeyCoachedWorkout;
 pub use self::__HKMetadata::HKMetadataKeyCrossTrainerDistance;
+pub use self::__HKMetadata::HKMetadataKeyCyclingFunctionalThresholdPowerTestType;
 pub use self::__HKMetadata::HKMetadataKeyDateOfEarliestDataUsedForEstimate;
 pub use self::__HKMetadata::HKMetadataKeyDeviceManufacturerName;
 pub use self::__HKMetadata::HKMetadataKeyDeviceName;
@@ -496,8 +511,10 @@ pub use self::__HKMetadata::HKMetadataKeyIndoorWorkout;
 pub use self::__HKMetadata::HKMetadataKeyInsulinDeliveryReason;
 pub use self::__HKMetadata::HKMetadataKeyLapLength;
 pub use self::__HKMetadata::HKMetadataKeyLowCardioFitnessEventThreshold;
+pub use self::__HKMetadata::HKMetadataKeyMaximumLightIntensity;
 pub use self::__HKMetadata::HKMetadataKeyMaximumSpeed;
 pub use self::__HKMetadata::HKMetadataKeyMenstrualCycleStart;
+pub use self::__HKMetadata::HKMetadataKeyPhysicalEffortEstimationType;
 pub use self::__HKMetadata::HKMetadataKeyQuantityClampedToLowerBound;
 pub use self::__HKMetadata::HKMetadataKeyQuantityClampedToUpperBound;
 pub use self::__HKMetadata::HKMetadataKeyReferenceRangeLowerLimit;
@@ -517,13 +534,16 @@ pub use self::__HKMetadata::HKMetadataKeyVO2MaxTestType;
 pub use self::__HKMetadata::HKMetadataKeyVO2MaxValue;
 pub use self::__HKMetadata::HKMetadataKeyWasTakenInLab;
 pub use self::__HKMetadata::HKMetadataKeyWasUserEntered;
+pub use self::__HKMetadata::HKMetadataKeyWaterSalinity;
 pub use self::__HKMetadata::HKMetadataKeyWeatherCondition;
 pub use self::__HKMetadata::HKMetadataKeyWeatherHumidity;
 pub use self::__HKMetadata::HKMetadataKeyWeatherTemperature;
 pub use self::__HKMetadata::HKMetadataKeyWorkoutBrandName;
+pub use self::__HKMetadata::HKPhysicalEffortEstimationType;
 pub use self::__HKMetadata::HKSwimmingStrokeStyle;
 pub use self::__HKMetadata::HKUserMotionContext;
 pub use self::__HKMetadata::HKVO2MaxTestType;
+pub use self::__HKMetadata::HKWaterSalinity;
 pub use self::__HKMetadata::HKWeatherCondition;
 pub use self::__HKMetadata::HKWorkoutSwimmingLocationType;
 pub use self::__HKMetadata::{HKAppleECGAlgorithmVersion1, HKAppleECGAlgorithmVersion2};
@@ -537,6 +557,12 @@ pub use self::__HKMetadata::{
     HKBodyTemperatureSensorLocationGastroIntestinal, HKBodyTemperatureSensorLocationMouth,
     HKBodyTemperatureSensorLocationOther, HKBodyTemperatureSensorLocationRectum,
     HKBodyTemperatureSensorLocationTemporalArtery, HKBodyTemperatureSensorLocationToe,
+};
+pub use self::__HKMetadata::{
+    HKCyclingFunctionalThresholdPowerTestTypeMaxExercise20Minute,
+    HKCyclingFunctionalThresholdPowerTestTypeMaxExercise60Minute,
+    HKCyclingFunctionalThresholdPowerTestTypePredictionExercise,
+    HKCyclingFunctionalThresholdPowerTestTypeRampTest,
 };
 pub use self::__HKMetadata::{
     HKDevicePlacementSideCentral, HKDevicePlacementSideLeft, HKDevicePlacementSideRight,
@@ -557,6 +583,9 @@ pub use self::__HKMetadata::{
 };
 pub use self::__HKMetadata::{HKInsulinDeliveryReasonBasal, HKInsulinDeliveryReasonBolus};
 pub use self::__HKMetadata::{
+    HKPhysicalEffortEstimationTypeActivityLookup, HKPhysicalEffortEstimationTypeDeviceSensed,
+};
+pub use self::__HKMetadata::{
     HKSwimmingStrokeStyleBackstroke, HKSwimmingStrokeStyleBreaststroke,
     HKSwimmingStrokeStyleButterfly, HKSwimmingStrokeStyleFreestyle, HKSwimmingStrokeStyleKickboard,
     HKSwimmingStrokeStyleMixed, HKSwimmingStrokeStyleUnknown,
@@ -568,6 +597,7 @@ pub use self::__HKMetadata::{
     HKVO2MaxTestTypeMaxExercise, HKVO2MaxTestTypePredictionNonExercise,
     HKVO2MaxTestTypePredictionSubMaxExercise,
 };
+pub use self::__HKMetadata::{HKWaterSalinityFreshWater, HKWaterSalinitySaltWater};
 pub use self::__HKMetadata::{
     HKWeatherConditionBlustery, HKWeatherConditionClear, HKWeatherConditionCloudy,
     HKWeatherConditionDrizzle, HKWeatherConditionDust, HKWeatherConditionFair,
@@ -784,6 +814,10 @@ pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierBodyFatPercentage;
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierBodyMass;
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierBodyMassIndex;
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierBodyTemperature;
+pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierCyclingCadence;
+pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierCyclingFunctionalThresholdPower;
+pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierCyclingPower;
+pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierCyclingSpeed;
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietaryBiotin;
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietaryCaffeine;
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDietaryCalcium;
@@ -830,6 +864,7 @@ pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDistanceWalkingRunnin
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierDistanceWheelchair;
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierElectrodermalActivity;
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierEnvironmentalAudioExposure;
+pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierEnvironmentalSoundReduction;
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierFlightsClimbed;
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierForcedExpiratoryVolume1;
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierForcedVitalCapacity;
@@ -847,6 +882,7 @@ pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierNumberOfTimesFallen;
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierOxygenSaturation;
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierPeakExpiratoryFlowRate;
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierPeripheralPerfusionIndex;
+pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierPhysicalEffort;
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierPushCount;
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierRespiratoryRate;
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierRestingHeartRate;
@@ -860,6 +896,7 @@ pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierStairAscentSpeed;
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierStairDescentSpeed;
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierStepCount;
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierSwimmingStrokeCount;
+pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierTimeInDaylight;
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierUVExposure;
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierUnderwaterDepth;
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierVO2Max;
@@ -964,7 +1001,8 @@ pub use self::__HKWorkout::{
     HKWorkoutActivityTypeSwimBikeRun, HKWorkoutActivityTypeSwimming,
     HKWorkoutActivityTypeTableTennis, HKWorkoutActivityTypeTaiChi, HKWorkoutActivityTypeTennis,
     HKWorkoutActivityTypeTrackAndField, HKWorkoutActivityTypeTraditionalStrengthTraining,
-    HKWorkoutActivityTypeTransition, HKWorkoutActivityTypeVolleyball, HKWorkoutActivityTypeWalking,
+    HKWorkoutActivityTypeTransition, HKWorkoutActivityTypeUnderwaterDiving,
+    HKWorkoutActivityTypeVolleyball, HKWorkoutActivityTypeWalking,
     HKWorkoutActivityTypeWaterFitness, HKWorkoutActivityTypeWaterPolo,
     HKWorkoutActivityTypeWaterSports, HKWorkoutActivityTypeWheelchairRunPace,
     HKWorkoutActivityTypeWheelchairWalkPace, HKWorkoutActivityTypeWrestling,
@@ -1004,7 +1042,9 @@ pub use self::__HKWorkoutRouteQuery::HKWorkoutRouteQuery;
 pub use self::__HKWorkoutSession::HKWorkoutSession;
 pub use self::__HKWorkoutSession::HKWorkoutSessionDelegate;
 pub use self::__HKWorkoutSession::HKWorkoutSessionState;
+pub use self::__HKWorkoutSession::HKWorkoutSessionType;
 pub use self::__HKWorkoutSession::{
     HKWorkoutSessionStateEnded, HKWorkoutSessionStateNotStarted, HKWorkoutSessionStatePaused,
     HKWorkoutSessionStatePrepared, HKWorkoutSessionStateRunning, HKWorkoutSessionStateStopped,
 };
+pub use self::__HKWorkoutSession::{HKWorkoutSessionTypeMirrored, HKWorkoutSessionTypePrimary};

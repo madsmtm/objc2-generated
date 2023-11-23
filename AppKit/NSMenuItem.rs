@@ -54,6 +54,10 @@ extern_methods!(
         pub fn separatorItem(mtm: MainThreadMarker) -> Id<NSMenuItem>;
 
         #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Other sectionHeaderWithTitle:)]
+        pub unsafe fn sectionHeaderWithTitle(title: &NSString, mtm: MainThreadMarker) -> Id<Self>;
+
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithTitle:action:keyEquivalent:)]
         pub unsafe fn initWithTitle_action_keyEquivalent(
             this: Allocated<Self>,
@@ -106,6 +110,9 @@ extern_methods!(
 
         #[method(isSeparatorItem)]
         pub unsafe fn isSeparatorItem(&self) -> bool;
+
+        #[method(isSectionHeader)]
+        pub unsafe fn isSectionHeader(&self) -> bool;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other keyEquivalent)]
@@ -262,6 +269,14 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSString")]
         #[method(setToolTip:)]
         pub unsafe fn setToolTip(&self, tool_tip: Option<&NSString>);
+
+        #[cfg(feature = "AppKit_NSMenuItemBadge")]
+        #[method_id(@__retain_semantics Other badge)]
+        pub unsafe fn badge(&self) -> Option<Id<NSMenuItemBadge>>;
+
+        #[cfg(feature = "AppKit_NSMenuItemBadge")]
+        #[method(setBadge:)]
+        pub unsafe fn setBadge(&self, badge: Option<&NSMenuItemBadge>);
     }
 );
 

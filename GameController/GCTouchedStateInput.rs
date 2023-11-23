@@ -42,6 +42,10 @@ extern_protocol!(
 
         #[method(lastTouchedStateLatency)]
         unsafe fn lastTouchedStateLatency(&self) -> NSTimeInterval;
+
+        #[cfg(feature = "Foundation_NSSet")]
+        #[method_id(@__retain_semantics Other sources)]
+        unsafe fn sources(&self) -> Id<NSSet<ProtocolObject<dyn GCPhysicalInputSource>>>;
     }
 
     unsafe impl ProtocolType for dyn GCTouchedStateInput {}

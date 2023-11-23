@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSEPSImageRep")]
+    #[deprecated = "`NSEPSImageRep` instances cannot be created on macOS 14.0 and later"]
     pub struct NSEPSImageRep;
 
     #[cfg(feature = "AppKit_NSEPSImageRep")]
@@ -38,16 +39,16 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithData:)]
         pub unsafe fn initWithData(this: Allocated<Self>, eps_data: &NSData) -> Option<Id<Self>>;
 
-        #[deprecated]
-        #[method(prepareGState)]
-        pub unsafe fn prepareGState(&self);
+        #[method(boundingBox)]
+        pub unsafe fn boundingBox(&self) -> NSRect;
 
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other EPSRepresentation)]
         pub unsafe fn EPSRepresentation(&self) -> Id<NSData>;
 
-        #[method(boundingBox)]
-        pub unsafe fn boundingBox(&self) -> NSRect;
+        #[deprecated]
+        #[method(prepareGState)]
+        pub unsafe fn prepareGState(&self);
     }
 );
 

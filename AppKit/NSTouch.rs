@@ -53,6 +53,12 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSTouch")]
+unsafe impl Send for NSTouch {}
+
+#[cfg(feature = "AppKit_NSTouch")]
+unsafe impl Sync for NSTouch {}
+
+#[cfg(feature = "AppKit_NSTouch")]
 unsafe impl NSCopying for NSTouch {}
 
 #[cfg(feature = "AppKit_NSTouch")]

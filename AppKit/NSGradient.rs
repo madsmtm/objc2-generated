@@ -26,6 +26,12 @@ extern_class!(
 );
 
 #[cfg(feature = "AppKit_NSGradient")]
+unsafe impl Send for NSGradient {}
+
+#[cfg(feature = "AppKit_NSGradient")]
+unsafe impl Sync for NSGradient {}
+
+#[cfg(feature = "AppKit_NSGradient")]
 unsafe impl NSCoding for NSGradient {}
 
 #[cfg(feature = "AppKit_NSGradient")]
@@ -70,7 +76,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
+        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
 
         #[method(drawFromPoint:toPoint:options:)]
         pub unsafe fn drawFromPoint_toPoint_options(

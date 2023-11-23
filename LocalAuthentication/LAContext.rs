@@ -37,6 +37,7 @@ ns_enum!(
         LABiometryNone = LABiometryTypeNone,
         LABiometryTypeTouchID = 1,
         LABiometryTypeFaceID = 2,
+        LABiometryTypeOpticID = 4,
     }
 );
 

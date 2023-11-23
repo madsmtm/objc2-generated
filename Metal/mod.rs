@@ -137,6 +137,8 @@ mod __MTLVisibleFunctionTable;
 pub use self::__MTLAccelerationStructure::MTLAccelerationStructure;
 #[cfg(feature = "Metal_MTLAccelerationStructureBoundingBoxGeometryDescriptor")]
 pub use self::__MTLAccelerationStructure::MTLAccelerationStructureBoundingBoxGeometryDescriptor;
+#[cfg(feature = "Metal_MTLAccelerationStructureCurveGeometryDescriptor")]
+pub use self::__MTLAccelerationStructure::MTLAccelerationStructureCurveGeometryDescriptor;
 #[cfg(feature = "Metal_MTLAccelerationStructureDescriptor")]
 pub use self::__MTLAccelerationStructure::MTLAccelerationStructureDescriptor;
 #[cfg(feature = "Metal_MTLAccelerationStructureGeometryDescriptor")]
@@ -146,6 +148,8 @@ pub use self::__MTLAccelerationStructure::MTLAccelerationStructureInstanceDescri
 pub use self::__MTLAccelerationStructure::MTLAccelerationStructureInstanceOptions;
 #[cfg(feature = "Metal_MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor")]
 pub use self::__MTLAccelerationStructure::MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor;
+#[cfg(feature = "Metal_MTLAccelerationStructureMotionCurveGeometryDescriptor")]
+pub use self::__MTLAccelerationStructure::MTLAccelerationStructureMotionCurveGeometryDescriptor;
 pub use self::__MTLAccelerationStructure::MTLAccelerationStructureMotionInstanceDescriptor;
 #[cfg(feature = "Metal_MTLAccelerationStructureMotionTriangleGeometryDescriptor")]
 pub use self::__MTLAccelerationStructure::MTLAccelerationStructureMotionTriangleGeometryDescriptor;
@@ -153,6 +157,13 @@ pub use self::__MTLAccelerationStructure::MTLAccelerationStructureMotionTriangle
 pub use self::__MTLAccelerationStructure::MTLAccelerationStructureTriangleGeometryDescriptor;
 pub use self::__MTLAccelerationStructure::MTLAccelerationStructureUsage;
 pub use self::__MTLAccelerationStructure::MTLAccelerationStructureUserIDInstanceDescriptor;
+pub use self::__MTLAccelerationStructure::MTLCurveBasis;
+pub use self::__MTLAccelerationStructure::MTLCurveEndCaps;
+pub use self::__MTLAccelerationStructure::MTLCurveType;
+pub use self::__MTLAccelerationStructure::MTLIndirectAccelerationStructureInstanceDescriptor;
+pub use self::__MTLAccelerationStructure::MTLIndirectAccelerationStructureMotionInstanceDescriptor;
+#[cfg(feature = "Metal_MTLIndirectInstanceAccelerationStructureDescriptor")]
+pub use self::__MTLAccelerationStructure::MTLIndirectInstanceAccelerationStructureDescriptor;
 #[cfg(feature = "Metal_MTLInstanceAccelerationStructureDescriptor")]
 pub use self::__MTLAccelerationStructure::MTLInstanceAccelerationStructureDescriptor;
 pub use self::__MTLAccelerationStructure::MTLMotionBorderMode;
@@ -162,6 +173,8 @@ pub use self::__MTLAccelerationStructure::MTLMotionKeyframeData;
 pub use self::__MTLAccelerationStructure::MTLPrimitiveAccelerationStructureDescriptor;
 pub use self::__MTLAccelerationStructure::{
     MTLAccelerationStructureInstanceDescriptorTypeDefault,
+    MTLAccelerationStructureInstanceDescriptorTypeIndirect,
+    MTLAccelerationStructureInstanceDescriptorTypeIndirectMotion,
     MTLAccelerationStructureInstanceDescriptorTypeMotion,
     MTLAccelerationStructureInstanceDescriptorTypeUserID,
 };
@@ -175,6 +188,13 @@ pub use self::__MTLAccelerationStructure::{
     MTLAccelerationStructureUsageExtendedLimits, MTLAccelerationStructureUsageNone,
     MTLAccelerationStructureUsagePreferFastBuild, MTLAccelerationStructureUsageRefit,
 };
+pub use self::__MTLAccelerationStructure::{
+    MTLCurveBasisBSpline, MTLCurveBasisBezier, MTLCurveBasisCatmullRom, MTLCurveBasisLinear,
+};
+pub use self::__MTLAccelerationStructure::{
+    MTLCurveEndCapsDisk, MTLCurveEndCapsNone, MTLCurveEndCapsSphere,
+};
+pub use self::__MTLAccelerationStructure::{MTLCurveTypeFlat, MTLCurveTypeRound};
 pub use self::__MTLAccelerationStructure::{MTLMotionBorderModeClamp, MTLMotionBorderModeVanish};
 pub use self::__MTLAccelerationStructureCommandEncoder::MTLAccelerationStructureCommandEncoder;
 #[cfg(feature = "Metal_MTLAccelerationStructurePassDescriptor")]
@@ -199,6 +219,7 @@ pub use self::__MTLArgument::MTLArgumentType;
 #[cfg(feature = "Metal_MTLArrayType")]
 pub use self::__MTLArgument::MTLArrayType;
 pub use self::__MTLArgument::MTLBinding;
+pub use self::__MTLArgument::MTLBindingAccess;
 pub use self::__MTLArgument::MTLBindingType;
 pub use self::__MTLArgument::MTLBufferBinding;
 pub use self::__MTLArgument::MTLDataType;
@@ -217,6 +238,7 @@ pub use self::__MTLArgument::MTLThreadgroupBinding;
 pub use self::__MTLArgument::MTLType;
 pub use self::__MTLArgument::{
     MTLArgumentAccessReadOnly, MTLArgumentAccessReadWrite, MTLArgumentAccessWriteOnly,
+    MTLBindingAccessReadOnly, MTLBindingAccessReadWrite, MTLBindingAccessWriteOnly,
 };
 pub use self::__MTLArgument::{
     MTLArgumentTypeBuffer, MTLArgumentTypeImageblock, MTLArgumentTypeImageblockData,
@@ -232,7 +254,8 @@ pub use self::__MTLArgument::{
     MTLBindingTypeVisibleFunctionTable,
 };
 pub use self::__MTLArgument::{
-    MTLDataTypeArray, MTLDataTypeBool, MTLDataTypeBool2, MTLDataTypeBool3, MTLDataTypeBool4,
+    MTLDataTypeArray, MTLDataTypeBFloat, MTLDataTypeBFloat2, MTLDataTypeBFloat3,
+    MTLDataTypeBFloat4, MTLDataTypeBool, MTLDataTypeBool2, MTLDataTypeBool3, MTLDataTypeBool4,
     MTLDataTypeChar, MTLDataTypeChar2, MTLDataTypeChar3, MTLDataTypeChar4,
     MTLDataTypeComputePipeline, MTLDataTypeFloat, MTLDataTypeFloat2, MTLDataTypeFloat2x2,
     MTLDataTypeFloat2x3, MTLDataTypeFloat2x4, MTLDataTypeFloat3, MTLDataTypeFloat3x2,
@@ -403,6 +426,8 @@ pub use self::__MTLDepthStencil::{
     MTLStencilOperationKeep, MTLStencilOperationReplace, MTLStencilOperationZero,
 };
 pub use self::__MTLDevice::MTLAccelerationStructureSizes;
+#[cfg(feature = "Metal_MTLArchitecture")]
+pub use self::__MTLDevice::MTLArchitecture;
 pub use self::__MTLDevice::MTLArgumentBuffersTier;
 #[cfg(feature = "Metal_MTLArgumentDescriptor")]
 pub use self::__MTLDevice::MTLArgumentDescriptor;
@@ -464,8 +489,9 @@ pub use self::__MTLDevice::{
 pub use self::__MTLDevice::{
     MTLGPUFamilyApple1, MTLGPUFamilyApple2, MTLGPUFamilyApple3, MTLGPUFamilyApple4,
     MTLGPUFamilyApple5, MTLGPUFamilyApple6, MTLGPUFamilyApple7, MTLGPUFamilyApple8,
-    MTLGPUFamilyCommon1, MTLGPUFamilyCommon2, MTLGPUFamilyCommon3, MTLGPUFamilyMac1,
-    MTLGPUFamilyMac2, MTLGPUFamilyMacCatalyst1, MTLGPUFamilyMacCatalyst2, MTLGPUFamilyMetal3,
+    MTLGPUFamilyApple9, MTLGPUFamilyCommon1, MTLGPUFamilyCommon2, MTLGPUFamilyCommon3,
+    MTLGPUFamilyMac1, MTLGPUFamilyMac2, MTLGPUFamilyMacCatalyst1, MTLGPUFamilyMacCatalyst2,
+    MTLGPUFamilyMetal3,
 };
 pub use self::__MTLDevice::{
     MTLIOCompressionMethodLZ4, MTLIOCompressionMethodLZBitmap, MTLIOCompressionMethodLZFSE,
@@ -507,7 +533,10 @@ pub use self::__MTLFunctionDescriptor::MTLFunctionDescriptor;
 pub use self::__MTLFunctionDescriptor::MTLFunctionOptions;
 #[cfg(feature = "Metal_MTLIntersectionFunctionDescriptor")]
 pub use self::__MTLFunctionDescriptor::MTLIntersectionFunctionDescriptor;
-pub use self::__MTLFunctionDescriptor::{MTLFunctionOptionCompileToBinary, MTLFunctionOptionNone};
+pub use self::__MTLFunctionDescriptor::{
+    MTLFunctionOptionCompileToBinary, MTLFunctionOptionNone,
+    MTLFunctionOptionStoreFunctionInMetalScript,
+};
 pub use self::__MTLFunctionHandle::MTLFunctionHandle;
 pub use self::__MTLFunctionLog::MTLFunctionLog;
 pub use self::__MTLFunctionLog::MTLFunctionLogDebugLocation;
@@ -574,8 +603,9 @@ pub use self::__MTLIntersectionFunctionTable::MTLIntersectionFunctionTable;
 #[cfg(feature = "Metal_MTLIntersectionFunctionTableDescriptor")]
 pub use self::__MTLIntersectionFunctionTable::MTLIntersectionFunctionTableDescriptor;
 pub use self::__MTLIntersectionFunctionTable::{
-    MTLIntersectionFunctionSignatureExtendedLimits, MTLIntersectionFunctionSignatureInstanceMotion,
-    MTLIntersectionFunctionSignatureInstancing, MTLIntersectionFunctionSignatureNone,
+    MTLIntersectionFunctionSignatureCurveData, MTLIntersectionFunctionSignatureExtendedLimits,
+    MTLIntersectionFunctionSignatureInstanceMotion, MTLIntersectionFunctionSignatureInstancing,
+    MTLIntersectionFunctionSignatureMaxLevels, MTLIntersectionFunctionSignatureNone,
     MTLIntersectionFunctionSignaturePrimitiveMotion, MTLIntersectionFunctionSignatureTriangleData,
     MTLIntersectionFunctionSignatureWorldSpaceData,
 };
@@ -605,7 +635,7 @@ pub use self::__MTLLibrary::{
 pub use self::__MTLLibrary::{
     MTLLanguageVersion1_0, MTLLanguageVersion1_1, MTLLanguageVersion1_2, MTLLanguageVersion2_0,
     MTLLanguageVersion2_1, MTLLanguageVersion2_2, MTLLanguageVersion2_3, MTLLanguageVersion2_4,
-    MTLLanguageVersion3_0,
+    MTLLanguageVersion3_0, MTLLanguageVersion3_1,
 };
 pub use self::__MTLLibrary::{
     MTLLibraryErrorCompileFailure, MTLLibraryErrorCompileWarning, MTLLibraryErrorFileNotFound,
@@ -888,12 +918,12 @@ pub use self::__MTLStageInputOutputDescriptor::{
     MTLAttributeFormatChar3, MTLAttributeFormatChar3Normalized, MTLAttributeFormatChar4,
     MTLAttributeFormatChar4Normalized, MTLAttributeFormatCharNormalized, MTLAttributeFormatFloat,
     MTLAttributeFormatFloat2, MTLAttributeFormatFloat3, MTLAttributeFormatFloat4,
-    MTLAttributeFormatHalf, MTLAttributeFormatHalf2, MTLAttributeFormatHalf3,
-    MTLAttributeFormatHalf4, MTLAttributeFormatInt, MTLAttributeFormatInt1010102Normalized,
-    MTLAttributeFormatInt2, MTLAttributeFormatInt3, MTLAttributeFormatInt4,
-    MTLAttributeFormatInvalid, MTLAttributeFormatShort, MTLAttributeFormatShort2,
-    MTLAttributeFormatShort2Normalized, MTLAttributeFormatShort3,
-    MTLAttributeFormatShort3Normalized, MTLAttributeFormatShort4,
+    MTLAttributeFormatFloatRG11B10, MTLAttributeFormatFloatRGB9E5, MTLAttributeFormatHalf,
+    MTLAttributeFormatHalf2, MTLAttributeFormatHalf3, MTLAttributeFormatHalf4,
+    MTLAttributeFormatInt, MTLAttributeFormatInt1010102Normalized, MTLAttributeFormatInt2,
+    MTLAttributeFormatInt3, MTLAttributeFormatInt4, MTLAttributeFormatInvalid,
+    MTLAttributeFormatShort, MTLAttributeFormatShort2, MTLAttributeFormatShort2Normalized,
+    MTLAttributeFormatShort3, MTLAttributeFormatShort3Normalized, MTLAttributeFormatShort4,
     MTLAttributeFormatShort4Normalized, MTLAttributeFormatShortNormalized, MTLAttributeFormatUChar,
     MTLAttributeFormatUChar2, MTLAttributeFormatUChar2Normalized, MTLAttributeFormatUChar3,
     MTLAttributeFormatUChar3Normalized, MTLAttributeFormatUChar4,
@@ -933,8 +963,8 @@ pub use self::__MTLTexture::{
     MTLTextureTypeCube, MTLTextureTypeCubeArray, MTLTextureTypeTextureBuffer,
 };
 pub use self::__MTLTexture::{
-    MTLTextureUsagePixelFormatView, MTLTextureUsageRenderTarget, MTLTextureUsageShaderRead,
-    MTLTextureUsageShaderWrite, MTLTextureUsageUnknown,
+    MTLTextureUsagePixelFormatView, MTLTextureUsageRenderTarget, MTLTextureUsageShaderAtomic,
+    MTLTextureUsageShaderRead, MTLTextureUsageShaderWrite, MTLTextureUsageUnknown,
 };
 pub use self::__MTLTypes::MTLCoordinate2D;
 pub use self::__MTLTypes::MTLOrigin;
@@ -958,7 +988,8 @@ pub use self::__MTLVertexDescriptor::{
     MTLVertexFormatChar, MTLVertexFormatChar2, MTLVertexFormatChar2Normalized,
     MTLVertexFormatChar3, MTLVertexFormatChar3Normalized, MTLVertexFormatChar4,
     MTLVertexFormatChar4Normalized, MTLVertexFormatCharNormalized, MTLVertexFormatFloat,
-    MTLVertexFormatFloat2, MTLVertexFormatFloat3, MTLVertexFormatFloat4, MTLVertexFormatHalf,
+    MTLVertexFormatFloat2, MTLVertexFormatFloat3, MTLVertexFormatFloat4,
+    MTLVertexFormatFloatRG11B10, MTLVertexFormatFloatRGB9E5, MTLVertexFormatHalf,
     MTLVertexFormatHalf2, MTLVertexFormatHalf3, MTLVertexFormatHalf4, MTLVertexFormatInt,
     MTLVertexFormatInt1010102Normalized, MTLVertexFormatInt2, MTLVertexFormatInt3,
     MTLVertexFormatInt4, MTLVertexFormatInvalid, MTLVertexFormatShort, MTLVertexFormatShort2,

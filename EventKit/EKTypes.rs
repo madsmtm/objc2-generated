@@ -13,7 +13,10 @@ ns_enum!(
         EKAuthorizationStatusNotDetermined = 0,
         EKAuthorizationStatusRestricted = 1,
         EKAuthorizationStatusDenied = 2,
-        EKAuthorizationStatusAuthorized = 3,
+        EKAuthorizationStatusFullAccess = 3,
+        EKAuthorizationStatusWriteOnly = 4,
+        #[deprecated = "Check for full access or write only access"]
+        EKAuthorizationStatusAuthorized = EKAuthorizationStatusFullAccess,
     }
 );
 

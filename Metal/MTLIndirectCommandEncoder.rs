@@ -28,6 +28,15 @@ extern_protocol!(
             index: NSUInteger,
         );
 
+        #[method(setVertexBuffer:offset:attributeStride:atIndex:)]
+        unsafe fn setVertexBuffer_offset_attributeStride_atIndex(
+            &self,
+            buffer: &ProtocolObject<dyn MTLBuffer>,
+            offset: NSUInteger,
+            stride: NSUInteger,
+            index: NSUInteger,
+        );
+
         #[method(drawPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:instanceCount:baseInstance:tessellationFactorBuffer:tessellationFactorBufferOffset:tessellationFactorBufferInstanceStride:)]
         unsafe fn drawPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_instanceCount_baseInstance_tessellationFactorBuffer_tessellationFactorBufferOffset_tessellationFactorBufferInstanceStride(
             &self,
@@ -103,6 +112,15 @@ extern_protocol!(
             &self,
             buffer: &ProtocolObject<dyn MTLBuffer>,
             offset: NSUInteger,
+            index: NSUInteger,
+        );
+
+        #[method(setKernelBuffer:offset:attributeStride:atIndex:)]
+        unsafe fn setKernelBuffer_offset_attributeStride_atIndex(
+            &self,
+            buffer: &ProtocolObject<dyn MTLBuffer>,
+            offset: NSUInteger,
+            stride: NSUInteger,
             index: NSUInteger,
         );
 

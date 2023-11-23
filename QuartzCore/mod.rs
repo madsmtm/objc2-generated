@@ -38,6 +38,8 @@ mod __CALayer;
 mod __CAMediaTiming;
 #[path = "CAMediaTimingFunction.rs"]
 mod __CAMediaTimingFunction;
+#[path = "CAMetalDisplayLink.rs"]
+mod __CAMetalDisplayLink;
 #[path = "CAMetalLayer.rs"]
 mod __CAMetalLayer;
 #[path = "CAOpenGLLayer.rs"]
@@ -212,6 +214,11 @@ pub use self::__CAMediaTimingFunction::kCAMediaTimingFunctionLinear;
 #[cfg(feature = "CoreAnimation_CAMediaTimingFunction")]
 pub use self::__CAMediaTimingFunction::CAMediaTimingFunction;
 pub use self::__CAMediaTimingFunction::CAMediaTimingFunctionName;
+#[cfg(feature = "CoreAnimation_CAMetalDisplayLink")]
+pub use self::__CAMetalDisplayLink::CAMetalDisplayLink;
+pub use self::__CAMetalDisplayLink::CAMetalDisplayLinkDelegate;
+#[cfg(feature = "CoreAnimation_CAMetalDisplayLinkUpdate")]
+pub use self::__CAMetalDisplayLink::CAMetalDisplayLinkUpdate;
 #[cfg(feature = "CoreAnimation_CARemoteLayerClient")]
 pub use self::__CARemoteLayerClient::CARemoteLayerClient;
 #[cfg(feature = "CoreAnimation_CARemoteLayerServer")]

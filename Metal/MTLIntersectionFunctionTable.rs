@@ -14,6 +14,8 @@ ns_options!(
         MTLIntersectionFunctionSignatureInstanceMotion = 1 << 3,
         MTLIntersectionFunctionSignaturePrimitiveMotion = 1 << 4,
         MTLIntersectionFunctionSignatureExtendedLimits = 1 << 5,
+        MTLIntersectionFunctionSignatureMaxLevels = 1 << 6,
+        MTLIntersectionFunctionSignatureCurveData = 1 << 7,
     }
 );
 
@@ -114,6 +116,20 @@ extern_protocol!(
 
         #[method(setOpaqueTriangleIntersectionFunctionWithSignature:withRange:)]
         unsafe fn setOpaqueTriangleIntersectionFunctionWithSignature_withRange(
+            &self,
+            signature: MTLIntersectionFunctionSignature,
+            range: NSRange,
+        );
+
+        #[method(setOpaqueCurveIntersectionFunctionWithSignature:atIndex:)]
+        unsafe fn setOpaqueCurveIntersectionFunctionWithSignature_atIndex(
+            &self,
+            signature: MTLIntersectionFunctionSignature,
+            index: NSUInteger,
+        );
+
+        #[method(setOpaqueCurveIntersectionFunctionWithSignature:withRange:)]
+        unsafe fn setOpaqueCurveIntersectionFunctionWithSignature_withRange(
             &self,
             signature: MTLIntersectionFunctionSignature,
             range: NSRange,

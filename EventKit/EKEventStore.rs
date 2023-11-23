@@ -59,6 +59,25 @@ extern_methods!(
             sources: &NSArray<EKSource>,
         ) -> Id<Self>;
 
+        #[method(requestFullAccessToEventsWithCompletion:)]
+        pub unsafe fn requestFullAccessToEventsWithCompletion(
+            &self,
+            completion: EKEventStoreRequestAccessCompletionHandler,
+        );
+
+        #[method(requestWriteOnlyAccessToEventsWithCompletion:)]
+        pub unsafe fn requestWriteOnlyAccessToEventsWithCompletion(
+            &self,
+            completion: EKEventStoreRequestAccessCompletionHandler,
+        );
+
+        #[method(requestFullAccessToRemindersWithCompletion:)]
+        pub unsafe fn requestFullAccessToRemindersWithCompletion(
+            &self,
+            completion: EKEventStoreRequestAccessCompletionHandler,
+        );
+
+        #[deprecated = "Use -requestFullAccessToEventsWithCompletion:, -requestWriteOnlyAccessToEventsWithCompletion:, or -requestFullAccessToRemindersWithCompletion:"]
         #[method(requestAccessToEntityType:completion:)]
         pub unsafe fn requestAccessToEntityType_completion(
             &self,

@@ -9,6 +9,7 @@ ns_options!(
     pub enum MTLFunctionOptions {
         MTLFunctionOptionNone = 0,
         MTLFunctionOptionCompileToBinary = 1 << 0,
+        MTLFunctionOptionStoreFunctionInMetalScript = 1 << 1,
     }
 );
 

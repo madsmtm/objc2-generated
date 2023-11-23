@@ -37,6 +37,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSFileAccessIntent")]
+unsafe impl Send for NSFileAccessIntent {}
+
+#[cfg(feature = "Foundation_NSFileAccessIntent")]
+unsafe impl Sync for NSFileAccessIntent {}
+
+#[cfg(feature = "Foundation_NSFileAccessIntent")]
 unsafe impl NSObjectProtocol for NSFileAccessIntent {}
 
 extern_methods!(

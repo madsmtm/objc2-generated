@@ -136,3 +136,58 @@ extern_methods!(
         pub unsafe fn new() -> Id<Self>;
     }
 );
+
+extern_class!(
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "BackgroundTasks_BGHealthResearchTaskRequest")]
+    pub struct BGHealthResearchTaskRequest;
+
+    #[cfg(feature = "BackgroundTasks_BGHealthResearchTaskRequest")]
+    unsafe impl ClassType for BGHealthResearchTaskRequest {
+        #[inherits(BGTaskRequest, NSObject)]
+        type Super = BGProcessingTaskRequest;
+        type Mutability = InteriorMutable;
+    }
+);
+
+#[cfg(feature = "BackgroundTasks_BGHealthResearchTaskRequest")]
+unsafe impl NSCopying for BGHealthResearchTaskRequest {}
+
+#[cfg(feature = "BackgroundTasks_BGHealthResearchTaskRequest")]
+unsafe impl NSObjectProtocol for BGHealthResearchTaskRequest {}
+
+extern_methods!(
+    #[cfg(feature = "BackgroundTasks_BGHealthResearchTaskRequest")]
+    unsafe impl BGHealthResearchTaskRequest {
+        #[method_id(@__retain_semantics Other protectionTypeOfRequiredData)]
+        pub unsafe fn protectionTypeOfRequiredData(&self) -> Id<NSFileProtectionType>;
+
+        #[method(setProtectionTypeOfRequiredData:)]
+        pub unsafe fn setProtectionTypeOfRequiredData(
+            &self,
+            protection_type_of_required_data: &NSFileProtectionType,
+        );
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `BGProcessingTaskRequest`
+    #[cfg(feature = "BackgroundTasks_BGHealthResearchTaskRequest")]
+    unsafe impl BGHealthResearchTaskRequest {
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Init initWithIdentifier:)]
+        pub unsafe fn initWithIdentifier(this: Allocated<Self>, identifier: &NSString) -> Id<Self>;
+    }
+);
+
+extern_methods!(
+    /// Methods declared on superclass `BGTaskRequest`
+    #[cfg(feature = "BackgroundTasks_BGHealthResearchTaskRequest")]
+    unsafe impl BGHealthResearchTaskRequest {
+        #[method_id(@__retain_semantics Init init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
+
+        #[method_id(@__retain_semantics New new)]
+        pub unsafe fn new() -> Id<Self>;
+    }
+);

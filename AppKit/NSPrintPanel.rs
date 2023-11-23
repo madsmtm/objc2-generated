@@ -5,6 +5,14 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+ns_enum!(
+    #[underlying(NSInteger)]
+    pub enum NSPrintPanelResult {
+        NSPrintPanelResultCancelled = 0,
+        NSPrintPanelResultPrinted = 1,
+    }
+);
+
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSPrintPanelOptions {
@@ -118,6 +126,16 @@ extern_methods!(
         pub unsafe fn setJobStyleHint(&self, job_style_hint: Option<&NSPrintPanelJobStyleHint>);
 
         #[cfg(all(feature = "AppKit_NSPrintInfo", feature = "AppKit_NSWindow"))]
+        #[method(beginSheetUsingPrintInfo:onWindow:completionHandler:)]
+        pub unsafe fn beginSheetUsingPrintInfo_onWindow_completionHandler(
+            &self,
+            print_info: &NSPrintInfo,
+            parent_window: &NSWindow,
+            handler: Option<&Block<(NSPrintPanelResult,), ()>>,
+        );
+
+        #[cfg(all(feature = "AppKit_NSPrintInfo", feature = "AppKit_NSWindow"))]
+        #[deprecated]
         #[method(beginSheetWithPrintInfo:modalForWindow:delegate:didEndSelector:contextInfo:)]
         pub unsafe fn beginSheetWithPrintInfo_modalForWindow_delegate_didEndSelector_contextInfo(
             &self,

@@ -90,7 +90,7 @@ extern_methods!(
         pub unsafe fn configuration(&self) -> Option<Id<CWConfiguration>>;
 
         #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
-        #[deprecated = "Use +[CWWiFiClient interfaceNames] instead"]
+        #[deprecated = "Use -[CWWiFiClient interfaceNames] instead"]
         #[method_id(@__retain_semantics Other interfaceNames)]
         pub unsafe fn interfaceNames() -> Option<Id<NSSet<NSString>>>;
 

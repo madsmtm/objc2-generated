@@ -32,9 +32,6 @@ extern_methods!(
         #[deprecated = "This has been replaced by functionality in AppTrackingTransparency's ATTrackingManager class."]
         #[method(isAdvertisingTrackingEnabled)]
         pub unsafe fn isAdvertisingTrackingEnabled(&self) -> bool;
-
-        #[method(clearAdvertisingIdentifier)]
-        pub unsafe fn clearAdvertisingIdentifier(&self);
     }
 );
 

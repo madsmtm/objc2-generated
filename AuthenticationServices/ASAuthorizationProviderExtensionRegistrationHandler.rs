@@ -10,6 +10,7 @@ ns_enum!(
     pub enum ASAuthorizationProviderExtensionAuthenticationMethod {
         ASAuthorizationProviderExtensionAuthenticationMethodPassword = 1,
         ASAuthorizationProviderExtensionAuthenticationMethodUserSecureEnclaveKey = 2,
+        ASAuthorizationProviderExtensionAuthenticationMethodSmartCard = 3,
     }
 );
 
@@ -19,6 +20,8 @@ ns_options!(
         ASAuthorizationProviderExtensionRequestOptionsNone = 0,
         ASAuthorizationProviderExtensionRequestOptionsUserInteractionEnabled = 1 << 0,
         ASAuthorizationProviderExtensionRequestOptionsRegistrationRepair = 1 << 1,
+        ASAuthorizationProviderExtensionRequestOptionsRegistrationSharedDeviceKeys = 1 << 2,
+        ASAuthorizationProviderExtensionRequestOptionsRegistrationDeviceKeyMigration = 1 << 3,
     }
 );
 
@@ -29,6 +32,25 @@ ns_enum!(
         ASAuthorizationProviderExtensionRegistrationResultFailed = 1,
         ASAuthorizationProviderExtensionRegistrationResultUserInterfaceRequired = 2,
         ASAuthorizationProviderExtensionRegistrationResultFailedNoRetry = 3,
+    }
+);
+
+ns_options!(
+    #[underlying(NSInteger)]
+    pub enum ASAuthorizationProviderExtensionSupportedGrantTypes {
+        ASAuthorizationProviderExtensionSupportedGrantTypesNone = 0,
+        ASAuthorizationProviderExtensionSupportedGrantTypesPassword = 1 << 0,
+        ASAuthorizationProviderExtensionSupportedGrantTypesJWTBearer = 1 << 1,
+        ASAuthorizationProviderExtensionSupportedGrantTypesSAML1_1 = 1 << 2,
+        ASAuthorizationProviderExtensionSupportedGrantTypesSAML2_0 = 1 << 3,
+    }
+);
+
+ns_enum!(
+    #[underlying(NSInteger)]
+    pub enum ASAuthorizationProviderExtensionPlatformSSOProtocolVersion {
+        ASAuthorizationProviderExtensionPlatformSSOProtocolVersion1_0 = 0,
+        ASAuthorizationProviderExtensionPlatformSSOProtocolVersion2_0 = 1,
     }
 );
 
@@ -62,6 +84,21 @@ extern_protocol!(
         #[optional]
         #[method(registrationDidComplete)]
         unsafe fn registrationDidComplete(&self);
+
+        #[optional]
+        #[method(registrationDidCancel)]
+        unsafe fn registrationDidCancel(&self);
+
+        #[optional]
+        #[method(supportedGrantTypes)]
+        unsafe fn supportedGrantTypes(&self)
+            -> ASAuthorizationProviderExtensionSupportedGrantTypes;
+
+        #[optional]
+        #[method(protocolVersion)]
+        unsafe fn protocolVersion(
+            &self,
+        ) -> ASAuthorizationProviderExtensionPlatformSSOProtocolVersion;
     }
 
     unsafe impl ProtocolType for dyn ASAuthorizationProviderExtensionRegistrationHandler {}

@@ -98,6 +98,10 @@ ns_enum!(
         MTLDataTypeIntersectionFunctionTable = 116,
         MTLDataTypePrimitiveAccelerationStructure = 117,
         MTLDataTypeInstanceAccelerationStructure = 118,
+        MTLDataTypeBFloat = 121,
+        MTLDataTypeBFloat2 = 122,
+        MTLDataTypeBFloat3 = 123,
+        MTLDataTypeBFloat4 = 124,
     }
 );
 
@@ -141,12 +145,20 @@ ns_enum!(
 
 ns_enum!(
     #[underlying(NSUInteger)]
-    pub enum MTLArgumentAccess {
-        MTLArgumentAccessReadOnly = 0,
-        MTLArgumentAccessReadWrite = 1,
-        MTLArgumentAccessWriteOnly = 2,
+    pub enum MTLBindingAccess {
+        MTLBindingAccessReadOnly = 0,
+        MTLBindingAccessReadWrite = 1,
+        MTLBindingAccessWriteOnly = 2,
+        #[deprecated]
+        MTLArgumentAccessReadOnly = MTLBindingAccessReadOnly,
+        #[deprecated]
+        MTLArgumentAccessReadWrite = MTLBindingAccessReadWrite,
+        #[deprecated]
+        MTLArgumentAccessWriteOnly = MTLBindingAccessWriteOnly,
     }
 );
+
+pub type MTLArgumentAccess = MTLBindingAccess;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -368,7 +380,7 @@ extern_methods!(
         pub unsafe fn elementType(&self) -> MTLDataType;
 
         #[method(access)]
-        pub unsafe fn access(&self) -> MTLArgumentAccess;
+        pub unsafe fn access(&self) -> MTLBindingAccess;
 
         #[method(alignment)]
         pub unsafe fn alignment(&self) -> NSUInteger;
@@ -427,7 +439,7 @@ extern_methods!(
         pub unsafe fn textureType(&self) -> MTLTextureType;
 
         #[method(access)]
-        pub unsafe fn access(&self) -> MTLArgumentAccess;
+        pub unsafe fn access(&self) -> MTLBindingAccess;
 
         #[method(isDepthTexture)]
         pub unsafe fn isDepthTexture(&self) -> bool;
@@ -476,7 +488,7 @@ extern_methods!(
 
         #[deprecated]
         #[method(access)]
-        pub fn access(&self) -> MTLArgumentAccess;
+        pub fn access(&self) -> MTLBindingAccess;
 
         #[deprecated]
         #[method(index)]
@@ -553,7 +565,7 @@ extern_protocol!(
         unsafe fn r#type(&self) -> MTLBindingType;
 
         #[method(access)]
-        unsafe fn access(&self) -> MTLArgumentAccess;
+        unsafe fn access(&self) -> MTLBindingAccess;
 
         #[method(index)]
         unsafe fn index(&self) -> NSUInteger;

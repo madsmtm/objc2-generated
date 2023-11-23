@@ -31,6 +31,12 @@ extern_methods!(
 
         #[method(setRect:)]
         pub unsafe fn setRect(&self, rect: CGRect);
+
+        #[method(allowTransparentBackground)]
+        pub unsafe fn allowTransparentBackground(&self) -> bool;
+
+        #[method(setAllowTransparentBackground:)]
+        pub unsafe fn setAllowTransparentBackground(&self, allow_transparent_background: bool);
     }
 );
 

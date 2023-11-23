@@ -241,6 +241,7 @@ ns_enum!(
         MTLLanguageVersion2_3 = (2 << 16) + 3,
         MTLLanguageVersion2_4 = (2 << 16) + 4,
         MTLLanguageVersion3_0 = (3 << 16) + 0,
+        MTLLanguageVersion3_1 = (3 << 16) + 1,
     }
 );
 

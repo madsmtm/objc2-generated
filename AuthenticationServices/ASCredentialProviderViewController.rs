@@ -37,22 +37,54 @@ extern_methods!(
             service_identifiers: &NSArray<ASCredentialServiceIdentifier>,
         );
 
+        #[cfg(all(
+            feature = "AuthenticationServices_ASCredentialServiceIdentifier",
+            feature = "AuthenticationServices_ASPasskeyCredentialRequestParameters",
+            feature = "Foundation_NSArray"
+        ))]
+        #[method(prepareCredentialListForServiceIdentifiers:requestParameters:)]
+        pub unsafe fn prepareCredentialListForServiceIdentifiers_requestParameters(
+            &self,
+            service_identifiers: &NSArray<ASCredentialServiceIdentifier>,
+            request_parameters: &ASPasskeyCredentialRequestParameters,
+        );
+
         #[cfg(feature = "AuthenticationServices_ASPasswordCredentialIdentity")]
+        #[deprecated]
         #[method(provideCredentialWithoutUserInteractionForIdentity:)]
         pub unsafe fn provideCredentialWithoutUserInteractionForIdentity(
             &self,
             credential_identity: &ASPasswordCredentialIdentity,
         );
 
+        #[method(provideCredentialWithoutUserInteractionForRequest:)]
+        pub unsafe fn provideCredentialWithoutUserInteractionForRequest(
+            &self,
+            credential_request: &ProtocolObject<dyn ASCredentialRequest>,
+        );
+
         #[cfg(feature = "AuthenticationServices_ASPasswordCredentialIdentity")]
+        #[deprecated]
         #[method(prepareInterfaceToProvideCredentialForIdentity:)]
         pub unsafe fn prepareInterfaceToProvideCredentialForIdentity(
             &self,
             credential_identity: &ASPasswordCredentialIdentity,
         );
 
+        #[method(prepareInterfaceToProvideCredentialForRequest:)]
+        pub unsafe fn prepareInterfaceToProvideCredentialForRequest(
+            &self,
+            credential_request: &ProtocolObject<dyn ASCredentialRequest>,
+        );
+
         #[method(prepareInterfaceForExtensionConfiguration)]
         pub unsafe fn prepareInterfaceForExtensionConfiguration(&self);
+
+        #[method(prepareInterfaceForPasskeyRegistration:)]
+        pub unsafe fn prepareInterfaceForPasskeyRegistration(
+            &self,
+            registration_request: &ProtocolObject<dyn ASCredentialRequest>,
+        );
     }
 );
 

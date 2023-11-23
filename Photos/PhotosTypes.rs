@@ -176,6 +176,7 @@ ns_enum!(
         PHAssetResourceTypeFullSizePairedVideo = 10,
         PHAssetResourceTypeAdjustmentBasePairedVideo = 11,
         PHAssetResourceTypeAdjustmentBaseVideo = 12,
+        PHAssetResourceTypePhotoProxy = 19,
     }
 );
 

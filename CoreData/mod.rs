@@ -22,8 +22,12 @@ mod __NSBatchDeleteRequest;
 mod __NSBatchInsertRequest;
 #[path = "NSBatchUpdateRequest.rs"]
 mod __NSBatchUpdateRequest;
+#[path = "NSCompositeAttributeDescription.rs"]
+mod __NSCompositeAttributeDescription;
 #[path = "NSCoreDataCoreSpotlightDelegate.rs"]
 mod __NSCoreDataCoreSpotlightDelegate;
+#[path = "NSCustomMigrationStage.rs"]
+mod __NSCustomMigrationStage;
 #[path = "NSDerivedAttributeDescription.rs"]
 mod __NSDerivedAttributeDescription;
 #[path = "NSEntityDescription.rs"]
@@ -50,6 +54,8 @@ mod __NSFetchedResultsController;
 mod __NSIncrementalStore;
 #[path = "NSIncrementalStoreNode.rs"]
 mod __NSIncrementalStoreNode;
+#[path = "NSLightweightMigrationStage.rs"]
+mod __NSLightweightMigrationStage;
 #[path = "NSManagedObject.rs"]
 mod __NSManagedObject;
 #[path = "NSManagedObjectContext.rs"]
@@ -58,12 +64,16 @@ mod __NSManagedObjectContext;
 mod __NSManagedObjectID;
 #[path = "NSManagedObjectModel.rs"]
 mod __NSManagedObjectModel;
+#[path = "NSManagedObjectModelReference.rs"]
+mod __NSManagedObjectModelReference;
 #[path = "NSMappingModel.rs"]
 mod __NSMappingModel;
 #[path = "NSMergePolicy.rs"]
 mod __NSMergePolicy;
 #[path = "NSMigrationManager.rs"]
 mod __NSMigrationManager;
+#[path = "NSMigrationStage.rs"]
+mod __NSMigrationStage;
 #[path = "NSPersistentCloudKitContainer.rs"]
 mod __NSPersistentCloudKitContainer;
 #[path = "NSPersistentCloudKitContainerEvent.rs"]
@@ -102,6 +112,8 @@ mod __NSQueryGenerationToken;
 mod __NSRelationshipDescription;
 #[path = "NSSaveChangesRequest.rs"]
 mod __NSSaveChangesRequest;
+#[path = "NSStagedMigrationManager.rs"]
+mod __NSStagedMigrationManager;
 
 pub use self::__CoreDataDefines::NSCoreDataVersionNumber;
 pub use self::__CoreDataErrors::NSAffectedObjectsErrorKey;
@@ -118,9 +130,9 @@ pub use self::__CoreDataErrors::{
     NSInferredMappingModelError, NSManagedObjectConstraintMergeError,
     NSManagedObjectConstraintValidationError, NSManagedObjectContextLockingError,
     NSManagedObjectExternalRelationshipError, NSManagedObjectMergeError,
-    NSManagedObjectReferentialIntegrityError, NSManagedObjectValidationError,
-    NSMigrationCancelledError, NSMigrationConstraintViolationError, NSMigrationError,
-    NSMigrationManagerDestinationStoreError, NSMigrationManagerSourceStoreError,
+    NSManagedObjectModelReferenceNotFoundError, NSManagedObjectReferentialIntegrityError,
+    NSManagedObjectValidationError, NSMigrationCancelledError, NSMigrationConstraintViolationError,
+    NSMigrationError, NSMigrationManagerDestinationStoreError, NSMigrationManagerSourceStoreError,
     NSMigrationMissingMappingModelError, NSMigrationMissingSourceModelError,
     NSPersistentHistoryTokenExpiredError, NSPersistentStoreCoordinatorLockingError,
     NSPersistentStoreIncompatibleSchemaError, NSPersistentStoreIncompatibleVersionHashError,
@@ -128,8 +140,9 @@ pub use self::__CoreDataErrors::{
     NSPersistentStoreOpenError, NSPersistentStoreOperationError,
     NSPersistentStoreSaveConflictsError, NSPersistentStoreSaveError, NSPersistentStoreTimeoutError,
     NSPersistentStoreTypeMismatchError, NSPersistentStoreUnsupportedRequestTypeError,
-    NSSQLiteError, NSValidationDateTooLateError, NSValidationDateTooSoonError,
-    NSValidationInvalidDateError, NSValidationInvalidURIError,
+    NSSQLiteError, NSStagedMigrationBackwardMigrationError,
+    NSStagedMigrationFrameworkVersionMismatchError, NSValidationDateTooLateError,
+    NSValidationDateTooSoonError, NSValidationInvalidDateError, NSValidationInvalidURIError,
     NSValidationMissingMandatoryPropertyError, NSValidationMultipleErrorsError,
     NSValidationNumberTooLargeError, NSValidationNumberTooSmallError,
     NSValidationRelationshipDeniedDeleteError, NSValidationRelationshipExceedsMaximumCountError,
@@ -144,11 +157,11 @@ pub use self::__NSAtomicStoreCacheNode::NSAtomicStoreCacheNode;
 pub use self::__NSAttributeDescription::NSAttributeDescription;
 pub use self::__NSAttributeDescription::NSAttributeType;
 pub use self::__NSAttributeDescription::{
-    NSBinaryDataAttributeType, NSBooleanAttributeType, NSDateAttributeType, NSDecimalAttributeType,
-    NSDoubleAttributeType, NSFloatAttributeType, NSInteger16AttributeType,
-    NSInteger32AttributeType, NSInteger64AttributeType, NSObjectIDAttributeType,
-    NSStringAttributeType, NSTransformableAttributeType, NSURIAttributeType, NSUUIDAttributeType,
-    NSUndefinedAttributeType,
+    NSBinaryDataAttributeType, NSBooleanAttributeType, NSCompositeAttributeType,
+    NSDateAttributeType, NSDecimalAttributeType, NSDoubleAttributeType, NSFloatAttributeType,
+    NSInteger16AttributeType, NSInteger32AttributeType, NSInteger64AttributeType,
+    NSObjectIDAttributeType, NSStringAttributeType, NSTransformableAttributeType,
+    NSURIAttributeType, NSUUIDAttributeType, NSUndefinedAttributeType,
 };
 #[cfg(feature = "CoreData_NSBatchDeleteRequest")]
 pub use self::__NSBatchDeleteRequest::NSBatchDeleteRequest;
@@ -156,9 +169,13 @@ pub use self::__NSBatchDeleteRequest::NSBatchDeleteRequest;
 pub use self::__NSBatchInsertRequest::NSBatchInsertRequest;
 #[cfg(feature = "CoreData_NSBatchUpdateRequest")]
 pub use self::__NSBatchUpdateRequest::NSBatchUpdateRequest;
+#[cfg(feature = "CoreData_NSCompositeAttributeDescription")]
+pub use self::__NSCompositeAttributeDescription::NSCompositeAttributeDescription;
 #[cfg(feature = "CoreData_NSCoreDataCoreSpotlightDelegate")]
 pub use self::__NSCoreDataCoreSpotlightDelegate::NSCoreDataCoreSpotlightDelegate;
 pub use self::__NSCoreDataCoreSpotlightDelegate::NSCoreDataCoreSpotlightDelegateIndexDidUpdateNotification;
+#[cfg(feature = "CoreData_NSCustomMigrationStage")]
+pub use self::__NSCustomMigrationStage::NSCustomMigrationStage;
 #[cfg(feature = "CoreData_NSDerivedAttributeDescription")]
 pub use self::__NSDerivedAttributeDescription::NSDerivedAttributeDescription;
 #[cfg(feature = "CoreData_NSEntityDescription")]
@@ -217,6 +234,8 @@ pub use self::__NSFetchedResultsController::{
 pub use self::__NSIncrementalStore::NSIncrementalStore;
 #[cfg(feature = "CoreData_NSIncrementalStoreNode")]
 pub use self::__NSIncrementalStoreNode::NSIncrementalStoreNode;
+#[cfg(feature = "CoreData_NSLightweightMigrationStage")]
+pub use self::__NSLightweightMigrationStage::NSLightweightMigrationStage;
 #[cfg(feature = "CoreData_NSManagedObject")]
 pub use self::__NSManagedObject::NSManagedObject;
 pub use self::__NSManagedObject::NSSnapshotEventType;
@@ -251,6 +270,8 @@ pub use self::__NSManagedObjectContext::{
 pub use self::__NSManagedObjectID::NSManagedObjectID;
 #[cfg(feature = "CoreData_NSManagedObjectModel")]
 pub use self::__NSManagedObjectModel::NSManagedObjectModel;
+#[cfg(feature = "CoreData_NSManagedObjectModelReference")]
+pub use self::__NSManagedObjectModelReference::NSManagedObjectModelReference;
 #[cfg(feature = "CoreData_NSMappingModel")]
 pub use self::__NSMappingModel::NSMappingModel;
 #[cfg(feature = "CoreData_NSConstraintConflict")]
@@ -267,6 +288,8 @@ pub use self::__NSMergePolicy::{
 };
 #[cfg(feature = "CoreData_NSMigrationManager")]
 pub use self::__NSMigrationManager::NSMigrationManager;
+#[cfg(feature = "CoreData_NSMigrationStage")]
+pub use self::__NSMigrationStage::NSMigrationStage;
 #[cfg(feature = "CoreData_NSPersistentCloudKitContainer")]
 pub use self::__NSPersistentCloudKitContainer::NSPersistentCloudKitContainer;
 pub use self::__NSPersistentCloudKitContainer::NSPersistentCloudKitContainerSchemaInitializationOptions;
@@ -329,6 +352,7 @@ pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreCoordinator;
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreCoordinatorStoresDidChangeNotification;
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreCoordinatorStoresWillChangeNotification;
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreCoordinatorWillRemoveStoreNotification;
+pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreDeferredLightweightMigrationOptionKey;
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreDidImportUbiquitousContentChangesNotification;
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreFileProtectionKey;
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreForceDestroyOption;
@@ -337,6 +361,7 @@ pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreRebuildFromUbiqui
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreRemoteChangeNotification;
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreRemoteChangeNotificationPostOptionKey;
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreRemoveUbiquitousMetadataOption;
+pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreStagedMigrationManagerOptionKey;
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreTimeoutOption;
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreURLKey;
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreUbiquitousContainerIdentifierKey;
@@ -432,3 +457,5 @@ pub use self::__NSRelationshipDescription::{
 };
 #[cfg(feature = "CoreData_NSSaveChangesRequest")]
 pub use self::__NSSaveChangesRequest::NSSaveChangesRequest;
+#[cfg(feature = "CoreData_NSStagedMigrationManager")]
+pub use self::__NSStagedMigrationManager::NSStagedMigrationManager;

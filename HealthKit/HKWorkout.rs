@@ -94,6 +94,7 @@ ns_enum!(
         HKWorkoutActivityTypeCooldown = 80,
         HKWorkoutActivityTypeSwimBikeRun = 82,
         HKWorkoutActivityTypeTransition = 83,
+        HKWorkoutActivityTypeUnderwaterDiving = 84,
         HKWorkoutActivityTypeOther = 3000,
     }
 );
@@ -283,6 +284,7 @@ extern_methods!(
         ) -> Option<Id<HKStatistics>>;
 
         #[cfg(feature = "Foundation_NSDate")]
+        #[deprecated = "Use HKWorkoutBuilder"]
         #[method_id(@__retain_semantics Other workoutWithActivityType:startDate:endDate:)]
         pub unsafe fn workoutWithActivityType_startDate_endDate(
             workout_activity_type: HKWorkoutActivityType,
@@ -298,6 +300,7 @@ extern_methods!(
             feature = "HealthKit_HKQuantity",
             feature = "HealthKit_HKWorkoutEvent"
         ))]
+        #[deprecated = "Use HKWorkoutBuilder"]
         #[method_id(@__retain_semantics Other workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:metadata:)]
         pub unsafe fn workoutWithActivityType_startDate_endDate_workoutEvents_totalEnergyBurned_totalDistance_metadata(
             workout_activity_type: HKWorkoutActivityType,
@@ -318,6 +321,7 @@ extern_methods!(
             feature = "HealthKit_HKQuantity",
             feature = "HealthKit_HKWorkoutEvent"
         ))]
+        #[deprecated = "Use HKWorkoutBuilder"]
         #[method_id(@__retain_semantics Other workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:device:metadata:)]
         pub unsafe fn workoutWithActivityType_startDate_endDate_workoutEvents_totalEnergyBurned_totalDistance_device_metadata(
             workout_activity_type: HKWorkoutActivityType,
@@ -336,6 +340,7 @@ extern_methods!(
             feature = "Foundation_NSString",
             feature = "HealthKit_HKQuantity"
         ))]
+        #[deprecated = "Use HKWorkoutBuilder"]
         #[method_id(@__retain_semantics Other workoutWithActivityType:startDate:endDate:duration:totalEnergyBurned:totalDistance:metadata:)]
         pub unsafe fn workoutWithActivityType_startDate_endDate_duration_totalEnergyBurned_totalDistance_metadata(
             workout_activity_type: HKWorkoutActivityType,
@@ -354,6 +359,7 @@ extern_methods!(
             feature = "HealthKit_HKDevice",
             feature = "HealthKit_HKQuantity"
         ))]
+        #[deprecated = "Use HKWorkoutBuilder"]
         #[method_id(@__retain_semantics Other workoutWithActivityType:startDate:endDate:duration:totalEnergyBurned:totalDistance:device:metadata:)]
         pub unsafe fn workoutWithActivityType_startDate_endDate_duration_totalEnergyBurned_totalDistance_device_metadata(
             workout_activity_type: HKWorkoutActivityType,
@@ -375,6 +381,7 @@ extern_methods!(
             feature = "HealthKit_HKQuantity",
             feature = "HealthKit_HKWorkoutEvent"
         ))]
+        #[deprecated = "Use HKWorkoutBuilder"]
         #[method_id(@__retain_semantics Other workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:totalSwimmingStrokeCount:device:metadata:)]
         pub unsafe fn workoutWithActivityType_startDate_endDate_workoutEvents_totalEnergyBurned_totalDistance_totalSwimmingStrokeCount_device_metadata(
             workout_activity_type: HKWorkoutActivityType,
@@ -397,6 +404,7 @@ extern_methods!(
             feature = "HealthKit_HKQuantity",
             feature = "HealthKit_HKWorkoutEvent"
         ))]
+        #[deprecated = "Use HKWorkoutBuilder"]
         #[method_id(@__retain_semantics Other workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:totalFlightsClimbed:device:metadata:)]
         pub unsafe fn workoutWithActivityType_startDate_endDate_workoutEvents_totalEnergyBurned_totalDistance_totalFlightsClimbed_device_metadata(
             workout_activity_type: HKWorkoutActivityType,

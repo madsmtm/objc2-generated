@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CloudKit_CKDiscoverUserIdentitiesOperation")]
+    #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
     pub struct CKDiscoverUserIdentitiesOperation;
 
     #[cfg(feature = "CloudKit_CKDiscoverUserIdentitiesOperation")]
@@ -24,6 +25,7 @@ unsafe impl NSObjectProtocol for CKDiscoverUserIdentitiesOperation {}
 extern_methods!(
     #[cfg(feature = "CloudKit_CKDiscoverUserIdentitiesOperation")]
     unsafe impl CKDiscoverUserIdentitiesOperation {
+        #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
@@ -31,6 +33,7 @@ extern_methods!(
             feature = "CloudKit_CKUserIdentityLookupInfo",
             feature = "Foundation_NSArray"
         ))]
+        #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method_id(@__retain_semantics Init initWithUserIdentityLookupInfos:)]
         pub unsafe fn initWithUserIdentityLookupInfos(
             this: Allocated<Self>,
@@ -41,6 +44,7 @@ extern_methods!(
             feature = "CloudKit_CKUserIdentityLookupInfo",
             feature = "Foundation_NSArray"
         ))]
+        #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method_id(@__retain_semantics Other userIdentityLookupInfos)]
         pub unsafe fn userIdentityLookupInfos(&self) -> Id<NSArray<CKUserIdentityLookupInfo>>;
 
@@ -48,6 +52,7 @@ extern_methods!(
             feature = "CloudKit_CKUserIdentityLookupInfo",
             feature = "Foundation_NSArray"
         ))]
+        #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(setUserIdentityLookupInfos:)]
         pub unsafe fn setUserIdentityLookupInfos(
             &self,
@@ -58,6 +63,7 @@ extern_methods!(
             feature = "CloudKit_CKUserIdentity",
             feature = "CloudKit_CKUserIdentityLookupInfo"
         ))]
+        #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(userIdentityDiscoveredBlock)]
         pub unsafe fn userIdentityDiscoveredBlock(
             &self,
@@ -67,6 +73,7 @@ extern_methods!(
             feature = "CloudKit_CKUserIdentity",
             feature = "CloudKit_CKUserIdentityLookupInfo"
         ))]
+        #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(setUserIdentityDiscoveredBlock:)]
         pub unsafe fn setUserIdentityDiscoveredBlock(
             &self,
@@ -76,12 +83,14 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSError")]
+        #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(discoverUserIdentitiesCompletionBlock)]
         pub unsafe fn discoverUserIdentitiesCompletionBlock(
             &self,
         ) -> *mut Block<(*mut NSError,), ()>;
 
         #[cfg(feature = "Foundation_NSError")]
+        #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(setDiscoverUserIdentitiesCompletionBlock:)]
         pub unsafe fn setDiscoverUserIdentitiesCompletionBlock(
             &self,

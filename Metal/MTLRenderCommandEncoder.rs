@@ -180,6 +180,41 @@ extern_protocol!(
             range: NSRange,
         );
 
+        #[method(setVertexBuffer:offset:attributeStride:atIndex:)]
+        unsafe fn setVertexBuffer_offset_attributeStride_atIndex(
+            &self,
+            buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
+            offset: NSUInteger,
+            stride: NSUInteger,
+            index: NSUInteger,
+        );
+
+        #[method(setVertexBuffers:offsets:attributeStrides:withRange:)]
+        unsafe fn setVertexBuffers_offsets_attributeStrides_withRange(
+            &self,
+            buffers: NonNull<*const ProtocolObject<dyn MTLBuffer>>,
+            offsets: NonNull<NSUInteger>,
+            strides: NonNull<NSUInteger>,
+            range: NSRange,
+        );
+
+        #[method(setVertexBufferOffset:attributeStride:atIndex:)]
+        unsafe fn setVertexBufferOffset_attributeStride_atIndex(
+            &self,
+            offset: NSUInteger,
+            stride: NSUInteger,
+            index: NSUInteger,
+        );
+
+        #[method(setVertexBytes:length:attributeStride:atIndex:)]
+        unsafe fn setVertexBytes_length_attributeStride_atIndex(
+            &self,
+            bytes: NonNull<c_void>,
+            length: NSUInteger,
+            stride: NSUInteger,
+            index: NSUInteger,
+        );
+
         #[method(setVertexTexture:atIndex:)]
         unsafe fn setVertexTexture_atIndex(
             &self,

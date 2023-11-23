@@ -54,14 +54,6 @@ extern_methods!(
             completion_handler: CLGeocodeCompletionHandler,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
-        #[method(geocodeAddressString:completionHandler:)]
-        pub unsafe fn geocodeAddressString_completionHandler(
-            &self,
-            address_string: &NSString,
-            completion_handler: CLGeocodeCompletionHandler,
-        );
-
         #[cfg(all(feature = "CoreLocation_CLRegion", feature = "Foundation_NSString"))]
         #[method(geocodeAddressString:inRegion:completionHandler:)]
         pub unsafe fn geocodeAddressString_inRegion_completionHandler(
@@ -82,6 +74,14 @@ extern_methods!(
             address_string: &NSString,
             region: Option<&CLRegion>,
             locale: Option<&NSLocale>,
+            completion_handler: CLGeocodeCompletionHandler,
+        );
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method(geocodeAddressString:completionHandler:)]
+        pub unsafe fn geocodeAddressString_completionHandler(
+            &self,
+            address_string: &NSString,
             completion_handler: CLGeocodeCompletionHandler,
         );
 

@@ -354,6 +354,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSXPCListenerEndpoint")]
+unsafe impl Send for NSXPCListenerEndpoint {}
+
+#[cfg(feature = "Foundation_NSXPCListenerEndpoint")]
+unsafe impl Sync for NSXPCListenerEndpoint {}
+
+#[cfg(feature = "Foundation_NSXPCListenerEndpoint")]
 unsafe impl NSCoding for NSXPCListenerEndpoint {}
 
 #[cfg(feature = "Foundation_NSXPCListenerEndpoint")]

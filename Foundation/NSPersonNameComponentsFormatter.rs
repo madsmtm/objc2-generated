@@ -35,6 +35,12 @@ extern_class!(
 );
 
 #[cfg(feature = "Foundation_NSPersonNameComponentsFormatter")]
+unsafe impl Send for NSPersonNameComponentsFormatter {}
+
+#[cfg(feature = "Foundation_NSPersonNameComponentsFormatter")]
+unsafe impl Sync for NSPersonNameComponentsFormatter {}
+
+#[cfg(feature = "Foundation_NSPersonNameComponentsFormatter")]
 unsafe impl NSCoding for NSPersonNameComponentsFormatter {}
 
 #[cfg(feature = "Foundation_NSPersonNameComponentsFormatter")]

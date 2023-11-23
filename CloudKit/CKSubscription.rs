@@ -104,6 +104,7 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKQuerySubscription")]
     unsafe impl CKQuerySubscription {
         #[cfg(feature = "Foundation_NSPredicate")]
+        #[deprecated]
         #[method_id(@__retain_semantics Init initWithRecordType:predicate:options:)]
         pub unsafe fn initWithRecordType_predicate_options(
             this: Allocated<Self>,
@@ -187,6 +188,7 @@ extern_methods!(
     #[cfg(feature = "CloudKit_CKRecordZoneSubscription")]
     unsafe impl CKRecordZoneSubscription {
         #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[deprecated]
         #[method_id(@__retain_semantics Init initWithZoneID:)]
         pub unsafe fn initWithZoneID(this: Allocated<Self>, zone_id: &CKRecordZoneID) -> Id<Self>;
 
@@ -254,6 +256,7 @@ unsafe impl NSSecureCoding for CKDatabaseSubscription {}
 extern_methods!(
     #[cfg(feature = "CloudKit_CKDatabaseSubscription")]
     unsafe impl CKDatabaseSubscription {
+        #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 

@@ -753,6 +753,36 @@ extern_protocol!(
             accessibility_custom_rotors: &NSArray<NSAccessibilityCustomRotor>,
         );
 
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[method_id(@__retain_semantics Other accessibilityUserInputLabels)]
+        unsafe fn accessibilityUserInputLabels(&self) -> Option<Id<NSArray<NSString>>>;
+
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[method(setAccessibilityUserInputLabels:)]
+        unsafe fn setAccessibilityUserInputLabels(
+            &self,
+            accessibility_user_input_labels: Option<&NSArray<NSString>>,
+        );
+
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSAttributedString"
+        ))]
+        #[method_id(@__retain_semantics Other accessibilityAttributedUserInputLabels)]
+        unsafe fn accessibilityAttributedUserInputLabels(
+            &self,
+        ) -> Option<Id<NSArray<NSAttributedString>>>;
+
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSAttributedString"
+        ))]
+        #[method(setAccessibilityAttributedUserInputLabels:)]
+        unsafe fn setAccessibilityAttributedUserInputLabels(
+            &self,
+            accessibility_attributed_user_input_labels: Option<&NSArray<NSAttributedString>>,
+        );
+
         #[method_id(@__retain_semantics Other accessibilityApplicationFocusedUIElement)]
         unsafe fn accessibilityApplicationFocusedUIElement(&self) -> Option<Id<AnyObject>>;
 

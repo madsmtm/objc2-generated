@@ -508,8 +508,27 @@ extern_methods!(
         #[method(setInitialVelocity:)]
         pub unsafe fn setInitialVelocity(&self, initial_velocity: CGFloat);
 
+        #[method(allowsOverdamping)]
+        pub unsafe fn allowsOverdamping(&self) -> bool;
+
+        #[method(setAllowsOverdamping:)]
+        pub unsafe fn setAllowsOverdamping(&self, allows_overdamping: bool);
+
         #[method(settlingDuration)]
         pub unsafe fn settlingDuration(&self) -> CFTimeInterval;
+
+        #[method_id(@__retain_semantics Init initWithPerceptualDuration:bounce:)]
+        pub unsafe fn initWithPerceptualDuration_bounce(
+            this: Allocated<Self>,
+            perceptual_duration: CFTimeInterval,
+            bounce: CGFloat,
+        ) -> Id<Self>;
+
+        #[method(perceptualDuration)]
+        pub unsafe fn perceptualDuration(&self) -> CFTimeInterval;
+
+        #[method(bounce)]
+        pub unsafe fn bounce(&self) -> CGFloat;
     }
 );
 

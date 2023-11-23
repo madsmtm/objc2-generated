@@ -149,6 +149,10 @@ extern_methods!(
         #[method_id(@__retain_semantics Other localizedCallerDisplayName)]
         pub unsafe fn localizedCallerDisplayName(&self) -> Id<NSString>;
 
+        #[cfg(feature = "Foundation_NSData")]
+        #[method_id(@__retain_semantics Other callerAuditToken)]
+        pub unsafe fn callerAuditToken(&self) -> Id<NSData>;
+
         #[method(isUserInterfaceEnabled)]
         pub unsafe fn isUserInterfaceEnabled(&self) -> bool;
 

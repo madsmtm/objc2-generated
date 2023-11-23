@@ -299,8 +299,23 @@ extern_methods!(
         #[method(deactivate)]
         pub unsafe fn deactivate(&self);
 
+        #[deprecated = "This method will be deprecated in a future release. Use NSApp.activate instead."]
         #[method(activateIgnoringOtherApps:)]
         pub fn activateIgnoringOtherApps(&self, flag: bool);
+
+        #[method(activate)]
+        pub unsafe fn activate(&self);
+
+        #[cfg(feature = "AppKit_NSRunningApplication")]
+        #[method(yieldActivationToApplication:)]
+        pub unsafe fn yieldActivationToApplication(&self, application: &NSRunningApplication);
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method(yieldActivationToApplicationWithBundleIdentifier:)]
+        pub unsafe fn yieldActivationToApplicationWithBundleIdentifier(
+            &self,
+            bundle_identifier: &NSString,
+        );
 
         #[method(hideOtherApplications:)]
         pub fn hideOtherApplications(&self, sender: Option<&AnyObject>);
@@ -633,8 +648,8 @@ ns_enum!(
     pub enum NSApplicationPrintReply {
         NSPrintingCancelled = 0,
         NSPrintingSuccess = 1,
-        NSPrintingFailure = 3,
         NSPrintingReplyLater = 2,
+        NSPrintingFailure = 3,
     }
 );
 

@@ -19,6 +19,12 @@ extern_class!(
 );
 
 #[cfg(feature = "HealthKit_HKObjectType")]
+unsafe impl Send for HKObjectType {}
+
+#[cfg(feature = "HealthKit_HKObjectType")]
+unsafe impl Sync for HKObjectType {}
+
+#[cfg(feature = "HealthKit_HKObjectType")]
 unsafe impl NSCoding for HKObjectType {}
 
 #[cfg(feature = "HealthKit_HKObjectType")]
@@ -122,6 +128,12 @@ extern_class!(
 );
 
 #[cfg(feature = "HealthKit_HKCharacteristicType")]
+unsafe impl Send for HKCharacteristicType {}
+
+#[cfg(feature = "HealthKit_HKCharacteristicType")]
+unsafe impl Sync for HKCharacteristicType {}
+
+#[cfg(feature = "HealthKit_HKCharacteristicType")]
 unsafe impl NSCoding for HKCharacteristicType {}
 
 #[cfg(feature = "HealthKit_HKCharacteristicType")]
@@ -168,6 +180,12 @@ extern_class!(
         type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "HealthKit_HKSampleType")]
+unsafe impl Send for HKSampleType {}
+
+#[cfg(feature = "HealthKit_HKSampleType")]
+unsafe impl Sync for HKSampleType {}
 
 #[cfg(feature = "HealthKit_HKSampleType")]
 unsafe impl NSCoding for HKSampleType {}
@@ -233,6 +251,12 @@ extern_class!(
 );
 
 #[cfg(feature = "HealthKit_HKCategoryType")]
+unsafe impl Send for HKCategoryType {}
+
+#[cfg(feature = "HealthKit_HKCategoryType")]
+unsafe impl Sync for HKCategoryType {}
+
+#[cfg(feature = "HealthKit_HKCategoryType")]
 unsafe impl NSCoding for HKCategoryType {}
 
 #[cfg(feature = "HealthKit_HKCategoryType")]
@@ -279,6 +303,12 @@ extern_class!(
         type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "HealthKit_HKCorrelationType")]
+unsafe impl Send for HKCorrelationType {}
+
+#[cfg(feature = "HealthKit_HKCorrelationType")]
+unsafe impl Sync for HKCorrelationType {}
 
 #[cfg(feature = "HealthKit_HKCorrelationType")]
 unsafe impl NSCoding for HKCorrelationType {}
@@ -329,6 +359,12 @@ extern_class!(
 );
 
 #[cfg(feature = "HealthKit_HKDocumentType")]
+unsafe impl Send for HKDocumentType {}
+
+#[cfg(feature = "HealthKit_HKDocumentType")]
+unsafe impl Sync for HKDocumentType {}
+
+#[cfg(feature = "HealthKit_HKDocumentType")]
 unsafe impl NSCoding for HKDocumentType {}
 
 #[cfg(feature = "HealthKit_HKDocumentType")]
@@ -375,6 +411,12 @@ extern_class!(
         type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "HealthKit_HKQuantityType")]
+unsafe impl Send for HKQuantityType {}
+
+#[cfg(feature = "HealthKit_HKQuantityType")]
+unsafe impl Sync for HKQuantityType {}
 
 #[cfg(feature = "HealthKit_HKQuantityType")]
 unsafe impl NSCoding for HKQuantityType {}
@@ -432,6 +474,12 @@ extern_class!(
 );
 
 #[cfg(feature = "HealthKit_HKWorkoutType")]
+unsafe impl Send for HKWorkoutType {}
+
+#[cfg(feature = "HealthKit_HKWorkoutType")]
+unsafe impl Sync for HKWorkoutType {}
+
+#[cfg(feature = "HealthKit_HKWorkoutType")]
 unsafe impl NSCoding for HKWorkoutType {}
 
 #[cfg(feature = "HealthKit_HKWorkoutType")]
@@ -478,6 +526,12 @@ extern_class!(
         type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "HealthKit_HKSeriesType")]
+unsafe impl Send for HKSeriesType {}
+
+#[cfg(feature = "HealthKit_HKSeriesType")]
+unsafe impl Sync for HKSeriesType {}
 
 #[cfg(feature = "HealthKit_HKSeriesType")]
 unsafe impl NSCoding for HKSeriesType {}
@@ -534,6 +588,12 @@ extern_class!(
 );
 
 #[cfg(feature = "HealthKit_HKActivitySummaryType")]
+unsafe impl Send for HKActivitySummaryType {}
+
+#[cfg(feature = "HealthKit_HKActivitySummaryType")]
+unsafe impl Sync for HKActivitySummaryType {}
+
+#[cfg(feature = "HealthKit_HKActivitySummaryType")]
 unsafe impl NSCoding for HKActivitySummaryType {}
 
 #[cfg(feature = "HealthKit_HKActivitySummaryType")]
@@ -580,6 +640,12 @@ extern_class!(
         type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "HealthKit_HKAudiogramSampleType")]
+unsafe impl Send for HKAudiogramSampleType {}
+
+#[cfg(feature = "HealthKit_HKAudiogramSampleType")]
+unsafe impl Sync for HKAudiogramSampleType {}
 
 #[cfg(feature = "HealthKit_HKAudiogramSampleType")]
 unsafe impl NSCoding for HKAudiogramSampleType {}
@@ -630,6 +696,12 @@ extern_class!(
 );
 
 #[cfg(feature = "HealthKit_HKElectrocardiogramType")]
+unsafe impl Send for HKElectrocardiogramType {}
+
+#[cfg(feature = "HealthKit_HKElectrocardiogramType")]
+unsafe impl Sync for HKElectrocardiogramType {}
+
+#[cfg(feature = "HealthKit_HKElectrocardiogramType")]
 unsafe impl NSCoding for HKElectrocardiogramType {}
 
 #[cfg(feature = "HealthKit_HKElectrocardiogramType")]
@@ -676,6 +748,12 @@ extern_class!(
         type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "HealthKit_HKPrescriptionType")]
+unsafe impl Send for HKPrescriptionType {}
+
+#[cfg(feature = "HealthKit_HKPrescriptionType")]
+unsafe impl Sync for HKPrescriptionType {}
 
 #[cfg(feature = "HealthKit_HKPrescriptionType")]
 unsafe impl NSCoding for HKPrescriptionType {}

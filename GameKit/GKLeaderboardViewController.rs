@@ -8,7 +8,7 @@ use crate::GameKit::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GameKit_GKLeaderboardViewController")]
-    #[deprecated = "Use GKGameCenterViewController instead"]
+    #[deprecated]
     pub struct GKLeaderboardViewController;
 
     #[cfg(feature = "GameKit_GKLeaderboardViewController")]
@@ -81,31 +81,31 @@ extern_methods!(
 extern_methods!(
     #[cfg(feature = "GameKit_GKLeaderboardViewController")]
     unsafe impl GKLeaderboardViewController {
-        #[deprecated = "Use GKGameCenterViewController instead"]
+        #[deprecated]
         #[method(timeScope)]
         pub unsafe fn timeScope(&self) -> GKLeaderboardTimeScope;
 
-        #[deprecated = "Use GKGameCenterViewController instead"]
+        #[deprecated]
         #[method(setTimeScope:)]
         pub unsafe fn setTimeScope(&self, time_scope: GKLeaderboardTimeScope);
 
         #[cfg(feature = "Foundation_NSString")]
-        #[deprecated = "Use GKGameCenterViewController instead"]
+        #[deprecated]
         #[method_id(@__retain_semantics Other category)]
         pub unsafe fn category(&self) -> Id<NSString>;
 
         #[cfg(feature = "Foundation_NSString")]
-        #[deprecated = "Use GKGameCenterViewController instead"]
+        #[deprecated]
         #[method(setCategory:)]
         pub unsafe fn setCategory(&self, category: Option<&NSString>);
 
-        #[deprecated = "Use GKGameCenterViewController instead"]
+        #[deprecated]
         #[method_id(@__retain_semantics Other leaderboardDelegate)]
         pub unsafe fn leaderboardDelegate(
             &self,
         ) -> Option<Id<ProtocolObject<dyn GKLeaderboardViewControllerDelegate>>>;
 
-        #[deprecated = "Use GKGameCenterViewController instead"]
+        #[deprecated]
         #[method(setLeaderboardDelegate:)]
         pub unsafe fn setLeaderboardDelegate(
             &self,
@@ -115,10 +115,10 @@ extern_methods!(
 );
 
 extern_protocol!(
-    #[deprecated = "Use GKGameCenterViewController instead"]
+    #[deprecated]
     pub unsafe trait GKLeaderboardViewControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "GameKit_GKLeaderboardViewController")]
-        #[deprecated = "Use GKGameCenterViewController instead"]
+        #[deprecated]
         #[method(leaderboardViewControllerDidFinish:)]
         unsafe fn leaderboardViewControllerDidFinish(
             &self,

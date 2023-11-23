@@ -8,6 +8,7 @@ use crate::Foundation::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CoreLocation_CLBeaconRegion")]
+    #[deprecated]
     pub struct CLBeaconRegion;
 
     #[cfg(feature = "CoreLocation_CLBeaconRegion")]
@@ -106,6 +107,7 @@ extern_methods!(
             feature = "Foundation_NSNumber",
             feature = "Foundation_NSString"
         ))]
+        #[deprecated]
         #[method_id(@__retain_semantics Other peripheralDataWithMeasuredPower:)]
         pub unsafe fn peripheralDataWithMeasuredPower(
             &self,
@@ -126,16 +128,20 @@ extern_methods!(
         pub unsafe fn proximityUUID(&self) -> Id<NSUUID>;
 
         #[cfg(feature = "Foundation_NSNumber")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other major)]
         pub unsafe fn major(&self) -> Option<Id<NSNumber>>;
 
         #[cfg(feature = "Foundation_NSNumber")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other minor)]
         pub unsafe fn minor(&self) -> Option<Id<NSNumber>>;
 
+        #[deprecated]
         #[method(notifyEntryStateOnDisplay)]
         pub unsafe fn notifyEntryStateOnDisplay(&self) -> bool;
 
+        #[deprecated]
         #[method(setNotifyEntryStateOnDisplay:)]
         pub unsafe fn setNotifyEntryStateOnDisplay(&self, notify_entry_state_on_display: bool);
     }

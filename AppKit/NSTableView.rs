@@ -759,9 +759,7 @@ extern_methods!(
 );
 
 extern_protocol!(
-    pub unsafe trait NSTableViewDelegate:
-        NSControlTextEditingDelegate + IsMainThreadOnly
-    {
+    pub unsafe trait NSTableViewDelegate: NSControlTextEditingDelegate {
         #[cfg(all(
             feature = "AppKit_NSTableColumn",
             feature = "AppKit_NSTableView",
@@ -1024,6 +1022,28 @@ extern_protocol!(
             row: NSInteger,
             edge: NSTableRowActionEdge,
         ) -> Id<NSArray<NSTableViewRowAction>>;
+
+        #[cfg(all(feature = "AppKit_NSTableColumn", feature = "AppKit_NSTableView"))]
+        #[optional]
+        #[method(tableView:userCanChangeVisibilityOfTableColumn:)]
+        unsafe fn tableView_userCanChangeVisibilityOfTableColumn(
+            &self,
+            table_view: &NSTableView,
+            column: &NSTableColumn,
+        ) -> bool;
+
+        #[cfg(all(
+            feature = "AppKit_NSTableColumn",
+            feature = "AppKit_NSTableView",
+            feature = "Foundation_NSArray"
+        ))]
+        #[optional]
+        #[method(tableView:userDidChangeVisibilityOfTableColumns:)]
+        unsafe fn tableView_userDidChangeVisibilityOfTableColumns(
+            &self,
+            table_view: &NSTableView,
+            columns: &NSArray<NSTableColumn>,
+        );
 
         #[cfg(feature = "Foundation_NSNotification")]
         #[optional]

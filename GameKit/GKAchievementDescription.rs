@@ -65,6 +65,10 @@ extern_methods!(
 
         #[method(isReplayable)]
         pub unsafe fn isReplayable(&self) -> bool;
+
+        #[cfg(feature = "Foundation_NSNumber")]
+        #[method_id(@__retain_semantics Other rarityPercent)]
+        pub unsafe fn rarityPercent(&self) -> Option<Id<NSNumber>>;
     }
 );
 

@@ -1040,6 +1040,8 @@ extern_static!(NSFileProtectionCompleteUnlessOpen: &'static NSFileProtectionType
 
 extern_static!(NSFileProtectionCompleteUntilFirstUserAuthentication: &'static NSFileProtectionType);
 
+extern_static!(NSFileProtectionCompleteWhenUserInactive: &'static NSFileProtectionType);
+
 extern_static!(NSFileSystemSize: &'static NSFileAttributeKey);
 
 extern_static!(NSFileSystemFreeSize: &'static NSFileAttributeKey);

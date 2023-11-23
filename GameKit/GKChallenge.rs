@@ -90,12 +90,12 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKChallenge")]
     unsafe impl GKChallenge {
         #[cfg(feature = "Foundation_NSString")]
-        #[deprecated = " This property is obsolete, Use issuingPlayer instead"]
+        #[deprecated]
         #[method_id(@__retain_semantics Other issuingPlayerID)]
         pub unsafe fn issuingPlayerID(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
-        #[deprecated = " This property is obsolete, Use receivingPlayer instead"]
+        #[deprecated]
         #[method_id(@__retain_semantics Other receivingPlayerID)]
         pub unsafe fn receivingPlayerID(&self) -> Option<Id<NSString>>;
     }
@@ -196,7 +196,7 @@ extern_methods!(
             feature = "Foundation_NSError",
             feature = "GameKit_GKChallenge"
         ))]
-        #[deprecated = "pass GKLeaderboardScore to reportLeaderboardScores:withEligibleChallenges:withCompletionHandler instead"]
+        #[deprecated]
         #[method(reportScores:withEligibleChallenges:withCompletionHandler:)]
         pub unsafe fn reportScores_withEligibleChallenges_withCompletionHandler(
             scores: &NSArray<GKScore>,
@@ -254,7 +254,7 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKScore")]
     unsafe impl GKScore {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
-        #[deprecated = "This is never invoked and its implementation does nothing, pass GKPlayers to challengeComposeControllerWithMessage:players:completionHandler: and present the view controller instead"]
+        #[deprecated]
         #[method(issueChallengeToPlayers:message:)]
         pub unsafe fn issueChallengeToPlayers_message(
             &self,
@@ -269,7 +269,7 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKAchievement")]
     unsafe impl GKAchievement {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
-        #[deprecated = "This is never invoked and its implementation does nothing, pass GKPlayers to challengeComposeControllerWithMessage:players:completionHandler: and present the view controller instead"]
+        #[deprecated]
         #[method(issueChallengeToPlayers:message:)]
         pub unsafe fn issueChallengeToPlayers_message(
             &self,
@@ -282,7 +282,7 @@ extern_methods!(
             feature = "Foundation_NSError",
             feature = "Foundation_NSString"
         ))]
-        #[deprecated = "This is never invoked and its implementation does nothing, pass GKPlayers to selectChallengeablePlayers:"]
+        #[deprecated]
         #[method(selectChallengeablePlayerIDs:withCompletionHandler:)]
         pub unsafe fn selectChallengeablePlayerIDs_withCompletionHandler(
             &self,
@@ -295,6 +295,9 @@ extern_methods!(
 pub type GKChallengeComposeCompletionBlock =
     *mut Block<(NonNull<NSViewController>, Bool, *mut NSArray<NSString>), ()>;
 
+pub type GKChallengeComposeHandler =
+    *mut Block<(NonNull<NSViewController>, Bool, *mut NSArray<GKPlayer>), ()>;
+
 extern_methods!(
     /// GKChallengeUI
     #[cfg(feature = "GameKit_GKScore")]
@@ -305,12 +308,28 @@ extern_methods!(
             feature = "Foundation_NSString",
             feature = "GameKit_GKPlayer"
         ))]
+        #[deprecated]
         #[method_id(@__retain_semantics Other challengeComposeControllerWithMessage:players:completionHandler:)]
         pub unsafe fn challengeComposeControllerWithMessage_players_completionHandler(
             &self,
             message: Option<&NSString>,
             players: Option<&NSArray<GKPlayer>>,
             completion_handler: GKChallengeComposeCompletionBlock,
+            mtm: MainThreadMarker,
+        ) -> Id<NSViewController>;
+
+        #[cfg(all(
+            feature = "AppKit_NSViewController",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString",
+            feature = "GameKit_GKPlayer"
+        ))]
+        #[method_id(@__retain_semantics Other challengeComposeControllerWithMessage:players:completion:)]
+        pub unsafe fn challengeComposeControllerWithMessage_players_completion(
+            &self,
+            message: Option<&NSString>,
+            players: Option<&NSArray<GKPlayer>>,
+            completion_handler: GKChallengeComposeHandler,
             mtm: MainThreadMarker,
         ) -> Id<NSViewController>;
     }
@@ -326,12 +345,28 @@ extern_methods!(
             feature = "Foundation_NSString",
             feature = "GameKit_GKPlayer"
         ))]
+        #[deprecated]
         #[method_id(@__retain_semantics Other challengeComposeControllerWithMessage:players:completionHandler:)]
         pub unsafe fn challengeComposeControllerWithMessage_players_completionHandler(
             &self,
             message: Option<&NSString>,
             players: Option<&NSArray<GKPlayer>>,
             completion_handler: GKChallengeComposeCompletionBlock,
+            mtm: MainThreadMarker,
+        ) -> Id<NSViewController>;
+
+        #[cfg(all(
+            feature = "AppKit_NSViewController",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString",
+            feature = "GameKit_GKPlayer"
+        ))]
+        #[method_id(@__retain_semantics Other challengeComposeControllerWithMessage:players:completion:)]
+        pub unsafe fn challengeComposeControllerWithMessage_players_completion(
+            &self,
+            message: Option<&NSString>,
+            players: Option<&NSArray<GKPlayer>>,
+            completion_handler: GKChallengeComposeHandler,
             mtm: MainThreadMarker,
         ) -> Id<NSViewController>;
     }
@@ -347,12 +382,28 @@ extern_methods!(
             feature = "Foundation_NSString",
             feature = "GameKit_GKPlayer"
         ))]
+        #[deprecated]
         #[method_id(@__retain_semantics Other challengeComposeControllerWithMessage:players:completionHandler:)]
         pub unsafe fn challengeComposeControllerWithMessage_players_completionHandler(
             &self,
             message: Option<&NSString>,
             players: &NSArray<GKPlayer>,
             completion_handler: GKChallengeComposeCompletionBlock,
+            mtm: MainThreadMarker,
+        ) -> Id<NSViewController>;
+
+        #[cfg(all(
+            feature = "AppKit_NSViewController",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString",
+            feature = "GameKit_GKPlayer"
+        ))]
+        #[method_id(@__retain_semantics Other challengeComposeControllerWithMessage:players:completion:)]
+        pub unsafe fn challengeComposeControllerWithMessage_players_completion(
+            &self,
+            message: Option<&NSString>,
+            players: &NSArray<GKPlayer>,
+            completion_handler: GKChallengeComposeHandler,
             mtm: MainThreadMarker,
         ) -> Id<NSViewController>;
     }

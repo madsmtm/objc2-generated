@@ -140,19 +140,19 @@ extern_methods!(
     /// Deprecated
     #[cfg(feature = "GameKit_GKGameCenterViewController")]
     unsafe impl GKGameCenterViewController {
-        #[deprecated = "Use -initWithState: instead"]
+        #[deprecated]
         #[method(viewState)]
         pub unsafe fn viewState(&self) -> GKGameCenterViewControllerState;
 
-        #[deprecated = "Use -initWithState: instead"]
+        #[deprecated]
         #[method(setViewState:)]
         pub unsafe fn setViewState(&self, view_state: GKGameCenterViewControllerState);
 
-        #[deprecated = "Use -initWithLeaderboard: instead"]
+        #[deprecated]
         #[method(leaderboardTimeScope)]
         pub unsafe fn leaderboardTimeScope(&self) -> GKLeaderboardTimeScope;
 
-        #[deprecated = "Use -initWithLeaderboard: instead"]
+        #[deprecated]
         #[method(setLeaderboardTimeScope:)]
         pub unsafe fn setLeaderboardTimeScope(
             &self,
@@ -160,22 +160,22 @@ extern_methods!(
         );
 
         #[cfg(feature = "Foundation_NSString")]
-        #[deprecated = "Use -initWithLeaderboard: instead"]
+        #[deprecated]
         #[method_id(@__retain_semantics Other leaderboardIdentifier)]
         pub unsafe fn leaderboardIdentifier(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
-        #[deprecated = "Use -initWithLeaderboard: instead"]
+        #[deprecated]
         #[method(setLeaderboardIdentifier:)]
         pub unsafe fn setLeaderboardIdentifier(&self, leaderboard_identifier: Option<&NSString>);
 
         #[cfg(feature = "Foundation_NSString")]
-        #[deprecated = "GKGameCenterViewController's leaderboardCategory property is deprecated. Use -initWithLeaderboard: instead"]
+        #[deprecated]
         #[method_id(@__retain_semantics Other leaderboardCategory)]
         pub unsafe fn leaderboardCategory(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
-        #[deprecated = "GKGameCenterViewController's leaderboardCategory property is deprecated. Use -initWithLeaderboard: instead"]
+        #[deprecated]
         #[method(setLeaderboardCategory:)]
         pub unsafe fn setLeaderboardCategory(&self, leaderboard_category: Option<&NSString>);
     }

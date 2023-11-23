@@ -8,7 +8,7 @@ use crate::GameKit::*;
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GameKit_GKCloudPlayer")]
-    #[deprecated = "GKGameSession is deprecated. Use GKPlayer for both real-time and turn-based matchmaking APIs."]
+    #[deprecated]
     pub struct GKCloudPlayer;
 
     #[cfg(feature = "GameKit_GKCloudPlayer")]
@@ -26,7 +26,7 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKCloudPlayer")]
     unsafe impl GKCloudPlayer {
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
-        #[deprecated = "GKGameSession is deprecated. Use GKPlayer for both real-time and turn-based matchmaking APIs."]
+        #[deprecated]
         #[method(getCurrentSignedInPlayerForContainer:completionHandler:)]
         pub unsafe fn getCurrentSignedInPlayerForContainer_completionHandler(
             container_name: Option<&NSString>,

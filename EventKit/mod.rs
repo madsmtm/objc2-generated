@@ -123,8 +123,9 @@ pub use self::__EKTypes::{
     EKAlarmTypeAudio, EKAlarmTypeDisplay, EKAlarmTypeEmail, EKAlarmTypeProcedure,
 };
 pub use self::__EKTypes::{
-    EKAuthorizationStatusAuthorized, EKAuthorizationStatusDenied,
+    EKAuthorizationStatusAuthorized, EKAuthorizationStatusDenied, EKAuthorizationStatusFullAccess,
     EKAuthorizationStatusNotDetermined, EKAuthorizationStatusRestricted,
+    EKAuthorizationStatusWriteOnly,
 };
 pub use self::__EKTypes::{
     EKCalendarEventAvailabilityBusy, EKCalendarEventAvailabilityFree,

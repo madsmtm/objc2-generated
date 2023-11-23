@@ -20,6 +20,12 @@ extern_class!(
 );
 
 #[cfg(feature = "PhotoKit_PHCollection")]
+unsafe impl Send for PHCollection {}
+
+#[cfg(feature = "PhotoKit_PHCollection")]
+unsafe impl Sync for PHCollection {}
+
+#[cfg(feature = "PhotoKit_PHCollection")]
 unsafe impl NSCopying for PHCollection {}
 
 #[cfg(feature = "PhotoKit_PHCollection")]
@@ -90,6 +96,12 @@ extern_class!(
         type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "PhotoKit_PHAssetCollection")]
+unsafe impl Send for PHAssetCollection {}
+
+#[cfg(feature = "PhotoKit_PHAssetCollection")]
+unsafe impl Sync for PHAssetCollection {}
 
 #[cfg(feature = "PhotoKit_PHAssetCollection")]
 unsafe impl NSCopying for PHAssetCollection {}
@@ -243,6 +255,12 @@ extern_class!(
         type Mutability = InteriorMutable;
     }
 );
+
+#[cfg(feature = "PhotoKit_PHCollectionList")]
+unsafe impl Send for PHCollectionList {}
+
+#[cfg(feature = "PhotoKit_PHCollectionList")]
+unsafe impl Sync for PHCollectionList {}
 
 #[cfg(feature = "PhotoKit_PHCollectionList")]
 unsafe impl NSCopying for PHCollectionList {}

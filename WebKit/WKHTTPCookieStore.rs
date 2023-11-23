@@ -5,6 +5,14 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::WebKit::*;
 
+ns_enum!(
+    #[underlying(NSInteger)]
+    pub enum WKCookiePolicy {
+        WKCookiePolicyAllow = 0,
+        WKCookiePolicyDisallow = 1,
+    }
+);
+
 extern_protocol!(
     pub unsafe trait WKHTTPCookieStoreObserver: NSObjectProtocol {
         #[cfg(feature = "WebKit_WKHTTPCookieStore")]
@@ -68,6 +76,16 @@ extern_methods!(
             &self,
             observer: &ProtocolObject<dyn WKHTTPCookieStoreObserver>,
         );
+
+        #[method(setCookiePolicy:completionHandler:)]
+        pub unsafe fn setCookiePolicy_completionHandler(
+            &self,
+            policy: WKCookiePolicy,
+            completion_handler: Option<&Block<(), ()>>,
+        );
+
+        #[method(getCookiePolicy:)]
+        pub unsafe fn getCookiePolicy(&self, completion_handler: &Block<(WKCookiePolicy,), ()>);
     }
 );
 

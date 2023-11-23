@@ -55,6 +55,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Other URL)]
         pub unsafe fn URL(&self) -> Option<Id<NSURL>>;
 
+        #[method_id(@__retain_semantics Other identifier)]
+        pub unsafe fn identifier(&self) -> Option<Id<NSUserInterfaceItemIdentifier>>;
+
+        #[method(setIdentifier:)]
+        pub unsafe fn setIdentifier(&self, identifier: Option<&NSUserInterfaceItemIdentifier>);
+
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other directoryURL)]
         pub unsafe fn directoryURL(&self) -> Option<Id<NSURL>>;

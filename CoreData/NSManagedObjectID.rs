@@ -17,6 +17,12 @@ extern_class!(
 );
 
 #[cfg(feature = "CoreData_NSManagedObjectID")]
+unsafe impl Send for NSManagedObjectID {}
+
+#[cfg(feature = "CoreData_NSManagedObjectID")]
+unsafe impl Sync for NSManagedObjectID {}
+
+#[cfg(feature = "CoreData_NSManagedObjectID")]
 unsafe impl NSCopying for NSManagedObjectID {}
 
 #[cfg(feature = "CoreData_NSManagedObjectID")]
