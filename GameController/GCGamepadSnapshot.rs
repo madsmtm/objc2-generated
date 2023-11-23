@@ -65,7 +65,6 @@ extern_methods!(
 
 extern_struct!(
     #[encoding_name("?")]
-    #[deprecated = "GCGamepad has been deprecated, use GCExtendedGamepad instead"]
     pub struct GCGamepadSnapShotDataV100 {
         pub version: u16,
         pub size: u16,

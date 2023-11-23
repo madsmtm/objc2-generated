@@ -146,7 +146,6 @@ pub use self::__MXNetworkTransferMetric::MXNetworkTransferMetric;
 pub use self::__MXSignpostMetric::MXSignpostIntervalData;
 #[cfg(feature = "MetricKit_MXSignpostMetric")]
 pub use self::__MXSignpostMetric::MXSignpostMetric;
-pub use self::__MXSignpost_Private::_MXSignpostMetricsSnapshot;
 #[cfg(feature = "MetricKit_MXUnitAveragePixelLuminance")]
 pub use self::__MXUnit::MXUnitAveragePixelLuminance;
 #[cfg(feature = "MetricKit_MXUnitSignalBars")]

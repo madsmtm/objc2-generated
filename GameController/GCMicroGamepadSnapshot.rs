@@ -76,7 +76,6 @@ extern_static!(GCCurrentMicroGamepadSnapshotDataVersion: GCMicroGamepadSnapshotD
 
 extern_struct!(
     #[encoding_name("?")]
-    #[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead"]
     pub struct GCMicroGamepadSnapshotData {
         pub version: u16,
         pub size: u16,
@@ -106,7 +105,6 @@ extern_fn!(
 
 extern_struct!(
     #[encoding_name("?")]
-    #[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead"]
     pub struct GCMicroGamepadSnapShotDataV100 {
         pub version: u16,
         pub size: u16,

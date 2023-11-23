@@ -5,16 +5,18 @@ use crate::Foundation::*;
 use crate::Metal::*;
 
 extern_struct!(
-    #[encoding_name("_MTLPackedFloat4x3")]
-    pub struct MTLPackedFloat4x3 {
+    pub struct _MTLPackedFloat4x3 {
         pub columns: [MTLPackedFloat3; 4],
     }
 );
 
+pub type MTLPackedFloat4x3 = _MTLPackedFloat4x3;
+
 extern_struct!(
-    #[encoding_name("_MTLAxisAlignedBoundingBox")]
-    pub struct MTLAxisAlignedBoundingBox {
+    pub struct _MTLAxisAlignedBoundingBox {
         pub min: MTLPackedFloat3,
         pub max: MTLPackedFloat3,
     }
 );
+
+pub type MTLAxisAlignedBoundingBox = _MTLAxisAlignedBoundingBox;
