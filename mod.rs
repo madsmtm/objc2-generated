@@ -86,6 +86,8 @@ pub mod OSAKit;
 pub mod Photos;
 #[cfg(feature = "QuartzCore")]
 pub mod QuartzCore;
+#[cfg(feature = "ServiceManagement")]
+pub mod ServiceManagement;
 #[cfg(feature = "SoundAnalysis")]
 pub mod SoundAnalysis;
 #[cfg(feature = "Speech")]
