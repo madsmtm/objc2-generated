@@ -1162,6 +1162,15 @@ extern_methods!(
             stencil_attachment_pixel_format: MTLPixelFormat,
         );
 
+        #[method(supportIndirectCommandBuffers)]
+        pub unsafe fn supportIndirectCommandBuffers(&self) -> bool;
+
+        #[method(setSupportIndirectCommandBuffers:)]
+        pub unsafe fn setSupportIndirectCommandBuffers(
+            &self,
+            support_indirect_command_buffers: bool,
+        );
+
         #[cfg(feature = "Metal_MTLLinkedFunctions")]
         #[method_id(@__retain_semantics Other objectLinkedFunctions)]
         pub unsafe fn objectLinkedFunctions(&self) -> Id<MTLLinkedFunctions>;

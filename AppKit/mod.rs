@@ -1176,6 +1176,13 @@ pub use self::__NSApplication::NSAppKitVersionNumber12_4;
 pub use self::__NSApplication::NSAppKitVersionNumber12_5;
 pub use self::__NSApplication::NSAppKitVersionNumber13_0;
 pub use self::__NSApplication::NSAppKitVersionNumber13_1;
+pub use self::__NSApplication::NSAppKitVersionNumber13_2;
+pub use self::__NSApplication::NSAppKitVersionNumber13_3;
+pub use self::__NSApplication::NSAppKitVersionNumber13_4;
+pub use self::__NSApplication::NSAppKitVersionNumber13_5;
+pub use self::__NSApplication::NSAppKitVersionNumber13_6;
+pub use self::__NSApplication::NSAppKitVersionNumber14_0;
+pub use self::__NSApplication::NSAppKitVersionNumber14_1;
 #[cfg(feature = "AppKit_NSApplication")]
 pub use self::__NSApplication::NSApplication;
 pub use self::__NSApplication::NSApplicationDelegate;

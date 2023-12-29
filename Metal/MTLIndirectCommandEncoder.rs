@@ -92,6 +92,51 @@ extern_protocol!(
             base_instance: NSUInteger,
         );
 
+        #[method(setObjectThreadgroupMemoryLength:atIndex:)]
+        unsafe fn setObjectThreadgroupMemoryLength_atIndex(
+            &self,
+            length: NSUInteger,
+            index: NSUInteger,
+        );
+
+        #[method(setObjectBuffer:offset:atIndex:)]
+        unsafe fn setObjectBuffer_offset_atIndex(
+            &self,
+            buffer: &ProtocolObject<dyn MTLBuffer>,
+            offset: NSUInteger,
+            index: NSUInteger,
+        );
+
+        #[method(setMeshBuffer:offset:atIndex:)]
+        unsafe fn setMeshBuffer_offset_atIndex(
+            &self,
+            buffer: &ProtocolObject<dyn MTLBuffer>,
+            offset: NSUInteger,
+            index: NSUInteger,
+        );
+
+        #[method(drawMeshThreadgroups:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:)]
+        unsafe fn drawMeshThreadgroups_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(
+            &self,
+            threadgroups_per_grid: MTLSize,
+            threads_per_object_threadgroup: MTLSize,
+            threads_per_mesh_threadgroup: MTLSize,
+        );
+
+        #[method(drawMeshThreads:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:)]
+        unsafe fn drawMeshThreads_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(
+            &self,
+            threads_per_grid: MTLSize,
+            threads_per_object_threadgroup: MTLSize,
+            threads_per_mesh_threadgroup: MTLSize,
+        );
+
+        #[method(setBarrier)]
+        unsafe fn setBarrier(&self);
+
+        #[method(clearBarrier)]
+        unsafe fn clearBarrier(&self);
+
         #[method(reset)]
         unsafe fn reset(&self);
     }

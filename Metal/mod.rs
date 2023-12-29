@@ -594,7 +594,8 @@ pub use self::__MTLIndirectCommandBuffer::MTLIndirectCommandType;
 pub use self::__MTLIndirectCommandBuffer::{
     MTLIndirectCommandTypeConcurrentDispatch, MTLIndirectCommandTypeConcurrentDispatchThreads,
     MTLIndirectCommandTypeDraw, MTLIndirectCommandTypeDrawIndexed,
-    MTLIndirectCommandTypeDrawIndexedPatches, MTLIndirectCommandTypeDrawPatches,
+    MTLIndirectCommandTypeDrawIndexedPatches, MTLIndirectCommandTypeDrawMeshThreadgroups,
+    MTLIndirectCommandTypeDrawMeshThreads, MTLIndirectCommandTypeDrawPatches,
 };
 pub use self::__MTLIndirectCommandEncoder::MTLIndirectComputeCommand;
 pub use self::__MTLIndirectCommandEncoder::MTLIndirectRenderCommand;

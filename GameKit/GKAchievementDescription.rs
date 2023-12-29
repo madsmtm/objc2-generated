@@ -89,6 +89,7 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKAchievementDescription")]
     unsafe impl GKAchievementDescription {
         #[cfg(feature = "AppKit_NSImage")]
+        #[deprecated]
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Option<Id<NSImage>>;
 

@@ -13,6 +13,8 @@ ns_options!(
         MTLIndirectCommandTypeDrawIndexedPatches = 1 << 3,
         MTLIndirectCommandTypeConcurrentDispatch = 1 << 5,
         MTLIndirectCommandTypeConcurrentDispatchThreads = 1 << 6,
+        MTLIndirectCommandTypeDrawMeshThreadgroups = 1 << 7,
+        MTLIndirectCommandTypeDrawMeshThreads = 1 << 8,
     }
 );
 
@@ -97,6 +99,27 @@ extern_methods!(
         pub unsafe fn setMaxKernelThreadgroupMemoryBindCount(
             &self,
             max_kernel_threadgroup_memory_bind_count: NSUInteger,
+        );
+
+        #[method(maxObjectBufferBindCount)]
+        pub unsafe fn maxObjectBufferBindCount(&self) -> NSUInteger;
+
+        #[method(setMaxObjectBufferBindCount:)]
+        pub unsafe fn setMaxObjectBufferBindCount(&self, max_object_buffer_bind_count: NSUInteger);
+
+        #[method(maxMeshBufferBindCount)]
+        pub unsafe fn maxMeshBufferBindCount(&self) -> NSUInteger;
+
+        #[method(setMaxMeshBufferBindCount:)]
+        pub unsafe fn setMaxMeshBufferBindCount(&self, max_mesh_buffer_bind_count: NSUInteger);
+
+        #[method(maxObjectThreadgroupMemoryBindCount)]
+        pub unsafe fn maxObjectThreadgroupMemoryBindCount(&self) -> NSUInteger;
+
+        #[method(setMaxObjectThreadgroupMemoryBindCount:)]
+        pub unsafe fn setMaxObjectThreadgroupMemoryBindCount(
+            &self,
+            max_object_threadgroup_memory_bind_count: NSUInteger,
         );
 
         #[method(supportRayTracing)]

@@ -53,6 +53,15 @@ extern_methods!(
         #[method(expectedPlayerCount)]
         pub unsafe fn expectedPlayerCount(&self) -> NSUInteger;
 
+        #[method_id(@__retain_semantics Other properties)]
+        pub unsafe fn properties(&self) -> Option<Id<GKMatchProperties>>;
+
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "GameKit_GKPlayer"))]
+        #[method_id(@__retain_semantics Other playerProperties)]
+        pub unsafe fn playerProperties(
+            &self,
+        ) -> Option<Id<NSDictionary<GKPlayer, GKMatchProperties>>>;
+
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSData",

@@ -256,6 +256,10 @@ extern_methods!(
             this: Allocated<Self>,
             zone_i_ds: &NSSet<CKRecordZoneID>,
         ) -> Id<Self>;
+
+        #[cfg(feature = "CloudKit_CKRecordZoneID")]
+        #[method(containsZoneID:)]
+        pub unsafe fn containsZoneID(&self, zone_id: &CKRecordZoneID) -> bool;
     }
 );
 

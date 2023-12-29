@@ -149,6 +149,20 @@ extern_static!(NSAppKitVersionNumber13_0: NSAppKitVersion = 2299);
 
 extern_static!(NSAppKitVersionNumber13_1: NSAppKitVersion = 2299.3);
 
+extern_static!(NSAppKitVersionNumber13_2: NSAppKitVersion = 2299.3);
+
+extern_static!(NSAppKitVersionNumber13_3: NSAppKitVersion = 2299.4);
+
+extern_static!(NSAppKitVersionNumber13_4: NSAppKitVersion = 2299.5);
+
+extern_static!(NSAppKitVersionNumber13_5: NSAppKitVersion = 2299.6);
+
+extern_static!(NSAppKitVersionNumber13_6: NSAppKitVersion = 2299.7);
+
+extern_static!(NSAppKitVersionNumber14_0: NSAppKitVersion = 2487);
+
+extern_static!(NSAppKitVersionNumber14_1: NSAppKitVersion = 2487.2);
+
 extern_static!(NSModalPanelRunLoopMode: &'static NSRunLoopMode);
 
 extern_static!(NSEventTrackingRunLoopMode: &'static NSRunLoopMode);

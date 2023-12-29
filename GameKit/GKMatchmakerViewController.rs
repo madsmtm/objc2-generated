@@ -221,6 +221,19 @@ extern_protocol!(
         );
 
         #[cfg(all(
+            feature = "GameKit_GKMatchmakerViewController",
+            feature = "GameKit_GKPlayer"
+        ))]
+        #[optional]
+        #[method(matchmakerViewController:getMatchPropertiesForRecipient:withCompletionHandler:)]
+        unsafe fn matchmakerViewController_getMatchPropertiesForRecipient_withCompletionHandler(
+            &self,
+            view_controller: &GKMatchmakerViewController,
+            recipient: &GKPlayer,
+            completion_handler: &Block<(NonNull<GKMatchProperties>,), ()>,
+        );
+
+        #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSString",
             feature = "GameKit_GKMatchmakerViewController"

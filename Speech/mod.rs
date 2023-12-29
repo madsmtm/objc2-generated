@@ -6,20 +6,8 @@
 #[cfg_attr(feature = "apple", link(name = "Speech", kind = "framework"))]
 extern "C" {}
 
-#[path = "SFAnalysisContext_Private.rs"]
-mod __SFAnalysisContext_Private;
-#[path = "SFCommandRecognizerArgumentPresence_Private.rs"]
-mod __SFCommandRecognizerArgumentPresence_Private;
-#[path = "SFEARResultType_Private.rs"]
-mod __SFEARResultType_Private;
 #[path = "SFErrors.rs"]
 mod __SFErrors;
-#[path = "SFInputSequencer_Private.rs"]
-mod __SFInputSequencer_Private;
-#[path = "SFSpeechAnalyzerOutputWrapper_Private.rs"]
-mod __SFSpeechAnalyzerOutputWrapper_Private;
-#[path = "SFSpeechAnalyzer_Private.rs"]
-mod __SFSpeechAnalyzer_Private;
 #[path = "SFSpeechLanguageModel.rs"]
 mod __SFSpeechLanguageModel;
 #[path = "SFSpeechRecognitionMetadata.rs"]
@@ -36,85 +24,17 @@ mod __SFSpeechRecognitionTaskHint;
 mod __SFSpeechRecognizer;
 #[path = "SFTranscription.rs"]
 mod __SFTranscription;
-#[path = "SFTranscriptionOptions_Private.rs"]
-mod __SFTranscriptionOptions_Private;
-#[path = "SFTranscriptionResultAttributeOptions_Private.rs"]
-mod __SFTranscriptionResultAttributeOptions_Private;
 #[path = "SFTranscriptionSegment.rs"]
 mod __SFTranscriptionSegment;
 #[path = "SFVoiceAnalytics.rs"]
 mod __SFVoiceAnalytics;
 
-pub use self::__SFAnalysisContext_Private::SFAnalysisContextTagLeftContext;
-pub use self::__SFAnalysisContext_Private::SFAnalysisContextTagRightContext;
-pub use self::__SFAnalysisContext_Private::SFAnalysisContextTagSelectedText;
-#[cfg(feature = "Speech__SFAnalysisContext")]
-pub(crate) use self::__SFAnalysisContext_Private::_SFAnalysisContext;
-pub(crate) use self::__SFAnalysisContext_Private::_SFAnalysisContextTagContextualNamedEntities;
-pub(crate) use self::__SFAnalysisContext_Private::_SFAnalysisContextTagGeoLMRegionID;
-pub(crate) use self::__SFAnalysisContext_Private::_SFAnalysisContextTagLeftContext;
-pub(crate) use self::__SFAnalysisContext_Private::_SFAnalysisContextTagRightContext;
-pub(crate) use self::__SFAnalysisContext_Private::_SFAnalysisContextTagSelectedText;
-#[cfg(feature = "Speech__SFContextualNamedEntity")]
-pub(crate) use self::__SFAnalysisContext_Private::_SFContextualNamedEntity;
-pub(crate) use self::__SFCommandRecognizerArgumentPresence_Private::_SFCommandRecognizerArgumentPresence;
-pub use self::__SFCommandRecognizerArgumentPresence_Private::{
-    SFCommandRecognizerArgumentPresenceMissing,
-    SFCommandRecognizerArgumentPresenceMissingMaybeExpected,
-    SFCommandRecognizerArgumentPresencePresentAndDelimited,
-    SFCommandRecognizerArgumentPresencePresentMaybeIncomplete,
-    _SFCommandRecognizerArgumentPresenceMissing,
-    _SFCommandRecognizerArgumentPresenceMissingMaybeExpected,
-    _SFCommandRecognizerArgumentPresencePresentAndDelimited,
-    _SFCommandRecognizerArgumentPresencePresentMaybeIncomplete,
-};
-pub(crate) use self::__SFEARResultType_Private::_SFEARResultType;
-pub use self::__SFEARResultType_Private::{
-    _SFEARResultTypeCandidate, _SFEARResultTypeFinal, _SFEARResultTypeFinalAndTerminal,
-    _SFEARResultTypePartial, _SFEARResultTypePauseConfirmation,
-};
 pub use self::__SFErrors::SFSpeechErrorCode;
 pub use self::__SFErrors::SFSpeechErrorDomain;
 pub use self::__SFErrors::{
     SFSpeechErrorCodeInternalServiceError, SFSpeechErrorCodeMalformedSupplementalModel,
     SFSpeechErrorCodeUndefinedTemplateClassName,
 };
-#[cfg(feature = "Speech__SFInputSequencer")]
-pub(crate) use self::__SFInputSequencer_Private::_SFInputSequencer;
-#[cfg(feature = "Speech__SFAnalyzerTranscriptionSegment")]
-pub(crate) use self::__SFSpeechAnalyzer_Private::_SFAnalyzerTranscriptionSegment;
-#[cfg(feature = "Speech__SFCommandRecognizerArgument")]
-pub(crate) use self::__SFSpeechAnalyzer_Private::_SFCommandRecognizerArgument;
-#[cfg(feature = "Speech__SFCommandRecognizerInterpretation")]
-pub(crate) use self::__SFSpeechAnalyzer_Private::_SFCommandRecognizerInterpretation;
-#[cfg(feature = "Speech__SFEndpointingResult")]
-pub(crate) use self::__SFSpeechAnalyzer_Private::_SFEndpointingResult;
-#[cfg(feature = "Speech__SFModelDownloadRequest")]
-pub(crate) use self::__SFSpeechAnalyzer_Private::_SFModelDownloadRequest;
-#[cfg(feature = "Speech__SFSpeechAnalyzer")]
-pub(crate) use self::__SFSpeechAnalyzer_Private::_SFSpeechAnalyzer;
-#[cfg(feature = "Speech__SFSpeechAnalyzerCommandRecognizerOptions")]
-pub(crate) use self::__SFSpeechAnalyzer_Private::_SFSpeechAnalyzerCommandRecognizerOptions;
-pub(crate) use self::__SFSpeechAnalyzer_Private::_SFSpeechAnalyzerEndpointingResultDelegate;
-#[cfg(feature = "Speech__SFSpeechAnalyzerOptions")]
-pub(crate) use self::__SFSpeechAnalyzer_Private::_SFSpeechAnalyzerOptions;
-#[cfg(feature = "Speech__SFSpeechAnalyzerOptionsLoggingInfo")]
-pub(crate) use self::__SFSpeechAnalyzer_Private::_SFSpeechAnalyzerOptionsLoggingInfo;
-#[cfg(feature = "Speech__SFSpeechAnalyzerOptionsPowerContext")]
-pub(crate) use self::__SFSpeechAnalyzer_Private::_SFSpeechAnalyzerOptionsPowerContext;
-#[cfg(feature = "Speech__SFSpeechAnalyzerTranscriberOptions")]
-pub(crate) use self::__SFSpeechAnalyzer_Private::_SFSpeechAnalyzerTranscriberOptions;
-pub(crate) use self::__SFSpeechAnalyzer_Private::_SFSpeechAnalyzerTranscriberResultDelegate;
-#[cfg(feature = "Speech__SFToken")]
-pub(crate) use self::__SFSpeechAnalyzer_Private::_SFToken;
-#[cfg(feature = "Speech__SFTranscriberModelOptions")]
-pub(crate) use self::__SFSpeechAnalyzer_Private::_SFTranscriberModelOptions;
-#[cfg(feature = "Speech__SFTranscriberResult")]
-pub(crate) use self::__SFSpeechAnalyzer_Private::_SFTranscriberResult;
-#[cfg(feature = "Speech__STCommandRecognizerResult")]
-pub(crate) use self::__SFSpeechAnalyzer_Private::_STCommandRecognizerResult;
-#[cfg(feature = "Speech__STTranscriberMultisegmentResult")]
-pub(crate) use self::__SFSpeechAnalyzer_Private::_STTranscriberMultisegmentResult;
 #[cfg(feature = "Speech_SFSpeechLanguageModel")]
 pub use self::__SFSpeechLanguageModel::SFSpeechLanguageModel;
 #[cfg(feature = "Speech_SFSpeechLanguageModelConfiguration")]
@@ -154,16 +74,6 @@ pub use self::__SFSpeechRecognizer::{
 };
 #[cfg(feature = "Speech_SFTranscription")]
 pub use self::__SFTranscription::SFTranscription;
-pub(crate) use self::__SFTranscriptionOptions_Private::_SFTranscriptionOptions;
-pub use self::__SFTranscriptionOptions_Private::{
-    _SFTranscriptionOptionsContextualizedTranscription, _SFTranscriptionOptionsEmoji,
-    _SFTranscriptionOptionsEtiquetteReplacements, _SFTranscriptionOptionsNormalizedTranscription,
-    _SFTranscriptionOptionsPunctuation,
-};
-pub(crate) use self::__SFTranscriptionResultAttributeOptions_Private::_SFTranscriptionResultAttributeOptions;
-pub use self::__SFTranscriptionResultAttributeOptions_Private::{
-    _SFTranscriptionResultAttributeOptionsCmTime, _SFTranscriptionResultAttributeOptionsConfidence,
-};
 #[cfg(feature = "Speech_SFTranscriptionSegment")]
 pub use self::__SFTranscriptionSegment::SFTranscriptionSegment;
 #[cfg(feature = "Speech_SFAcousticFeature")]

@@ -11,6 +11,7 @@ ns_enum!(
         CLMonitoringStateUnknown = 0,
         CLMonitoringStateSatisfied = 1,
         CLMonitoringStateUnsatisfied = 2,
+        CLMonitoringStateUnmonitored = 3,
     }
 );
 

@@ -128,6 +128,7 @@ pub use self::__GKChallengesViewController::GKChallengesViewController;
 pub use self::__GKChallengesViewController::GKChallengesViewControllerDelegate;
 #[cfg(feature = "GameKit_GKCloudPlayer")]
 pub use self::__GKCloudPlayer::GKCloudPlayer;
+pub use self::__GKDefines::GKMatchProperties;
 #[cfg(feature = "GameKit_GKDialogController")]
 pub use self::__GKDialogController::GKDialogController;
 pub use self::__GKDialogController::GKViewController;
@@ -138,11 +139,11 @@ pub use self::__GKError::{
     GKErrorChallengeInvalid, GKErrorCommunicationsFailure, GKErrorConnectionTimeout,
     GKErrorFriendListDenied, GKErrorFriendListDescriptionMissing, GKErrorFriendListRestricted,
     GKErrorFriendRequestNotAvailable, GKErrorGameSessionRequestInvalid, GKErrorGameUnrecognized,
-    GKErrorInvalidCredentials, GKErrorInvalidParameter, GKErrorInvalidPlayer,
-    GKErrorInvitationsDisabled, GKErrorMatchNotConnected, GKErrorMatchRequestInvalid,
-    GKErrorNotAuthenticated, GKErrorNotAuthorized, GKErrorNotSupported,
-    GKErrorParentalControlsBlocked, GKErrorPlayerPhotoFailure,
-    GKErrorPlayerStatusExceedsMaximumLength, GKErrorPlayerStatusInvalid,
+    GKErrorICloudUnavailable, GKErrorInvalidCredentials, GKErrorInvalidParameter,
+    GKErrorInvalidPlayer, GKErrorInvitationsDisabled, GKErrorLockdownMode,
+    GKErrorMatchNotConnected, GKErrorMatchRequestInvalid, GKErrorNotAuthenticated,
+    GKErrorNotAuthorized, GKErrorNotSupported, GKErrorParentalControlsBlocked,
+    GKErrorPlayerPhotoFailure, GKErrorPlayerStatusExceedsMaximumLength, GKErrorPlayerStatusInvalid,
     GKErrorRestrictedToAutomatch, GKErrorScoreNotSet, GKErrorTurnBasedInvalidParticipant,
     GKErrorTurnBasedInvalidState, GKErrorTurnBasedInvalidTurn, GKErrorTurnBasedMatchDataTooLarge,
     GKErrorTurnBasedTooManySessions, GKErrorUbiquityContainerUnavailable, GKErrorUnderage,
@@ -229,6 +230,8 @@ pub use self::__GKMatchmaker::GKInviteeResponse;
 #[cfg(feature = "GameKit_GKMatchRequest")]
 pub use self::__GKMatchmaker::GKMatchRequest;
 pub use self::__GKMatchmaker::GKMatchType;
+#[cfg(feature = "GameKit_GKMatchedPlayers")]
+pub use self::__GKMatchmaker::GKMatchedPlayers;
 #[cfg(feature = "GameKit_GKMatchmaker")]
 pub use self::__GKMatchmaker::GKMatchmaker;
 pub use self::__GKMatchmaker::{

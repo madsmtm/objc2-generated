@@ -173,7 +173,8 @@ pub use self::__CLMonitorConfiguration::CLMonitorConfiguration;
 pub use self::__CLMonitoringEvent::CLMonitoringEvent;
 pub use self::__CLMonitoringEvent::CLMonitoringState;
 pub use self::__CLMonitoringEvent::{
-    CLMonitoringStateSatisfied, CLMonitoringStateUnknown, CLMonitoringStateUnsatisfied,
+    CLMonitoringStateSatisfied, CLMonitoringStateUnknown, CLMonitoringStateUnmonitored,
+    CLMonitoringStateUnsatisfied,
 };
 #[cfg(feature = "CoreLocation_CLMonitoringRecord")]
 pub use self::__CLMonitoringRecord::CLMonitoringRecord;

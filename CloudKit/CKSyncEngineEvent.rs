@@ -466,7 +466,11 @@ unsafe impl NSObjectProtocol for CKSyncEngineWillFetchChangesEvent {}
 
 extern_methods!(
     #[cfg(feature = "CloudKit_CKSyncEngineWillFetchChangesEvent")]
-    unsafe impl CKSyncEngineWillFetchChangesEvent {}
+    unsafe impl CKSyncEngineWillFetchChangesEvent {
+        #[cfg(feature = "CloudKit_CKSyncEngineFetchChangesContext")]
+        #[method_id(@__retain_semantics Other context)]
+        pub unsafe fn context(&self) -> Id<CKSyncEngineFetchChangesContext>;
+    }
 );
 
 extern_methods!(
@@ -595,7 +599,11 @@ unsafe impl NSObjectProtocol for CKSyncEngineDidFetchChangesEvent {}
 
 extern_methods!(
     #[cfg(feature = "CloudKit_CKSyncEngineDidFetchChangesEvent")]
-    unsafe impl CKSyncEngineDidFetchChangesEvent {}
+    unsafe impl CKSyncEngineDidFetchChangesEvent {
+        #[cfg(feature = "CloudKit_CKSyncEngineFetchChangesContext")]
+        #[method_id(@__retain_semantics Other context)]
+        pub unsafe fn context(&self) -> Id<CKSyncEngineFetchChangesContext>;
+    }
 );
 
 extern_methods!(

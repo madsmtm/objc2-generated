@@ -613,10 +613,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other standardizedURL)]
         pub unsafe fn standardizedURL(&self) -> Option<Id<NSURL>>;
 
-        #[cfg(feature = "Foundation_NSError")]
-        #[method(checkResourceIsReachableAndReturnError:_)]
-        pub unsafe fn checkResourceIsReachableAndReturnError(&self) -> Result<(), Id<NSError>>;
-
         #[method(isFileReferenceURL)]
         pub unsafe fn isFileReferenceURL(&self) -> bool;
 
@@ -1224,6 +1220,10 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Other URLByDeletingPathExtension)]
         pub unsafe fn URLByDeletingPathExtension(&self) -> Option<Id<NSURL>>;
+
+        #[cfg(feature = "Foundation_NSError")]
+        #[method(checkResourceIsReachableAndReturnError:_)]
+        pub unsafe fn checkResourceIsReachableAndReturnError(&self) -> Result<(), Id<NSError>>;
 
         #[method_id(@__retain_semantics Other URLByStandardizingPath)]
         pub unsafe fn URLByStandardizingPath(&self) -> Option<Id<NSURL>>;

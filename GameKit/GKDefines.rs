@@ -4,3 +4,5 @@ use crate::common::*;
 use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameKit::*;
+
+pub type GKMatchProperties = AnyObject;
