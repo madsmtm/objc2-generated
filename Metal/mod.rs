@@ -3,6 +3,12 @@
 
 //! # Bindings to the `Metal` framework
 //!
+//! Metal has tools for validating that you're using it correctly, using these
+//! is highly recommended! See [Apple's documentation][apple-doc], or run
+//! `man MetalValidation` to get information on environment variables.
+//!
+//! [apple-doc]: https://developer.apple.com/documentation/xcode/validating-your-apps-metal-api-usage/.
+//!
 //!
 //! ## Example
 //!
