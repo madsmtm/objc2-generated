@@ -694,7 +694,7 @@ extern_methods!(
         );
 
         #[method(convertRectToScreen:)]
-        pub unsafe fn convertRectToScreen(&self, rect: NSRect) -> NSRect;
+        pub fn convertRectToScreen(&self, rect: NSRect) -> NSRect;
 
         #[method(convertRectFromScreen:)]
         pub unsafe fn convertRectFromScreen(&self, rect: NSRect) -> NSRect;
@@ -703,7 +703,7 @@ extern_methods!(
         pub unsafe fn convertPointToScreen(&self, point: NSPoint) -> NSPoint;
 
         #[method(convertPointFromScreen:)]
-        pub unsafe fn convertPointFromScreen(&self, point: NSPoint) -> NSPoint;
+        pub fn convertPointFromScreen(&self, point: NSPoint) -> NSPoint;
 
         #[method(convertRectToBacking:)]
         pub unsafe fn convertRectToBacking(&self, rect: NSRect) -> NSRect;

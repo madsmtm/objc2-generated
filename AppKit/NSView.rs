@@ -289,7 +289,7 @@ extern_methods!(
         pub unsafe fn setBounds(&self, bounds: NSRect);
 
         #[method(isFlipped)]
-        pub unsafe fn isFlipped(&self) -> bool;
+        pub fn isFlipped(&self) -> bool;
 
         #[method(isRotatedFromBase)]
         pub unsafe fn isRotatedFromBase(&self) -> bool;
@@ -316,7 +316,7 @@ extern_methods!(
         pub unsafe fn convertRect_fromView(&self, rect: NSRect, view: Option<&NSView>) -> NSRect;
 
         #[method(convertRect:toView:)]
-        pub unsafe fn convertRect_toView(&self, rect: NSRect, view: Option<&NSView>) -> NSRect;
+        pub fn convertRect_toView(&self, rect: NSRect, view: Option<&NSView>) -> NSRect;
 
         #[method(backingAlignedRect:options:)]
         pub unsafe fn backingAlignedRect_options(
