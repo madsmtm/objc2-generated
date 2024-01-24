@@ -47,7 +47,7 @@ extern_methods!(
             &self,
             time_interval_since_start: NSTimeInterval,
             preceded_by_gap: bool,
-            completion: &Block<(Bool, *mut NSError), ()>,
+            completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -59,7 +59,7 @@ extern_methods!(
         pub unsafe fn addMetadata_completion(
             &self,
             metadata: &NSDictionary<NSString, AnyObject>,
-            completion: &Block<(Bool, *mut NSError), ()>,
+            completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -69,7 +69,7 @@ extern_methods!(
         #[method(finishSeriesWithCompletion:)]
         pub unsafe fn finishSeriesWithCompletion(
             &self,
-            completion: &Block<(*mut HKHeartbeatSeriesSample, *mut NSError), ()>,
+            completion: &Block<dyn Fn(*mut HKHeartbeatSeriesSample, *mut NSError)>,
         );
     }
 );

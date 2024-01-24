@@ -47,14 +47,14 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSError")]
         #[deprecated = "No longer supported, will cease working at some point in the future"]
         #[method(modifyBadgeCompletionBlock)]
-        pub unsafe fn modifyBadgeCompletionBlock(&self) -> *mut Block<(*mut NSError,), ()>;
+        pub unsafe fn modifyBadgeCompletionBlock(&self) -> *mut Block<dyn Fn(*mut NSError)>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[deprecated = "No longer supported, will cease working at some point in the future"]
         #[method(setModifyBadgeCompletionBlock:)]
         pub unsafe fn setModifyBadgeCompletionBlock(
             &self,
-            modify_badge_completion_block: Option<&Block<(*mut NSError,), ()>>,
+            modify_badge_completion_block: Option<&Block<dyn Fn(*mut NSError)>>,
         );
     }
 );

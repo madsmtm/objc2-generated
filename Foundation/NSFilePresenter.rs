@@ -20,18 +20,24 @@ extern_protocol!(
 
         #[optional]
         #[method(relinquishPresentedItemToReader:)]
-        unsafe fn relinquishPresentedItemToReader(&self, reader: &Block<(*mut Block<(), ()>,), ()>);
+        unsafe fn relinquishPresentedItemToReader(
+            &self,
+            reader: &Block<dyn Fn(*mut Block<dyn Fn()>)>,
+        );
 
         #[optional]
         #[method(relinquishPresentedItemToWriter:)]
-        unsafe fn relinquishPresentedItemToWriter(&self, writer: &Block<(*mut Block<(), ()>,), ()>);
+        unsafe fn relinquishPresentedItemToWriter(
+            &self,
+            writer: &Block<dyn Fn(*mut Block<dyn Fn()>)>,
+        );
 
         #[cfg(feature = "Foundation_NSError")]
         #[optional]
         #[method(savePresentedItemChangesWithCompletionHandler:)]
         unsafe fn savePresentedItemChangesWithCompletionHandler(
             &self,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
@@ -39,7 +45,7 @@ extern_protocol!(
         #[method(accommodatePresentedItemDeletionWithCompletionHandler:)]
         unsafe fn accommodatePresentedItemDeletionWithCompletionHandler(
             &self,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "Foundation_NSURL")]
@@ -85,7 +91,7 @@ extern_protocol!(
         unsafe fn accommodatePresentedSubitemDeletionAtURL_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "Foundation_NSURL")]

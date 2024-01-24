@@ -212,7 +212,7 @@ extern_methods!(
             unit: NSLinguisticTaggerUnit,
             scheme: &NSLinguisticTagScheme,
             options: NSLinguisticTaggerOptions,
-            block: &Block<(*mut NSLinguisticTag, NSRange, NonNull<Bool>), ()>,
+            block: &Block<dyn Fn(*mut NSLinguisticTag, NSRange, NonNull<Bool>) + '_>,
         );
 
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
@@ -244,7 +244,7 @@ extern_methods!(
             range: NSRange,
             tag_scheme: &NSLinguisticTagScheme,
             opts: NSLinguisticTaggerOptions,
-            block: &Block<(*mut NSLinguisticTag, NSRange, NSRange, NonNull<Bool>), ()>,
+            block: &Block<dyn Fn(*mut NSLinguisticTag, NSRange, NSRange, NonNull<Bool>) + '_>,
         );
 
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
@@ -322,7 +322,7 @@ extern_methods!(
             scheme: &NSLinguisticTagScheme,
             options: NSLinguisticTaggerOptions,
             orthography: Option<&NSOrthography>,
-            block: &Block<(*mut NSLinguisticTag, NSRange, NonNull<Bool>), ()>,
+            block: &Block<dyn Fn(*mut NSLinguisticTag, NSRange, NonNull<Bool>) + '_>,
         );
 
         #[cfg(all(
@@ -384,7 +384,7 @@ extern_methods!(
             scheme: &NSLinguisticTagScheme,
             options: NSLinguisticTaggerOptions,
             orthography: Option<&NSOrthography>,
-            block: &Block<(*mut NSLinguisticTag, NSRange, NSRange, NonNull<Bool>), ()>,
+            block: &Block<dyn Fn(*mut NSLinguisticTag, NSRange, NSRange, NonNull<Bool>) + '_>,
         );
     }
 );

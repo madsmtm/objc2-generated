@@ -22,14 +22,9 @@ extern_methods!(
             item_identifiers: &NSArray<NSFileProviderItemIdentifier>,
             size: CGSize,
             per_thumbnail_completion_handler: &Block<
-                (
-                    NonNull<NSFileProviderItemIdentifier>,
-                    *mut NSData,
-                    *mut NSError,
-                ),
-                (),
+                dyn Fn(NonNull<NSFileProviderItemIdentifier>, *mut NSData, *mut NSError),
             >,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         ) -> Id<NSProgress>;
     }
 );

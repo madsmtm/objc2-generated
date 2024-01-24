@@ -61,14 +61,14 @@ extern_methods!(
         #[method(perSubscriptionSaveBlock)]
         pub unsafe fn perSubscriptionSaveBlock(
             &self,
-        ) -> *mut Block<(NonNull<CKSubscriptionID>, *mut CKSubscription, *mut NSError), ()>;
+        ) -> *mut Block<dyn Fn(NonNull<CKSubscriptionID>, *mut CKSubscription, *mut NSError)>;
 
         #[cfg(all(feature = "CloudKit_CKSubscription", feature = "Foundation_NSError"))]
         #[method(setPerSubscriptionSaveBlock:)]
         pub unsafe fn setPerSubscriptionSaveBlock(
             &self,
             per_subscription_save_block: Option<
-                &Block<(NonNull<CKSubscriptionID>, *mut CKSubscription, *mut NSError), ()>,
+                &Block<dyn Fn(NonNull<CKSubscriptionID>, *mut CKSubscription, *mut NSError)>,
             >,
         );
 
@@ -76,14 +76,14 @@ extern_methods!(
         #[method(perSubscriptionDeleteBlock)]
         pub unsafe fn perSubscriptionDeleteBlock(
             &self,
-        ) -> *mut Block<(NonNull<CKSubscriptionID>, *mut NSError), ()>;
+        ) -> *mut Block<dyn Fn(NonNull<CKSubscriptionID>, *mut NSError)>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(setPerSubscriptionDeleteBlock:)]
         pub unsafe fn setPerSubscriptionDeleteBlock(
             &self,
             per_subscription_delete_block: Option<
-                &Block<(NonNull<CKSubscriptionID>, *mut NSError), ()>,
+                &Block<dyn Fn(NonNull<CKSubscriptionID>, *mut NSError)>,
             >,
         );
 
@@ -96,12 +96,7 @@ extern_methods!(
         pub unsafe fn modifySubscriptionsCompletionBlock(
             &self,
         ) -> *mut Block<
-            (
-                *mut NSArray<CKSubscription>,
-                *mut NSArray<CKSubscriptionID>,
-                *mut NSError,
-            ),
-            (),
+            dyn Fn(*mut NSArray<CKSubscription>, *mut NSArray<CKSubscriptionID>, *mut NSError),
         >;
 
         #[cfg(all(
@@ -114,12 +109,11 @@ extern_methods!(
             &self,
             modify_subscriptions_completion_block: Option<
                 &Block<
-                    (
+                    dyn Fn(
                         *mut NSArray<CKSubscription>,
                         *mut NSArray<CKSubscriptionID>,
                         *mut NSError,
                     ),
-                    (),
                 >,
             >,
         );

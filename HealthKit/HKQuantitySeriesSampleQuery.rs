@@ -54,7 +54,7 @@ extern_methods!(
             quantity_type: &HKQuantityType,
             predicate: Option<&NSPredicate>,
             quantity_handler: &Block<
-                (
+                dyn Fn(
                     NonNull<HKQuantitySeriesSampleQuery>,
                     *mut HKQuantity,
                     *mut NSDateInterval,
@@ -62,7 +62,6 @@ extern_methods!(
                     Bool,
                     *mut NSError,
                 ),
-                (),
             >,
         ) -> Id<Self>;
 
@@ -78,14 +77,13 @@ extern_methods!(
             this: Allocated<Self>,
             quantity_sample: &HKQuantitySample,
             quantity_handler: &Block<
-                (
+                dyn Fn(
                     NonNull<HKQuantitySeriesSampleQuery>,
                     *mut HKQuantity,
                     *mut NSDate,
                     Bool,
                     *mut NSError,
                 ),
-                (),
             >,
         ) -> Id<Self>;
     }

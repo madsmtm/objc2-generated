@@ -15,7 +15,7 @@ extern_protocol!(
         unsafe fn decideActionForMessage_completionHandler(
             &self,
             message: &MEMessage,
-            completion_handler: &Block<(*mut MEMessageActionDecision,), ()>,
+            completion_handler: &Block<dyn Fn(*mut MEMessageActionDecision)>,
         );
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]

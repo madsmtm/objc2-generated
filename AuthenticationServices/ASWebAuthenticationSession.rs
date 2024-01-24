@@ -16,7 +16,7 @@ ns_error_enum!(
     }
 );
 
-pub type ASWebAuthenticationSessionCompletionHandler = *mut Block<(*mut NSURL, *mut NSError), ()>;
+pub type ASWebAuthenticationSessionCompletionHandler = *mut Block<dyn Fn(*mut NSURL, *mut NSError)>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

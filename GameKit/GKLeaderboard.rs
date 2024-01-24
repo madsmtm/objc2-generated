@@ -82,14 +82,14 @@ extern_methods!(
         #[method(loadLeaderboardsWithIDs:completionHandler:)]
         pub unsafe fn loadLeaderboardsWithIDs_completionHandler(
             leaderboard_i_ds: Option<&NSArray<NSString>>,
-            completion_handler: &Block<(*mut NSArray<GKLeaderboard>, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSArray<GKLeaderboard>, *mut NSError)>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(loadPreviousOccurrenceWithCompletionHandler:)]
         pub unsafe fn loadPreviousOccurrenceWithCompletionHandler(
             &self,
-            completion_handler: &Block<(*mut GKLeaderboard, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut GKLeaderboard, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -104,7 +104,7 @@ extern_methods!(
             context: NSUInteger,
             player: &GKPlayer,
             leaderboard_i_ds: &NSArray<NSString>,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "GameKit_GKPlayer"))]
@@ -114,7 +114,7 @@ extern_methods!(
             score: NSInteger,
             context: NSUInteger,
             player: &GKPlayer,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(
@@ -129,13 +129,12 @@ extern_methods!(
             time_scope: GKLeaderboardTimeScope,
             range: NSRange,
             completion_handler: &Block<
-                (
+                dyn Fn(
                     *mut GKLeaderboardEntry,
                     *mut NSArray<GKLeaderboardEntry>,
                     NSInteger,
                     *mut NSError,
                 ),
-                (),
             >,
         );
 
@@ -151,12 +150,7 @@ extern_methods!(
             players: &NSArray<GKPlayer>,
             time_scope: GKLeaderboardTimeScope,
             completion_handler: &Block<
-                (
-                    *mut GKLeaderboardEntry,
-                    *mut NSArray<GKLeaderboardEntry>,
-                    *mut NSError,
-                ),
-                (),
+                dyn Fn(*mut GKLeaderboardEntry, *mut NSArray<GKLeaderboardEntry>, *mut NSError),
             >,
         );
     }
@@ -193,7 +187,7 @@ extern_methods!(
         #[method(loadCategoriesWithCompletionHandler:)]
         pub unsafe fn loadCategoriesWithCompletionHandler(
             completion_handler: Option<
-                &Block<(*mut NSArray<NSString>, *mut NSArray<NSString>, *mut NSError), ()>,
+                &Block<dyn Fn(*mut NSArray<NSString>, *mut NSArray<NSString>, *mut NSError)>,
             >,
         );
 
@@ -202,7 +196,7 @@ extern_methods!(
         #[method(setDefaultLeaderboard:withCompletionHandler:)]
         pub unsafe fn setDefaultLeaderboard_withCompletionHandler(
             leaderboard_identifier: Option<&NSString>,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[deprecated]
@@ -274,14 +268,14 @@ extern_methods!(
         #[method(loadScoresWithCompletionHandler:)]
         pub unsafe fn loadScoresWithCompletionHandler(
             &self,
-            completion_handler: Option<&Block<(*mut NSArray<GKScore>, *mut NSError), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSArray<GKScore>, *mut NSError)>>,
         );
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSError"))]
         #[deprecated]
         #[method(loadLeaderboardsWithCompletionHandler:)]
         pub unsafe fn loadLeaderboardsWithCompletionHandler(
-            completion_handler: Option<&Block<(*mut NSArray<GKLeaderboard>, *mut NSError), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSArray<GKLeaderboard>, *mut NSError)>>,
         );
     }
 );
@@ -294,7 +288,7 @@ extern_methods!(
         #[method(loadImageWithCompletionHandler:)]
         pub unsafe fn loadImageWithCompletionHandler(
             &self,
-            completion_handler: Option<&Block<(*mut NSImage, *mut NSError), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSImage, *mut NSError)>>,
         );
     }
 );

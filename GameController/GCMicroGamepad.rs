@@ -14,7 +14,7 @@ extern_static!(GCInputMicroGamepadButtonX: &'static NSString);
 extern_static!(GCInputMicroGamepadButtonMenu: &'static NSString);
 
 pub type GCMicroGamepadValueChangedHandler =
-    *mut Block<(NonNull<GCMicroGamepad>, NonNull<GCControllerElement>), ()>;
+    *mut Block<dyn Fn(NonNull<GCMicroGamepad>, NonNull<GCControllerElement>)>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

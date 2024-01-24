@@ -102,8 +102,10 @@ extern_methods!(
         pub unsafe fn differenceByTransformingChangesWithBlock(
             &self,
             block: &Block<
-                (NonNull<NSOrderedCollectionChange<ObjectType>>,),
-                NonNull<NSOrderedCollectionChange<AnyObject>>,
+                dyn Fn(
+                        NonNull<NSOrderedCollectionChange<ObjectType>>,
+                    ) -> NonNull<NSOrderedCollectionChange<AnyObject>>
+                    + '_,
             >,
         ) -> Id<NSOrderedCollectionDifference<AnyObject>>;
 

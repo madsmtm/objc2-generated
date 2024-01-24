@@ -27,10 +27,10 @@ extern_methods!(
         pub unsafe fn identifier(&self) -> Id<NSString>;
 
         #[method(expirationHandler)]
-        pub unsafe fn expirationHandler(&self) -> *mut Block<(), ()>;
+        pub unsafe fn expirationHandler(&self) -> *mut Block<dyn Fn()>;
 
         #[method(setExpirationHandler:)]
-        pub unsafe fn setExpirationHandler(&self, expiration_handler: Option<&Block<(), ()>>);
+        pub unsafe fn setExpirationHandler(&self, expiration_handler: Option<&Block<dyn Fn()>>);
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

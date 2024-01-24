@@ -5,9 +5,9 @@ use crate::CloudKit::*;
 use crate::CoreLocation::*;
 use crate::Foundation::*;
 
-pub type CKSharePreparationCompletionHandler = *mut Block<(*mut CKShare, *mut NSError), ()>;
+pub type CKSharePreparationCompletionHandler = *mut Block<dyn Fn(*mut CKShare, *mut NSError)>;
 
-pub type CKSharePreparationHandler = *mut Block<(CKSharePreparationCompletionHandler,), ()>;
+pub type CKSharePreparationHandler = *mut Block<dyn Fn(CKSharePreparationCompletionHandler)>;
 
 extern_methods!(
     /// CKSharingSupport

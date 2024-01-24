@@ -73,7 +73,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(saveWithCompletion:)]
-        pub unsafe fn saveWithCompletion(&self, completion: Option<&Block<(*mut NSError,), ()>>);
+        pub unsafe fn saveWithCompletion(&self, completion: Option<&Block<dyn Fn(*mut NSError)>>);
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(completeAllAssignedActivitiesMatching:)]
@@ -98,7 +98,7 @@ extern_methods!(
         pub unsafe fn contextsMatchingPredicate_completion(
             &self,
             predicate: &NSPredicate,
-            completion: &Block<(NonNull<NSArray<CLSContext>>, *mut NSError), ()>,
+            completion: &Block<dyn Fn(NonNull<NSArray<CLSContext>>, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -111,7 +111,7 @@ extern_methods!(
         pub unsafe fn contextsMatchingIdentifierPath_completion(
             &self,
             identifier_path: &NSArray<NSString>,
-            completion: &Block<(NonNull<NSArray<CLSContext>>, *mut NSError), ()>,
+            completion: &Block<dyn Fn(NonNull<NSArray<CLSContext>>, *mut NSError)>,
         );
 
         #[cfg(feature = "ClassKit_CLSContext")]
@@ -127,7 +127,7 @@ extern_methods!(
         pub unsafe fn fetchActivityForURL_completion(
             &self,
             url: &NSURL,
-            completion: &Block<(*mut CLSActivity, *mut NSError), ()>,
+            completion: &Block<dyn Fn(*mut CLSActivity, *mut NSError)>,
         );
     }
 );

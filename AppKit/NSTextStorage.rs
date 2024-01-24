@@ -171,7 +171,7 @@ extern_protocol!(
         unsafe fn performEditingTransactionForTextStorage_usingBlock(
             &self,
             text_storage: &NSTextStorage,
-            transaction: &Block<(), ()>,
+            transaction: &Block<dyn Fn() + '_>,
         );
     }
 

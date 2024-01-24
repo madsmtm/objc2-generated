@@ -53,7 +53,7 @@ extern_methods!(
         #[method(perRecordZoneCompletionBlock)]
         pub unsafe fn perRecordZoneCompletionBlock(
             &self,
-        ) -> *mut Block<(NonNull<CKRecordZoneID>, *mut CKRecordZone, *mut NSError), ()>;
+        ) -> *mut Block<dyn Fn(NonNull<CKRecordZoneID>, *mut CKRecordZone, *mut NSError)>;
 
         #[cfg(all(
             feature = "CloudKit_CKRecordZone",
@@ -64,7 +64,7 @@ extern_methods!(
         pub unsafe fn setPerRecordZoneCompletionBlock(
             &self,
             per_record_zone_completion_block: Option<
-                &Block<(NonNull<CKRecordZoneID>, *mut CKRecordZone, *mut NSError), ()>,
+                &Block<dyn Fn(NonNull<CKRecordZoneID>, *mut CKRecordZone, *mut NSError)>,
             >,
         );
 
@@ -77,13 +77,7 @@ extern_methods!(
         #[method(fetchRecordZonesCompletionBlock)]
         pub unsafe fn fetchRecordZonesCompletionBlock(
             &self,
-        ) -> *mut Block<
-            (
-                *mut NSDictionary<CKRecordZoneID, CKRecordZone>,
-                *mut NSError,
-            ),
-            (),
-        >;
+        ) -> *mut Block<dyn Fn(*mut NSDictionary<CKRecordZoneID, CKRecordZone>, *mut NSError)>;
 
         #[cfg(all(
             feature = "CloudKit_CKRecordZone",
@@ -95,13 +89,7 @@ extern_methods!(
         pub unsafe fn setFetchRecordZonesCompletionBlock(
             &self,
             fetch_record_zones_completion_block: Option<
-                &Block<
-                    (
-                        *mut NSDictionary<CKRecordZoneID, CKRecordZone>,
-                        *mut NSError,
-                    ),
-                    (),
-                >,
+                &Block<dyn Fn(*mut NSDictionary<CKRecordZoneID, CKRecordZone>, *mut NSError)>,
             >,
         );
     }

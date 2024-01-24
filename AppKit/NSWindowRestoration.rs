@@ -16,7 +16,7 @@ extern_protocol!(
         unsafe fn restoreWindowWithIdentifier_state_completionHandler(
             identifier: &NSUserInterfaceItemIdentifier,
             state: &NSCoder,
-            completion_handler: &Block<(*mut NSWindow, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSWindow, *mut NSError)>,
             mtm: MainThreadMarker,
         );
     }
@@ -47,7 +47,7 @@ extern_methods!(
             &self,
             identifier: &NSUserInterfaceItemIdentifier,
             state: &NSCoder,
-            completion_handler: &Block<(*mut NSWindow, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSWindow, *mut NSError)>,
         ) -> bool;
     }
 );
@@ -143,7 +143,7 @@ extern_methods!(
             &self,
             identifier: &NSUserInterfaceItemIdentifier,
             state: &NSCoder,
-            completion_handler: &Block<(*mut NSWindow, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSWindow, *mut NSError)>,
         );
 
         #[cfg(feature = "Foundation_NSCoder")]

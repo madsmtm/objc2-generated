@@ -80,13 +80,12 @@ extern_methods!(
             this: Allocated<Self>,
             electrocardiogram: &HKElectrocardiogram,
             data_handler: &Block<
-                (
+                dyn Fn(
                     NonNull<HKElectrocardiogramQuery>,
                     *mut HKElectrocardiogramVoltageMeasurement,
                     Bool,
                     *mut NSError,
                 ),
-                (),
             >,
         ) -> Id<Self>;
     }

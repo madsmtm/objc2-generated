@@ -7,7 +7,7 @@ use crate::CoreLocation::*;
 use crate::Foundation::*;
 use crate::MapKit::*;
 
-pub type MKMapSnapshotCompletionHandler = *mut Block<(*mut MKMapSnapshot, *mut NSError), ()>;
+pub type MKMapSnapshotCompletionHandler = *mut Block<dyn Fn(*mut MKMapSnapshot, *mut NSError)>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

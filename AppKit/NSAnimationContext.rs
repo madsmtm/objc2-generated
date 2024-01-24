@@ -25,12 +25,12 @@ extern_methods!(
     unsafe impl NSAnimationContext {
         #[method(runAnimationGroup:completionHandler:)]
         pub unsafe fn runAnimationGroup_completionHandler(
-            changes: &Block<(NonNull<NSAnimationContext>,), ()>,
-            completion_handler: Option<&Block<(), ()>>,
+            changes: &Block<dyn Fn(NonNull<NSAnimationContext>) + '_>,
+            completion_handler: Option<&Block<dyn Fn()>>,
         );
 
         #[method(runAnimationGroup:)]
-        pub unsafe fn runAnimationGroup(changes: &Block<(NonNull<NSAnimationContext>,), ()>);
+        pub unsafe fn runAnimationGroup(changes: &Block<dyn Fn(NonNull<NSAnimationContext>) + '_>);
 
         #[method(beginGrouping)]
         pub unsafe fn beginGrouping();
@@ -48,10 +48,10 @@ extern_methods!(
         pub unsafe fn setDuration(&self, duration: NSTimeInterval);
 
         #[method(completionHandler)]
-        pub unsafe fn completionHandler(&self) -> *mut Block<(), ()>;
+        pub unsafe fn completionHandler(&self) -> *mut Block<dyn Fn()>;
 
         #[method(setCompletionHandler:)]
-        pub unsafe fn setCompletionHandler(&self, completion_handler: Option<&Block<(), ()>>);
+        pub unsafe fn setCompletionHandler(&self, completion_handler: Option<&Block<dyn Fn()>>);
 
         #[method(allowsImplicitAnimation)]
         pub unsafe fn allowsImplicitAnimation(&self) -> bool;

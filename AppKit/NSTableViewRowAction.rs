@@ -39,7 +39,7 @@ extern_methods!(
         pub unsafe fn rowActionWithStyle_title_handler(
             style: NSTableViewRowActionStyle,
             title: &NSString,
-            handler: &Block<(NonNull<NSTableViewRowAction>, NSInteger), ()>,
+            handler: &Block<dyn Fn(NonNull<NSTableViewRowAction>, NSInteger)>,
         ) -> Id<Self>;
 
         #[method(style)]

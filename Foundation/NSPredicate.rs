@@ -49,7 +49,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other predicateWithBlock:)]
         pub unsafe fn predicateWithBlock(
-            block: &Block<(*mut AnyObject, *mut NSDictionary<NSString, AnyObject>), Bool>,
+            block: &Block<dyn Fn(*mut AnyObject, *mut NSDictionary<NSString, AnyObject>) -> Bool>,
         ) -> Id<NSPredicate>;
 
         #[cfg(feature = "Foundation_NSString")]

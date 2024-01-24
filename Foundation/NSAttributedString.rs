@@ -150,12 +150,11 @@ extern_methods!(
             enumeration_range: NSRange,
             opts: NSAttributedStringEnumerationOptions,
             block: &Block<
-                (
-                    NonNull<NSDictionary<NSAttributedStringKey, AnyObject>>,
-                    NSRange,
-                    NonNull<Bool>,
-                ),
-                (),
+                dyn Fn(
+                        NonNull<NSDictionary<NSAttributedStringKey, AnyObject>>,
+                        NSRange,
+                        NonNull<Bool>,
+                    ) + '_,
             >,
         );
 
@@ -165,7 +164,7 @@ extern_methods!(
             attr_name: &NSAttributedStringKey,
             enumeration_range: NSRange,
             opts: NSAttributedStringEnumerationOptions,
-            block: &Block<(*mut AnyObject, NSRange, NonNull<Bool>), ()>,
+            block: &Block<dyn Fn(*mut AnyObject, NSRange, NonNull<Bool>) + '_>,
         );
     }
 );

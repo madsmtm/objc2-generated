@@ -40,7 +40,7 @@ extern_methods!(
         #[method(eventHandler)]
         pub unsafe fn eventHandler(
             &self,
-        ) -> NonNull<Block<(NonNull<CLMonitor>, NonNull<CLMonitoringEvent>), ()>>;
+        ) -> NonNull<Block<dyn Fn(NonNull<CLMonitor>, NonNull<CLMonitoringEvent>)>>;
     }
 );
 

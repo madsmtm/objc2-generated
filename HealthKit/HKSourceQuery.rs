@@ -38,8 +38,7 @@ extern_methods!(
             sample_type: &HKSampleType,
             object_predicate: Option<&NSPredicate>,
             completion_handler: &Block<
-                (NonNull<HKSourceQuery>, *mut NSSet<HKSource>, *mut NSError),
-                (),
+                dyn Fn(NonNull<HKSourceQuery>, *mut NSSet<HKSource>, *mut NSError),
             >,
         ) -> Id<Self>;
     }

@@ -56,7 +56,7 @@ extern_methods!(
         pub unsafe fn loadProductWithParameters_completionBlock(
             &self,
             parameters: &NSDictionary<NSString, AnyObject>,
-            block: Option<&Block<(Bool, *mut NSError), ()>>,
+            block: Option<&Block<dyn Fn(Bool, *mut NSError)>>,
         );
 
         #[cfg(all(
@@ -70,7 +70,7 @@ extern_methods!(
             &self,
             parameters: &NSDictionary<NSString, AnyObject>,
             impression: &SKAdImpression,
-            block: Option<&Block<(Bool, *mut NSError), ()>>,
+            block: Option<&Block<dyn Fn(Bool, *mut NSError)>>,
         );
     }
 );

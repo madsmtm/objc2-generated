@@ -16,7 +16,7 @@ extern_protocol!(
             &self,
             capabilities_query_request: &ILMessageFilterCapabilitiesQueryRequest,
             context: &ILMessageFilterExtensionContext,
-            completion: &Block<(NonNull<ILMessageFilterCapabilitiesQueryResponse>,), ()>,
+            completion: &Block<dyn Fn(NonNull<ILMessageFilterCapabilitiesQueryResponse>)>,
         );
     }
 

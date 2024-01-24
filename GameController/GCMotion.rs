@@ -41,7 +41,7 @@ extern_struct!(
     }
 );
 
-pub type GCMotionValueChangedHandler = *mut Block<(NonNull<GCMotion>,), ()>;
+pub type GCMotionValueChangedHandler = *mut Block<dyn Fn(NonNull<GCMotion>)>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

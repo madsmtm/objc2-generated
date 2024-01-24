@@ -84,7 +84,7 @@ extern_methods!(
         pub unsafe fn beginCollectionWithStartDate_completion(
             &self,
             start_date: &NSDate,
-            completion: &Block<(Bool, *mut NSError), ()>,
+            completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -96,7 +96,7 @@ extern_methods!(
         pub unsafe fn addSamples_completion(
             &self,
             samples: &NSArray<HKSample>,
-            completion: &Block<(Bool, *mut NSError), ()>,
+            completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -108,7 +108,7 @@ extern_methods!(
         pub unsafe fn addWorkoutEvents_completion(
             &self,
             workout_events: &NSArray<HKWorkoutEvent>,
-            completion: &Block<(Bool, *mut NSError), ()>,
+            completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -120,7 +120,7 @@ extern_methods!(
         pub unsafe fn addMetadata_completion(
             &self,
             metadata: &NSDictionary<NSString, AnyObject>,
-            completion: &Block<(Bool, *mut NSError), ()>,
+            completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -131,7 +131,7 @@ extern_methods!(
         pub unsafe fn addWorkoutActivity_completion(
             &self,
             workout_activity: &HKWorkoutActivity,
-            completion: &Block<(Bool, *mut NSError), ()>,
+            completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -144,7 +144,7 @@ extern_methods!(
             &self,
             uuid: &NSUUID,
             end_date: &NSDate,
-            completion: &Block<(Bool, *mut NSError), ()>,
+            completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -158,7 +158,7 @@ extern_methods!(
             &self,
             uuid: &NSUUID,
             metadata: &NSDictionary<NSString, AnyObject>,
-            completion: &Block<(Bool, *mut NSError), ()>,
+            completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSError"))]
@@ -166,14 +166,14 @@ extern_methods!(
         pub unsafe fn endCollectionWithEndDate_completion(
             &self,
             end_date: &NSDate,
-            completion: &Block<(Bool, *mut NSError), ()>,
+            completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "HealthKit_HKWorkout"))]
         #[method(finishWorkoutWithCompletion:)]
         pub unsafe fn finishWorkoutWithCompletion(
             &self,
-            completion: &Block<(*mut HKWorkout, *mut NSError), ()>,
+            completion: &Block<dyn Fn(*mut HKWorkout, *mut NSError)>,
         );
 
         #[method(discardWorkout)]

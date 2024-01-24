@@ -67,7 +67,7 @@ extern_methods!(
         pub unsafe fn requestAuthorizationWithOptions_completionHandler(
             &self,
             options: UNAuthorizationOptions,
-            completion_handler: &Block<(Bool, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -84,14 +84,14 @@ extern_methods!(
         #[method(getNotificationCategoriesWithCompletionHandler:)]
         pub unsafe fn getNotificationCategoriesWithCompletionHandler(
             &self,
-            completion_handler: &Block<(NonNull<NSSet<UNNotificationCategory>>,), ()>,
+            completion_handler: &Block<dyn Fn(NonNull<NSSet<UNNotificationCategory>>)>,
         );
 
         #[cfg(feature = "UserNotifications_UNNotificationSettings")]
         #[method(getNotificationSettingsWithCompletionHandler:)]
         pub unsafe fn getNotificationSettingsWithCompletionHandler(
             &self,
-            completion_handler: &Block<(NonNull<UNNotificationSettings>,), ()>,
+            completion_handler: &Block<dyn Fn(NonNull<UNNotificationSettings>)>,
         );
 
         #[cfg(all(
@@ -102,7 +102,7 @@ extern_methods!(
         pub unsafe fn addNotificationRequest_withCompletionHandler(
             &self,
             request: &UNNotificationRequest,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(all(
@@ -112,7 +112,7 @@ extern_methods!(
         #[method(getPendingNotificationRequestsWithCompletionHandler:)]
         pub unsafe fn getPendingNotificationRequestsWithCompletionHandler(
             &self,
-            completion_handler: &Block<(NonNull<NSArray<UNNotificationRequest>>,), ()>,
+            completion_handler: &Block<dyn Fn(NonNull<NSArray<UNNotificationRequest>>)>,
         );
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
@@ -132,7 +132,7 @@ extern_methods!(
         #[method(getDeliveredNotificationsWithCompletionHandler:)]
         pub unsafe fn getDeliveredNotificationsWithCompletionHandler(
             &self,
-            completion_handler: &Block<(NonNull<NSArray<UNNotification>>,), ()>,
+            completion_handler: &Block<dyn Fn(NonNull<NSArray<UNNotification>>)>,
         );
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
@@ -150,7 +150,7 @@ extern_methods!(
         pub unsafe fn setBadgeCount_withCompletionHandler(
             &self,
             new_badge_count: NSInteger,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
     }
 );
@@ -190,7 +190,7 @@ extern_protocol!(
             &self,
             center: &UNUserNotificationCenter,
             notification: &UNNotification,
-            completion_handler: &Block<(UNNotificationPresentationOptions,), ()>,
+            completion_handler: &Block<dyn Fn(UNNotificationPresentationOptions)>,
         );
 
         #[cfg(all(
@@ -203,7 +203,7 @@ extern_protocol!(
             &self,
             center: &UNUserNotificationCenter,
             response: &UNNotificationResponse,
-            completion_handler: &Block<(), ()>,
+            completion_handler: &Block<dyn Fn()>,
         );
 
         #[cfg(all(

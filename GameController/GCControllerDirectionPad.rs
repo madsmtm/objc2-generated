@@ -6,7 +6,7 @@ use crate::Foundation::*;
 use crate::GameController::*;
 
 pub type GCControllerDirectionPadValueChangedHandler =
-    *mut Block<(NonNull<GCControllerDirectionPad>, c_float, c_float), ()>;
+    *mut Block<dyn Fn(NonNull<GCControllerDirectionPad>, c_float, c_float)>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

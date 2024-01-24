@@ -303,7 +303,7 @@ extern_methods!(
         pub unsafe fn initWithBoundsSize_requestHandler(
             this: Allocated<Self>,
             bounds_size: CGSize,
-            request_handler: &Block<(CGSize,), NonNull<NSImage>>,
+            request_handler: &Block<dyn Fn(CGSize) -> NonNull<NSImage>>,
         ) -> Id<Self>;
 
         #[cfg(feature = "AppKit_NSImage")]

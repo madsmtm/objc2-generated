@@ -69,7 +69,7 @@ extern_methods!(
             &self,
             policy: LAPolicy,
             localized_reason: &NSString,
-            reply: &Block<(Bool, *mut NSError), ()>,
+            reply: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[method(invalidate)]

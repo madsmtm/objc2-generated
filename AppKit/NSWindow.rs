@@ -942,14 +942,14 @@ extern_methods!(
         pub unsafe fn beginSheet_completionHandler(
             &self,
             sheet_window: &NSWindow,
-            handler: Option<&Block<(NSModalResponse,), ()>>,
+            handler: Option<&Block<dyn Fn(NSModalResponse)>>,
         );
 
         #[method(beginCriticalSheet:completionHandler:)]
         pub unsafe fn beginCriticalSheet_completionHandler(
             &self,
             sheet_window: &NSWindow,
-            handler: Option<&Block<(NSModalResponse,), ()>>,
+            handler: Option<&Block<dyn Fn(NSModalResponse)>>,
         );
 
         #[method(endSheet:)]
@@ -1208,7 +1208,7 @@ extern_methods!(
         pub unsafe fn transferWindowSharingToWindow_completionHandler(
             &self,
             window: &NSWindow,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[method(hasActiveWindowSharingSession)]
@@ -1248,7 +1248,7 @@ extern_methods!(
             mask: NSEventMask,
             timeout: NSTimeInterval,
             mode: &NSRunLoopMode,
-            tracking_handler: &Block<(*mut NSEvent, NonNull<Bool>), ()>,
+            tracking_handler: &Block<dyn Fn(*mut NSEvent, NonNull<Bool>) + '_>,
         );
 
         #[cfg(feature = "AppKit_NSEvent")]

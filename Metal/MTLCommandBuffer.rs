@@ -122,7 +122,8 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn MTLCommandBufferEncoderInfo {}
 );
 
-pub type MTLCommandBufferHandler = *mut Block<(NonNull<ProtocolObject<dyn MTLCommandBuffer>>,), ()>;
+pub type MTLCommandBufferHandler =
+    *mut Block<dyn Fn(NonNull<ProtocolObject<dyn MTLCommandBuffer>>)>;
 
 ns_enum!(
     #[underlying(NSUInteger)]

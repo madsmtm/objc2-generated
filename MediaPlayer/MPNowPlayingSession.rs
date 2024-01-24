@@ -106,7 +106,7 @@ extern_methods!(
         #[method(becomeActiveIfPossibleWithCompletion:)]
         pub unsafe fn becomeActiveIfPossibleWithCompletion(
             &self,
-            completion: Option<&Block<(Bool,), ()>>,
+            completion: Option<&Block<dyn Fn(Bool)>>,
         );
 
         #[cfg(feature = "AVFoundation_AVPlayer")]

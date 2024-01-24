@@ -41,7 +41,7 @@ extern_methods!(
 
         #[method(requestAuthorization:)]
         pub unsafe fn requestAuthorization(
-            handler: &Block<(SFSpeechRecognizerAuthorizationStatus,), ()>,
+            handler: &Block<dyn Fn(SFSpeechRecognizerAuthorizationStatus)>,
         );
 
         #[method_id(@__retain_semantics Init init)]
@@ -90,7 +90,7 @@ extern_methods!(
         pub unsafe fn recognitionTaskWithRequest_resultHandler(
             &self,
             request: &SFSpeechRecognitionRequest,
-            result_handler: &Block<(*mut SFSpeechRecognitionResult, *mut NSError), ()>,
+            result_handler: &Block<dyn Fn(*mut SFSpeechRecognitionResult, *mut NSError)>,
         ) -> Id<SFSpeechRecognitionTask>;
 
         #[cfg(all(

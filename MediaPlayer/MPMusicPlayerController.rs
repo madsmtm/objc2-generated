@@ -146,7 +146,7 @@ extern_methods!(
         #[method(prepareToPlayWithCompletionHandler:)]
         pub unsafe fn prepareToPlayWithCompletionHandler(
             &self,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[method(skipToNextItem)]

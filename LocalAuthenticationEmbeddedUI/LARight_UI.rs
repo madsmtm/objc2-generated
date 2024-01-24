@@ -16,7 +16,7 @@ extern_methods!(
             &self,
             localized_reason: &NSString,
             presentation_context: &LAPresentationContext,
-            handler: &Block<(*mut NSError,), ()>,
+            handler: &Block<dyn Fn(*mut NSError)>,
         );
     }
 );

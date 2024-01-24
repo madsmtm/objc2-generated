@@ -33,8 +33,7 @@ extern_protocol!(
             download: &BADownload,
             challenge: &NSURLAuthenticationChallenge,
             completion_handler: &Block<
-                (NSURLSessionAuthChallengeDisposition, *mut NSURLCredential),
-                (),
+                dyn Fn(NSURLSessionAuthChallengeDisposition, *mut NSURLCredential),
             >,
         );
 

@@ -34,7 +34,7 @@ extern_methods!(
         pub unsafe fn requestTransaction_completion(
             &self,
             transaction: &CXTransaction,
-            completion: &Block<(*mut NSError,), ()>,
+            completion: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(
@@ -46,7 +46,7 @@ extern_methods!(
         pub unsafe fn requestTransactionWithActions_completion(
             &self,
             actions: &NSArray<CXAction>,
-            completion: &Block<(*mut NSError,), ()>,
+            completion: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "CallKit_CXAction", feature = "Foundation_NSError"))]
@@ -54,7 +54,7 @@ extern_methods!(
         pub unsafe fn requestTransactionWithAction_completion(
             &self,
             action: &CXAction,
-            completion: &Block<(*mut NSError,), ()>,
+            completion: &Block<dyn Fn(*mut NSError)>,
         );
     }
 );

@@ -96,8 +96,7 @@ extern_protocol!(
             &self,
             session: &MEComposeSession,
             completion_handler: &Block<
-                (NonNull<NSDictionary<MEEmailAddress, MEAddressAnnotation>>,),
-                (),
+                dyn Fn(NonNull<NSDictionary<MEEmailAddress, MEAddressAnnotation>>),
             >,
         );
 
@@ -107,7 +106,7 @@ extern_protocol!(
         unsafe fn session_canSendMessageWithCompletionHandler(
             &self,
             session: &MEComposeSession,
-            completion: &Block<(*mut NSError,), ()>,
+            completion: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(

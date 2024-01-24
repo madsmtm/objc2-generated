@@ -140,7 +140,7 @@ extern_methods!(
             &self,
             protection_space: &NSURLProtectionSpace,
             task: &NSURLSessionTask,
-            completion_handler: &Block<(*mut NSDictionary<NSString, NSURLCredential>,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSDictionary<NSString, NSURLCredential>)>,
         );
 
         #[cfg(all(
@@ -182,7 +182,7 @@ extern_methods!(
             &self,
             space: &NSURLProtectionSpace,
             task: &NSURLSessionTask,
-            completion_handler: &Block<(*mut NSURLCredential,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSURLCredential)>,
         );
 
         #[cfg(all(

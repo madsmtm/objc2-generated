@@ -35,11 +35,11 @@ extern_methods!(
             this: Allocated<Self>,
             size: NSSize,
             drawing_handler_should_be_called_with_flipped_context: bool,
-            drawing_handler: &Block<(NSRect,), Bool>,
+            drawing_handler: &Block<dyn Fn(NSRect) -> Bool>,
         ) -> Id<Self>;
 
         #[method(drawingHandler)]
-        pub unsafe fn drawingHandler(&self) -> *mut Block<(NSRect,), Bool>;
+        pub unsafe fn drawingHandler(&self) -> *mut Block<dyn Fn(NSRect) -> Bool>;
 
         #[method_id(@__retain_semantics Init initWithDrawSelector:delegate:)]
         pub unsafe fn initWithDrawSelector_delegate(

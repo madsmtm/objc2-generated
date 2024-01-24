@@ -41,7 +41,7 @@ extern_methods!(
             &self,
             product: &SKProduct,
             completion_handler: Option<
-                &Block<(SKProductStorePromotionVisibility, *mut NSError), ()>,
+                &Block<dyn Fn(SKProductStorePromotionVisibility, *mut NSError)>,
             >,
         );
 
@@ -51,7 +51,7 @@ extern_methods!(
             &self,
             promotion_visibility: SKProductStorePromotionVisibility,
             product: &SKProduct,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(all(
@@ -62,7 +62,7 @@ extern_methods!(
         #[method(fetchStorePromotionOrderWithCompletionHandler:)]
         pub unsafe fn fetchStorePromotionOrderWithCompletionHandler(
             &self,
-            completion_handler: Option<&Block<(NonNull<NSArray<SKProduct>>, *mut NSError), ()>>,
+            completion_handler: Option<&Block<dyn Fn(NonNull<NSArray<SKProduct>>, *mut NSError)>>,
         );
 
         #[cfg(all(
@@ -74,7 +74,7 @@ extern_methods!(
         pub unsafe fn updateStorePromotionOrder_completionHandler(
             &self,
             promotion_order: &NSArray<SKProduct>,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
     }
 );

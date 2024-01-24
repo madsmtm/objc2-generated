@@ -8,7 +8,7 @@ use crate::Foundation::*;
 use crate::MapKit::*;
 
 pub type MKLocalSearchCompletionHandler =
-    *mut Block<(*mut MKLocalSearchResponse, *mut NSError), ()>;
+    *mut Block<dyn Fn(*mut MKLocalSearchResponse, *mut NSError)>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

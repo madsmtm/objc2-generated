@@ -33,13 +33,13 @@ extern_methods!(
         #[method(reloadContentBlockerWithIdentifier:completionHandler:)]
         pub unsafe fn reloadContentBlockerWithIdentifier_completionHandler(
             identifier: &NSString,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(reloadVisibleMessagesWithCompletionHandler:)]
         pub unsafe fn reloadVisibleMessagesWithCompletionHandler(
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
     }
 );

@@ -46,14 +46,14 @@ extern_methods!(
         #[method(loadRecentPlayersWithCompletionHandler:)]
         pub unsafe fn loadRecentPlayersWithCompletionHandler(
             &self,
-            completion_handler: Option<&Block<(*mut NSArray<GKPlayer>, *mut NSError), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSArray<GKPlayer>, *mut NSError)>>,
         );
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSError"))]
         #[method(loadChallengableFriendsWithCompletionHandler:)]
         pub unsafe fn loadChallengableFriendsWithCompletionHandler(
             &self,
-            completion_handler: Option<&Block<(*mut NSArray<GKPlayer>, *mut NSError), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSArray<GKPlayer>, *mut NSError)>>,
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
@@ -61,14 +61,14 @@ extern_methods!(
         pub unsafe fn setDefaultLeaderboardIdentifier_completionHandler(
             &self,
             leaderboard_identifier: &NSString,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method(loadDefaultLeaderboardIdentifierWithCompletionHandler:)]
         pub unsafe fn loadDefaultLeaderboardIdentifierWithCompletionHandler(
             &self,
-            completion_handler: Option<&Block<(*mut NSString, *mut NSError), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSString, *mut NSError)>>,
         );
 
         #[cfg(all(
@@ -80,7 +80,7 @@ extern_methods!(
         pub unsafe fn fetchItemsForIdentityVerificationSignature(
             &self,
             completion_handler: Option<
-                &Block<(*mut NSURL, *mut NSData, *mut NSData, u64, *mut NSError), ()>,
+                &Block<dyn Fn(*mut NSURL, *mut NSData, *mut NSData, u64, *mut NSError)>,
             >,
         );
     }
@@ -147,7 +147,7 @@ extern_methods!(
         pub unsafe fn setDefaultLeaderboardCategoryID_completionHandler(
             &self,
             category_id: Option<&NSString>,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
@@ -155,7 +155,7 @@ extern_methods!(
         #[method(loadDefaultLeaderboardCategoryIDWithCompletionHandler:)]
         pub unsafe fn loadDefaultLeaderboardCategoryIDWithCompletionHandler(
             &self,
-            completion_handler: Option<&Block<(*mut NSString, *mut NSError), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSString, *mut NSError)>>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
@@ -163,7 +163,7 @@ extern_methods!(
         #[method(authenticateWithCompletionHandler:)]
         pub unsafe fn authenticateWithCompletionHandler(
             &self,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(all(
@@ -175,7 +175,7 @@ extern_methods!(
         #[method(loadFriendPlayersWithCompletionHandler:)]
         pub unsafe fn loadFriendPlayersWithCompletionHandler(
             &self,
-            completion_handler: Option<&Block<(*mut NSArray<GKPlayer>, *mut NSError), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSArray<GKPlayer>, *mut NSError)>>,
         );
 
         #[cfg(all(
@@ -188,7 +188,7 @@ extern_methods!(
         pub unsafe fn generateIdentityVerificationSignatureWithCompletionHandler(
             &self,
             completion_handler: Option<
-                &Block<(*mut NSURL, *mut NSData, *mut NSData, u64, *mut NSError), ()>,
+                &Block<dyn Fn(*mut NSURL, *mut NSData, *mut NSData, u64, *mut NSError)>,
             >,
         );
     }
@@ -207,7 +207,7 @@ extern_methods!(
         #[method(loadFriendsWithCompletionHandler:)]
         pub unsafe fn loadFriendsWithCompletionHandler(
             &self,
-            completion_handler: Option<&Block<(*mut NSArray<NSString>, *mut NSError), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSArray<NSString>, *mut NSError)>>,
         );
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
@@ -235,7 +235,7 @@ extern_methods!(
         #[method(loadFriendsAuthorizationStatus:)]
         pub unsafe fn loadFriendsAuthorizationStatus(
             &self,
-            completion_handler: &Block<(GKFriendsAuthorizationStatus, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(GKFriendsAuthorizationStatus, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -246,7 +246,7 @@ extern_methods!(
         #[method(loadFriends:)]
         pub unsafe fn loadFriends(
             &self,
-            completion_handler: &Block<(*mut NSArray<GKPlayer>, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSArray<GKPlayer>, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -259,7 +259,7 @@ extern_methods!(
         pub unsafe fn loadFriendsWithIdentifiers_completionHandler(
             &self,
             identifiers: &NSArray<NSString>,
-            completion_handler: &Block<(*mut NSArray<GKPlayer>, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSArray<GKPlayer>, *mut NSError)>,
         );
     }
 );
@@ -273,13 +273,13 @@ extern_methods!(
         pub unsafe fn authenticateHandler(
             &self,
             mtm: MainThreadMarker,
-        ) -> *mut Block<(*mut NSViewController, *mut NSError), ()>;
+        ) -> *mut Block<dyn Fn(*mut NSViewController, *mut NSError)>;
 
         #[cfg(all(feature = "AppKit_NSViewController", feature = "Foundation_NSError"))]
         #[method(setAuthenticateHandler:)]
         pub unsafe fn setAuthenticateHandler(
             &self,
-            authenticate_handler: Option<&Block<(*mut NSViewController, *mut NSError), ()>>,
+            authenticate_handler: Option<&Block<dyn Fn(*mut NSViewController, *mut NSError)>>,
         );
 
         #[method(isPresentingFriendRequestViewController)]

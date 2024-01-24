@@ -316,7 +316,7 @@ extern_methods!(
         pub unsafe fn sendAsynchronousRequest_queue_completionHandler(
             request: &NSURLRequest,
             queue: &NSOperationQueue,
-            handler: &Block<(*mut NSURLResponse, *mut NSData, *mut NSError), ()>,
+            handler: &Block<dyn Fn(*mut NSURLResponse, *mut NSData, *mut NSError)>,
         );
     }
 );

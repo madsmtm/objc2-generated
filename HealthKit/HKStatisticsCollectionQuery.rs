@@ -37,7 +37,7 @@ extern_methods!(
             &self,
             start_date: &NSDate,
             end_date: &NSDate,
-            block: &Block<(NonNull<HKStatistics>, NonNull<Bool>), ()>,
+            block: &Block<dyn Fn(NonNull<HKStatistics>, NonNull<Bool>)>,
         );
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "HealthKit_HKStatistics"))]
@@ -97,12 +97,7 @@ extern_methods!(
         pub unsafe fn initialResultsHandler(
             &self,
         ) -> *mut Block<
-            (
-                NonNull<HKStatisticsCollectionQuery>,
-                *mut HKStatisticsCollection,
-                *mut NSError,
-            ),
-            (),
+            dyn Fn(NonNull<HKStatisticsCollectionQuery>, *mut HKStatisticsCollection, *mut NSError),
         >;
 
         #[cfg(all(
@@ -114,12 +109,11 @@ extern_methods!(
             &self,
             initial_results_handler: Option<
                 &Block<
-                    (
+                    dyn Fn(
                         NonNull<HKStatisticsCollectionQuery>,
                         *mut HKStatisticsCollection,
                         *mut NSError,
                     ),
-                    (),
                 >,
             >,
         );
@@ -133,13 +127,12 @@ extern_methods!(
         pub unsafe fn statisticsUpdateHandler(
             &self,
         ) -> *mut Block<
-            (
+            dyn Fn(
                 NonNull<HKStatisticsCollectionQuery>,
                 *mut HKStatistics,
                 *mut HKStatisticsCollection,
                 *mut NSError,
             ),
-            (),
         >;
 
         #[cfg(all(
@@ -152,13 +145,12 @@ extern_methods!(
             &self,
             statistics_update_handler: Option<
                 &Block<
-                    (
+                    dyn Fn(
                         NonNull<HKStatisticsCollectionQuery>,
                         *mut HKStatistics,
                         *mut HKStatisticsCollection,
                         *mut NSError,
                     ),
-                    (),
                 >,
             >,
         );

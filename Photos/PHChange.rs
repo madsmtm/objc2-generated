@@ -186,7 +186,10 @@ extern_methods!(
         pub unsafe fn changedObjects(&self) -> Id<NSArray<ObjectType>>;
 
         #[method(enumerateMovesWithBlock:)]
-        pub unsafe fn enumerateMovesWithBlock(&self, handler: &Block<(NSUInteger, NSUInteger), ()>);
+        pub unsafe fn enumerateMovesWithBlock(
+            &self,
+            handler: &Block<dyn Fn(NSUInteger, NSUInteger)>,
+        );
 
         #[method(hasMoves)]
         pub unsafe fn hasMoves(&self) -> bool;

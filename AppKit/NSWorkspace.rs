@@ -53,7 +53,7 @@ extern_methods!(
             &self,
             url: &NSURL,
             configuration: &NSWorkspaceOpenConfiguration,
-            completion_handler: Option<&Block<(*mut NSRunningApplication, *mut NSError), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSRunningApplication, *mut NSError)>>,
         );
 
         #[cfg(all(
@@ -69,7 +69,7 @@ extern_methods!(
             urls: &NSArray<NSURL>,
             application_url: &NSURL,
             configuration: &NSWorkspaceOpenConfiguration,
-            completion_handler: Option<&Block<(*mut NSRunningApplication, *mut NSError), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSRunningApplication, *mut NSError)>>,
         );
 
         #[cfg(all(
@@ -83,7 +83,7 @@ extern_methods!(
             &self,
             application_url: &NSURL,
             configuration: &NSWorkspaceOpenConfiguration,
-            completion_handler: Option<&Block<(*mut NSRunningApplication, *mut NSError), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSRunningApplication, *mut NSError)>>,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -149,7 +149,7 @@ extern_methods!(
         pub unsafe fn recycleURLs_completionHandler(
             &self,
             ur_ls: &NSArray<NSURL>,
-            handler: Option<&Block<(NonNull<NSDictionary<NSURL, NSURL>>, *mut NSError), ()>>,
+            handler: Option<&Block<dyn Fn(NonNull<NSDictionary<NSURL, NSURL>>, *mut NSError)>>,
         );
 
         #[cfg(all(
@@ -162,7 +162,7 @@ extern_methods!(
         pub unsafe fn duplicateURLs_completionHandler(
             &self,
             ur_ls: &NSArray<NSURL>,
-            handler: Option<&Block<(NonNull<NSDictionary<NSURL, NSURL>>, *mut NSError), ()>>,
+            handler: Option<&Block<dyn Fn(NonNull<NSDictionary<NSURL, NSURL>>, *mut NSError)>>,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -226,7 +226,7 @@ extern_methods!(
             &self,
             application_url: &NSURL,
             url: &NSURL,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(all(
@@ -239,7 +239,7 @@ extern_methods!(
             &self,
             application_url: &NSURL,
             url_scheme: &NSString,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
@@ -248,7 +248,7 @@ extern_methods!(
             &self,
             application_url: &NSURL,
             url: &NSURL,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "AppKit_NSRunningApplication")]
@@ -489,7 +489,7 @@ extern_methods!(
         pub unsafe fn requestAuthorizationOfType_completionHandler(
             &self,
             r#type: NSWorkspaceAuthorizationType,
-            completion_handler: &Block<(*mut NSWorkspaceAuthorization, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSWorkspaceAuthorization, *mut NSError)>,
         );
     }
 );

@@ -36,14 +36,13 @@ extern_methods!(
         pub unsafe fn updateHandler(
             &self,
         ) -> *mut Block<
-            (
+            dyn Fn(
                 NonNull<HKAnchoredObjectQuery>,
                 *mut NSArray<HKSample>,
                 *mut NSArray<HKDeletedObject>,
                 *mut HKQueryAnchor,
                 *mut NSError,
             ),
-            (),
         >;
 
         #[cfg(all(
@@ -58,14 +57,13 @@ extern_methods!(
             &self,
             update_handler: Option<
                 &Block<
-                    (
+                    dyn Fn(
                         NonNull<HKAnchoredObjectQuery>,
                         *mut NSArray<HKSample>,
                         *mut NSArray<HKDeletedObject>,
                         *mut HKQueryAnchor,
                         *mut NSError,
                     ),
-                    (),
                 >,
             >,
         );
@@ -87,14 +85,13 @@ extern_methods!(
             anchor: Option<&HKQueryAnchor>,
             limit: NSUInteger,
             handler: &Block<
-                (
+                dyn Fn(
                     NonNull<HKAnchoredObjectQuery>,
                     *mut NSArray<HKSample>,
                     *mut NSArray<HKDeletedObject>,
                     *mut HKQueryAnchor,
                     *mut NSError,
                 ),
-                (),
             >,
         ) -> Id<Self>;
 
@@ -114,13 +111,12 @@ extern_methods!(
             anchor: NSUInteger,
             limit: NSUInteger,
             handler: &Block<
-                (
+                dyn Fn(
                     NonNull<HKAnchoredObjectQuery>,
                     *mut NSArray<HKSample>,
                     NSUInteger,
                     *mut NSError,
                 ),
-                (),
             >,
         ) -> Id<Self>;
 
@@ -139,14 +135,13 @@ extern_methods!(
             anchor: Option<&HKQueryAnchor>,
             limit: NSInteger,
             handler: &Block<
-                (
+                dyn Fn(
                     NonNull<HKAnchoredObjectQuery>,
                     *mut NSArray<HKSample>,
                     *mut NSArray<HKDeletedObject>,
                     *mut HKQueryAnchor,
                     *mut NSError,
                 ),
-                (),
             >,
         ) -> Id<Self>;
     }

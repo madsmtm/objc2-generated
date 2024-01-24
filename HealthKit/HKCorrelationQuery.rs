@@ -55,12 +55,7 @@ extern_methods!(
             predicate: Option<&NSPredicate>,
             sample_predicates: Option<&NSDictionary<HKSampleType, NSPredicate>>,
             completion: &Block<
-                (
-                    NonNull<HKCorrelationQuery>,
-                    *mut NSArray<HKCorrelation>,
-                    *mut NSError,
-                ),
-                (),
+                dyn Fn(NonNull<HKCorrelationQuery>, *mut NSArray<HKCorrelation>, *mut NSError),
             >,
         ) -> Id<Self>;
     }

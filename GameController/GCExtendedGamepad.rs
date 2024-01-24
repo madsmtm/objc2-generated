@@ -6,7 +6,7 @@ use crate::Foundation::*;
 use crate::GameController::*;
 
 pub type GCExtendedGamepadValueChangedHandler =
-    *mut Block<(NonNull<GCExtendedGamepad>, NonNull<GCControllerElement>), ()>;
+    *mut Block<dyn Fn(NonNull<GCExtendedGamepad>, NonNull<GCControllerElement>)>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

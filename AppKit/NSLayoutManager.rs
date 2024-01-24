@@ -513,16 +513,7 @@ extern_methods!(
         pub unsafe fn enumerateLineFragmentsForGlyphRange_usingBlock(
             &self,
             glyph_range: NSRange,
-            block: &Block<
-                (
-                    NSRect,
-                    NSRect,
-                    NonNull<NSTextContainer>,
-                    NSRange,
-                    NonNull<Bool>,
-                ),
-                (),
-            >,
+            block: &Block<dyn Fn(NSRect, NSRect, NonNull<NSTextContainer>, NSRange, NonNull<Bool>)>,
         );
 
         #[cfg(feature = "AppKit_NSTextContainer")]
@@ -532,7 +523,7 @@ extern_methods!(
             glyph_range: NSRange,
             selected_range: NSRange,
             text_container: &NSTextContainer,
-            block: &Block<(NSRect, NonNull<Bool>), ()>,
+            block: &Block<dyn Fn(NSRect, NonNull<Bool>)>,
         );
 
         #[method(drawBackgroundForGlyphRange:atPoint:)]

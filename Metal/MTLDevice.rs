@@ -34,13 +34,8 @@ extern_static!(MTLDeviceRemovalRequestedNotification: &'static MTLDeviceNotifica
 
 extern_static!(MTLDeviceWasRemovedNotification: &'static MTLDeviceNotificationName);
 
-pub type MTLDeviceNotificationHandler = *mut Block<
-    (
-        NonNull<ProtocolObject<dyn MTLDevice>>,
-        NonNull<MTLDeviceNotificationName>,
-    ),
-    (),
->;
+pub type MTLDeviceNotificationHandler =
+    *mut Block<dyn Fn(NonNull<ProtocolObject<dyn MTLDevice>>, NonNull<MTLDeviceNotificationName>)>;
 
 extern_fn!(
     pub unsafe fn MTLRemoveDeviceObserver(observer: &NSObject);
@@ -195,40 +190,28 @@ extern_struct!(
 );
 
 pub type MTLNewLibraryCompletionHandler =
-    *mut Block<(*mut ProtocolObject<dyn MTLLibrary>, *mut NSError), ()>;
+    *mut Block<dyn Fn(*mut ProtocolObject<dyn MTLLibrary>, *mut NSError)>;
 
-pub type MTLNewRenderPipelineStateCompletionHandler = *mut Block<
-    (
-        *mut ProtocolObject<dyn MTLRenderPipelineState>,
-        *mut NSError,
-    ),
-    (),
->;
+pub type MTLNewRenderPipelineStateCompletionHandler =
+    *mut Block<dyn Fn(*mut ProtocolObject<dyn MTLRenderPipelineState>, *mut NSError)>;
 
 pub type MTLNewRenderPipelineStateWithReflectionCompletionHandler = *mut Block<
-    (
+    dyn Fn(
         *mut ProtocolObject<dyn MTLRenderPipelineState>,
         *mut MTLRenderPipelineReflection,
         *mut NSError,
     ),
-    (),
 >;
 
-pub type MTLNewComputePipelineStateCompletionHandler = *mut Block<
-    (
-        *mut ProtocolObject<dyn MTLComputePipelineState>,
-        *mut NSError,
-    ),
-    (),
->;
+pub type MTLNewComputePipelineStateCompletionHandler =
+    *mut Block<dyn Fn(*mut ProtocolObject<dyn MTLComputePipelineState>, *mut NSError)>;
 
 pub type MTLNewComputePipelineStateWithReflectionCompletionHandler = *mut Block<
-    (
+    dyn Fn(
         *mut ProtocolObject<dyn MTLComputePipelineState>,
         *mut MTLComputePipelineReflection,
         *mut NSError,
     ),
-    (),
 >;
 
 extern_class!(
@@ -474,7 +457,7 @@ extern_protocol!(
             pointer: NonNull<c_void>,
             length: NSUInteger,
             options: MTLResourceOptions,
-            deallocator: Option<&Block<(NonNull<c_void>, NSUInteger), ()>>,
+            deallocator: Option<&Block<dyn Fn(NonNull<c_void>, NSUInteger)>>,
         ) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(feature = "Metal_MTLDepthStencilDescriptor")]

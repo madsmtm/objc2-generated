@@ -11,7 +11,7 @@ ns_enum!(
     }
 );
 
-pub type NSBackgroundActivityCompletionHandler = *mut Block<(NSBackgroundActivityResult,), ()>;
+pub type NSBackgroundActivityCompletionHandler = *mut Block<dyn Fn(NSBackgroundActivityResult)>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -66,7 +66,7 @@ extern_methods!(
         #[method(scheduleWithBlock:)]
         pub unsafe fn scheduleWithBlock(
             &self,
-            block: &Block<(NSBackgroundActivityCompletionHandler,), ()>,
+            block: &Block<dyn Fn(NSBackgroundActivityCompletionHandler)>,
         );
 
         #[method(invalidate)]

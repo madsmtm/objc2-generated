@@ -120,14 +120,14 @@ extern_methods!(
         #[method(enumerateObjectsUsingBlock:)]
         pub unsafe fn enumerateObjectsUsingBlock(
             &self,
-            block: &Block<(NonNull<ObjectType>, NSUInteger, NonNull<Bool>), ()>,
+            block: &Block<dyn Fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>) + '_>,
         );
 
         #[method(enumerateObjectsWithOptions:usingBlock:)]
         pub unsafe fn enumerateObjectsWithOptions_usingBlock(
             &self,
             opts: NSEnumerationOptions,
-            block: &Block<(NonNull<ObjectType>, NSUInteger, NonNull<Bool>), ()>,
+            block: &Block<dyn Fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>) + '_>,
         );
 
         #[cfg(feature = "Foundation_NSIndexSet")]
@@ -136,20 +136,20 @@ extern_methods!(
             &self,
             s: &NSIndexSet,
             opts: NSEnumerationOptions,
-            block: &Block<(NonNull<ObjectType>, NSUInteger, NonNull<Bool>), ()>,
+            block: &Block<dyn Fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>) + '_>,
         );
 
         #[method(indexOfObjectPassingTest:)]
         pub unsafe fn indexOfObjectPassingTest(
             &self,
-            predicate: &Block<(NonNull<ObjectType>, NSUInteger, NonNull<Bool>), Bool>,
+            predicate: &Block<dyn Fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>) -> Bool + '_>,
         ) -> NSUInteger;
 
         #[method(indexOfObjectWithOptions:passingTest:)]
         pub unsafe fn indexOfObjectWithOptions_passingTest(
             &self,
             opts: NSEnumerationOptions,
-            predicate: &Block<(NonNull<ObjectType>, NSUInteger, NonNull<Bool>), Bool>,
+            predicate: &Block<dyn Fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>) -> Bool + '_>,
         ) -> NSUInteger;
 
         #[cfg(feature = "Foundation_NSIndexSet")]
@@ -158,14 +158,14 @@ extern_methods!(
             &self,
             s: &NSIndexSet,
             opts: NSEnumerationOptions,
-            predicate: &Block<(NonNull<ObjectType>, NSUInteger, NonNull<Bool>), Bool>,
+            predicate: &Block<dyn Fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>) -> Bool + '_>,
         ) -> NSUInteger;
 
         #[cfg(feature = "Foundation_NSIndexSet")]
         #[method_id(@__retain_semantics Other indexesOfObjectsPassingTest:)]
         pub unsafe fn indexesOfObjectsPassingTest(
             &self,
-            predicate: &Block<(NonNull<ObjectType>, NSUInteger, NonNull<Bool>), Bool>,
+            predicate: &Block<dyn Fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>) -> Bool + '_>,
         ) -> Id<NSIndexSet>;
 
         #[cfg(feature = "Foundation_NSIndexSet")]
@@ -173,7 +173,7 @@ extern_methods!(
         pub unsafe fn indexesOfObjectsWithOptions_passingTest(
             &self,
             opts: NSEnumerationOptions,
-            predicate: &Block<(NonNull<ObjectType>, NSUInteger, NonNull<Bool>), Bool>,
+            predicate: &Block<dyn Fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>) -> Bool + '_>,
         ) -> Id<NSIndexSet>;
 
         #[cfg(feature = "Foundation_NSIndexSet")]
@@ -182,7 +182,7 @@ extern_methods!(
             &self,
             s: &NSIndexSet,
             opts: NSEnumerationOptions,
-            predicate: &Block<(NonNull<ObjectType>, NSUInteger, NonNull<Bool>), Bool>,
+            predicate: &Block<dyn Fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>) -> Bool + '_>,
         ) -> Id<NSIndexSet>;
 
         #[method(indexOfObject:inSortedRange:options:usingComparator:)]
@@ -451,7 +451,7 @@ extern_methods!(
             &self,
             other: &NSOrderedSet<ObjectType>,
             options: NSOrderedCollectionDifferenceCalculationOptions,
-            block: &Block<(NonNull<ObjectType>, NonNull<ObjectType>), Bool>,
+            block: &Block<dyn Fn(NonNull<ObjectType>, NonNull<ObjectType>) -> Bool + '_>,
         ) -> Id<NSOrderedCollectionDifference<ObjectType>>;
 
         #[cfg(feature = "Foundation_NSOrderedCollectionDifference")]

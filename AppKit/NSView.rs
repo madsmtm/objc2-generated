@@ -986,7 +986,7 @@ extern_methods!(
             attr_string: Option<&NSAttributedString>,
             target_range: NSRange,
             options: Option<&NSDictionary<NSDefinitionOptionKey, AnyObject>>,
-            origin_provider: Option<&Block<(NSRange,), NSPoint>>,
+            origin_provider: Option<&Block<dyn Fn(NSRange) -> NSPoint>>,
         );
     }
 );

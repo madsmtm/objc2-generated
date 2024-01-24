@@ -91,7 +91,7 @@ extern_methods!(
             &self,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
             end_date: Option<&NSDate>,
-            completion: &Block<(*mut NSArray<HKQuantitySample>, *mut NSError), ()>,
+            completion: &Block<dyn Fn(*mut NSArray<HKQuantitySample>, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -105,7 +105,7 @@ extern_methods!(
         pub unsafe fn finishSeriesWithMetadata_completion(
             &self,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
-            completion: &Block<(*mut NSArray<HKQuantitySample>, *mut NSError), ()>,
+            completion: &Block<dyn Fn(*mut NSArray<HKQuantitySample>, *mut NSError)>,
         );
 
         #[method(discard)]

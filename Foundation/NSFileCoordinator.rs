@@ -133,7 +133,7 @@ extern_methods!(
             &self,
             intents: &NSArray<NSFileAccessIntent>,
             queue: &NSOperationQueue,
-            accessor: &Block<(*mut NSError,), ()>,
+            accessor: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
@@ -143,7 +143,7 @@ extern_methods!(
             url: &NSURL,
             options: NSFileCoordinatorReadingOptions,
             out_error: Option<&mut Option<Id<NSError>>>,
-            reader: &Block<(NonNull<NSURL>,), ()>,
+            reader: &Block<dyn Fn(NonNull<NSURL>) + '_>,
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
@@ -153,7 +153,7 @@ extern_methods!(
             url: &NSURL,
             options: NSFileCoordinatorWritingOptions,
             out_error: Option<&mut Option<Id<NSError>>>,
-            writer: &Block<(NonNull<NSURL>,), ()>,
+            writer: &Block<dyn Fn(NonNull<NSURL>) + '_>,
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
@@ -165,7 +165,7 @@ extern_methods!(
             writing_url: &NSURL,
             writing_options: NSFileCoordinatorWritingOptions,
             out_error: Option<&mut Option<Id<NSError>>>,
-            reader_writer: &Block<(NonNull<NSURL>, NonNull<NSURL>), ()>,
+            reader_writer: &Block<dyn Fn(NonNull<NSURL>, NonNull<NSURL>) + '_>,
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
@@ -177,7 +177,7 @@ extern_methods!(
             url2: &NSURL,
             options2: NSFileCoordinatorWritingOptions,
             out_error: Option<&mut Option<Id<NSError>>>,
-            writer: &Block<(NonNull<NSURL>, NonNull<NSURL>), ()>,
+            writer: &Block<dyn Fn(NonNull<NSURL>, NonNull<NSURL>) + '_>,
         );
 
         #[cfg(all(
@@ -193,7 +193,7 @@ extern_methods!(
             writing_ur_ls: &NSArray<NSURL>,
             writing_options: NSFileCoordinatorWritingOptions,
             out_error: Option<&mut Option<Id<NSError>>>,
-            batch_accessor: &Block<(NonNull<Block<(), ()>>,), ()>,
+            batch_accessor: &Block<dyn Fn(NonNull<Block<dyn Fn()>>) + '_>,
         );
 
         #[cfg(feature = "Foundation_NSURL")]

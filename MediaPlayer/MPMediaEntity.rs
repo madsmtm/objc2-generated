@@ -42,7 +42,7 @@ extern_methods!(
         pub unsafe fn enumerateValuesForProperties_usingBlock(
             &self,
             properties: &NSSet<NSString>,
-            block: &Block<(NonNull<NSString>, NonNull<AnyObject>, NonNull<Bool>), ()>,
+            block: &Block<dyn Fn(NonNull<NSString>, NonNull<AnyObject>, NonNull<Bool>)>,
         );
 
         #[method_id(@__retain_semantics Other objectForKeyedSubscript:)]

@@ -54,7 +54,7 @@ extern_methods!(
             &self,
             service_name: &NSFileProviderServiceName,
             item_identifier: &NSFileProviderItemIdentifier,
-            completion_handler: &Block<(*mut NSFileProviderService, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSFileProviderService, *mut NSError)>,
         );
     }
 );

@@ -96,7 +96,7 @@ extern_methods!(
         #[method(reportScores:withCompletionHandler:)]
         pub unsafe fn reportScores_withCompletionHandler(
             scores: &NSArray<GKScore>,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
     }
 );
@@ -122,7 +122,7 @@ extern_methods!(
         #[method(reportScoreWithCompletionHandler:)]
         pub unsafe fn reportScoreWithCompletionHandler(
             &self,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "Foundation_NSString")]

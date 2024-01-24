@@ -98,13 +98,13 @@ extern_methods!(
         #[method(valueDescriptionProvider)]
         pub unsafe fn valueDescriptionProvider(
             &self,
-        ) -> NonNull<Block<(c_double,), NonNull<NSString>>>;
+        ) -> NonNull<Block<dyn Fn(c_double) -> NonNull<NSString>>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setValueDescriptionProvider:)]
         pub unsafe fn setValueDescriptionProvider(
             &self,
-            value_description_provider: &Block<(c_double,), NonNull<NSString>>,
+            value_description_provider: &Block<dyn Fn(c_double) -> NonNull<NSString>>,
         );
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
@@ -127,7 +127,7 @@ extern_methods!(
             lowerbound: c_double,
             upper_bound: c_double,
             gridline_positions: Option<&NSArray<NSNumber>>,
-            value_description_provider: &Block<(c_double,), NonNull<NSString>>,
+            value_description_provider: &Block<dyn Fn(c_double) -> NonNull<NSString>>,
         ) -> Id<Self>;
 
         #[cfg(all(
@@ -143,7 +143,7 @@ extern_methods!(
             lowerbound: c_double,
             upper_bound: c_double,
             gridline_positions: Option<&NSArray<NSNumber>>,
-            value_description_provider: &Block<(c_double,), NonNull<NSString>>,
+            value_description_provider: &Block<dyn Fn(c_double) -> NonNull<NSString>>,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]

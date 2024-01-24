@@ -185,13 +185,7 @@ extern_protocol!(
             location: &ProtocolObject<dyn NSTextLocation>,
             options: NSStringEnumerationOptions,
             block: &Block<
-                (
-                    *mut NSString,
-                    NonNull<NSTextRange>,
-                    *mut NSTextRange,
-                    NonNull<Bool>,
-                ),
-                (),
+                dyn Fn(*mut NSString, NonNull<NSTextRange>, *mut NSTextRange, NonNull<Bool>) + '_,
             >,
         );
 
@@ -228,13 +222,8 @@ extern_protocol!(
             &self,
             location: &ProtocolObject<dyn NSTextLocation>,
             block: &Block<
-                (
-                    CGFloat,
-                    NonNull<ProtocolObject<dyn NSTextLocation>>,
-                    Bool,
-                    NonNull<Bool>,
-                ),
-                (),
+                dyn Fn(CGFloat, NonNull<ProtocolObject<dyn NSTextLocation>>, Bool, NonNull<Bool>)
+                    + '_,
             >,
         );
 
@@ -252,7 +241,7 @@ extern_protocol!(
             &self,
             location: &ProtocolObject<dyn NSTextLocation>,
             reverse: bool,
-            block: &Block<(NonNull<ProtocolObject<dyn NSTextLocation>>, NonNull<Bool>), ()>,
+            block: &Block<dyn Fn(NonNull<ProtocolObject<dyn NSTextLocation>>, NonNull<Bool>) + '_>,
         );
 
         #[optional]

@@ -33,7 +33,7 @@ extern_methods!(
         #[method(requestMonitorWithConfiguration:completion:)]
         pub unsafe fn requestMonitorWithConfiguration_completion(
             config: &CLMonitorConfiguration,
-            completion_handler: &Block<(NonNull<CLMonitor>,), ()>,
+            completion_handler: &Block<dyn Fn(NonNull<CLMonitor>)>,
         );
 
         #[cfg(feature = "Foundation_NSString")]

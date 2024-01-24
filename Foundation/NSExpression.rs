@@ -127,12 +127,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other expressionForBlock:arguments:)]
         pub unsafe fn expressionForBlock_arguments(
             block: &Block<
-                (
+                dyn Fn(
                     *mut AnyObject,
                     NonNull<NSArray<NSExpression>>,
                     *mut NSMutableDictionary,
-                ),
-                NonNull<AnyObject>,
+                ) -> NonNull<AnyObject>,
             >,
             arguments: Option<&NSArray<NSExpression>>,
         ) -> Id<NSExpression>;
@@ -208,12 +207,11 @@ extern_methods!(
             &self,
         ) -> NonNull<
             Block<
-                (
+                dyn Fn(
                     *mut AnyObject,
                     NonNull<NSArray<NSExpression>>,
                     *mut NSMutableDictionary,
-                ),
-                NonNull<AnyObject>,
+                ) -> NonNull<AnyObject>,
             >,
         >;
 

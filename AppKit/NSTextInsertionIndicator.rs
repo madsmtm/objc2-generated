@@ -86,12 +86,12 @@ extern_methods!(
         );
 
         #[method(effectsViewInserter)]
-        pub unsafe fn effectsViewInserter(&self) -> *mut Block<(NonNull<NSView>,), ()>;
+        pub unsafe fn effectsViewInserter(&self) -> *mut Block<dyn Fn(NonNull<NSView>)>;
 
         #[method(setEffectsViewInserter:)]
         pub unsafe fn setEffectsViewInserter(
             &self,
-            effects_view_inserter: Option<&Block<(NonNull<NSView>,), ()>>,
+            effects_view_inserter: Option<&Block<dyn Fn(NonNull<NSView>)>>,
         );
     }
 );

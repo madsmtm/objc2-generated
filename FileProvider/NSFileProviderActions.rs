@@ -20,7 +20,7 @@ extern_methods!(
             &self,
             file_url: &NSURL,
             parent_item_identifier: &NSFileProviderItemIdentifier,
-            completion_handler: &Block<(*mut NSFileProviderItem, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSFileProviderItem, *mut NSError)>,
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
@@ -29,7 +29,7 @@ extern_methods!(
             &self,
             directory_name: &NSString,
             parent_item_identifier: &NSFileProviderItemIdentifier,
-            completion_handler: &Block<(*mut NSFileProviderItem, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSFileProviderItem, *mut NSError)>,
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
@@ -38,7 +38,7 @@ extern_methods!(
             &self,
             item_identifier: &NSFileProviderItemIdentifier,
             item_name: &NSString,
-            completion_handler: &Block<(*mut NSFileProviderItem, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSFileProviderItem, *mut NSError)>,
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
@@ -48,7 +48,7 @@ extern_methods!(
             item_identifier: &NSFileProviderItemIdentifier,
             parent_item_identifier: &NSFileProviderItemIdentifier,
             new_name: Option<&NSString>,
-            completion_handler: &Block<(*mut NSFileProviderItem, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSFileProviderItem, *mut NSError)>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
@@ -56,7 +56,7 @@ extern_methods!(
         pub unsafe fn trashItemWithIdentifier_completionHandler(
             &self,
             item_identifier: &NSFileProviderItemIdentifier,
-            completion_handler: &Block<(*mut NSFileProviderItem, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSFileProviderItem, *mut NSError)>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
@@ -65,7 +65,7 @@ extern_methods!(
             &self,
             item_identifier: &NSFileProviderItemIdentifier,
             parent_item_identifier: Option<&NSFileProviderItemIdentifier>,
-            completion_handler: &Block<(*mut NSFileProviderItem, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSFileProviderItem, *mut NSError)>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
@@ -73,7 +73,7 @@ extern_methods!(
         pub unsafe fn deleteItemWithIdentifier_completionHandler(
             &self,
             item_identifier: &NSFileProviderItemIdentifier,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSError"))]
@@ -82,7 +82,7 @@ extern_methods!(
             &self,
             last_used_date: Option<&NSDate>,
             item_identifier: &NSFileProviderItemIdentifier,
-            completion_handler: &Block<(*mut NSFileProviderItem, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSFileProviderItem, *mut NSError)>,
         );
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
@@ -91,7 +91,7 @@ extern_methods!(
             &self,
             tag_data: Option<&NSData>,
             item_identifier: &NSFileProviderItemIdentifier,
-            completion_handler: &Block<(*mut NSFileProviderItem, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSFileProviderItem, *mut NSError)>,
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSNumber"))]
@@ -100,7 +100,7 @@ extern_methods!(
             &self,
             favorite_rank: Option<&NSNumber>,
             item_identifier: &NSFileProviderItemIdentifier,
-            completion_handler: &Block<(*mut NSFileProviderItem, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSFileProviderItem, *mut NSError)>,
         );
     }
 );

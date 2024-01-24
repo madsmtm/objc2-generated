@@ -33,7 +33,7 @@ extern_methods!(
         #[method(loadAchievementDescriptionsWithCompletionHandler:)]
         pub unsafe fn loadAchievementDescriptionsWithCompletionHandler(
             completion_handler: Option<
-                &Block<(*mut NSArray<GKAchievementDescription>, *mut NSError), ()>,
+                &Block<dyn Fn(*mut NSArray<GKAchievementDescription>, *mut NSError)>,
             >,
         );
 
@@ -97,7 +97,7 @@ extern_methods!(
         #[method(loadImageWithCompletionHandler:)]
         pub unsafe fn loadImageWithCompletionHandler(
             &self,
-            completion_handler: Option<&Block<(*mut NSImage, *mut NSError), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSImage, *mut NSError)>>,
         );
 
         #[cfg(feature = "AppKit_NSImage")]

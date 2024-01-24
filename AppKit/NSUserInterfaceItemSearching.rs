@@ -13,7 +13,7 @@ extern_protocol!(
             &self,
             search_string: &NSString,
             result_limit: NSInteger,
-            handle_matched_items: &Block<(NonNull<NSArray>,), ()>,
+            handle_matched_items: &Block<dyn Fn(NonNull<NSArray>)>,
         );
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]

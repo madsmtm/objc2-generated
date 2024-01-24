@@ -57,7 +57,7 @@ extern_methods!(
         #[method(getNonlocalVersionsOfItemAtURL:completionHandler:)]
         pub unsafe fn getNonlocalVersionsOfItemAtURL_completionHandler(
             url: &NSURL,
-            completion_handler: &Block<(*mut NSArray<NSFileVersion>, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSArray<NSFileVersion>, *mut NSError)>,
         );
 
         #[cfg(feature = "Foundation_NSURL")]

@@ -32,7 +32,7 @@ extern_methods!(
         #[method(generateTokenWithCompletionHandler:)]
         pub unsafe fn generateTokenWithCompletionHandler(
             &self,
-            completion: &Block<(*mut NSData, *mut NSError), ()>,
+            completion: &Block<dyn Fn(*mut NSData, *mut NSError)>,
         );
     }
 );

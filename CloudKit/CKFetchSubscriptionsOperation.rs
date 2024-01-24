@@ -52,14 +52,14 @@ extern_methods!(
         #[method(perSubscriptionCompletionBlock)]
         pub unsafe fn perSubscriptionCompletionBlock(
             &self,
-        ) -> *mut Block<(NonNull<CKSubscriptionID>, *mut CKSubscription, *mut NSError), ()>;
+        ) -> *mut Block<dyn Fn(NonNull<CKSubscriptionID>, *mut CKSubscription, *mut NSError)>;
 
         #[cfg(all(feature = "CloudKit_CKSubscription", feature = "Foundation_NSError"))]
         #[method(setPerSubscriptionCompletionBlock:)]
         pub unsafe fn setPerSubscriptionCompletionBlock(
             &self,
             per_subscription_completion_block: Option<
-                &Block<(NonNull<CKSubscriptionID>, *mut CKSubscription, *mut NSError), ()>,
+                &Block<dyn Fn(NonNull<CKSubscriptionID>, *mut CKSubscription, *mut NSError)>,
             >,
         );
 
@@ -71,13 +71,7 @@ extern_methods!(
         #[method(fetchSubscriptionCompletionBlock)]
         pub unsafe fn fetchSubscriptionCompletionBlock(
             &self,
-        ) -> *mut Block<
-            (
-                *mut NSDictionary<CKSubscriptionID, CKSubscription>,
-                *mut NSError,
-            ),
-            (),
-        >;
+        ) -> *mut Block<dyn Fn(*mut NSDictionary<CKSubscriptionID, CKSubscription>, *mut NSError)>;
 
         #[cfg(all(
             feature = "CloudKit_CKSubscription",
@@ -88,13 +82,7 @@ extern_methods!(
         pub unsafe fn setFetchSubscriptionCompletionBlock(
             &self,
             fetch_subscription_completion_block: Option<
-                &Block<
-                    (
-                        *mut NSDictionary<CKSubscriptionID, CKSubscription>,
-                        *mut NSError,
-                    ),
-                    (),
-                >,
+                &Block<dyn Fn(*mut NSDictionary<CKSubscriptionID, CKSubscription>, *mut NSError)>,
             >,
         );
     }

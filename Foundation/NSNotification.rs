@@ -153,7 +153,7 @@ extern_methods!(
             name: Option<&NSNotificationName>,
             obj: Option<&AnyObject>,
             queue: Option<&NSOperationQueue>,
-            block: &Block<(NonNull<NSNotification>,), ()>,
+            block: &Block<dyn Fn(NonNull<NSNotification>)>,
         ) -> Id<NSObject>;
     }
 );

@@ -311,7 +311,7 @@ extern_methods!(
         pub unsafe fn paletteMenuWithColors_titles_selectionHandler(
             colors: &NSArray<NSColor>,
             item_titles: &NSArray<NSString>,
-            on_selection_change: Option<&Block<(NonNull<NSMenu>,), ()>>,
+            on_selection_change: Option<&Block<dyn Fn(NonNull<NSMenu>)>>,
             mtm: MainThreadMarker,
         ) -> Id<Self>;
 
@@ -326,7 +326,7 @@ extern_methods!(
             colors: &NSArray<NSColor>,
             item_titles: &NSArray<NSString>,
             image: &NSImage,
-            on_selection_change: Option<&Block<(NonNull<NSMenu>,), ()>>,
+            on_selection_change: Option<&Block<dyn Fn(NonNull<NSMenu>)>>,
             mtm: MainThreadMarker,
         ) -> Id<Self>;
 

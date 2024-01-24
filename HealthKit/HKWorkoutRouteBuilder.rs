@@ -42,7 +42,7 @@ extern_methods!(
         pub unsafe fn insertRouteData_completion(
             &self,
             route_data: &NSArray<CLLocation>,
-            completion: &Block<(Bool, *mut NSError), ()>,
+            completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -54,7 +54,7 @@ extern_methods!(
         pub unsafe fn addMetadata_completion(
             &self,
             metadata: &NSDictionary<NSString, AnyObject>,
-            completion: &Block<(Bool, *mut NSError), ()>,
+            completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -69,7 +69,7 @@ extern_methods!(
             &self,
             workout: &HKWorkout,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
-            completion: &Block<(*mut HKWorkoutRoute, *mut NSError), ()>,
+            completion: &Block<dyn Fn(*mut HKWorkoutRoute, *mut NSError)>,
         );
     }
 );

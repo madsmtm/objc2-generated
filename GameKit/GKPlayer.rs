@@ -87,7 +87,7 @@ extern_methods!(
         pub unsafe fn loadPhotoForSize_withCompletionHandler(
             &self,
             size: GKPhotoSize,
-            completion_handler: Option<&Block<(*mut NSImage, *mut NSError), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSImage, *mut NSError)>>,
         );
     }
 );
@@ -116,7 +116,7 @@ extern_methods!(
         #[method(loadPlayersForIdentifiers:withCompletionHandler:)]
         pub unsafe fn loadPlayersForIdentifiers_withCompletionHandler(
             identifiers: &NSArray<NSString>,
-            completion_handler: Option<&Block<(*mut NSArray<GKPlayer>, *mut NSError), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSArray<GKPlayer>, *mut NSError)>>,
         );
     }
 );

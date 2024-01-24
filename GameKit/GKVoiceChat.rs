@@ -48,15 +48,14 @@ extern_methods!(
         #[method(playerVoiceChatStateDidChangeHandler)]
         pub unsafe fn playerVoiceChatStateDidChangeHandler(
             &self,
-        ) -> NonNull<Block<(NonNull<GKPlayer>, GKVoiceChatPlayerState), ()>>;
+        ) -> NonNull<Block<dyn Fn(NonNull<GKPlayer>, GKVoiceChatPlayerState)>>;
 
         #[cfg(feature = "GameKit_GKPlayer")]
         #[method(setPlayerVoiceChatStateDidChangeHandler:)]
         pub unsafe fn setPlayerVoiceChatStateDidChangeHandler(
             &self,
             player_voice_chat_state_did_change_handler: &Block<
-                (NonNull<GKPlayer>, GKVoiceChatPlayerState),
-                (),
+                dyn Fn(NonNull<GKPlayer>, GKVoiceChatPlayerState),
             >,
         );
 
@@ -106,14 +105,14 @@ extern_methods!(
         #[method(playerStateUpdateHandler)]
         pub unsafe fn playerStateUpdateHandler(
             &self,
-        ) -> NonNull<Block<(NonNull<NSString>, GKVoiceChatPlayerState), ()>>;
+        ) -> NonNull<Block<dyn Fn(NonNull<NSString>, GKVoiceChatPlayerState)>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method(setPlayerStateUpdateHandler:)]
         pub unsafe fn setPlayerStateUpdateHandler(
             &self,
-            player_state_update_handler: &Block<(NonNull<NSString>, GKVoiceChatPlayerState), ()>,
+            player_state_update_handler: &Block<dyn Fn(NonNull<NSString>, GKVoiceChatPlayerState)>,
         );
     }
 );

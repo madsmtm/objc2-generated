@@ -49,7 +49,7 @@ extern_methods!(
         pub unsafe fn requestAccessForEntityType_completionHandler(
             &self,
             entity_type: CNEntityType,
-            completion_handler: &Block<(Bool, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -125,7 +125,7 @@ extern_methods!(
             &self,
             fetch_request: &CNContactFetchRequest,
             error: Option<&mut Option<Id<NSError>>>,
-            block: &Block<(NonNull<CNContact>, NonNull<Bool>), ()>,
+            block: &Block<dyn Fn(NonNull<CNContact>, NonNull<Bool>) + '_>,
         ) -> bool;
 
         #[cfg(all(

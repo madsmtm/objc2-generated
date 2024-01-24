@@ -49,12 +49,12 @@ extern_methods!(
         pub unsafe fn operationID(&self) -> Id<CKOperationID>;
 
         #[method(longLivedOperationWasPersistedBlock)]
-        pub unsafe fn longLivedOperationWasPersistedBlock(&self) -> *mut Block<(), ()>;
+        pub unsafe fn longLivedOperationWasPersistedBlock(&self) -> *mut Block<dyn Fn()>;
 
         #[method(setLongLivedOperationWasPersistedBlock:)]
         pub unsafe fn setLongLivedOperationWasPersistedBlock(
             &self,
-            long_lived_operation_was_persisted_block: Option<&Block<(), ()>>,
+            long_lived_operation_was_persisted_block: Option<&Block<dyn Fn()>>,
         );
     }
 );

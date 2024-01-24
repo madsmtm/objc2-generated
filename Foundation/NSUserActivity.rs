@@ -150,7 +150,9 @@ extern_methods!(
         #[method(getContinuationStreamsWithCompletionHandler:)]
         pub unsafe fn getContinuationStreamsWithCompletionHandler(
             &self,
-            completion_handler: &Block<(*mut NSInputStream, *mut NSOutputStream, *mut NSError), ()>,
+            completion_handler: &Block<
+                dyn Fn(*mut NSInputStream, *mut NSOutputStream, *mut NSError),
+            >,
         );
 
         #[method(isEligibleForHandoff)]
@@ -191,11 +193,11 @@ extern_methods!(
         #[method(deleteSavedUserActivitiesWithPersistentIdentifiers:completionHandler:)]
         pub unsafe fn deleteSavedUserActivitiesWithPersistentIdentifiers_completionHandler(
             persistent_identifiers: &NSArray<NSUserActivityPersistentIdentifier>,
-            handler: &Block<(), ()>,
+            handler: &Block<dyn Fn()>,
         );
 
         #[method(deleteAllSavedUserActivitiesWithCompletionHandler:)]
-        pub unsafe fn deleteAllSavedUserActivitiesWithCompletionHandler(handler: &Block<(), ()>);
+        pub unsafe fn deleteAllSavedUserActivitiesWithCompletionHandler(handler: &Block<dyn Fn()>);
     }
 );
 

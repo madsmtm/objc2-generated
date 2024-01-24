@@ -91,13 +91,13 @@ extern_methods!(
         #[method(perRecordProgressBlock)]
         pub unsafe fn perRecordProgressBlock(
             &self,
-        ) -> *mut Block<(NonNull<CKRecord>, c_double), ()>;
+        ) -> *mut Block<dyn Fn(NonNull<CKRecord>, c_double)>;
 
         #[cfg(feature = "CloudKit_CKRecord")]
         #[method(setPerRecordProgressBlock:)]
         pub unsafe fn setPerRecordProgressBlock(
             &self,
-            per_record_progress_block: Option<&Block<(NonNull<CKRecord>, c_double), ()>>,
+            per_record_progress_block: Option<&Block<dyn Fn(NonNull<CKRecord>, c_double)>>,
         );
 
         #[cfg(all(feature = "CloudKit_CKRecord", feature = "Foundation_NSError"))]
@@ -105,14 +105,14 @@ extern_methods!(
         #[method(perRecordCompletionBlock)]
         pub unsafe fn perRecordCompletionBlock(
             &self,
-        ) -> *mut Block<(NonNull<CKRecord>, *mut NSError), ()>;
+        ) -> *mut Block<dyn Fn(NonNull<CKRecord>, *mut NSError)>;
 
         #[cfg(all(feature = "CloudKit_CKRecord", feature = "Foundation_NSError"))]
         #[deprecated]
         #[method(setPerRecordCompletionBlock:)]
         pub unsafe fn setPerRecordCompletionBlock(
             &self,
-            per_record_completion_block: Option<&Block<(NonNull<CKRecord>, *mut NSError), ()>>,
+            per_record_completion_block: Option<&Block<dyn Fn(NonNull<CKRecord>, *mut NSError)>>,
         );
 
         #[cfg(all(
@@ -123,7 +123,7 @@ extern_methods!(
         #[method(perRecordSaveBlock)]
         pub unsafe fn perRecordSaveBlock(
             &self,
-        ) -> *mut Block<(NonNull<CKRecordID>, *mut CKRecord, *mut NSError), ()>;
+        ) -> *mut Block<dyn Fn(NonNull<CKRecordID>, *mut CKRecord, *mut NSError)>;
 
         #[cfg(all(
             feature = "CloudKit_CKRecord",
@@ -134,7 +134,7 @@ extern_methods!(
         pub unsafe fn setPerRecordSaveBlock(
             &self,
             per_record_save_block: Option<
-                &Block<(NonNull<CKRecordID>, *mut CKRecord, *mut NSError), ()>,
+                &Block<dyn Fn(NonNull<CKRecordID>, *mut CKRecord, *mut NSError)>,
             >,
         );
 
@@ -142,13 +142,13 @@ extern_methods!(
         #[method(perRecordDeleteBlock)]
         pub unsafe fn perRecordDeleteBlock(
             &self,
-        ) -> *mut Block<(NonNull<CKRecordID>, *mut NSError), ()>;
+        ) -> *mut Block<dyn Fn(NonNull<CKRecordID>, *mut NSError)>;
 
         #[cfg(all(feature = "CloudKit_CKRecordID", feature = "Foundation_NSError"))]
         #[method(setPerRecordDeleteBlock:)]
         pub unsafe fn setPerRecordDeleteBlock(
             &self,
-            per_record_delete_block: Option<&Block<(NonNull<CKRecordID>, *mut NSError), ()>>,
+            per_record_delete_block: Option<&Block<dyn Fn(NonNull<CKRecordID>, *mut NSError)>>,
         );
 
         #[cfg(all(
@@ -160,14 +160,7 @@ extern_methods!(
         #[method(modifyRecordsCompletionBlock)]
         pub unsafe fn modifyRecordsCompletionBlock(
             &self,
-        ) -> *mut Block<
-            (
-                *mut NSArray<CKRecord>,
-                *mut NSArray<CKRecordID>,
-                *mut NSError,
-            ),
-            (),
-        >;
+        ) -> *mut Block<dyn Fn(*mut NSArray<CKRecord>, *mut NSArray<CKRecordID>, *mut NSError)>;
 
         #[cfg(all(
             feature = "CloudKit_CKRecord",
@@ -179,14 +172,7 @@ extern_methods!(
         pub unsafe fn setModifyRecordsCompletionBlock(
             &self,
             modify_records_completion_block: Option<
-                &Block<
-                    (
-                        *mut NSArray<CKRecord>,
-                        *mut NSArray<CKRecordID>,
-                        *mut NSError,
-                    ),
-                    (),
-                >,
+                &Block<dyn Fn(*mut NSArray<CKRecord>, *mut NSArray<CKRecordID>, *mut NSError)>,
             >,
         );
     }

@@ -37,14 +37,14 @@ extern_methods!(
         #[method(startImpression:completionHandler:)]
         pub unsafe fn startImpression_completionHandler(
             impression: &SKAdImpression,
-            completion: Option<&Block<(*mut NSError,), ()>>,
+            completion: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "StoreKit_SKAdImpression"))]
         #[method(endImpression:completionHandler:)]
         pub unsafe fn endImpression_completionHandler(
             impression: &SKAdImpression,
-            completion: Option<&Block<(*mut NSError,), ()>>,
+            completion: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[deprecated = "Use updatePostbackConversionValue:completionHandler: instead"]
@@ -59,7 +59,7 @@ extern_methods!(
         #[method(updatePostbackConversionValue:completionHandler:)]
         pub unsafe fn updatePostbackConversionValue_completionHandler(
             conversion_value: NSInteger,
-            completion: Option<&Block<(*mut NSError,), ()>>,
+            completion: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
@@ -67,7 +67,7 @@ extern_methods!(
         pub unsafe fn updatePostbackConversionValue_coarseValue_completionHandler(
             fine_value: NSInteger,
             coarse_value: &SKAdNetworkCoarseConversionValue,
-            completion: Option<&Block<(*mut NSError,), ()>>,
+            completion: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
@@ -76,7 +76,7 @@ extern_methods!(
             fine_value: NSInteger,
             coarse_value: &SKAdNetworkCoarseConversionValue,
             lock_window: bool,
-            completion: Option<&Block<(*mut NSError,), ()>>,
+            completion: Option<&Block<dyn Fn(*mut NSError)>>,
         );
     }
 );

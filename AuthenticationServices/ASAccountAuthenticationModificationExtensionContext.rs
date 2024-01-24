@@ -34,7 +34,7 @@ extern_methods!(
             &self,
             state: Option<&NSString>,
             nonce: Option<&NSString>,
-            completion_handler: &Block<(*mut ASAuthorizationAppleIDCredential, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut ASAuthorizationAppleIDCredential, *mut NSError)>,
         );
 
         #[cfg(feature = "Foundation_NSDictionary")]

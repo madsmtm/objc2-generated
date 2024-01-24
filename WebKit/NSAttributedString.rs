@@ -8,12 +8,11 @@ use crate::WebKit::*;
 extern_static!(NSReadAccessURLDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey);
 
 pub type NSAttributedStringCompletionHandler = *mut Block<
-    (
+    dyn Fn(
         *mut NSAttributedString,
         *mut NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>,
         *mut NSError,
     ),
-    (),
 >;
 
 extern_methods!(

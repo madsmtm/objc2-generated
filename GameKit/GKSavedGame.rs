@@ -42,7 +42,7 @@ extern_methods!(
         #[method(loadDataWithCompletionHandler:)]
         pub unsafe fn loadDataWithCompletionHandler(
             &self,
-            handler: Option<&Block<(*mut NSData, *mut NSError), ()>>,
+            handler: Option<&Block<dyn Fn(*mut NSData, *mut NSError)>>,
         );
     }
 );
@@ -71,7 +71,7 @@ extern_methods!(
         #[method(fetchSavedGamesWithCompletionHandler:)]
         pub unsafe fn fetchSavedGamesWithCompletionHandler(
             &self,
-            handler: Option<&Block<(*mut NSArray<GKSavedGame>, *mut NSError), ()>>,
+            handler: Option<&Block<dyn Fn(*mut NSArray<GKSavedGame>, *mut NSError)>>,
         );
 
         #[cfg(all(
@@ -85,7 +85,7 @@ extern_methods!(
             &self,
             data: &NSData,
             name: &NSString,
-            handler: Option<&Block<(*mut GKSavedGame, *mut NSError), ()>>,
+            handler: Option<&Block<dyn Fn(*mut GKSavedGame, *mut NSError)>>,
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
@@ -93,7 +93,7 @@ extern_methods!(
         pub unsafe fn deleteSavedGamesWithName_completionHandler(
             &self,
             name: &NSString,
-            handler: Option<&Block<(*mut NSError,), ()>>,
+            handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(all(
@@ -107,7 +107,7 @@ extern_methods!(
             &self,
             conflicting_saved_games: &NSArray<GKSavedGame>,
             data: &NSData,
-            handler: Option<&Block<(*mut NSArray<GKSavedGame>, *mut NSError), ()>>,
+            handler: Option<&Block<dyn Fn(*mut NSArray<GKSavedGame>, *mut NSError)>>,
         );
     }
 );

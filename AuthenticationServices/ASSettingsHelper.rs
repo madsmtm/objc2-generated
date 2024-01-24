@@ -26,13 +26,13 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSError")]
         #[method(openCredentialProviderAppSettingsWithCompletionHandler:)]
         pub unsafe fn openCredentialProviderAppSettingsWithCompletionHandler(
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(openVerificationCodeAppSettingsWithCompletionHandler:)]
         pub unsafe fn openVerificationCodeAppSettingsWithCompletionHandler(
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[method_id(@__retain_semantics Init init)]

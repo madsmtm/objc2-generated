@@ -58,10 +58,10 @@ extern_methods!(
         pub fn setDisableActions(flag: bool);
 
         #[method(completionBlock)]
-        pub unsafe fn completionBlock() -> *mut Block<(), ()>;
+        pub unsafe fn completionBlock() -> *mut Block<dyn Fn()>;
 
         #[method(setCompletionBlock:)]
-        pub unsafe fn setCompletionBlock(block: Option<&Block<(), ()>>);
+        pub unsafe fn setCompletionBlock(block: Option<&Block<dyn Fn()>>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other valueForKey:)]

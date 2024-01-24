@@ -113,8 +113,8 @@ extern_methods!(
         #[method(performQueueTransaction:completionHandler:)]
         pub unsafe fn performQueueTransaction_completionHandler(
             &self,
-            queue_transaction: &Block<(NonNull<MPMusicPlayerControllerMutableQueue>,), ()>,
-            completion_handler: &Block<(NonNull<MPMusicPlayerControllerQueue>, *mut NSError), ()>,
+            queue_transaction: &Block<dyn Fn(NonNull<MPMusicPlayerControllerMutableQueue>)>,
+            completion_handler: &Block<dyn Fn(NonNull<MPMusicPlayerControllerQueue>, *mut NSError)>,
         );
     }
 );

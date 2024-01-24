@@ -102,7 +102,7 @@ extern_methods!(
         #[method(presentAuthorizationViewControllerWithCompletion:)]
         pub unsafe fn presentAuthorizationViewControllerWithCompletion(
             &self,
-            completion: &Block<(Bool, *mut NSError), ()>,
+            completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "Foundation_NSURL")]

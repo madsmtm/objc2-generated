@@ -109,7 +109,7 @@ extern_methods!(
         pub unsafe fn loadTileAtPath_result(
             &self,
             path: MKTileOverlayPath,
-            result: &Block<(*mut NSData, *mut NSError), ()>,
+            result: &Block<dyn Fn(*mut NSData, *mut NSError)>,
         );
     }
 );

@@ -30,7 +30,7 @@ extern_methods!(
         pub unsafe fn showBannerWithTitle_message_completionHandler(
             title: Option<&NSString>,
             message: Option<&NSString>,
-            completion_handler: Option<&Block<(), ()>>,
+            completion_handler: Option<&Block<dyn Fn()>>,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -40,7 +40,7 @@ extern_methods!(
             title: Option<&NSString>,
             message: Option<&NSString>,
             duration: NSTimeInterval,
-            completion_handler: Option<&Block<(), ()>>,
+            completion_handler: Option<&Block<dyn Fn()>>,
         );
     }
 );

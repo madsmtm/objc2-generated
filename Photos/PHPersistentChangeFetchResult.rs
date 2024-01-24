@@ -34,7 +34,7 @@ extern_methods!(
         #[method(enumerateChangesWithBlock:)]
         pub unsafe fn enumerateChangesWithBlock(
             &self,
-            block: &Block<(NonNull<PHPersistentChange>, NonNull<Bool>), ()>,
+            block: &Block<dyn Fn(NonNull<PHPersistentChange>, NonNull<Bool>) + '_>,
         );
     }
 );

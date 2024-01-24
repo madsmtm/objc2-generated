@@ -52,7 +52,7 @@ extern_methods!(
             &self,
             print_info: &NSPrintInfo,
             parent_window: &NSWindow,
-            handler: Option<&Block<(NSPageLayoutResult,), ()>>,
+            handler: Option<&Block<dyn Fn(NSPageLayoutResult)>>,
         );
 
         #[cfg(all(feature = "AppKit_NSPrintInfo", feature = "AppKit_NSWindow"))]

@@ -145,7 +145,7 @@ extern_methods!(
             title: &NSString,
             image: &NSImage,
             alternate_image: Option<&NSImage>,
-            block: &Block<(), ()>,
+            block: &Block<dyn Fn()>,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init init)]

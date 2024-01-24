@@ -59,7 +59,7 @@ extern_methods!(
         #[method(markNotificationsReadCompletionBlock)]
         pub unsafe fn markNotificationsReadCompletionBlock(
             &self,
-        ) -> *mut Block<(*mut NSArray<CKNotificationID>, *mut NSError), ()>;
+        ) -> *mut Block<dyn Fn(*mut NSArray<CKNotificationID>, *mut NSError)>;
 
         #[cfg(all(
             feature = "CloudKit_CKNotificationID",
@@ -71,7 +71,7 @@ extern_methods!(
         pub unsafe fn setMarkNotificationsReadCompletionBlock(
             &self,
             mark_notifications_read_completion_block: Option<
-                &Block<(*mut NSArray<CKNotificationID>, *mut NSError), ()>,
+                &Block<dyn Fn(*mut NSArray<CKNotificationID>, *mut NSError)>,
             >,
         );
     }

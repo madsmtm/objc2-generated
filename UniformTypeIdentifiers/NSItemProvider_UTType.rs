@@ -34,8 +34,7 @@ extern_methods!(
             content_type: &UTType,
             visibility: NSItemProviderRepresentationVisibility,
             load_handler: &Block<
-                (NonNull<Block<(*mut NSData, *mut NSError), ()>>,),
-                *mut NSProgress,
+                dyn Fn(NonNull<Block<dyn Fn(*mut NSData, *mut NSError)>>) -> *mut NSProgress,
             >,
         );
 
@@ -52,8 +51,7 @@ extern_methods!(
             visibility: NSItemProviderRepresentationVisibility,
             open_in_place: bool,
             load_handler: &Block<
-                (NonNull<Block<(*mut NSURL, Bool, *mut NSError), ()>>,),
-                *mut NSProgress,
+                dyn Fn(NonNull<Block<dyn Fn(*mut NSURL, Bool, *mut NSError)>>) -> *mut NSProgress,
             >,
         );
 
@@ -91,7 +89,7 @@ extern_methods!(
         pub unsafe fn loadDataRepresentationForContentType_completionHandler(
             &self,
             content_type: &UTType,
-            completion_handler: &Block<(*mut NSData, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSData, *mut NSError)>,
         ) -> Id<NSProgress>;
 
         #[cfg(all(
@@ -105,7 +103,7 @@ extern_methods!(
             &self,
             content_type: &UTType,
             open_in_place: bool,
-            completion_handler: &Block<(*mut NSURL, Bool, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSURL, Bool, *mut NSError)>,
         ) -> Id<NSProgress>;
     }
 );

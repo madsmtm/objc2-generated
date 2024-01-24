@@ -234,7 +234,7 @@ extern_methods!(
             from_view_controller: &NSViewController,
             to_view_controller: &NSViewController,
             options: NSViewControllerTransitionOptions,
-            completion: Option<&Block<(), ()>>,
+            completion: Option<&Block<dyn Fn()>>,
         );
     }
 );

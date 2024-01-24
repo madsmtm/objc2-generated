@@ -3,7 +3,7 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-pub type NSUserScriptTaskCompletionHandler = *mut Block<(*mut NSError,), ()>;
+pub type NSUserScriptTaskCompletionHandler = *mut Block<dyn Fn(*mut NSError)>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -54,7 +54,7 @@ extern_methods!(
     }
 );
 
-pub type NSUserUnixTaskCompletionHandler = *mut Block<(*mut NSError,), ()>;
+pub type NSUserUnixTaskCompletionHandler = *mut Block<dyn Fn(*mut NSError)>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -135,7 +135,7 @@ extern_methods!(
 );
 
 pub type NSUserAppleScriptTaskCompletionHandler =
-    *mut Block<(*mut NSAppleEventDescriptor, *mut NSError), ()>;
+    *mut Block<dyn Fn(*mut NSAppleEventDescriptor, *mut NSError)>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -191,7 +191,7 @@ extern_methods!(
     }
 );
 
-pub type NSUserAutomatorTaskCompletionHandler = *mut Block<(*mut AnyObject, *mut NSError), ()>;
+pub type NSUserAutomatorTaskCompletionHandler = *mut Block<dyn Fn(*mut AnyObject, *mut NSError)>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

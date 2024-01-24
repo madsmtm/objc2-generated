@@ -42,7 +42,7 @@ extern_methods!(
         #[method(systemSharingUIDidSaveShareBlock)]
         pub unsafe fn systemSharingUIDidSaveShareBlock(
             &self,
-        ) -> *mut Block<(NonNull<CKRecordID>, *mut CKShare, *mut NSError), ()>;
+        ) -> *mut Block<dyn Fn(NonNull<CKRecordID>, *mut CKShare, *mut NSError)>;
 
         #[cfg(all(
             feature = "CloudKit_CKRecordID",
@@ -53,7 +53,7 @@ extern_methods!(
         pub unsafe fn setSystemSharingUIDidSaveShareBlock(
             &self,
             system_sharing_ui_did_save_share_block: Option<
-                &Block<(NonNull<CKRecordID>, *mut CKShare, *mut NSError), ()>,
+                &Block<dyn Fn(NonNull<CKRecordID>, *mut CKShare, *mut NSError)>,
             >,
         );
 
@@ -61,14 +61,14 @@ extern_methods!(
         #[method(systemSharingUIDidStopSharingBlock)]
         pub unsafe fn systemSharingUIDidStopSharingBlock(
             &self,
-        ) -> *mut Block<(NonNull<CKRecordID>, *mut NSError), ()>;
+        ) -> *mut Block<dyn Fn(NonNull<CKRecordID>, *mut NSError)>;
 
         #[cfg(all(feature = "CloudKit_CKRecordID", feature = "Foundation_NSError"))]
         #[method(setSystemSharingUIDidStopSharingBlock:)]
         pub unsafe fn setSystemSharingUIDidStopSharingBlock(
             &self,
             system_sharing_ui_did_stop_sharing_block: Option<
-                &Block<(NonNull<CKRecordID>, *mut NSError), ()>,
+                &Block<dyn Fn(NonNull<CKRecordID>, *mut NSError)>,
             >,
         );
     }

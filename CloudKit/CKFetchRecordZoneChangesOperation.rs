@@ -82,14 +82,14 @@ extern_methods!(
         #[cfg(feature = "CloudKit_CKRecord")]
         #[deprecated = "Use recordWasChangedBlock instead, which surfaces per-record errors"]
         #[method(recordChangedBlock)]
-        pub unsafe fn recordChangedBlock(&self) -> *mut Block<(NonNull<CKRecord>,), ()>;
+        pub unsafe fn recordChangedBlock(&self) -> *mut Block<dyn Fn(NonNull<CKRecord>)>;
 
         #[cfg(feature = "CloudKit_CKRecord")]
         #[deprecated = "Use recordWasChangedBlock instead, which surfaces per-record errors"]
         #[method(setRecordChangedBlock:)]
         pub unsafe fn setRecordChangedBlock(
             &self,
-            record_changed_block: Option<&Block<(NonNull<CKRecord>,), ()>>,
+            record_changed_block: Option<&Block<dyn Fn(NonNull<CKRecord>)>>,
         );
 
         #[cfg(all(
@@ -100,7 +100,7 @@ extern_methods!(
         #[method(recordWasChangedBlock)]
         pub unsafe fn recordWasChangedBlock(
             &self,
-        ) -> *mut Block<(NonNull<CKRecordID>, *mut CKRecord, *mut NSError), ()>;
+        ) -> *mut Block<dyn Fn(NonNull<CKRecordID>, *mut CKRecord, *mut NSError)>;
 
         #[cfg(all(
             feature = "CloudKit_CKRecord",
@@ -111,7 +111,7 @@ extern_methods!(
         pub unsafe fn setRecordWasChangedBlock(
             &self,
             record_was_changed_block: Option<
-                &Block<(NonNull<CKRecordID>, *mut CKRecord, *mut NSError), ()>,
+                &Block<dyn Fn(NonNull<CKRecordID>, *mut CKRecord, *mut NSError)>,
             >,
         );
 
@@ -119,14 +119,14 @@ extern_methods!(
         #[method(recordWithIDWasDeletedBlock)]
         pub unsafe fn recordWithIDWasDeletedBlock(
             &self,
-        ) -> *mut Block<(NonNull<CKRecordID>, NonNull<CKRecordType>), ()>;
+        ) -> *mut Block<dyn Fn(NonNull<CKRecordID>, NonNull<CKRecordType>)>;
 
         #[cfg(feature = "CloudKit_CKRecordID")]
         #[method(setRecordWithIDWasDeletedBlock:)]
         pub unsafe fn setRecordWithIDWasDeletedBlock(
             &self,
             record_with_id_was_deleted_block: Option<
-                &Block<(NonNull<CKRecordID>, NonNull<CKRecordType>), ()>,
+                &Block<dyn Fn(NonNull<CKRecordID>, NonNull<CKRecordType>)>,
             >,
         );
 
@@ -138,14 +138,7 @@ extern_methods!(
         #[method(recordZoneChangeTokensUpdatedBlock)]
         pub unsafe fn recordZoneChangeTokensUpdatedBlock(
             &self,
-        ) -> *mut Block<
-            (
-                NonNull<CKRecordZoneID>,
-                *mut CKServerChangeToken,
-                *mut NSData,
-            ),
-            (),
-        >;
+        ) -> *mut Block<dyn Fn(NonNull<CKRecordZoneID>, *mut CKServerChangeToken, *mut NSData)>;
 
         #[cfg(all(
             feature = "CloudKit_CKRecordZoneID",
@@ -156,14 +149,7 @@ extern_methods!(
         pub unsafe fn setRecordZoneChangeTokensUpdatedBlock(
             &self,
             record_zone_change_tokens_updated_block: Option<
-                &Block<
-                    (
-                        NonNull<CKRecordZoneID>,
-                        *mut CKServerChangeToken,
-                        *mut NSData,
-                    ),
-                    (),
-                >,
+                &Block<dyn Fn(NonNull<CKRecordZoneID>, *mut CKServerChangeToken, *mut NSData)>,
             >,
         );
 
@@ -177,14 +163,13 @@ extern_methods!(
         pub unsafe fn recordZoneFetchCompletionBlock(
             &self,
         ) -> *mut Block<
-            (
+            dyn Fn(
                 NonNull<CKRecordZoneID>,
                 *mut CKServerChangeToken,
                 *mut NSData,
                 Bool,
                 *mut NSError,
             ),
-            (),
         >;
 
         #[cfg(all(
@@ -198,14 +183,13 @@ extern_methods!(
             &self,
             record_zone_fetch_completion_block: Option<
                 &Block<
-                    (
+                    dyn Fn(
                         NonNull<CKRecordZoneID>,
                         *mut CKServerChangeToken,
                         *mut NSData,
                         Bool,
                         *mut NSError,
                     ),
-                    (),
                 >,
             >,
         );
@@ -214,13 +198,13 @@ extern_methods!(
         #[method(fetchRecordZoneChangesCompletionBlock)]
         pub unsafe fn fetchRecordZoneChangesCompletionBlock(
             &self,
-        ) -> *mut Block<(*mut NSError,), ()>;
+        ) -> *mut Block<dyn Fn(*mut NSError)>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(setFetchRecordZoneChangesCompletionBlock:)]
         pub unsafe fn setFetchRecordZoneChangesCompletionBlock(
             &self,
-            fetch_record_zone_changes_completion_block: Option<&Block<(*mut NSError,), ()>>,
+            fetch_record_zone_changes_completion_block: Option<&Block<dyn Fn(*mut NSError)>>,
         );
     }
 );

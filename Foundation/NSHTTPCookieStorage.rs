@@ -138,7 +138,7 @@ extern_methods!(
         pub unsafe fn getCookiesForTask_completionHandler(
             &self,
             task: &NSURLSessionTask,
-            completion_handler: &Block<(*mut NSArray<NSHTTPCookie>,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSArray<NSHTTPCookie>)>,
         );
     }
 );

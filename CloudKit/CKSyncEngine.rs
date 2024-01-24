@@ -54,7 +54,7 @@ extern_methods!(
         #[method(fetchChangesWithCompletionHandler:)]
         pub unsafe fn fetchChangesWithCompletionHandler(
             &self,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(all(
@@ -65,14 +65,14 @@ extern_methods!(
         pub unsafe fn fetchChangesWithOptions_completionHandler(
             &self,
             options: &CKSyncEngineFetchChangesOptions,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(sendChangesWithCompletionHandler:)]
         pub unsafe fn sendChangesWithCompletionHandler(
             &self,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(all(
@@ -83,13 +83,13 @@ extern_methods!(
         pub unsafe fn sendChangesWithOptions_completionHandler(
             &self,
             options: &CKSyncEngineSendChangesOptions,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[method(cancelOperationsWithCompletionHandler:)]
         pub unsafe fn cancelOperationsWithCompletionHandler(
             &self,
-            completion_handler: Option<&Block<(), ()>>,
+            completion_handler: Option<&Block<dyn Fn()>>,
         );
     }
 );

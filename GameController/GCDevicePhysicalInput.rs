@@ -14,11 +14,10 @@ extern_protocol!(
         unsafe fn elementValueDidChangeHandler(
             &self,
         ) -> *mut Block<
-            (
+            dyn Fn(
                 NonNull<ProtocolObject<dyn GCDevicePhysicalInput>>,
                 NonNull<ProtocolObject<dyn GCPhysicalInputElement>>,
             ),
-            (),
         >;
 
         #[method(setElementValueDidChangeHandler:)]
@@ -26,11 +25,10 @@ extern_protocol!(
             &self,
             element_value_did_change_handler: Option<
                 &Block<
-                    (
+                    dyn Fn(
                         NonNull<ProtocolObject<dyn GCDevicePhysicalInput>>,
                         NonNull<ProtocolObject<dyn GCPhysicalInputElement>>,
                     ),
-                    (),
                 >,
             >,
         );
@@ -41,13 +39,13 @@ extern_protocol!(
         #[method(inputStateAvailableHandler)]
         unsafe fn inputStateAvailableHandler(
             &self,
-        ) -> *mut Block<(NonNull<ProtocolObject<dyn GCDevicePhysicalInput>>,), ()>;
+        ) -> *mut Block<dyn Fn(NonNull<ProtocolObject<dyn GCDevicePhysicalInput>>)>;
 
         #[method(setInputStateAvailableHandler:)]
         unsafe fn setInputStateAvailableHandler(
             &self,
             input_state_available_handler: Option<
-                &Block<(NonNull<ProtocolObject<dyn GCDevicePhysicalInput>>,), ()>,
+                &Block<dyn Fn(NonNull<ProtocolObject<dyn GCDevicePhysicalInput>>)>,
             >,
         );
 

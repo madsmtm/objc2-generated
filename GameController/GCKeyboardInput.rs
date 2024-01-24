@@ -5,15 +5,8 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameController::*;
 
-pub type GCKeyboardValueChangedHandler = *mut Block<
-    (
-        NonNull<GCKeyboardInput>,
-        NonNull<GCControllerButtonInput>,
-        GCKeyCode,
-        Bool,
-    ),
-    (),
->;
+pub type GCKeyboardValueChangedHandler =
+    *mut Block<dyn Fn(NonNull<GCKeyboardInput>, NonNull<GCControllerButtonInput>, GCKeyCode, Bool)>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -173,7 +173,7 @@ extern_methods!(
         #[method(enumerateByteRangesUsingBlock:)]
         pub unsafe fn enumerateByteRangesUsingBlock(
             &self,
-            block: &Block<(NonNull<c_void>, NSRange, NonNull<Bool>), ()>,
+            block: &Block<dyn Fn(NonNull<c_void>, NSRange, NonNull<Bool>) + '_>,
         );
     }
 );
@@ -250,7 +250,7 @@ extern_methods!(
             this: Allocated<Self>,
             bytes: NonNull<c_void>,
             length: NSUInteger,
-            deallocator: Option<&Block<(NonNull<c_void>, NSUInteger), ()>>,
+            deallocator: Option<&Block<dyn Fn(NonNull<c_void>, NSUInteger)>>,
         ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
@@ -363,7 +363,7 @@ extern_methods!(
             this: Allocated<Self>,
             bytes: NonNull<c_void>,
             length: NSUInteger,
-            deallocator: Option<&Block<(NonNull<c_void>, NSUInteger), ()>>,
+            deallocator: Option<&Block<dyn Fn(NonNull<c_void>, NSUInteger)>>,
         ) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]

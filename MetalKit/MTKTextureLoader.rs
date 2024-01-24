@@ -53,15 +53,10 @@ extern_static!(MTKTextureLoaderOriginFlippedVertically: &'static MTKTextureLoade
 extern_static!(MTKTextureLoaderOptionLoadAsArray: &'static MTKTextureLoaderOption);
 
 pub type MTKTextureLoaderCallback =
-    *mut Block<(*mut ProtocolObject<dyn MTLTexture>, *mut NSError), ()>;
+    *mut Block<dyn Fn(*mut ProtocolObject<dyn MTLTexture>, *mut NSError)>;
 
-pub type MTKTextureLoaderArrayCallback = *mut Block<
-    (
-        NonNull<NSArray<ProtocolObject<dyn MTLTexture>>>,
-        *mut NSError,
-    ),
-    (),
->;
+pub type MTKTextureLoaderArrayCallback =
+    *mut Block<dyn Fn(NonNull<NSArray<ProtocolObject<dyn MTLTexture>>>, *mut NSError)>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

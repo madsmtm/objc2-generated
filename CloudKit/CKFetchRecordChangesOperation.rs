@@ -85,27 +85,28 @@ extern_methods!(
         #[cfg(feature = "CloudKit_CKRecord")]
         #[deprecated]
         #[method(recordChangedBlock)]
-        pub unsafe fn recordChangedBlock(&self) -> *mut Block<(NonNull<CKRecord>,), ()>;
+        pub unsafe fn recordChangedBlock(&self) -> *mut Block<dyn Fn(NonNull<CKRecord>)>;
 
         #[cfg(feature = "CloudKit_CKRecord")]
         #[deprecated]
         #[method(setRecordChangedBlock:)]
         pub unsafe fn setRecordChangedBlock(
             &self,
-            record_changed_block: Option<&Block<(NonNull<CKRecord>,), ()>>,
+            record_changed_block: Option<&Block<dyn Fn(NonNull<CKRecord>)>>,
         );
 
         #[cfg(feature = "CloudKit_CKRecordID")]
         #[deprecated]
         #[method(recordWithIDWasDeletedBlock)]
-        pub unsafe fn recordWithIDWasDeletedBlock(&self) -> *mut Block<(NonNull<CKRecordID>,), ()>;
+        pub unsafe fn recordWithIDWasDeletedBlock(&self)
+            -> *mut Block<dyn Fn(NonNull<CKRecordID>)>;
 
         #[cfg(feature = "CloudKit_CKRecordID")]
         #[deprecated]
         #[method(setRecordWithIDWasDeletedBlock:)]
         pub unsafe fn setRecordWithIDWasDeletedBlock(
             &self,
-            record_with_id_was_deleted_block: Option<&Block<(NonNull<CKRecordID>,), ()>>,
+            record_with_id_was_deleted_block: Option<&Block<dyn Fn(NonNull<CKRecordID>)>>,
         );
 
         #[deprecated]
@@ -121,7 +122,7 @@ extern_methods!(
         #[method(fetchRecordChangesCompletionBlock)]
         pub unsafe fn fetchRecordChangesCompletionBlock(
             &self,
-        ) -> *mut Block<(*mut CKServerChangeToken, *mut NSData, *mut NSError), ()>;
+        ) -> *mut Block<dyn Fn(*mut CKServerChangeToken, *mut NSData, *mut NSError)>;
 
         #[cfg(all(
             feature = "CloudKit_CKServerChangeToken",
@@ -133,7 +134,7 @@ extern_methods!(
         pub unsafe fn setFetchRecordChangesCompletionBlock(
             &self,
             fetch_record_changes_completion_block: Option<
-                &Block<(*mut CKServerChangeToken, *mut NSData, *mut NSError), ()>,
+                &Block<dyn Fn(*mut CKServerChangeToken, *mut NSData, *mut NSError)>,
             >,
         );
     }

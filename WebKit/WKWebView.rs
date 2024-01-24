@@ -207,7 +207,7 @@ extern_methods!(
         pub unsafe fn evaluateJavaScript_completionHandler(
             &self,
             java_script_string: &NSString,
-            completion_handler: Option<&Block<(*mut AnyObject, *mut NSError), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut AnyObject, *mut NSError)>>,
         );
 
         #[cfg(all(
@@ -222,7 +222,7 @@ extern_methods!(
             java_script_string: &NSString,
             frame: Option<&WKFrameInfo>,
             content_world: &WKContentWorld,
-            completion_handler: Option<&Block<(*mut AnyObject, *mut NSError), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut AnyObject, *mut NSError)>>,
         );
 
         #[cfg(all(
@@ -239,13 +239,13 @@ extern_methods!(
             arguments: Option<&NSDictionary<NSString, AnyObject>>,
             frame: Option<&WKFrameInfo>,
             content_world: &WKContentWorld,
-            completion_handler: Option<&Block<(*mut AnyObject, *mut NSError), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut AnyObject, *mut NSError)>>,
         );
 
         #[method(closeAllMediaPresentationsWithCompletionHandler:)]
         pub unsafe fn closeAllMediaPresentationsWithCompletionHandler(
             &self,
-            completion_handler: Option<&Block<(), ()>>,
+            completion_handler: Option<&Block<dyn Fn()>>,
         );
 
         #[deprecated]
@@ -255,39 +255,39 @@ extern_methods!(
         #[method(pauseAllMediaPlaybackWithCompletionHandler:)]
         pub unsafe fn pauseAllMediaPlaybackWithCompletionHandler(
             &self,
-            completion_handler: Option<&Block<(), ()>>,
+            completion_handler: Option<&Block<dyn Fn()>>,
         );
 
         #[deprecated]
         #[method(pauseAllMediaPlayback:)]
-        pub unsafe fn pauseAllMediaPlayback(&self, completion_handler: Option<&Block<(), ()>>);
+        pub unsafe fn pauseAllMediaPlayback(&self, completion_handler: Option<&Block<dyn Fn()>>);
 
         #[method(setAllMediaPlaybackSuspended:completionHandler:)]
         pub unsafe fn setAllMediaPlaybackSuspended_completionHandler(
             &self,
             suspended: bool,
-            completion_handler: Option<&Block<(), ()>>,
+            completion_handler: Option<&Block<dyn Fn()>>,
         );
 
         #[deprecated]
         #[method(resumeAllMediaPlayback:)]
-        pub unsafe fn resumeAllMediaPlayback(&self, completion_handler: Option<&Block<(), ()>>);
+        pub unsafe fn resumeAllMediaPlayback(&self, completion_handler: Option<&Block<dyn Fn()>>);
 
         #[deprecated]
         #[method(suspendAllMediaPlayback:)]
-        pub unsafe fn suspendAllMediaPlayback(&self, completion_handler: Option<&Block<(), ()>>);
+        pub unsafe fn suspendAllMediaPlayback(&self, completion_handler: Option<&Block<dyn Fn()>>);
 
         #[method(requestMediaPlaybackStateWithCompletionHandler:)]
         pub unsafe fn requestMediaPlaybackStateWithCompletionHandler(
             &self,
-            completion_handler: &Block<(WKMediaPlaybackState,), ()>,
+            completion_handler: &Block<dyn Fn(WKMediaPlaybackState)>,
         );
 
         #[deprecated]
         #[method(requestMediaPlaybackState:)]
         pub unsafe fn requestMediaPlaybackState(
             &self,
-            completion_handler: &Block<(WKMediaPlaybackState,), ()>,
+            completion_handler: &Block<dyn Fn(WKMediaPlaybackState)>,
         );
 
         #[method(cameraCaptureState)]
@@ -300,14 +300,14 @@ extern_methods!(
         pub unsafe fn setCameraCaptureState_completionHandler(
             &self,
             state: WKMediaCaptureState,
-            completion_handler: Option<&Block<(), ()>>,
+            completion_handler: Option<&Block<dyn Fn()>>,
         );
 
         #[method(setMicrophoneCaptureState:completionHandler:)]
         pub unsafe fn setMicrophoneCaptureState_completionHandler(
             &self,
             state: WKMediaCaptureState,
-            completion_handler: Option<&Block<(), ()>>,
+            completion_handler: Option<&Block<dyn Fn()>>,
         );
 
         #[cfg(all(
@@ -319,7 +319,7 @@ extern_methods!(
         pub unsafe fn takeSnapshotWithConfiguration_completionHandler(
             &self,
             snapshot_configuration: Option<&WKSnapshotConfiguration>,
-            completion_handler: &Block<(*mut NSImage, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSImage, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -331,14 +331,14 @@ extern_methods!(
         pub unsafe fn createPDFWithConfiguration_completionHandler(
             &self,
             pdf_configuration: Option<&WKPDFConfiguration>,
-            completion_handler: &Block<(*mut NSData, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSData, *mut NSError)>,
         );
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method(createWebArchiveDataWithCompletionHandler:)]
         pub unsafe fn createWebArchiveDataWithCompletionHandler(
             &self,
-            completion_handler: &Block<(NonNull<NSData>, NonNull<NSError>), ()>,
+            completion_handler: &Block<dyn Fn(NonNull<NSData>, NonNull<NSError>)>,
         );
 
         #[method(allowsBackForwardNavigationGestures)]
@@ -399,7 +399,7 @@ extern_methods!(
             &self,
             string: &NSString,
             configuration: Option<&WKFindConfiguration>,
-            completion_handler: &Block<(NonNull<WKFindResult>,), ()>,
+            completion_handler: &Block<dyn Fn(NonNull<WKFindResult>)>,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -411,7 +411,7 @@ extern_methods!(
         pub unsafe fn startDownloadUsingRequest_completionHandler(
             &self,
             request: &NSURLRequest,
-            completion_handler: &Block<(NonNull<WKDownload>,), ()>,
+            completion_handler: &Block<dyn Fn(NonNull<WKDownload>)>,
         );
 
         #[cfg(all(feature = "Foundation_NSData", feature = "WebKit_WKDownload"))]
@@ -419,7 +419,7 @@ extern_methods!(
         pub unsafe fn resumeDownloadFromResumeData_completionHandler(
             &self,
             resume_data: &NSData,
-            completion_handler: &Block<(NonNull<WKDownload>,), ()>,
+            completion_handler: &Block<dyn Fn(NonNull<WKDownload>)>,
         );
 
         #[cfg(feature = "Foundation_NSString")]

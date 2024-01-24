@@ -40,7 +40,7 @@ extern_methods!(
             &self,
             identifier: Option<&NSString>,
             encoded_content_rule_list: Option<&NSString>,
-            completion_handler: Option<&Block<(*mut WKContentRuleList, *mut NSError), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut WKContentRuleList, *mut NSError)>>,
         );
 
         #[cfg(all(
@@ -52,7 +52,7 @@ extern_methods!(
         pub unsafe fn lookUpContentRuleListForIdentifier_completionHandler(
             &self,
             identifier: Option<&NSString>,
-            completion_handler: Option<&Block<(*mut WKContentRuleList, *mut NSError), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut WKContentRuleList, *mut NSError)>>,
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
@@ -60,14 +60,14 @@ extern_methods!(
         pub unsafe fn removeContentRuleListForIdentifier_completionHandler(
             &self,
             identifier: Option<&NSString>,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method(getAvailableContentRuleListIdentifiers:)]
         pub unsafe fn getAvailableContentRuleListIdentifiers(
             &self,
-            completion_handler: Option<&Block<(*mut NSArray<NSString>,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSArray<NSString>)>>,
         );
     }
 );

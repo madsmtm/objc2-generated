@@ -49,13 +49,13 @@ extern_methods!(
     unsafe impl GCController {
         #[deprecated = "controllerPausedHandler has been deprecated. Use the Menu button found on the controller's profile, if it exists."]
         #[method(controllerPausedHandler)]
-        pub unsafe fn controllerPausedHandler(&self) -> *mut Block<(NonNull<GCController>,), ()>;
+        pub unsafe fn controllerPausedHandler(&self) -> *mut Block<dyn Fn(NonNull<GCController>)>;
 
         #[deprecated = "controllerPausedHandler has been deprecated. Use the Menu button found on the controller's profile, if it exists."]
         #[method(setControllerPausedHandler:)]
         pub unsafe fn setControllerPausedHandler(
             &self,
-            controller_paused_handler: Option<&Block<(NonNull<GCController>,), ()>>,
+            controller_paused_handler: Option<&Block<dyn Fn(NonNull<GCController>)>>,
         );
 
         #[method_id(@__retain_semantics Other current)]
@@ -125,7 +125,7 @@ extern_methods!(
 
         #[method(startWirelessControllerDiscoveryWithCompletionHandler:)]
         pub unsafe fn startWirelessControllerDiscoveryWithCompletionHandler(
-            completion_handler: Option<&Block<(), ()>>,
+            completion_handler: Option<&Block<dyn Fn()>>,
         );
 
         #[method(stopWirelessControllerDiscovery)]

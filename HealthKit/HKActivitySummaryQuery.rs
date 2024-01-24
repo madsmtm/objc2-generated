@@ -34,12 +34,7 @@ extern_methods!(
         pub unsafe fn updateHandler(
             &self,
         ) -> *mut Block<
-            (
-                NonNull<HKActivitySummaryQuery>,
-                *mut NSArray<HKActivitySummary>,
-                *mut NSError,
-            ),
-            (),
+            dyn Fn(NonNull<HKActivitySummaryQuery>, *mut NSArray<HKActivitySummary>, *mut NSError),
         >;
 
         #[cfg(all(
@@ -52,12 +47,11 @@ extern_methods!(
             &self,
             update_handler: Option<
                 &Block<
-                    (
+                    dyn Fn(
                         NonNull<HKActivitySummaryQuery>,
                         *mut NSArray<HKActivitySummary>,
                         *mut NSError,
                     ),
-                    (),
                 >,
             >,
         );
@@ -73,12 +67,11 @@ extern_methods!(
             this: Allocated<Self>,
             predicate: Option<&NSPredicate>,
             handler: &Block<
-                (
+                dyn Fn(
                     NonNull<HKActivitySummaryQuery>,
                     *mut NSArray<HKActivitySummary>,
                     *mut NSError,
                 ),
-                (),
             >,
         ) -> Id<Self>;
     }

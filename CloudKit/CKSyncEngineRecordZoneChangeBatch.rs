@@ -39,7 +39,7 @@ extern_methods!(
         pub unsafe fn initWithPendingChanges_recordProvider(
             this: Allocated<Self>,
             pending_changes: &NSArray<CKSyncEnginePendingRecordZoneChange>,
-            record_provider: &Block<(NonNull<CKRecordID>,), *mut CKRecord>,
+            record_provider: &Block<dyn Fn(NonNull<CKRecordID>) -> *mut CKRecord + '_>,
         ) -> Option<Id<Self>>;
 
         #[cfg(all(

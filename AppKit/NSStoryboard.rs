@@ -9,7 +9,7 @@ pub type NSStoryboardName = NSString;
 
 pub type NSStoryboardSceneIdentifier = NSString;
 
-pub type NSStoryboardControllerCreator = *mut Block<(NonNull<NSCoder>,), *mut AnyObject>;
+pub type NSStoryboardControllerCreator = *mut Block<dyn Fn(NonNull<NSCoder>) -> *mut AnyObject>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

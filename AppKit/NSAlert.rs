@@ -127,7 +127,7 @@ extern_methods!(
         pub unsafe fn beginSheetModalForWindow_completionHandler(
             &self,
             sheet_window: &NSWindow,
-            handler: Option<&Block<(NSModalResponse,), ()>>,
+            handler: Option<&Block<dyn Fn(NSModalResponse)>>,
         );
 
         #[cfg(feature = "AppKit_NSWindow")]

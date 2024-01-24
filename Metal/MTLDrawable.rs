@@ -4,7 +4,7 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
-pub type MTLDrawablePresentedHandler = *mut Block<(NonNull<ProtocolObject<dyn MTLDrawable>>,), ()>;
+pub type MTLDrawablePresentedHandler = *mut Block<dyn Fn(NonNull<ProtocolObject<dyn MTLDrawable>>)>;
 
 extern_protocol!(
     pub unsafe trait MTLDrawable: NSObjectProtocol {

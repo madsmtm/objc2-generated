@@ -96,11 +96,11 @@ extern_methods!(
         pub unsafe fn performInModes_block(
             &self,
             modes: &NSArray<NSRunLoopMode>,
-            block: &Block<(), ()>,
+            block: &Block<dyn Fn()>,
         );
 
         #[method(performBlock:)]
-        pub unsafe fn performBlock(&self, block: &Block<(), ()>);
+        pub unsafe fn performBlock(&self, block: &Block<dyn Fn()>);
     }
 );
 

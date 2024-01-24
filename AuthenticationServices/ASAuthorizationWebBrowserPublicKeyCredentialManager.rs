@@ -45,8 +45,7 @@ extern_methods!(
         pub unsafe fn requestAuthorizationForPublicKeyCredentials(
             &self,
             completion_handler: &Block<
-                (ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationState,),
-                (),
+                dyn Fn(ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationState),
             >,
         );
 
@@ -60,8 +59,7 @@ extern_methods!(
             &self,
             relying_party: &NSString,
             completion_handler: &Block<
-                (NonNull<NSArray<ASAuthorizationWebBrowserPlatformPublicKeyCredential>>,),
-                (),
+                dyn Fn(NonNull<NSArray<ASAuthorizationWebBrowserPlatformPublicKeyCredential>>),
             >,
         );
 

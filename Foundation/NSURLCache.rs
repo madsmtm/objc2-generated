@@ -232,7 +232,7 @@ extern_methods!(
         pub unsafe fn getCachedResponseForDataTask_completionHandler(
             &self,
             data_task: &NSURLSessionDataTask,
-            completion_handler: &Block<(*mut NSCachedURLResponse,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSCachedURLResponse)>,
         );
 
         #[cfg(feature = "Foundation_NSURLSessionDataTask")]

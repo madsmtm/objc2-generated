@@ -30,7 +30,7 @@ extern_methods!(
         #[method(getCurrentSignedInPlayerForContainer:completionHandler:)]
         pub unsafe fn getCurrentSignedInPlayerForContainer_completionHandler(
             container_name: Option<&NSString>,
-            handler: &Block<(*mut GKCloudPlayer, *mut NSError), ()>,
+            handler: &Block<dyn Fn(*mut GKCloudPlayer, *mut NSError)>,
         );
     }
 );

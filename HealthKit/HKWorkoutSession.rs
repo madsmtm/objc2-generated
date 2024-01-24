@@ -169,14 +169,14 @@ extern_methods!(
         #[method(startMirroringToCompanionDeviceWithCompletion:)]
         pub unsafe fn startMirroringToCompanionDeviceWithCompletion(
             &self,
-            completion: &Block<(Bool, *mut NSError), ()>,
+            completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(stopMirroringToCompanionDeviceWithCompletion:)]
         pub unsafe fn stopMirroringToCompanionDeviceWithCompletion(
             &self,
-            completion: &Block<(Bool, *mut NSError), ()>,
+            completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
@@ -184,7 +184,7 @@ extern_methods!(
         pub unsafe fn sendDataToRemoteWorkoutSession_completion(
             &self,
             data: &NSData,
-            completion: &Block<(Bool, *mut NSError), ()>,
+            completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
     }
 );

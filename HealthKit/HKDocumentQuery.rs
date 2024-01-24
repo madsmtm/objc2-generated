@@ -55,13 +55,12 @@ extern_methods!(
             sort_descriptors: Option<&NSArray<NSSortDescriptor>>,
             include_document_data: bool,
             results_handler: &Block<
-                (
+                dyn Fn(
                     NonNull<HKDocumentQuery>,
                     *mut NSArray<HKDocumentSample>,
                     Bool,
                     *mut NSError,
                 ),
-                (),
             >,
         ) -> Id<Self>;
     }

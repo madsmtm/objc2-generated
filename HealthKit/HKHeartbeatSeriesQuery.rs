@@ -34,14 +34,7 @@ extern_methods!(
             this: Allocated<Self>,
             heartbeat_series: &HKHeartbeatSeriesSample,
             data_handler: &Block<
-                (
-                    NonNull<HKHeartbeatSeriesQuery>,
-                    NSTimeInterval,
-                    Bool,
-                    Bool,
-                    *mut NSError,
-                ),
-                (),
+                dyn Fn(NonNull<HKHeartbeatSeriesQuery>, NSTimeInterval, Bool, Bool, *mut NSError),
             >,
         ) -> Id<Self>;
     }

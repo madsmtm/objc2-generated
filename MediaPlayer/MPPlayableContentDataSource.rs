@@ -15,7 +15,7 @@ extern_protocol!(
         unsafe fn beginLoadingChildItemsAtIndexPath_completionHandler(
             &self,
             index_path: &NSIndexPath,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "Foundation_NSIndexPath")]
@@ -38,7 +38,7 @@ extern_protocol!(
         unsafe fn contentItemForIdentifier_completionHandler(
             &self,
             identifier: &NSString,
-            completion_handler: &Block<(*mut MPContentItem, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut MPContentItem, *mut NSError)>,
         );
 
         #[cfg(feature = "Foundation_NSIndexPath")]

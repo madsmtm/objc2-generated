@@ -30,7 +30,7 @@ extern_methods!(
         pub unsafe fn completeRequestReturningItems_completionHandler(
             &self,
             items: Option<&NSArray>,
-            completion_handler: Option<&Block<(Bool,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(Bool)>>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
@@ -42,7 +42,7 @@ extern_methods!(
         pub unsafe fn openURL_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: Option<&Block<(Bool,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(Bool)>>,
         );
     }
 );

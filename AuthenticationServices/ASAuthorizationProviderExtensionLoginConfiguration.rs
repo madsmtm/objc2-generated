@@ -151,11 +151,7 @@ extern_methods!(
             client_id: &NSString,
             issuer: Option<&NSString>,
             completion: &Block<
-                (
-                    *mut ASAuthorizationProviderExtensionLoginConfiguration,
-                    *mut NSError,
-                ),
-                (),
+                dyn Fn(*mut ASAuthorizationProviderExtensionLoginConfiguration, *mut NSError),
             >,
         );
 

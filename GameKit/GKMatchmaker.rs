@@ -110,14 +110,14 @@ extern_methods!(
         #[method(recipientResponseHandler)]
         pub unsafe fn recipientResponseHandler(
             &self,
-        ) -> *mut Block<(NonNull<GKPlayer>, GKInviteRecipientResponse), ()>;
+        ) -> *mut Block<dyn Fn(NonNull<GKPlayer>, GKInviteRecipientResponse)>;
 
         #[cfg(feature = "GameKit_GKPlayer")]
         #[method(setRecipientResponseHandler:)]
         pub unsafe fn setRecipientResponseHandler(
             &self,
             recipient_response_handler: Option<
-                &Block<(NonNull<GKPlayer>, GKInviteRecipientResponse), ()>,
+                &Block<dyn Fn(NonNull<GKPlayer>, GKInviteRecipientResponse)>,
             >,
         );
 
@@ -126,14 +126,14 @@ extern_methods!(
         #[method(inviteeResponseHandler)]
         pub unsafe fn inviteeResponseHandler(
             &self,
-        ) -> *mut Block<(NonNull<NSString>, GKInviteeResponse), ()>;
+        ) -> *mut Block<dyn Fn(NonNull<NSString>, GKInviteeResponse)>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method(setInviteeResponseHandler:)]
         pub unsafe fn setInviteeResponseHandler(
             &self,
-            invitee_response_handler: Option<&Block<(NonNull<NSString>, GKInviteeResponse), ()>>,
+            invitee_response_handler: Option<&Block<dyn Fn(NonNull<NSString>, GKInviteeResponse)>>,
         );
 
         #[method(maxPlayersAllowedForMatchOfType:)]
@@ -349,7 +349,7 @@ extern_methods!(
         pub unsafe fn matchForInvite_completionHandler(
             &self,
             invite: &GKInvite,
-            completion_handler: Option<&Block<(*mut GKMatch, *mut NSError), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut GKMatch, *mut NSError)>>,
         );
 
         #[cfg(all(
@@ -361,7 +361,7 @@ extern_methods!(
         pub unsafe fn findMatchForRequest_withCompletionHandler(
             &self,
             request: &GKMatchRequest,
-            completion_handler: Option<&Block<(*mut GKMatch, *mut NSError), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut GKMatch, *mut NSError)>>,
         );
 
         #[cfg(all(
@@ -374,7 +374,7 @@ extern_methods!(
         pub unsafe fn findPlayersForHostedRequest_withCompletionHandler(
             &self,
             request: &GKMatchRequest,
-            completion_handler: Option<&Block<(*mut NSArray<GKPlayer>, *mut NSError), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSArray<GKPlayer>, *mut NSError)>>,
         );
 
         #[cfg(all(
@@ -386,7 +386,7 @@ extern_methods!(
         pub unsafe fn findMatchedPlayers_withCompletionHandler(
             &self,
             request: &GKMatchRequest,
-            completion_handler: &Block<(*mut GKMatchedPlayers, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut GKMatchedPlayers, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -399,7 +399,7 @@ extern_methods!(
             &self,
             r#match: &GKMatch,
             match_request: &GKMatchRequest,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[method(cancel)]
@@ -418,14 +418,14 @@ extern_methods!(
         pub unsafe fn queryPlayerGroupActivity_withCompletionHandler(
             &self,
             player_group: NSUInteger,
-            completion_handler: Option<&Block<(NSInteger, *mut NSError), ()>>,
+            completion_handler: Option<&Block<dyn Fn(NSInteger, *mut NSError)>>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(queryActivityWithCompletionHandler:)]
         pub unsafe fn queryActivityWithCompletionHandler(
             &self,
-            completion_handler: Option<&Block<(NSInteger, *mut NSError), ()>>,
+            completion_handler: Option<&Block<dyn Fn(NSInteger, *mut NSError)>>,
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
@@ -433,14 +433,14 @@ extern_methods!(
         pub unsafe fn queryQueueActivity_withCompletionHandler(
             &self,
             queue_name: &NSString,
-            completion_handler: Option<&Block<(NSInteger, *mut NSError), ()>>,
+            completion_handler: Option<&Block<dyn Fn(NSInteger, *mut NSError)>>,
         );
 
         #[cfg(feature = "GameKit_GKPlayer")]
         #[method(startBrowsingForNearbyPlayersWithHandler:)]
         pub unsafe fn startBrowsingForNearbyPlayersWithHandler(
             &self,
-            reachable_handler: Option<&Block<(NonNull<GKPlayer>, Bool), ()>>,
+            reachable_handler: Option<&Block<dyn Fn(NonNull<GKPlayer>, Bool)>>,
         );
 
         #[method(stopBrowsingForNearbyPlayers)]
@@ -450,7 +450,7 @@ extern_methods!(
         #[method(startGroupActivityWithPlayerHandler:)]
         pub unsafe fn startGroupActivityWithPlayerHandler(
             &self,
-            handler: &Block<(NonNull<GKPlayer>,), ()>,
+            handler: &Block<dyn Fn(NonNull<GKPlayer>)>,
         );
 
         #[method(stopGroupActivity)]
@@ -477,14 +477,14 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSArray", feature = "GameKit_GKInvite"))]
         #[deprecated = "Use registerListener on GKLocalPlayer to register an object that implements the GKInviteEventListener instead."]
         #[method(inviteHandler)]
-        pub unsafe fn inviteHandler(&self) -> *mut Block<(NonNull<GKInvite>, *mut NSArray), ()>;
+        pub unsafe fn inviteHandler(&self) -> *mut Block<dyn Fn(NonNull<GKInvite>, *mut NSArray)>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "GameKit_GKInvite"))]
         #[deprecated = "Use registerListener on GKLocalPlayer to register an object that implements the GKInviteEventListener instead."]
         #[method(setInviteHandler:)]
         pub unsafe fn setInviteHandler(
             &self,
-            invite_handler: Option<&Block<(NonNull<GKInvite>, *mut NSArray), ()>>,
+            invite_handler: Option<&Block<dyn Fn(NonNull<GKInvite>, *mut NSArray)>>,
         );
     }
 );
@@ -498,7 +498,7 @@ extern_methods!(
         #[method(startBrowsingForNearbyPlayersWithReachableHandler:)]
         pub unsafe fn startBrowsingForNearbyPlayersWithReachableHandler(
             &self,
-            reachable_handler: Option<&Block<(NonNull<NSString>, Bool), ()>>,
+            reachable_handler: Option<&Block<dyn Fn(NonNull<NSString>, Bool)>>,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -517,7 +517,7 @@ extern_methods!(
         pub unsafe fn findPlayersForHostedMatchRequest_withCompletionHandler(
             &self,
             request: &GKMatchRequest,
-            completion_handler: Option<&Block<(*mut NSArray<NSString>, *mut NSError), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSArray<NSString>, *mut NSError)>>,
         );
     }
 );

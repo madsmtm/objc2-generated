@@ -132,14 +132,14 @@ extern_methods!(
         pub unsafe fn setUserInfoValueProviderForDomain_provider(
             error_domain: &NSErrorDomain,
             provider: Option<
-                &Block<(NonNull<NSError>, NonNull<NSErrorUserInfoKey>), *mut AnyObject>,
+                &Block<dyn Fn(NonNull<NSError>, NonNull<NSErrorUserInfoKey>) -> *mut AnyObject>,
             >,
         );
 
         #[method(userInfoValueProviderForDomain:)]
         pub unsafe fn userInfoValueProviderForDomain(
             error_domain: &NSErrorDomain,
-        ) -> *mut Block<(NonNull<NSError>, NonNull<NSErrorUserInfoKey>), *mut AnyObject>;
+        ) -> *mut Block<dyn Fn(NonNull<NSError>, NonNull<NSErrorUserInfoKey>) -> *mut AnyObject>;
     }
 );
 

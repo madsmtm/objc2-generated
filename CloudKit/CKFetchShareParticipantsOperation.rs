@@ -61,14 +61,14 @@ extern_methods!(
         #[method(shareParticipantFetchedBlock)]
         pub unsafe fn shareParticipantFetchedBlock(
             &self,
-        ) -> *mut Block<(NonNull<CKShareParticipant>,), ()>;
+        ) -> *mut Block<dyn Fn(NonNull<CKShareParticipant>)>;
 
         #[cfg(feature = "CloudKit_CKShareParticipant")]
         #[deprecated = "Use perShareParticipantCompletionBlock instead, which surfaces per-share-participant errors"]
         #[method(setShareParticipantFetchedBlock:)]
         pub unsafe fn setShareParticipantFetchedBlock(
             &self,
-            share_participant_fetched_block: Option<&Block<(NonNull<CKShareParticipant>,), ()>>,
+            share_participant_fetched_block: Option<&Block<dyn Fn(NonNull<CKShareParticipant>)>>,
         );
 
         #[cfg(all(
@@ -80,12 +80,7 @@ extern_methods!(
         pub unsafe fn perShareParticipantCompletionBlock(
             &self,
         ) -> *mut Block<
-            (
-                NonNull<CKUserIdentityLookupInfo>,
-                *mut CKShareParticipant,
-                *mut NSError,
-            ),
-            (),
+            dyn Fn(NonNull<CKUserIdentityLookupInfo>, *mut CKShareParticipant, *mut NSError),
         >;
 
         #[cfg(all(
@@ -98,12 +93,11 @@ extern_methods!(
             &self,
             per_share_participant_completion_block: Option<
                 &Block<
-                    (
+                    dyn Fn(
                         NonNull<CKUserIdentityLookupInfo>,
                         *mut CKShareParticipant,
                         *mut NSError,
                     ),
-                    (),
                 >,
             >,
         );
@@ -112,13 +106,13 @@ extern_methods!(
         #[method(fetchShareParticipantsCompletionBlock)]
         pub unsafe fn fetchShareParticipantsCompletionBlock(
             &self,
-        ) -> *mut Block<(*mut NSError,), ()>;
+        ) -> *mut Block<dyn Fn(*mut NSError)>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(setFetchShareParticipantsCompletionBlock:)]
         pub unsafe fn setFetchShareParticipantsCompletionBlock(
             &self,
-            fetch_share_participants_completion_block: Option<&Block<(*mut NSError,), ()>>,
+            fetch_share_participants_completion_block: Option<&Block<dyn Fn(*mut NSError)>>,
         );
     }
 );

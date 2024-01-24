@@ -138,22 +138,25 @@ extern_methods!(
         pub unsafe fn performActivityWithSynchronousWaiting_usingBlock(
             &self,
             wait_synchronously: bool,
-            block: &Block<(NonNull<Block<(), ()>>,), ()>,
+            block: &Block<dyn Fn(NonNull<Block<dyn Fn()>>)>,
         );
 
         #[method(continueActivityUsingBlock:)]
-        pub unsafe fn continueActivityUsingBlock(&self, block: &Block<(), ()>);
+        pub unsafe fn continueActivityUsingBlock(&self, block: &Block<dyn Fn() + '_>);
 
         #[method(continueAsynchronousWorkOnMainThreadUsingBlock:)]
-        pub unsafe fn continueAsynchronousWorkOnMainThreadUsingBlock(&self, block: &Block<(), ()>);
+        pub unsafe fn continueAsynchronousWorkOnMainThreadUsingBlock(
+            &self,
+            block: &Block<dyn Fn()>,
+        );
 
         #[method(performSynchronousFileAccessUsingBlock:)]
-        pub unsafe fn performSynchronousFileAccessUsingBlock(&self, block: &Block<(), ()>);
+        pub unsafe fn performSynchronousFileAccessUsingBlock(&self, block: &Block<dyn Fn() + '_>);
 
         #[method(performAsynchronousFileAccessUsingBlock:)]
         pub unsafe fn performAsynchronousFileAccessUsingBlock(
             &self,
-            block: &Block<(NonNull<Block<(), ()>>,), ()>,
+            block: &Block<dyn Fn(NonNull<Block<dyn Fn()>>)>,
         );
 
         #[method(revertDocumentToSaved:)]
@@ -362,7 +365,7 @@ extern_methods!(
             url: &NSURL,
             type_name: &NSString,
             save_operation: NSSaveOperationType,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
@@ -397,7 +400,7 @@ extern_methods!(
         pub unsafe fn autosaveWithImplicitCancellability_completionHandler(
             &self,
             autosaving_is_implicitly_cancellable: bool,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[method(autosavesInPlace)]
@@ -415,7 +418,7 @@ extern_methods!(
         #[method(stopBrowsingVersionsWithCompletionHandler:)]
         pub unsafe fn stopBrowsingVersionsWithCompletionHandler(
             &self,
-            completion_handler: Option<&Block<(), ()>>,
+            completion_handler: Option<&Block<dyn Fn()>>,
         );
 
         #[method(autosavesDrafts)]
@@ -474,7 +477,7 @@ extern_methods!(
         #[method(moveDocumentWithCompletionHandler:)]
         pub unsafe fn moveDocumentWithCompletionHandler(
             &self,
-            completion_handler: Option<&Block<(Bool,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(Bool)>>,
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
@@ -482,7 +485,7 @@ extern_methods!(
         pub unsafe fn moveToURL_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[method(lockDocument:)]
@@ -494,27 +497,27 @@ extern_methods!(
         #[method(lockDocumentWithCompletionHandler:)]
         pub unsafe fn lockDocumentWithCompletionHandler(
             &self,
-            completion_handler: Option<&Block<(Bool,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(Bool)>>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(lockWithCompletionHandler:)]
         pub unsafe fn lockWithCompletionHandler(
             &self,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[method(unlockDocumentWithCompletionHandler:)]
         pub unsafe fn unlockDocumentWithCompletionHandler(
             &self,
-            completion_handler: Option<&Block<(Bool,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(Bool)>>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(unlockWithCompletionHandler:)]
         pub unsafe fn unlockWithCompletionHandler(
             &self,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[method(isLocked)]
@@ -599,7 +602,7 @@ extern_methods!(
         pub unsafe fn shareDocumentWithSharingService_completionHandler(
             &self,
             sharing_service: &NSSharingService,
-            completion_handler: Option<&Block<(Bool,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(Bool)>>,
         );
 
         #[cfg(feature = "AppKit_NSSharingServicePicker")]
@@ -786,27 +789,27 @@ extern_methods!(
         #[method(relinquishPresentedItemToReader:)]
         pub unsafe fn relinquishPresentedItemToReader(
             &self,
-            reader: &Block<(*mut Block<(), ()>,), ()>,
+            reader: &Block<dyn Fn(*mut Block<dyn Fn()>)>,
         );
 
         #[method(relinquishPresentedItemToWriter:)]
         pub unsafe fn relinquishPresentedItemToWriter(
             &self,
-            writer: &Block<(*mut Block<(), ()>,), ()>,
+            writer: &Block<dyn Fn(*mut Block<dyn Fn()>)>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(savePresentedItemChangesWithCompletionHandler:)]
         pub unsafe fn savePresentedItemChangesWithCompletionHandler(
             &self,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(accommodatePresentedItemDeletionWithCompletionHandler:)]
         pub unsafe fn accommodatePresentedItemDeletionWithCompletionHandler(
             &self,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "Foundation_NSURL")]

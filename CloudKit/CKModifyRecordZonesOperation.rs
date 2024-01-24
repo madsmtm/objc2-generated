@@ -69,7 +69,7 @@ extern_methods!(
         #[method(perRecordZoneSaveBlock)]
         pub unsafe fn perRecordZoneSaveBlock(
             &self,
-        ) -> *mut Block<(NonNull<CKRecordZoneID>, *mut CKRecordZone, *mut NSError), ()>;
+        ) -> *mut Block<dyn Fn(NonNull<CKRecordZoneID>, *mut CKRecordZone, *mut NSError)>;
 
         #[cfg(all(
             feature = "CloudKit_CKRecordZone",
@@ -80,7 +80,7 @@ extern_methods!(
         pub unsafe fn setPerRecordZoneSaveBlock(
             &self,
             per_record_zone_save_block: Option<
-                &Block<(NonNull<CKRecordZoneID>, *mut CKRecordZone, *mut NSError), ()>,
+                &Block<dyn Fn(NonNull<CKRecordZoneID>, *mut CKRecordZone, *mut NSError)>,
             >,
         );
 
@@ -88,14 +88,14 @@ extern_methods!(
         #[method(perRecordZoneDeleteBlock)]
         pub unsafe fn perRecordZoneDeleteBlock(
             &self,
-        ) -> *mut Block<(NonNull<CKRecordZoneID>, *mut NSError), ()>;
+        ) -> *mut Block<dyn Fn(NonNull<CKRecordZoneID>, *mut NSError)>;
 
         #[cfg(all(feature = "CloudKit_CKRecordZoneID", feature = "Foundation_NSError"))]
         #[method(setPerRecordZoneDeleteBlock:)]
         pub unsafe fn setPerRecordZoneDeleteBlock(
             &self,
             per_record_zone_delete_block: Option<
-                &Block<(NonNull<CKRecordZoneID>, *mut NSError), ()>,
+                &Block<dyn Fn(NonNull<CKRecordZoneID>, *mut NSError)>,
             >,
         );
 
@@ -109,12 +109,7 @@ extern_methods!(
         pub unsafe fn modifyRecordZonesCompletionBlock(
             &self,
         ) -> *mut Block<
-            (
-                *mut NSArray<CKRecordZone>,
-                *mut NSArray<CKRecordZoneID>,
-                *mut NSError,
-            ),
-            (),
+            dyn Fn(*mut NSArray<CKRecordZone>, *mut NSArray<CKRecordZoneID>, *mut NSError),
         >;
 
         #[cfg(all(
@@ -128,12 +123,7 @@ extern_methods!(
             &self,
             modify_record_zones_completion_block: Option<
                 &Block<
-                    (
-                        *mut NSArray<CKRecordZone>,
-                        *mut NSArray<CKRecordZoneID>,
-                        *mut NSError,
-                    ),
-                    (),
+                    dyn Fn(*mut NSArray<CKRecordZone>, *mut NSArray<CKRecordZoneID>, *mut NSError),
                 >,
             >,
         );

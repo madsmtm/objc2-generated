@@ -80,7 +80,7 @@ extern_methods!(
     }
 );
 
-pub type AXCustomContentReturnBlock = *mut Block<(), *mut NSArray<AXCustomContent>>;
+pub type AXCustomContentReturnBlock = *mut Block<dyn Fn() -> *mut NSArray<AXCustomContent>>;
 
 extern_protocol!(
     pub unsafe trait AXCustomContentProvider: NSObjectProtocol {

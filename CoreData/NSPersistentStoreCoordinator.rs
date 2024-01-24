@@ -188,7 +188,7 @@ extern_methods!(
         pub unsafe fn addPersistentStoreWithDescription_completionHandler(
             &self,
             store_description: &NSPersistentStoreDescription,
-            block: &Block<(NonNull<NSPersistentStoreDescription>, *mut NSError), ()>,
+            block: &Block<dyn Fn(NonNull<NSPersistentStoreDescription>, *mut NSError)>,
         );
 
         #[cfg(all(feature = "CoreData_NSPersistentStore", feature = "Foundation_NSError"))]
@@ -352,10 +352,10 @@ extern_methods!(
         ) -> Result<(), Id<NSError>>;
 
         #[method(performBlock:)]
-        pub unsafe fn performBlock(&self, block: &Block<(), ()>);
+        pub unsafe fn performBlock(&self, block: &Block<dyn Fn()>);
 
         #[method(performBlockAndWait:)]
-        pub unsafe fn performBlockAndWait(&self, block: &Block<(), ()>);
+        pub unsafe fn performBlockAndWait(&self, block: &Block<dyn Fn() + '_>);
 
         #[cfg(all(
             feature = "CoreData_NSPersistentHistoryToken",

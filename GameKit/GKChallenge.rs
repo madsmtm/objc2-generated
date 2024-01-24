@@ -42,7 +42,7 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSError"))]
         #[method(loadReceivedChallengesWithCompletionHandler:)]
         pub unsafe fn loadReceivedChallengesWithCompletionHandler(
-            completion_handler: Option<&Block<(*mut NSArray<GKChallenge>, *mut NSError), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSArray<GKChallenge>, *mut NSError)>>,
         );
 
         #[method(decline)]
@@ -201,7 +201,7 @@ extern_methods!(
         pub unsafe fn reportScores_withEligibleChallenges_withCompletionHandler(
             scores: &NSArray<GKScore>,
             challenges: &NSArray<GKChallenge>,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(all(
@@ -214,7 +214,7 @@ extern_methods!(
         pub unsafe fn reportLeaderboardScores_withEligibleChallenges_withCompletionHandler(
             scores: &NSArray<GKLeaderboardScore>,
             challenges: &NSArray<GKChallenge>,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
     }
 );
@@ -232,7 +232,7 @@ extern_methods!(
         pub unsafe fn selectChallengeablePlayers_withCompletionHandler(
             &self,
             players: &NSArray<GKPlayer>,
-            completion_handler: Option<&Block<(*mut NSArray<GKPlayer>, *mut NSError), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSArray<GKPlayer>, *mut NSError)>>,
         );
 
         #[cfg(all(
@@ -244,7 +244,7 @@ extern_methods!(
         pub unsafe fn reportAchievements_withEligibleChallenges_withCompletionHandler(
             achievements: &NSArray<GKAchievement>,
             challenges: &NSArray<GKChallenge>,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
     }
 );
@@ -287,16 +287,16 @@ extern_methods!(
         pub unsafe fn selectChallengeablePlayerIDs_withCompletionHandler(
             &self,
             player_i_ds: Option<&NSArray<NSString>>,
-            completion_handler: Option<&Block<(*mut NSArray<NSString>, *mut NSError), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSArray<NSString>, *mut NSError)>>,
         );
     }
 );
 
 pub type GKChallengeComposeCompletionBlock =
-    *mut Block<(NonNull<NSViewController>, Bool, *mut NSArray<NSString>), ()>;
+    *mut Block<dyn Fn(NonNull<NSViewController>, Bool, *mut NSArray<NSString>)>;
 
 pub type GKChallengeComposeHandler =
-    *mut Block<(NonNull<NSViewController>, Bool, *mut NSArray<GKPlayer>), ()>;
+    *mut Block<dyn Fn(NonNull<NSViewController>, Bool, *mut NSArray<GKPlayer>)>;
 
 extern_methods!(
     /// GKChallengeUI

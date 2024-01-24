@@ -115,7 +115,7 @@ extern_methods!(
         #[method(userNeedsReauthenticationWithCompletion:)]
         pub unsafe fn userNeedsReauthenticationWithCompletion(
             &self,
-            completion: &Block<(*mut NSError,), ()>,
+            completion: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[method(deviceRegistrationsNeedsRepair)]
@@ -140,7 +140,7 @@ extern_methods!(
         #[method(presentRegistrationViewControllerWithCompletion:)]
         pub unsafe fn presentRegistrationViewControllerWithCompletion(
             &self,
-            completion: &Block<(*mut NSError,), ()>,
+            completion: &Block<dyn Fn(*mut NSError)>,
         );
     }
 );

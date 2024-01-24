@@ -64,7 +64,7 @@ extern_protocol!(
             &self,
             login_manager: &ASAuthorizationProviderExtensionLoginManager,
             options: ASAuthorizationProviderExtensionRequestOptions,
-            completion: &Block<(ASAuthorizationProviderExtensionRegistrationResult,), ()>,
+            completion: &Block<dyn Fn(ASAuthorizationProviderExtensionRegistrationResult)>,
         );
 
         #[cfg(all(
@@ -78,7 +78,7 @@ extern_protocol!(
             user_name: Option<&NSString>,
             authentication_method: ASAuthorizationProviderExtensionAuthenticationMethod,
             options: ASAuthorizationProviderExtensionRequestOptions,
-            completion: &Block<(ASAuthorizationProviderExtensionRegistrationResult,), ()>,
+            completion: &Block<dyn Fn(ASAuthorizationProviderExtensionRegistrationResult)>,
         );
 
         #[optional]

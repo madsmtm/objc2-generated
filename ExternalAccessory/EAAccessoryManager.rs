@@ -16,7 +16,7 @@ ns_enum!(
 
 extern_static!(EABluetoothAccessoryPickerErrorDomain: &'static NSString);
 
-pub type EABluetoothAccessoryPickerCompletion = *mut Block<(*mut NSError,), ()>;
+pub type EABluetoothAccessoryPickerCompletion = *mut Block<dyn Fn(*mut NSError)>;
 
 extern_static!(EAAccessoryDidConnectNotification: &'static NSString);
 

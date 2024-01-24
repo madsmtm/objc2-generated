@@ -6,20 +6,20 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 pub type NSTableViewDiffableDataSourceCellProvider = *mut Block<
-    (
+    dyn Fn(
         NonNull<NSTableView>,
         NonNull<NSTableColumn>,
         NSInteger,
         NonNull<AnyObject>,
-    ),
-    NonNull<NSView>,
+    ) -> NonNull<NSView>,
 >;
 
-pub type NSTableViewDiffableDataSourceRowProvider =
-    *mut Block<(NonNull<NSTableView>, NSInteger, NonNull<AnyObject>), NonNull<NSTableRowView>>;
+pub type NSTableViewDiffableDataSourceRowProvider = *mut Block<
+    dyn Fn(NonNull<NSTableView>, NSInteger, NonNull<AnyObject>) -> NonNull<NSTableRowView>,
+>;
 
 pub type NSTableViewDiffableDataSourceSectionHeaderViewProvider =
-    *mut Block<(NonNull<NSTableView>, NSInteger, NonNull<AnyObject>), NonNull<NSView>>;
+    *mut Block<dyn Fn(NonNull<NSTableView>, NSInteger, NonNull<AnyObject>) -> NonNull<NSView>>;
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -102,7 +102,7 @@ extern_methods!(
             &self,
             snapshot: &NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>,
             animating_differences: bool,
-            completion: Option<&Block<(), ()>>,
+            completion: Option<&Block<dyn Fn()>>,
         );
 
         #[method_id(@__retain_semantics Other itemIdentifierForRow:)]

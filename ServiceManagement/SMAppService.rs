@@ -57,7 +57,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(unregisterWithCompletionHandler:)]
-        pub unsafe fn unregisterWithCompletionHandler(&self, handler: &Block<(*mut NSError,), ()>);
+        pub unsafe fn unregisterWithCompletionHandler(&self, handler: &Block<dyn Fn(*mut NSError)>);
 
         #[method(status)]
         pub unsafe fn status(&self) -> SMAppServiceStatus;

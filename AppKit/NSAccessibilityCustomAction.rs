@@ -28,7 +28,7 @@ extern_methods!(
         pub unsafe fn initWithName_handler(
             this: Allocated<Self>,
             name: &NSString,
-            handler: Option<&Block<(), Bool>>,
+            handler: Option<&Block<dyn Fn() -> Bool>>,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSString")]
@@ -49,10 +49,10 @@ extern_methods!(
         pub unsafe fn setName(&self, name: &NSString);
 
         #[method(handler)]
-        pub unsafe fn handler(&self) -> *mut Block<(), Bool>;
+        pub unsafe fn handler(&self) -> *mut Block<dyn Fn() -> Bool>;
 
         #[method(setHandler:)]
-        pub unsafe fn setHandler(&self, handler: Option<&Block<(), Bool>>);
+        pub unsafe fn setHandler(&self, handler: Option<&Block<dyn Fn() -> Bool>>);
 
         #[method_id(@__retain_semantics Other target)]
         pub unsafe fn target(&self) -> Option<Id<NSObject>>;

@@ -11,7 +11,7 @@ extern_protocol!(
         unsafe fn updateDescendantsOfContext_completion(
             &self,
             context: &CLSContext,
-            completion: &Block<(*mut NSError,), ()>,
+            completion: &Block<dyn Fn(*mut NSError)>,
         );
     }
 

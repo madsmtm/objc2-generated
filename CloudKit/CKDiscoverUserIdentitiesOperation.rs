@@ -67,7 +67,7 @@ extern_methods!(
         #[method(userIdentityDiscoveredBlock)]
         pub unsafe fn userIdentityDiscoveredBlock(
             &self,
-        ) -> *mut Block<(NonNull<CKUserIdentity>, NonNull<CKUserIdentityLookupInfo>), ()>;
+        ) -> *mut Block<dyn Fn(NonNull<CKUserIdentity>, NonNull<CKUserIdentityLookupInfo>)>;
 
         #[cfg(all(
             feature = "CloudKit_CKUserIdentity",
@@ -78,7 +78,7 @@ extern_methods!(
         pub unsafe fn setUserIdentityDiscoveredBlock(
             &self,
             user_identity_discovered_block: Option<
-                &Block<(NonNull<CKUserIdentity>, NonNull<CKUserIdentityLookupInfo>), ()>,
+                &Block<dyn Fn(NonNull<CKUserIdentity>, NonNull<CKUserIdentityLookupInfo>)>,
             >,
         );
 
@@ -87,14 +87,14 @@ extern_methods!(
         #[method(discoverUserIdentitiesCompletionBlock)]
         pub unsafe fn discoverUserIdentitiesCompletionBlock(
             &self,
-        ) -> *mut Block<(*mut NSError,), ()>;
+        ) -> *mut Block<dyn Fn(*mut NSError)>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(setDiscoverUserIdentitiesCompletionBlock:)]
         pub unsafe fn setDiscoverUserIdentitiesCompletionBlock(
             &self,
-            discover_user_identities_completion_block: Option<&Block<(*mut NSError,), ()>>,
+            discover_user_identities_completion_block: Option<&Block<dyn Fn(*mut NSError)>>,
         );
     }
 );

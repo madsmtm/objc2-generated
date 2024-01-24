@@ -58,7 +58,7 @@ extern_methods!(
         pub unsafe fn fetchDataRecordsOfTypes_completionHandler(
             &self,
             data_types: &NSSet<NSString>,
-            completion_handler: &Block<(NonNull<NSArray<WKWebsiteDataRecord>>,), ()>,
+            completion_handler: &Block<dyn Fn(NonNull<NSArray<WKWebsiteDataRecord>>)>,
         );
 
         #[cfg(all(
@@ -72,7 +72,7 @@ extern_methods!(
             &self,
             data_types: &NSSet<NSString>,
             data_records: &NSArray<WKWebsiteDataRecord>,
-            completion_handler: &Block<(), ()>,
+            completion_handler: &Block<dyn Fn()>,
         );
 
         #[cfg(all(
@@ -85,7 +85,7 @@ extern_methods!(
             &self,
             data_types: &NSSet<NSString>,
             date: &NSDate,
-            completion_handler: &Block<(), ()>,
+            completion_handler: &Block<dyn Fn()>,
         );
 
         #[cfg(feature = "WebKit_WKHTTPCookieStore")]
@@ -104,13 +104,13 @@ extern_methods!(
         #[method(removeDataStoreForIdentifier:completionHandler:)]
         pub unsafe fn removeDataStoreForIdentifier_completionHandler(
             identifier: &NSUUID,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSUUID"))]
         #[method(fetchAllDataStoreIdentifiers:)]
         pub unsafe fn fetchAllDataStoreIdentifiers(
-            completion_handler: &Block<(NonNull<NSArray<NSUUID>>,), ()>,
+            completion_handler: &Block<dyn Fn(NonNull<NSArray<NSUUID>>)>,
         );
     }
 );

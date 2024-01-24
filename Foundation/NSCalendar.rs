@@ -495,7 +495,7 @@ extern_methods!(
             start: &NSDate,
             comps: &NSDateComponents,
             opts: NSCalendarOptions,
-            block: &Block<(*mut NSDate, Bool, NonNull<Bool>), ()>,
+            block: &Block<dyn Fn(*mut NSDate, Bool, NonNull<Bool>) + '_>,
         );
 
         #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSDateComponents"))]

@@ -15,7 +15,7 @@ ns_enum!(
 );
 
 pub type MTLIOCommandBufferHandler =
-    *mut Block<(NonNull<ProtocolObject<dyn MTLIOCommandBuffer>>,), ()>;
+    *mut Block<dyn Fn(NonNull<ProtocolObject<dyn MTLIOCommandBuffer>>)>;
 
 extern_protocol!(
     pub unsafe trait MTLIOCommandBuffer: NSObjectProtocol {

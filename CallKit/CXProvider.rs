@@ -182,7 +182,7 @@ extern_methods!(
             &self,
             uuid: &NSUUID,
             update: &CXCallUpdate,
-            completion: &Block<(*mut NSError,), ()>,
+            completion: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "CallKit_CXCallUpdate", feature = "Foundation_NSUUID"))]
@@ -218,7 +218,7 @@ extern_methods!(
         #[method(reportNewIncomingVoIPPushPayload:completion:)]
         pub unsafe fn reportNewIncomingVoIPPushPayload_completion(
             dictionary_payload: &NSDictionary,
-            completion: Option<&Block<(*mut NSError,), ()>>,
+            completion: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "CallKit_CXProviderConfiguration")]

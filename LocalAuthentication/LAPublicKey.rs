@@ -26,7 +26,7 @@ extern_methods!(
         #[method(exportBytesWithCompletion:)]
         pub unsafe fn exportBytesWithCompletion(
             &self,
-            handler: &Block<(*mut NSData, *mut NSError), ()>,
+            handler: &Block<dyn Fn(*mut NSData, *mut NSError)>,
         );
 
         #[method_id(@__retain_semantics New new)]

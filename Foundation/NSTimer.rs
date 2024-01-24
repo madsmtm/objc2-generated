@@ -59,14 +59,14 @@ extern_methods!(
         pub unsafe fn timerWithTimeInterval_repeats_block(
             interval: NSTimeInterval,
             repeats: bool,
-            block: &Block<(NonNull<NSTimer>,), ()>,
+            block: &Block<dyn Fn(NonNull<NSTimer>)>,
         ) -> Id<NSTimer>;
 
         #[method_id(@__retain_semantics Other scheduledTimerWithTimeInterval:repeats:block:)]
         pub unsafe fn scheduledTimerWithTimeInterval_repeats_block(
             interval: NSTimeInterval,
             repeats: bool,
-            block: &Block<(NonNull<NSTimer>,), ()>,
+            block: &Block<dyn Fn(NonNull<NSTimer>)>,
         ) -> Id<NSTimer>;
 
         #[cfg(feature = "Foundation_NSDate")]
@@ -76,7 +76,7 @@ extern_methods!(
             date: &NSDate,
             interval: NSTimeInterval,
             repeats: bool,
-            block: &Block<(NonNull<NSTimer>,), ()>,
+            block: &Block<dyn Fn(NonNull<NSTimer>)>,
         ) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSDate")]

@@ -5,7 +5,7 @@ use crate::Contacts::*;
 use crate::CoreLocation::*;
 use crate::Foundation::*;
 
-pub type CLGeocodeCompletionHandler = *mut Block<(*mut NSArray<CLPlacemark>, *mut NSError), ()>;
+pub type CLGeocodeCompletionHandler = *mut Block<dyn Fn(*mut NSArray<CLPlacemark>, *mut NSError)>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

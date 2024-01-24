@@ -61,53 +61,53 @@ extern_methods!(
         #[method(recordZoneWithIDChangedBlock)]
         pub unsafe fn recordZoneWithIDChangedBlock(
             &self,
-        ) -> *mut Block<(NonNull<CKRecordZoneID>,), ()>;
+        ) -> *mut Block<dyn Fn(NonNull<CKRecordZoneID>)>;
 
         #[cfg(feature = "CloudKit_CKRecordZoneID")]
         #[method(setRecordZoneWithIDChangedBlock:)]
         pub unsafe fn setRecordZoneWithIDChangedBlock(
             &self,
-            record_zone_with_id_changed_block: Option<&Block<(NonNull<CKRecordZoneID>,), ()>>,
+            record_zone_with_id_changed_block: Option<&Block<dyn Fn(NonNull<CKRecordZoneID>)>>,
         );
 
         #[cfg(feature = "CloudKit_CKRecordZoneID")]
         #[method(recordZoneWithIDWasDeletedBlock)]
         pub unsafe fn recordZoneWithIDWasDeletedBlock(
             &self,
-        ) -> *mut Block<(NonNull<CKRecordZoneID>,), ()>;
+        ) -> *mut Block<dyn Fn(NonNull<CKRecordZoneID>)>;
 
         #[cfg(feature = "CloudKit_CKRecordZoneID")]
         #[method(setRecordZoneWithIDWasDeletedBlock:)]
         pub unsafe fn setRecordZoneWithIDWasDeletedBlock(
             &self,
-            record_zone_with_id_was_deleted_block: Option<&Block<(NonNull<CKRecordZoneID>,), ()>>,
+            record_zone_with_id_was_deleted_block: Option<&Block<dyn Fn(NonNull<CKRecordZoneID>)>>,
         );
 
         #[cfg(feature = "CloudKit_CKRecordZoneID")]
         #[method(recordZoneWithIDWasPurgedBlock)]
         pub unsafe fn recordZoneWithIDWasPurgedBlock(
             &self,
-        ) -> *mut Block<(NonNull<CKRecordZoneID>,), ()>;
+        ) -> *mut Block<dyn Fn(NonNull<CKRecordZoneID>)>;
 
         #[cfg(feature = "CloudKit_CKRecordZoneID")]
         #[method(setRecordZoneWithIDWasPurgedBlock:)]
         pub unsafe fn setRecordZoneWithIDWasPurgedBlock(
             &self,
-            record_zone_with_id_was_purged_block: Option<&Block<(NonNull<CKRecordZoneID>,), ()>>,
+            record_zone_with_id_was_purged_block: Option<&Block<dyn Fn(NonNull<CKRecordZoneID>)>>,
         );
 
         #[cfg(feature = "CloudKit_CKRecordZoneID")]
         #[method(recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock)]
         pub unsafe fn recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock(
             &self,
-        ) -> *mut Block<(NonNull<CKRecordZoneID>,), ()>;
+        ) -> *mut Block<dyn Fn(NonNull<CKRecordZoneID>)>;
 
         #[cfg(feature = "CloudKit_CKRecordZoneID")]
         #[method(setRecordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock:)]
         pub unsafe fn setRecordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock(
             &self,
             record_zone_with_id_was_deleted_due_to_user_encrypted_data_reset_block: Option<
-                &Block<(NonNull<CKRecordZoneID>,), ()>,
+                &Block<dyn Fn(NonNull<CKRecordZoneID>)>,
             >,
         );
 
@@ -115,13 +115,13 @@ extern_methods!(
         #[method(changeTokenUpdatedBlock)]
         pub unsafe fn changeTokenUpdatedBlock(
             &self,
-        ) -> *mut Block<(NonNull<CKServerChangeToken>,), ()>;
+        ) -> *mut Block<dyn Fn(NonNull<CKServerChangeToken>)>;
 
         #[cfg(feature = "CloudKit_CKServerChangeToken")]
         #[method(setChangeTokenUpdatedBlock:)]
         pub unsafe fn setChangeTokenUpdatedBlock(
             &self,
-            change_token_updated_block: Option<&Block<(NonNull<CKServerChangeToken>,), ()>>,
+            change_token_updated_block: Option<&Block<dyn Fn(NonNull<CKServerChangeToken>)>>,
         );
 
         #[cfg(all(
@@ -131,7 +131,7 @@ extern_methods!(
         #[method(fetchDatabaseChangesCompletionBlock)]
         pub unsafe fn fetchDatabaseChangesCompletionBlock(
             &self,
-        ) -> *mut Block<(*mut CKServerChangeToken, Bool, *mut NSError), ()>;
+        ) -> *mut Block<dyn Fn(*mut CKServerChangeToken, Bool, *mut NSError)>;
 
         #[cfg(all(
             feature = "CloudKit_CKServerChangeToken",
@@ -141,7 +141,7 @@ extern_methods!(
         pub unsafe fn setFetchDatabaseChangesCompletionBlock(
             &self,
             fetch_database_changes_completion_block: Option<
-                &Block<(*mut CKServerChangeToken, Bool, *mut NSError), ()>,
+                &Block<dyn Fn(*mut CKServerChangeToken, Bool, *mut NSError)>,
             >,
         );
     }

@@ -300,55 +300,57 @@ extern_methods!(
         #[method(findMatchForRequest:withCompletionHandler:)]
         pub unsafe fn findMatchForRequest_withCompletionHandler(
             request: &GKMatchRequest,
-            completion_handler: &Block<(*mut GKTurnBasedMatch, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut GKTurnBasedMatch, *mut NSError)>,
         );
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSError"))]
         #[method(loadMatchesWithCompletionHandler:)]
         pub unsafe fn loadMatchesWithCompletionHandler(
-            completion_handler: Option<&Block<(*mut NSArray<GKTurnBasedMatch>, *mut NSError), ()>>,
+            completion_handler: Option<
+                &Block<dyn Fn(*mut NSArray<GKTurnBasedMatch>, *mut NSError)>,
+            >,
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method(loadMatchWithID:withCompletionHandler:)]
         pub unsafe fn loadMatchWithID_withCompletionHandler(
             match_id: &NSString,
-            completion_handler: Option<&Block<(*mut GKTurnBasedMatch, *mut NSError), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut GKTurnBasedMatch, *mut NSError)>>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(rematchWithCompletionHandler:)]
         pub unsafe fn rematchWithCompletionHandler(
             &self,
-            completion_handler: Option<&Block<(*mut GKTurnBasedMatch, *mut NSError), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut GKTurnBasedMatch, *mut NSError)>>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(acceptInviteWithCompletionHandler:)]
         pub unsafe fn acceptInviteWithCompletionHandler(
             &self,
-            completion_handler: Option<&Block<(*mut GKTurnBasedMatch, *mut NSError), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut GKTurnBasedMatch, *mut NSError)>>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(declineInviteWithCompletionHandler:)]
         pub unsafe fn declineInviteWithCompletionHandler(
             &self,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(removeWithCompletionHandler:)]
         pub unsafe fn removeWithCompletionHandler(
             &self,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method(loadMatchDataWithCompletionHandler:)]
         pub unsafe fn loadMatchDataWithCompletionHandler(
             &self,
-            completion_handler: Option<&Block<(*mut NSData, *mut NSError), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSData, *mut NSError)>>,
         );
 
         #[cfg(all(
@@ -363,7 +365,7 @@ extern_methods!(
             next_participants: &NSArray<GKTurnBasedParticipant>,
             timeout: NSTimeInterval,
             match_data: &NSData,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(all(
@@ -379,7 +381,7 @@ extern_methods!(
             next_participants: &NSArray<GKTurnBasedParticipant>,
             timeout: NSTimeInterval,
             match_data: &NSData,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
@@ -387,7 +389,7 @@ extern_methods!(
         pub unsafe fn participantQuitOutOfTurnWithOutcome_withCompletionHandler(
             &self,
             match_outcome: GKTurnBasedMatchOutcome,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
@@ -395,7 +397,7 @@ extern_methods!(
         pub unsafe fn endMatchInTurnWithMatchData_completionHandler(
             &self,
             match_data: &NSData,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(all(
@@ -412,7 +414,7 @@ extern_methods!(
             match_data: &NSData,
             scores: Option<&NSArray<GKScore>>,
             achievements: Option<&NSArray<GKAchievement>>,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(all(
@@ -427,7 +429,7 @@ extern_methods!(
             match_data: &NSData,
             scores: &NSArray<GKLeaderboardScore>,
             achievements: &NSArray,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
@@ -435,7 +437,7 @@ extern_methods!(
         pub unsafe fn saveCurrentTurnWithMatchData_completionHandler(
             &self,
             match_data: &NSData,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(all(
@@ -449,7 +451,7 @@ extern_methods!(
             &self,
             match_data: &NSData,
             exchanges: &NSArray<GKTurnBasedExchange>,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(all(
@@ -468,7 +470,7 @@ extern_methods!(
             key: &NSString,
             arguments: &NSArray<NSString>,
             timeout: NSTimeInterval,
-            completion_handler: Option<&Block<(*mut GKTurnBasedExchange, *mut NSError), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut GKTurnBasedExchange, *mut NSError)>>,
         );
 
         #[cfg(all(
@@ -483,7 +485,7 @@ extern_methods!(
             participants: &NSArray<GKTurnBasedParticipant>,
             key: &NSString,
             arguments: &NSArray<NSString>,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(all(
@@ -497,7 +499,7 @@ extern_methods!(
             &self,
             next_participant: &GKTurnBasedParticipant,
             match_data: &NSData,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(all(
@@ -512,7 +514,7 @@ extern_methods!(
             match_outcome: GKTurnBasedMatchOutcome,
             next_participant: &GKTurnBasedParticipant,
             match_data: &NSData,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
     }
 );
@@ -617,7 +619,7 @@ extern_methods!(
             &self,
             key: &NSString,
             arguments: &NSArray<NSString>,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(all(
@@ -632,7 +634,7 @@ extern_methods!(
             key: &NSString,
             arguments: &NSArray<NSString>,
             data: &NSData,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
     }
 );

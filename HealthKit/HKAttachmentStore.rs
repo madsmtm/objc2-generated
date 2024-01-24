@@ -48,7 +48,7 @@ extern_methods!(
             content_type: &UTType,
             url: &NSURL,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
-            completion: &Block<(*mut HKAttachment, *mut NSError), ()>,
+            completion: &Block<dyn Fn(*mut HKAttachment, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -61,7 +61,7 @@ extern_methods!(
             &self,
             attachment: &HKAttachment,
             object: &HKObject,
-            completion: &Block<(Bool, *mut NSError), ()>,
+            completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -74,7 +74,7 @@ extern_methods!(
         pub unsafe fn getAttachmentsForObject_completion(
             &self,
             object: &HKObject,
-            completion: &Block<(*mut NSArray<HKAttachment>, *mut NSError), ()>,
+            completion: &Block<dyn Fn(*mut NSArray<HKAttachment>, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -87,7 +87,7 @@ extern_methods!(
         pub unsafe fn getDataForAttachment_completion(
             &self,
             attachment: &HKAttachment,
-            completion: &Block<(*mut NSData, *mut NSError), ()>,
+            completion: &Block<dyn Fn(*mut NSData, *mut NSError)>,
         ) -> Id<NSProgress>;
 
         #[cfg(all(
@@ -100,7 +100,7 @@ extern_methods!(
         pub unsafe fn streamDataForAttachment_dataHandler(
             &self,
             attachment: &HKAttachment,
-            data_handler: &Block<(*mut NSData, *mut NSError, Bool), ()>,
+            data_handler: &Block<dyn Fn(*mut NSData, *mut NSError, Bool)>,
         ) -> Id<NSProgress>;
     }
 );

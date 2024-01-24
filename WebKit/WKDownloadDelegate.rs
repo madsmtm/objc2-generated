@@ -27,7 +27,7 @@ extern_protocol!(
             download: &WKDownload,
             response: &NSURLResponse,
             suggested_filename: &NSString,
-            completion_handler: &Block<(*mut NSURL,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSURL)>,
         );
 
         #[cfg(all(
@@ -42,7 +42,7 @@ extern_protocol!(
             download: &WKDownload,
             response: &NSHTTPURLResponse,
             request: &NSURLRequest,
-            decision_handler: &Block<(WKDownloadRedirectPolicy,), ()>,
+            decision_handler: &Block<dyn Fn(WKDownloadRedirectPolicy)>,
         );
 
         #[cfg(all(
@@ -57,8 +57,7 @@ extern_protocol!(
             download: &WKDownload,
             challenge: &NSURLAuthenticationChallenge,
             completion_handler: &Block<
-                (NSURLSessionAuthChallengeDisposition, *mut NSURLCredential),
-                (),
+                dyn Fn(NSURLSessionAuthChallengeDisposition, *mut NSURLCredential),
             >,
         );
 

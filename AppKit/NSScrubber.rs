@@ -300,7 +300,7 @@ extern_methods!(
         pub unsafe fn reloadData(&self);
 
         #[method(performSequentialBatchUpdates:)]
-        pub unsafe fn performSequentialBatchUpdates(&self, update_block: &Block<(), ()>);
+        pub unsafe fn performSequentialBatchUpdates(&self, update_block: &Block<dyn Fn() + '_>);
 
         #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(insertItemsAtIndexes:)]

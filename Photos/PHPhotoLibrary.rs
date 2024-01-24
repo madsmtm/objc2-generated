@@ -80,7 +80,7 @@ extern_methods!(
         #[method(requestAuthorizationForAccessLevel:handler:)]
         pub unsafe fn requestAuthorizationForAccessLevel_handler(
             access_level: PHAccessLevel,
-            handler: &Block<(PHAuthorizationStatus,), ()>,
+            handler: &Block<dyn Fn(PHAuthorizationStatus)>,
         );
 
         #[deprecated]
@@ -89,7 +89,7 @@ extern_methods!(
 
         #[deprecated]
         #[method(requestAuthorization:)]
-        pub unsafe fn requestAuthorization(handler: &Block<(PHAuthorizationStatus,), ()>);
+        pub unsafe fn requestAuthorization(handler: &Block<dyn Fn(PHAuthorizationStatus)>);
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other unavailabilityReason)]

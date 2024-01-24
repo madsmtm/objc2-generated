@@ -455,7 +455,7 @@ extern_protocol!(
             &self,
             name: &NSString,
             constant_values: &MTLFunctionConstantValues,
-            completion_handler: &Block<(*mut ProtocolObject<dyn MTLFunction>, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut ProtocolObject<dyn MTLFunction>, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -466,7 +466,7 @@ extern_protocol!(
         unsafe fn newFunctionWithDescriptor_completionHandler(
             &self,
             descriptor: &MTLFunctionDescriptor,
-            completion_handler: &Block<(*mut ProtocolObject<dyn MTLFunction>, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut ProtocolObject<dyn MTLFunction>, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -487,7 +487,7 @@ extern_protocol!(
         unsafe fn newIntersectionFunctionWithDescriptor_completionHandler(
             &self,
             descriptor: &MTLIntersectionFunctionDescriptor,
-            completion_handler: &Block<(*mut ProtocolObject<dyn MTLFunction>, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut ProtocolObject<dyn MTLFunction>, *mut NSError)>,
         );
 
         #[cfg(all(

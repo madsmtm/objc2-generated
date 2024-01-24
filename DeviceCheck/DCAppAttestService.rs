@@ -32,7 +32,7 @@ extern_methods!(
         #[method(generateKeyWithCompletionHandler:)]
         pub unsafe fn generateKeyWithCompletionHandler(
             &self,
-            completion_handler: &Block<(*mut NSString, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSString, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -45,7 +45,7 @@ extern_methods!(
             &self,
             key_id: &NSString,
             client_data_hash: &NSData,
-            completion_handler: &Block<(*mut NSData, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSData, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -58,7 +58,7 @@ extern_methods!(
             &self,
             key_id: &NSString,
             client_data_hash: &NSData,
-            completion_handler: &Block<(*mut NSData, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSData, *mut NSError)>,
         );
     }
 );

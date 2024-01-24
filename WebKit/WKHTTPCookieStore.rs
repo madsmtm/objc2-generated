@@ -49,7 +49,7 @@ extern_methods!(
         #[method(getAllCookies:)]
         pub unsafe fn getAllCookies(
             &self,
-            completion_handler: &Block<(NonNull<NSArray<NSHTTPCookie>>,), ()>,
+            completion_handler: &Block<dyn Fn(NonNull<NSArray<NSHTTPCookie>>)>,
         );
 
         #[cfg(feature = "Foundation_NSHTTPCookie")]
@@ -57,7 +57,7 @@ extern_methods!(
         pub unsafe fn setCookie_completionHandler(
             &self,
             cookie: &NSHTTPCookie,
-            completion_handler: Option<&Block<(), ()>>,
+            completion_handler: Option<&Block<dyn Fn()>>,
         );
 
         #[cfg(feature = "Foundation_NSHTTPCookie")]
@@ -65,7 +65,7 @@ extern_methods!(
         pub unsafe fn deleteCookie_completionHandler(
             &self,
             cookie: &NSHTTPCookie,
-            completion_handler: Option<&Block<(), ()>>,
+            completion_handler: Option<&Block<dyn Fn()>>,
         );
 
         #[method(addObserver:)]
@@ -81,11 +81,11 @@ extern_methods!(
         pub unsafe fn setCookiePolicy_completionHandler(
             &self,
             policy: WKCookiePolicy,
-            completion_handler: Option<&Block<(), ()>>,
+            completion_handler: Option<&Block<dyn Fn()>>,
         );
 
         #[method(getCookiePolicy:)]
-        pub unsafe fn getCookiePolicy(&self, completion_handler: &Block<(WKCookiePolicy,), ()>);
+        pub unsafe fn getCookiePolicy(&self, completion_handler: &Block<dyn Fn(WKCookiePolicy)>);
     }
 );
 

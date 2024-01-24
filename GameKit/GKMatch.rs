@@ -95,14 +95,14 @@ extern_methods!(
         #[method(chooseBestHostingPlayerWithCompletionHandler:)]
         pub unsafe fn chooseBestHostingPlayerWithCompletionHandler(
             &self,
-            completion_handler: &Block<(*mut GKPlayer,), ()>,
+            completion_handler: &Block<dyn Fn(*mut GKPlayer)>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(rematchWithCompletionHandler:)]
         pub unsafe fn rematchWithCompletionHandler(
             &self,
-            completion_handler: Option<&Block<(*mut GKMatch, *mut NSError), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut GKMatch, *mut NSError)>>,
         );
     }
 );
@@ -223,7 +223,7 @@ extern_methods!(
         #[method(chooseBestHostPlayerWithCompletionHandler:)]
         pub unsafe fn chooseBestHostPlayerWithCompletionHandler(
             &self,
-            completion_handler: &Block<(*mut NSString,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSString)>,
         );
 
         #[cfg(all(

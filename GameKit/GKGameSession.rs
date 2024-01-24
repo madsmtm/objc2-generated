@@ -86,7 +86,7 @@ extern_methods!(
             container_name: Option<&NSString>,
             title: &NSString,
             max_players: NSInteger,
-            completion_handler: &Block<(*mut GKGameSession, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut GKGameSession, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -98,7 +98,7 @@ extern_methods!(
         #[method(loadSessionsInContainer:completionHandler:)]
         pub unsafe fn loadSessionsInContainer_completionHandler(
             container_name: Option<&NSString>,
-            completion_handler: &Block<(*mut NSArray<GKGameSession>, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSArray<GKGameSession>, *mut NSError)>,
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
@@ -106,7 +106,7 @@ extern_methods!(
         #[method(loadSessionWithIdentifier:completionHandler:)]
         pub unsafe fn loadSessionWithIdentifier_completionHandler(
             identifier: &NSString,
-            completion_handler: &Block<(*mut GKGameSession, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut GKGameSession, *mut NSError)>,
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
@@ -114,7 +114,7 @@ extern_methods!(
         #[method(removeSessionWithIdentifier:completionHandler:)]
         pub unsafe fn removeSessionWithIdentifier_completionHandler(
             identifier: &NSString,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
@@ -122,7 +122,7 @@ extern_methods!(
         #[method(getShareURLWithCompletionHandler:)]
         pub unsafe fn getShareURLWithCompletionHandler(
             &self,
-            completion_handler: &Block<(*mut NSURL, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSURL, *mut NSError)>,
         );
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
@@ -130,7 +130,7 @@ extern_methods!(
         #[method(loadDataWithCompletionHandler:)]
         pub unsafe fn loadDataWithCompletionHandler(
             &self,
-            completion_handler: &Block<(*mut NSData, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSData, *mut NSError)>,
         );
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
@@ -139,7 +139,7 @@ extern_methods!(
         pub unsafe fn saveData_completionHandler(
             &self,
             data: &NSData,
-            completion_handler: &Block<(*mut NSData, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSData, *mut NSError)>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
@@ -148,7 +148,7 @@ extern_methods!(
         pub unsafe fn setConnectionState_completionHandler(
             &self,
             state: GKConnectionState,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "GameKit_GKCloudPlayer"))]
@@ -166,7 +166,7 @@ extern_methods!(
             &self,
             data: &NSData,
             transport: GKTransportType,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(
@@ -185,7 +185,7 @@ extern_methods!(
             data: Option<&NSData>,
             players: &NSArray<GKCloudPlayer>,
             badge_players: bool,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(
@@ -198,7 +198,7 @@ extern_methods!(
         pub unsafe fn clearBadgeForPlayers_completionHandler(
             &self,
             players: &NSArray<GKCloudPlayer>,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
     }
 );

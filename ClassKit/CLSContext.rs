@@ -219,7 +219,7 @@ extern_methods!(
         pub unsafe fn descendantMatchingIdentifierPath_completion(
             &self,
             identifier_path: &NSArray<NSString>,
-            completion: &Block<(*mut CLSContext, *mut NSError), ()>,
+            completion: &Block<dyn Fn(*mut CLSContext, *mut NSError)>,
         );
 
         #[cfg(feature = "Foundation_NSArray")]

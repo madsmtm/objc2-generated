@@ -48,7 +48,7 @@ extern_methods!(
         pub unsafe fn signalEnumeratorForContainerItemIdentifier_completionHandler(
             &self,
             container_item_identifier: &NSFileProviderItemIdentifier,
-            completion: &Block<(*mut NSError,), ()>,
+            completion: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
@@ -56,7 +56,7 @@ extern_methods!(
         pub unsafe fn getUserVisibleURLForItemIdentifier_completionHandler(
             &self,
             item_identifier: &NSFileProviderItemIdentifier,
-            completion_handler: &Block<(*mut NSURL, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSURL, *mut NSError)>,
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
@@ -64,12 +64,11 @@ extern_methods!(
         pub unsafe fn getIdentifierForUserVisibleFileAtURL_completionHandler(
             url: &NSURL,
             completion_handler: &Block<
-                (
+                dyn Fn(
                     *mut NSFileProviderItemIdentifier,
                     *mut NSFileProviderDomainIdentifier,
                     *mut NSError,
                 ),
-                (),
             >,
         );
 
@@ -82,7 +81,7 @@ extern_methods!(
             &self,
             task: &NSURLSessionTask,
             identifier: &NSFileProviderItemIdentifier,
-            completion: &Block<(*mut NSError,), ()>,
+            completion: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -115,7 +114,7 @@ extern_methods!(
         #[method(addDomain:completionHandler:)]
         pub unsafe fn addDomain_completionHandler(
             domain: &NSFileProviderDomain,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(
@@ -125,7 +124,7 @@ extern_methods!(
         #[method(removeDomain:completionHandler:)]
         pub unsafe fn removeDomain_completionHandler(
             domain: &NSFileProviderDomain,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(
@@ -137,7 +136,7 @@ extern_methods!(
         pub unsafe fn removeDomain_mode_completionHandler(
             domain: &NSFileProviderDomain,
             mode: NSFileProviderDomainRemovalMode,
-            completion_handler: &Block<(*mut NSURL, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSURL, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -147,13 +146,15 @@ extern_methods!(
         ))]
         #[method(getDomainsWithCompletionHandler:)]
         pub unsafe fn getDomainsWithCompletionHandler(
-            completion_handler: &Block<(NonNull<NSArray<NSFileProviderDomain>>, *mut NSError), ()>,
+            completion_handler: &Block<
+                dyn Fn(NonNull<NSArray<NSFileProviderDomain>>, *mut NSError),
+            >,
         );
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(removeAllDomainsWithCompletionHandler:)]
         pub unsafe fn removeAllDomainsWithCompletionHandler(
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
@@ -161,7 +162,7 @@ extern_methods!(
         pub unsafe fn signalErrorResolved_completionHandler(
             &self,
             error: &NSError,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "Foundation_NSProgress")]
@@ -237,7 +238,7 @@ extern_methods!(
         pub unsafe fn importDomain_fromDirectoryAtURL_completionHandler(
             domain: &NSFileProviderDomain,
             url: &NSURL,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
@@ -245,7 +246,7 @@ extern_methods!(
         pub unsafe fn reimportItemsBelowItemWithIdentifier_completionHandler(
             &self,
             item_identifier: &NSFileProviderItemIdentifier,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
@@ -255,7 +256,7 @@ extern_methods!(
             fields: NSFileProviderItemFields,
             item_identifier: &NSFileProviderItemIdentifier,
             options: NSFileProviderModifyItemOptions,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
     }
 );
@@ -269,7 +270,7 @@ extern_methods!(
         pub unsafe fn evictItemWithIdentifier_completionHandler(
             &self,
             item_identifier: &NSFileProviderItemIdentifier,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
     }
 );
@@ -283,7 +284,7 @@ extern_methods!(
         pub unsafe fn waitForChangesOnItemsBelowItemWithIdentifier_completionHandler(
             &self,
             item_identifier: &NSFileProviderItemIdentifier,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
     }
 );
@@ -296,7 +297,7 @@ extern_methods!(
         #[method(waitForStabilizationWithCompletionHandler:)]
         pub unsafe fn waitForStabilizationWithCompletionHandler(
             &self,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
     }
 );
@@ -318,14 +319,14 @@ extern_methods!(
             &self,
             localized_reason: &NSString,
             options: NSFileProviderManagerDisconnectionOptions,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(reconnectWithCompletionHandler:)]
         pub unsafe fn reconnectWithCompletionHandler(
             &self,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
     }
 );
@@ -340,7 +341,7 @@ extern_methods!(
             &self,
             item_identifier: &NSFileProviderItemIdentifier,
             range_to_materialize: NSRange,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
     }
 );

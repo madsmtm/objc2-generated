@@ -20,7 +20,7 @@ extern_protocol!(
             &self,
             content_manager: &MPPlayableContentManager,
             index_path: &NSIndexPath,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(
@@ -33,7 +33,7 @@ extern_protocol!(
         unsafe fn playableContentManager_initializePlaybackQueueWithCompletionHandler(
             &self,
             content_manager: &MPPlayableContentManager,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(
@@ -48,7 +48,7 @@ extern_protocol!(
             &self,
             content_manager: &MPPlayableContentManager,
             content_items: Option<&NSArray>,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(

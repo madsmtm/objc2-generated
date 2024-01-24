@@ -393,13 +393,13 @@ extern_methods!(
             &self,
             range: NSRange,
             opts: NSStringEnumerationOptions,
-            block: &Block<(*mut NSString, NSRange, NSRange, NonNull<Bool>), ()>,
+            block: &Block<dyn Fn(*mut NSString, NSRange, NSRange, NonNull<Bool>)>,
         );
 
         #[method(enumerateLinesUsingBlock:)]
         pub unsafe fn enumerateLinesUsingBlock(
             &self,
-            block: &Block<(NonNull<NSString>, NonNull<Bool>), ()>,
+            block: &Block<dyn Fn(NonNull<NSString>, NonNull<Bool>)>,
         );
 
         #[method(UTF8String)]
@@ -578,7 +578,7 @@ extern_methods!(
             this: Allocated<Self>,
             chars: NonNull<unichar>,
             len: NSUInteger,
-            deallocator: Option<&Block<(NonNull<unichar>, NSUInteger), ()>>,
+            deallocator: Option<&Block<dyn Fn(NonNull<unichar>, NSUInteger)>>,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithCharacters:length:)]
@@ -628,7 +628,7 @@ extern_methods!(
             bytes: NonNull<c_void>,
             len: NSUInteger,
             encoding: NSStringEncoding,
-            deallocator: Option<&Block<(NonNull<c_void>, NSUInteger), ()>>,
+            deallocator: Option<&Block<dyn Fn(NonNull<c_void>, NSUInteger)>>,
         ) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Other string)]
@@ -742,7 +742,7 @@ extern_methods!(
             this: Allocated<Self>,
             chars: NonNull<unichar>,
             len: NSUInteger,
-            deallocator: Option<&Block<(NonNull<unichar>, NSUInteger), ()>>,
+            deallocator: Option<&Block<dyn Fn(NonNull<unichar>, NSUInteger)>>,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithCharacters:length:)]
@@ -792,7 +792,7 @@ extern_methods!(
             bytes: NonNull<c_void>,
             len: NSUInteger,
             encoding: NSStringEncoding,
-            deallocator: Option<&Block<(NonNull<c_void>, NSUInteger), ()>>,
+            deallocator: Option<&Block<dyn Fn(NonNull<c_void>, NSUInteger)>>,
         ) -> Option<Id<Self>>;
 
         #[method_id(@__retain_semantics Other string)]

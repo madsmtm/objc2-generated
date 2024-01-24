@@ -57,7 +57,7 @@ extern_methods!(
 
         #[method(requestAuthorization:)]
         pub unsafe fn requestAuthorization(
-            completion_handler: &Block<(MPMediaLibraryAuthorizationStatus,), ()>,
+            completion_handler: &Block<dyn Fn(MPMediaLibraryAuthorizationStatus)>,
         );
 
         #[cfg(all(
@@ -70,7 +70,9 @@ extern_methods!(
         pub unsafe fn addItemWithProductID_completionHandler(
             &self,
             product_id: &NSString,
-            completion_handler: Option<&Block<(NonNull<NSArray<MPMediaEntity>>, *mut NSError), ()>>,
+            completion_handler: Option<
+                &Block<dyn Fn(NonNull<NSArray<MPMediaEntity>>, *mut NSError)>,
+            >,
         );
 
         #[cfg(all(
@@ -84,7 +86,7 @@ extern_methods!(
             &self,
             uuid: &NSUUID,
             creation_metadata: Option<&MPMediaPlaylistCreationMetadata>,
-            completion_handler: &Block<(*mut MPMediaPlaylist, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut MPMediaPlaylist, *mut NSError)>,
         );
     }
 );

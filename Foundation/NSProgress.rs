@@ -15,10 +15,10 @@ typed_extensible_enum!(
     pub type NSProgressFileOperationKind = NSString;
 );
 
-pub type NSProgressUnpublishingHandler = *mut Block<(), ()>;
+pub type NSProgressUnpublishingHandler = *mut Block<dyn Fn()>;
 
 pub type NSProgressPublishingHandler =
-    *mut Block<(NonNull<NSProgress>,), NSProgressUnpublishingHandler>;
+    *mut Block<dyn Fn(NonNull<NSProgress>) -> NSProgressUnpublishingHandler>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -75,7 +75,7 @@ extern_methods!(
         pub unsafe fn performAsCurrentWithPendingUnitCount_usingBlock(
             &self,
             unit_count: i64,
-            work: &Block<(), ()>,
+            work: &Block<dyn Fn() + '_>,
         );
 
         #[method(resignCurrent)]
@@ -134,22 +134,22 @@ extern_methods!(
         pub unsafe fn isPaused(&self) -> bool;
 
         #[method(cancellationHandler)]
-        pub unsafe fn cancellationHandler(&self) -> *mut Block<(), ()>;
+        pub unsafe fn cancellationHandler(&self) -> *mut Block<dyn Fn()>;
 
         #[method(setCancellationHandler:)]
-        pub unsafe fn setCancellationHandler(&self, cancellation_handler: Option<&Block<(), ()>>);
+        pub unsafe fn setCancellationHandler(&self, cancellation_handler: Option<&Block<dyn Fn()>>);
 
         #[method(pausingHandler)]
-        pub unsafe fn pausingHandler(&self) -> *mut Block<(), ()>;
+        pub unsafe fn pausingHandler(&self) -> *mut Block<dyn Fn()>;
 
         #[method(setPausingHandler:)]
-        pub unsafe fn setPausingHandler(&self, pausing_handler: Option<&Block<(), ()>>);
+        pub unsafe fn setPausingHandler(&self, pausing_handler: Option<&Block<dyn Fn()>>);
 
         #[method(resumingHandler)]
-        pub unsafe fn resumingHandler(&self) -> *mut Block<(), ()>;
+        pub unsafe fn resumingHandler(&self) -> *mut Block<dyn Fn()>;
 
         #[method(setResumingHandler:)]
-        pub unsafe fn setResumingHandler(&self, resuming_handler: Option<&Block<(), ()>>);
+        pub unsafe fn setResumingHandler(&self, resuming_handler: Option<&Block<dyn Fn()>>);
 
         #[method(setUserInfoObject:forKey:)]
         pub unsafe fn setUserInfoObject_forKey(

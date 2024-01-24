@@ -42,7 +42,7 @@ extern_methods!(
 
         #[cfg(feature = "Foundation_NSData")]
         #[method(cancel:)]
-        pub unsafe fn cancel(&self, completion_handler: Option<&Block<(*mut NSData,), ()>>);
+        pub unsafe fn cancel(&self, completion_handler: Option<&Block<dyn Fn(*mut NSData)>>);
     }
 );
 

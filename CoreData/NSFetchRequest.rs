@@ -267,7 +267,7 @@ extern_methods!(
 );
 
 pub type NSPersistentStoreAsynchronousFetchResultCompletionBlock =
-    *mut Block<(NonNull<NSAsynchronousFetchResult>,), ()>;
+    *mut Block<dyn Fn(NonNull<NSAsynchronousFetchResult>)>;
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -329,7 +329,7 @@ extern_methods!(
         pub unsafe fn initWithFetchRequest_completionBlock(
             this: Allocated<Self>,
             request: &NSFetchRequest<ResultType>,
-            blk: Option<&Block<(NonNull<NSAsynchronousFetchResult<ResultType>>,), ()>>,
+            blk: Option<&Block<dyn Fn(NonNull<NSAsynchronousFetchResult<ResultType>>)>>,
         ) -> Id<Self>;
     }
 );

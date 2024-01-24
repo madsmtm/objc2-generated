@@ -582,8 +582,8 @@ extern_methods!(
         #[method(performBatchUpdates:completionHandler:)]
         pub unsafe fn performBatchUpdates_completionHandler(
             &self,
-            updates: Option<&Block<(), ()>>,
-            completion_handler: Option<&Block<(Bool,), ()>>,
+            updates: Option<&Block<dyn Fn() + '_>>,
+            completion_handler: Option<&Block<dyn Fn(Bool)>>,
         );
 
         #[method(toggleSectionCollapse:)]
@@ -1195,7 +1195,7 @@ extern_methods!(
         pub unsafe fn enumerateIndexPathsWithOptions_usingBlock(
             &self,
             opts: NSEnumerationOptions,
-            block: &Block<(NonNull<NSIndexPath>, NonNull<Bool>), ()>,
+            block: &Block<dyn Fn(NonNull<NSIndexPath>, NonNull<Bool>) + '_>,
         );
     }
 );

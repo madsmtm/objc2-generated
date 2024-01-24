@@ -12,7 +12,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other remoteObjectProxyWithErrorHandler:)]
         unsafe fn remoteObjectProxyWithErrorHandler(
             &self,
-            handler: &Block<(NonNull<NSError>,), ()>,
+            handler: &Block<dyn Fn(NonNull<NSError>)>,
         ) -> Id<AnyObject>;
 
         #[cfg(feature = "Foundation_NSError")]
@@ -20,7 +20,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other synchronousRemoteObjectProxyWithErrorHandler:)]
         unsafe fn synchronousRemoteObjectProxyWithErrorHandler(
             &self,
-            handler: &Block<(NonNull<NSError>,), ()>,
+            handler: &Block<dyn Fn(NonNull<NSError>)>,
         ) -> Id<AnyObject>;
     }
 
@@ -117,27 +117,27 @@ extern_methods!(
         #[method_id(@__retain_semantics Other remoteObjectProxyWithErrorHandler:)]
         pub unsafe fn remoteObjectProxyWithErrorHandler(
             &self,
-            handler: &Block<(NonNull<NSError>,), ()>,
+            handler: &Block<dyn Fn(NonNull<NSError>)>,
         ) -> Id<AnyObject>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other synchronousRemoteObjectProxyWithErrorHandler:)]
         pub unsafe fn synchronousRemoteObjectProxyWithErrorHandler(
             &self,
-            handler: &Block<(NonNull<NSError>,), ()>,
+            handler: &Block<dyn Fn(NonNull<NSError>)>,
         ) -> Id<AnyObject>;
 
         #[method(interruptionHandler)]
-        pub unsafe fn interruptionHandler(&self) -> *mut Block<(), ()>;
+        pub unsafe fn interruptionHandler(&self) -> *mut Block<dyn Fn()>;
 
         #[method(setInterruptionHandler:)]
-        pub unsafe fn setInterruptionHandler(&self, interruption_handler: Option<&Block<(), ()>>);
+        pub unsafe fn setInterruptionHandler(&self, interruption_handler: Option<&Block<dyn Fn()>>);
 
         #[method(invalidationHandler)]
-        pub unsafe fn invalidationHandler(&self) -> *mut Block<(), ()>;
+        pub unsafe fn invalidationHandler(&self) -> *mut Block<dyn Fn()>;
 
         #[method(setInvalidationHandler:)]
-        pub unsafe fn setInvalidationHandler(&self, invalidation_handler: Option<&Block<(), ()>>);
+        pub unsafe fn setInvalidationHandler(&self, invalidation_handler: Option<&Block<dyn Fn()>>);
 
         #[method(resume)]
         pub unsafe fn resume(&self);
@@ -155,7 +155,7 @@ extern_methods!(
         pub unsafe fn currentConnection() -> Option<Id<NSXPCConnection>>;
 
         #[method(scheduleSendBarrierBlock:)]
-        pub unsafe fn scheduleSendBarrierBlock(&self, block: &Block<(), ()>);
+        pub unsafe fn scheduleSendBarrierBlock(&self, block: &Block<dyn Fn()>);
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setCodeSigningRequirement:)]

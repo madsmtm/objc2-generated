@@ -47,7 +47,7 @@ extern_methods!(
         pub unsafe fn getCredentialStateForUserID_completion(
             &self,
             user_id: &NSString,
-            completion: &Block<(ASAuthorizationAppleIDProviderCredentialState, *mut NSError), ()>,
+            completion: &Block<dyn Fn(ASAuthorizationAppleIDProviderCredentialState, *mut NSError)>,
         );
     }
 );

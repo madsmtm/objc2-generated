@@ -67,7 +67,7 @@ extern_methods!(
         #[method(perShareMetadataBlock)]
         pub unsafe fn perShareMetadataBlock(
             &self,
-        ) -> *mut Block<(NonNull<NSURL>, *mut CKShareMetadata, *mut NSError), ()>;
+        ) -> *mut Block<dyn Fn(NonNull<NSURL>, *mut CKShareMetadata, *mut NSError)>;
 
         #[cfg(all(
             feature = "CloudKit_CKShareMetadata",
@@ -78,19 +78,19 @@ extern_methods!(
         pub unsafe fn setPerShareMetadataBlock(
             &self,
             per_share_metadata_block: Option<
-                &Block<(NonNull<NSURL>, *mut CKShareMetadata, *mut NSError), ()>,
+                &Block<dyn Fn(NonNull<NSURL>, *mut CKShareMetadata, *mut NSError)>,
             >,
         );
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(fetchShareMetadataCompletionBlock)]
-        pub unsafe fn fetchShareMetadataCompletionBlock(&self) -> *mut Block<(*mut NSError,), ()>;
+        pub unsafe fn fetchShareMetadataCompletionBlock(&self) -> *mut Block<dyn Fn(*mut NSError)>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(setFetchShareMetadataCompletionBlock:)]
         pub unsafe fn setFetchShareMetadataCompletionBlock(
             &self,
-            fetch_share_metadata_completion_block: Option<&Block<(*mut NSError,), ()>>,
+            fetch_share_metadata_completion_block: Option<&Block<dyn Fn(*mut NSError)>>,
         );
     }
 );

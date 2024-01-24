@@ -25,7 +25,7 @@ extern_methods!(
         pub fn currentThread() -> Id<NSThread>;
 
         #[method(detachNewThreadWithBlock:)]
-        pub unsafe fn detachNewThreadWithBlock(block: &Block<(), ()>);
+        pub unsafe fn detachNewThreadWithBlock(block: &Block<dyn Fn()>);
 
         #[method(detachNewThreadSelector:toTarget:withObject:)]
         pub unsafe fn detachNewThreadSelector_toTarget_withObject(
@@ -112,7 +112,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithBlock:)]
-        pub unsafe fn initWithBlock(this: Allocated<Self>, block: &Block<(), ()>) -> Id<Self>;
+        pub unsafe fn initWithBlock(this: Allocated<Self>, block: &Block<dyn Fn()>) -> Id<Self>;
 
         #[method(isExecuting)]
         pub unsafe fn isExecuting(&self) -> bool;

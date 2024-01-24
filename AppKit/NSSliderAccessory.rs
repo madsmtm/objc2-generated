@@ -115,7 +115,7 @@ extern_methods!(
         #[cfg(feature = "AppKit_NSSliderAccessory")]
         #[method_id(@__retain_semantics Other behaviorWithHandler:)]
         pub unsafe fn behaviorWithHandler(
-            handler: &Block<(NonNull<NSSliderAccessory>,), ()>,
+            handler: &Block<dyn Fn(NonNull<NSSliderAccessory>)>,
             mtm: MainThreadMarker,
         ) -> Id<NSSliderAccessoryBehavior>;
 

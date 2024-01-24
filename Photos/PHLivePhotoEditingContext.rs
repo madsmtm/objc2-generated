@@ -59,7 +59,7 @@ extern_methods!(
             &self,
             target_size: CGSize,
             options: Option<&NSDictionary<NSString, AnyObject>>,
-            handler: &Block<(*mut PHLivePhoto, *mut NSError), ()>,
+            handler: &Block<dyn Fn(*mut PHLivePhoto, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -73,7 +73,7 @@ extern_methods!(
             &self,
             output: &PHContentEditingOutput,
             options: Option<&NSDictionary<NSString, AnyObject>>,
-            handler: &Block<(Bool, *mut NSError), ()>,
+            handler: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[method(cancel)]

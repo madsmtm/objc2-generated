@@ -214,21 +214,21 @@ extern_methods!(
         pub unsafe fn waitForDataInBackgroundAndNotify(&self);
 
         #[method(readabilityHandler)]
-        pub unsafe fn readabilityHandler(&self) -> *mut Block<(NonNull<NSFileHandle>,), ()>;
+        pub unsafe fn readabilityHandler(&self) -> *mut Block<dyn Fn(NonNull<NSFileHandle>)>;
 
         #[method(setReadabilityHandler:)]
         pub unsafe fn setReadabilityHandler(
             &self,
-            readability_handler: Option<&Block<(NonNull<NSFileHandle>,), ()>>,
+            readability_handler: Option<&Block<dyn Fn(NonNull<NSFileHandle>)>>,
         );
 
         #[method(writeabilityHandler)]
-        pub unsafe fn writeabilityHandler(&self) -> *mut Block<(NonNull<NSFileHandle>,), ()>;
+        pub unsafe fn writeabilityHandler(&self) -> *mut Block<dyn Fn(NonNull<NSFileHandle>)>;
 
         #[method(setWriteabilityHandler:)]
         pub unsafe fn setWriteabilityHandler(
             &self,
-            writeability_handler: Option<&Block<(NonNull<NSFileHandle>,), ()>>,
+            writeability_handler: Option<&Block<dyn Fn(NonNull<NSFileHandle>)>>,
         );
     }
 );

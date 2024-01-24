@@ -32,7 +32,7 @@ extern_protocol!(
             &self,
             web_view: &WKWebView,
             navigation_action: &WKNavigationAction,
-            decision_handler: &Block<(WKNavigationActionPolicy,), ()>,
+            decision_handler: &Block<dyn Fn(WKNavigationActionPolicy)>,
         );
 
         #[cfg(all(
@@ -47,7 +47,9 @@ extern_protocol!(
             web_view: &WKWebView,
             navigation_action: &WKNavigationAction,
             preferences: &WKWebpagePreferences,
-            decision_handler: &Block<(WKNavigationActionPolicy, NonNull<WKWebpagePreferences>), ()>,
+            decision_handler: &Block<
+                dyn Fn(WKNavigationActionPolicy, NonNull<WKWebpagePreferences>),
+            >,
         );
 
         #[cfg(all(feature = "WebKit_WKNavigationResponse", feature = "WebKit_WKWebView"))]
@@ -57,7 +59,7 @@ extern_protocol!(
             &self,
             web_view: &WKWebView,
             navigation_response: &WKNavigationResponse,
-            decision_handler: &Block<(WKNavigationResponsePolicy,), ()>,
+            decision_handler: &Block<dyn Fn(WKNavigationResponsePolicy)>,
         );
 
         #[cfg(all(feature = "WebKit_WKNavigation", feature = "WebKit_WKWebView"))]
@@ -136,8 +138,7 @@ extern_protocol!(
             web_view: &WKWebView,
             challenge: &NSURLAuthenticationChallenge,
             completion_handler: &Block<
-                (NSURLSessionAuthChallengeDisposition, *mut NSURLCredential),
-                (),
+                dyn Fn(NSURLSessionAuthChallengeDisposition, *mut NSURLCredential),
             >,
         );
 
@@ -156,7 +157,7 @@ extern_protocol!(
             &self,
             web_view: &WKWebView,
             challenge: &NSURLAuthenticationChallenge,
-            decision_handler: &Block<(Bool,), ()>,
+            decision_handler: &Block<dyn Fn(Bool)>,
         );
 
         #[cfg(all(

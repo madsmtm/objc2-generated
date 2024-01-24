@@ -28,14 +28,14 @@ extern_methods!(
         pub unsafe fn registerArcadeAppWithRandomFromLib_randomFromLibLength_resultHandler(
             random_from_lib: &NSData,
             random_from_lib_length: u32,
-            result_handler: &Block<(*mut NSData, u32, *mut NSData, u32, *mut NSError), ()>,
+            result_handler: &Block<dyn Fn(*mut NSData, u32, *mut NSData, u32, *mut NSError)>,
         );
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method(arcadeSubscriptionStatusWithNonce:resultHandler:)]
         pub unsafe fn arcadeSubscriptionStatusWithNonce_resultHandler(
             nonce: u64,
-            result_handler: &Block<(*mut NSData, u32, *mut NSData, u32, *mut NSError), ()>,
+            result_handler: &Block<dyn Fn(*mut NSData, u32, *mut NSData, u32, *mut NSError)>,
         );
 
         #[method(repairArcadeApp)]

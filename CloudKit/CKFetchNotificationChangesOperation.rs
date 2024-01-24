@@ -65,15 +65,16 @@ extern_methods!(
         #[cfg(feature = "CloudKit_CKNotification")]
         #[deprecated = "Instead of iterating notifications to enumerate changed record zones, use CKDatabaseSubscription, CKFetchDatabaseChangesOperation, and CKFetchRecordZoneChangesOperation"]
         #[method(notificationChangedBlock)]
-        pub unsafe fn notificationChangedBlock(&self)
-            -> *mut Block<(NonNull<CKNotification>,), ()>;
+        pub unsafe fn notificationChangedBlock(
+            &self,
+        ) -> *mut Block<dyn Fn(NonNull<CKNotification>)>;
 
         #[cfg(feature = "CloudKit_CKNotification")]
         #[deprecated = "Instead of iterating notifications to enumerate changed record zones, use CKDatabaseSubscription, CKFetchDatabaseChangesOperation, and CKFetchRecordZoneChangesOperation"]
         #[method(setNotificationChangedBlock:)]
         pub unsafe fn setNotificationChangedBlock(
             &self,
-            notification_changed_block: Option<&Block<(NonNull<CKNotification>,), ()>>,
+            notification_changed_block: Option<&Block<dyn Fn(NonNull<CKNotification>)>>,
         );
 
         #[cfg(all(
@@ -84,7 +85,7 @@ extern_methods!(
         #[method(fetchNotificationChangesCompletionBlock)]
         pub unsafe fn fetchNotificationChangesCompletionBlock(
             &self,
-        ) -> *mut Block<(*mut CKServerChangeToken, *mut NSError), ()>;
+        ) -> *mut Block<dyn Fn(*mut CKServerChangeToken, *mut NSError)>;
 
         #[cfg(all(
             feature = "CloudKit_CKServerChangeToken",
@@ -95,7 +96,7 @@ extern_methods!(
         pub unsafe fn setFetchNotificationChangesCompletionBlock(
             &self,
             fetch_notification_changes_completion_block: Option<
-                &Block<(*mut CKServerChangeToken, *mut NSError), ()>,
+                &Block<dyn Fn(*mut CKServerChangeToken, *mut NSError)>,
             >,
         );
     }

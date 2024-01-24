@@ -39,7 +39,7 @@ extern_methods!(
         pub unsafe fn reloadExtensionWithIdentifier_completionHandler(
             &self,
             identifier: &NSString,
-            completion: Option<&Block<(*mut NSError,), ()>>,
+            completion: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
@@ -47,14 +47,14 @@ extern_methods!(
         pub unsafe fn getEnabledStatusForExtensionWithIdentifier_completionHandler(
             &self,
             identifier: &NSString,
-            completion: &Block<(CXCallDirectoryEnabledStatus, *mut NSError), ()>,
+            completion: &Block<dyn Fn(CXCallDirectoryEnabledStatus, *mut NSError)>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(openSettingsWithCompletionHandler:)]
         pub unsafe fn openSettingsWithCompletionHandler(
             &self,
-            completion: Option<&Block<(*mut NSError,), ()>>,
+            completion: Option<&Block<dyn Fn(*mut NSError)>>,
         );
     }
 );

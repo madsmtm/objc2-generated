@@ -165,14 +165,14 @@ extern_methods!(
         #[method(enumerateKeysAndObjectsUsingBlock:)]
         pub unsafe fn enumerateKeysAndObjectsUsingBlock(
             &self,
-            block: &Block<(NonNull<KeyType>, NonNull<ObjectType>, NonNull<Bool>), ()>,
+            block: &Block<dyn Fn(NonNull<KeyType>, NonNull<ObjectType>, NonNull<Bool>) + '_>,
         );
 
         #[method(enumerateKeysAndObjectsWithOptions:usingBlock:)]
         pub unsafe fn enumerateKeysAndObjectsWithOptions_usingBlock(
             &self,
             opts: NSEnumerationOptions,
-            block: &Block<(NonNull<KeyType>, NonNull<ObjectType>, NonNull<Bool>), ()>,
+            block: &Block<dyn Fn(NonNull<KeyType>, NonNull<ObjectType>, NonNull<Bool>) + '_>,
         );
 
         #[cfg(feature = "Foundation_NSArray")]
@@ -194,7 +194,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Other keysOfEntriesPassingTest:)]
         pub unsafe fn keysOfEntriesPassingTest(
             &self,
-            predicate: &Block<(NonNull<KeyType>, NonNull<ObjectType>, NonNull<Bool>), Bool>,
+            predicate: &Block<
+                dyn Fn(NonNull<KeyType>, NonNull<ObjectType>, NonNull<Bool>) -> Bool + '_,
+            >,
         ) -> Id<NSSet<KeyType>>;
 
         #[cfg(feature = "Foundation_NSSet")]
@@ -202,7 +204,9 @@ extern_methods!(
         pub unsafe fn keysOfEntriesWithOptions_passingTest(
             &self,
             opts: NSEnumerationOptions,
-            predicate: &Block<(NonNull<KeyType>, NonNull<ObjectType>, NonNull<Bool>), Bool>,
+            predicate: &Block<
+                dyn Fn(NonNull<KeyType>, NonNull<ObjectType>, NonNull<Bool>) -> Bool + '_,
+            >,
         ) -> Id<NSSet<KeyType>>;
     }
 );

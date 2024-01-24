@@ -101,14 +101,14 @@ extern_methods!(
         #[method(enumerateIndexesUsingBlock:)]
         pub unsafe fn enumerateIndexesUsingBlock(
             &self,
-            block: &Block<(NSUInteger, NonNull<Bool>), ()>,
+            block: &Block<dyn Fn(NSUInteger, NonNull<Bool>) + '_>,
         );
 
         #[method(enumerateIndexesWithOptions:usingBlock:)]
         pub unsafe fn enumerateIndexesWithOptions_usingBlock(
             &self,
             opts: NSEnumerationOptions,
-            block: &Block<(NSUInteger, NonNull<Bool>), ()>,
+            block: &Block<dyn Fn(NSUInteger, NonNull<Bool>) + '_>,
         );
 
         #[method(enumerateIndexesInRange:options:usingBlock:)]
@@ -116,20 +116,20 @@ extern_methods!(
             &self,
             range: NSRange,
             opts: NSEnumerationOptions,
-            block: &Block<(NSUInteger, NonNull<Bool>), ()>,
+            block: &Block<dyn Fn(NSUInteger, NonNull<Bool>) + '_>,
         );
 
         #[method(indexPassingTest:)]
         pub unsafe fn indexPassingTest(
             &self,
-            predicate: &Block<(NSUInteger, NonNull<Bool>), Bool>,
+            predicate: &Block<dyn Fn(NSUInteger, NonNull<Bool>) -> Bool + '_>,
         ) -> NSUInteger;
 
         #[method(indexWithOptions:passingTest:)]
         pub unsafe fn indexWithOptions_passingTest(
             &self,
             opts: NSEnumerationOptions,
-            predicate: &Block<(NSUInteger, NonNull<Bool>), Bool>,
+            predicate: &Block<dyn Fn(NSUInteger, NonNull<Bool>) -> Bool + '_>,
         ) -> NSUInteger;
 
         #[method(indexInRange:options:passingTest:)]
@@ -137,20 +137,20 @@ extern_methods!(
             &self,
             range: NSRange,
             opts: NSEnumerationOptions,
-            predicate: &Block<(NSUInteger, NonNull<Bool>), Bool>,
+            predicate: &Block<dyn Fn(NSUInteger, NonNull<Bool>) -> Bool + '_>,
         ) -> NSUInteger;
 
         #[method_id(@__retain_semantics Other indexesPassingTest:)]
         pub unsafe fn indexesPassingTest(
             &self,
-            predicate: &Block<(NSUInteger, NonNull<Bool>), Bool>,
+            predicate: &Block<dyn Fn(NSUInteger, NonNull<Bool>) -> Bool + '_>,
         ) -> Id<NSIndexSet>;
 
         #[method_id(@__retain_semantics Other indexesWithOptions:passingTest:)]
         pub unsafe fn indexesWithOptions_passingTest(
             &self,
             opts: NSEnumerationOptions,
-            predicate: &Block<(NSUInteger, NonNull<Bool>), Bool>,
+            predicate: &Block<dyn Fn(NSUInteger, NonNull<Bool>) -> Bool + '_>,
         ) -> Id<NSIndexSet>;
 
         #[method_id(@__retain_semantics Other indexesInRange:options:passingTest:)]
@@ -158,17 +158,20 @@ extern_methods!(
             &self,
             range: NSRange,
             opts: NSEnumerationOptions,
-            predicate: &Block<(NSUInteger, NonNull<Bool>), Bool>,
+            predicate: &Block<dyn Fn(NSUInteger, NonNull<Bool>) -> Bool + '_>,
         ) -> Id<NSIndexSet>;
 
         #[method(enumerateRangesUsingBlock:)]
-        pub unsafe fn enumerateRangesUsingBlock(&self, block: &Block<(NSRange, NonNull<Bool>), ()>);
+        pub unsafe fn enumerateRangesUsingBlock(
+            &self,
+            block: &Block<dyn Fn(NSRange, NonNull<Bool>) + '_>,
+        );
 
         #[method(enumerateRangesWithOptions:usingBlock:)]
         pub unsafe fn enumerateRangesWithOptions_usingBlock(
             &self,
             opts: NSEnumerationOptions,
-            block: &Block<(NSRange, NonNull<Bool>), ()>,
+            block: &Block<dyn Fn(NSRange, NonNull<Bool>) + '_>,
         );
 
         #[method(enumerateRangesInRange:options:usingBlock:)]
@@ -176,7 +179,7 @@ extern_methods!(
             &self,
             range: NSRange,
             opts: NSEnumerationOptions,
-            block: &Block<(NSRange, NonNull<Bool>), ()>,
+            block: &Block<dyn Fn(NSRange, NonNull<Bool>) + '_>,
         );
     }
 );

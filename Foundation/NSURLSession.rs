@@ -75,10 +75,10 @@ extern_methods!(
         pub unsafe fn invalidateAndCancel(&self);
 
         #[method(resetWithCompletionHandler:)]
-        pub unsafe fn resetWithCompletionHandler(&self, completion_handler: &Block<(), ()>);
+        pub unsafe fn resetWithCompletionHandler(&self, completion_handler: &Block<dyn Fn()>);
 
         #[method(flushWithCompletionHandler:)]
-        pub unsafe fn flushWithCompletionHandler(&self, completion_handler: &Block<(), ()>);
+        pub unsafe fn flushWithCompletionHandler(&self, completion_handler: &Block<dyn Fn()>);
 
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -90,12 +90,11 @@ extern_methods!(
         pub unsafe fn getTasksWithCompletionHandler(
             &self,
             completion_handler: &Block<
-                (
+                dyn Fn(
                     NonNull<NSArray<NSURLSessionDataTask>>,
                     NonNull<NSArray<NSURLSessionUploadTask>>,
                     NonNull<NSArray<NSURLSessionDownloadTask>>,
                 ),
-                (),
             >,
         );
 
@@ -106,7 +105,7 @@ extern_methods!(
         #[method(getAllTasksWithCompletionHandler:)]
         pub unsafe fn getAllTasksWithCompletionHandler(
             &self,
-            completion_handler: &Block<(NonNull<NSArray<NSURLSessionTask>>,), ()>,
+            completion_handler: &Block<dyn Fn(NonNull<NSArray<NSURLSessionTask>>)>,
         );
 
         #[cfg(all(
@@ -274,7 +273,7 @@ extern_methods!(
         pub unsafe fn dataTaskWithRequest_completionHandler(
             &self,
             request: &NSURLRequest,
-            completion_handler: &Block<(*mut NSData, *mut NSURLResponse, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSData, *mut NSURLResponse, *mut NSError)>,
         ) -> Id<NSURLSessionDataTask>;
 
         #[cfg(all(
@@ -288,7 +287,7 @@ extern_methods!(
         pub unsafe fn dataTaskWithURL_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: &Block<(*mut NSData, *mut NSURLResponse, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSData, *mut NSURLResponse, *mut NSError)>,
         ) -> Id<NSURLSessionDataTask>;
 
         #[cfg(all(
@@ -304,7 +303,7 @@ extern_methods!(
             &self,
             request: &NSURLRequest,
             file_url: &NSURL,
-            completion_handler: &Block<(*mut NSData, *mut NSURLResponse, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSData, *mut NSURLResponse, *mut NSError)>,
         ) -> Id<NSURLSessionUploadTask>;
 
         #[cfg(all(
@@ -319,7 +318,7 @@ extern_methods!(
             &self,
             request: &NSURLRequest,
             body_data: Option<&NSData>,
-            completion_handler: &Block<(*mut NSData, *mut NSURLResponse, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSData, *mut NSURLResponse, *mut NSError)>,
         ) -> Id<NSURLSessionUploadTask>;
 
         #[cfg(all(
@@ -332,7 +331,7 @@ extern_methods!(
         pub unsafe fn uploadTaskWithResumeData_completionHandler(
             &self,
             resume_data: &NSData,
-            completion_handler: &Block<(*mut NSData, *mut NSURLResponse, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSData, *mut NSURLResponse, *mut NSError)>,
         ) -> Id<NSURLSessionUploadTask>;
 
         #[cfg(all(
@@ -346,7 +345,7 @@ extern_methods!(
         pub unsafe fn downloadTaskWithRequest_completionHandler(
             &self,
             request: &NSURLRequest,
-            completion_handler: &Block<(*mut NSURL, *mut NSURLResponse, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSURL, *mut NSURLResponse, *mut NSError)>,
         ) -> Id<NSURLSessionDownloadTask>;
 
         #[cfg(all(
@@ -359,7 +358,7 @@ extern_methods!(
         pub unsafe fn downloadTaskWithURL_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: &Block<(*mut NSURL, *mut NSURLResponse, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSURL, *mut NSURLResponse, *mut NSError)>,
         ) -> Id<NSURLSessionDownloadTask>;
 
         #[cfg(all(
@@ -373,7 +372,7 @@ extern_methods!(
         pub unsafe fn downloadTaskWithResumeData_completionHandler(
             &self,
             resume_data: &NSData,
-            completion_handler: &Block<(*mut NSURL, *mut NSURLResponse, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSURL, *mut NSURLResponse, *mut NSError)>,
         ) -> Id<NSURLSessionDownloadTask>;
     }
 );
@@ -620,7 +619,7 @@ extern_methods!(
         #[method(cancelByProducingResumeData:)]
         pub unsafe fn cancelByProducingResumeData(
             &self,
-            completion_handler: &Block<(*mut NSData,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSData)>,
         );
     }
 );
@@ -660,7 +659,7 @@ extern_methods!(
         #[method(cancelByProducingResumeData:)]
         pub unsafe fn cancelByProducingResumeData(
             &self,
-            completion_handler: &Block<(*mut NSData,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSData)>,
         );
 
         #[deprecated = "Please use -[NSURLSession downloadTaskWithRequest:] or other NSURLSession methods to create instances"]
@@ -711,7 +710,7 @@ extern_methods!(
             min_bytes: NSUInteger,
             max_bytes: NSUInteger,
             timeout: NSTimeInterval,
-            completion_handler: &Block<(*mut NSData, Bool, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSData, Bool, *mut NSError)>,
         );
 
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
@@ -720,7 +719,7 @@ extern_methods!(
             &self,
             data: &NSData,
             timeout: NSTimeInterval,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[method(captureStreams)]
@@ -866,7 +865,7 @@ extern_methods!(
         pub unsafe fn sendMessage_completionHandler(
             &self,
             message: &NSURLSessionWebSocketMessage,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(
@@ -876,14 +875,14 @@ extern_methods!(
         #[method(receiveMessageWithCompletionHandler:)]
         pub unsafe fn receiveMessageWithCompletionHandler(
             &self,
-            completion_handler: &Block<(*mut NSURLSessionWebSocketMessage, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSURLSessionWebSocketMessage, *mut NSError)>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(sendPingWithPongReceiveHandler:)]
         pub unsafe fn sendPingWithPongReceiveHandler(
             &self,
-            pong_receive_handler: &Block<(*mut NSError,), ()>,
+            pong_receive_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "Foundation_NSData")]
@@ -1227,8 +1226,7 @@ extern_protocol!(
             session: &NSURLSession,
             challenge: &NSURLAuthenticationChallenge,
             completion_handler: &Block<
-                (NSURLSessionAuthChallengeDisposition, *mut NSURLCredential),
-                (),
+                dyn Fn(NSURLSessionAuthChallengeDisposition, *mut NSURLCredential),
             >,
         );
 
@@ -1264,8 +1262,7 @@ extern_protocol!(
             task: &NSURLSessionTask,
             request: &NSURLRequest,
             completion_handler: &Block<
-                (NSURLSessionDelayedRequestDisposition, *mut NSURLRequest),
-                (),
+                dyn Fn(NSURLSessionDelayedRequestDisposition, *mut NSURLRequest),
             >,
         );
 
@@ -1295,7 +1292,7 @@ extern_protocol!(
             task: &NSURLSessionTask,
             response: &NSHTTPURLResponse,
             request: &NSURLRequest,
-            completion_handler: &Block<(*mut NSURLRequest,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSURLRequest)>,
         );
 
         #[cfg(all(
@@ -1312,8 +1309,7 @@ extern_protocol!(
             task: &NSURLSessionTask,
             challenge: &NSURLAuthenticationChallenge,
             completion_handler: &Block<
-                (NSURLSessionAuthChallengeDisposition, *mut NSURLCredential),
-                (),
+                dyn Fn(NSURLSessionAuthChallengeDisposition, *mut NSURLCredential),
             >,
         );
 
@@ -1328,7 +1324,7 @@ extern_protocol!(
             &self,
             session: &NSURLSession,
             task: &NSURLSessionTask,
-            completion_handler: &Block<(*mut NSInputStream,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSInputStream)>,
         );
 
         #[cfg(all(
@@ -1343,7 +1339,7 @@ extern_protocol!(
             session: &NSURLSession,
             task: &NSURLSessionTask,
             offset: i64,
-            completion_handler: &Block<(*mut NSInputStream,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSInputStream)>,
         );
 
         #[cfg(all(
@@ -1421,7 +1417,7 @@ extern_protocol!(
             session: &NSURLSession,
             data_task: &NSURLSessionDataTask,
             response: &NSURLResponse,
-            completion_handler: &Block<(NSURLSessionResponseDisposition,), ()>,
+            completion_handler: &Block<dyn Fn(NSURLSessionResponseDisposition)>,
         );
 
         #[cfg(all(
@@ -1478,7 +1474,7 @@ extern_protocol!(
             session: &NSURLSession,
             data_task: &NSURLSessionDataTask,
             proposed_response: &NSCachedURLResponse,
-            completion_handler: &Block<(*mut NSCachedURLResponse,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSCachedURLResponse)>,
         );
     }
 

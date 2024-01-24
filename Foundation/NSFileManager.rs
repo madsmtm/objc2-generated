@@ -102,7 +102,7 @@ extern_methods!(
             &self,
             url: &NSURL,
             mask: NSFileManagerUnmountOptions,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(
@@ -506,7 +506,7 @@ extern_methods!(
             url: &NSURL,
             keys: Option<&NSArray<NSURLResourceKey>>,
             mask: NSDirectoryEnumerationOptions,
-            handler: Option<&Block<(NonNull<NSURL>, NonNull<NSError>), Bool>>,
+            handler: Option<&Block<dyn Fn(NonNull<NSURL>, NonNull<NSError>) -> Bool>>,
         ) -> Option<Id<NSDirectoryEnumerator<NSURL>>>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
@@ -615,11 +615,10 @@ extern_methods!(
             &self,
             url: &NSURL,
             completion_handler: &Block<
-                (
+                dyn Fn(
                     *mut NSDictionary<NSFileProviderServiceName, NSFileProviderService>,
                     *mut NSError,
                 ),
-                (),
             >,
         );
 
@@ -958,7 +957,7 @@ extern_methods!(
         #[method(getFileProviderConnectionWithCompletionHandler:)]
         pub unsafe fn getFileProviderConnectionWithCompletionHandler(
             &self,
-            completion_handler: &Block<(*mut NSXPCConnection, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSXPCConnection, *mut NSError)>,
         );
 
         #[method_id(@__retain_semantics Other name)]

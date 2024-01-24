@@ -102,7 +102,7 @@ extern_methods!(
         #[method(accountStatusWithCompletionHandler:)]
         pub unsafe fn accountStatusWithCompletionHandler(
             &self,
-            completion_handler: &Block<(CKAccountStatus, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(CKAccountStatus, *mut NSError)>,
         );
     }
 );
@@ -131,7 +131,7 @@ ns_enum!(
 );
 
 pub type CKApplicationPermissionBlock =
-    *mut Block<(CKApplicationPermissionStatus, *mut NSError), ()>;
+    *mut Block<dyn Fn(CKApplicationPermissionStatus, *mut NSError)>;
 
 extern_methods!(
     /// ApplicationPermission
@@ -163,7 +163,7 @@ extern_methods!(
         #[method(fetchUserRecordIDWithCompletionHandler:)]
         pub unsafe fn fetchUserRecordIDWithCompletionHandler(
             &self,
-            completion_handler: &Block<(*mut CKRecordID, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut CKRecordID, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -175,7 +175,7 @@ extern_methods!(
         #[method(discoverAllIdentitiesWithCompletionHandler:)]
         pub unsafe fn discoverAllIdentitiesWithCompletionHandler(
             &self,
-            completion_handler: &Block<(*mut NSArray<CKUserIdentity>, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSArray<CKUserIdentity>, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -188,7 +188,7 @@ extern_methods!(
         pub unsafe fn discoverUserIdentityWithEmailAddress_completionHandler(
             &self,
             email: &NSString,
-            completion_handler: &Block<(*mut CKUserIdentity, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut CKUserIdentity, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -201,7 +201,7 @@ extern_methods!(
         pub unsafe fn discoverUserIdentityWithPhoneNumber_completionHandler(
             &self,
             phone_number: &NSString,
-            completion_handler: &Block<(*mut CKUserIdentity, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut CKUserIdentity, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -214,7 +214,7 @@ extern_methods!(
         pub unsafe fn discoverUserIdentityWithUserRecordID_completionHandler(
             &self,
             user_record_id: &CKRecordID,
-            completion_handler: &Block<(*mut CKUserIdentity, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut CKUserIdentity, *mut NSError)>,
         );
     }
 );
@@ -232,7 +232,7 @@ extern_methods!(
         pub unsafe fn fetchShareParticipantWithEmailAddress_completionHandler(
             &self,
             email_address: &NSString,
-            completion_handler: &Block<(*mut CKShareParticipant, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut CKShareParticipant, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -244,7 +244,7 @@ extern_methods!(
         pub unsafe fn fetchShareParticipantWithPhoneNumber_completionHandler(
             &self,
             phone_number: &NSString,
-            completion_handler: &Block<(*mut CKShareParticipant, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut CKShareParticipant, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -256,7 +256,7 @@ extern_methods!(
         pub unsafe fn fetchShareParticipantWithUserRecordID_completionHandler(
             &self,
             user_record_id: &CKRecordID,
-            completion_handler: &Block<(*mut CKShareParticipant, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut CKShareParticipant, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -268,7 +268,7 @@ extern_methods!(
         pub unsafe fn fetchShareMetadataWithURL_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: &Block<(*mut CKShareMetadata, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut CKShareMetadata, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -280,7 +280,7 @@ extern_methods!(
         pub unsafe fn acceptShareMetadata_completionHandler(
             &self,
             metadata: &CKShareMetadata,
-            completion_handler: &Block<(*mut CKShare, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut CKShare, *mut NSError)>,
         );
     }
 );
@@ -293,7 +293,7 @@ extern_methods!(
         #[method(fetchAllLongLivedOperationIDsWithCompletionHandler:)]
         pub unsafe fn fetchAllLongLivedOperationIDsWithCompletionHandler(
             &self,
-            completion_handler: &Block<(*mut NSArray<CKOperationID>, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSArray<CKOperationID>, *mut NSError)>,
         );
 
         #[cfg(all(feature = "CloudKit_CKOperation", feature = "Foundation_NSError"))]
@@ -301,7 +301,7 @@ extern_methods!(
         pub unsafe fn fetchLongLivedOperationWithID_completionHandler(
             &self,
             operation_id: &CKOperationID,
-            completion_handler: &Block<(*mut CKOperation, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut CKOperation, *mut NSError)>,
         );
     }
 );

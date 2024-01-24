@@ -97,7 +97,7 @@ extern_methods!(
             asset: &NSURL,
             client_identifier: &NSString,
             configuration: &SFSpeechLanguageModelConfiguration,
-            completion: &Block<(*mut NSError,), ()>,
+            completion: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(
@@ -112,7 +112,7 @@ extern_methods!(
             client_identifier: &NSString,
             configuration: &SFSpeechLanguageModelConfiguration,
             ignores_cache: bool,
-            completion: &Block<(*mut NSError,), ()>,
+            completion: &Block<dyn Fn(*mut NSError)>,
         );
     }
 );

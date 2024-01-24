@@ -50,7 +50,7 @@ extern_methods!(
             destination_dir: &NSURL,
             options: &NSDictionary,
             operation_queue: &NSOperationQueue,
-            reader: &Block<(NonNull<NSURL>, *mut NSError), ()>,
+            reader: &Block<dyn Fn(NonNull<NSURL>, *mut NSError)>,
         );
     }
 );

@@ -58,7 +58,7 @@ extern_methods!(
         #[method(getSceneWithCompletionHandler:)]
         pub unsafe fn getSceneWithCompletionHandler(
             &self,
-            completion_handler: &Block<(*mut MKLookAroundScene, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut MKLookAroundScene, *mut NSError)>,
         );
 
         #[method(cancel)]

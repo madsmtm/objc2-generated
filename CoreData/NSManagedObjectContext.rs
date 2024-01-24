@@ -87,10 +87,10 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[method(performBlock:)]
-        pub unsafe fn performBlock(&self, block: &Block<(), ()>);
+        pub unsafe fn performBlock(&self, block: &Block<dyn Fn()>);
 
         #[method(performBlockAndWait:)]
-        pub unsafe fn performBlockAndWait(&self, block: &Block<(), ()>);
+        pub unsafe fn performBlockAndWait(&self, block: &Block<dyn Fn() + '_>);
 
         #[cfg(feature = "CoreData_NSPersistentStoreCoordinator")]
         #[method_id(@__retain_semantics Other persistentStoreCoordinator)]

@@ -36,13 +36,7 @@ extern_methods!(
             this: Allocated<Self>,
             workout_route: &HKWorkoutRoute,
             data_handler: &Block<
-                (
-                    NonNull<HKWorkoutRouteQuery>,
-                    *mut NSArray<CLLocation>,
-                    Bool,
-                    *mut NSError,
-                ),
-                (),
+                dyn Fn(NonNull<HKWorkoutRouteQuery>, *mut NSArray<CLLocation>, Bool, *mut NSError),
             >,
         ) -> Id<Self>;
 
@@ -59,13 +53,7 @@ extern_methods!(
             workout_route: &HKWorkoutRoute,
             date_interval: &NSDateInterval,
             data_handler: &Block<
-                (
-                    NonNull<HKWorkoutRouteQuery>,
-                    *mut NSArray<CLLocation>,
-                    Bool,
-                    *mut NSError,
-                ),
-                (),
+                dyn Fn(NonNull<HKWorkoutRouteQuery>, *mut NSArray<CLLocation>, Bool, *mut NSError),
             >,
         ) -> Id<Self>;
     }

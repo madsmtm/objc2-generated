@@ -66,7 +66,7 @@ extern_methods!(
         pub unsafe fn fetchRecordWithID_completionHandler(
             &self,
             record_id: &CKRecordID,
-            completion_handler: &Block<(*mut CKRecord, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut CKRecord, *mut NSError)>,
         );
 
         #[cfg(all(feature = "CloudKit_CKRecord", feature = "Foundation_NSError"))]
@@ -74,7 +74,7 @@ extern_methods!(
         pub unsafe fn saveRecord_completionHandler(
             &self,
             record: &CKRecord,
-            completion_handler: &Block<(*mut CKRecord, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut CKRecord, *mut NSError)>,
         );
 
         #[cfg(all(feature = "CloudKit_CKRecordID", feature = "Foundation_NSError"))]
@@ -82,7 +82,7 @@ extern_methods!(
         pub unsafe fn deleteRecordWithID_completionHandler(
             &self,
             record_id: &CKRecordID,
-            completion_handler: &Block<(*mut CKRecordID, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut CKRecordID, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -97,7 +97,7 @@ extern_methods!(
             &self,
             query: &CKQuery,
             zone_id: Option<&CKRecordZoneID>,
-            completion_handler: &Block<(*mut NSArray<CKRecord>, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSArray<CKRecord>, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -108,7 +108,7 @@ extern_methods!(
         #[method(fetchAllRecordZonesWithCompletionHandler:)]
         pub unsafe fn fetchAllRecordZonesWithCompletionHandler(
             &self,
-            completion_handler: &Block<(*mut NSArray<CKRecordZone>, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSArray<CKRecordZone>, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -120,7 +120,7 @@ extern_methods!(
         pub unsafe fn fetchRecordZoneWithID_completionHandler(
             &self,
             zone_id: &CKRecordZoneID,
-            completion_handler: &Block<(*mut CKRecordZone, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut CKRecordZone, *mut NSError)>,
         );
 
         #[cfg(all(feature = "CloudKit_CKRecordZone", feature = "Foundation_NSError"))]
@@ -128,7 +128,7 @@ extern_methods!(
         pub unsafe fn saveRecordZone_completionHandler(
             &self,
             zone: &CKRecordZone,
-            completion_handler: &Block<(*mut CKRecordZone, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut CKRecordZone, *mut NSError)>,
         );
 
         #[cfg(all(feature = "CloudKit_CKRecordZoneID", feature = "Foundation_NSError"))]
@@ -136,7 +136,7 @@ extern_methods!(
         pub unsafe fn deleteRecordZoneWithID_completionHandler(
             &self,
             zone_id: &CKRecordZoneID,
-            completion_handler: &Block<(*mut CKRecordZoneID, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut CKRecordZoneID, *mut NSError)>,
         );
 
         #[cfg(all(feature = "CloudKit_CKSubscription", feature = "Foundation_NSError"))]
@@ -144,7 +144,7 @@ extern_methods!(
         pub unsafe fn fetchSubscriptionWithID_completionHandler(
             &self,
             subscription_id: &CKSubscriptionID,
-            completion_handler: &Block<(*mut CKSubscription, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut CKSubscription, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -155,7 +155,7 @@ extern_methods!(
         #[method(fetchAllSubscriptionsWithCompletionHandler:)]
         pub unsafe fn fetchAllSubscriptionsWithCompletionHandler(
             &self,
-            completion_handler: &Block<(*mut NSArray<CKSubscription>, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSArray<CKSubscription>, *mut NSError)>,
         );
 
         #[cfg(all(feature = "CloudKit_CKSubscription", feature = "Foundation_NSError"))]
@@ -163,7 +163,7 @@ extern_methods!(
         pub unsafe fn saveSubscription_completionHandler(
             &self,
             subscription: &CKSubscription,
-            completion_handler: &Block<(*mut CKSubscription, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut CKSubscription, *mut NSError)>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
@@ -171,7 +171,7 @@ extern_methods!(
         pub unsafe fn deleteSubscriptionWithID_completionHandler(
             &self,
             subscription_id: &CKSubscriptionID,
-            completion_handler: &Block<(*mut CKSubscriptionID, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut CKSubscriptionID, *mut NSError)>,
         );
     }
 );

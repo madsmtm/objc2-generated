@@ -67,7 +67,7 @@ extern_methods!(
             view: Option<&NSView>,
             class_array: &NSArray<TodoClass>,
             search_options: &NSDictionary<NSPasteboardReadingOptionKey, AnyObject>,
-            block: &Block<(NonNull<NSDraggingItem>, NSInteger, NonNull<Bool>), ()>,
+            block: &Block<dyn Fn(NonNull<NSDraggingItem>, NSInteger, NonNull<Bool>) + '_>,
         );
     }
 );

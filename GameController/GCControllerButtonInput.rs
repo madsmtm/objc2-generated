@@ -6,10 +6,10 @@ use crate::Foundation::*;
 use crate::GameController::*;
 
 pub type GCControllerButtonValueChangedHandler =
-    *mut Block<(NonNull<GCControllerButtonInput>, c_float, Bool), ()>;
+    *mut Block<dyn Fn(NonNull<GCControllerButtonInput>, c_float, Bool)>;
 
 pub type GCControllerButtonTouchedChangedHandler =
-    *mut Block<(NonNull<GCControllerButtonInput>, c_float, Bool, Bool), ()>;
+    *mut Block<dyn Fn(NonNull<GCControllerButtonInput>, c_float, Bool, Bool)>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

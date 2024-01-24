@@ -50,7 +50,7 @@ extern_methods!(
         pub unsafe fn providePlaceholderAtURL_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
@@ -58,7 +58,7 @@ extern_methods!(
         pub unsafe fn startProvidingItemAtURL_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "Foundation_NSURL")]

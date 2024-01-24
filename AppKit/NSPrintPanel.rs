@@ -131,7 +131,7 @@ extern_methods!(
             &self,
             print_info: &NSPrintInfo,
             parent_window: &NSWindow,
-            handler: Option<&Block<(NSPrintPanelResult,), ()>>,
+            handler: Option<&Block<dyn Fn(NSPrintPanelResult)>>,
         );
 
         #[cfg(all(feature = "AppKit_NSPrintInfo", feature = "AppKit_NSWindow"))]

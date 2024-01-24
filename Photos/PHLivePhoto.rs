@@ -61,7 +61,7 @@ extern_methods!(
             image: Option<&NSImage>,
             target_size: CGSize,
             content_mode: PHImageContentMode,
-            result_handler: &Block<(*mut PHLivePhoto, NonNull<NSDictionary>), ()>,
+            result_handler: &Block<dyn Fn(*mut PHLivePhoto, NonNull<NSDictionary>)>,
         ) -> PHLivePhotoRequestID;
 
         #[method(cancelLivePhotoRequestWithRequestID:)]

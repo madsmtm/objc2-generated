@@ -34,7 +34,7 @@ ns_enum!(
 );
 
 pub type PHAssetImageProgressHandler =
-    *mut Block<(c_double, *mut NSError, NonNull<Bool>, *mut NSDictionary), ()>;
+    *mut Block<dyn Fn(c_double, *mut NSError, NonNull<Bool>, *mut NSDictionary)>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -197,7 +197,7 @@ ns_enum!(
 );
 
 pub type PHAssetVideoProgressHandler =
-    *mut Block<(c_double, *mut NSError, NonNull<Bool>, *mut NSDictionary), ()>;
+    *mut Block<dyn Fn(c_double, *mut NSError, NonNull<Bool>, *mut NSDictionary)>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -308,7 +308,7 @@ extern_methods!(
             target_size: CGSize,
             content_mode: PHImageContentMode,
             options: Option<&PHImageRequestOptions>,
-            result_handler: &Block<(*mut NSImage, *mut NSDictionary), ()>,
+            result_handler: &Block<dyn Fn(*mut NSImage, *mut NSDictionary)>,
         ) -> PHImageRequestID;
 
         #[method(cancelImageRequest:)]
@@ -327,7 +327,7 @@ extern_methods!(
             target_size: CGSize,
             content_mode: PHImageContentMode,
             options: Option<&PHLivePhotoRequestOptions>,
-            result_handler: &Block<(*mut PHLivePhoto, *mut NSDictionary), ()>,
+            result_handler: &Block<dyn Fn(*mut PHLivePhoto, *mut NSDictionary)>,
         ) -> PHImageRequestID;
 
         #[cfg(all(
@@ -341,7 +341,7 @@ extern_methods!(
             &self,
             asset: &PHAsset,
             options: Option<&PHVideoRequestOptions>,
-            result_handler: &Block<(*mut AVPlayerItem, *mut NSDictionary), ()>,
+            result_handler: &Block<dyn Fn(*mut AVPlayerItem, *mut NSDictionary)>,
         ) -> PHImageRequestID;
 
         #[cfg(all(
@@ -357,7 +357,7 @@ extern_methods!(
             asset: &PHAsset,
             options: Option<&PHVideoRequestOptions>,
             export_preset: &NSString,
-            result_handler: &Block<(*mut AVAssetExportSession, *mut NSDictionary), ()>,
+            result_handler: &Block<dyn Fn(*mut AVAssetExportSession, *mut NSDictionary)>,
         ) -> PHImageRequestID;
 
         #[cfg(all(
@@ -372,7 +372,7 @@ extern_methods!(
             &self,
             asset: &PHAsset,
             options: Option<&PHVideoRequestOptions>,
-            result_handler: &Block<(*mut AVAsset, *mut AVAudioMix, *mut NSDictionary), ()>,
+            result_handler: &Block<dyn Fn(*mut AVAsset, *mut AVAudioMix, *mut NSDictionary)>,
         ) -> PHImageRequestID;
     }
 );

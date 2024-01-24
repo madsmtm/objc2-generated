@@ -113,14 +113,14 @@ extern_methods!(
         #[cfg(feature = "CloudKit_CKRecord")]
         #[deprecated = "Use recordMatchedBlock instead, which surfaces per-record errors"]
         #[method(recordFetchedBlock)]
-        pub unsafe fn recordFetchedBlock(&self) -> *mut Block<(NonNull<CKRecord>,), ()>;
+        pub unsafe fn recordFetchedBlock(&self) -> *mut Block<dyn Fn(NonNull<CKRecord>)>;
 
         #[cfg(feature = "CloudKit_CKRecord")]
         #[deprecated = "Use recordMatchedBlock instead, which surfaces per-record errors"]
         #[method(setRecordFetchedBlock:)]
         pub unsafe fn setRecordFetchedBlock(
             &self,
-            record_fetched_block: Option<&Block<(NonNull<CKRecord>,), ()>>,
+            record_fetched_block: Option<&Block<dyn Fn(NonNull<CKRecord>)>>,
         );
 
         #[cfg(all(
@@ -131,7 +131,7 @@ extern_methods!(
         #[method(recordMatchedBlock)]
         pub unsafe fn recordMatchedBlock(
             &self,
-        ) -> *mut Block<(NonNull<CKRecordID>, *mut CKRecord, *mut NSError), ()>;
+        ) -> *mut Block<dyn Fn(NonNull<CKRecordID>, *mut CKRecord, *mut NSError)>;
 
         #[cfg(all(
             feature = "CloudKit_CKRecord",
@@ -142,7 +142,7 @@ extern_methods!(
         pub unsafe fn setRecordMatchedBlock(
             &self,
             record_matched_block: Option<
-                &Block<(NonNull<CKRecordID>, *mut CKRecord, *mut NSError), ()>,
+                &Block<dyn Fn(NonNull<CKRecordID>, *mut CKRecord, *mut NSError)>,
             >,
         );
 
@@ -150,13 +150,13 @@ extern_methods!(
         #[method(queryCompletionBlock)]
         pub unsafe fn queryCompletionBlock(
             &self,
-        ) -> *mut Block<(*mut CKQueryCursor, *mut NSError), ()>;
+        ) -> *mut Block<dyn Fn(*mut CKQueryCursor, *mut NSError)>;
 
         #[cfg(all(feature = "CloudKit_CKQueryCursor", feature = "Foundation_NSError"))]
         #[method(setQueryCompletionBlock:)]
         pub unsafe fn setQueryCompletionBlock(
             &self,
-            query_completion_block: Option<&Block<(*mut CKQueryCursor, *mut NSError), ()>>,
+            query_completion_block: Option<&Block<dyn Fn(*mut CKQueryCursor, *mut NSError)>>,
         );
     }
 );

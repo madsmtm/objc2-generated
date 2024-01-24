@@ -62,7 +62,7 @@ impl DefaultId for MTLSharedEventListener {
 }
 
 pub type MTLSharedEventNotificationBlock =
-    *mut Block<(NonNull<ProtocolObject<dyn MTLSharedEvent>>, u64), ()>;
+    *mut Block<dyn Fn(NonNull<ProtocolObject<dyn MTLSharedEvent>>, u64)>;
 
 extern_protocol!(
     pub unsafe trait MTLSharedEvent: MTLEvent {

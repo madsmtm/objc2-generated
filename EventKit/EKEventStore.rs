@@ -15,9 +15,9 @@ ns_enum!(
     }
 );
 
-pub type EKEventSearchCallback = *mut Block<(NonNull<EKEvent>, NonNull<Bool>), ()>;
+pub type EKEventSearchCallback = *mut Block<dyn Fn(NonNull<EKEvent>, NonNull<Bool>)>;
 
-pub type EKEventStoreRequestAccessCompletionHandler = *mut Block<(Bool, *mut NSError), ()>;
+pub type EKEventStoreRequestAccessCompletionHandler = *mut Block<dyn Fn(Bool, *mut NSError)>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -257,7 +257,7 @@ extern_methods!(
         pub unsafe fn fetchRemindersMatchingPredicate_completion(
             &self,
             predicate: &NSPredicate,
-            completion: &Block<(*mut NSArray<EKReminder>,), ()>,
+            completion: &Block<dyn Fn(*mut NSArray<EKReminder>)>,
         ) -> Id<AnyObject>;
 
         #[method(cancelFetchRequest:)]

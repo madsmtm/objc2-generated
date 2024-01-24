@@ -230,7 +230,7 @@ extern_protocol!(
             &self,
             view_controller: &GKMatchmakerViewController,
             recipient: &GKPlayer,
-            completion_handler: &Block<(NonNull<GKMatchProperties>,), ()>,
+            completion_handler: &Block<dyn Fn(NonNull<GKMatchProperties>)>,
         );
 
         #[cfg(all(

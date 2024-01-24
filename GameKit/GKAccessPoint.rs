@@ -78,13 +78,13 @@ extern_methods!(
         pub unsafe fn setParentWindow(&self, parent_window: Option<&NSWindow>);
 
         #[method(triggerAccessPointWithHandler:)]
-        pub unsafe fn triggerAccessPointWithHandler(&self, handler: &Block<(), ()>);
+        pub unsafe fn triggerAccessPointWithHandler(&self, handler: &Block<dyn Fn()>);
 
         #[method(triggerAccessPointWithState:handler:)]
         pub unsafe fn triggerAccessPointWithState_handler(
             &self,
             state: GKGameCenterViewControllerState,
-            handler: &Block<(), ()>,
+            handler: &Block<dyn Fn()>,
         );
     }
 );

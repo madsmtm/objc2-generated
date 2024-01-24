@@ -66,7 +66,7 @@ extern_methods!(
         #[method(getPendingTaskRequestsWithCompletionHandler:)]
         pub unsafe fn getPendingTaskRequestsWithCompletionHandler(
             &self,
-            completion_handler: &Block<(NonNull<NSArray<BGTaskRequest>>,), ()>,
+            completion_handler: &Block<dyn Fn(NonNull<NSArray<BGTaskRequest>>)>,
         );
     }
 );

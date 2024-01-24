@@ -218,12 +218,7 @@ extern_methods!(
 );
 
 pub type NSCollectionViewDiffableDataSourceSupplementaryViewProvider = *mut Block<
-    (
-        NonNull<NSCollectionView>,
-        NonNull<NSString>,
-        NonNull<NSIndexPath>,
-    ),
-    *mut NSView,
+    dyn Fn(NonNull<NSCollectionView>, NonNull<NSString>, NonNull<NSIndexPath>) -> *mut NSView,
 >;
 
 __inner_extern_class!(

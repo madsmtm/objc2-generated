@@ -7,9 +7,9 @@ use crate::CoreLocation::*;
 use crate::Foundation::*;
 use crate::MapKit::*;
 
-pub type MKDirectionsHandler = *mut Block<(*mut MKDirectionsResponse, *mut NSError), ()>;
+pub type MKDirectionsHandler = *mut Block<dyn Fn(*mut MKDirectionsResponse, *mut NSError)>;
 
-pub type MKETAHandler = *mut Block<(*mut MKETAResponse, *mut NSError), ()>;
+pub type MKETAHandler = *mut Block<dyn Fn(*mut MKETAResponse, *mut NSError)>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

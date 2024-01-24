@@ -128,7 +128,7 @@ extern_methods!(
             string: &NSString,
             options: NSMatchingOptions,
             range: NSRange,
-            block: &Block<(*mut NSTextCheckingResult, NSMatchingFlags, NonNull<Bool>), ()>,
+            block: &Block<dyn Fn(*mut NSTextCheckingResult, NSMatchingFlags, NonNull<Bool>) + '_>,
         );
 
         #[cfg(all(

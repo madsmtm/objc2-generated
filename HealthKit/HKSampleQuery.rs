@@ -53,8 +53,7 @@ extern_methods!(
             limit: NSUInteger,
             sort_descriptors: Option<&NSArray<NSSortDescriptor>>,
             results_handler: &Block<
-                (NonNull<HKSampleQuery>, *mut NSArray<HKSample>, *mut NSError),
-                (),
+                dyn Fn(NonNull<HKSampleQuery>, *mut NSArray<HKSample>, *mut NSError),
             >,
         ) -> Id<Self>;
 
@@ -70,8 +69,7 @@ extern_methods!(
             query_descriptors: &NSArray<HKQueryDescriptor>,
             limit: NSInteger,
             results_handler: &Block<
-                (NonNull<HKSampleQuery>, *mut NSArray<HKSample>, *mut NSError),
-                (),
+                dyn Fn(NonNull<HKSampleQuery>, *mut NSArray<HKSample>, *mut NSError),
             >,
         ) -> Id<Self>;
 
@@ -89,8 +87,7 @@ extern_methods!(
             limit: NSInteger,
             sort_descriptors: &NSArray<NSSortDescriptor>,
             results_handler: &Block<
-                (NonNull<HKSampleQuery>, *mut NSArray<HKSample>, *mut NSError),
-                (),
+                dyn Fn(NonNull<HKSampleQuery>, *mut NSArray<HKSample>, *mut NSError),
             >,
         ) -> Id<Self>;
     }

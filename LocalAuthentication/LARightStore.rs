@@ -34,7 +34,7 @@ extern_methods!(
         pub unsafe fn rightForIdentifier_completion(
             &self,
             identifier: &NSString,
-            handler: &Block<(*mut LAPersistedRight, *mut NSError), ()>,
+            handler: &Block<dyn Fn(*mut LAPersistedRight, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -48,7 +48,7 @@ extern_methods!(
             &self,
             right: &LARight,
             identifier: &NSString,
-            handler: &Block<(*mut LAPersistedRight, *mut NSError), ()>,
+            handler: &Block<dyn Fn(*mut LAPersistedRight, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -64,7 +64,7 @@ extern_methods!(
             right: &LARight,
             identifier: &NSString,
             secret: &NSData,
-            handler: &Block<(*mut LAPersistedRight, *mut NSError), ()>,
+            handler: &Block<dyn Fn(*mut LAPersistedRight, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -75,7 +75,7 @@ extern_methods!(
         pub unsafe fn removeRight_completion(
             &self,
             right: &LAPersistedRight,
-            handler: &Block<(*mut NSError,), ()>,
+            handler: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
@@ -83,12 +83,12 @@ extern_methods!(
         pub unsafe fn removeRightForIdentifier_completion(
             &self,
             identifier: &NSString,
-            handler: &Block<(*mut NSError,), ()>,
+            handler: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(removeAllRightsWithCompletion:)]
-        pub unsafe fn removeAllRightsWithCompletion(&self, handler: &Block<(*mut NSError,), ()>);
+        pub unsafe fn removeAllRightsWithCompletion(&self, handler: &Block<dyn Fn(*mut NSError)>);
 
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

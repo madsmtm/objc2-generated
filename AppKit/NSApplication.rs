@@ -387,7 +387,7 @@ extern_methods!(
         pub unsafe fn enumerateWindowsWithOptions_usingBlock(
             &self,
             options: NSWindowListOptions,
-            block: &Block<(NonNull<NSWindow>, NonNull<Bool>), ()>,
+            block: &Block<dyn Fn(NonNull<NSWindow>, NonNull<Bool>) + '_>,
         );
 
         #[method(preventWindowOrdering)]
@@ -856,8 +856,7 @@ extern_protocol!(
             application: &NSApplication,
             user_activity: &NSUserActivity,
             restoration_handler: &Block<
-                (NonNull<NSArray<ProtocolObject<dyn NSUserActivityRestoring>>>,),
-                (),
+                dyn Fn(NonNull<NSArray<ProtocolObject<dyn NSUserActivityRestoring>>>),
             >,
         ) -> bool;
 

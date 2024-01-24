@@ -10,7 +10,7 @@ pub type PHAssetResourceDataRequestID = i32;
 
 extern_static!(PHInvalidAssetResourceDataRequestID: PHAssetResourceDataRequestID = 0);
 
-pub type PHAssetResourceProgressHandler = *mut Block<(c_double,), ()>;
+pub type PHAssetResourceProgressHandler = *mut Block<dyn Fn(c_double)>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -91,8 +91,8 @@ extern_methods!(
             &self,
             resource: &PHAssetResource,
             options: Option<&PHAssetResourceRequestOptions>,
-            handler: &Block<(NonNull<NSData>,), ()>,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            handler: &Block<dyn Fn(NonNull<NSData>)>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         ) -> PHAssetResourceDataRequestID;
 
         #[cfg(all(
@@ -107,7 +107,7 @@ extern_methods!(
             resource: &PHAssetResource,
             file_url: &NSURL,
             options: Option<&PHAssetResourceRequestOptions>,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[method(cancelDataRequest:)]

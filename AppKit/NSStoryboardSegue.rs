@@ -30,7 +30,7 @@ extern_methods!(
             identifier: &NSStoryboardSegueIdentifier,
             source_controller: &AnyObject,
             destination_controller: &AnyObject,
-            perform_handler: &Block<(), ()>,
+            perform_handler: &Block<dyn Fn()>,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Init initWithIdentifier:source:destination:)]

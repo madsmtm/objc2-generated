@@ -71,7 +71,7 @@ extern_methods!(
         #[method(deleteSpotlightIndexWithCompletionHandler:)]
         pub unsafe fn deleteSpotlightIndexWithCompletionHandler(
             &self,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
     }
 );

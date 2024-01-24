@@ -67,7 +67,7 @@ extern_protocol!(
             web_view: &WKWebView,
             message: &NSString,
             frame: &WKFrameInfo,
-            completion_handler: &Block<(), ()>,
+            completion_handler: &Block<dyn Fn()>,
         );
 
         #[cfg(all(
@@ -82,7 +82,7 @@ extern_protocol!(
             web_view: &WKWebView,
             message: &NSString,
             frame: &WKFrameInfo,
-            completion_handler: &Block<(Bool,), ()>,
+            completion_handler: &Block<dyn Fn(Bool)>,
         );
 
         #[cfg(all(
@@ -98,7 +98,7 @@ extern_protocol!(
             prompt: &NSString,
             default_text: Option<&NSString>,
             frame: &WKFrameInfo,
-            completion_handler: &Block<(*mut NSString,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSString)>,
         );
 
         #[cfg(all(
@@ -114,7 +114,7 @@ extern_protocol!(
             origin: &WKSecurityOrigin,
             frame: &WKFrameInfo,
             r#type: WKMediaCaptureType,
-            decision_handler: &Block<(WKPermissionDecision,), ()>,
+            decision_handler: &Block<dyn Fn(WKPermissionDecision)>,
         );
 
         #[cfg(all(
@@ -129,7 +129,7 @@ extern_protocol!(
             web_view: &WKWebView,
             origin: &WKSecurityOrigin,
             frame: &WKFrameInfo,
-            decision_handler: &Block<(WKPermissionDecision,), ()>,
+            decision_handler: &Block<dyn Fn(WKPermissionDecision)>,
         );
 
         #[cfg(all(
@@ -146,7 +146,7 @@ extern_protocol!(
             web_view: &WKWebView,
             parameters: &WKOpenPanelParameters,
             frame: &WKFrameInfo,
-            completion_handler: &Block<(*mut NSArray<NSURL>,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSArray<NSURL>)>,
         );
     }
 

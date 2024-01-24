@@ -159,13 +159,12 @@ extern_methods!(
             tag: NSInteger,
             completion_handler: Option<
                 &Block<
-                    (
+                    dyn Fn(
                         NSInteger,
                         NonNull<NSArray<NSTextCheckingResult>>,
                         NonNull<NSOrthography>,
                         NSInteger,
                     ),
-                    (),
                 >,
             >,
         ) -> NSInteger;
@@ -185,7 +184,7 @@ extern_methods!(
             options: Option<&NSDictionary<NSTextCheckingOptionKey, AnyObject>>,
             tag: NSInteger,
             completion_handler: Option<
-                &Block<(NSInteger, NonNull<NSArray<NSTextCheckingResult>>), ()>,
+                &Block<dyn Fn(NSInteger, NonNull<NSArray<NSTextCheckingResult>>)>,
             >,
         ) -> NSInteger;
 
@@ -351,7 +350,7 @@ extern_methods!(
             alternative_strings: &NSArray<NSString>,
             rect_of_typed_string: NSRect,
             view: &NSView,
-            completion_block: Option<&Block<(*mut NSString,), ()>>,
+            completion_block: Option<&Block<dyn Fn(*mut NSString)>>,
         );
 
         #[cfg(feature = "AppKit_NSView")]

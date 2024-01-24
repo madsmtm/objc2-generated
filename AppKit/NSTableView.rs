@@ -635,7 +635,7 @@ extern_methods!(
         #[method(enumerateAvailableRowViewsUsingBlock:)]
         pub unsafe fn enumerateAvailableRowViewsUsingBlock(
             &self,
-            handler: &Block<(NonNull<NSTableRowView>, NSInteger), ()>,
+            handler: &Block<dyn Fn(NonNull<NSTableRowView>, NSInteger) + '_>,
         );
 
         #[method(floatsGroupRows)]

@@ -128,11 +128,10 @@ extern_methods!(
 );
 
 pub type NSCollectionViewCompositionalLayoutSectionProvider = *mut Block<
-    (
+    dyn Fn(
         NSInteger,
         NonNull<ProtocolObject<dyn NSCollectionLayoutEnvironment>>,
-    ),
-    *mut NSCollectionLayoutSection,
+    ) -> *mut NSCollectionLayoutSection,
 >;
 
 extern_class!(
@@ -221,12 +220,11 @@ ns_enum!(
 );
 
 pub type NSCollectionLayoutSectionVisibleItemsInvalidationHandler = *mut Block<
-    (
+    dyn Fn(
         NonNull<NSArray<ProtocolObject<dyn NSCollectionLayoutVisibleItem>>>,
         NSPoint,
         NonNull<ProtocolObject<dyn NSCollectionLayoutEnvironment>>,
     ),
-    (),
 >;
 
 extern_class!(
@@ -453,8 +451,9 @@ extern_methods!(
 );
 
 pub type NSCollectionLayoutGroupCustomItemProvider = *mut Block<
-    (NonNull<ProtocolObject<dyn NSCollectionLayoutEnvironment>>,),
-    NonNull<NSArray<NSCollectionLayoutGroupCustomItem>>,
+    dyn Fn(
+        NonNull<ProtocolObject<dyn NSCollectionLayoutEnvironment>>,
+    ) -> NonNull<NSArray<NSCollectionLayoutGroupCustomItem>>,
 >;
 
 extern_class!(

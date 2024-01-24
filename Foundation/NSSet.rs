@@ -127,27 +127,27 @@ extern_methods!(
         #[method(enumerateObjectsUsingBlock:)]
         pub unsafe fn enumerateObjectsUsingBlock(
             &self,
-            block: &Block<(NonNull<ObjectType>, NonNull<Bool>), ()>,
+            block: &Block<dyn Fn(NonNull<ObjectType>, NonNull<Bool>) + '_>,
         );
 
         #[method(enumerateObjectsWithOptions:usingBlock:)]
         pub unsafe fn enumerateObjectsWithOptions_usingBlock(
             &self,
             opts: NSEnumerationOptions,
-            block: &Block<(NonNull<ObjectType>, NonNull<Bool>), ()>,
+            block: &Block<dyn Fn(NonNull<ObjectType>, NonNull<Bool>) + '_>,
         );
 
         #[method_id(@__retain_semantics Other objectsPassingTest:)]
         pub unsafe fn objectsPassingTest(
             &self,
-            predicate: &Block<(NonNull<ObjectType>, NonNull<Bool>), Bool>,
+            predicate: &Block<dyn Fn(NonNull<ObjectType>, NonNull<Bool>) -> Bool + '_>,
         ) -> Id<NSSet<ObjectType>>;
 
         #[method_id(@__retain_semantics Other objectsWithOptions:passingTest:)]
         pub unsafe fn objectsWithOptions_passingTest(
             &self,
             opts: NSEnumerationOptions,
-            predicate: &Block<(NonNull<ObjectType>, NonNull<Bool>), Bool>,
+            predicate: &Block<dyn Fn(NonNull<ObjectType>, NonNull<Bool>) -> Bool + '_>,
         ) -> Id<NSSet<ObjectType>>;
     }
 );

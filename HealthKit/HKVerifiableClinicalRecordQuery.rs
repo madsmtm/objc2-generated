@@ -52,12 +52,11 @@ extern_methods!(
             record_types: &NSArray<NSString>,
             predicate: Option<&NSPredicate>,
             results_handler: &Block<
-                (
+                dyn Fn(
                     NonNull<HKVerifiableClinicalRecordQuery>,
                     *mut NSArray<HKVerifiableClinicalRecord>,
                     *mut NSError,
                 ),
-                (),
             >,
         ) -> Id<Self>;
 
@@ -75,12 +74,11 @@ extern_methods!(
             source_types: &NSArray<HKVerifiableClinicalRecordSourceType>,
             predicate: Option<&NSPredicate>,
             results_handler: &Block<
-                (
+                dyn Fn(
                     NonNull<HKVerifiableClinicalRecordQuery>,
                     *mut NSArray<HKVerifiableClinicalRecord>,
                     *mut NSError,
                 ),
-                (),
             >,
         ) -> Id<Self>;
     }

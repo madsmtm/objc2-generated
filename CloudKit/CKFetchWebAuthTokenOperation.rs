@@ -43,14 +43,14 @@ extern_methods!(
         #[method(fetchWebAuthTokenCompletionBlock)]
         pub unsafe fn fetchWebAuthTokenCompletionBlock(
             &self,
-        ) -> *mut Block<(*mut NSString, *mut NSError), ()>;
+        ) -> *mut Block<dyn Fn(*mut NSString, *mut NSError)>;
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method(setFetchWebAuthTokenCompletionBlock:)]
         pub unsafe fn setFetchWebAuthTokenCompletionBlock(
             &self,
             fetch_web_auth_token_completion_block: Option<
-                &Block<(*mut NSString, *mut NSError), ()>,
+                &Block<dyn Fn(*mut NSString, *mut NSError)>,
             >,
         );
     }

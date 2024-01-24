@@ -105,7 +105,7 @@ extern_methods!(
         pub unsafe fn registerUndoWithTarget_handler(
             &self,
             target: &AnyObject,
-            undo_handler: &Block<(NonNull<AnyObject>,), ()>,
+            undo_handler: &Block<dyn Fn(NonNull<AnyObject>)>,
         );
 
         #[method(setActionIsDiscardable:)]

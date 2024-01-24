@@ -103,7 +103,7 @@ extern_methods!(
         #[method(loadPersistentStoresWithCompletionHandler:)]
         pub unsafe fn loadPersistentStoresWithCompletionHandler(
             &self,
-            block: &Block<(NonNull<NSPersistentStoreDescription>, *mut NSError), ()>,
+            block: &Block<dyn Fn(NonNull<NSPersistentStoreDescription>, *mut NSError)>,
         );
 
         #[cfg(feature = "CoreData_NSManagedObjectContext")]
@@ -114,7 +114,7 @@ extern_methods!(
         #[method(performBackgroundTask:)]
         pub unsafe fn performBackgroundTask(
             &self,
-            block: &Block<(NonNull<NSManagedObjectContext>,), ()>,
+            block: &Block<dyn Fn(NonNull<NSManagedObjectContext>)>,
         );
     }
 );

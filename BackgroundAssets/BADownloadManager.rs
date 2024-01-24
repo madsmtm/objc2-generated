@@ -39,8 +39,7 @@ extern_protocol!(
             download: &BADownload,
             challenge: &NSURLAuthenticationChallenge,
             completion_handler: &Block<
-                (NSURLSessionAuthChallengeDisposition, *mut NSURLCredential),
-                (),
+                dyn Fn(NSURLSessionAuthChallengeDisposition, *mut NSURLCredential),
             >,
         );
 
@@ -113,7 +112,7 @@ extern_methods!(
         #[method(fetchCurrentDownloadsWithCompletionHandler:)]
         pub unsafe fn fetchCurrentDownloadsWithCompletionHandler(
             &self,
-            completion_handler: &Block<(NonNull<NSArray<BADownload>>, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(NonNull<NSArray<BADownload>>, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -130,7 +129,7 @@ extern_methods!(
         #[method(performWithExclusiveControl:)]
         pub unsafe fn performWithExclusiveControl(
             &self,
-            perform_handler: &Block<(Bool, *mut NSError), ()>,
+            perform_handler: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSError"))]
@@ -138,7 +137,7 @@ extern_methods!(
         pub unsafe fn performWithExclusiveControlBeforeDate_performHandler(
             &self,
             date: &NSDate,
-            perform_handler: &Block<(Bool, *mut NSError), ()>,
+            perform_handler: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(

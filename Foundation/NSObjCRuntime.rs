@@ -51,7 +51,8 @@ extern_fn!(
     ) -> NonNull<c_char>;
 );
 
-pub type NSComparator = *mut Block<(NonNull<AnyObject>, NonNull<AnyObject>), NSComparisonResult>;
+pub type NSComparator =
+    *mut Block<dyn Fn(NonNull<AnyObject>, NonNull<AnyObject>) -> NSComparisonResult>;
 
 ns_options!(
     #[underlying(NSUInteger)]

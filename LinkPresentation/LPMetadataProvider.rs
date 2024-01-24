@@ -32,7 +32,7 @@ extern_methods!(
         pub unsafe fn startFetchingMetadataForURL_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: &Block<(*mut LPLinkMetadata, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut LPLinkMetadata, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -44,7 +44,7 @@ extern_methods!(
         pub unsafe fn startFetchingMetadataForRequest_completionHandler(
             &self,
             request: &NSURLRequest,
-            completion_handler: &Block<(*mut LPLinkMetadata, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut LPLinkMetadata, *mut NSError)>,
         );
 
         #[method(cancel)]

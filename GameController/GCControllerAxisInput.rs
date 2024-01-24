@@ -6,7 +6,7 @@ use crate::Foundation::*;
 use crate::GameController::*;
 
 pub type GCControllerAxisValueChangedHandler =
-    *mut Block<(NonNull<GCControllerAxisInput>, c_float), ()>;
+    *mut Block<dyn Fn(NonNull<GCControllerAxisInput>, c_float)>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

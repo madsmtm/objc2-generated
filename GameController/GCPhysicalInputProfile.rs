@@ -36,26 +36,14 @@ extern_methods!(
         #[method(valueDidChangeHandler)]
         pub unsafe fn valueDidChangeHandler(
             &self,
-        ) -> *mut Block<
-            (
-                NonNull<GCPhysicalInputProfile>,
-                NonNull<GCControllerElement>,
-            ),
-            (),
-        >;
+        ) -> *mut Block<dyn Fn(NonNull<GCPhysicalInputProfile>, NonNull<GCControllerElement>)>;
 
         #[cfg(feature = "GameController_GCControllerElement")]
         #[method(setValueDidChangeHandler:)]
         pub unsafe fn setValueDidChangeHandler(
             &self,
             value_did_change_handler: Option<
-                &Block<
-                    (
-                        NonNull<GCPhysicalInputProfile>,
-                        NonNull<GCControllerElement>,
-                    ),
-                    (),
-                >,
+                &Block<dyn Fn(NonNull<GCPhysicalInputProfile>, NonNull<GCControllerElement>)>,
             >,
         );
 

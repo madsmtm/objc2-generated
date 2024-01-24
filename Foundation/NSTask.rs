@@ -117,12 +117,12 @@ extern_methods!(
         pub unsafe fn terminationReason(&self) -> NSTaskTerminationReason;
 
         #[method(terminationHandler)]
-        pub unsafe fn terminationHandler(&self) -> *mut Block<(NonNull<NSTask>,), ()>;
+        pub unsafe fn terminationHandler(&self) -> *mut Block<dyn Fn(NonNull<NSTask>)>;
 
         #[method(setTerminationHandler:)]
         pub unsafe fn setTerminationHandler(
             &self,
-            termination_handler: Option<&Block<(NonNull<NSTask>,), ()>>,
+            termination_handler: Option<&Block<dyn Fn(NonNull<NSTask>)>>,
         );
 
         #[method(qualityOfService)]
@@ -157,7 +157,7 @@ extern_methods!(
             url: &NSURL,
             arguments: &NSArray<NSString>,
             error: Option<&mut Option<Id<NSError>>>,
-            termination_handler: Option<&Block<(NonNull<NSTask>,), ()>>,
+            termination_handler: Option<&Block<dyn Fn(NonNull<NSTask>)>>,
         ) -> Option<Id<NSTask>>;
 
         #[method(waitUntilExit)]

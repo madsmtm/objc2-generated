@@ -226,7 +226,7 @@ extern_methods!(
         pub unsafe fn requestTemporaryFullAccuracyAuthorizationWithPurposeKey_completion(
             &self,
             purpose_key: &NSString,
-            completion: Option<&Block<(*mut NSError,), ()>>,
+            completion: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -264,7 +264,7 @@ extern_methods!(
         #[method(startMonitoringLocationPushesWithCompletion:)]
         pub unsafe fn startMonitoringLocationPushesWithCompletion(
             &self,
-            completion: Option<&Block<(*mut NSData, *mut NSError), ()>>,
+            completion: Option<&Block<dyn Fn(*mut NSData, *mut NSError)>>,
         );
 
         #[method(stopMonitoringLocationPushes)]
@@ -345,7 +345,7 @@ extern_methods!(
             &self,
             purpose_key: &NSString,
             sample_count: NSInteger,
-            handler: &Block<(NonNull<NSArray<CLLocation>>, *mut NSError), ()>,
+            handler: &Block<dyn Fn(NonNull<NSArray<CLLocation>>, *mut NSError)>,
         );
     }
 );

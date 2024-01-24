@@ -97,7 +97,7 @@ extern_protocol!(
             &self,
             file_promise_provider: &NSFilePromiseProvider,
             url: &NSURL,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(

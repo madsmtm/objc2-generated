@@ -114,7 +114,7 @@ extern_methods!(
         #[method(beginOpenPanelWithCompletionHandler:)]
         pub unsafe fn beginOpenPanelWithCompletionHandler(
             &self,
-            completion_handler: &Block<(*mut NSArray<NSURL>,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSArray<NSURL>)>,
         );
 
         #[cfg(all(
@@ -127,7 +127,7 @@ extern_methods!(
             &self,
             open_panel: &NSOpenPanel,
             in_types: Option<&NSArray<NSString>>,
-            completion_handler: &Block<(NSInteger,), ()>,
+            completion_handler: &Block<dyn Fn(NSInteger)>,
         );
 
         #[cfg(all(
@@ -140,7 +140,7 @@ extern_methods!(
             &self,
             url: &NSURL,
             display_document: bool,
-            completion_handler: &Block<(*mut NSDocument, Bool, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSDocument, Bool, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -167,7 +167,7 @@ extern_methods!(
             url_or_nil: Option<&NSURL>,
             contents_url: &NSURL,
             display_document: bool,
-            completion_handler: &Block<(*mut NSDocument, Bool, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSDocument, Bool, *mut NSError)>,
         );
 
         #[cfg(all(

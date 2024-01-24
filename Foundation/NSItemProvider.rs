@@ -56,7 +56,7 @@ extern_protocol!(
         unsafe fn loadDataWithTypeIdentifier_forItemProviderCompletionHandler(
             &self,
             type_identifier: &NSString,
-            completion_handler: &Block<(*mut NSData, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSData, *mut NSError)>,
         ) -> Option<Id<NSProgress>>;
     }
 
@@ -85,16 +85,10 @@ extern_protocol!(
 );
 
 pub type NSItemProviderCompletionHandler =
-    *mut Block<(*mut ProtocolObject<dyn NSSecureCoding>, *mut NSError), ()>;
+    *mut Block<dyn Fn(*mut ProtocolObject<dyn NSSecureCoding>, *mut NSError)>;
 
-pub type NSItemProviderLoadHandler = *mut Block<
-    (
-        NSItemProviderCompletionHandler,
-        *const AnyClass,
-        *mut NSDictionary,
-    ),
-    (),
->;
+pub type NSItemProviderLoadHandler =
+    *mut Block<dyn Fn(NSItemProviderCompletionHandler, *const AnyClass, *mut NSDictionary)>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -132,8 +126,7 @@ extern_methods!(
             type_identifier: &NSString,
             visibility: NSItemProviderRepresentationVisibility,
             load_handler: &Block<
-                (NonNull<Block<(*mut NSData, *mut NSError), ()>>,),
-                *mut NSProgress,
+                dyn Fn(NonNull<Block<dyn Fn(*mut NSData, *mut NSError)>>) -> *mut NSProgress,
             >,
         );
 
@@ -150,8 +143,7 @@ extern_methods!(
             file_options: NSItemProviderFileOptions,
             visibility: NSItemProviderRepresentationVisibility,
             load_handler: &Block<
-                (NonNull<Block<(*mut NSURL, Bool, *mut NSError), ()>>,),
-                *mut NSProgress,
+                dyn Fn(NonNull<Block<dyn Fn(*mut NSURL, Bool, *mut NSError)>>) -> *mut NSProgress,
             >,
         );
 
@@ -188,7 +180,7 @@ extern_methods!(
         pub unsafe fn loadDataRepresentationForTypeIdentifier_completionHandler(
             &self,
             type_identifier: &NSString,
-            completion_handler: &Block<(*mut NSData, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSData, *mut NSError)>,
         ) -> Id<NSProgress>;
 
         #[cfg(all(
@@ -201,7 +193,7 @@ extern_methods!(
         pub unsafe fn loadFileRepresentationForTypeIdentifier_completionHandler(
             &self,
             type_identifier: &NSString,
-            completion_handler: &Block<(*mut NSURL, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSURL, *mut NSError)>,
         ) -> Id<NSProgress>;
 
         #[cfg(all(
@@ -214,7 +206,7 @@ extern_methods!(
         pub unsafe fn loadInPlaceFileRepresentationForTypeIdentifier_completionHandler(
             &self,
             type_identifier: &NSString,
-            completion_handler: &Block<(*mut NSURL, Bool, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSURL, Bool, *mut NSError)>,
         ) -> Id<NSProgress>;
 
         #[cfg(feature = "Foundation_NSString")]

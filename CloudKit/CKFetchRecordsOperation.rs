@@ -57,13 +57,13 @@ extern_methods!(
         #[method(perRecordProgressBlock)]
         pub unsafe fn perRecordProgressBlock(
             &self,
-        ) -> *mut Block<(NonNull<CKRecordID>, c_double), ()>;
+        ) -> *mut Block<dyn Fn(NonNull<CKRecordID>, c_double)>;
 
         #[cfg(feature = "CloudKit_CKRecordID")]
         #[method(setPerRecordProgressBlock:)]
         pub unsafe fn setPerRecordProgressBlock(
             &self,
-            per_record_progress_block: Option<&Block<(NonNull<CKRecordID>, c_double), ()>>,
+            per_record_progress_block: Option<&Block<dyn Fn(NonNull<CKRecordID>, c_double)>>,
         );
 
         #[cfg(all(
@@ -74,7 +74,7 @@ extern_methods!(
         #[method(perRecordCompletionBlock)]
         pub unsafe fn perRecordCompletionBlock(
             &self,
-        ) -> *mut Block<(*mut CKRecord, *mut CKRecordID, *mut NSError), ()>;
+        ) -> *mut Block<dyn Fn(*mut CKRecord, *mut CKRecordID, *mut NSError)>;
 
         #[cfg(all(
             feature = "CloudKit_CKRecord",
@@ -85,7 +85,7 @@ extern_methods!(
         pub unsafe fn setPerRecordCompletionBlock(
             &self,
             per_record_completion_block: Option<
-                &Block<(*mut CKRecord, *mut CKRecordID, *mut NSError), ()>,
+                &Block<dyn Fn(*mut CKRecord, *mut CKRecordID, *mut NSError)>,
             >,
         );
 
@@ -98,7 +98,7 @@ extern_methods!(
         #[method(fetchRecordsCompletionBlock)]
         pub unsafe fn fetchRecordsCompletionBlock(
             &self,
-        ) -> *mut Block<(*mut NSDictionary<CKRecordID, CKRecord>, *mut NSError), ()>;
+        ) -> *mut Block<dyn Fn(*mut NSDictionary<CKRecordID, CKRecord>, *mut NSError)>;
 
         #[cfg(all(
             feature = "CloudKit_CKRecord",
@@ -110,7 +110,7 @@ extern_methods!(
         pub unsafe fn setFetchRecordsCompletionBlock(
             &self,
             fetch_records_completion_block: Option<
-                &Block<(*mut NSDictionary<CKRecordID, CKRecord>, *mut NSError), ()>,
+                &Block<dyn Fn(*mut NSDictionary<CKRecordID, CKRecord>, *mut NSError)>,
             >,
         );
     }

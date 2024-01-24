@@ -111,7 +111,7 @@ extern_methods!(
         pub unsafe fn analyze(&self);
 
         #[method(analyzeWithCompletionHandler:)]
-        pub unsafe fn analyzeWithCompletionHandler(&self, completion_handler: &Block<(Bool,), ()>);
+        pub unsafe fn analyzeWithCompletionHandler(&self, completion_handler: &Block<dyn Fn(Bool)>);
 
         #[method(cancelAnalysis)]
         pub unsafe fn cancelAnalysis(&self);

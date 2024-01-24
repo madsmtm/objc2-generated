@@ -37,7 +37,7 @@ extern_methods!(
             quantity_type: &HKQuantityType,
             quantity_sample_predicate: Option<&NSPredicate>,
             options: HKStatisticsOptions,
-            handler: &Block<(NonNull<HKStatisticsQuery>, *mut HKStatistics, *mut NSError), ()>,
+            handler: &Block<dyn Fn(NonNull<HKStatisticsQuery>, *mut HKStatistics, *mut NSError)>,
         ) -> Id<Self>;
     }
 );

@@ -30,7 +30,7 @@ extern_methods!(
         pub unsafe fn new() -> Id<Self>;
 
         #[method(addAnimationBlock:)]
-        pub unsafe fn addAnimationBlock(&self, block: &Block<(), ()>);
+        pub unsafe fn addAnimationBlock(&self, block: &Block<dyn Fn()>);
 
         #[method(startFrame)]
         pub unsafe fn startFrame(&self) -> CGRect;

@@ -31,7 +31,7 @@ extern_methods!(
         pub unsafe fn didReceiveNotificationRequest_withContentHandler(
             &self,
             request: &UNNotificationRequest,
-            content_handler: &Block<(NonNull<UNNotificationContent>,), ()>,
+            content_handler: &Block<dyn Fn(NonNull<UNNotificationContent>)>,
         );
 
         #[method(serviceExtensionTimeWillExpire)]

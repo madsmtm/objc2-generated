@@ -39,12 +39,11 @@ extern_methods!(
         pub unsafe fn willMigrateHandler(
             &self,
         ) -> *mut Block<
-            (
+            dyn Fn(
                 NonNull<NSStagedMigrationManager>,
                 NonNull<NSCustomMigrationStage>,
                 *mut *mut NSError,
-            ),
-            Bool,
+            ) -> Bool,
         >;
 
         #[cfg(all(
@@ -56,12 +55,11 @@ extern_methods!(
             &self,
             will_migrate_handler: Option<
                 &Block<
-                    (
+                    dyn Fn(
                         NonNull<NSStagedMigrationManager>,
                         NonNull<NSCustomMigrationStage>,
                         *mut *mut NSError,
-                    ),
-                    Bool,
+                    ) -> Bool,
                 >,
             >,
         );
@@ -74,12 +72,11 @@ extern_methods!(
         pub unsafe fn didMigrateHandler(
             &self,
         ) -> *mut Block<
-            (
+            dyn Fn(
                 NonNull<NSStagedMigrationManager>,
                 NonNull<NSCustomMigrationStage>,
                 *mut *mut NSError,
-            ),
-            Bool,
+            ) -> Bool,
         >;
 
         #[cfg(all(
@@ -91,12 +88,11 @@ extern_methods!(
             &self,
             did_migrate_handler: Option<
                 &Block<
-                    (
+                    dyn Fn(
                         NonNull<NSStagedMigrationManager>,
                         NonNull<NSCustomMigrationStage>,
                         *mut *mut NSError,
-                    ),
-                    Bool,
+                    ) -> Bool,
                 >,
             >,
         );

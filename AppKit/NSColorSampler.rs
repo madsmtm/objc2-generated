@@ -27,7 +27,7 @@ extern_methods!(
         #[method(showSamplerWithSelectionHandler:)]
         pub unsafe fn showSamplerWithSelectionHandler(
             &self,
-            selection_handler: &Block<(*mut NSColor,), ()>,
+            selection_handler: &Block<dyn Fn(*mut NSColor)>,
         );
     }
 );

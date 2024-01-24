@@ -56,7 +56,7 @@ extern_methods!(
         #[method(downloadFontAssetsWithCompletionHandler:)]
         pub unsafe fn downloadFontAssetsWithCompletionHandler(
             &self,
-            completion_handler: &Block<(*mut NSError,), Bool>,
+            completion_handler: &Block<dyn Fn(*mut NSError) -> Bool>,
         );
     }
 );

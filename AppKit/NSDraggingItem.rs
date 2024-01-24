@@ -117,7 +117,7 @@ extern_methods!(
         #[method(imageComponentsProvider)]
         pub unsafe fn imageComponentsProvider(
             &self,
-        ) -> *mut Block<(), NonNull<NSArray<NSDraggingImageComponent>>>;
+        ) -> *mut Block<dyn Fn() -> NonNull<NSArray<NSDraggingImageComponent>>>;
 
         #[cfg(all(
             feature = "AppKit_NSDraggingImageComponent",
@@ -127,7 +127,7 @@ extern_methods!(
         pub unsafe fn setImageComponentsProvider(
             &self,
             image_components_provider: Option<
-                &Block<(), NonNull<NSArray<NSDraggingImageComponent>>>,
+                &Block<dyn Fn() -> NonNull<NSArray<NSDraggingImageComponent>>>,
             >,
         );
 

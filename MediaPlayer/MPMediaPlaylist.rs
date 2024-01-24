@@ -85,7 +85,7 @@ extern_methods!(
         pub unsafe fn addItemWithProductID_completionHandler(
             &self,
             product_id: &NSString,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(all(
@@ -97,7 +97,7 @@ extern_methods!(
         pub unsafe fn addMediaItems_completionHandler(
             &self,
             media_items: &NSArray<MPMediaItem>,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
     }
 );

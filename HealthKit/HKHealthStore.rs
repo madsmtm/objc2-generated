@@ -54,7 +54,7 @@ extern_methods!(
             &self,
             types_to_share: Option<&NSSet<HKSampleType>>,
             types_to_read: Option<&NSSet<HKObjectType>>,
-            completion: &Block<(Bool, *mut NSError), ()>,
+            completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -67,7 +67,7 @@ extern_methods!(
             &self,
             object_type: &HKObjectType,
             predicate: Option<&NSPredicate>,
-            completion: &Block<(Bool, *mut NSError), ()>,
+            completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -81,14 +81,14 @@ extern_methods!(
             &self,
             types_to_share: &NSSet<HKSampleType>,
             types_to_read: &NSSet<HKObjectType>,
-            completion: &Block<(HKAuthorizationRequestStatus, *mut NSError), ()>,
+            completion: &Block<dyn Fn(HKAuthorizationRequestStatus, *mut NSError)>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(handleAuthorizationForExtensionWithCompletion:)]
         pub unsafe fn handleAuthorizationForExtensionWithCompletion(
             &self,
-            completion: &Block<(Bool, *mut NSError), ()>,
+            completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "Foundation_NSDate")]
@@ -100,7 +100,7 @@ extern_methods!(
         pub unsafe fn saveObject_withCompletion(
             &self,
             object: &HKObject,
-            completion: &Block<(Bool, *mut NSError), ()>,
+            completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -112,7 +112,7 @@ extern_methods!(
         pub unsafe fn saveObjects_withCompletion(
             &self,
             objects: &NSArray<HKObject>,
-            completion: &Block<(Bool, *mut NSError), ()>,
+            completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "HealthKit_HKObject"))]
@@ -120,7 +120,7 @@ extern_methods!(
         pub unsafe fn deleteObject_withCompletion(
             &self,
             object: &HKObject,
-            completion: &Block<(Bool, *mut NSError), ()>,
+            completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -132,7 +132,7 @@ extern_methods!(
         pub unsafe fn deleteObjects_withCompletion(
             &self,
             objects: &NSArray<HKObject>,
-            completion: &Block<(Bool, *mut NSError), ()>,
+            completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -145,7 +145,7 @@ extern_methods!(
             &self,
             object_type: &HKObjectType,
             predicate: &NSPredicate,
-            completion: &Block<(Bool, NSUInteger, *mut NSError), ()>,
+            completion: &Block<dyn Fn(Bool, NSUInteger, *mut NSError)>,
         );
 
         #[cfg(feature = "HealthKit_HKQuery")]
@@ -168,7 +168,7 @@ extern_methods!(
             total_energy: &HKQuantity,
             start_date: &NSDate,
             end_date: &NSDate,
-            results_handler: &Block<(*mut HKQuantity, *mut HKQuantity, *mut NSError), ()>,
+            results_handler: &Block<dyn Fn(*mut HKQuantity, *mut HKQuantity, *mut NSError)>,
         );
 
         #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSError"))]
@@ -250,14 +250,14 @@ extern_methods!(
         #[method(workoutSessionMirroringStartHandler)]
         pub unsafe fn workoutSessionMirroringStartHandler(
             &self,
-        ) -> *mut Block<(NonNull<HKWorkoutSession>,), ()>;
+        ) -> *mut Block<dyn Fn(NonNull<HKWorkoutSession>)>;
 
         #[cfg(feature = "HealthKit_HKWorkoutSession")]
         #[method(setWorkoutSessionMirroringStartHandler:)]
         pub unsafe fn setWorkoutSessionMirroringStartHandler(
             &self,
             workout_session_mirroring_start_handler: Option<
-                &Block<(NonNull<HKWorkoutSession>,), ()>,
+                &Block<dyn Fn(NonNull<HKWorkoutSession>)>,
             >,
         );
 
@@ -273,7 +273,7 @@ extern_methods!(
             &self,
             samples: &NSArray<HKSample>,
             workout: &HKWorkout,
-            completion: &Block<(Bool, *mut NSError), ()>,
+            completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "HealthKit_HKWorkoutSession")]
@@ -304,14 +304,14 @@ extern_methods!(
         pub unsafe fn startWatchAppWithWorkoutConfiguration_completion(
             &self,
             workout_configuration: &HKWorkoutConfiguration,
-            completion: &Block<(Bool, *mut NSError), ()>,
+            completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "HealthKit_HKWorkoutSession"))]
         #[method(recoverActiveWorkoutSessionWithCompletion:)]
         pub unsafe fn recoverActiveWorkoutSessionWithCompletion(
             &self,
-            completion: &Block<(*mut HKWorkoutSession, *mut NSError), ()>,
+            completion: &Block<dyn Fn(*mut HKWorkoutSession, *mut NSError)>,
         );
     }
 );
@@ -326,7 +326,7 @@ extern_methods!(
             &self,
             r#type: &HKObjectType,
             frequency: HKUpdateFrequency,
-            completion: &Block<(Bool, *mut NSError), ()>,
+            completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "HealthKit_HKObjectType"))]
@@ -334,14 +334,14 @@ extern_methods!(
         pub unsafe fn disableBackgroundDeliveryForType_withCompletion(
             &self,
             r#type: &HKObjectType,
-            completion: &Block<(Bool, *mut NSError), ()>,
+            completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(disableAllBackgroundDeliveryWithCompletion:)]
         pub unsafe fn disableAllBackgroundDeliveryWithCompletion(
             &self,
-            completion: &Block<(Bool, *mut NSError), ()>,
+            completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
     }
 );
@@ -363,7 +363,7 @@ extern_methods!(
         pub unsafe fn preferredUnitsForQuantityTypes_completion(
             &self,
             quantity_types: &NSSet<HKQuantityType>,
-            completion: &Block<(NonNull<NSDictionary<HKQuantityType, HKUnit>>, *mut NSError), ()>,
+            completion: &Block<dyn Fn(NonNull<NSDictionary<HKQuantityType, HKUnit>>, *mut NSError)>,
         );
     }
 );
@@ -382,7 +382,7 @@ extern_methods!(
             &self,
             sample_type: &HKSampleType,
             date: &NSDate,
-            completion: &Block<(Bool, *mut NSError), ()>,
+            completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
     }
 );

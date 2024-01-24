@@ -77,14 +77,14 @@ extern_methods!(
         #[method(enumerateObjectsUsingBlock:)]
         pub unsafe fn enumerateObjectsUsingBlock(
             &self,
-            block: &Block<(NonNull<ObjectType>, NSUInteger, NonNull<Bool>), ()>,
+            block: &Block<dyn Fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>)>,
         );
 
         #[method(enumerateObjectsWithOptions:usingBlock:)]
         pub unsafe fn enumerateObjectsWithOptions_usingBlock(
             &self,
             opts: NSEnumerationOptions,
-            block: &Block<(NonNull<ObjectType>, NSUInteger, NonNull<Bool>), ()>,
+            block: &Block<dyn Fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>)>,
         );
 
         #[cfg(feature = "Foundation_NSIndexSet")]
@@ -93,7 +93,7 @@ extern_methods!(
             &self,
             s: &NSIndexSet,
             opts: NSEnumerationOptions,
-            block: &Block<(NonNull<ObjectType>, NSUInteger, NonNull<Bool>), ()>,
+            block: &Block<dyn Fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>)>,
         );
 
         #[method(countOfAssetsWithMediaType:)]

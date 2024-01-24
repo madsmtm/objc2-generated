@@ -29,7 +29,7 @@ extern_methods!(
         pub unsafe fn completeRequestWithSelectedCredential_completionHandler(
             &self,
             credential: &ASPasswordCredential,
-            completion_handler: Option<&Block<(Bool,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(Bool)>>,
         );
 
         #[cfg(feature = "AuthenticationServices_ASPasskeyAssertionCredential")]
@@ -37,7 +37,7 @@ extern_methods!(
         pub unsafe fn completeAssertionRequestWithSelectedPasskeyCredential_completionHandler(
             &self,
             credential: &ASPasskeyAssertionCredential,
-            completion_handler: Option<&Block<(Bool,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(Bool)>>,
         );
 
         #[cfg(feature = "AuthenticationServices_ASPasskeyRegistrationCredential")]
@@ -45,7 +45,7 @@ extern_methods!(
         pub unsafe fn completeRegistrationRequestWithSelectedPasskeyCredential_completionHandler(
             &self,
             credential: &ASPasskeyRegistrationCredential,
-            completion_handler: Option<&Block<(Bool,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(Bool)>>,
         );
 
         #[method(completeExtensionConfigurationRequest)]
@@ -56,7 +56,7 @@ extern_methods!(
         pub unsafe fn completeRequestReturningItems_completionHandler(
             &self,
             items: Option<&NSArray>,
-            completion_handler: Option<&Block<(Bool,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(Bool)>>,
         );
 
         #[cfg(feature = "Foundation_NSError")]

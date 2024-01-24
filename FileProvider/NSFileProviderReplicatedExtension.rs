@@ -73,7 +73,7 @@ extern_protocol!(
             &self,
             identifier: &NSFileProviderItemIdentifier,
             request: &NSFileProviderRequest,
-            completion_handler: &Block<(*mut NSFileProviderItem, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSFileProviderItem, *mut NSError)>,
         ) -> Id<NSProgress>;
 
         #[cfg(all(
@@ -89,7 +89,7 @@ extern_protocol!(
             item_identifier: &NSFileProviderItemIdentifier,
             requested_version: Option<&NSFileProviderItemVersion>,
             request: &NSFileProviderRequest,
-            completion_handler: &Block<(*mut NSURL, *mut NSFileProviderItem, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSURL, *mut NSFileProviderItem, *mut NSError)>,
         ) -> Id<NSProgress>;
 
         #[cfg(all(
@@ -107,13 +107,7 @@ extern_protocol!(
             options: NSFileProviderCreateItemOptions,
             request: &NSFileProviderRequest,
             completion_handler: &Block<
-                (
-                    *mut NSFileProviderItem,
-                    NSFileProviderItemFields,
-                    Bool,
-                    *mut NSError,
-                ),
-                (),
+                dyn Fn(*mut NSFileProviderItem, NSFileProviderItemFields, Bool, *mut NSError),
             >,
         ) -> Id<NSProgress>;
 
@@ -134,13 +128,7 @@ extern_protocol!(
             options: NSFileProviderModifyItemOptions,
             request: &NSFileProviderRequest,
             completion_handler: &Block<
-                (
-                    *mut NSFileProviderItem,
-                    NSFileProviderItemFields,
-                    Bool,
-                    *mut NSError,
-                ),
-                (),
+                dyn Fn(*mut NSFileProviderItem, NSFileProviderItemFields, Bool, *mut NSError),
             >,
         ) -> Id<NSProgress>;
 
@@ -157,25 +145,25 @@ extern_protocol!(
             version: &NSFileProviderItemVersion,
             options: NSFileProviderDeleteItemOptions,
             request: &NSFileProviderRequest,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         ) -> Id<NSProgress>;
 
         #[optional]
         #[method(importDidFinishWithCompletionHandler:)]
-        unsafe fn importDidFinishWithCompletionHandler(&self, completion_handler: &Block<(), ()>);
+        unsafe fn importDidFinishWithCompletionHandler(&self, completion_handler: &Block<dyn Fn()>);
 
         #[optional]
         #[method(materializedItemsDidChangeWithCompletionHandler:)]
         unsafe fn materializedItemsDidChangeWithCompletionHandler(
             &self,
-            completion_handler: &Block<(), ()>,
+            completion_handler: &Block<dyn Fn()>,
         );
 
         #[optional]
         #[method(pendingItemsDidChangeWithCompletionHandler:)]
         unsafe fn pendingItemsDidChangeWithCompletionHandler(
             &self,
-            completion_handler: &Block<(), ()>,
+            completion_handler: &Block<dyn Fn()>,
         );
     }
 
@@ -199,7 +187,7 @@ extern_protocol!(
             existing_contents: &NSURL,
             existing_version: &NSFileProviderItemVersion,
             request: &NSFileProviderRequest,
-            completion_handler: &Block<(*mut NSURL, *mut NSFileProviderItem, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSURL, *mut NSFileProviderItem, *mut NSError)>,
         ) -> Id<NSProgress>;
     }
 
@@ -218,11 +206,7 @@ extern_protocol!(
             &self,
             item_identifier: &NSFileProviderItemIdentifier,
             completion_handler: &Block<
-                (
-                    *mut NSArray<ProtocolObject<dyn NSFileProviderServiceSource>>,
-                    *mut NSError,
-                ),
-                (),
+                dyn Fn(*mut NSArray<ProtocolObject<dyn NSFileProviderServiceSource>>, *mut NSError),
             >,
         ) -> Id<NSProgress>;
     }
@@ -244,14 +228,9 @@ extern_protocol!(
             item_identifiers: &NSArray<NSFileProviderItemIdentifier>,
             size: CGSize,
             per_thumbnail_completion_handler: &Block<
-                (
-                    NonNull<NSFileProviderItemIdentifier>,
-                    *mut NSData,
-                    *mut NSError,
-                ),
-                (),
+                dyn Fn(NonNull<NSFileProviderItemIdentifier>, *mut NSData, *mut NSError),
             >,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         ) -> Id<NSProgress>;
     }
 
@@ -270,7 +249,7 @@ extern_protocol!(
             &self,
             action_identifier: &NSFileProviderExtensionActionIdentifier,
             item_identifiers: &NSArray<NSFileProviderItemIdentifier>,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         ) -> Id<NSProgress>;
     }
 
@@ -331,14 +310,13 @@ extern_protocol!(
             alignment: NSUInteger,
             options: NSFileProviderFetchContentsOptions,
             completion_handler: &Block<
-                (
+                dyn Fn(
                     *mut NSURL,
                     *mut NSFileProviderItem,
                     NSRange,
                     NSFileProviderMaterializationFlags,
                     *mut NSError,
                 ),
-                (),
             >,
         ) -> Id<NSProgress>;
     }

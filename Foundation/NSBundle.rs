@@ -443,13 +443,13 @@ extern_methods!(
         #[method(beginAccessingResourcesWithCompletionHandler:)]
         pub unsafe fn beginAccessingResourcesWithCompletionHandler(
             &self,
-            completion_handler: &Block<(*mut NSError,), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[method(conditionallyBeginAccessingResourcesWithCompletionHandler:)]
         pub unsafe fn conditionallyBeginAccessingResourcesWithCompletionHandler(
             &self,
-            completion_handler: &Block<(Bool,), ()>,
+            completion_handler: &Block<dyn Fn(Bool)>,
         );
 
         #[method(endAccessingResources)]

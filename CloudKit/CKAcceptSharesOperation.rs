@@ -50,7 +50,7 @@ extern_methods!(
         #[method(perShareCompletionBlock)]
         pub unsafe fn perShareCompletionBlock(
             &self,
-        ) -> *mut Block<(NonNull<CKShareMetadata>, *mut CKShare, *mut NSError), ()>;
+        ) -> *mut Block<dyn Fn(NonNull<CKShareMetadata>, *mut CKShare, *mut NSError)>;
 
         #[cfg(all(
             feature = "CloudKit_CKShare",
@@ -61,19 +61,19 @@ extern_methods!(
         pub unsafe fn setPerShareCompletionBlock(
             &self,
             per_share_completion_block: Option<
-                &Block<(NonNull<CKShareMetadata>, *mut CKShare, *mut NSError), ()>,
+                &Block<dyn Fn(NonNull<CKShareMetadata>, *mut CKShare, *mut NSError)>,
             >,
         );
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(acceptSharesCompletionBlock)]
-        pub unsafe fn acceptSharesCompletionBlock(&self) -> *mut Block<(*mut NSError,), ()>;
+        pub unsafe fn acceptSharesCompletionBlock(&self) -> *mut Block<dyn Fn(*mut NSError)>;
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(setAcceptSharesCompletionBlock:)]
         pub unsafe fn setAcceptSharesCompletionBlock(
             &self,
-            accept_shares_completion_block: Option<&Block<(*mut NSError,), ()>>,
+            accept_shares_completion_block: Option<&Block<dyn Fn(*mut NSError)>>,
         );
     }
 );

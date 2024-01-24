@@ -48,7 +48,7 @@ extern_methods!(
         pub unsafe fn currentDrawingAppearance() -> Id<NSAppearance>;
 
         #[method(performAsCurrentDrawingAppearance:)]
-        pub unsafe fn performAsCurrentDrawingAppearance(&self, block: &Block<(), ()>);
+        pub unsafe fn performAsCurrentDrawingAppearance(&self, block: &Block<dyn Fn() + '_>);
 
         #[method_id(@__retain_semantics Other appearanceNamed:)]
         pub fn appearanceNamed(name: &NSAppearanceName) -> Option<Id<NSAppearance>>;

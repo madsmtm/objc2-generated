@@ -49,7 +49,7 @@ extern_methods!(
         #[method(getSnapshotWithCompletionHandler:)]
         pub unsafe fn getSnapshotWithCompletionHandler(
             &self,
-            completion_handler: &Block<(*mut MKLookAroundSnapshot, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut MKLookAroundSnapshot, *mut NSError)>,
         );
 
         #[method(cancel)]

@@ -195,7 +195,7 @@ extern_methods!(
             &self,
             options: NSActivityOptions,
             reason: &NSString,
-            block: &Block<(), ()>,
+            block: &Block<dyn Fn()>,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -203,7 +203,7 @@ extern_methods!(
         pub unsafe fn performExpiringActivityWithReason_usingBlock(
             &self,
             reason: &NSString,
-            block: &Block<(Bool,), ()>,
+            block: &Block<dyn Fn(Bool)>,
         );
     }
 );

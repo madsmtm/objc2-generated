@@ -82,10 +82,10 @@ extern_methods!(
         pub unsafe fn setQueuePriority(&self, queue_priority: NSOperationQueuePriority);
 
         #[method(completionBlock)]
-        pub unsafe fn completionBlock(&self) -> *mut Block<(), ()>;
+        pub unsafe fn completionBlock(&self) -> *mut Block<dyn Fn()>;
 
         #[method(setCompletionBlock:)]
-        pub unsafe fn setCompletionBlock(&self, completion_block: Option<&Block<(), ()>>);
+        pub unsafe fn setCompletionBlock(&self, completion_block: Option<&Block<dyn Fn()>>);
 
         #[method(waitUntilFinished)]
         pub unsafe fn waitUntilFinished(&self);
@@ -152,10 +152,10 @@ extern_methods!(
     #[cfg(feature = "Foundation_NSBlockOperation")]
     unsafe impl NSBlockOperation {
         #[method_id(@__retain_semantics Other blockOperationWithBlock:)]
-        pub unsafe fn blockOperationWithBlock(block: &Block<(), ()>) -> Id<Self>;
+        pub unsafe fn blockOperationWithBlock(block: &Block<dyn Fn()>) -> Id<Self>;
 
         #[method(addExecutionBlock:)]
-        pub unsafe fn addExecutionBlock(&self, block: &Block<(), ()>);
+        pub unsafe fn addExecutionBlock(&self, block: &Block<dyn Fn()>);
     }
 );
 
@@ -273,10 +273,10 @@ extern_methods!(
         );
 
         #[method(addOperationWithBlock:)]
-        pub unsafe fn addOperationWithBlock(&self, block: &Block<(), ()>);
+        pub unsafe fn addOperationWithBlock(&self, block: &Block<dyn Fn()>);
 
         #[method(addBarrierBlock:)]
-        pub unsafe fn addBarrierBlock(&self, barrier: &Block<(), ()>);
+        pub unsafe fn addBarrierBlock(&self, barrier: &Block<dyn Fn()>);
 
         #[method(maxConcurrentOperationCount)]
         pub unsafe fn maxConcurrentOperationCount(&self) -> NSInteger;

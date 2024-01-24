@@ -131,14 +131,14 @@ extern_methods!(
         #[method(enumerateResultsUsingBlock:)]
         pub unsafe fn enumerateResultsUsingBlock(
             &self,
-            block: &Block<(NonNull<AnyObject>, NSUInteger, NonNull<Bool>), ()>,
+            block: &Block<dyn Fn(NonNull<AnyObject>, NSUInteger, NonNull<Bool>) + '_>,
         );
 
         #[method(enumerateResultsWithOptions:usingBlock:)]
         pub unsafe fn enumerateResultsWithOptions_usingBlock(
             &self,
             opts: NSEnumerationOptions,
-            block: &Block<(NonNull<AnyObject>, NSUInteger, NonNull<Bool>), ()>,
+            block: &Block<dyn Fn(NonNull<AnyObject>, NSUInteger, NonNull<Bool>) + '_>,
         );
 
         #[cfg(feature = "Foundation_NSArray")]

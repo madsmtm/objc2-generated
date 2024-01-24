@@ -59,7 +59,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other addTargetWithHandler:)]
         pub unsafe fn addTargetWithHandler(
             &self,
-            handler: &Block<(NonNull<MPRemoteCommandEvent>,), MPRemoteCommandHandlerStatus>,
+            handler: &Block<dyn Fn(NonNull<MPRemoteCommandEvent>) -> MPRemoteCommandHandlerStatus>,
         ) -> Id<AnyObject>;
     }
 );

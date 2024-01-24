@@ -6,7 +6,7 @@ use crate::Foundation::*;
 use crate::HealthKit::*;
 use crate::UniformTypeIdentifiers::*;
 
-pub type HKObserverQueryCompletionHandler = *mut Block<(), ()>;
+pub type HKObserverQueryCompletionHandler = *mut Block<dyn Fn()>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -38,12 +38,7 @@ extern_methods!(
             sample_type: &HKSampleType,
             predicate: Option<&NSPredicate>,
             update_handler: &Block<
-                (
-                    NonNull<HKObserverQuery>,
-                    HKObserverQueryCompletionHandler,
-                    *mut NSError,
-                ),
-                (),
+                dyn Fn(NonNull<HKObserverQuery>, HKObserverQueryCompletionHandler, *mut NSError),
             >,
         ) -> Id<Self>;
 
@@ -59,13 +54,12 @@ extern_methods!(
             this: Allocated<Self>,
             query_descriptors: &NSArray<HKQueryDescriptor>,
             update_handler: &Block<
-                (
+                dyn Fn(
                     NonNull<HKObserverQuery>,
                     *mut NSSet<HKSampleType>,
                     HKObserverQueryCompletionHandler,
                     *mut NSError,
                 ),
-                (),
             >,
         ) -> Id<Self>;
     }

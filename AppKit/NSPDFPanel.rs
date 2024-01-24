@@ -66,7 +66,7 @@ extern_methods!(
             &self,
             pdf_info: &NSPDFInfo,
             doc_window: Option<&NSWindow>,
-            completion_handler: &Block<(NSInteger,), ()>,
+            completion_handler: &Block<dyn Fn(NSInteger)>,
         );
     }
 );

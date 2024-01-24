@@ -94,14 +94,14 @@ extern_methods!(
         #[method(attributedStringForCandidate)]
         pub unsafe fn attributedStringForCandidate(
             &self,
-        ) -> *mut Block<(NonNull<CandidateType>, NSInteger), NonNull<NSAttributedString>>;
+        ) -> *mut Block<dyn Fn(NonNull<CandidateType>, NSInteger) -> NonNull<NSAttributedString>>;
 
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setAttributedStringForCandidate:)]
         pub unsafe fn setAttributedStringForCandidate(
             &self,
             attributed_string_for_candidate: Option<
-                &Block<(NonNull<CandidateType>, NSInteger), NonNull<NSAttributedString>>,
+                &Block<dyn Fn(NonNull<CandidateType>, NSInteger) -> NonNull<NSAttributedString>>,
             >,
         );
 

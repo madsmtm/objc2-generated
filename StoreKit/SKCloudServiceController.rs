@@ -48,28 +48,28 @@ extern_methods!(
 
         #[method(requestAuthorization:)]
         pub unsafe fn requestAuthorization(
-            completion_handler: &Block<(SKCloudServiceAuthorizationStatus,), ()>,
+            completion_handler: &Block<dyn Fn(SKCloudServiceAuthorizationStatus)>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(requestCapabilitiesWithCompletionHandler:)]
         pub unsafe fn requestCapabilitiesWithCompletionHandler(
             &self,
-            completion_handler: &Block<(SKCloudServiceCapability, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(SKCloudServiceCapability, *mut NSError)>,
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method(requestStorefrontCountryCodeWithCompletionHandler:)]
         pub unsafe fn requestStorefrontCountryCodeWithCompletionHandler(
             &self,
-            completion_handler: &Block<(*mut NSString, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSString, *mut NSError)>,
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method(requestStorefrontIdentifierWithCompletionHandler:)]
         pub unsafe fn requestStorefrontIdentifierWithCompletionHandler(
             &self,
-            completion_handler: &Block<(*mut NSString, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSString, *mut NSError)>,
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
@@ -77,7 +77,7 @@ extern_methods!(
         pub unsafe fn requestUserTokenForDeveloperToken_completionHandler(
             &self,
             developer_token: &NSString,
-            completion_handler: &Block<(*mut NSString, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSString, *mut NSError)>,
         );
 
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
@@ -86,7 +86,7 @@ extern_methods!(
         pub unsafe fn requestPersonalizationTokenForClientToken_withCompletionHandler(
             &self,
             client_token: &NSString,
-            completion_handler: &Block<(*mut NSString, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut NSString, *mut NSError)>,
         );
     }
 );

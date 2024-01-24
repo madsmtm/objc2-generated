@@ -48,7 +48,9 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSError"))]
         #[method(loadLeaderboardSetsWithCompletionHandler:)]
         pub unsafe fn loadLeaderboardSetsWithCompletionHandler(
-            completion_handler: Option<&Block<(*mut NSArray<GKLeaderboardSet>, *mut NSError), ()>>,
+            completion_handler: Option<
+                &Block<dyn Fn(*mut NSArray<GKLeaderboardSet>, *mut NSError)>,
+            >,
         );
 
         #[cfg(all(
@@ -59,7 +61,7 @@ extern_methods!(
         #[method(loadLeaderboardsWithHandler:)]
         pub unsafe fn loadLeaderboardsWithHandler(
             &self,
-            handler: &Block<(*mut NSArray<GKLeaderboard>, *mut NSError), ()>,
+            handler: &Block<dyn Fn(*mut NSArray<GKLeaderboard>, *mut NSError)>,
         );
     }
 );
@@ -89,7 +91,7 @@ extern_methods!(
         #[method(loadLeaderboardsWithCompletionHandler:)]
         pub unsafe fn loadLeaderboardsWithCompletionHandler(
             &self,
-            completion_handler: Option<&Block<(*mut NSArray<GKLeaderboard>, *mut NSError), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSArray<GKLeaderboard>, *mut NSError)>>,
         );
     }
 );
@@ -102,7 +104,7 @@ extern_methods!(
         #[method(loadImageWithCompletionHandler:)]
         pub unsafe fn loadImageWithCompletionHandler(
             &self,
-            completion_handler: Option<&Block<(*mut NSImage, *mut NSError), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSImage, *mut NSError)>>,
         );
     }
 );

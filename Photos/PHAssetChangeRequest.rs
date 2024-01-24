@@ -132,13 +132,13 @@ extern_methods!(
         #[method(canHandleAdjustmentData)]
         pub unsafe fn canHandleAdjustmentData(
             &self,
-        ) -> NonNull<Block<(NonNull<PHAdjustmentData>,), Bool>>;
+        ) -> NonNull<Block<dyn Fn(NonNull<PHAdjustmentData>) -> Bool>>;
 
         #[cfg(feature = "PhotoKit_PHAdjustmentData")]
         #[method(setCanHandleAdjustmentData:)]
         pub unsafe fn setCanHandleAdjustmentData(
             &self,
-            can_handle_adjustment_data: &Block<(NonNull<PHAdjustmentData>,), Bool>,
+            can_handle_adjustment_data: &Block<dyn Fn(NonNull<PHAdjustmentData>) -> Bool>,
         );
 
         #[method(isNetworkAccessAllowed)]
@@ -148,12 +148,12 @@ extern_methods!(
         pub unsafe fn setNetworkAccessAllowed(&self, network_access_allowed: bool);
 
         #[method(progressHandler)]
-        pub unsafe fn progressHandler(&self) -> *mut Block<(c_double, NonNull<Bool>), ()>;
+        pub unsafe fn progressHandler(&self) -> *mut Block<dyn Fn(c_double, NonNull<Bool>)>;
 
         #[method(setProgressHandler:)]
         pub unsafe fn setProgressHandler(
             &self,
-            progress_handler: Option<&Block<(c_double, NonNull<Bool>), ()>>,
+            progress_handler: Option<&Block<dyn Fn(c_double, NonNull<Bool>)>>,
         );
     }
 );
@@ -183,7 +183,7 @@ extern_methods!(
         pub unsafe fn requestContentEditingInputWithOptions_completionHandler(
             &self,
             options: Option<&PHContentEditingInputRequestOptions>,
-            completion_handler: &Block<(*mut PHContentEditingInput, NonNull<NSDictionary>), ()>,
+            completion_handler: &Block<dyn Fn(*mut PHContentEditingInput, NonNull<NSDictionary>)>,
         ) -> PHContentEditingInputRequestID;
 
         #[method(cancelContentEditingInputRequest:)]

@@ -37,11 +37,7 @@ extern_methods!(
         pub unsafe fn fetchAvailableRoomTypesWithCompletionHandler(
             &self,
             completion_handler: &Block<
-                (
-                    *mut NSArray<EKVirtualConferenceRoomTypeDescriptor>,
-                    *mut NSError,
-                ),
-                (),
+                dyn Fn(*mut NSArray<EKVirtualConferenceRoomTypeDescriptor>, *mut NSError),
             >,
         );
 
@@ -53,7 +49,7 @@ extern_methods!(
         pub unsafe fn fetchVirtualConferenceForIdentifier_completionHandler(
             &self,
             identifier: &EKVirtualConferenceRoomTypeIdentifier,
-            completion_handler: &Block<(*mut EKVirtualConferenceDescriptor, *mut NSError), ()>,
+            completion_handler: &Block<dyn Fn(*mut EKVirtualConferenceDescriptor, *mut NSError)>,
         );
     }
 );

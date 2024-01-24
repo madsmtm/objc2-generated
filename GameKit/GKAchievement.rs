@@ -32,13 +32,13 @@ extern_methods!(
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSError"))]
         #[method(loadAchievementsWithCompletionHandler:)]
         pub unsafe fn loadAchievementsWithCompletionHandler(
-            completion_handler: Option<&Block<(*mut NSArray<GKAchievement>, *mut NSError), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSArray<GKAchievement>, *mut NSError)>>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(resetAchievementsWithCompletionHandler:)]
         pub unsafe fn resetAchievementsWithCompletionHandler(
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -60,7 +60,7 @@ extern_methods!(
         #[method(reportAchievements:withCompletionHandler:)]
         pub unsafe fn reportAchievements_withCompletionHandler(
             achievements: &NSArray<GKAchievement>,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "Foundation_NSString")]
@@ -117,7 +117,7 @@ extern_methods!(
         #[method(reportAchievementWithCompletionHandler:)]
         pub unsafe fn reportAchievementWithCompletionHandler(
             &self,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[deprecated]

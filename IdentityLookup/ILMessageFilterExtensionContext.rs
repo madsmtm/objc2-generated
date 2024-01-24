@@ -30,7 +30,7 @@ extern_methods!(
         #[method(deferQueryRequestToNetworkWithCompletion:)]
         pub unsafe fn deferQueryRequestToNetworkWithCompletion(
             &self,
-            completion: &Block<(*mut ILNetworkResponse, *mut NSError), ()>,
+            completion: &Block<dyn Fn(*mut ILNetworkResponse, *mut NSError)>,
         );
     }
 );

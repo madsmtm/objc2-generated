@@ -25,7 +25,7 @@ extern_protocol!(
             &self,
             text_location: Option<&ProtocolObject<dyn NSTextLocation>>,
             options: NSTextContentManagerEnumerationOptions,
-            block: &Block<(NonNull<NSTextElement>,), Bool>,
+            block: &Block<dyn Fn(NonNull<NSTextElement>) -> Bool + '_>,
         ) -> Option<Id<ProtocolObject<dyn NSTextLocation>>>;
 
         #[cfg(all(
@@ -44,7 +44,7 @@ extern_protocol!(
         #[method(synchronizeToBackingStore:)]
         unsafe fn synchronizeToBackingStore(
             &self,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[optional]
@@ -148,7 +148,7 @@ extern_methods!(
         #[method(synchronizeTextLayoutManagers:)]
         pub unsafe fn synchronizeTextLayoutManagers(
             &self,
-            completion_handler: Option<&Block<(*mut NSError,), ()>>,
+            completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(all(
@@ -166,7 +166,10 @@ extern_methods!(
         pub unsafe fn hasEditingTransaction(&self) -> bool;
 
         #[method(performEditingTransactionUsingBlock:)]
-        pub unsafe fn performEditingTransactionUsingBlock(&self, transaction: &Block<(), ()>);
+        pub unsafe fn performEditingTransactionUsingBlock(
+            &self,
+            transaction: &Block<dyn Fn() + '_>,
+        );
 
         #[cfg(feature = "AppKit_NSTextRange")]
         #[method(recordEditActionInRange:newTextRange:)]

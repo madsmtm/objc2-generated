@@ -56,15 +56,15 @@ extern_methods!(
         pub unsafe fn authorizeWithLocalizedReason_completion(
             &self,
             localized_reason: &NSString,
-            handler: &Block<(*mut NSError,), ()>,
+            handler: &Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "Foundation_NSError")]
         #[method(checkCanAuthorizeWithCompletion:)]
-        pub unsafe fn checkCanAuthorizeWithCompletion(&self, handler: &Block<(*mut NSError,), ()>);
+        pub unsafe fn checkCanAuthorizeWithCompletion(&self, handler: &Block<dyn Fn(*mut NSError)>);
 
         #[method(deauthorizeWithCompletion:)]
-        pub unsafe fn deauthorizeWithCompletion(&self, handler: &Block<(), ()>);
+        pub unsafe fn deauthorizeWithCompletion(&self, handler: &Block<dyn Fn()>);
     }
 );
 

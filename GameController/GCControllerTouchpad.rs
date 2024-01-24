@@ -14,16 +14,8 @@ ns_enum!(
     }
 );
 
-pub type GCControllerTouchpadHandler = *mut Block<
-    (
-        NonNull<GCControllerTouchpad>,
-        c_float,
-        c_float,
-        c_float,
-        Bool,
-    ),
-    (),
->;
+pub type GCControllerTouchpadHandler =
+    *mut Block<dyn Fn(NonNull<GCControllerTouchpad>, c_float, c_float, c_float, Bool)>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

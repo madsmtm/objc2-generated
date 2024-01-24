@@ -152,7 +152,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other colorWithName:dynamicProvider:)]
         pub unsafe fn colorWithName_dynamicProvider(
             color_name: Option<&NSColorName>,
-            dynamic_provider: &Block<(NonNull<NSAppearance>,), NonNull<NSColor>>,
+            dynamic_provider: &Block<dyn Fn(NonNull<NSAppearance>) -> NonNull<NSColor>>,
         ) -> Id<NSColor>;
 
         #[method_id(@__retain_semantics Other colorWithDeviceWhite:alpha:)]
