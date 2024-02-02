@@ -5,6 +5,7 @@ use crate::AppKit::*;
 use crate::CoreLocation::*;
 use crate::Foundation::*;
 use crate::Photos::*;
+use crate::UniformTypeIdentifiers::*;
 
 pub type PHAssetResourceDataRequestID = i32;
 
