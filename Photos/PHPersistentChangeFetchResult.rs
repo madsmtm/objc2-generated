@@ -4,25 +4,25 @@ use crate::common::*;
 use crate::AppKit::*;
 use crate::CoreLocation::*;
 use crate::Foundation::*;
-use crate::PhotoKit::*;
+use crate::Photos::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "PhotoKit_PHPersistentChangeFetchResult")]
+    #[cfg(feature = "Photos_PHPersistentChangeFetchResult")]
     pub struct PHPersistentChangeFetchResult;
 
-    #[cfg(feature = "PhotoKit_PHPersistentChangeFetchResult")]
+    #[cfg(feature = "Photos_PHPersistentChangeFetchResult")]
     unsafe impl ClassType for PHPersistentChangeFetchResult {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "PhotoKit_PHPersistentChangeFetchResult")]
+#[cfg(feature = "Photos_PHPersistentChangeFetchResult")]
 unsafe impl NSObjectProtocol for PHPersistentChangeFetchResult {}
 
 extern_methods!(
-    #[cfg(feature = "PhotoKit_PHPersistentChangeFetchResult")]
+    #[cfg(feature = "Photos_PHPersistentChangeFetchResult")]
     unsafe impl PHPersistentChangeFetchResult {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -30,7 +30,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "PhotoKit_PHPersistentChange")]
+        #[cfg(feature = "Photos_PHPersistentChange")]
         #[method(enumerateChangesWithBlock:)]
         pub unsafe fn enumerateChangesWithBlock(
             &self,

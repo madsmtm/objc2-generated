@@ -4,7 +4,7 @@ use crate::common::*;
 use crate::AppKit::*;
 use crate::CoreLocation::*;
 use crate::Foundation::*;
-use crate::PhotoKit::*;
+use crate::Photos::*;
 
 ns_enum!(
     #[underlying(NSInteger)]
@@ -27,7 +27,7 @@ ns_enum!(
 
 extern_protocol!(
     pub unsafe trait PHPhotoLibraryChangeObserver: NSObjectProtocol {
-        #[cfg(feature = "PhotoKit_PHChange")]
+        #[cfg(feature = "Photos_PHChange")]
         #[method(photoLibraryDidChange:)]
         unsafe fn photoLibraryDidChange(&self, change_instance: &PHChange);
     }
@@ -37,7 +37,7 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait PHPhotoLibraryAvailabilityObserver: NSObjectProtocol {
-        #[cfg(feature = "PhotoKit_PHPhotoLibrary")]
+        #[cfg(feature = "Photos_PHPhotoLibrary")]
         #[method(photoLibraryDidBecomeUnavailable:)]
         unsafe fn photoLibraryDidBecomeUnavailable(&self, photo_library: &PHPhotoLibrary);
     }
@@ -47,27 +47,27 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "PhotoKit_PHPhotoLibrary")]
+    #[cfg(feature = "Photos_PHPhotoLibrary")]
     pub struct PHPhotoLibrary;
 
-    #[cfg(feature = "PhotoKit_PHPhotoLibrary")]
+    #[cfg(feature = "Photos_PHPhotoLibrary")]
     unsafe impl ClassType for PHPhotoLibrary {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "PhotoKit_PHPhotoLibrary")]
+#[cfg(feature = "Photos_PHPhotoLibrary")]
 unsafe impl Send for PHPhotoLibrary {}
 
-#[cfg(feature = "PhotoKit_PHPhotoLibrary")]
+#[cfg(feature = "Photos_PHPhotoLibrary")]
 unsafe impl Sync for PHPhotoLibrary {}
 
-#[cfg(feature = "PhotoKit_PHPhotoLibrary")]
+#[cfg(feature = "Photos_PHPhotoLibrary")]
 unsafe impl NSObjectProtocol for PHPhotoLibrary {}
 
 extern_methods!(
-    #[cfg(feature = "PhotoKit_PHPhotoLibrary")]
+    #[cfg(feature = "Photos_PHPhotoLibrary")]
     unsafe impl PHPhotoLibrary {
         #[method_id(@__retain_semantics Other sharedPhotoLibrary)]
         pub unsafe fn sharedPhotoLibrary() -> Id<PHPhotoLibrary>;
@@ -121,8 +121,8 @@ extern_methods!(
 
         #[cfg(all(
             feature = "Foundation_NSError",
-            feature = "PhotoKit_PHPersistentChangeFetchResult",
-            feature = "PhotoKit_PHPersistentChangeToken"
+            feature = "Photos_PHPersistentChangeFetchResult",
+            feature = "Photos_PHPersistentChangeToken"
         ))]
         #[method_id(@__retain_semantics Other fetchPersistentChangesSinceToken:error:_)]
         pub unsafe fn fetchPersistentChangesSinceToken_error(
@@ -130,7 +130,7 @@ extern_methods!(
             token: &PHPersistentChangeToken,
         ) -> Result<Id<PHPersistentChangeFetchResult>, Id<NSError>>;
 
-        #[cfg(feature = "PhotoKit_PHPersistentChangeToken")]
+        #[cfg(feature = "Photos_PHPersistentChangeToken")]
         #[method_id(@__retain_semantics Other currentChangeToken)]
         pub unsafe fn currentChangeToken(&self) -> Id<PHPersistentChangeToken>;
     }
@@ -138,7 +138,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "PhotoKit_PHPhotoLibrary")]
+    #[cfg(feature = "Photos_PHPhotoLibrary")]
     unsafe impl PHPhotoLibrary {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

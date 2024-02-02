@@ -4,38 +4,38 @@ use crate::common::*;
 use crate::AppKit::*;
 use crate::CoreLocation::*;
 use crate::Foundation::*;
-use crate::PhotoKit::*;
+use crate::Photos::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "PhotoKit_PHContentEditingOutput")]
+    #[cfg(feature = "Photos_PHContentEditingOutput")]
     pub struct PHContentEditingOutput;
 
-    #[cfg(feature = "PhotoKit_PHContentEditingOutput")]
+    #[cfg(feature = "Photos_PHContentEditingOutput")]
     unsafe impl ClassType for PHContentEditingOutput {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "PhotoKit_PHContentEditingOutput")]
+#[cfg(feature = "Photos_PHContentEditingOutput")]
 unsafe impl NSObjectProtocol for PHContentEditingOutput {}
 
 extern_methods!(
-    #[cfg(feature = "PhotoKit_PHContentEditingOutput")]
+    #[cfg(feature = "Photos_PHContentEditingOutput")]
     unsafe impl PHContentEditingOutput {
-        #[cfg(feature = "PhotoKit_PHContentEditingInput")]
+        #[cfg(feature = "Photos_PHContentEditingInput")]
         #[method_id(@__retain_semantics Init initWithContentEditingInput:)]
         pub unsafe fn initWithContentEditingInput(
             this: Allocated<Self>,
             content_editing_input: &PHContentEditingInput,
         ) -> Id<Self>;
 
-        #[cfg(feature = "PhotoKit_PHAdjustmentData")]
+        #[cfg(feature = "Photos_PHAdjustmentData")]
         #[method_id(@__retain_semantics Other adjustmentData)]
         pub unsafe fn adjustmentData(&self) -> Option<Id<PHAdjustmentData>>;
 
-        #[cfg(feature = "PhotoKit_PHAdjustmentData")]
+        #[cfg(feature = "Photos_PHAdjustmentData")]
         #[method(setAdjustmentData:)]
         pub unsafe fn setAdjustmentData(&self, adjustment_data: Option<&PHAdjustmentData>);
 
@@ -69,7 +69,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "PhotoKit_PHContentEditingOutput")]
+    #[cfg(feature = "Photos_PHContentEditingOutput")]
     unsafe impl PHContentEditingOutput {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

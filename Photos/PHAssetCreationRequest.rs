@@ -4,28 +4,28 @@ use crate::common::*;
 use crate::AppKit::*;
 use crate::CoreLocation::*;
 use crate::Foundation::*;
-use crate::PhotoKit::*;
+use crate::Photos::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "PhotoKit_PHAssetResourceCreationOptions")]
+    #[cfg(feature = "Photos_PHAssetResourceCreationOptions")]
     pub struct PHAssetResourceCreationOptions;
 
-    #[cfg(feature = "PhotoKit_PHAssetResourceCreationOptions")]
+    #[cfg(feature = "Photos_PHAssetResourceCreationOptions")]
     unsafe impl ClassType for PHAssetResourceCreationOptions {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "PhotoKit_PHAssetResourceCreationOptions")]
+#[cfg(feature = "Photos_PHAssetResourceCreationOptions")]
 unsafe impl NSCopying for PHAssetResourceCreationOptions {}
 
-#[cfg(feature = "PhotoKit_PHAssetResourceCreationOptions")]
+#[cfg(feature = "Photos_PHAssetResourceCreationOptions")]
 unsafe impl NSObjectProtocol for PHAssetResourceCreationOptions {}
 
 extern_methods!(
-    #[cfg(feature = "PhotoKit_PHAssetResourceCreationOptions")]
+    #[cfg(feature = "Photos_PHAssetResourceCreationOptions")]
     unsafe impl PHAssetResourceCreationOptions {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other originalFilename)]
@@ -53,7 +53,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "PhotoKit_PHAssetResourceCreationOptions")]
+    #[cfg(feature = "Photos_PHAssetResourceCreationOptions")]
     unsafe impl PHAssetResourceCreationOptions {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -65,10 +65,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "PhotoKit_PHAssetCreationRequest")]
+    #[cfg(feature = "Photos_PHAssetCreationRequest")]
     pub struct PHAssetCreationRequest;
 
-    #[cfg(feature = "PhotoKit_PHAssetCreationRequest")]
+    #[cfg(feature = "Photos_PHAssetCreationRequest")]
     unsafe impl ClassType for PHAssetCreationRequest {
         #[inherits(PHChangeRequest, NSObject)]
         type Super = PHAssetChangeRequest;
@@ -76,11 +76,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "PhotoKit_PHAssetCreationRequest")]
+#[cfg(feature = "Photos_PHAssetCreationRequest")]
 unsafe impl NSObjectProtocol for PHAssetCreationRequest {}
 
 extern_methods!(
-    #[cfg(feature = "PhotoKit_PHAssetCreationRequest")]
+    #[cfg(feature = "Photos_PHAssetCreationRequest")]
     unsafe impl PHAssetCreationRequest {
         #[method_id(@__retain_semantics Other creationRequestForAsset)]
         pub unsafe fn creationRequestForAsset() -> Id<Self>;
@@ -91,7 +91,7 @@ extern_methods!(
 
         #[cfg(all(
             feature = "Foundation_NSURL",
-            feature = "PhotoKit_PHAssetResourceCreationOptions"
+            feature = "Photos_PHAssetResourceCreationOptions"
         ))]
         #[method(addResourceWithType:fileURL:options:)]
         pub unsafe fn addResourceWithType_fileURL_options(
@@ -103,7 +103,7 @@ extern_methods!(
 
         #[cfg(all(
             feature = "Foundation_NSData",
-            feature = "PhotoKit_PHAssetResourceCreationOptions"
+            feature = "Photos_PHAssetResourceCreationOptions"
         ))]
         #[method(addResourceWithType:data:options:)]
         pub unsafe fn addResourceWithType_data_options(
@@ -117,7 +117,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `PHAssetChangeRequest`
-    #[cfg(feature = "PhotoKit_PHAssetCreationRequest")]
+    #[cfg(feature = "Photos_PHAssetCreationRequest")]
     unsafe impl PHAssetCreationRequest {
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other creationRequestForAssetFromImage:)]
@@ -135,7 +135,7 @@ extern_methods!(
             file_url: &NSURL,
         ) -> Option<Id<Self>>;
 
-        #[cfg(feature = "PhotoKit_PHAsset")]
+        #[cfg(feature = "Photos_PHAsset")]
         #[method_id(@__retain_semantics Other changeRequestForAsset:)]
         pub unsafe fn changeRequestForAsset(asset: &PHAsset) -> Id<Self>;
     }
@@ -143,7 +143,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "PhotoKit_PHAssetCreationRequest")]
+    #[cfg(feature = "Photos_PHAssetCreationRequest")]
     unsafe impl PHAssetCreationRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

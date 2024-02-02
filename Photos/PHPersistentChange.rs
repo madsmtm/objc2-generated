@@ -4,31 +4,31 @@ use crate::common::*;
 use crate::AppKit::*;
 use crate::CoreLocation::*;
 use crate::Foundation::*;
-use crate::PhotoKit::*;
+use crate::Photos::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "PhotoKit_PHPersistentChange")]
+    #[cfg(feature = "Photos_PHPersistentChange")]
     pub struct PHPersistentChange;
 
-    #[cfg(feature = "PhotoKit_PHPersistentChange")]
+    #[cfg(feature = "Photos_PHPersistentChange")]
     unsafe impl ClassType for PHPersistentChange {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "PhotoKit_PHPersistentChange")]
+#[cfg(feature = "Photos_PHPersistentChange")]
 unsafe impl Send for PHPersistentChange {}
 
-#[cfg(feature = "PhotoKit_PHPersistentChange")]
+#[cfg(feature = "Photos_PHPersistentChange")]
 unsafe impl Sync for PHPersistentChange {}
 
-#[cfg(feature = "PhotoKit_PHPersistentChange")]
+#[cfg(feature = "Photos_PHPersistentChange")]
 unsafe impl NSObjectProtocol for PHPersistentChange {}
 
 extern_methods!(
-    #[cfg(feature = "PhotoKit_PHPersistentChange")]
+    #[cfg(feature = "Photos_PHPersistentChange")]
     unsafe impl PHPersistentChange {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -36,13 +36,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "PhotoKit_PHPersistentChangeToken")]
+        #[cfg(feature = "Photos_PHPersistentChangeToken")]
         #[method_id(@__retain_semantics Other changeToken)]
         pub unsafe fn changeToken(&self) -> Id<PHPersistentChangeToken>;
 
         #[cfg(all(
             feature = "Foundation_NSError",
-            feature = "PhotoKit_PHPersistentObjectChangeDetails"
+            feature = "Photos_PHPersistentObjectChangeDetails"
         ))]
         #[method_id(@__retain_semantics Other changeDetailsForObjectType:error:_)]
         pub unsafe fn changeDetailsForObjectType_error(

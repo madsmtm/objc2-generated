@@ -4,7 +4,7 @@ use crate::common::*;
 use crate::AppKit::*;
 use crate::CoreLocation::*;
 use crate::Foundation::*;
-use crate::PhotoKit::*;
+use crate::Photos::*;
 
 ns_enum!(
     #[underlying(NSInteger)]

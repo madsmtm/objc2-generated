@@ -4,7 +4,7 @@ use crate::common::*;
 use crate::AppKit::*;
 use crate::CoreLocation::*;
 use crate::Foundation::*;
-use crate::PhotoKit::*;
+use crate::Photos::*;
 
 pub type PHLivePhotoRequestID = i32;
 
@@ -18,30 +18,30 @@ extern_static!(PHLivePhotoInfoCancelledKey: &'static NSString);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "PhotoKit_PHLivePhoto")]
+    #[cfg(feature = "Photos_PHLivePhoto")]
     pub struct PHLivePhoto;
 
-    #[cfg(feature = "PhotoKit_PHLivePhoto")]
+    #[cfg(feature = "Photos_PHLivePhoto")]
     unsafe impl ClassType for PHLivePhoto {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "PhotoKit_PHLivePhoto")]
+#[cfg(feature = "Photos_PHLivePhoto")]
 unsafe impl NSCoding for PHLivePhoto {}
 
-#[cfg(feature = "PhotoKit_PHLivePhoto")]
+#[cfg(feature = "Photos_PHLivePhoto")]
 unsafe impl NSCopying for PHLivePhoto {}
 
-#[cfg(feature = "PhotoKit_PHLivePhoto")]
+#[cfg(feature = "Photos_PHLivePhoto")]
 unsafe impl NSObjectProtocol for PHLivePhoto {}
 
-#[cfg(feature = "PhotoKit_PHLivePhoto")]
+#[cfg(feature = "Photos_PHLivePhoto")]
 unsafe impl NSSecureCoding for PHLivePhoto {}
 
 extern_methods!(
-    #[cfg(feature = "PhotoKit_PHLivePhoto")]
+    #[cfg(feature = "Photos_PHLivePhoto")]
     unsafe impl PHLivePhoto {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -71,7 +71,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "PhotoKit_PHLivePhoto")]
+    #[cfg(feature = "Photos_PHLivePhoto")]
     unsafe impl PHLivePhoto {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -80,9 +80,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSItemProvider
-    #[cfg(feature = "PhotoKit_PHLivePhoto")]
+    #[cfg(feature = "Photos_PHLivePhoto")]
     unsafe impl PHLivePhoto {}
 );
 
-#[cfg(feature = "PhotoKit_PHLivePhoto")]
+#[cfg(feature = "Photos_PHLivePhoto")]
 unsafe impl NSItemProviderReading for PHLivePhoto {}

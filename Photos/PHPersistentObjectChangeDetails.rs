@@ -4,31 +4,31 @@ use crate::common::*;
 use crate::AppKit::*;
 use crate::CoreLocation::*;
 use crate::Foundation::*;
-use crate::PhotoKit::*;
+use crate::Photos::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "PhotoKit_PHPersistentObjectChangeDetails")]
+    #[cfg(feature = "Photos_PHPersistentObjectChangeDetails")]
     pub struct PHPersistentObjectChangeDetails;
 
-    #[cfg(feature = "PhotoKit_PHPersistentObjectChangeDetails")]
+    #[cfg(feature = "Photos_PHPersistentObjectChangeDetails")]
     unsafe impl ClassType for PHPersistentObjectChangeDetails {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "PhotoKit_PHPersistentObjectChangeDetails")]
+#[cfg(feature = "Photos_PHPersistentObjectChangeDetails")]
 unsafe impl Send for PHPersistentObjectChangeDetails {}
 
-#[cfg(feature = "PhotoKit_PHPersistentObjectChangeDetails")]
+#[cfg(feature = "Photos_PHPersistentObjectChangeDetails")]
 unsafe impl Sync for PHPersistentObjectChangeDetails {}
 
-#[cfg(feature = "PhotoKit_PHPersistentObjectChangeDetails")]
+#[cfg(feature = "Photos_PHPersistentObjectChangeDetails")]
 unsafe impl NSObjectProtocol for PHPersistentObjectChangeDetails {}
 
 extern_methods!(
-    #[cfg(feature = "PhotoKit_PHPersistentObjectChangeDetails")]
+    #[cfg(feature = "Photos_PHPersistentObjectChangeDetails")]
     unsafe impl PHPersistentObjectChangeDetails {
         #[method(objectType)]
         pub unsafe fn objectType(&self) -> PHObjectType;

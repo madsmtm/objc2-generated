@@ -5,9 +5,9 @@
 //!
 //! This actually lives in the `QuartzCore` framework, but `CoreAnimation` is
 //! the name that people use to refer to it..
-#![doc(alias = "QuartzCore")]
+#![doc(alias = "CoreAnimation")]
 
-#[path = "../../fixes/CoreAnimation/mod.rs"]
+#[path = "../../fixes/QuartzCore/mod.rs"]
 mod fixes;
 pub use self::fixes::*;
 
@@ -90,40 +90,40 @@ pub use self::__CAAnimation::kCATransitionFromTop;
 pub use self::__CAAnimation::kCATransitionMoveIn;
 pub use self::__CAAnimation::kCATransitionPush;
 pub use self::__CAAnimation::kCATransitionReveal;
-#[cfg(feature = "CoreAnimation_CAAnimation")]
+#[cfg(feature = "QuartzCore_CAAnimation")]
 pub use self::__CAAnimation::CAAnimation;
 pub use self::__CAAnimation::CAAnimationCalculationMode;
 pub use self::__CAAnimation::CAAnimationDelegate;
-#[cfg(feature = "CoreAnimation_CAAnimationGroup")]
+#[cfg(feature = "QuartzCore_CAAnimationGroup")]
 pub use self::__CAAnimation::CAAnimationGroup;
 pub use self::__CAAnimation::CAAnimationRotationMode;
-#[cfg(feature = "CoreAnimation_CABasicAnimation")]
+#[cfg(feature = "QuartzCore_CABasicAnimation")]
 pub use self::__CAAnimation::CABasicAnimation;
-#[cfg(feature = "CoreAnimation_CAKeyframeAnimation")]
+#[cfg(feature = "QuartzCore_CAKeyframeAnimation")]
 pub use self::__CAAnimation::CAKeyframeAnimation;
-#[cfg(feature = "CoreAnimation_CAPropertyAnimation")]
+#[cfg(feature = "QuartzCore_CAPropertyAnimation")]
 pub use self::__CAAnimation::CAPropertyAnimation;
-#[cfg(feature = "CoreAnimation_CASpringAnimation")]
+#[cfg(feature = "QuartzCore_CASpringAnimation")]
 pub use self::__CAAnimation::CASpringAnimation;
-#[cfg(feature = "CoreAnimation_CATransition")]
+#[cfg(feature = "QuartzCore_CATransition")]
 pub use self::__CAAnimation::CATransition;
 pub use self::__CAAnimation::CATransitionSubtype;
 pub use self::__CAAnimation::CATransitionType;
 pub use self::__CABase::CACurrentMediaTime;
-#[cfg(feature = "CoreAnimation_CAConstraint")]
+#[cfg(feature = "QuartzCore_CAConstraint")]
 pub use self::__CAConstraintLayoutManager::CAConstraint;
 pub use self::__CAConstraintLayoutManager::CAConstraintAttribute;
-#[cfg(feature = "CoreAnimation_CAConstraintLayoutManager")]
+#[cfg(feature = "QuartzCore_CAConstraintLayoutManager")]
 pub use self::__CAConstraintLayoutManager::CAConstraintLayoutManager;
 pub use self::__CAConstraintLayoutManager::{
     kCAConstraintHeight, kCAConstraintMaxX, kCAConstraintMaxY, kCAConstraintMidX,
     kCAConstraintMidY, kCAConstraintMinX, kCAConstraintMinY, kCAConstraintWidth,
 };
-#[cfg(feature = "CoreAnimation_CADisplayLink")]
+#[cfg(feature = "QuartzCore_CADisplayLink")]
 pub use self::__CADisplayLink::CADisplayLink;
-#[cfg(feature = "CoreAnimation_CAEDRMetadata")]
+#[cfg(feature = "QuartzCore_CAEDRMetadata")]
 pub use self::__CAEDRMetadata::CAEDRMetadata;
-#[cfg(feature = "CoreAnimation_CAEmitterCell")]
+#[cfg(feature = "QuartzCore_CAEmitterCell")]
 pub use self::__CAEmitterCell::CAEmitterCell;
 pub use self::__CAEmitterLayer::kCAEmitterLayerAdditive;
 pub use self::__CAEmitterLayer::kCAEmitterLayerBackToFront;
@@ -140,7 +140,7 @@ pub use self::__CAEmitterLayer::kCAEmitterLayerSphere;
 pub use self::__CAEmitterLayer::kCAEmitterLayerSurface;
 pub use self::__CAEmitterLayer::kCAEmitterLayerUnordered;
 pub use self::__CAEmitterLayer::kCAEmitterLayerVolume;
-#[cfg(feature = "CoreAnimation_CAEmitterLayer")]
+#[cfg(feature = "QuartzCore_CAEmitterLayer")]
 pub use self::__CAEmitterLayer::CAEmitterLayer;
 pub use self::__CAEmitterLayer::CAEmitterLayerEmitterMode;
 pub use self::__CAEmitterLayer::CAEmitterLayerEmitterShape;
@@ -152,7 +152,7 @@ pub use self::__CAFrameRateRange::CAFrameRateRangeMake;
 pub use self::__CAGradientLayer::kCAGradientLayerAxial;
 pub use self::__CAGradientLayer::kCAGradientLayerConic;
 pub use self::__CAGradientLayer::kCAGradientLayerRadial;
-#[cfg(feature = "CoreAnimation_CAGradientLayer")]
+#[cfg(feature = "QuartzCore_CAGradientLayer")]
 pub use self::__CAGradientLayer::CAGradientLayer;
 pub use self::__CAGradientLayer::CAGradientLayerType;
 pub use self::__CALayer::kCAContentsFormatGray8Uint;
@@ -182,7 +182,7 @@ pub use self::__CALayer::CAAction;
 pub use self::__CALayer::CAAutoresizingMask;
 pub use self::__CALayer::CACornerMask;
 pub use self::__CALayer::CAEdgeAntialiasingMask;
-#[cfg(feature = "CoreAnimation_CALayer")]
+#[cfg(feature = "QuartzCore_CALayer")]
 pub use self::__CALayer::CALayer;
 pub use self::__CALayer::CALayerContentsFilter;
 pub use self::__CALayer::CALayerContentsFormat;
@@ -211,29 +211,29 @@ pub use self::__CAMediaTimingFunction::kCAMediaTimingFunctionEaseIn;
 pub use self::__CAMediaTimingFunction::kCAMediaTimingFunctionEaseInEaseOut;
 pub use self::__CAMediaTimingFunction::kCAMediaTimingFunctionEaseOut;
 pub use self::__CAMediaTimingFunction::kCAMediaTimingFunctionLinear;
-#[cfg(feature = "CoreAnimation_CAMediaTimingFunction")]
+#[cfg(feature = "QuartzCore_CAMediaTimingFunction")]
 pub use self::__CAMediaTimingFunction::CAMediaTimingFunction;
 pub use self::__CAMediaTimingFunction::CAMediaTimingFunctionName;
-#[cfg(feature = "CoreAnimation_CAMetalDisplayLink")]
+#[cfg(feature = "QuartzCore_CAMetalDisplayLink")]
 pub use self::__CAMetalDisplayLink::CAMetalDisplayLink;
 pub use self::__CAMetalDisplayLink::CAMetalDisplayLinkDelegate;
-#[cfg(feature = "CoreAnimation_CAMetalDisplayLinkUpdate")]
+#[cfg(feature = "QuartzCore_CAMetalDisplayLinkUpdate")]
 pub use self::__CAMetalDisplayLink::CAMetalDisplayLinkUpdate;
-#[cfg(feature = "CoreAnimation_CARemoteLayerClient")]
+#[cfg(feature = "QuartzCore_CARemoteLayerClient")]
 pub use self::__CARemoteLayerClient::CARemoteLayerClient;
-#[cfg(feature = "CoreAnimation_CARemoteLayerServer")]
+#[cfg(feature = "QuartzCore_CARemoteLayerServer")]
 pub use self::__CARemoteLayerServer::CARemoteLayerServer;
 pub use self::__CARenderer::kCARendererColorSpace;
 pub use self::__CARenderer::kCARendererMetalCommandQueue;
-#[cfg(feature = "CoreAnimation_CARenderer")]
+#[cfg(feature = "QuartzCore_CARenderer")]
 pub use self::__CARenderer::CARenderer;
-#[cfg(feature = "CoreAnimation_CAReplicatorLayer")]
+#[cfg(feature = "QuartzCore_CAReplicatorLayer")]
 pub use self::__CAReplicatorLayer::CAReplicatorLayer;
 pub use self::__CAScrollLayer::kCAScrollBoth;
 pub use self::__CAScrollLayer::kCAScrollHorizontally;
 pub use self::__CAScrollLayer::kCAScrollNone;
 pub use self::__CAScrollLayer::kCAScrollVertically;
-#[cfg(feature = "CoreAnimation_CAScrollLayer")]
+#[cfg(feature = "QuartzCore_CAScrollLayer")]
 pub use self::__CAScrollLayer::CAScrollLayer;
 pub use self::__CAScrollLayer::CAScrollLayerScrollMode;
 pub use self::__CAShapeLayer::kCAFillRuleEvenOdd;
@@ -244,7 +244,7 @@ pub use self::__CAShapeLayer::kCALineCapSquare;
 pub use self::__CAShapeLayer::kCALineJoinBevel;
 pub use self::__CAShapeLayer::kCALineJoinMiter;
 pub use self::__CAShapeLayer::kCALineJoinRound;
-#[cfg(feature = "CoreAnimation_CAShapeLayer")]
+#[cfg(feature = "QuartzCore_CAShapeLayer")]
 pub use self::__CAShapeLayer::CAShapeLayer;
 pub use self::__CAShapeLayer::CAShapeLayerFillRule;
 pub use self::__CAShapeLayer::CAShapeLayerLineCap;
@@ -258,17 +258,17 @@ pub use self::__CATextLayer::kCATruncationEnd;
 pub use self::__CATextLayer::kCATruncationMiddle;
 pub use self::__CATextLayer::kCATruncationNone;
 pub use self::__CATextLayer::kCATruncationStart;
-#[cfg(feature = "CoreAnimation_CATextLayer")]
+#[cfg(feature = "QuartzCore_CATextLayer")]
 pub use self::__CATextLayer::CATextLayer;
 pub use self::__CATextLayer::CATextLayerAlignmentMode;
 pub use self::__CATextLayer::CATextLayerTruncationMode;
-#[cfg(feature = "CoreAnimation_CATiledLayer")]
+#[cfg(feature = "QuartzCore_CATiledLayer")]
 pub use self::__CATiledLayer::CATiledLayer;
 pub use self::__CATransaction::kCATransactionAnimationDuration;
 pub use self::__CATransaction::kCATransactionAnimationTimingFunction;
 pub use self::__CATransaction::kCATransactionCompletionBlock;
 pub use self::__CATransaction::kCATransactionDisableActions;
-#[cfg(feature = "CoreAnimation_CATransaction")]
+#[cfg(feature = "QuartzCore_CATransaction")]
 pub use self::__CATransaction::CATransaction;
 pub use self::__CATransform3D::CATransform3D;
 pub use self::__CATransform3D::CATransform3DConcat;
@@ -283,7 +283,7 @@ pub use self::__CATransform3D::CATransform3DMakeTranslation;
 pub use self::__CATransform3D::CATransform3DRotate;
 pub use self::__CATransform3D::CATransform3DScale;
 pub use self::__CATransform3D::CATransform3DTranslate;
-#[cfg(feature = "CoreAnimation_CATransformLayer")]
+#[cfg(feature = "QuartzCore_CATransformLayer")]
 pub use self::__CATransformLayer::CATransformLayer;
 pub use self::__CAValueFunction::kCAValueFunctionRotateX;
 pub use self::__CAValueFunction::kCAValueFunctionRotateY;
@@ -296,6 +296,6 @@ pub use self::__CAValueFunction::kCAValueFunctionTranslate;
 pub use self::__CAValueFunction::kCAValueFunctionTranslateX;
 pub use self::__CAValueFunction::kCAValueFunctionTranslateY;
 pub use self::__CAValueFunction::kCAValueFunctionTranslateZ;
-#[cfg(feature = "CoreAnimation_CAValueFunction")]
+#[cfg(feature = "QuartzCore_CAValueFunction")]
 pub use self::__CAValueFunction::CAValueFunction;
 pub use self::__CAValueFunction::CAValueFunctionName;

@@ -4,31 +4,31 @@ use crate::common::*;
 use crate::AppKit::*;
 use crate::CoreLocation::*;
 use crate::Foundation::*;
-use crate::PhotoKit::*;
+use crate::Photos::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "PhotoKit_PHChangeRequest")]
+    #[cfg(feature = "Photos_PHChangeRequest")]
     pub struct PHChangeRequest;
 
-    #[cfg(feature = "PhotoKit_PHChangeRequest")]
+    #[cfg(feature = "Photos_PHChangeRequest")]
     unsafe impl ClassType for PHChangeRequest {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "PhotoKit_PHChangeRequest")]
+#[cfg(feature = "Photos_PHChangeRequest")]
 unsafe impl NSObjectProtocol for PHChangeRequest {}
 
 extern_methods!(
-    #[cfg(feature = "PhotoKit_PHChangeRequest")]
+    #[cfg(feature = "Photos_PHChangeRequest")]
     unsafe impl PHChangeRequest {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "PhotoKit_PHChangeRequest")]
+    #[cfg(feature = "Photos_PHChangeRequest")]
     unsafe impl PHChangeRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -4,7 +4,7 @@ use crate::common::*;
 use crate::AppKit::*;
 use crate::CoreLocation::*;
 use crate::Foundation::*;
-use crate::PhotoKit::*;
+use crate::Photos::*;
 
 typed_enum!(
     pub type PHLivePhotoEditingOption = NSString;
@@ -12,23 +12,23 @@ typed_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "PhotoKit_PHLivePhotoEditingContext")]
+    #[cfg(feature = "Photos_PHLivePhotoEditingContext")]
     pub struct PHLivePhotoEditingContext;
 
-    #[cfg(feature = "PhotoKit_PHLivePhotoEditingContext")]
+    #[cfg(feature = "Photos_PHLivePhotoEditingContext")]
     unsafe impl ClassType for PHLivePhotoEditingContext {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "PhotoKit_PHLivePhotoEditingContext")]
+#[cfg(feature = "Photos_PHLivePhotoEditingContext")]
 unsafe impl NSObjectProtocol for PHLivePhotoEditingContext {}
 
 extern_methods!(
-    #[cfg(feature = "PhotoKit_PHLivePhotoEditingContext")]
+    #[cfg(feature = "Photos_PHLivePhotoEditingContext")]
     unsafe impl PHLivePhotoEditingContext {
-        #[cfg(feature = "PhotoKit_PHContentEditingInput")]
+        #[cfg(feature = "Photos_PHContentEditingInput")]
         #[method_id(@__retain_semantics Init initWithLivePhotoEditingInput:)]
         pub unsafe fn initWithLivePhotoEditingInput(
             this: Allocated<Self>,
@@ -52,7 +52,7 @@ extern_methods!(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
             feature = "Foundation_NSString",
-            feature = "PhotoKit_PHLivePhoto"
+            feature = "Photos_PHLivePhoto"
         ))]
         #[method(prepareLivePhotoForPlaybackWithTargetSize:options:completionHandler:)]
         pub unsafe fn prepareLivePhotoForPlaybackWithTargetSize_options_completionHandler(
@@ -66,7 +66,7 @@ extern_methods!(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
             feature = "Foundation_NSString",
-            feature = "PhotoKit_PHContentEditingOutput"
+            feature = "Photos_PHContentEditingOutput"
         ))]
         #[method(saveLivePhotoToOutput:options:completionHandler:)]
         pub unsafe fn saveLivePhotoToOutput_options_completionHandler(
@@ -83,7 +83,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "PhotoKit_PHLivePhotoEditingContext")]
+    #[cfg(feature = "Photos_PHLivePhotoEditingContext")]
     unsafe impl PHLivePhotoEditingContext {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

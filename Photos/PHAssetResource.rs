@@ -4,25 +4,25 @@ use crate::common::*;
 use crate::AppKit::*;
 use crate::CoreLocation::*;
 use crate::Foundation::*;
-use crate::PhotoKit::*;
+use crate::Photos::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "PhotoKit_PHAssetResource")]
+    #[cfg(feature = "Photos_PHAssetResource")]
     pub struct PHAssetResource;
 
-    #[cfg(feature = "PhotoKit_PHAssetResource")]
+    #[cfg(feature = "Photos_PHAssetResource")]
     unsafe impl ClassType for PHAssetResource {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "PhotoKit_PHAssetResource")]
+#[cfg(feature = "Photos_PHAssetResource")]
 unsafe impl NSObjectProtocol for PHAssetResource {}
 
 extern_methods!(
-    #[cfg(feature = "PhotoKit_PHAssetResource")]
+    #[cfg(feature = "Photos_PHAssetResource")]
     unsafe impl PHAssetResource {
         #[method(type)]
         pub unsafe fn r#type(&self) -> PHAssetResourceType;
@@ -45,11 +45,11 @@ extern_methods!(
         #[method(pixelHeight)]
         pub unsafe fn pixelHeight(&self) -> NSInteger;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "PhotoKit_PHAsset"))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Photos_PHAsset"))]
         #[method_id(@__retain_semantics Other assetResourcesForAsset:)]
         pub unsafe fn assetResourcesForAsset(asset: &PHAsset) -> Id<NSArray<PHAssetResource>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "PhotoKit_PHLivePhoto"))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Photos_PHLivePhoto"))]
         #[method_id(@__retain_semantics Other assetResourcesForLivePhoto:)]
         pub unsafe fn assetResourcesForLivePhoto(
             live_photo: &PHLivePhoto,
@@ -59,7 +59,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "PhotoKit_PHAssetResource")]
+    #[cfg(feature = "Photos_PHAssetResource")]
     unsafe impl PHAssetResource {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
