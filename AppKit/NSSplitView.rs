@@ -174,19 +174,16 @@ extern_methods!(
         #[method(setArrangesAllSubviews:)]
         pub unsafe fn setArrangesAllSubviews(&self, arranges_all_subviews: bool);
 
-        #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other arrangedSubviews)]
         pub unsafe fn arrangedSubviews(&self) -> Id<NSArray<NSView>>;
 
-        #[cfg(feature = "AppKit_NSView")]
         #[method(addArrangedSubview:)]
         pub unsafe fn addArrangedSubview(&self, view: &NSView);
 
-        #[cfg(feature = "AppKit_NSView")]
         #[method(insertArrangedSubview:atIndex:)]
         pub unsafe fn insertArrangedSubview_atIndex(&self, view: &NSView, index: NSInteger);
 
-        #[cfg(feature = "AppKit_NSView")]
         #[method(removeArrangedSubview:)]
         pub unsafe fn removeArrangedSubview(&self, view: &NSView);
     }

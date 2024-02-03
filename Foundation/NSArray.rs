@@ -558,7 +558,6 @@ extern_methods!(
     /// NSExtendedMutableArray
     #[cfg(feature = "Foundation_NSMutableArray")]
     unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
-        #[cfg(feature = "Foundation_NSArray")]
         #[method(addObjectsFromArray:)]
         pub unsafe fn addObjectsFromArray(&mut self, other_array: &NSArray<ObjectType>);
 
@@ -596,14 +595,12 @@ extern_methods!(
             cnt: NSUInteger,
         );
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method(removeObjectsInArray:)]
         pub unsafe fn removeObjectsInArray(&mut self, other_array: &NSArray<ObjectType>);
 
         #[method(removeObjectsInRange:)]
         pub unsafe fn removeObjectsInRange(&mut self, range: NSRange);
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method(replaceObjectsInRange:withObjectsFromArray:range:)]
         pub unsafe fn replaceObjectsInRange_withObjectsFromArray_range(
             &mut self,
@@ -612,7 +609,6 @@ extern_methods!(
             other_range: NSRange,
         );
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method(replaceObjectsInRange:withObjectsFromArray:)]
         pub unsafe fn replaceObjectsInRange_withObjectsFromArray(
             &mut self,
@@ -620,7 +616,6 @@ extern_methods!(
             other_array: &NSArray<ObjectType>,
         );
 
-        #[cfg(feature = "Foundation_NSArray")]
         #[method(setArray:)]
         pub unsafe fn setArray(&mut self, other_array: &NSArray<ObjectType>);
 
@@ -638,7 +633,7 @@ extern_methods!(
         #[method(sortUsingSelector:)]
         pub unsafe fn sortUsingSelector(&mut self, comparator: Sel);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSIndexSet"))]
+        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(insertObjects:atIndexes:)]
         pub unsafe fn insertObjects_atIndexes(
             &mut self,
@@ -650,7 +645,7 @@ extern_methods!(
         #[method(removeObjectsAtIndexes:)]
         pub unsafe fn removeObjectsAtIndexes(&mut self, indexes: &NSIndexSet);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSIndexSet"))]
+        #[cfg(feature = "Foundation_NSIndexSet")]
         #[method(replaceObjectsAtIndexes:withObjects:)]
         pub unsafe fn replaceObjectsAtIndexes_withObjects(
             &mut self,

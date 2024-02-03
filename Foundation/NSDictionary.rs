@@ -477,7 +477,6 @@ extern_methods!(
     /// NSExtendedMutableDictionary
     #[cfg(feature = "Foundation_NSMutableDictionary")]
     unsafe impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
-        #[cfg(feature = "Foundation_NSDictionary")]
         #[method(addEntriesFromDictionary:)]
         pub unsafe fn addEntriesFromDictionary(
             &mut self,
@@ -491,7 +490,6 @@ extern_methods!(
         #[method(removeObjectsForKeys:)]
         pub unsafe fn removeObjectsForKeys(&mut self, key_array: &NSArray<KeyType>);
 
-        #[cfg(feature = "Foundation_NSDictionary")]
         #[method(setDictionary:)]
         pub unsafe fn setDictionary(
             &mut self,

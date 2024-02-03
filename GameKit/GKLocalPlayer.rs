@@ -166,11 +166,7 @@ extern_methods!(
             completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSError",
-            feature = "GameKit_GKPlayer"
-        ))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSError"))]
         #[deprecated]
         #[method(loadFriendPlayersWithCompletionHandler:)]
         pub unsafe fn loadFriendPlayersWithCompletionHandler(
@@ -238,11 +234,7 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(GKFriendsAuthorizationStatus, *mut NSError)>,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSError",
-            feature = "GameKit_GKPlayer"
-        ))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSError"))]
         #[method(loadFriends:)]
         pub unsafe fn loadFriends(
             &self,
@@ -252,8 +244,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSError",
-            feature = "Foundation_NSString",
-            feature = "GameKit_GKPlayer"
+            feature = "Foundation_NSString"
         ))]
         #[method(loadFriendsWithIdentifiers:completionHandler:)]
         pub unsafe fn loadFriendsWithIdentifiers_completionHandler(

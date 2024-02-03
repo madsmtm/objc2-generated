@@ -189,7 +189,6 @@ extern_methods!(
     /// NSDeprecated
     #[cfg(feature = "AppKit_NSSliderCell")]
     unsafe impl NSSliderCell {
-        #[cfg(feature = "AppKit_NSCell")]
         #[deprecated = "-setTitleCell: had no effect since 10.0"]
         #[method(setTitleCell:)]
         pub unsafe fn setTitleCell(&self, cell: Option<&NSCell>);

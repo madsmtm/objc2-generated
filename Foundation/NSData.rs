@@ -612,7 +612,6 @@ extern_methods!(
         #[method(appendBytes:length:)]
         pub unsafe fn appendBytes_length(&mut self, bytes: NonNull<c_void>, length: NSUInteger);
 
-        #[cfg(feature = "Foundation_NSData")]
         #[method(appendData:)]
         pub unsafe fn appendData(&mut self, other: &NSData);
 
@@ -629,7 +628,6 @@ extern_methods!(
         #[method(resetBytesInRange:)]
         pub unsafe fn resetBytesInRange(&mut self, range: NSRange);
 
-        #[cfg(feature = "Foundation_NSData")]
         #[method(setData:)]
         pub unsafe fn setData(&mut self, data: &NSData);
 

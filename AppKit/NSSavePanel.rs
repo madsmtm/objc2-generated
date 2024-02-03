@@ -332,7 +332,7 @@ extern_methods!(
         #[method(setRequiredFileType:)]
         pub unsafe fn setRequiredFileType(&self, r#type: Option<&NSString>);
 
-        #[cfg(all(feature = "AppKit_NSWindow", feature = "Foundation_NSString"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use beginSheetModalForWindow:completionHandler: instead. The following parameters are replaced by properties: 'path' is replaced by 'directoryURL' and 'name' by 'nameFieldStringValue'."]
         #[method(beginSheetForDirectory:file:modalForWindow:modalDelegate:didEndSelector:contextInfo:)]
         pub unsafe fn beginSheetForDirectory_file_modalForWindow_modalDelegate_didEndSelector_contextInfo(

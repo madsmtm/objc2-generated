@@ -520,7 +520,6 @@ extern_methods!(
             data: Option<&NSString>,
         ) -> Option<Id<DOMProcessingInstruction>>;
 
-        #[cfg(feature = "WebKit_DOMNode")]
         #[deprecated]
         #[method_id(@__retain_semantics Other importNode::)]
         pub unsafe fn importNode(
@@ -556,7 +555,7 @@ extern_methods!(
             local_name: Option<&NSString>,
         ) -> Option<Id<DOMNodeList>>;
 
-        #[cfg(all(feature = "WebKit_DOMNode", feature = "WebKit_DOMNodeIterator"))]
+        #[cfg(feature = "WebKit_DOMNodeIterator")]
         #[deprecated]
         #[method_id(@__retain_semantics Other createNodeIterator::::)]
         pub unsafe fn createNodeIterator(
@@ -567,7 +566,7 @@ extern_methods!(
             expand_entity_references: bool,
         ) -> Option<Id<DOMNodeIterator>>;
 
-        #[cfg(all(feature = "WebKit_DOMNode", feature = "WebKit_DOMTreeWalker"))]
+        #[cfg(feature = "WebKit_DOMTreeWalker")]
         #[deprecated]
         #[method_id(@__retain_semantics Other createTreeWalker::::)]
         pub unsafe fn createTreeWalker(
@@ -600,11 +599,7 @@ extern_methods!(
             resolver: Option<&ProtocolObject<dyn DOMXPathNSResolver>>,
         ) -> Option<Id<DOMXPathExpression>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "WebKit_DOMNode",
-            feature = "WebKit_DOMXPathResult"
-        ))]
+        #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMXPathResult"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other evaluate:::::)]
         pub unsafe fn evaluate(

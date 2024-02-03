@@ -632,15 +632,12 @@ extern_methods!(
         #[method(removeObjectsInArray:)]
         pub unsafe fn removeObjectsInArray(&mut self, array: &NSArray<ObjectType>);
 
-        #[cfg(feature = "Foundation_NSOrderedSet")]
         #[method(intersectOrderedSet:)]
         pub unsafe fn intersectOrderedSet(&mut self, other: &NSOrderedSet<ObjectType>);
 
-        #[cfg(feature = "Foundation_NSOrderedSet")]
         #[method(minusOrderedSet:)]
         pub unsafe fn minusOrderedSet(&mut self, other: &NSOrderedSet<ObjectType>);
 
-        #[cfg(feature = "Foundation_NSOrderedSet")]
         #[method(unionOrderedSet:)]
         pub unsafe fn unionOrderedSet(&mut self, other: &NSOrderedSet<ObjectType>);
 

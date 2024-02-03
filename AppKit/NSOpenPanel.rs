@@ -168,11 +168,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other filenames)]
         pub unsafe fn filenames(&self) -> Id<NSArray>;
 
-        #[cfg(all(
-            feature = "AppKit_NSWindow",
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[deprecated]
         #[method(beginSheetForDirectory:file:types:modalForWindow:modalDelegate:didEndSelector:contextInfo:)]
         pub unsafe fn beginSheetForDirectory_file_types_modalForWindow_modalDelegate_didEndSelector_contextInfo(

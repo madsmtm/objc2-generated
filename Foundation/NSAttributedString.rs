@@ -295,7 +295,6 @@ extern_methods!(
             range: NSRange,
         );
 
-        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(replaceCharactersInRange:withAttributedString:)]
         pub unsafe fn replaceCharactersInRange_withAttributedString(
             &mut self,
@@ -303,7 +302,6 @@ extern_methods!(
             attr_string: &NSAttributedString,
         );
 
-        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(insertAttributedString:atIndex:)]
         pub unsafe fn insertAttributedString_atIndex(
             &mut self,
@@ -311,14 +309,12 @@ extern_methods!(
             loc: NSUInteger,
         );
 
-        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(appendAttributedString:)]
         pub unsafe fn appendAttributedString(&mut self, attr_string: &NSAttributedString);
 
         #[method(deleteCharactersInRange:)]
         pub unsafe fn deleteCharactersInRange(&mut self, range: NSRange);
 
-        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setAttributedString:)]
         pub fn setAttributedString(&mut self, attr_string: &NSAttributedString);
 

@@ -154,7 +154,6 @@ extern_methods!(
     /// DOMHTMLSelectElementDeprecated
     #[cfg(feature = "WebKit_DOMHTMLSelectElement")]
     unsafe impl DOMHTMLSelectElement {
-        #[cfg(feature = "WebKit_DOMHTMLElement")]
         #[deprecated]
         #[method(add::)]
         pub unsafe fn add(&self, element: Option<&DOMHTMLElement>, before: Option<&DOMHTMLElement>);

@@ -1006,22 +1006,18 @@ extern_methods!(
     /// NSMutableStringExtensionMethods
     #[cfg(feature = "Foundation_NSMutableString")]
     unsafe impl NSMutableString {
-        #[cfg(feature = "Foundation_NSString")]
         #[method(insertString:atIndex:)]
         pub unsafe fn insertString_atIndex(&mut self, a_string: &NSString, loc: NSUInteger);
 
         #[method(deleteCharactersInRange:)]
         pub unsafe fn deleteCharactersInRange(&mut self, range: NSRange);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(appendString:)]
         pub fn appendString(&mut self, a_string: &NSString);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(setString:)]
         pub fn setString(&mut self, a_string: &NSString);
 
-        #[cfg(feature = "Foundation_NSString")]
         #[method(replaceOccurrencesOfString:withString:options:range:)]
         pub unsafe fn replaceOccurrencesOfString_withString_options_range(
             &mut self,

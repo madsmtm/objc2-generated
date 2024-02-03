@@ -311,22 +311,18 @@ extern_methods!(
         #[method(addObjectsFromArray:)]
         pub unsafe fn addObjectsFromArray(&mut self, array: &NSArray<ObjectType>);
 
-        #[cfg(feature = "Foundation_NSSet")]
         #[method(intersectSet:)]
         pub unsafe fn intersectSet(&mut self, other_set: &NSSet<ObjectType>);
 
-        #[cfg(feature = "Foundation_NSSet")]
         #[method(minusSet:)]
         pub unsafe fn minusSet(&mut self, other_set: &NSSet<ObjectType>);
 
         #[method(removeAllObjects)]
         pub fn removeAllObjects(&mut self);
 
-        #[cfg(feature = "Foundation_NSSet")]
         #[method(unionSet:)]
         pub unsafe fn unionSet(&mut self, other_set: &NSSet<ObjectType>);
 
-        #[cfg(feature = "Foundation_NSSet")]
         #[method(setSet:)]
         pub unsafe fn setSet(&mut self, other_set: &NSSet<ObjectType>);
     }

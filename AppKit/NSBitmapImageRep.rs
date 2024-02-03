@@ -329,7 +329,6 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSBitmapImageRep")]
     unsafe impl NSBitmapImageRep {
         #[cfg(all(
-            feature = "AppKit_NSImageRep",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSData",
             feature = "Foundation_NSDictionary"

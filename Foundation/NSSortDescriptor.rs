@@ -156,10 +156,7 @@ extern_methods!(
     /// NSSortDescriptorSorting
     #[cfg(feature = "Foundation_NSMutableArray")]
     unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSSortDescriptor"
-        ))]
+        #[cfg(feature = "Foundation_NSSortDescriptor")]
         #[method(sortUsingDescriptors:)]
         pub unsafe fn sortUsingDescriptors(&mut self, sort_descriptors: &NSArray<NSSortDescriptor>);
     }

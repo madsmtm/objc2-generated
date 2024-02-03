@@ -261,11 +261,9 @@ extern_methods!(
     /// NSStackViewGravityAreas
     #[cfg(feature = "AppKit_NSStackView")]
     unsafe impl NSStackView {
-        #[cfg(feature = "AppKit_NSView")]
         #[method(addView:inGravity:)]
         pub unsafe fn addView_inGravity(&self, view: &NSView, gravity: NSStackViewGravity);
 
-        #[cfg(feature = "AppKit_NSView")]
         #[method(insertView:atIndex:inGravity:)]
         pub unsafe fn insertView_atIndex_inGravity(
             &self,
@@ -274,15 +272,14 @@ extern_methods!(
             gravity: NSStackViewGravity,
         );
 
-        #[cfg(feature = "AppKit_NSView")]
         #[method(removeView:)]
         pub unsafe fn removeView(&self, view: &NSView);
 
-        #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other viewsInGravity:)]
         pub unsafe fn viewsInGravity(&self, gravity: NSStackViewGravity) -> Id<NSArray<NSView>>;
 
-        #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(setViews:inGravity:)]
         pub unsafe fn setViews_inGravity(
             &self,
@@ -290,7 +287,7 @@ extern_methods!(
             gravity: NSStackViewGravity,
         );
 
-        #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other views)]
         pub unsafe fn views(&self) -> Id<NSArray<NSView>>;
     }
