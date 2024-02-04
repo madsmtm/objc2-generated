@@ -5,26 +5,37 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::MediaPlayer::*;
 
-extern_methods!(
-    /// MPNowPlayingInfoLanguageOptionAdditions
+extern_category!(
+    /// Category "MPNowPlayingInfoLanguageOptionAdditions" on [`AVMediaSelectionOption`].
+    #[doc(alias = "MPNowPlayingInfoLanguageOptionAdditions")]
     #[cfg(feature = "AVFoundation_AVMediaSelectionOption")]
-    unsafe impl AVMediaSelectionOption {
+    pub unsafe trait AVMediaSelectionOptionMPNowPlayingInfoLanguageOptionAdditions {
         #[cfg(feature = "MediaPlayer_MPNowPlayingInfoLanguageOption")]
         #[method_id(@__retain_semantics Other makeNowPlayingInfoLanguageOption)]
-        pub unsafe fn makeNowPlayingInfoLanguageOption(
+        unsafe fn makeNowPlayingInfoLanguageOption(
             &self,
         ) -> Option<Id<MPNowPlayingInfoLanguageOption>>;
     }
+
+    #[cfg(feature = "AVFoundation_AVMediaSelectionOption")]
+    unsafe impl AVMediaSelectionOptionMPNowPlayingInfoLanguageOptionAdditions
+        for AVMediaSelectionOption
+    {
+    }
 );
 
-extern_methods!(
-    /// MPNowPlayingInfoLanguageOptionAdditions
+extern_category!(
+    /// Category "MPNowPlayingInfoLanguageOptionAdditions" on [`AVMediaSelectionGroup`].
+    #[doc(alias = "MPNowPlayingInfoLanguageOptionAdditions")]
     #[cfg(feature = "AVFoundation_AVMediaSelectionGroup")]
-    unsafe impl AVMediaSelectionGroup {
+    pub unsafe trait AVMediaSelectionGroupMPNowPlayingInfoLanguageOptionAdditions {
         #[cfg(feature = "MediaPlayer_MPNowPlayingInfoLanguageOptionGroup")]
         #[method_id(@__retain_semantics Other makeNowPlayingInfoLanguageOptionGroup)]
-        pub unsafe fn makeNowPlayingInfoLanguageOptionGroup(
+        unsafe fn makeNowPlayingInfoLanguageOptionGroup(
             &self,
         ) -> Id<MPNowPlayingInfoLanguageOptionGroup>;
     }
+
+    #[cfg(feature = "AVFoundation_AVMediaSelectionGroup")]
+    unsafe impl AVMediaSelectionGroupMPNowPlayingInfoLanguageOptionAdditions for AVMediaSelectionGroup {}
 );

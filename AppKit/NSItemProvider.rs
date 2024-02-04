@@ -5,19 +5,23 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-extern_methods!(
-    /// NSItemSourceInfo
+extern_category!(
+    /// Category "NSItemSourceInfo" on [`NSItemProvider`].
+    #[doc(alias = "NSItemSourceInfo")]
     #[cfg(feature = "Foundation_NSItemProvider")]
-    unsafe impl NSItemProvider {
+    pub unsafe trait NSItemProviderNSItemSourceInfo {
         #[method(sourceFrame)]
-        pub unsafe fn sourceFrame(&self) -> NSRect;
+        unsafe fn sourceFrame(&self) -> NSRect;
 
         #[method(containerFrame)]
-        pub unsafe fn containerFrame(&self) -> NSRect;
+        unsafe fn containerFrame(&self) -> NSRect;
 
         #[method(preferredPresentationSize)]
-        pub unsafe fn preferredPresentationSize(&self) -> NSSize;
+        unsafe fn preferredPresentationSize(&self) -> NSSize;
     }
+
+    #[cfg(feature = "Foundation_NSItemProvider")]
+    unsafe impl NSItemProviderNSItemSourceInfo for NSItemProvider {}
 );
 
 extern_static!(NSTypeIdentifierDateText: &'static NSString);

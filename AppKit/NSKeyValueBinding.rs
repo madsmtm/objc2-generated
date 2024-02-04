@@ -339,9 +339,3 @@ extern_static!(NSValidatesImmediatelyBindingOption: &'static NSBindingOption);
 extern_static!(NSValueTransformerNameBindingOption: &'static NSBindingOption);
 
 extern_static!(NSValueTransformerBindingOption: &'static NSBindingOption);
-
-extern_methods!(
-    /// NSEditorAndEditorRegistrationConformance
-    #[cfg(feature = "CoreData_NSManagedObjectContext")]
-    unsafe impl NSManagedObjectContext {}
-);

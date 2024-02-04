@@ -99,17 +99,20 @@ extern_static!(NSContextHelpModeDidActivateNotification: &'static NSNotification
 
 extern_static!(NSContextHelpModeDidDeactivateNotification: &'static NSNotificationName);
 
-extern_methods!(
-    /// NSBundleHelpExtension
+extern_category!(
+    /// Category on [`NSBundle`].
     #[cfg(feature = "Foundation_NSBundle")]
-    unsafe impl NSBundle {
+    pub unsafe trait NSBundleHelpExtension {
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other contextHelpForKey:)]
-        pub unsafe fn contextHelpForKey(
+        unsafe fn contextHelpForKey(
             &self,
             key: &NSHelpManagerContextHelpKey,
         ) -> Option<Id<NSAttributedString>>;
     }
+
+    #[cfg(feature = "Foundation_NSBundle")]
+    unsafe impl NSBundleHelpExtension for NSBundle {}
 );
 
 extern_methods!(

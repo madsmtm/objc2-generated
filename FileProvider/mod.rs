@@ -55,6 +55,8 @@ pub use self::__NSFileProviderEnumerating::NSFileProviderInitialPageSortedByDate
 pub use self::__NSFileProviderEnumerating::NSFileProviderInitialPageSortedByName;
 pub use self::__NSFileProviderEnumerating::NSFileProviderPage;
 pub use self::__NSFileProviderEnumerating::NSFileProviderSyncAnchor;
+#[cfg(feature = "Foundation_NSError")]
+pub use self::__NSFileProviderError::NSErrorNSFileProviderError;
 pub use self::__NSFileProviderError::NSFileProviderErrorCode;
 pub use self::__NSFileProviderError::NSFileProviderErrorCollidingItemKey;
 pub use self::__NSFileProviderError::NSFileProviderErrorDomain;

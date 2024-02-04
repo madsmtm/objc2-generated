@@ -494,16 +494,20 @@ extern_methods!(
     }
 );
 
-extern_methods!(
-    /// NSWorkspaceAuthorization
+extern_category!(
+    /// Category "NSWorkspaceAuthorization" on [`NSFileManager`].
+    #[doc(alias = "NSWorkspaceAuthorization")]
     #[cfg(feature = "Foundation_NSFileManager")]
-    unsafe impl NSFileManager {
+    pub unsafe trait NSFileManagerNSWorkspaceAuthorization {
         #[cfg(feature = "AppKit_NSWorkspaceAuthorization")]
         #[method_id(@__retain_semantics Other fileManagerWithAuthorization:)]
-        pub unsafe fn fileManagerWithAuthorization(
+        unsafe fn fileManagerWithAuthorization(
             authorization: &NSWorkspaceAuthorization,
         ) -> Id<Self>;
     }
+
+    #[cfg(feature = "Foundation_NSFileManager")]
+    unsafe impl NSFileManagerNSWorkspaceAuthorization for NSFileManager {}
 );
 
 extern_static!(NSWorkspaceApplicationKey: &'static NSString);

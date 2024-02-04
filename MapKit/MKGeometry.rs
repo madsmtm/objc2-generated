@@ -263,20 +263,23 @@ extern_fn!(
     pub unsafe fn MKMapRectRemainder(rect: MKMapRect) -> MKMapRect;
 );
 
-extern_methods!(
-    /// NSValueMapKitGeometryExtensions
+extern_category!(
+    /// Category on [`NSValue`].
     #[cfg(feature = "Foundation_NSValue")]
-    unsafe impl NSValue {
+    pub unsafe trait NSValueMapKitGeometryExtensions {
         #[method_id(@__retain_semantics Other valueWithMKCoordinate:)]
-        pub unsafe fn valueWithMKCoordinate(coordinate: CLLocationCoordinate2D) -> Id<NSValue>;
+        unsafe fn valueWithMKCoordinate(coordinate: CLLocationCoordinate2D) -> Id<NSValue>;
 
         #[method_id(@__retain_semantics Other valueWithMKCoordinateSpan:)]
-        pub unsafe fn valueWithMKCoordinateSpan(span: MKCoordinateSpan) -> Id<NSValue>;
+        unsafe fn valueWithMKCoordinateSpan(span: MKCoordinateSpan) -> Id<NSValue>;
 
         #[method(MKCoordinateValue)]
-        pub unsafe fn MKCoordinateValue(&self) -> CLLocationCoordinate2D;
+        unsafe fn MKCoordinateValue(&self) -> CLLocationCoordinate2D;
 
         #[method(MKCoordinateSpanValue)]
-        pub unsafe fn MKCoordinateSpanValue(&self) -> MKCoordinateSpan;
+        unsafe fn MKCoordinateSpanValue(&self) -> MKCoordinateSpan;
     }
+
+    #[cfg(feature = "Foundation_NSValue")]
+    unsafe impl NSValueMapKitGeometryExtensions for NSValue {}
 );

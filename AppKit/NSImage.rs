@@ -470,22 +470,25 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSImageDelegate {}
 );
 
-extern_methods!(
-    /// NSBundleImageExtension
+extern_category!(
+    /// Category on [`NSBundle`].
     #[cfg(feature = "Foundation_NSBundle")]
-    unsafe impl NSBundle {
+    pub unsafe trait NSBundleImageExtension {
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other imageForResource:)]
-        pub unsafe fn imageForResource(&self, name: &NSImageName) -> Option<Id<NSImage>>;
+        unsafe fn imageForResource(&self, name: &NSImageName) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other pathForImageResource:)]
-        pub unsafe fn pathForImageResource(&self, name: &NSImageName) -> Option<Id<NSString>>;
+        unsafe fn pathForImageResource(&self, name: &NSImageName) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other URLForImageResource:)]
-        pub unsafe fn URLForImageResource(&self, name: &NSImageName) -> Option<Id<NSURL>>;
+        unsafe fn URLForImageResource(&self, name: &NSImageName) -> Option<Id<NSURL>>;
     }
+
+    #[cfg(feature = "Foundation_NSBundle")]
+    unsafe impl NSBundleImageExtension for NSBundle {}
 );
 
 extern_methods!(

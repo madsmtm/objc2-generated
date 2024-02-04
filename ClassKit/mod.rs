@@ -98,3 +98,5 @@ pub use self::__CLSProgressReportingCapability::{
 pub use self::__CLSQuantityItem::CLSQuantityItem;
 #[cfg(feature = "ClassKit_CLSScoreItem")]
 pub use self::__CLSScoreItem::CLSScoreItem;
+#[cfg(feature = "Foundation_NSUserActivity")]
+pub use self::__NSUserActivity_CLSDeepLinks::NSUserActivityCLSDeepLinks;

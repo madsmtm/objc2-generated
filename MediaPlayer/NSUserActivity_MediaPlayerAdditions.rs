@@ -5,19 +5,23 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::MediaPlayer::*;
 
-extern_methods!(
-    /// MediaPlayerAdditions
+extern_category!(
+    /// Category "MediaPlayerAdditions" on [`NSUserActivity`].
+    #[doc(alias = "MediaPlayerAdditions")]
     #[cfg(feature = "Foundation_NSUserActivity")]
-    unsafe impl NSUserActivity {
+    pub unsafe trait NSUserActivityMediaPlayerAdditions {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other externalMediaContentIdentifier)]
-        pub unsafe fn externalMediaContentIdentifier(&self) -> Option<Id<NSString>>;
+        unsafe fn externalMediaContentIdentifier(&self) -> Option<Id<NSString>>;
 
         #[cfg(feature = "Foundation_NSString")]
         #[method(setExternalMediaContentIdentifier:)]
-        pub unsafe fn setExternalMediaContentIdentifier(
+        unsafe fn setExternalMediaContentIdentifier(
             &self,
             external_media_content_identifier: Option<&NSString>,
         );
     }
+
+    #[cfg(feature = "Foundation_NSUserActivity")]
+    unsafe impl NSUserActivityMediaPlayerAdditions for NSUserActivity {}
 );

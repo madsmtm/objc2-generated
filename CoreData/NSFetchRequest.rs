@@ -20,20 +20,8 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSFetchRequestResult {}
 );
 
-extern_methods!(
-    /// NSFetchedResultSupport
-    #[cfg(feature = "Foundation_NSNumber")]
-    unsafe impl NSNumber {}
-);
-
 #[cfg(feature = "Foundation_NSNumber")]
 unsafe impl NSFetchRequestResult for NSNumber {}
-
-extern_methods!(
-    /// NSFetchedResultSupport
-    #[cfg(feature = "Foundation_NSDictionary")]
-    unsafe impl NSDictionary {}
-);
 
 #[cfg(feature = "Foundation_NSDictionary")]
 unsafe impl NSFetchRequestResult for NSDictionary {}

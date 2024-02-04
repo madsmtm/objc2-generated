@@ -1042,6 +1042,8 @@ pub use self::__NSAccessibilityProtocols::NSAccessibilitySwitch;
 pub use self::__NSAccessibilityProtocols::NSAccessibilityTable;
 #[cfg(feature = "AppKit_NSActionCell")]
 pub use self::__NSActionCell::NSActionCell;
+#[cfg(feature = "Foundation_NSAffineTransform")]
+pub use self::__NSAffineTransform::NSAffineTransformNSAppKitAdditions;
 #[cfg(feature = "AppKit_NSAlert")]
 pub use self::__NSAlert::NSAlert;
 pub use self::__NSAlert::NSAlertDelegate;
@@ -1099,6 +1101,8 @@ pub use self::__NSAppearance::NSAppearanceNameDarkAqua;
 pub use self::__NSAppearance::NSAppearanceNameLightContent;
 pub use self::__NSAppearance::NSAppearanceNameVibrantDark;
 pub use self::__NSAppearance::NSAppearanceNameVibrantLight;
+#[cfg(feature = "Foundation_NSAppleScript")]
+pub use self::__NSAppleScriptExtensions::NSAppleScriptNSExtensions;
 pub use self::__NSApplication::NSAboutPanelOptionApplicationIcon;
 pub use self::__NSApplication::NSAboutPanelOptionApplicationName;
 pub use self::__NSApplication::NSAboutPanelOptionApplicationVersion;
@@ -1268,9 +1272,19 @@ pub use self::__NSApplication::{NSTerminateCancel, NSTerminateLater, NSTerminate
 pub use self::__NSArrayController::NSArrayController;
 pub use self::__NSAttributedString::NSAppearanceDocumentAttribute;
 pub use self::__NSAttributedString::NSAttachmentAttributeName;
+#[cfg(feature = "Foundation_NSMutableAttributedString")]
+pub use self::__NSAttributedString::NSAttributedStringAttributeFixing;
 pub use self::__NSAttributedString::NSAttributedStringDocumentAttributeKey;
+#[cfg(feature = "Foundation_NSAttributedString")]
+pub use self::__NSAttributedString::NSAttributedStringDocumentFormats;
 pub use self::__NSAttributedString::NSAttributedStringDocumentReadingOptionKey;
 pub use self::__NSAttributedString::NSAttributedStringDocumentType;
+#[cfg(feature = "Foundation_NSAttributedString")]
+pub use self::__NSAttributedString::NSAttributedStringKitAdditions;
+#[cfg(feature = "Foundation_NSAttributedString")]
+pub use self::__NSAttributedString::NSAttributedStringNSDeprecatedKitAdditions;
+#[cfg(feature = "Foundation_NSAttributedString")]
+pub use self::__NSAttributedString::NSAttributedStringPasteboardAdditions;
 pub use self::__NSAttributedString::NSAuthorDocumentAttribute;
 pub use self::__NSAttributedString::NSBackgroundColorAttributeName;
 pub use self::__NSAttributedString::NSBackgroundColorDocumentAttribute;
@@ -1314,6 +1328,10 @@ pub use self::__NSAttributedString::NSMacSimpleTextDocumentType;
 pub use self::__NSAttributedString::NSManagerDocumentAttribute;
 pub use self::__NSAttributedString::NSMarkedClauseSegmentAttributeName;
 pub use self::__NSAttributedString::NSModificationTimeDocumentAttribute;
+#[cfg(feature = "Foundation_NSMutableAttributedString")]
+pub use self::__NSAttributedString::NSMutableAttributedStringDocumentFormats;
+#[cfg(feature = "Foundation_NSMutableAttributedString")]
+pub use self::__NSAttributedString::NSMutableAttributedStringKitAdditions;
 pub use self::__NSAttributedString::NSObliquenessAttributeName;
 pub use self::__NSAttributedString::NSOfficeOpenXMLTextDocumentType;
 pub use self::__NSAttributedString::NSOpenDocumentTextDocumentType;
@@ -1635,6 +1653,10 @@ pub use self::__NSCollectionView::NSCollectionViewPrefetching;
 pub use self::__NSCollectionView::NSCollectionViewScrollPosition;
 pub use self::__NSCollectionView::NSCollectionViewSectionHeaderView;
 pub use self::__NSCollectionView::NSCollectionViewSupplementaryElementKind;
+#[cfg(feature = "Foundation_NSIndexPath")]
+pub use self::__NSCollectionView::NSIndexPathNSCollectionViewAdditions;
+#[cfg(feature = "Foundation_NSSet")]
+pub use self::__NSCollectionView::NSSetNSCollectionViewAdditions;
 pub use self::__NSCollectionView::{NSCollectionViewDropBefore, NSCollectionViewDropOn};
 pub use self::__NSCollectionView::{
     NSCollectionViewItemHighlightAsDropTarget, NSCollectionViewItemHighlightForDeselection,
@@ -2157,6 +2179,8 @@ pub use self::__NSFilePromiseProvider::NSFilePromiseProvider;
 pub use self::__NSFilePromiseProvider::NSFilePromiseProviderDelegate;
 #[cfg(feature = "AppKit_NSFilePromiseReceiver")]
 pub use self::__NSFilePromiseReceiver::NSFilePromiseReceiver;
+#[cfg(feature = "Foundation_NSFileWrapper")]
+pub use self::__NSFileWrapperExtensions::NSFileWrapperNSExtensions;
 pub use self::__NSFont::NSAntialiasThresholdChangedNotification;
 pub use self::__NSFont::NSConvertGlyphsToPackedGlyphs;
 #[cfg(feature = "AppKit_NSFont")]
@@ -2551,6 +2575,8 @@ pub use self::__NSHapticFeedback::{
     NSHapticFeedbackPerformanceTimeDefault, NSHapticFeedbackPerformanceTimeDrawCompleted,
     NSHapticFeedbackPerformanceTimeNow,
 };
+#[cfg(feature = "Foundation_NSBundle")]
+pub use self::__NSHelpManager::NSBundleHelpExtension;
 pub use self::__NSHelpManager::NSContextHelpModeDidActivateNotification;
 pub use self::__NSHelpManager::NSContextHelpModeDidDeactivateNotification;
 pub use self::__NSHelpManager::NSHelpAnchorName;
@@ -2558,6 +2584,8 @@ pub use self::__NSHelpManager::NSHelpBookName;
 #[cfg(feature = "AppKit_NSHelpManager")]
 pub use self::__NSHelpManager::NSHelpManager;
 pub use self::__NSHelpManager::NSHelpManagerContextHelpKey;
+#[cfg(feature = "Foundation_NSBundle")]
+pub use self::__NSImage::NSBundleImageExtension;
 #[cfg(feature = "AppKit_NSImage")]
 pub use self::__NSImage::NSImage;
 pub use self::__NSImage::NSImageCacheMode;
@@ -2764,6 +2792,8 @@ pub use self::__NSInterfaceStyle::{
     NSMacintoshInterfaceStyle, NSNextStepInterfaceStyle, NSNoInterfaceStyle,
     NSWindows95InterfaceStyle,
 };
+#[cfg(feature = "Foundation_NSItemProvider")]
+pub use self::__NSItemProvider::NSItemProviderNSItemSourceInfo;
 pub use self::__NSItemProvider::NSTypeIdentifierAddressText;
 pub use self::__NSItemProvider::NSTypeIdentifierDateText;
 pub use self::__NSItemProvider::NSTypeIdentifierPhoneNumberText;
@@ -3235,6 +3265,8 @@ pub use self::__NSPasteboard::NSRulerPboardType;
 pub use self::__NSPasteboard::NSStringPboardType;
 pub use self::__NSPasteboard::NSTIFFPboardType;
 pub use self::__NSPasteboard::NSTabularTextPboardType;
+#[cfg(feature = "Foundation_NSURL")]
+pub use self::__NSPasteboard::NSURLNSPasteboardSupport;
 pub use self::__NSPasteboard::NSURLPboardType;
 pub use self::__NSPasteboard::NSVCardPboardType;
 pub use self::__NSPasteboard::{
@@ -3644,6 +3676,8 @@ pub use self::__NSSliderTouchBarItem::NSSliderAccessoryWidthDefault;
 pub use self::__NSSliderTouchBarItem::NSSliderAccessoryWidthWide;
 #[cfg(feature = "AppKit_NSSliderTouchBarItem")]
 pub use self::__NSSliderTouchBarItem::NSSliderTouchBarItem;
+#[cfg(feature = "Foundation_NSBundle")]
+pub use self::__NSSound::NSBundleSoundExtensions;
 #[cfg(feature = "AppKit_NSSound")]
 pub use self::__NSSound::NSSound;
 pub use self::__NSSound::NSSoundDelegate;
@@ -3836,9 +3870,21 @@ pub use self::__NSStoryboardSegue::NSSeguePerforming;
 #[cfg(feature = "AppKit_NSStoryboardSegue")]
 pub use self::__NSStoryboardSegue::NSStoryboardSegue;
 pub use self::__NSStoryboardSegue::NSStoryboardSegueIdentifier;
+#[cfg(feature = "Foundation_NSAttributedString")]
+pub use self::__NSStringDrawing::NSAttributedStringNSExtendedStringDrawing;
+#[cfg(feature = "Foundation_NSAttributedString")]
+pub use self::__NSStringDrawing::NSAttributedStringNSStringDrawing;
+#[cfg(feature = "Foundation_NSAttributedString")]
+pub use self::__NSStringDrawing::NSAttributedStringNSStringDrawingDeprecated;
+#[cfg(feature = "Foundation_NSString")]
+pub use self::__NSStringDrawing::NSStringDrawing;
 #[cfg(feature = "AppKit_NSStringDrawingContext")]
 pub use self::__NSStringDrawing::NSStringDrawingContext;
+#[cfg(feature = "Foundation_NSString")]
+pub use self::__NSStringDrawing::NSStringDrawingDeprecated;
 pub use self::__NSStringDrawing::NSStringDrawingOptions;
+#[cfg(feature = "Foundation_NSString")]
+pub use self::__NSStringDrawing::NSStringNSExtendedStringDrawing;
 pub use self::__NSStringDrawing::{
     NSStringDrawingDisableScreenFontSubstitution, NSStringDrawingOneShot,
     NSStringDrawingTruncatesLastVisibleLine, NSStringDrawingUsesDeviceMetrics,
@@ -3990,6 +4036,10 @@ pub use self::__NSText::{
 pub use self::__NSTextAlternatives::NSTextAlternatives;
 pub use self::__NSTextAlternatives::NSTextAlternativesSelectedAlternativeStringNotification;
 pub use self::__NSTextAttachment::NSAttachmentCharacter;
+#[cfg(feature = "Foundation_NSAttributedString")]
+pub use self::__NSTextAttachment::NSAttributedStringAttachmentConveniences;
+#[cfg(feature = "Foundation_NSMutableAttributedString")]
+pub use self::__NSTextAttachment::NSMutableAttributedStringAttachmentConveniences;
 #[cfg(feature = "AppKit_NSTextAttachment")]
 pub use self::__NSTextAttachment::NSTextAttachment;
 pub use self::__NSTextAttachment::NSTextAttachmentContainer;
@@ -4655,6 +4705,8 @@ pub use self::__NSWindowTab::NSWindowTab;
 pub use self::__NSWindowTabGroup::NSWindowTabGroup;
 pub use self::__NSWorkspace::NSApplicationFileType;
 pub use self::__NSWorkspace::NSDirectoryFileType;
+#[cfg(feature = "Foundation_NSFileManager")]
+pub use self::__NSWorkspace::NSFileManagerNSWorkspaceAuthorization;
 pub use self::__NSWorkspace::NSFilesystemFileType;
 pub use self::__NSWorkspace::NSPlainFileType;
 pub use self::__NSWorkspace::NSShellCommandFileType;

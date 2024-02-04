@@ -92,14 +92,18 @@ extern_fn!(
     pub fn CATransform3DIsAffine(t: CATransform3D) -> bool;
 );
 
-extern_methods!(
-    /// CATransform3DAdditions
+extern_category!(
+    /// Category "CATransform3DAdditions" on [`NSValue`].
+    #[doc(alias = "CATransform3DAdditions")]
     #[cfg(feature = "Foundation_NSValue")]
-    unsafe impl NSValue {
+    pub unsafe trait NSValueCATransform3DAdditions {
         #[method_id(@__retain_semantics Other valueWithCATransform3D:)]
-        pub unsafe fn valueWithCATransform3D(t: CATransform3D) -> Id<NSValue>;
+        unsafe fn valueWithCATransform3D(t: CATransform3D) -> Id<NSValue>;
 
         #[method(CATransform3DValue)]
-        pub unsafe fn CATransform3DValue(&self) -> CATransform3D;
+        unsafe fn CATransform3DValue(&self) -> CATransform3D;
     }
+
+    #[cfg(feature = "Foundation_NSValue")]
+    unsafe impl NSValueCATransform3DAdditions for NSValue {}
 );

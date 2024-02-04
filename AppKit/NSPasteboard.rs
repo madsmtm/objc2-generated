@@ -347,18 +347,22 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSPasteboardReading {}
 );
 
-extern_methods!(
-    /// NSPasteboardSupport
+extern_category!(
+    /// Category "NSPasteboardSupport" on [`NSURL`].
+    #[doc(alias = "NSPasteboardSupport")]
     #[cfg(feature = "Foundation_NSURL")]
-    unsafe impl NSURL {
+    pub unsafe trait NSURLNSPasteboardSupport {
         #[cfg(feature = "AppKit_NSPasteboard")]
         #[method_id(@__retain_semantics Other URLFromPasteboard:)]
-        pub unsafe fn URLFromPasteboard(paste_board: &NSPasteboard) -> Option<Id<NSURL>>;
+        unsafe fn URLFromPasteboard(paste_board: &NSPasteboard) -> Option<Id<NSURL>>;
 
         #[cfg(feature = "AppKit_NSPasteboard")]
         #[method(writeToPasteboard:)]
-        pub unsafe fn writeToPasteboard(&self, paste_board: &NSPasteboard);
+        unsafe fn writeToPasteboard(&self, paste_board: &NSPasteboard);
     }
+
+    #[cfg(feature = "Foundation_NSURL")]
+    unsafe impl NSURLNSPasteboardSupport for NSURL {}
 );
 
 #[cfg(feature = "Foundation_NSURL")]
@@ -366,12 +370,6 @@ unsafe impl NSPasteboardReading for NSURL {}
 
 #[cfg(feature = "Foundation_NSURL")]
 unsafe impl NSPasteboardWriting for NSURL {}
-
-extern_methods!(
-    /// NSPasteboardSupport
-    #[cfg(feature = "Foundation_NSString")]
-    unsafe impl NSString {}
-);
 
 #[cfg(feature = "Foundation_NSString")]
 unsafe impl NSPasteboardReading for NSString {}

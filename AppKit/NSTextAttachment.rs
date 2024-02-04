@@ -220,16 +220,19 @@ extern_methods!(
     }
 );
 
-extern_methods!(
-    /// NSAttributedStringAttachmentConveniences
+extern_category!(
+    /// Category on [`NSAttributedString`].
     #[cfg(feature = "Foundation_NSAttributedString")]
-    unsafe impl NSAttributedString {
+    pub unsafe trait NSAttributedStringAttachmentConveniences {
         #[cfg(feature = "AppKit_NSTextAttachment")]
         #[method_id(@__retain_semantics Other attributedStringWithAttachment:)]
-        pub unsafe fn attributedStringWithAttachment(
+        unsafe fn attributedStringWithAttachment(
             attachment: &NSTextAttachment,
         ) -> Id<NSAttributedString>;
     }
+
+    #[cfg(feature = "Foundation_NSAttributedString")]
+    unsafe impl NSAttributedStringAttachmentConveniences for NSAttributedString {}
 );
 
 extern_class!(
@@ -317,12 +320,15 @@ extern_methods!(
     }
 );
 
-extern_methods!(
-    /// NSMutableAttributedStringAttachmentConveniences
+extern_category!(
+    /// Category on [`NSMutableAttributedString`].
     #[cfg(feature = "Foundation_NSMutableAttributedString")]
-    unsafe impl NSMutableAttributedString {
+    pub unsafe trait NSMutableAttributedStringAttachmentConveniences {
         #[cfg(feature = "Foundation_NSString")]
         #[method(updateAttachmentsFromPath:)]
-        pub unsafe fn updateAttachmentsFromPath(&mut self, path: &NSString);
+        unsafe fn updateAttachmentsFromPath(&self, path: &NSString);
     }
+
+    #[cfg(feature = "Foundation_NSMutableAttributedString")]
+    unsafe impl NSMutableAttributedStringAttachmentConveniences for NSMutableAttributedString {}
 );

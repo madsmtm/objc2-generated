@@ -9,16 +9,17 @@ pub type CKSharePreparationCompletionHandler = *mut Block<dyn Fn(*mut CKShare, *
 
 pub type CKSharePreparationHandler = *mut Block<dyn Fn(CKSharePreparationCompletionHandler)>;
 
-extern_methods!(
-    /// CKSharingSupport
+extern_category!(
+    /// Category "CKSharingSupport" on [`NSItemProvider`].
+    #[doc(alias = "CKSharingSupport")]
     #[cfg(feature = "Foundation_NSItemProvider")]
-    unsafe impl NSItemProvider {
+    pub unsafe trait NSItemProviderCKSharingSupport {
         #[cfg(all(
             feature = "CloudKit_CKAllowedSharingOptions",
             feature = "CloudKit_CKContainer"
         ))]
         #[method(registerCKShareWithContainer:allowedSharingOptions:preparationHandler:)]
-        pub unsafe fn registerCKShareWithContainer_allowedSharingOptions_preparationHandler(
+        unsafe fn registerCKShareWithContainer_allowedSharingOptions_preparationHandler(
             &self,
             container: &CKContainer,
             allowed_options: &CKAllowedSharingOptions,
@@ -31,11 +32,14 @@ extern_methods!(
             feature = "CloudKit_CKShare"
         ))]
         #[method(registerCKShare:container:allowedSharingOptions:)]
-        pub unsafe fn registerCKShare_container_allowedSharingOptions(
+        unsafe fn registerCKShare_container_allowedSharingOptions(
             &self,
             share: &CKShare,
             container: &CKContainer,
             allowed_options: &CKAllowedSharingOptions,
         );
     }
+
+    #[cfg(feature = "Foundation_NSItemProvider")]
+    unsafe impl NSItemProviderCKSharingSupport for NSItemProvider {}
 );

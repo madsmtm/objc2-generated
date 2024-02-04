@@ -40,23 +40,27 @@ ns_error_enum!(
     }
 );
 
-extern_methods!(
-    /// NSFileProviderError
+extern_category!(
+    /// Category "NSFileProviderError" on [`NSError`].
+    #[doc(alias = "NSFileProviderError")]
     #[cfg(feature = "Foundation_NSError")]
-    unsafe impl NSError {
+    pub unsafe trait NSErrorNSFileProviderError {
         #[method_id(@__retain_semantics Other fileProviderErrorForCollisionWithItem:)]
-        pub unsafe fn fileProviderErrorForCollisionWithItem(
+        unsafe fn fileProviderErrorForCollisionWithItem(
             existing_item: &NSFileProviderItem,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other fileProviderErrorForNonExistentItemWithIdentifier:)]
-        pub unsafe fn fileProviderErrorForNonExistentItemWithIdentifier(
+        unsafe fn fileProviderErrorForNonExistentItemWithIdentifier(
             item_identifier: &NSFileProviderItemIdentifier,
         ) -> Id<Self>;
 
         #[method_id(@__retain_semantics Other fileProviderErrorForRejectedDeletionOfItem:)]
-        pub unsafe fn fileProviderErrorForRejectedDeletionOfItem(
+        unsafe fn fileProviderErrorForRejectedDeletionOfItem(
             updated_version: &NSFileProviderItem,
         ) -> Id<Self>;
     }
+
+    #[cfg(feature = "Foundation_NSError")]
+    unsafe impl NSErrorNSFileProviderError for NSError {}
 );

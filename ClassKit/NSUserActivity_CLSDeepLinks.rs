@@ -4,15 +4,19 @@ use crate::common::*;
 use crate::ClassKit::*;
 use crate::Foundation::*;
 
-extern_methods!(
-    /// CLSDeepLinks
+extern_category!(
+    /// Category "CLSDeepLinks" on [`NSUserActivity`].
+    #[doc(alias = "CLSDeepLinks")]
     #[cfg(feature = "Foundation_NSUserActivity")]
-    unsafe impl NSUserActivity {
+    pub unsafe trait NSUserActivityCLSDeepLinks {
         #[method(isClassKitDeepLink)]
-        pub unsafe fn isClassKitDeepLink(&self) -> bool;
+        unsafe fn isClassKitDeepLink(&self) -> bool;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other contextIdentifierPath)]
-        pub unsafe fn contextIdentifierPath(&self) -> Option<Id<NSArray<NSString>>>;
+        unsafe fn contextIdentifierPath(&self) -> Option<Id<NSArray<NSString>>>;
     }
+
+    #[cfg(feature = "Foundation_NSUserActivity")]
+    unsafe impl NSUserActivityCLSDeepLinks for NSUserActivity {}
 );

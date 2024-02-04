@@ -6,17 +6,21 @@ use crate::Foundation::*;
 use crate::LocalAuthentication::*;
 use crate::LocalAuthenticationEmbeddedUI::*;
 
-extern_methods!(
-    /// UI
+extern_category!(
+    /// Category "UI" on [`LARight`].
+    #[doc(alias = "UI")]
     #[cfg(feature = "LocalAuthentication_LARight")]
-    unsafe impl LARight {
+    pub unsafe trait LARightUI {
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method(authorizeWithLocalizedReason:inPresentationContext:completion:)]
-        pub unsafe fn authorizeWithLocalizedReason_inPresentationContext_completion(
+        unsafe fn authorizeWithLocalizedReason_inPresentationContext_completion(
             &self,
             localized_reason: &NSString,
             presentation_context: &LAPresentationContext,
             handler: &Block<dyn Fn(*mut NSError)>,
         );
     }
+
+    #[cfg(feature = "LocalAuthentication_LARight")]
+    unsafe impl LARightUI for LARight {}
 );

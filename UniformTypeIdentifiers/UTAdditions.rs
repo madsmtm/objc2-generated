@@ -4,13 +4,14 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::UniformTypeIdentifiers::*;
 
-extern_methods!(
-    /// UTAdditions
+extern_category!(
+    /// Category "UTAdditions" on [`NSString`].
+    #[doc(alias = "UTAdditions")]
     #[cfg(feature = "Foundation_NSString")]
-    unsafe impl NSString {
+    pub unsafe trait NSStringUTAdditions {
         #[cfg(feature = "UniformTypeIdentifiers_UTType")]
         #[method_id(@__retain_semantics Other stringByAppendingPathComponent:conformingToType:)]
-        pub unsafe fn stringByAppendingPathComponent_conformingToType(
+        unsafe fn stringByAppendingPathComponent_conformingToType(
             &self,
             partial_name: &NSString,
             content_type: &UTType,
@@ -18,23 +19,27 @@ extern_methods!(
 
         #[cfg(feature = "UniformTypeIdentifiers_UTType")]
         #[method_id(@__retain_semantics Other stringByAppendingPathExtensionForType:)]
-        pub unsafe fn stringByAppendingPathExtensionForType(
+        unsafe fn stringByAppendingPathExtensionForType(
             &self,
             content_type: &UTType,
         ) -> Id<NSString>;
     }
+
+    #[cfg(feature = "Foundation_NSString")]
+    unsafe impl NSStringUTAdditions for NSString {}
 );
 
-extern_methods!(
-    /// UTAdditions
+extern_category!(
+    /// Category "UTAdditions" on [`NSURL`].
+    #[doc(alias = "UTAdditions")]
     #[cfg(feature = "Foundation_NSURL")]
-    unsafe impl NSURL {
+    pub unsafe trait NSURLUTAdditions {
         #[cfg(all(
             feature = "Foundation_NSString",
             feature = "UniformTypeIdentifiers_UTType"
         ))]
         #[method_id(@__retain_semantics Other URLByAppendingPathComponent:conformingToType:)]
-        pub unsafe fn URLByAppendingPathComponent_conformingToType(
+        unsafe fn URLByAppendingPathComponent_conformingToType(
             &self,
             partial_name: &NSString,
             content_type: &UTType,
@@ -42,7 +47,9 @@ extern_methods!(
 
         #[cfg(feature = "UniformTypeIdentifiers_UTType")]
         #[method_id(@__retain_semantics Other URLByAppendingPathExtensionForType:)]
-        pub unsafe fn URLByAppendingPathExtensionForType(&self, content_type: &UTType)
-            -> Id<NSURL>;
+        unsafe fn URLByAppendingPathExtensionForType(&self, content_type: &UTType) -> Id<NSURL>;
     }
+
+    #[cfg(feature = "Foundation_NSURL")]
+    unsafe impl NSURLUTAdditions for NSURL {}
 );

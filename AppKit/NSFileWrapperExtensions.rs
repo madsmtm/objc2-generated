@@ -5,16 +5,20 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-extern_methods!(
-    /// NSExtensions
+extern_category!(
+    /// Category "NSExtensions" on [`NSFileWrapper`].
+    #[doc(alias = "NSExtensions")]
     #[cfg(feature = "Foundation_NSFileWrapper")]
-    unsafe impl NSFileWrapper {
+    pub unsafe trait NSFileWrapperNSExtensions {
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other icon)]
-        pub unsafe fn icon(&self) -> Option<Id<NSImage>>;
+        unsafe fn icon(&self) -> Option<Id<NSImage>>;
 
         #[cfg(feature = "AppKit_NSImage")]
         #[method(setIcon:)]
-        pub unsafe fn setIcon(&self, icon: Option<&NSImage>);
+        unsafe fn setIcon(&self, icon: Option<&NSImage>);
     }
+
+    #[cfg(feature = "Foundation_NSFileWrapper")]
+    unsafe impl NSFileWrapperNSExtensions for NSFileWrapper {}
 );

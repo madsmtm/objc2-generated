@@ -242,6 +242,8 @@ pub use self::__MKGeometry::MKMapSizeWorld;
 pub use self::__MKGeometry::MKMetersBetweenMapPoints;
 pub use self::__MKGeometry::MKMetersPerMapPointAtLatitude;
 pub use self::__MKGeometry::MKZoomScale;
+#[cfg(feature = "Foundation_NSValue")]
+pub use self::__MKGeometry::NSValueMapKitGeometryExtensions;
 #[cfg(feature = "MapKit_MKGradientPolylineRenderer")]
 pub use self::__MKGradientPolylineRenderer::MKGradientPolylineRenderer;
 #[cfg(feature = "MapKit_MKHybridMapConfiguration")]
@@ -451,3 +453,5 @@ pub use self::__MKUserLocation::MKUserLocation;
 pub use self::__MKUserLocationView::MKUserLocationView;
 #[cfg(feature = "MapKit_MKZoomControl")]
 pub use self::__MKZoomControl::MKZoomControl;
+#[cfg(feature = "Foundation_NSUserActivity")]
+pub use self::__NSUserActivity_MKMapItem::NSUserActivityMKMapItem;

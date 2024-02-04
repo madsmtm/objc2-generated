@@ -196,12 +196,15 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSSoundDelegate {}
 );
 
-extern_methods!(
-    /// NSBundleSoundExtensions
+extern_category!(
+    /// Category on [`NSBundle`].
     #[cfg(feature = "Foundation_NSBundle")]
-    unsafe impl NSBundle {
+    pub unsafe trait NSBundleSoundExtensions {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other pathForSoundResource:)]
-        pub unsafe fn pathForSoundResource(&self, name: &NSSoundName) -> Option<Id<NSString>>;
+        unsafe fn pathForSoundResource(&self, name: &NSSoundName) -> Option<Id<NSString>>;
     }
+
+    #[cfg(feature = "Foundation_NSBundle")]
+    unsafe impl NSBundleSoundExtensions for NSBundle {}
 );

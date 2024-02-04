@@ -5,12 +5,16 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-extern_methods!(
-    /// NSExtensions
+extern_category!(
+    /// Category "NSExtensions" on [`NSAppleScript`].
+    #[doc(alias = "NSExtensions")]
     #[cfg(feature = "Foundation_NSAppleScript")]
-    unsafe impl NSAppleScript {
+    pub unsafe trait NSAppleScriptNSExtensions {
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other richTextSource)]
-        pub unsafe fn richTextSource(&self) -> Option<Id<NSAttributedString>>;
+        unsafe fn richTextSource(&self) -> Option<Id<NSAttributedString>>;
     }
+
+    #[cfg(feature = "Foundation_NSAppleScript")]
+    unsafe impl NSAppleScriptNSExtensions for NSAppleScript {}
 );

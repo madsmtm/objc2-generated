@@ -596,12 +596,6 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn CAAction {}
 );
 
-extern_methods!(
-    /// CAActionAdditions
-    #[cfg(feature = "Foundation_NSNull")]
-    unsafe impl NSNull {}
-);
-
 #[cfg(feature = "Foundation_NSNull")]
 unsafe impl CAAction for NSNull {}
 

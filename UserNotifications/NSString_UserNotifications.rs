@@ -5,15 +5,19 @@ use crate::CoreLocation::*;
 use crate::Foundation::*;
 use crate::UserNotifications::*;
 
-extern_methods!(
-    /// UNUserNotificationCenterSupport
+extern_category!(
+    /// Category "UNUserNotificationCenterSupport" on [`NSString`].
+    #[doc(alias = "UNUserNotificationCenterSupport")]
     #[cfg(feature = "Foundation_NSString")]
-    unsafe impl NSString {
+    pub unsafe trait NSStringUNUserNotificationCenterSupport {
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other localizedUserNotificationStringForKey:arguments:)]
-        pub unsafe fn localizedUserNotificationStringForKey_arguments(
+        unsafe fn localizedUserNotificationStringForKey_arguments(
             key: &NSString,
             arguments: Option<&NSArray>,
         ) -> Id<NSString>;
     }
+
+    #[cfg(feature = "Foundation_NSString")]
+    unsafe impl NSStringUNUserNotificationCenterSupport for NSString {}
 );

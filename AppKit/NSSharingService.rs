@@ -303,12 +303,6 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSCloudSharingServiceDelegate {}
 );
 
-extern_methods!(
-    /// NSCloudKitSharing
-    #[cfg(feature = "Foundation_NSItemProvider")]
-    unsafe impl NSItemProvider {}
-);
-
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSSharingServicePicker")]

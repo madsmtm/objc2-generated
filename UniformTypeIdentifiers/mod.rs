@@ -22,6 +22,12 @@ mod __UTTagClass;
 #[path = "UTType.rs"]
 mod __UTType;
 
+#[cfg(feature = "Foundation_NSItemProvider")]
+pub use self::__NSItemProvider_UTType::NSItemProviderUTType;
+#[cfg(feature = "Foundation_NSString")]
+pub use self::__UTAdditions::NSStringUTAdditions;
+#[cfg(feature = "Foundation_NSURL")]
+pub use self::__UTAdditions::NSURLUTAdditions;
 pub use self::__UTCoreTypes::UTType3DContent;
 pub use self::__UTCoreTypes::UTTypeAHAP;
 pub use self::__UTCoreTypes::UTTypeAIFF;

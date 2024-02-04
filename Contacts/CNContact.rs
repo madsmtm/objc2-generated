@@ -28,12 +28,6 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn CNKeyDescriptor {}
 );
 
-extern_methods!(
-    /// Contacts
-    #[cfg(feature = "Foundation_NSString")]
-    unsafe impl NSString {}
-);
-
 #[cfg(feature = "Foundation_NSString")]
 unsafe impl CNKeyDescriptor for NSString {}
 

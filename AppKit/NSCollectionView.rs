@@ -1158,46 +1158,52 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSCollectionViewDelegate {}
 );
 
-extern_methods!(
-    /// NSCollectionViewAdditions
+extern_category!(
+    /// Category "NSCollectionViewAdditions" on [`NSIndexPath`].
+    #[doc(alias = "NSCollectionViewAdditions")]
     #[cfg(feature = "Foundation_NSIndexPath")]
-    unsafe impl NSIndexPath {
+    pub unsafe trait NSIndexPathNSCollectionViewAdditions {
         #[method_id(@__retain_semantics Other indexPathForItem:inSection:)]
-        pub unsafe fn indexPathForItem_inSection(
+        unsafe fn indexPathForItem_inSection(
             item: NSInteger,
             section: NSInteger,
         ) -> Id<NSIndexPath>;
 
         #[method(item)]
-        pub unsafe fn item(&self) -> NSInteger;
+        unsafe fn item(&self) -> NSInteger;
 
         #[method(section)]
-        pub unsafe fn section(&self) -> NSInteger;
+        unsafe fn section(&self) -> NSInteger;
     }
+
+    #[cfg(feature = "Foundation_NSIndexPath")]
+    unsafe impl NSIndexPathNSCollectionViewAdditions for NSIndexPath {}
 );
 
-extern_methods!(
-    /// NSCollectionViewAdditions
+extern_category!(
+    /// Category "NSCollectionViewAdditions" on [`NSSet`].
+    #[doc(alias = "NSCollectionViewAdditions")]
     #[cfg(feature = "Foundation_NSSet")]
-    unsafe impl NSSet {
+    pub unsafe trait NSSetNSCollectionViewAdditions {
         #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other setWithCollectionViewIndexPath:)]
-        pub unsafe fn setWithCollectionViewIndexPath(index_path: &NSIndexPath) -> Id<Self>;
+        unsafe fn setWithCollectionViewIndexPath(index_path: &NSIndexPath) -> Id<Self>;
 
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSIndexPath"))]
         #[method_id(@__retain_semantics Other setWithCollectionViewIndexPaths:)]
-        pub unsafe fn setWithCollectionViewIndexPaths(
-            index_paths: &NSArray<NSIndexPath>,
-        ) -> Id<Self>;
+        unsafe fn setWithCollectionViewIndexPaths(index_paths: &NSArray<NSIndexPath>) -> Id<Self>;
 
         #[cfg(feature = "Foundation_NSIndexPath")]
         #[method(enumerateIndexPathsWithOptions:usingBlock:)]
-        pub unsafe fn enumerateIndexPathsWithOptions_usingBlock(
+        unsafe fn enumerateIndexPathsWithOptions_usingBlock(
             &self,
             opts: NSEnumerationOptions,
             block: &Block<dyn Fn(NonNull<NSIndexPath>, NonNull<Bool>) + '_>,
         );
     }
+
+    #[cfg(feature = "Foundation_NSSet")]
+    unsafe impl NSSetNSCollectionViewAdditions for NSSet {}
 );
 
 extern_methods!(

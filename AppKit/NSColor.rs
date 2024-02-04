@@ -676,15 +676,4 @@ extern_methods!(
     unsafe impl NSColor {}
 );
 
-extern_methods!(
-    /// NSAppKitColorExtensions
-    #[cfg(feature = "Foundation_NSCoder")]
-    unsafe impl NSCoder {
-        #[cfg(feature = "AppKit_NSColor")]
-        #[deprecated]
-        #[method_id(@__retain_semantics Other decodeNXColor)]
-        pub unsafe fn decodeNXColor(&self) -> Option<Id<NSColor>>;
-    }
-);
-
 extern_static!(NSSystemColorsDidChangeNotification: &'static NSNotificationName);

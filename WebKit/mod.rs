@@ -709,6 +709,8 @@ pub use self::__DOMXPathResult::{
     DOM_STRING_TYPE, DOM_UNORDERED_NODE_ITERATOR_TYPE, DOM_UNORDERED_NODE_SNAPSHOT_TYPE,
 };
 pub use self::__NSAttributedString::NSAttributedStringCompletionHandler;
+#[cfg(feature = "Foundation_NSAttributedString")]
+pub use self::__NSAttributedString::NSAttributedStringWebKitAdditions;
 pub use self::__NSAttributedString::NSReadAccessURLDocumentOption;
 #[cfg(feature = "WebKit_WKBackForwardList")]
 pub use self::__WKBackForwardList::WKBackForwardList;

@@ -443,3 +443,5 @@ pub use self::__CKUserIdentity::CKUserIdentity;
 pub use self::__CKUserIdentityLookupInfo::CKUserIdentityLookupInfo;
 pub use self::__NSItemProvider_CKSharingSupport::CKSharePreparationCompletionHandler;
 pub use self::__NSItemProvider_CKSharingSupport::CKSharePreparationHandler;
+#[cfg(feature = "Foundation_NSItemProvider")]
+pub use self::__NSItemProvider_CKSharingSupport::NSItemProviderCKSharingSupport;
