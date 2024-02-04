@@ -26,6 +26,27 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSSecureCoding {}
 );
 
+extern_category!(
+    /// Category "NSCoderMethods" on [`NSObject`].
+    #[doc(alias = "NSCoderMethods")]
+    pub unsafe trait NSObjectNSCoderMethods {
+        #[method(version)]
+        unsafe fn version() -> NSInteger;
+
+        #[method(setVersion:)]
+        unsafe fn setVersion(a_version: NSInteger);
+
+        #[method(classForCoder)]
+        unsafe fn classForCoder(&self) -> &'static AnyClass;
+
+        #[cfg(feature = "Foundation_NSCoder")]
+        #[method_id(@__retain_semantics Other replacementObjectForCoder:)]
+        unsafe fn replacementObjectForCoder(&self, coder: &NSCoder) -> Option<Id<AnyObject>>;
+    }
+
+    unsafe impl NSObjectNSCoderMethods for NSObject {}
+);
+
 extern_protocol!(
     pub unsafe trait NSDiscardableContent {
         #[method(beginContentAccess)]
@@ -42,6 +63,17 @@ extern_protocol!(
     }
 
     unsafe impl ProtocolType for dyn NSDiscardableContent {}
+);
+
+extern_category!(
+    /// Category "NSDiscardableContentProxy" on [`NSObject`].
+    #[doc(alias = "NSDiscardableContentProxy")]
+    pub unsafe trait NSObjectNSDiscardableContentProxy {
+        #[method_id(@__retain_semantics Other autoContentAccessingProxy)]
+        unsafe fn autoContentAccessingProxy(&self) -> Id<AnyObject>;
+    }
+
+    unsafe impl NSObjectNSDiscardableContentProxy for NSObject {}
 );
 
 extern_fn!(

@@ -192,3 +192,22 @@ extern_methods!(
         pub unsafe fn new() -> Id<Self>;
     }
 );
+
+extern_category!(
+    /// Category "NSArchiverCallback" on [`NSObject`].
+    #[doc(alias = "NSArchiverCallback")]
+    pub unsafe trait NSObjectNSArchiverCallback {
+        #[method(classForArchiver)]
+        unsafe fn classForArchiver(&self) -> Option<&'static AnyClass>;
+
+        #[cfg(feature = "Foundation_NSArchiver")]
+        #[deprecated]
+        #[method_id(@__retain_semantics Other replacementObjectForArchiver:)]
+        unsafe fn replacementObjectForArchiver(
+            &self,
+            archiver: &NSArchiver,
+        ) -> Option<Id<AnyObject>>;
+    }
+
+    unsafe impl NSObjectNSArchiverCallback for NSObject {}
+);

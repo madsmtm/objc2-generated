@@ -5,6 +5,104 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+extern_category!(
+    /// Category "NSAccessibility" on [`NSObject`].
+    #[doc(alias = "NSAccessibility")]
+    pub unsafe trait NSObjectNSAccessibility {
+        #[cfg(feature = "Foundation_NSArray")]
+        #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
+        #[method_id(@__retain_semantics Other accessibilityAttributeNames)]
+        unsafe fn accessibilityAttributeNames(&self) -> Id<NSArray<NSAccessibilityAttributeName>>;
+
+        #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
+        #[method_id(@__retain_semantics Other accessibilityAttributeValue:)]
+        unsafe fn accessibilityAttributeValue(
+            &self,
+            attribute: &NSAccessibilityAttributeName,
+        ) -> Option<Id<AnyObject>>;
+
+        #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
+        #[method(accessibilityIsAttributeSettable:)]
+        unsafe fn accessibilityIsAttributeSettable(
+            &self,
+            attribute: &NSAccessibilityAttributeName,
+        ) -> bool;
+
+        #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
+        #[method(accessibilitySetValue:forAttribute:)]
+        unsafe fn accessibilitySetValue_forAttribute(
+            &self,
+            value: Option<&AnyObject>,
+            attribute: &NSAccessibilityAttributeName,
+        );
+
+        #[cfg(feature = "Foundation_NSArray")]
+        #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
+        #[method_id(@__retain_semantics Other accessibilityParameterizedAttributeNames)]
+        unsafe fn accessibilityParameterizedAttributeNames(
+            &self,
+        ) -> Id<NSArray<NSAccessibilityParameterizedAttributeName>>;
+
+        #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
+        #[method_id(@__retain_semantics Other accessibilityAttributeValue:forParameter:)]
+        unsafe fn accessibilityAttributeValue_forParameter(
+            &self,
+            attribute: &NSAccessibilityParameterizedAttributeName,
+            parameter: Option<&AnyObject>,
+        ) -> Option<Id<AnyObject>>;
+
+        #[cfg(feature = "Foundation_NSArray")]
+        #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
+        #[method_id(@__retain_semantics Other accessibilityActionNames)]
+        unsafe fn accessibilityActionNames(&self) -> Id<NSArray<NSAccessibilityActionName>>;
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
+        #[method_id(@__retain_semantics Other accessibilityActionDescription:)]
+        unsafe fn accessibilityActionDescription(
+            &self,
+            action: &NSAccessibilityActionName,
+        ) -> Option<Id<NSString>>;
+
+        #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
+        #[method(accessibilityPerformAction:)]
+        unsafe fn accessibilityPerformAction(&self, action: &NSAccessibilityActionName);
+
+        #[deprecated = "Use isAccessibilityElement instead"]
+        #[method(accessibilityIsIgnored)]
+        unsafe fn accessibilityIsIgnored(&self) -> bool;
+
+        #[method_id(@__retain_semantics Other accessibilityHitTest:)]
+        unsafe fn accessibilityHitTest(&self, point: NSPoint) -> Option<Id<AnyObject>>;
+
+        #[method_id(@__retain_semantics Other accessibilityFocusedUIElement)]
+        unsafe fn accessibilityFocusedUIElement(&self) -> Option<Id<AnyObject>>;
+
+        #[method(accessibilityIndexOfChild:)]
+        unsafe fn accessibilityIndexOfChild(&self, child: &AnyObject) -> NSUInteger;
+
+        #[method(accessibilityArrayAttributeCount:)]
+        unsafe fn accessibilityArrayAttributeCount(
+            &self,
+            attribute: &NSAccessibilityAttributeName,
+        ) -> NSUInteger;
+
+        #[cfg(feature = "Foundation_NSArray")]
+        #[method_id(@__retain_semantics Other accessibilityArrayAttributeValues:index:maxCount:)]
+        unsafe fn accessibilityArrayAttributeValues_index_maxCount(
+            &self,
+            attribute: &NSAccessibilityAttributeName,
+            index: NSUInteger,
+            max_count: NSUInteger,
+        ) -> Id<NSArray>;
+
+        #[method(accessibilityNotifiesWhenDestroyed)]
+        unsafe fn accessibilityNotifiesWhenDestroyed(&self) -> bool;
+    }
+
+    unsafe impl NSObjectNSAccessibility for NSObject {}
+);
+
 extern_methods!(
     /// NSWorkspaceAccessibilityDisplay
     #[cfg(feature = "AppKit_NSWorkspace")]

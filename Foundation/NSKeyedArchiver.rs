@@ -458,3 +458,36 @@ extern_protocol!(
 
     unsafe impl ProtocolType for dyn NSKeyedUnarchiverDelegate {}
 );
+
+extern_category!(
+    /// Category "NSKeyedArchiverObjectSubstitution" on [`NSObject`].
+    #[doc(alias = "NSKeyedArchiverObjectSubstitution")]
+    pub unsafe trait NSObjectNSKeyedArchiverObjectSubstitution {
+        #[method(classForKeyedArchiver)]
+        unsafe fn classForKeyedArchiver(&self) -> Option<&'static AnyClass>;
+
+        #[cfg(feature = "Foundation_NSKeyedArchiver")]
+        #[method_id(@__retain_semantics Other replacementObjectForKeyedArchiver:)]
+        unsafe fn replacementObjectForKeyedArchiver(
+            &self,
+            archiver: &NSKeyedArchiver,
+        ) -> Option<Id<AnyObject>>;
+
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[method_id(@__retain_semantics Other classFallbacksForKeyedArchiver)]
+        unsafe fn classFallbacksForKeyedArchiver() -> Id<NSArray<NSString>>;
+    }
+
+    unsafe impl NSObjectNSKeyedArchiverObjectSubstitution for NSObject {}
+);
+
+extern_category!(
+    /// Category "NSKeyedUnarchiverObjectSubstitution" on [`NSObject`].
+    #[doc(alias = "NSKeyedUnarchiverObjectSubstitution")]
+    pub unsafe trait NSObjectNSKeyedUnarchiverObjectSubstitution {
+        #[method(classForKeyedUnarchiver)]
+        unsafe fn classForKeyedUnarchiver() -> &'static AnyClass;
+    }
+
+    unsafe impl NSObjectNSKeyedUnarchiverObjectSubstitution for NSObject {}
+);

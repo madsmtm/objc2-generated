@@ -2,3 +2,48 @@
 //! DO NOT EDIT
 use crate::common::*;
 use crate::Foundation::*;
+
+extern_category!(
+    /// Category "NSScripting" on [`NSObject`].
+    #[doc(alias = "NSScripting")]
+    pub unsafe trait NSObjectNSScripting {
+        #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
+        #[method_id(@__retain_semantics Other scriptingValueForSpecifier:)]
+        unsafe fn scriptingValueForSpecifier(
+            &self,
+            object_specifier: &NSScriptObjectSpecifier,
+        ) -> Option<Id<AnyObject>>;
+
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[method_id(@__retain_semantics Other scriptingProperties)]
+        unsafe fn scriptingProperties(&self) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
+
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[method(setScriptingProperties:)]
+        unsafe fn setScriptingProperties(
+            &self,
+            scripting_properties: Option<&NSDictionary<NSString, AnyObject>>,
+        );
+
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[method_id(@__retain_semantics CopyOrMutCopy copyScriptingValue:forKey:withProperties:)]
+        unsafe fn copyScriptingValue_forKey_withProperties(
+            &self,
+            value: &AnyObject,
+            key: &NSString,
+            properties: &NSDictionary<NSString, AnyObject>,
+        ) -> Option<Id<AnyObject>>;
+
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[method_id(@__retain_semantics New newScriptingObjectOfClass:forValueForKey:withContentsValue:properties:)]
+        unsafe fn newScriptingObjectOfClass_forValueForKey_withContentsValue_properties(
+            &self,
+            object_class: &AnyClass,
+            key: &NSString,
+            contents_value: Option<&AnyObject>,
+            properties: &NSDictionary<NSString, AnyObject>,
+        ) -> Option<Id<AnyObject>>;
+    }
+
+    unsafe impl NSObjectNSScripting for NSObject {}
+);

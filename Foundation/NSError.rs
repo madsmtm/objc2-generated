@@ -151,3 +151,30 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
     }
 );
+
+extern_category!(
+    /// Category "NSErrorRecoveryAttempting" on [`NSObject`].
+    #[doc(alias = "NSErrorRecoveryAttempting")]
+    pub unsafe trait NSObjectNSErrorRecoveryAttempting {
+        #[cfg(feature = "Foundation_NSError")]
+        #[method(attemptRecoveryFromError:optionIndex:delegate:didRecoverSelector:contextInfo:)]
+        unsafe fn attemptRecoveryFromError_optionIndex_delegate_didRecoverSelector_contextInfo(
+            &self,
+            error: &NSError,
+            recovery_option_index: NSUInteger,
+            delegate: Option<&AnyObject>,
+            did_recover_selector: Option<Sel>,
+            context_info: *mut c_void,
+        );
+
+        #[cfg(feature = "Foundation_NSError")]
+        #[method(attemptRecoveryFromError:optionIndex:)]
+        unsafe fn attemptRecoveryFromError_optionIndex(
+            &self,
+            error: &NSError,
+            recovery_option_index: NSUInteger,
+        ) -> bool;
+    }
+
+    unsafe impl NSObjectNSErrorRecoveryAttempting for NSObject {}
+);

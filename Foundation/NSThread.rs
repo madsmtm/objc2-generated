@@ -156,3 +156,61 @@ extern_static!(NSWillBecomeMultiThreadedNotification: &'static NSNotificationNam
 extern_static!(NSDidBecomeSingleThreadedNotification: &'static NSNotificationName);
 
 extern_static!(NSThreadWillExitNotification: &'static NSNotificationName);
+
+extern_category!(
+    /// Category "NSThreadPerformAdditions" on [`NSObject`].
+    #[doc(alias = "NSThreadPerformAdditions")]
+    pub unsafe trait NSObjectNSThreadPerformAdditions {
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[method(performSelectorOnMainThread:withObject:waitUntilDone:modes:)]
+        unsafe fn performSelectorOnMainThread_withObject_waitUntilDone_modes(
+            &self,
+            a_selector: Sel,
+            arg: Option<&AnyObject>,
+            wait: bool,
+            array: Option<&NSArray<NSString>>,
+        );
+
+        #[method(performSelectorOnMainThread:withObject:waitUntilDone:)]
+        unsafe fn performSelectorOnMainThread_withObject_waitUntilDone(
+            &self,
+            a_selector: Sel,
+            arg: Option<&AnyObject>,
+            wait: bool,
+        );
+
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSThread"
+        ))]
+        #[method(performSelector:onThread:withObject:waitUntilDone:modes:)]
+        unsafe fn performSelector_onThread_withObject_waitUntilDone_modes(
+            &self,
+            a_selector: Sel,
+            thr: &NSThread,
+            arg: Option<&AnyObject>,
+            wait: bool,
+            array: Option<&NSArray<NSString>>,
+        );
+
+        #[cfg(feature = "Foundation_NSThread")]
+        #[method(performSelector:onThread:withObject:waitUntilDone:)]
+        unsafe fn performSelector_onThread_withObject_waitUntilDone(
+            &self,
+            a_selector: Sel,
+            thr: &NSThread,
+            arg: Option<&AnyObject>,
+            wait: bool,
+        );
+
+        #[method(performSelectorInBackground:withObject:)]
+        unsafe fn performSelectorInBackground_withObject(
+            &self,
+            a_selector: Sel,
+            arg: Option<&AnyObject>,
+        );
+    }
+
+    unsafe impl NSObjectNSThreadPerformAdditions for NSObject {}
+);

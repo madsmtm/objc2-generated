@@ -17,6 +17,7 @@ mod __NSExceptionHandler;
 #[cfg(feature = "ExceptionHandling_NSExceptionHandler")]
 pub use self::__NSExceptionHandler::NSExceptionHandler;
 pub use self::__NSExceptionHandler::NSExceptionHandlerResume;
+pub use self::__NSExceptionHandler::NSObjectNSExceptionHandlerDelegate;
 pub use self::__NSExceptionHandler::NSStackTraceKey;
 pub use self::__NSExceptionHandler::NSUncaughtRuntimeErrorException;
 pub use self::__NSExceptionHandler::NSUncaughtSystemExceptionException;

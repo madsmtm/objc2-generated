@@ -5,6 +5,64 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::InputMethodKit::*;
 
+extern_category!(
+    /// Category "IMKServerInput" on [`NSObject`].
+    #[doc(alias = "IMKServerInput")]
+    pub unsafe trait NSObjectIMKServerInput {
+        #[cfg(feature = "Foundation_NSString")]
+        #[method(inputText:key:modifiers:client:)]
+        unsafe fn inputText_key_modifiers_client(
+            &self,
+            string: Option<&NSString>,
+            key_code: NSInteger,
+            flags: NSUInteger,
+            sender: Option<&AnyObject>,
+        ) -> bool;
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method(inputText:client:)]
+        unsafe fn inputText_client(
+            &self,
+            string: Option<&NSString>,
+            sender: Option<&AnyObject>,
+        ) -> bool;
+
+        #[cfg(feature = "AppKit_NSEvent")]
+        #[method(handleEvent:client:)]
+        unsafe fn handleEvent_client(
+            &self,
+            event: Option<&NSEvent>,
+            sender: Option<&AnyObject>,
+        ) -> bool;
+
+        #[method(didCommandBySelector:client:)]
+        unsafe fn didCommandBySelector_client(
+            &self,
+            a_selector: Option<Sel>,
+            sender: Option<&AnyObject>,
+        ) -> bool;
+
+        #[method_id(@__retain_semantics Other composedString:)]
+        unsafe fn composedString(&self, sender: Option<&AnyObject>) -> Option<Id<AnyObject>>;
+
+        #[cfg(feature = "Foundation_NSAttributedString")]
+        #[method_id(@__retain_semantics Other originalString:)]
+        unsafe fn originalString(
+            &self,
+            sender: Option<&AnyObject>,
+        ) -> Option<Id<NSAttributedString>>;
+
+        #[method(commitComposition:)]
+        unsafe fn commitComposition(&self, sender: Option<&AnyObject>);
+
+        #[cfg(feature = "Foundation_NSArray")]
+        #[method_id(@__retain_semantics Other candidates:)]
+        unsafe fn candidates(&self, sender: Option<&AnyObject>) -> Option<Id<NSArray>>;
+    }
+
+    unsafe impl NSObjectIMKServerInput for NSObject {}
+);
+
 extern_protocol!(
     pub unsafe trait IMKStateSetting {
         #[method(activateServer:)]

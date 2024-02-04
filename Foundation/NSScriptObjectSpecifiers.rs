@@ -196,6 +196,29 @@ extern_methods!(
     }
 );
 
+extern_category!(
+    /// Category "NSScriptObjectSpecifiers" on [`NSObject`].
+    #[doc(alias = "NSScriptObjectSpecifiers")]
+    pub unsafe trait NSObjectNSScriptObjectSpecifiers {
+        #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
+        #[method_id(@__retain_semantics Other objectSpecifier)]
+        unsafe fn objectSpecifier(&self) -> Option<Id<NSScriptObjectSpecifier>>;
+
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSNumber",
+            feature = "Foundation_NSScriptObjectSpecifier"
+        ))]
+        #[method_id(@__retain_semantics Other indicesOfObjectsByEvaluatingObjectSpecifier:)]
+        unsafe fn indicesOfObjectsByEvaluatingObjectSpecifier(
+            &self,
+            specifier: &NSScriptObjectSpecifier,
+        ) -> Option<Id<NSArray<NSNumber>>>;
+    }
+
+    unsafe impl NSObjectNSScriptObjectSpecifiers for NSObject {}
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Foundation_NSIndexSpecifier")]

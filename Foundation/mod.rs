@@ -431,6 +431,7 @@ pub use self::__NSAppleScript::NSAppleScriptErrorNumber;
 pub use self::__NSAppleScript::NSAppleScriptErrorRange;
 #[cfg(feature = "Foundation_NSArchiver")]
 pub use self::__NSArchiver::NSArchiver;
+pub use self::__NSArchiver::NSObjectNSArchiverCallback;
 #[cfg(feature = "Foundation_NSUnarchiver")]
 pub use self::__NSArchiver::NSUnarchiver;
 pub use self::__NSArray::NSBinarySearchingOptions;
@@ -598,6 +599,7 @@ pub use self::__NSCharacterSet::NSOpenStepUnicodeReservedBase;
 #[cfg(feature = "Foundation_NSClassDescription")]
 pub use self::__NSClassDescription::NSClassDescription;
 pub use self::__NSClassDescription::NSClassDescriptionNeededForClassNotification;
+pub use self::__NSClassDescription::NSObjectNSClassDescriptionPrimitives;
 #[cfg(feature = "Foundation_NSCoder")]
 pub use self::__NSCoder::NSCoder;
 pub use self::__NSCoder::NSDecodingFailurePolicy;
@@ -788,6 +790,7 @@ pub use self::__NSError::NSLocalizedRecoverySuggestionErrorKey;
 pub use self::__NSError::NSMachErrorDomain;
 pub use self::__NSError::NSMultipleUnderlyingErrorsKey;
 pub use self::__NSError::NSOSStatusErrorDomain;
+pub use self::__NSError::NSObjectNSErrorRecoveryAttempting;
 pub use self::__NSError::NSPOSIXErrorDomain;
 pub use self::__NSError::NSRecoveryAttempterErrorKey;
 pub use self::__NSError::NSStringEncodingErrorKey;
@@ -1170,6 +1173,7 @@ pub use self::__NSKeyValueCoding::NSDistinctUnionOfSetsKeyValueOperator;
 pub use self::__NSKeyValueCoding::NSKeyValueOperator;
 pub use self::__NSKeyValueCoding::NSMaximumKeyValueOperator;
 pub use self::__NSKeyValueCoding::NSMinimumKeyValueOperator;
+pub use self::__NSKeyValueCoding::NSObjectNSKeyValueCoding;
 pub use self::__NSKeyValueCoding::NSSumKeyValueOperator;
 pub use self::__NSKeyValueCoding::NSUndefinedKeyException;
 pub use self::__NSKeyValueCoding::NSUnionOfArraysKeyValueOperator;
@@ -1184,6 +1188,10 @@ pub use self::__NSKeyValueObserving::NSKeyValueChangeNotificationIsPriorKey;
 pub use self::__NSKeyValueObserving::NSKeyValueChangeOldKey;
 pub use self::__NSKeyValueObserving::NSKeyValueObservingOptions;
 pub use self::__NSKeyValueObserving::NSKeyValueSetMutationKind;
+pub use self::__NSKeyValueObserving::NSObjectNSKeyValueObserverNotification;
+pub use self::__NSKeyValueObserving::NSObjectNSKeyValueObserverRegistration;
+pub use self::__NSKeyValueObserving::NSObjectNSKeyValueObserving;
+pub use self::__NSKeyValueObserving::NSObjectNSKeyValueObservingCustomization;
 pub use self::__NSKeyValueObserving::{
     NSKeyValueChangeInsertion, NSKeyValueChangeRemoval, NSKeyValueChangeReplacement,
     NSKeyValueChangeSetting,
@@ -1205,6 +1213,8 @@ pub use self::__NSKeyedArchiver::NSKeyedArchiverDelegate;
 #[cfg(feature = "Foundation_NSKeyedUnarchiver")]
 pub use self::__NSKeyedArchiver::NSKeyedUnarchiver;
 pub use self::__NSKeyedArchiver::NSKeyedUnarchiverDelegate;
+pub use self::__NSKeyedArchiver::NSObjectNSKeyedArchiverObjectSubstitution;
+pub use self::__NSKeyedArchiver::NSObjectNSKeyedUnarchiverObjectSubstitution;
 #[cfg(feature = "Foundation_NSLengthFormatter")]
 pub use self::__NSLengthFormatter::NSLengthFormatter;
 pub use self::__NSLengthFormatter::NSLengthFormatterUnit;
@@ -1745,8 +1755,11 @@ pub use self::__NSObject::NSDecrementExtraRefCountWasZero;
 pub use self::__NSObject::NSDiscardableContent;
 pub use self::__NSObject::NSExtraRefCount;
 pub use self::__NSObject::NSIncrementExtraRefCount;
+pub use self::__NSObject::NSObjectNSCoderMethods;
+pub use self::__NSObject::NSObjectNSDiscardableContentProxy;
 pub use self::__NSObject::NSSecureCoding;
 pub use self::__NSObject::NSShouldRetainWithZone;
+pub use self::__NSObjectScripting::NSObjectNSScripting;
 #[cfg(feature = "Foundation_NSBlockOperation")]
 pub use self::__NSOperation::NSBlockOperation;
 #[cfg(feature = "Foundation_NSInvocationOperation")]
@@ -1971,11 +1984,13 @@ pub use self::__NSRelativeDateTimeFormatter::{
     NSRelativeDateTimeFormatterUnitsStyleShort, NSRelativeDateTimeFormatterUnitsStyleSpellOut,
 };
 pub use self::__NSRunLoop::NSDefaultRunLoopMode;
+pub use self::__NSRunLoop::NSObjectNSDelayedPerforming;
 #[cfg(feature = "Foundation_NSRunLoop")]
 pub use self::__NSRunLoop::NSRunLoop;
 pub use self::__NSRunLoop::NSRunLoopCommonModes;
 #[cfg(feature = "Foundation_NSScanner")]
 pub use self::__NSScanner::NSScanner;
+pub use self::__NSScriptClassDescription::NSObjectNSScriptClassDescription;
 #[cfg(feature = "Foundation_NSScriptClassDescription")]
 pub use self::__NSScriptClassDescription::NSScriptClassDescription;
 #[cfg(feature = "Foundation_NSScriptCoercionHandler")]
@@ -1993,6 +2008,7 @@ pub use self::__NSScriptCommand::{
 pub use self::__NSScriptCommandDescription::NSScriptCommandDescription;
 #[cfg(feature = "Foundation_NSScriptExecutionContext")]
 pub use self::__NSScriptExecutionContext::NSScriptExecutionContext;
+pub use self::__NSScriptKeyValueCoding::NSObjectNSScriptKeyValueCoding;
 pub use self::__NSScriptKeyValueCoding::NSOperationNotSupportedForKeyException;
 #[cfg(feature = "Foundation_NSIndexSpecifier")]
 pub use self::__NSScriptObjectSpecifiers::NSIndexSpecifier;
@@ -2001,6 +2017,7 @@ pub use self::__NSScriptObjectSpecifiers::NSInsertionPosition;
 pub use self::__NSScriptObjectSpecifiers::NSMiddleSpecifier;
 #[cfg(feature = "Foundation_NSNameSpecifier")]
 pub use self::__NSScriptObjectSpecifiers::NSNameSpecifier;
+pub use self::__NSScriptObjectSpecifiers::NSObjectNSScriptObjectSpecifiers;
 #[cfg(feature = "Foundation_NSPositionalSpecifier")]
 pub use self::__NSScriptObjectSpecifiers::NSPositionalSpecifier;
 #[cfg(feature = "Foundation_NSPropertySpecifier")]
@@ -2059,6 +2076,8 @@ pub use self::__NSScriptStandardSuiteCommands::{
 pub use self::__NSScriptSuiteRegistry::NSScriptSuiteRegistry;
 #[cfg(feature = "Foundation_NSLogicalTest")]
 pub use self::__NSScriptWhoseTests::NSLogicalTest;
+pub use self::__NSScriptWhoseTests::NSObjectNSComparisonMethods;
+pub use self::__NSScriptWhoseTests::NSObjectNSScriptingComparisonMethods;
 #[cfg(feature = "Foundation_NSScriptWhoseTest")]
 pub use self::__NSScriptWhoseTests::NSScriptWhoseTest;
 #[cfg(feature = "Foundation_NSSpecifierTest")]
@@ -2222,6 +2241,7 @@ pub use self::__NSTextCheckingResult::{
     NSTextCheckingTypeTransitInformation,
 };
 pub use self::__NSThread::NSDidBecomeSingleThreadedNotification;
+pub use self::__NSThread::NSObjectNSThreadPerformAdditions;
 #[cfg(feature = "Foundation_NSThread")]
 pub use self::__NSThread::NSThread;
 pub use self::__NSThread::NSThreadWillExitNotification;

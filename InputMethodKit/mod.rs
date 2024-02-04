@@ -35,5 +35,6 @@ pub use self::__IMKCandidates::{
 pub use self::__IMKInputController::IMKInputController;
 pub use self::__IMKInputController::IMKMouseHandling;
 pub use self::__IMKInputController::IMKStateSetting;
+pub use self::__IMKInputController::NSObjectIMKServerInput;
 #[cfg(feature = "InputMethodKit_IMKServer")]
 pub use self::__IMKServer::IMKServer;

@@ -68,4 +68,35 @@ extern_methods!(
     }
 );
 
+extern_category!(
+    /// Category "NSClassDescriptionPrimitives" on [`NSObject`].
+    #[doc(alias = "NSClassDescriptionPrimitives")]
+    pub unsafe trait NSObjectNSClassDescriptionPrimitives {
+        #[cfg(feature = "Foundation_NSClassDescription")]
+        #[method_id(@__retain_semantics Other classDescription)]
+        unsafe fn classDescription(&self) -> Id<NSClassDescription>;
+
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[method_id(@__retain_semantics Other attributeKeys)]
+        unsafe fn attributeKeys(&self) -> Id<NSArray<NSString>>;
+
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[method_id(@__retain_semantics Other toOneRelationshipKeys)]
+        unsafe fn toOneRelationshipKeys(&self) -> Id<NSArray<NSString>>;
+
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[method_id(@__retain_semantics Other toManyRelationshipKeys)]
+        unsafe fn toManyRelationshipKeys(&self) -> Id<NSArray<NSString>>;
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Other inverseForRelationshipKey:)]
+        unsafe fn inverseForRelationshipKey(
+            &self,
+            relationship_key: &NSString,
+        ) -> Option<Id<NSString>>;
+    }
+
+    unsafe impl NSObjectNSClassDescriptionPrimitives for NSObject {}
+);
+
 extern_static!(NSClassDescriptionNeededForClassNotification: &'static NSNotificationName);

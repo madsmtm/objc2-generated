@@ -4,3 +4,69 @@ use crate::common::*;
 use crate::Foundation::*;
 
 extern_static!(NSOperationNotSupportedForKeyException: &'static NSString);
+
+extern_category!(
+    /// Category "NSScriptKeyValueCoding" on [`NSObject`].
+    #[doc(alias = "NSScriptKeyValueCoding")]
+    pub unsafe trait NSObjectNSScriptKeyValueCoding {
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Other valueAtIndex:inPropertyWithKey:)]
+        unsafe fn valueAtIndex_inPropertyWithKey(
+            &self,
+            index: NSUInteger,
+            key: &NSString,
+        ) -> Option<Id<AnyObject>>;
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Other valueWithName:inPropertyWithKey:)]
+        unsafe fn valueWithName_inPropertyWithKey(
+            &self,
+            name: &NSString,
+            key: &NSString,
+        ) -> Option<Id<AnyObject>>;
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Other valueWithUniqueID:inPropertyWithKey:)]
+        unsafe fn valueWithUniqueID_inPropertyWithKey(
+            &self,
+            unique_id: &AnyObject,
+            key: &NSString,
+        ) -> Option<Id<AnyObject>>;
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method(insertValue:atIndex:inPropertyWithKey:)]
+        unsafe fn insertValue_atIndex_inPropertyWithKey(
+            &self,
+            value: &AnyObject,
+            index: NSUInteger,
+            key: &NSString,
+        );
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method(removeValueAtIndex:fromPropertyWithKey:)]
+        unsafe fn removeValueAtIndex_fromPropertyWithKey(&self, index: NSUInteger, key: &NSString);
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method(replaceValueAtIndex:inPropertyWithKey:withValue:)]
+        unsafe fn replaceValueAtIndex_inPropertyWithKey_withValue(
+            &self,
+            index: NSUInteger,
+            key: &NSString,
+            value: &AnyObject,
+        );
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method(insertValue:inPropertyWithKey:)]
+        unsafe fn insertValue_inPropertyWithKey(&self, value: &AnyObject, key: &NSString);
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Other coerceValue:forKey:)]
+        unsafe fn coerceValue_forKey(
+            &self,
+            value: Option<&AnyObject>,
+            key: &NSString,
+        ) -> Option<Id<AnyObject>>;
+    }
+
+    unsafe impl NSObjectNSScriptKeyValueCoding for NSObject {}
+);

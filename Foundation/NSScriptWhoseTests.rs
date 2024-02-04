@@ -173,3 +173,72 @@ extern_methods!(
         pub unsafe fn new() -> Id<Self>;
     }
 );
+
+extern_category!(
+    /// Category "NSComparisonMethods" on [`NSObject`].
+    #[doc(alias = "NSComparisonMethods")]
+    pub unsafe trait NSObjectNSComparisonMethods {
+        #[method(isEqualTo:)]
+        unsafe fn isEqualTo(&self, object: Option<&AnyObject>) -> bool;
+
+        #[method(isLessThanOrEqualTo:)]
+        unsafe fn isLessThanOrEqualTo(&self, object: Option<&AnyObject>) -> bool;
+
+        #[method(isLessThan:)]
+        unsafe fn isLessThan(&self, object: Option<&AnyObject>) -> bool;
+
+        #[method(isGreaterThanOrEqualTo:)]
+        unsafe fn isGreaterThanOrEqualTo(&self, object: Option<&AnyObject>) -> bool;
+
+        #[method(isGreaterThan:)]
+        unsafe fn isGreaterThan(&self, object: Option<&AnyObject>) -> bool;
+
+        #[method(isNotEqualTo:)]
+        unsafe fn isNotEqualTo(&self, object: Option<&AnyObject>) -> bool;
+
+        #[method(doesContain:)]
+        unsafe fn doesContain(&self, object: &AnyObject) -> bool;
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method(isLike:)]
+        unsafe fn isLike(&self, object: &NSString) -> bool;
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method(isCaseInsensitiveLike:)]
+        unsafe fn isCaseInsensitiveLike(&self, object: &NSString) -> bool;
+    }
+
+    unsafe impl NSObjectNSComparisonMethods for NSObject {}
+);
+
+extern_category!(
+    /// Category "NSScriptingComparisonMethods" on [`NSObject`].
+    #[doc(alias = "NSScriptingComparisonMethods")]
+    pub unsafe trait NSObjectNSScriptingComparisonMethods {
+        #[method(scriptingIsEqualTo:)]
+        unsafe fn scriptingIsEqualTo(&self, object: &AnyObject) -> bool;
+
+        #[method(scriptingIsLessThanOrEqualTo:)]
+        unsafe fn scriptingIsLessThanOrEqualTo(&self, object: &AnyObject) -> bool;
+
+        #[method(scriptingIsLessThan:)]
+        unsafe fn scriptingIsLessThan(&self, object: &AnyObject) -> bool;
+
+        #[method(scriptingIsGreaterThanOrEqualTo:)]
+        unsafe fn scriptingIsGreaterThanOrEqualTo(&self, object: &AnyObject) -> bool;
+
+        #[method(scriptingIsGreaterThan:)]
+        unsafe fn scriptingIsGreaterThan(&self, object: &AnyObject) -> bool;
+
+        #[method(scriptingBeginsWith:)]
+        unsafe fn scriptingBeginsWith(&self, object: &AnyObject) -> bool;
+
+        #[method(scriptingEndsWith:)]
+        unsafe fn scriptingEndsWith(&self, object: &AnyObject) -> bool;
+
+        #[method(scriptingContains:)]
+        unsafe fn scriptingContains(&self, object: &AnyObject) -> bool;
+    }
+
+    unsafe impl NSObjectNSScriptingComparisonMethods for NSObject {}
+);

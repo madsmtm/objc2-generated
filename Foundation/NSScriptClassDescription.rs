@@ -144,3 +144,18 @@ extern_methods!(
         pub unsafe fn isReadOnlyKey(&self, key: &NSString) -> bool;
     }
 );
+
+extern_category!(
+    /// Category "NSScriptClassDescription" on [`NSObject`].
+    #[doc(alias = "NSScriptClassDescription")]
+    pub unsafe trait NSObjectNSScriptClassDescription {
+        #[method(classCode)]
+        unsafe fn classCode(&self) -> FourCharCode;
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Other className)]
+        unsafe fn className(&self) -> Id<NSString>;
+    }
+
+    unsafe impl NSObjectNSScriptClassDescription for NSObject {}
+);

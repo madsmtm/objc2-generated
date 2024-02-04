@@ -621,6 +621,7 @@ pub use self::__NSAccessibility::NSAccessibilityUnignoredChildren;
 #[cfg(feature = "Foundation_NSArray")]
 pub use self::__NSAccessibility::NSAccessibilityUnignoredChildrenForOnlyChild;
 pub use self::__NSAccessibility::NSAccessibilityUnignoredDescendant;
+pub use self::__NSAccessibility::NSObjectNSAccessibility;
 pub use self::__NSAccessibility::NSWorkspaceAccessibilityDisplayOptionsDidChangeNotification;
 pub use self::__NSAccessibilityColor::NSAccessibilityColor;
 pub use self::__NSAccessibilityConstants::NSAccessibilityActionName;
@@ -2882,6 +2883,7 @@ pub use self::__NSKeyValueBinding::NSNoSelectionPlaceholderBindingOption;
 pub use self::__NSKeyValueBinding::NSNotApplicableMarker;
 pub use self::__NSKeyValueBinding::NSNotApplicablePlaceholderBindingOption;
 pub use self::__NSKeyValueBinding::NSNullPlaceholderBindingOption;
+pub use self::__NSKeyValueBinding::NSObjectNSKeyValueBindingCreation;
 pub use self::__NSKeyValueBinding::NSObservedKeyPathKey;
 pub use self::__NSKeyValueBinding::NSObservedObjectKey;
 pub use self::__NSKeyValueBinding::NSOffStateImageBinding;
@@ -3080,6 +3082,7 @@ pub use self::__NSNib::NSNib;
 pub use self::__NSNib::NSNibName;
 pub use self::__NSNib::NSNibOwner;
 pub use self::__NSNib::NSNibTopLevelObjects;
+pub use self::__NSNibLoading::NSObjectNSNibAwaking;
 #[cfg(feature = "AppKit_NSObjectController")]
 pub use self::__NSObjectController::NSObjectController;
 pub use self::__NSOpenGL::NSOpenGLCPCurrentRendererID;

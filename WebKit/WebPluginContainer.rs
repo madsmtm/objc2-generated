@@ -4,3 +4,31 @@ use crate::common::*;
 use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::WebKit::*;
+
+extern_category!(
+    /// Category "WebPlugInContainer" on [`NSObject`].
+    #[doc(alias = "WebPlugInContainer")]
+    pub unsafe trait NSObjectWebPlugInContainer {
+        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURLRequest"))]
+        #[method(webPlugInContainerLoadRequest:inFrame:)]
+        unsafe fn webPlugInContainerLoadRequest_inFrame(
+            &self,
+            request: Option<&NSURLRequest>,
+            target: Option<&NSString>,
+        );
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method(webPlugInContainerShowStatus:)]
+        unsafe fn webPlugInContainerShowStatus(&self, message: Option<&NSString>);
+
+        #[cfg(feature = "AppKit_NSColor")]
+        #[method_id(@__retain_semantics Other webPlugInContainerSelectionColor)]
+        unsafe fn webPlugInContainerSelectionColor(&self) -> Option<Id<NSColor>>;
+
+        #[cfg(feature = "WebKit_WebFrame")]
+        #[method_id(@__retain_semantics Other webFrame)]
+        unsafe fn webFrame(&self) -> Option<Id<WebFrame>>;
+    }
+
+    unsafe impl NSObjectWebPlugInContainer for NSObject {}
+);

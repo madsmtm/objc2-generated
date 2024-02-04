@@ -92,6 +92,55 @@ extern_static!(NSObservedKeyPathKey: &'static NSBindingInfoKey);
 
 extern_static!(NSOptionsKey: &'static NSBindingInfoKey);
 
+extern_category!(
+    /// Category "NSKeyValueBindingCreation" on [`NSObject`].
+    #[doc(alias = "NSKeyValueBindingCreation")]
+    pub unsafe trait NSObjectNSKeyValueBindingCreation {
+        #[method(exposeBinding:)]
+        unsafe fn exposeBinding(binding: &NSBindingName);
+
+        #[cfg(feature = "Foundation_NSArray")]
+        #[method_id(@__retain_semantics Other exposedBindings)]
+        unsafe fn exposedBindings(&self) -> Id<NSArray<NSBindingName>>;
+
+        #[method(valueClassForBinding:)]
+        unsafe fn valueClassForBinding(&self, binding: &NSBindingName)
+            -> Option<&'static AnyClass>;
+
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[method(bind:toObject:withKeyPath:options:)]
+        unsafe fn bind_toObject_withKeyPath_options(
+            &self,
+            binding: &NSBindingName,
+            observable: &AnyObject,
+            key_path: &NSString,
+            options: Option<&NSDictionary<NSBindingOption, AnyObject>>,
+        );
+
+        #[method(unbind:)]
+        unsafe fn unbind(&self, binding: &NSBindingName);
+
+        #[cfg(feature = "Foundation_NSDictionary")]
+        #[method_id(@__retain_semantics Other infoForBinding:)]
+        unsafe fn infoForBinding(
+            &self,
+            binding: &NSBindingName,
+        ) -> Option<Id<NSDictionary<NSBindingInfoKey, AnyObject>>>;
+
+        #[cfg(all(
+            feature = "CoreData_NSAttributeDescription",
+            feature = "Foundation_NSArray"
+        ))]
+        #[method_id(@__retain_semantics Other optionDescriptionsForBinding:)]
+        unsafe fn optionDescriptionsForBinding(
+            &self,
+            binding: &NSBindingName,
+        ) -> Id<NSArray<NSAttributeDescription>>;
+    }
+
+    unsafe impl NSObjectNSKeyValueBindingCreation for NSObject {}
+);
+
 extern_protocol!(
     pub unsafe trait NSEditor: NSObjectProtocol + IsMainThreadOnly {
         #[method(discardEditing)]

@@ -917,6 +917,8 @@ pub use self::__WebKitErrors::{
     WebKitErrorCannotShowMIMEType, WebKitErrorCannotShowURL,
     WebKitErrorFrameLoadInterruptedByPolicyChange,
 };
+pub use self::__WebPlugin::NSObjectWebPlugIn;
+pub use self::__WebPluginContainer::NSObjectWebPlugInContainer;
 pub use self::__WebPluginViewFactory::WebPlugInAttributesKey;
 pub use self::__WebPluginViewFactory::WebPlugInBaseURLKey;
 pub use self::__WebPluginViewFactory::WebPlugInContainerKey;
@@ -945,6 +947,7 @@ pub use self::__WebPreferences::{
 #[cfg(feature = "WebKit_WebResource")]
 pub use self::__WebResource::WebResource;
 pub use self::__WebResourceLoadDelegate::WebResourceLoadDelegate;
+pub use self::__WebScriptObject::NSObjectWebScripting;
 #[cfg(feature = "WebKit_WebScriptObject")]
 pub use self::__WebScriptObject::WebScriptObject;
 #[cfg(feature = "WebKit_WebUndefined")]

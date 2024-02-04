@@ -5,6 +5,46 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::WebKit::*;
 
+extern_category!(
+    /// Category "WebScripting" on [`NSObject`].
+    #[doc(alias = "WebScripting")]
+    pub unsafe trait NSObjectWebScripting {
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Other webScriptNameForSelector:)]
+        unsafe fn webScriptNameForSelector(selector: Option<Sel>) -> Option<Id<NSString>>;
+
+        #[method(isSelectorExcludedFromWebScript:)]
+        unsafe fn isSelectorExcludedFromWebScript(selector: Option<Sel>) -> bool;
+
+        #[cfg(feature = "Foundation_NSString")]
+        #[method_id(@__retain_semantics Other webScriptNameForKey:)]
+        unsafe fn webScriptNameForKey(name: *mut c_char) -> Option<Id<NSString>>;
+
+        #[method(isKeyExcludedFromWebScript:)]
+        unsafe fn isKeyExcludedFromWebScript(name: *mut c_char) -> bool;
+
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[method_id(@__retain_semantics Other invokeUndefinedMethodFromWebScript:withArguments:)]
+        unsafe fn invokeUndefinedMethodFromWebScript_withArguments(
+            &self,
+            name: Option<&NSString>,
+            arguments: Option<&NSArray>,
+        ) -> Option<Id<AnyObject>>;
+
+        #[cfg(feature = "Foundation_NSArray")]
+        #[method_id(@__retain_semantics Other invokeDefaultMethodWithArguments:)]
+        unsafe fn invokeDefaultMethodWithArguments(
+            &self,
+            arguments: Option<&NSArray>,
+        ) -> Option<Id<AnyObject>>;
+
+        #[method(finalizeForWebScript)]
+        unsafe fn finalizeForWebScript(&self);
+    }
+
+    unsafe impl NSObjectWebScripting for NSObject {}
+);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "WebKit_WebScriptObject")]

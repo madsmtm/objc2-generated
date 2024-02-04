@@ -104,6 +104,42 @@ extern_methods!(
     }
 );
 
+extern_category!(
+    /// Category "NSDelayedPerforming" on [`NSObject`].
+    #[doc(alias = "NSDelayedPerforming")]
+    pub unsafe trait NSObjectNSDelayedPerforming {
+        #[cfg(feature = "Foundation_NSArray")]
+        #[method(performSelector:withObject:afterDelay:inModes:)]
+        unsafe fn performSelector_withObject_afterDelay_inModes(
+            &self,
+            a_selector: Sel,
+            an_argument: Option<&AnyObject>,
+            delay: NSTimeInterval,
+            modes: &NSArray<NSRunLoopMode>,
+        );
+
+        #[method(performSelector:withObject:afterDelay:)]
+        unsafe fn performSelector_withObject_afterDelay(
+            &self,
+            a_selector: Sel,
+            an_argument: Option<&AnyObject>,
+            delay: NSTimeInterval,
+        );
+
+        #[method(cancelPreviousPerformRequestsWithTarget:selector:object:)]
+        unsafe fn cancelPreviousPerformRequestsWithTarget_selector_object(
+            a_target: &AnyObject,
+            a_selector: Sel,
+            an_argument: Option<&AnyObject>,
+        );
+
+        #[method(cancelPreviousPerformRequestsWithTarget:)]
+        unsafe fn cancelPreviousPerformRequestsWithTarget(a_target: &AnyObject);
+    }
+
+    unsafe impl NSObjectNSDelayedPerforming for NSObject {}
+);
+
 extern_methods!(
     /// NSOrderedPerform
     #[cfg(feature = "Foundation_NSRunLoop")]

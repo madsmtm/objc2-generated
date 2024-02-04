@@ -4,3 +4,44 @@ use crate::common::*;
 use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::WebKit::*;
+
+extern_category!(
+    /// Category "WebPlugIn" on [`NSObject`].
+    #[doc(alias = "WebPlugIn")]
+    pub unsafe trait NSObjectWebPlugIn {
+        #[method(webPlugInInitialize)]
+        unsafe fn webPlugInInitialize(&self);
+
+        #[method(webPlugInStart)]
+        unsafe fn webPlugInStart(&self);
+
+        #[method(webPlugInStop)]
+        unsafe fn webPlugInStop(&self);
+
+        #[method(webPlugInDestroy)]
+        unsafe fn webPlugInDestroy(&self);
+
+        #[method(webPlugInSetIsSelected:)]
+        unsafe fn webPlugInSetIsSelected(&self, is_selected: bool);
+
+        #[method_id(@__retain_semantics Other objectForWebScript)]
+        unsafe fn objectForWebScript(&self) -> Option<Id<AnyObject>>;
+
+        #[cfg(feature = "Foundation_NSURLResponse")]
+        #[method(webPlugInMainResourceDidReceiveResponse:)]
+        unsafe fn webPlugInMainResourceDidReceiveResponse(&self, response: Option<&NSURLResponse>);
+
+        #[cfg(feature = "Foundation_NSData")]
+        #[method(webPlugInMainResourceDidReceiveData:)]
+        unsafe fn webPlugInMainResourceDidReceiveData(&self, data: Option<&NSData>);
+
+        #[cfg(feature = "Foundation_NSError")]
+        #[method(webPlugInMainResourceDidFailWithError:)]
+        unsafe fn webPlugInMainResourceDidFailWithError(&self, error: Option<&NSError>);
+
+        #[method(webPlugInMainResourceDidFinishLoading)]
+        unsafe fn webPlugInMainResourceDidFinishLoading(&self);
+    }
+
+    unsafe impl NSObjectWebPlugIn for NSObject {}
+);
