@@ -1564,6 +1564,8 @@ pub use self::__NSButtonCell::{
 };
 #[cfg(feature = "AppKit_NSButtonTouchBarItem")]
 pub use self::__NSButtonTouchBarItem::NSButtonTouchBarItem;
+#[cfg(feature = "CoreImage_CIImage")]
+pub use self::__NSCIImageRep::CIImageNSAppKitAdditions;
 #[cfg(feature = "AppKit_NSCachedImageRep")]
 pub use self::__NSCachedImageRep::NSCachedImageRep;
 #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
@@ -1762,6 +1764,8 @@ pub use self::__NSCollectionViewLayout::{
 #[cfg(feature = "AppKit_NSCollectionViewTransitionLayout")]
 pub use self::__NSCollectionViewTransitionLayout::NSCollectionViewTransitionLayout;
 pub use self::__NSCollectionViewTransitionLayout::NSCollectionViewTransitionLayoutAnimatedKey;
+#[cfg(feature = "CoreImage_CIColor")]
+pub use self::__NSColor::CIColorNSAppKitAdditions;
 pub use self::__NSColor::NSAppKitVersionNumberWithPatternColorLeakFix;
 #[cfg(feature = "AppKit_NSColor")]
 pub use self::__NSColor::NSColor;

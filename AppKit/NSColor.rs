@@ -676,4 +676,18 @@ extern_methods!(
     unsafe impl NSColor {}
 );
 
+extern_category!(
+    /// Category "NSAppKitAdditions" on [`CIColor`].
+    #[doc(alias = "NSAppKitAdditions")]
+    #[cfg(feature = "CoreImage_CIColor")]
+    pub unsafe trait CIColorNSAppKitAdditions {
+        #[cfg(feature = "AppKit_NSColor")]
+        #[method_id(@__retain_semantics Init initWithColor:)]
+        unsafe fn initWithColor(this: Allocated<Self>, color: &NSColor) -> Option<Id<Self>>;
+    }
+
+    #[cfg(feature = "CoreImage_CIColor")]
+    unsafe impl CIColorNSAppKitAdditions for CIColor {}
+);
+
 extern_static!(NSSystemColorsDidChangeNotification: &'static NSNotificationName);
