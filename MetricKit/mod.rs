@@ -3,10 +3,6 @@
 
 //! # Bindings to the `MetricKit` framework
 
-#[path = "../../additions/MetricKit/mod.rs"]
-mod additions;
-pub use self::additions::*;
-
 #[cfg_attr(feature = "apple", link(name = "MetricKit", kind = "framework"))]
 extern "C" {}
 

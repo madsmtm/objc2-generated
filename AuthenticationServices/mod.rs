@@ -3,10 +3,6 @@
 
 //! # Bindings to the `AuthenticationServices` framework
 
-#[path = "../../additions/AuthenticationServices/mod.rs"]
-mod additions;
-pub use self::additions::*;
-
 #[cfg_attr(
     feature = "apple",
     link(name = "AuthenticationServices", kind = "framework")

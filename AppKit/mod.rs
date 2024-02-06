@@ -2,25 +2,6 @@
 // DO NOT EDIT
 
 //! # Bindings to the `AppKit` framework
-//!
-//!
-//! ## Examples
-//!
-//! Implementing `NSApplicationDelegate` for a custom class.
-//!
-//! ```ignore
-#![doc = include_str!("../../../examples/delegate.rs")]
-//! ```
-//!
-//! An example showing basic and a bit more advanced usage of `NSPasteboard`.
-//!
-//! ```ignore
-#![doc = include_str!("../../../examples/nspasteboard.rs")]
-//! ```
-
-#[path = "../../additions/AppKit/mod.rs"]
-mod additions;
-pub use self::additions::*;
 
 #[cfg_attr(feature = "apple", link(name = "AppKit", kind = "framework"))]
 #[cfg_attr(feature = "gnustep-1-7", link(name = "gnustep-gui", kind = "dylib"))]

@@ -2,30 +2,6 @@
 // DO NOT EDIT
 
 //! # Bindings to the `Foundation` framework
-//!
-//! This is the [`std`] equivalent for Objective-C, containing essential data
-//! types, collections, and operating-system services.
-//!
-//! See [Apple's documentation](https://developer.apple.com/documentation/foundation?language=objc).
-//!
-//!
-//! ## Examples
-//!
-//! Basic usage of a few Foundation types.
-//!
-//! ```ignore
-#![doc = include_str!("../../../examples/basic_usage.rs")]
-//! ```
-//!
-//! An example showing how to define your own interfaces to parts that may be missing in `icrate`.
-//!
-//! ```ignore
-#![doc = include_str!("../../../examples/speech_synthesis.rs")]
-//! ```
-
-#[path = "../../additions/Foundation/mod.rs"]
-mod additions;
-pub use self::additions::*;
 
 #[cfg_attr(feature = "apple", link(name = "Foundation", kind = "framework"))]
 #[cfg_attr(feature = "gnustep-1-7", link(name = "gnustep-base", kind = "dylib"))]

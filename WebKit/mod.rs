@@ -2,19 +2,6 @@
 // DO NOT EDIT
 
 //! # Bindings to the `WebKit` framework
-//!
-//!
-//! ## Example
-//!
-//! .
-//!
-//! ```ignore
-#![doc = include_str!("../../../examples/browser.rs")]
-//! ```
-
-#[path = "../../additions/WebKit/mod.rs"]
-mod additions;
-pub use self::additions::*;
 
 #[cfg_attr(feature = "apple", link(name = "WebKit", kind = "framework"))]
 extern "C" {}
