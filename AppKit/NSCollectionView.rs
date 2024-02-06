@@ -1207,24 +1207,6 @@ extern_category!(
 );
 
 extern_methods!(
-    /// Methods declared on superclass `NSSet`
-    ///
-    /// NSCollectionViewAdditions
-    #[cfg(feature = "Foundation_NSMutableSet")]
-    unsafe impl NSMutableSet {
-        #[cfg(feature = "Foundation_NSIndexPath")]
-        #[method_id(@__retain_semantics Other setWithCollectionViewIndexPath:)]
-        pub unsafe fn setWithCollectionViewIndexPath(index_path: &NSIndexPath) -> Id<Self>;
-
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSIndexPath"))]
-        #[method_id(@__retain_semantics Other setWithCollectionViewIndexPaths:)]
-        pub unsafe fn setWithCollectionViewIndexPaths(
-            index_paths: &NSArray<NSIndexPath>,
-        ) -> Id<Self>;
-    }
-);
-
-extern_methods!(
     /// NSDeprecated
     #[cfg(feature = "AppKit_NSCollectionView")]
     unsafe impl NSCollectionView {
