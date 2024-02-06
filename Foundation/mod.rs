@@ -2,6 +2,17 @@
 // DO NOT EDIT
 
 //! # Bindings to the `Foundation` framework
+#![allow(unused_imports)]
+#![allow(deprecated)]
+#![allow(non_snake_case)]
+#![allow(non_camel_case_types)]
+#![allow(non_upper_case_globals)]
+#![allow(missing_docs)]
+#![allow(clippy::too_many_arguments)]
+#![allow(clippy::type_complexity)]
+#![allow(clippy::upper_case_acronyms)]
+#![allow(clippy::identity_op)]
+#![allow(clippy::missing_safety_doc)]
 
 #[cfg_attr(feature = "apple", link(name = "Foundation", kind = "framework"))]
 extern "C" {}
