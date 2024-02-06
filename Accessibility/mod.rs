@@ -3,7 +3,7 @@
 
 //! # Bindings to the `Accessibility` framework
 
-#[cfg_attr(feature = "apple", link(name = "Accessibility", kind = "framework"))]
+#[link(name = "Accessibility", kind = "framework")]
 extern "C" {}
 
 #[path = "AXAudiograph.rs"]

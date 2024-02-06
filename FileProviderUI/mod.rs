@@ -3,7 +3,7 @@
 
 //! # Bindings to the `FileProviderUI` framework
 
-#[cfg_attr(feature = "apple", link(name = "FileProviderUI", kind = "framework"))]
+#[link(name = "FileProviderUI", kind = "framework")]
 extern "C" {}
 
 #[path = "FPUIActionExtensionContext.rs"]

@@ -3,7 +3,7 @@
 
 //! # Bindings to the `ExtensionKit` framework
 
-#[cfg_attr(feature = "apple", link(name = "ExtensionKit", kind = "framework"))]
+#[link(name = "ExtensionKit", kind = "framework")]
 extern "C" {}
 
 #[path = "EXAppExtensionBrowserViewController.rs"]

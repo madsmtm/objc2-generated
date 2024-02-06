@@ -3,7 +3,7 @@
 
 //! # Bindings to the `LinkPresentation` framework
 
-#[cfg_attr(feature = "apple", link(name = "LinkPresentation", kind = "framework"))]
+#[link(name = "LinkPresentation", kind = "framework")]
 extern "C" {}
 
 #[path = "LPError.rs"]

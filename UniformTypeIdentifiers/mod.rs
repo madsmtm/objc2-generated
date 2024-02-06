@@ -3,10 +3,7 @@
 
 //! # Bindings to the `UniformTypeIdentifiers` framework
 
-#[cfg_attr(
-    feature = "apple",
-    link(name = "UniformTypeIdentifiers", kind = "framework")
-)]
+#[link(name = "UniformTypeIdentifiers", kind = "framework")]
 extern "C" {}
 
 #[path = "NSItemProvider_UTType.rs"]

@@ -3,7 +3,7 @@
 
 //! # Bindings to the `BackgroundTasks` framework
 
-#[cfg_attr(feature = "apple", link(name = "BackgroundTasks", kind = "framework"))]
+#[link(name = "BackgroundTasks", kind = "framework")]
 extern "C" {}
 
 #[path = "BGDefines.rs"]

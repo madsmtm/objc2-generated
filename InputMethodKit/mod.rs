@@ -3,7 +3,7 @@
 
 //! # Bindings to the `InputMethodKit` framework
 
-#[cfg_attr(feature = "apple", link(name = "InputMethodKit", kind = "framework"))]
+#[link(name = "InputMethodKit", kind = "framework")]
 extern "C" {}
 
 #[path = "IMKCandidates.rs"]

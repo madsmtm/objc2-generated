@@ -3,7 +3,7 @@
 
 //! # Bindings to the `MailKit` framework
 
-#[cfg_attr(feature = "apple", link(name = "MailKit", kind = "framework"))]
+#[link(name = "MailKit", kind = "framework")]
 extern "C" {}
 
 #[path = "MEAddressAnnotation.rs"]

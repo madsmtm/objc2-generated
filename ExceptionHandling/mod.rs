@@ -3,10 +3,7 @@
 
 //! # Bindings to the `ExceptionHandling` framework
 
-#[cfg_attr(
-    feature = "apple",
-    link(name = "ExceptionHandling", kind = "framework")
-)]
+#[link(name = "ExceptionHandling", kind = "framework")]
 extern "C" {}
 
 #[path = "ExceptionHandlingDefines.rs"]

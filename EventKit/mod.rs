@@ -3,7 +3,7 @@
 
 //! # Bindings to the `EventKit` framework
 
-#[cfg_attr(feature = "apple", link(name = "EventKit", kind = "framework"))]
+#[link(name = "EventKit", kind = "framework")]
 extern "C" {}
 
 #[path = "EKAlarm.rs"]

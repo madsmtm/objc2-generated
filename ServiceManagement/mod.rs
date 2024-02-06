@@ -3,10 +3,7 @@
 
 //! # Bindings to the `ServiceManagement` framework
 
-#[cfg_attr(
-    feature = "apple",
-    link(name = "ServiceManagement", kind = "framework")
-)]
+#[link(name = "ServiceManagement", kind = "framework")]
 extern "C" {}
 
 #[path = "SMAppService.rs"]

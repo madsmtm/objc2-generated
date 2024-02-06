@@ -3,7 +3,7 @@
 
 //! # Bindings to the `CloudKit` framework
 
-#[cfg_attr(feature = "apple", link(name = "CloudKit", kind = "framework"))]
+#[link(name = "CloudKit", kind = "framework")]
 extern "C" {}
 
 #[path = "CKAcceptSharesOperation.rs"]

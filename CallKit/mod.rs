@@ -3,7 +3,7 @@
 
 //! # Bindings to the `CallKit` framework
 
-#[cfg_attr(feature = "apple", link(name = "CallKit", kind = "framework"))]
+#[link(name = "CallKit", kind = "framework")]
 extern "C" {}
 
 #[path = "CXAction.rs"]

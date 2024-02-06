@@ -3,7 +3,7 @@
 
 //! # Bindings to the `MapKit` framework
 
-#[cfg_attr(feature = "apple", link(name = "MapKit", kind = "framework"))]
+#[link(name = "MapKit", kind = "framework")]
 extern "C" {}
 
 #[path = "MKAnnotation.rs"]

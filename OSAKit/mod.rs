@@ -3,7 +3,7 @@
 
 //! # Bindings to the `OSAKit` framework
 
-#[cfg_attr(feature = "apple", link(name = "OSAKit", kind = "framework"))]
+#[link(name = "OSAKit", kind = "framework")]
 extern "C" {}
 
 #[path = "OSALanguage.rs"]

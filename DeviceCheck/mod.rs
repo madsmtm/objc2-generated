@@ -3,7 +3,7 @@
 
 //! # Bindings to the `DeviceCheck` framework
 
-#[cfg_attr(feature = "apple", link(name = "DeviceCheck", kind = "framework"))]
+#[link(name = "DeviceCheck", kind = "framework")]
 extern "C" {}
 
 #[path = "DCAppAttestService.rs"]

@@ -3,7 +3,7 @@
 
 //! # Bindings to the `WebKit` framework
 
-#[cfg_attr(feature = "apple", link(name = "WebKit", kind = "framework"))]
+#[link(name = "WebKit", kind = "framework")]
 extern "C" {}
 
 #[path = "DOM.rs"]

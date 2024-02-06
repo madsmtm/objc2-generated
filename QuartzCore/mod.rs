@@ -3,7 +3,7 @@
 
 //! # Bindings to the `QuartzCore` framework
 
-#[cfg_attr(feature = "apple", link(name = "QuartzCore", kind = "framework"))]
+#[link(name = "QuartzCore", kind = "framework")]
 extern "C" {}
 
 #[path = "CAAnimation.rs"]

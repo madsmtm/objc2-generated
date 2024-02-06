@@ -3,7 +3,7 @@
 
 //! # Bindings to the `ClassKit` framework
 
-#[cfg_attr(feature = "apple", link(name = "ClassKit", kind = "framework"))]
+#[link(name = "ClassKit", kind = "framework")]
 extern "C" {}
 
 #[path = "CLSActivity.rs"]

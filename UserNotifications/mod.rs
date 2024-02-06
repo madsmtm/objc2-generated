@@ -3,10 +3,7 @@
 
 //! # Bindings to the `UserNotifications` framework
 
-#[cfg_attr(
-    feature = "apple",
-    link(name = "UserNotifications", kind = "framework")
-)]
+#[link(name = "UserNotifications", kind = "framework")]
 extern "C" {}
 
 #[path = "NSString_UserNotifications.rs"]

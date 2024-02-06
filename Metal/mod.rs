@@ -3,7 +3,7 @@
 
 //! # Bindings to the `Metal` framework
 
-#[cfg_attr(feature = "apple", link(name = "Metal", kind = "framework"))]
+#[link(name = "Metal", kind = "framework")]
 extern "C" {}
 
 #[path = "MTLAccelerationStructure.rs"]

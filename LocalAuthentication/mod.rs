@@ -3,10 +3,7 @@
 
 //! # Bindings to the `LocalAuthentication` framework
 
-#[cfg_attr(
-    feature = "apple",
-    link(name = "LocalAuthentication", kind = "framework")
-)]
+#[link(name = "LocalAuthentication", kind = "framework")]
 extern "C" {}
 
 #[path = "LABase.rs"]

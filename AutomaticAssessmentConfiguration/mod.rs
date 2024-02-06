@@ -3,10 +3,7 @@
 
 //! # Bindings to the `AutomaticAssessmentConfiguration` framework
 
-#[cfg_attr(
-    feature = "apple",
-    link(name = "AutomaticAssessmentConfiguration", kind = "framework")
-)]
+#[link(name = "AutomaticAssessmentConfiguration", kind = "framework")]
 extern "C" {}
 
 #[path = "AEAssessmentApplication.rs"]

@@ -3,7 +3,7 @@
 
 //! # Bindings to the `CoreWLAN` framework
 
-#[cfg_attr(feature = "apple", link(name = "CoreWLAN", kind = "framework"))]
+#[link(name = "CoreWLAN", kind = "framework")]
 extern "C" {}
 
 #[path = "CWChannel.rs"]

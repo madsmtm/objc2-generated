@@ -3,7 +3,7 @@
 
 //! # Bindings to the `SoundAnalysis` framework
 
-#[cfg_attr(feature = "apple", link(name = "SoundAnalysis", kind = "framework"))]
+#[link(name = "SoundAnalysis", kind = "framework")]
 extern "C" {}
 
 #[path = "SNAnalyzer.rs"]

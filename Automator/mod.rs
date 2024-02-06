@@ -3,7 +3,7 @@
 
 //! # Bindings to the `Automator` framework
 
-#[cfg_attr(feature = "apple", link(name = "Automator", kind = "framework"))]
+#[link(name = "Automator", kind = "framework")]
 extern "C" {}
 
 #[path = "AMAction.rs"]

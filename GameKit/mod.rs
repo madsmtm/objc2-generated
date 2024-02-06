@@ -3,7 +3,7 @@
 
 //! # Bindings to the `GameKit` framework
 
-#[cfg_attr(feature = "apple", link(name = "GameKit", kind = "framework"))]
+#[link(name = "GameKit", kind = "framework")]
 extern "C" {}
 
 #[path = "GKAccessPoint.rs"]

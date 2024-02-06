@@ -3,10 +3,7 @@
 
 //! # Bindings to the `AuthenticationServices` framework
 
-#[cfg_attr(
-    feature = "apple",
-    link(name = "AuthenticationServices", kind = "framework")
-)]
+#[link(name = "AuthenticationServices", kind = "framework")]
 extern "C" {}
 
 #[path = "ASAccountAuthenticationModificationController.rs"]

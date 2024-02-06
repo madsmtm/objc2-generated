@@ -3,7 +3,7 @@
 
 //! # Bindings to the `StoreKit` framework
 
-#[cfg_attr(feature = "apple", link(name = "StoreKit", kind = "framework"))]
+#[link(name = "StoreKit", kind = "framework")]
 extern "C" {}
 
 #[path = "SKANError.rs"]

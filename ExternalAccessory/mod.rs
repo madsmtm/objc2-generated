@@ -3,10 +3,7 @@
 
 //! # Bindings to the `ExternalAccessory` framework
 
-#[cfg_attr(
-    feature = "apple",
-    link(name = "ExternalAccessory", kind = "framework")
-)]
+#[link(name = "ExternalAccessory", kind = "framework")]
 extern "C" {}
 
 #[path = "EAAccessory.rs"]

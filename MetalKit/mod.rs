@@ -3,7 +3,7 @@
 
 //! # Bindings to the `MetalKit` framework
 
-#[cfg_attr(feature = "apple", link(name = "MetalKit", kind = "framework"))]
+#[link(name = "MetalKit", kind = "framework")]
 extern "C" {}
 
 #[path = "MTKDefines.rs"]

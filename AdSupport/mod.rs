@@ -3,7 +3,7 @@
 
 //! # Bindings to the `AdSupport` framework
 
-#[cfg_attr(feature = "apple", link(name = "AdSupport", kind = "framework"))]
+#[link(name = "AdSupport", kind = "framework")]
 extern "C" {}
 
 #[path = "ASIdentifierManager.rs"]

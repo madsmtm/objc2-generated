@@ -3,7 +3,7 @@
 
 //! # Bindings to the `DataDetection` framework
 
-#[cfg_attr(feature = "apple", link(name = "DataDetection", kind = "framework"))]
+#[link(name = "DataDetection", kind = "framework")]
 extern "C" {}
 
 #[path = "DDMatch.rs"]

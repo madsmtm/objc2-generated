@@ -3,7 +3,7 @@
 
 //! # Bindings to the `BackgroundAssets` framework
 
-#[cfg_attr(feature = "apple", link(name = "BackgroundAssets", kind = "framework"))]
+#[link(name = "BackgroundAssets", kind = "framework")]
 extern "C" {}
 
 #[path = "BAAppExtensionInfo.rs"]

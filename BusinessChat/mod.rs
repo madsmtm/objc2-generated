@@ -3,7 +3,7 @@
 
 //! # Bindings to the `BusinessChat` framework
 
-#[cfg_attr(feature = "apple", link(name = "BusinessChat", kind = "framework"))]
+#[link(name = "BusinessChat", kind = "framework")]
 extern "C" {}
 
 #[path = "BCChatAction.rs"]

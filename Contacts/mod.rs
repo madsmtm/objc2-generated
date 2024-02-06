@@ -3,7 +3,7 @@
 
 //! # Bindings to the `Contacts` framework
 
-#[cfg_attr(feature = "apple", link(name = "Contacts", kind = "framework"))]
+#[link(name = "Contacts", kind = "framework")]
 extern "C" {}
 
 #[path = "CNChangeHistoryEvent.rs"]

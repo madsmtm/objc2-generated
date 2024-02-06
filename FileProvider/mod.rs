@@ -3,7 +3,7 @@
 
 //! # Bindings to the `FileProvider` framework
 
-#[cfg_attr(feature = "apple", link(name = "FileProvider", kind = "framework"))]
+#[link(name = "FileProvider", kind = "framework")]
 extern "C" {}
 
 #[path = "NSFileProviderActions.rs"]

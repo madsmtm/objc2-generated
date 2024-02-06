@@ -3,7 +3,7 @@
 
 //! # Bindings to the `Speech` framework
 
-#[cfg_attr(feature = "apple", link(name = "Speech", kind = "framework"))]
+#[link(name = "Speech", kind = "framework")]
 extern "C" {}
 
 #[path = "SFErrors.rs"]

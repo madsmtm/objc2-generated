@@ -3,7 +3,7 @@
 
 //! # Bindings to the `HealthKit` framework
 
-#[cfg_attr(feature = "apple", link(name = "HealthKit", kind = "framework"))]
+#[link(name = "HealthKit", kind = "framework")]
 extern "C" {}
 
 #[path = "HKActivitySummary.rs"]

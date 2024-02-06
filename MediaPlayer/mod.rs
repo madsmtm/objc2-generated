@@ -3,7 +3,7 @@
 
 //! # Bindings to the `MediaPlayer` framework
 
-#[cfg_attr(feature = "apple", link(name = "MediaPlayer", kind = "framework"))]
+#[link(name = "MediaPlayer", kind = "framework")]
 extern "C" {}
 
 #[path = "AVFoundation_MPNowPlayingInfoLanguageOptionAdditions.rs"]

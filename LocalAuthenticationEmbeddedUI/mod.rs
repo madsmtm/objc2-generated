@@ -3,10 +3,7 @@
 
 //! # Bindings to the `LocalAuthenticationEmbeddedUI` framework
 
-#[cfg_attr(
-    feature = "apple",
-    link(name = "LocalAuthenticationEmbeddedUI", kind = "framework")
-)]
+#[link(name = "LocalAuthenticationEmbeddedUI", kind = "framework")]
 extern "C" {}
 
 #[path = "LAAuthenticationView.rs"]

@@ -3,7 +3,7 @@
 
 //! # Bindings to the `CoreLocation` framework
 
-#[cfg_attr(feature = "apple", link(name = "CoreLocation", kind = "framework"))]
+#[link(name = "CoreLocation", kind = "framework")]
 extern "C" {}
 
 #[path = "CLAvailability.rs"]

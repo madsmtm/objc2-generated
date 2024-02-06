@@ -3,7 +3,7 @@
 
 //! # Bindings to the `IdentityLookup` framework
 
-#[cfg_attr(feature = "apple", link(name = "IdentityLookup", kind = "framework"))]
+#[link(name = "IdentityLookup", kind = "framework")]
 extern "C" {}
 
 #[path = "ILBase.rs"]

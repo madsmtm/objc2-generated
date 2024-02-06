@@ -3,7 +3,7 @@
 
 //! # Bindings to the `GameController` framework
 
-#[cfg_attr(feature = "apple", link(name = "GameController", kind = "framework"))]
+#[link(name = "GameController", kind = "framework")]
 extern "C" {}
 
 #[path = "GCAxisElement.rs"]

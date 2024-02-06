@@ -3,7 +3,7 @@
 
 //! # Bindings to the `AdServices` framework
 
-#[cfg_attr(feature = "apple", link(name = "AdServices", kind = "framework"))]
+#[link(name = "AdServices", kind = "framework")]
 extern "C" {}
 
 #[path = "AAAttribution.rs"]

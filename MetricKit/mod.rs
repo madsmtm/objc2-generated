@@ -3,7 +3,7 @@
 
 //! # Bindings to the `MetricKit` framework
 
-#[cfg_attr(feature = "apple", link(name = "MetricKit", kind = "framework"))]
+#[link(name = "MetricKit", kind = "framework")]
 extern "C" {}
 
 #[path = "MXAnimationMetric.rs"]

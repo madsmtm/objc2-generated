@@ -3,7 +3,7 @@
 
 //! # Bindings to the `Photos` framework
 
-#[cfg_attr(feature = "apple", link(name = "Photos", kind = "framework"))]
+#[link(name = "Photos", kind = "framework")]
 extern "C" {}
 
 #[path = "PHAdjustmentData.rs"]
