@@ -3,9 +3,9 @@
 
 //! # Bindings to the `LocalAuthentication` framework
 
-#[path = "../../fixes/LocalAuthentication/mod.rs"]
-mod fixes;
-pub use self::fixes::*;
+#[path = "../../additions/LocalAuthentication/mod.rs"]
+mod additions;
+pub use self::additions::*;
 
 #[cfg_attr(
     feature = "apple",

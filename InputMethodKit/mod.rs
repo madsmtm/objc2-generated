@@ -3,9 +3,9 @@
 
 //! # Bindings to the `InputMethodKit` framework
 
-#[path = "../../fixes/InputMethodKit/mod.rs"]
-mod fixes;
-pub use self::fixes::*;
+#[path = "../../additions/InputMethodKit/mod.rs"]
+mod additions;
+pub use self::additions::*;
 
 #[cfg_attr(feature = "apple", link(name = "InputMethodKit", kind = "framework"))]
 extern "C" {}

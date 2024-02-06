@@ -3,9 +3,9 @@
 
 //! # Bindings to the `MetricKit` framework
 
-#[path = "../../fixes/MetricKit/mod.rs"]
-mod fixes;
-pub use self::fixes::*;
+#[path = "../../additions/MetricKit/mod.rs"]
+mod additions;
+pub use self::additions::*;
 
 #[cfg_attr(feature = "apple", link(name = "MetricKit", kind = "framework"))]
 extern "C" {}

@@ -22,10 +22,6 @@
 mod additions;
 pub use self::additions::*;
 
-#[path = "../../fixes/AppKit/mod.rs"]
-mod fixes;
-pub use self::fixes::*;
-
 #[cfg_attr(feature = "apple", link(name = "AppKit", kind = "framework"))]
 #[cfg_attr(feature = "gnustep-1-7", link(name = "gnustep-gui", kind = "dylib"))]
 extern "C" {}

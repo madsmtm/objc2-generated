@@ -12,9 +12,9 @@
 #![doc = include_str!("../../../examples/browser.rs")]
 //! ```
 
-#[path = "../../fixes/WebKit/mod.rs"]
-mod fixes;
-pub use self::fixes::*;
+#[path = "../../additions/WebKit/mod.rs"]
+mod additions;
+pub use self::additions::*;
 
 #[cfg_attr(feature = "apple", link(name = "WebKit", kind = "framework"))]
 extern "C" {}

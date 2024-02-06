@@ -27,10 +27,6 @@
 mod additions;
 pub use self::additions::*;
 
-#[path = "../../fixes/Foundation/mod.rs"]
-mod fixes;
-pub use self::fixes::*;
-
 #[cfg_attr(feature = "apple", link(name = "Foundation", kind = "framework"))]
 #[cfg_attr(feature = "gnustep-1-7", link(name = "gnustep-base", kind = "dylib"))]
 extern "C" {}

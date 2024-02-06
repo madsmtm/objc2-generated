@@ -3,9 +3,9 @@
 
 //! # Bindings to the `MapKit` framework
 
-#[path = "../../fixes/MapKit/mod.rs"]
-mod fixes;
-pub use self::fixes::*;
+#[path = "../../additions/MapKit/mod.rs"]
+mod additions;
+pub use self::additions::*;
 
 #[cfg_attr(feature = "apple", link(name = "MapKit", kind = "framework"))]
 extern "C" {}

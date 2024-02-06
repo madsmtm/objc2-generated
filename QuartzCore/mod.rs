@@ -7,9 +7,9 @@
 //! the name that people use to refer to it..
 #![doc(alias = "CoreAnimation")]
 
-#[path = "../../fixes/QuartzCore/mod.rs"]
-mod fixes;
-pub use self::fixes::*;
+#[path = "../../additions/QuartzCore/mod.rs"]
+mod additions;
+pub use self::additions::*;
 
 #[cfg_attr(feature = "apple", link(name = "QuartzCore", kind = "framework"))]
 extern "C" {}

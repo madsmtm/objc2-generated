@@ -22,10 +22,6 @@
 mod additions;
 pub use self::additions::*;
 
-#[path = "../../fixes/Metal/mod.rs"]
-mod fixes;
-pub use self::fixes::*;
-
 #[cfg_attr(feature = "apple", link(name = "Metal", kind = "framework"))]
 extern "C" {}
 

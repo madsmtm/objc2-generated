@@ -3,9 +3,9 @@
 
 //! # Bindings to the `GameController` framework
 
-#[path = "../../fixes/GameController/mod.rs"]
-mod fixes;
-pub use self::fixes::*;
+#[path = "../../additions/GameController/mod.rs"]
+mod additions;
+pub use self::additions::*;
 
 #[cfg_attr(feature = "apple", link(name = "GameController", kind = "framework"))]
 extern "C" {}
