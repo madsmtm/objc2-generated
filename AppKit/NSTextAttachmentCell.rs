@@ -9,7 +9,12 @@ extern_protocol!(
     pub unsafe trait NSTextAttachmentCellProtocol: NSObjectProtocol {
         #[cfg(feature = "AppKit_NSView")]
         #[method(drawWithFrame:inView:)]
-        unsafe fn drawWithFrame_inView(&self, cell_frame: NSRect, control_view: Option<&NSView>);
+        unsafe fn drawWithFrame_inView(
+            &self,
+            cell_frame: NSRect,
+            control_view: Option<&NSView>,
+            mtm: MainThreadMarker,
+        );
 
         #[method(wantsToTrackMouse)]
         unsafe fn wantsToTrackMouse(&self, mtm: MainThreadMarker) -> bool;
@@ -21,6 +26,7 @@ extern_protocol!(
             flag: bool,
             cell_frame: NSRect,
             control_view: Option<&NSView>,
+            mtm: MainThreadMarker,
         );
 
         #[cfg(all(feature = "AppKit_NSEvent", feature = "AppKit_NSView"))]
@@ -31,6 +37,7 @@ extern_protocol!(
             cell_frame: NSRect,
             control_view: Option<&NSView>,
             flag: bool,
+            mtm: MainThreadMarker,
         ) -> bool;
 
         #[method(cellSize)]
@@ -54,6 +61,7 @@ extern_protocol!(
             cell_frame: NSRect,
             control_view: Option<&NSView>,
             char_index: NSUInteger,
+            mtm: MainThreadMarker,
         );
 
         #[cfg(all(feature = "AppKit_NSLayoutManager", feature = "AppKit_NSView"))]
@@ -64,6 +72,7 @@ extern_protocol!(
             control_view: Option<&NSView>,
             char_index: NSUInteger,
             layout_manager: &NSLayoutManager,
+            mtm: MainThreadMarker,
         );
 
         #[cfg(all(feature = "AppKit_NSEvent", feature = "AppKit_NSView"))]
@@ -74,6 +83,7 @@ extern_protocol!(
             cell_frame: NSRect,
             control_view: Option<&NSView>,
             char_index: NSUInteger,
+            mtm: MainThreadMarker,
         ) -> bool;
 
         #[cfg(all(feature = "AppKit_NSEvent", feature = "AppKit_NSView"))]
@@ -85,6 +95,7 @@ extern_protocol!(
             control_view: Option<&NSView>,
             char_index: NSUInteger,
             flag: bool,
+            mtm: MainThreadMarker,
         ) -> bool;
 
         #[cfg(feature = "AppKit_NSTextContainer")]

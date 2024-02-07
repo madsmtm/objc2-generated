@@ -49,7 +49,10 @@ extern_methods!(
     unsafe impl MKZoomControl {
         #[cfg(feature = "MapKit_MKMapView")]
         #[method_id(@__retain_semantics Other zoomControlWithMapView:)]
-        pub unsafe fn zoomControlWithMapView(map_view: Option<&MKMapView>) -> Id<Self>;
+        pub unsafe fn zoomControlWithMapView(
+            map_view: Option<&MKMapView>,
+            mtm: MainThreadMarker,
+        ) -> Id<Self>;
 
         #[cfg(feature = "MapKit_MKMapView")]
         #[method_id(@__retain_semantics Other mapView)]

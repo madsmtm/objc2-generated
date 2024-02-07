@@ -49,7 +49,10 @@ extern_methods!(
     unsafe impl MKCompassButton {
         #[cfg(feature = "MapKit_MKMapView")]
         #[method_id(@__retain_semantics Other compassButtonWithMapView:)]
-        pub unsafe fn compassButtonWithMapView(map_view: Option<&MKMapView>) -> Id<Self>;
+        pub unsafe fn compassButtonWithMapView(
+            map_view: Option<&MKMapView>,
+            mtm: MainThreadMarker,
+        ) -> Id<Self>;
 
         #[cfg(feature = "MapKit_MKMapView")]
         #[method_id(@__retain_semantics Other mapView)]

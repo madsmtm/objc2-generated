@@ -126,7 +126,10 @@ extern_methods!(
         pub unsafe fn currentOperation(mtm: MainThreadMarker) -> Option<Id<NSPrintOperation>>;
 
         #[method(setCurrentOperation:)]
-        pub unsafe fn setCurrentOperation(current_operation: Option<&NSPrintOperation>);
+        pub unsafe fn setCurrentOperation(
+            current_operation: Option<&NSPrintOperation>,
+            mtm: MainThreadMarker,
+        );
 
         #[method(isCopyingOperation)]
         pub unsafe fn isCopyingOperation(&self) -> bool;

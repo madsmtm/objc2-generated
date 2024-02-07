@@ -137,6 +137,7 @@ extern_protocol!(
             &self,
             sender: Option<&WebView>,
             request: Option<&NSURLRequest>,
+            mtm: MainThreadMarker,
         ) -> Option<Id<WebView>>;
 
         #[cfg(feature = "WebKit_WebView")]
@@ -153,6 +154,7 @@ extern_protocol!(
             &self,
             sender: Option<&WebView>,
             request: Option<&NSURLRequest>,
+            mtm: MainThreadMarker,
         ) -> Option<Id<WebView>>;
 
         #[cfg(feature = "WebKit_WebView")]
@@ -183,8 +185,11 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other webViewFirstResponder:)]
-        unsafe fn webViewFirstResponder(&self, sender: Option<&WebView>)
-            -> Option<Id<NSResponder>>;
+        unsafe fn webViewFirstResponder(
+            &self,
+            sender: Option<&WebView>,
+            mtm: MainThreadMarker,
+        ) -> Option<Id<NSResponder>>;
 
         #[cfg(all(feature = "AppKit_NSResponder", feature = "WebKit_WebView"))]
         #[deprecated]
