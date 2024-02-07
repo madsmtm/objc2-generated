@@ -6,7 +6,8 @@ use crate::Foundation::*;
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSXMLNodeOptions {
-        NSXMLNodeOptionsNone = 0,
+        #[doc(alias = "NSXMLNodeOptionsNone")]
+        None = 0,
         NSXMLNodeIsCDATA = 1 << 0,
         NSXMLNodeExpandEmptyElement = 1 << 1,
         NSXMLNodeCompactEmptyElement = 1 << 2,

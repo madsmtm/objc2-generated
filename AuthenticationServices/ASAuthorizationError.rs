@@ -10,11 +10,17 @@ extern_static!(ASAuthorizationErrorDomain: &'static NSErrorDomain);
 ns_error_enum!(
     #[underlying(NSInteger)]
     pub enum ASAuthorizationError {
-        ASAuthorizationErrorUnknown = 1000,
-        ASAuthorizationErrorCanceled = 1001,
-        ASAuthorizationErrorInvalidResponse = 1002,
-        ASAuthorizationErrorNotHandled = 1003,
-        ASAuthorizationErrorFailed = 1004,
-        ASAuthorizationErrorNotInteractive = 1005,
+        #[doc(alias = "ASAuthorizationErrorUnknown")]
+        Unknown = 1000,
+        #[doc(alias = "ASAuthorizationErrorCanceled")]
+        Canceled = 1001,
+        #[doc(alias = "ASAuthorizationErrorInvalidResponse")]
+        InvalidResponse = 1002,
+        #[doc(alias = "ASAuthorizationErrorNotHandled")]
+        NotHandled = 1003,
+        #[doc(alias = "ASAuthorizationErrorFailed")]
+        Failed = 1004,
+        #[doc(alias = "ASAuthorizationErrorNotInteractive")]
+        NotInteractive = 1005,
     }
 );

@@ -16,10 +16,14 @@ ns_options!(
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSKeyValueChange {
-        NSKeyValueChangeSetting = 1,
-        NSKeyValueChangeInsertion = 2,
-        NSKeyValueChangeRemoval = 3,
-        NSKeyValueChangeReplacement = 4,
+        #[doc(alias = "NSKeyValueChangeSetting")]
+        Setting = 1,
+        #[doc(alias = "NSKeyValueChangeInsertion")]
+        Insertion = 2,
+        #[doc(alias = "NSKeyValueChangeRemoval")]
+        Removal = 3,
+        #[doc(alias = "NSKeyValueChangeReplacement")]
+        Replacement = 4,
     }
 );
 

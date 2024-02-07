@@ -8,15 +8,24 @@ use crate::Foundation::*;
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSFontPanelModeMask {
-        NSFontPanelModeMaskFace = 1 << 0,
-        NSFontPanelModeMaskSize = 1 << 1,
-        NSFontPanelModeMaskCollection = 1 << 2,
-        NSFontPanelModeMaskUnderlineEffect = 1 << 8,
-        NSFontPanelModeMaskStrikethroughEffect = 1 << 9,
-        NSFontPanelModeMaskTextColorEffect = 1 << 10,
-        NSFontPanelModeMaskDocumentColorEffect = 1 << 11,
-        NSFontPanelModeMaskShadowEffect = 1 << 12,
-        NSFontPanelModeMaskAllEffects = 0xFFF00,
+        #[doc(alias = "NSFontPanelModeMaskFace")]
+        Face = 1 << 0,
+        #[doc(alias = "NSFontPanelModeMaskSize")]
+        Size = 1 << 1,
+        #[doc(alias = "NSFontPanelModeMaskCollection")]
+        Collection = 1 << 2,
+        #[doc(alias = "NSFontPanelModeMaskUnderlineEffect")]
+        UnderlineEffect = 1 << 8,
+        #[doc(alias = "NSFontPanelModeMaskStrikethroughEffect")]
+        StrikethroughEffect = 1 << 9,
+        #[doc(alias = "NSFontPanelModeMaskTextColorEffect")]
+        TextColorEffect = 1 << 10,
+        #[doc(alias = "NSFontPanelModeMaskDocumentColorEffect")]
+        DocumentColorEffect = 1 << 11,
+        #[doc(alias = "NSFontPanelModeMaskShadowEffect")]
+        ShadowEffect = 1 << 12,
+        #[doc(alias = "NSFontPanelModeMaskAllEffects")]
+        AllEffects = 0xFFF00,
         NSFontPanelModesMaskStandardModes = 0xFFFF,
         NSFontPanelModesMaskAllModes = 0xFFFFFFFF,
     }

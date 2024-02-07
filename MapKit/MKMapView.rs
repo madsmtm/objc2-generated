@@ -10,17 +10,22 @@ use crate::MapKit::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MKOverlayLevel {
-        MKOverlayLevelAboveRoads = 0,
-        MKOverlayLevelAboveLabels = 1,
+        #[doc(alias = "MKOverlayLevelAboveRoads")]
+        AboveRoads = 0,
+        #[doc(alias = "MKOverlayLevelAboveLabels")]
+        AboveLabels = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MKUserTrackingMode {
-        MKUserTrackingModeNone = 0,
-        MKUserTrackingModeFollow = 1,
-        MKUserTrackingModeFollowWithHeading = 2,
+        #[doc(alias = "MKUserTrackingModeNone")]
+        None = 0,
+        #[doc(alias = "MKUserTrackingModeFollow")]
+        Follow = 1,
+        #[doc(alias = "MKUserTrackingModeFollowWithHeading")]
+        FollowWithHeading = 2,
     }
 );
 

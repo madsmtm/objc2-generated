@@ -8,27 +8,36 @@ use crate::WebKit::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum WKPermissionDecision {
-        WKPermissionDecisionPrompt = 0,
-        WKPermissionDecisionGrant = 1,
-        WKPermissionDecisionDeny = 2,
+        #[doc(alias = "WKPermissionDecisionPrompt")]
+        Prompt = 0,
+        #[doc(alias = "WKPermissionDecisionGrant")]
+        Grant = 1,
+        #[doc(alias = "WKPermissionDecisionDeny")]
+        Deny = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum WKMediaCaptureType {
-        WKMediaCaptureTypeCamera = 0,
-        WKMediaCaptureTypeMicrophone = 1,
-        WKMediaCaptureTypeCameraAndMicrophone = 2,
+        #[doc(alias = "WKMediaCaptureTypeCamera")]
+        Camera = 0,
+        #[doc(alias = "WKMediaCaptureTypeMicrophone")]
+        Microphone = 1,
+        #[doc(alias = "WKMediaCaptureTypeCameraAndMicrophone")]
+        CameraAndMicrophone = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum WKDialogResult {
-        WKDialogResultShowDefault = 1,
-        WKDialogResultAskAgain = 2,
-        WKDialogResultHandled = 3,
+        #[doc(alias = "WKDialogResultShowDefault")]
+        ShowDefault = 1,
+        #[doc(alias = "WKDialogResultAskAgain")]
+        AskAgain = 2,
+        #[doc(alias = "WKDialogResultHandled")]
+        Handled = 3,
     }
 );
 

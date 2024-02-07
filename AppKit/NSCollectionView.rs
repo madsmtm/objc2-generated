@@ -26,17 +26,28 @@ ns_enum!(
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSCollectionViewScrollPosition {
-        NSCollectionViewScrollPositionNone = 0,
-        NSCollectionViewScrollPositionTop = 1 << 0,
-        NSCollectionViewScrollPositionCenteredVertically = 1 << 1,
-        NSCollectionViewScrollPositionBottom = 1 << 2,
-        NSCollectionViewScrollPositionNearestHorizontalEdge = 1 << 9,
-        NSCollectionViewScrollPositionLeft = 1 << 3,
-        NSCollectionViewScrollPositionCenteredHorizontally = 1 << 4,
-        NSCollectionViewScrollPositionRight = 1 << 5,
-        NSCollectionViewScrollPositionLeadingEdge = 1 << 6,
-        NSCollectionViewScrollPositionTrailingEdge = 1 << 7,
-        NSCollectionViewScrollPositionNearestVerticalEdge = 1 << 8,
+        #[doc(alias = "NSCollectionViewScrollPositionNone")]
+        None = 0,
+        #[doc(alias = "NSCollectionViewScrollPositionTop")]
+        Top = 1 << 0,
+        #[doc(alias = "NSCollectionViewScrollPositionCenteredVertically")]
+        CenteredVertically = 1 << 1,
+        #[doc(alias = "NSCollectionViewScrollPositionBottom")]
+        Bottom = 1 << 2,
+        #[doc(alias = "NSCollectionViewScrollPositionNearestHorizontalEdge")]
+        NearestHorizontalEdge = 1 << 9,
+        #[doc(alias = "NSCollectionViewScrollPositionLeft")]
+        Left = 1 << 3,
+        #[doc(alias = "NSCollectionViewScrollPositionCenteredHorizontally")]
+        CenteredHorizontally = 1 << 4,
+        #[doc(alias = "NSCollectionViewScrollPositionRight")]
+        Right = 1 << 5,
+        #[doc(alias = "NSCollectionViewScrollPositionLeadingEdge")]
+        LeadingEdge = 1 << 6,
+        #[doc(alias = "NSCollectionViewScrollPositionTrailingEdge")]
+        TrailingEdge = 1 << 7,
+        #[doc(alias = "NSCollectionViewScrollPositionNearestVerticalEdge")]
+        NearestVerticalEdge = 1 << 8,
     }
 );
 

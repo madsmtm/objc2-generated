@@ -8,18 +8,24 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSHapticFeedbackPattern {
-        NSHapticFeedbackPatternGeneric = 0,
-        NSHapticFeedbackPatternAlignment = 1,
-        NSHapticFeedbackPatternLevelChange = 2,
+        #[doc(alias = "NSHapticFeedbackPatternGeneric")]
+        Generic = 0,
+        #[doc(alias = "NSHapticFeedbackPatternAlignment")]
+        Alignment = 1,
+        #[doc(alias = "NSHapticFeedbackPatternLevelChange")]
+        LevelChange = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSHapticFeedbackPerformanceTime {
-        NSHapticFeedbackPerformanceTimeDefault = 0,
-        NSHapticFeedbackPerformanceTimeNow = 1,
-        NSHapticFeedbackPerformanceTimeDrawCompleted = 2,
+        #[doc(alias = "NSHapticFeedbackPerformanceTimeDefault")]
+        Default = 0,
+        #[doc(alias = "NSHapticFeedbackPerformanceTimeNow")]
+        Now = 1,
+        #[doc(alias = "NSHapticFeedbackPerformanceTimeDrawCompleted")]
+        DrawCompleted = 2,
     }
 );
 

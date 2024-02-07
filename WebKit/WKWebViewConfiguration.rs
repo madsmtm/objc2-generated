@@ -8,8 +8,10 @@ use crate::WebKit::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum WKUserInterfaceDirectionPolicy {
-        WKUserInterfaceDirectionPolicyContent = 0,
-        WKUserInterfaceDirectionPolicySystem = 1,
+        #[doc(alias = "WKUserInterfaceDirectionPolicyContent")]
+        Content = 0,
+        #[doc(alias = "WKUserInterfaceDirectionPolicySystem")]
+        System = 1,
     }
 );
 

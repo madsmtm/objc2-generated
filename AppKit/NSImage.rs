@@ -16,11 +16,16 @@ extern_static!(NSImageHintUserInterfaceLayoutDirection: &'static NSImageHintKey)
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSImageLoadStatus {
-        NSImageLoadStatusCompleted = 0,
-        NSImageLoadStatusCancelled = 1,
-        NSImageLoadStatusInvalidData = 2,
-        NSImageLoadStatusUnexpectedEOF = 3,
-        NSImageLoadStatusReadError = 4,
+        #[doc(alias = "NSImageLoadStatusCompleted")]
+        Completed = 0,
+        #[doc(alias = "NSImageLoadStatusCancelled")]
+        Cancelled = 1,
+        #[doc(alias = "NSImageLoadStatusInvalidData")]
+        InvalidData = 2,
+        #[doc(alias = "NSImageLoadStatusUnexpectedEOF")]
+        UnexpectedEOF = 3,
+        #[doc(alias = "NSImageLoadStatusReadError")]
+        ReadError = 4,
     }
 );
 
@@ -916,9 +921,12 @@ extern_static!(NSImageNameTouchBarPlayheadTemplate: &'static NSImageName);
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSImageSymbolScale {
-        NSImageSymbolScaleSmall = 1,
-        NSImageSymbolScaleMedium = 2,
-        NSImageSymbolScaleLarge = 3,
+        #[doc(alias = "NSImageSymbolScaleSmall")]
+        Small = 1,
+        #[doc(alias = "NSImageSymbolScaleMedium")]
+        Medium = 2,
+        #[doc(alias = "NSImageSymbolScaleLarge")]
+        Large = 3,
     }
 );
 

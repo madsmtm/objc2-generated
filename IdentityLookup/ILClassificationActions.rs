@@ -7,9 +7,13 @@ use crate::IdentityLookup::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum ILClassificationAction {
-        ILClassificationActionNone = 0,
-        ILClassificationActionReportNotJunk = 1,
-        ILClassificationActionReportJunk = 2,
-        ILClassificationActionReportJunkAndBlockSender = 3,
+        #[doc(alias = "ILClassificationActionNone")]
+        None = 0,
+        #[doc(alias = "ILClassificationActionReportNotJunk")]
+        ReportNotJunk = 1,
+        #[doc(alias = "ILClassificationActionReportJunk")]
+        ReportJunk = 2,
+        #[doc(alias = "ILClassificationActionReportJunkAndBlockSender")]
+        ReportJunkAndBlockSender = 3,
     }
 );

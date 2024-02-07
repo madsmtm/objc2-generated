@@ -75,15 +75,20 @@ ns_options!(
     #[deprecated]
     pub enum WebDragDestinationAction {
         #[deprecated]
-        WebDragDestinationActionNone = 0,
+        #[doc(alias = "WebDragDestinationActionNone")]
+        None = 0,
         #[deprecated]
-        WebDragDestinationActionDHTML = 1,
+        #[doc(alias = "WebDragDestinationActionDHTML")]
+        DHTML = 1,
         #[deprecated]
-        WebDragDestinationActionEdit = 2,
+        #[doc(alias = "WebDragDestinationActionEdit")]
+        Edit = 2,
         #[deprecated]
-        WebDragDestinationActionLoad = 4,
+        #[doc(alias = "WebDragDestinationActionLoad")]
+        Load = 4,
         #[deprecated]
-        WebDragDestinationActionAny = 4294967295,
+        #[doc(alias = "WebDragDestinationActionAny")]
+        Any = 4294967295,
     }
 );
 
@@ -92,17 +97,23 @@ ns_options!(
     #[deprecated]
     pub enum WebDragSourceAction {
         #[deprecated]
-        WebDragSourceActionNone = 0,
+        #[doc(alias = "WebDragSourceActionNone")]
+        None = 0,
         #[deprecated]
-        WebDragSourceActionDHTML = 1,
+        #[doc(alias = "WebDragSourceActionDHTML")]
+        DHTML = 1,
         #[deprecated]
-        WebDragSourceActionImage = 2,
+        #[doc(alias = "WebDragSourceActionImage")]
+        Image = 2,
         #[deprecated]
-        WebDragSourceActionLink = 4,
+        #[doc(alias = "WebDragSourceActionLink")]
+        Link = 4,
         #[deprecated]
-        WebDragSourceActionSelection = 8,
+        #[doc(alias = "WebDragSourceActionSelection")]
+        Selection = 8,
         #[deprecated]
-        WebDragSourceActionAny = 4294967295,
+        #[doc(alias = "WebDragSourceActionAny")]
+        Any = 4294967295,
     }
 );
 

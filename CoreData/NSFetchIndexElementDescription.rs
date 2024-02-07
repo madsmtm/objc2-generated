@@ -7,8 +7,10 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSFetchIndexElementType {
-        NSFetchIndexElementTypeBinary = 0,
-        NSFetchIndexElementTypeRTree = 1,
+        #[doc(alias = "NSFetchIndexElementTypeBinary")]
+        Binary = 0,
+        #[doc(alias = "NSFetchIndexElementTypeRTree")]
+        RTree = 1,
     }
 );
 

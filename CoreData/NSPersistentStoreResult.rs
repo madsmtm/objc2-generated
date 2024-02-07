@@ -7,9 +7,12 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSBatchInsertRequestResultType {
-        NSBatchInsertRequestResultTypeStatusOnly = 0x0,
-        NSBatchInsertRequestResultTypeObjectIDs = 0x1,
-        NSBatchInsertRequestResultTypeCount = 0x2,
+        #[doc(alias = "NSBatchInsertRequestResultTypeStatusOnly")]
+        StatusOnly = 0x0,
+        #[doc(alias = "NSBatchInsertRequestResultTypeObjectIDs")]
+        ObjectIDs = 0x1,
+        #[doc(alias = "NSBatchInsertRequestResultTypeCount")]
+        Count = 0x2,
     }
 );
 
@@ -34,12 +37,18 @@ ns_enum!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSPersistentHistoryResultType {
-        NSPersistentHistoryResultTypeStatusOnly = 0x0,
-        NSPersistentHistoryResultTypeObjectIDs = 0x1,
-        NSPersistentHistoryResultTypeCount = 0x2,
-        NSPersistentHistoryResultTypeTransactionsOnly = 0x3,
-        NSPersistentHistoryResultTypeChangesOnly = 0x4,
-        NSPersistentHistoryResultTypeTransactionsAndChanges = 0x5,
+        #[doc(alias = "NSPersistentHistoryResultTypeStatusOnly")]
+        StatusOnly = 0x0,
+        #[doc(alias = "NSPersistentHistoryResultTypeObjectIDs")]
+        ObjectIDs = 0x1,
+        #[doc(alias = "NSPersistentHistoryResultTypeCount")]
+        Count = 0x2,
+        #[doc(alias = "NSPersistentHistoryResultTypeTransactionsOnly")]
+        TransactionsOnly = 0x3,
+        #[doc(alias = "NSPersistentHistoryResultTypeChangesOnly")]
+        ChangesOnly = 0x4,
+        #[doc(alias = "NSPersistentHistoryResultTypeTransactionsAndChanges")]
+        TransactionsAndChanges = 0x5,
     }
 );
 
@@ -335,8 +344,10 @@ extern_methods!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSPersistentCloudKitContainerEventResultType {
-        NSPersistentCloudKitContainerEventResultTypeEvents = 0,
-        NSPersistentCloudKitContainerEventResultTypeCountEvents = 1,
+        #[doc(alias = "NSPersistentCloudKitContainerEventResultTypeEvents")]
+        Events = 0,
+        #[doc(alias = "NSPersistentCloudKitContainerEventResultTypeCountEvents")]
+        CountEvents = 1,
     }
 );
 

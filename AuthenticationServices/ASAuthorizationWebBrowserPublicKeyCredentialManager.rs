@@ -8,9 +8,18 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationState {
-        ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationStateAuthorized = 0,
-        ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationStateDenied = 1,
-        ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationStateNotDetermined = 2,
+        #[doc(
+            alias = "ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationStateAuthorized"
+        )]
+        Authorized = 0,
+        #[doc(
+            alias = "ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationStateDenied"
+        )]
+        Denied = 1,
+        #[doc(
+            alias = "ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationStateNotDetermined"
+        )]
+        NotDetermined = 2,
     }
 );
 

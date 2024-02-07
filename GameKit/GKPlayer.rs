@@ -73,8 +73,10 @@ extern_methods!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum GKPhotoSize {
-        GKPhotoSizeSmall = 0,
-        GKPhotoSizeNormal = 1,
+        #[doc(alias = "GKPhotoSizeSmall")]
+        Small = 0,
+        #[doc(alias = "GKPhotoSizeNormal")]
+        Normal = 1,
     }
 );
 

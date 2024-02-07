@@ -8,29 +8,40 @@ use crate::WebKit::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum WKMediaPlaybackState {
-        WKMediaPlaybackStateNone = 0,
-        WKMediaPlaybackStatePlaying = 1,
-        WKMediaPlaybackStatePaused = 2,
-        WKMediaPlaybackStateSuspended = 3,
+        #[doc(alias = "WKMediaPlaybackStateNone")]
+        None = 0,
+        #[doc(alias = "WKMediaPlaybackStatePlaying")]
+        Playing = 1,
+        #[doc(alias = "WKMediaPlaybackStatePaused")]
+        Paused = 2,
+        #[doc(alias = "WKMediaPlaybackStateSuspended")]
+        Suspended = 3,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum WKMediaCaptureState {
-        WKMediaCaptureStateNone = 0,
-        WKMediaCaptureStateActive = 1,
-        WKMediaCaptureStateMuted = 2,
+        #[doc(alias = "WKMediaCaptureStateNone")]
+        None = 0,
+        #[doc(alias = "WKMediaCaptureStateActive")]
+        Active = 1,
+        #[doc(alias = "WKMediaCaptureStateMuted")]
+        Muted = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum WKFullscreenState {
-        WKFullscreenStateNotInFullscreen = 0,
-        WKFullscreenStateEnteringFullscreen = 1,
-        WKFullscreenStateInFullscreen = 2,
-        WKFullscreenStateExitingFullscreen = 3,
+        #[doc(alias = "WKFullscreenStateNotInFullscreen")]
+        NotInFullscreen = 0,
+        #[doc(alias = "WKFullscreenStateEnteringFullscreen")]
+        EnteringFullscreen = 1,
+        #[doc(alias = "WKFullscreenStateInFullscreen")]
+        InFullscreen = 2,
+        #[doc(alias = "WKFullscreenStateExitingFullscreen")]
+        ExitingFullscreen = 3,
     }
 );
 

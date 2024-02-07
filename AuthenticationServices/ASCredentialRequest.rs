@@ -8,8 +8,10 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum ASCredentialRequestType {
-        ASCredentialRequestTypePassword = 0,
-        ASCredentialRequestTypePasskeyAssertion = 1,
+        #[doc(alias = "ASCredentialRequestTypePassword")]
+        Password = 0,
+        #[doc(alias = "ASCredentialRequestTypePasskeyAssertion")]
+        PasskeyAssertion = 1,
     }
 );
 

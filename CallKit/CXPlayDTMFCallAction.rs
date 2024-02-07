@@ -7,9 +7,12 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum CXPlayDTMFCallActionType {
-        CXPlayDTMFCallActionTypeSingleTone = 1,
-        CXPlayDTMFCallActionTypeSoftPause = 2,
-        CXPlayDTMFCallActionTypeHardPause = 3,
+        #[doc(alias = "CXPlayDTMFCallActionTypeSingleTone")]
+        SingleTone = 1,
+        #[doc(alias = "CXPlayDTMFCallActionTypeSoftPause")]
+        SoftPause = 2,
+        #[doc(alias = "CXPlayDTMFCallActionTypeHardPause")]
+        HardPause = 3,
     }
 );
 

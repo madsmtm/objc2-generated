@@ -7,8 +7,10 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum AXCustomContentImportance {
-        AXCustomContentImportanceDefault = 0,
-        AXCustomContentImportanceHigh = 1,
+        #[doc(alias = "AXCustomContentImportanceDefault")]
+        Default = 0,
+        #[doc(alias = "AXCustomContentImportanceHigh")]
+        High = 1,
     }
 );
 

@@ -9,10 +9,14 @@ use crate::OSAKit::*;
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum AMLogLevel {
-        AMLogLevelDebug = 0,
-        AMLogLevelInfo = 1,
-        AMLogLevelWarn = 2,
-        AMLogLevelError = 3,
+        #[doc(alias = "AMLogLevelDebug")]
+        Debug = 0,
+        #[doc(alias = "AMLogLevelInfo")]
+        Info = 1,
+        #[doc(alias = "AMLogLevelWarn")]
+        Warn = 2,
+        #[doc(alias = "AMLogLevelError")]
+        Error = 3,
     }
 );
 

@@ -8,10 +8,14 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSMenuItemBadgeType {
-        NSMenuItemBadgeTypeNone = 0,
-        NSMenuItemBadgeTypeUpdates = 1,
-        NSMenuItemBadgeTypeNewItems = 2,
-        NSMenuItemBadgeTypeAlerts = 3,
+        #[doc(alias = "NSMenuItemBadgeTypeNone")]
+        None = 0,
+        #[doc(alias = "NSMenuItemBadgeTypeUpdates")]
+        Updates = 1,
+        #[doc(alias = "NSMenuItemBadgeTypeNewItems")]
+        NewItems = 2,
+        #[doc(alias = "NSMenuItemBadgeTypeAlerts")]
+        Alerts = 3,
     }
 );
 

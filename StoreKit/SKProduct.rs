@@ -8,10 +8,14 @@ use crate::StoreKit::*;
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum SKProductPeriodUnit {
-        SKProductPeriodUnitDay = 0,
-        SKProductPeriodUnitWeek = 1,
-        SKProductPeriodUnitMonth = 2,
-        SKProductPeriodUnitYear = 3,
+        #[doc(alias = "SKProductPeriodUnitDay")]
+        Day = 0,
+        #[doc(alias = "SKProductPeriodUnitWeek")]
+        Week = 1,
+        #[doc(alias = "SKProductPeriodUnitMonth")]
+        Month = 2,
+        #[doc(alias = "SKProductPeriodUnitYear")]
+        Year = 3,
     }
 );
 

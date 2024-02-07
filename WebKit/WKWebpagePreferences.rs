@@ -8,9 +8,12 @@ use crate::WebKit::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum WKContentMode {
-        WKContentModeRecommended = 0,
-        WKContentModeMobile = 1,
-        WKContentModeDesktop = 2,
+        #[doc(alias = "WKContentModeRecommended")]
+        Recommended = 0,
+        #[doc(alias = "WKContentModeMobile")]
+        Mobile = 1,
+        #[doc(alias = "WKContentModeDesktop")]
+        Desktop = 2,
     }
 );
 

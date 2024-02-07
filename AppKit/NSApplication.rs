@@ -202,7 +202,8 @@ ns_options!(
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSApplicationOcclusionState {
-        NSApplicationOcclusionStateVisible = 1 << 1,
+        #[doc(alias = "NSApplicationOcclusionStateVisible")]
+        Visible = 1 << 1,
     }
 );
 
@@ -226,9 +227,12 @@ ns_enum!(
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSApplicationDelegateReply {
-        NSApplicationDelegateReplySuccess = 0,
-        NSApplicationDelegateReplyCancel = 1,
-        NSApplicationDelegateReplyFailure = 2,
+        #[doc(alias = "NSApplicationDelegateReplySuccess")]
+        Success = 0,
+        #[doc(alias = "NSApplicationDelegateReplyCancel")]
+        Cancel = 1,
+        #[doc(alias = "NSApplicationDelegateReplyFailure")]
+        Failure = 2,
     }
 );
 
@@ -1098,10 +1102,14 @@ extern_methods!(
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSRemoteNotificationType {
-        NSRemoteNotificationTypeNone = 0,
-        NSRemoteNotificationTypeBadge = 1 << 0,
-        NSRemoteNotificationTypeSound = 1 << 1,
-        NSRemoteNotificationTypeAlert = 1 << 2,
+        #[doc(alias = "NSRemoteNotificationTypeNone")]
+        None = 0,
+        #[doc(alias = "NSRemoteNotificationTypeBadge")]
+        Badge = 1 << 0,
+        #[doc(alias = "NSRemoteNotificationTypeSound")]
+        Sound = 1 << 1,
+        #[doc(alias = "NSRemoteNotificationTypeAlert")]
+        Alert = 1 << 2,
     }
 );
 

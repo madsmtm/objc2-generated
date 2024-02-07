@@ -42,22 +42,38 @@ extern_static!(NSCalendarIdentifierIslamicUmmAlQura: &'static NSCalendarIdentifi
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSCalendarUnit {
-        NSCalendarUnitEra = 2,
-        NSCalendarUnitYear = 4,
-        NSCalendarUnitMonth = 8,
-        NSCalendarUnitDay = 16,
-        NSCalendarUnitHour = 32,
-        NSCalendarUnitMinute = 64,
-        NSCalendarUnitSecond = 128,
-        NSCalendarUnitWeekday = 512,
-        NSCalendarUnitWeekdayOrdinal = 1024,
-        NSCalendarUnitQuarter = 2048,
-        NSCalendarUnitWeekOfMonth = 4096,
-        NSCalendarUnitWeekOfYear = 8192,
-        NSCalendarUnitYearForWeekOfYear = 16384,
-        NSCalendarUnitNanosecond = 32768,
-        NSCalendarUnitCalendar = 1048576,
-        NSCalendarUnitTimeZone = 2097152,
+        #[doc(alias = "NSCalendarUnitEra")]
+        Era = 2,
+        #[doc(alias = "NSCalendarUnitYear")]
+        Year = 4,
+        #[doc(alias = "NSCalendarUnitMonth")]
+        Month = 8,
+        #[doc(alias = "NSCalendarUnitDay")]
+        Day = 16,
+        #[doc(alias = "NSCalendarUnitHour")]
+        Hour = 32,
+        #[doc(alias = "NSCalendarUnitMinute")]
+        Minute = 64,
+        #[doc(alias = "NSCalendarUnitSecond")]
+        Second = 128,
+        #[doc(alias = "NSCalendarUnitWeekday")]
+        Weekday = 512,
+        #[doc(alias = "NSCalendarUnitWeekdayOrdinal")]
+        WeekdayOrdinal = 1024,
+        #[doc(alias = "NSCalendarUnitQuarter")]
+        Quarter = 2048,
+        #[doc(alias = "NSCalendarUnitWeekOfMonth")]
+        WeekOfMonth = 4096,
+        #[doc(alias = "NSCalendarUnitWeekOfYear")]
+        WeekOfYear = 8192,
+        #[doc(alias = "NSCalendarUnitYearForWeekOfYear")]
+        YearForWeekOfYear = 16384,
+        #[doc(alias = "NSCalendarUnitNanosecond")]
+        Nanosecond = 32768,
+        #[doc(alias = "NSCalendarUnitCalendar")]
+        Calendar = 1048576,
+        #[doc(alias = "NSCalendarUnitTimeZone")]
+        TimeZone = 2097152,
         #[deprecated]
         NSEraCalendarUnit = 2,
         #[deprecated]

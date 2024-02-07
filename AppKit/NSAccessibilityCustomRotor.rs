@@ -8,36 +8,60 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSAccessibilityCustomRotorSearchDirection {
-        NSAccessibilityCustomRotorSearchDirectionPrevious = 0,
-        NSAccessibilityCustomRotorSearchDirectionNext = 1,
+        #[doc(alias = "NSAccessibilityCustomRotorSearchDirectionPrevious")]
+        Previous = 0,
+        #[doc(alias = "NSAccessibilityCustomRotorSearchDirectionNext")]
+        Next = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSAccessibilityCustomRotorType {
-        NSAccessibilityCustomRotorTypeCustom = 0,
-        NSAccessibilityCustomRotorTypeAny = 1,
-        NSAccessibilityCustomRotorTypeAnnotation = 2,
-        NSAccessibilityCustomRotorTypeBoldText = 3,
-        NSAccessibilityCustomRotorTypeHeading = 4,
-        NSAccessibilityCustomRotorTypeHeadingLevel1 = 5,
-        NSAccessibilityCustomRotorTypeHeadingLevel2 = 6,
-        NSAccessibilityCustomRotorTypeHeadingLevel3 = 7,
-        NSAccessibilityCustomRotorTypeHeadingLevel4 = 8,
-        NSAccessibilityCustomRotorTypeHeadingLevel5 = 9,
-        NSAccessibilityCustomRotorTypeHeadingLevel6 = 10,
-        NSAccessibilityCustomRotorTypeImage = 11,
-        NSAccessibilityCustomRotorTypeItalicText = 12,
-        NSAccessibilityCustomRotorTypeLandmark = 13,
-        NSAccessibilityCustomRotorTypeLink = 14,
-        NSAccessibilityCustomRotorTypeList = 15,
-        NSAccessibilityCustomRotorTypeMisspelledWord = 16,
-        NSAccessibilityCustomRotorTypeTable = 17,
-        NSAccessibilityCustomRotorTypeTextField = 18,
-        NSAccessibilityCustomRotorTypeUnderlinedText = 19,
-        NSAccessibilityCustomRotorTypeVisitedLink = 20,
-        NSAccessibilityCustomRotorTypeAudiograph = 21,
+        #[doc(alias = "NSAccessibilityCustomRotorTypeCustom")]
+        Custom = 0,
+        #[doc(alias = "NSAccessibilityCustomRotorTypeAny")]
+        Any = 1,
+        #[doc(alias = "NSAccessibilityCustomRotorTypeAnnotation")]
+        Annotation = 2,
+        #[doc(alias = "NSAccessibilityCustomRotorTypeBoldText")]
+        BoldText = 3,
+        #[doc(alias = "NSAccessibilityCustomRotorTypeHeading")]
+        Heading = 4,
+        #[doc(alias = "NSAccessibilityCustomRotorTypeHeadingLevel1")]
+        HeadingLevel1 = 5,
+        #[doc(alias = "NSAccessibilityCustomRotorTypeHeadingLevel2")]
+        HeadingLevel2 = 6,
+        #[doc(alias = "NSAccessibilityCustomRotorTypeHeadingLevel3")]
+        HeadingLevel3 = 7,
+        #[doc(alias = "NSAccessibilityCustomRotorTypeHeadingLevel4")]
+        HeadingLevel4 = 8,
+        #[doc(alias = "NSAccessibilityCustomRotorTypeHeadingLevel5")]
+        HeadingLevel5 = 9,
+        #[doc(alias = "NSAccessibilityCustomRotorTypeHeadingLevel6")]
+        HeadingLevel6 = 10,
+        #[doc(alias = "NSAccessibilityCustomRotorTypeImage")]
+        Image = 11,
+        #[doc(alias = "NSAccessibilityCustomRotorTypeItalicText")]
+        ItalicText = 12,
+        #[doc(alias = "NSAccessibilityCustomRotorTypeLandmark")]
+        Landmark = 13,
+        #[doc(alias = "NSAccessibilityCustomRotorTypeLink")]
+        Link = 14,
+        #[doc(alias = "NSAccessibilityCustomRotorTypeList")]
+        List = 15,
+        #[doc(alias = "NSAccessibilityCustomRotorTypeMisspelledWord")]
+        MisspelledWord = 16,
+        #[doc(alias = "NSAccessibilityCustomRotorTypeTable")]
+        Table = 17,
+        #[doc(alias = "NSAccessibilityCustomRotorTypeTextField")]
+        TextField = 18,
+        #[doc(alias = "NSAccessibilityCustomRotorTypeUnderlinedText")]
+        UnderlinedText = 19,
+        #[doc(alias = "NSAccessibilityCustomRotorTypeVisitedLink")]
+        VisitedLink = 20,
+        #[doc(alias = "NSAccessibilityCustomRotorTypeAudiograph")]
+        Audiograph = 21,
     }
 );
 

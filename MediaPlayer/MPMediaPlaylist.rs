@@ -8,10 +8,14 @@ use crate::MediaPlayer::*;
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum MPMediaPlaylistAttribute {
-        MPMediaPlaylistAttributeNone = 0,
-        MPMediaPlaylistAttributeOnTheGo = 1 << 0,
-        MPMediaPlaylistAttributeSmart = 1 << 1,
-        MPMediaPlaylistAttributeGenius = 1 << 2,
+        #[doc(alias = "MPMediaPlaylistAttributeNone")]
+        None = 0,
+        #[doc(alias = "MPMediaPlaylistAttributeOnTheGo")]
+        OnTheGo = 1 << 0,
+        #[doc(alias = "MPMediaPlaylistAttributeSmart")]
+        Smart = 1 << 1,
+        #[doc(alias = "MPMediaPlaylistAttributeGenius")]
+        Genius = 1 << 2,
     }
 );
 

@@ -8,24 +8,36 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSGridCellPlacement {
-        NSGridCellPlacementInherited = 0,
-        NSGridCellPlacementNone = 1,
-        NSGridCellPlacementLeading = 2,
-        NSGridCellPlacementTop = NSGridCellPlacement::NSGridCellPlacementLeading.0,
-        NSGridCellPlacementTrailing = 3,
-        NSGridCellPlacementBottom = NSGridCellPlacement::NSGridCellPlacementTrailing.0,
-        NSGridCellPlacementCenter = 4,
-        NSGridCellPlacementFill = 5,
+        #[doc(alias = "NSGridCellPlacementInherited")]
+        Inherited = 0,
+        #[doc(alias = "NSGridCellPlacementNone")]
+        None = 1,
+        #[doc(alias = "NSGridCellPlacementLeading")]
+        Leading = 2,
+        #[doc(alias = "NSGridCellPlacementTop")]
+        Top = NSGridCellPlacement::Leading.0,
+        #[doc(alias = "NSGridCellPlacementTrailing")]
+        Trailing = 3,
+        #[doc(alias = "NSGridCellPlacementBottom")]
+        Bottom = NSGridCellPlacement::Trailing.0,
+        #[doc(alias = "NSGridCellPlacementCenter")]
+        Center = 4,
+        #[doc(alias = "NSGridCellPlacementFill")]
+        Fill = 5,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSGridRowAlignment {
-        NSGridRowAlignmentInherited = 0,
-        NSGridRowAlignmentNone = 1,
-        NSGridRowAlignmentFirstBaseline = 2,
-        NSGridRowAlignmentLastBaseline = 3,
+        #[doc(alias = "NSGridRowAlignmentInherited")]
+        Inherited = 0,
+        #[doc(alias = "NSGridRowAlignmentNone")]
+        None = 1,
+        #[doc(alias = "NSGridRowAlignmentFirstBaseline")]
+        FirstBaseline = 2,
+        #[doc(alias = "NSGridRowAlignmentLastBaseline")]
+        LastBaseline = 3,
     }
 );
 

@@ -8,8 +8,10 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum CKReferenceAction {
-        CKReferenceActionNone = 0,
-        CKReferenceActionDeleteSelf = 1,
+        #[doc(alias = "CKReferenceActionNone")]
+        None = 0,
+        #[doc(alias = "CKReferenceActionDeleteSelf")]
+        DeleteSelf = 1,
     }
 );
 

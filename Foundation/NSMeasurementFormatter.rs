@@ -6,9 +6,12 @@ use crate::Foundation::*;
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSMeasurementFormatterUnitOptions {
-        NSMeasurementFormatterUnitOptionsProvidedUnit = 1 << 0,
-        NSMeasurementFormatterUnitOptionsNaturalScale = 1 << 1,
-        NSMeasurementFormatterUnitOptionsTemperatureWithoutUnit = 1 << 2,
+        #[doc(alias = "NSMeasurementFormatterUnitOptionsProvidedUnit")]
+        ProvidedUnit = 1 << 0,
+        #[doc(alias = "NSMeasurementFormatterUnitOptionsNaturalScale")]
+        NaturalScale = 1 << 1,
+        #[doc(alias = "NSMeasurementFormatterUnitOptionsTemperatureWithoutUnit")]
+        TemperatureWithoutUnit = 1 << 2,
     }
 );
 

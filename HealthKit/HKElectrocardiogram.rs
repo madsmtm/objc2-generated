@@ -9,30 +9,42 @@ use crate::UniformTypeIdentifiers::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKElectrocardiogramLead {
-        HKElectrocardiogramLeadAppleWatchSimilarToLeadI = 1,
+        #[doc(alias = "HKElectrocardiogramLeadAppleWatchSimilarToLeadI")]
+        AppleWatchSimilarToLeadI = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKElectrocardiogramClassification {
-        HKElectrocardiogramClassificationNotSet = 0,
-        HKElectrocardiogramClassificationSinusRhythm = 1,
-        HKElectrocardiogramClassificationAtrialFibrillation = 2,
-        HKElectrocardiogramClassificationInconclusiveLowHeartRate = 3,
-        HKElectrocardiogramClassificationInconclusiveHighHeartRate = 4,
-        HKElectrocardiogramClassificationInconclusivePoorReading = 5,
-        HKElectrocardiogramClassificationInconclusiveOther = 6,
-        HKElectrocardiogramClassificationUnrecognized = 100,
+        #[doc(alias = "HKElectrocardiogramClassificationNotSet")]
+        NotSet = 0,
+        #[doc(alias = "HKElectrocardiogramClassificationSinusRhythm")]
+        SinusRhythm = 1,
+        #[doc(alias = "HKElectrocardiogramClassificationAtrialFibrillation")]
+        AtrialFibrillation = 2,
+        #[doc(alias = "HKElectrocardiogramClassificationInconclusiveLowHeartRate")]
+        InconclusiveLowHeartRate = 3,
+        #[doc(alias = "HKElectrocardiogramClassificationInconclusiveHighHeartRate")]
+        InconclusiveHighHeartRate = 4,
+        #[doc(alias = "HKElectrocardiogramClassificationInconclusivePoorReading")]
+        InconclusivePoorReading = 5,
+        #[doc(alias = "HKElectrocardiogramClassificationInconclusiveOther")]
+        InconclusiveOther = 6,
+        #[doc(alias = "HKElectrocardiogramClassificationUnrecognized")]
+        Unrecognized = 100,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKElectrocardiogramSymptomsStatus {
-        HKElectrocardiogramSymptomsStatusNotSet = 0,
-        HKElectrocardiogramSymptomsStatusNone = 1,
-        HKElectrocardiogramSymptomsStatusPresent = 2,
+        #[doc(alias = "HKElectrocardiogramSymptomsStatusNotSet")]
+        NotSet = 0,
+        #[doc(alias = "HKElectrocardiogramSymptomsStatusNone")]
+        None = 1,
+        #[doc(alias = "HKElectrocardiogramSymptomsStatusPresent")]
+        Present = 2,
     }
 );
 

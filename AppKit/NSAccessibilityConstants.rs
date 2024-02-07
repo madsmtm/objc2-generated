@@ -210,9 +210,12 @@ extern_static!(NSAccessibilityAnnotationLocation: &'static NSAccessibilityAnnota
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSAccessibilityAnnotationPosition {
-        NSAccessibilityAnnotationPositionFullRange = 0,
-        NSAccessibilityAnnotationPositionStart = 1,
-        NSAccessibilityAnnotationPositionEnd = 2,
+        #[doc(alias = "NSAccessibilityAnnotationPositionFullRange")]
+        FullRange = 0,
+        #[doc(alias = "NSAccessibilityAnnotationPositionStart")]
+        Start = 1,
+        #[doc(alias = "NSAccessibilityAnnotationPositionEnd")]
+        End = 2,
     }
 );
 
@@ -271,9 +274,12 @@ extern_static!(NSAccessibilityExtrasMenuBarAttribute: &'static NSAccessibilityAt
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSAccessibilityOrientation {
-        NSAccessibilityOrientationUnknown = 0,
-        NSAccessibilityOrientationVertical = 1,
-        NSAccessibilityOrientationHorizontal = 2,
+        #[doc(alias = "NSAccessibilityOrientationUnknown")]
+        Unknown = 0,
+        #[doc(alias = "NSAccessibilityOrientationVertical")]
+        Vertical = 1,
+        #[doc(alias = "NSAccessibilityOrientationHorizontal")]
+        Horizontal = 2,
     }
 );
 
@@ -356,9 +362,12 @@ extern_static!(NSAccessibilityUnknownSortDirectionValue: &'static NSAccessibilit
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSAccessibilitySortDirection {
-        NSAccessibilitySortDirectionUnknown = 0,
-        NSAccessibilitySortDirectionAscending = 1,
-        NSAccessibilitySortDirectionDescending = 2,
+        #[doc(alias = "NSAccessibilitySortDirectionUnknown")]
+        Unknown = 0,
+        #[doc(alias = "NSAccessibilitySortDirectionAscending")]
+        Ascending = 1,
+        #[doc(alias = "NSAccessibilitySortDirectionDescending")]
+        Descending = 2,
     }
 );
 
@@ -419,14 +428,22 @@ extern_static!(NSAccessibilityUnknownMarkerTypeValue: &'static NSAccessibilityRu
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSAccessibilityRulerMarkerType {
-        NSAccessibilityRulerMarkerTypeUnknown = 0,
-        NSAccessibilityRulerMarkerTypeTabStopLeft = 1,
-        NSAccessibilityRulerMarkerTypeTabStopRight = 2,
-        NSAccessibilityRulerMarkerTypeTabStopCenter = 3,
-        NSAccessibilityRulerMarkerTypeTabStopDecimal = 4,
-        NSAccessibilityRulerMarkerTypeIndentHead = 5,
-        NSAccessibilityRulerMarkerTypeIndentTail = 6,
-        NSAccessibilityRulerMarkerTypeIndentFirstLine = 7,
+        #[doc(alias = "NSAccessibilityRulerMarkerTypeUnknown")]
+        Unknown = 0,
+        #[doc(alias = "NSAccessibilityRulerMarkerTypeTabStopLeft")]
+        TabStopLeft = 1,
+        #[doc(alias = "NSAccessibilityRulerMarkerTypeTabStopRight")]
+        TabStopRight = 2,
+        #[doc(alias = "NSAccessibilityRulerMarkerTypeTabStopCenter")]
+        TabStopCenter = 3,
+        #[doc(alias = "NSAccessibilityRulerMarkerTypeTabStopDecimal")]
+        TabStopDecimal = 4,
+        #[doc(alias = "NSAccessibilityRulerMarkerTypeIndentHead")]
+        IndentHead = 5,
+        #[doc(alias = "NSAccessibilityRulerMarkerTypeIndentTail")]
+        IndentTail = 6,
+        #[doc(alias = "NSAccessibilityRulerMarkerTypeIndentFirstLine")]
+        IndentFirstLine = 7,
     }
 );
 
@@ -447,11 +464,16 @@ extern_static!(NSAccessibilityUnknownUnitValue: &'static NSAccessibilityRulerUni
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSAccessibilityUnits {
-        NSAccessibilityUnitsUnknown = 0,
-        NSAccessibilityUnitsInches = 1,
-        NSAccessibilityUnitsCentimeters = 2,
-        NSAccessibilityUnitsPoints = 3,
-        NSAccessibilityUnitsPicas = 4,
+        #[doc(alias = "NSAccessibilityUnitsUnknown")]
+        Unknown = 0,
+        #[doc(alias = "NSAccessibilityUnitsInches")]
+        Inches = 1,
+        #[doc(alias = "NSAccessibilityUnitsCentimeters")]
+        Centimeters = 2,
+        #[doc(alias = "NSAccessibilityUnitsPoints")]
+        Points = 3,
+        #[doc(alias = "NSAccessibilityUnitsPicas")]
+        Picas = 4,
     }
 );
 

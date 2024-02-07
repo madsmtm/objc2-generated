@@ -8,20 +8,28 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSSplitViewItemBehavior {
-        NSSplitViewItemBehaviorDefault = 0,
-        NSSplitViewItemBehaviorSidebar = 1,
-        NSSplitViewItemBehaviorContentList = 2,
-        NSSplitViewItemBehaviorInspector = 3,
+        #[doc(alias = "NSSplitViewItemBehaviorDefault")]
+        Default = 0,
+        #[doc(alias = "NSSplitViewItemBehaviorSidebar")]
+        Sidebar = 1,
+        #[doc(alias = "NSSplitViewItemBehaviorContentList")]
+        ContentList = 2,
+        #[doc(alias = "NSSplitViewItemBehaviorInspector")]
+        Inspector = 3,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSSplitViewItemCollapseBehavior {
-        NSSplitViewItemCollapseBehaviorDefault = 0,
-        NSSplitViewItemCollapseBehaviorPreferResizingSplitViewWithFixedSiblings = 1,
-        NSSplitViewItemCollapseBehaviorPreferResizingSiblingsWithFixedSplitView = 2,
-        NSSplitViewItemCollapseBehaviorUseConstraints = 3,
+        #[doc(alias = "NSSplitViewItemCollapseBehaviorDefault")]
+        Default = 0,
+        #[doc(alias = "NSSplitViewItemCollapseBehaviorPreferResizingSplitViewWithFixedSiblings")]
+        PreferResizingSplitViewWithFixedSiblings = 1,
+        #[doc(alias = "NSSplitViewItemCollapseBehaviorPreferResizingSiblingsWithFixedSplitView")]
+        PreferResizingSiblingsWithFixedSplitView = 2,
+        #[doc(alias = "NSSplitViewItemCollapseBehaviorUseConstraints")]
+        UseConstraints = 3,
     }
 );
 

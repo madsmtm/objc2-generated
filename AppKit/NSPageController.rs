@@ -10,9 +10,12 @@ pub type NSPageControllerObjectIdentifier = NSString;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSPageControllerTransitionStyle {
-        NSPageControllerTransitionStyleStackHistory = 0,
-        NSPageControllerTransitionStyleStackBook = 1,
-        NSPageControllerTransitionStyleHorizontalStrip = 2,
+        #[doc(alias = "NSPageControllerTransitionStyleStackHistory")]
+        StackHistory = 0,
+        #[doc(alias = "NSPageControllerTransitionStyleStackBook")]
+        StackBook = 1,
+        #[doc(alias = "NSPageControllerTransitionStyleHorizontalStrip")]
+        HorizontalStrip = 2,
     }
 );
 

@@ -7,10 +7,14 @@ use crate::ServiceManagement::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum SMAppServiceStatus {
-        SMAppServiceStatusNotRegistered = 0,
-        SMAppServiceStatusEnabled = 1,
-        SMAppServiceStatusRequiresApproval = 2,
-        SMAppServiceStatusNotFound = 3,
+        #[doc(alias = "SMAppServiceStatusNotRegistered")]
+        NotRegistered = 0,
+        #[doc(alias = "SMAppServiceStatusEnabled")]
+        Enabled = 1,
+        #[doc(alias = "SMAppServiceStatusRequiresApproval")]
+        RequiresApproval = 2,
+        #[doc(alias = "SMAppServiceStatusNotFound")]
+        NotFound = 3,
     }
 );
 

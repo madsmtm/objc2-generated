@@ -49,9 +49,12 @@ ns_options!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSURLRelationship {
-        NSURLRelationshipContains = 0,
-        NSURLRelationshipSame = 1,
-        NSURLRelationshipOther = 2,
+        #[doc(alias = "NSURLRelationshipContains")]
+        Contains = 0,
+        #[doc(alias = "NSURLRelationshipSame")]
+        Same = 1,
+        #[doc(alias = "NSURLRelationshipOther")]
+        Other = 2,
     }
 );
 

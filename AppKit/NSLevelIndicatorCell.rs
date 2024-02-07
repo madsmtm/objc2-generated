@@ -8,10 +8,14 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSLevelIndicatorStyle {
-        NSLevelIndicatorStyleRelevancy = 0,
-        NSLevelIndicatorStyleContinuousCapacity = 1,
-        NSLevelIndicatorStyleDiscreteCapacity = 2,
-        NSLevelIndicatorStyleRating = 3,
+        #[doc(alias = "NSLevelIndicatorStyleRelevancy")]
+        Relevancy = 0,
+        #[doc(alias = "NSLevelIndicatorStyleContinuousCapacity")]
+        ContinuousCapacity = 1,
+        #[doc(alias = "NSLevelIndicatorStyleDiscreteCapacity")]
+        DiscreteCapacity = 2,
+        #[doc(alias = "NSLevelIndicatorStyleRating")]
+        Rating = 3,
     }
 );
 
@@ -141,10 +145,10 @@ extern_methods!(
     }
 );
 
-extern_static!(NSRelevancyLevelIndicatorStyle: NSLevelIndicatorStyle = NSLevelIndicatorStyle(NSLevelIndicatorStyle::NSLevelIndicatorStyleRelevancy.0));
+extern_static!(NSRelevancyLevelIndicatorStyle: NSLevelIndicatorStyle = NSLevelIndicatorStyle(NSLevelIndicatorStyle::Relevancy.0));
 
-extern_static!(NSContinuousCapacityLevelIndicatorStyle: NSLevelIndicatorStyle = NSLevelIndicatorStyle(NSLevelIndicatorStyle::NSLevelIndicatorStyleContinuousCapacity.0));
+extern_static!(NSContinuousCapacityLevelIndicatorStyle: NSLevelIndicatorStyle = NSLevelIndicatorStyle(NSLevelIndicatorStyle::ContinuousCapacity.0));
 
-extern_static!(NSDiscreteCapacityLevelIndicatorStyle: NSLevelIndicatorStyle = NSLevelIndicatorStyle(NSLevelIndicatorStyle::NSLevelIndicatorStyleDiscreteCapacity.0));
+extern_static!(NSDiscreteCapacityLevelIndicatorStyle: NSLevelIndicatorStyle = NSLevelIndicatorStyle(NSLevelIndicatorStyle::DiscreteCapacity.0));
 
-extern_static!(NSRatingLevelIndicatorStyle: NSLevelIndicatorStyle = NSLevelIndicatorStyle(NSLevelIndicatorStyle::NSLevelIndicatorStyleRating.0));
+extern_static!(NSRatingLevelIndicatorStyle: NSLevelIndicatorStyle = NSLevelIndicatorStyle(NSLevelIndicatorStyle::Rating.0));

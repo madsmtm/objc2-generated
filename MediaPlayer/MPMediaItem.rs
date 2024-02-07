@@ -8,19 +8,32 @@ use crate::MediaPlayer::*;
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum MPMediaType {
-        MPMediaTypeMusic = 1 << 0,
-        MPMediaTypePodcast = 1 << 1,
-        MPMediaTypeAudioBook = 1 << 2,
-        MPMediaTypeAudioITunesU = 1 << 3,
-        MPMediaTypeAnyAudio = 0x00ff,
-        MPMediaTypeMovie = 1 << 8,
-        MPMediaTypeTVShow = 1 << 9,
-        MPMediaTypeVideoPodcast = 1 << 10,
-        MPMediaTypeMusicVideo = 1 << 11,
-        MPMediaTypeVideoITunesU = 1 << 12,
-        MPMediaTypeHomeVideo = 1 << 13,
-        MPMediaTypeAnyVideo = 0xff00,
-        MPMediaTypeAny = !0,
+        #[doc(alias = "MPMediaTypeMusic")]
+        Music = 1 << 0,
+        #[doc(alias = "MPMediaTypePodcast")]
+        Podcast = 1 << 1,
+        #[doc(alias = "MPMediaTypeAudioBook")]
+        AudioBook = 1 << 2,
+        #[doc(alias = "MPMediaTypeAudioITunesU")]
+        AudioITunesU = 1 << 3,
+        #[doc(alias = "MPMediaTypeAnyAudio")]
+        AnyAudio = 0x00ff,
+        #[doc(alias = "MPMediaTypeMovie")]
+        Movie = 1 << 8,
+        #[doc(alias = "MPMediaTypeTVShow")]
+        TVShow = 1 << 9,
+        #[doc(alias = "MPMediaTypeVideoPodcast")]
+        VideoPodcast = 1 << 10,
+        #[doc(alias = "MPMediaTypeMusicVideo")]
+        MusicVideo = 1 << 11,
+        #[doc(alias = "MPMediaTypeVideoITunesU")]
+        VideoITunesU = 1 << 12,
+        #[doc(alias = "MPMediaTypeHomeVideo")]
+        HomeVideo = 1 << 13,
+        #[doc(alias = "MPMediaTypeAnyVideo")]
+        AnyVideo = 0xff00,
+        #[doc(alias = "MPMediaTypeAny")]
+        Any = !0,
     }
 );
 

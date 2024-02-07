@@ -8,20 +8,26 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum ASAuthorizationAppleIDButtonType {
-        ASAuthorizationAppleIDButtonTypeSignIn = 0,
-        ASAuthorizationAppleIDButtonTypeContinue = 1,
-        ASAuthorizationAppleIDButtonTypeSignUp = 2,
-        ASAuthorizationAppleIDButtonTypeDefault =
-            ASAuthorizationAppleIDButtonType::ASAuthorizationAppleIDButtonTypeSignIn.0,
+        #[doc(alias = "ASAuthorizationAppleIDButtonTypeSignIn")]
+        SignIn = 0,
+        #[doc(alias = "ASAuthorizationAppleIDButtonTypeContinue")]
+        Continue = 1,
+        #[doc(alias = "ASAuthorizationAppleIDButtonTypeSignUp")]
+        SignUp = 2,
+        #[doc(alias = "ASAuthorizationAppleIDButtonTypeDefault")]
+        Default = ASAuthorizationAppleIDButtonType::SignIn.0,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum ASAuthorizationAppleIDButtonStyle {
-        ASAuthorizationAppleIDButtonStyleWhite = 0,
-        ASAuthorizationAppleIDButtonStyleWhiteOutline = 1,
-        ASAuthorizationAppleIDButtonStyleBlack = 2,
+        #[doc(alias = "ASAuthorizationAppleIDButtonStyleWhite")]
+        White = 0,
+        #[doc(alias = "ASAuthorizationAppleIDButtonStyleWhiteOutline")]
+        WhiteOutline = 1,
+        #[doc(alias = "ASAuthorizationAppleIDButtonStyleBlack")]
+        Black = 2,
     }
 );
 

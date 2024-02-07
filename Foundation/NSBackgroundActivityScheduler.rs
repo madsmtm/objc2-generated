@@ -6,8 +6,10 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSBackgroundActivityResult {
-        NSBackgroundActivityResultFinished = 1,
-        NSBackgroundActivityResultDeferred = 2,
+        #[doc(alias = "NSBackgroundActivityResultFinished")]
+        Finished = 1,
+        #[doc(alias = "NSBackgroundActivityResultDeferred")]
+        Deferred = 2,
     }
 );
 

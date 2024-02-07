@@ -38,50 +38,69 @@ ns_options!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSTableViewRowSizeStyle {
-        NSTableViewRowSizeStyleDefault = -1,
-        NSTableViewRowSizeStyleCustom = 0,
-        NSTableViewRowSizeStyleSmall = 1,
-        NSTableViewRowSizeStyleMedium = 2,
-        NSTableViewRowSizeStyleLarge = 3,
+        #[doc(alias = "NSTableViewRowSizeStyleDefault")]
+        Default = -1,
+        #[doc(alias = "NSTableViewRowSizeStyleCustom")]
+        Custom = 0,
+        #[doc(alias = "NSTableViewRowSizeStyleSmall")]
+        Small = 1,
+        #[doc(alias = "NSTableViewRowSizeStyleMedium")]
+        Medium = 2,
+        #[doc(alias = "NSTableViewRowSizeStyleLarge")]
+        Large = 3,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSTableViewStyle {
-        NSTableViewStyleAutomatic = 0,
-        NSTableViewStyleFullWidth = 1,
-        NSTableViewStyleInset = 2,
-        NSTableViewStyleSourceList = 3,
-        NSTableViewStylePlain = 4,
+        #[doc(alias = "NSTableViewStyleAutomatic")]
+        Automatic = 0,
+        #[doc(alias = "NSTableViewStyleFullWidth")]
+        FullWidth = 1,
+        #[doc(alias = "NSTableViewStyleInset")]
+        Inset = 2,
+        #[doc(alias = "NSTableViewStyleSourceList")]
+        SourceList = 3,
+        #[doc(alias = "NSTableViewStylePlain")]
+        Plain = 4,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSTableViewSelectionHighlightStyle {
-        NSTableViewSelectionHighlightStyleNone = -1,
-        NSTableViewSelectionHighlightStyleRegular = 0,
+        #[doc(alias = "NSTableViewSelectionHighlightStyleNone")]
+        None = -1,
+        #[doc(alias = "NSTableViewSelectionHighlightStyleRegular")]
+        Regular = 0,
         #[deprecated = "Set the NSTableView.style property to NSTableViewStyleSourceList instead."]
-        NSTableViewSelectionHighlightStyleSourceList = 1,
+        #[doc(alias = "NSTableViewSelectionHighlightStyleSourceList")]
+        SourceList = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSTableViewDraggingDestinationFeedbackStyle {
-        NSTableViewDraggingDestinationFeedbackStyleNone = -1,
-        NSTableViewDraggingDestinationFeedbackStyleRegular = 0,
-        NSTableViewDraggingDestinationFeedbackStyleSourceList = 1,
-        NSTableViewDraggingDestinationFeedbackStyleGap = 2,
+        #[doc(alias = "NSTableViewDraggingDestinationFeedbackStyleNone")]
+        None = -1,
+        #[doc(alias = "NSTableViewDraggingDestinationFeedbackStyleRegular")]
+        Regular = 0,
+        #[doc(alias = "NSTableViewDraggingDestinationFeedbackStyleSourceList")]
+        SourceList = 1,
+        #[doc(alias = "NSTableViewDraggingDestinationFeedbackStyleGap")]
+        Gap = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSTableRowActionEdge {
-        NSTableRowActionEdgeLeading = 0,
-        NSTableRowActionEdgeTrailing = 1,
+        #[doc(alias = "NSTableRowActionEdgeLeading")]
+        Leading = 0,
+        #[doc(alias = "NSTableRowActionEdgeTrailing")]
+        Trailing = 1,
     }
 );
 

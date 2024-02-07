@@ -8,14 +8,22 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum ASAuthorizationProviderExtensionKeyType {
-        ASAuthorizationProviderExtensionKeyTypeUserDeviceSigning = 1,
-        ASAuthorizationProviderExtensionKeyTypeUserDeviceEncryption = 2,
-        ASAuthorizationProviderExtensionKeyTypeUserSecureEnclaveKey = 3,
-        ASAuthorizationProviderExtensionKeyTypeSharedDeviceSigning = 4,
-        ASAuthorizationProviderExtensionKeyTypeSharedDeviceEncryption = 5,
-        ASAuthorizationProviderExtensionKeyTypeCurrentDeviceSigning = 10,
-        ASAuthorizationProviderExtensionKeyTypeCurrentDeviceEncryption = 11,
-        ASAuthorizationProviderExtensionKeyTypeUserSmartCard = 20,
+        #[doc(alias = "ASAuthorizationProviderExtensionKeyTypeUserDeviceSigning")]
+        UserDeviceSigning = 1,
+        #[doc(alias = "ASAuthorizationProviderExtensionKeyTypeUserDeviceEncryption")]
+        UserDeviceEncryption = 2,
+        #[doc(alias = "ASAuthorizationProviderExtensionKeyTypeUserSecureEnclaveKey")]
+        UserSecureEnclaveKey = 3,
+        #[doc(alias = "ASAuthorizationProviderExtensionKeyTypeSharedDeviceSigning")]
+        SharedDeviceSigning = 4,
+        #[doc(alias = "ASAuthorizationProviderExtensionKeyTypeSharedDeviceEncryption")]
+        SharedDeviceEncryption = 5,
+        #[doc(alias = "ASAuthorizationProviderExtensionKeyTypeCurrentDeviceSigning")]
+        CurrentDeviceSigning = 10,
+        #[doc(alias = "ASAuthorizationProviderExtensionKeyTypeCurrentDeviceEncryption")]
+        CurrentDeviceEncryption = 11,
+        #[doc(alias = "ASAuthorizationProviderExtensionKeyTypeUserSmartCard")]
+        UserSmartCard = 20,
     }
 );
 

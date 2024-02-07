@@ -17,9 +17,12 @@ ns_options!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSApplicationActivationPolicy {
-        NSApplicationActivationPolicyRegular = 0,
-        NSApplicationActivationPolicyAccessory = 1,
-        NSApplicationActivationPolicyProhibited = 2,
+        #[doc(alias = "NSApplicationActivationPolicyRegular")]
+        Regular = 0,
+        #[doc(alias = "NSApplicationActivationPolicyAccessory")]
+        Accessory = 1,
+        #[doc(alias = "NSApplicationActivationPolicyProhibited")]
+        Prohibited = 2,
     }
 );
 

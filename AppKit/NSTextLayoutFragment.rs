@@ -8,21 +8,30 @@ use crate::Foundation::*;
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSTextLayoutFragmentEnumerationOptions {
-        NSTextLayoutFragmentEnumerationOptionsNone = 0,
-        NSTextLayoutFragmentEnumerationOptionsReverse = 1 << 0,
-        NSTextLayoutFragmentEnumerationOptionsEstimatesSize = 1 << 1,
-        NSTextLayoutFragmentEnumerationOptionsEnsuresLayout = 1 << 2,
-        NSTextLayoutFragmentEnumerationOptionsEnsuresExtraLineFragment = 1 << 3,
+        #[doc(alias = "NSTextLayoutFragmentEnumerationOptionsNone")]
+        None = 0,
+        #[doc(alias = "NSTextLayoutFragmentEnumerationOptionsReverse")]
+        Reverse = 1 << 0,
+        #[doc(alias = "NSTextLayoutFragmentEnumerationOptionsEstimatesSize")]
+        EstimatesSize = 1 << 1,
+        #[doc(alias = "NSTextLayoutFragmentEnumerationOptionsEnsuresLayout")]
+        EnsuresLayout = 1 << 2,
+        #[doc(alias = "NSTextLayoutFragmentEnumerationOptionsEnsuresExtraLineFragment")]
+        EnsuresExtraLineFragment = 1 << 3,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSTextLayoutFragmentState {
-        NSTextLayoutFragmentStateNone = 0,
-        NSTextLayoutFragmentStateEstimatedUsageBounds = 1,
-        NSTextLayoutFragmentStateCalculatedUsageBounds = 2,
-        NSTextLayoutFragmentStateLayoutAvailable = 3,
+        #[doc(alias = "NSTextLayoutFragmentStateNone")]
+        None = 0,
+        #[doc(alias = "NSTextLayoutFragmentStateEstimatedUsageBounds")]
+        EstimatedUsageBounds = 1,
+        #[doc(alias = "NSTextLayoutFragmentStateCalculatedUsageBounds")]
+        CalculatedUsageBounds = 2,
+        #[doc(alias = "NSTextLayoutFragmentStateLayoutAvailable")]
+        LayoutAvailable = 3,
     }
 );
 

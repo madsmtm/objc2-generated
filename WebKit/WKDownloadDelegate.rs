@@ -8,8 +8,10 @@ use crate::WebKit::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum WKDownloadRedirectPolicy {
-        WKDownloadRedirectPolicyCancel = 0,
-        WKDownloadRedirectPolicyAllow = 1,
+        #[doc(alias = "WKDownloadRedirectPolicyCancel")]
+        Cancel = 0,
+        #[doc(alias = "WKDownloadRedirectPolicyAllow")]
+        Allow = 1,
     }
 );
 

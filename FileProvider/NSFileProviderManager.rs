@@ -9,9 +9,12 @@ use crate::UniformTypeIdentifiers::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSFileProviderDomainRemovalMode {
-        NSFileProviderDomainRemovalModeRemoveAll = 0,
-        NSFileProviderDomainRemovalModePreserveDirtyUserData = 1,
-        NSFileProviderDomainRemovalModePreserveDownloadedUserData = 2,
+        #[doc(alias = "NSFileProviderDomainRemovalModeRemoveAll")]
+        RemoveAll = 0,
+        #[doc(alias = "NSFileProviderDomainRemovalModePreserveDirtyUserData")]
+        PreserveDirtyUserData = 1,
+        #[doc(alias = "NSFileProviderDomainRemovalModePreserveDownloadedUserData")]
+        PreserveDownloadedUserData = 2,
     }
 );
 
@@ -305,7 +308,8 @@ extern_methods!(
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSFileProviderManagerDisconnectionOptions {
-        NSFileProviderManagerDisconnectionOptionsTemporary = 1 << 0,
+        #[doc(alias = "NSFileProviderManagerDisconnectionOptionsTemporary")]
+        Temporary = 1 << 0,
     }
 );
 

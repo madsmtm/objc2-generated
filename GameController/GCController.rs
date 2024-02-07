@@ -18,7 +18,8 @@ extern_static!(GCControllerUserCustomizationsDidChangeNotification: &'static NSS
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum GCControllerPlayerIndex {
-        GCControllerPlayerIndexUnset = -1,
+        #[doc(alias = "GCControllerPlayerIndexUnset")]
+        Unset = -1,
         GCControllerPlayerIndex1 = 0,
         GCControllerPlayerIndex2 = 1,
         GCControllerPlayerIndex3 = 2,

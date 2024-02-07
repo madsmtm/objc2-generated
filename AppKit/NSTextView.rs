@@ -17,8 +17,10 @@ ns_enum!(
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSSelectionAffinity {
-        NSSelectionAffinityUpstream = 0,
-        NSSelectionAffinityDownstream = 1,
+        #[doc(alias = "NSSelectionAffinityUpstream")]
+        Upstream = 0,
+        #[doc(alias = "NSSelectionAffinityDownstream")]
+        Downstream = 1,
     }
 );
 
@@ -1519,16 +1521,26 @@ extern_static!(NSTextViewDidSwitchToNSLayoutManagerNotification: &'static NSNoti
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSFindPanelAction {
-        NSFindPanelActionShowFindPanel = 1,
-        NSFindPanelActionNext = 2,
-        NSFindPanelActionPrevious = 3,
-        NSFindPanelActionReplaceAll = 4,
-        NSFindPanelActionReplace = 5,
-        NSFindPanelActionReplaceAndFind = 6,
-        NSFindPanelActionSetFindString = 7,
-        NSFindPanelActionReplaceAllInSelection = 8,
-        NSFindPanelActionSelectAll = 9,
-        NSFindPanelActionSelectAllInSelection = 10,
+        #[doc(alias = "NSFindPanelActionShowFindPanel")]
+        ShowFindPanel = 1,
+        #[doc(alias = "NSFindPanelActionNext")]
+        Next = 2,
+        #[doc(alias = "NSFindPanelActionPrevious")]
+        Previous = 3,
+        #[doc(alias = "NSFindPanelActionReplaceAll")]
+        ReplaceAll = 4,
+        #[doc(alias = "NSFindPanelActionReplace")]
+        Replace = 5,
+        #[doc(alias = "NSFindPanelActionReplaceAndFind")]
+        ReplaceAndFind = 6,
+        #[doc(alias = "NSFindPanelActionSetFindString")]
+        SetFindString = 7,
+        #[doc(alias = "NSFindPanelActionReplaceAllInSelection")]
+        ReplaceAllInSelection = 8,
+        #[doc(alias = "NSFindPanelActionSelectAll")]
+        SelectAll = 9,
+        #[doc(alias = "NSFindPanelActionSelectAllInSelection")]
+        SelectAllInSelection = 10,
     }
 );
 
@@ -1545,9 +1557,13 @@ extern_static!(NSFindPanelSubstringMatch: &'static NSPasteboardTypeFindPanelSear
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSFindPanelSubstringMatchType {
-        NSFindPanelSubstringMatchTypeContains = 0,
-        NSFindPanelSubstringMatchTypeStartsWith = 1,
-        NSFindPanelSubstringMatchTypeFullWord = 2,
-        NSFindPanelSubstringMatchTypeEndsWith = 3,
+        #[doc(alias = "NSFindPanelSubstringMatchTypeContains")]
+        Contains = 0,
+        #[doc(alias = "NSFindPanelSubstringMatchTypeStartsWith")]
+        StartsWith = 1,
+        #[doc(alias = "NSFindPanelSubstringMatchTypeFullWord")]
+        FullWord = 2,
+        #[doc(alias = "NSFindPanelSubstringMatchTypeEndsWith")]
+        EndsWith = 3,
     }
 );

@@ -9,14 +9,22 @@ use crate::UniformTypeIdentifiers::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSFileProviderTestingOperationType {
-        NSFileProviderTestingOperationTypeIngestion = 0,
-        NSFileProviderTestingOperationTypeLookup = 1,
-        NSFileProviderTestingOperationTypeCreation = 2,
-        NSFileProviderTestingOperationTypeModification = 3,
-        NSFileProviderTestingOperationTypeDeletion = 4,
-        NSFileProviderTestingOperationTypeContentFetch = 5,
-        NSFileProviderTestingOperationTypeChildrenEnumeration = 6,
-        NSFileProviderTestingOperationTypeCollisionResolution = 7,
+        #[doc(alias = "NSFileProviderTestingOperationTypeIngestion")]
+        Ingestion = 0,
+        #[doc(alias = "NSFileProviderTestingOperationTypeLookup")]
+        Lookup = 1,
+        #[doc(alias = "NSFileProviderTestingOperationTypeCreation")]
+        Creation = 2,
+        #[doc(alias = "NSFileProviderTestingOperationTypeModification")]
+        Modification = 3,
+        #[doc(alias = "NSFileProviderTestingOperationTypeDeletion")]
+        Deletion = 4,
+        #[doc(alias = "NSFileProviderTestingOperationTypeContentFetch")]
+        ContentFetch = 5,
+        #[doc(alias = "NSFileProviderTestingOperationTypeChildrenEnumeration")]
+        ChildrenEnumeration = 6,
+        #[doc(alias = "NSFileProviderTestingOperationTypeCollisionResolution")]
+        CollisionResolution = 7,
     }
 );
 
@@ -96,8 +104,10 @@ extern_methods!(
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSFileProviderTestingOperationSide {
-        NSFileProviderTestingOperationSideDisk = 0,
-        NSFileProviderTestingOperationSideFileProvider = 1,
+        #[doc(alias = "NSFileProviderTestingOperationSideDisk")]
+        Disk = 0,
+        #[doc(alias = "NSFileProviderTestingOperationSideFileProvider")]
+        FileProvider = 1,
     }
 );
 

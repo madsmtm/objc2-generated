@@ -8,9 +8,12 @@ use crate::Foundation::*;
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSFontCollectionVisibility {
-        NSFontCollectionVisibilityProcess = 1 << 0,
-        NSFontCollectionVisibilityUser = 1 << 1,
-        NSFontCollectionVisibilityComputer = 1 << 2,
+        #[doc(alias = "NSFontCollectionVisibilityProcess")]
+        Process = 1 << 0,
+        #[doc(alias = "NSFontCollectionVisibilityUser")]
+        User = 1 << 1,
+        #[doc(alias = "NSFontCollectionVisibilityComputer")]
+        Computer = 1 << 2,
     }
 );
 

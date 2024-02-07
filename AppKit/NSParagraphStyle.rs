@@ -20,10 +20,14 @@ ns_enum!(
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSLineBreakStrategy {
-        NSLineBreakStrategyNone = 0,
-        NSLineBreakStrategyPushOut = 1 << 0,
-        NSLineBreakStrategyHangulWordPriority = 1 << 1,
-        NSLineBreakStrategyStandard = 0xFFFF,
+        #[doc(alias = "NSLineBreakStrategyNone")]
+        None = 0,
+        #[doc(alias = "NSLineBreakStrategyPushOut")]
+        PushOut = 1 << 0,
+        #[doc(alias = "NSLineBreakStrategyHangulWordPriority")]
+        HangulWordPriority = 1 << 1,
+        #[doc(alias = "NSLineBreakStrategyStandard")]
+        Standard = 0xFFFF,
     }
 );
 

@@ -8,8 +8,10 @@ use crate::WebKit::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum WKUserScriptInjectionTime {
-        WKUserScriptInjectionTimeAtDocumentStart = 0,
-        WKUserScriptInjectionTimeAtDocumentEnd = 1,
+        #[doc(alias = "WKUserScriptInjectionTimeAtDocumentStart")]
+        AtDocumentStart = 0,
+        #[doc(alias = "WKUserScriptInjectionTimeAtDocumentEnd")]
+        AtDocumentEnd = 1,
     }
 );
 

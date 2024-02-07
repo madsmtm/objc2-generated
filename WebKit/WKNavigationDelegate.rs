@@ -8,18 +8,24 @@ use crate::WebKit::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum WKNavigationActionPolicy {
-        WKNavigationActionPolicyCancel = 0,
-        WKNavigationActionPolicyAllow = 1,
-        WKNavigationActionPolicyDownload = 2,
+        #[doc(alias = "WKNavigationActionPolicyCancel")]
+        Cancel = 0,
+        #[doc(alias = "WKNavigationActionPolicyAllow")]
+        Allow = 1,
+        #[doc(alias = "WKNavigationActionPolicyDownload")]
+        Download = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum WKNavigationResponsePolicy {
-        WKNavigationResponsePolicyCancel = 0,
-        WKNavigationResponsePolicyAllow = 1,
-        WKNavigationResponsePolicyDownload = 2,
+        #[doc(alias = "WKNavigationResponsePolicyCancel")]
+        Cancel = 0,
+        #[doc(alias = "WKNavigationResponsePolicyAllow")]
+        Allow = 1,
+        #[doc(alias = "WKNavigationResponsePolicyDownload")]
+        Download = 2,
     }
 );
 

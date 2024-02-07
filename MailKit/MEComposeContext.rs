@@ -8,10 +8,14 @@ use crate::MailKit::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MEComposeUserAction {
-        MEComposeUserActionNewMessage = 1,
-        MEComposeUserActionReply = 2,
-        MEComposeUserActionReplyAll = 3,
-        MEComposeUserActionForward = 4,
+        #[doc(alias = "MEComposeUserActionNewMessage")]
+        NewMessage = 1,
+        #[doc(alias = "MEComposeUserActionReply")]
+        Reply = 2,
+        #[doc(alias = "MEComposeUserActionReplyAll")]
+        ReplyAll = 3,
+        #[doc(alias = "MEComposeUserActionForward")]
+        Forward = 4,
     }
 );
 

@@ -7,94 +7,140 @@ use crate::Metal::*;
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLBlendFactor {
-        MTLBlendFactorZero = 0,
-        MTLBlendFactorOne = 1,
-        MTLBlendFactorSourceColor = 2,
-        MTLBlendFactorOneMinusSourceColor = 3,
-        MTLBlendFactorSourceAlpha = 4,
-        MTLBlendFactorOneMinusSourceAlpha = 5,
-        MTLBlendFactorDestinationColor = 6,
-        MTLBlendFactorOneMinusDestinationColor = 7,
-        MTLBlendFactorDestinationAlpha = 8,
-        MTLBlendFactorOneMinusDestinationAlpha = 9,
-        MTLBlendFactorSourceAlphaSaturated = 10,
-        MTLBlendFactorBlendColor = 11,
-        MTLBlendFactorOneMinusBlendColor = 12,
-        MTLBlendFactorBlendAlpha = 13,
-        MTLBlendFactorOneMinusBlendAlpha = 14,
-        MTLBlendFactorSource1Color = 15,
-        MTLBlendFactorOneMinusSource1Color = 16,
-        MTLBlendFactorSource1Alpha = 17,
-        MTLBlendFactorOneMinusSource1Alpha = 18,
+        #[doc(alias = "MTLBlendFactorZero")]
+        Zero = 0,
+        #[doc(alias = "MTLBlendFactorOne")]
+        One = 1,
+        #[doc(alias = "MTLBlendFactorSourceColor")]
+        SourceColor = 2,
+        #[doc(alias = "MTLBlendFactorOneMinusSourceColor")]
+        OneMinusSourceColor = 3,
+        #[doc(alias = "MTLBlendFactorSourceAlpha")]
+        SourceAlpha = 4,
+        #[doc(alias = "MTLBlendFactorOneMinusSourceAlpha")]
+        OneMinusSourceAlpha = 5,
+        #[doc(alias = "MTLBlendFactorDestinationColor")]
+        DestinationColor = 6,
+        #[doc(alias = "MTLBlendFactorOneMinusDestinationColor")]
+        OneMinusDestinationColor = 7,
+        #[doc(alias = "MTLBlendFactorDestinationAlpha")]
+        DestinationAlpha = 8,
+        #[doc(alias = "MTLBlendFactorOneMinusDestinationAlpha")]
+        OneMinusDestinationAlpha = 9,
+        #[doc(alias = "MTLBlendFactorSourceAlphaSaturated")]
+        SourceAlphaSaturated = 10,
+        #[doc(alias = "MTLBlendFactorBlendColor")]
+        BlendColor = 11,
+        #[doc(alias = "MTLBlendFactorOneMinusBlendColor")]
+        OneMinusBlendColor = 12,
+        #[doc(alias = "MTLBlendFactorBlendAlpha")]
+        BlendAlpha = 13,
+        #[doc(alias = "MTLBlendFactorOneMinusBlendAlpha")]
+        OneMinusBlendAlpha = 14,
+        #[doc(alias = "MTLBlendFactorSource1Color")]
+        Source1Color = 15,
+        #[doc(alias = "MTLBlendFactorOneMinusSource1Color")]
+        OneMinusSource1Color = 16,
+        #[doc(alias = "MTLBlendFactorSource1Alpha")]
+        Source1Alpha = 17,
+        #[doc(alias = "MTLBlendFactorOneMinusSource1Alpha")]
+        OneMinusSource1Alpha = 18,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLBlendOperation {
-        MTLBlendOperationAdd = 0,
-        MTLBlendOperationSubtract = 1,
-        MTLBlendOperationReverseSubtract = 2,
-        MTLBlendOperationMin = 3,
-        MTLBlendOperationMax = 4,
+        #[doc(alias = "MTLBlendOperationAdd")]
+        Add = 0,
+        #[doc(alias = "MTLBlendOperationSubtract")]
+        Subtract = 1,
+        #[doc(alias = "MTLBlendOperationReverseSubtract")]
+        ReverseSubtract = 2,
+        #[doc(alias = "MTLBlendOperationMin")]
+        Min = 3,
+        #[doc(alias = "MTLBlendOperationMax")]
+        Max = 4,
     }
 );
 
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum MTLColorWriteMask {
-        MTLColorWriteMaskNone = 0,
-        MTLColorWriteMaskRed = 0x1 << 3,
-        MTLColorWriteMaskGreen = 0x1 << 2,
-        MTLColorWriteMaskBlue = 0x1 << 1,
-        MTLColorWriteMaskAlpha = 0x1 << 0,
-        MTLColorWriteMaskAll = 0xf,
+        #[doc(alias = "MTLColorWriteMaskNone")]
+        None = 0,
+        #[doc(alias = "MTLColorWriteMaskRed")]
+        Red = 0x1 << 3,
+        #[doc(alias = "MTLColorWriteMaskGreen")]
+        Green = 0x1 << 2,
+        #[doc(alias = "MTLColorWriteMaskBlue")]
+        Blue = 0x1 << 1,
+        #[doc(alias = "MTLColorWriteMaskAlpha")]
+        Alpha = 0x1 << 0,
+        #[doc(alias = "MTLColorWriteMaskAll")]
+        All = 0xf,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLPrimitiveTopologyClass {
-        MTLPrimitiveTopologyClassUnspecified = 0,
-        MTLPrimitiveTopologyClassPoint = 1,
-        MTLPrimitiveTopologyClassLine = 2,
-        MTLPrimitiveTopologyClassTriangle = 3,
+        #[doc(alias = "MTLPrimitiveTopologyClassUnspecified")]
+        Unspecified = 0,
+        #[doc(alias = "MTLPrimitiveTopologyClassPoint")]
+        Point = 1,
+        #[doc(alias = "MTLPrimitiveTopologyClassLine")]
+        Line = 2,
+        #[doc(alias = "MTLPrimitiveTopologyClassTriangle")]
+        Triangle = 3,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLTessellationPartitionMode {
-        MTLTessellationPartitionModePow2 = 0,
-        MTLTessellationPartitionModeInteger = 1,
-        MTLTessellationPartitionModeFractionalOdd = 2,
-        MTLTessellationPartitionModeFractionalEven = 3,
+        #[doc(alias = "MTLTessellationPartitionModePow2")]
+        Pow2 = 0,
+        #[doc(alias = "MTLTessellationPartitionModeInteger")]
+        Integer = 1,
+        #[doc(alias = "MTLTessellationPartitionModeFractionalOdd")]
+        FractionalOdd = 2,
+        #[doc(alias = "MTLTessellationPartitionModeFractionalEven")]
+        FractionalEven = 3,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLTessellationFactorStepFunction {
-        MTLTessellationFactorStepFunctionConstant = 0,
-        MTLTessellationFactorStepFunctionPerPatch = 1,
-        MTLTessellationFactorStepFunctionPerInstance = 2,
-        MTLTessellationFactorStepFunctionPerPatchAndPerInstance = 3,
+        #[doc(alias = "MTLTessellationFactorStepFunctionConstant")]
+        Constant = 0,
+        #[doc(alias = "MTLTessellationFactorStepFunctionPerPatch")]
+        PerPatch = 1,
+        #[doc(alias = "MTLTessellationFactorStepFunctionPerInstance")]
+        PerInstance = 2,
+        #[doc(alias = "MTLTessellationFactorStepFunctionPerPatchAndPerInstance")]
+        PerPatchAndPerInstance = 3,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLTessellationFactorFormat {
-        MTLTessellationFactorFormatHalf = 0,
+        #[doc(alias = "MTLTessellationFactorFormatHalf")]
+        Half = 0,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLTessellationControlPointIndexType {
-        MTLTessellationControlPointIndexTypeNone = 0,
-        MTLTessellationControlPointIndexTypeUInt16 = 1,
-        MTLTessellationControlPointIndexTypeUInt32 = 2,
+        #[doc(alias = "MTLTessellationControlPointIndexTypeNone")]
+        None = 0,
+        #[doc(alias = "MTLTessellationControlPointIndexTypeUInt16")]
+        UInt16 = 1,
+        #[doc(alias = "MTLTessellationControlPointIndexTypeUInt32")]
+        UInt32 = 2,
     }
 );
 

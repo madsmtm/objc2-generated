@@ -10,9 +10,12 @@ extern_static!(ASCredentialIdentityStoreErrorDomain: &'static NSErrorDomain);
 ns_error_enum!(
     #[underlying(NSInteger)]
     pub enum ASCredentialIdentityStoreErrorCode {
-        ASCredentialIdentityStoreErrorCodeInternalError = 0,
-        ASCredentialIdentityStoreErrorCodeStoreDisabled = 1,
-        ASCredentialIdentityStoreErrorCodeStoreBusy = 2,
+        #[doc(alias = "ASCredentialIdentityStoreErrorCodeInternalError")]
+        InternalError = 0,
+        #[doc(alias = "ASCredentialIdentityStoreErrorCodeStoreDisabled")]
+        StoreDisabled = 1,
+        #[doc(alias = "ASCredentialIdentityStoreErrorCodeStoreBusy")]
+        StoreBusy = 2,
     }
 );
 

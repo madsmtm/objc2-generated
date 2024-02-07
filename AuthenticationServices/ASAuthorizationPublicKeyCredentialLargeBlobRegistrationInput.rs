@@ -8,8 +8,10 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum ASAuthorizationPublicKeyCredentialLargeBlobSupportRequirement {
-        ASAuthorizationPublicKeyCredentialLargeBlobSupportRequirementRequired = 0,
-        ASAuthorizationPublicKeyCredentialLargeBlobSupportRequirementPreferred = 1,
+        #[doc(alias = "ASAuthorizationPublicKeyCredentialLargeBlobSupportRequirementRequired")]
+        Required = 0,
+        #[doc(alias = "ASAuthorizationPublicKeyCredentialLargeBlobSupportRequirementPreferred")]
+        Preferred = 1,
     }
 );
 

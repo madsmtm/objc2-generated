@@ -26,18 +26,24 @@ extern_static!(NSRuleEditorPredicateCompoundType: &'static NSRuleEditorPredicate
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSRuleEditorNestingMode {
-        NSRuleEditorNestingModeSingle = 0,
-        NSRuleEditorNestingModeList = 1,
-        NSRuleEditorNestingModeCompound = 2,
-        NSRuleEditorNestingModeSimple = 3,
+        #[doc(alias = "NSRuleEditorNestingModeSingle")]
+        Single = 0,
+        #[doc(alias = "NSRuleEditorNestingModeList")]
+        List = 1,
+        #[doc(alias = "NSRuleEditorNestingModeCompound")]
+        Compound = 2,
+        #[doc(alias = "NSRuleEditorNestingModeSimple")]
+        Simple = 3,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSRuleEditorRowType {
-        NSRuleEditorRowTypeSimple = 0,
-        NSRuleEditorRowTypeCompound = 1,
+        #[doc(alias = "NSRuleEditorRowTypeSimple")]
+        Simple = 0,
+        #[doc(alias = "NSRuleEditorRowTypeCompound")]
+        Compound = 1,
     }
 );
 

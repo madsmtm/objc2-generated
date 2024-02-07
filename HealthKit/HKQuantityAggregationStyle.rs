@@ -9,12 +9,16 @@ use crate::UniformTypeIdentifiers::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKQuantityAggregationStyle {
-        HKQuantityAggregationStyleCumulative = 0,
-        HKQuantityAggregationStyleDiscreteArithmetic = 1,
+        #[doc(alias = "HKQuantityAggregationStyleCumulative")]
+        Cumulative = 0,
+        #[doc(alias = "HKQuantityAggregationStyleDiscreteArithmetic")]
+        DiscreteArithmetic = 1,
         #[deprecated]
-        HKQuantityAggregationStyleDiscrete =
-            HKQuantityAggregationStyle::HKQuantityAggregationStyleDiscreteArithmetic.0,
-        HKQuantityAggregationStyleDiscreteTemporallyWeighted = 2,
-        HKQuantityAggregationStyleDiscreteEquivalentContinuousLevel = 3,
+        #[doc(alias = "HKQuantityAggregationStyleDiscrete")]
+        Discrete = HKQuantityAggregationStyle::DiscreteArithmetic.0,
+        #[doc(alias = "HKQuantityAggregationStyleDiscreteTemporallyWeighted")]
+        DiscreteTemporallyWeighted = 2,
+        #[doc(alias = "HKQuantityAggregationStyleDiscreteEquivalentContinuousLevel")]
+        DiscreteEquivalentContinuousLevel = 3,
     }
 );

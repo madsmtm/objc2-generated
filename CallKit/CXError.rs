@@ -17,59 +17,91 @@ extern_static!(CXErrorDomainNotificationServiceExtension: &'static NSErrorDomain
 ns_error_enum!(
     #[underlying(NSInteger)]
     pub enum CXErrorCode {
-        CXErrorCodeUnknownError = 0,
-        CXErrorCodeUnentitled = 1,
-        CXErrorCodeInvalidArgument = 2,
-        CXErrorCodeMissingVoIPBackgroundMode = 3,
+        #[doc(alias = "CXErrorCodeUnknownError")]
+        UnknownError = 0,
+        #[doc(alias = "CXErrorCodeUnentitled")]
+        Unentitled = 1,
+        #[doc(alias = "CXErrorCodeInvalidArgument")]
+        InvalidArgument = 2,
+        #[doc(alias = "CXErrorCodeMissingVoIPBackgroundMode")]
+        MissingVoIPBackgroundMode = 3,
     }
 );
 
 ns_error_enum!(
     #[underlying(NSInteger)]
     pub enum CXErrorCodeIncomingCallError {
-        CXErrorCodeIncomingCallErrorUnknown = 0,
-        CXErrorCodeIncomingCallErrorUnentitled = 1,
-        CXErrorCodeIncomingCallErrorCallUUIDAlreadyExists = 2,
-        CXErrorCodeIncomingCallErrorFilteredByDoNotDisturb = 3,
-        CXErrorCodeIncomingCallErrorFilteredByBlockList = 4,
-        CXErrorCodeIncomingCallErrorFilteredDuringRestrictedSharingMode = 5,
+        #[doc(alias = "CXErrorCodeIncomingCallErrorUnknown")]
+        Unknown = 0,
+        #[doc(alias = "CXErrorCodeIncomingCallErrorUnentitled")]
+        Unentitled = 1,
+        #[doc(alias = "CXErrorCodeIncomingCallErrorCallUUIDAlreadyExists")]
+        CallUUIDAlreadyExists = 2,
+        #[doc(alias = "CXErrorCodeIncomingCallErrorFilteredByDoNotDisturb")]
+        FilteredByDoNotDisturb = 3,
+        #[doc(alias = "CXErrorCodeIncomingCallErrorFilteredByBlockList")]
+        FilteredByBlockList = 4,
+        #[doc(alias = "CXErrorCodeIncomingCallErrorFilteredDuringRestrictedSharingMode")]
+        FilteredDuringRestrictedSharingMode = 5,
     }
 );
 
 ns_error_enum!(
     #[underlying(NSInteger)]
     pub enum CXErrorCodeRequestTransactionError {
-        CXErrorCodeRequestTransactionErrorUnknown = 0,
-        CXErrorCodeRequestTransactionErrorUnentitled = 1,
-        CXErrorCodeRequestTransactionErrorUnknownCallProvider = 2,
-        CXErrorCodeRequestTransactionErrorEmptyTransaction = 3,
-        CXErrorCodeRequestTransactionErrorUnknownCallUUID = 4,
-        CXErrorCodeRequestTransactionErrorCallUUIDAlreadyExists = 5,
-        CXErrorCodeRequestTransactionErrorInvalidAction = 6,
-        CXErrorCodeRequestTransactionErrorMaximumCallGroupsReached = 7,
+        #[doc(alias = "CXErrorCodeRequestTransactionErrorUnknown")]
+        Unknown = 0,
+        #[doc(alias = "CXErrorCodeRequestTransactionErrorUnentitled")]
+        Unentitled = 1,
+        #[doc(alias = "CXErrorCodeRequestTransactionErrorUnknownCallProvider")]
+        UnknownCallProvider = 2,
+        #[doc(alias = "CXErrorCodeRequestTransactionErrorEmptyTransaction")]
+        EmptyTransaction = 3,
+        #[doc(alias = "CXErrorCodeRequestTransactionErrorUnknownCallUUID")]
+        UnknownCallUUID = 4,
+        #[doc(alias = "CXErrorCodeRequestTransactionErrorCallUUIDAlreadyExists")]
+        CallUUIDAlreadyExists = 5,
+        #[doc(alias = "CXErrorCodeRequestTransactionErrorInvalidAction")]
+        InvalidAction = 6,
+        #[doc(alias = "CXErrorCodeRequestTransactionErrorMaximumCallGroupsReached")]
+        MaximumCallGroupsReached = 7,
     }
 );
 
 ns_error_enum!(
     #[underlying(NSInteger)]
     pub enum CXErrorCodeCallDirectoryManagerError {
-        CXErrorCodeCallDirectoryManagerErrorUnknown = 0,
-        CXErrorCodeCallDirectoryManagerErrorNoExtensionFound = 1,
-        CXErrorCodeCallDirectoryManagerErrorLoadingInterrupted = 2,
-        CXErrorCodeCallDirectoryManagerErrorEntriesOutOfOrder = 3,
-        CXErrorCodeCallDirectoryManagerErrorDuplicateEntries = 4,
-        CXErrorCodeCallDirectoryManagerErrorMaximumEntriesExceeded = 5,
-        CXErrorCodeCallDirectoryManagerErrorExtensionDisabled = 6,
-        CXErrorCodeCallDirectoryManagerErrorCurrentlyLoading = 7,
-        CXErrorCodeCallDirectoryManagerErrorUnexpectedIncrementalRemoval = 8,
+        #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorUnknown")]
+        Unknown = 0,
+        #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorNoExtensionFound")]
+        NoExtensionFound = 1,
+        #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorLoadingInterrupted")]
+        LoadingInterrupted = 2,
+        #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorEntriesOutOfOrder")]
+        EntriesOutOfOrder = 3,
+        #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorDuplicateEntries")]
+        DuplicateEntries = 4,
+        #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorMaximumEntriesExceeded")]
+        MaximumEntriesExceeded = 5,
+        #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorExtensionDisabled")]
+        ExtensionDisabled = 6,
+        #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorCurrentlyLoading")]
+        CurrentlyLoading = 7,
+        #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorUnexpectedIncrementalRemoval")]
+        UnexpectedIncrementalRemoval = 8,
     }
 );
 
 ns_error_enum!(
     #[underlying(NSInteger)]
     pub enum CXErrorCodeNotificationServiceExtensionError {
-        CXErrorCodeNotificationServiceExtensionErrorUnknown = 0,
-        CXErrorCodeNotificationServiceExtensionErrorInvalidClientProcess = 1,
-        CXErrorCodeNotificationServiceExtensionErrorMissingNotificationFilteringEntitlement = 2,
+        #[doc(alias = "CXErrorCodeNotificationServiceExtensionErrorUnknown")]
+        Unknown = 0,
+        #[doc(alias = "CXErrorCodeNotificationServiceExtensionErrorInvalidClientProcess")]
+        InvalidClientProcess = 1,
+        #[doc(
+            alias = "CXErrorCodeNotificationServiceExtensionErrorMissingNotificationFilteringEntitlement"
+        )]
+        MissingNotificationFilteringEntitlement = 2,
     }
 );

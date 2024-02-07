@@ -10,21 +10,30 @@ use crate::MapKit::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum EKEventAvailability {
-        EKEventAvailabilityNotSupported = -1,
-        EKEventAvailabilityBusy = 0,
-        EKEventAvailabilityFree = 1,
-        EKEventAvailabilityTentative = 2,
-        EKEventAvailabilityUnavailable = 3,
+        #[doc(alias = "EKEventAvailabilityNotSupported")]
+        NotSupported = -1,
+        #[doc(alias = "EKEventAvailabilityBusy")]
+        Busy = 0,
+        #[doc(alias = "EKEventAvailabilityFree")]
+        Free = 1,
+        #[doc(alias = "EKEventAvailabilityTentative")]
+        Tentative = 2,
+        #[doc(alias = "EKEventAvailabilityUnavailable")]
+        Unavailable = 3,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum EKEventStatus {
-        EKEventStatusNone = 0,
-        EKEventStatusConfirmed = 1,
-        EKEventStatusTentative = 2,
-        EKEventStatusCanceled = 3,
+        #[doc(alias = "EKEventStatusNone")]
+        None = 0,
+        #[doc(alias = "EKEventStatusConfirmed")]
+        Confirmed = 1,
+        #[doc(alias = "EKEventStatusTentative")]
+        Tentative = 2,
+        #[doc(alias = "EKEventStatusCanceled")]
+        Canceled = 3,
     }
 );
 

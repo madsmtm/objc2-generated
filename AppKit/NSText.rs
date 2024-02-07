@@ -8,9 +8,12 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSWritingDirection {
-        NSWritingDirectionNatural = -1,
-        NSWritingDirectionLeftToRight = 0,
-        NSWritingDirectionRightToLeft = 1,
+        #[doc(alias = "NSWritingDirectionNatural")]
+        Natural = -1,
+        #[doc(alias = "NSWritingDirectionLeftToRight")]
+        LeftToRight = 0,
+        #[doc(alias = "NSWritingDirectionRightToLeft")]
+        RightToLeft = 1,
     }
 );
 
@@ -328,15 +331,24 @@ pub const NSParagraphSeparatorCharacter: c_uint = 0x2029;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSTextMovement {
-        NSTextMovementReturn = 0x10,
-        NSTextMovementTab = 0x11,
-        NSTextMovementBacktab = 0x12,
-        NSTextMovementLeft = 0x13,
-        NSTextMovementRight = 0x14,
-        NSTextMovementUp = 0x15,
-        NSTextMovementDown = 0x16,
-        NSTextMovementCancel = 0x17,
-        NSTextMovementOther = 0,
+        #[doc(alias = "NSTextMovementReturn")]
+        Return = 0x10,
+        #[doc(alias = "NSTextMovementTab")]
+        Tab = 0x11,
+        #[doc(alias = "NSTextMovementBacktab")]
+        Backtab = 0x12,
+        #[doc(alias = "NSTextMovementLeft")]
+        Left = 0x13,
+        #[doc(alias = "NSTextMovementRight")]
+        Right = 0x14,
+        #[doc(alias = "NSTextMovementUp")]
+        Up = 0x15,
+        #[doc(alias = "NSTextMovementDown")]
+        Down = 0x16,
+        #[doc(alias = "NSTextMovementCancel")]
+        Cancel = 0x17,
+        #[doc(alias = "NSTextMovementOther")]
+        Other = 0,
     }
 );
 
@@ -395,12 +407,12 @@ pub const NSTextWritingDirectionEmbedding: c_uint = 0 << 1;
 #[deprecated = "Use NSWritingDirectionOverride instead"]
 pub const NSTextWritingDirectionOverride: c_uint = 1 << 1;
 
-extern_static!(NSLeftTextAlignment: NSTextAlignment = NSTextAlignment(NSTextAlignment::NSTextAlignmentLeft.0));
+extern_static!(NSLeftTextAlignment: NSTextAlignment = NSTextAlignment(NSTextAlignment::Left.0));
 
-extern_static!(NSRightTextAlignment: NSTextAlignment = NSTextAlignment(NSTextAlignment::NSTextAlignmentRight.0));
+extern_static!(NSRightTextAlignment: NSTextAlignment = NSTextAlignment(NSTextAlignment::Right.0));
 
-extern_static!(NSCenterTextAlignment: NSTextAlignment = NSTextAlignment(NSTextAlignment::NSTextAlignmentCenter.0));
+extern_static!(NSCenterTextAlignment: NSTextAlignment = NSTextAlignment(NSTextAlignment::Center.0));
 
-extern_static!(NSJustifiedTextAlignment: NSTextAlignment = NSTextAlignment(NSTextAlignment::NSTextAlignmentJustified.0));
+extern_static!(NSJustifiedTextAlignment: NSTextAlignment = NSTextAlignment(NSTextAlignment::Justified.0));
 
-extern_static!(NSNaturalTextAlignment: NSTextAlignment = NSTextAlignment(NSTextAlignment::NSTextAlignmentNatural.0));
+extern_static!(NSNaturalTextAlignment: NSTextAlignment = NSTextAlignment(NSTextAlignment::Natural.0));

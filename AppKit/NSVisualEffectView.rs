@@ -8,47 +8,71 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSVisualEffectMaterial {
-        NSVisualEffectMaterialTitlebar = 3,
-        NSVisualEffectMaterialSelection = 4,
-        NSVisualEffectMaterialMenu = 5,
-        NSVisualEffectMaterialPopover = 6,
-        NSVisualEffectMaterialSidebar = 7,
-        NSVisualEffectMaterialHeaderView = 10,
-        NSVisualEffectMaterialSheet = 11,
-        NSVisualEffectMaterialWindowBackground = 12,
-        NSVisualEffectMaterialHUDWindow = 13,
-        NSVisualEffectMaterialFullScreenUI = 15,
-        NSVisualEffectMaterialToolTip = 17,
-        NSVisualEffectMaterialContentBackground = 18,
-        NSVisualEffectMaterialUnderWindowBackground = 21,
-        NSVisualEffectMaterialUnderPageBackground = 22,
+        #[doc(alias = "NSVisualEffectMaterialTitlebar")]
+        Titlebar = 3,
+        #[doc(alias = "NSVisualEffectMaterialSelection")]
+        Selection = 4,
+        #[doc(alias = "NSVisualEffectMaterialMenu")]
+        Menu = 5,
+        #[doc(alias = "NSVisualEffectMaterialPopover")]
+        Popover = 6,
+        #[doc(alias = "NSVisualEffectMaterialSidebar")]
+        Sidebar = 7,
+        #[doc(alias = "NSVisualEffectMaterialHeaderView")]
+        HeaderView = 10,
+        #[doc(alias = "NSVisualEffectMaterialSheet")]
+        Sheet = 11,
+        #[doc(alias = "NSVisualEffectMaterialWindowBackground")]
+        WindowBackground = 12,
+        #[doc(alias = "NSVisualEffectMaterialHUDWindow")]
+        HUDWindow = 13,
+        #[doc(alias = "NSVisualEffectMaterialFullScreenUI")]
+        FullScreenUI = 15,
+        #[doc(alias = "NSVisualEffectMaterialToolTip")]
+        ToolTip = 17,
+        #[doc(alias = "NSVisualEffectMaterialContentBackground")]
+        ContentBackground = 18,
+        #[doc(alias = "NSVisualEffectMaterialUnderWindowBackground")]
+        UnderWindowBackground = 21,
+        #[doc(alias = "NSVisualEffectMaterialUnderPageBackground")]
+        UnderPageBackground = 22,
         #[deprecated = "Use a specific semantic material instead."]
-        NSVisualEffectMaterialAppearanceBased = 0,
+        #[doc(alias = "NSVisualEffectMaterialAppearanceBased")]
+        AppearanceBased = 0,
         #[deprecated = "Use a semantic material instead.  To force the appearance of a view hierarchy, set the `appearance` property to an appropriate NSAppearance value."]
-        NSVisualEffectMaterialLight = 1,
+        #[doc(alias = "NSVisualEffectMaterialLight")]
+        Light = 1,
         #[deprecated = "Use a semantic material instead.  To force the appearance of a view hierarchy, set the `appearance` property to an appropriate NSAppearance value."]
-        NSVisualEffectMaterialDark = 2,
+        #[doc(alias = "NSVisualEffectMaterialDark")]
+        Dark = 2,
         #[deprecated = "Use a semantic material instead.  To force the appearance of a view hierarchy, set the `appearance` property to an appropriate NSAppearance value."]
-        NSVisualEffectMaterialMediumLight = 8,
+        #[doc(alias = "NSVisualEffectMaterialMediumLight")]
+        MediumLight = 8,
         #[deprecated = "Use a semantic material instead.  To force the appearance of a view hierarchy, set the `appearance` property to an appropriate NSAppearance value."]
-        NSVisualEffectMaterialUltraDark = 9,
+        #[doc(alias = "NSVisualEffectMaterialUltraDark")]
+        UltraDark = 9,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSVisualEffectBlendingMode {
-        NSVisualEffectBlendingModeBehindWindow = 0,
-        NSVisualEffectBlendingModeWithinWindow = 1,
+        #[doc(alias = "NSVisualEffectBlendingModeBehindWindow")]
+        BehindWindow = 0,
+        #[doc(alias = "NSVisualEffectBlendingModeWithinWindow")]
+        WithinWindow = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSVisualEffectState {
-        NSVisualEffectStateFollowsWindowActiveState = 0,
-        NSVisualEffectStateActive = 1,
-        NSVisualEffectStateInactive = 2,
+        #[doc(alias = "NSVisualEffectStateFollowsWindowActiveState")]
+        FollowsWindowActiveState = 0,
+        #[doc(alias = "NSVisualEffectStateActive")]
+        Active = 1,
+        #[doc(alias = "NSVisualEffectStateInactive")]
+        Inactive = 2,
     }
 );
 

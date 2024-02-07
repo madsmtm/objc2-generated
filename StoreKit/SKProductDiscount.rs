@@ -8,17 +8,22 @@ use crate::StoreKit::*;
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum SKProductDiscountPaymentMode {
-        SKProductDiscountPaymentModePayAsYouGo = 0,
-        SKProductDiscountPaymentModePayUpFront = 1,
-        SKProductDiscountPaymentModeFreeTrial = 2,
+        #[doc(alias = "SKProductDiscountPaymentModePayAsYouGo")]
+        PayAsYouGo = 0,
+        #[doc(alias = "SKProductDiscountPaymentModePayUpFront")]
+        PayUpFront = 1,
+        #[doc(alias = "SKProductDiscountPaymentModeFreeTrial")]
+        FreeTrial = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum SKProductDiscountType {
-        SKProductDiscountTypeIntroductory = 0,
-        SKProductDiscountTypeSubscription = 1,
+        #[doc(alias = "SKProductDiscountTypeIntroductory")]
+        Introductory = 0,
+        #[doc(alias = "SKProductDiscountTypeSubscription")]
+        Subscription = 1,
     }
 );
 

@@ -235,11 +235,16 @@ extern_methods!(
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSLocaleLanguageDirection {
-        NSLocaleLanguageDirectionUnknown = 0,
-        NSLocaleLanguageDirectionLeftToRight = 1,
-        NSLocaleLanguageDirectionRightToLeft = 2,
-        NSLocaleLanguageDirectionTopToBottom = 3,
-        NSLocaleLanguageDirectionBottomToTop = 4,
+        #[doc(alias = "NSLocaleLanguageDirectionUnknown")]
+        Unknown = 0,
+        #[doc(alias = "NSLocaleLanguageDirectionLeftToRight")]
+        LeftToRight = 1,
+        #[doc(alias = "NSLocaleLanguageDirectionRightToLeft")]
+        RightToLeft = 2,
+        #[doc(alias = "NSLocaleLanguageDirectionTopToBottom")]
+        TopToBottom = 3,
+        #[doc(alias = "NSLocaleLanguageDirectionBottomToTop")]
+        BottomToTop = 4,
     }
 );
 

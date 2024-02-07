@@ -12,23 +12,32 @@ ns_enum!(
         MTLTextureType2D = 2,
         MTLTextureType2DArray = 3,
         MTLTextureType2DMultisample = 4,
-        MTLTextureTypeCube = 5,
-        MTLTextureTypeCubeArray = 6,
+        #[doc(alias = "MTLTextureTypeCube")]
+        Cube = 5,
+        #[doc(alias = "MTLTextureTypeCubeArray")]
+        CubeArray = 6,
         MTLTextureType3D = 7,
         MTLTextureType2DMultisampleArray = 8,
-        MTLTextureTypeTextureBuffer = 9,
+        #[doc(alias = "MTLTextureTypeTextureBuffer")]
+        TextureBuffer = 9,
     }
 );
 
 ns_enum!(
     #[underlying(u8)]
     pub enum MTLTextureSwizzle {
-        MTLTextureSwizzleZero = 0,
-        MTLTextureSwizzleOne = 1,
-        MTLTextureSwizzleRed = 2,
-        MTLTextureSwizzleGreen = 3,
-        MTLTextureSwizzleBlue = 4,
-        MTLTextureSwizzleAlpha = 5,
+        #[doc(alias = "MTLTextureSwizzleZero")]
+        Zero = 0,
+        #[doc(alias = "MTLTextureSwizzleOne")]
+        One = 1,
+        #[doc(alias = "MTLTextureSwizzleRed")]
+        Red = 2,
+        #[doc(alias = "MTLTextureSwizzleGreen")]
+        Green = 3,
+        #[doc(alias = "MTLTextureSwizzleBlue")]
+        Blue = 4,
+        #[doc(alias = "MTLTextureSwizzleAlpha")]
+        Alpha = 5,
     }
 );
 
@@ -101,20 +110,28 @@ extern_methods!(
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum MTLTextureUsage {
-        MTLTextureUsageUnknown = 0x0000,
-        MTLTextureUsageShaderRead = 0x0001,
-        MTLTextureUsageShaderWrite = 0x0002,
-        MTLTextureUsageRenderTarget = 0x0004,
-        MTLTextureUsagePixelFormatView = 0x0010,
-        MTLTextureUsageShaderAtomic = 0x0020,
+        #[doc(alias = "MTLTextureUsageUnknown")]
+        Unknown = 0x0000,
+        #[doc(alias = "MTLTextureUsageShaderRead")]
+        ShaderRead = 0x0001,
+        #[doc(alias = "MTLTextureUsageShaderWrite")]
+        ShaderWrite = 0x0002,
+        #[doc(alias = "MTLTextureUsageRenderTarget")]
+        RenderTarget = 0x0004,
+        #[doc(alias = "MTLTextureUsagePixelFormatView")]
+        PixelFormatView = 0x0010,
+        #[doc(alias = "MTLTextureUsageShaderAtomic")]
+        ShaderAtomic = 0x0020,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MTLTextureCompressionType {
-        MTLTextureCompressionTypeLossless = 0,
-        MTLTextureCompressionTypeLossy = 1,
+        #[doc(alias = "MTLTextureCompressionTypeLossless")]
+        Lossless = 0,
+        #[doc(alias = "MTLTextureCompressionTypeLossy")]
+        Lossy = 1,
     }
 );
 

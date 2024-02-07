@@ -7,9 +7,12 @@ use crate::Foundation::*;
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSPersistentCloudKitContainerSchemaInitializationOptions {
-        NSPersistentCloudKitContainerSchemaInitializationOptionsNone = 0,
-        NSPersistentCloudKitContainerSchemaInitializationOptionsDryRun = 1 << 1,
-        NSPersistentCloudKitContainerSchemaInitializationOptionsPrintSchema = 1 << 2,
+        #[doc(alias = "NSPersistentCloudKitContainerSchemaInitializationOptionsNone")]
+        None = 0,
+        #[doc(alias = "NSPersistentCloudKitContainerSchemaInitializationOptionsDryRun")]
+        DryRun = 1 << 1,
+        #[doc(alias = "NSPersistentCloudKitContainerSchemaInitializationOptionsPrintSchema")]
+        PrintSchema = 1 << 2,
     }
 );
 

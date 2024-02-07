@@ -6,8 +6,10 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSDecodingFailurePolicy {
-        NSDecodingFailurePolicyRaiseException = 0,
-        NSDecodingFailurePolicySetErrorAndReturn = 1,
+        #[doc(alias = "NSDecodingFailurePolicyRaiseException")]
+        RaiseException = 0,
+        #[doc(alias = "NSDecodingFailurePolicySetErrorAndReturn")]
+        SetErrorAndReturn = 1,
     }
 );
 

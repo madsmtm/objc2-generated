@@ -10,9 +10,12 @@ use crate::MapKit::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MKLookAroundBadgePosition {
-        MKLookAroundBadgePositionTopLeading = 0,
-        MKLookAroundBadgePositionTopTrailing = 1,
-        MKLookAroundBadgePositionBottomTrailing = 2,
+        #[doc(alias = "MKLookAroundBadgePositionTopLeading")]
+        TopLeading = 0,
+        #[doc(alias = "MKLookAroundBadgePositionTopTrailing")]
+        TopTrailing = 1,
+        #[doc(alias = "MKLookAroundBadgePositionBottomTrailing")]
+        BottomTrailing = 2,
     }
 );
 

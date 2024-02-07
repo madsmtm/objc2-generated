@@ -8,9 +8,12 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum ASPublicKeyCredentialClientDataCrossOriginValue {
-        ASPublicKeyCredentialClientDataCrossOriginValueNotSet = 0,
-        ASPublicKeyCredentialClientDataCrossOriginValueCrossOrigin = 1,
-        ASPublicKeyCredentialClientDataCrossOriginValueSameOriginWithAncestors = 2,
+        #[doc(alias = "ASPublicKeyCredentialClientDataCrossOriginValueNotSet")]
+        NotSet = 0,
+        #[doc(alias = "ASPublicKeyCredentialClientDataCrossOriginValueCrossOrigin")]
+        CrossOrigin = 1,
+        #[doc(alias = "ASPublicKeyCredentialClientDataCrossOriginValueSameOriginWithAncestors")]
+        SameOriginWithAncestors = 2,
     }
 );
 

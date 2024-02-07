@@ -10,19 +10,26 @@ use crate::UniformTypeIdentifiers::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum PHAuthorizationStatus {
-        PHAuthorizationStatusNotDetermined = 0,
-        PHAuthorizationStatusRestricted = 1,
-        PHAuthorizationStatusDenied = 2,
-        PHAuthorizationStatusAuthorized = 3,
-        PHAuthorizationStatusLimited = 4,
+        #[doc(alias = "PHAuthorizationStatusNotDetermined")]
+        NotDetermined = 0,
+        #[doc(alias = "PHAuthorizationStatusRestricted")]
+        Restricted = 1,
+        #[doc(alias = "PHAuthorizationStatusDenied")]
+        Denied = 2,
+        #[doc(alias = "PHAuthorizationStatusAuthorized")]
+        Authorized = 3,
+        #[doc(alias = "PHAuthorizationStatusLimited")]
+        Limited = 4,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum PHAccessLevel {
-        PHAccessLevelAddOnly = 1,
-        PHAccessLevelReadWrite = 2,
+        #[doc(alias = "PHAccessLevelAddOnly")]
+        AddOnly = 1,
+        #[doc(alias = "PHAccessLevelReadWrite")]
+        ReadWrite = 2,
     }
 );
 

@@ -7,19 +7,26 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum EAWiFiUnconfiguredAccessoryBrowserState {
-        EAWiFiUnconfiguredAccessoryBrowserStateWiFiUnavailable = 0,
-        EAWiFiUnconfiguredAccessoryBrowserStateStopped = 1,
-        EAWiFiUnconfiguredAccessoryBrowserStateSearching = 2,
-        EAWiFiUnconfiguredAccessoryBrowserStateConfiguring = 3,
+        #[doc(alias = "EAWiFiUnconfiguredAccessoryBrowserStateWiFiUnavailable")]
+        WiFiUnavailable = 0,
+        #[doc(alias = "EAWiFiUnconfiguredAccessoryBrowserStateStopped")]
+        Stopped = 1,
+        #[doc(alias = "EAWiFiUnconfiguredAccessoryBrowserStateSearching")]
+        Searching = 2,
+        #[doc(alias = "EAWiFiUnconfiguredAccessoryBrowserStateConfiguring")]
+        Configuring = 3,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum EAWiFiUnconfiguredAccessoryConfigurationStatus {
-        EAWiFiUnconfiguredAccessoryConfigurationStatusSuccess = 0,
-        EAWiFiUnconfiguredAccessoryConfigurationStatusUserCancelledConfiguration = 1,
-        EAWiFiUnconfiguredAccessoryConfigurationStatusFailed = 2,
+        #[doc(alias = "EAWiFiUnconfiguredAccessoryConfigurationStatusSuccess")]
+        Success = 0,
+        #[doc(alias = "EAWiFiUnconfiguredAccessoryConfigurationStatusUserCancelledConfiguration")]
+        UserCancelledConfiguration = 1,
+        #[doc(alias = "EAWiFiUnconfiguredAccessoryConfigurationStatusFailed")]
+        Failed = 2,
     }
 );
 

@@ -7,7 +7,8 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum CNPostalAddressFormatterStyle {
-        CNPostalAddressFormatterStyleMailingAddress = 0,
+        #[doc(alias = "CNPostalAddressFormatterStyleMailingAddress")]
+        MailingAddress = 0,
     }
 );
 

@@ -7,11 +7,14 @@ use crate::Foundation::*;
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum AXHearingDeviceEar {
-        AXHearingDeviceEarNone = 0,
-        AXHearingDeviceEarLeft = 1 << 1,
-        AXHearingDeviceEarRight = 1 << 2,
-        AXHearingDeviceEarBoth = AXHearingDeviceEar::AXHearingDeviceEarLeft.0
-            | AXHearingDeviceEar::AXHearingDeviceEarRight.0,
+        #[doc(alias = "AXHearingDeviceEarNone")]
+        None = 0,
+        #[doc(alias = "AXHearingDeviceEarLeft")]
+        Left = 1 << 1,
+        #[doc(alias = "AXHearingDeviceEarRight")]
+        Right = 1 << 2,
+        #[doc(alias = "AXHearingDeviceEarBoth")]
+        Both = AXHearingDeviceEar::Left.0 | AXHearingDeviceEar::Right.0,
     }
 );
 

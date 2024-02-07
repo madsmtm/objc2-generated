@@ -6,25 +6,40 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSDateComponentsFormatterUnitsStyle {
-        NSDateComponentsFormatterUnitsStylePositional = 0,
-        NSDateComponentsFormatterUnitsStyleAbbreviated = 1,
-        NSDateComponentsFormatterUnitsStyleShort = 2,
-        NSDateComponentsFormatterUnitsStyleFull = 3,
-        NSDateComponentsFormatterUnitsStyleSpellOut = 4,
-        NSDateComponentsFormatterUnitsStyleBrief = 5,
+        #[doc(alias = "NSDateComponentsFormatterUnitsStylePositional")]
+        Positional = 0,
+        #[doc(alias = "NSDateComponentsFormatterUnitsStyleAbbreviated")]
+        Abbreviated = 1,
+        #[doc(alias = "NSDateComponentsFormatterUnitsStyleShort")]
+        Short = 2,
+        #[doc(alias = "NSDateComponentsFormatterUnitsStyleFull")]
+        Full = 3,
+        #[doc(alias = "NSDateComponentsFormatterUnitsStyleSpellOut")]
+        SpellOut = 4,
+        #[doc(alias = "NSDateComponentsFormatterUnitsStyleBrief")]
+        Brief = 5,
     }
 );
 
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSDateComponentsFormatterZeroFormattingBehavior {
-        NSDateComponentsFormatterZeroFormattingBehaviorNone = 0,
-        NSDateComponentsFormatterZeroFormattingBehaviorDefault = 1<<0,
-        NSDateComponentsFormatterZeroFormattingBehaviorDropLeading = 1<<1,
-        NSDateComponentsFormatterZeroFormattingBehaviorDropMiddle = 1<<2,
-        NSDateComponentsFormatterZeroFormattingBehaviorDropTrailing = 1<<3,
-        NSDateComponentsFormatterZeroFormattingBehaviorDropAll = NSDateComponentsFormatterZeroFormattingBehavior::NSDateComponentsFormatterZeroFormattingBehaviorDropLeading.0|NSDateComponentsFormatterZeroFormattingBehavior::NSDateComponentsFormatterZeroFormattingBehaviorDropMiddle.0|NSDateComponentsFormatterZeroFormattingBehavior::NSDateComponentsFormatterZeroFormattingBehaviorDropTrailing.0,
-        NSDateComponentsFormatterZeroFormattingBehaviorPad = 1<<16,
+        #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorNone")]
+        None = 0,
+        #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorDefault")]
+        Default = 1 << 0,
+        #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorDropLeading")]
+        DropLeading = 1 << 1,
+        #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorDropMiddle")]
+        DropMiddle = 1 << 2,
+        #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorDropTrailing")]
+        DropTrailing = 1 << 3,
+        #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorDropAll")]
+        DropAll = NSDateComponentsFormatterZeroFormattingBehavior::DropLeading.0
+            | NSDateComponentsFormatterZeroFormattingBehavior::DropMiddle.0
+            | NSDateComponentsFormatterZeroFormattingBehavior::DropTrailing.0,
+        #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorPad")]
+        Pad = 1 << 16,
     }
 );
 

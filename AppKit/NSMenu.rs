@@ -8,17 +8,22 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSMenuPresentationStyle {
-        NSMenuPresentationStyleRegular = 0,
-        NSMenuPresentationStylePalette = 1,
+        #[doc(alias = "NSMenuPresentationStyleRegular")]
+        Regular = 0,
+        #[doc(alias = "NSMenuPresentationStylePalette")]
+        Palette = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSMenuSelectionMode {
-        NSMenuSelectionModeAutomatic = 0,
-        NSMenuSelectionModeSelectOne = 1,
-        NSMenuSelectionModeSelectAny = 2,
+        #[doc(alias = "NSMenuSelectionModeAutomatic")]
+        Automatic = 0,
+        #[doc(alias = "NSMenuSelectionModeSelectOne")]
+        SelectOne = 1,
+        #[doc(alias = "NSMenuSelectionModeSelectAny")]
+        SelectAny = 2,
     }
 );
 

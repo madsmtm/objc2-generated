@@ -8,17 +8,22 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSTextInsertionIndicatorDisplayMode {
-        NSTextInsertionIndicatorDisplayModeAutomatic = 0,
-        NSTextInsertionIndicatorDisplayModeHidden = 1,
-        NSTextInsertionIndicatorDisplayModeVisible = 2,
+        #[doc(alias = "NSTextInsertionIndicatorDisplayModeAutomatic")]
+        Automatic = 0,
+        #[doc(alias = "NSTextInsertionIndicatorDisplayModeHidden")]
+        Hidden = 1,
+        #[doc(alias = "NSTextInsertionIndicatorDisplayModeVisible")]
+        Visible = 2,
     }
 );
 
 ns_options!(
     #[underlying(NSInteger)]
     pub enum NSTextInsertionIndicatorAutomaticModeOptions {
-        NSTextInsertionIndicatorAutomaticModeOptionsShowEffectsView = 1 << 0,
-        NSTextInsertionIndicatorAutomaticModeOptionsShowWhileTracking = 1 << 1,
+        #[doc(alias = "NSTextInsertionIndicatorAutomaticModeOptionsShowEffectsView")]
+        ShowEffectsView = 1 << 0,
+        #[doc(alias = "NSTextInsertionIndicatorAutomaticModeOptionsShowWhileTracking")]
+        ShowWhileTracking = 1 << 1,
     }
 );
 

@@ -8,9 +8,12 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSColorWellStyle {
-        NSColorWellStyleDefault = 0,
-        NSColorWellStyleMinimal = 1,
-        NSColorWellStyleExpanded = 2,
+        #[doc(alias = "NSColorWellStyleDefault")]
+        Default = 0,
+        #[doc(alias = "NSColorWellStyleMinimal")]
+        Minimal = 1,
+        #[doc(alias = "NSColorWellStyleExpanded")]
+        Expanded = 2,
     }
 );
 

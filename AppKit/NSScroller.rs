@@ -33,17 +33,22 @@ ns_enum!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSScrollerStyle {
-        NSScrollerStyleLegacy = 0,
-        NSScrollerStyleOverlay = 1,
+        #[doc(alias = "NSScrollerStyleLegacy")]
+        Legacy = 0,
+        #[doc(alias = "NSScrollerStyleOverlay")]
+        Overlay = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSScrollerKnobStyle {
-        NSScrollerKnobStyleDefault = 0,
-        NSScrollerKnobStyleDark = 1,
-        NSScrollerKnobStyleLight = 2,
+        #[doc(alias = "NSScrollerKnobStyleDefault")]
+        Default = 0,
+        #[doc(alias = "NSScrollerKnobStyleDark")]
+        Dark = 1,
+        #[doc(alias = "NSScrollerKnobStyleLight")]
+        Light = 2,
     }
 );
 

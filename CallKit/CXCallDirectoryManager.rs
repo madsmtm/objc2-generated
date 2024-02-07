@@ -7,9 +7,12 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum CXCallDirectoryEnabledStatus {
-        CXCallDirectoryEnabledStatusUnknown = 0,
-        CXCallDirectoryEnabledStatusDisabled = 1,
-        CXCallDirectoryEnabledStatusEnabled = 2,
+        #[doc(alias = "CXCallDirectoryEnabledStatusUnknown")]
+        Unknown = 0,
+        #[doc(alias = "CXCallDirectoryEnabledStatusDisabled")]
+        Disabled = 1,
+        #[doc(alias = "CXCallDirectoryEnabledStatusEnabled")]
+        Enabled = 2,
     }
 );
 

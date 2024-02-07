@@ -9,19 +9,26 @@ use crate::UniformTypeIdentifiers::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKPrismBase {
-        HKPrismBaseNone = 0,
-        HKPrismBaseUp = 1,
-        HKPrismBaseDown = 2,
-        HKPrismBaseIn = 3,
-        HKPrismBaseOut = 4,
+        #[doc(alias = "HKPrismBaseNone")]
+        None = 0,
+        #[doc(alias = "HKPrismBaseUp")]
+        Up = 1,
+        #[doc(alias = "HKPrismBaseDown")]
+        Down = 2,
+        #[doc(alias = "HKPrismBaseIn")]
+        In = 3,
+        #[doc(alias = "HKPrismBaseOut")]
+        Out = 4,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKVisionEye {
-        HKVisionEyeLeft = 1,
-        HKVisionEyeRight = 2,
+        #[doc(alias = "HKVisionEyeLeft")]
+        Left = 1,
+        #[doc(alias = "HKVisionEyeRight")]
+        Right = 2,
     }
 );
 

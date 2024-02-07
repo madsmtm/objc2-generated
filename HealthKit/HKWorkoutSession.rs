@@ -9,20 +9,28 @@ use crate::UniformTypeIdentifiers::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKWorkoutSessionState {
-        HKWorkoutSessionStateNotStarted = 1,
-        HKWorkoutSessionStateRunning = 2,
-        HKWorkoutSessionStateEnded = 3,
-        HKWorkoutSessionStatePaused = 4,
-        HKWorkoutSessionStatePrepared = 5,
-        HKWorkoutSessionStateStopped = 6,
+        #[doc(alias = "HKWorkoutSessionStateNotStarted")]
+        NotStarted = 1,
+        #[doc(alias = "HKWorkoutSessionStateRunning")]
+        Running = 2,
+        #[doc(alias = "HKWorkoutSessionStateEnded")]
+        Ended = 3,
+        #[doc(alias = "HKWorkoutSessionStatePaused")]
+        Paused = 4,
+        #[doc(alias = "HKWorkoutSessionStatePrepared")]
+        Prepared = 5,
+        #[doc(alias = "HKWorkoutSessionStateStopped")]
+        Stopped = 6,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKWorkoutSessionType {
-        HKWorkoutSessionTypePrimary = 0,
-        HKWorkoutSessionTypeMirrored = 1,
+        #[doc(alias = "HKWorkoutSessionTypePrimary")]
+        Primary = 0,
+        #[doc(alias = "HKWorkoutSessionTypeMirrored")]
+        Mirrored = 1,
     }
 );
 

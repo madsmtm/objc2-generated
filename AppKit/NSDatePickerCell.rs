@@ -8,17 +8,22 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSDatePickerStyle {
-        NSDatePickerStyleTextFieldAndStepper = 0,
-        NSDatePickerStyleClockAndCalendar = 1,
-        NSDatePickerStyleTextField = 2,
+        #[doc(alias = "NSDatePickerStyleTextFieldAndStepper")]
+        TextFieldAndStepper = 0,
+        #[doc(alias = "NSDatePickerStyleClockAndCalendar")]
+        ClockAndCalendar = 1,
+        #[doc(alias = "NSDatePickerStyleTextField")]
+        TextField = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSDatePickerMode {
-        NSDatePickerModeSingle = 0,
-        NSDatePickerModeRange = 1,
+        #[doc(alias = "NSDatePickerModeSingle")]
+        Single = 0,
+        #[doc(alias = "NSDatePickerModeRange")]
+        Range = 1,
     }
 );
 
@@ -219,15 +224,15 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSDatePickerCellDelegate {}
 );
 
-extern_static!(NSTextFieldAndStepperDatePickerStyle: NSDatePickerStyle = NSDatePickerStyle(NSDatePickerStyle::NSDatePickerStyleTextFieldAndStepper.0));
+extern_static!(NSTextFieldAndStepperDatePickerStyle: NSDatePickerStyle = NSDatePickerStyle(NSDatePickerStyle::TextFieldAndStepper.0));
 
-extern_static!(NSClockAndCalendarDatePickerStyle: NSDatePickerStyle = NSDatePickerStyle(NSDatePickerStyle::NSDatePickerStyleClockAndCalendar.0));
+extern_static!(NSClockAndCalendarDatePickerStyle: NSDatePickerStyle = NSDatePickerStyle(NSDatePickerStyle::ClockAndCalendar.0));
 
-extern_static!(NSTextFieldDatePickerStyle: NSDatePickerStyle = NSDatePickerStyle(NSDatePickerStyle::NSDatePickerStyleTextField.0));
+extern_static!(NSTextFieldDatePickerStyle: NSDatePickerStyle = NSDatePickerStyle(NSDatePickerStyle::TextField.0));
 
-extern_static!(NSSingleDateMode: NSDatePickerMode = NSDatePickerMode(NSDatePickerMode::NSDatePickerModeSingle.0));
+extern_static!(NSSingleDateMode: NSDatePickerMode = NSDatePickerMode(NSDatePickerMode::Single.0));
 
-extern_static!(NSRangeDateMode: NSDatePickerMode = NSDatePickerMode(NSDatePickerMode::NSDatePickerModeRange.0));
+extern_static!(NSRangeDateMode: NSDatePickerMode = NSDatePickerMode(NSDatePickerMode::Range.0));
 
 extern_static!(NSHourMinuteDatePickerElementFlag: NSDatePickerElementFlags = NSDatePickerElementFlags(NSDatePickerElementFlags::NSDatePickerElementFlagHourMinute.0));
 

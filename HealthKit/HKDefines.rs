@@ -34,28 +34,38 @@ ns_enum!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKUpdateFrequency {
-        HKUpdateFrequencyImmediate = 1,
-        HKUpdateFrequencyHourly = 2,
-        HKUpdateFrequencyDaily = 3,
-        HKUpdateFrequencyWeekly = 4,
+        #[doc(alias = "HKUpdateFrequencyImmediate")]
+        Immediate = 1,
+        #[doc(alias = "HKUpdateFrequencyHourly")]
+        Hourly = 2,
+        #[doc(alias = "HKUpdateFrequencyDaily")]
+        Daily = 3,
+        #[doc(alias = "HKUpdateFrequencyWeekly")]
+        Weekly = 4,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKAuthorizationStatus {
-        HKAuthorizationStatusNotDetermined = 0,
-        HKAuthorizationStatusSharingDenied = 1,
-        HKAuthorizationStatusSharingAuthorized = 2,
+        #[doc(alias = "HKAuthorizationStatusNotDetermined")]
+        NotDetermined = 0,
+        #[doc(alias = "HKAuthorizationStatusSharingDenied")]
+        SharingDenied = 1,
+        #[doc(alias = "HKAuthorizationStatusSharingAuthorized")]
+        SharingAuthorized = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKAuthorizationRequestStatus {
-        HKAuthorizationRequestStatusUnknown = 0,
-        HKAuthorizationRequestStatusShouldRequest = 1,
-        HKAuthorizationRequestStatusUnnecessary = 2,
+        #[doc(alias = "HKAuthorizationRequestStatusUnknown")]
+        Unknown = 0,
+        #[doc(alias = "HKAuthorizationRequestStatusShouldRequest")]
+        ShouldRequest = 1,
+        #[doc(alias = "HKAuthorizationRequestStatusUnnecessary")]
+        Unnecessary = 2,
     }
 );
 

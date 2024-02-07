@@ -216,10 +216,14 @@ extern_methods!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum GKFriendsAuthorizationStatus {
-        GKFriendsAuthorizationStatusNotDetermined = 0,
-        GKFriendsAuthorizationStatusRestricted = 1,
-        GKFriendsAuthorizationStatusDenied = 2,
-        GKFriendsAuthorizationStatusAuthorized = 3,
+        #[doc(alias = "GKFriendsAuthorizationStatusNotDetermined")]
+        NotDetermined = 0,
+        #[doc(alias = "GKFriendsAuthorizationStatusRestricted")]
+        Restricted = 1,
+        #[doc(alias = "GKFriendsAuthorizationStatusDenied")]
+        Denied = 2,
+        #[doc(alias = "GKFriendsAuthorizationStatusAuthorized")]
+        Authorized = 3,
     }
 );
 

@@ -40,7 +40,9 @@ extern_static!(ASAuthorizationPublicKeyCredentialResidentKeyPreferenceRequired: 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum ASAuthorizationPublicKeyCredentialAttachment {
-        ASAuthorizationPublicKeyCredentialAttachmentPlatform = 0,
-        ASAuthorizationPublicKeyCredentialAttachmentCrossPlatform = 1,
+        #[doc(alias = "ASAuthorizationPublicKeyCredentialAttachmentPlatform")]
+        Platform = 0,
+        #[doc(alias = "ASAuthorizationPublicKeyCredentialAttachmentCrossPlatform")]
+        CrossPlatform = 1,
     }
 );

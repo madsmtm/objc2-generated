@@ -6,8 +6,10 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSTaskTerminationReason {
-        NSTaskTerminationReasonExit = 1,
-        NSTaskTerminationReasonUncaughtSignal = 2,
+        #[doc(alias = "NSTaskTerminationReasonExit")]
+        Exit = 1,
+        #[doc(alias = "NSTaskTerminationReasonUncaughtSignal")]
+        UncaughtSignal = 2,
     }
 );
 

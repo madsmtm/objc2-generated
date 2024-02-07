@@ -28,8 +28,10 @@ extern_static!(MPLanguageOptionCharacteristicVoiceOverTranslation: &'static NSSt
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MPNowPlayingInfoLanguageOptionType {
-        MPNowPlayingInfoLanguageOptionTypeAudible = 0,
-        MPNowPlayingInfoLanguageOptionTypeLegible = 1,
+        #[doc(alias = "MPNowPlayingInfoLanguageOptionTypeAudible")]
+        Audible = 0,
+        #[doc(alias = "MPNowPlayingInfoLanguageOptionTypeLegible")]
+        Legible = 1,
     }
 );
 

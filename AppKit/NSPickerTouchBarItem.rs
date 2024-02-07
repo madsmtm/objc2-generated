@@ -8,18 +8,24 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSPickerTouchBarItemSelectionMode {
-        NSPickerTouchBarItemSelectionModeSelectOne = 0,
-        NSPickerTouchBarItemSelectionModeSelectAny = 1,
-        NSPickerTouchBarItemSelectionModeMomentary = 2,
+        #[doc(alias = "NSPickerTouchBarItemSelectionModeSelectOne")]
+        SelectOne = 0,
+        #[doc(alias = "NSPickerTouchBarItemSelectionModeSelectAny")]
+        SelectAny = 1,
+        #[doc(alias = "NSPickerTouchBarItemSelectionModeMomentary")]
+        Momentary = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSPickerTouchBarItemControlRepresentation {
-        NSPickerTouchBarItemControlRepresentationAutomatic = 0,
-        NSPickerTouchBarItemControlRepresentationExpanded = 1,
-        NSPickerTouchBarItemControlRepresentationCollapsed = 2,
+        #[doc(alias = "NSPickerTouchBarItemControlRepresentationAutomatic")]
+        Automatic = 0,
+        #[doc(alias = "NSPickerTouchBarItemControlRepresentationExpanded")]
+        Expanded = 1,
+        #[doc(alias = "NSPickerTouchBarItemControlRepresentationCollapsed")]
+        Collapsed = 2,
     }
 );
 

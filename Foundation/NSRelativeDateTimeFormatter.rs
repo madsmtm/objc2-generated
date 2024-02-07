@@ -6,18 +6,24 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSRelativeDateTimeFormatterStyle {
-        NSRelativeDateTimeFormatterStyleNumeric = 0,
-        NSRelativeDateTimeFormatterStyleNamed = 1,
+        #[doc(alias = "NSRelativeDateTimeFormatterStyleNumeric")]
+        Numeric = 0,
+        #[doc(alias = "NSRelativeDateTimeFormatterStyleNamed")]
+        Named = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSRelativeDateTimeFormatterUnitsStyle {
-        NSRelativeDateTimeFormatterUnitsStyleFull = 0,
-        NSRelativeDateTimeFormatterUnitsStyleSpellOut = 1,
-        NSRelativeDateTimeFormatterUnitsStyleShort = 2,
-        NSRelativeDateTimeFormatterUnitsStyleAbbreviated = 3,
+        #[doc(alias = "NSRelativeDateTimeFormatterUnitsStyleFull")]
+        Full = 0,
+        #[doc(alias = "NSRelativeDateTimeFormatterUnitsStyleSpellOut")]
+        SpellOut = 1,
+        #[doc(alias = "NSRelativeDateTimeFormatterUnitsStyleShort")]
+        Short = 2,
+        #[doc(alias = "NSRelativeDateTimeFormatterUnitsStyleAbbreviated")]
+        Abbreviated = 3,
     }
 );
 

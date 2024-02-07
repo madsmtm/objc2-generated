@@ -7,31 +7,50 @@ use crate::IdentityLookup::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum ILMessageFilterAction {
-        ILMessageFilterActionNone = 0,
-        ILMessageFilterActionAllow = 1,
-        ILMessageFilterActionJunk = 2,
+        #[doc(alias = "ILMessageFilterActionNone")]
+        None = 0,
+        #[doc(alias = "ILMessageFilterActionAllow")]
+        Allow = 1,
+        #[doc(alias = "ILMessageFilterActionJunk")]
+        Junk = 2,
         #[deprecated]
-        ILMessageFilterActionFilter = ILMessageFilterAction::ILMessageFilterActionJunk.0,
-        ILMessageFilterActionPromotion = 3,
-        ILMessageFilterActionTransaction = 4,
+        #[doc(alias = "ILMessageFilterActionFilter")]
+        Filter = ILMessageFilterAction::Junk.0,
+        #[doc(alias = "ILMessageFilterActionPromotion")]
+        Promotion = 3,
+        #[doc(alias = "ILMessageFilterActionTransaction")]
+        Transaction = 4,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum ILMessageFilterSubAction {
-        ILMessageFilterSubActionNone = 0,
-        ILMessageFilterSubActionTransactionalOthers = 10000,
-        ILMessageFilterSubActionTransactionalFinance = 10001,
-        ILMessageFilterSubActionTransactionalOrders = 10002,
-        ILMessageFilterSubActionTransactionalReminders = 10003,
-        ILMessageFilterSubActionTransactionalHealth = 10004,
-        ILMessageFilterSubActionTransactionalWeather = 10005,
-        ILMessageFilterSubActionTransactionalCarrier = 10006,
-        ILMessageFilterSubActionTransactionalRewards = 10007,
-        ILMessageFilterSubActionTransactionalPublicServices = 10008,
-        ILMessageFilterSubActionPromotionalOthers = 20000,
-        ILMessageFilterSubActionPromotionalOffers = 20001,
-        ILMessageFilterSubActionPromotionalCoupons = 20002,
+        #[doc(alias = "ILMessageFilterSubActionNone")]
+        None = 0,
+        #[doc(alias = "ILMessageFilterSubActionTransactionalOthers")]
+        TransactionalOthers = 10000,
+        #[doc(alias = "ILMessageFilterSubActionTransactionalFinance")]
+        TransactionalFinance = 10001,
+        #[doc(alias = "ILMessageFilterSubActionTransactionalOrders")]
+        TransactionalOrders = 10002,
+        #[doc(alias = "ILMessageFilterSubActionTransactionalReminders")]
+        TransactionalReminders = 10003,
+        #[doc(alias = "ILMessageFilterSubActionTransactionalHealth")]
+        TransactionalHealth = 10004,
+        #[doc(alias = "ILMessageFilterSubActionTransactionalWeather")]
+        TransactionalWeather = 10005,
+        #[doc(alias = "ILMessageFilterSubActionTransactionalCarrier")]
+        TransactionalCarrier = 10006,
+        #[doc(alias = "ILMessageFilterSubActionTransactionalRewards")]
+        TransactionalRewards = 10007,
+        #[doc(alias = "ILMessageFilterSubActionTransactionalPublicServices")]
+        TransactionalPublicServices = 10008,
+        #[doc(alias = "ILMessageFilterSubActionPromotionalOthers")]
+        PromotionalOthers = 20000,
+        #[doc(alias = "ILMessageFilterSubActionPromotionalOffers")]
+        PromotionalOffers = 20001,
+        #[doc(alias = "ILMessageFilterSubActionPromotionalCoupons")]
+        PromotionalCoupons = 20002,
     }
 );

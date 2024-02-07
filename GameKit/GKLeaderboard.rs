@@ -8,25 +8,32 @@ use crate::GameKit::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum GKLeaderboardTimeScope {
-        GKLeaderboardTimeScopeToday = 0,
-        GKLeaderboardTimeScopeWeek = 1,
-        GKLeaderboardTimeScopeAllTime = 2,
+        #[doc(alias = "GKLeaderboardTimeScopeToday")]
+        Today = 0,
+        #[doc(alias = "GKLeaderboardTimeScopeWeek")]
+        Week = 1,
+        #[doc(alias = "GKLeaderboardTimeScopeAllTime")]
+        AllTime = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum GKLeaderboardPlayerScope {
-        GKLeaderboardPlayerScopeGlobal = 0,
-        GKLeaderboardPlayerScopeFriendsOnly = 1,
+        #[doc(alias = "GKLeaderboardPlayerScopeGlobal")]
+        Global = 0,
+        #[doc(alias = "GKLeaderboardPlayerScopeFriendsOnly")]
+        FriendsOnly = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum GKLeaderboardType {
-        GKLeaderboardTypeClassic = 0,
-        GKLeaderboardTypeRecurring = 1,
+        #[doc(alias = "GKLeaderboardTypeClassic")]
+        Classic = 0,
+        #[doc(alias = "GKLeaderboardTypeRecurring")]
+        Recurring = 1,
     }
 );
 

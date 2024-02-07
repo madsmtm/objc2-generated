@@ -6,7 +6,8 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSNumberFormatterBehavior {
-        NSNumberFormatterBehaviorDefault = 0,
+        #[doc(alias = "NSNumberFormatterBehaviorDefault")]
+        Default = 0,
         NSNumberFormatterBehavior10_0 = 1000,
         NSNumberFormatterBehavior10_4 = 1040,
     }

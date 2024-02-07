@@ -8,9 +8,12 @@ use crate::StoreKit::*;
 ns_closed_enum!(
     #[underlying(NSInteger)]
     pub enum SKProductStorePromotionVisibility {
-        SKProductStorePromotionVisibilityDefault = 0,
-        SKProductStorePromotionVisibilityShow = 1,
-        SKProductStorePromotionVisibilityHide = 2,
+        #[doc(alias = "SKProductStorePromotionVisibilityDefault")]
+        Default = 0,
+        #[doc(alias = "SKProductStorePromotionVisibilityShow")]
+        Show = 1,
+        #[doc(alias = "SKProductStorePromotionVisibilityHide")]
+        Hide = 2,
     }
 );
 

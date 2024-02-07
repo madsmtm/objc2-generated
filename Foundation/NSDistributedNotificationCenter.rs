@@ -12,10 +12,14 @@ extern_static!(NSLocalNotificationCenterType: &'static NSDistributedNotification
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSNotificationSuspensionBehavior {
-        NSNotificationSuspensionBehaviorDrop = 1,
-        NSNotificationSuspensionBehaviorCoalesce = 2,
-        NSNotificationSuspensionBehaviorHold = 3,
-        NSNotificationSuspensionBehaviorDeliverImmediately = 4,
+        #[doc(alias = "NSNotificationSuspensionBehaviorDrop")]
+        Drop = 1,
+        #[doc(alias = "NSNotificationSuspensionBehaviorCoalesce")]
+        Coalesce = 2,
+        #[doc(alias = "NSNotificationSuspensionBehaviorHold")]
+        Hold = 3,
+        #[doc(alias = "NSNotificationSuspensionBehaviorDeliverImmediately")]
+        DeliverImmediately = 4,
     }
 );
 

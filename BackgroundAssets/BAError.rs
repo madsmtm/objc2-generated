@@ -9,21 +9,37 @@ extern_static!(BAErrorDomain: &'static NSString);
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum BAErrorCode {
-        BAErrorCodeDownloadInvalid = 0,
-        BAErrorCodeCallFromExtensionNotAllowed = 50,
-        BAErrorCodeCallFromInactiveProcessNotAllowed = 51,
-        BAErrorCodeCallerConnectionNotAccepted = 55,
-        BAErrorCodeCallerConnectionInvalid = 56,
-        BAErrorCodeDownloadAlreadyScheduled = 100,
-        BAErrorCodeDownloadNotScheduled = 101,
-        BAErrorCodeDownloadFailedToStart = 102,
-        BAErrorCodeDownloadAlreadyFailed = 103,
-        BAErrorCodeDownloadEssentialDownloadNotPermitted = 109,
-        BAErrorCodeDownloadBackgroundActivityProhibited = 111,
-        BAErrorCodeDownloadWouldExceedAllowance = 112,
-        BAErrorCodeSessionDownloadDisallowedByDomain = 202,
-        BAErrorCodeSessionDownloadDisallowedByAllowance = 203,
-        BAErrorCodeSessionDownloadAllowanceExceeded = 204,
-        BAErrorCodeSessionDownloadNotPermittedBeforeAppLaunch = 206,
+        #[doc(alias = "BAErrorCodeDownloadInvalid")]
+        DownloadInvalid = 0,
+        #[doc(alias = "BAErrorCodeCallFromExtensionNotAllowed")]
+        CallFromExtensionNotAllowed = 50,
+        #[doc(alias = "BAErrorCodeCallFromInactiveProcessNotAllowed")]
+        CallFromInactiveProcessNotAllowed = 51,
+        #[doc(alias = "BAErrorCodeCallerConnectionNotAccepted")]
+        CallerConnectionNotAccepted = 55,
+        #[doc(alias = "BAErrorCodeCallerConnectionInvalid")]
+        CallerConnectionInvalid = 56,
+        #[doc(alias = "BAErrorCodeDownloadAlreadyScheduled")]
+        DownloadAlreadyScheduled = 100,
+        #[doc(alias = "BAErrorCodeDownloadNotScheduled")]
+        DownloadNotScheduled = 101,
+        #[doc(alias = "BAErrorCodeDownloadFailedToStart")]
+        DownloadFailedToStart = 102,
+        #[doc(alias = "BAErrorCodeDownloadAlreadyFailed")]
+        DownloadAlreadyFailed = 103,
+        #[doc(alias = "BAErrorCodeDownloadEssentialDownloadNotPermitted")]
+        DownloadEssentialDownloadNotPermitted = 109,
+        #[doc(alias = "BAErrorCodeDownloadBackgroundActivityProhibited")]
+        DownloadBackgroundActivityProhibited = 111,
+        #[doc(alias = "BAErrorCodeDownloadWouldExceedAllowance")]
+        DownloadWouldExceedAllowance = 112,
+        #[doc(alias = "BAErrorCodeSessionDownloadDisallowedByDomain")]
+        SessionDownloadDisallowedByDomain = 202,
+        #[doc(alias = "BAErrorCodeSessionDownloadDisallowedByAllowance")]
+        SessionDownloadDisallowedByAllowance = 203,
+        #[doc(alias = "BAErrorCodeSessionDownloadAllowanceExceeded")]
+        SessionDownloadAllowanceExceeded = 204,
+        #[doc(alias = "BAErrorCodeSessionDownloadNotPermittedBeforeAppLaunch")]
+        SessionDownloadNotPermittedBeforeAppLaunch = 206,
     }
 );

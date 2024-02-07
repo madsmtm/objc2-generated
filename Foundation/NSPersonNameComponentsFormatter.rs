@@ -6,11 +6,16 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSPersonNameComponentsFormatterStyle {
-        NSPersonNameComponentsFormatterStyleDefault = 0,
-        NSPersonNameComponentsFormatterStyleShort = 1,
-        NSPersonNameComponentsFormatterStyleMedium = 2,
-        NSPersonNameComponentsFormatterStyleLong = 3,
-        NSPersonNameComponentsFormatterStyleAbbreviated = 4,
+        #[doc(alias = "NSPersonNameComponentsFormatterStyleDefault")]
+        Default = 0,
+        #[doc(alias = "NSPersonNameComponentsFormatterStyleShort")]
+        Short = 1,
+        #[doc(alias = "NSPersonNameComponentsFormatterStyleMedium")]
+        Medium = 2,
+        #[doc(alias = "NSPersonNameComponentsFormatterStyleLong")]
+        Long = 3,
+        #[doc(alias = "NSPersonNameComponentsFormatterStyleAbbreviated")]
+        Abbreviated = 4,
     }
 );
 

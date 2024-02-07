@@ -14,9 +14,12 @@ pub const NSImageRepMatchesDevice: c_uint = 0;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSImageLayoutDirection {
-        NSImageLayoutDirectionUnspecified = -1,
-        NSImageLayoutDirectionLeftToRight = 2,
-        NSImageLayoutDirectionRightToLeft = 3,
+        #[doc(alias = "NSImageLayoutDirectionUnspecified")]
+        Unspecified = -1,
+        #[doc(alias = "NSImageLayoutDirectionLeftToRight")]
+        LeftToRight = 2,
+        #[doc(alias = "NSImageLayoutDirectionRightToLeft")]
+        RightToLeft = 3,
     }
 );
 

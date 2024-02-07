@@ -7,9 +7,12 @@ use crate::Foundation::*;
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum AEAutocorrectMode {
-        AEAutocorrectModeNone = 0,
-        AEAutocorrectModeSpelling = 1 << 0,
-        AEAutocorrectModePunctuation = 1 << 1,
+        #[doc(alias = "AEAutocorrectModeNone")]
+        None = 0,
+        #[doc(alias = "AEAutocorrectModeSpelling")]
+        Spelling = 1 << 0,
+        #[doc(alias = "AEAutocorrectModePunctuation")]
+        Punctuation = 1 << 1,
     }
 );
 

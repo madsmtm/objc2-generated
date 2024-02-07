@@ -7,11 +7,16 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum BADownloadState {
-        BADownloadStateFailed = -1,
-        BADownloadStateCreated = 0,
-        BADownloadStateWaiting = 1,
-        BADownloadStateDownloading = 2,
-        BADownloadStateFinished = 3,
+        #[doc(alias = "BADownloadStateFailed")]
+        Failed = -1,
+        #[doc(alias = "BADownloadStateCreated")]
+        Created = 0,
+        #[doc(alias = "BADownloadStateWaiting")]
+        Waiting = 1,
+        #[doc(alias = "BADownloadStateDownloading")]
+        Downloading = 2,
+        #[doc(alias = "BADownloadStateFinished")]
+        Finished = 3,
     }
 );
 

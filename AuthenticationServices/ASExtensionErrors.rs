@@ -10,10 +10,14 @@ extern_static!(ASExtensionErrorDomain: Option<&'static NSErrorDomain>);
 ns_error_enum!(
     #[underlying(NSInteger)]
     pub enum ASExtensionErrorCode {
-        ASExtensionErrorCodeFailed = 0,
-        ASExtensionErrorCodeUserCanceled = 1,
-        ASExtensionErrorCodeUserInteractionRequired = 100,
-        ASExtensionErrorCodeCredentialIdentityNotFound = 101,
+        #[doc(alias = "ASExtensionErrorCodeFailed")]
+        Failed = 0,
+        #[doc(alias = "ASExtensionErrorCodeUserCanceled")]
+        UserCanceled = 1,
+        #[doc(alias = "ASExtensionErrorCodeUserInteractionRequired")]
+        UserInteractionRequired = 100,
+        #[doc(alias = "ASExtensionErrorCodeCredentialIdentityNotFound")]
+        CredentialIdentityNotFound = 101,
     }
 );
 

@@ -10,7 +10,8 @@ ns_enum!(
     pub enum GCDevicePhysicalInputElementChange {
         GCDevicePhysicalInputElementUnknownChange = -1,
         GCDevicePhysicalInputElementNoChange = 0,
-        GCDevicePhysicalInputElementChanged = 1,
+        #[doc(alias = "GCDevicePhysicalInputElementChanged")]
+        d = 1,
     }
 );
 

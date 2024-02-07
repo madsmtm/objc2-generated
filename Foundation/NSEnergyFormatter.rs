@@ -6,10 +6,14 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSEnergyFormatterUnit {
-        NSEnergyFormatterUnitJoule = 11,
-        NSEnergyFormatterUnitKilojoule = 14,
-        NSEnergyFormatterUnitCalorie = (7 << 8) + 1,
-        NSEnergyFormatterUnitKilocalorie = (7 << 8) + 2,
+        #[doc(alias = "NSEnergyFormatterUnitJoule")]
+        Joule = 11,
+        #[doc(alias = "NSEnergyFormatterUnitKilojoule")]
+        Kilojoule = 14,
+        #[doc(alias = "NSEnergyFormatterUnitCalorie")]
+        Calorie = (7 << 8) + 1,
+        #[doc(alias = "NSEnergyFormatterUnitKilocalorie")]
+        Kilocalorie = (7 << 8) + 2,
     }
 );
 

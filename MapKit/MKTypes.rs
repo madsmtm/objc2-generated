@@ -10,12 +10,18 @@ use crate::MapKit::*;
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MKMapType {
-        MKMapTypeStandard = 0,
-        MKMapTypeSatellite = 1,
-        MKMapTypeHybrid = 2,
-        MKMapTypeSatelliteFlyover = 3,
-        MKMapTypeHybridFlyover = 4,
-        MKMapTypeMutedStandard = 5,
+        #[doc(alias = "MKMapTypeStandard")]
+        Standard = 0,
+        #[doc(alias = "MKMapTypeSatellite")]
+        Satellite = 1,
+        #[doc(alias = "MKMapTypeHybrid")]
+        Hybrid = 2,
+        #[doc(alias = "MKMapTypeSatelliteFlyover")]
+        SatelliteFlyover = 3,
+        #[doc(alias = "MKMapTypeHybridFlyover")]
+        HybridFlyover = 4,
+        #[doc(alias = "MKMapTypeMutedStandard")]
+        MutedStandard = 5,
     }
 );
 
@@ -36,8 +42,11 @@ ns_enum!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MKFeatureVisibility {
-        MKFeatureVisibilityAdaptive = 0,
-        MKFeatureVisibilityHidden = 1,
-        MKFeatureVisibilityVisible = 2,
+        #[doc(alias = "MKFeatureVisibilityAdaptive")]
+        Adaptive = 0,
+        #[doc(alias = "MKFeatureVisibilityHidden")]
+        Hidden = 1,
+        #[doc(alias = "MKFeatureVisibilityVisible")]
+        Visible = 2,
     }
 );

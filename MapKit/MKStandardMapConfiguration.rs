@@ -10,8 +10,10 @@ use crate::MapKit::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MKStandardMapEmphasisStyle {
-        MKStandardMapEmphasisStyleDefault = 0,
-        MKStandardMapEmphasisStyleMuted = 1,
+        #[doc(alias = "MKStandardMapEmphasisStyleDefault")]
+        Default = 0,
+        #[doc(alias = "MKStandardMapEmphasisStyleMuted")]
+        Muted = 1,
     }
 );
 

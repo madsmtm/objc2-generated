@@ -8,10 +8,14 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSTabViewControllerTabStyle {
-        NSTabViewControllerTabStyleSegmentedControlOnTop = 0,
-        NSTabViewControllerTabStyleSegmentedControlOnBottom = 1,
-        NSTabViewControllerTabStyleToolbar = 2,
-        NSTabViewControllerTabStyleUnspecified = -1,
+        #[doc(alias = "NSTabViewControllerTabStyleSegmentedControlOnTop")]
+        SegmentedControlOnTop = 0,
+        #[doc(alias = "NSTabViewControllerTabStyleSegmentedControlOnBottom")]
+        SegmentedControlOnBottom = 1,
+        #[doc(alias = "NSTabViewControllerTabStyleToolbar")]
+        Toolbar = 2,
+        #[doc(alias = "NSTabViewControllerTabStyleUnspecified")]
+        Unspecified = -1,
     }
 );
 

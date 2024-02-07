@@ -10,8 +10,10 @@ use crate::MapKit::*;
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum MKLocalSearchResultType {
-        MKLocalSearchResultTypeAddress = 1 << 0,
-        MKLocalSearchResultTypePointOfInterest = 1 << 1,
+        #[doc(alias = "MKLocalSearchResultTypeAddress")]
+        Address = 1 << 0,
+        #[doc(alias = "MKLocalSearchResultTypePointOfInterest")]
+        PointOfInterest = 1 << 1,
     }
 );
 

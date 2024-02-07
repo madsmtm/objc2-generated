@@ -7,11 +7,16 @@ use crate::LocalAuthentication::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum LAPolicy {
-        LAPolicyDeviceOwnerAuthenticationWithBiometrics = 1,
-        LAPolicyDeviceOwnerAuthentication = 2,
-        LAPolicyDeviceOwnerAuthenticationWithWatch = 3,
-        LAPolicyDeviceOwnerAuthenticationWithBiometricsOrWatch = 4,
-        LAPolicyDeviceOwnerAuthenticationWithWristDetection = 5,
+        #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithBiometrics")]
+        DeviceOwnerAuthenticationWithBiometrics = 1,
+        #[doc(alias = "LAPolicyDeviceOwnerAuthentication")]
+        DeviceOwnerAuthentication = 2,
+        #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithWatch")]
+        DeviceOwnerAuthenticationWithWatch = 3,
+        #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithBiometricsOrWatch")]
+        DeviceOwnerAuthenticationWithBiometricsOrWatch = 4,
+        #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithWristDetection")]
+        DeviceOwnerAuthenticationWithWristDetection = 5,
     }
 );
 
@@ -19,25 +24,45 @@ extern_static!(LATouchIDAuthenticationMaximumAllowableReuseDuration: NSTimeInter
 
 ns_enum!(
     #[underlying(NSInteger)]
+    pub enum LACredentialType {
+        #[doc(alias = "LACredentialTypeApplicationPassword")]
+        ApplicationPassword = 0,
+        #[doc(alias = "LACredentialTypeSmartCardPIN")]
+        SmartCardPIN = -3,
+    }
+);
+
+ns_enum!(
+    #[underlying(NSInteger)]
     pub enum LAAccessControlOperation {
-        LAAccessControlOperationCreateItem = 0,
-        LAAccessControlOperationUseItem = 1,
-        LAAccessControlOperationCreateKey = 2,
-        LAAccessControlOperationUseKeySign = 3,
-        LAAccessControlOperationUseKeyDecrypt = 4,
-        LAAccessControlOperationUseKeyKeyExchange = 5,
+        #[doc(alias = "LAAccessControlOperationCreateItem")]
+        CreateItem = 0,
+        #[doc(alias = "LAAccessControlOperationUseItem")]
+        UseItem = 1,
+        #[doc(alias = "LAAccessControlOperationCreateKey")]
+        CreateKey = 2,
+        #[doc(alias = "LAAccessControlOperationUseKeySign")]
+        UseKeySign = 3,
+        #[doc(alias = "LAAccessControlOperationUseKeyDecrypt")]
+        UseKeyDecrypt = 4,
+        #[doc(alias = "LAAccessControlOperationUseKeyKeyExchange")]
+        UseKeyKeyExchange = 5,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum LABiometryType {
-        LABiometryTypeNone = 0,
+        #[doc(alias = "LABiometryTypeNone")]
+        None = 0,
         #[deprecated]
-        LABiometryNone = LABiometryType::LABiometryTypeNone.0,
-        LABiometryTypeTouchID = 1,
-        LABiometryTypeFaceID = 2,
-        LABiometryTypeOpticID = 4,
+        LABiometryNone = LABiometryType::None.0,
+        #[doc(alias = "LABiometryTypeTouchID")]
+        TouchID = 1,
+        #[doc(alias = "LABiometryTypeFaceID")]
+        FaceID = 2,
+        #[doc(alias = "LABiometryTypeOpticID")]
+        OpticID = 4,
     }
 );
 

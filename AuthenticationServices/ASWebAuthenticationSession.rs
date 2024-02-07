@@ -10,9 +10,12 @@ extern_static!(ASWebAuthenticationSessionErrorDomain: &'static NSErrorDomain);
 ns_error_enum!(
     #[underlying(NSInteger)]
     pub enum ASWebAuthenticationSessionErrorCode {
-        ASWebAuthenticationSessionErrorCodeCanceledLogin = 1,
-        ASWebAuthenticationSessionErrorCodePresentationContextNotProvided = 2,
-        ASWebAuthenticationSessionErrorCodePresentationContextInvalid = 3,
+        #[doc(alias = "ASWebAuthenticationSessionErrorCodeCanceledLogin")]
+        CanceledLogin = 1,
+        #[doc(alias = "ASWebAuthenticationSessionErrorCodePresentationContextNotProvided")]
+        PresentationContextNotProvided = 2,
+        #[doc(alias = "ASWebAuthenticationSessionErrorCodePresentationContextInvalid")]
+        PresentationContextInvalid = 3,
     }
 );
 

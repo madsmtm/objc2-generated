@@ -10,11 +10,14 @@ ns_enum!(
     #[deprecated]
     pub enum WebViewInsertAction {
         #[deprecated]
-        WebViewInsertActionTyped = 0,
+        #[doc(alias = "WebViewInsertActionTyped")]
+        Typed = 0,
         #[deprecated]
-        WebViewInsertActionPasted = 1,
+        #[doc(alias = "WebViewInsertActionPasted")]
+        Pasted = 1,
         #[deprecated]
-        WebViewInsertActionDropped = 2,
+        #[doc(alias = "WebViewInsertActionDropped")]
+        Dropped = 2,
     }
 );
 

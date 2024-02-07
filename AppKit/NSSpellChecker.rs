@@ -34,21 +34,30 @@ extern_static!(NSTextCheckingGenerateInlinePredictionsKey: &'static NSTextChecki
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSCorrectionResponse {
-        NSCorrectionResponseNone = 0,
-        NSCorrectionResponseAccepted = 1,
-        NSCorrectionResponseRejected = 2,
-        NSCorrectionResponseIgnored = 3,
-        NSCorrectionResponseEdited = 4,
-        NSCorrectionResponseReverted = 5,
+        #[doc(alias = "NSCorrectionResponseNone")]
+        None = 0,
+        #[doc(alias = "NSCorrectionResponseAccepted")]
+        Accepted = 1,
+        #[doc(alias = "NSCorrectionResponseRejected")]
+        Rejected = 2,
+        #[doc(alias = "NSCorrectionResponseIgnored")]
+        Ignored = 3,
+        #[doc(alias = "NSCorrectionResponseEdited")]
+        Edited = 4,
+        #[doc(alias = "NSCorrectionResponseReverted")]
+        Reverted = 5,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSCorrectionIndicatorType {
-        NSCorrectionIndicatorTypeDefault = 0,
-        NSCorrectionIndicatorTypeReversion = 1,
-        NSCorrectionIndicatorTypeGuesses = 2,
+        #[doc(alias = "NSCorrectionIndicatorTypeDefault")]
+        Default = 0,
+        #[doc(alias = "NSCorrectionIndicatorTypeReversion")]
+        Reversion = 1,
+        #[doc(alias = "NSCorrectionIndicatorTypeGuesses")]
+        Guesses = 2,
     }
 );
 

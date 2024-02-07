@@ -44,8 +44,10 @@ pub use self::__LAContext::LAAccessControlOperation;
 pub use self::__LAContext::LABiometryType;
 #[cfg(feature = "LocalAuthentication_LAContext")]
 pub use self::__LAContext::LAContext;
+pub use self::__LAContext::LACredentialType;
 pub use self::__LAContext::LAPolicy;
 pub use self::__LAContext::LATouchIDAuthenticationMaximumAllowableReuseDuration;
+pub use self::__LAError::LAError;
 pub use self::__LAError::LAErrorDomain;
 #[cfg(feature = "LocalAuthentication_LAPersistedRight")]
 pub use self::__LAPersistedRight::LAPersistedRight;

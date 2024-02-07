@@ -8,10 +8,14 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSImageDynamicRange {
-        NSImageDynamicRangeUnspecified = -1,
-        NSImageDynamicRangeStandard = 0,
-        NSImageDynamicRangeConstrainedHigh = 1,
-        NSImageDynamicRangeHigh = 2,
+        #[doc(alias = "NSImageDynamicRangeUnspecified")]
+        Unspecified = -1,
+        #[doc(alias = "NSImageDynamicRangeStandard")]
+        Standard = 0,
+        #[doc(alias = "NSImageDynamicRangeConstrainedHigh")]
+        ConstrainedHigh = 1,
+        #[doc(alias = "NSImageDynamicRangeHigh")]
+        High = 2,
     }
 );
 

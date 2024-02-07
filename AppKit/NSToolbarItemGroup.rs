@@ -8,18 +8,24 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSToolbarItemGroupSelectionMode {
-        NSToolbarItemGroupSelectionModeSelectOne = 0,
-        NSToolbarItemGroupSelectionModeSelectAny = 1,
-        NSToolbarItemGroupSelectionModeMomentary = 2,
+        #[doc(alias = "NSToolbarItemGroupSelectionModeSelectOne")]
+        SelectOne = 0,
+        #[doc(alias = "NSToolbarItemGroupSelectionModeSelectAny")]
+        SelectAny = 1,
+        #[doc(alias = "NSToolbarItemGroupSelectionModeMomentary")]
+        Momentary = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSToolbarItemGroupControlRepresentation {
-        NSToolbarItemGroupControlRepresentationAutomatic = 0,
-        NSToolbarItemGroupControlRepresentationExpanded = 1,
-        NSToolbarItemGroupControlRepresentationCollapsed = 2,
+        #[doc(alias = "NSToolbarItemGroupControlRepresentationAutomatic")]
+        Automatic = 0,
+        #[doc(alias = "NSToolbarItemGroupControlRepresentationExpanded")]
+        Expanded = 1,
+        #[doc(alias = "NSToolbarItemGroupControlRepresentationCollapsed")]
+        Collapsed = 2,
     }
 );
 

@@ -18,8 +18,10 @@ ns_enum!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSPrintRenderingQuality {
-        NSPrintRenderingQualityBest = 0,
-        NSPrintRenderingQualityResponsive = 1,
+        #[doc(alias = "NSPrintRenderingQualityBest")]
+        Best = 0,
+        #[doc(alias = "NSPrintRenderingQualityResponsive")]
+        Responsive = 1,
     }
 );
 

@@ -8,13 +8,20 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(c_int)]
     pub enum CLDeviceOrientation {
-        CLDeviceOrientationUnknown = 0,
-        CLDeviceOrientationPortrait = 1,
-        CLDeviceOrientationPortraitUpsideDown = 2,
-        CLDeviceOrientationLandscapeLeft = 3,
-        CLDeviceOrientationLandscapeRight = 4,
-        CLDeviceOrientationFaceUp = 5,
-        CLDeviceOrientationFaceDown = 6,
+        #[doc(alias = "CLDeviceOrientationUnknown")]
+        Unknown = 0,
+        #[doc(alias = "CLDeviceOrientationPortrait")]
+        Portrait = 1,
+        #[doc(alias = "CLDeviceOrientationPortraitUpsideDown")]
+        PortraitUpsideDown = 2,
+        #[doc(alias = "CLDeviceOrientationLandscapeLeft")]
+        LandscapeLeft = 3,
+        #[doc(alias = "CLDeviceOrientationLandscapeRight")]
+        LandscapeRight = 4,
+        #[doc(alias = "CLDeviceOrientationFaceUp")]
+        FaceUp = 5,
+        #[doc(alias = "CLDeviceOrientationFaceDown")]
+        FaceDown = 6,
     }
 );
 
@@ -35,19 +42,26 @@ ns_enum!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum CLAccuracyAuthorization {
-        CLAccuracyAuthorizationFullAccuracy = 0,
-        CLAccuracyAuthorizationReducedAccuracy = 1,
+        #[doc(alias = "CLAccuracyAuthorizationFullAccuracy")]
+        FullAccuracy = 0,
+        #[doc(alias = "CLAccuracyAuthorizationReducedAccuracy")]
+        ReducedAccuracy = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum CLActivityType {
-        CLActivityTypeOther = 1,
-        CLActivityTypeAutomotiveNavigation = 2,
-        CLActivityTypeFitness = 3,
-        CLActivityTypeOtherNavigation = 4,
-        CLActivityTypeAirborne = 5,
+        #[doc(alias = "CLActivityTypeOther")]
+        Other = 1,
+        #[doc(alias = "CLActivityTypeAutomotiveNavigation")]
+        AutomotiveNavigation = 2,
+        #[doc(alias = "CLActivityTypeFitness")]
+        Fitness = 3,
+        #[doc(alias = "CLActivityTypeOtherNavigation")]
+        OtherNavigation = 4,
+        #[doc(alias = "CLActivityTypeAirborne")]
+        Airborne = 5,
     }
 );
 

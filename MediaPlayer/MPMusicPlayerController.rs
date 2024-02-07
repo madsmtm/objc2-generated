@@ -8,32 +8,46 @@ use crate::MediaPlayer::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MPMusicPlaybackState {
-        MPMusicPlaybackStateStopped = 0,
-        MPMusicPlaybackStatePlaying = 1,
-        MPMusicPlaybackStatePaused = 2,
-        MPMusicPlaybackStateInterrupted = 3,
-        MPMusicPlaybackStateSeekingForward = 4,
-        MPMusicPlaybackStateSeekingBackward = 5,
+        #[doc(alias = "MPMusicPlaybackStateStopped")]
+        Stopped = 0,
+        #[doc(alias = "MPMusicPlaybackStatePlaying")]
+        Playing = 1,
+        #[doc(alias = "MPMusicPlaybackStatePaused")]
+        Paused = 2,
+        #[doc(alias = "MPMusicPlaybackStateInterrupted")]
+        Interrupted = 3,
+        #[doc(alias = "MPMusicPlaybackStateSeekingForward")]
+        SeekingForward = 4,
+        #[doc(alias = "MPMusicPlaybackStateSeekingBackward")]
+        SeekingBackward = 5,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MPMusicRepeatMode {
-        MPMusicRepeatModeDefault = 0,
-        MPMusicRepeatModeNone = 1,
-        MPMusicRepeatModeOne = 2,
-        MPMusicRepeatModeAll = 3,
+        #[doc(alias = "MPMusicRepeatModeDefault")]
+        Default = 0,
+        #[doc(alias = "MPMusicRepeatModeNone")]
+        None = 1,
+        #[doc(alias = "MPMusicRepeatModeOne")]
+        One = 2,
+        #[doc(alias = "MPMusicRepeatModeAll")]
+        All = 3,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MPMusicShuffleMode {
-        MPMusicShuffleModeDefault = 0,
-        MPMusicShuffleModeOff = 1,
-        MPMusicShuffleModeSongs = 2,
-        MPMusicShuffleModeAlbums = 3,
+        #[doc(alias = "MPMusicShuffleModeDefault")]
+        Default = 0,
+        #[doc(alias = "MPMusicShuffleModeOff")]
+        Off = 1,
+        #[doc(alias = "MPMusicShuffleModeSongs")]
+        Songs = 2,
+        #[doc(alias = "MPMusicShuffleModeAlbums")]
+        Albums = 3,
     }
 );
 

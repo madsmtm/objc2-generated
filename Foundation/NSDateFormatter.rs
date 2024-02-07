@@ -17,7 +17,8 @@ ns_enum!(
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSDateFormatterBehavior {
-        NSDateFormatterBehaviorDefault = 0,
+        #[doc(alias = "NSDateFormatterBehaviorDefault")]
+        Default = 0,
         NSDateFormatterBehavior10_0 = 1000,
         NSDateFormatterBehavior10_4 = 1040,
     }

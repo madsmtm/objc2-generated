@@ -8,9 +8,12 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSTextInputTraitType {
-        NSTextInputTraitTypeDefault = 0,
-        NSTextInputTraitTypeNo = 1,
-        NSTextInputTraitTypeYes = 2,
+        #[doc(alias = "NSTextInputTraitTypeDefault")]
+        Default = 0,
+        #[doc(alias = "NSTextInputTraitTypeNo")]
+        No = 1,
+        #[doc(alias = "NSTextInputTraitTypeYes")]
+        Yes = 2,
     }
 );
 

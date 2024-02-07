@@ -147,16 +147,27 @@ ns_enum!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum CWEventType {
-        CWEventTypeNone = 0,
-        CWEventTypePowerDidChange = 1,
-        CWEventTypeSSIDDidChange = 2,
-        CWEventTypeBSSIDDidChange = 3,
-        CWEventTypeCountryCodeDidChange = 4,
-        CWEventTypeLinkDidChange = 5,
-        CWEventTypeLinkQualityDidChange = 6,
-        CWEventTypeModeDidChange = 7,
-        CWEventTypeScanCacheUpdated = 8,
-        CWEventTypeBtCoexStats = 9,
-        CWEventTypeUnknown = NSIntegerMax as _,
+        #[doc(alias = "CWEventTypeNone")]
+        None = 0,
+        #[doc(alias = "CWEventTypePowerDidChange")]
+        PowerDidChange = 1,
+        #[doc(alias = "CWEventTypeSSIDDidChange")]
+        SSIDDidChange = 2,
+        #[doc(alias = "CWEventTypeBSSIDDidChange")]
+        BSSIDDidChange = 3,
+        #[doc(alias = "CWEventTypeCountryCodeDidChange")]
+        CountryCodeDidChange = 4,
+        #[doc(alias = "CWEventTypeLinkDidChange")]
+        LinkDidChange = 5,
+        #[doc(alias = "CWEventTypeLinkQualityDidChange")]
+        LinkQualityDidChange = 6,
+        #[doc(alias = "CWEventTypeModeDidChange")]
+        ModeDidChange = 7,
+        #[doc(alias = "CWEventTypeScanCacheUpdated")]
+        ScanCacheUpdated = 8,
+        #[doc(alias = "CWEventTypeBtCoexStats")]
+        BtCoexStats = 9,
+        #[doc(alias = "CWEventTypeUnknown")]
+        Unknown = NSIntegerMax as _,
     }
 );

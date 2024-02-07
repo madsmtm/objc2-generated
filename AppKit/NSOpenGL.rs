@@ -115,64 +115,79 @@ ns_enum!(
     #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
     pub enum NSOpenGLContextParameter {
         #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-        NSOpenGLContextParameterSwapInterval = 222,
+        #[doc(alias = "NSOpenGLContextParameterSwapInterval")]
+        SwapInterval = 222,
         #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-        NSOpenGLContextParameterSurfaceOrder = 235,
+        #[doc(alias = "NSOpenGLContextParameterSurfaceOrder")]
+        SurfaceOrder = 235,
         #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-        NSOpenGLContextParameterSurfaceOpacity = 236,
+        #[doc(alias = "NSOpenGLContextParameterSurfaceOpacity")]
+        SurfaceOpacity = 236,
         #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-        NSOpenGLContextParameterSurfaceBackingSize = 304,
+        #[doc(alias = "NSOpenGLContextParameterSurfaceBackingSize")]
+        SurfaceBackingSize = 304,
         #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-        NSOpenGLContextParameterReclaimResources = 308,
+        #[doc(alias = "NSOpenGLContextParameterReclaimResources")]
+        ReclaimResources = 308,
         #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-        NSOpenGLContextParameterCurrentRendererID = 309,
+        #[doc(alias = "NSOpenGLContextParameterCurrentRendererID")]
+        CurrentRendererID = 309,
         #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-        NSOpenGLContextParameterGPUVertexProcessing = 310,
+        #[doc(alias = "NSOpenGLContextParameterGPUVertexProcessing")]
+        GPUVertexProcessing = 310,
         #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-        NSOpenGLContextParameterGPUFragmentProcessing = 311,
+        #[doc(alias = "NSOpenGLContextParameterGPUFragmentProcessing")]
+        GPUFragmentProcessing = 311,
         #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-        NSOpenGLContextParameterHasDrawable = 314,
+        #[doc(alias = "NSOpenGLContextParameterHasDrawable")]
+        HasDrawable = 314,
         #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-        NSOpenGLContextParameterMPSwapsInFlight = 315,
+        #[doc(alias = "NSOpenGLContextParameterMPSwapsInFlight")]
+        MPSwapsInFlight = 315,
         #[deprecated]
-        NSOpenGLContextParameterSwapRectangle = 200,
+        #[doc(alias = "NSOpenGLContextParameterSwapRectangle")]
+        SwapRectangle = 200,
         #[deprecated]
-        NSOpenGLContextParameterSwapRectangleEnable = 201,
+        #[doc(alias = "NSOpenGLContextParameterSwapRectangleEnable")]
+        SwapRectangleEnable = 201,
         #[deprecated]
-        NSOpenGLContextParameterRasterizationEnable = 221,
+        #[doc(alias = "NSOpenGLContextParameterRasterizationEnable")]
+        RasterizationEnable = 221,
         #[deprecated]
-        NSOpenGLContextParameterStateValidation = 301,
+        #[doc(alias = "NSOpenGLContextParameterStateValidation")]
+        StateValidation = 301,
         #[deprecated]
-        NSOpenGLContextParameterSurfaceSurfaceVolatile = 306,
+        #[doc(alias = "NSOpenGLContextParameterSurfaceSurfaceVolatile")]
+        SurfaceSurfaceVolatile = 306,
     }
 );
 
-extern_static!(NSOpenGLCPSwapInterval: NSOpenGLContextParameter = NSOpenGLContextParameter(NSOpenGLContextParameter::NSOpenGLContextParameterSwapInterval.0));
+extern_static!(NSOpenGLCPSwapInterval: NSOpenGLContextParameter = NSOpenGLContextParameter(NSOpenGLContextParameter::SwapInterval.0));
 
-extern_static!(NSOpenGLCPSurfaceOrder: NSOpenGLContextParameter = NSOpenGLContextParameter(NSOpenGLContextParameter::NSOpenGLContextParameterSurfaceOrder.0));
+extern_static!(NSOpenGLCPSurfaceOrder: NSOpenGLContextParameter = NSOpenGLContextParameter(NSOpenGLContextParameter::SurfaceOrder.0));
 
-extern_static!(NSOpenGLCPSurfaceOpacity: NSOpenGLContextParameter = NSOpenGLContextParameter(NSOpenGLContextParameter::NSOpenGLContextParameterSurfaceOpacity.0));
+extern_static!(NSOpenGLCPSurfaceOpacity: NSOpenGLContextParameter = NSOpenGLContextParameter(NSOpenGLContextParameter::SurfaceOpacity.0));
 
-extern_static!(NSOpenGLCPSurfaceBackingSize: NSOpenGLContextParameter = NSOpenGLContextParameter(NSOpenGLContextParameter::NSOpenGLContextParameterSurfaceBackingSize.0));
+extern_static!(NSOpenGLCPSurfaceBackingSize: NSOpenGLContextParameter = NSOpenGLContextParameter(NSOpenGLContextParameter::SurfaceBackingSize.0));
 
-extern_static!(NSOpenGLCPReclaimResources: NSOpenGLContextParameter = NSOpenGLContextParameter(NSOpenGLContextParameter::NSOpenGLContextParameterReclaimResources.0));
+extern_static!(NSOpenGLCPReclaimResources: NSOpenGLContextParameter = NSOpenGLContextParameter(NSOpenGLContextParameter::ReclaimResources.0));
 
-extern_static!(NSOpenGLCPCurrentRendererID: NSOpenGLContextParameter = NSOpenGLContextParameter(NSOpenGLContextParameter::NSOpenGLContextParameterCurrentRendererID.0));
+extern_static!(NSOpenGLCPCurrentRendererID: NSOpenGLContextParameter = NSOpenGLContextParameter(NSOpenGLContextParameter::CurrentRendererID.0));
 
-extern_static!(NSOpenGLCPGPUVertexProcessing: NSOpenGLContextParameter = NSOpenGLContextParameter(NSOpenGLContextParameter::NSOpenGLContextParameterGPUVertexProcessing.0));
+extern_static!(NSOpenGLCPGPUVertexProcessing: NSOpenGLContextParameter = NSOpenGLContextParameter(NSOpenGLContextParameter::GPUVertexProcessing.0));
 
-extern_static!(NSOpenGLCPGPUFragmentProcessing: NSOpenGLContextParameter = NSOpenGLContextParameter(NSOpenGLContextParameter::NSOpenGLContextParameterGPUFragmentProcessing.0));
+extern_static!(NSOpenGLCPGPUFragmentProcessing: NSOpenGLContextParameter = NSOpenGLContextParameter(NSOpenGLContextParameter::GPUFragmentProcessing.0));
 
-extern_static!(NSOpenGLCPHasDrawable: NSOpenGLContextParameter = NSOpenGLContextParameter(NSOpenGLContextParameter::NSOpenGLContextParameterHasDrawable.0));
+extern_static!(NSOpenGLCPHasDrawable: NSOpenGLContextParameter = NSOpenGLContextParameter(NSOpenGLContextParameter::HasDrawable.0));
 
-extern_static!(NSOpenGLCPMPSwapsInFlight: NSOpenGLContextParameter = NSOpenGLContextParameter(NSOpenGLContextParameter::NSOpenGLContextParameterMPSwapsInFlight.0));
+extern_static!(NSOpenGLCPMPSwapsInFlight: NSOpenGLContextParameter = NSOpenGLContextParameter(NSOpenGLContextParameter::MPSwapsInFlight.0));
 
-extern_static!(NSOpenGLCPSwapRectangle: NSOpenGLContextParameter = NSOpenGLContextParameter(NSOpenGLContextParameter::NSOpenGLContextParameterSwapRectangle.0));
+extern_static!(NSOpenGLCPSwapRectangle: NSOpenGLContextParameter = NSOpenGLContextParameter(NSOpenGLContextParameter::SwapRectangle.0));
 
-extern_static!(NSOpenGLCPSwapRectangleEnable: NSOpenGLContextParameter = NSOpenGLContextParameter(NSOpenGLContextParameter::NSOpenGLContextParameterSwapRectangleEnable.0));
+extern_static!(NSOpenGLCPSwapRectangleEnable: NSOpenGLContextParameter = NSOpenGLContextParameter(NSOpenGLContextParameter::SwapRectangleEnable.0));
 
-extern_static!(NSOpenGLCPRasterizationEnable: NSOpenGLContextParameter = NSOpenGLContextParameter(NSOpenGLContextParameter::NSOpenGLContextParameterRasterizationEnable.0));
+extern_static!(NSOpenGLCPRasterizationEnable: NSOpenGLContextParameter = NSOpenGLContextParameter(NSOpenGLContextParameter::RasterizationEnable.0));
 
-extern_static!(NSOpenGLCPStateValidation: NSOpenGLContextParameter = NSOpenGLContextParameter(NSOpenGLContextParameter::NSOpenGLContextParameterStateValidation.0));
+extern_static!(NSOpenGLCPStateValidation: NSOpenGLContextParameter = NSOpenGLContextParameter(NSOpenGLContextParameter::StateValidation.0));
 
-extern_static!(NSOpenGLCPSurfaceSurfaceVolatile: NSOpenGLContextParameter = NSOpenGLContextParameter(NSOpenGLContextParameter::NSOpenGLContextParameterSurfaceSurfaceVolatile.0));
+extern_static!(NSOpenGLCPSurfaceSurfaceVolatile: NSOpenGLContextParameter = NSOpenGLContextParameter(NSOpenGLContextParameter::SurfaceSurfaceVolatile.0));

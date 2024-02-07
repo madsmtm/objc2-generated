@@ -8,12 +8,18 @@ use crate::WebKit::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum WKNavigationType {
-        WKNavigationTypeLinkActivated = 0,
-        WKNavigationTypeFormSubmitted = 1,
-        WKNavigationTypeBackForward = 2,
-        WKNavigationTypeReload = 3,
-        WKNavigationTypeFormResubmitted = 4,
-        WKNavigationTypeOther = -1,
+        #[doc(alias = "WKNavigationTypeLinkActivated")]
+        LinkActivated = 0,
+        #[doc(alias = "WKNavigationTypeFormSubmitted")]
+        FormSubmitted = 1,
+        #[doc(alias = "WKNavigationTypeBackForward")]
+        BackForward = 2,
+        #[doc(alias = "WKNavigationTypeReload")]
+        Reload = 3,
+        #[doc(alias = "WKNavigationTypeFormResubmitted")]
+        FormResubmitted = 4,
+        #[doc(alias = "WKNavigationTypeOther")]
+        Other = -1,
     }
 );
 

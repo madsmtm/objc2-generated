@@ -12,20 +12,33 @@ extern_static!(NSAppKitVersionNumberWithDeferredWindowDisplaySupport: NSAppKitVe
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSWindowStyleMask {
-        NSWindowStyleMaskBorderless = 0,
-        NSWindowStyleMaskTitled = 1 << 0,
-        NSWindowStyleMaskClosable = 1 << 1,
-        NSWindowStyleMaskMiniaturizable = 1 << 2,
-        NSWindowStyleMaskResizable = 1 << 3,
+        #[doc(alias = "NSWindowStyleMaskBorderless")]
+        Borderless = 0,
+        #[doc(alias = "NSWindowStyleMaskTitled")]
+        Titled = 1 << 0,
+        #[doc(alias = "NSWindowStyleMaskClosable")]
+        Closable = 1 << 1,
+        #[doc(alias = "NSWindowStyleMaskMiniaturizable")]
+        Miniaturizable = 1 << 2,
+        #[doc(alias = "NSWindowStyleMaskResizable")]
+        Resizable = 1 << 3,
         #[deprecated = "Textured window style should no longer be used"]
-        NSWindowStyleMaskTexturedBackground = 1 << 8,
-        NSWindowStyleMaskUnifiedTitleAndToolbar = 1 << 12,
-        NSWindowStyleMaskFullScreen = 1 << 14,
-        NSWindowStyleMaskFullSizeContentView = 1 << 15,
-        NSWindowStyleMaskUtilityWindow = 1 << 4,
-        NSWindowStyleMaskDocModalWindow = 1 << 6,
-        NSWindowStyleMaskNonactivatingPanel = 1 << 7,
-        NSWindowStyleMaskHUDWindow = 1 << 13,
+        #[doc(alias = "NSWindowStyleMaskTexturedBackground")]
+        TexturedBackground = 1 << 8,
+        #[doc(alias = "NSWindowStyleMaskUnifiedTitleAndToolbar")]
+        UnifiedTitleAndToolbar = 1 << 12,
+        #[doc(alias = "NSWindowStyleMaskFullScreen")]
+        FullScreen = 1 << 14,
+        #[doc(alias = "NSWindowStyleMaskFullSizeContentView")]
+        FullSizeContentView = 1 << 15,
+        #[doc(alias = "NSWindowStyleMaskUtilityWindow")]
+        UtilityWindow = 1 << 4,
+        #[doc(alias = "NSWindowStyleMaskDocModalWindow")]
+        DocModalWindow = 1 << 6,
+        #[doc(alias = "NSWindowStyleMaskNonactivatingPanel")]
+        NonactivatingPanel = 1 << 7,
+        #[doc(alias = "NSWindowStyleMaskHUDWindow")]
+        HUDWindow = 1 << 13,
     }
 );
 
@@ -48,33 +61,54 @@ ns_enum!(
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSWindowCollectionBehavior {
-        NSWindowCollectionBehaviorDefault = 0,
-        NSWindowCollectionBehaviorCanJoinAllSpaces = 1 << 0,
-        NSWindowCollectionBehaviorMoveToActiveSpace = 1 << 1,
-        NSWindowCollectionBehaviorManaged = 1 << 2,
-        NSWindowCollectionBehaviorTransient = 1 << 3,
-        NSWindowCollectionBehaviorStationary = 1 << 4,
-        NSWindowCollectionBehaviorParticipatesInCycle = 1 << 5,
-        NSWindowCollectionBehaviorIgnoresCycle = 1 << 6,
-        NSWindowCollectionBehaviorFullScreenPrimary = 1 << 7,
-        NSWindowCollectionBehaviorFullScreenAuxiliary = 1 << 8,
-        NSWindowCollectionBehaviorFullScreenNone = 1 << 9,
-        NSWindowCollectionBehaviorFullScreenAllowsTiling = 1 << 11,
-        NSWindowCollectionBehaviorFullScreenDisallowsTiling = 1 << 12,
-        NSWindowCollectionBehaviorPrimary = 1 << 16,
-        NSWindowCollectionBehaviorAuxiliary = 1 << 17,
-        NSWindowCollectionBehaviorCanJoinAllApplications = 1 << 18,
+        #[doc(alias = "NSWindowCollectionBehaviorDefault")]
+        Default = 0,
+        #[doc(alias = "NSWindowCollectionBehaviorCanJoinAllSpaces")]
+        CanJoinAllSpaces = 1 << 0,
+        #[doc(alias = "NSWindowCollectionBehaviorMoveToActiveSpace")]
+        MoveToActiveSpace = 1 << 1,
+        #[doc(alias = "NSWindowCollectionBehaviorManaged")]
+        Managed = 1 << 2,
+        #[doc(alias = "NSWindowCollectionBehaviorTransient")]
+        Transient = 1 << 3,
+        #[doc(alias = "NSWindowCollectionBehaviorStationary")]
+        Stationary = 1 << 4,
+        #[doc(alias = "NSWindowCollectionBehaviorParticipatesInCycle")]
+        ParticipatesInCycle = 1 << 5,
+        #[doc(alias = "NSWindowCollectionBehaviorIgnoresCycle")]
+        IgnoresCycle = 1 << 6,
+        #[doc(alias = "NSWindowCollectionBehaviorFullScreenPrimary")]
+        FullScreenPrimary = 1 << 7,
+        #[doc(alias = "NSWindowCollectionBehaviorFullScreenAuxiliary")]
+        FullScreenAuxiliary = 1 << 8,
+        #[doc(alias = "NSWindowCollectionBehaviorFullScreenNone")]
+        FullScreenNone = 1 << 9,
+        #[doc(alias = "NSWindowCollectionBehaviorFullScreenAllowsTiling")]
+        FullScreenAllowsTiling = 1 << 11,
+        #[doc(alias = "NSWindowCollectionBehaviorFullScreenDisallowsTiling")]
+        FullScreenDisallowsTiling = 1 << 12,
+        #[doc(alias = "NSWindowCollectionBehaviorPrimary")]
+        Primary = 1 << 16,
+        #[doc(alias = "NSWindowCollectionBehaviorAuxiliary")]
+        Auxiliary = 1 << 17,
+        #[doc(alias = "NSWindowCollectionBehaviorCanJoinAllApplications")]
+        CanJoinAllApplications = 1 << 18,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSWindowAnimationBehavior {
-        NSWindowAnimationBehaviorDefault = 0,
-        NSWindowAnimationBehaviorNone = 2,
-        NSWindowAnimationBehaviorDocumentWindow = 3,
-        NSWindowAnimationBehaviorUtilityWindow = 4,
-        NSWindowAnimationBehaviorAlertPanel = 5,
+        #[doc(alias = "NSWindowAnimationBehaviorDefault")]
+        Default = 0,
+        #[doc(alias = "NSWindowAnimationBehaviorNone")]
+        None = 2,
+        #[doc(alias = "NSWindowAnimationBehaviorDocumentWindow")]
+        DocumentWindow = 3,
+        #[doc(alias = "NSWindowAnimationBehaviorUtilityWindow")]
+        UtilityWindow = 4,
+        #[doc(alias = "NSWindowAnimationBehaviorAlertPanel")]
+        AlertPanel = 5,
     }
 );
 
@@ -89,7 +123,8 @@ ns_options!(
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSWindowOcclusionState {
-        NSWindowOcclusionStateVisible = 1 << 1,
+        #[doc(alias = "NSWindowOcclusionStateVisible")]
+        Visible = 1 << 1,
     }
 );
 
@@ -147,11 +182,16 @@ ns_enum!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSWindowToolbarStyle {
-        NSWindowToolbarStyleAutomatic = 0,
-        NSWindowToolbarStyleExpanded = 1,
-        NSWindowToolbarStylePreference = 2,
-        NSWindowToolbarStyleUnified = 3,
-        NSWindowToolbarStyleUnifiedCompact = 4,
+        #[doc(alias = "NSWindowToolbarStyleAutomatic")]
+        Automatic = 0,
+        #[doc(alias = "NSWindowToolbarStyleExpanded")]
+        Expanded = 1,
+        #[doc(alias = "NSWindowToolbarStylePreference")]
+        Preference = 2,
+        #[doc(alias = "NSWindowToolbarStyleUnified")]
+        Unified = 3,
+        #[doc(alias = "NSWindowToolbarStyleUnifiedCompact")]
+        UnifiedCompact = 4,
     }
 );
 
@@ -160,28 +200,38 @@ extern_static!(NSEventDurationForever: NSTimeInterval = c_double::MAX as _);
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSWindowUserTabbingPreference {
-        NSWindowUserTabbingPreferenceManual = 0,
-        NSWindowUserTabbingPreferenceAlways = 1,
-        NSWindowUserTabbingPreferenceInFullScreen = 2,
+        #[doc(alias = "NSWindowUserTabbingPreferenceManual")]
+        Manual = 0,
+        #[doc(alias = "NSWindowUserTabbingPreferenceAlways")]
+        Always = 1,
+        #[doc(alias = "NSWindowUserTabbingPreferenceInFullScreen")]
+        InFullScreen = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSWindowTabbingMode {
-        NSWindowTabbingModeAutomatic = 0,
-        NSWindowTabbingModePreferred = 1,
-        NSWindowTabbingModeDisallowed = 2,
+        #[doc(alias = "NSWindowTabbingModeAutomatic")]
+        Automatic = 0,
+        #[doc(alias = "NSWindowTabbingModePreferred")]
+        Preferred = 1,
+        #[doc(alias = "NSWindowTabbingModeDisallowed")]
+        Disallowed = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSTitlebarSeparatorStyle {
-        NSTitlebarSeparatorStyleAutomatic = 0,
-        NSTitlebarSeparatorStyleNone = 1,
-        NSTitlebarSeparatorStyleLine = 2,
-        NSTitlebarSeparatorStyleShadow = 3,
+        #[doc(alias = "NSTitlebarSeparatorStyleAutomatic")]
+        Automatic = 0,
+        #[doc(alias = "NSTitlebarSeparatorStyleNone")]
+        None = 1,
+        #[doc(alias = "NSTitlebarSeparatorStyleLine")]
+        Line = 2,
+        #[doc(alias = "NSTitlebarSeparatorStyleShadow")]
+        Shadow = 3,
     }
 );
 
@@ -1798,9 +1848,12 @@ ns_enum!(
     #[underlying(NSUInteger)]
     #[deprecated]
     pub enum NSWindowBackingLocation {
-        NSWindowBackingLocationDefault = 0,
-        NSWindowBackingLocationVideoMemory = 1,
-        NSWindowBackingLocationMainMemory = 2,
+        #[doc(alias = "NSWindowBackingLocationDefault")]
+        Default = 0,
+        #[doc(alias = "NSWindowBackingLocationVideoMemory")]
+        VideoMemory = 1,
+        #[doc(alias = "NSWindowBackingLocationMainMemory")]
+        MainMemory = 2,
     }
 );
 
@@ -1913,31 +1966,31 @@ extern_methods!(
     }
 );
 
-extern_static!(NSBorderlessWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::NSWindowStyleMaskBorderless.0));
+extern_static!(NSBorderlessWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::Borderless.0));
 
-extern_static!(NSTitledWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::NSWindowStyleMaskTitled.0));
+extern_static!(NSTitledWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::Titled.0));
 
-extern_static!(NSClosableWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::NSWindowStyleMaskClosable.0));
+extern_static!(NSClosableWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::Closable.0));
 
-extern_static!(NSMiniaturizableWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::NSWindowStyleMaskMiniaturizable.0));
+extern_static!(NSMiniaturizableWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::Miniaturizable.0));
 
-extern_static!(NSResizableWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::NSWindowStyleMaskResizable.0));
+extern_static!(NSResizableWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::Resizable.0));
 
-extern_static!(NSTexturedBackgroundWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::NSWindowStyleMaskTexturedBackground.0));
+extern_static!(NSTexturedBackgroundWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::TexturedBackground.0));
 
-extern_static!(NSUnifiedTitleAndToolbarWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::NSWindowStyleMaskUnifiedTitleAndToolbar.0));
+extern_static!(NSUnifiedTitleAndToolbarWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::UnifiedTitleAndToolbar.0));
 
-extern_static!(NSFullScreenWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::NSWindowStyleMaskFullScreen.0));
+extern_static!(NSFullScreenWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::FullScreen.0));
 
-extern_static!(NSFullSizeContentViewWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::NSWindowStyleMaskFullSizeContentView.0));
+extern_static!(NSFullSizeContentViewWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::FullSizeContentView.0));
 
-extern_static!(NSUtilityWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::NSWindowStyleMaskUtilityWindow.0));
+extern_static!(NSUtilityWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::UtilityWindow.0));
 
-extern_static!(NSDocModalWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::NSWindowStyleMaskDocModalWindow.0));
+extern_static!(NSDocModalWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::DocModalWindow.0));
 
-extern_static!(NSNonactivatingPanelMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::NSWindowStyleMaskNonactivatingPanel.0));
+extern_static!(NSNonactivatingPanelMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::NonactivatingPanel.0));
 
-extern_static!(NSHUDWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::NSWindowStyleMaskHUDWindow.0));
+extern_static!(NSHUDWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::HUDWindow.0));
 
 extern_static!(NSUnscaledWindowMask: NSWindowStyleMask = NSWindowStyleMask(1<<11));
 

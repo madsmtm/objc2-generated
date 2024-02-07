@@ -8,15 +8,21 @@ use crate::Foundation::*;
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSDirectionalRectEdge {
-        NSDirectionalRectEdgeNone = 0,
-        NSDirectionalRectEdgeTop = 1 << 0,
-        NSDirectionalRectEdgeLeading = 1 << 1,
-        NSDirectionalRectEdgeBottom = 1 << 2,
-        NSDirectionalRectEdgeTrailing = 1 << 3,
-        NSDirectionalRectEdgeAll = NSDirectionalRectEdge::NSDirectionalRectEdgeTop.0
-            | NSDirectionalRectEdge::NSDirectionalRectEdgeLeading.0
-            | NSDirectionalRectEdge::NSDirectionalRectEdgeBottom.0
-            | NSDirectionalRectEdge::NSDirectionalRectEdgeTrailing.0,
+        #[doc(alias = "NSDirectionalRectEdgeNone")]
+        None = 0,
+        #[doc(alias = "NSDirectionalRectEdgeTop")]
+        Top = 1 << 0,
+        #[doc(alias = "NSDirectionalRectEdgeLeading")]
+        Leading = 1 << 1,
+        #[doc(alias = "NSDirectionalRectEdgeBottom")]
+        Bottom = 1 << 2,
+        #[doc(alias = "NSDirectionalRectEdgeTrailing")]
+        Trailing = 1 << 3,
+        #[doc(alias = "NSDirectionalRectEdgeAll")]
+        All = NSDirectionalRectEdge::Top.0
+            | NSDirectionalRectEdge::Leading.0
+            | NSDirectionalRectEdge::Bottom.0
+            | NSDirectionalRectEdge::Trailing.0,
     }
 );
 
@@ -38,15 +44,24 @@ extern_static!(NSDirectionalEdgeInsetsZero: NSDirectionalEdgeInsets);
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSRectAlignment {
-        NSRectAlignmentNone = 0,
-        NSRectAlignmentTop = 1,
-        NSRectAlignmentTopLeading = 2,
-        NSRectAlignmentLeading = 3,
-        NSRectAlignmentBottomLeading = 4,
-        NSRectAlignmentBottom = 5,
-        NSRectAlignmentBottomTrailing = 6,
-        NSRectAlignmentTrailing = 7,
-        NSRectAlignmentTopTrailing = 8,
+        #[doc(alias = "NSRectAlignmentNone")]
+        None = 0,
+        #[doc(alias = "NSRectAlignmentTop")]
+        Top = 1,
+        #[doc(alias = "NSRectAlignmentTopLeading")]
+        TopLeading = 2,
+        #[doc(alias = "NSRectAlignmentLeading")]
+        Leading = 3,
+        #[doc(alias = "NSRectAlignmentBottomLeading")]
+        BottomLeading = 4,
+        #[doc(alias = "NSRectAlignmentBottom")]
+        Bottom = 5,
+        #[doc(alias = "NSRectAlignmentBottomTrailing")]
+        BottomTrailing = 6,
+        #[doc(alias = "NSRectAlignmentTrailing")]
+        Trailing = 7,
+        #[doc(alias = "NSRectAlignmentTopTrailing")]
+        TopTrailing = 8,
     }
 );
 
@@ -210,12 +225,20 @@ extern_methods!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSCollectionLayoutSectionOrthogonalScrollingBehavior {
-        NSCollectionLayoutSectionOrthogonalScrollingBehaviorNone = 0,
-        NSCollectionLayoutSectionOrthogonalScrollingBehaviorContinuous = 1,
-        NSCollectionLayoutSectionOrthogonalScrollingBehaviorContinuousGroupLeadingBoundary = 2,
-        NSCollectionLayoutSectionOrthogonalScrollingBehaviorPaging = 3,
-        NSCollectionLayoutSectionOrthogonalScrollingBehaviorGroupPaging = 4,
-        NSCollectionLayoutSectionOrthogonalScrollingBehaviorGroupPagingCentered = 5,
+        #[doc(alias = "NSCollectionLayoutSectionOrthogonalScrollingBehaviorNone")]
+        None = 0,
+        #[doc(alias = "NSCollectionLayoutSectionOrthogonalScrollingBehaviorContinuous")]
+        Continuous = 1,
+        #[doc(
+            alias = "NSCollectionLayoutSectionOrthogonalScrollingBehaviorContinuousGroupLeadingBoundary"
+        )]
+        ContinuousGroupLeadingBoundary = 2,
+        #[doc(alias = "NSCollectionLayoutSectionOrthogonalScrollingBehaviorPaging")]
+        Paging = 3,
+        #[doc(alias = "NSCollectionLayoutSectionOrthogonalScrollingBehaviorGroupPaging")]
+        GroupPaging = 4,
+        #[doc(alias = "NSCollectionLayoutSectionOrthogonalScrollingBehaviorGroupPagingCentered")]
+        GroupPagingCentered = 5,
     }
 );
 

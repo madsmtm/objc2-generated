@@ -7,19 +7,25 @@ use crate::Metal::*;
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum MTLResourceUsage {
-        MTLResourceUsageRead = 1 << 0,
-        MTLResourceUsageWrite = 1 << 1,
+        #[doc(alias = "MTLResourceUsageRead")]
+        Read = 1 << 0,
+        #[doc(alias = "MTLResourceUsageWrite")]
+        Write = 1 << 1,
         #[deprecated]
-        MTLResourceUsageSample = 1 << 2,
+        #[doc(alias = "MTLResourceUsageSample")]
+        Sample = 1 << 2,
     }
 );
 
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum MTLBarrierScope {
-        MTLBarrierScopeBuffers = 1 << 0,
-        MTLBarrierScopeTextures = 1 << 1,
-        MTLBarrierScopeRenderTargets = 1 << 2,
+        #[doc(alias = "MTLBarrierScopeBuffers")]
+        Buffers = 1 << 0,
+        #[doc(alias = "MTLBarrierScopeTextures")]
+        Textures = 1 << 1,
+        #[doc(alias = "MTLBarrierScopeRenderTargets")]
+        RenderTargets = 1 << 2,
     }
 );
 

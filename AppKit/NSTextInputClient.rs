@@ -8,15 +8,24 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSTextCursorAccessoryPlacement {
-        NSTextCursorAccessoryPlacementUnspecified = 0,
-        NSTextCursorAccessoryPlacementBackward = 1,
-        NSTextCursorAccessoryPlacementForward = 2,
-        NSTextCursorAccessoryPlacementInvisible = 3,
-        NSTextCursorAccessoryPlacementCenter = 4,
-        NSTextCursorAccessoryPlacementOffscreenLeft = 5,
-        NSTextCursorAccessoryPlacementOffscreenTop = 6,
-        NSTextCursorAccessoryPlacementOffscreenRight = 7,
-        NSTextCursorAccessoryPlacementOffscreenBottom = 8,
+        #[doc(alias = "NSTextCursorAccessoryPlacementUnspecified")]
+        Unspecified = 0,
+        #[doc(alias = "NSTextCursorAccessoryPlacementBackward")]
+        Backward = 1,
+        #[doc(alias = "NSTextCursorAccessoryPlacementForward")]
+        Forward = 2,
+        #[doc(alias = "NSTextCursorAccessoryPlacementInvisible")]
+        Invisible = 3,
+        #[doc(alias = "NSTextCursorAccessoryPlacementCenter")]
+        Center = 4,
+        #[doc(alias = "NSTextCursorAccessoryPlacementOffscreenLeft")]
+        OffscreenLeft = 5,
+        #[doc(alias = "NSTextCursorAccessoryPlacementOffscreenTop")]
+        OffscreenTop = 6,
+        #[doc(alias = "NSTextCursorAccessoryPlacementOffscreenRight")]
+        OffscreenRight = 7,
+        #[doc(alias = "NSTextCursorAccessoryPlacementOffscreenBottom")]
+        OffscreenBottom = 8,
     }
 );
 

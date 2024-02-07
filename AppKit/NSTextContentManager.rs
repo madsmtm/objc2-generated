@@ -8,8 +8,10 @@ use crate::Foundation::*;
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSTextContentManagerEnumerationOptions {
-        NSTextContentManagerEnumerationOptionsNone = 0,
-        NSTextContentManagerEnumerationOptionsReverse = 1 << 0,
+        #[doc(alias = "NSTextContentManagerEnumerationOptionsNone")]
+        None = 0,
+        #[doc(alias = "NSTextContentManagerEnumerationOptionsReverse")]
+        Reverse = 1 << 0,
     }
 );
 

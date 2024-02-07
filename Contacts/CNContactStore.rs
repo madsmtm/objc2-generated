@@ -7,17 +7,22 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum CNEntityType {
-        CNEntityTypeContacts = 0,
+        #[doc(alias = "CNEntityTypeContacts")]
+        Contacts = 0,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum CNAuthorizationStatus {
-        CNAuthorizationStatusNotDetermined = 0,
-        CNAuthorizationStatusRestricted = 1,
-        CNAuthorizationStatusDenied = 2,
-        CNAuthorizationStatusAuthorized = 3,
+        #[doc(alias = "CNAuthorizationStatusNotDetermined")]
+        NotDetermined = 0,
+        #[doc(alias = "CNAuthorizationStatusRestricted")]
+        Restricted = 1,
+        #[doc(alias = "CNAuthorizationStatusDenied")]
+        Denied = 2,
+        #[doc(alias = "CNAuthorizationStatusAuthorized")]
+        Authorized = 3,
     }
 );
 

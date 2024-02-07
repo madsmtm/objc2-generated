@@ -8,30 +8,42 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum CKShareParticipantAcceptanceStatus {
-        CKShareParticipantAcceptanceStatusUnknown = 0,
-        CKShareParticipantAcceptanceStatusPending = 1,
-        CKShareParticipantAcceptanceStatusAccepted = 2,
-        CKShareParticipantAcceptanceStatusRemoved = 3,
+        #[doc(alias = "CKShareParticipantAcceptanceStatusUnknown")]
+        Unknown = 0,
+        #[doc(alias = "CKShareParticipantAcceptanceStatusPending")]
+        Pending = 1,
+        #[doc(alias = "CKShareParticipantAcceptanceStatusAccepted")]
+        Accepted = 2,
+        #[doc(alias = "CKShareParticipantAcceptanceStatusRemoved")]
+        Removed = 3,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum CKShareParticipantPermission {
-        CKShareParticipantPermissionUnknown = 0,
-        CKShareParticipantPermissionNone = 1,
-        CKShareParticipantPermissionReadOnly = 2,
-        CKShareParticipantPermissionReadWrite = 3,
+        #[doc(alias = "CKShareParticipantPermissionUnknown")]
+        Unknown = 0,
+        #[doc(alias = "CKShareParticipantPermissionNone")]
+        None = 1,
+        #[doc(alias = "CKShareParticipantPermissionReadOnly")]
+        ReadOnly = 2,
+        #[doc(alias = "CKShareParticipantPermissionReadWrite")]
+        ReadWrite = 3,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum CKShareParticipantRole {
-        CKShareParticipantRoleUnknown = 0,
-        CKShareParticipantRoleOwner = 1,
-        CKShareParticipantRolePrivateUser = 3,
-        CKShareParticipantRolePublicUser = 4,
+        #[doc(alias = "CKShareParticipantRoleUnknown")]
+        Unknown = 0,
+        #[doc(alias = "CKShareParticipantRoleOwner")]
+        Owner = 1,
+        #[doc(alias = "CKShareParticipantRolePrivateUser")]
+        PrivateUser = 3,
+        #[doc(alias = "CKShareParticipantRolePublicUser")]
+        PublicUser = 4,
     }
 );
 
@@ -40,13 +52,17 @@ ns_enum!(
     #[deprecated]
     pub enum CKShareParticipantType {
         #[deprecated]
-        CKShareParticipantTypeUnknown = 0,
+        #[doc(alias = "CKShareParticipantTypeUnknown")]
+        Unknown = 0,
         #[deprecated]
-        CKShareParticipantTypeOwner = 1,
+        #[doc(alias = "CKShareParticipantTypeOwner")]
+        Owner = 1,
         #[deprecated]
-        CKShareParticipantTypePrivateUser = 3,
+        #[doc(alias = "CKShareParticipantTypePrivateUser")]
+        PrivateUser = 3,
         #[deprecated]
-        CKShareParticipantTypePublicUser = 4,
+        #[doc(alias = "CKShareParticipantTypePublicUser")]
+        PublicUser = 4,
     }
 );
 

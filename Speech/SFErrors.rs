@@ -9,8 +9,11 @@ extern_static!(SFSpeechErrorDomain: &'static NSErrorDomain);
 ns_error_enum!(
     #[underlying(NSInteger)]
     pub enum SFSpeechErrorCode {
-        SFSpeechErrorCodeInternalServiceError = 1,
-        SFSpeechErrorCodeUndefinedTemplateClassName = 7,
-        SFSpeechErrorCodeMalformedSupplementalModel = 8,
+        #[doc(alias = "SFSpeechErrorCodeInternalServiceError")]
+        InternalServiceError = 1,
+        #[doc(alias = "SFSpeechErrorCodeUndefinedTemplateClassName")]
+        UndefinedTemplateClassName = 7,
+        #[doc(alias = "SFSpeechErrorCodeMalformedSupplementalModel")]
+        MalformedSupplementalModel = 8,
     }
 );

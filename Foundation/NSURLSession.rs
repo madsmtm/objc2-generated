@@ -380,10 +380,14 @@ extern_methods!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSURLSessionTaskState {
-        NSURLSessionTaskStateRunning = 0,
-        NSURLSessionTaskStateSuspended = 1,
-        NSURLSessionTaskStateCanceling = 2,
-        NSURLSessionTaskStateCompleted = 3,
+        #[doc(alias = "NSURLSessionTaskStateRunning")]
+        Running = 0,
+        #[doc(alias = "NSURLSessionTaskStateSuspended")]
+        Suspended = 1,
+        #[doc(alias = "NSURLSessionTaskStateCanceling")]
+        Canceling = 2,
+        #[doc(alias = "NSURLSessionTaskStateCompleted")]
+        Completed = 3,
     }
 );
 
@@ -751,8 +755,10 @@ extern_methods!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSURLSessionWebSocketMessageType {
-        NSURLSessionWebSocketMessageTypeData = 0,
-        NSURLSessionWebSocketMessageTypeString = 1,
+        #[doc(alias = "NSURLSessionWebSocketMessageTypeData")]
+        Data = 0,
+        #[doc(alias = "NSURLSessionWebSocketMessageTypeString")]
+        String = 1,
     }
 );
 
@@ -810,19 +816,32 @@ extern_methods!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSURLSessionWebSocketCloseCode {
-        NSURLSessionWebSocketCloseCodeInvalid = 0,
-        NSURLSessionWebSocketCloseCodeNormalClosure = 1000,
-        NSURLSessionWebSocketCloseCodeGoingAway = 1001,
-        NSURLSessionWebSocketCloseCodeProtocolError = 1002,
-        NSURLSessionWebSocketCloseCodeUnsupportedData = 1003,
-        NSURLSessionWebSocketCloseCodeNoStatusReceived = 1005,
-        NSURLSessionWebSocketCloseCodeAbnormalClosure = 1006,
-        NSURLSessionWebSocketCloseCodeInvalidFramePayloadData = 1007,
-        NSURLSessionWebSocketCloseCodePolicyViolation = 1008,
-        NSURLSessionWebSocketCloseCodeMessageTooBig = 1009,
-        NSURLSessionWebSocketCloseCodeMandatoryExtensionMissing = 1010,
-        NSURLSessionWebSocketCloseCodeInternalServerError = 1011,
-        NSURLSessionWebSocketCloseCodeTLSHandshakeFailure = 1015,
+        #[doc(alias = "NSURLSessionWebSocketCloseCodeInvalid")]
+        Invalid = 0,
+        #[doc(alias = "NSURLSessionWebSocketCloseCodeNormalClosure")]
+        NormalClosure = 1000,
+        #[doc(alias = "NSURLSessionWebSocketCloseCodeGoingAway")]
+        GoingAway = 1001,
+        #[doc(alias = "NSURLSessionWebSocketCloseCodeProtocolError")]
+        ProtocolError = 1002,
+        #[doc(alias = "NSURLSessionWebSocketCloseCodeUnsupportedData")]
+        UnsupportedData = 1003,
+        #[doc(alias = "NSURLSessionWebSocketCloseCodeNoStatusReceived")]
+        NoStatusReceived = 1005,
+        #[doc(alias = "NSURLSessionWebSocketCloseCodeAbnormalClosure")]
+        AbnormalClosure = 1006,
+        #[doc(alias = "NSURLSessionWebSocketCloseCodeInvalidFramePayloadData")]
+        InvalidFramePayloadData = 1007,
+        #[doc(alias = "NSURLSessionWebSocketCloseCodePolicyViolation")]
+        PolicyViolation = 1008,
+        #[doc(alias = "NSURLSessionWebSocketCloseCodeMessageTooBig")]
+        MessageTooBig = 1009,
+        #[doc(alias = "NSURLSessionWebSocketCloseCodeMandatoryExtensionMissing")]
+        MandatoryExtensionMissing = 1010,
+        #[doc(alias = "NSURLSessionWebSocketCloseCodeInternalServerError")]
+        InternalServerError = 1011,
+        #[doc(alias = "NSURLSessionWebSocketCloseCodeTLSHandshakeFailure")]
+        TLSHandshakeFailure = 1015,
     }
 );
 
@@ -917,10 +936,14 @@ extern_methods!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSURLSessionMultipathServiceType {
-        NSURLSessionMultipathServiceTypeNone = 0,
-        NSURLSessionMultipathServiceTypeHandover = 1,
-        NSURLSessionMultipathServiceTypeInteractive = 2,
-        NSURLSessionMultipathServiceTypeAggregate = 3,
+        #[doc(alias = "NSURLSessionMultipathServiceTypeNone")]
+        None = 0,
+        #[doc(alias = "NSURLSessionMultipathServiceTypeHandover")]
+        Handover = 1,
+        #[doc(alias = "NSURLSessionMultipathServiceTypeInteractive")]
+        Interactive = 2,
+        #[doc(alias = "NSURLSessionMultipathServiceTypeAggregate")]
+        Aggregate = 3,
     }
 );
 
@@ -1642,21 +1665,30 @@ extern_methods!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSURLSessionTaskMetricsResourceFetchType {
-        NSURLSessionTaskMetricsResourceFetchTypeUnknown = 0,
-        NSURLSessionTaskMetricsResourceFetchTypeNetworkLoad = 1,
-        NSURLSessionTaskMetricsResourceFetchTypeServerPush = 2,
-        NSURLSessionTaskMetricsResourceFetchTypeLocalCache = 3,
+        #[doc(alias = "NSURLSessionTaskMetricsResourceFetchTypeUnknown")]
+        Unknown = 0,
+        #[doc(alias = "NSURLSessionTaskMetricsResourceFetchTypeNetworkLoad")]
+        NetworkLoad = 1,
+        #[doc(alias = "NSURLSessionTaskMetricsResourceFetchTypeServerPush")]
+        ServerPush = 2,
+        #[doc(alias = "NSURLSessionTaskMetricsResourceFetchTypeLocalCache")]
+        LocalCache = 3,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSURLSessionTaskMetricsDomainResolutionProtocol {
-        NSURLSessionTaskMetricsDomainResolutionProtocolUnknown = 0,
-        NSURLSessionTaskMetricsDomainResolutionProtocolUDP = 1,
-        NSURLSessionTaskMetricsDomainResolutionProtocolTCP = 2,
-        NSURLSessionTaskMetricsDomainResolutionProtocolTLS = 3,
-        NSURLSessionTaskMetricsDomainResolutionProtocolHTTPS = 4,
+        #[doc(alias = "NSURLSessionTaskMetricsDomainResolutionProtocolUnknown")]
+        Unknown = 0,
+        #[doc(alias = "NSURLSessionTaskMetricsDomainResolutionProtocolUDP")]
+        UDP = 1,
+        #[doc(alias = "NSURLSessionTaskMetricsDomainResolutionProtocolTCP")]
+        TCP = 2,
+        #[doc(alias = "NSURLSessionTaskMetricsDomainResolutionProtocolTLS")]
+        TLS = 3,
+        #[doc(alias = "NSURLSessionTaskMetricsDomainResolutionProtocolHTTPS")]
+        HTTPS = 4,
     }
 );
 

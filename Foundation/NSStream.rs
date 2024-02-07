@@ -10,26 +10,40 @@ typed_extensible_enum!(
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSStreamStatus {
-        NSStreamStatusNotOpen = 0,
-        NSStreamStatusOpening = 1,
-        NSStreamStatusOpen = 2,
-        NSStreamStatusReading = 3,
-        NSStreamStatusWriting = 4,
-        NSStreamStatusAtEnd = 5,
-        NSStreamStatusClosed = 6,
-        NSStreamStatusError = 7,
+        #[doc(alias = "NSStreamStatusNotOpen")]
+        NotOpen = 0,
+        #[doc(alias = "NSStreamStatusOpening")]
+        Opening = 1,
+        #[doc(alias = "NSStreamStatusOpen")]
+        Open = 2,
+        #[doc(alias = "NSStreamStatusReading")]
+        Reading = 3,
+        #[doc(alias = "NSStreamStatusWriting")]
+        Writing = 4,
+        #[doc(alias = "NSStreamStatusAtEnd")]
+        AtEnd = 5,
+        #[doc(alias = "NSStreamStatusClosed")]
+        Closed = 6,
+        #[doc(alias = "NSStreamStatusError")]
+        Error = 7,
     }
 );
 
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSStreamEvent {
-        NSStreamEventNone = 0,
-        NSStreamEventOpenCompleted = 1 << 0,
-        NSStreamEventHasBytesAvailable = 1 << 1,
-        NSStreamEventHasSpaceAvailable = 1 << 2,
-        NSStreamEventErrorOccurred = 1 << 3,
-        NSStreamEventEndEncountered = 1 << 4,
+        #[doc(alias = "NSStreamEventNone")]
+        None = 0,
+        #[doc(alias = "NSStreamEventOpenCompleted")]
+        OpenCompleted = 1 << 0,
+        #[doc(alias = "NSStreamEventHasBytesAvailable")]
+        HasBytesAvailable = 1 << 1,
+        #[doc(alias = "NSStreamEventHasSpaceAvailable")]
+        HasSpaceAvailable = 1 << 2,
+        #[doc(alias = "NSStreamEventErrorOccurred")]
+        ErrorOccurred = 1 << 3,
+        #[doc(alias = "NSStreamEventEndEncountered")]
+        EndEncountered = 1 << 4,
     }
 );
 

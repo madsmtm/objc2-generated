@@ -456,13 +456,17 @@ ns_enum!(
     #[deprecated = "Please see the release notes and Core Data documentation."]
     pub enum NSPersistentStoreUbiquitousTransitionType {
         #[deprecated = "Please see the release notes and Core Data documentation."]
-        NSPersistentStoreUbiquitousTransitionTypeAccountAdded = 1,
+        #[doc(alias = "NSPersistentStoreUbiquitousTransitionTypeAccountAdded")]
+        AccountAdded = 1,
         #[deprecated = "Please see the release notes and Core Data documentation."]
-        NSPersistentStoreUbiquitousTransitionTypeAccountRemoved = 2,
+        #[doc(alias = "NSPersistentStoreUbiquitousTransitionTypeAccountRemoved")]
+        AccountRemoved = 2,
         #[deprecated = "Please see the release notes and Core Data documentation."]
-        NSPersistentStoreUbiquitousTransitionTypeContentRemoved = 3,
+        #[doc(alias = "NSPersistentStoreUbiquitousTransitionTypeContentRemoved")]
+        ContentRemoved = 3,
         #[deprecated = "Please see the release notes and Core Data documentation."]
-        NSPersistentStoreUbiquitousTransitionTypeInitialImportCompleted = 4,
+        #[doc(alias = "NSPersistentStoreUbiquitousTransitionTypeInitialImportCompleted")]
+        InitialImportCompleted = 4,
     }
 );
 

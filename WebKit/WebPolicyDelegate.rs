@@ -10,17 +10,23 @@ ns_enum!(
     #[deprecated]
     pub enum WebNavigationType {
         #[deprecated]
-        WebNavigationTypeLinkClicked = 0,
+        #[doc(alias = "WebNavigationTypeLinkClicked")]
+        LinkClicked = 0,
         #[deprecated]
-        WebNavigationTypeFormSubmitted = 1,
+        #[doc(alias = "WebNavigationTypeFormSubmitted")]
+        FormSubmitted = 1,
         #[deprecated]
-        WebNavigationTypeBackForward = 2,
+        #[doc(alias = "WebNavigationTypeBackForward")]
+        BackForward = 2,
         #[deprecated]
-        WebNavigationTypeReload = 3,
+        #[doc(alias = "WebNavigationTypeReload")]
+        Reload = 3,
         #[deprecated]
-        WebNavigationTypeFormResubmitted = 4,
+        #[doc(alias = "WebNavigationTypeFormResubmitted")]
+        FormResubmitted = 4,
         #[deprecated]
-        WebNavigationTypeOther = 5,
+        #[doc(alias = "WebNavigationTypeOther")]
+        Other = 5,
     }
 );
 

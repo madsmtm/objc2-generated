@@ -8,11 +8,16 @@ use crate::MediaPlayer::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MPRemoteCommandHandlerStatus {
-        MPRemoteCommandHandlerStatusSuccess = 0,
-        MPRemoteCommandHandlerStatusNoSuchContent = 100,
-        MPRemoteCommandHandlerStatusNoActionableNowPlayingItem = 110,
-        MPRemoteCommandHandlerStatusDeviceNotFound = 120,
-        MPRemoteCommandHandlerStatusCommandFailed = 200,
+        #[doc(alias = "MPRemoteCommandHandlerStatusSuccess")]
+        Success = 0,
+        #[doc(alias = "MPRemoteCommandHandlerStatusNoSuchContent")]
+        NoSuchContent = 100,
+        #[doc(alias = "MPRemoteCommandHandlerStatusNoActionableNowPlayingItem")]
+        NoActionableNowPlayingItem = 110,
+        #[doc(alias = "MPRemoteCommandHandlerStatusDeviceNotFound")]
+        DeviceNotFound = 120,
+        #[doc(alias = "MPRemoteCommandHandlerStatusCommandFailed")]
+        CommandFailed = 200,
     }
 );
 

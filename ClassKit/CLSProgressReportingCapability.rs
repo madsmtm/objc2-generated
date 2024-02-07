@@ -7,11 +7,16 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum CLSProgressReportingCapabilityKind {
-        CLSProgressReportingCapabilityKindDuration = 0,
-        CLSProgressReportingCapabilityKindPercent = 1,
-        CLSProgressReportingCapabilityKindBinary = 2,
-        CLSProgressReportingCapabilityKindQuantity = 3,
-        CLSProgressReportingCapabilityKindScore = 4,
+        #[doc(alias = "CLSProgressReportingCapabilityKindDuration")]
+        Duration = 0,
+        #[doc(alias = "CLSProgressReportingCapabilityKindPercent")]
+        Percent = 1,
+        #[doc(alias = "CLSProgressReportingCapabilityKindBinary")]
+        Binary = 2,
+        #[doc(alias = "CLSProgressReportingCapabilityKindQuantity")]
+        Quantity = 3,
+        #[doc(alias = "CLSProgressReportingCapabilityKindScore")]
+        Score = 4,
     }
 );
 

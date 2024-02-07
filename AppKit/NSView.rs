@@ -42,18 +42,30 @@ ns_enum!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSViewLayerContentsPlacement {
-        NSViewLayerContentsPlacementScaleAxesIndependently = 0,
-        NSViewLayerContentsPlacementScaleProportionallyToFit = 1,
-        NSViewLayerContentsPlacementScaleProportionallyToFill = 2,
-        NSViewLayerContentsPlacementCenter = 3,
-        NSViewLayerContentsPlacementTop = 4,
-        NSViewLayerContentsPlacementTopRight = 5,
-        NSViewLayerContentsPlacementRight = 6,
-        NSViewLayerContentsPlacementBottomRight = 7,
-        NSViewLayerContentsPlacementBottom = 8,
-        NSViewLayerContentsPlacementBottomLeft = 9,
-        NSViewLayerContentsPlacementLeft = 10,
-        NSViewLayerContentsPlacementTopLeft = 11,
+        #[doc(alias = "NSViewLayerContentsPlacementScaleAxesIndependently")]
+        ScaleAxesIndependently = 0,
+        #[doc(alias = "NSViewLayerContentsPlacementScaleProportionallyToFit")]
+        ScaleProportionallyToFit = 1,
+        #[doc(alias = "NSViewLayerContentsPlacementScaleProportionallyToFill")]
+        ScaleProportionallyToFill = 2,
+        #[doc(alias = "NSViewLayerContentsPlacementCenter")]
+        Center = 3,
+        #[doc(alias = "NSViewLayerContentsPlacementTop")]
+        Top = 4,
+        #[doc(alias = "NSViewLayerContentsPlacementTopRight")]
+        TopRight = 5,
+        #[doc(alias = "NSViewLayerContentsPlacementRight")]
+        Right = 6,
+        #[doc(alias = "NSViewLayerContentsPlacementBottomRight")]
+        BottomRight = 7,
+        #[doc(alias = "NSViewLayerContentsPlacementBottom")]
+        Bottom = 8,
+        #[doc(alias = "NSViewLayerContentsPlacementBottomLeft")]
+        BottomLeft = 9,
+        #[doc(alias = "NSViewLayerContentsPlacementLeft")]
+        Left = 10,
+        #[doc(alias = "NSViewLayerContentsPlacementTopLeft")]
+        TopLeft = 11,
     }
 );
 

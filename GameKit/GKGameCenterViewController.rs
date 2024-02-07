@@ -8,13 +8,20 @@ use crate::GameKit::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum GKGameCenterViewControllerState {
-        GKGameCenterViewControllerStateDefault = -1,
-        GKGameCenterViewControllerStateLeaderboards = 0,
-        GKGameCenterViewControllerStateAchievements = 1,
-        GKGameCenterViewControllerStateChallenges = 2,
-        GKGameCenterViewControllerStateLocalPlayerProfile = 3,
-        GKGameCenterViewControllerStateDashboard = 4,
-        GKGameCenterViewControllerStateLocalPlayerFriendsList = 5,
+        #[doc(alias = "GKGameCenterViewControllerStateDefault")]
+        Default = -1,
+        #[doc(alias = "GKGameCenterViewControllerStateLeaderboards")]
+        Leaderboards = 0,
+        #[doc(alias = "GKGameCenterViewControllerStateAchievements")]
+        Achievements = 1,
+        #[doc(alias = "GKGameCenterViewControllerStateChallenges")]
+        Challenges = 2,
+        #[doc(alias = "GKGameCenterViewControllerStateLocalPlayerProfile")]
+        LocalPlayerProfile = 3,
+        #[doc(alias = "GKGameCenterViewControllerStateDashboard")]
+        Dashboard = 4,
+        #[doc(alias = "GKGameCenterViewControllerStateLocalPlayerFriendsList")]
+        LocalPlayerFriendsList = 5,
     }
 );
 

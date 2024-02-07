@@ -84,12 +84,18 @@ extern_methods!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSTimeZoneNameStyle {
-        NSTimeZoneNameStyleStandard = 0,
-        NSTimeZoneNameStyleShortStandard = 1,
-        NSTimeZoneNameStyleDaylightSaving = 2,
-        NSTimeZoneNameStyleShortDaylightSaving = 3,
-        NSTimeZoneNameStyleGeneric = 4,
-        NSTimeZoneNameStyleShortGeneric = 5,
+        #[doc(alias = "NSTimeZoneNameStyleStandard")]
+        Standard = 0,
+        #[doc(alias = "NSTimeZoneNameStyleShortStandard")]
+        ShortStandard = 1,
+        #[doc(alias = "NSTimeZoneNameStyleDaylightSaving")]
+        DaylightSaving = 2,
+        #[doc(alias = "NSTimeZoneNameStyleShortDaylightSaving")]
+        ShortDaylightSaving = 3,
+        #[doc(alias = "NSTimeZoneNameStyleGeneric")]
+        Generic = 4,
+        #[doc(alias = "NSTimeZoneNameStyleShortGeneric")]
+        ShortGeneric = 5,
     }
 );
 

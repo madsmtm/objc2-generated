@@ -20,10 +20,14 @@ extern_static!(NSToolbarItemKey: &'static NSToolbarUserInfoKey);
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSToolbarDisplayMode {
-        NSToolbarDisplayModeDefault = 0,
-        NSToolbarDisplayModeIconAndLabel = 1,
-        NSToolbarDisplayModeIconOnly = 2,
-        NSToolbarDisplayModeLabelOnly = 3,
+        #[doc(alias = "NSToolbarDisplayModeDefault")]
+        Default = 0,
+        #[doc(alias = "NSToolbarDisplayModeIconAndLabel")]
+        IconAndLabel = 1,
+        #[doc(alias = "NSToolbarDisplayModeIconOnly")]
+        IconOnly = 2,
+        #[doc(alias = "NSToolbarDisplayModeLabelOnly")]
+        LabelOnly = 3,
     }
 );
 
@@ -32,11 +36,14 @@ ns_enum!(
     #[deprecated = "NSToolbarSizeMode is no longer recommended and will be ignored in the future"]
     pub enum NSToolbarSizeMode {
         #[deprecated = "NSToolbarSizeMode is no longer recommended and will be ignored in the future"]
-        NSToolbarSizeModeDefault = 0,
+        #[doc(alias = "NSToolbarSizeModeDefault")]
+        Default = 0,
         #[deprecated = "NSToolbarSizeMode is no longer recommended and will be ignored in the future"]
-        NSToolbarSizeModeRegular = 1,
+        #[doc(alias = "NSToolbarSizeModeRegular")]
+        Regular = 1,
         #[deprecated = "NSToolbarSizeMode is no longer recommended and will be ignored in the future"]
-        NSToolbarSizeModeSmall = 2,
+        #[doc(alias = "NSToolbarSizeModeSmall")]
+        Small = 2,
     }
 );
 

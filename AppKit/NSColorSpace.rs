@@ -8,14 +8,22 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSColorSpaceModel {
-        NSColorSpaceModelUnknown = -1,
-        NSColorSpaceModelGray = 0,
-        NSColorSpaceModelRGB = 1,
-        NSColorSpaceModelCMYK = 2,
-        NSColorSpaceModelLAB = 3,
-        NSColorSpaceModelDeviceN = 4,
-        NSColorSpaceModelIndexed = 5,
-        NSColorSpaceModelPatterned = 6,
+        #[doc(alias = "NSColorSpaceModelUnknown")]
+        Unknown = -1,
+        #[doc(alias = "NSColorSpaceModelGray")]
+        Gray = 0,
+        #[doc(alias = "NSColorSpaceModelRGB")]
+        RGB = 1,
+        #[doc(alias = "NSColorSpaceModelCMYK")]
+        CMYK = 2,
+        #[doc(alias = "NSColorSpaceModelLAB")]
+        LAB = 3,
+        #[doc(alias = "NSColorSpaceModelDeviceN")]
+        DeviceN = 4,
+        #[doc(alias = "NSColorSpaceModelIndexed")]
+        Indexed = 5,
+        #[doc(alias = "NSColorSpaceModelPatterned")]
+        Patterned = 6,
     }
 );
 
@@ -135,18 +143,18 @@ extern_methods!(
     }
 );
 
-extern_static!(NSUnknownColorSpaceModel: NSColorSpaceModel = NSColorSpaceModel(NSColorSpaceModel::NSColorSpaceModelUnknown.0));
+extern_static!(NSUnknownColorSpaceModel: NSColorSpaceModel = NSColorSpaceModel(NSColorSpaceModel::Unknown.0));
 
-extern_static!(NSGrayColorSpaceModel: NSColorSpaceModel = NSColorSpaceModel(NSColorSpaceModel::NSColorSpaceModelGray.0));
+extern_static!(NSGrayColorSpaceModel: NSColorSpaceModel = NSColorSpaceModel(NSColorSpaceModel::Gray.0));
 
-extern_static!(NSRGBColorSpaceModel: NSColorSpaceModel = NSColorSpaceModel(NSColorSpaceModel::NSColorSpaceModelRGB.0));
+extern_static!(NSRGBColorSpaceModel: NSColorSpaceModel = NSColorSpaceModel(NSColorSpaceModel::RGB.0));
 
-extern_static!(NSCMYKColorSpaceModel: NSColorSpaceModel = NSColorSpaceModel(NSColorSpaceModel::NSColorSpaceModelCMYK.0));
+extern_static!(NSCMYKColorSpaceModel: NSColorSpaceModel = NSColorSpaceModel(NSColorSpaceModel::CMYK.0));
 
-extern_static!(NSLABColorSpaceModel: NSColorSpaceModel = NSColorSpaceModel(NSColorSpaceModel::NSColorSpaceModelLAB.0));
+extern_static!(NSLABColorSpaceModel: NSColorSpaceModel = NSColorSpaceModel(NSColorSpaceModel::LAB.0));
 
-extern_static!(NSDeviceNColorSpaceModel: NSColorSpaceModel = NSColorSpaceModel(NSColorSpaceModel::NSColorSpaceModelDeviceN.0));
+extern_static!(NSDeviceNColorSpaceModel: NSColorSpaceModel = NSColorSpaceModel(NSColorSpaceModel::DeviceN.0));
 
-extern_static!(NSIndexedColorSpaceModel: NSColorSpaceModel = NSColorSpaceModel(NSColorSpaceModel::NSColorSpaceModelIndexed.0));
+extern_static!(NSIndexedColorSpaceModel: NSColorSpaceModel = NSColorSpaceModel(NSColorSpaceModel::Indexed.0));
 
-extern_static!(NSPatternColorSpaceModel: NSColorSpaceModel = NSColorSpaceModel(NSColorSpaceModel::NSColorSpaceModelPatterned.0));
+extern_static!(NSPatternColorSpaceModel: NSColorSpaceModel = NSColorSpaceModel(NSColorSpaceModel::Patterned.0));

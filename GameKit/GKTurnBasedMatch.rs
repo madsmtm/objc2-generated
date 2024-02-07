@@ -8,39 +8,60 @@ use crate::GameKit::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum GKTurnBasedMatchStatus {
-        GKTurnBasedMatchStatusUnknown = 0,
-        GKTurnBasedMatchStatusOpen = 1,
-        GKTurnBasedMatchStatusEnded = 2,
-        GKTurnBasedMatchStatusMatching = 3,
+        #[doc(alias = "GKTurnBasedMatchStatusUnknown")]
+        Unknown = 0,
+        #[doc(alias = "GKTurnBasedMatchStatusOpen")]
+        Open = 1,
+        #[doc(alias = "GKTurnBasedMatchStatusEnded")]
+        Ended = 2,
+        #[doc(alias = "GKTurnBasedMatchStatusMatching")]
+        Matching = 3,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum GKTurnBasedParticipantStatus {
-        GKTurnBasedParticipantStatusUnknown = 0,
-        GKTurnBasedParticipantStatusInvited = 1,
-        GKTurnBasedParticipantStatusDeclined = 2,
-        GKTurnBasedParticipantStatusMatching = 3,
-        GKTurnBasedParticipantStatusActive = 4,
-        GKTurnBasedParticipantStatusDone = 5,
+        #[doc(alias = "GKTurnBasedParticipantStatusUnknown")]
+        Unknown = 0,
+        #[doc(alias = "GKTurnBasedParticipantStatusInvited")]
+        Invited = 1,
+        #[doc(alias = "GKTurnBasedParticipantStatusDeclined")]
+        Declined = 2,
+        #[doc(alias = "GKTurnBasedParticipantStatusMatching")]
+        Matching = 3,
+        #[doc(alias = "GKTurnBasedParticipantStatusActive")]
+        Active = 4,
+        #[doc(alias = "GKTurnBasedParticipantStatusDone")]
+        Done = 5,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum GKTurnBasedMatchOutcome {
-        GKTurnBasedMatchOutcomeNone = 0,
-        GKTurnBasedMatchOutcomeQuit = 1,
-        GKTurnBasedMatchOutcomeWon = 2,
-        GKTurnBasedMatchOutcomeLost = 3,
-        GKTurnBasedMatchOutcomeTied = 4,
-        GKTurnBasedMatchOutcomeTimeExpired = 5,
-        GKTurnBasedMatchOutcomeFirst = 6,
-        GKTurnBasedMatchOutcomeSecond = 7,
-        GKTurnBasedMatchOutcomeThird = 8,
-        GKTurnBasedMatchOutcomeFourth = 9,
-        GKTurnBasedMatchOutcomeCustomRange = 0x00FF0000,
+        #[doc(alias = "GKTurnBasedMatchOutcomeNone")]
+        None = 0,
+        #[doc(alias = "GKTurnBasedMatchOutcomeQuit")]
+        Quit = 1,
+        #[doc(alias = "GKTurnBasedMatchOutcomeWon")]
+        Won = 2,
+        #[doc(alias = "GKTurnBasedMatchOutcomeLost")]
+        Lost = 3,
+        #[doc(alias = "GKTurnBasedMatchOutcomeTied")]
+        Tied = 4,
+        #[doc(alias = "GKTurnBasedMatchOutcomeTimeExpired")]
+        TimeExpired = 5,
+        #[doc(alias = "GKTurnBasedMatchOutcomeFirst")]
+        First = 6,
+        #[doc(alias = "GKTurnBasedMatchOutcomeSecond")]
+        Second = 7,
+        #[doc(alias = "GKTurnBasedMatchOutcomeThird")]
+        Third = 8,
+        #[doc(alias = "GKTurnBasedMatchOutcomeFourth")]
+        Fourth = 9,
+        #[doc(alias = "GKTurnBasedMatchOutcomeCustomRange")]
+        CustomRange = 0x00FF0000,
     }
 );
 
@@ -534,11 +555,16 @@ extern_methods!(
 ns_enum!(
     #[underlying(i8)]
     pub enum GKTurnBasedExchangeStatus {
-        GKTurnBasedExchangeStatusUnknown = 0,
-        GKTurnBasedExchangeStatusActive = 1,
-        GKTurnBasedExchangeStatusComplete = 2,
-        GKTurnBasedExchangeStatusResolved = 3,
-        GKTurnBasedExchangeStatusCanceled = 4,
+        #[doc(alias = "GKTurnBasedExchangeStatusUnknown")]
+        Unknown = 0,
+        #[doc(alias = "GKTurnBasedExchangeStatusActive")]
+        Active = 1,
+        #[doc(alias = "GKTurnBasedExchangeStatusComplete")]
+        Complete = 2,
+        #[doc(alias = "GKTurnBasedExchangeStatusResolved")]
+        Resolved = 3,
+        #[doc(alias = "GKTurnBasedExchangeStatusCanceled")]
+        Canceled = 4,
     }
 );
 

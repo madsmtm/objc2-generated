@@ -8,20 +8,28 @@ use crate::MediaPlayer::*;
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MPNowPlayingInfoMediaType {
-        MPNowPlayingInfoMediaTypeNone = 0,
-        MPNowPlayingInfoMediaTypeAudio = 1,
-        MPNowPlayingInfoMediaTypeVideo = 2,
+        #[doc(alias = "MPNowPlayingInfoMediaTypeNone")]
+        None = 0,
+        #[doc(alias = "MPNowPlayingInfoMediaTypeAudio")]
+        Audio = 1,
+        #[doc(alias = "MPNowPlayingInfoMediaTypeVideo")]
+        Video = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MPNowPlayingPlaybackState {
-        MPNowPlayingPlaybackStateUnknown = 0,
-        MPNowPlayingPlaybackStatePlaying = 1,
-        MPNowPlayingPlaybackStatePaused = 2,
-        MPNowPlayingPlaybackStateStopped = 3,
-        MPNowPlayingPlaybackStateInterrupted = 4,
+        #[doc(alias = "MPNowPlayingPlaybackStateUnknown")]
+        Unknown = 0,
+        #[doc(alias = "MPNowPlayingPlaybackStatePlaying")]
+        Playing = 1,
+        #[doc(alias = "MPNowPlayingPlaybackStatePaused")]
+        Paused = 2,
+        #[doc(alias = "MPNowPlayingPlaybackStateStopped")]
+        Stopped = 3,
+        #[doc(alias = "MPNowPlayingPlaybackStateInterrupted")]
+        Interrupted = 4,
     }
 );
 

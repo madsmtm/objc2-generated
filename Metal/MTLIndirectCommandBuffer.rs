@@ -7,14 +7,22 @@ use crate::Metal::*;
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum MTLIndirectCommandType {
-        MTLIndirectCommandTypeDraw = 1 << 0,
-        MTLIndirectCommandTypeDrawIndexed = 1 << 1,
-        MTLIndirectCommandTypeDrawPatches = 1 << 2,
-        MTLIndirectCommandTypeDrawIndexedPatches = 1 << 3,
-        MTLIndirectCommandTypeConcurrentDispatch = 1 << 5,
-        MTLIndirectCommandTypeConcurrentDispatchThreads = 1 << 6,
-        MTLIndirectCommandTypeDrawMeshThreadgroups = 1 << 7,
-        MTLIndirectCommandTypeDrawMeshThreads = 1 << 8,
+        #[doc(alias = "MTLIndirectCommandTypeDraw")]
+        Draw = 1 << 0,
+        #[doc(alias = "MTLIndirectCommandTypeDrawIndexed")]
+        DrawIndexed = 1 << 1,
+        #[doc(alias = "MTLIndirectCommandTypeDrawPatches")]
+        DrawPatches = 1 << 2,
+        #[doc(alias = "MTLIndirectCommandTypeDrawIndexedPatches")]
+        DrawIndexedPatches = 1 << 3,
+        #[doc(alias = "MTLIndirectCommandTypeConcurrentDispatch")]
+        ConcurrentDispatch = 1 << 5,
+        #[doc(alias = "MTLIndirectCommandTypeConcurrentDispatchThreads")]
+        ConcurrentDispatchThreads = 1 << 6,
+        #[doc(alias = "MTLIndirectCommandTypeDrawMeshThreadgroups")]
+        DrawMeshThreadgroups = 1 << 7,
+        #[doc(alias = "MTLIndirectCommandTypeDrawMeshThreads")]
+        DrawMeshThreads = 1 << 8,
     }
 );
 

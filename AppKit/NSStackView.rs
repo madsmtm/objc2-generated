@@ -8,23 +8,34 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSStackViewGravity {
-        NSStackViewGravityTop = 1,
-        NSStackViewGravityLeading = 1,
-        NSStackViewGravityCenter = 2,
-        NSStackViewGravityBottom = 3,
-        NSStackViewGravityTrailing = 3,
+        #[doc(alias = "NSStackViewGravityTop")]
+        Top = 1,
+        #[doc(alias = "NSStackViewGravityLeading")]
+        Leading = 1,
+        #[doc(alias = "NSStackViewGravityCenter")]
+        Center = 2,
+        #[doc(alias = "NSStackViewGravityBottom")]
+        Bottom = 3,
+        #[doc(alias = "NSStackViewGravityTrailing")]
+        Trailing = 3,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSStackViewDistribution {
-        NSStackViewDistributionGravityAreas = -1,
-        NSStackViewDistributionFill = 0,
-        NSStackViewDistributionFillEqually = 1,
-        NSStackViewDistributionFillProportionally = 2,
-        NSStackViewDistributionEqualSpacing = 3,
-        NSStackViewDistributionEqualCentering = 4,
+        #[doc(alias = "NSStackViewDistributionGravityAreas")]
+        GravityAreas = -1,
+        #[doc(alias = "NSStackViewDistributionFill")]
+        Fill = 0,
+        #[doc(alias = "NSStackViewDistributionFillEqually")]
+        FillEqually = 1,
+        #[doc(alias = "NSStackViewDistributionFillProportionally")]
+        FillProportionally = 2,
+        #[doc(alias = "NSStackViewDistributionEqualSpacing")]
+        EqualSpacing = 3,
+        #[doc(alias = "NSStackViewDistributionEqualCentering")]
+        EqualCentering = 4,
     }
 );
 

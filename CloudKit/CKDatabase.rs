@@ -8,9 +8,12 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum CKDatabaseScope {
-        CKDatabaseScopePublic = 1,
-        CKDatabaseScopePrivate = 2,
-        CKDatabaseScopeShared = 3,
+        #[doc(alias = "CKDatabaseScopePublic")]
+        Public = 1,
+        #[doc(alias = "CKDatabaseScopePrivate")]
+        Private = 2,
+        #[doc(alias = "CKDatabaseScopeShared")]
+        Shared = 3,
     }
 );
 

@@ -8,18 +8,24 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSTickMarkPosition {
-        NSTickMarkPositionBelow = 0,
-        NSTickMarkPositionAbove = 1,
-        NSTickMarkPositionLeading = NSTickMarkPosition::NSTickMarkPositionAbove.0,
-        NSTickMarkPositionTrailing = NSTickMarkPosition::NSTickMarkPositionBelow.0,
+        #[doc(alias = "NSTickMarkPositionBelow")]
+        Below = 0,
+        #[doc(alias = "NSTickMarkPositionAbove")]
+        Above = 1,
+        #[doc(alias = "NSTickMarkPositionLeading")]
+        Leading = NSTickMarkPosition::Above.0,
+        #[doc(alias = "NSTickMarkPositionTrailing")]
+        Trailing = NSTickMarkPosition::Below.0,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSSliderType {
-        NSSliderTypeLinear = 0,
-        NSSliderTypeCircular = 1,
+        #[doc(alias = "NSSliderTypeLinear")]
+        Linear = 0,
+        #[doc(alias = "NSSliderTypeCircular")]
+        Circular = 1,
     }
 );
 
@@ -243,14 +249,14 @@ extern_methods!(
     }
 );
 
-extern_static!(NSTickMarkBelow: NSTickMarkPosition = NSTickMarkPosition(NSTickMarkPosition::NSTickMarkPositionBelow.0));
+extern_static!(NSTickMarkBelow: NSTickMarkPosition = NSTickMarkPosition(NSTickMarkPosition::Below.0));
 
-extern_static!(NSTickMarkAbove: NSTickMarkPosition = NSTickMarkPosition(NSTickMarkPosition::NSTickMarkPositionAbove.0));
+extern_static!(NSTickMarkAbove: NSTickMarkPosition = NSTickMarkPosition(NSTickMarkPosition::Above.0));
 
-extern_static!(NSTickMarkLeft: NSTickMarkPosition = NSTickMarkPosition(NSTickMarkPosition::NSTickMarkPositionLeading.0));
+extern_static!(NSTickMarkLeft: NSTickMarkPosition = NSTickMarkPosition(NSTickMarkPosition::Leading.0));
 
-extern_static!(NSTickMarkRight: NSTickMarkPosition = NSTickMarkPosition(NSTickMarkPosition::NSTickMarkPositionTrailing.0));
+extern_static!(NSTickMarkRight: NSTickMarkPosition = NSTickMarkPosition(NSTickMarkPosition::Trailing.0));
 
-extern_static!(NSLinearSlider: NSSliderType = NSSliderType(NSSliderType::NSSliderTypeLinear.0));
+extern_static!(NSLinearSlider: NSSliderType = NSSliderType(NSSliderType::Linear.0));
 
-extern_static!(NSCircularSlider: NSSliderType = NSSliderType(NSSliderType::NSSliderTypeCircular.0));
+extern_static!(NSCircularSlider: NSSliderType = NSSliderType(NSSliderType::Circular.0));

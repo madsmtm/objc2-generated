@@ -7,38 +7,52 @@ use crate::Metal::*;
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLSamplerMinMagFilter {
-        MTLSamplerMinMagFilterNearest = 0,
-        MTLSamplerMinMagFilterLinear = 1,
+        #[doc(alias = "MTLSamplerMinMagFilterNearest")]
+        Nearest = 0,
+        #[doc(alias = "MTLSamplerMinMagFilterLinear")]
+        Linear = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLSamplerMipFilter {
-        MTLSamplerMipFilterNotMipmapped = 0,
-        MTLSamplerMipFilterNearest = 1,
-        MTLSamplerMipFilterLinear = 2,
+        #[doc(alias = "MTLSamplerMipFilterNotMipmapped")]
+        NotMipmapped = 0,
+        #[doc(alias = "MTLSamplerMipFilterNearest")]
+        Nearest = 1,
+        #[doc(alias = "MTLSamplerMipFilterLinear")]
+        Linear = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLSamplerAddressMode {
-        MTLSamplerAddressModeClampToEdge = 0,
-        MTLSamplerAddressModeMirrorClampToEdge = 1,
-        MTLSamplerAddressModeRepeat = 2,
-        MTLSamplerAddressModeMirrorRepeat = 3,
-        MTLSamplerAddressModeClampToZero = 4,
-        MTLSamplerAddressModeClampToBorderColor = 5,
+        #[doc(alias = "MTLSamplerAddressModeClampToEdge")]
+        ClampToEdge = 0,
+        #[doc(alias = "MTLSamplerAddressModeMirrorClampToEdge")]
+        MirrorClampToEdge = 1,
+        #[doc(alias = "MTLSamplerAddressModeRepeat")]
+        Repeat = 2,
+        #[doc(alias = "MTLSamplerAddressModeMirrorRepeat")]
+        MirrorRepeat = 3,
+        #[doc(alias = "MTLSamplerAddressModeClampToZero")]
+        ClampToZero = 4,
+        #[doc(alias = "MTLSamplerAddressModeClampToBorderColor")]
+        ClampToBorderColor = 5,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLSamplerBorderColor {
-        MTLSamplerBorderColorTransparentBlack = 0,
-        MTLSamplerBorderColorOpaqueBlack = 1,
-        MTLSamplerBorderColorOpaqueWhite = 2,
+        #[doc(alias = "MTLSamplerBorderColorTransparentBlack")]
+        TransparentBlack = 0,
+        #[doc(alias = "MTLSamplerBorderColorOpaqueBlack")]
+        OpaqueBlack = 1,
+        #[doc(alias = "MTLSamplerBorderColorOpaqueWhite")]
+        OpaqueWhite = 2,
     }
 );
 

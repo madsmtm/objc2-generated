@@ -8,18 +8,30 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum CKSyncEngineEventType {
-        CKSyncEngineEventTypeStateUpdate = 0,
-        CKSyncEngineEventTypeAccountChange = 1,
-        CKSyncEngineEventTypeFetchedDatabaseChanges = 2,
-        CKSyncEngineEventTypeFetchedRecordZoneChanges = 3,
-        CKSyncEngineEventTypeSentDatabaseChanges = 4,
-        CKSyncEngineEventTypeSentRecordZoneChanges = 5,
-        CKSyncEngineEventTypeWillFetchChanges = 6,
-        CKSyncEngineEventTypeWillFetchRecordZoneChanges = 7,
-        CKSyncEngineEventTypeDidFetchRecordZoneChanges = 8,
-        CKSyncEngineEventTypeDidFetchChanges = 9,
-        CKSyncEngineEventTypeWillSendChanges = 10,
-        CKSyncEngineEventTypeDidSendChanges = 11,
+        #[doc(alias = "CKSyncEngineEventTypeStateUpdate")]
+        StateUpdate = 0,
+        #[doc(alias = "CKSyncEngineEventTypeAccountChange")]
+        AccountChange = 1,
+        #[doc(alias = "CKSyncEngineEventTypeFetchedDatabaseChanges")]
+        FetchedDatabaseChanges = 2,
+        #[doc(alias = "CKSyncEngineEventTypeFetchedRecordZoneChanges")]
+        FetchedRecordZoneChanges = 3,
+        #[doc(alias = "CKSyncEngineEventTypeSentDatabaseChanges")]
+        SentDatabaseChanges = 4,
+        #[doc(alias = "CKSyncEngineEventTypeSentRecordZoneChanges")]
+        SentRecordZoneChanges = 5,
+        #[doc(alias = "CKSyncEngineEventTypeWillFetchChanges")]
+        WillFetchChanges = 6,
+        #[doc(alias = "CKSyncEngineEventTypeWillFetchRecordZoneChanges")]
+        WillFetchRecordZoneChanges = 7,
+        #[doc(alias = "CKSyncEngineEventTypeDidFetchRecordZoneChanges")]
+        DidFetchRecordZoneChanges = 8,
+        #[doc(alias = "CKSyncEngineEventTypeDidFetchChanges")]
+        DidFetchChanges = 9,
+        #[doc(alias = "CKSyncEngineEventTypeWillSendChanges")]
+        WillSendChanges = 10,
+        #[doc(alias = "CKSyncEngineEventTypeDidSendChanges")]
+        DidSendChanges = 11,
     }
 );
 
@@ -162,9 +174,12 @@ extern_methods!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum CKSyncEngineAccountChangeType {
-        CKSyncEngineAccountChangeTypeSignIn = 0,
-        CKSyncEngineAccountChangeTypeSignOut = 1,
-        CKSyncEngineAccountChangeTypeSwitchAccounts = 2,
+        #[doc(alias = "CKSyncEngineAccountChangeTypeSignIn")]
+        SignIn = 0,
+        #[doc(alias = "CKSyncEngineAccountChangeTypeSignOut")]
+        SignOut = 1,
+        #[doc(alias = "CKSyncEngineAccountChangeTypeSwitchAccounts")]
+        SwitchAccounts = 2,
     }
 );
 
@@ -746,9 +761,12 @@ extern_methods!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum CKSyncEngineZoneDeletionReason {
-        CKSyncEngineZoneDeletionReasonDeleted = 0,
-        CKSyncEngineZoneDeletionReasonPurged = 1,
-        CKSyncEngineZoneDeletionReasonEncryptedDataReset = 2,
+        #[doc(alias = "CKSyncEngineZoneDeletionReasonDeleted")]
+        Deleted = 0,
+        #[doc(alias = "CKSyncEngineZoneDeletionReasonPurged")]
+        Purged = 1,
+        #[doc(alias = "CKSyncEngineZoneDeletionReasonEncryptedDataReset")]
+        EncryptedDataReset = 2,
     }
 );
 

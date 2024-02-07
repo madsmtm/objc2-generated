@@ -8,8 +8,10 @@ use crate::StoreKit::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum SKOverlayPosition {
-        SKOverlayPositionBottom = 0,
-        SKOverlayPositionBottomRaised = 1,
+        #[doc(alias = "SKOverlayPositionBottom")]
+        Bottom = 0,
+        #[doc(alias = "SKOverlayPositionBottomRaised")]
+        BottomRaised = 1,
     }
 );
 

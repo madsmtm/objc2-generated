@@ -8,9 +8,12 @@ use crate::GameController::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum GCTouchState {
-        GCTouchStateUp = 0,
-        GCTouchStateDown = 1,
-        GCTouchStateMoving = 2,
+        #[doc(alias = "GCTouchStateUp")]
+        Up = 0,
+        #[doc(alias = "GCTouchStateDown")]
+        Down = 1,
+        #[doc(alias = "GCTouchStateMoving")]
+        Moving = 2,
     }
 );
 

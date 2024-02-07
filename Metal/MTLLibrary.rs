@@ -7,9 +7,12 @@ use crate::Metal::*;
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLPatchType {
-        MTLPatchTypeNone = 0,
-        MTLPatchTypeTriangle = 1,
-        MTLPatchTypeQuad = 2,
+        #[doc(alias = "MTLPatchTypeNone")]
+        None = 0,
+        #[doc(alias = "MTLPatchTypeTriangle")]
+        Triangle = 1,
+        #[doc(alias = "MTLPatchTypeQuad")]
+        Quad = 2,
     }
 );
 
@@ -118,13 +121,20 @@ extern_methods!(
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLFunctionType {
-        MTLFunctionTypeVertex = 1,
-        MTLFunctionTypeFragment = 2,
-        MTLFunctionTypeKernel = 3,
-        MTLFunctionTypeVisible = 5,
-        MTLFunctionTypeIntersection = 6,
-        MTLFunctionTypeMesh = 7,
-        MTLFunctionTypeObject = 8,
+        #[doc(alias = "MTLFunctionTypeVertex")]
+        Vertex = 1,
+        #[doc(alias = "MTLFunctionTypeFragment")]
+        Fragment = 2,
+        #[doc(alias = "MTLFunctionTypeKernel")]
+        Kernel = 3,
+        #[doc(alias = "MTLFunctionTypeVisible")]
+        Visible = 5,
+        #[doc(alias = "MTLFunctionTypeIntersection")]
+        Intersection = 6,
+        #[doc(alias = "MTLFunctionTypeMesh")]
+        Mesh = 7,
+        #[doc(alias = "MTLFunctionTypeObject")]
+        Object = 8,
     }
 );
 
@@ -248,24 +258,30 @@ ns_enum!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MTLLibraryType {
-        MTLLibraryTypeExecutable = 0,
-        MTLLibraryTypeDynamic = 1,
+        #[doc(alias = "MTLLibraryTypeExecutable")]
+        Executable = 0,
+        #[doc(alias = "MTLLibraryTypeDynamic")]
+        Dynamic = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MTLLibraryOptimizationLevel {
-        MTLLibraryOptimizationLevelDefault = 0,
-        MTLLibraryOptimizationLevelSize = 1,
+        #[doc(alias = "MTLLibraryOptimizationLevelDefault")]
+        Default = 0,
+        #[doc(alias = "MTLLibraryOptimizationLevelSize")]
+        Size = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MTLCompileSymbolVisibility {
-        MTLCompileSymbolVisibilityDefault = 0,
-        MTLCompileSymbolVisibilityHidden = 1,
+        #[doc(alias = "MTLCompileSymbolVisibilityDefault")]
+        Default = 0,
+        #[doc(alias = "MTLCompileSymbolVisibilityHidden")]
+        Hidden = 1,
     }
 );
 
@@ -404,12 +420,18 @@ extern_static!(MTLLibraryErrorDomain: &'static NSErrorDomain);
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLLibraryError {
-        MTLLibraryErrorUnsupported = 1,
-        MTLLibraryErrorInternal = 2,
-        MTLLibraryErrorCompileFailure = 3,
-        MTLLibraryErrorCompileWarning = 4,
-        MTLLibraryErrorFunctionNotFound = 5,
-        MTLLibraryErrorFileNotFound = 6,
+        #[doc(alias = "MTLLibraryErrorUnsupported")]
+        Unsupported = 1,
+        #[doc(alias = "MTLLibraryErrorInternal")]
+        Internal = 2,
+        #[doc(alias = "MTLLibraryErrorCompileFailure")]
+        CompileFailure = 3,
+        #[doc(alias = "MTLLibraryErrorCompileWarning")]
+        CompileWarning = 4,
+        #[doc(alias = "MTLLibraryErrorFunctionNotFound")]
+        FunctionNotFound = 5,
+        #[doc(alias = "MTLLibraryErrorFileNotFound")]
+        FileNotFound = 6,
     }
 );
 

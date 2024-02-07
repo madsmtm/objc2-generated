@@ -8,16 +8,20 @@ use crate::GameKit::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum GKConnectionState {
-        GKConnectionStateNotConnected = 0,
-        GKConnectionStateConnected = 1,
+        #[doc(alias = "GKConnectionStateNotConnected")]
+        NotConnected = 0,
+        #[doc(alias = "GKConnectionStateConnected")]
+        Connected = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum GKTransportType {
-        GKTransportTypeUnreliable = 0,
-        GKTransportTypeReliable = 1,
+        #[doc(alias = "GKTransportTypeUnreliable")]
+        Unreliable = 0,
+        #[doc(alias = "GKTransportTypeReliable")]
+        Reliable = 1,
     }
 );
 

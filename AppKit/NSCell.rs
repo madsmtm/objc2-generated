@@ -102,10 +102,14 @@ ns_enum!(
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSControlSize {
-        NSControlSizeRegular = 0,
-        NSControlSizeSmall = 1,
-        NSControlSizeMini = 2,
-        NSControlSizeLarge = 3,
+        #[doc(alias = "NSControlSizeRegular")]
+        Regular = 0,
+        #[doc(alias = "NSControlSizeSmall")]
+        Small = 1,
+        #[doc(alias = "NSControlSizeMini")]
+        Mini = 2,
+        #[doc(alias = "NSControlSizeLarge")]
+        Large = 3,
     }
 );
 
@@ -752,10 +756,14 @@ extern_methods!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSBackgroundStyle {
-        NSBackgroundStyleNormal = 0,
-        NSBackgroundStyleEmphasized = 1,
-        NSBackgroundStyleRaised = 2,
-        NSBackgroundStyleLowered = 3,
+        #[doc(alias = "NSBackgroundStyleNormal")]
+        Normal = 0,
+        #[doc(alias = "NSBackgroundStyleEmphasized")]
+        Emphasized = 1,
+        #[doc(alias = "NSBackgroundStyleRaised")]
+        Raised = 2,
+        #[doc(alias = "NSBackgroundStyleLowered")]
+        Lowered = 3,
     }
 );
 
@@ -861,9 +869,9 @@ extern_methods!(
     }
 );
 
-extern_static!(NSBackgroundStyleLight: NSBackgroundStyle = NSBackgroundStyle(NSBackgroundStyle::NSBackgroundStyleNormal.0));
+extern_static!(NSBackgroundStyleLight: NSBackgroundStyle = NSBackgroundStyle(NSBackgroundStyle::Normal.0));
 
-extern_static!(NSBackgroundStyleDark: NSBackgroundStyle = NSBackgroundStyle(NSBackgroundStyle::NSBackgroundStyleEmphasized.0));
+extern_static!(NSBackgroundStyleDark: NSBackgroundStyle = NSBackgroundStyle(NSBackgroundStyle::Emphasized.0));
 
 pub type NSCellStateValue = NSControlStateValue;
 
@@ -873,11 +881,11 @@ extern_static!(NSOffState: NSControlStateValue = NSControlStateValueOff);
 
 extern_static!(NSOnState: NSControlStateValue = NSControlStateValueOn);
 
-extern_static!(NSRegularControlSize: NSControlSize = NSControlSize(NSControlSize::NSControlSizeRegular.0));
+extern_static!(NSRegularControlSize: NSControlSize = NSControlSize(NSControlSize::Regular.0));
 
-extern_static!(NSSmallControlSize: NSControlSize = NSControlSize(NSControlSize::NSControlSizeSmall.0));
+extern_static!(NSSmallControlSize: NSControlSize = NSControlSize(NSControlSize::Small.0));
 
-extern_static!(NSMiniControlSize: NSControlSize = NSControlSize(NSControlSize::NSControlSizeMini.0));
+extern_static!(NSMiniControlSize: NSControlSize = NSControlSize(NSControlSize::Mini.0));
 
 extern_static!(NSControlTintDidChangeNotification: &'static NSNotificationName);
 

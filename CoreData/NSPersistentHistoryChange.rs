@@ -7,9 +7,12 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSPersistentHistoryChangeType {
-        NSPersistentHistoryChangeTypeInsert = 0,
-        NSPersistentHistoryChangeTypeUpdate = 1,
-        NSPersistentHistoryChangeTypeDelete = 2,
+        #[doc(alias = "NSPersistentHistoryChangeTypeInsert")]
+        Insert = 0,
+        #[doc(alias = "NSPersistentHistoryChangeTypeUpdate")]
+        Update = 1,
+        #[doc(alias = "NSPersistentHistoryChangeTypeDelete")]
+        Delete = 2,
     }
 );
 

@@ -10,9 +10,13 @@ use crate::MapKit::*;
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum MKDirectionsTransportType {
-        MKDirectionsTransportTypeAutomobile = 1 << 0,
-        MKDirectionsTransportTypeWalking = 1 << 1,
-        MKDirectionsTransportTypeTransit = 1 << 2,
-        MKDirectionsTransportTypeAny = 0x0FFFFFFF,
+        #[doc(alias = "MKDirectionsTransportTypeAutomobile")]
+        Automobile = 1 << 0,
+        #[doc(alias = "MKDirectionsTransportTypeWalking")]
+        Walking = 1 << 1,
+        #[doc(alias = "MKDirectionsTransportTypeTransit")]
+        Transit = 1 << 2,
+        #[doc(alias = "MKDirectionsTransportTypeAny")]
+        Any = 0x0FFFFFFF,
     }
 );

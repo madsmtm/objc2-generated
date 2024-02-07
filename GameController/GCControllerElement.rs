@@ -8,9 +8,12 @@ use crate::GameController::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum GCSystemGestureState {
-        GCSystemGestureStateEnabled = 0,
-        GCSystemGestureStateAlwaysReceive = 1,
-        GCSystemGestureStateDisabled = 2,
+        #[doc(alias = "GCSystemGestureStateEnabled")]
+        Enabled = 0,
+        #[doc(alias = "GCSystemGestureStateAlwaysReceive")]
+        AlwaysReceive = 1,
+        #[doc(alias = "GCSystemGestureStateDisabled")]
+        Disabled = 2,
     }
 );
 

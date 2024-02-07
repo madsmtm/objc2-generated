@@ -8,21 +8,30 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSTextLayoutManagerSegmentType {
-        NSTextLayoutManagerSegmentTypeStandard = 0,
-        NSTextLayoutManagerSegmentTypeSelection = 1,
-        NSTextLayoutManagerSegmentTypeHighlight = 2,
+        #[doc(alias = "NSTextLayoutManagerSegmentTypeStandard")]
+        Standard = 0,
+        #[doc(alias = "NSTextLayoutManagerSegmentTypeSelection")]
+        Selection = 1,
+        #[doc(alias = "NSTextLayoutManagerSegmentTypeHighlight")]
+        Highlight = 2,
     }
 );
 
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSTextLayoutManagerSegmentOptions {
-        NSTextLayoutManagerSegmentOptionsNone = 0,
-        NSTextLayoutManagerSegmentOptionsRangeNotRequired = 1 << 0,
-        NSTextLayoutManagerSegmentOptionsMiddleFragmentsExcluded = 1 << 1,
-        NSTextLayoutManagerSegmentOptionsHeadSegmentExtended = 1 << 2,
-        NSTextLayoutManagerSegmentOptionsTailSegmentExtended = 1 << 3,
-        NSTextLayoutManagerSegmentOptionsUpstreamAffinity = 1 << 4,
+        #[doc(alias = "NSTextLayoutManagerSegmentOptionsNone")]
+        None = 0,
+        #[doc(alias = "NSTextLayoutManagerSegmentOptionsRangeNotRequired")]
+        RangeNotRequired = 1 << 0,
+        #[doc(alias = "NSTextLayoutManagerSegmentOptionsMiddleFragmentsExcluded")]
+        MiddleFragmentsExcluded = 1 << 1,
+        #[doc(alias = "NSTextLayoutManagerSegmentOptionsHeadSegmentExtended")]
+        HeadSegmentExtended = 1 << 2,
+        #[doc(alias = "NSTextLayoutManagerSegmentOptionsTailSegmentExtended")]
+        TailSegmentExtended = 1 << 3,
+        #[doc(alias = "NSTextLayoutManagerSegmentOptionsUpstreamAffinity")]
+        UpstreamAffinity = 1 << 4,
     }
 );
 

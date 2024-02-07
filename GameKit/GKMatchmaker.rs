@@ -8,20 +8,24 @@ use crate::GameKit::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum GKInviteRecipientResponse {
-        GKInviteRecipientResponseAccepted = 0,
-        GKInviteRecipientResponseDeclined = 1,
-        GKInviteRecipientResponseFailed = 2,
-        GKInviteRecipientResponseIncompatible = 3,
-        GKInviteRecipientResponseUnableToConnect = 4,
-        GKInviteRecipientResponseNoAnswer = 5,
-        GKInviteeResponseAccepted = GKInviteRecipientResponse::GKInviteRecipientResponseAccepted.0,
-        GKInviteeResponseDeclined = GKInviteRecipientResponse::GKInviteRecipientResponseDeclined.0,
-        GKInviteeResponseFailed = GKInviteRecipientResponse::GKInviteRecipientResponseFailed.0,
-        GKInviteeResponseIncompatible =
-            GKInviteRecipientResponse::GKInviteRecipientResponseIncompatible.0,
-        GKInviteeResponseUnableToConnect =
-            GKInviteRecipientResponse::GKInviteRecipientResponseUnableToConnect.0,
-        GKInviteeResponseNoAnswer = GKInviteRecipientResponse::GKInviteRecipientResponseNoAnswer.0,
+        #[doc(alias = "GKInviteRecipientResponseAccepted")]
+        Accepted = 0,
+        #[doc(alias = "GKInviteRecipientResponseDeclined")]
+        Declined = 1,
+        #[doc(alias = "GKInviteRecipientResponseFailed")]
+        Failed = 2,
+        #[doc(alias = "GKInviteRecipientResponseIncompatible")]
+        Incompatible = 3,
+        #[doc(alias = "GKInviteRecipientResponseUnableToConnect")]
+        UnableToConnect = 4,
+        #[doc(alias = "GKInviteRecipientResponseNoAnswer")]
+        NoAnswer = 5,
+        GKInviteeResponseAccepted = GKInviteRecipientResponse::Accepted.0,
+        GKInviteeResponseDeclined = GKInviteRecipientResponse::Declined.0,
+        GKInviteeResponseFailed = GKInviteRecipientResponse::Failed.0,
+        GKInviteeResponseIncompatible = GKInviteRecipientResponse::Incompatible.0,
+        GKInviteeResponseUnableToConnect = GKInviteRecipientResponse::UnableToConnect.0,
+        GKInviteeResponseNoAnswer = GKInviteRecipientResponse::NoAnswer.0,
     }
 );
 
@@ -30,9 +34,12 @@ pub type GKInviteeResponse = GKInviteRecipientResponse;
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum GKMatchType {
-        GKMatchTypePeerToPeer = 0,
-        GKMatchTypeHosted = 1,
-        GKMatchTypeTurnBased = 2,
+        #[doc(alias = "GKMatchTypePeerToPeer")]
+        PeerToPeer = 0,
+        #[doc(alias = "GKMatchTypeHosted")]
+        Hosted = 1,
+        #[doc(alias = "GKMatchTypeTurnBased")]
+        TurnBased = 2,
     }
 );
 

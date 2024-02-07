@@ -10,9 +10,11 @@ ns_enum!(
     #[deprecated]
     pub enum BCChatButtonStyle {
         #[deprecated]
-        BCChatButtonStyleLight = 0,
+        #[doc(alias = "BCChatButtonStyleLight")]
+        Light = 0,
         #[deprecated]
-        BCChatButtonStyleDark = 1,
+        #[doc(alias = "BCChatButtonStyleDark")]
+        Dark = 1,
     }
 );
 

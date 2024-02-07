@@ -8,10 +8,14 @@ use crate::GameKit::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum GKMatchmakingMode {
-        GKMatchmakingModeDefault = 0,
-        GKMatchmakingModeNearbyOnly = 1,
-        GKMatchmakingModeAutomatchOnly = 2,
-        GKMatchmakingModeInviteOnly = 3,
+        #[doc(alias = "GKMatchmakingModeDefault")]
+        Default = 0,
+        #[doc(alias = "GKMatchmakingModeNearbyOnly")]
+        NearbyOnly = 1,
+        #[doc(alias = "GKMatchmakingModeAutomatchOnly")]
+        AutomatchOnly = 2,
+        #[doc(alias = "GKMatchmakingModeInviteOnly")]
+        InviteOnly = 3,
     }
 );
 

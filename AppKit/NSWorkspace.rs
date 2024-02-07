@@ -439,9 +439,12 @@ extern_methods!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSWorkspaceAuthorizationType {
-        NSWorkspaceAuthorizationTypeCreateSymbolicLink = 0,
-        NSWorkspaceAuthorizationTypeSetAttributes = 1,
-        NSWorkspaceAuthorizationTypeReplaceFile = 2,
+        #[doc(alias = "NSWorkspaceAuthorizationTypeCreateSymbolicLink")]
+        CreateSymbolicLink = 0,
+        #[doc(alias = "NSWorkspaceAuthorizationTypeSetAttributes")]
+        SetAttributes = 1,
+        #[doc(alias = "NSWorkspaceAuthorizationTypeReplaceFile")]
+        ReplaceFile = 2,
     }
 );
 

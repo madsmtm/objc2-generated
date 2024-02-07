@@ -10,8 +10,10 @@ use crate::MapKit::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum EKSpan {
-        EKSpanThisEvent = 0,
-        EKSpanFutureEvents = 1,
+        #[doc(alias = "EKSpanThisEvent")]
+        ThisEvent = 0,
+        #[doc(alias = "EKSpanFutureEvents")]
+        FutureEvents = 1,
     }
 );
 

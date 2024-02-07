@@ -8,9 +8,12 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSAlertStyle {
-        NSAlertStyleWarning = 0,
-        NSAlertStyleInformational = 1,
-        NSAlertStyleCritical = 2,
+        #[doc(alias = "NSAlertStyleWarning")]
+        Warning = 0,
+        #[doc(alias = "NSAlertStyleInformational")]
+        Informational = 1,
+        #[doc(alias = "NSAlertStyleCritical")]
+        Critical = 2,
     }
 );
 
@@ -176,8 +179,8 @@ extern_methods!(
     }
 );
 
-extern_static!(NSWarningAlertStyle: NSAlertStyle = NSAlertStyle(NSAlertStyle::NSAlertStyleWarning.0));
+extern_static!(NSWarningAlertStyle: NSAlertStyle = NSAlertStyle(NSAlertStyle::Warning.0));
 
-extern_static!(NSInformationalAlertStyle: NSAlertStyle = NSAlertStyle(NSAlertStyle::NSAlertStyleInformational.0));
+extern_static!(NSInformationalAlertStyle: NSAlertStyle = NSAlertStyle(NSAlertStyle::Informational.0));
 
-extern_static!(NSCriticalAlertStyle: NSAlertStyle = NSAlertStyle(NSAlertStyle::NSAlertStyleCritical.0));
+extern_static!(NSCriticalAlertStyle: NSAlertStyle = NSAlertStyle(NSAlertStyle::Critical.0));

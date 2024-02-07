@@ -6,11 +6,16 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSOperationQueuePriority {
-        NSOperationQueuePriorityVeryLow = -8,
-        NSOperationQueuePriorityLow = -4,
-        NSOperationQueuePriorityNormal = 0,
-        NSOperationQueuePriorityHigh = 4,
-        NSOperationQueuePriorityVeryHigh = 8,
+        #[doc(alias = "NSOperationQueuePriorityVeryLow")]
+        VeryLow = -8,
+        #[doc(alias = "NSOperationQueuePriorityLow")]
+        Low = -4,
+        #[doc(alias = "NSOperationQueuePriorityNormal")]
+        Normal = 0,
+        #[doc(alias = "NSOperationQueuePriorityHigh")]
+        High = 4,
+        #[doc(alias = "NSOperationQueuePriorityVeryHigh")]
+        VeryHigh = 8,
     }
 );
 

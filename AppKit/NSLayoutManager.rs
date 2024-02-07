@@ -8,30 +8,42 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSTextLayoutOrientation {
-        NSTextLayoutOrientationHorizontal = 0,
-        NSTextLayoutOrientationVertical = 1,
+        #[doc(alias = "NSTextLayoutOrientationHorizontal")]
+        Horizontal = 0,
+        #[doc(alias = "NSTextLayoutOrientationVertical")]
+        Vertical = 1,
     }
 );
 
 ns_options!(
     #[underlying(NSInteger)]
     pub enum NSGlyphProperty {
-        NSGlyphPropertyNull = 1 << 0,
-        NSGlyphPropertyControlCharacter = 1 << 1,
-        NSGlyphPropertyElastic = 1 << 2,
-        NSGlyphPropertyNonBaseCharacter = 1 << 3,
+        #[doc(alias = "NSGlyphPropertyNull")]
+        Null = 1 << 0,
+        #[doc(alias = "NSGlyphPropertyControlCharacter")]
+        ControlCharacter = 1 << 1,
+        #[doc(alias = "NSGlyphPropertyElastic")]
+        Elastic = 1 << 2,
+        #[doc(alias = "NSGlyphPropertyNonBaseCharacter")]
+        NonBaseCharacter = 1 << 3,
     }
 );
 
 ns_options!(
     #[underlying(NSInteger)]
     pub enum NSControlCharacterAction {
-        NSControlCharacterActionZeroAdvancement = 1 << 0,
-        NSControlCharacterActionWhitespace = 1 << 1,
-        NSControlCharacterActionHorizontalTab = 1 << 2,
-        NSControlCharacterActionLineBreak = 1 << 3,
-        NSControlCharacterActionParagraphBreak = 1 << 4,
-        NSControlCharacterActionContainerBreak = 1 << 5,
+        #[doc(alias = "NSControlCharacterActionZeroAdvancement")]
+        ZeroAdvancement = 1 << 0,
+        #[doc(alias = "NSControlCharacterActionWhitespace")]
+        Whitespace = 1 << 1,
+        #[doc(alias = "NSControlCharacterActionHorizontalTab")]
+        HorizontalTab = 1 << 2,
+        #[doc(alias = "NSControlCharacterActionLineBreak")]
+        LineBreak = 1 << 3,
+        #[doc(alias = "NSControlCharacterActionParagraphBreak")]
+        ParagraphBreak = 1 << 4,
+        #[doc(alias = "NSControlCharacterActionContainerBreak")]
+        ContainerBreak = 1 << 5,
     }
 );
 
@@ -49,10 +61,14 @@ ns_enum!(
     pub enum NSTypesetterBehavior {
         NSTypesetterLatestBehavior = -1,
         NSTypesetterOriginalBehavior = 0,
-        NSTypesetterBehavior_10_2_WithCompatibility = 1,
-        NSTypesetterBehavior_10_2 = 2,
-        NSTypesetterBehavior_10_3 = 3,
-        NSTypesetterBehavior_10_4 = 4,
+        #[doc(alias = "NSTypesetterBehavior_10_2_WithCompatibility")]
+        _10_2_WithCompatibility = 1,
+        #[doc(alias = "NSTypesetterBehavior_10_2")]
+        _10_2 = 2,
+        #[doc(alias = "NSTypesetterBehavior_10_3")]
+        _10_3 = 3,
+        #[doc(alias = "NSTypesetterBehavior_10_4")]
+        _10_4 = 4,
     }
 );
 

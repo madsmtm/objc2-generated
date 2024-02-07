@@ -14,10 +14,14 @@ extern_protocol!(
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum UNNotificationInterruptionLevel {
-        UNNotificationInterruptionLevelPassive = 0,
-        UNNotificationInterruptionLevelActive = 1,
-        UNNotificationInterruptionLevelTimeSensitive = 2,
-        UNNotificationInterruptionLevelCritical = 3,
+        #[doc(alias = "UNNotificationInterruptionLevelPassive")]
+        Passive = 0,
+        #[doc(alias = "UNNotificationInterruptionLevelActive")]
+        Active = 1,
+        #[doc(alias = "UNNotificationInterruptionLevelTimeSensitive")]
+        TimeSensitive = 2,
+        #[doc(alias = "UNNotificationInterruptionLevelCritical")]
+        Critical = 3,
     }
 );
 

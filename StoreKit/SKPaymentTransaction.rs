@@ -8,11 +8,16 @@ use crate::StoreKit::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum SKPaymentTransactionState {
-        SKPaymentTransactionStatePurchasing = 0,
-        SKPaymentTransactionStatePurchased = 1,
-        SKPaymentTransactionStateFailed = 2,
-        SKPaymentTransactionStateRestored = 3,
-        SKPaymentTransactionStateDeferred = 4,
+        #[doc(alias = "SKPaymentTransactionStatePurchasing")]
+        Purchasing = 0,
+        #[doc(alias = "SKPaymentTransactionStatePurchased")]
+        Purchased = 1,
+        #[doc(alias = "SKPaymentTransactionStateFailed")]
+        Failed = 2,
+        #[doc(alias = "SKPaymentTransactionStateRestored")]
+        Restored = 3,
+        #[doc(alias = "SKPaymentTransactionStateDeferred")]
+        Deferred = 4,
     }
 );
 

@@ -8,8 +8,10 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSTableViewRowActionStyle {
-        NSTableViewRowActionStyleRegular = 0,
-        NSTableViewRowActionStyleDestructive = 1,
+        #[doc(alias = "NSTableViewRowActionStyleRegular")]
+        Regular = 0,
+        #[doc(alias = "NSTableViewRowActionStyleDestructive")]
+        Destructive = 1,
     }
 );
 

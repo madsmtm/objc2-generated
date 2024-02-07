@@ -7,18 +7,24 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum CNContactType {
-        CNContactTypePerson = 0,
-        CNContactTypeOrganization = 1,
+        #[doc(alias = "CNContactTypePerson")]
+        Person = 0,
+        #[doc(alias = "CNContactTypeOrganization")]
+        Organization = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum CNContactSortOrder {
-        CNContactSortOrderNone = 0,
-        CNContactSortOrderUserDefault = 1,
-        CNContactSortOrderGivenName = 2,
-        CNContactSortOrderFamilyName = 3,
+        #[doc(alias = "CNContactSortOrderNone")]
+        None = 0,
+        #[doc(alias = "CNContactSortOrderUserDefault")]
+        UserDefault = 1,
+        #[doc(alias = "CNContactSortOrderGivenName")]
+        GivenName = 2,
+        #[doc(alias = "CNContactSortOrderFamilyName")]
+        FamilyName = 3,
     }
 );
 

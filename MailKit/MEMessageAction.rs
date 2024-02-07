@@ -8,29 +8,46 @@ use crate::MailKit::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MEMessageActionMessageColor {
-        MEMessageActionMessageColorNone = 0,
-        MEMessageActionMessageColorGreen = 1,
-        MEMessageActionMessageColorYellow = 2,
-        MEMessageActionMessageColorOrange = 3,
-        MEMessageActionMessageColorRed = 4,
-        MEMessageActionMessageColorPurple = 5,
-        MEMessageActionMessageColorBlue = 6,
-        MEMessageActionMessageColorGray = 7,
+        #[doc(alias = "MEMessageActionMessageColorNone")]
+        None = 0,
+        #[doc(alias = "MEMessageActionMessageColorGreen")]
+        Green = 1,
+        #[doc(alias = "MEMessageActionMessageColorYellow")]
+        Yellow = 2,
+        #[doc(alias = "MEMessageActionMessageColorOrange")]
+        Orange = 3,
+        #[doc(alias = "MEMessageActionMessageColorRed")]
+        Red = 4,
+        #[doc(alias = "MEMessageActionMessageColorPurple")]
+        Purple = 5,
+        #[doc(alias = "MEMessageActionMessageColorBlue")]
+        Blue = 6,
+        #[doc(alias = "MEMessageActionMessageColorGray")]
+        Gray = 7,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MEMessageActionFlag {
-        MEMessageActionFlagNone = 0,
-        MEMessageActionFlagDefaultColor = 1,
-        MEMessageActionFlagRed = 2,
-        MEMessageActionFlagOrange = 3,
-        MEMessageActionFlagYellow = 4,
-        MEMessageActionFlagGreen = 5,
-        MEMessageActionFlagBlue = 6,
-        MEMessageActionFlagPurple = 7,
-        MEMessageActionFlagGray = 8,
+        #[doc(alias = "MEMessageActionFlagNone")]
+        None = 0,
+        #[doc(alias = "MEMessageActionFlagDefaultColor")]
+        DefaultColor = 1,
+        #[doc(alias = "MEMessageActionFlagRed")]
+        Red = 2,
+        #[doc(alias = "MEMessageActionFlagOrange")]
+        Orange = 3,
+        #[doc(alias = "MEMessageActionFlagYellow")]
+        Yellow = 4,
+        #[doc(alias = "MEMessageActionFlagGreen")]
+        Green = 5,
+        #[doc(alias = "MEMessageActionFlagBlue")]
+        Blue = 6,
+        #[doc(alias = "MEMessageActionFlagPurple")]
+        Purple = 7,
+        #[doc(alias = "MEMessageActionFlagGray")]
+        Gray = 8,
     }
 );
 

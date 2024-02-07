@@ -6,10 +6,14 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSURLCredentialPersistence {
-        NSURLCredentialPersistenceNone = 0,
-        NSURLCredentialPersistenceForSession = 1,
-        NSURLCredentialPersistencePermanent = 2,
-        NSURLCredentialPersistenceSynchronizable = 3,
+        #[doc(alias = "NSURLCredentialPersistenceNone")]
+        None = 0,
+        #[doc(alias = "NSURLCredentialPersistenceForSession")]
+        ForSession = 1,
+        #[doc(alias = "NSURLCredentialPersistencePermanent")]
+        Permanent = 2,
+        #[doc(alias = "NSURLCredentialPersistenceSynchronizable")]
+        Synchronizable = 3,
     }
 );
 

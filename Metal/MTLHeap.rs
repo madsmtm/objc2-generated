@@ -7,9 +7,12 @@ use crate::Metal::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MTLHeapType {
-        MTLHeapTypeAutomatic = 0,
-        MTLHeapTypePlacement = 1,
-        MTLHeapTypeSparse = 2,
+        #[doc(alias = "MTLHeapTypeAutomatic")]
+        Automatic = 0,
+        #[doc(alias = "MTLHeapTypePlacement")]
+        Placement = 1,
+        #[doc(alias = "MTLHeapTypeSparse")]
+        Sparse = 2,
     }
 );
 

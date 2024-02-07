@@ -7,9 +7,12 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum CXHandleType {
-        CXHandleTypeGeneric = 1,
-        CXHandleTypePhoneNumber = 2,
-        CXHandleTypeEmailAddress = 3,
+        #[doc(alias = "CXHandleTypeGeneric")]
+        Generic = 1,
+        #[doc(alias = "CXHandleTypePhoneNumber")]
+        PhoneNumber = 2,
+        #[doc(alias = "CXHandleTypeEmailAddress")]
+        EmailAddress = 3,
     }
 );
 

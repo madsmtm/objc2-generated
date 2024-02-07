@@ -84,11 +84,16 @@ extern_methods!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum CKAccountStatus {
-        CKAccountStatusCouldNotDetermine = 0,
-        CKAccountStatusAvailable = 1,
-        CKAccountStatusRestricted = 2,
-        CKAccountStatusNoAccount = 3,
-        CKAccountStatusTemporarilyUnavailable = 4,
+        #[doc(alias = "CKAccountStatusCouldNotDetermine")]
+        CouldNotDetermine = 0,
+        #[doc(alias = "CKAccountStatusAvailable")]
+        Available = 1,
+        #[doc(alias = "CKAccountStatusRestricted")]
+        Restricted = 2,
+        #[doc(alias = "CKAccountStatusNoAccount")]
+        NoAccount = 3,
+        #[doc(alias = "CKAccountStatusTemporarilyUnavailable")]
+        TemporarilyUnavailable = 4,
     }
 );
 
@@ -120,13 +125,17 @@ ns_enum!(
     #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
     pub enum CKApplicationPermissionStatus {
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
-        CKApplicationPermissionStatusInitialState = 0,
+        #[doc(alias = "CKApplicationPermissionStatusInitialState")]
+        InitialState = 0,
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
-        CKApplicationPermissionStatusCouldNotComplete = 1,
+        #[doc(alias = "CKApplicationPermissionStatusCouldNotComplete")]
+        CouldNotComplete = 1,
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
-        CKApplicationPermissionStatusDenied = 2,
+        #[doc(alias = "CKApplicationPermissionStatusDenied")]
+        Denied = 2,
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
-        CKApplicationPermissionStatusGranted = 3,
+        #[doc(alias = "CKApplicationPermissionStatusGranted")]
+        Granted = 3,
     }
 );
 

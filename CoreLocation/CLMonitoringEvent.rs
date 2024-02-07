@@ -8,10 +8,14 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum CLMonitoringState {
-        CLMonitoringStateUnknown = 0,
-        CLMonitoringStateSatisfied = 1,
-        CLMonitoringStateUnsatisfied = 2,
-        CLMonitoringStateUnmonitored = 3,
+        #[doc(alias = "CLMonitoringStateUnknown")]
+        Unknown = 0,
+        #[doc(alias = "CLMonitoringStateSatisfied")]
+        Satisfied = 1,
+        #[doc(alias = "CLMonitoringStateUnsatisfied")]
+        Unsatisfied = 2,
+        #[doc(alias = "CLMonitoringStateUnmonitored")]
+        Unmonitored = 3,
     }
 );
 

@@ -9,10 +9,15 @@ extern_static!(SNErrorDomain: Option<&'static NSString>);
 ns_error_enum!(
     #[underlying(NSInteger)]
     pub enum SNErrorCode {
-        SNErrorCodeUnknownError = 1,
-        SNErrorCodeOperationFailed = 2,
-        SNErrorCodeInvalidFormat = 3,
-        SNErrorCodeInvalidModel = 4,
-        SNErrorCodeInvalidFile = 5,
+        #[doc(alias = "SNErrorCodeUnknownError")]
+        UnknownError = 1,
+        #[doc(alias = "SNErrorCodeOperationFailed")]
+        OperationFailed = 2,
+        #[doc(alias = "SNErrorCodeInvalidFormat")]
+        InvalidFormat = 3,
+        #[doc(alias = "SNErrorCodeInvalidModel")]
+        InvalidModel = 4,
+        #[doc(alias = "SNErrorCodeInvalidFile")]
+        InvalidFile = 5,
     }
 );

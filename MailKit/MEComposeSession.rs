@@ -57,9 +57,12 @@ extern_static!(MEComposeSessionErrorDomain: &'static NSErrorDomain);
 ns_error_enum!(
     #[underlying(NSInteger)]
     pub enum MEComposeSessionErrorCode {
-        MEComposeSessionErrorCodeInvalidRecipients = 0,
-        MEComposeSessionErrorCodeInvalidHeaders = 1,
-        MEComposeSessionErrorCodeInvalidBody = 2,
+        #[doc(alias = "MEComposeSessionErrorCodeInvalidRecipients")]
+        InvalidRecipients = 0,
+        #[doc(alias = "MEComposeSessionErrorCodeInvalidHeaders")]
+        InvalidHeaders = 1,
+        #[doc(alias = "MEComposeSessionErrorCodeInvalidBody")]
+        InvalidBody = 2,
     }
 );
 

@@ -427,8 +427,10 @@ extern_methods!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum CKSyncEngineSyncReason {
-        CKSyncEngineSyncReasonScheduled = 0,
-        CKSyncEngineSyncReasonManual = 1,
+        #[doc(alias = "CKSyncEngineSyncReasonScheduled")]
+        Scheduled = 0,
+        #[doc(alias = "CKSyncEngineSyncReasonManual")]
+        Manual = 1,
     }
 );
 

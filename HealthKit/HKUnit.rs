@@ -85,20 +85,34 @@ extern_methods!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKMetricPrefix {
-        HKMetricPrefixNone = 0,
-        HKMetricPrefixFemto = 13,
-        HKMetricPrefixPico = 1,
-        HKMetricPrefixNano = 2,
-        HKMetricPrefixMicro = 3,
-        HKMetricPrefixMilli = 4,
-        HKMetricPrefixCenti = 5,
-        HKMetricPrefixDeci = 6,
-        HKMetricPrefixDeca = 7,
-        HKMetricPrefixHecto = 8,
-        HKMetricPrefixKilo = 9,
-        HKMetricPrefixMega = 10,
-        HKMetricPrefixGiga = 11,
-        HKMetricPrefixTera = 12,
+        #[doc(alias = "HKMetricPrefixNone")]
+        None = 0,
+        #[doc(alias = "HKMetricPrefixFemto")]
+        Femto = 13,
+        #[doc(alias = "HKMetricPrefixPico")]
+        Pico = 1,
+        #[doc(alias = "HKMetricPrefixNano")]
+        Nano = 2,
+        #[doc(alias = "HKMetricPrefixMicro")]
+        Micro = 3,
+        #[doc(alias = "HKMetricPrefixMilli")]
+        Milli = 4,
+        #[doc(alias = "HKMetricPrefixCenti")]
+        Centi = 5,
+        #[doc(alias = "HKMetricPrefixDeci")]
+        Deci = 6,
+        #[doc(alias = "HKMetricPrefixDeca")]
+        Deca = 7,
+        #[doc(alias = "HKMetricPrefixHecto")]
+        Hecto = 8,
+        #[doc(alias = "HKMetricPrefixKilo")]
+        Kilo = 9,
+        #[doc(alias = "HKMetricPrefixMega")]
+        Mega = 10,
+        #[doc(alias = "HKMetricPrefixGiga")]
+        Giga = 11,
+        #[doc(alias = "HKMetricPrefixTera")]
+        Tera = 12,
     }
 );
 

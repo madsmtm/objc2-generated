@@ -8,18 +8,24 @@ use crate::MailKit::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MEMessageState {
-        MEMessageStateReceived = 0,
-        MEMessageStateDraft = 1,
-        MEMessageStateSending = 2,
+        #[doc(alias = "MEMessageStateReceived")]
+        Received = 0,
+        #[doc(alias = "MEMessageStateDraft")]
+        Draft = 1,
+        #[doc(alias = "MEMessageStateSending")]
+        Sending = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MEMessageEncryptionState {
-        MEMessageEncryptionStateUnknown = 0,
-        MEMessageEncryptionStateNotEncrypted = 1,
-        MEMessageEncryptionStateEncrypted = 2,
+        #[doc(alias = "MEMessageEncryptionStateUnknown")]
+        Unknown = 0,
+        #[doc(alias = "MEMessageEncryptionStateNotEncrypted")]
+        NotEncrypted = 1,
+        #[doc(alias = "MEMessageEncryptionStateEncrypted")]
+        Encrypted = 2,
     }
 );
 

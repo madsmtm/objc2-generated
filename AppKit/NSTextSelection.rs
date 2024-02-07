@@ -8,19 +8,26 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSTextSelectionGranularity {
-        NSTextSelectionGranularityCharacter = 0,
-        NSTextSelectionGranularityWord = 1,
-        NSTextSelectionGranularityParagraph = 2,
-        NSTextSelectionGranularityLine = 3,
-        NSTextSelectionGranularitySentence = 4,
+        #[doc(alias = "NSTextSelectionGranularityCharacter")]
+        Character = 0,
+        #[doc(alias = "NSTextSelectionGranularityWord")]
+        Word = 1,
+        #[doc(alias = "NSTextSelectionGranularityParagraph")]
+        Paragraph = 2,
+        #[doc(alias = "NSTextSelectionGranularityLine")]
+        Line = 3,
+        #[doc(alias = "NSTextSelectionGranularitySentence")]
+        Sentence = 4,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSTextSelectionAffinity {
-        NSTextSelectionAffinityUpstream = 0,
-        NSTextSelectionAffinityDownstream = 1,
+        #[doc(alias = "NSTextSelectionAffinityUpstream")]
+        Upstream = 0,
+        #[doc(alias = "NSTextSelectionAffinityDownstream")]
+        Downstream = 1,
     }
 );
 

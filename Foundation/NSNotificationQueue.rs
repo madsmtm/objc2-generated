@@ -16,8 +16,10 @@ ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSNotificationCoalescing {
         NSNotificationNoCoalescing = 0,
-        NSNotificationCoalescingOnName = 1,
-        NSNotificationCoalescingOnSender = 2,
+        #[doc(alias = "NSNotificationCoalescingOnName")]
+        OnName = 1,
+        #[doc(alias = "NSNotificationCoalescingOnSender")]
+        OnSender = 2,
     }
 );
 

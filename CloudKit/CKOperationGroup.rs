@@ -8,14 +8,22 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum CKOperationGroupTransferSize {
-        CKOperationGroupTransferSizeUnknown = 0,
-        CKOperationGroupTransferSizeKilobytes = 1,
-        CKOperationGroupTransferSizeMegabytes = 2,
-        CKOperationGroupTransferSizeTensOfMegabytes = 3,
-        CKOperationGroupTransferSizeHundredsOfMegabytes = 4,
-        CKOperationGroupTransferSizeGigabytes = 5,
-        CKOperationGroupTransferSizeTensOfGigabytes = 6,
-        CKOperationGroupTransferSizeHundredsOfGigabytes = 7,
+        #[doc(alias = "CKOperationGroupTransferSizeUnknown")]
+        Unknown = 0,
+        #[doc(alias = "CKOperationGroupTransferSizeKilobytes")]
+        Kilobytes = 1,
+        #[doc(alias = "CKOperationGroupTransferSizeMegabytes")]
+        Megabytes = 2,
+        #[doc(alias = "CKOperationGroupTransferSizeTensOfMegabytes")]
+        TensOfMegabytes = 3,
+        #[doc(alias = "CKOperationGroupTransferSizeHundredsOfMegabytes")]
+        HundredsOfMegabytes = 4,
+        #[doc(alias = "CKOperationGroupTransferSizeGigabytes")]
+        Gigabytes = 5,
+        #[doc(alias = "CKOperationGroupTransferSizeTensOfGigabytes")]
+        TensOfGigabytes = 6,
+        #[doc(alias = "CKOperationGroupTransferSizeHundredsOfGigabytes")]
+        HundredsOfGigabytes = 7,
     }
 );
 

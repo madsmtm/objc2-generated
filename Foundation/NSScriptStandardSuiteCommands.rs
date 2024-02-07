@@ -6,9 +6,12 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSSaveOptions {
-        NSSaveOptionsYes = 0,
-        NSSaveOptionsNo = 1,
-        NSSaveOptionsAsk = 2,
+        #[doc(alias = "NSSaveOptionsYes")]
+        Yes = 0,
+        #[doc(alias = "NSSaveOptionsNo")]
+        No = 1,
+        #[doc(alias = "NSSaveOptionsAsk")]
+        Ask = 2,
     }
 );
 

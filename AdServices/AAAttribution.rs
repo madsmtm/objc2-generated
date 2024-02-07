@@ -9,9 +9,12 @@ extern_static!(AAAttributionErrorDomain: &'static NSErrorDomain);
 ns_error_enum!(
     #[underlying(NSInteger)]
     pub enum AAAttributionErrorCode {
-        AAAttributionErrorCodeNetworkError = 1,
-        AAAttributionErrorCodeInternalError = 2,
-        AAAttributionErrorCodePlatformNotSupported = 3,
+        #[doc(alias = "AAAttributionErrorCodeNetworkError")]
+        NetworkError = 1,
+        #[doc(alias = "AAAttributionErrorCodeInternalError")]
+        InternalError = 2,
+        #[doc(alias = "AAAttributionErrorCodePlatformNotSupported")]
+        PlatformNotSupported = 3,
     }
 );
 

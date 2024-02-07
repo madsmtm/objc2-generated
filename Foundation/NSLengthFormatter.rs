@@ -6,14 +6,22 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSLengthFormatterUnit {
-        NSLengthFormatterUnitMillimeter = 8,
-        NSLengthFormatterUnitCentimeter = 9,
-        NSLengthFormatterUnitMeter = 11,
-        NSLengthFormatterUnitKilometer = 14,
-        NSLengthFormatterUnitInch = (5 << 8) + 1,
-        NSLengthFormatterUnitFoot = (5 << 8) + 2,
-        NSLengthFormatterUnitYard = (5 << 8) + 3,
-        NSLengthFormatterUnitMile = (5 << 8) + 4,
+        #[doc(alias = "NSLengthFormatterUnitMillimeter")]
+        Millimeter = 8,
+        #[doc(alias = "NSLengthFormatterUnitCentimeter")]
+        Centimeter = 9,
+        #[doc(alias = "NSLengthFormatterUnitMeter")]
+        Meter = 11,
+        #[doc(alias = "NSLengthFormatterUnitKilometer")]
+        Kilometer = 14,
+        #[doc(alias = "NSLengthFormatterUnitInch")]
+        Inch = (5 << 8) + 1,
+        #[doc(alias = "NSLengthFormatterUnitFoot")]
+        Foot = (5 << 8) + 2,
+        #[doc(alias = "NSLengthFormatterUnitYard")]
+        Yard = (5 << 8) + 3,
+        #[doc(alias = "NSLengthFormatterUnitMile")]
+        Mile = (5 << 8) + 4,
     }
 );
 

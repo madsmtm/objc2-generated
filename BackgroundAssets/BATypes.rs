@@ -7,8 +7,11 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum BAContentRequest {
-        BAContentRequestInstall = 1,
-        BAContentRequestUpdate = 2,
-        BAContentRequestPeriodic = 3,
+        #[doc(alias = "BAContentRequestInstall")]
+        Install = 1,
+        #[doc(alias = "BAContentRequestUpdate")]
+        Update = 2,
+        #[doc(alias = "BAContentRequestPeriodic")]
+        Periodic = 3,
     }
 );

@@ -8,26 +8,35 @@ use crate::MediaPlayer::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MPShuffleType {
-        MPShuffleTypeOff = 0,
-        MPShuffleTypeItems = 1,
-        MPShuffleTypeCollections = 2,
+        #[doc(alias = "MPShuffleTypeOff")]
+        Off = 0,
+        #[doc(alias = "MPShuffleTypeItems")]
+        Items = 1,
+        #[doc(alias = "MPShuffleTypeCollections")]
+        Collections = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MPRepeatType {
-        MPRepeatTypeOff = 0,
-        MPRepeatTypeOne = 1,
-        MPRepeatTypeAll = 2,
+        #[doc(alias = "MPRepeatTypeOff")]
+        Off = 0,
+        #[doc(alias = "MPRepeatTypeOne")]
+        One = 1,
+        #[doc(alias = "MPRepeatTypeAll")]
+        All = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MPChangeLanguageOptionSetting {
-        MPChangeLanguageOptionSettingNone = 0,
-        MPChangeLanguageOptionSettingNowPlayingItemOnly = 1,
-        MPChangeLanguageOptionSettingPermanent = 2,
+        #[doc(alias = "MPChangeLanguageOptionSettingNone")]
+        None = 0,
+        #[doc(alias = "MPChangeLanguageOptionSettingNowPlayingItemOnly")]
+        NowPlayingItemOnly = 1,
+        #[doc(alias = "MPChangeLanguageOptionSettingPermanent")]
+        Permanent = 2,
     }
 );

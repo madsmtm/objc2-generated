@@ -6,21 +6,30 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSFormattingContext {
-        NSFormattingContextUnknown = 0,
-        NSFormattingContextDynamic = 1,
-        NSFormattingContextStandalone = 2,
-        NSFormattingContextListItem = 3,
-        NSFormattingContextBeginningOfSentence = 4,
-        NSFormattingContextMiddleOfSentence = 5,
+        #[doc(alias = "NSFormattingContextUnknown")]
+        Unknown = 0,
+        #[doc(alias = "NSFormattingContextDynamic")]
+        Dynamic = 1,
+        #[doc(alias = "NSFormattingContextStandalone")]
+        Standalone = 2,
+        #[doc(alias = "NSFormattingContextListItem")]
+        ListItem = 3,
+        #[doc(alias = "NSFormattingContextBeginningOfSentence")]
+        BeginningOfSentence = 4,
+        #[doc(alias = "NSFormattingContextMiddleOfSentence")]
+        MiddleOfSentence = 5,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSFormattingUnitStyle {
-        NSFormattingUnitStyleShort = 1,
-        NSFormattingUnitStyleMedium = 2,
-        NSFormattingUnitStyleLong = 3,
+        #[doc(alias = "NSFormattingUnitStyleShort")]
+        Short = 1,
+        #[doc(alias = "NSFormattingUnitStyleMedium")]
+        Medium = 2,
+        #[doc(alias = "NSFormattingUnitStyleLong")]
+        Long = 3,
     }
 );
 

@@ -23,20 +23,28 @@ ns_enum!(
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSTabPosition {
-        NSTabPositionNone = 0,
-        NSTabPositionTop = 1,
-        NSTabPositionLeft = 2,
-        NSTabPositionBottom = 3,
-        NSTabPositionRight = 4,
+        #[doc(alias = "NSTabPositionNone")]
+        None = 0,
+        #[doc(alias = "NSTabPositionTop")]
+        Top = 1,
+        #[doc(alias = "NSTabPositionLeft")]
+        Left = 2,
+        #[doc(alias = "NSTabPositionBottom")]
+        Bottom = 3,
+        #[doc(alias = "NSTabPositionRight")]
+        Right = 4,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSTabViewBorderType {
-        NSTabViewBorderTypeNone = 0,
-        NSTabViewBorderTypeLine = 1,
-        NSTabViewBorderTypeBezel = 2,
+        #[doc(alias = "NSTabViewBorderTypeNone")]
+        None = 0,
+        #[doc(alias = "NSTabViewBorderTypeLine")]
+        Line = 1,
+        #[doc(alias = "NSTabViewBorderTypeBezel")]
+        Bezel = 2,
     }
 );
 

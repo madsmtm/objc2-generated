@@ -7,10 +7,14 @@ use crate::LocalAuthentication::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum LARightState {
-        LARightStateUnknown = 0,
-        LARightStateAuthorizing = 1,
-        LARightStateAuthorized = 2,
-        LARightStateNotAuthorized = 3,
+        #[doc(alias = "LARightStateUnknown")]
+        Unknown = 0,
+        #[doc(alias = "LARightStateAuthorizing")]
+        Authorizing = 1,
+        #[doc(alias = "LARightStateAuthorized")]
+        Authorized = 2,
+        #[doc(alias = "LARightStateNotAuthorized")]
+        NotAuthorized = 3,
     }
 );
 

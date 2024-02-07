@@ -8,9 +8,12 @@ use crate::MetalFX::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MTLFXSpatialScalerColorProcessingMode {
-        MTLFXSpatialScalerColorProcessingModePerceptual = 0,
-        MTLFXSpatialScalerColorProcessingModeLinear = 1,
-        MTLFXSpatialScalerColorProcessingModeHDR = 2,
+        #[doc(alias = "MTLFXSpatialScalerColorProcessingModePerceptual")]
+        Perceptual = 0,
+        #[doc(alias = "MTLFXSpatialScalerColorProcessingModeLinear")]
+        Linear = 1,
+        #[doc(alias = "MTLFXSpatialScalerColorProcessingModeHDR")]
+        HDR = 2,
     }
 );
 

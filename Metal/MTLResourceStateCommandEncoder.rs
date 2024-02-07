@@ -7,8 +7,10 @@ use crate::Metal::*;
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLSparseTextureMappingMode {
-        MTLSparseTextureMappingModeMap = 0,
-        MTLSparseTextureMappingModeUnmap = 1,
+        #[doc(alias = "MTLSparseTextureMappingModeMap")]
+        Map = 0,
+        #[doc(alias = "MTLSparseTextureMappingModeUnmap")]
+        Unmap = 1,
     }
 );
 

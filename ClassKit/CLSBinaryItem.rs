@@ -7,10 +7,14 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum CLSBinaryValueType {
-        CLSBinaryValueTypeTrueFalse = 0,
-        CLSBinaryValueTypePassFail = 1,
-        CLSBinaryValueTypeYesNo = 2,
-        CLSBinaryValueTypeCorrectIncorrect = 3,
+        #[doc(alias = "CLSBinaryValueTypeTrueFalse")]
+        TrueFalse = 0,
+        #[doc(alias = "CLSBinaryValueTypePassFail")]
+        PassFail = 1,
+        #[doc(alias = "CLSBinaryValueTypeYesNo")]
+        YesNo = 2,
+        #[doc(alias = "CLSBinaryValueTypeCorrectIncorrect")]
+        CorrectIncorrect = 3,
     }
 );
 

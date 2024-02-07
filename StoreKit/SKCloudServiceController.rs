@@ -8,20 +8,28 @@ use crate::StoreKit::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum SKCloudServiceAuthorizationStatus {
-        SKCloudServiceAuthorizationStatusNotDetermined = 0,
-        SKCloudServiceAuthorizationStatusDenied = 1,
-        SKCloudServiceAuthorizationStatusRestricted = 2,
-        SKCloudServiceAuthorizationStatusAuthorized = 3,
+        #[doc(alias = "SKCloudServiceAuthorizationStatusNotDetermined")]
+        NotDetermined = 0,
+        #[doc(alias = "SKCloudServiceAuthorizationStatusDenied")]
+        Denied = 1,
+        #[doc(alias = "SKCloudServiceAuthorizationStatusRestricted")]
+        Restricted = 2,
+        #[doc(alias = "SKCloudServiceAuthorizationStatusAuthorized")]
+        Authorized = 3,
     }
 );
 
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum SKCloudServiceCapability {
-        SKCloudServiceCapabilityNone = 0,
-        SKCloudServiceCapabilityMusicCatalogPlayback = 1 << 0,
-        SKCloudServiceCapabilityMusicCatalogSubscriptionEligible = 1 << 1,
-        SKCloudServiceCapabilityAddToCloudMusicLibrary = 1 << 8,
+        #[doc(alias = "SKCloudServiceCapabilityNone")]
+        None = 0,
+        #[doc(alias = "SKCloudServiceCapabilityMusicCatalogPlayback")]
+        MusicCatalogPlayback = 1 << 0,
+        #[doc(alias = "SKCloudServiceCapabilityMusicCatalogSubscriptionEligible")]
+        MusicCatalogSubscriptionEligible = 1 << 1,
+        #[doc(alias = "SKCloudServiceCapabilityAddToCloudMusicLibrary")]
+        AddToCloudMusicLibrary = 1 << 8,
     }
 );
 

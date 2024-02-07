@@ -15,8 +15,10 @@ typed_extensible_enum!(
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum FPUIExtensionErrorCode {
-        FPUIExtensionErrorCodeUserCancelled = 0,
-        FPUIExtensionErrorCodeFailed = 1,
+        #[doc(alias = "FPUIExtensionErrorCodeUserCancelled")]
+        UserCancelled = 0,
+        #[doc(alias = "FPUIExtensionErrorCodeFailed")]
+        Failed = 1,
     }
 );
 

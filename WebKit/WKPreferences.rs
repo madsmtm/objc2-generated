@@ -8,9 +8,12 @@ use crate::WebKit::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum WKInactiveSchedulingPolicy {
-        WKInactiveSchedulingPolicySuspend = 0,
-        WKInactiveSchedulingPolicyThrottle = 1,
-        WKInactiveSchedulingPolicyNone = 2,
+        #[doc(alias = "WKInactiveSchedulingPolicySuspend")]
+        Suspend = 0,
+        #[doc(alias = "WKInactiveSchedulingPolicyThrottle")]
+        Throttle = 1,
+        #[doc(alias = "WKInactiveSchedulingPolicyNone")]
+        None = 2,
     }
 );
 

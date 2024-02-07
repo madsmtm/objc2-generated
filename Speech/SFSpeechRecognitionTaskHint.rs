@@ -7,9 +7,13 @@ use crate::Speech::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum SFSpeechRecognitionTaskHint {
-        SFSpeechRecognitionTaskHintUnspecified = 0,
-        SFSpeechRecognitionTaskHintDictation = 1,
-        SFSpeechRecognitionTaskHintSearch = 2,
-        SFSpeechRecognitionTaskHintConfirmation = 3,
+        #[doc(alias = "SFSpeechRecognitionTaskHintUnspecified")]
+        Unspecified = 0,
+        #[doc(alias = "SFSpeechRecognitionTaskHintDictation")]
+        Dictation = 1,
+        #[doc(alias = "SFSpeechRecognitionTaskHintSearch")]
+        Search = 2,
+        #[doc(alias = "SFSpeechRecognitionTaskHintConfirmation")]
+        Confirmation = 3,
     }
 );

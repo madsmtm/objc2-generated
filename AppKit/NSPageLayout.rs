@@ -8,8 +8,10 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSPageLayoutResult {
-        NSPageLayoutResultCancelled = 0,
-        NSPageLayoutResultChanged = 1,
+        #[doc(alias = "NSPageLayoutResultCancelled")]
+        Cancelled = 0,
+        #[doc(alias = "NSPageLayoutResultChanged")]
+        Changed = 1,
     }
 );
 

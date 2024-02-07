@@ -8,34 +8,50 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSSegmentSwitchTracking {
-        NSSegmentSwitchTrackingSelectOne = 0,
-        NSSegmentSwitchTrackingSelectAny = 1,
-        NSSegmentSwitchTrackingMomentary = 2,
-        NSSegmentSwitchTrackingMomentaryAccelerator = 3,
+        #[doc(alias = "NSSegmentSwitchTrackingSelectOne")]
+        SelectOne = 0,
+        #[doc(alias = "NSSegmentSwitchTrackingSelectAny")]
+        SelectAny = 1,
+        #[doc(alias = "NSSegmentSwitchTrackingMomentary")]
+        Momentary = 2,
+        #[doc(alias = "NSSegmentSwitchTrackingMomentaryAccelerator")]
+        MomentaryAccelerator = 3,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSSegmentStyle {
-        NSSegmentStyleAutomatic = 0,
-        NSSegmentStyleRounded = 1,
-        NSSegmentStyleRoundRect = 3,
-        NSSegmentStyleTexturedSquare = 4,
-        NSSegmentStyleSmallSquare = 6,
-        NSSegmentStyleSeparated = 8,
-        NSSegmentStyleTexturedRounded = 2,
-        NSSegmentStyleCapsule = 5,
+        #[doc(alias = "NSSegmentStyleAutomatic")]
+        Automatic = 0,
+        #[doc(alias = "NSSegmentStyleRounded")]
+        Rounded = 1,
+        #[doc(alias = "NSSegmentStyleRoundRect")]
+        RoundRect = 3,
+        #[doc(alias = "NSSegmentStyleTexturedSquare")]
+        TexturedSquare = 4,
+        #[doc(alias = "NSSegmentStyleSmallSquare")]
+        SmallSquare = 6,
+        #[doc(alias = "NSSegmentStyleSeparated")]
+        Separated = 8,
+        #[doc(alias = "NSSegmentStyleTexturedRounded")]
+        TexturedRounded = 2,
+        #[doc(alias = "NSSegmentStyleCapsule")]
+        Capsule = 5,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSSegmentDistribution {
-        NSSegmentDistributionFit = 0,
-        NSSegmentDistributionFill = 1,
-        NSSegmentDistributionFillEqually = 2,
-        NSSegmentDistributionFillProportionally = 3,
+        #[doc(alias = "NSSegmentDistributionFit")]
+        Fit = 0,
+        #[doc(alias = "NSSegmentDistributionFill")]
+        Fill = 1,
+        #[doc(alias = "NSSegmentDistributionFillEqually")]
+        FillEqually = 2,
+        #[doc(alias = "NSSegmentDistributionFillProportionally")]
+        FillProportionally = 3,
     }
 );
 

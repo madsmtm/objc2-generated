@@ -9,17 +9,28 @@ extern_static!(CLSErrorCodeDomain: Option<&'static NSString>);
 ns_error_enum!(
     #[underlying(NSInteger)]
     pub enum CLSErrorCode {
-        CLSErrorCodeNone = 0,
-        CLSErrorCodeClassKitUnavailable = 1,
-        CLSErrorCodeInvalidArgument = 2,
-        CLSErrorCodeInvalidModification = 3,
-        CLSErrorCodeAuthorizationDenied = 4,
-        CLSErrorCodeDatabaseInaccessible = 5,
-        CLSErrorCodeLimits = 6,
-        CLSErrorCodeInvalidCreate = 7,
-        CLSErrorCodeInvalidUpdate = 8,
-        CLSErrorCodePartialFailure = 9,
-        CLSErrorCodeInvalidAccountCredentials = 10,
+        #[doc(alias = "CLSErrorCodeNone")]
+        None = 0,
+        #[doc(alias = "CLSErrorCodeClassKitUnavailable")]
+        ClassKitUnavailable = 1,
+        #[doc(alias = "CLSErrorCodeInvalidArgument")]
+        InvalidArgument = 2,
+        #[doc(alias = "CLSErrorCodeInvalidModification")]
+        InvalidModification = 3,
+        #[doc(alias = "CLSErrorCodeAuthorizationDenied")]
+        AuthorizationDenied = 4,
+        #[doc(alias = "CLSErrorCodeDatabaseInaccessible")]
+        DatabaseInaccessible = 5,
+        #[doc(alias = "CLSErrorCodeLimits")]
+        Limits = 6,
+        #[doc(alias = "CLSErrorCodeInvalidCreate")]
+        InvalidCreate = 7,
+        #[doc(alias = "CLSErrorCodeInvalidUpdate")]
+        InvalidUpdate = 8,
+        #[doc(alias = "CLSErrorCodePartialFailure")]
+        PartialFailure = 9,
+        #[doc(alias = "CLSErrorCodeInvalidAccountCredentials")]
+        InvalidAccountCredentials = 10,
     }
 );
 

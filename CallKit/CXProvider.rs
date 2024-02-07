@@ -7,11 +7,16 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum CXCallEndedReason {
-        CXCallEndedReasonFailed = 1,
-        CXCallEndedReasonRemoteEnded = 2,
-        CXCallEndedReasonUnanswered = 3,
-        CXCallEndedReasonAnsweredElsewhere = 4,
-        CXCallEndedReasonDeclinedElsewhere = 5,
+        #[doc(alias = "CXCallEndedReasonFailed")]
+        Failed = 1,
+        #[doc(alias = "CXCallEndedReasonRemoteEnded")]
+        RemoteEnded = 2,
+        #[doc(alias = "CXCallEndedReasonUnanswered")]
+        Unanswered = 3,
+        #[doc(alias = "CXCallEndedReasonAnsweredElsewhere")]
+        AnsweredElsewhere = 4,
+        #[doc(alias = "CXCallEndedReasonDeclinedElsewhere")]
+        DeclinedElsewhere = 5,
     }
 );
 

@@ -8,9 +8,12 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum ASUserDetectionStatus {
-        ASUserDetectionStatusUnsupported = 0,
-        ASUserDetectionStatusUnknown = 1,
-        ASUserDetectionStatusLikelyReal = 2,
+        #[doc(alias = "ASUserDetectionStatusUnsupported")]
+        Unsupported = 0,
+        #[doc(alias = "ASUserDetectionStatusUnknown")]
+        Unknown = 1,
+        #[doc(alias = "ASUserDetectionStatusLikelyReal")]
+        LikelyReal = 2,
     }
 );
 

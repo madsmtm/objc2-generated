@@ -146,8 +146,10 @@ extern_methods!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum CKSyncEnginePendingRecordZoneChangeType {
-        CKSyncEnginePendingRecordZoneChangeTypeSaveRecord = 0,
-        CKSyncEnginePendingRecordZoneChangeTypeDeleteRecord = 1,
+        #[doc(alias = "CKSyncEnginePendingRecordZoneChangeTypeSaveRecord")]
+        SaveRecord = 0,
+        #[doc(alias = "CKSyncEnginePendingRecordZoneChangeTypeDeleteRecord")]
+        DeleteRecord = 1,
     }
 );
 
@@ -201,8 +203,10 @@ extern_methods!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum CKSyncEnginePendingDatabaseChangeType {
-        CKSyncEnginePendingDatabaseChangeTypeSaveZone = 0,
-        CKSyncEnginePendingDatabaseChangeTypeDeleteZone = 1,
+        #[doc(alias = "CKSyncEnginePendingDatabaseChangeTypeSaveZone")]
+        SaveZone = 0,
+        #[doc(alias = "CKSyncEnginePendingDatabaseChangeTypeDeleteZone")]
+        DeleteZone = 1,
     }
 );
 

@@ -8,15 +8,19 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSUserInterfaceLayoutDirection {
-        NSUserInterfaceLayoutDirectionLeftToRight = 0,
-        NSUserInterfaceLayoutDirectionRightToLeft = 1,
+        #[doc(alias = "NSUserInterfaceLayoutDirectionLeftToRight")]
+        LeftToRight = 0,
+        #[doc(alias = "NSUserInterfaceLayoutDirectionRightToLeft")]
+        RightToLeft = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSUserInterfaceLayoutOrientation {
-        NSUserInterfaceLayoutOrientationHorizontal = 0,
-        NSUserInterfaceLayoutOrientationVertical = 1,
+        #[doc(alias = "NSUserInterfaceLayoutOrientationHorizontal")]
+        Horizontal = 0,
+        #[doc(alias = "NSUserInterfaceLayoutOrientationVertical")]
+        Vertical = 1,
     }
 );

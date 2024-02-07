@@ -24,11 +24,16 @@ extern_static!(NSGraphicsContextPDFFormat: &'static NSGraphicsContextRepresentat
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSImageInterpolation {
-        NSImageInterpolationDefault = 0,
-        NSImageInterpolationNone = 1,
-        NSImageInterpolationLow = 2,
-        NSImageInterpolationMedium = 4,
-        NSImageInterpolationHigh = 3,
+        #[doc(alias = "NSImageInterpolationDefault")]
+        Default = 0,
+        #[doc(alias = "NSImageInterpolationNone")]
+        None = 1,
+        #[doc(alias = "NSImageInterpolationLow")]
+        Low = 2,
+        #[doc(alias = "NSImageInterpolationMedium")]
+        Medium = 4,
+        #[doc(alias = "NSImageInterpolationHigh")]
+        High = 3,
     }
 );
 

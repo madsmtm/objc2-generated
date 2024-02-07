@@ -9,54 +9,79 @@ use crate::UniformTypeIdentifiers::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKActivityMoveMode {
-        HKActivityMoveModeActiveEnergy = 1,
-        HKActivityMoveModeAppleMoveTime = 2,
+        #[doc(alias = "HKActivityMoveModeActiveEnergy")]
+        ActiveEnergy = 1,
+        #[doc(alias = "HKActivityMoveModeAppleMoveTime")]
+        AppleMoveTime = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKBiologicalSex {
-        HKBiologicalSexNotSet = 0,
-        HKBiologicalSexFemale = 1,
-        HKBiologicalSexMale = 2,
-        HKBiologicalSexOther = 3,
+        #[doc(alias = "HKBiologicalSexNotSet")]
+        NotSet = 0,
+        #[doc(alias = "HKBiologicalSexFemale")]
+        Female = 1,
+        #[doc(alias = "HKBiologicalSexMale")]
+        Male = 2,
+        #[doc(alias = "HKBiologicalSexOther")]
+        Other = 3,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKBloodType {
-        HKBloodTypeNotSet = 0,
-        HKBloodTypeAPositive = 1,
-        HKBloodTypeANegative = 2,
-        HKBloodTypeBPositive = 3,
-        HKBloodTypeBNegative = 4,
-        HKBloodTypeABPositive = 5,
-        HKBloodTypeABNegative = 6,
-        HKBloodTypeOPositive = 7,
-        HKBloodTypeONegative = 8,
+        #[doc(alias = "HKBloodTypeNotSet")]
+        NotSet = 0,
+        #[doc(alias = "HKBloodTypeAPositive")]
+        APositive = 1,
+        #[doc(alias = "HKBloodTypeANegative")]
+        ANegative = 2,
+        #[doc(alias = "HKBloodTypeBPositive")]
+        BPositive = 3,
+        #[doc(alias = "HKBloodTypeBNegative")]
+        BNegative = 4,
+        #[doc(alias = "HKBloodTypeABPositive")]
+        ABPositive = 5,
+        #[doc(alias = "HKBloodTypeABNegative")]
+        ABNegative = 6,
+        #[doc(alias = "HKBloodTypeOPositive")]
+        OPositive = 7,
+        #[doc(alias = "HKBloodTypeONegative")]
+        ONegative = 8,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKFitzpatrickSkinType {
-        HKFitzpatrickSkinTypeNotSet = 0,
-        HKFitzpatrickSkinTypeI = 1,
-        HKFitzpatrickSkinTypeII = 2,
-        HKFitzpatrickSkinTypeIII = 3,
-        HKFitzpatrickSkinTypeIV = 4,
-        HKFitzpatrickSkinTypeV = 5,
-        HKFitzpatrickSkinTypeVI = 6,
+        #[doc(alias = "HKFitzpatrickSkinTypeNotSet")]
+        NotSet = 0,
+        #[doc(alias = "HKFitzpatrickSkinTypeI")]
+        I = 1,
+        #[doc(alias = "HKFitzpatrickSkinTypeII")]
+        II = 2,
+        #[doc(alias = "HKFitzpatrickSkinTypeIII")]
+        III = 3,
+        #[doc(alias = "HKFitzpatrickSkinTypeIV")]
+        IV = 4,
+        #[doc(alias = "HKFitzpatrickSkinTypeV")]
+        V = 5,
+        #[doc(alias = "HKFitzpatrickSkinTypeVI")]
+        VI = 6,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKWheelchairUse {
-        HKWheelchairUseNotSet = 0,
-        HKWheelchairUseNo = 1,
-        HKWheelchairUseYes = 2,
+        #[doc(alias = "HKWheelchairUseNotSet")]
+        NotSet = 0,
+        #[doc(alias = "HKWheelchairUseNo")]
+        No = 1,
+        #[doc(alias = "HKWheelchairUseYes")]
+        Yes = 2,
     }
 );

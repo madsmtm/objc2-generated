@@ -462,10 +462,14 @@ extern_methods!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSDataCompressionAlgorithm {
-        NSDataCompressionAlgorithmLZFSE = 0,
-        NSDataCompressionAlgorithmLZ4 = 1,
-        NSDataCompressionAlgorithmLZMA = 2,
-        NSDataCompressionAlgorithmZlib = 3,
+        #[doc(alias = "NSDataCompressionAlgorithmLZFSE")]
+        LZFSE = 0,
+        #[doc(alias = "NSDataCompressionAlgorithmLZ4")]
+        LZ4 = 1,
+        #[doc(alias = "NSDataCompressionAlgorithmLZMA")]
+        LZMA = 2,
+        #[doc(alias = "NSDataCompressionAlgorithmZlib")]
+        Zlib = 3,
     }
 );
 

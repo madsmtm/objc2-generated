@@ -9,10 +9,15 @@ extern_static!(ILMessageFilterErrorDomain: &'static NSErrorDomain);
 ns_error_enum!(
     #[underlying(NSInteger)]
     pub enum ILMessageFilterError {
-        ILMessageFilterErrorSystem = 1,
-        ILMessageFilterErrorInvalidNetworkURL = 2,
-        ILMessageFilterErrorNetworkURLUnauthorized = 3,
-        ILMessageFilterErrorNetworkRequestFailed = 4,
-        ILMessageFilterErrorRedundantNetworkDeferral = 5,
+        #[doc(alias = "ILMessageFilterErrorSystem")]
+        System = 1,
+        #[doc(alias = "ILMessageFilterErrorInvalidNetworkURL")]
+        InvalidNetworkURL = 2,
+        #[doc(alias = "ILMessageFilterErrorNetworkURLUnauthorized")]
+        NetworkURLUnauthorized = 3,
+        #[doc(alias = "ILMessageFilterErrorNetworkRequestFailed")]
+        NetworkRequestFailed = 4,
+        #[doc(alias = "ILMessageFilterErrorRedundantNetworkDeferral")]
+        RedundantNetworkDeferral = 5,
     }
 );

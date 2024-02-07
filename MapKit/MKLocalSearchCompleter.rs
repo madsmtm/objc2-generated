@@ -12,18 +12,23 @@ ns_enum!(
     #[deprecated = "Use MKLocalSearchCompleterResultType"]
     pub enum MKSearchCompletionFilterType {
         #[deprecated = "Use MKLocalSearchCompleterResultType"]
-        MKSearchCompletionFilterTypeLocationsAndQueries = 0,
+        #[doc(alias = "MKSearchCompletionFilterTypeLocationsAndQueries")]
+        LocationsAndQueries = 0,
         #[deprecated = "Use MKLocalSearchCompleterResultType"]
-        MKSearchCompletionFilterTypeLocationsOnly = 1,
+        #[doc(alias = "MKSearchCompletionFilterTypeLocationsOnly")]
+        LocationsOnly = 1,
     }
 );
 
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum MKLocalSearchCompleterResultType {
-        MKLocalSearchCompleterResultTypeAddress = 1 << 0,
-        MKLocalSearchCompleterResultTypePointOfInterest = 1 << 1,
-        MKLocalSearchCompleterResultTypeQuery = 1 << 2,
+        #[doc(alias = "MKLocalSearchCompleterResultTypeAddress")]
+        Address = 1 << 0,
+        #[doc(alias = "MKLocalSearchCompleterResultTypePointOfInterest")]
+        PointOfInterest = 1 << 1,
+        #[doc(alias = "MKLocalSearchCompleterResultTypeQuery")]
+        Query = 1 << 2,
     }
 );
 

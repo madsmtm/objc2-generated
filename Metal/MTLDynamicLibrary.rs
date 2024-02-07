@@ -9,12 +9,18 @@ extern_static!(MTLDynamicLibraryDomain: &'static NSErrorDomain);
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLDynamicLibraryError {
-        MTLDynamicLibraryErrorNone = 0,
-        MTLDynamicLibraryErrorInvalidFile = 1,
-        MTLDynamicLibraryErrorCompilationFailure = 2,
-        MTLDynamicLibraryErrorUnresolvedInstallName = 3,
-        MTLDynamicLibraryErrorDependencyLoadFailure = 4,
-        MTLDynamicLibraryErrorUnsupported = 5,
+        #[doc(alias = "MTLDynamicLibraryErrorNone")]
+        None = 0,
+        #[doc(alias = "MTLDynamicLibraryErrorInvalidFile")]
+        InvalidFile = 1,
+        #[doc(alias = "MTLDynamicLibraryErrorCompilationFailure")]
+        CompilationFailure = 2,
+        #[doc(alias = "MTLDynamicLibraryErrorUnresolvedInstallName")]
+        UnresolvedInstallName = 3,
+        #[doc(alias = "MTLDynamicLibraryErrorDependencyLoadFailure")]
+        DependencyLoadFailure = 4,
+        #[doc(alias = "MTLDynamicLibraryErrorUnsupported")]
+        Unsupported = 5,
     }
 );
 

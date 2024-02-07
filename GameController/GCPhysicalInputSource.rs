@@ -8,11 +8,16 @@ use crate::GameController::*;
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum GCPhysicalInputSourceDirection {
-        GCPhysicalInputSourceDirectionNotApplicable = 0,
-        GCPhysicalInputSourceDirectionUp = 1 << 0,
-        GCPhysicalInputSourceDirectionRight = 1 << 1,
-        GCPhysicalInputSourceDirectionDown = 1 << 2,
-        GCPhysicalInputSourceDirectionLeft = 1 << 3,
+        #[doc(alias = "GCPhysicalInputSourceDirectionNotApplicable")]
+        NotApplicable = 0,
+        #[doc(alias = "GCPhysicalInputSourceDirectionUp")]
+        Up = 1 << 0,
+        #[doc(alias = "GCPhysicalInputSourceDirectionRight")]
+        Right = 1 << 1,
+        #[doc(alias = "GCPhysicalInputSourceDirectionDown")]
+        Down = 1 << 2,
+        #[doc(alias = "GCPhysicalInputSourceDirectionLeft")]
+        Left = 1 << 3,
     }
 );
 

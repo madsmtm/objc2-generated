@@ -9,11 +9,16 @@ extern_static!(MTLBinaryArchiveDomain: &'static NSErrorDomain);
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLBinaryArchiveError {
-        MTLBinaryArchiveErrorNone = 0,
-        MTLBinaryArchiveErrorInvalidFile = 1,
-        MTLBinaryArchiveErrorUnexpectedElement = 2,
-        MTLBinaryArchiveErrorCompilationFailure = 3,
-        MTLBinaryArchiveErrorInternalError = 4,
+        #[doc(alias = "MTLBinaryArchiveErrorNone")]
+        None = 0,
+        #[doc(alias = "MTLBinaryArchiveErrorInvalidFile")]
+        InvalidFile = 1,
+        #[doc(alias = "MTLBinaryArchiveErrorUnexpectedElement")]
+        UnexpectedElement = 2,
+        #[doc(alias = "MTLBinaryArchiveErrorCompilationFailure")]
+        CompilationFailure = 3,
+        #[doc(alias = "MTLBinaryArchiveErrorInternalError")]
+        InternalError = 4,
     }
 );
 

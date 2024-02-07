@@ -24,9 +24,12 @@ extern_static!(NSURLErrorNetworkUnavailableReasonKey: &'static NSErrorUserInfoKe
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSURLErrorNetworkUnavailableReason {
-        NSURLErrorNetworkUnavailableReasonCellular = 0,
-        NSURLErrorNetworkUnavailableReasonExpensive = 1,
-        NSURLErrorNetworkUnavailableReasonConstrained = 2,
+        #[doc(alias = "NSURLErrorNetworkUnavailableReasonCellular")]
+        Cellular = 0,
+        #[doc(alias = "NSURLErrorNetworkUnavailableReasonExpensive")]
+        Expensive = 1,
+        #[doc(alias = "NSURLErrorNetworkUnavailableReasonConstrained")]
+        Constrained = 2,
     }
 );
 

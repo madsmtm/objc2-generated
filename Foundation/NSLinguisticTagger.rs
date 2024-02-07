@@ -90,10 +90,14 @@ extern_static!(NSLinguisticTagOrganizationName: &'static NSLinguisticTag);
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSLinguisticTaggerUnit {
-        NSLinguisticTaggerUnitWord = 0,
-        NSLinguisticTaggerUnitSentence = 1,
-        NSLinguisticTaggerUnitParagraph = 2,
-        NSLinguisticTaggerUnitDocument = 3,
+        #[doc(alias = "NSLinguisticTaggerUnitWord")]
+        Word = 0,
+        #[doc(alias = "NSLinguisticTaggerUnitSentence")]
+        Sentence = 1,
+        #[doc(alias = "NSLinguisticTaggerUnitParagraph")]
+        Paragraph = 2,
+        #[doc(alias = "NSLinguisticTaggerUnitDocument")]
+        Document = 3,
     }
 );
 

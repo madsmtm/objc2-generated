@@ -6,19 +6,32 @@ use crate::Foundation::*;
 ns_options!(
     #[underlying(u64)]
     pub enum NSTextCheckingType {
-        NSTextCheckingTypeOrthography = 1 << 0,
-        NSTextCheckingTypeSpelling = 1 << 1,
-        NSTextCheckingTypeGrammar = 1 << 2,
-        NSTextCheckingTypeDate = 1 << 3,
-        NSTextCheckingTypeAddress = 1 << 4,
-        NSTextCheckingTypeLink = 1 << 5,
-        NSTextCheckingTypeQuote = 1 << 6,
-        NSTextCheckingTypeDash = 1 << 7,
-        NSTextCheckingTypeReplacement = 1 << 8,
-        NSTextCheckingTypeCorrection = 1 << 9,
-        NSTextCheckingTypeRegularExpression = 1 << 10,
-        NSTextCheckingTypePhoneNumber = 1 << 11,
-        NSTextCheckingTypeTransitInformation = 1 << 12,
+        #[doc(alias = "NSTextCheckingTypeOrthography")]
+        Orthography = 1 << 0,
+        #[doc(alias = "NSTextCheckingTypeSpelling")]
+        Spelling = 1 << 1,
+        #[doc(alias = "NSTextCheckingTypeGrammar")]
+        Grammar = 1 << 2,
+        #[doc(alias = "NSTextCheckingTypeDate")]
+        Date = 1 << 3,
+        #[doc(alias = "NSTextCheckingTypeAddress")]
+        Address = 1 << 4,
+        #[doc(alias = "NSTextCheckingTypeLink")]
+        Link = 1 << 5,
+        #[doc(alias = "NSTextCheckingTypeQuote")]
+        Quote = 1 << 6,
+        #[doc(alias = "NSTextCheckingTypeDash")]
+        Dash = 1 << 7,
+        #[doc(alias = "NSTextCheckingTypeReplacement")]
+        Replacement = 1 << 8,
+        #[doc(alias = "NSTextCheckingTypeCorrection")]
+        Correction = 1 << 9,
+        #[doc(alias = "NSTextCheckingTypeRegularExpression")]
+        RegularExpression = 1 << 10,
+        #[doc(alias = "NSTextCheckingTypePhoneNumber")]
+        PhoneNumber = 1 << 11,
+        #[doc(alias = "NSTextCheckingTypeTransitInformation")]
+        TransitInformation = 1 << 12,
     }
 );
 

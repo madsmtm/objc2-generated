@@ -21,11 +21,14 @@ ns_enum!(
     #[deprecated]
     pub enum GKSessionMode {
         #[deprecated]
-        GKSessionModeServer = 0,
+        #[doc(alias = "GKSessionModeServer")]
+        Server = 0,
         #[deprecated]
-        GKSessionModeClient = 1,
+        #[doc(alias = "GKSessionModeClient")]
+        Client = 1,
         #[deprecated]
-        GKSessionModePeer = 2,
+        #[doc(alias = "GKSessionModePeer")]
+        Peer = 2,
     }
 );
 

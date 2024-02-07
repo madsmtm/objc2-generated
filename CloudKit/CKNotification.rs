@@ -49,10 +49,14 @@ extern_methods!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum CKNotificationType {
-        CKNotificationTypeQuery = 1,
-        CKNotificationTypeRecordZone = 2,
-        CKNotificationTypeReadNotification = 3,
-        CKNotificationTypeDatabase = 4,
+        #[doc(alias = "CKNotificationTypeQuery")]
+        Query = 1,
+        #[doc(alias = "CKNotificationTypeRecordZone")]
+        RecordZone = 2,
+        #[doc(alias = "CKNotificationTypeReadNotification")]
+        ReadNotification = 3,
+        #[doc(alias = "CKNotificationTypeDatabase")]
+        Database = 4,
     }
 );
 
@@ -187,9 +191,12 @@ extern_methods!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum CKQueryNotificationReason {
-        CKQueryNotificationReasonRecordCreated = 1,
-        CKQueryNotificationReasonRecordUpdated = 2,
-        CKQueryNotificationReasonRecordDeleted = 3,
+        #[doc(alias = "CKQueryNotificationReasonRecordCreated")]
+        RecordCreated = 1,
+        #[doc(alias = "CKQueryNotificationReasonRecordUpdated")]
+        RecordUpdated = 2,
+        #[doc(alias = "CKQueryNotificationReasonRecordDeleted")]
+        RecordDeleted = 3,
     }
 );
 

@@ -5,3 +5,48 @@ use crate::Foundation::*;
 use crate::LocalAuthentication::*;
 
 extern_static!(LAErrorDomain: &'static NSString);
+
+ns_enum!(
+    #[underlying(NSInteger)]
+    pub enum LAError {
+        #[doc(alias = "LAErrorAuthenticationFailed")]
+        AuthenticationFailed = -1,
+        #[doc(alias = "LAErrorUserCancel")]
+        UserCancel = -2,
+        #[doc(alias = "LAErrorUserFallback")]
+        UserFallback = -3,
+        #[doc(alias = "LAErrorSystemCancel")]
+        SystemCancel = -4,
+        #[doc(alias = "LAErrorPasscodeNotSet")]
+        PasscodeNotSet = -5,
+        #[deprecated = "use LAErrorBiometryNotAvailable"]
+        #[doc(alias = "LAErrorTouchIDNotAvailable")]
+        TouchIDNotAvailable = -6,
+        #[deprecated = "use LAErrorBiometryNotEnrolled"]
+        #[doc(alias = "LAErrorTouchIDNotEnrolled")]
+        TouchIDNotEnrolled = -7,
+        #[deprecated = "use LAErrorBiometryLockout"]
+        #[doc(alias = "LAErrorTouchIDLockout")]
+        TouchIDLockout = -8,
+        #[doc(alias = "LAErrorAppCancel")]
+        AppCancel = -9,
+        #[doc(alias = "LAErrorInvalidContext")]
+        InvalidContext = -10,
+        #[doc(alias = "LAErrorBiometryNotAvailable")]
+        BiometryNotAvailable = -6,
+        #[doc(alias = "LAErrorBiometryNotEnrolled")]
+        BiometryNotEnrolled = -7,
+        #[doc(alias = "LAErrorBiometryLockout")]
+        BiometryLockout = -8,
+        #[doc(alias = "LAErrorNotInteractive")]
+        NotInteractive = -1004,
+        #[doc(alias = "LAErrorWatchNotAvailable")]
+        WatchNotAvailable = -11,
+        #[doc(alias = "LAErrorBiometryNotPaired")]
+        BiometryNotPaired = -12,
+        #[doc(alias = "LAErrorBiometryDisconnected")]
+        BiometryDisconnected = -13,
+        #[doc(alias = "LAErrorInvalidDimensions")]
+        InvalidDimensions = -14,
+    }
+);

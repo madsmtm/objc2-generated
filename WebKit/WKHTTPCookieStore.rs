@@ -8,8 +8,10 @@ use crate::WebKit::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum WKCookiePolicy {
-        WKCookiePolicyAllow = 0,
-        WKCookiePolicyDisallow = 1,
+        #[doc(alias = "WKCookiePolicyAllow")]
+        Allow = 0,
+        #[doc(alias = "WKCookiePolicyDisallow")]
+        Disallow = 1,
     }
 );
 

@@ -191,8 +191,11 @@ extern_static!(MTLCounterErrorDomain: &'static NSErrorDomain);
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MTLCounterSampleBufferError {
-        MTLCounterSampleBufferErrorOutOfMemory = 0,
-        MTLCounterSampleBufferErrorInvalid = 1,
-        MTLCounterSampleBufferErrorInternal = 2,
+        #[doc(alias = "MTLCounterSampleBufferErrorOutOfMemory")]
+        OutOfMemory = 0,
+        #[doc(alias = "MTLCounterSampleBufferErrorInvalid")]
+        Invalid = 1,
+        #[doc(alias = "MTLCounterSampleBufferErrorInternal")]
+        Internal = 2,
     }
 );

@@ -7,10 +7,14 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum CNContainerType {
-        CNContainerTypeUnassigned = 0,
-        CNContainerTypeLocal = 1,
-        CNContainerTypeExchange = 2,
-        CNContainerTypeCardDAV = 3,
+        #[doc(alias = "CNContainerTypeUnassigned")]
+        Unassigned = 0,
+        #[doc(alias = "CNContainerTypeLocal")]
+        Local = 1,
+        #[doc(alias = "CNContainerTypeExchange")]
+        Exchange = 2,
+        #[doc(alias = "CNContainerTypeCardDAV")]
+        CardDAV = 3,
     }
 );
 

@@ -10,8 +10,10 @@ pub type NSStatusItemAutosaveName = NSString;
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSStatusItemBehavior {
-        NSStatusItemBehaviorRemovalAllowed = 1 << 1,
-        NSStatusItemBehaviorTerminationOnRemoval = 1 << 2,
+        #[doc(alias = "NSStatusItemBehaviorRemovalAllowed")]
+        RemovalAllowed = 1 << 1,
+        #[doc(alias = "NSStatusItemBehaviorTerminationOnRemoval")]
+        TerminationOnRemoval = 1 << 2,
     }
 );
 

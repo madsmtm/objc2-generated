@@ -13,18 +13,30 @@ extern_static!(HKMetadataKeyBodyTemperatureSensorLocation: &'static NSString);
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKBodyTemperatureSensorLocation {
-        HKBodyTemperatureSensorLocationOther = 0,
-        HKBodyTemperatureSensorLocationArmpit = 1,
-        HKBodyTemperatureSensorLocationBody = 2,
-        HKBodyTemperatureSensorLocationEar = 3,
-        HKBodyTemperatureSensorLocationFinger = 4,
-        HKBodyTemperatureSensorLocationGastroIntestinal = 5,
-        HKBodyTemperatureSensorLocationMouth = 6,
-        HKBodyTemperatureSensorLocationRectum = 7,
-        HKBodyTemperatureSensorLocationToe = 8,
-        HKBodyTemperatureSensorLocationEarDrum = 9,
-        HKBodyTemperatureSensorLocationTemporalArtery = 10,
-        HKBodyTemperatureSensorLocationForehead = 11,
+        #[doc(alias = "HKBodyTemperatureSensorLocationOther")]
+        Other = 0,
+        #[doc(alias = "HKBodyTemperatureSensorLocationArmpit")]
+        Armpit = 1,
+        #[doc(alias = "HKBodyTemperatureSensorLocationBody")]
+        Body = 2,
+        #[doc(alias = "HKBodyTemperatureSensorLocationEar")]
+        Ear = 3,
+        #[doc(alias = "HKBodyTemperatureSensorLocationFinger")]
+        Finger = 4,
+        #[doc(alias = "HKBodyTemperatureSensorLocationGastroIntestinal")]
+        GastroIntestinal = 5,
+        #[doc(alias = "HKBodyTemperatureSensorLocationMouth")]
+        Mouth = 6,
+        #[doc(alias = "HKBodyTemperatureSensorLocationRectum")]
+        Rectum = 7,
+        #[doc(alias = "HKBodyTemperatureSensorLocationToe")]
+        Toe = 8,
+        #[doc(alias = "HKBodyTemperatureSensorLocationEarDrum")]
+        EarDrum = 9,
+        #[doc(alias = "HKBodyTemperatureSensorLocationTemporalArtery")]
+        TemporalArtery = 10,
+        #[doc(alias = "HKBodyTemperatureSensorLocationForehead")]
+        Forehead = 11,
     }
 );
 
@@ -33,13 +45,20 @@ extern_static!(HKMetadataKeyHeartRateSensorLocation: &'static NSString);
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKHeartRateSensorLocation {
-        HKHeartRateSensorLocationOther = 0,
-        HKHeartRateSensorLocationChest = 1,
-        HKHeartRateSensorLocationWrist = 2,
-        HKHeartRateSensorLocationFinger = 3,
-        HKHeartRateSensorLocationHand = 4,
-        HKHeartRateSensorLocationEarLobe = 5,
-        HKHeartRateSensorLocationFoot = 6,
+        #[doc(alias = "HKHeartRateSensorLocationOther")]
+        Other = 0,
+        #[doc(alias = "HKHeartRateSensorLocationChest")]
+        Chest = 1,
+        #[doc(alias = "HKHeartRateSensorLocationWrist")]
+        Wrist = 2,
+        #[doc(alias = "HKHeartRateSensorLocationFinger")]
+        Finger = 3,
+        #[doc(alias = "HKHeartRateSensorLocationHand")]
+        Hand = 4,
+        #[doc(alias = "HKHeartRateSensorLocationEarLobe")]
+        EarLobe = 5,
+        #[doc(alias = "HKHeartRateSensorLocationFoot")]
+        Foot = 6,
     }
 );
 
@@ -48,9 +67,12 @@ extern_static!(HKMetadataKeyHeartRateMotionContext: &'static NSString);
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKHeartRateMotionContext {
-        HKHeartRateMotionContextNotSet = 0,
-        HKHeartRateMotionContextSedentary = 1,
-        HKHeartRateMotionContextActive = 2,
+        #[doc(alias = "HKHeartRateMotionContextNotSet")]
+        NotSet = 0,
+        #[doc(alias = "HKHeartRateMotionContextSedentary")]
+        Sedentary = 1,
+        #[doc(alias = "HKHeartRateMotionContextActive")]
+        Active = 2,
     }
 );
 
@@ -59,9 +81,12 @@ extern_static!(HKMetadataKeyUserMotionContext: &'static NSString);
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKUserMotionContext {
-        HKUserMotionContextNotSet = 0,
-        HKUserMotionContextStationary = 1,
-        HKUserMotionContextActive = 2,
+        #[doc(alias = "HKUserMotionContextNotSet")]
+        NotSet = 0,
+        #[doc(alias = "HKUserMotionContextStationary")]
+        Stationary = 1,
+        #[doc(alias = "HKUserMotionContextActive")]
+        Active = 2,
     }
 );
 
@@ -70,9 +95,12 @@ extern_static!(HKMetadataKeySessionEstimate: &'static NSString);
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKHeartRateRecoveryTestType {
-        HKHeartRateRecoveryTestTypeMaxExercise = 1,
-        HKHeartRateRecoveryTestTypePredictionSubMaxExercise = 2,
-        HKHeartRateRecoveryTestTypePredictionNonExercise = 3,
+        #[doc(alias = "HKHeartRateRecoveryTestTypeMaxExercise")]
+        MaxExercise = 1,
+        #[doc(alias = "HKHeartRateRecoveryTestTypePredictionSubMaxExercise")]
+        PredictionSubMaxExercise = 2,
+        #[doc(alias = "HKHeartRateRecoveryTestTypePredictionNonExercise")]
+        PredictionNonExercise = 3,
     }
 );
 
@@ -125,34 +153,62 @@ extern_static!(HKMetadataKeyCoachedWorkout: &'static NSString);
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKWeatherCondition {
-        HKWeatherConditionNone = 0,
-        HKWeatherConditionClear = 1,
-        HKWeatherConditionFair = 2,
-        HKWeatherConditionPartlyCloudy = 3,
-        HKWeatherConditionMostlyCloudy = 4,
-        HKWeatherConditionCloudy = 5,
-        HKWeatherConditionFoggy = 6,
-        HKWeatherConditionHaze = 7,
-        HKWeatherConditionWindy = 8,
-        HKWeatherConditionBlustery = 9,
-        HKWeatherConditionSmoky = 10,
-        HKWeatherConditionDust = 11,
-        HKWeatherConditionSnow = 12,
-        HKWeatherConditionHail = 13,
-        HKWeatherConditionSleet = 14,
-        HKWeatherConditionFreezingDrizzle = 15,
-        HKWeatherConditionFreezingRain = 16,
-        HKWeatherConditionMixedRainAndHail = 17,
-        HKWeatherConditionMixedRainAndSnow = 18,
-        HKWeatherConditionMixedRainAndSleet = 19,
-        HKWeatherConditionMixedSnowAndSleet = 20,
-        HKWeatherConditionDrizzle = 21,
-        HKWeatherConditionScatteredShowers = 22,
-        HKWeatherConditionShowers = 23,
-        HKWeatherConditionThunderstorms = 24,
-        HKWeatherConditionTropicalStorm = 25,
-        HKWeatherConditionHurricane = 26,
-        HKWeatherConditionTornado = 27,
+        #[doc(alias = "HKWeatherConditionNone")]
+        None = 0,
+        #[doc(alias = "HKWeatherConditionClear")]
+        Clear = 1,
+        #[doc(alias = "HKWeatherConditionFair")]
+        Fair = 2,
+        #[doc(alias = "HKWeatherConditionPartlyCloudy")]
+        PartlyCloudy = 3,
+        #[doc(alias = "HKWeatherConditionMostlyCloudy")]
+        MostlyCloudy = 4,
+        #[doc(alias = "HKWeatherConditionCloudy")]
+        Cloudy = 5,
+        #[doc(alias = "HKWeatherConditionFoggy")]
+        Foggy = 6,
+        #[doc(alias = "HKWeatherConditionHaze")]
+        Haze = 7,
+        #[doc(alias = "HKWeatherConditionWindy")]
+        Windy = 8,
+        #[doc(alias = "HKWeatherConditionBlustery")]
+        Blustery = 9,
+        #[doc(alias = "HKWeatherConditionSmoky")]
+        Smoky = 10,
+        #[doc(alias = "HKWeatherConditionDust")]
+        Dust = 11,
+        #[doc(alias = "HKWeatherConditionSnow")]
+        Snow = 12,
+        #[doc(alias = "HKWeatherConditionHail")]
+        Hail = 13,
+        #[doc(alias = "HKWeatherConditionSleet")]
+        Sleet = 14,
+        #[doc(alias = "HKWeatherConditionFreezingDrizzle")]
+        FreezingDrizzle = 15,
+        #[doc(alias = "HKWeatherConditionFreezingRain")]
+        FreezingRain = 16,
+        #[doc(alias = "HKWeatherConditionMixedRainAndHail")]
+        MixedRainAndHail = 17,
+        #[doc(alias = "HKWeatherConditionMixedRainAndSnow")]
+        MixedRainAndSnow = 18,
+        #[doc(alias = "HKWeatherConditionMixedRainAndSleet")]
+        MixedRainAndSleet = 19,
+        #[doc(alias = "HKWeatherConditionMixedSnowAndSleet")]
+        MixedSnowAndSleet = 20,
+        #[doc(alias = "HKWeatherConditionDrizzle")]
+        Drizzle = 21,
+        #[doc(alias = "HKWeatherConditionScatteredShowers")]
+        ScatteredShowers = 22,
+        #[doc(alias = "HKWeatherConditionShowers")]
+        Showers = 23,
+        #[doc(alias = "HKWeatherConditionThunderstorms")]
+        Thunderstorms = 24,
+        #[doc(alias = "HKWeatherConditionTropicalStorm")]
+        TropicalStorm = 25,
+        #[doc(alias = "HKWeatherConditionHurricane")]
+        Hurricane = 26,
+        #[doc(alias = "HKWeatherConditionTornado")]
+        Tornado = 27,
     }
 );
 
@@ -171,9 +227,12 @@ extern_static!(HKMetadataKeyLapLength: &'static NSString);
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKWorkoutSwimmingLocationType {
-        HKWorkoutSwimmingLocationTypeUnknown = 0,
-        HKWorkoutSwimmingLocationTypePool = 1,
-        HKWorkoutSwimmingLocationTypeOpenWater = 2,
+        #[doc(alias = "HKWorkoutSwimmingLocationTypeUnknown")]
+        Unknown = 0,
+        #[doc(alias = "HKWorkoutSwimmingLocationTypePool")]
+        Pool = 1,
+        #[doc(alias = "HKWorkoutSwimmingLocationTypeOpenWater")]
+        OpenWater = 2,
     }
 );
 
@@ -182,13 +241,20 @@ extern_static!(HKMetadataKeySwimmingLocationType: &'static NSString);
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKSwimmingStrokeStyle {
-        HKSwimmingStrokeStyleUnknown = 0,
-        HKSwimmingStrokeStyleMixed = 1,
-        HKSwimmingStrokeStyleFreestyle = 2,
-        HKSwimmingStrokeStyleBackstroke = 3,
-        HKSwimmingStrokeStyleBreaststroke = 4,
-        HKSwimmingStrokeStyleButterfly = 5,
-        HKSwimmingStrokeStyleKickboard = 6,
+        #[doc(alias = "HKSwimmingStrokeStyleUnknown")]
+        Unknown = 0,
+        #[doc(alias = "HKSwimmingStrokeStyleMixed")]
+        Mixed = 1,
+        #[doc(alias = "HKSwimmingStrokeStyleFreestyle")]
+        Freestyle = 2,
+        #[doc(alias = "HKSwimmingStrokeStyleBackstroke")]
+        Backstroke = 3,
+        #[doc(alias = "HKSwimmingStrokeStyleBreaststroke")]
+        Breaststroke = 4,
+        #[doc(alias = "HKSwimmingStrokeStyleButterfly")]
+        Butterfly = 5,
+        #[doc(alias = "HKSwimmingStrokeStyleKickboard")]
+        Kickboard = 6,
     }
 );
 
@@ -197,8 +263,10 @@ extern_static!(HKMetadataKeySwimmingStrokeStyle: &'static NSString);
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKInsulinDeliveryReason {
-        HKInsulinDeliveryReasonBasal = 1,
-        HKInsulinDeliveryReasonBolus = 2,
+        #[doc(alias = "HKInsulinDeliveryReasonBasal")]
+        Basal = 1,
+        #[doc(alias = "HKInsulinDeliveryReasonBolus")]
+        Bolus = 2,
     }
 );
 
@@ -207,8 +275,10 @@ extern_static!(HKMetadataKeyInsulinDeliveryReason: &'static NSString);
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKBloodGlucoseMealTime {
-        HKBloodGlucoseMealTimePreprandial = 1,
-        HKBloodGlucoseMealTimePostprandial = 2,
+        #[doc(alias = "HKBloodGlucoseMealTimePreprandial")]
+        Preprandial = 1,
+        #[doc(alias = "HKBloodGlucoseMealTimePostprandial")]
+        Postprandial = 2,
     }
 );
 
@@ -217,9 +287,12 @@ extern_static!(HKMetadataKeyBloodGlucoseMealTime: &'static NSString);
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKVO2MaxTestType {
-        HKVO2MaxTestTypeMaxExercise = 1,
-        HKVO2MaxTestTypePredictionSubMaxExercise = 2,
-        HKVO2MaxTestTypePredictionNonExercise = 3,
+        #[doc(alias = "HKVO2MaxTestTypeMaxExercise")]
+        MaxExercise = 1,
+        #[doc(alias = "HKVO2MaxTestTypePredictionSubMaxExercise")]
+        PredictionSubMaxExercise = 2,
+        #[doc(alias = "HKVO2MaxTestTypePredictionNonExercise")]
+        PredictionNonExercise = 3,
     }
 );
 
@@ -262,10 +335,14 @@ extern_static!(HKMetadataKeyAppleECGAlgorithmVersion: &'static NSString);
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKDevicePlacementSide {
-        HKDevicePlacementSideUnknown = 0,
-        HKDevicePlacementSideLeft = 1,
-        HKDevicePlacementSideRight = 2,
-        HKDevicePlacementSideCentral = 3,
+        #[doc(alias = "HKDevicePlacementSideUnknown")]
+        Unknown = 0,
+        #[doc(alias = "HKDevicePlacementSideLeft")]
+        Left = 1,
+        #[doc(alias = "HKDevicePlacementSideRight")]
+        Right = 2,
+        #[doc(alias = "HKDevicePlacementSideCentral")]
+        Central = 3,
     }
 );
 
@@ -294,8 +371,10 @@ extern_static!(HKMetadataKeyGlassesPrescriptionDescription: &'static NSString);
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKWaterSalinity {
-        HKWaterSalinityFreshWater = 1,
-        HKWaterSalinitySaltWater = 2,
+        #[doc(alias = "HKWaterSalinityFreshWater")]
+        FreshWater = 1,
+        #[doc(alias = "HKWaterSalinitySaltWater")]
+        SaltWater = 2,
     }
 );
 
@@ -308,10 +387,14 @@ extern_static!(HKMetadataKeyCyclingFunctionalThresholdPowerTestType: &'static NS
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKCyclingFunctionalThresholdPowerTestType {
-        HKCyclingFunctionalThresholdPowerTestTypeMaxExercise60Minute = 1,
-        HKCyclingFunctionalThresholdPowerTestTypeMaxExercise20Minute = 2,
-        HKCyclingFunctionalThresholdPowerTestTypeRampTest = 3,
-        HKCyclingFunctionalThresholdPowerTestTypePredictionExercise = 4,
+        #[doc(alias = "HKCyclingFunctionalThresholdPowerTestTypeMaxExercise60Minute")]
+        MaxExercise60Minute = 1,
+        #[doc(alias = "HKCyclingFunctionalThresholdPowerTestTypeMaxExercise20Minute")]
+        MaxExercise20Minute = 2,
+        #[doc(alias = "HKCyclingFunctionalThresholdPowerTestTypeRampTest")]
+        RampTest = 3,
+        #[doc(alias = "HKCyclingFunctionalThresholdPowerTestTypePredictionExercise")]
+        PredictionExercise = 4,
     }
 );
 
@@ -322,8 +405,10 @@ extern_static!(HKMetadataKeyPhysicalEffortEstimationType: &'static NSString);
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKPhysicalEffortEstimationType {
-        HKPhysicalEffortEstimationTypeActivityLookup = 1,
-        HKPhysicalEffortEstimationTypeDeviceSensed = 2,
+        #[doc(alias = "HKPhysicalEffortEstimationTypeActivityLookup")]
+        ActivityLookup = 1,
+        #[doc(alias = "HKPhysicalEffortEstimationTypeDeviceSensed")]
+        DeviceSensed = 2,
     }
 );
 

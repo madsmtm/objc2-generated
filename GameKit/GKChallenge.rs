@@ -8,10 +8,14 @@ use crate::GameKit::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum GKChallengeState {
-        GKChallengeStateInvalid = 0,
-        GKChallengeStatePending = 1,
-        GKChallengeStateCompleted = 2,
-        GKChallengeStateDeclined = 3,
+        #[doc(alias = "GKChallengeStateInvalid")]
+        Invalid = 0,
+        #[doc(alias = "GKChallengeStatePending")]
+        Pending = 1,
+        #[doc(alias = "GKChallengeStateCompleted")]
+        Completed = 2,
+        #[doc(alias = "GKChallengeStateDeclined")]
+        Declined = 3,
     }
 );
 

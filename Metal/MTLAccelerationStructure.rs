@@ -7,10 +7,14 @@ use crate::Metal::*;
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum MTLAccelerationStructureUsage {
-        MTLAccelerationStructureUsageNone = 0,
-        MTLAccelerationStructureUsageRefit = 1 << 0,
-        MTLAccelerationStructureUsagePreferFastBuild = 1 << 1,
-        MTLAccelerationStructureUsageExtendedLimits = 1 << 2,
+        #[doc(alias = "MTLAccelerationStructureUsageNone")]
+        None = 0,
+        #[doc(alias = "MTLAccelerationStructureUsageRefit")]
+        Refit = 1 << 0,
+        #[doc(alias = "MTLAccelerationStructureUsagePreferFastBuild")]
+        PreferFastBuild = 1 << 1,
+        #[doc(alias = "MTLAccelerationStructureUsageExtendedLimits")]
+        ExtendedLimits = 1 << 2,
     }
 );
 
@@ -163,8 +167,10 @@ extern_methods!(
 ns_enum!(
     #[underlying(u32)]
     pub enum MTLMotionBorderMode {
-        MTLMotionBorderModeClamp = 0,
-        MTLMotionBorderModeVanish = 1,
+        #[doc(alias = "MTLMotionBorderModeClamp")]
+        Clamp = 0,
+        #[doc(alias = "MTLMotionBorderModeVanish")]
+        Vanish = 1,
     }
 );
 
@@ -659,27 +665,36 @@ extern_methods!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MTLCurveType {
-        MTLCurveTypeRound = 0,
-        MTLCurveTypeFlat = 1,
+        #[doc(alias = "MTLCurveTypeRound")]
+        Round = 0,
+        #[doc(alias = "MTLCurveTypeFlat")]
+        Flat = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MTLCurveBasis {
-        MTLCurveBasisBSpline = 0,
-        MTLCurveBasisCatmullRom = 1,
-        MTLCurveBasisLinear = 2,
-        MTLCurveBasisBezier = 3,
+        #[doc(alias = "MTLCurveBasisBSpline")]
+        BSpline = 0,
+        #[doc(alias = "MTLCurveBasisCatmullRom")]
+        CatmullRom = 1,
+        #[doc(alias = "MTLCurveBasisLinear")]
+        Linear = 2,
+        #[doc(alias = "MTLCurveBasisBezier")]
+        Bezier = 3,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MTLCurveEndCaps {
-        MTLCurveEndCapsNone = 0,
-        MTLCurveEndCapsDisk = 1,
-        MTLCurveEndCapsSphere = 2,
+        #[doc(alias = "MTLCurveEndCapsNone")]
+        None = 0,
+        #[doc(alias = "MTLCurveEndCapsDisk")]
+        Disk = 1,
+        #[doc(alias = "MTLCurveEndCapsSphere")]
+        Sphere = 2,
     }
 );
 
@@ -1001,11 +1016,16 @@ extern_struct!(
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLAccelerationStructureInstanceDescriptorType {
-        MTLAccelerationStructureInstanceDescriptorTypeDefault = 0,
-        MTLAccelerationStructureInstanceDescriptorTypeUserID = 1,
-        MTLAccelerationStructureInstanceDescriptorTypeMotion = 2,
-        MTLAccelerationStructureInstanceDescriptorTypeIndirect = 3,
-        MTLAccelerationStructureInstanceDescriptorTypeIndirectMotion = 4,
+        #[doc(alias = "MTLAccelerationStructureInstanceDescriptorTypeDefault")]
+        Default = 0,
+        #[doc(alias = "MTLAccelerationStructureInstanceDescriptorTypeUserID")]
+        UserID = 1,
+        #[doc(alias = "MTLAccelerationStructureInstanceDescriptorTypeMotion")]
+        Motion = 2,
+        #[doc(alias = "MTLAccelerationStructureInstanceDescriptorTypeIndirect")]
+        Indirect = 3,
+        #[doc(alias = "MTLAccelerationStructureInstanceDescriptorTypeIndirectMotion")]
+        IndirectMotion = 4,
     }
 );
 

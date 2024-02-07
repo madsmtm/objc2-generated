@@ -7,17 +7,22 @@ use crate::Metal::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MTLIOPriority {
-        MTLIOPriorityHigh = 0,
-        MTLIOPriorityNormal = 1,
-        MTLIOPriorityLow = 2,
+        #[doc(alias = "MTLIOPriorityHigh")]
+        High = 0,
+        #[doc(alias = "MTLIOPriorityNormal")]
+        Normal = 1,
+        #[doc(alias = "MTLIOPriorityLow")]
+        Low = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MTLIOCommandQueueType {
-        MTLIOCommandQueueTypeConcurrent = 0,
-        MTLIOCommandQueueTypeSerial = 1,
+        #[doc(alias = "MTLIOCommandQueueTypeConcurrent")]
+        Concurrent = 0,
+        #[doc(alias = "MTLIOCommandQueueTypeSerial")]
+        Serial = 1,
     }
 );
 
@@ -26,8 +31,10 @@ extern_static!(MTLIOErrorDomain: &'static NSErrorDomain);
 ns_error_enum!(
     #[underlying(NSInteger)]
     pub enum MTLIOError {
-        MTLIOErrorURLInvalid = 1,
-        MTLIOErrorInternal = 2,
+        #[doc(alias = "MTLIOErrorURLInvalid")]
+        URLInvalid = 1,
+        #[doc(alias = "MTLIOErrorInternal")]
+        Internal = 2,
     }
 );
 

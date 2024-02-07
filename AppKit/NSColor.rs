@@ -10,20 +10,28 @@ extern_static!(NSAppKitVersionNumberWithPatternColorLeakFix: NSAppKitVersion = 6
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSColorType {
-        NSColorTypeComponentBased = 0,
-        NSColorTypePattern = 1,
-        NSColorTypeCatalog = 2,
+        #[doc(alias = "NSColorTypeComponentBased")]
+        ComponentBased = 0,
+        #[doc(alias = "NSColorTypePattern")]
+        Pattern = 1,
+        #[doc(alias = "NSColorTypeCatalog")]
+        Catalog = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSColorSystemEffect {
-        NSColorSystemEffectNone = 0,
-        NSColorSystemEffectPressed = 1,
-        NSColorSystemEffectDeepPressed = 2,
-        NSColorSystemEffectDisabled = 3,
-        NSColorSystemEffectRollover = 4,
+        #[doc(alias = "NSColorSystemEffectNone")]
+        None = 0,
+        #[doc(alias = "NSColorSystemEffectPressed")]
+        Pressed = 1,
+        #[doc(alias = "NSColorSystemEffectDeepPressed")]
+        DeepPressed = 2,
+        #[doc(alias = "NSColorSystemEffectDisabled")]
+        Disabled = 3,
+        #[doc(alias = "NSColorSystemEffectRollover")]
+        Rollover = 4,
     }
 );
 

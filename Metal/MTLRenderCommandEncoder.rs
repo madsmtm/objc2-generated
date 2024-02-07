@@ -7,20 +7,28 @@ use crate::Metal::*;
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLPrimitiveType {
-        MTLPrimitiveTypePoint = 0,
-        MTLPrimitiveTypeLine = 1,
-        MTLPrimitiveTypeLineStrip = 2,
-        MTLPrimitiveTypeTriangle = 3,
-        MTLPrimitiveTypeTriangleStrip = 4,
+        #[doc(alias = "MTLPrimitiveTypePoint")]
+        Point = 0,
+        #[doc(alias = "MTLPrimitiveTypeLine")]
+        Line = 1,
+        #[doc(alias = "MTLPrimitiveTypeLineStrip")]
+        LineStrip = 2,
+        #[doc(alias = "MTLPrimitiveTypeTriangle")]
+        Triangle = 3,
+        #[doc(alias = "MTLPrimitiveTypeTriangleStrip")]
+        TriangleStrip = 4,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLVisibilityResultMode {
-        MTLVisibilityResultModeDisabled = 0,
-        MTLVisibilityResultModeBoolean = 1,
-        MTLVisibilityResultModeCounting = 2,
+        #[doc(alias = "MTLVisibilityResultModeDisabled")]
+        Disabled = 0,
+        #[doc(alias = "MTLVisibilityResultModeBoolean")]
+        Boolean = 1,
+        #[doc(alias = "MTLVisibilityResultModeCounting")]
+        Counting = 2,
     }
 );
 
@@ -49,33 +57,42 @@ extern_struct!(
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLCullMode {
-        MTLCullModeNone = 0,
-        MTLCullModeFront = 1,
-        MTLCullModeBack = 2,
+        #[doc(alias = "MTLCullModeNone")]
+        None = 0,
+        #[doc(alias = "MTLCullModeFront")]
+        Front = 1,
+        #[doc(alias = "MTLCullModeBack")]
+        Back = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLWinding {
-        MTLWindingClockwise = 0,
-        MTLWindingCounterClockwise = 1,
+        #[doc(alias = "MTLWindingClockwise")]
+        Clockwise = 0,
+        #[doc(alias = "MTLWindingCounterClockwise")]
+        CounterClockwise = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLDepthClipMode {
-        MTLDepthClipModeClip = 0,
-        MTLDepthClipModeClamp = 1,
+        #[doc(alias = "MTLDepthClipModeClip")]
+        Clip = 0,
+        #[doc(alias = "MTLDepthClipModeClamp")]
+        Clamp = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLTriangleFillMode {
-        MTLTriangleFillModeFill = 0,
-        MTLTriangleFillModeLines = 1,
+        #[doc(alias = "MTLTriangleFillModeFill")]
+        Fill = 0,
+        #[doc(alias = "MTLTriangleFillModeLines")]
+        Lines = 1,
     }
 );
 

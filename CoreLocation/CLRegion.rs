@@ -8,19 +8,26 @@ use crate::Foundation::*;
 ns_closed_enum!(
     #[underlying(NSInteger)]
     pub enum CLRegionState {
-        CLRegionStateUnknown = 0,
-        CLRegionStateInside = 1,
-        CLRegionStateOutside = 2,
+        #[doc(alias = "CLRegionStateUnknown")]
+        Unknown = 0,
+        #[doc(alias = "CLRegionStateInside")]
+        Inside = 1,
+        #[doc(alias = "CLRegionStateOutside")]
+        Outside = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum CLProximity {
-        CLProximityUnknown = 0,
-        CLProximityImmediate = 1,
-        CLProximityNear = 2,
-        CLProximityFar = 3,
+        #[doc(alias = "CLProximityUnknown")]
+        Unknown = 0,
+        #[doc(alias = "CLProximityImmediate")]
+        Immediate = 1,
+        #[doc(alias = "CLProximityNear")]
+        Near = 2,
+        #[doc(alias = "CLProximityFar")]
+        Far = 3,
     }
 );
 

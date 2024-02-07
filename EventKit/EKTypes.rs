@@ -10,112 +10,161 @@ use crate::MapKit::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum EKAuthorizationStatus {
-        EKAuthorizationStatusNotDetermined = 0,
-        EKAuthorizationStatusRestricted = 1,
-        EKAuthorizationStatusDenied = 2,
-        EKAuthorizationStatusFullAccess = 3,
-        EKAuthorizationStatusWriteOnly = 4,
+        #[doc(alias = "EKAuthorizationStatusNotDetermined")]
+        NotDetermined = 0,
+        #[doc(alias = "EKAuthorizationStatusRestricted")]
+        Restricted = 1,
+        #[doc(alias = "EKAuthorizationStatusDenied")]
+        Denied = 2,
+        #[doc(alias = "EKAuthorizationStatusFullAccess")]
+        FullAccess = 3,
+        #[doc(alias = "EKAuthorizationStatusWriteOnly")]
+        WriteOnly = 4,
         #[deprecated = "Check for full access or write only access"]
-        EKAuthorizationStatusAuthorized = EKAuthorizationStatus::EKAuthorizationStatusFullAccess.0,
+        #[doc(alias = "EKAuthorizationStatusAuthorized")]
+        Authorized = EKAuthorizationStatus::FullAccess.0,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum EKWeekday {
-        EKWeekdaySunday = 1,
-        EKWeekdayMonday = 2,
-        EKWeekdayTuesday = 3,
-        EKWeekdayWednesday = 4,
-        EKWeekdayThursday = 5,
-        EKWeekdayFriday = 6,
-        EKWeekdaySaturday = 7,
+        #[doc(alias = "EKWeekdaySunday")]
+        Sunday = 1,
+        #[doc(alias = "EKWeekdayMonday")]
+        Monday = 2,
+        #[doc(alias = "EKWeekdayTuesday")]
+        Tuesday = 3,
+        #[doc(alias = "EKWeekdayWednesday")]
+        Wednesday = 4,
+        #[doc(alias = "EKWeekdayThursday")]
+        Thursday = 5,
+        #[doc(alias = "EKWeekdayFriday")]
+        Friday = 6,
+        #[doc(alias = "EKWeekdaySaturday")]
+        Saturday = 7,
         #[deprecated = "Use EKWeekdaySunday instead"]
-        EKSunday = EKWeekday::EKWeekdaySunday.0,
+        EKSunday = EKWeekday::Sunday.0,
         #[deprecated = "Use EKWeekdayMonday instead"]
-        EKMonday = EKWeekday::EKWeekdayMonday.0,
+        EKMonday = EKWeekday::Monday.0,
         #[deprecated = "Use EKWeekdayTuesday instead"]
-        EKTuesday = EKWeekday::EKWeekdayTuesday.0,
+        EKTuesday = EKWeekday::Tuesday.0,
         #[deprecated = "Use EKWeekdayWednesday instead"]
-        EKWednesday = EKWeekday::EKWeekdayWednesday.0,
+        EKWednesday = EKWeekday::Wednesday.0,
         #[deprecated = "Use EKWeekdayThursday instead"]
-        EKThursday = EKWeekday::EKWeekdayThursday.0,
+        EKThursday = EKWeekday::Thursday.0,
         #[deprecated = "Use EKWeekdayFriday instead"]
-        EKFriday = EKWeekday::EKWeekdayFriday.0,
+        EKFriday = EKWeekday::Friday.0,
         #[deprecated = "Use EKWeekdaySaturday instead"]
-        EKSaturday = EKWeekday::EKWeekdaySaturday.0,
+        EKSaturday = EKWeekday::Saturday.0,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum EKRecurrenceFrequency {
-        EKRecurrenceFrequencyDaily = 0,
-        EKRecurrenceFrequencyWeekly = 1,
-        EKRecurrenceFrequencyMonthly = 2,
-        EKRecurrenceFrequencyYearly = 3,
+        #[doc(alias = "EKRecurrenceFrequencyDaily")]
+        Daily = 0,
+        #[doc(alias = "EKRecurrenceFrequencyWeekly")]
+        Weekly = 1,
+        #[doc(alias = "EKRecurrenceFrequencyMonthly")]
+        Monthly = 2,
+        #[doc(alias = "EKRecurrenceFrequencyYearly")]
+        Yearly = 3,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum EKParticipantType {
-        EKParticipantTypeUnknown = 0,
-        EKParticipantTypePerson = 1,
-        EKParticipantTypeRoom = 2,
-        EKParticipantTypeResource = 3,
-        EKParticipantTypeGroup = 4,
+        #[doc(alias = "EKParticipantTypeUnknown")]
+        Unknown = 0,
+        #[doc(alias = "EKParticipantTypePerson")]
+        Person = 1,
+        #[doc(alias = "EKParticipantTypeRoom")]
+        Room = 2,
+        #[doc(alias = "EKParticipantTypeResource")]
+        Resource = 3,
+        #[doc(alias = "EKParticipantTypeGroup")]
+        Group = 4,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum EKParticipantRole {
-        EKParticipantRoleUnknown = 0,
-        EKParticipantRoleRequired = 1,
-        EKParticipantRoleOptional = 2,
-        EKParticipantRoleChair = 3,
-        EKParticipantRoleNonParticipant = 4,
+        #[doc(alias = "EKParticipantRoleUnknown")]
+        Unknown = 0,
+        #[doc(alias = "EKParticipantRoleRequired")]
+        Required = 1,
+        #[doc(alias = "EKParticipantRoleOptional")]
+        Optional = 2,
+        #[doc(alias = "EKParticipantRoleChair")]
+        Chair = 3,
+        #[doc(alias = "EKParticipantRoleNonParticipant")]
+        NonParticipant = 4,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum EKParticipantScheduleStatus {
-        EKParticipantScheduleStatusNone = 0,
-        EKParticipantScheduleStatusPending = 1,
-        EKParticipantScheduleStatusSent = 2,
-        EKParticipantScheduleStatusDelivered = 3,
-        EKParticipantScheduleStatusRecipientNotRecognized = 4,
-        EKParticipantScheduleStatusNoPrivileges = 5,
-        EKParticipantScheduleStatusDeliveryFailed = 6,
-        EKParticipantScheduleStatusCannotDeliver = 7,
-        EKParticipantScheduleStatusRecipientNotAllowed = 8,
+        #[doc(alias = "EKParticipantScheduleStatusNone")]
+        None = 0,
+        #[doc(alias = "EKParticipantScheduleStatusPending")]
+        Pending = 1,
+        #[doc(alias = "EKParticipantScheduleStatusSent")]
+        Sent = 2,
+        #[doc(alias = "EKParticipantScheduleStatusDelivered")]
+        Delivered = 3,
+        #[doc(alias = "EKParticipantScheduleStatusRecipientNotRecognized")]
+        RecipientNotRecognized = 4,
+        #[doc(alias = "EKParticipantScheduleStatusNoPrivileges")]
+        NoPrivileges = 5,
+        #[doc(alias = "EKParticipantScheduleStatusDeliveryFailed")]
+        DeliveryFailed = 6,
+        #[doc(alias = "EKParticipantScheduleStatusCannotDeliver")]
+        CannotDeliver = 7,
+        #[doc(alias = "EKParticipantScheduleStatusRecipientNotAllowed")]
+        RecipientNotAllowed = 8,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum EKParticipantStatus {
-        EKParticipantStatusUnknown = 0,
-        EKParticipantStatusPending = 1,
-        EKParticipantStatusAccepted = 2,
-        EKParticipantStatusDeclined = 3,
-        EKParticipantStatusTentative = 4,
-        EKParticipantStatusDelegated = 5,
-        EKParticipantStatusCompleted = 6,
-        EKParticipantStatusInProcess = 7,
+        #[doc(alias = "EKParticipantStatusUnknown")]
+        Unknown = 0,
+        #[doc(alias = "EKParticipantStatusPending")]
+        Pending = 1,
+        #[doc(alias = "EKParticipantStatusAccepted")]
+        Accepted = 2,
+        #[doc(alias = "EKParticipantStatusDeclined")]
+        Declined = 3,
+        #[doc(alias = "EKParticipantStatusTentative")]
+        Tentative = 4,
+        #[doc(alias = "EKParticipantStatusDelegated")]
+        Delegated = 5,
+        #[doc(alias = "EKParticipantStatusCompleted")]
+        Completed = 6,
+        #[doc(alias = "EKParticipantStatusInProcess")]
+        InProcess = 7,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum EKCalendarType {
-        EKCalendarTypeLocal = 0,
-        EKCalendarTypeCalDAV = 1,
-        EKCalendarTypeExchange = 2,
-        EKCalendarTypeSubscription = 3,
-        EKCalendarTypeBirthday = 4,
+        #[doc(alias = "EKCalendarTypeLocal")]
+        Local = 0,
+        #[doc(alias = "EKCalendarTypeCalDAV")]
+        CalDAV = 1,
+        #[doc(alias = "EKCalendarTypeExchange")]
+        Exchange = 2,
+        #[doc(alias = "EKCalendarTypeSubscription")]
+        Subscription = 3,
+        #[doc(alias = "EKCalendarTypeBirthday")]
+        Birthday = 4,
     }
 );
 
@@ -133,56 +182,77 @@ ns_options!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum EKSourceType {
-        EKSourceTypeLocal = 0,
-        EKSourceTypeExchange = 1,
-        EKSourceTypeCalDAV = 2,
-        EKSourceTypeMobileMe = 3,
-        EKSourceTypeSubscribed = 4,
-        EKSourceTypeBirthdays = 5,
+        #[doc(alias = "EKSourceTypeLocal")]
+        Local = 0,
+        #[doc(alias = "EKSourceTypeExchange")]
+        Exchange = 1,
+        #[doc(alias = "EKSourceTypeCalDAV")]
+        CalDAV = 2,
+        #[doc(alias = "EKSourceTypeMobileMe")]
+        MobileMe = 3,
+        #[doc(alias = "EKSourceTypeSubscribed")]
+        Subscribed = 4,
+        #[doc(alias = "EKSourceTypeBirthdays")]
+        Birthdays = 5,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum EKEntityType {
-        EKEntityTypeEvent = 0,
-        EKEntityTypeReminder = 1,
+        #[doc(alias = "EKEntityTypeEvent")]
+        Event = 0,
+        #[doc(alias = "EKEntityTypeReminder")]
+        Reminder = 1,
     }
 );
 
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum EKEntityMask {
-        EKEntityMaskEvent = 1 << EKEntityType::EKEntityTypeEvent.0,
-        EKEntityMaskReminder = 1 << EKEntityType::EKEntityTypeReminder.0,
+        #[doc(alias = "EKEntityMaskEvent")]
+        Event = 1 << EKEntityType::Event.0,
+        #[doc(alias = "EKEntityMaskReminder")]
+        Reminder = 1 << EKEntityType::Reminder.0,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum EKAlarmProximity {
-        EKAlarmProximityNone = 0,
-        EKAlarmProximityEnter = 1,
-        EKAlarmProximityLeave = 2,
+        #[doc(alias = "EKAlarmProximityNone")]
+        None = 0,
+        #[doc(alias = "EKAlarmProximityEnter")]
+        Enter = 1,
+        #[doc(alias = "EKAlarmProximityLeave")]
+        Leave = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum EKAlarmType {
-        EKAlarmTypeDisplay = 0,
-        EKAlarmTypeAudio = 1,
-        EKAlarmTypeProcedure = 2,
-        EKAlarmTypeEmail = 3,
+        #[doc(alias = "EKAlarmTypeDisplay")]
+        Display = 0,
+        #[doc(alias = "EKAlarmTypeAudio")]
+        Audio = 1,
+        #[doc(alias = "EKAlarmTypeProcedure")]
+        Procedure = 2,
+        #[doc(alias = "EKAlarmTypeEmail")]
+        Email = 3,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum EKReminderPriority {
-        EKReminderPriorityNone = 0,
-        EKReminderPriorityHigh = 1,
-        EKReminderPriorityMedium = 5,
-        EKReminderPriorityLow = 9,
+        #[doc(alias = "EKReminderPriorityNone")]
+        None = 0,
+        #[doc(alias = "EKReminderPriorityHigh")]
+        High = 1,
+        #[doc(alias = "EKReminderPriorityMedium")]
+        Medium = 5,
+        #[doc(alias = "EKReminderPriorityLow")]
+        Low = 9,
     }
 );

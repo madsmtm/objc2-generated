@@ -26,55 +26,72 @@ extern_static!(NSLayoutPriorityFittingSizeCompression: NSLayoutPriority = 50);
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSLayoutConstraintOrientation {
-        NSLayoutConstraintOrientationHorizontal = 0,
-        NSLayoutConstraintOrientationVertical = 1,
+        #[doc(alias = "NSLayoutConstraintOrientationHorizontal")]
+        Horizontal = 0,
+        #[doc(alias = "NSLayoutConstraintOrientationVertical")]
+        Vertical = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSLayoutRelation {
-        NSLayoutRelationLessThanOrEqual = -1,
-        NSLayoutRelationEqual = 0,
-        NSLayoutRelationGreaterThanOrEqual = 1,
+        #[doc(alias = "NSLayoutRelationLessThanOrEqual")]
+        LessThanOrEqual = -1,
+        #[doc(alias = "NSLayoutRelationEqual")]
+        Equal = 0,
+        #[doc(alias = "NSLayoutRelationGreaterThanOrEqual")]
+        GreaterThanOrEqual = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSLayoutAttribute {
-        NSLayoutAttributeLeft = 1,
-        NSLayoutAttributeRight = 2,
-        NSLayoutAttributeTop = 3,
-        NSLayoutAttributeBottom = 4,
-        NSLayoutAttributeLeading = 5,
-        NSLayoutAttributeTrailing = 6,
-        NSLayoutAttributeWidth = 7,
-        NSLayoutAttributeHeight = 8,
-        NSLayoutAttributeCenterX = 9,
-        NSLayoutAttributeCenterY = 10,
-        NSLayoutAttributeLastBaseline = 11,
-        NSLayoutAttributeBaseline = NSLayoutAttribute::NSLayoutAttributeLastBaseline.0,
-        NSLayoutAttributeFirstBaseline = 12,
-        NSLayoutAttributeNotAnAttribute = 0,
+        #[doc(alias = "NSLayoutAttributeLeft")]
+        Left = 1,
+        #[doc(alias = "NSLayoutAttributeRight")]
+        Right = 2,
+        #[doc(alias = "NSLayoutAttributeTop")]
+        Top = 3,
+        #[doc(alias = "NSLayoutAttributeBottom")]
+        Bottom = 4,
+        #[doc(alias = "NSLayoutAttributeLeading")]
+        Leading = 5,
+        #[doc(alias = "NSLayoutAttributeTrailing")]
+        Trailing = 6,
+        #[doc(alias = "NSLayoutAttributeWidth")]
+        Width = 7,
+        #[doc(alias = "NSLayoutAttributeHeight")]
+        Height = 8,
+        #[doc(alias = "NSLayoutAttributeCenterX")]
+        CenterX = 9,
+        #[doc(alias = "NSLayoutAttributeCenterY")]
+        CenterY = 10,
+        #[doc(alias = "NSLayoutAttributeLastBaseline")]
+        LastBaseline = 11,
+        #[doc(alias = "NSLayoutAttributeBaseline")]
+        Baseline = NSLayoutAttribute::LastBaseline.0,
+        #[doc(alias = "NSLayoutAttributeFirstBaseline")]
+        FirstBaseline = 12,
+        #[doc(alias = "NSLayoutAttributeNotAnAttribute")]
+        NotAnAttribute = 0,
     }
 );
 
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSLayoutFormatOptions {
-        NSLayoutFormatAlignAllLeft = 1 << NSLayoutAttribute::NSLayoutAttributeLeft.0,
-        NSLayoutFormatAlignAllRight = 1 << NSLayoutAttribute::NSLayoutAttributeRight.0,
-        NSLayoutFormatAlignAllTop = 1 << NSLayoutAttribute::NSLayoutAttributeTop.0,
-        NSLayoutFormatAlignAllBottom = 1 << NSLayoutAttribute::NSLayoutAttributeBottom.0,
-        NSLayoutFormatAlignAllLeading = 1 << NSLayoutAttribute::NSLayoutAttributeLeading.0,
-        NSLayoutFormatAlignAllTrailing = 1 << NSLayoutAttribute::NSLayoutAttributeTrailing.0,
-        NSLayoutFormatAlignAllCenterX = 1 << NSLayoutAttribute::NSLayoutAttributeCenterX.0,
-        NSLayoutFormatAlignAllCenterY = 1 << NSLayoutAttribute::NSLayoutAttributeCenterY.0,
-        NSLayoutFormatAlignAllLastBaseline =
-            1 << NSLayoutAttribute::NSLayoutAttributeLastBaseline.0,
-        NSLayoutFormatAlignAllFirstBaseline =
-            1 << NSLayoutAttribute::NSLayoutAttributeFirstBaseline.0,
+        NSLayoutFormatAlignAllLeft = 1 << NSLayoutAttribute::Left.0,
+        NSLayoutFormatAlignAllRight = 1 << NSLayoutAttribute::Right.0,
+        NSLayoutFormatAlignAllTop = 1 << NSLayoutAttribute::Top.0,
+        NSLayoutFormatAlignAllBottom = 1 << NSLayoutAttribute::Bottom.0,
+        NSLayoutFormatAlignAllLeading = 1 << NSLayoutAttribute::Leading.0,
+        NSLayoutFormatAlignAllTrailing = 1 << NSLayoutAttribute::Trailing.0,
+        NSLayoutFormatAlignAllCenterX = 1 << NSLayoutAttribute::CenterX.0,
+        NSLayoutFormatAlignAllCenterY = 1 << NSLayoutAttribute::CenterY.0,
+        NSLayoutFormatAlignAllLastBaseline = 1 << NSLayoutAttribute::LastBaseline.0,
+        NSLayoutFormatAlignAllFirstBaseline = 1 << NSLayoutAttribute::FirstBaseline.0,
         NSLayoutFormatAlignAllBaseline =
             NSLayoutFormatOptions::NSLayoutFormatAlignAllLastBaseline.0,
         NSLayoutFormatAlignmentMask = 0xFFFF,

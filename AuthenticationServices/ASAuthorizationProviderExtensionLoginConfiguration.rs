@@ -99,9 +99,12 @@ extern_methods!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum ASAuthorizationProviderExtensionFederationType {
-        ASAuthorizationProviderExtensionFederationTypeNone = 0,
-        ASAuthorizationProviderExtensionFederationTypeWSTrust = 1,
-        ASAuthorizationProviderExtensionFederationTypeDynamicWSTrust = 2,
+        #[doc(alias = "ASAuthorizationProviderExtensionFederationTypeNone")]
+        None = 0,
+        #[doc(alias = "ASAuthorizationProviderExtensionFederationTypeWSTrust")]
+        WSTrust = 1,
+        #[doc(alias = "ASAuthorizationProviderExtensionFederationTypeDynamicWSTrust")]
+        DynamicWSTrust = 2,
     }
 );
 

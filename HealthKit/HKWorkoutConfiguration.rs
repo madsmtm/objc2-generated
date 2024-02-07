@@ -9,9 +9,12 @@ use crate::UniformTypeIdentifiers::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKWorkoutSessionLocationType {
-        HKWorkoutSessionLocationTypeUnknown = 1,
-        HKWorkoutSessionLocationTypeIndoor = 2,
-        HKWorkoutSessionLocationTypeOutdoor = 3,
+        #[doc(alias = "HKWorkoutSessionLocationTypeUnknown")]
+        Unknown = 1,
+        #[doc(alias = "HKWorkoutSessionLocationTypeIndoor")]
+        Indoor = 2,
+        #[doc(alias = "HKWorkoutSessionLocationTypeOutdoor")]
+        Outdoor = 3,
     }
 );
 

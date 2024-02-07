@@ -8,8 +8,10 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum ASCredentialServiceIdentifierType {
-        ASCredentialServiceIdentifierTypeDomain = 0,
-        ASCredentialServiceIdentifierTypeURL = 1,
+        #[doc(alias = "ASCredentialServiceIdentifierTypeDomain")]
+        Domain = 0,
+        #[doc(alias = "ASCredentialServiceIdentifierTypeURL")]
+        URL = 1,
     }
 );
 

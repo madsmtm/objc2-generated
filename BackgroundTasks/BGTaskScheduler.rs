@@ -9,9 +9,12 @@ extern_static!(BGTaskSchedulerErrorDomain: &'static NSErrorDomain);
 ns_error_enum!(
     #[underlying(NSInteger)]
     pub enum BGTaskSchedulerErrorCode {
-        BGTaskSchedulerErrorCodeUnavailable = 1,
-        BGTaskSchedulerErrorCodeTooManyPendingTaskRequests = 2,
-        BGTaskSchedulerErrorCodeNotPermitted = 3,
+        #[doc(alias = "BGTaskSchedulerErrorCodeUnavailable")]
+        Unavailable = 1,
+        #[doc(alias = "BGTaskSchedulerErrorCodeTooManyPendingTaskRequests")]
+        TooManyPendingTaskRequests = 2,
+        #[doc(alias = "BGTaskSchedulerErrorCodeNotPermitted")]
+        NotPermitted = 3,
     }
 );
 

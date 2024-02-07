@@ -7,8 +7,10 @@ use crate::Metal::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MTLIOCompressionStatus {
-        MTLIOCompressionStatusComplete = 0,
-        MTLIOCompressionStatusError = 1,
+        #[doc(alias = "MTLIOCompressionStatusComplete")]
+        Complete = 0,
+        #[doc(alias = "MTLIOCompressionStatusError")]
+        Error = 1,
     }
 );
 

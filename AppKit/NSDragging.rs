@@ -8,37 +8,54 @@ use crate::Foundation::*;
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSDragOperation {
-        NSDragOperationNone = 0,
-        NSDragOperationCopy = 1,
-        NSDragOperationLink = 2,
-        NSDragOperationGeneric = 4,
-        NSDragOperationPrivate = 8,
-        NSDragOperationMove = 16,
-        NSDragOperationDelete = 32,
-        NSDragOperationEvery = NSUIntegerMax as _,
+        #[doc(alias = "NSDragOperationNone")]
+        None = 0,
+        #[doc(alias = "NSDragOperationCopy")]
+        Copy = 1,
+        #[doc(alias = "NSDragOperationLink")]
+        Link = 2,
+        #[doc(alias = "NSDragOperationGeneric")]
+        Generic = 4,
+        #[doc(alias = "NSDragOperationPrivate")]
+        Private = 8,
+        #[doc(alias = "NSDragOperationMove")]
+        Move = 16,
+        #[doc(alias = "NSDragOperationDelete")]
+        Delete = 32,
+        #[doc(alias = "NSDragOperationEvery")]
+        Every = NSUIntegerMax as _,
         #[deprecated]
-        NSDragOperationAll_Obsolete = 15,
+        #[doc(alias = "NSDragOperationAll_Obsolete")]
+        All_Obsolete = 15,
         #[deprecated]
-        NSDragOperationAll = NSDragOperation::NSDragOperationAll_Obsolete.0,
+        #[doc(alias = "NSDragOperationAll")]
+        All = NSDragOperation::All_Obsolete.0,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSDraggingFormation {
-        NSDraggingFormationDefault = 0,
-        NSDraggingFormationNone = 1,
-        NSDraggingFormationPile = 2,
-        NSDraggingFormationList = 3,
-        NSDraggingFormationStack = 4,
+        #[doc(alias = "NSDraggingFormationDefault")]
+        Default = 0,
+        #[doc(alias = "NSDraggingFormationNone")]
+        None = 1,
+        #[doc(alias = "NSDraggingFormationPile")]
+        Pile = 2,
+        #[doc(alias = "NSDraggingFormationList")]
+        List = 3,
+        #[doc(alias = "NSDraggingFormationStack")]
+        Stack = 4,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSDraggingContext {
-        NSDraggingContextOutsideApplication = 0,
-        NSDraggingContextWithinApplication = 1,
+        #[doc(alias = "NSDraggingContextOutsideApplication")]
+        OutsideApplication = 0,
+        #[doc(alias = "NSDraggingContextWithinApplication")]
+        WithinApplication = 1,
     }
 );
 
@@ -53,9 +70,12 @@ ns_options!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSSpringLoadingHighlight {
-        NSSpringLoadingHighlightNone = 0,
-        NSSpringLoadingHighlightStandard = 1,
-        NSSpringLoadingHighlightEmphasized = 2,
+        #[doc(alias = "NSSpringLoadingHighlightNone")]
+        None = 0,
+        #[doc(alias = "NSSpringLoadingHighlightStandard")]
+        Standard = 1,
+        #[doc(alias = "NSSpringLoadingHighlightEmphasized")]
+        Emphasized = 2,
     }
 );
 

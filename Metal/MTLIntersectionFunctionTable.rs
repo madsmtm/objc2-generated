@@ -7,15 +7,24 @@ use crate::Metal::*;
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum MTLIntersectionFunctionSignature {
-        MTLIntersectionFunctionSignatureNone = 0,
-        MTLIntersectionFunctionSignatureInstancing = 1 << 0,
-        MTLIntersectionFunctionSignatureTriangleData = 1 << 1,
-        MTLIntersectionFunctionSignatureWorldSpaceData = 1 << 2,
-        MTLIntersectionFunctionSignatureInstanceMotion = 1 << 3,
-        MTLIntersectionFunctionSignaturePrimitiveMotion = 1 << 4,
-        MTLIntersectionFunctionSignatureExtendedLimits = 1 << 5,
-        MTLIntersectionFunctionSignatureMaxLevels = 1 << 6,
-        MTLIntersectionFunctionSignatureCurveData = 1 << 7,
+        #[doc(alias = "MTLIntersectionFunctionSignatureNone")]
+        None = 0,
+        #[doc(alias = "MTLIntersectionFunctionSignatureInstancing")]
+        Instancing = 1 << 0,
+        #[doc(alias = "MTLIntersectionFunctionSignatureTriangleData")]
+        TriangleData = 1 << 1,
+        #[doc(alias = "MTLIntersectionFunctionSignatureWorldSpaceData")]
+        WorldSpaceData = 1 << 2,
+        #[doc(alias = "MTLIntersectionFunctionSignatureInstanceMotion")]
+        InstanceMotion = 1 << 3,
+        #[doc(alias = "MTLIntersectionFunctionSignaturePrimitiveMotion")]
+        PrimitiveMotion = 1 << 4,
+        #[doc(alias = "MTLIntersectionFunctionSignatureExtendedLimits")]
+        ExtendedLimits = 1 << 5,
+        #[doc(alias = "MTLIntersectionFunctionSignatureMaxLevels")]
+        MaxLevels = 1 << 6,
+        #[doc(alias = "MTLIntersectionFunctionSignatureCurveData")]
+        CurveData = 1 << 7,
     }
 );
 

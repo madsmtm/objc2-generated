@@ -10,17 +10,23 @@ ns_closed_enum!(
     #[deprecated = "Hosted content is no longer supported"]
     pub enum SKDownloadState {
         #[deprecated = "Hosted content is no longer supported"]
-        SKDownloadStateWaiting = 0,
+        #[doc(alias = "SKDownloadStateWaiting")]
+        Waiting = 0,
         #[deprecated = "Hosted content is no longer supported"]
-        SKDownloadStateActive = 1,
+        #[doc(alias = "SKDownloadStateActive")]
+        Active = 1,
         #[deprecated = "Hosted content is no longer supported"]
-        SKDownloadStatePaused = 2,
+        #[doc(alias = "SKDownloadStatePaused")]
+        Paused = 2,
         #[deprecated = "Hosted content is no longer supported"]
-        SKDownloadStateFinished = 3,
+        #[doc(alias = "SKDownloadStateFinished")]
+        Finished = 3,
         #[deprecated = "Hosted content is no longer supported"]
-        SKDownloadStateFailed = 4,
+        #[doc(alias = "SKDownloadStateFailed")]
+        Failed = 4,
         #[deprecated = "Hosted content is no longer supported"]
-        SKDownloadStateCancelled = 5,
+        #[doc(alias = "SKDownloadStateCancelled")]
+        Cancelled = 5,
     }
 );
 

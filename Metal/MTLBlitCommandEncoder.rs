@@ -7,10 +7,14 @@ use crate::Metal::*;
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum MTLBlitOption {
-        MTLBlitOptionNone = 0,
-        MTLBlitOptionDepthFromDepthStencil = 1 << 0,
-        MTLBlitOptionStencilFromDepthStencil = 1 << 1,
-        MTLBlitOptionRowLinearPVRTC = 1 << 2,
+        #[doc(alias = "MTLBlitOptionNone")]
+        None = 0,
+        #[doc(alias = "MTLBlitOptionDepthFromDepthStencil")]
+        DepthFromDepthStencil = 1 << 0,
+        #[doc(alias = "MTLBlitOptionStencilFromDepthStencil")]
+        StencilFromDepthStencil = 1 << 1,
+        #[doc(alias = "MTLBlitOptionRowLinearPVRTC")]
+        RowLinearPVRTC = 1 << 2,
     }
 );
 

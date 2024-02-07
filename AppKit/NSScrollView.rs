@@ -8,9 +8,12 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSScrollElasticity {
-        NSScrollElasticityAutomatic = 0,
-        NSScrollElasticityNone = 1,
-        NSScrollElasticityAllowed = 2,
+        #[doc(alias = "NSScrollElasticityAutomatic")]
+        Automatic = 0,
+        #[doc(alias = "NSScrollElasticityNone")]
+        None = 1,
+        #[doc(alias = "NSScrollElasticityAllowed")]
+        Allowed = 2,
     }
 );
 
@@ -417,9 +420,12 @@ extern_methods!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSScrollViewFindBarPosition {
-        NSScrollViewFindBarPositionAboveHorizontalRuler = 0,
-        NSScrollViewFindBarPositionAboveContent = 1,
-        NSScrollViewFindBarPositionBelowContent = 2,
+        #[doc(alias = "NSScrollViewFindBarPositionAboveHorizontalRuler")]
+        AboveHorizontalRuler = 0,
+        #[doc(alias = "NSScrollViewFindBarPositionAboveContent")]
+        AboveContent = 1,
+        #[doc(alias = "NSScrollViewFindBarPositionBelowContent")]
+        BelowContent = 2,
     }
 );
 

@@ -8,8 +8,10 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSPrintPanelResult {
-        NSPrintPanelResultCancelled = 0,
-        NSPrintPanelResultPrinted = 1,
+        #[doc(alias = "NSPrintPanelResultCancelled")]
+        Cancelled = 0,
+        #[doc(alias = "NSPrintPanelResultPrinted")]
+        Printed = 1,
     }
 );
 

@@ -23,10 +23,14 @@ ns_options!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSByteCountFormatterCountStyle {
-        NSByteCountFormatterCountStyleFile = 0,
-        NSByteCountFormatterCountStyleMemory = 1,
-        NSByteCountFormatterCountStyleDecimal = 2,
-        NSByteCountFormatterCountStyleBinary = 3,
+        #[doc(alias = "NSByteCountFormatterCountStyleFile")]
+        File = 0,
+        #[doc(alias = "NSByteCountFormatterCountStyleMemory")]
+        Memory = 1,
+        #[doc(alias = "NSByteCountFormatterCountStyleDecimal")]
+        Decimal = 2,
+        #[doc(alias = "NSByteCountFormatterCountStyleBinary")]
+        Binary = 3,
     }
 );
 

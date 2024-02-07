@@ -94,8 +94,10 @@ extern_methods!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum PHLivePhotoFrameType {
-        PHLivePhotoFrameTypePhoto = 0,
-        PHLivePhotoFrameTypeVideo = 1,
+        #[doc(alias = "PHLivePhotoFrameTypePhoto")]
+        Photo = 0,
+        #[doc(alias = "PHLivePhotoFrameTypeVideo")]
+        Video = 1,
     }
 );
 
@@ -123,8 +125,10 @@ ns_enum!(
     #[underlying(NSInteger)]
     pub enum PHLivePhotoEditingErrorCode {
         #[deprecated]
-        PHLivePhotoEditingErrorCodeUnknown = 0,
+        #[doc(alias = "PHLivePhotoEditingErrorCodeUnknown")]
+        Unknown = 0,
         #[deprecated]
-        PHLivePhotoEditingErrorCodeAborted = 1,
+        #[doc(alias = "PHLivePhotoEditingErrorCodeAborted")]
+        Aborted = 1,
     }
 );

@@ -7,24 +7,42 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum CLSContextType {
-        CLSContextTypeNone = 0,
-        CLSContextTypeApp = 1,
-        CLSContextTypeChapter = 2,
-        CLSContextTypeSection = 3,
-        CLSContextTypeLevel = 4,
-        CLSContextTypePage = 5,
-        CLSContextTypeTask = 6,
-        CLSContextTypeChallenge = 7,
-        CLSContextTypeQuiz = 8,
-        CLSContextTypeExercise = 9,
-        CLSContextTypeLesson = 10,
-        CLSContextTypeBook = 11,
-        CLSContextTypeGame = 12,
-        CLSContextTypeDocument = 13,
-        CLSContextTypeAudio = 14,
-        CLSContextTypeVideo = 15,
-        CLSContextTypeCourse = 16,
-        CLSContextTypeCustom = 17,
+        #[doc(alias = "CLSContextTypeNone")]
+        None = 0,
+        #[doc(alias = "CLSContextTypeApp")]
+        App = 1,
+        #[doc(alias = "CLSContextTypeChapter")]
+        Chapter = 2,
+        #[doc(alias = "CLSContextTypeSection")]
+        Section = 3,
+        #[doc(alias = "CLSContextTypeLevel")]
+        Level = 4,
+        #[doc(alias = "CLSContextTypePage")]
+        Page = 5,
+        #[doc(alias = "CLSContextTypeTask")]
+        Task = 6,
+        #[doc(alias = "CLSContextTypeChallenge")]
+        Challenge = 7,
+        #[doc(alias = "CLSContextTypeQuiz")]
+        Quiz = 8,
+        #[doc(alias = "CLSContextTypeExercise")]
+        Exercise = 9,
+        #[doc(alias = "CLSContextTypeLesson")]
+        Lesson = 10,
+        #[doc(alias = "CLSContextTypeBook")]
+        Book = 11,
+        #[doc(alias = "CLSContextTypeGame")]
+        Game = 12,
+        #[doc(alias = "CLSContextTypeDocument")]
+        Document = 13,
+        #[doc(alias = "CLSContextTypeAudio")]
+        Audio = 14,
+        #[doc(alias = "CLSContextTypeVideo")]
+        Video = 15,
+        #[doc(alias = "CLSContextTypeCourse")]
+        Course = 16,
+        #[doc(alias = "CLSContextTypeCustom")]
+        Custom = 17,
     }
 );
 

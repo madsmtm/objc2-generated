@@ -7,11 +7,16 @@ use crate::Metal::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MTLIOCompressionMethod {
-        MTLIOCompressionMethodZlib = 0,
-        MTLIOCompressionMethodLZFSE = 1,
-        MTLIOCompressionMethodLZ4 = 2,
-        MTLIOCompressionMethodLZMA = 3,
-        MTLIOCompressionMethodLZBitmap = 4,
+        #[doc(alias = "MTLIOCompressionMethodZlib")]
+        Zlib = 0,
+        #[doc(alias = "MTLIOCompressionMethodLZFSE")]
+        LZFSE = 1,
+        #[doc(alias = "MTLIOCompressionMethodLZ4")]
+        LZ4 = 2,
+        #[doc(alias = "MTLIOCompressionMethodLZMA")]
+        LZMA = 3,
+        #[doc(alias = "MTLIOCompressionMethodLZBitmap")]
+        LZBitmap = 4,
     }
 );
 
@@ -45,93 +50,151 @@ ns_enum!(
     #[underlying(NSUInteger)]
     #[deprecated = "Use MTLGPUFamily instead"]
     pub enum MTLFeatureSet {
-        MTLFeatureSet_iOS_GPUFamily1_v1 = 0,
-        MTLFeatureSet_iOS_GPUFamily2_v1 = 1,
-        MTLFeatureSet_iOS_GPUFamily1_v2 = 2,
-        MTLFeatureSet_iOS_GPUFamily2_v2 = 3,
-        MTLFeatureSet_iOS_GPUFamily3_v1 = 4,
-        MTLFeatureSet_iOS_GPUFamily1_v3 = 5,
-        MTLFeatureSet_iOS_GPUFamily2_v3 = 6,
-        MTLFeatureSet_iOS_GPUFamily3_v2 = 7,
-        MTLFeatureSet_iOS_GPUFamily1_v4 = 8,
-        MTLFeatureSet_iOS_GPUFamily2_v4 = 9,
-        MTLFeatureSet_iOS_GPUFamily3_v3 = 10,
-        MTLFeatureSet_iOS_GPUFamily4_v1 = 11,
-        MTLFeatureSet_iOS_GPUFamily1_v5 = 12,
-        MTLFeatureSet_iOS_GPUFamily2_v5 = 13,
-        MTLFeatureSet_iOS_GPUFamily3_v4 = 14,
-        MTLFeatureSet_iOS_GPUFamily4_v2 = 15,
-        MTLFeatureSet_iOS_GPUFamily5_v1 = 16,
-        MTLFeatureSet_macOS_GPUFamily1_v1 = 10000,
-        MTLFeatureSet_OSX_GPUFamily1_v1 = MTLFeatureSet::MTLFeatureSet_macOS_GPUFamily1_v1.0,
-        MTLFeatureSet_macOS_GPUFamily1_v2 = 10001,
-        MTLFeatureSet_OSX_GPUFamily1_v2 = MTLFeatureSet::MTLFeatureSet_macOS_GPUFamily1_v2.0,
-        MTLFeatureSet_macOS_ReadWriteTextureTier2 = 10002,
-        MTLFeatureSet_OSX_ReadWriteTextureTier2 =
-            MTLFeatureSet::MTLFeatureSet_macOS_ReadWriteTextureTier2.0,
-        MTLFeatureSet_macOS_GPUFamily1_v3 = 10003,
-        MTLFeatureSet_macOS_GPUFamily1_v4 = 10004,
-        MTLFeatureSet_macOS_GPUFamily2_v1 = 10005,
-        MTLFeatureSet_tvOS_GPUFamily1_v1 = 30000,
-        MTLFeatureSet_TVOS_GPUFamily1_v1 = MTLFeatureSet::MTLFeatureSet_tvOS_GPUFamily1_v1.0,
-        MTLFeatureSet_tvOS_GPUFamily1_v2 = 30001,
-        MTLFeatureSet_tvOS_GPUFamily1_v3 = 30002,
-        MTLFeatureSet_tvOS_GPUFamily2_v1 = 30003,
-        MTLFeatureSet_tvOS_GPUFamily1_v4 = 30004,
-        MTLFeatureSet_tvOS_GPUFamily2_v2 = 30005,
+        #[doc(alias = "MTLFeatureSet_iOS_GPUFamily1_v1")]
+        _iOS_GPUFamily1_v1 = 0,
+        #[doc(alias = "MTLFeatureSet_iOS_GPUFamily2_v1")]
+        _iOS_GPUFamily2_v1 = 1,
+        #[doc(alias = "MTLFeatureSet_iOS_GPUFamily1_v2")]
+        _iOS_GPUFamily1_v2 = 2,
+        #[doc(alias = "MTLFeatureSet_iOS_GPUFamily2_v2")]
+        _iOS_GPUFamily2_v2 = 3,
+        #[doc(alias = "MTLFeatureSet_iOS_GPUFamily3_v1")]
+        _iOS_GPUFamily3_v1 = 4,
+        #[doc(alias = "MTLFeatureSet_iOS_GPUFamily1_v3")]
+        _iOS_GPUFamily1_v3 = 5,
+        #[doc(alias = "MTLFeatureSet_iOS_GPUFamily2_v3")]
+        _iOS_GPUFamily2_v3 = 6,
+        #[doc(alias = "MTLFeatureSet_iOS_GPUFamily3_v2")]
+        _iOS_GPUFamily3_v2 = 7,
+        #[doc(alias = "MTLFeatureSet_iOS_GPUFamily1_v4")]
+        _iOS_GPUFamily1_v4 = 8,
+        #[doc(alias = "MTLFeatureSet_iOS_GPUFamily2_v4")]
+        _iOS_GPUFamily2_v4 = 9,
+        #[doc(alias = "MTLFeatureSet_iOS_GPUFamily3_v3")]
+        _iOS_GPUFamily3_v3 = 10,
+        #[doc(alias = "MTLFeatureSet_iOS_GPUFamily4_v1")]
+        _iOS_GPUFamily4_v1 = 11,
+        #[doc(alias = "MTLFeatureSet_iOS_GPUFamily1_v5")]
+        _iOS_GPUFamily1_v5 = 12,
+        #[doc(alias = "MTLFeatureSet_iOS_GPUFamily2_v5")]
+        _iOS_GPUFamily2_v5 = 13,
+        #[doc(alias = "MTLFeatureSet_iOS_GPUFamily3_v4")]
+        _iOS_GPUFamily3_v4 = 14,
+        #[doc(alias = "MTLFeatureSet_iOS_GPUFamily4_v2")]
+        _iOS_GPUFamily4_v2 = 15,
+        #[doc(alias = "MTLFeatureSet_iOS_GPUFamily5_v1")]
+        _iOS_GPUFamily5_v1 = 16,
+        #[doc(alias = "MTLFeatureSet_macOS_GPUFamily1_v1")]
+        _macOS_GPUFamily1_v1 = 10000,
+        #[doc(alias = "MTLFeatureSet_OSX_GPUFamily1_v1")]
+        _OSX_GPUFamily1_v1 = MTLFeatureSet::_macOS_GPUFamily1_v1.0,
+        #[doc(alias = "MTLFeatureSet_macOS_GPUFamily1_v2")]
+        _macOS_GPUFamily1_v2 = 10001,
+        #[doc(alias = "MTLFeatureSet_OSX_GPUFamily1_v2")]
+        _OSX_GPUFamily1_v2 = MTLFeatureSet::_macOS_GPUFamily1_v2.0,
+        #[doc(alias = "MTLFeatureSet_macOS_ReadWriteTextureTier2")]
+        _macOS_ReadWriteTextureTier2 = 10002,
+        #[doc(alias = "MTLFeatureSet_OSX_ReadWriteTextureTier2")]
+        _OSX_ReadWriteTextureTier2 = MTLFeatureSet::_macOS_ReadWriteTextureTier2.0,
+        #[doc(alias = "MTLFeatureSet_macOS_GPUFamily1_v3")]
+        _macOS_GPUFamily1_v3 = 10003,
+        #[doc(alias = "MTLFeatureSet_macOS_GPUFamily1_v4")]
+        _macOS_GPUFamily1_v4 = 10004,
+        #[doc(alias = "MTLFeatureSet_macOS_GPUFamily2_v1")]
+        _macOS_GPUFamily2_v1 = 10005,
+        #[doc(alias = "MTLFeatureSet_tvOS_GPUFamily1_v1")]
+        _tvOS_GPUFamily1_v1 = 30000,
+        #[doc(alias = "MTLFeatureSet_TVOS_GPUFamily1_v1")]
+        _TVOS_GPUFamily1_v1 = MTLFeatureSet::_tvOS_GPUFamily1_v1.0,
+        #[doc(alias = "MTLFeatureSet_tvOS_GPUFamily1_v2")]
+        _tvOS_GPUFamily1_v2 = 30001,
+        #[doc(alias = "MTLFeatureSet_tvOS_GPUFamily1_v3")]
+        _tvOS_GPUFamily1_v3 = 30002,
+        #[doc(alias = "MTLFeatureSet_tvOS_GPUFamily2_v1")]
+        _tvOS_GPUFamily2_v1 = 30003,
+        #[doc(alias = "MTLFeatureSet_tvOS_GPUFamily1_v4")]
+        _tvOS_GPUFamily1_v4 = 30004,
+        #[doc(alias = "MTLFeatureSet_tvOS_GPUFamily2_v2")]
+        _tvOS_GPUFamily2_v2 = 30005,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MTLGPUFamily {
-        MTLGPUFamilyApple1 = 1001,
-        MTLGPUFamilyApple2 = 1002,
-        MTLGPUFamilyApple3 = 1003,
-        MTLGPUFamilyApple4 = 1004,
-        MTLGPUFamilyApple5 = 1005,
-        MTLGPUFamilyApple6 = 1006,
-        MTLGPUFamilyApple7 = 1007,
-        MTLGPUFamilyApple8 = 1008,
-        MTLGPUFamilyApple9 = 1009,
+        #[doc(alias = "MTLGPUFamilyApple1")]
+        Apple1 = 1001,
+        #[doc(alias = "MTLGPUFamilyApple2")]
+        Apple2 = 1002,
+        #[doc(alias = "MTLGPUFamilyApple3")]
+        Apple3 = 1003,
+        #[doc(alias = "MTLGPUFamilyApple4")]
+        Apple4 = 1004,
+        #[doc(alias = "MTLGPUFamilyApple5")]
+        Apple5 = 1005,
+        #[doc(alias = "MTLGPUFamilyApple6")]
+        Apple6 = 1006,
+        #[doc(alias = "MTLGPUFamilyApple7")]
+        Apple7 = 1007,
+        #[doc(alias = "MTLGPUFamilyApple8")]
+        Apple8 = 1008,
+        #[doc(alias = "MTLGPUFamilyApple9")]
+        Apple9 = 1009,
         #[deprecated]
-        MTLGPUFamilyMac1 = 2001,
-        MTLGPUFamilyMac2 = 2002,
-        MTLGPUFamilyCommon1 = 3001,
-        MTLGPUFamilyCommon2 = 3002,
-        MTLGPUFamilyCommon3 = 3003,
+        #[doc(alias = "MTLGPUFamilyMac1")]
+        Mac1 = 2001,
+        #[doc(alias = "MTLGPUFamilyMac2")]
+        Mac2 = 2002,
+        #[doc(alias = "MTLGPUFamilyCommon1")]
+        Common1 = 3001,
+        #[doc(alias = "MTLGPUFamilyCommon2")]
+        Common2 = 3002,
+        #[doc(alias = "MTLGPUFamilyCommon3")]
+        Common3 = 3003,
         #[deprecated]
-        MTLGPUFamilyMacCatalyst1 = 4001,
+        #[doc(alias = "MTLGPUFamilyMacCatalyst1")]
+        MacCatalyst1 = 4001,
         #[deprecated]
-        MTLGPUFamilyMacCatalyst2 = 4002,
-        MTLGPUFamilyMetal3 = 5001,
+        #[doc(alias = "MTLGPUFamilyMacCatalyst2")]
+        MacCatalyst2 = 4002,
+        #[doc(alias = "MTLGPUFamilyMetal3")]
+        Metal3 = 5001,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLDeviceLocation {
-        MTLDeviceLocationBuiltIn = 0,
-        MTLDeviceLocationSlot = 1,
-        MTLDeviceLocationExternal = 2,
-        MTLDeviceLocationUnspecified = NSUIntegerMax as _,
+        #[doc(alias = "MTLDeviceLocationBuiltIn")]
+        BuiltIn = 0,
+        #[doc(alias = "MTLDeviceLocationSlot")]
+        Slot = 1,
+        #[doc(alias = "MTLDeviceLocationExternal")]
+        External = 2,
+        #[doc(alias = "MTLDeviceLocationUnspecified")]
+        Unspecified = NSUIntegerMax as _,
     }
 );
 
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum MTLPipelineOption {
-        MTLPipelineOptionNone = 0,
-        MTLPipelineOptionArgumentInfo = 1 << 0,
-        MTLPipelineOptionBufferTypeInfo = 1 << 1,
-        MTLPipelineOptionFailOnBinaryArchiveMiss = 1 << 2,
+        #[doc(alias = "MTLPipelineOptionNone")]
+        None = 0,
+        #[doc(alias = "MTLPipelineOptionArgumentInfo")]
+        ArgumentInfo = 1 << 0,
+        #[doc(alias = "MTLPipelineOptionBufferTypeInfo")]
+        BufferTypeInfo = 1 << 1,
+        #[doc(alias = "MTLPipelineOptionFailOnBinaryArchiveMiss")]
+        FailOnBinaryArchiveMiss = 1 << 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLReadWriteTextureTier {
-        MTLReadWriteTextureTierNone = 0,
+        #[doc(alias = "MTLReadWriteTextureTierNone")]
+        None = 0,
         MTLReadWriteTextureTier1 = 1,
         MTLReadWriteTextureTier2 = 2,
     }
@@ -148,8 +211,10 @@ ns_enum!(
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLSparseTextureRegionAlignmentMode {
-        MTLSparseTextureRegionAlignmentModeOutward = 0,
-        MTLSparseTextureRegionAlignmentModeInward = 1,
+        #[doc(alias = "MTLSparseTextureRegionAlignmentModeOutward")]
+        Outward = 0,
+        #[doc(alias = "MTLSparseTextureRegionAlignmentModeInward")]
+        Inward = 1,
     }
 );
 
@@ -174,11 +239,16 @@ extern_struct!(
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLCounterSamplingPoint {
-        MTLCounterSamplingPointAtStageBoundary = 0,
-        MTLCounterSamplingPointAtDrawBoundary = 1,
-        MTLCounterSamplingPointAtDispatchBoundary = 2,
-        MTLCounterSamplingPointAtTileDispatchBoundary = 3,
-        MTLCounterSamplingPointAtBlitBoundary = 4,
+        #[doc(alias = "MTLCounterSamplingPointAtStageBoundary")]
+        AtStageBoundary = 0,
+        #[doc(alias = "MTLCounterSamplingPointAtDrawBoundary")]
+        AtDrawBoundary = 1,
+        #[doc(alias = "MTLCounterSamplingPointAtDispatchBoundary")]
+        AtDispatchBoundary = 2,
+        #[doc(alias = "MTLCounterSamplingPointAtTileDispatchBoundary")]
+        AtTileDispatchBoundary = 3,
+        #[doc(alias = "MTLCounterSamplingPointAtBlitBoundary")]
+        AtBlitBoundary = 4,
     }
 );
 

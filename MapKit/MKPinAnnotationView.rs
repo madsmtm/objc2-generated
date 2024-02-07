@@ -12,11 +12,14 @@ ns_enum!(
     #[deprecated = "Use MKPinAnnotationView's pinTintColor instead"]
     pub enum MKPinAnnotationColor {
         #[deprecated = "Use MKPinAnnotationView's pinTintColor instead"]
-        MKPinAnnotationColorRed = 0,
+        #[doc(alias = "MKPinAnnotationColorRed")]
+        Red = 0,
         #[deprecated = "Use MKPinAnnotationView's pinTintColor instead"]
-        MKPinAnnotationColorGreen = 1,
+        #[doc(alias = "MKPinAnnotationColorGreen")]
+        Green = 1,
         #[deprecated = "Use MKPinAnnotationView's pinTintColor instead"]
-        MKPinAnnotationColorPurple = 2,
+        #[doc(alias = "MKPinAnnotationColorPurple")]
+        Purple = 2,
     }
 );
 

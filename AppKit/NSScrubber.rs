@@ -74,18 +74,24 @@ extern_protocol!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSScrubberMode {
-        NSScrubberModeFixed = 0,
-        NSScrubberModeFree = 1,
+        #[doc(alias = "NSScrubberModeFixed")]
+        Fixed = 0,
+        #[doc(alias = "NSScrubberModeFree")]
+        Free = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSScrubberAlignment {
-        NSScrubberAlignmentNone = 0,
-        NSScrubberAlignmentLeading = 1,
-        NSScrubberAlignmentTrailing = 2,
-        NSScrubberAlignmentCenter = 3,
+        #[doc(alias = "NSScrubberAlignmentNone")]
+        None = 0,
+        #[doc(alias = "NSScrubberAlignmentLeading")]
+        Leading = 1,
+        #[doc(alias = "NSScrubberAlignmentTrailing")]
+        Trailing = 2,
+        #[doc(alias = "NSScrubberAlignmentCenter")]
+        Center = 3,
     }
 );
 

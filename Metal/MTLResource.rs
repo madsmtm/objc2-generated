@@ -7,37 +7,50 @@ use crate::Metal::*;
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLPurgeableState {
-        MTLPurgeableStateKeepCurrent = 1,
-        MTLPurgeableStateNonVolatile = 2,
-        MTLPurgeableStateVolatile = 3,
-        MTLPurgeableStateEmpty = 4,
+        #[doc(alias = "MTLPurgeableStateKeepCurrent")]
+        KeepCurrent = 1,
+        #[doc(alias = "MTLPurgeableStateNonVolatile")]
+        NonVolatile = 2,
+        #[doc(alias = "MTLPurgeableStateVolatile")]
+        Volatile = 3,
+        #[doc(alias = "MTLPurgeableStateEmpty")]
+        Empty = 4,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLCPUCacheMode {
-        MTLCPUCacheModeDefaultCache = 0,
-        MTLCPUCacheModeWriteCombined = 1,
+        #[doc(alias = "MTLCPUCacheModeDefaultCache")]
+        DefaultCache = 0,
+        #[doc(alias = "MTLCPUCacheModeWriteCombined")]
+        WriteCombined = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLStorageMode {
-        MTLStorageModeShared = 0,
-        MTLStorageModeManaged = 1,
-        MTLStorageModePrivate = 2,
-        MTLStorageModeMemoryless = 3,
+        #[doc(alias = "MTLStorageModeShared")]
+        Shared = 0,
+        #[doc(alias = "MTLStorageModeManaged")]
+        Managed = 1,
+        #[doc(alias = "MTLStorageModePrivate")]
+        Private = 2,
+        #[doc(alias = "MTLStorageModeMemoryless")]
+        Memoryless = 3,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLHazardTrackingMode {
-        MTLHazardTrackingModeDefault = 0,
-        MTLHazardTrackingModeUntracked = 1,
-        MTLHazardTrackingModeTracked = 2,
+        #[doc(alias = "MTLHazardTrackingModeDefault")]
+        Default = 0,
+        #[doc(alias = "MTLHazardTrackingModeUntracked")]
+        Untracked = 1,
+        #[doc(alias = "MTLHazardTrackingModeTracked")]
+        Tracked = 2,
     }
 );
 
@@ -45,26 +58,20 @@ ns_options!(
     #[underlying(NSUInteger)]
     pub enum MTLResourceOptions {
         MTLResourceCPUCacheModeDefaultCache =
-            MTLCPUCacheMode::MTLCPUCacheModeDefaultCache.0 << MTLResourceCPUCacheModeShift,
+            MTLCPUCacheMode::DefaultCache.0 << MTLResourceCPUCacheModeShift,
         MTLResourceCPUCacheModeWriteCombined =
-            MTLCPUCacheMode::MTLCPUCacheModeWriteCombined.0 << MTLResourceCPUCacheModeShift,
-        MTLResourceStorageModeShared =
-            MTLStorageMode::MTLStorageModeShared.0 << MTLResourceStorageModeShift,
-        MTLResourceStorageModeManaged =
-            MTLStorageMode::MTLStorageModeManaged.0 << MTLResourceStorageModeShift,
-        MTLResourceStorageModePrivate =
-            MTLStorageMode::MTLStorageModePrivate.0 << MTLResourceStorageModeShift,
+            MTLCPUCacheMode::WriteCombined.0 << MTLResourceCPUCacheModeShift,
+        MTLResourceStorageModeShared = MTLStorageMode::Shared.0 << MTLResourceStorageModeShift,
+        MTLResourceStorageModeManaged = MTLStorageMode::Managed.0 << MTLResourceStorageModeShift,
+        MTLResourceStorageModePrivate = MTLStorageMode::Private.0 << MTLResourceStorageModeShift,
         MTLResourceStorageModeMemoryless =
-            MTLStorageMode::MTLStorageModeMemoryless.0 << MTLResourceStorageModeShift,
-        MTLResourceHazardTrackingModeDefault = MTLHazardTrackingMode::MTLHazardTrackingModeDefault
-            .0
-            << MTLResourceHazardTrackingModeShift,
+            MTLStorageMode::Memoryless.0 << MTLResourceStorageModeShift,
+        MTLResourceHazardTrackingModeDefault =
+            MTLHazardTrackingMode::Default.0 << MTLResourceHazardTrackingModeShift,
         MTLResourceHazardTrackingModeUntracked =
-            MTLHazardTrackingMode::MTLHazardTrackingModeUntracked.0
-                << MTLResourceHazardTrackingModeShift,
-        MTLResourceHazardTrackingModeTracked = MTLHazardTrackingMode::MTLHazardTrackingModeTracked
-            .0
-            << MTLResourceHazardTrackingModeShift,
+            MTLHazardTrackingMode::Untracked.0 << MTLResourceHazardTrackingModeShift,
+        MTLResourceHazardTrackingModeTracked =
+            MTLHazardTrackingMode::Tracked.0 << MTLResourceHazardTrackingModeShift,
         #[deprecated]
         MTLResourceOptionCPUCacheModeDefault =
             MTLResourceOptions::MTLResourceCPUCacheModeDefaultCache.0,

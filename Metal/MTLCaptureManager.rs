@@ -9,17 +9,22 @@ extern_static!(MTLCaptureErrorDomain: &'static NSErrorDomain);
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MTLCaptureError {
-        MTLCaptureErrorNotSupported = 1,
-        MTLCaptureErrorAlreadyCapturing = 2,
-        MTLCaptureErrorInvalidDescriptor = 3,
+        #[doc(alias = "MTLCaptureErrorNotSupported")]
+        NotSupported = 1,
+        #[doc(alias = "MTLCaptureErrorAlreadyCapturing")]
+        AlreadyCapturing = 2,
+        #[doc(alias = "MTLCaptureErrorInvalidDescriptor")]
+        InvalidDescriptor = 3,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MTLCaptureDestination {
-        MTLCaptureDestinationDeveloperTools = 1,
-        MTLCaptureDestinationGPUTraceDocument = 2,
+        #[doc(alias = "MTLCaptureDestinationDeveloperTools")]
+        DeveloperTools = 1,
+        #[doc(alias = "MTLCaptureDestinationGPUTraceDocument")]
+        GPUTraceDocument = 2,
     }
 );
 

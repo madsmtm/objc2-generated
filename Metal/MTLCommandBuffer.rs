@@ -7,12 +7,18 @@ use crate::Metal::*;
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLCommandBufferStatus {
-        MTLCommandBufferStatusNotEnqueued = 0,
-        MTLCommandBufferStatusEnqueued = 1,
-        MTLCommandBufferStatusCommitted = 2,
-        MTLCommandBufferStatusScheduled = 3,
-        MTLCommandBufferStatusCompleted = 4,
-        MTLCommandBufferStatusError = 5,
+        #[doc(alias = "MTLCommandBufferStatusNotEnqueued")]
+        NotEnqueued = 0,
+        #[doc(alias = "MTLCommandBufferStatusEnqueued")]
+        Enqueued = 1,
+        #[doc(alias = "MTLCommandBufferStatusCommitted")]
+        Committed = 2,
+        #[doc(alias = "MTLCommandBufferStatusScheduled")]
+        Scheduled = 3,
+        #[doc(alias = "MTLCommandBufferStatusCompleted")]
+        Completed = 4,
+        #[doc(alias = "MTLCommandBufferStatusError")]
+        Error = 5,
     }
 );
 
@@ -21,19 +27,31 @@ extern_static!(MTLCommandBufferErrorDomain: &'static NSErrorDomain);
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLCommandBufferError {
-        MTLCommandBufferErrorNone = 0,
-        MTLCommandBufferErrorInternal = 1,
-        MTLCommandBufferErrorTimeout = 2,
-        MTLCommandBufferErrorPageFault = 3,
+        #[doc(alias = "MTLCommandBufferErrorNone")]
+        None = 0,
+        #[doc(alias = "MTLCommandBufferErrorInternal")]
+        Internal = 1,
+        #[doc(alias = "MTLCommandBufferErrorTimeout")]
+        Timeout = 2,
+        #[doc(alias = "MTLCommandBufferErrorPageFault")]
+        PageFault = 3,
         #[deprecated]
-        MTLCommandBufferErrorBlacklisted = 4,
-        MTLCommandBufferErrorAccessRevoked = 4,
-        MTLCommandBufferErrorNotPermitted = 7,
-        MTLCommandBufferErrorOutOfMemory = 8,
-        MTLCommandBufferErrorInvalidResource = 9,
-        MTLCommandBufferErrorMemoryless = 10,
-        MTLCommandBufferErrorDeviceRemoved = 11,
-        MTLCommandBufferErrorStackOverflow = 12,
+        #[doc(alias = "MTLCommandBufferErrorBlacklisted")]
+        Blacklisted = 4,
+        #[doc(alias = "MTLCommandBufferErrorAccessRevoked")]
+        AccessRevoked = 4,
+        #[doc(alias = "MTLCommandBufferErrorNotPermitted")]
+        NotPermitted = 7,
+        #[doc(alias = "MTLCommandBufferErrorOutOfMemory")]
+        OutOfMemory = 8,
+        #[doc(alias = "MTLCommandBufferErrorInvalidResource")]
+        InvalidResource = 9,
+        #[doc(alias = "MTLCommandBufferErrorMemoryless")]
+        Memoryless = 10,
+        #[doc(alias = "MTLCommandBufferErrorDeviceRemoved")]
+        DeviceRemoved = 11,
+        #[doc(alias = "MTLCommandBufferErrorStackOverflow")]
+        StackOverflow = 12,
     }
 );
 
@@ -42,19 +60,26 @@ extern_static!(MTLCommandBufferEncoderInfoErrorKey: &'static NSErrorUserInfoKey)
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum MTLCommandBufferErrorOption {
-        MTLCommandBufferErrorOptionNone = 0,
-        MTLCommandBufferErrorOptionEncoderExecutionStatus = 1 << 0,
+        #[doc(alias = "MTLCommandBufferErrorOptionNone")]
+        None = 0,
+        #[doc(alias = "MTLCommandBufferErrorOptionEncoderExecutionStatus")]
+        EncoderExecutionStatus = 1 << 0,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MTLCommandEncoderErrorState {
-        MTLCommandEncoderErrorStateUnknown = 0,
-        MTLCommandEncoderErrorStateCompleted = 1,
-        MTLCommandEncoderErrorStateAffected = 2,
-        MTLCommandEncoderErrorStatePending = 3,
-        MTLCommandEncoderErrorStateFaulted = 4,
+        #[doc(alias = "MTLCommandEncoderErrorStateUnknown")]
+        Unknown = 0,
+        #[doc(alias = "MTLCommandEncoderErrorStateCompleted")]
+        Completed = 1,
+        #[doc(alias = "MTLCommandEncoderErrorStateAffected")]
+        Affected = 2,
+        #[doc(alias = "MTLCommandEncoderErrorStatePending")]
+        Pending = 3,
+        #[doc(alias = "MTLCommandEncoderErrorStateFaulted")]
+        Faulted = 4,
     }
 );
 
@@ -128,8 +153,10 @@ pub type MTLCommandBufferHandler =
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLDispatchType {
-        MTLDispatchTypeSerial = 0,
-        MTLDispatchTypeConcurrent = 1,
+        #[doc(alias = "MTLDispatchTypeSerial")]
+        Serial = 0,
+        #[doc(alias = "MTLDispatchTypeConcurrent")]
+        Concurrent = 1,
     }
 );
 

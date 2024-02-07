@@ -7,9 +7,12 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSPersistentCloudKitContainerEventType {
-        NSPersistentCloudKitContainerEventTypeSetup = 0,
-        NSPersistentCloudKitContainerEventTypeImport = 1,
-        NSPersistentCloudKitContainerEventTypeExport = 2,
+        #[doc(alias = "NSPersistentCloudKitContainerEventTypeSetup")]
+        Setup = 0,
+        #[doc(alias = "NSPersistentCloudKitContainerEventTypeImport")]
+        Import = 1,
+        #[doc(alias = "NSPersistentCloudKitContainerEventTypeExport")]
+        Export = 2,
     }
 );
 

@@ -9,8 +9,10 @@ use crate::UniformTypeIdentifiers::*;
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum HKVisionPrescriptionType {
-        HKVisionPrescriptionTypeGlasses = 1,
-        HKVisionPrescriptionTypeContacts = 2,
+        #[doc(alias = "HKVisionPrescriptionTypeGlasses")]
+        Glasses = 1,
+        #[doc(alias = "HKVisionPrescriptionTypeContacts")]
+        Contacts = 2,
     }
 );
 

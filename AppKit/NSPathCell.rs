@@ -8,10 +8,13 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSPathStyle {
-        NSPathStyleStandard = 0,
-        NSPathStylePopUp = 2,
+        #[doc(alias = "NSPathStyleStandard")]
+        Standard = 0,
+        #[doc(alias = "NSPathStylePopUp")]
+        PopUp = 2,
         #[deprecated]
-        NSPathStyleNavigationBar = 1,
+        #[doc(alias = "NSPathStyleNavigationBar")]
+        NavigationBar = 1,
     }
 );
 

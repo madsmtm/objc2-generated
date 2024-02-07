@@ -7,28 +7,44 @@ use crate::Metal::*;
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLCompareFunction {
-        MTLCompareFunctionNever = 0,
-        MTLCompareFunctionLess = 1,
-        MTLCompareFunctionEqual = 2,
-        MTLCompareFunctionLessEqual = 3,
-        MTLCompareFunctionGreater = 4,
-        MTLCompareFunctionNotEqual = 5,
-        MTLCompareFunctionGreaterEqual = 6,
-        MTLCompareFunctionAlways = 7,
+        #[doc(alias = "MTLCompareFunctionNever")]
+        Never = 0,
+        #[doc(alias = "MTLCompareFunctionLess")]
+        Less = 1,
+        #[doc(alias = "MTLCompareFunctionEqual")]
+        Equal = 2,
+        #[doc(alias = "MTLCompareFunctionLessEqual")]
+        LessEqual = 3,
+        #[doc(alias = "MTLCompareFunctionGreater")]
+        Greater = 4,
+        #[doc(alias = "MTLCompareFunctionNotEqual")]
+        NotEqual = 5,
+        #[doc(alias = "MTLCompareFunctionGreaterEqual")]
+        GreaterEqual = 6,
+        #[doc(alias = "MTLCompareFunctionAlways")]
+        Always = 7,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLStencilOperation {
-        MTLStencilOperationKeep = 0,
-        MTLStencilOperationZero = 1,
-        MTLStencilOperationReplace = 2,
-        MTLStencilOperationIncrementClamp = 3,
-        MTLStencilOperationDecrementClamp = 4,
-        MTLStencilOperationInvert = 5,
-        MTLStencilOperationIncrementWrap = 6,
-        MTLStencilOperationDecrementWrap = 7,
+        #[doc(alias = "MTLStencilOperationKeep")]
+        Keep = 0,
+        #[doc(alias = "MTLStencilOperationZero")]
+        Zero = 1,
+        #[doc(alias = "MTLStencilOperationReplace")]
+        Replace = 2,
+        #[doc(alias = "MTLStencilOperationIncrementClamp")]
+        IncrementClamp = 3,
+        #[doc(alias = "MTLStencilOperationDecrementClamp")]
+        DecrementClamp = 4,
+        #[doc(alias = "MTLStencilOperationInvert")]
+        Invert = 5,
+        #[doc(alias = "MTLStencilOperationIncrementWrap")]
+        IncrementWrap = 6,
+        #[doc(alias = "MTLStencilOperationDecrementWrap")]
+        DecrementWrap = 7,
     }
 );
 

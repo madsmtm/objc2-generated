@@ -10,9 +10,12 @@ use crate::UniformTypeIdentifiers::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum PHImageContentMode {
-        PHImageContentModeAspectFit = 0,
-        PHImageContentModeAspectFill = 1,
-        PHImageContentModeDefault = PHImageContentMode::PHImageContentModeAspectFit.0,
+        #[doc(alias = "PHImageContentModeAspectFit")]
+        AspectFit = 0,
+        #[doc(alias = "PHImageContentModeAspectFill")]
+        AspectFill = 1,
+        #[doc(alias = "PHImageContentModeDefault")]
+        Default = PHImageContentMode::AspectFit.0,
     }
 );
 
@@ -20,9 +23,12 @@ ns_enum!(
     #[underlying(NSInteger)]
     pub enum PHCollectionListType {
         #[deprecated = "Will be removed in a future release"]
-        PHCollectionListTypeMomentList = 1,
-        PHCollectionListTypeFolder = 2,
-        PHCollectionListTypeSmartFolder = 3,
+        #[doc(alias = "PHCollectionListTypeMomentList")]
+        MomentList = 1,
+        #[doc(alias = "PHCollectionListTypeFolder")]
+        Folder = 2,
+        #[doc(alias = "PHCollectionListTypeSmartFolder")]
+        SmartFolder = 3,
     }
 );
 
@@ -30,162 +36,251 @@ ns_enum!(
     #[underlying(NSInteger)]
     pub enum PHCollectionListSubtype {
         #[deprecated = "Will be removed in a future release"]
-        PHCollectionListSubtypeMomentListCluster = 1,
+        #[doc(alias = "PHCollectionListSubtypeMomentListCluster")]
+        MomentListCluster = 1,
         #[deprecated = "Will be removed in a future release"]
-        PHCollectionListSubtypeMomentListYear = 2,
-        PHCollectionListSubtypeRegularFolder = 100,
-        PHCollectionListSubtypeSmartFolderEvents = 200,
-        PHCollectionListSubtypeSmartFolderFaces = 201,
-        PHCollectionListSubtypeAny = NSIntegerMax as _,
+        #[doc(alias = "PHCollectionListSubtypeMomentListYear")]
+        MomentListYear = 2,
+        #[doc(alias = "PHCollectionListSubtypeRegularFolder")]
+        RegularFolder = 100,
+        #[doc(alias = "PHCollectionListSubtypeSmartFolderEvents")]
+        SmartFolderEvents = 200,
+        #[doc(alias = "PHCollectionListSubtypeSmartFolderFaces")]
+        SmartFolderFaces = 201,
+        #[doc(alias = "PHCollectionListSubtypeAny")]
+        Any = NSIntegerMax as _,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum PHCollectionEditOperation {
-        PHCollectionEditOperationDeleteContent = 1,
-        PHCollectionEditOperationRemoveContent = 2,
-        PHCollectionEditOperationAddContent = 3,
-        PHCollectionEditOperationCreateContent = 4,
-        PHCollectionEditOperationRearrangeContent = 5,
-        PHCollectionEditOperationDelete = 6,
-        PHCollectionEditOperationRename = 7,
+        #[doc(alias = "PHCollectionEditOperationDeleteContent")]
+        DeleteContent = 1,
+        #[doc(alias = "PHCollectionEditOperationRemoveContent")]
+        RemoveContent = 2,
+        #[doc(alias = "PHCollectionEditOperationAddContent")]
+        AddContent = 3,
+        #[doc(alias = "PHCollectionEditOperationCreateContent")]
+        CreateContent = 4,
+        #[doc(alias = "PHCollectionEditOperationRearrangeContent")]
+        RearrangeContent = 5,
+        #[doc(alias = "PHCollectionEditOperationDelete")]
+        Delete = 6,
+        #[doc(alias = "PHCollectionEditOperationRename")]
+        Rename = 7,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum PHAssetCollectionType {
-        PHAssetCollectionTypeAlbum = 1,
-        PHAssetCollectionTypeSmartAlbum = 2,
+        #[doc(alias = "PHAssetCollectionTypeAlbum")]
+        Album = 1,
+        #[doc(alias = "PHAssetCollectionTypeSmartAlbum")]
+        SmartAlbum = 2,
         #[deprecated = "Will be removed in a future release"]
-        PHAssetCollectionTypeMoment = 3,
+        #[doc(alias = "PHAssetCollectionTypeMoment")]
+        Moment = 3,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum PHAssetCollectionSubtype {
-        PHAssetCollectionSubtypeAlbumRegular = 2,
-        PHAssetCollectionSubtypeAlbumSyncedEvent = 3,
-        PHAssetCollectionSubtypeAlbumSyncedFaces = 4,
-        PHAssetCollectionSubtypeAlbumSyncedAlbum = 5,
-        PHAssetCollectionSubtypeAlbumImported = 6,
-        PHAssetCollectionSubtypeAlbumMyPhotoStream = 100,
-        PHAssetCollectionSubtypeAlbumCloudShared = 101,
-        PHAssetCollectionSubtypeSmartAlbumGeneric = 200,
-        PHAssetCollectionSubtypeSmartAlbumPanoramas = 201,
-        PHAssetCollectionSubtypeSmartAlbumVideos = 202,
-        PHAssetCollectionSubtypeSmartAlbumFavorites = 203,
-        PHAssetCollectionSubtypeSmartAlbumTimelapses = 204,
-        PHAssetCollectionSubtypeSmartAlbumAllHidden = 205,
-        PHAssetCollectionSubtypeSmartAlbumRecentlyAdded = 206,
-        PHAssetCollectionSubtypeSmartAlbumBursts = 207,
-        PHAssetCollectionSubtypeSmartAlbumSlomoVideos = 208,
-        PHAssetCollectionSubtypeSmartAlbumUserLibrary = 209,
-        PHAssetCollectionSubtypeSmartAlbumSelfPortraits = 210,
-        PHAssetCollectionSubtypeSmartAlbumScreenshots = 211,
-        PHAssetCollectionSubtypeSmartAlbumDepthEffect = 212,
-        PHAssetCollectionSubtypeSmartAlbumLivePhotos = 213,
-        PHAssetCollectionSubtypeSmartAlbumAnimated = 214,
-        PHAssetCollectionSubtypeSmartAlbumLongExposures = 215,
-        PHAssetCollectionSubtypeSmartAlbumUnableToUpload = 216,
-        PHAssetCollectionSubtypeSmartAlbumRAW = 217,
-        PHAssetCollectionSubtypeSmartAlbumCinematic = 218,
-        PHAssetCollectionSubtypeAny = NSIntegerMax as _,
+        #[doc(alias = "PHAssetCollectionSubtypeAlbumRegular")]
+        AlbumRegular = 2,
+        #[doc(alias = "PHAssetCollectionSubtypeAlbumSyncedEvent")]
+        AlbumSyncedEvent = 3,
+        #[doc(alias = "PHAssetCollectionSubtypeAlbumSyncedFaces")]
+        AlbumSyncedFaces = 4,
+        #[doc(alias = "PHAssetCollectionSubtypeAlbumSyncedAlbum")]
+        AlbumSyncedAlbum = 5,
+        #[doc(alias = "PHAssetCollectionSubtypeAlbumImported")]
+        AlbumImported = 6,
+        #[doc(alias = "PHAssetCollectionSubtypeAlbumMyPhotoStream")]
+        AlbumMyPhotoStream = 100,
+        #[doc(alias = "PHAssetCollectionSubtypeAlbumCloudShared")]
+        AlbumCloudShared = 101,
+        #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumGeneric")]
+        SmartAlbumGeneric = 200,
+        #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumPanoramas")]
+        SmartAlbumPanoramas = 201,
+        #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumVideos")]
+        SmartAlbumVideos = 202,
+        #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumFavorites")]
+        SmartAlbumFavorites = 203,
+        #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumTimelapses")]
+        SmartAlbumTimelapses = 204,
+        #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumAllHidden")]
+        SmartAlbumAllHidden = 205,
+        #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumRecentlyAdded")]
+        SmartAlbumRecentlyAdded = 206,
+        #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumBursts")]
+        SmartAlbumBursts = 207,
+        #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumSlomoVideos")]
+        SmartAlbumSlomoVideos = 208,
+        #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumUserLibrary")]
+        SmartAlbumUserLibrary = 209,
+        #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumSelfPortraits")]
+        SmartAlbumSelfPortraits = 210,
+        #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumScreenshots")]
+        SmartAlbumScreenshots = 211,
+        #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumDepthEffect")]
+        SmartAlbumDepthEffect = 212,
+        #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumLivePhotos")]
+        SmartAlbumLivePhotos = 213,
+        #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumAnimated")]
+        SmartAlbumAnimated = 214,
+        #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumLongExposures")]
+        SmartAlbumLongExposures = 215,
+        #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumUnableToUpload")]
+        SmartAlbumUnableToUpload = 216,
+        #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumRAW")]
+        SmartAlbumRAW = 217,
+        #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumCinematic")]
+        SmartAlbumCinematic = 218,
+        #[doc(alias = "PHAssetCollectionSubtypeAny")]
+        Any = NSIntegerMax as _,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum PHAssetEditOperation {
-        PHAssetEditOperationDelete = 1,
-        PHAssetEditOperationContent = 2,
-        PHAssetEditOperationProperties = 3,
+        #[doc(alias = "PHAssetEditOperationDelete")]
+        Delete = 1,
+        #[doc(alias = "PHAssetEditOperationContent")]
+        Content = 2,
+        #[doc(alias = "PHAssetEditOperationProperties")]
+        Properties = 3,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum PHAssetPlaybackStyle {
-        PHAssetPlaybackStyleUnsupported = 0,
-        PHAssetPlaybackStyleImage = 1,
-        PHAssetPlaybackStyleImageAnimated = 2,
-        PHAssetPlaybackStyleLivePhoto = 3,
-        PHAssetPlaybackStyleVideo = 4,
-        PHAssetPlaybackStyleVideoLooping = 5,
+        #[doc(alias = "PHAssetPlaybackStyleUnsupported")]
+        Unsupported = 0,
+        #[doc(alias = "PHAssetPlaybackStyleImage")]
+        Image = 1,
+        #[doc(alias = "PHAssetPlaybackStyleImageAnimated")]
+        ImageAnimated = 2,
+        #[doc(alias = "PHAssetPlaybackStyleLivePhoto")]
+        LivePhoto = 3,
+        #[doc(alias = "PHAssetPlaybackStyleVideo")]
+        Video = 4,
+        #[doc(alias = "PHAssetPlaybackStyleVideoLooping")]
+        VideoLooping = 5,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum PHAssetMediaType {
-        PHAssetMediaTypeUnknown = 0,
-        PHAssetMediaTypeImage = 1,
-        PHAssetMediaTypeVideo = 2,
-        PHAssetMediaTypeAudio = 3,
+        #[doc(alias = "PHAssetMediaTypeUnknown")]
+        Unknown = 0,
+        #[doc(alias = "PHAssetMediaTypeImage")]
+        Image = 1,
+        #[doc(alias = "PHAssetMediaTypeVideo")]
+        Video = 2,
+        #[doc(alias = "PHAssetMediaTypeAudio")]
+        Audio = 3,
     }
 );
 
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum PHAssetMediaSubtype {
-        PHAssetMediaSubtypeNone = 0,
-        PHAssetMediaSubtypePhotoPanorama = 1 << 0,
-        PHAssetMediaSubtypePhotoHDR = 1 << 1,
-        PHAssetMediaSubtypePhotoScreenshot = 1 << 2,
-        PHAssetMediaSubtypePhotoLive = 1 << 3,
-        PHAssetMediaSubtypePhotoDepthEffect = 1 << 4,
-        PHAssetMediaSubtypeVideoStreamed = 1 << 16,
-        PHAssetMediaSubtypeVideoHighFrameRate = 1 << 17,
-        PHAssetMediaSubtypeVideoTimelapse = 1 << 18,
-        PHAssetMediaSubtypeVideoCinematic = 1 << 21,
+        #[doc(alias = "PHAssetMediaSubtypeNone")]
+        None = 0,
+        #[doc(alias = "PHAssetMediaSubtypePhotoPanorama")]
+        PhotoPanorama = 1 << 0,
+        #[doc(alias = "PHAssetMediaSubtypePhotoHDR")]
+        PhotoHDR = 1 << 1,
+        #[doc(alias = "PHAssetMediaSubtypePhotoScreenshot")]
+        PhotoScreenshot = 1 << 2,
+        #[doc(alias = "PHAssetMediaSubtypePhotoLive")]
+        PhotoLive = 1 << 3,
+        #[doc(alias = "PHAssetMediaSubtypePhotoDepthEffect")]
+        PhotoDepthEffect = 1 << 4,
+        #[doc(alias = "PHAssetMediaSubtypeVideoStreamed")]
+        VideoStreamed = 1 << 16,
+        #[doc(alias = "PHAssetMediaSubtypeVideoHighFrameRate")]
+        VideoHighFrameRate = 1 << 17,
+        #[doc(alias = "PHAssetMediaSubtypeVideoTimelapse")]
+        VideoTimelapse = 1 << 18,
+        #[doc(alias = "PHAssetMediaSubtypeVideoCinematic")]
+        VideoCinematic = 1 << 21,
     }
 );
 
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum PHAssetBurstSelectionType {
-        PHAssetBurstSelectionTypeNone = 0,
-        PHAssetBurstSelectionTypeAutoPick = 1 << 0,
-        PHAssetBurstSelectionTypeUserPick = 1 << 1,
+        #[doc(alias = "PHAssetBurstSelectionTypeNone")]
+        None = 0,
+        #[doc(alias = "PHAssetBurstSelectionTypeAutoPick")]
+        AutoPick = 1 << 0,
+        #[doc(alias = "PHAssetBurstSelectionTypeUserPick")]
+        UserPick = 1 << 1,
     }
 );
 
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum PHAssetSourceType {
-        PHAssetSourceTypeNone = 0,
-        PHAssetSourceTypeUserLibrary = 1 << 0,
-        PHAssetSourceTypeCloudShared = 1 << 1,
-        PHAssetSourceTypeiTunesSynced = 1 << 2,
+        #[doc(alias = "PHAssetSourceTypeNone")]
+        None = 0,
+        #[doc(alias = "PHAssetSourceTypeUserLibrary")]
+        UserLibrary = 1 << 0,
+        #[doc(alias = "PHAssetSourceTypeCloudShared")]
+        CloudShared = 1 << 1,
+        #[doc(alias = "PHAssetSourceTypeiTunesSynced")]
+        iTunesSynced = 1 << 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum PHAssetResourceType {
-        PHAssetResourceTypePhoto = 1,
-        PHAssetResourceTypeVideo = 2,
-        PHAssetResourceTypeAudio = 3,
-        PHAssetResourceTypeAlternatePhoto = 4,
-        PHAssetResourceTypeFullSizePhoto = 5,
-        PHAssetResourceTypeFullSizeVideo = 6,
-        PHAssetResourceTypeAdjustmentData = 7,
-        PHAssetResourceTypeAdjustmentBasePhoto = 8,
-        PHAssetResourceTypePairedVideo = 9,
-        PHAssetResourceTypeFullSizePairedVideo = 10,
-        PHAssetResourceTypeAdjustmentBasePairedVideo = 11,
-        PHAssetResourceTypeAdjustmentBaseVideo = 12,
-        PHAssetResourceTypePhotoProxy = 19,
+        #[doc(alias = "PHAssetResourceTypePhoto")]
+        Photo = 1,
+        #[doc(alias = "PHAssetResourceTypeVideo")]
+        Video = 2,
+        #[doc(alias = "PHAssetResourceTypeAudio")]
+        Audio = 3,
+        #[doc(alias = "PHAssetResourceTypeAlternatePhoto")]
+        AlternatePhoto = 4,
+        #[doc(alias = "PHAssetResourceTypeFullSizePhoto")]
+        FullSizePhoto = 5,
+        #[doc(alias = "PHAssetResourceTypeFullSizeVideo")]
+        FullSizeVideo = 6,
+        #[doc(alias = "PHAssetResourceTypeAdjustmentData")]
+        AdjustmentData = 7,
+        #[doc(alias = "PHAssetResourceTypeAdjustmentBasePhoto")]
+        AdjustmentBasePhoto = 8,
+        #[doc(alias = "PHAssetResourceTypePairedVideo")]
+        PairedVideo = 9,
+        #[doc(alias = "PHAssetResourceTypeFullSizePairedVideo")]
+        FullSizePairedVideo = 10,
+        #[doc(alias = "PHAssetResourceTypeAdjustmentBasePairedVideo")]
+        AdjustmentBasePairedVideo = 11,
+        #[doc(alias = "PHAssetResourceTypeAdjustmentBaseVideo")]
+        AdjustmentBaseVideo = 12,
+        #[doc(alias = "PHAssetResourceTypePhotoProxy")]
+        PhotoProxy = 19,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum PHObjectType {
-        PHObjectTypeAsset = 1,
-        PHObjectTypeAssetCollection = 2,
-        PHObjectTypeCollectionList = 3,
+        #[doc(alias = "PHObjectTypeAsset")]
+        Asset = 1,
+        #[doc(alias = "PHObjectTypeAssetCollection")]
+        AssetCollection = 2,
+        #[doc(alias = "PHObjectTypeCollectionList")]
+        CollectionList = 3,
     }
 );

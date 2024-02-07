@@ -8,31 +8,40 @@ use crate::Foundation::*;
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSTouchPhase {
-        NSTouchPhaseBegan = 1 << 0,
-        NSTouchPhaseMoved = 1 << 1,
-        NSTouchPhaseStationary = 1 << 2,
-        NSTouchPhaseEnded = 1 << 3,
-        NSTouchPhaseCancelled = 1 << 4,
-        NSTouchPhaseTouching = NSTouchPhase::NSTouchPhaseBegan.0
-            | NSTouchPhase::NSTouchPhaseMoved.0
-            | NSTouchPhase::NSTouchPhaseStationary.0,
-        NSTouchPhaseAny = NSUIntegerMax as _,
+        #[doc(alias = "NSTouchPhaseBegan")]
+        Began = 1 << 0,
+        #[doc(alias = "NSTouchPhaseMoved")]
+        Moved = 1 << 1,
+        #[doc(alias = "NSTouchPhaseStationary")]
+        Stationary = 1 << 2,
+        #[doc(alias = "NSTouchPhaseEnded")]
+        Ended = 1 << 3,
+        #[doc(alias = "NSTouchPhaseCancelled")]
+        Cancelled = 1 << 4,
+        #[doc(alias = "NSTouchPhaseTouching")]
+        Touching = NSTouchPhase::Began.0 | NSTouchPhase::Moved.0 | NSTouchPhase::Stationary.0,
+        #[doc(alias = "NSTouchPhaseAny")]
+        Any = NSUIntegerMax as _,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSTouchType {
-        NSTouchTypeDirect = 0,
-        NSTouchTypeIndirect = 1,
+        #[doc(alias = "NSTouchTypeDirect")]
+        Direct = 0,
+        #[doc(alias = "NSTouchTypeIndirect")]
+        Indirect = 1,
     }
 );
 
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSTouchTypeMask {
-        NSTouchTypeMaskDirect = 1 << NSTouchType::NSTouchTypeDirect.0,
-        NSTouchTypeMaskIndirect = 1 << NSTouchType::NSTouchTypeIndirect.0,
+        #[doc(alias = "NSTouchTypeMaskDirect")]
+        Direct = 1 << NSTouchType::Direct.0,
+        #[doc(alias = "NSTouchTypeMaskIndirect")]
+        Indirect = 1 << NSTouchType::Indirect.0,
     }
 );
 

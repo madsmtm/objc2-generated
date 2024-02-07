@@ -10,17 +10,29 @@ extern_static!(UNErrorDomain: Option<&'static NSString>);
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum UNErrorCode {
-        UNErrorCodeNotificationsNotAllowed = 1,
-        UNErrorCodeAttachmentInvalidURL = 100,
-        UNErrorCodeAttachmentUnrecognizedType = 101,
-        UNErrorCodeAttachmentInvalidFileSize = 102,
-        UNErrorCodeAttachmentNotInDataStore = 103,
-        UNErrorCodeAttachmentMoveIntoDataStoreFailed = 104,
-        UNErrorCodeAttachmentCorrupt = 105,
-        UNErrorCodeNotificationInvalidNoDate = 1400,
-        UNErrorCodeNotificationInvalidNoContent = 1401,
-        UNErrorCodeContentProvidingObjectNotAllowed = 1500,
-        UNErrorCodeContentProvidingInvalid = 1501,
-        UNErrorCodeBadgeInputInvalid = 1600,
+        #[doc(alias = "UNErrorCodeNotificationsNotAllowed")]
+        NotificationsNotAllowed = 1,
+        #[doc(alias = "UNErrorCodeAttachmentInvalidURL")]
+        AttachmentInvalidURL = 100,
+        #[doc(alias = "UNErrorCodeAttachmentUnrecognizedType")]
+        AttachmentUnrecognizedType = 101,
+        #[doc(alias = "UNErrorCodeAttachmentInvalidFileSize")]
+        AttachmentInvalidFileSize = 102,
+        #[doc(alias = "UNErrorCodeAttachmentNotInDataStore")]
+        AttachmentNotInDataStore = 103,
+        #[doc(alias = "UNErrorCodeAttachmentMoveIntoDataStoreFailed")]
+        AttachmentMoveIntoDataStoreFailed = 104,
+        #[doc(alias = "UNErrorCodeAttachmentCorrupt")]
+        AttachmentCorrupt = 105,
+        #[doc(alias = "UNErrorCodeNotificationInvalidNoDate")]
+        NotificationInvalidNoDate = 1400,
+        #[doc(alias = "UNErrorCodeNotificationInvalidNoContent")]
+        NotificationInvalidNoContent = 1401,
+        #[doc(alias = "UNErrorCodeContentProvidingObjectNotAllowed")]
+        ContentProvidingObjectNotAllowed = 1500,
+        #[doc(alias = "UNErrorCodeContentProvidingInvalid")]
+        ContentProvidingInvalid = 1501,
+        #[doc(alias = "UNErrorCodeBadgeInputInvalid")]
+        BadgeInputInvalid = 1600,
     }
 );

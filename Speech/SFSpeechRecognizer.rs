@@ -7,10 +7,14 @@ use crate::Speech::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum SFSpeechRecognizerAuthorizationStatus {
-        SFSpeechRecognizerAuthorizationStatusNotDetermined = 0,
-        SFSpeechRecognizerAuthorizationStatusDenied = 1,
-        SFSpeechRecognizerAuthorizationStatusRestricted = 2,
-        SFSpeechRecognizerAuthorizationStatusAuthorized = 3,
+        #[doc(alias = "SFSpeechRecognizerAuthorizationStatusNotDetermined")]
+        NotDetermined = 0,
+        #[doc(alias = "SFSpeechRecognizerAuthorizationStatusDenied")]
+        Denied = 1,
+        #[doc(alias = "SFSpeechRecognizerAuthorizationStatusRestricted")]
+        Restricted = 2,
+        #[doc(alias = "SFSpeechRecognizerAuthorizationStatusAuthorized")]
+        Authorized = 3,
     }
 );
 

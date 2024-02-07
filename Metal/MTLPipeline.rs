@@ -7,9 +7,12 @@ use crate::Metal::*;
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLMutability {
-        MTLMutabilityDefault = 0,
-        MTLMutabilityMutable = 1,
-        MTLMutabilityImmutable = 2,
+        #[doc(alias = "MTLMutabilityDefault")]
+        Default = 0,
+        #[doc(alias = "MTLMutabilityMutable")]
+        Mutable = 1,
+        #[doc(alias = "MTLMutabilityImmutable")]
+        Immutable = 2,
     }
 );
 

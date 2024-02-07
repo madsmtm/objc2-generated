@@ -10,9 +10,12 @@ pub type NSSplitViewAutosaveName = NSString;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSSplitViewDividerStyle {
-        NSSplitViewDividerStyleThick = 1,
-        NSSplitViewDividerStyleThin = 2,
-        NSSplitViewDividerStylePaneSplitter = 3,
+        #[doc(alias = "NSSplitViewDividerStyleThick")]
+        Thick = 1,
+        #[doc(alias = "NSSplitViewDividerStyleThin")]
+        Thin = 2,
+        #[doc(alias = "NSSplitViewDividerStylePaneSplitter")]
+        PaneSplitter = 3,
     }
 );
 

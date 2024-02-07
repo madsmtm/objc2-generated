@@ -10,27 +10,36 @@ use crate::UniformTypeIdentifiers::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum PHImageRequestOptionsVersion {
-        PHImageRequestOptionsVersionCurrent = 0,
-        PHImageRequestOptionsVersionUnadjusted = 1,
-        PHImageRequestOptionsVersionOriginal = 2,
+        #[doc(alias = "PHImageRequestOptionsVersionCurrent")]
+        Current = 0,
+        #[doc(alias = "PHImageRequestOptionsVersionUnadjusted")]
+        Unadjusted = 1,
+        #[doc(alias = "PHImageRequestOptionsVersionOriginal")]
+        Original = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum PHImageRequestOptionsDeliveryMode {
-        PHImageRequestOptionsDeliveryModeOpportunistic = 0,
-        PHImageRequestOptionsDeliveryModeHighQualityFormat = 1,
-        PHImageRequestOptionsDeliveryModeFastFormat = 2,
+        #[doc(alias = "PHImageRequestOptionsDeliveryModeOpportunistic")]
+        Opportunistic = 0,
+        #[doc(alias = "PHImageRequestOptionsDeliveryModeHighQualityFormat")]
+        HighQualityFormat = 1,
+        #[doc(alias = "PHImageRequestOptionsDeliveryModeFastFormat")]
+        FastFormat = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum PHImageRequestOptionsResizeMode {
-        PHImageRequestOptionsResizeModeNone = 0,
-        PHImageRequestOptionsResizeModeFast = 1,
-        PHImageRequestOptionsResizeModeExact = 2,
+        #[doc(alias = "PHImageRequestOptionsResizeModeNone")]
+        None = 0,
+        #[doc(alias = "PHImageRequestOptionsResizeModeFast")]
+        Fast = 1,
+        #[doc(alias = "PHImageRequestOptionsResizeModeExact")]
+        Exact = 2,
     }
 );
 
@@ -182,18 +191,24 @@ extern_methods!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum PHVideoRequestOptionsVersion {
-        PHVideoRequestOptionsVersionCurrent = 0,
-        PHVideoRequestOptionsVersionOriginal = 1,
+        #[doc(alias = "PHVideoRequestOptionsVersionCurrent")]
+        Current = 0,
+        #[doc(alias = "PHVideoRequestOptionsVersionOriginal")]
+        Original = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum PHVideoRequestOptionsDeliveryMode {
-        PHVideoRequestOptionsDeliveryModeAutomatic = 0,
-        PHVideoRequestOptionsDeliveryModeHighQualityFormat = 1,
-        PHVideoRequestOptionsDeliveryModeMediumQualityFormat = 2,
-        PHVideoRequestOptionsDeliveryModeFastFormat = 3,
+        #[doc(alias = "PHVideoRequestOptionsDeliveryModeAutomatic")]
+        Automatic = 0,
+        #[doc(alias = "PHVideoRequestOptionsDeliveryModeHighQualityFormat")]
+        HighQualityFormat = 1,
+        #[doc(alias = "PHVideoRequestOptionsDeliveryModeMediumQualityFormat")]
+        MediumQualityFormat = 2,
+        #[doc(alias = "PHVideoRequestOptionsDeliveryModeFastFormat")]
+        FastFormat = 3,
     }
 );
 

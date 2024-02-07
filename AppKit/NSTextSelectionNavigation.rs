@@ -8,50 +8,70 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSTextSelectionNavigationDirection {
-        NSTextSelectionNavigationDirectionForward = 0,
-        NSTextSelectionNavigationDirectionBackward = 1,
-        NSTextSelectionNavigationDirectionRight = 2,
-        NSTextSelectionNavigationDirectionLeft = 3,
-        NSTextSelectionNavigationDirectionUp = 4,
-        NSTextSelectionNavigationDirectionDown = 5,
+        #[doc(alias = "NSTextSelectionNavigationDirectionForward")]
+        Forward = 0,
+        #[doc(alias = "NSTextSelectionNavigationDirectionBackward")]
+        Backward = 1,
+        #[doc(alias = "NSTextSelectionNavigationDirectionRight")]
+        Right = 2,
+        #[doc(alias = "NSTextSelectionNavigationDirectionLeft")]
+        Left = 3,
+        #[doc(alias = "NSTextSelectionNavigationDirectionUp")]
+        Up = 4,
+        #[doc(alias = "NSTextSelectionNavigationDirectionDown")]
+        Down = 5,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSTextSelectionNavigationDestination {
-        NSTextSelectionNavigationDestinationCharacter = 0,
-        NSTextSelectionNavigationDestinationWord = 1,
-        NSTextSelectionNavigationDestinationLine = 2,
-        NSTextSelectionNavigationDestinationSentence = 3,
-        NSTextSelectionNavigationDestinationParagraph = 4,
-        NSTextSelectionNavigationDestinationContainer = 5,
-        NSTextSelectionNavigationDestinationDocument = 6,
+        #[doc(alias = "NSTextSelectionNavigationDestinationCharacter")]
+        Character = 0,
+        #[doc(alias = "NSTextSelectionNavigationDestinationWord")]
+        Word = 1,
+        #[doc(alias = "NSTextSelectionNavigationDestinationLine")]
+        Line = 2,
+        #[doc(alias = "NSTextSelectionNavigationDestinationSentence")]
+        Sentence = 3,
+        #[doc(alias = "NSTextSelectionNavigationDestinationParagraph")]
+        Paragraph = 4,
+        #[doc(alias = "NSTextSelectionNavigationDestinationContainer")]
+        Container = 5,
+        #[doc(alias = "NSTextSelectionNavigationDestinationDocument")]
+        Document = 6,
     }
 );
 
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSTextSelectionNavigationModifier {
-        NSTextSelectionNavigationModifierExtend = 1 << 0,
-        NSTextSelectionNavigationModifierVisual = 1 << 1,
-        NSTextSelectionNavigationModifierMultiple = 1 << 2,
+        #[doc(alias = "NSTextSelectionNavigationModifierExtend")]
+        Extend = 1 << 0,
+        #[doc(alias = "NSTextSelectionNavigationModifierVisual")]
+        Visual = 1 << 1,
+        #[doc(alias = "NSTextSelectionNavigationModifierMultiple")]
+        Multiple = 1 << 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSTextSelectionNavigationWritingDirection {
-        NSTextSelectionNavigationWritingDirectionLeftToRight = 0,
-        NSTextSelectionNavigationWritingDirectionRightToLeft = 1,
+        #[doc(alias = "NSTextSelectionNavigationWritingDirectionLeftToRight")]
+        LeftToRight = 0,
+        #[doc(alias = "NSTextSelectionNavigationWritingDirectionRightToLeft")]
+        RightToLeft = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSTextSelectionNavigationLayoutOrientation {
-        NSTextSelectionNavigationLayoutOrientationHorizontal = 0,
-        NSTextSelectionNavigationLayoutOrientationVertical = 1,
+        #[doc(alias = "NSTextSelectionNavigationLayoutOrientationHorizontal")]
+        Horizontal = 0,
+        #[doc(alias = "NSTextSelectionNavigationLayoutOrientationVertical")]
+        Vertical = 1,
     }
 );
 

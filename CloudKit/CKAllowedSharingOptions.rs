@@ -8,18 +8,26 @@ use crate::Foundation::*;
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum CKSharingParticipantAccessOption {
-        CKSharingParticipantAccessOptionAnyoneWithLink = 1 << 0,
-        CKSharingParticipantAccessOptionSpecifiedRecipientsOnly = 1 << 1,
-        CKSharingParticipantAccessOptionAny = CKSharingParticipantAccessOption::CKSharingParticipantAccessOptionAnyoneWithLink.0 | CKSharingParticipantAccessOption::CKSharingParticipantAccessOptionSpecifiedRecipientsOnly.0,
+        #[doc(alias = "CKSharingParticipantAccessOptionAnyoneWithLink")]
+        AnyoneWithLink = 1 << 0,
+        #[doc(alias = "CKSharingParticipantAccessOptionSpecifiedRecipientsOnly")]
+        SpecifiedRecipientsOnly = 1 << 1,
+        #[doc(alias = "CKSharingParticipantAccessOptionAny")]
+        Any = CKSharingParticipantAccessOption::AnyoneWithLink.0
+            | CKSharingParticipantAccessOption::SpecifiedRecipientsOnly.0,
     }
 );
 
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum CKSharingParticipantPermissionOption {
-        CKSharingParticipantPermissionOptionReadOnly = 1 << 0,
-        CKSharingParticipantPermissionOptionReadWrite = 1 << 1,
-        CKSharingParticipantPermissionOptionAny = CKSharingParticipantPermissionOption::CKSharingParticipantPermissionOptionReadOnly.0 | CKSharingParticipantPermissionOption::CKSharingParticipantPermissionOptionReadWrite.0,
+        #[doc(alias = "CKSharingParticipantPermissionOptionReadOnly")]
+        ReadOnly = 1 << 0,
+        #[doc(alias = "CKSharingParticipantPermissionOptionReadWrite")]
+        ReadWrite = 1 << 1,
+        #[doc(alias = "CKSharingParticipantPermissionOptionAny")]
+        Any = CKSharingParticipantPermissionOption::ReadOnly.0
+            | CKSharingParticipantPermissionOption::ReadWrite.0,
     }
 );
 

@@ -329,14 +329,22 @@ extern_methods!(
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSInlinePresentationIntent {
-        NSInlinePresentationIntentEmphasized = 1 << 0,
-        NSInlinePresentationIntentStronglyEmphasized = 1 << 1,
-        NSInlinePresentationIntentCode = 1 << 2,
-        NSInlinePresentationIntentStrikethrough = 1 << 5,
-        NSInlinePresentationIntentSoftBreak = 1 << 6,
-        NSInlinePresentationIntentLineBreak = 1 << 7,
-        NSInlinePresentationIntentInlineHTML = 1 << 8,
-        NSInlinePresentationIntentBlockHTML = 1 << 9,
+        #[doc(alias = "NSInlinePresentationIntentEmphasized")]
+        Emphasized = 1 << 0,
+        #[doc(alias = "NSInlinePresentationIntentStronglyEmphasized")]
+        StronglyEmphasized = 1 << 1,
+        #[doc(alias = "NSInlinePresentationIntentCode")]
+        Code = 1 << 2,
+        #[doc(alias = "NSInlinePresentationIntentStrikethrough")]
+        Strikethrough = 1 << 5,
+        #[doc(alias = "NSInlinePresentationIntentSoftBreak")]
+        SoftBreak = 1 << 6,
+        #[doc(alias = "NSInlinePresentationIntentLineBreak")]
+        LineBreak = 1 << 7,
+        #[doc(alias = "NSInlinePresentationIntentInlineHTML")]
+        InlineHTML = 1 << 8,
+        #[doc(alias = "NSInlinePresentationIntentBlockHTML")]
+        BlockHTML = 1 << 9,
     }
 );
 
@@ -361,9 +369,12 @@ ns_enum!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSAttributedStringMarkdownInterpretedSyntax {
-        NSAttributedStringMarkdownInterpretedSyntaxFull = 0,
-        NSAttributedStringMarkdownInterpretedSyntaxInlineOnly = 1,
-        NSAttributedStringMarkdownInterpretedSyntaxInlineOnlyPreservingWhitespace = 2,
+        #[doc(alias = "NSAttributedStringMarkdownInterpretedSyntaxFull")]
+        Full = 0,
+        #[doc(alias = "NSAttributedStringMarkdownInterpretedSyntaxInlineOnly")]
+        InlineOnly = 1,
+        #[doc(alias = "NSAttributedStringMarkdownInterpretedSyntaxInlineOnlyPreservingWhitespace")]
+        InlineOnlyPreservingWhitespace = 2,
     }
 );
 
@@ -653,27 +664,42 @@ extern_static!(NSPresentationIntentAttributeName: &'static NSAttributedStringKey
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSPresentationIntentKind {
-        NSPresentationIntentKindParagraph = 0,
-        NSPresentationIntentKindHeader = 1,
-        NSPresentationIntentKindOrderedList = 2,
-        NSPresentationIntentKindUnorderedList = 3,
-        NSPresentationIntentKindListItem = 4,
-        NSPresentationIntentKindCodeBlock = 5,
-        NSPresentationIntentKindBlockQuote = 6,
-        NSPresentationIntentKindThematicBreak = 7,
-        NSPresentationIntentKindTable = 8,
-        NSPresentationIntentKindTableHeaderRow = 9,
-        NSPresentationIntentKindTableRow = 10,
-        NSPresentationIntentKindTableCell = 11,
+        #[doc(alias = "NSPresentationIntentKindParagraph")]
+        Paragraph = 0,
+        #[doc(alias = "NSPresentationIntentKindHeader")]
+        Header = 1,
+        #[doc(alias = "NSPresentationIntentKindOrderedList")]
+        OrderedList = 2,
+        #[doc(alias = "NSPresentationIntentKindUnorderedList")]
+        UnorderedList = 3,
+        #[doc(alias = "NSPresentationIntentKindListItem")]
+        ListItem = 4,
+        #[doc(alias = "NSPresentationIntentKindCodeBlock")]
+        CodeBlock = 5,
+        #[doc(alias = "NSPresentationIntentKindBlockQuote")]
+        BlockQuote = 6,
+        #[doc(alias = "NSPresentationIntentKindThematicBreak")]
+        ThematicBreak = 7,
+        #[doc(alias = "NSPresentationIntentKindTable")]
+        Table = 8,
+        #[doc(alias = "NSPresentationIntentKindTableHeaderRow")]
+        TableHeaderRow = 9,
+        #[doc(alias = "NSPresentationIntentKindTableRow")]
+        TableRow = 10,
+        #[doc(alias = "NSPresentationIntentKindTableCell")]
+        TableCell = 11,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSPresentationIntentTableColumnAlignment {
-        NSPresentationIntentTableColumnAlignmentLeft = 0,
-        NSPresentationIntentTableColumnAlignmentCenter = 1,
-        NSPresentationIntentTableColumnAlignmentRight = 2,
+        #[doc(alias = "NSPresentationIntentTableColumnAlignmentLeft")]
+        Left = 0,
+        #[doc(alias = "NSPresentationIntentTableColumnAlignmentCenter")]
+        Center = 1,
+        #[doc(alias = "NSPresentationIntentTableColumnAlignmentRight")]
+        Right = 2,
     }
 );
 

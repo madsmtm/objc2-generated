@@ -73,11 +73,16 @@ ns_options!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSQualityOfService {
-        NSQualityOfServiceUserInteractive = 0x21,
-        NSQualityOfServiceUserInitiated = 0x19,
-        NSQualityOfServiceUtility = 0x11,
-        NSQualityOfServiceBackground = 0x09,
-        NSQualityOfServiceDefault = -1,
+        #[doc(alias = "NSQualityOfServiceUserInteractive")]
+        UserInteractive = 0x21,
+        #[doc(alias = "NSQualityOfServiceUserInitiated")]
+        UserInitiated = 0x19,
+        #[doc(alias = "NSQualityOfServiceUtility")]
+        Utility = 0x11,
+        #[doc(alias = "NSQualityOfServiceBackground")]
+        Background = 0x09,
+        #[doc(alias = "NSQualityOfServiceDefault")]
+        Default = -1,
     }
 );
 

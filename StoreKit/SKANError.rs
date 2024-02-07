@@ -10,17 +10,29 @@ extern_static!(SKANErrorDomain: &'static NSString);
 ns_error_enum!(
     #[underlying(NSInteger)]
     pub enum SKANError {
-        SKANErrorImpressionMissingRequiredValue = 0,
-        SKANErrorUnsupported = 1,
-        SKANErrorAdNetworkIdMissing = 2,
-        SKANErrorMismatchedSourceAppId = 3,
-        SKANErrorImpressionNotFound = 4,
-        SKANErrorInvalidCampaignId = 5,
-        SKANErrorInvalidConversionValue = 6,
-        SKANErrorInvalidSourceAppId = 7,
-        SKANErrorInvalidAdvertisedAppId = 8,
-        SKANErrorInvalidVersion = 9,
-        SKANErrorUnknown = 10,
-        SKANErrorImpressionTooShort = 11,
+        #[doc(alias = "SKANErrorImpressionMissingRequiredValue")]
+        ImpressionMissingRequiredValue = 0,
+        #[doc(alias = "SKANErrorUnsupported")]
+        Unsupported = 1,
+        #[doc(alias = "SKANErrorAdNetworkIdMissing")]
+        AdNetworkIdMissing = 2,
+        #[doc(alias = "SKANErrorMismatchedSourceAppId")]
+        MismatchedSourceAppId = 3,
+        #[doc(alias = "SKANErrorImpressionNotFound")]
+        ImpressionNotFound = 4,
+        #[doc(alias = "SKANErrorInvalidCampaignId")]
+        InvalidCampaignId = 5,
+        #[doc(alias = "SKANErrorInvalidConversionValue")]
+        InvalidConversionValue = 6,
+        #[doc(alias = "SKANErrorInvalidSourceAppId")]
+        InvalidSourceAppId = 7,
+        #[doc(alias = "SKANErrorInvalidAdvertisedAppId")]
+        InvalidAdvertisedAppId = 8,
+        #[doc(alias = "SKANErrorInvalidVersion")]
+        InvalidVersion = 9,
+        #[doc(alias = "SKANErrorUnknown")]
+        Unknown = 10,
+        #[doc(alias = "SKANErrorImpressionTooShort")]
+        ImpressionTooShort = 11,
     }
 );

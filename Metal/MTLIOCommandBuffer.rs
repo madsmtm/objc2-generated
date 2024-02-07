@@ -7,10 +7,14 @@ use crate::Metal::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MTLIOStatus {
-        MTLIOStatusPending = 0,
-        MTLIOStatusCancelled = 1,
-        MTLIOStatusError = 2,
-        MTLIOStatusComplete = 3,
+        #[doc(alias = "MTLIOStatusPending")]
+        Pending = 0,
+        #[doc(alias = "MTLIOStatusCancelled")]
+        Cancelled = 1,
+        #[doc(alias = "MTLIOStatusError")]
+        Error = 2,
+        #[doc(alias = "MTLIOStatusComplete")]
+        Complete = 3,
     }
 );
 

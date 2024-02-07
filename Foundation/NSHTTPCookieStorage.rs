@@ -6,9 +6,12 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSHTTPCookieAcceptPolicy {
-        NSHTTPCookieAcceptPolicyAlways = 0,
-        NSHTTPCookieAcceptPolicyNever = 1,
-        NSHTTPCookieAcceptPolicyOnlyFromMainDocumentDomain = 2,
+        #[doc(alias = "NSHTTPCookieAcceptPolicyAlways")]
+        Always = 0,
+        #[doc(alias = "NSHTTPCookieAcceptPolicyNever")]
+        Never = 1,
+        #[doc(alias = "NSHTTPCookieAcceptPolicyOnlyFromMainDocumentDomain")]
+        OnlyFromMainDocumentDomain = 2,
     }
 );
 

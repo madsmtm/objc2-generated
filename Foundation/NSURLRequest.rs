@@ -36,8 +36,10 @@ ns_enum!(
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSURLRequestAttribution {
-        NSURLRequestAttributionDeveloper = 0,
-        NSURLRequestAttributionUser = 1,
+        #[doc(alias = "NSURLRequestAttributionDeveloper")]
+        Developer = 0,
+        #[doc(alias = "NSURLRequestAttributionUser")]
+        User = 1,
     }
 );
 

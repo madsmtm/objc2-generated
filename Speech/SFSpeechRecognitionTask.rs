@@ -7,11 +7,16 @@ use crate::Speech::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum SFSpeechRecognitionTaskState {
-        SFSpeechRecognitionTaskStateStarting = 0,
-        SFSpeechRecognitionTaskStateRunning = 1,
-        SFSpeechRecognitionTaskStateFinishing = 2,
-        SFSpeechRecognitionTaskStateCanceling = 3,
-        SFSpeechRecognitionTaskStateCompleted = 4,
+        #[doc(alias = "SFSpeechRecognitionTaskStateStarting")]
+        Starting = 0,
+        #[doc(alias = "SFSpeechRecognitionTaskStateRunning")]
+        Running = 1,
+        #[doc(alias = "SFSpeechRecognitionTaskStateFinishing")]
+        Finishing = 2,
+        #[doc(alias = "SFSpeechRecognitionTaskStateCanceling")]
+        Canceling = 3,
+        #[doc(alias = "SFSpeechRecognitionTaskStateCompleted")]
+        Completed = 4,
     }
 );
 

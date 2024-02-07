@@ -6,11 +6,16 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSMassFormatterUnit {
-        NSMassFormatterUnitGram = 11,
-        NSMassFormatterUnitKilogram = 14,
-        NSMassFormatterUnitOunce = (6 << 8) + 1,
-        NSMassFormatterUnitPound = (6 << 8) + 2,
-        NSMassFormatterUnitStone = (6 << 8) + 3,
+        #[doc(alias = "NSMassFormatterUnitGram")]
+        Gram = 11,
+        #[doc(alias = "NSMassFormatterUnitKilogram")]
+        Kilogram = 14,
+        #[doc(alias = "NSMassFormatterUnitOunce")]
+        Ounce = (6 << 8) + 1,
+        #[doc(alias = "NSMassFormatterUnitPound")]
+        Pound = (6 << 8) + 2,
+        #[doc(alias = "NSMassFormatterUnitStone")]
+        Stone = (6 << 8) + 3,
     }
 );
 

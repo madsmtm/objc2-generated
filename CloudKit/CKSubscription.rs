@@ -8,9 +8,12 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum CKSubscriptionType {
-        CKSubscriptionTypeQuery = 1,
-        CKSubscriptionTypeRecordZone = 2,
-        CKSubscriptionTypeDatabase = 3,
+        #[doc(alias = "CKSubscriptionTypeQuery")]
+        Query = 1,
+        #[doc(alias = "CKSubscriptionTypeRecordZone")]
+        RecordZone = 2,
+        #[doc(alias = "CKSubscriptionTypeDatabase")]
+        Database = 3,
     }
 );
 
@@ -68,10 +71,14 @@ extern_methods!(
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum CKQuerySubscriptionOptions {
-        CKQuerySubscriptionOptionsFiresOnRecordCreation = 1 << 0,
-        CKQuerySubscriptionOptionsFiresOnRecordUpdate = 1 << 1,
-        CKQuerySubscriptionOptionsFiresOnRecordDeletion = 1 << 2,
-        CKQuerySubscriptionOptionsFiresOnce = 1 << 3,
+        #[doc(alias = "CKQuerySubscriptionOptionsFiresOnRecordCreation")]
+        FiresOnRecordCreation = 1 << 0,
+        #[doc(alias = "CKQuerySubscriptionOptionsFiresOnRecordUpdate")]
+        FiresOnRecordUpdate = 1 << 1,
+        #[doc(alias = "CKQuerySubscriptionOptionsFiresOnRecordDeletion")]
+        FiresOnRecordDeletion = 1 << 2,
+        #[doc(alias = "CKQuerySubscriptionOptionsFiresOnce")]
+        FiresOnce = 1 << 3,
     }
 );
 

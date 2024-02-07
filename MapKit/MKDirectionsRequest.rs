@@ -10,8 +10,10 @@ use crate::MapKit::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MKDirectionsRoutePreference {
-        MKDirectionsRoutePreferenceAny = 0,
-        MKDirectionsRoutePreferenceAvoid = 1,
+        #[doc(alias = "MKDirectionsRoutePreferenceAny")]
+        Any = 0,
+        #[doc(alias = "MKDirectionsRoutePreferenceAvoid")]
+        Avoid = 1,
     }
 );
 

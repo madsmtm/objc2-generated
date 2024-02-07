@@ -8,10 +8,14 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSCollectionElementCategory {
-        NSCollectionElementCategoryItem = 0,
-        NSCollectionElementCategorySupplementaryView = 1,
-        NSCollectionElementCategoryDecorationView = 2,
-        NSCollectionElementCategoryInterItemGap = 3,
+        #[doc(alias = "NSCollectionElementCategoryItem")]
+        Item = 0,
+        #[doc(alias = "NSCollectionElementCategorySupplementaryView")]
+        SupplementaryView = 1,
+        #[doc(alias = "NSCollectionElementCategoryDecorationView")]
+        DecorationView = 2,
+        #[doc(alias = "NSCollectionElementCategoryInterItemGap")]
+        InterItemGap = 3,
     }
 );
 
@@ -126,11 +130,16 @@ extern_methods!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSCollectionUpdateAction {
-        NSCollectionUpdateActionInsert = 0,
-        NSCollectionUpdateActionDelete = 1,
-        NSCollectionUpdateActionReload = 2,
-        NSCollectionUpdateActionMove = 3,
-        NSCollectionUpdateActionNone = 4,
+        #[doc(alias = "NSCollectionUpdateActionInsert")]
+        Insert = 0,
+        #[doc(alias = "NSCollectionUpdateActionDelete")]
+        Delete = 1,
+        #[doc(alias = "NSCollectionUpdateActionReload")]
+        Reload = 2,
+        #[doc(alias = "NSCollectionUpdateActionMove")]
+        Move = 3,
+        #[doc(alias = "NSCollectionUpdateActionNone")]
+        None = 4,
     }
 );
 

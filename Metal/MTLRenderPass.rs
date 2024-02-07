@@ -28,21 +28,30 @@ inline_fn!(
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLLoadAction {
-        MTLLoadActionDontCare = 0,
-        MTLLoadActionLoad = 1,
-        MTLLoadActionClear = 2,
+        #[doc(alias = "MTLLoadActionDontCare")]
+        DontCare = 0,
+        #[doc(alias = "MTLLoadActionLoad")]
+        Load = 1,
+        #[doc(alias = "MTLLoadActionClear")]
+        Clear = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLStoreAction {
-        MTLStoreActionDontCare = 0,
-        MTLStoreActionStore = 1,
-        MTLStoreActionMultisampleResolve = 2,
-        MTLStoreActionStoreAndMultisampleResolve = 3,
-        MTLStoreActionUnknown = 4,
-        MTLStoreActionCustomSampleDepthStore = 5,
+        #[doc(alias = "MTLStoreActionDontCare")]
+        DontCare = 0,
+        #[doc(alias = "MTLStoreActionStore")]
+        Store = 1,
+        #[doc(alias = "MTLStoreActionMultisampleResolve")]
+        MultisampleResolve = 2,
+        #[doc(alias = "MTLStoreActionStoreAndMultisampleResolve")]
+        StoreAndMultisampleResolve = 3,
+        #[doc(alias = "MTLStoreActionUnknown")]
+        Unknown = 4,
+        #[doc(alias = "MTLStoreActionCustomSampleDepthStore")]
+        CustomSampleDepthStore = 5,
     }
 );
 
@@ -208,9 +217,12 @@ impl DefaultId for MTLRenderPassColorAttachmentDescriptor {
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLMultisampleDepthResolveFilter {
-        MTLMultisampleDepthResolveFilterSample0 = 0,
-        MTLMultisampleDepthResolveFilterMin = 1,
-        MTLMultisampleDepthResolveFilterMax = 2,
+        #[doc(alias = "MTLMultisampleDepthResolveFilterSample0")]
+        Sample0 = 0,
+        #[doc(alias = "MTLMultisampleDepthResolveFilterMin")]
+        Min = 1,
+        #[doc(alias = "MTLMultisampleDepthResolveFilterMax")]
+        Max = 2,
     }
 );
 
@@ -265,8 +277,10 @@ extern_methods!(
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLMultisampleStencilResolveFilter {
-        MTLMultisampleStencilResolveFilterSample0 = 0,
-        MTLMultisampleStencilResolveFilterDepthResolvedSample = 1,
+        #[doc(alias = "MTLMultisampleStencilResolveFilterSample0")]
+        Sample0 = 0,
+        #[doc(alias = "MTLMultisampleStencilResolveFilterDepthResolvedSample")]
+        DepthResolvedSample = 1,
     }
 );
 

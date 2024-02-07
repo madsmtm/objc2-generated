@@ -8,9 +8,12 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSLevelIndicatorPlaceholderVisibility {
-        NSLevelIndicatorPlaceholderVisibilityAutomatic = 0,
-        NSLevelIndicatorPlaceholderVisibilityAlways = 1,
-        NSLevelIndicatorPlaceholderVisibilityWhileEditing = 2,
+        #[doc(alias = "NSLevelIndicatorPlaceholderVisibilityAutomatic")]
+        Automatic = 0,
+        #[doc(alias = "NSLevelIndicatorPlaceholderVisibilityAlways")]
+        Always = 1,
+        #[doc(alias = "NSLevelIndicatorPlaceholderVisibilityWhileEditing")]
+        WhileEditing = 2,
     }
 );
 

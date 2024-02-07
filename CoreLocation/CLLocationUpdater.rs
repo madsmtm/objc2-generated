@@ -8,11 +8,16 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum CLLiveUpdateConfiguration {
-        CLLiveUpdateConfigurationDefault = 0,
-        CLLiveUpdateConfigurationAutomotiveNavigation = 1,
-        CLLiveUpdateConfigurationOtherNavigation = 2,
-        CLLiveUpdateConfigurationFitness = 3,
-        CLLiveUpdateConfigurationAirborne = 4,
+        #[doc(alias = "CLLiveUpdateConfigurationDefault")]
+        Default = 0,
+        #[doc(alias = "CLLiveUpdateConfigurationAutomotiveNavigation")]
+        AutomotiveNavigation = 1,
+        #[doc(alias = "CLLiveUpdateConfigurationOtherNavigation")]
+        OtherNavigation = 2,
+        #[doc(alias = "CLLiveUpdateConfigurationFitness")]
+        Fitness = 3,
+        #[doc(alias = "CLLiveUpdateConfigurationAirborne")]
+        Airborne = 4,
     }
 );
 

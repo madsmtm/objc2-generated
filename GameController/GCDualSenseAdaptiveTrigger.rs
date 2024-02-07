@@ -10,28 +10,44 @@ pub const GCDualSenseAdaptiveTriggerDiscretePositionCount: c_uint = 10;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum GCDualSenseAdaptiveTriggerMode {
-        GCDualSenseAdaptiveTriggerModeOff = 0,
-        GCDualSenseAdaptiveTriggerModeFeedback = 1,
-        GCDualSenseAdaptiveTriggerModeWeapon = 2,
-        GCDualSenseAdaptiveTriggerModeVibration = 3,
-        GCDualSenseAdaptiveTriggerModeSlopeFeedback = 4,
+        #[doc(alias = "GCDualSenseAdaptiveTriggerModeOff")]
+        Off = 0,
+        #[doc(alias = "GCDualSenseAdaptiveTriggerModeFeedback")]
+        Feedback = 1,
+        #[doc(alias = "GCDualSenseAdaptiveTriggerModeWeapon")]
+        Weapon = 2,
+        #[doc(alias = "GCDualSenseAdaptiveTriggerModeVibration")]
+        Vibration = 3,
+        #[doc(alias = "GCDualSenseAdaptiveTriggerModeSlopeFeedback")]
+        SlopeFeedback = 4,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum GCDualSenseAdaptiveTriggerStatus {
-        GCDualSenseAdaptiveTriggerStatusUnknown = -1,
-        GCDualSenseAdaptiveTriggerStatusFeedbackNoLoad = 0,
-        GCDualSenseAdaptiveTriggerStatusFeedbackLoadApplied = 1,
-        GCDualSenseAdaptiveTriggerStatusWeaponReady = 2,
-        GCDualSenseAdaptiveTriggerStatusWeaponFiring = 3,
-        GCDualSenseAdaptiveTriggerStatusWeaponFired = 4,
-        GCDualSenseAdaptiveTriggerStatusVibrationNotVibrating = 5,
-        GCDualSenseAdaptiveTriggerStatusVibrationIsVibrating = 6,
-        GCDualSenseAdaptiveTriggerStatusSlopeFeedbackReady = 7,
-        GCDualSenseAdaptiveTriggerStatusSlopeFeedbackApplyingLoad = 8,
-        GCDualSenseAdaptiveTriggerStatusSlopeFeedbackFinished = 9,
+        #[doc(alias = "GCDualSenseAdaptiveTriggerStatusUnknown")]
+        Unknown = -1,
+        #[doc(alias = "GCDualSenseAdaptiveTriggerStatusFeedbackNoLoad")]
+        FeedbackNoLoad = 0,
+        #[doc(alias = "GCDualSenseAdaptiveTriggerStatusFeedbackLoadApplied")]
+        FeedbackLoadApplied = 1,
+        #[doc(alias = "GCDualSenseAdaptiveTriggerStatusWeaponReady")]
+        WeaponReady = 2,
+        #[doc(alias = "GCDualSenseAdaptiveTriggerStatusWeaponFiring")]
+        WeaponFiring = 3,
+        #[doc(alias = "GCDualSenseAdaptiveTriggerStatusWeaponFired")]
+        WeaponFired = 4,
+        #[doc(alias = "GCDualSenseAdaptiveTriggerStatusVibrationNotVibrating")]
+        VibrationNotVibrating = 5,
+        #[doc(alias = "GCDualSenseAdaptiveTriggerStatusVibrationIsVibrating")]
+        VibrationIsVibrating = 6,
+        #[doc(alias = "GCDualSenseAdaptiveTriggerStatusSlopeFeedbackReady")]
+        SlopeFeedbackReady = 7,
+        #[doc(alias = "GCDualSenseAdaptiveTriggerStatusSlopeFeedbackApplyingLoad")]
+        SlopeFeedbackApplyingLoad = 8,
+        #[doc(alias = "GCDualSenseAdaptiveTriggerStatusSlopeFeedbackFinished")]
+        SlopeFeedbackFinished = 9,
     }
 );
 

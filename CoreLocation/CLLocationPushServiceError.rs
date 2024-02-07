@@ -10,10 +10,15 @@ extern_static!(CLLocationPushServiceErrorDomain: Option<&'static NSErrorDomain>)
 ns_error_enum!(
     #[underlying(NSInteger)]
     pub enum CLLocationPushServiceError {
-        CLLocationPushServiceErrorUnknown = 0,
-        CLLocationPushServiceErrorMissingPushExtension = 1,
-        CLLocationPushServiceErrorMissingPushServerEnvironment = 2,
-        CLLocationPushServiceErrorMissingEntitlement = 3,
-        CLLocationPushServiceErrorUnsupportedPlatform = 4,
+        #[doc(alias = "CLLocationPushServiceErrorUnknown")]
+        Unknown = 0,
+        #[doc(alias = "CLLocationPushServiceErrorMissingPushExtension")]
+        MissingPushExtension = 1,
+        #[doc(alias = "CLLocationPushServiceErrorMissingPushServerEnvironment")]
+        MissingPushServerEnvironment = 2,
+        #[doc(alias = "CLLocationPushServiceErrorMissingEntitlement")]
+        MissingEntitlement = 3,
+        #[doc(alias = "CLLocationPushServiceErrorUnsupportedPlatform")]
+        UnsupportedPlatform = 4,
     }
 );

@@ -83,8 +83,10 @@ extern_methods!(
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MPSeekCommandEventType {
-        MPSeekCommandEventTypeBeginSeeking = 0,
-        MPSeekCommandEventTypeEndSeeking = 1,
+        #[doc(alias = "MPSeekCommandEventTypeBeginSeeking")]
+        BeginSeeking = 0,
+        #[doc(alias = "MPSeekCommandEventTypeEndSeeking")]
+        EndSeeking = 1,
     }
 );
 

@@ -8,10 +8,14 @@ use crate::GameController::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum GCDeviceBatteryState {
-        GCDeviceBatteryStateUnknown = -1,
-        GCDeviceBatteryStateDischarging = 0,
-        GCDeviceBatteryStateCharging = 1,
-        GCDeviceBatteryStateFull = 2,
+        #[doc(alias = "GCDeviceBatteryStateUnknown")]
+        Unknown = -1,
+        #[doc(alias = "GCDeviceBatteryStateDischarging")]
+        Discharging = 0,
+        #[doc(alias = "GCDeviceBatteryStateCharging")]
+        Charging = 1,
+        #[doc(alias = "GCDeviceBatteryStateFull")]
+        Full = 2,
     }
 );
 

@@ -10,18 +10,23 @@ ns_enum!(
     #[deprecated]
     pub enum NSPopoverAppearance {
         #[deprecated]
-        NSPopoverAppearanceMinimal = 0,
+        #[doc(alias = "NSPopoverAppearanceMinimal")]
+        Minimal = 0,
         #[deprecated]
-        NSPopoverAppearanceHUD = 1,
+        #[doc(alias = "NSPopoverAppearanceHUD")]
+        HUD = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSPopoverBehavior {
-        NSPopoverBehaviorApplicationDefined = 0,
-        NSPopoverBehaviorTransient = 1,
-        NSPopoverBehaviorSemitransient = 2,
+        #[doc(alias = "NSPopoverBehaviorApplicationDefined")]
+        ApplicationDefined = 0,
+        #[doc(alias = "NSPopoverBehaviorTransient")]
+        Transient = 1,
+        #[doc(alias = "NSPopoverBehaviorSemitransient")]
+        Semitransient = 2,
     }
 );
 

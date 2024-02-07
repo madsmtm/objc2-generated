@@ -9,155 +9,210 @@ use crate::UniformTypeIdentifiers::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKCategoryValue {
-        HKCategoryValueNotApplicable = 0,
+        #[doc(alias = "HKCategoryValueNotApplicable")]
+        NotApplicable = 0,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKCategoryValueAppetiteChanges {
-        HKCategoryValueAppetiteChangesUnspecified = 0,
-        HKCategoryValueAppetiteChangesNoChange = 1,
-        HKCategoryValueAppetiteChangesDecreased = 2,
-        HKCategoryValueAppetiteChangesIncreased = 3,
+        #[doc(alias = "HKCategoryValueAppetiteChangesUnspecified")]
+        Unspecified = 0,
+        #[doc(alias = "HKCategoryValueAppetiteChangesNoChange")]
+        NoChange = 1,
+        #[doc(alias = "HKCategoryValueAppetiteChangesDecreased")]
+        Decreased = 2,
+        #[doc(alias = "HKCategoryValueAppetiteChangesIncreased")]
+        Increased = 3,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKCategoryValueAppleStandHour {
-        HKCategoryValueAppleStandHourStood = 0,
-        HKCategoryValueAppleStandHourIdle = 1,
+        #[doc(alias = "HKCategoryValueAppleStandHourStood")]
+        Stood = 0,
+        #[doc(alias = "HKCategoryValueAppleStandHourIdle")]
+        Idle = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKCategoryValueAppleWalkingSteadinessEvent {
-        HKCategoryValueAppleWalkingSteadinessEventInitialLow = 1,
-        HKCategoryValueAppleWalkingSteadinessEventInitialVeryLow = 2,
-        HKCategoryValueAppleWalkingSteadinessEventRepeatLow = 3,
-        HKCategoryValueAppleWalkingSteadinessEventRepeatVeryLow = 4,
+        #[doc(alias = "HKCategoryValueAppleWalkingSteadinessEventInitialLow")]
+        InitialLow = 1,
+        #[doc(alias = "HKCategoryValueAppleWalkingSteadinessEventInitialVeryLow")]
+        InitialVeryLow = 2,
+        #[doc(alias = "HKCategoryValueAppleWalkingSteadinessEventRepeatLow")]
+        RepeatLow = 3,
+        #[doc(alias = "HKCategoryValueAppleWalkingSteadinessEventRepeatVeryLow")]
+        RepeatVeryLow = 4,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKCategoryValueCervicalMucusQuality {
-        HKCategoryValueCervicalMucusQualityDry = 1,
-        HKCategoryValueCervicalMucusQualitySticky = 2,
-        HKCategoryValueCervicalMucusQualityCreamy = 3,
-        HKCategoryValueCervicalMucusQualityWatery = 4,
-        HKCategoryValueCervicalMucusQualityEggWhite = 5,
+        #[doc(alias = "HKCategoryValueCervicalMucusQualityDry")]
+        Dry = 1,
+        #[doc(alias = "HKCategoryValueCervicalMucusQualitySticky")]
+        Sticky = 2,
+        #[doc(alias = "HKCategoryValueCervicalMucusQualityCreamy")]
+        Creamy = 3,
+        #[doc(alias = "HKCategoryValueCervicalMucusQualityWatery")]
+        Watery = 4,
+        #[doc(alias = "HKCategoryValueCervicalMucusQualityEggWhite")]
+        EggWhite = 5,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKCategoryValueContraceptive {
-        HKCategoryValueContraceptiveUnspecified = 1,
-        HKCategoryValueContraceptiveImplant = 2,
-        HKCategoryValueContraceptiveInjection = 3,
-        HKCategoryValueContraceptiveIntrauterineDevice = 4,
-        HKCategoryValueContraceptiveIntravaginalRing = 5,
-        HKCategoryValueContraceptiveOral = 6,
-        HKCategoryValueContraceptivePatch = 7,
+        #[doc(alias = "HKCategoryValueContraceptiveUnspecified")]
+        Unspecified = 1,
+        #[doc(alias = "HKCategoryValueContraceptiveImplant")]
+        Implant = 2,
+        #[doc(alias = "HKCategoryValueContraceptiveInjection")]
+        Injection = 3,
+        #[doc(alias = "HKCategoryValueContraceptiveIntrauterineDevice")]
+        IntrauterineDevice = 4,
+        #[doc(alias = "HKCategoryValueContraceptiveIntravaginalRing")]
+        IntravaginalRing = 5,
+        #[doc(alias = "HKCategoryValueContraceptiveOral")]
+        Oral = 6,
+        #[doc(alias = "HKCategoryValueContraceptivePatch")]
+        Patch = 7,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKCategoryValueEnvironmentalAudioExposureEvent {
-        HKCategoryValueEnvironmentalAudioExposureEventMomentaryLimit = 1,
+        #[doc(alias = "HKCategoryValueEnvironmentalAudioExposureEventMomentaryLimit")]
+        MomentaryLimit = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKCategoryValueHeadphoneAudioExposureEvent {
-        HKCategoryValueHeadphoneAudioExposureEventSevenDayLimit = 1,
+        #[doc(alias = "HKCategoryValueHeadphoneAudioExposureEventSevenDayLimit")]
+        SevenDayLimit = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKCategoryValueLowCardioFitnessEvent {
-        HKCategoryValueLowCardioFitnessEventLowFitness = 1,
+        #[doc(alias = "HKCategoryValueLowCardioFitnessEventLowFitness")]
+        LowFitness = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKCategoryValueMenstrualFlow {
-        HKCategoryValueMenstrualFlowUnspecified = 1,
-        HKCategoryValueMenstrualFlowLight = 2,
-        HKCategoryValueMenstrualFlowMedium = 3,
-        HKCategoryValueMenstrualFlowHeavy = 4,
-        HKCategoryValueMenstrualFlowNone = 5,
+        #[doc(alias = "HKCategoryValueMenstrualFlowUnspecified")]
+        Unspecified = 1,
+        #[doc(alias = "HKCategoryValueMenstrualFlowLight")]
+        Light = 2,
+        #[doc(alias = "HKCategoryValueMenstrualFlowMedium")]
+        Medium = 3,
+        #[doc(alias = "HKCategoryValueMenstrualFlowHeavy")]
+        Heavy = 4,
+        #[doc(alias = "HKCategoryValueMenstrualFlowNone")]
+        None = 5,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKCategoryValueOvulationTestResult {
-        HKCategoryValueOvulationTestResultNegative = 1,
-        HKCategoryValueOvulationTestResultLuteinizingHormoneSurge = 2,
+        #[doc(alias = "HKCategoryValueOvulationTestResultNegative")]
+        Negative = 1,
+        #[doc(alias = "HKCategoryValueOvulationTestResultLuteinizingHormoneSurge")]
+        LuteinizingHormoneSurge = 2,
         #[deprecated]
-        HKCategoryValueOvulationTestResultPositive = HKCategoryValueOvulationTestResult::HKCategoryValueOvulationTestResultLuteinizingHormoneSurge.0,
-        HKCategoryValueOvulationTestResultIndeterminate = 3,
-        HKCategoryValueOvulationTestResultEstrogenSurge = 4,
+        #[doc(alias = "HKCategoryValueOvulationTestResultPositive")]
+        Positive = HKCategoryValueOvulationTestResult::LuteinizingHormoneSurge.0,
+        #[doc(alias = "HKCategoryValueOvulationTestResultIndeterminate")]
+        Indeterminate = 3,
+        #[doc(alias = "HKCategoryValueOvulationTestResultEstrogenSurge")]
+        EstrogenSurge = 4,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKCategoryValuePregnancyTestResult {
-        HKCategoryValuePregnancyTestResultNegative = 1,
-        HKCategoryValuePregnancyTestResultPositive = 2,
-        HKCategoryValuePregnancyTestResultIndeterminate = 3,
+        #[doc(alias = "HKCategoryValuePregnancyTestResultNegative")]
+        Negative = 1,
+        #[doc(alias = "HKCategoryValuePregnancyTestResultPositive")]
+        Positive = 2,
+        #[doc(alias = "HKCategoryValuePregnancyTestResultIndeterminate")]
+        Indeterminate = 3,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKCategoryValuePresence {
-        HKCategoryValuePresencePresent = 0,
-        HKCategoryValuePresenceNotPresent = 1,
+        #[doc(alias = "HKCategoryValuePresencePresent")]
+        Present = 0,
+        #[doc(alias = "HKCategoryValuePresenceNotPresent")]
+        NotPresent = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKCategoryValueProgesteroneTestResult {
-        HKCategoryValueProgesteroneTestResultNegative = 1,
-        HKCategoryValueProgesteroneTestResultPositive = 2,
-        HKCategoryValueProgesteroneTestResultIndeterminate = 3,
+        #[doc(alias = "HKCategoryValueProgesteroneTestResultNegative")]
+        Negative = 1,
+        #[doc(alias = "HKCategoryValueProgesteroneTestResultPositive")]
+        Positive = 2,
+        #[doc(alias = "HKCategoryValueProgesteroneTestResultIndeterminate")]
+        Indeterminate = 3,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKCategoryValueSeverity {
-        HKCategoryValueSeverityUnspecified = 0,
-        HKCategoryValueSeverityNotPresent = 1,
-        HKCategoryValueSeverityMild = 2,
-        HKCategoryValueSeverityModerate = 3,
-        HKCategoryValueSeveritySevere = 4,
+        #[doc(alias = "HKCategoryValueSeverityUnspecified")]
+        Unspecified = 0,
+        #[doc(alias = "HKCategoryValueSeverityNotPresent")]
+        NotPresent = 1,
+        #[doc(alias = "HKCategoryValueSeverityMild")]
+        Mild = 2,
+        #[doc(alias = "HKCategoryValueSeverityModerate")]
+        Moderate = 3,
+        #[doc(alias = "HKCategoryValueSeveritySevere")]
+        Severe = 4,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKCategoryValueSleepAnalysis {
-        HKCategoryValueSleepAnalysisInBed = 0,
-        HKCategoryValueSleepAnalysisAsleepUnspecified = 1,
+        #[doc(alias = "HKCategoryValueSleepAnalysisInBed")]
+        InBed = 0,
+        #[doc(alias = "HKCategoryValueSleepAnalysisAsleepUnspecified")]
+        AsleepUnspecified = 1,
         #[deprecated]
-        HKCategoryValueSleepAnalysisAsleep =
-            HKCategoryValueSleepAnalysis::HKCategoryValueSleepAnalysisAsleepUnspecified.0,
-        HKCategoryValueSleepAnalysisAwake = 2,
-        HKCategoryValueSleepAnalysisAsleepCore = 3,
-        HKCategoryValueSleepAnalysisAsleepDeep = 4,
-        HKCategoryValueSleepAnalysisAsleepREM = 5,
+        #[doc(alias = "HKCategoryValueSleepAnalysisAsleep")]
+        Asleep = HKCategoryValueSleepAnalysis::AsleepUnspecified.0,
+        #[doc(alias = "HKCategoryValueSleepAnalysisAwake")]
+        Awake = 2,
+        #[doc(alias = "HKCategoryValueSleepAnalysisAsleepCore")]
+        AsleepCore = 3,
+        #[doc(alias = "HKCategoryValueSleepAnalysisAsleepDeep")]
+        AsleepDeep = 4,
+        #[doc(alias = "HKCategoryValueSleepAnalysisAsleepREM")]
+        AsleepREM = 5,
     }
 );
 
@@ -166,6 +221,7 @@ ns_enum!(
     #[deprecated]
     pub enum HKCategoryValueAudioExposureEvent {
         #[deprecated]
-        HKCategoryValueAudioExposureEventLoudEnvironment = 1,
+        #[doc(alias = "HKCategoryValueAudioExposureEventLoudEnvironment")]
+        LoudEnvironment = 1,
     }
 );

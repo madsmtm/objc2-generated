@@ -10,8 +10,10 @@ use crate::MapKit::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MKMapElevationStyle {
-        MKMapElevationStyleFlat = 0,
-        MKMapElevationStyleRealistic = 1,
+        #[doc(alias = "MKMapElevationStyleFlat")]
+        Flat = 0,
+        #[doc(alias = "MKMapElevationStyleRealistic")]
+        Realistic = 1,
     }
 );
 

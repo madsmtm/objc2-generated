@@ -8,13 +8,18 @@ ns_enum!(
     #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
     pub enum NSUserNotificationActivationType {
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
-        NSUserNotificationActivationTypeNone = 0,
+        #[doc(alias = "NSUserNotificationActivationTypeNone")]
+        None = 0,
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
-        NSUserNotificationActivationTypeContentsClicked = 1,
+        #[doc(alias = "NSUserNotificationActivationTypeContentsClicked")]
+        ContentsClicked = 1,
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
-        NSUserNotificationActivationTypeActionButtonClicked = 2,
-        NSUserNotificationActivationTypeReplied = 3,
-        NSUserNotificationActivationTypeAdditionalActionClicked = 4,
+        #[doc(alias = "NSUserNotificationActivationTypeActionButtonClicked")]
+        ActionButtonClicked = 2,
+        #[doc(alias = "NSUserNotificationActivationTypeReplied")]
+        Replied = 3,
+        #[doc(alias = "NSUserNotificationActivationTypeAdditionalActionClicked")]
+        AdditionalActionClicked = 4,
     }
 );
 

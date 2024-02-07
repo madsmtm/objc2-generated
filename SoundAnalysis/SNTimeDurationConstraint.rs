@@ -7,8 +7,10 @@ use crate::SoundAnalysis::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum SNTimeDurationConstraintType {
-        SNTimeDurationConstraintTypeEnumerated = 1,
-        SNTimeDurationConstraintTypeRange = 2,
+        #[doc(alias = "SNTimeDurationConstraintTypeEnumerated")]
+        Enumerated = 1,
+        #[doc(alias = "SNTimeDurationConstraintTypeRange")]
+        Range = 2,
     }
 );
 

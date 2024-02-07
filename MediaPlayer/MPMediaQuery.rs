@@ -8,14 +8,22 @@ use crate::MediaPlayer::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MPMediaGrouping {
-        MPMediaGroupingTitle = 0,
-        MPMediaGroupingAlbum = 1,
-        MPMediaGroupingArtist = 2,
-        MPMediaGroupingAlbumArtist = 3,
-        MPMediaGroupingComposer = 4,
-        MPMediaGroupingGenre = 5,
-        MPMediaGroupingPlaylist = 6,
-        MPMediaGroupingPodcastTitle = 7,
+        #[doc(alias = "MPMediaGroupingTitle")]
+        Title = 0,
+        #[doc(alias = "MPMediaGroupingAlbum")]
+        Album = 1,
+        #[doc(alias = "MPMediaGroupingArtist")]
+        Artist = 2,
+        #[doc(alias = "MPMediaGroupingAlbumArtist")]
+        AlbumArtist = 3,
+        #[doc(alias = "MPMediaGroupingComposer")]
+        Composer = 4,
+        #[doc(alias = "MPMediaGroupingGenre")]
+        Genre = 5,
+        #[doc(alias = "MPMediaGroupingPlaylist")]
+        Playlist = 6,
+        #[doc(alias = "MPMediaGroupingPodcastTitle")]
+        PodcastTitle = 7,
     }
 );
 
@@ -185,8 +193,10 @@ extern_methods!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MPMediaPredicateComparison {
-        MPMediaPredicateComparisonEqualTo = 0,
-        MPMediaPredicateComparisonContains = 1,
+        #[doc(alias = "MPMediaPredicateComparisonEqualTo")]
+        EqualTo = 0,
+        #[doc(alias = "MPMediaPredicateComparisonContains")]
+        Contains = 1,
     }
 );
 

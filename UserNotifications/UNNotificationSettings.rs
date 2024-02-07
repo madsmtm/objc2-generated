@@ -8,38 +8,52 @@ use crate::UserNotifications::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum UNAuthorizationStatus {
-        UNAuthorizationStatusNotDetermined = 0,
-        UNAuthorizationStatusDenied = 1,
-        UNAuthorizationStatusAuthorized = 2,
-        UNAuthorizationStatusProvisional = 3,
-        UNAuthorizationStatusEphemeral = 4,
+        #[doc(alias = "UNAuthorizationStatusNotDetermined")]
+        NotDetermined = 0,
+        #[doc(alias = "UNAuthorizationStatusDenied")]
+        Denied = 1,
+        #[doc(alias = "UNAuthorizationStatusAuthorized")]
+        Authorized = 2,
+        #[doc(alias = "UNAuthorizationStatusProvisional")]
+        Provisional = 3,
+        #[doc(alias = "UNAuthorizationStatusEphemeral")]
+        Ephemeral = 4,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum UNShowPreviewsSetting {
-        UNShowPreviewsSettingAlways = 0,
-        UNShowPreviewsSettingWhenAuthenticated = 1,
-        UNShowPreviewsSettingNever = 2,
+        #[doc(alias = "UNShowPreviewsSettingAlways")]
+        Always = 0,
+        #[doc(alias = "UNShowPreviewsSettingWhenAuthenticated")]
+        WhenAuthenticated = 1,
+        #[doc(alias = "UNShowPreviewsSettingNever")]
+        Never = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum UNNotificationSetting {
-        UNNotificationSettingNotSupported = 0,
-        UNNotificationSettingDisabled = 1,
-        UNNotificationSettingEnabled = 2,
+        #[doc(alias = "UNNotificationSettingNotSupported")]
+        NotSupported = 0,
+        #[doc(alias = "UNNotificationSettingDisabled")]
+        Disabled = 1,
+        #[doc(alias = "UNNotificationSettingEnabled")]
+        Enabled = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum UNAlertStyle {
-        UNAlertStyleNone = 0,
-        UNAlertStyleBanner = 1,
-        UNAlertStyleAlert = 2,
+        #[doc(alias = "UNAlertStyleNone")]
+        None = 0,
+        #[doc(alias = "UNAlertStyleBanner")]
+        Banner = 1,
+        #[doc(alias = "UNAlertStyleAlert")]
+        Alert = 2,
     }
 );
 

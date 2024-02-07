@@ -173,9 +173,12 @@ extern_methods!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSSharingContentScope {
-        NSSharingContentScopeItem = 0,
-        NSSharingContentScopePartial = 1,
-        NSSharingContentScopeFull = 2,
+        #[doc(alias = "NSSharingContentScopeItem")]
+        Item = 0,
+        #[doc(alias = "NSSharingContentScopePartial")]
+        Partial = 1,
+        #[doc(alias = "NSSharingContentScopeFull")]
+        Full = 2,
     }
 );
 

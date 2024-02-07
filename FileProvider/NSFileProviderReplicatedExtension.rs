@@ -24,14 +24,16 @@ ns_options!(
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSFileProviderMaterializationFlags {
-        NSFileProviderMaterializationFlagsKnownSparseRanges = 1 << 0,
+        #[doc(alias = "NSFileProviderMaterializationFlagsKnownSparseRanges")]
+        KnownSparseRanges = 1 << 0,
     }
 );
 
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSFileProviderFetchContentsOptions {
-        NSFileProviderFetchContentsOptionsStrictVersioning = 1 << 0,
+        #[doc(alias = "NSFileProviderFetchContentsOptionsStrictVersioning")]
+        StrictVersioning = 1 << 0,
     }
 );
 

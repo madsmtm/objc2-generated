@@ -8,8 +8,10 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSComboButtonStyle {
-        NSComboButtonStyleSplit = 0,
-        NSComboButtonStyleUnified = 1,
+        #[doc(alias = "NSComboButtonStyleSplit")]
+        Split = 0,
+        #[doc(alias = "NSComboButtonStyleUnified")]
+        Unified = 1,
     }
 );
 

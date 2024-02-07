@@ -222,10 +222,14 @@ extern_methods!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSProcessInfoThermalState {
-        NSProcessInfoThermalStateNominal = 0,
-        NSProcessInfoThermalStateFair = 1,
-        NSProcessInfoThermalStateSerious = 2,
-        NSProcessInfoThermalStateCritical = 3,
+        #[doc(alias = "NSProcessInfoThermalStateNominal")]
+        Nominal = 0,
+        #[doc(alias = "NSProcessInfoThermalStateFair")]
+        Fair = 1,
+        #[doc(alias = "NSProcessInfoThermalStateSerious")]
+        Serious = 2,
+        #[doc(alias = "NSProcessInfoThermalStateCritical")]
+        Critical = 3,
     }
 );
 

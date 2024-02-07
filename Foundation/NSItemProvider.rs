@@ -6,10 +6,14 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSItemProviderRepresentationVisibility {
-        NSItemProviderRepresentationVisibilityAll = 0,
-        NSItemProviderRepresentationVisibilityTeam = 1,
-        NSItemProviderRepresentationVisibilityGroup = 2,
-        NSItemProviderRepresentationVisibilityOwnProcess = 3,
+        #[doc(alias = "NSItemProviderRepresentationVisibilityAll")]
+        All = 0,
+        #[doc(alias = "NSItemProviderRepresentationVisibilityTeam")]
+        Team = 1,
+        #[doc(alias = "NSItemProviderRepresentationVisibilityGroup")]
+        Group = 2,
+        #[doc(alias = "NSItemProviderRepresentationVisibilityOwnProcess")]
+        OwnProcess = 3,
     }
 );
 

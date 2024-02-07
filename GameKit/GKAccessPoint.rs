@@ -8,10 +8,14 @@ use crate::GameKit::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum GKAccessPointLocation {
-        GKAccessPointLocationTopLeading = 0,
-        GKAccessPointLocationTopTrailing = 1,
-        GKAccessPointLocationBottomLeading = 2,
-        GKAccessPointLocationBottomTrailing = 3,
+        #[doc(alias = "GKAccessPointLocationTopLeading")]
+        TopLeading = 0,
+        #[doc(alias = "GKAccessPointLocationTopTrailing")]
+        TopTrailing = 1,
+        #[doc(alias = "GKAccessPointLocationBottomLeading")]
+        BottomLeading = 2,
+        #[doc(alias = "GKAccessPointLocationBottomTrailing")]
+        BottomTrailing = 3,
     }
 );
 

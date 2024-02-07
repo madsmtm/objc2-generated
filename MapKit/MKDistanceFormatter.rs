@@ -10,19 +10,26 @@ use crate::MapKit::*;
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MKDistanceFormatterUnits {
-        MKDistanceFormatterUnitsDefault = 0,
-        MKDistanceFormatterUnitsMetric = 1,
-        MKDistanceFormatterUnitsImperial = 2,
-        MKDistanceFormatterUnitsImperialWithYards = 3,
+        #[doc(alias = "MKDistanceFormatterUnitsDefault")]
+        Default = 0,
+        #[doc(alias = "MKDistanceFormatterUnitsMetric")]
+        Metric = 1,
+        #[doc(alias = "MKDistanceFormatterUnitsImperial")]
+        Imperial = 2,
+        #[doc(alias = "MKDistanceFormatterUnitsImperialWithYards")]
+        ImperialWithYards = 3,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MKDistanceFormatterUnitStyle {
-        MKDistanceFormatterUnitStyleDefault = 0,
-        MKDistanceFormatterUnitStyleAbbreviated = 1,
-        MKDistanceFormatterUnitStyleFull = 2,
+        #[doc(alias = "MKDistanceFormatterUnitStyleDefault")]
+        Default = 0,
+        #[doc(alias = "MKDistanceFormatterUnitStyleAbbreviated")]
+        Abbreviated = 1,
+        #[doc(alias = "MKDistanceFormatterUnitStyleFull")]
+        Full = 2,
     }
 );
 

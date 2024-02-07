@@ -8,19 +8,32 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSTextFinderAction {
-        NSTextFinderActionShowFindInterface = 1,
-        NSTextFinderActionNextMatch = 2,
-        NSTextFinderActionPreviousMatch = 3,
-        NSTextFinderActionReplaceAll = 4,
-        NSTextFinderActionReplace = 5,
-        NSTextFinderActionReplaceAndFind = 6,
-        NSTextFinderActionSetSearchString = 7,
-        NSTextFinderActionReplaceAllInSelection = 8,
-        NSTextFinderActionSelectAll = 9,
-        NSTextFinderActionSelectAllInSelection = 10,
-        NSTextFinderActionHideFindInterface = 11,
-        NSTextFinderActionShowReplaceInterface = 12,
-        NSTextFinderActionHideReplaceInterface = 13,
+        #[doc(alias = "NSTextFinderActionShowFindInterface")]
+        ShowFindInterface = 1,
+        #[doc(alias = "NSTextFinderActionNextMatch")]
+        NextMatch = 2,
+        #[doc(alias = "NSTextFinderActionPreviousMatch")]
+        PreviousMatch = 3,
+        #[doc(alias = "NSTextFinderActionReplaceAll")]
+        ReplaceAll = 4,
+        #[doc(alias = "NSTextFinderActionReplace")]
+        Replace = 5,
+        #[doc(alias = "NSTextFinderActionReplaceAndFind")]
+        ReplaceAndFind = 6,
+        #[doc(alias = "NSTextFinderActionSetSearchString")]
+        SetSearchString = 7,
+        #[doc(alias = "NSTextFinderActionReplaceAllInSelection")]
+        ReplaceAllInSelection = 8,
+        #[doc(alias = "NSTextFinderActionSelectAll")]
+        SelectAll = 9,
+        #[doc(alias = "NSTextFinderActionSelectAllInSelection")]
+        SelectAllInSelection = 10,
+        #[doc(alias = "NSTextFinderActionHideFindInterface")]
+        HideFindInterface = 11,
+        #[doc(alias = "NSTextFinderActionShowReplaceInterface")]
+        ShowReplaceInterface = 12,
+        #[doc(alias = "NSTextFinderActionHideReplaceInterface")]
+        HideReplaceInterface = 13,
     }
 );
 
@@ -35,10 +48,14 @@ extern_static!(NSTextFinderMatchingTypeKey: &'static NSPasteboardTypeTextFinderO
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSTextFinderMatchingType {
-        NSTextFinderMatchingTypeContains = 0,
-        NSTextFinderMatchingTypeStartsWith = 1,
-        NSTextFinderMatchingTypeFullWord = 2,
-        NSTextFinderMatchingTypeEndsWith = 3,
+        #[doc(alias = "NSTextFinderMatchingTypeContains")]
+        Contains = 0,
+        #[doc(alias = "NSTextFinderMatchingTypeStartsWith")]
+        StartsWith = 1,
+        #[doc(alias = "NSTextFinderMatchingTypeFullWord")]
+        FullWord = 2,
+        #[doc(alias = "NSTextFinderMatchingTypeEndsWith")]
+        EndsWith = 3,
     }
 );
 

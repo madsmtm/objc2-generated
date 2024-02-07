@@ -8,14 +8,20 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSGestureRecognizerState {
-        NSGestureRecognizerStatePossible = 0,
-        NSGestureRecognizerStateBegan = 1,
-        NSGestureRecognizerStateChanged = 2,
-        NSGestureRecognizerStateEnded = 3,
-        NSGestureRecognizerStateCancelled = 4,
-        NSGestureRecognizerStateFailed = 5,
-        NSGestureRecognizerStateRecognized =
-            NSGestureRecognizerState::NSGestureRecognizerStateEnded.0,
+        #[doc(alias = "NSGestureRecognizerStatePossible")]
+        Possible = 0,
+        #[doc(alias = "NSGestureRecognizerStateBegan")]
+        Began = 1,
+        #[doc(alias = "NSGestureRecognizerStateChanged")]
+        Changed = 2,
+        #[doc(alias = "NSGestureRecognizerStateEnded")]
+        Ended = 3,
+        #[doc(alias = "NSGestureRecognizerStateCancelled")]
+        Cancelled = 4,
+        #[doc(alias = "NSGestureRecognizerStateFailed")]
+        Failed = 5,
+        #[doc(alias = "NSGestureRecognizerStateRecognized")]
+        Recognized = NSGestureRecognizerState::Ended.0,
     }
 );
 

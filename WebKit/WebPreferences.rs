@@ -10,11 +10,14 @@ ns_enum!(
     #[deprecated]
     pub enum WebCacheModel {
         #[deprecated]
-        WebCacheModelDocumentViewer = 0,
+        #[doc(alias = "WebCacheModelDocumentViewer")]
+        DocumentViewer = 0,
         #[deprecated]
-        WebCacheModelDocumentBrowser = 1,
+        #[doc(alias = "WebCacheModelDocumentBrowser")]
+        DocumentBrowser = 1,
         #[deprecated]
-        WebCacheModelPrimaryWebBrowser = 2,
+        #[doc(alias = "WebCacheModelPrimaryWebBrowser")]
+        PrimaryWebBrowser = 2,
     }
 );
 

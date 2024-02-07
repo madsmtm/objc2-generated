@@ -7,7 +7,8 @@ use crate::Metal::*;
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MTLFunctionLogType {
-        MTLFunctionLogTypeValidation = 0,
+        #[doc(alias = "MTLFunctionLogTypeValidation")]
+        Validation = 0,
     }
 );
 

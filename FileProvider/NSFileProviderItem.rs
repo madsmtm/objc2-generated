@@ -73,27 +73,35 @@ extern_static!(NSFileProviderFavoriteRankUnranked: c_ulonglong);
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSFileProviderItemCapabilities {
-        NSFileProviderItemCapabilitiesAllowsReading = 1 << 0,
-        NSFileProviderItemCapabilitiesAllowsWriting = 1 << 1,
-        NSFileProviderItemCapabilitiesAllowsReparenting = 1 << 2,
-        NSFileProviderItemCapabilitiesAllowsRenaming = 1 << 3,
-        NSFileProviderItemCapabilitiesAllowsTrashing = 1 << 4,
-        NSFileProviderItemCapabilitiesAllowsDeleting = 1 << 5,
+        #[doc(alias = "NSFileProviderItemCapabilitiesAllowsReading")]
+        AllowsReading = 1 << 0,
+        #[doc(alias = "NSFileProviderItemCapabilitiesAllowsWriting")]
+        AllowsWriting = 1 << 1,
+        #[doc(alias = "NSFileProviderItemCapabilitiesAllowsReparenting")]
+        AllowsReparenting = 1 << 2,
+        #[doc(alias = "NSFileProviderItemCapabilitiesAllowsRenaming")]
+        AllowsRenaming = 1 << 3,
+        #[doc(alias = "NSFileProviderItemCapabilitiesAllowsTrashing")]
+        AllowsTrashing = 1 << 4,
+        #[doc(alias = "NSFileProviderItemCapabilitiesAllowsDeleting")]
+        AllowsDeleting = 1 << 5,
         #[deprecated = "use NSFileProviderContentPolicy instead"]
-        NSFileProviderItemCapabilitiesAllowsEvicting = 1 << 6,
-        NSFileProviderItemCapabilitiesAllowsExcludingFromSync = 1 << 7,
-        NSFileProviderItemCapabilitiesAllowsAddingSubItems =
-            NSFileProviderItemCapabilities::NSFileProviderItemCapabilitiesAllowsWriting.0,
-        NSFileProviderItemCapabilitiesAllowsContentEnumerating =
-            NSFileProviderItemCapabilities::NSFileProviderItemCapabilitiesAllowsReading.0,
+        #[doc(alias = "NSFileProviderItemCapabilitiesAllowsEvicting")]
+        AllowsEvicting = 1 << 6,
+        #[doc(alias = "NSFileProviderItemCapabilitiesAllowsExcludingFromSync")]
+        AllowsExcludingFromSync = 1 << 7,
+        #[doc(alias = "NSFileProviderItemCapabilitiesAllowsAddingSubItems")]
+        AllowsAddingSubItems = NSFileProviderItemCapabilities::AllowsWriting.0,
+        #[doc(alias = "NSFileProviderItemCapabilitiesAllowsContentEnumerating")]
+        AllowsContentEnumerating = NSFileProviderItemCapabilities::AllowsReading.0,
         #[deprecated = "This capability is no longer supported, and does not contain all capabilities. Please migrate to directly specifying each of the individual capabilities that should be allowed for the item."]
-        NSFileProviderItemCapabilitiesAllowsAll =
-            NSFileProviderItemCapabilities::NSFileProviderItemCapabilitiesAllowsReading.0
-                | NSFileProviderItemCapabilities::NSFileProviderItemCapabilitiesAllowsWriting.0
-                | NSFileProviderItemCapabilities::NSFileProviderItemCapabilitiesAllowsReparenting.0
-                | NSFileProviderItemCapabilities::NSFileProviderItemCapabilitiesAllowsRenaming.0
-                | NSFileProviderItemCapabilities::NSFileProviderItemCapabilitiesAllowsTrashing.0
-                | NSFileProviderItemCapabilities::NSFileProviderItemCapabilitiesAllowsDeleting.0,
+        #[doc(alias = "NSFileProviderItemCapabilitiesAllowsAll")]
+        AllowsAll = NSFileProviderItemCapabilities::AllowsReading.0
+            | NSFileProviderItemCapabilities::AllowsWriting.0
+            | NSFileProviderItemCapabilities::AllowsReparenting.0
+            | NSFileProviderItemCapabilities::AllowsRenaming.0
+            | NSFileProviderItemCapabilities::AllowsTrashing.0
+            | NSFileProviderItemCapabilities::AllowsDeleting.0,
     }
 );
 
@@ -135,10 +143,14 @@ extern_struct!(
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSFileProviderContentPolicy {
-        NSFileProviderContentPolicyInherited = 0,
-        NSFileProviderContentPolicyDownloadLazily = 1,
-        NSFileProviderContentPolicyDownloadLazilyAndEvictOnRemoteUpdate = 2,
-        NSFileProviderContentPolicyDownloadEagerlyAndKeepDownloaded = 3,
+        #[doc(alias = "NSFileProviderContentPolicyInherited")]
+        Inherited = 0,
+        #[doc(alias = "NSFileProviderContentPolicyDownloadLazily")]
+        DownloadLazily = 1,
+        #[doc(alias = "NSFileProviderContentPolicyDownloadLazilyAndEvictOnRemoteUpdate")]
+        DownloadLazilyAndEvictOnRemoteUpdate = 2,
+        #[doc(alias = "NSFileProviderContentPolicyDownloadEagerlyAndKeepDownloaded")]
+        DownloadEagerlyAndKeepDownloaded = 3,
     }
 );
 

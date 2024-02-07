@@ -12,11 +12,16 @@ extern_static!(MKAnnotationCalloutInfoDidChangeNotification: &'static NSString);
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum MKAnnotationViewDragState {
-        MKAnnotationViewDragStateNone = 0,
-        MKAnnotationViewDragStateStarting = 1,
-        MKAnnotationViewDragStateDragging = 2,
-        MKAnnotationViewDragStateCanceling = 3,
-        MKAnnotationViewDragStateEnding = 4,
+        #[doc(alias = "MKAnnotationViewDragStateNone")]
+        None = 0,
+        #[doc(alias = "MKAnnotationViewDragStateStarting")]
+        Starting = 1,
+        #[doc(alias = "MKAnnotationViewDragStateDragging")]
+        Dragging = 2,
+        #[doc(alias = "MKAnnotationViewDragStateCanceling")]
+        Canceling = 3,
+        #[doc(alias = "MKAnnotationViewDragStateEnding")]
+        Ending = 4,
     }
 );
 
@@ -45,9 +50,12 @@ extern_static!(MKAnnotationViewZPriorityMin: MKAnnotationViewZPriority = 0);
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MKAnnotationViewCollisionMode {
-        MKAnnotationViewCollisionModeRectangle = 0,
-        MKAnnotationViewCollisionModeCircle = 1,
-        MKAnnotationViewCollisionModeNone = 2,
+        #[doc(alias = "MKAnnotationViewCollisionModeRectangle")]
+        Rectangle = 0,
+        #[doc(alias = "MKAnnotationViewCollisionModeCircle")]
+        Circle = 1,
+        #[doc(alias = "MKAnnotationViewCollisionModeNone")]
+        None = 2,
     }
 );
 

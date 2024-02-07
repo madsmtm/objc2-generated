@@ -9,9 +9,12 @@ use crate::UniformTypeIdentifiers::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum HKAppleWalkingSteadinessClassification {
-        HKAppleWalkingSteadinessClassificationOK = 1,
-        HKAppleWalkingSteadinessClassificationLow = 2,
-        HKAppleWalkingSteadinessClassificationVeryLow = 3,
+        #[doc(alias = "HKAppleWalkingSteadinessClassificationOK")]
+        OK = 1,
+        #[doc(alias = "HKAppleWalkingSteadinessClassificationLow")]
+        Low = 2,
+        #[doc(alias = "HKAppleWalkingSteadinessClassificationVeryLow")]
+        VeryLow = 3,
     }
 );
 

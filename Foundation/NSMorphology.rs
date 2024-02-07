@@ -6,103 +6,158 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSGrammaticalGender {
-        NSGrammaticalGenderNotSet = 0,
-        NSGrammaticalGenderFeminine = 1,
-        NSGrammaticalGenderMasculine = 2,
-        NSGrammaticalGenderNeuter = 3,
+        #[doc(alias = "NSGrammaticalGenderNotSet")]
+        NotSet = 0,
+        #[doc(alias = "NSGrammaticalGenderFeminine")]
+        Feminine = 1,
+        #[doc(alias = "NSGrammaticalGenderMasculine")]
+        Masculine = 2,
+        #[doc(alias = "NSGrammaticalGenderNeuter")]
+        Neuter = 3,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSGrammaticalPartOfSpeech {
-        NSGrammaticalPartOfSpeechNotSet = 0,
-        NSGrammaticalPartOfSpeechDeterminer = 1,
-        NSGrammaticalPartOfSpeechPronoun = 2,
-        NSGrammaticalPartOfSpeechLetter = 3,
-        NSGrammaticalPartOfSpeechAdverb = 4,
-        NSGrammaticalPartOfSpeechParticle = 5,
-        NSGrammaticalPartOfSpeechAdjective = 6,
-        NSGrammaticalPartOfSpeechAdposition = 7,
-        NSGrammaticalPartOfSpeechVerb = 8,
-        NSGrammaticalPartOfSpeechNoun = 9,
-        NSGrammaticalPartOfSpeechConjunction = 10,
-        NSGrammaticalPartOfSpeechNumeral = 11,
-        NSGrammaticalPartOfSpeechInterjection = 12,
-        NSGrammaticalPartOfSpeechPreposition = 13,
-        NSGrammaticalPartOfSpeechAbbreviation = 14,
+        #[doc(alias = "NSGrammaticalPartOfSpeechNotSet")]
+        NotSet = 0,
+        #[doc(alias = "NSGrammaticalPartOfSpeechDeterminer")]
+        Determiner = 1,
+        #[doc(alias = "NSGrammaticalPartOfSpeechPronoun")]
+        Pronoun = 2,
+        #[doc(alias = "NSGrammaticalPartOfSpeechLetter")]
+        Letter = 3,
+        #[doc(alias = "NSGrammaticalPartOfSpeechAdverb")]
+        Adverb = 4,
+        #[doc(alias = "NSGrammaticalPartOfSpeechParticle")]
+        Particle = 5,
+        #[doc(alias = "NSGrammaticalPartOfSpeechAdjective")]
+        Adjective = 6,
+        #[doc(alias = "NSGrammaticalPartOfSpeechAdposition")]
+        Adposition = 7,
+        #[doc(alias = "NSGrammaticalPartOfSpeechVerb")]
+        Verb = 8,
+        #[doc(alias = "NSGrammaticalPartOfSpeechNoun")]
+        Noun = 9,
+        #[doc(alias = "NSGrammaticalPartOfSpeechConjunction")]
+        Conjunction = 10,
+        #[doc(alias = "NSGrammaticalPartOfSpeechNumeral")]
+        Numeral = 11,
+        #[doc(alias = "NSGrammaticalPartOfSpeechInterjection")]
+        Interjection = 12,
+        #[doc(alias = "NSGrammaticalPartOfSpeechPreposition")]
+        Preposition = 13,
+        #[doc(alias = "NSGrammaticalPartOfSpeechAbbreviation")]
+        Abbreviation = 14,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSGrammaticalNumber {
-        NSGrammaticalNumberNotSet = 0,
-        NSGrammaticalNumberSingular = 1,
-        NSGrammaticalNumberZero = 2,
-        NSGrammaticalNumberPlural = 3,
-        NSGrammaticalNumberPluralTwo = 4,
-        NSGrammaticalNumberPluralFew = 5,
-        NSGrammaticalNumberPluralMany = 6,
+        #[doc(alias = "NSGrammaticalNumberNotSet")]
+        NotSet = 0,
+        #[doc(alias = "NSGrammaticalNumberSingular")]
+        Singular = 1,
+        #[doc(alias = "NSGrammaticalNumberZero")]
+        Zero = 2,
+        #[doc(alias = "NSGrammaticalNumberPlural")]
+        Plural = 3,
+        #[doc(alias = "NSGrammaticalNumberPluralTwo")]
+        PluralTwo = 4,
+        #[doc(alias = "NSGrammaticalNumberPluralFew")]
+        PluralFew = 5,
+        #[doc(alias = "NSGrammaticalNumberPluralMany")]
+        PluralMany = 6,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSGrammaticalCase {
-        NSGrammaticalCaseNotSet = 0,
-        NSGrammaticalCaseNominative = 1,
-        NSGrammaticalCaseAccusative = 2,
-        NSGrammaticalCaseDative = 3,
-        NSGrammaticalCaseGenitive = 4,
-        NSGrammaticalCasePrepositional = 5,
-        NSGrammaticalCaseAblative = 6,
-        NSGrammaticalCaseAdessive = 7,
-        NSGrammaticalCaseAllative = 8,
-        NSGrammaticalCaseElative = 9,
-        NSGrammaticalCaseIllative = 10,
-        NSGrammaticalCaseEssive = 11,
-        NSGrammaticalCaseInessive = 12,
-        NSGrammaticalCaseLocative = 13,
-        NSGrammaticalCaseTranslative = 14,
+        #[doc(alias = "NSGrammaticalCaseNotSet")]
+        NotSet = 0,
+        #[doc(alias = "NSGrammaticalCaseNominative")]
+        Nominative = 1,
+        #[doc(alias = "NSGrammaticalCaseAccusative")]
+        Accusative = 2,
+        #[doc(alias = "NSGrammaticalCaseDative")]
+        Dative = 3,
+        #[doc(alias = "NSGrammaticalCaseGenitive")]
+        Genitive = 4,
+        #[doc(alias = "NSGrammaticalCasePrepositional")]
+        Prepositional = 5,
+        #[doc(alias = "NSGrammaticalCaseAblative")]
+        Ablative = 6,
+        #[doc(alias = "NSGrammaticalCaseAdessive")]
+        Adessive = 7,
+        #[doc(alias = "NSGrammaticalCaseAllative")]
+        Allative = 8,
+        #[doc(alias = "NSGrammaticalCaseElative")]
+        Elative = 9,
+        #[doc(alias = "NSGrammaticalCaseIllative")]
+        Illative = 10,
+        #[doc(alias = "NSGrammaticalCaseEssive")]
+        Essive = 11,
+        #[doc(alias = "NSGrammaticalCaseInessive")]
+        Inessive = 12,
+        #[doc(alias = "NSGrammaticalCaseLocative")]
+        Locative = 13,
+        #[doc(alias = "NSGrammaticalCaseTranslative")]
+        Translative = 14,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSGrammaticalPronounType {
-        NSGrammaticalPronounTypeNotSet = 0,
-        NSGrammaticalPronounTypePersonal = 1,
-        NSGrammaticalPronounTypeReflexive = 2,
-        NSGrammaticalPronounTypePossessive = 3,
+        #[doc(alias = "NSGrammaticalPronounTypeNotSet")]
+        NotSet = 0,
+        #[doc(alias = "NSGrammaticalPronounTypePersonal")]
+        Personal = 1,
+        #[doc(alias = "NSGrammaticalPronounTypeReflexive")]
+        Reflexive = 2,
+        #[doc(alias = "NSGrammaticalPronounTypePossessive")]
+        Possessive = 3,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSGrammaticalPerson {
-        NSGrammaticalPersonNotSet = 0,
-        NSGrammaticalPersonFirst = 1,
-        NSGrammaticalPersonSecond = 2,
-        NSGrammaticalPersonThird = 3,
+        #[doc(alias = "NSGrammaticalPersonNotSet")]
+        NotSet = 0,
+        #[doc(alias = "NSGrammaticalPersonFirst")]
+        First = 1,
+        #[doc(alias = "NSGrammaticalPersonSecond")]
+        Second = 2,
+        #[doc(alias = "NSGrammaticalPersonThird")]
+        Third = 3,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSGrammaticalDetermination {
-        NSGrammaticalDeterminationNotSet = 0,
-        NSGrammaticalDeterminationIndependent = 1,
-        NSGrammaticalDeterminationDependent = 2,
+        #[doc(alias = "NSGrammaticalDeterminationNotSet")]
+        NotSet = 0,
+        #[doc(alias = "NSGrammaticalDeterminationIndependent")]
+        Independent = 1,
+        #[doc(alias = "NSGrammaticalDeterminationDependent")]
+        Dependent = 2,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSGrammaticalDefiniteness {
-        NSGrammaticalDefinitenessNotSet = 0,
-        NSGrammaticalDefinitenessIndefinite = 1,
-        NSGrammaticalDefinitenessDefinite = 2,
+        #[doc(alias = "NSGrammaticalDefinitenessNotSet")]
+        NotSet = 0,
+        #[doc(alias = "NSGrammaticalDefinitenessIndefinite")]
+        Indefinite = 1,
+        #[doc(alias = "NSGrammaticalDefinitenessDefinite")]
+        Definite = 2,
     }
 );
 

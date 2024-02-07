@@ -8,8 +8,10 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSCollectionViewScrollDirection {
-        NSCollectionViewScrollDirectionVertical = 0,
-        NSCollectionViewScrollDirectionHorizontal = 1,
+        #[doc(alias = "NSCollectionViewScrollDirectionVertical")]
+        Vertical = 0,
+        #[doc(alias = "NSCollectionViewScrollDirectionHorizontal")]
+        Horizontal = 1,
     }
 );
 

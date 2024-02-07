@@ -8,9 +8,12 @@ use crate::Foundation::*;
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSMediaLibrary {
-        NSMediaLibraryAudio = 1 << 0,
-        NSMediaLibraryImage = 1 << 1,
-        NSMediaLibraryMovie = 1 << 2,
+        #[doc(alias = "NSMediaLibraryAudio")]
+        Audio = 1 << 0,
+        #[doc(alias = "NSMediaLibraryImage")]
+        Image = 1 << 1,
+        #[doc(alias = "NSMediaLibraryMovie")]
+        Movie = 1 << 2,
     }
 );
 

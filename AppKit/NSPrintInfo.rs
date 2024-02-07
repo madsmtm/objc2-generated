@@ -8,17 +8,22 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum NSPaperOrientation {
-        NSPaperOrientationPortrait = 0,
-        NSPaperOrientationLandscape = 1,
+        #[doc(alias = "NSPaperOrientationPortrait")]
+        Portrait = 0,
+        #[doc(alias = "NSPaperOrientationLandscape")]
+        Landscape = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSPrintingPaginationMode {
-        NSPrintingPaginationModeAutomatic = 0,
-        NSPrintingPaginationModeFit = 1,
-        NSPrintingPaginationModeClip = 2,
+        #[doc(alias = "NSPrintingPaginationModeAutomatic")]
+        Automatic = 0,
+        #[doc(alias = "NSPrintingPaginationModeFit")]
+        Fit = 1,
+        #[doc(alias = "NSPrintingPaginationModeClip")]
+        Clip = 2,
     }
 );
 
@@ -333,8 +338,8 @@ ns_enum!(
     }
 );
 
-extern_static!(NSAutoPagination: NSPrintingPaginationMode = NSPrintingPaginationMode(NSPrintingPaginationMode::NSPrintingPaginationModeAutomatic.0));
+extern_static!(NSAutoPagination: NSPrintingPaginationMode = NSPrintingPaginationMode(NSPrintingPaginationMode::Automatic.0));
 
-extern_static!(NSFitPagination: NSPrintingPaginationMode = NSPrintingPaginationMode(NSPrintingPaginationMode::NSPrintingPaginationModeFit.0));
+extern_static!(NSFitPagination: NSPrintingPaginationMode = NSPrintingPaginationMode(NSPrintingPaginationMode::Fit.0));
 
-extern_static!(NSClipPagination: NSPrintingPaginationMode = NSPrintingPaginationMode(NSPrintingPaginationMode::NSPrintingPaginationModeClip.0));
+extern_static!(NSClipPagination: NSPrintingPaginationMode = NSPrintingPaginationMode(NSPrintingPaginationMode::Clip.0));

@@ -8,10 +8,14 @@ use crate::MediaPlayer::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum MPMediaLibraryAuthorizationStatus {
-        MPMediaLibraryAuthorizationStatusNotDetermined = 0,
-        MPMediaLibraryAuthorizationStatusDenied = 1,
-        MPMediaLibraryAuthorizationStatusRestricted = 2,
-        MPMediaLibraryAuthorizationStatusAuthorized = 3,
+        #[doc(alias = "MPMediaLibraryAuthorizationStatusNotDetermined")]
+        NotDetermined = 0,
+        #[doc(alias = "MPMediaLibraryAuthorizationStatusDenied")]
+        Denied = 1,
+        #[doc(alias = "MPMediaLibraryAuthorizationStatusRestricted")]
+        Restricted = 2,
+        #[doc(alias = "MPMediaLibraryAuthorizationStatusAuthorized")]
+        Authorized = 3,
     }
 );
 

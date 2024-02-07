@@ -7,17 +7,22 @@ use crate::Foundation::*;
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum CNContactFormatterStyle {
-        CNContactFormatterStyleFullName = 0,
-        CNContactFormatterStylePhoneticFullName = 1,
+        #[doc(alias = "CNContactFormatterStyleFullName")]
+        FullName = 0,
+        #[doc(alias = "CNContactFormatterStylePhoneticFullName")]
+        PhoneticFullName = 1,
     }
 );
 
 ns_enum!(
     #[underlying(NSInteger)]
     pub enum CNContactDisplayNameOrder {
-        CNContactDisplayNameOrderUserDefault = 0,
-        CNContactDisplayNameOrderGivenNameFirst = 1,
-        CNContactDisplayNameOrderFamilyNameFirst = 2,
+        #[doc(alias = "CNContactDisplayNameOrderUserDefault")]
+        UserDefault = 0,
+        #[doc(alias = "CNContactDisplayNameOrderGivenNameFirst")]
+        GivenNameFirst = 1,
+        #[doc(alias = "CNContactDisplayNameOrderFamilyNameFirst")]
+        FamilyNameFirst = 2,
     }
 );
 

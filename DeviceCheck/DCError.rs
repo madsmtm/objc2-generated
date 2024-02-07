@@ -9,10 +9,15 @@ extern_static!(DCErrorDomain: &'static NSErrorDomain);
 ns_error_enum!(
     #[underlying(NSInteger)]
     pub enum DCError {
-        DCErrorUnknownSystemFailure = 0,
-        DCErrorFeatureUnsupported = 1,
-        DCErrorInvalidInput = 2,
-        DCErrorInvalidKey = 3,
-        DCErrorServerUnavailable = 4,
+        #[doc(alias = "DCErrorUnknownSystemFailure")]
+        UnknownSystemFailure = 0,
+        #[doc(alias = "DCErrorFeatureUnsupported")]
+        FeatureUnsupported = 1,
+        #[doc(alias = "DCErrorInvalidInput")]
+        InvalidInput = 2,
+        #[doc(alias = "DCErrorInvalidKey")]
+        InvalidKey = 3,
+        #[doc(alias = "DCErrorServerUnavailable")]
+        ServerUnavailable = 4,
     }
 );
