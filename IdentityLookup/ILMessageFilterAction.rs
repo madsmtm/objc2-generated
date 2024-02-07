@@ -11,7 +11,7 @@ ns_enum!(
         ILMessageFilterActionAllow = 1,
         ILMessageFilterActionJunk = 2,
         #[deprecated]
-        ILMessageFilterActionFilter = ILMessageFilterActionJunk,
+        ILMessageFilterActionFilter = ILMessageFilterActionJunk.0,
         ILMessageFilterActionPromotion = 3,
         ILMessageFilterActionTransaction = 4,
     }

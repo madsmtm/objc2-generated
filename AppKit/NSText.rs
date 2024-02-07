@@ -395,12 +395,12 @@ pub const NSTextWritingDirectionEmbedding: c_uint = 0 << 1;
 #[deprecated = "Use NSWritingDirectionOverride instead"]
 pub const NSTextWritingDirectionOverride: c_uint = 1 << 1;
 
-extern_static!(NSLeftTextAlignment: NSTextAlignment = NSTextAlignmentLeft);
+extern_static!(NSLeftTextAlignment: NSTextAlignment = NSTextAlignment(NSTextAlignmentLeft.0));
 
-extern_static!(NSRightTextAlignment: NSTextAlignment = NSTextAlignmentRight);
+extern_static!(NSRightTextAlignment: NSTextAlignment = NSTextAlignment(NSTextAlignmentRight.0));
 
-extern_static!(NSCenterTextAlignment: NSTextAlignment = NSTextAlignmentCenter);
+extern_static!(NSCenterTextAlignment: NSTextAlignment = NSTextAlignment(NSTextAlignmentCenter.0));
 
-extern_static!(NSJustifiedTextAlignment: NSTextAlignment = NSTextAlignmentJustified);
+extern_static!(NSJustifiedTextAlignment: NSTextAlignment = NSTextAlignment(NSTextAlignmentJustified.0));
 
-extern_static!(NSNaturalTextAlignment: NSTextAlignment = NSTextAlignmentNatural);
+extern_static!(NSNaturalTextAlignment: NSTextAlignment = NSTextAlignment(NSTextAlignmentNatural.0));

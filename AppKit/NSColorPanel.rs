@@ -230,20 +230,20 @@ extern_protocol!(
 
 extern_static!(NSColorPanelColorDidChangeNotification: &'static NSNotificationName);
 
-extern_static!(NSNoModeColorPanel: NSColorPanelMode = NSColorPanelModeNone);
+extern_static!(NSNoModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelModeNone.0));
 
-extern_static!(NSGrayModeColorPanel: NSColorPanelMode = NSColorPanelModeGray);
+extern_static!(NSGrayModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelModeGray.0));
 
-extern_static!(NSRGBModeColorPanel: NSColorPanelMode = NSColorPanelModeRGB);
+extern_static!(NSRGBModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelModeRGB.0));
 
-extern_static!(NSCMYKModeColorPanel: NSColorPanelMode = NSColorPanelModeCMYK);
+extern_static!(NSCMYKModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelModeCMYK.0));
 
-extern_static!(NSHSBModeColorPanel: NSColorPanelMode = NSColorPanelModeHSB);
+extern_static!(NSHSBModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelModeHSB.0));
 
-extern_static!(NSCustomPaletteModeColorPanel: NSColorPanelMode = NSColorPanelModeCustomPalette);
+extern_static!(NSCustomPaletteModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelModeCustomPalette.0));
 
-extern_static!(NSColorListModeColorPanel: NSColorPanelMode = NSColorPanelModeColorList);
+extern_static!(NSColorListModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelModeColorList.0));
 
-extern_static!(NSWheelModeColorPanel: NSColorPanelMode = NSColorPanelModeWheel);
+extern_static!(NSWheelModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelModeWheel.0));
 
-extern_static!(NSCrayonModeColorPanel: NSColorPanelMode = NSColorPanelModeCrayon);
+extern_static!(NSCrayonModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelModeCrayon.0));

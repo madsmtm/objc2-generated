@@ -14,12 +14,12 @@ ns_enum!(
         GKInviteRecipientResponseIncompatible = 3,
         GKInviteRecipientResponseUnableToConnect = 4,
         GKInviteRecipientResponseNoAnswer = 5,
-        GKInviteeResponseAccepted = GKInviteRecipientResponseAccepted,
-        GKInviteeResponseDeclined = GKInviteRecipientResponseDeclined,
-        GKInviteeResponseFailed = GKInviteRecipientResponseFailed,
-        GKInviteeResponseIncompatible = GKInviteRecipientResponseIncompatible,
-        GKInviteeResponseUnableToConnect = GKInviteRecipientResponseUnableToConnect,
-        GKInviteeResponseNoAnswer = GKInviteRecipientResponseNoAnswer,
+        GKInviteeResponseAccepted = GKInviteRecipientResponseAccepted.0,
+        GKInviteeResponseDeclined = GKInviteRecipientResponseDeclined.0,
+        GKInviteeResponseFailed = GKInviteRecipientResponseFailed.0,
+        GKInviteeResponseIncompatible = GKInviteRecipientResponseIncompatible.0,
+        GKInviteeResponseUnableToConnect = GKInviteRecipientResponseUnableToConnect.0,
+        GKInviteeResponseNoAnswer = GKInviteRecipientResponseNoAnswer.0,
     }
 );
 

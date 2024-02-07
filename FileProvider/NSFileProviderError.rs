@@ -20,7 +20,7 @@ ns_error_enum!(
         NSFileProviderErrorNotAuthenticated = -1000,
         NSFileProviderErrorFilenameCollision = -1001,
         NSFileProviderErrorSyncAnchorExpired = -1002,
-        NSFileProviderErrorPageExpired = NSFileProviderErrorSyncAnchorExpired,
+        NSFileProviderErrorPageExpired = NSFileProviderErrorSyncAnchorExpired.0,
         NSFileProviderErrorInsufficientQuota = -1003,
         NSFileProviderErrorServerUnreachable = -1004,
         NSFileProviderErrorNoSuchItem = -1005,

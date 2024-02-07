@@ -3,15 +3,15 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-extern_static!(NSMapTableStrongMemory: NSPointerFunctionsOptions = NSPointerFunctionsStrongMemory);
+extern_static!(NSMapTableStrongMemory: NSPointerFunctionsOptions = NSPointerFunctionsOptions(NSPointerFunctionsStrongMemory.0));
 
-extern_static!(NSMapTableZeroingWeakMemory: NSPointerFunctionsOptions = NSPointerFunctionsZeroingWeakMemory);
+extern_static!(NSMapTableZeroingWeakMemory: NSPointerFunctionsOptions = NSPointerFunctionsOptions(NSPointerFunctionsZeroingWeakMemory.0));
 
-extern_static!(NSMapTableCopyIn: NSPointerFunctionsOptions = NSPointerFunctionsCopyIn);
+extern_static!(NSMapTableCopyIn: NSPointerFunctionsOptions = NSPointerFunctionsOptions(NSPointerFunctionsCopyIn.0));
 
-extern_static!(NSMapTableObjectPointerPersonality: NSPointerFunctionsOptions = NSPointerFunctionsObjectPointerPersonality);
+extern_static!(NSMapTableObjectPointerPersonality: NSPointerFunctionsOptions = NSPointerFunctionsOptions(NSPointerFunctionsObjectPointerPersonality.0));
 
-extern_static!(NSMapTableWeakMemory: NSPointerFunctionsOptions = NSPointerFunctionsWeakMemory);
+extern_static!(NSMapTableWeakMemory: NSPointerFunctionsOptions = NSPointerFunctionsOptions(NSPointerFunctionsWeakMemory.0));
 
 pub type NSMapTableOptions = NSUInteger;
 

@@ -616,17 +616,17 @@ extern_category!(
     unsafe impl NSMutableAttributedStringKitAdditions for NSMutableAttributedString {}
 );
 
-extern_static!(NSUnderlinePatternSolid: NSUnderlineStyle = NSUnderlineStylePatternSolid);
+extern_static!(NSUnderlinePatternSolid: NSUnderlineStyle = NSUnderlineStyle(NSUnderlineStylePatternSolid.0));
 
-extern_static!(NSUnderlinePatternDot: NSUnderlineStyle = NSUnderlineStylePatternDot);
+extern_static!(NSUnderlinePatternDot: NSUnderlineStyle = NSUnderlineStyle(NSUnderlineStylePatternDot.0));
 
-extern_static!(NSUnderlinePatternDash: NSUnderlineStyle = NSUnderlineStylePatternDash);
+extern_static!(NSUnderlinePatternDash: NSUnderlineStyle = NSUnderlineStyle(NSUnderlineStylePatternDash.0));
 
-extern_static!(NSUnderlinePatternDashDot: NSUnderlineStyle = NSUnderlineStylePatternDashDot);
+extern_static!(NSUnderlinePatternDashDot: NSUnderlineStyle = NSUnderlineStyle(NSUnderlineStylePatternDashDot.0));
 
-extern_static!(NSUnderlinePatternDashDotDot: NSUnderlineStyle = NSUnderlineStylePatternDashDotDot);
+extern_static!(NSUnderlinePatternDashDotDot: NSUnderlineStyle = NSUnderlineStyle(NSUnderlineStylePatternDashDotDot.0));
 
-extern_static!(NSUnderlineByWord: NSUnderlineStyle = NSUnderlineStyleByWord);
+extern_static!(NSUnderlineByWord: NSUnderlineStyle = NSUnderlineStyle(NSUnderlineStyleByWord.0));
 
 extern_static!(NSCharacterShapeAttributeName: &'static NSAttributedStringKey);
 

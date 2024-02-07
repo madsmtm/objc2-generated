@@ -51,11 +51,15 @@ ns_options!(
         NSAlignHeightNearest = 1 << 21,
         NSAlignRectFlipped = 1 << 63,
         NSAlignAllEdgesInward =
-            NSAlignMinXInward | NSAlignMaxXInward | NSAlignMinYInward | NSAlignMaxYInward,
-        NSAlignAllEdgesOutward =
-            NSAlignMinXOutward | NSAlignMaxXOutward | NSAlignMinYOutward | NSAlignMaxYOutward,
-        NSAlignAllEdgesNearest =
-            NSAlignMinXNearest | NSAlignMaxXNearest | NSAlignMinYNearest | NSAlignMaxYNearest,
+            NSAlignMinXInward.0 | NSAlignMaxXInward.0 | NSAlignMinYInward.0 | NSAlignMaxYInward.0,
+        NSAlignAllEdgesOutward = NSAlignMinXOutward.0
+            | NSAlignMaxXOutward.0
+            | NSAlignMinYOutward.0
+            | NSAlignMaxYOutward.0,
+        NSAlignAllEdgesNearest = NSAlignMinXNearest.0
+            | NSAlignMaxXNearest.0
+            | NSAlignMinYNearest.0
+            | NSAlignMaxYNearest.0,
     }
 );
 

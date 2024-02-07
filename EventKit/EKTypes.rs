@@ -16,7 +16,7 @@ ns_enum!(
         EKAuthorizationStatusFullAccess = 3,
         EKAuthorizationStatusWriteOnly = 4,
         #[deprecated = "Check for full access or write only access"]
-        EKAuthorizationStatusAuthorized = EKAuthorizationStatusFullAccess,
+        EKAuthorizationStatusAuthorized = EKAuthorizationStatusFullAccess.0,
     }
 );
 
@@ -31,19 +31,19 @@ ns_enum!(
         EKWeekdayFriday = 6,
         EKWeekdaySaturday = 7,
         #[deprecated = "Use EKWeekdaySunday instead"]
-        EKSunday = EKWeekdaySunday,
+        EKSunday = EKWeekdaySunday.0,
         #[deprecated = "Use EKWeekdayMonday instead"]
-        EKMonday = EKWeekdayMonday,
+        EKMonday = EKWeekdayMonday.0,
         #[deprecated = "Use EKWeekdayTuesday instead"]
-        EKTuesday = EKWeekdayTuesday,
+        EKTuesday = EKWeekdayTuesday.0,
         #[deprecated = "Use EKWeekdayWednesday instead"]
-        EKWednesday = EKWeekdayWednesday,
+        EKWednesday = EKWeekdayWednesday.0,
         #[deprecated = "Use EKWeekdayThursday instead"]
-        EKThursday = EKWeekdayThursday,
+        EKThursday = EKWeekdayThursday.0,
         #[deprecated = "Use EKWeekdayFriday instead"]
-        EKFriday = EKWeekdayFriday,
+        EKFriday = EKWeekdayFriday.0,
         #[deprecated = "Use EKWeekdaySaturday instead"]
-        EKSaturday = EKWeekdaySaturday,
+        EKSaturday = EKWeekdaySaturday.0,
     }
 );
 
@@ -153,8 +153,8 @@ ns_enum!(
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum EKEntityMask {
-        EKEntityMaskEvent = 1 << EKEntityTypeEvent,
-        EKEntityMaskReminder = 1 << EKEntityTypeReminder,
+        EKEntityMaskEvent = 1 << EKEntityTypeEvent.0,
+        EKEntityMaskReminder = 1 << EKEntityTypeReminder.0,
     }
 );
 

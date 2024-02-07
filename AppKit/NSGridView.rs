@@ -11,9 +11,9 @@ ns_enum!(
         NSGridCellPlacementInherited = 0,
         NSGridCellPlacementNone = 1,
         NSGridCellPlacementLeading = 2,
-        NSGridCellPlacementTop = NSGridCellPlacementLeading,
+        NSGridCellPlacementTop = NSGridCellPlacementLeading.0,
         NSGridCellPlacementTrailing = 3,
-        NSGridCellPlacementBottom = NSGridCellPlacementTrailing,
+        NSGridCellPlacementBottom = NSGridCellPlacementTrailing.0,
         NSGridCellPlacementCenter = 4,
         NSGridCellPlacementFill = 5,
     }

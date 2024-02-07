@@ -24,9 +24,9 @@ ns_options!(
         NSDateComponentsFormatterZeroFormattingBehaviorDropMiddle = 1 << 2,
         NSDateComponentsFormatterZeroFormattingBehaviorDropTrailing = 1 << 3,
         NSDateComponentsFormatterZeroFormattingBehaviorDropAll =
-            NSDateComponentsFormatterZeroFormattingBehaviorDropLeading
-                | NSDateComponentsFormatterZeroFormattingBehaviorDropMiddle
-                | NSDateComponentsFormatterZeroFormattingBehaviorDropTrailing,
+            NSDateComponentsFormatterZeroFormattingBehaviorDropLeading.0
+                | NSDateComponentsFormatterZeroFormattingBehaviorDropMiddle.0
+                | NSDateComponentsFormatterZeroFormattingBehaviorDropTrailing.0,
         NSDateComponentsFormatterZeroFormattingBehaviorPad = 1 << 16,
     }
 );

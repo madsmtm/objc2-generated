@@ -10,7 +10,7 @@ ns_options!(
         AXHearingDeviceEarNone = 0,
         AXHearingDeviceEarLeft = 1 << 1,
         AXHearingDeviceEarRight = 1 << 2,
-        AXHearingDeviceEarBoth = AXHearingDeviceEarLeft | AXHearingDeviceEarRight,
+        AXHearingDeviceEarBoth = AXHearingDeviceEarLeft.0 | AXHearingDeviceEarRight.0,
     }
 );
 

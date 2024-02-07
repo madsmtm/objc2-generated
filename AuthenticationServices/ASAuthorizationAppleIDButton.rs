@@ -11,7 +11,7 @@ ns_enum!(
         ASAuthorizationAppleIDButtonTypeSignIn = 0,
         ASAuthorizationAppleIDButtonTypeContinue = 1,
         ASAuthorizationAppleIDButtonTypeSignUp = 2,
-        ASAuthorizationAppleIDButtonTypeDefault = ASAuthorizationAppleIDButtonTypeSignIn,
+        ASAuthorizationAppleIDButtonTypeDefault = ASAuthorizationAppleIDButtonTypeSignIn.0,
     }
 );
 

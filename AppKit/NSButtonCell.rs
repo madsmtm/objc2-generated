@@ -41,19 +41,19 @@ ns_enum!(
         #[deprecated]
         NSBezelStyleTexturedSquare = 8,
         #[deprecated]
-        NSBezelStyleRounded = NSBezelStylePush,
+        NSBezelStyleRounded = NSBezelStylePush.0,
         #[deprecated]
-        NSBezelStyleRegularSquare = NSBezelStyleFlexiblePush,
+        NSBezelStyleRegularSquare = NSBezelStyleFlexiblePush.0,
         #[deprecated]
-        NSBezelStyleTexturedRounded = NSBezelStyleToolbar,
+        NSBezelStyleTexturedRounded = NSBezelStyleToolbar.0,
         #[deprecated]
-        NSBezelStyleRoundRect = NSBezelStyleAccessoryBarAction,
+        NSBezelStyleRoundRect = NSBezelStyleAccessoryBarAction.0,
         #[deprecated]
-        NSBezelStyleRecessed = NSBezelStyleAccessoryBar,
+        NSBezelStyleRecessed = NSBezelStyleAccessoryBar.0,
         #[deprecated]
-        NSBezelStyleRoundedDisclosure = NSBezelStylePushDisclosure,
+        NSBezelStyleRoundedDisclosure = NSBezelStylePushDisclosure.0,
         #[deprecated]
-        NSBezelStyleInline = NSBezelStyleBadge,
+        NSBezelStyleInline = NSBezelStyleBadge.0,
     }
 );
 
@@ -311,61 +311,61 @@ ns_enum!(
     }
 );
 
-extern_static!(NSMomentaryLightButton: NSButtonType = NSButtonTypeMomentaryLight);
+extern_static!(NSMomentaryLightButton: NSButtonType = NSButtonType(NSButtonTypeMomentaryLight.0));
 
-extern_static!(NSPushOnPushOffButton: NSButtonType = NSButtonTypePushOnPushOff);
+extern_static!(NSPushOnPushOffButton: NSButtonType = NSButtonType(NSButtonTypePushOnPushOff.0));
 
-extern_static!(NSToggleButton: NSButtonType = NSButtonTypeToggle);
+extern_static!(NSToggleButton: NSButtonType = NSButtonType(NSButtonTypeToggle.0));
 
-extern_static!(NSSwitchButton: NSButtonType = NSButtonTypeSwitch);
+extern_static!(NSSwitchButton: NSButtonType = NSButtonType(NSButtonTypeSwitch.0));
 
-extern_static!(NSRadioButton: NSButtonType = NSButtonTypeRadio);
+extern_static!(NSRadioButton: NSButtonType = NSButtonType(NSButtonTypeRadio.0));
 
-extern_static!(NSMomentaryChangeButton: NSButtonType = NSButtonTypeMomentaryChange);
+extern_static!(NSMomentaryChangeButton: NSButtonType = NSButtonType(NSButtonTypeMomentaryChange.0));
 
-extern_static!(NSOnOffButton: NSButtonType = NSButtonTypeOnOff);
+extern_static!(NSOnOffButton: NSButtonType = NSButtonType(NSButtonTypeOnOff.0));
 
-extern_static!(NSMomentaryPushInButton: NSButtonType = NSButtonTypeMomentaryPushIn);
+extern_static!(NSMomentaryPushInButton: NSButtonType = NSButtonType(NSButtonTypeMomentaryPushIn.0));
 
-extern_static!(NSAcceleratorButton: NSButtonType = NSButtonTypeAccelerator);
+extern_static!(NSAcceleratorButton: NSButtonType = NSButtonType(NSButtonTypeAccelerator.0));
 
-extern_static!(NSMultiLevelAcceleratorButton: NSButtonType = NSButtonTypeMultiLevelAccelerator);
+extern_static!(NSMultiLevelAcceleratorButton: NSButtonType = NSButtonType(NSButtonTypeMultiLevelAccelerator.0));
 
-extern_static!(NSMomentaryPushButton: NSButtonType = NSButtonTypeMomentaryLight);
+extern_static!(NSMomentaryPushButton: NSButtonType = NSButtonType(NSButtonTypeMomentaryLight.0));
 
-extern_static!(NSMomentaryLight: NSButtonType = NSButtonTypeMomentaryPushIn);
+extern_static!(NSMomentaryLight: NSButtonType = NSButtonType(NSButtonTypeMomentaryPushIn.0));
 
-extern_static!(NSRoundedBezelStyle: NSBezelStyle = NSBezelStylePush);
+extern_static!(NSRoundedBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStylePush.0));
 
-extern_static!(NSRegularSquareBezelStyle: NSBezelStyle = NSBezelStyleFlexiblePush);
+extern_static!(NSRegularSquareBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyleFlexiblePush.0));
 
-extern_static!(NSDisclosureBezelStyle: NSBezelStyle = NSBezelStyleDisclosure);
+extern_static!(NSDisclosureBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyleDisclosure.0));
 
-extern_static!(NSShadowlessSquareBezelStyle: NSBezelStyle = NSBezelStyleShadowlessSquare);
+extern_static!(NSShadowlessSquareBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyleShadowlessSquare.0));
 
-extern_static!(NSCircularBezelStyle: NSBezelStyle = NSBezelStyleCircular);
+extern_static!(NSCircularBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyleCircular.0));
 
-extern_static!(NSTexturedSquareBezelStyle: NSBezelStyle = NSBezelStyleTexturedSquare);
+extern_static!(NSTexturedSquareBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyleTexturedSquare.0));
 
-extern_static!(NSHelpButtonBezelStyle: NSBezelStyle = NSBezelStyleHelpButton);
+extern_static!(NSHelpButtonBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyleHelpButton.0));
 
-extern_static!(NSSmallSquareBezelStyle: NSBezelStyle = NSBezelStyleSmallSquare);
+extern_static!(NSSmallSquareBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyleSmallSquare.0));
 
-extern_static!(NSTexturedRoundedBezelStyle: NSBezelStyle = NSBezelStyleToolbar);
+extern_static!(NSTexturedRoundedBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyleToolbar.0));
 
-extern_static!(NSRoundRectBezelStyle: NSBezelStyle = NSBezelStyleAccessoryBarAction);
+extern_static!(NSRoundRectBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyleAccessoryBarAction.0));
 
-extern_static!(NSRecessedBezelStyle: NSBezelStyle = NSBezelStyleAccessoryBar);
+extern_static!(NSRecessedBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyleAccessoryBar.0));
 
-extern_static!(NSRoundedDisclosureBezelStyle: NSBezelStyle = NSBezelStylePushDisclosure);
+extern_static!(NSRoundedDisclosureBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStylePushDisclosure.0));
 
-extern_static!(NSInlineBezelStyle: NSBezelStyle = NSBezelStyleBadge);
+extern_static!(NSInlineBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyleBadge.0));
 
-extern_static!(NSSmallIconButtonBezelStyle: NSBezelStyle = 2);
+extern_static!(NSSmallIconButtonBezelStyle: NSBezelStyle = NSBezelStyle(2));
 
-extern_static!(NSThickSquareBezelStyle: NSBezelStyle = 3);
+extern_static!(NSThickSquareBezelStyle: NSBezelStyle = NSBezelStyle(3));
 
-extern_static!(NSThickerSquareBezelStyle: NSBezelStyle = 4);
+extern_static!(NSThickerSquareBezelStyle: NSBezelStyle = NSBezelStyle(4));
 
 extern_methods!(
     /// NSDeprecated

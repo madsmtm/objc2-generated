@@ -141,10 +141,10 @@ extern_methods!(
     }
 );
 
-extern_static!(NSRelevancyLevelIndicatorStyle: NSLevelIndicatorStyle = NSLevelIndicatorStyleRelevancy);
+extern_static!(NSRelevancyLevelIndicatorStyle: NSLevelIndicatorStyle = NSLevelIndicatorStyle(NSLevelIndicatorStyleRelevancy.0));
 
-extern_static!(NSContinuousCapacityLevelIndicatorStyle: NSLevelIndicatorStyle = NSLevelIndicatorStyleContinuousCapacity);
+extern_static!(NSContinuousCapacityLevelIndicatorStyle: NSLevelIndicatorStyle = NSLevelIndicatorStyle(NSLevelIndicatorStyleContinuousCapacity.0));
 
-extern_static!(NSDiscreteCapacityLevelIndicatorStyle: NSLevelIndicatorStyle = NSLevelIndicatorStyleDiscreteCapacity);
+extern_static!(NSDiscreteCapacityLevelIndicatorStyle: NSLevelIndicatorStyle = NSLevelIndicatorStyle(NSLevelIndicatorStyleDiscreteCapacity.0));
 
-extern_static!(NSRatingLevelIndicatorStyle: NSLevelIndicatorStyle = NSLevelIndicatorStyleRating);
+extern_static!(NSRatingLevelIndicatorStyle: NSLevelIndicatorStyle = NSLevelIndicatorStyle(NSLevelIndicatorStyleRating.0));

@@ -10,8 +10,8 @@ ns_enum!(
     pub enum NSTickMarkPosition {
         NSTickMarkPositionBelow = 0,
         NSTickMarkPositionAbove = 1,
-        NSTickMarkPositionLeading = NSTickMarkPositionAbove,
-        NSTickMarkPositionTrailing = NSTickMarkPositionBelow,
+        NSTickMarkPositionLeading = NSTickMarkPositionAbove.0,
+        NSTickMarkPositionTrailing = NSTickMarkPositionBelow.0,
     }
 );
 
@@ -243,14 +243,14 @@ extern_methods!(
     }
 );
 
-extern_static!(NSTickMarkBelow: NSTickMarkPosition = NSTickMarkPositionBelow);
+extern_static!(NSTickMarkBelow: NSTickMarkPosition = NSTickMarkPosition(NSTickMarkPositionBelow.0));
 
-extern_static!(NSTickMarkAbove: NSTickMarkPosition = NSTickMarkPositionAbove);
+extern_static!(NSTickMarkAbove: NSTickMarkPosition = NSTickMarkPosition(NSTickMarkPositionAbove.0));
 
-extern_static!(NSTickMarkLeft: NSTickMarkPosition = NSTickMarkPositionLeading);
+extern_static!(NSTickMarkLeft: NSTickMarkPosition = NSTickMarkPosition(NSTickMarkPositionLeading.0));
 
-extern_static!(NSTickMarkRight: NSTickMarkPosition = NSTickMarkPositionTrailing);
+extern_static!(NSTickMarkRight: NSTickMarkPosition = NSTickMarkPosition(NSTickMarkPositionTrailing.0));
 
-extern_static!(NSLinearSlider: NSSliderType = NSSliderTypeLinear);
+extern_static!(NSLinearSlider: NSSliderType = NSSliderType(NSSliderTypeLinear.0));
 
-extern_static!(NSCircularSlider: NSSliderType = NSSliderTypeCircular);
+extern_static!(NSCircularSlider: NSSliderType = NSSliderType(NSSliderTypeCircular.0));

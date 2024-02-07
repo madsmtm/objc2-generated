@@ -12,7 +12,7 @@ ns_options!(
         NSJSONReadingJSON5Allowed = 1 << 3,
         NSJSONReadingTopLevelDictionaryAssumed = 1 << 4,
         #[deprecated]
-        NSJSONReadingAllowFragments = NSJSONReadingFragmentsAllowed,
+        NSJSONReadingAllowFragments = NSJSONReadingFragmentsAllowed.0,
     }
 );
 

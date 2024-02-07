@@ -150,11 +150,11 @@ ns_enum!(
         MTLBindingAccessReadWrite = 1,
         MTLBindingAccessWriteOnly = 2,
         #[deprecated]
-        MTLArgumentAccessReadOnly = MTLBindingAccessReadOnly,
+        MTLArgumentAccessReadOnly = MTLBindingAccessReadOnly.0,
         #[deprecated]
-        MTLArgumentAccessReadWrite = MTLBindingAccessReadWrite,
+        MTLArgumentAccessReadWrite = MTLBindingAccessReadWrite.0,
         #[deprecated]
-        MTLArgumentAccessWriteOnly = MTLBindingAccessWriteOnly,
+        MTLArgumentAccessWriteOnly = MTLBindingAccessWriteOnly.0,
     }
 );
 

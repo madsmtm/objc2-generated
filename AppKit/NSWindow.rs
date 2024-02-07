@@ -1913,34 +1913,34 @@ extern_methods!(
     }
 );
 
-extern_static!(NSBorderlessWindowMask: NSWindowStyleMask = NSWindowStyleMaskBorderless);
+extern_static!(NSBorderlessWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMaskBorderless.0));
 
-extern_static!(NSTitledWindowMask: NSWindowStyleMask = NSWindowStyleMaskTitled);
+extern_static!(NSTitledWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMaskTitled.0));
 
-extern_static!(NSClosableWindowMask: NSWindowStyleMask = NSWindowStyleMaskClosable);
+extern_static!(NSClosableWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMaskClosable.0));
 
-extern_static!(NSMiniaturizableWindowMask: NSWindowStyleMask = NSWindowStyleMaskMiniaturizable);
+extern_static!(NSMiniaturizableWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMaskMiniaturizable.0));
 
-extern_static!(NSResizableWindowMask: NSWindowStyleMask = NSWindowStyleMaskResizable);
+extern_static!(NSResizableWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMaskResizable.0));
 
-extern_static!(NSTexturedBackgroundWindowMask: NSWindowStyleMask = NSWindowStyleMaskTexturedBackground);
+extern_static!(NSTexturedBackgroundWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMaskTexturedBackground.0));
 
-extern_static!(NSUnifiedTitleAndToolbarWindowMask: NSWindowStyleMask = NSWindowStyleMaskUnifiedTitleAndToolbar);
+extern_static!(NSUnifiedTitleAndToolbarWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMaskUnifiedTitleAndToolbar.0));
 
-extern_static!(NSFullScreenWindowMask: NSWindowStyleMask = NSWindowStyleMaskFullScreen);
+extern_static!(NSFullScreenWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMaskFullScreen.0));
 
-extern_static!(NSFullSizeContentViewWindowMask: NSWindowStyleMask = NSWindowStyleMaskFullSizeContentView);
+extern_static!(NSFullSizeContentViewWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMaskFullSizeContentView.0));
 
-extern_static!(NSUtilityWindowMask: NSWindowStyleMask = NSWindowStyleMaskUtilityWindow);
+extern_static!(NSUtilityWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMaskUtilityWindow.0));
 
-extern_static!(NSDocModalWindowMask: NSWindowStyleMask = NSWindowStyleMaskDocModalWindow);
+extern_static!(NSDocModalWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMaskDocModalWindow.0));
 
-extern_static!(NSNonactivatingPanelMask: NSWindowStyleMask = NSWindowStyleMaskNonactivatingPanel);
+extern_static!(NSNonactivatingPanelMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMaskNonactivatingPanel.0));
 
-extern_static!(NSHUDWindowMask: NSWindowStyleMask = NSWindowStyleMaskHUDWindow);
+extern_static!(NSHUDWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMaskHUDWindow.0));
 
-extern_static!(NSUnscaledWindowMask: NSWindowStyleMask = 1<<11);
+extern_static!(NSUnscaledWindowMask: NSWindowStyleMask = NSWindowStyleMask(1<<11));
 
-extern_static!(NSWindowFullScreenButton: NSWindowButton = 7);
+extern_static!(NSWindowFullScreenButton: NSWindowButton = NSWindowButton(7));
 
 extern_static!(NSDockWindowLevel: NSWindowLevel = 20);

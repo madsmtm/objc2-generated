@@ -19,7 +19,7 @@ ns_options!(
         NSFontDescriptorTraitUIOptimized = 1 << 12,
         NSFontDescriptorTraitTightLeading = 1 << 15,
         NSFontDescriptorTraitLooseLeading = 1 << 16,
-        NSFontDescriptorTraitEmphasized = NSFontDescriptorTraitBold,
+        NSFontDescriptorTraitEmphasized = NSFontDescriptorTraitBold.0,
         NSFontDescriptorClassMask = 0xF0000000,
         NSFontDescriptorClassUnknown = 0 << 28,
         NSFontDescriptorClassOldStyleSerifs = 1 << 28,

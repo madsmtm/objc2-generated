@@ -861,9 +861,9 @@ extern_methods!(
     }
 );
 
-extern_static!(NSBackgroundStyleLight: NSBackgroundStyle = NSBackgroundStyleNormal);
+extern_static!(NSBackgroundStyleLight: NSBackgroundStyle = NSBackgroundStyle(NSBackgroundStyleNormal.0));
 
-extern_static!(NSBackgroundStyleDark: NSBackgroundStyle = NSBackgroundStyleEmphasized);
+extern_static!(NSBackgroundStyleDark: NSBackgroundStyle = NSBackgroundStyle(NSBackgroundStyleEmphasized.0));
 
 pub type NSCellStateValue = NSControlStateValue;
 
@@ -873,11 +873,11 @@ extern_static!(NSOffState: NSControlStateValue = NSControlStateValueOff);
 
 extern_static!(NSOnState: NSControlStateValue = NSControlStateValueOn);
 
-extern_static!(NSRegularControlSize: NSControlSize = NSControlSizeRegular);
+extern_static!(NSRegularControlSize: NSControlSize = NSControlSize(NSControlSizeRegular.0));
 
-extern_static!(NSSmallControlSize: NSControlSize = NSControlSizeSmall);
+extern_static!(NSSmallControlSize: NSControlSize = NSControlSize(NSControlSizeSmall.0));
 
-extern_static!(NSMiniControlSize: NSControlSize = NSControlSizeMini);
+extern_static!(NSMiniControlSize: NSControlSize = NSControlSize(NSControlSizeMini.0));
 
 extern_static!(NSControlTintDidChangeNotification: &'static NSNotificationName);
 

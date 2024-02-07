@@ -9,7 +9,7 @@ ns_enum!(
         NSURLRequestUseProtocolCachePolicy = 0,
         NSURLRequestReloadIgnoringLocalCacheData = 1,
         NSURLRequestReloadIgnoringLocalAndRemoteCacheData = 4,
-        NSURLRequestReloadIgnoringCacheData = NSURLRequestReloadIgnoringLocalCacheData,
+        NSURLRequestReloadIgnoringCacheData = NSURLRequestReloadIgnoringLocalCacheData.0,
         NSURLRequestReturnCacheDataElseLoad = 2,
         NSURLRequestReturnCacheDataDontLoad = 3,
         NSURLRequestReloadRevalidatingCacheData = 5,
