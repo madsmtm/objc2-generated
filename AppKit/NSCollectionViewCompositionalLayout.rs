@@ -13,10 +13,10 @@ ns_options!(
         NSDirectionalRectEdgeLeading = 1 << 1,
         NSDirectionalRectEdgeBottom = 1 << 2,
         NSDirectionalRectEdgeTrailing = 1 << 3,
-        NSDirectionalRectEdgeAll = NSDirectionalRectEdgeTop.0
-            | NSDirectionalRectEdgeLeading.0
-            | NSDirectionalRectEdgeBottom.0
-            | NSDirectionalRectEdgeTrailing.0,
+        NSDirectionalRectEdgeAll = NSDirectionalRectEdge::NSDirectionalRectEdgeTop.0
+            | NSDirectionalRectEdge::NSDirectionalRectEdgeLeading.0
+            | NSDirectionalRectEdge::NSDirectionalRectEdgeBottom.0
+            | NSDirectionalRectEdge::NSDirectionalRectEdgeTrailing.0,
     }
 );
 

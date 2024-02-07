@@ -143,10 +143,6 @@ pub use self::__GCController::GCControllerDidDisconnectNotification;
 pub use self::__GCController::GCControllerDidStopBeingCurrentNotification;
 pub use self::__GCController::GCControllerPlayerIndex;
 pub use self::__GCController::GCControllerUserCustomizationsDidChangeNotification;
-pub use self::__GCController::{
-    GCControllerPlayerIndex1, GCControllerPlayerIndex2, GCControllerPlayerIndex3,
-    GCControllerPlayerIndex4, GCControllerPlayerIndexUnset,
-};
 #[cfg(feature = "GameController_GCControllerAxisInput")]
 pub use self::__GCControllerAxisInput::GCControllerAxisInput;
 pub use self::__GCControllerAxisInput::GCControllerAxisValueChangedHandler;
@@ -160,9 +156,6 @@ pub use self::__GCControllerDirectionPad::GCControllerDirectionPadValueChangedHa
 #[cfg(feature = "GameController_GCControllerElement")]
 pub use self::__GCControllerElement::GCControllerElement;
 pub use self::__GCControllerElement::GCSystemGestureState;
-pub use self::__GCControllerElement::{
-    GCSystemGestureStateAlwaysReceive, GCSystemGestureStateDisabled, GCSystemGestureStateEnabled,
-};
 #[cfg(feature = "GameController_GCControllerInputState")]
 pub use self::__GCControllerInput::GCControllerInputState;
 #[cfg(feature = "GameController_GCControllerLiveInput")]
@@ -171,15 +164,10 @@ pub use self::__GCControllerInput::GCControllerLiveInput;
 pub use self::__GCControllerTouchpad::GCControllerTouchpad;
 pub use self::__GCControllerTouchpad::GCControllerTouchpadHandler;
 pub use self::__GCControllerTouchpad::GCTouchState;
-pub use self::__GCControllerTouchpad::{GCTouchStateDown, GCTouchStateMoving, GCTouchStateUp};
 pub use self::__GCDevice::GCDevice;
 #[cfg(feature = "GameController_GCDeviceBattery")]
 pub use self::__GCDeviceBattery::GCDeviceBattery;
 pub use self::__GCDeviceBattery::GCDeviceBatteryState;
-pub use self::__GCDeviceBattery::{
-    GCDeviceBatteryStateCharging, GCDeviceBatteryStateDischarging, GCDeviceBatteryStateFull,
-    GCDeviceBatteryStateUnknown,
-};
 #[cfg(feature = "GameController_GCDeviceCursor")]
 pub use self::__GCDeviceCursor::GCDeviceCursor;
 #[cfg(feature = "GameController_GCDeviceHaptics")]
@@ -200,10 +188,6 @@ pub use self::__GCDevicePhysicalInput::GCDevicePhysicalInput;
 pub use self::__GCDevicePhysicalInputState::GCDevicePhysicalInputState;
 pub use self::__GCDevicePhysicalInputStateDiff::GCDevicePhysicalInputElementChange;
 pub use self::__GCDevicePhysicalInputStateDiff::GCDevicePhysicalInputStateDiff;
-pub use self::__GCDevicePhysicalInputStateDiff::{
-    GCDevicePhysicalInputElementChanged, GCDevicePhysicalInputElementNoChange,
-    GCDevicePhysicalInputElementUnknownChange,
-};
 pub use self::__GCDirectionPadElement::GCDirectionPadElement;
 #[cfg(feature = "GameController_GCDirectionalGamepad")]
 pub use self::__GCDirectionalGamepad::GCDirectionalGamepad;
@@ -218,22 +202,6 @@ pub use self::__GCDualSenseAdaptiveTrigger::GCDualSenseAdaptiveTriggerMode;
 pub use self::__GCDualSenseAdaptiveTrigger::GCDualSenseAdaptiveTriggerPositionalAmplitudes;
 pub use self::__GCDualSenseAdaptiveTrigger::GCDualSenseAdaptiveTriggerPositionalResistiveStrengths;
 pub use self::__GCDualSenseAdaptiveTrigger::GCDualSenseAdaptiveTriggerStatus;
-pub use self::__GCDualSenseAdaptiveTrigger::{
-    GCDualSenseAdaptiveTriggerModeFeedback, GCDualSenseAdaptiveTriggerModeOff,
-    GCDualSenseAdaptiveTriggerModeSlopeFeedback, GCDualSenseAdaptiveTriggerModeVibration,
-    GCDualSenseAdaptiveTriggerModeWeapon,
-};
-pub use self::__GCDualSenseAdaptiveTrigger::{
-    GCDualSenseAdaptiveTriggerStatusFeedbackLoadApplied,
-    GCDualSenseAdaptiveTriggerStatusFeedbackNoLoad,
-    GCDualSenseAdaptiveTriggerStatusSlopeFeedbackApplyingLoad,
-    GCDualSenseAdaptiveTriggerStatusSlopeFeedbackFinished,
-    GCDualSenseAdaptiveTriggerStatusSlopeFeedbackReady, GCDualSenseAdaptiveTriggerStatusUnknown,
-    GCDualSenseAdaptiveTriggerStatusVibrationIsVibrating,
-    GCDualSenseAdaptiveTriggerStatusVibrationNotVibrating,
-    GCDualSenseAdaptiveTriggerStatusWeaponFired, GCDualSenseAdaptiveTriggerStatusWeaponFiring,
-    GCDualSenseAdaptiveTriggerStatusWeaponReady,
-};
 #[cfg(feature = "GameController_GCDualSenseGamepad")]
 pub use self::__GCDualSenseGamepad::GCDualSenseGamepad;
 #[cfg(feature = "GameController_GCDualShockGamepad")]
@@ -256,9 +224,6 @@ pub use self::__GCExtendedGamepadSnapshot::GCExtendedGamepadSnapshotDataVersion;
 pub use self::__GCExtendedGamepadSnapshot::NSDataFromGCExtendedGamepadSnapShotDataV100;
 #[cfg(feature = "Foundation_NSData")]
 pub use self::__GCExtendedGamepadSnapshot::NSDataFromGCExtendedGamepadSnapshotData;
-pub use self::__GCExtendedGamepadSnapshot::{
-    GCExtendedGamepadSnapshotDataVersion1, GCExtendedGamepadSnapshotDataVersion2,
-};
 #[cfg(feature = "GameController_GCGamepad")]
 pub use self::__GCGamepad::GCGamepad;
 pub use self::__GCGamepad::GCGamepadValueChangedHandler;
@@ -569,7 +534,6 @@ pub use self::__GCMicroGamepadSnapshot::GCMicroGamepadSnapshotData;
 #[cfg(feature = "Foundation_NSData")]
 pub use self::__GCMicroGamepadSnapshot::GCMicroGamepadSnapshotDataFromNSData;
 pub use self::__GCMicroGamepadSnapshot::GCMicroGamepadSnapshotDataVersion;
-pub use self::__GCMicroGamepadSnapshot::GCMicroGamepadSnapshotDataVersion1;
 #[cfg(feature = "Foundation_NSData")]
 pub use self::__GCMicroGamepadSnapshot::NSDataFromGCMicroGamepadSnapShotDataV100;
 #[cfg(feature = "Foundation_NSData")]
@@ -597,11 +561,6 @@ pub use self::__GCPhysicalInputElement::GCPhysicalInputElementCollection;
 pub use self::__GCPhysicalInputProfile::GCPhysicalInputProfile;
 pub use self::__GCPhysicalInputSource::GCPhysicalInputSource;
 pub use self::__GCPhysicalInputSource::GCPhysicalInputSourceDirection;
-pub use self::__GCPhysicalInputSource::{
-    GCPhysicalInputSourceDirectionDown, GCPhysicalInputSourceDirectionLeft,
-    GCPhysicalInputSourceDirectionNotApplicable, GCPhysicalInputSourceDirectionRight,
-    GCPhysicalInputSourceDirectionUp,
-};
 pub use self::__GCPressedStateInput::GCPressedStateInput;
 pub use self::__GCProductCategories::GCProductCategoryArcadeStick;
 pub use self::__GCProductCategories::GCProductCategoryCoalescedRemote;

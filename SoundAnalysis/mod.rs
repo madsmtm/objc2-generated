@@ -48,18 +48,11 @@ pub use self::__SNClassificationResult::SNClassificationResult;
 pub use self::__SNClassifySoundRequest::SNClassifySoundRequest;
 pub use self::__SNError::SNErrorCode;
 pub use self::__SNError::SNErrorDomain;
-pub use self::__SNError::{
-    SNErrorCodeInvalidFile, SNErrorCodeInvalidFormat, SNErrorCodeInvalidModel,
-    SNErrorCodeOperationFailed, SNErrorCodeUnknownError,
-};
 pub use self::__SNRequest::SNRequest;
 pub use self::__SNResult::SNResult;
 pub use self::__SNResult::SNResultsObserving;
 #[cfg(feature = "SoundAnalysis_SNTimeDurationConstraint")]
 pub use self::__SNTimeDurationConstraint::SNTimeDurationConstraint;
 pub use self::__SNTimeDurationConstraint::SNTimeDurationConstraintType;
-pub use self::__SNTimeDurationConstraint::{
-    SNTimeDurationConstraintTypeEnumerated, SNTimeDurationConstraintTypeRange,
-};
 pub use self::__SNTypes::SNClassifierIdentifier;
 pub use self::__SNTypes::SNClassifierIdentifierVersion1;

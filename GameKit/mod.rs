@@ -105,10 +105,6 @@ mod __GKVoiceChatService;
 #[cfg(feature = "GameKit_GKAccessPoint")]
 pub use self::__GKAccessPoint::GKAccessPoint;
 pub use self::__GKAccessPoint::GKAccessPointLocation;
-pub use self::__GKAccessPoint::{
-    GKAccessPointLocationBottomLeading, GKAccessPointLocationBottomTrailing,
-    GKAccessPointLocationTopLeading, GKAccessPointLocationTopTrailing,
-};
 #[cfg(feature = "GameKit_GKAchievement")]
 pub use self::__GKAchievement::GKAchievement;
 #[cfg(feature = "GameKit_GKAchievementDescription")]
@@ -127,10 +123,6 @@ pub use self::__GKChallenge::GKChallengeComposeHandler;
 pub use self::__GKChallenge::GKChallengeState;
 #[cfg(feature = "GameKit_GKScoreChallenge")]
 pub use self::__GKChallenge::GKScoreChallenge;
-pub use self::__GKChallenge::{
-    GKChallengeStateCompleted, GKChallengeStateDeclined, GKChallengeStateInvalid,
-    GKChallengeStatePending,
-};
 #[cfg(feature = "GameKit_GKChallengeEventHandler")]
 pub use self::__GKChallengeEventHandler::GKChallengeEventHandler;
 pub use self::__GKChallengeEventHandler::GKChallengeEventHandlerDelegate;
@@ -145,21 +137,6 @@ pub use self::__GKDialogController::GKDialogController;
 pub use self::__GKDialogController::GKViewController;
 pub use self::__GKError::GKErrorCode;
 pub use self::__GKError::GKErrorDomain;
-pub use self::__GKError::{
-    GKErrorAPINotAvailable, GKErrorAPIObsolete, GKErrorAuthenticationInProgress, GKErrorCancelled,
-    GKErrorChallengeInvalid, GKErrorCommunicationsFailure, GKErrorConnectionTimeout,
-    GKErrorFriendListDenied, GKErrorFriendListDescriptionMissing, GKErrorFriendListRestricted,
-    GKErrorFriendRequestNotAvailable, GKErrorGameSessionRequestInvalid, GKErrorGameUnrecognized,
-    GKErrorICloudUnavailable, GKErrorInvalidCredentials, GKErrorInvalidParameter,
-    GKErrorInvalidPlayer, GKErrorInvitationsDisabled, GKErrorLockdownMode,
-    GKErrorMatchNotConnected, GKErrorMatchRequestInvalid, GKErrorNotAuthenticated,
-    GKErrorNotAuthorized, GKErrorNotSupported, GKErrorParentalControlsBlocked,
-    GKErrorPlayerPhotoFailure, GKErrorPlayerStatusExceedsMaximumLength, GKErrorPlayerStatusInvalid,
-    GKErrorRestrictedToAutomatch, GKErrorScoreNotSet, GKErrorTurnBasedInvalidParticipant,
-    GKErrorTurnBasedInvalidState, GKErrorTurnBasedInvalidTurn, GKErrorTurnBasedMatchDataTooLarge,
-    GKErrorTurnBasedTooManySessions, GKErrorUbiquityContainerUnavailable, GKErrorUnderage,
-    GKErrorUnexpectedConnection, GKErrorUnknown, GKErrorUserDenied,
-};
 pub use self::__GKEventListener::GKChallengeListener;
 #[cfg(feature = "GameKit_GKFriendRequestComposeViewController")]
 pub use self::__GKFriendRequestComposeViewController::GKFriendRequestComposeViewController;
@@ -168,44 +145,18 @@ pub use self::__GKGameCenterViewController::GKGameCenterControllerDelegate;
 #[cfg(feature = "GameKit_GKGameCenterViewController")]
 pub use self::__GKGameCenterViewController::GKGameCenterViewController;
 pub use self::__GKGameCenterViewController::GKGameCenterViewControllerState;
-pub use self::__GKGameCenterViewController::{
-    GKGameCenterViewControllerStateAchievements, GKGameCenterViewControllerStateChallenges,
-    GKGameCenterViewControllerStateDashboard, GKGameCenterViewControllerStateDefault,
-    GKGameCenterViewControllerStateLeaderboards,
-    GKGameCenterViewControllerStateLocalPlayerFriendsList,
-    GKGameCenterViewControllerStateLocalPlayerProfile,
-};
 pub use self::__GKGameSession::GKConnectionState;
 #[cfg(feature = "GameKit_GKGameSession")]
 pub use self::__GKGameSession::GKGameSession;
 pub use self::__GKGameSession::GKTransportType;
-pub use self::__GKGameSession::{GKConnectionStateConnected, GKConnectionStateNotConnected};
-pub use self::__GKGameSession::{GKTransportTypeReliable, GKTransportTypeUnreliable};
 pub use self::__GKGameSessionError::GKGameSessionErrorCode;
 pub use self::__GKGameSessionError::GKGameSessionErrorDomain;
-pub use self::__GKGameSessionError::{
-    GKGameSessionErrorBadContainer, GKGameSessionErrorCloudDriveDisabled,
-    GKGameSessionErrorCloudQuotaExceeded, GKGameSessionErrorConnectionCancelledByUser,
-    GKGameSessionErrorConnectionFailed, GKGameSessionErrorInvalidSession,
-    GKGameSessionErrorNetworkFailure, GKGameSessionErrorNotAuthenticated,
-    GKGameSessionErrorSendDataNoRecipients, GKGameSessionErrorSendDataNotConnected,
-    GKGameSessionErrorSendDataNotReachable, GKGameSessionErrorSendRateLimitReached,
-    GKGameSessionErrorSessionConflict, GKGameSessionErrorSessionHasMaxConnectedPlayers,
-    GKGameSessionErrorSessionNotShared, GKGameSessionErrorUnknown,
-};
 pub use self::__GKGameSessionEventListener::GKGameSessionEventListener;
 #[cfg(feature = "GameKit_GKLeaderboard")]
 pub use self::__GKLeaderboard::GKLeaderboard;
 pub use self::__GKLeaderboard::GKLeaderboardPlayerScope;
 pub use self::__GKLeaderboard::GKLeaderboardTimeScope;
 pub use self::__GKLeaderboard::GKLeaderboardType;
-pub use self::__GKLeaderboard::{
-    GKLeaderboardPlayerScopeFriendsOnly, GKLeaderboardPlayerScopeGlobal,
-};
-pub use self::__GKLeaderboard::{
-    GKLeaderboardTimeScopeAllTime, GKLeaderboardTimeScopeToday, GKLeaderboardTimeScopeWeek,
-};
-pub use self::__GKLeaderboard::{GKLeaderboardTypeClassic, GKLeaderboardTypeRecurring};
 #[cfg(feature = "GameKit_GKLeaderboardEntry")]
 pub use self::__GKLeaderboardEntry::GKLeaderboardEntry;
 #[cfg(feature = "GameKit_GKLeaderboardScore")]
@@ -220,19 +171,11 @@ pub use self::__GKLocalPlayer::GKFriendsAuthorizationStatus;
 pub use self::__GKLocalPlayer::GKLocalPlayer;
 pub use self::__GKLocalPlayer::GKLocalPlayerListener;
 pub use self::__GKLocalPlayer::GKPlayerAuthenticationDidChangeNotificationName;
-pub use self::__GKLocalPlayer::{
-    GKFriendsAuthorizationStatusAuthorized, GKFriendsAuthorizationStatusDenied,
-    GKFriendsAuthorizationStatusNotDetermined, GKFriendsAuthorizationStatusRestricted,
-};
 #[cfg(feature = "GameKit_GKMatch")]
 pub use self::__GKMatch::GKMatch;
 pub use self::__GKMatch::GKMatchDelegate;
 pub use self::__GKMatch::GKMatchSendDataMode;
 pub use self::__GKMatch::GKPlayerConnectionState;
-pub use self::__GKMatch::{GKMatchSendDataReliable, GKMatchSendDataUnreliable};
-pub use self::__GKMatch::{
-    GKPlayerStateConnected, GKPlayerStateDisconnected, GKPlayerStateUnknown,
-};
 #[cfg(feature = "GameKit_GKInvite")]
 pub use self::__GKMatchmaker::GKInvite;
 pub use self::__GKMatchmaker::GKInviteEventListener;
@@ -245,22 +188,10 @@ pub use self::__GKMatchmaker::GKMatchType;
 pub use self::__GKMatchmaker::GKMatchedPlayers;
 #[cfg(feature = "GameKit_GKMatchmaker")]
 pub use self::__GKMatchmaker::GKMatchmaker;
-pub use self::__GKMatchmaker::{
-    GKInviteRecipientResponseAccepted, GKInviteRecipientResponseDeclined,
-    GKInviteRecipientResponseFailed, GKInviteRecipientResponseIncompatible,
-    GKInviteRecipientResponseNoAnswer, GKInviteRecipientResponseUnableToConnect,
-    GKInviteeResponseAccepted, GKInviteeResponseDeclined, GKInviteeResponseFailed,
-    GKInviteeResponseIncompatible, GKInviteeResponseNoAnswer, GKInviteeResponseUnableToConnect,
-};
-pub use self::__GKMatchmaker::{GKMatchTypeHosted, GKMatchTypePeerToPeer, GKMatchTypeTurnBased};
 #[cfg(feature = "GameKit_GKMatchmakerViewController")]
 pub use self::__GKMatchmakerViewController::GKMatchmakerViewController;
 pub use self::__GKMatchmakerViewController::GKMatchmakerViewControllerDelegate;
 pub use self::__GKMatchmakerViewController::GKMatchmakingMode;
-pub use self::__GKMatchmakerViewController::{
-    GKMatchmakingModeAutomatchOnly, GKMatchmakingModeDefault, GKMatchmakingModeInviteOnly,
-    GKMatchmakingModeNearbyOnly,
-};
 #[cfg(feature = "GameKit_GKNotificationBanner")]
 pub use self::__GKNotificationBanner::GKNotificationBanner;
 pub use self::__GKPlayer::GKPhotoSize;
@@ -268,31 +199,11 @@ pub use self::__GKPlayer::GKPhotoSize;
 pub use self::__GKPlayer::GKPlayer;
 pub use self::__GKPlayer::GKPlayerDidChangeNotificationName;
 pub use self::__GKPlayer::GKPlayerIDNoLongerAvailable;
-pub use self::__GKPlayer::{GKPhotoSizeNormal, GKPhotoSizeSmall};
 pub use self::__GKPublicConstants::GKPeerConnectionState;
 pub use self::__GKPublicConstants::GKSendDataMode;
 pub use self::__GKPublicConstants::GKSessionMode;
 pub use self::__GKPublicConstants::GKVoiceChatServiceError;
 pub use self::__GKPublicConstants::GKVoiceChatServiceErrorDomain;
-pub use self::__GKPublicConstants::{
-    GKPeerStateAvailable, GKPeerStateConnected, GKPeerStateConnectedRelay, GKPeerStateConnecting,
-    GKPeerStateDisconnected, GKPeerStateUnavailable,
-};
-pub use self::__GKPublicConstants::{GKSendDataReliable, GKSendDataUnreliable};
-pub use self::__GKPublicConstants::{GKSessionModeClient, GKSessionModePeer, GKSessionModeServer};
-pub use self::__GKPublicConstants::{
-    GKVoiceChatServiceAudioUnavailableError, GKVoiceChatServiceClientMissingRequiredMethodsError,
-    GKVoiceChatServiceInternalError, GKVoiceChatServiceInvalidCallIDError,
-    GKVoiceChatServiceInvalidParameterError, GKVoiceChatServiceMethodCurrentlyInvalidError,
-    GKVoiceChatServiceNetworkConfigurationError, GKVoiceChatServiceNoRemotePacketsError,
-    GKVoiceChatServiceOutOfMemoryError, GKVoiceChatServiceRemoteParticipantBusyError,
-    GKVoiceChatServiceRemoteParticipantCancelledError,
-    GKVoiceChatServiceRemoteParticipantDeclinedInviteError,
-    GKVoiceChatServiceRemoteParticipantHangupError,
-    GKVoiceChatServiceRemoteParticipantResponseInvalidError,
-    GKVoiceChatServiceUnableToConnectError, GKVoiceChatServiceUninitializedClientError,
-    GKVoiceChatServiceUnsupportedRemoteVersionError,
-};
 pub use self::__GKPublicProtocols::GKSessionDelegate;
 pub use self::__GKPublicProtocols::GKVoiceChatClient;
 #[cfg(feature = "GameKit_GKSavedGame")]
@@ -304,13 +215,6 @@ pub use self::__GKScore::GKScore;
 pub use self::__GKSession::GKSession;
 pub use self::__GKSessionError::GKSessionError;
 pub use self::__GKSessionError::GKSessionErrorDomain;
-pub use self::__GKSessionError::{
-    GKSessionCancelledError, GKSessionCannotEnableError, GKSessionConnectionClosedError,
-    GKSessionConnectionFailedError, GKSessionConnectivityError, GKSessionDataTooBigError,
-    GKSessionDeclinedError, GKSessionInProgressError, GKSessionInternalError,
-    GKSessionInvalidParameterError, GKSessionNotConnectedError, GKSessionPeerNotFoundError,
-    GKSessionSystemError, GKSessionTimedOutError, GKSessionTransportError, GKSessionUnknownError,
-};
 pub use self::__GKTurnBasedMatch::GKExchangeTimeoutDefault;
 pub use self::__GKTurnBasedMatch::GKExchangeTimeoutNone;
 #[cfg(feature = "GameKit_GKTurnBasedEventHandler")]
@@ -331,35 +235,11 @@ pub use self::__GKTurnBasedMatch::GKTurnBasedParticipant;
 pub use self::__GKTurnBasedMatch::GKTurnBasedParticipantStatus;
 pub use self::__GKTurnBasedMatch::GKTurnTimeoutDefault;
 pub use self::__GKTurnBasedMatch::GKTurnTimeoutNone;
-pub use self::__GKTurnBasedMatch::{
-    GKTurnBasedExchangeStatusActive, GKTurnBasedExchangeStatusCanceled,
-    GKTurnBasedExchangeStatusComplete, GKTurnBasedExchangeStatusResolved,
-    GKTurnBasedExchangeStatusUnknown,
-};
-pub use self::__GKTurnBasedMatch::{
-    GKTurnBasedMatchOutcomeCustomRange, GKTurnBasedMatchOutcomeFirst,
-    GKTurnBasedMatchOutcomeFourth, GKTurnBasedMatchOutcomeLost, GKTurnBasedMatchOutcomeNone,
-    GKTurnBasedMatchOutcomeQuit, GKTurnBasedMatchOutcomeSecond, GKTurnBasedMatchOutcomeThird,
-    GKTurnBasedMatchOutcomeTied, GKTurnBasedMatchOutcomeTimeExpired, GKTurnBasedMatchOutcomeWon,
-};
-pub use self::__GKTurnBasedMatch::{
-    GKTurnBasedMatchStatusEnded, GKTurnBasedMatchStatusMatching, GKTurnBasedMatchStatusOpen,
-    GKTurnBasedMatchStatusUnknown,
-};
-pub use self::__GKTurnBasedMatch::{
-    GKTurnBasedParticipantStatusActive, GKTurnBasedParticipantStatusDeclined,
-    GKTurnBasedParticipantStatusDone, GKTurnBasedParticipantStatusInvited,
-    GKTurnBasedParticipantStatusMatching, GKTurnBasedParticipantStatusUnknown,
-};
 #[cfg(feature = "GameKit_GKTurnBasedMatchmakerViewController")]
 pub use self::__GKTurnBasedMatchmakerViewController::GKTurnBasedMatchmakerViewController;
 pub use self::__GKTurnBasedMatchmakerViewController::GKTurnBasedMatchmakerViewControllerDelegate;
 #[cfg(feature = "GameKit_GKVoiceChat")]
 pub use self::__GKVoiceChat::GKVoiceChat;
 pub use self::__GKVoiceChat::GKVoiceChatPlayerState;
-pub use self::__GKVoiceChat::{
-    GKVoiceChatPlayerConnected, GKVoiceChatPlayerConnecting, GKVoiceChatPlayerDisconnected,
-    GKVoiceChatPlayerSilent, GKVoiceChatPlayerSpeaking,
-};
 #[cfg(feature = "GameKit_GKVoiceChatService")]
 pub use self::__GKVoiceChatService::GKVoiceChatService;

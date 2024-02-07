@@ -50,16 +50,18 @@ ns_options!(
         NSAlignWidthNearest = 1 << 20,
         NSAlignHeightNearest = 1 << 21,
         NSAlignRectFlipped = 1 << 63,
-        NSAlignAllEdgesInward =
-            NSAlignMinXInward.0 | NSAlignMaxXInward.0 | NSAlignMinYInward.0 | NSAlignMaxYInward.0,
-        NSAlignAllEdgesOutward = NSAlignMinXOutward.0
-            | NSAlignMaxXOutward.0
-            | NSAlignMinYOutward.0
-            | NSAlignMaxYOutward.0,
-        NSAlignAllEdgesNearest = NSAlignMinXNearest.0
-            | NSAlignMaxXNearest.0
-            | NSAlignMinYNearest.0
-            | NSAlignMaxYNearest.0,
+        NSAlignAllEdgesInward = NSAlignmentOptions::NSAlignMinXInward.0
+            | NSAlignmentOptions::NSAlignMaxXInward.0
+            | NSAlignmentOptions::NSAlignMinYInward.0
+            | NSAlignmentOptions::NSAlignMaxYInward.0,
+        NSAlignAllEdgesOutward = NSAlignmentOptions::NSAlignMinXOutward.0
+            | NSAlignmentOptions::NSAlignMaxXOutward.0
+            | NSAlignmentOptions::NSAlignMinYOutward.0
+            | NSAlignmentOptions::NSAlignMaxYOutward.0,
+        NSAlignAllEdgesNearest = NSAlignmentOptions::NSAlignMinXNearest.0
+            | NSAlignmentOptions::NSAlignMaxXNearest.0
+            | NSAlignmentOptions::NSAlignMinYNearest.0
+            | NSAlignmentOptions::NSAlignMaxYNearest.0,
     }
 );
 

@@ -10,7 +10,8 @@ ns_options!(
         AXHearingDeviceEarNone = 0,
         AXHearingDeviceEarLeft = 1 << 1,
         AXHearingDeviceEarRight = 1 << 2,
-        AXHearingDeviceEarBoth = AXHearingDeviceEarLeft.0 | AXHearingDeviceEarRight.0,
+        AXHearingDeviceEarBoth = AXHearingDeviceEar::AXHearingDeviceEarLeft.0
+            | AXHearingDeviceEar::AXHearingDeviceEarRight.0,
     }
 );
 

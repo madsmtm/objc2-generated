@@ -54,7 +54,7 @@ ns_enum!(
         NSLayoutAttributeCenterX = 9,
         NSLayoutAttributeCenterY = 10,
         NSLayoutAttributeLastBaseline = 11,
-        NSLayoutAttributeBaseline = NSLayoutAttributeLastBaseline.0,
+        NSLayoutAttributeBaseline = NSLayoutAttribute::NSLayoutAttributeLastBaseline.0,
         NSLayoutAttributeFirstBaseline = 12,
         NSLayoutAttributeNotAnAttribute = 0,
     }
@@ -63,17 +63,20 @@ ns_enum!(
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSLayoutFormatOptions {
-        NSLayoutFormatAlignAllLeft = 1 << NSLayoutAttributeLeft.0,
-        NSLayoutFormatAlignAllRight = 1 << NSLayoutAttributeRight.0,
-        NSLayoutFormatAlignAllTop = 1 << NSLayoutAttributeTop.0,
-        NSLayoutFormatAlignAllBottom = 1 << NSLayoutAttributeBottom.0,
-        NSLayoutFormatAlignAllLeading = 1 << NSLayoutAttributeLeading.0,
-        NSLayoutFormatAlignAllTrailing = 1 << NSLayoutAttributeTrailing.0,
-        NSLayoutFormatAlignAllCenterX = 1 << NSLayoutAttributeCenterX.0,
-        NSLayoutFormatAlignAllCenterY = 1 << NSLayoutAttributeCenterY.0,
-        NSLayoutFormatAlignAllLastBaseline = 1 << NSLayoutAttributeLastBaseline.0,
-        NSLayoutFormatAlignAllFirstBaseline = 1 << NSLayoutAttributeFirstBaseline.0,
-        NSLayoutFormatAlignAllBaseline = NSLayoutFormatAlignAllLastBaseline.0,
+        NSLayoutFormatAlignAllLeft = 1 << NSLayoutAttribute::NSLayoutAttributeLeft.0,
+        NSLayoutFormatAlignAllRight = 1 << NSLayoutAttribute::NSLayoutAttributeRight.0,
+        NSLayoutFormatAlignAllTop = 1 << NSLayoutAttribute::NSLayoutAttributeTop.0,
+        NSLayoutFormatAlignAllBottom = 1 << NSLayoutAttribute::NSLayoutAttributeBottom.0,
+        NSLayoutFormatAlignAllLeading = 1 << NSLayoutAttribute::NSLayoutAttributeLeading.0,
+        NSLayoutFormatAlignAllTrailing = 1 << NSLayoutAttribute::NSLayoutAttributeTrailing.0,
+        NSLayoutFormatAlignAllCenterX = 1 << NSLayoutAttribute::NSLayoutAttributeCenterX.0,
+        NSLayoutFormatAlignAllCenterY = 1 << NSLayoutAttribute::NSLayoutAttributeCenterY.0,
+        NSLayoutFormatAlignAllLastBaseline =
+            1 << NSLayoutAttribute::NSLayoutAttributeLastBaseline.0,
+        NSLayoutFormatAlignAllFirstBaseline =
+            1 << NSLayoutAttribute::NSLayoutAttributeFirstBaseline.0,
+        NSLayoutFormatAlignAllBaseline =
+            NSLayoutFormatOptions::NSLayoutFormatAlignAllLastBaseline.0,
         NSLayoutFormatAlignmentMask = 0xFFFF,
         NSLayoutFormatDirectionLeadingToTrailing = 0 << 16,
         NSLayoutFormatDirectionLeftToRight = 1 << 16,

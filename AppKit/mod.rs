@@ -965,31 +965,6 @@ pub use self::__NSAccessibilityConstants::NSAccessibilityWindowRole;
 pub use self::__NSAccessibilityConstants::NSAccessibilityWindowsAttribute;
 pub use self::__NSAccessibilityConstants::NSAccessibilityZoomButtonAttribute;
 pub use self::__NSAccessibilityConstants::NSAccessibilityZoomButtonSubrole;
-pub use self::__NSAccessibilityConstants::{
-    NSAccessibilityAnnotationPositionEnd, NSAccessibilityAnnotationPositionFullRange,
-    NSAccessibilityAnnotationPositionStart,
-};
-pub use self::__NSAccessibilityConstants::{
-    NSAccessibilityOrientationHorizontal, NSAccessibilityOrientationUnknown,
-    NSAccessibilityOrientationVertical,
-};
-pub use self::__NSAccessibilityConstants::{
-    NSAccessibilityPriorityHigh, NSAccessibilityPriorityLow, NSAccessibilityPriorityMedium,
-};
-pub use self::__NSAccessibilityConstants::{
-    NSAccessibilityRulerMarkerTypeIndentFirstLine, NSAccessibilityRulerMarkerTypeIndentHead,
-    NSAccessibilityRulerMarkerTypeIndentTail, NSAccessibilityRulerMarkerTypeTabStopCenter,
-    NSAccessibilityRulerMarkerTypeTabStopDecimal, NSAccessibilityRulerMarkerTypeTabStopLeft,
-    NSAccessibilityRulerMarkerTypeTabStopRight, NSAccessibilityRulerMarkerTypeUnknown,
-};
-pub use self::__NSAccessibilityConstants::{
-    NSAccessibilitySortDirectionAscending, NSAccessibilitySortDirectionDescending,
-    NSAccessibilitySortDirectionUnknown,
-};
-pub use self::__NSAccessibilityConstants::{
-    NSAccessibilityUnitsCentimeters, NSAccessibilityUnitsInches, NSAccessibilityUnitsPicas,
-    NSAccessibilityUnitsPoints, NSAccessibilityUnitsUnknown,
-};
 #[cfg(feature = "AppKit_NSAccessibilityCustomAction")]
 pub use self::__NSAccessibilityCustomAction::NSAccessibilityCustomAction;
 #[cfg(feature = "AppKit_NSAccessibilityCustomRotor")]
@@ -1001,23 +976,6 @@ pub use self::__NSAccessibilityCustomRotor::NSAccessibilityCustomRotorSearchDire
 #[cfg(feature = "AppKit_NSAccessibilityCustomRotorSearchParameters")]
 pub use self::__NSAccessibilityCustomRotor::NSAccessibilityCustomRotorSearchParameters;
 pub use self::__NSAccessibilityCustomRotor::NSAccessibilityCustomRotorType;
-pub use self::__NSAccessibilityCustomRotor::{
-    NSAccessibilityCustomRotorSearchDirectionNext,
-    NSAccessibilityCustomRotorSearchDirectionPrevious,
-};
-pub use self::__NSAccessibilityCustomRotor::{
-    NSAccessibilityCustomRotorTypeAnnotation, NSAccessibilityCustomRotorTypeAny,
-    NSAccessibilityCustomRotorTypeAudiograph, NSAccessibilityCustomRotorTypeBoldText,
-    NSAccessibilityCustomRotorTypeCustom, NSAccessibilityCustomRotorTypeHeading,
-    NSAccessibilityCustomRotorTypeHeadingLevel1, NSAccessibilityCustomRotorTypeHeadingLevel2,
-    NSAccessibilityCustomRotorTypeHeadingLevel3, NSAccessibilityCustomRotorTypeHeadingLevel4,
-    NSAccessibilityCustomRotorTypeHeadingLevel5, NSAccessibilityCustomRotorTypeHeadingLevel6,
-    NSAccessibilityCustomRotorTypeImage, NSAccessibilityCustomRotorTypeItalicText,
-    NSAccessibilityCustomRotorTypeLandmark, NSAccessibilityCustomRotorTypeLink,
-    NSAccessibilityCustomRotorTypeList, NSAccessibilityCustomRotorTypeMisspelledWord,
-    NSAccessibilityCustomRotorTypeTable, NSAccessibilityCustomRotorTypeTextField,
-    NSAccessibilityCustomRotorTypeUnderlinedText, NSAccessibilityCustomRotorTypeVisitedLink,
-};
 #[cfg(feature = "AppKit_NSAccessibilityElement")]
 pub use self::__NSAccessibilityElement::NSAccessibilityElement;
 pub use self::__NSAccessibilityProtocols::NSAccessibility;
@@ -1055,7 +1013,6 @@ pub use self::__NSAlert::NSAlertThirdButtonReturn;
 pub use self::__NSAlert::NSCriticalAlertStyle;
 pub use self::__NSAlert::NSInformationalAlertStyle;
 pub use self::__NSAlert::NSWarningAlertStyle;
-pub use self::__NSAlert::{NSAlertStyleCritical, NSAlertStyleInformational, NSAlertStyleWarning};
 #[cfg(feature = "AppKit_NSAlignmentFeedbackFilter")]
 pub use self::__NSAlignmentFeedbackFilter::NSAlignmentFeedbackFilter;
 pub use self::__NSAlignmentFeedbackFilter::NSAlignmentFeedbackToken;
@@ -1081,12 +1038,6 @@ pub use self::__NSAnimation::NSViewAnimationFadeOutEffect;
 pub use self::__NSAnimation::NSViewAnimationKey;
 pub use self::__NSAnimation::NSViewAnimationStartFrameKey;
 pub use self::__NSAnimation::NSViewAnimationTargetKey;
-pub use self::__NSAnimation::{
-    NSAnimationBlocking, NSAnimationNonblocking, NSAnimationNonblockingThreaded,
-};
-pub use self::__NSAnimation::{
-    NSAnimationEaseIn, NSAnimationEaseInOut, NSAnimationEaseOut, NSAnimationLinear,
-};
 #[cfg(feature = "AppKit_NSAnimationContext")]
 pub use self::__NSAnimationContext::NSAnimationContext;
 #[cfg(feature = "AppKit_NSAppearance")]
@@ -1206,7 +1157,6 @@ pub use self::__NSApplication::NSApplicationLaunchUserNotificationKey;
 pub use self::__NSApplication::NSApplicationLoad;
 pub use self::__NSApplication::NSApplicationMain;
 pub use self::__NSApplication::NSApplicationOcclusionState;
-pub use self::__NSApplication::NSApplicationOcclusionStateVisible;
 pub use self::__NSApplication::NSApplicationPresentationOptions;
 pub use self::__NSApplication::NSApplicationPrintReply;
 pub use self::__NSApplication::NSApplicationProtectedDataDidBecomeAvailableNotification;
@@ -1244,31 +1194,6 @@ pub use self::__NSApplication::NSUnregisterServicesProvider;
 pub use self::__NSApplication::NSUpdateDynamicServices;
 pub use self::__NSApplication::NSUpdateWindowsRunLoopOrdering;
 pub use self::__NSApplication::NSWindowListOptions;
-pub use self::__NSApplication::NSWindowListOrderedFrontToBack;
-pub use self::__NSApplication::{
-    NSApplicationDelegateReplyCancel, NSApplicationDelegateReplyFailure,
-    NSApplicationDelegateReplySuccess,
-};
-pub use self::__NSApplication::{
-    NSApplicationPresentationAutoHideDock, NSApplicationPresentationAutoHideMenuBar,
-    NSApplicationPresentationAutoHideToolbar, NSApplicationPresentationDefault,
-    NSApplicationPresentationDisableAppleMenu,
-    NSApplicationPresentationDisableCursorLocationAssistance,
-    NSApplicationPresentationDisableForceQuit, NSApplicationPresentationDisableHideApplication,
-    NSApplicationPresentationDisableMenuBarTransparency,
-    NSApplicationPresentationDisableProcessSwitching,
-    NSApplicationPresentationDisableSessionTermination, NSApplicationPresentationFullScreen,
-    NSApplicationPresentationHideDock, NSApplicationPresentationHideMenuBar,
-};
-pub use self::__NSApplication::{NSCriticalRequest, NSInformationalRequest};
-pub use self::__NSApplication::{
-    NSPrintingCancelled, NSPrintingFailure, NSPrintingReplyLater, NSPrintingSuccess,
-};
-pub use self::__NSApplication::{
-    NSRemoteNotificationTypeAlert, NSRemoteNotificationTypeBadge, NSRemoteNotificationTypeNone,
-    NSRemoteNotificationTypeSound,
-};
-pub use self::__NSApplication::{NSTerminateCancel, NSTerminateLater, NSTerminateNow};
 #[cfg(feature = "AppKit_NSArrayController")]
 pub use self::__NSArrayController::NSArrayController;
 pub use self::__NSAttributedString::NSAppearanceDocumentAttribute;
@@ -1398,15 +1323,6 @@ pub use self::__NSAttributedString::NSWebResourceLoadDelegateDocumentOption;
 pub use self::__NSAttributedString::NSWordMLTextDocumentType;
 pub use self::__NSAttributedString::NSWritingDirectionAttributeName;
 pub use self::__NSAttributedString::NSWritingDirectionFormatType;
-pub use self::__NSAttributedString::{NSSpellingStateGrammarFlag, NSSpellingStateSpellingFlag};
-pub use self::__NSAttributedString::{NSTextScalingStandard, NSTextScalingiOS};
-pub use self::__NSAttributedString::{
-    NSUnderlineStyleByWord, NSUnderlineStyleDouble, NSUnderlineStyleNone,
-    NSUnderlineStylePatternDash, NSUnderlineStylePatternDashDot, NSUnderlineStylePatternDashDotDot,
-    NSUnderlineStylePatternDot, NSUnderlineStylePatternSolid, NSUnderlineStyleSingle,
-    NSUnderlineStyleThick,
-};
-pub use self::__NSAttributedString::{NSWritingDirectionEmbedding, NSWritingDirectionOverride};
 pub use self::__NSBezierPath::NSBevelLineJoinStyle;
 #[cfg(feature = "AppKit_NSBezierPath")]
 pub use self::__NSBezierPath::NSBezierPath;
@@ -1425,13 +1341,6 @@ pub use self::__NSBezierPath::NSRoundLineCapStyle;
 pub use self::__NSBezierPath::NSRoundLineJoinStyle;
 pub use self::__NSBezierPath::NSSquareLineCapStyle;
 pub use self::__NSBezierPath::NSWindingRule;
-pub use self::__NSBezierPath::{
-    NSBezierPathElementClosePath, NSBezierPathElementCubicCurveTo, NSBezierPathElementCurveTo,
-    NSBezierPathElementLineTo, NSBezierPathElementMoveTo, NSBezierPathElementQuadraticCurveTo,
-};
-pub use self::__NSBezierPath::{NSLineCapStyleButt, NSLineCapStyleRound, NSLineCapStyleSquare};
-pub use self::__NSBezierPath::{NSLineJoinStyleBevel, NSLineJoinStyleMiter, NSLineJoinStyleRound};
-pub use self::__NSBezierPath::{NSWindingRuleEvenOdd, NSWindingRuleNonZero};
 pub use self::__NSBitmapImageRep::NS16BitBigEndianBitmapFormat;
 pub use self::__NSBitmapImageRep::NS16BitLittleEndianBitmapFormat;
 pub use self::__NSBitmapImageRep::NS32BitBigEndianBitmapFormat;
@@ -1467,36 +1376,12 @@ pub use self::__NSBitmapImageRep::NSJPEGFileType;
 pub use self::__NSBitmapImageRep::NSPNGFileType;
 pub use self::__NSBitmapImageRep::NSTIFFCompression;
 pub use self::__NSBitmapImageRep::NSTIFFFileType;
-pub use self::__NSBitmapImageRep::{
-    NSBitmapFormatAlphaFirst, NSBitmapFormatAlphaNonpremultiplied,
-    NSBitmapFormatFloatingPointSamples, NSBitmapFormatSixteenBitBigEndian,
-    NSBitmapFormatSixteenBitLittleEndian, NSBitmapFormatThirtyTwoBitBigEndian,
-    NSBitmapFormatThirtyTwoBitLittleEndian,
-};
-pub use self::__NSBitmapImageRep::{
-    NSBitmapImageFileTypeBMP, NSBitmapImageFileTypeGIF, NSBitmapImageFileTypeJPEG,
-    NSBitmapImageFileTypeJPEG2000, NSBitmapImageFileTypePNG, NSBitmapImageFileTypeTIFF,
-};
-pub use self::__NSBitmapImageRep::{
-    NSImageRepLoadStatusCompleted, NSImageRepLoadStatusInvalidData,
-    NSImageRepLoadStatusReadingHeader, NSImageRepLoadStatusUnexpectedEOF,
-    NSImageRepLoadStatusUnknownType, NSImageRepLoadStatusWillNeedAllData,
-};
-pub use self::__NSBitmapImageRep::{
-    NSTIFFCompressionCCITTFAX3, NSTIFFCompressionCCITTFAX4, NSTIFFCompressionJPEG,
-    NSTIFFCompressionLZW, NSTIFFCompressionNEXT, NSTIFFCompressionNone, NSTIFFCompressionOldJPEG,
-    NSTIFFCompressionPackBits,
-};
 #[cfg(feature = "AppKit_NSBox")]
 pub use self::__NSBox::NSBox;
 pub use self::__NSBox::NSBoxOldStyle;
 pub use self::__NSBox::NSBoxSecondary;
 pub use self::__NSBox::NSBoxType;
 pub use self::__NSBox::NSTitlePosition;
-pub use self::__NSBox::{
-    NSAboveBottom, NSAboveTop, NSAtBottom, NSAtTop, NSBelowBottom, NSBelowTop, NSNoTitle,
-};
-pub use self::__NSBox::{NSBoxCustom, NSBoxPrimary, NSBoxSeparator};
 pub use self::__NSBrowser::NSAppKitVersionNumberWithColumnResizingBrowser;
 pub use self::__NSBrowser::NSAppKitVersionNumberWithContinuousScrollingBrowser;
 #[cfg(feature = "AppKit_NSBrowser")]
@@ -1506,10 +1391,6 @@ pub use self::__NSBrowser::NSBrowserColumnResizingType;
 pub use self::__NSBrowser::NSBrowserColumnsAutosaveName;
 pub use self::__NSBrowser::NSBrowserDelegate;
 pub use self::__NSBrowser::NSBrowserDropOperation;
-pub use self::__NSBrowser::{
-    NSBrowserAutoColumnResizing, NSBrowserNoColumnResizing, NSBrowserUserColumnResizing,
-};
-pub use self::__NSBrowser::{NSBrowserDropAbove, NSBrowserDropOn};
 #[cfg(feature = "AppKit_NSBrowserCell")]
 pub use self::__NSBrowserCell::NSBrowserCell;
 #[cfg(feature = "AppKit_NSButton")]
@@ -1547,23 +1428,6 @@ pub use self::__NSButtonCell::NSTexturedSquareBezelStyle;
 pub use self::__NSButtonCell::NSThickSquareBezelStyle;
 pub use self::__NSButtonCell::NSThickerSquareBezelStyle;
 pub use self::__NSButtonCell::NSToggleButton;
-pub use self::__NSButtonCell::{
-    NSBezelStyleAccessoryBar, NSBezelStyleAccessoryBarAction, NSBezelStyleAutomatic,
-    NSBezelStyleBadge, NSBezelStyleCircular, NSBezelStyleDisclosure, NSBezelStyleFlexiblePush,
-    NSBezelStyleHelpButton, NSBezelStyleInline, NSBezelStylePush, NSBezelStylePushDisclosure,
-    NSBezelStyleRecessed, NSBezelStyleRegularSquare, NSBezelStyleRoundRect, NSBezelStyleRounded,
-    NSBezelStyleRoundedDisclosure, NSBezelStyleShadowlessSquare, NSBezelStyleSmallSquare,
-    NSBezelStyleTexturedRounded, NSBezelStyleTexturedSquare, NSBezelStyleToolbar,
-};
-pub use self::__NSButtonCell::{
-    NSButtonTypeAccelerator, NSButtonTypeMomentaryChange, NSButtonTypeMomentaryLight,
-    NSButtonTypeMomentaryPushIn, NSButtonTypeMultiLevelAccelerator, NSButtonTypeOnOff,
-    NSButtonTypePushOnPushOff, NSButtonTypeRadio, NSButtonTypeSwitch, NSButtonTypeToggle,
-};
-pub use self::__NSButtonCell::{
-    NSGradientConcaveStrong, NSGradientConcaveWeak, NSGradientConvexStrong, NSGradientConvexWeak,
-    NSGradientNone,
-};
 #[cfg(feature = "AppKit_NSButtonTouchBarItem")]
 pub use self::__NSButtonTouchBarItem::NSButtonTouchBarItem;
 #[cfg(feature = "CoreImage_CIImage")]
@@ -1610,39 +1474,6 @@ pub use self::__NSCell::NSPositiveFloatType;
 pub use self::__NSCell::NSPositiveIntType;
 pub use self::__NSCell::NSRegularControlSize;
 pub use self::__NSCell::NSSmallControlSize;
-pub use self::__NSCell::{
-    NSBackgroundStyleEmphasized, NSBackgroundStyleLowered, NSBackgroundStyleNormal,
-    NSBackgroundStyleRaised,
-};
-pub use self::__NSCell::{
-    NSBlueControlTint, NSClearControlTint, NSDefaultControlTint, NSGraphiteControlTint,
-};
-pub use self::__NSCell::{
-    NSCellAllowsMixedState, NSCellChangesContents, NSCellDisabled, NSCellEditable,
-    NSCellHasImageHorizontal, NSCellHasImageOnLeftOrBottom, NSCellHasOverlappingImage,
-    NSCellHighlighted, NSCellIsBordered, NSCellIsInsetButton, NSCellLightsByBackground,
-    NSCellLightsByContents, NSCellLightsByGray, NSCellState, NSChangeBackgroundCell,
-    NSChangeGrayCell, NSPushInCell,
-};
-pub use self::__NSCell::{
-    NSCellHitContentArea, NSCellHitEditableTextArea, NSCellHitNone, NSCellHitTrackableArea,
-};
-pub use self::__NSCell::{
-    NSChangeBackgroundCellMask, NSChangeGrayCellMask, NSContentsCellMask, NSNoCellMask,
-    NSPushInCellMask,
-};
-pub use self::__NSCell::{
-    NSControlSizeLarge, NSControlSizeMini, NSControlSizeRegular, NSControlSizeSmall,
-};
-pub use self::__NSCell::{
-    NSImageAbove, NSImageBelow, NSImageLeading, NSImageLeft, NSImageOnly, NSImageOverlaps,
-    NSImageRight, NSImageTrailing, NSNoImage,
-};
-pub use self::__NSCell::{NSImageCellType, NSNullCellType, NSTextCellType};
-pub use self::__NSCell::{
-    NSImageScaleAxesIndependently, NSImageScaleNone, NSImageScaleProportionallyDown,
-    NSImageScaleProportionallyUpOrDown, NSScaleNone, NSScaleProportionally, NSScaleToFit,
-};
 #[cfg(feature = "AppKit_NSClickGestureRecognizer")]
 pub use self::__NSClickGestureRecognizer::NSClickGestureRecognizer;
 #[cfg(feature = "AppKit_NSClipView")]
@@ -1664,19 +1495,6 @@ pub use self::__NSCollectionView::NSCollectionViewSupplementaryElementKind;
 pub use self::__NSCollectionView::NSIndexPathNSCollectionViewAdditions;
 #[cfg(feature = "Foundation_NSSet")]
 pub use self::__NSCollectionView::NSSetNSCollectionViewAdditions;
-pub use self::__NSCollectionView::{NSCollectionViewDropBefore, NSCollectionViewDropOn};
-pub use self::__NSCollectionView::{
-    NSCollectionViewItemHighlightAsDropTarget, NSCollectionViewItemHighlightForDeselection,
-    NSCollectionViewItemHighlightForSelection, NSCollectionViewItemHighlightNone,
-};
-pub use self::__NSCollectionView::{
-    NSCollectionViewScrollPositionBottom, NSCollectionViewScrollPositionCenteredHorizontally,
-    NSCollectionViewScrollPositionCenteredVertically, NSCollectionViewScrollPositionLeadingEdge,
-    NSCollectionViewScrollPositionLeft, NSCollectionViewScrollPositionNearestHorizontalEdge,
-    NSCollectionViewScrollPositionNearestVerticalEdge, NSCollectionViewScrollPositionNone,
-    NSCollectionViewScrollPositionRight, NSCollectionViewScrollPositionTop,
-    NSCollectionViewScrollPositionTrailingEdge,
-};
 #[cfg(feature = "AppKit_NSCollectionLayoutAnchor")]
 pub use self::__NSCollectionViewCompositionalLayout::NSCollectionLayoutAnchor;
 #[cfg(feature = "AppKit_NSCollectionLayoutBoundarySupplementaryItem")]
@@ -1716,23 +1534,6 @@ pub use self::__NSCollectionViewCompositionalLayout::NSDirectionalEdgeInsets;
 pub use self::__NSCollectionViewCompositionalLayout::NSDirectionalEdgeInsetsZero;
 pub use self::__NSCollectionViewCompositionalLayout::NSDirectionalRectEdge;
 pub use self::__NSCollectionViewCompositionalLayout::NSRectAlignment;
-pub use self::__NSCollectionViewCompositionalLayout::{
-    NSCollectionLayoutSectionOrthogonalScrollingBehaviorContinuous,
-    NSCollectionLayoutSectionOrthogonalScrollingBehaviorContinuousGroupLeadingBoundary,
-    NSCollectionLayoutSectionOrthogonalScrollingBehaviorGroupPaging,
-    NSCollectionLayoutSectionOrthogonalScrollingBehaviorGroupPagingCentered,
-    NSCollectionLayoutSectionOrthogonalScrollingBehaviorNone,
-    NSCollectionLayoutSectionOrthogonalScrollingBehaviorPaging,
-};
-pub use self::__NSCollectionViewCompositionalLayout::{
-    NSDirectionalRectEdgeAll, NSDirectionalRectEdgeBottom, NSDirectionalRectEdgeLeading,
-    NSDirectionalRectEdgeNone, NSDirectionalRectEdgeTop, NSDirectionalRectEdgeTrailing,
-};
-pub use self::__NSCollectionViewCompositionalLayout::{
-    NSRectAlignmentBottom, NSRectAlignmentBottomLeading, NSRectAlignmentBottomTrailing,
-    NSRectAlignmentLeading, NSRectAlignmentNone, NSRectAlignmentTop, NSRectAlignmentTopLeading,
-    NSRectAlignmentTopTrailing, NSRectAlignmentTrailing,
-};
 pub use self::__NSCollectionViewFlowLayout::NSCollectionElementKindSectionFooter;
 pub use self::__NSCollectionViewFlowLayout::NSCollectionElementKindSectionHeader;
 pub use self::__NSCollectionViewFlowLayout::NSCollectionViewDelegateFlowLayout;
@@ -1741,9 +1542,6 @@ pub use self::__NSCollectionViewFlowLayout::NSCollectionViewFlowLayout;
 #[cfg(feature = "AppKit_NSCollectionViewFlowLayoutInvalidationContext")]
 pub use self::__NSCollectionViewFlowLayout::NSCollectionViewFlowLayoutInvalidationContext;
 pub use self::__NSCollectionViewFlowLayout::NSCollectionViewScrollDirection;
-pub use self::__NSCollectionViewFlowLayout::{
-    NSCollectionViewScrollDirectionHorizontal, NSCollectionViewScrollDirectionVertical,
-};
 #[cfg(feature = "AppKit_NSCollectionViewGridLayout")]
 pub use self::__NSCollectionViewGridLayout::NSCollectionViewGridLayout;
 pub use self::__NSCollectionViewLayout::NSCollectionElementCategory;
@@ -1758,14 +1556,6 @@ pub use self::__NSCollectionViewLayout::NSCollectionViewLayoutAttributes;
 pub use self::__NSCollectionViewLayout::NSCollectionViewLayoutInvalidationContext;
 #[cfg(feature = "AppKit_NSCollectionViewUpdateItem")]
 pub use self::__NSCollectionViewLayout::NSCollectionViewUpdateItem;
-pub use self::__NSCollectionViewLayout::{
-    NSCollectionElementCategoryDecorationView, NSCollectionElementCategoryInterItemGap,
-    NSCollectionElementCategoryItem, NSCollectionElementCategorySupplementaryView,
-};
-pub use self::__NSCollectionViewLayout::{
-    NSCollectionUpdateActionDelete, NSCollectionUpdateActionInsert, NSCollectionUpdateActionMove,
-    NSCollectionUpdateActionNone, NSCollectionUpdateActionReload,
-};
 #[cfg(feature = "AppKit_NSCollectionViewTransitionLayout")]
 pub use self::__NSCollectionViewTransitionLayout::NSCollectionViewTransitionLayout;
 pub use self::__NSCollectionViewTransitionLayout::NSCollectionViewTransitionLayoutAnimatedKey;
@@ -1777,11 +1567,6 @@ pub use self::__NSColor::NSColor;
 pub use self::__NSColor::NSColorSystemEffect;
 pub use self::__NSColor::NSColorType;
 pub use self::__NSColor::NSSystemColorsDidChangeNotification;
-pub use self::__NSColor::{
-    NSColorSystemEffectDeepPressed, NSColorSystemEffectDisabled, NSColorSystemEffectNone,
-    NSColorSystemEffectPressed, NSColorSystemEffectRollover,
-};
-pub use self::__NSColor::{NSColorTypeCatalog, NSColorTypeComponentBased, NSColorTypePattern};
 #[cfg(feature = "AppKit_NSColorList")]
 pub use self::__NSColorList::NSColorList;
 pub use self::__NSColorList::NSColorListDidChangeNotification;
@@ -1802,16 +1587,6 @@ pub use self::__NSColorPanel::NSHSBModeColorPanel;
 pub use self::__NSColorPanel::NSNoModeColorPanel;
 pub use self::__NSColorPanel::NSRGBModeColorPanel;
 pub use self::__NSColorPanel::NSWheelModeColorPanel;
-pub use self::__NSColorPanel::{
-    NSColorPanelAllModesMask, NSColorPanelCMYKModeMask, NSColorPanelColorListModeMask,
-    NSColorPanelCrayonModeMask, NSColorPanelCustomPaletteModeMask, NSColorPanelGrayModeMask,
-    NSColorPanelHSBModeMask, NSColorPanelRGBModeMask, NSColorPanelWheelModeMask,
-};
-pub use self::__NSColorPanel::{
-    NSColorPanelModeCMYK, NSColorPanelModeColorList, NSColorPanelModeCrayon,
-    NSColorPanelModeCustomPalette, NSColorPanelModeGray, NSColorPanelModeHSB, NSColorPanelModeNone,
-    NSColorPanelModeRGB, NSColorPanelModeWheel,
-};
 #[cfg(feature = "AppKit_NSColorPicker")]
 pub use self::__NSColorPicker::NSColorPicker;
 #[cfg(feature = "AppKit_NSColorPickerTouchBarItem")]
@@ -1831,17 +1606,9 @@ pub use self::__NSColorSpace::NSLABColorSpaceModel;
 pub use self::__NSColorSpace::NSPatternColorSpaceModel;
 pub use self::__NSColorSpace::NSRGBColorSpaceModel;
 pub use self::__NSColorSpace::NSUnknownColorSpaceModel;
-pub use self::__NSColorSpace::{
-    NSColorSpaceModelCMYK, NSColorSpaceModelDeviceN, NSColorSpaceModelGray,
-    NSColorSpaceModelIndexed, NSColorSpaceModelLAB, NSColorSpaceModelPatterned,
-    NSColorSpaceModelRGB, NSColorSpaceModelUnknown,
-};
 #[cfg(feature = "AppKit_NSColorWell")]
 pub use self::__NSColorWell::NSColorWell;
 pub use self::__NSColorWell::NSColorWellStyle;
-pub use self::__NSColorWell::{
-    NSColorWellStyleDefault, NSColorWellStyleExpanded, NSColorWellStyleMinimal,
-};
 #[cfg(feature = "AppKit_NSComboBox")]
 pub use self::__NSComboBox::NSComboBox;
 pub use self::__NSComboBox::NSComboBoxDataSource;
@@ -1856,7 +1623,6 @@ pub use self::__NSComboBoxCell::NSComboBoxCellDataSource;
 #[cfg(feature = "AppKit_NSComboButton")]
 pub use self::__NSComboButton::NSComboButton;
 pub use self::__NSComboButton::NSComboButtonStyle;
-pub use self::__NSComboButton::{NSComboButtonStyleSplit, NSComboButtonStyleUnified};
 #[cfg(feature = "AppKit_NSControl")]
 pub use self::__NSControl::NSControl;
 pub use self::__NSControl::NSControlTextDidBeginEditingNotification;
@@ -1894,16 +1660,6 @@ pub use self::__NSDatePickerCell::NSTextFieldDatePickerStyle;
 pub use self::__NSDatePickerCell::NSTimeZoneDatePickerElementFlag;
 pub use self::__NSDatePickerCell::NSYearMonthDatePickerElementFlag;
 pub use self::__NSDatePickerCell::NSYearMonthDayDatePickerElementFlag;
-pub use self::__NSDatePickerCell::{
-    NSDatePickerElementFlagEra, NSDatePickerElementFlagHourMinute,
-    NSDatePickerElementFlagHourMinuteSecond, NSDatePickerElementFlagTimeZone,
-    NSDatePickerElementFlagYearMonth, NSDatePickerElementFlagYearMonthDay,
-};
-pub use self::__NSDatePickerCell::{NSDatePickerModeRange, NSDatePickerModeSingle};
-pub use self::__NSDatePickerCell::{
-    NSDatePickerStyleClockAndCalendar, NSDatePickerStyleTextField,
-    NSDatePickerStyleTextFieldAndStepper,
-};
 #[cfg(feature = "AppKit_NSDictionaryController")]
 pub use self::__NSDictionaryController::NSDictionaryController;
 #[cfg(feature = "AppKit_NSDictionaryControllerKeyValuePair")]
@@ -1921,14 +1677,6 @@ pub use self::__NSDockTile::NSDockTilePlugIn;
 pub use self::__NSDocument::NSDocument;
 pub use self::__NSDocument::NSDocumentChangeType;
 pub use self::__NSDocument::NSSaveOperationType;
-pub use self::__NSDocument::{
-    NSAutosaveAsOperation, NSAutosaveElsewhereOperation, NSAutosaveInPlaceOperation,
-    NSAutosaveOperation, NSSaveAsOperation, NSSaveOperation, NSSaveToOperation,
-};
-pub use self::__NSDocument::{
-    NSChangeAutosaved, NSChangeCleared, NSChangeDiscardable, NSChangeDone,
-    NSChangeReadOtherContents, NSChangeRedone, NSChangeUndone,
-};
 #[cfg(feature = "AppKit_NSDocumentController")]
 pub use self::__NSDocumentController::NSDocumentController;
 pub use self::__NSDragging::NSDragOperation;
@@ -1941,29 +1689,6 @@ pub use self::__NSDragging::NSDraggingSource;
 pub use self::__NSDragging::NSSpringLoadingDestination;
 pub use self::__NSDragging::NSSpringLoadingHighlight;
 pub use self::__NSDragging::NSSpringLoadingOptions;
-pub use self::__NSDragging::{
-    NSDragOperationAll, NSDragOperationAll_Obsolete, NSDragOperationCopy, NSDragOperationDelete,
-    NSDragOperationEvery, NSDragOperationGeneric, NSDragOperationLink, NSDragOperationMove,
-    NSDragOperationNone, NSDragOperationPrivate,
-};
-pub use self::__NSDragging::{
-    NSDraggingContextOutsideApplication, NSDraggingContextWithinApplication,
-};
-pub use self::__NSDragging::{
-    NSDraggingFormationDefault, NSDraggingFormationList, NSDraggingFormationNone,
-    NSDraggingFormationPile, NSDraggingFormationStack,
-};
-pub use self::__NSDragging::{
-    NSDraggingItemEnumerationClearNonenumeratedImages, NSDraggingItemEnumerationConcurrent,
-};
-pub use self::__NSDragging::{
-    NSSpringLoadingContinuousActivation, NSSpringLoadingDisabled, NSSpringLoadingEnabled,
-    NSSpringLoadingNoHover,
-};
-pub use self::__NSDragging::{
-    NSSpringLoadingHighlightEmphasized, NSSpringLoadingHighlightNone,
-    NSSpringLoadingHighlightStandard,
-};
 #[cfg(feature = "AppKit_NSDraggingImageComponent")]
 pub use self::__NSDraggingItem::NSDraggingImageComponent;
 pub use self::__NSDraggingItem::NSDraggingImageComponentIconKey;
@@ -1981,9 +1706,6 @@ pub use self::__NSDrawer::NSDrawerDidOpenNotification;
 pub use self::__NSDrawer::NSDrawerState;
 pub use self::__NSDrawer::NSDrawerWillCloseNotification;
 pub use self::__NSDrawer::NSDrawerWillOpenNotification;
-pub use self::__NSDrawer::{
-    NSDrawerClosedState, NSDrawerClosingState, NSDrawerOpenState, NSDrawerOpeningState,
-};
 #[cfg(feature = "AppKit_NSEPSImageRep")]
 pub use self::__NSEPSImageRep::NSEPSImageRep;
 pub use self::__NSErrors::NSAbortModalException;
@@ -2180,64 +1902,6 @@ pub use self::__NSEvent::NSUpArrowFunctionKey;
 pub use self::__NSEvent::NSUserFunctionKey;
 pub use self::__NSEvent::NSWindowExposedEventType;
 pub use self::__NSEvent::NSWindowMovedEventType;
-pub use self::__NSEvent::{
-    NSEventButtonMaskPenLowerSide, NSEventButtonMaskPenTip, NSEventButtonMaskPenUpperSide,
-};
-pub use self::__NSEvent::{
-    NSEventGestureAxisHorizontal, NSEventGestureAxisNone, NSEventGestureAxisVertical,
-};
-pub use self::__NSEvent::{
-    NSEventMaskAny, NSEventMaskAppKitDefined, NSEventMaskApplicationDefined,
-    NSEventMaskBeginGesture, NSEventMaskChangeMode, NSEventMaskCursorUpdate,
-    NSEventMaskDirectTouch, NSEventMaskEndGesture, NSEventMaskFlagsChanged, NSEventMaskGesture,
-    NSEventMaskKeyDown, NSEventMaskKeyUp, NSEventMaskLeftMouseDown, NSEventMaskLeftMouseDragged,
-    NSEventMaskLeftMouseUp, NSEventMaskMagnify, NSEventMaskMouseEntered, NSEventMaskMouseExited,
-    NSEventMaskMouseMoved, NSEventMaskOtherMouseDown, NSEventMaskOtherMouseDragged,
-    NSEventMaskOtherMouseUp, NSEventMaskPeriodic, NSEventMaskPressure, NSEventMaskRightMouseDown,
-    NSEventMaskRightMouseDragged, NSEventMaskRightMouseUp, NSEventMaskRotate,
-    NSEventMaskScrollWheel, NSEventMaskSmartMagnify, NSEventMaskSwipe, NSEventMaskSystemDefined,
-    NSEventMaskTabletPoint, NSEventMaskTabletProximity,
-};
-pub use self::__NSEvent::{
-    NSEventModifierFlagCapsLock, NSEventModifierFlagCommand, NSEventModifierFlagControl,
-    NSEventModifierFlagDeviceIndependentFlagsMask, NSEventModifierFlagFunction,
-    NSEventModifierFlagHelp, NSEventModifierFlagNumericPad, NSEventModifierFlagOption,
-    NSEventModifierFlagShift,
-};
-pub use self::__NSEvent::{
-    NSEventPhaseBegan, NSEventPhaseCancelled, NSEventPhaseChanged, NSEventPhaseEnded,
-    NSEventPhaseMayBegin, NSEventPhaseNone, NSEventPhaseStationary,
-};
-pub use self::__NSEvent::{
-    NSEventSubtypeApplicationActivated, NSEventSubtypeApplicationDeactivated,
-    NSEventSubtypeMouseEvent, NSEventSubtypePowerOff, NSEventSubtypeScreenChanged,
-    NSEventSubtypeTabletPoint, NSEventSubtypeTabletProximity, NSEventSubtypeTouch,
-    NSEventSubtypeWindowExposed, NSEventSubtypeWindowMoved,
-};
-pub use self::__NSEvent::{
-    NSEventSwipeTrackingClampGestureAmount, NSEventSwipeTrackingLockDirection,
-};
-pub use self::__NSEvent::{
-    NSEventTypeAppKitDefined, NSEventTypeApplicationDefined, NSEventTypeBeginGesture,
-    NSEventTypeChangeMode, NSEventTypeCursorUpdate, NSEventTypeDirectTouch, NSEventTypeEndGesture,
-    NSEventTypeFlagsChanged, NSEventTypeGesture, NSEventTypeKeyDown, NSEventTypeKeyUp,
-    NSEventTypeLeftMouseDown, NSEventTypeLeftMouseDragged, NSEventTypeLeftMouseUp,
-    NSEventTypeMagnify, NSEventTypeMouseEntered, NSEventTypeMouseExited, NSEventTypeMouseMoved,
-    NSEventTypeOtherMouseDown, NSEventTypeOtherMouseDragged, NSEventTypeOtherMouseUp,
-    NSEventTypePeriodic, NSEventTypePressure, NSEventTypeQuickLook, NSEventTypeRightMouseDown,
-    NSEventTypeRightMouseDragged, NSEventTypeRightMouseUp, NSEventTypeRotate,
-    NSEventTypeScrollWheel, NSEventTypeSmartMagnify, NSEventTypeSwipe, NSEventTypeSystemDefined,
-    NSEventTypeTabletPoint, NSEventTypeTabletProximity,
-};
-pub use self::__NSEvent::{
-    NSPointingDeviceTypeCursor, NSPointingDeviceTypeEraser, NSPointingDeviceTypePen,
-    NSPointingDeviceTypeUnknown,
-};
-pub use self::__NSEvent::{
-    NSPressureBehaviorPrimaryAccelerator, NSPressureBehaviorPrimaryClick,
-    NSPressureBehaviorPrimaryDeepClick, NSPressureBehaviorPrimaryDeepDrag,
-    NSPressureBehaviorPrimaryDefault, NSPressureBehaviorPrimaryGeneric, NSPressureBehaviorUnknown,
-};
 #[cfg(feature = "AppKit_NSFilePromiseProvider")]
 pub use self::__NSFilePromiseProvider::NSFilePromiseProvider;
 pub use self::__NSFilePromiseProvider::NSFilePromiseProviderDelegate;
@@ -2255,15 +1919,9 @@ pub use self::__NSFont::NSFontRenderingMode;
 pub use self::__NSFont::NSFontSetChangedNotification;
 pub use self::__NSFont::NSGlyph;
 pub use self::__NSFont::NSMultibyteGlyphPacking;
-pub use self::__NSFont::NSNativeShortGlyphPacking;
 pub use self::__NSFont::NSNullGlyph;
-pub use self::__NSFont::{
-    NSFontAntialiasedIntegerAdvancementsRenderingMode, NSFontAntialiasedRenderingMode,
-    NSFontDefaultRenderingMode, NSFontIntegerAdvancementsRenderingMode,
-};
 #[cfg(feature = "AppKit_NSFontAssetRequest")]
 pub use self::__NSFontAssetRequest::NSFontAssetRequest;
-pub use self::__NSFontAssetRequest::NSFontAssetRequestOptionUsesStandardUI;
 pub use self::__NSFontAssetRequest::NSFontAssetRequestOptions;
 #[cfg(feature = "AppKit_NSFontCollection")]
 pub use self::__NSFontCollection::NSFontCollection;
@@ -2289,10 +1947,6 @@ pub use self::__NSFontCollection::NSFontCollectionWasRenamed;
 pub use self::__NSFontCollection::NSFontCollectionWasShown;
 #[cfg(feature = "AppKit_NSMutableFontCollection")]
 pub use self::__NSFontCollection::NSMutableFontCollection;
-pub use self::__NSFontCollection::{
-    NSFontCollectionVisibilityComputer, NSFontCollectionVisibilityProcess,
-    NSFontCollectionVisibilityUser,
-};
 pub use self::__NSFontDescriptor::NSFontBoldTrait;
 pub use self::__NSFontDescriptor::NSFontCascadeListAttribute;
 pub use self::__NSFontDescriptor::NSFontCharacterSetAttribute;
@@ -2378,33 +2032,11 @@ pub use self::__NSFontDescriptor::NSFontWidthCondensed;
 pub use self::__NSFontDescriptor::NSFontWidthExpanded;
 pub use self::__NSFontDescriptor::NSFontWidthStandard;
 pub use self::__NSFontDescriptor::NSFontWidthTrait;
-pub use self::__NSFontDescriptor::{
-    NSFontDescriptorClassClarendonSerifs, NSFontDescriptorClassFreeformSerifs,
-    NSFontDescriptorClassMask, NSFontDescriptorClassModernSerifs,
-    NSFontDescriptorClassOldStyleSerifs, NSFontDescriptorClassOrnamentals,
-    NSFontDescriptorClassSansSerif, NSFontDescriptorClassScripts, NSFontDescriptorClassSlabSerifs,
-    NSFontDescriptorClassSymbolic, NSFontDescriptorClassTransitionalSerifs,
-    NSFontDescriptorClassUnknown, NSFontDescriptorTraitBold, NSFontDescriptorTraitCondensed,
-    NSFontDescriptorTraitEmphasized, NSFontDescriptorTraitExpanded, NSFontDescriptorTraitItalic,
-    NSFontDescriptorTraitLooseLeading, NSFontDescriptorTraitMonoSpace,
-    NSFontDescriptorTraitTightLeading, NSFontDescriptorTraitUIOptimized,
-    NSFontDescriptorTraitVertical,
-};
 pub use self::__NSFontManager::NSFontAction;
-pub use self::__NSFontManager::NSFontCollectionApplicationOnlyMask;
 pub use self::__NSFontManager::NSFontCollectionOptions;
 #[cfg(feature = "AppKit_NSFontManager")]
 pub use self::__NSFontManager::NSFontManager;
 pub use self::__NSFontManager::NSFontTraitMask;
-pub use self::__NSFontManager::{
-    NSAddTraitFontAction, NSHeavierFontAction, NSLighterFontAction, NSNoFontChangeAction,
-    NSRemoveTraitFontAction, NSSizeDownFontAction, NSSizeUpFontAction, NSViaPanelFontAction,
-};
-pub use self::__NSFontManager::{
-    NSBoldFontMask, NSCompressedFontMask, NSCondensedFontMask, NSExpandedFontMask,
-    NSFixedPitchFontMask, NSItalicFontMask, NSNarrowFontMask, NSNonStandardCharacterSetFontMask,
-    NSPosterFontMask, NSSmallCapsFontMask, NSUnboldFontMask, NSUnitalicFontMask,
-};
 pub use self::__NSFontPanel::NSFPCurrentField;
 pub use self::__NSFontPanel::NSFPPreviewButton;
 pub use self::__NSFontPanel::NSFPPreviewField;
@@ -2427,14 +2059,6 @@ pub use self::__NSFontPanel::NSFontPanelStandardModesMask;
 pub use self::__NSFontPanel::NSFontPanelStrikethroughEffectModeMask;
 pub use self::__NSFontPanel::NSFontPanelTextColorEffectModeMask;
 pub use self::__NSFontPanel::NSFontPanelUnderlineEffectModeMask;
-pub use self::__NSFontPanel::{
-    NSFontPanelModeMaskAllEffects, NSFontPanelModeMaskCollection,
-    NSFontPanelModeMaskDocumentColorEffect, NSFontPanelModeMaskFace,
-    NSFontPanelModeMaskShadowEffect, NSFontPanelModeMaskSize,
-    NSFontPanelModeMaskStrikethroughEffect, NSFontPanelModeMaskTextColorEffect,
-    NSFontPanelModeMaskUnderlineEffect, NSFontPanelModesMaskAllModes,
-    NSFontPanelModesMaskStandardModes,
-};
 #[cfg(feature = "AppKit_NSForm")]
 pub use self::__NSForm::NSForm;
 #[cfg(feature = "AppKit_NSFormCell")]
@@ -2443,11 +2067,6 @@ pub use self::__NSFormCell::NSFormCell;
 pub use self::__NSGestureRecognizer::NSGestureRecognizer;
 pub use self::__NSGestureRecognizer::NSGestureRecognizerDelegate;
 pub use self::__NSGestureRecognizer::NSGestureRecognizerState;
-pub use self::__NSGestureRecognizer::{
-    NSGestureRecognizerStateBegan, NSGestureRecognizerStateCancelled,
-    NSGestureRecognizerStateChanged, NSGestureRecognizerStateEnded, NSGestureRecognizerStateFailed,
-    NSGestureRecognizerStatePossible, NSGestureRecognizerStateRecognized,
-};
 #[cfg(feature = "AppKit_NSGlyphGenerator")]
 pub use self::__NSGlyphGenerator::NSGlyphGenerator;
 pub use self::__NSGlyphGenerator::NSGlyphStorage;
@@ -2457,17 +2076,9 @@ pub use self::__NSGlyphGenerator::NSWantsBidiLevels;
 pub use self::__NSGlyphInfo::NSCharacterCollection;
 #[cfg(feature = "AppKit_NSGlyphInfo")]
 pub use self::__NSGlyphInfo::NSGlyphInfo;
-pub use self::__NSGlyphInfo::{
-    NSAdobeCNS1CharacterCollection, NSAdobeGB1CharacterCollection,
-    NSAdobeJapan1CharacterCollection, NSAdobeJapan2CharacterCollection,
-    NSAdobeKorea1CharacterCollection, NSIdentityMappingCharacterCollection,
-};
 #[cfg(feature = "AppKit_NSGradient")]
 pub use self::__NSGradient::NSGradient;
 pub use self::__NSGradient::NSGradientDrawingOptions;
-pub use self::__NSGradient::{
-    NSGradientDrawsAfterEndingLocation, NSGradientDrawsBeforeStartingLocation,
-};
 pub use self::__NSGraphics::NSAnimationEffect;
 pub use self::__NSGraphics::NSAvailableWindowDepths;
 pub use self::__NSGraphics::NSBackingStoreType;
@@ -2576,40 +2187,6 @@ pub use self::__NSGraphics::NSWindowDepth;
 pub use self::__NSGraphics::NSWindowList;
 pub use self::__NSGraphics::NSWindowListForContext;
 pub use self::__NSGraphics::NSWindowOrderingMode;
-pub use self::__NSGraphics::{NSAnimationEffectDisappearingItemDefault, NSAnimationEffectPoof};
-pub use self::__NSGraphics::{
-    NSBackingStoreBuffered, NSBackingStoreNonretained, NSBackingStoreRetained,
-};
-pub use self::__NSGraphics::{
-    NSColorRenderingIntentAbsoluteColorimetric, NSColorRenderingIntentDefault,
-    NSColorRenderingIntentPerceptual, NSColorRenderingIntentRelativeColorimetric,
-    NSColorRenderingIntentSaturation,
-};
-pub use self::__NSGraphics::{
-    NSCompositingOperationClear, NSCompositingOperationColor, NSCompositingOperationColorBurn,
-    NSCompositingOperationColorDodge, NSCompositingOperationCopy, NSCompositingOperationDarken,
-    NSCompositingOperationDestinationAtop, NSCompositingOperationDestinationIn,
-    NSCompositingOperationDestinationOut, NSCompositingOperationDestinationOver,
-    NSCompositingOperationDifference, NSCompositingOperationExclusion,
-    NSCompositingOperationHardLight, NSCompositingOperationHighlight, NSCompositingOperationHue,
-    NSCompositingOperationLighten, NSCompositingOperationLuminosity,
-    NSCompositingOperationMultiply, NSCompositingOperationOverlay,
-    NSCompositingOperationPlusDarker, NSCompositingOperationPlusLighter,
-    NSCompositingOperationSaturation, NSCompositingOperationScreen,
-    NSCompositingOperationSoftLight, NSCompositingOperationSourceAtop,
-    NSCompositingOperationSourceIn, NSCompositingOperationSourceOut,
-    NSCompositingOperationSourceOver, NSCompositingOperationXOR,
-};
-pub use self::__NSGraphics::{NSDisplayGamutP3, NSDisplayGamutSRGB};
-pub use self::__NSGraphics::{NSFocusRingAbove, NSFocusRingBelow, NSFocusRingOnly};
-pub use self::__NSGraphics::{
-    NSFocusRingTypeDefault, NSFocusRingTypeExterior, NSFocusRingTypeNone,
-};
-pub use self::__NSGraphics::{NSWindowAbove, NSWindowBelow, NSWindowOut};
-pub use self::__NSGraphics::{
-    NSWindowDepthOnehundredtwentyeightBitRGB, NSWindowDepthSixtyfourBitRGB,
-    NSWindowDepthTwentyfourBitRGB,
-};
 #[cfg(feature = "AppKit_NSGraphicsContext")]
 pub use self::__NSGraphicsContext::NSGraphicsContext;
 pub use self::__NSGraphicsContext::NSGraphicsContextAttributeKey;
@@ -2619,10 +2196,6 @@ pub use self::__NSGraphicsContext::NSGraphicsContextPSFormat;
 pub use self::__NSGraphicsContext::NSGraphicsContextRepresentationFormatAttributeName;
 pub use self::__NSGraphicsContext::NSGraphicsContextRepresentationFormatName;
 pub use self::__NSGraphicsContext::NSImageInterpolation;
-pub use self::__NSGraphicsContext::{
-    NSImageInterpolationDefault, NSImageInterpolationHigh, NSImageInterpolationLow,
-    NSImageInterpolationMedium, NSImageInterpolationNone,
-};
 #[cfg(feature = "AppKit_NSGridCell")]
 pub use self::__NSGridView::NSGridCell;
 pub use self::__NSGridView::NSGridCellPlacement;
@@ -2634,15 +2207,6 @@ pub use self::__NSGridView::NSGridRowAlignment;
 #[cfg(feature = "AppKit_NSGridView")]
 pub use self::__NSGridView::NSGridView;
 pub use self::__NSGridView::NSGridViewSizeForContent;
-pub use self::__NSGridView::{
-    NSGridCellPlacementBottom, NSGridCellPlacementCenter, NSGridCellPlacementFill,
-    NSGridCellPlacementInherited, NSGridCellPlacementLeading, NSGridCellPlacementNone,
-    NSGridCellPlacementTop, NSGridCellPlacementTrailing,
-};
-pub use self::__NSGridView::{
-    NSGridRowAlignmentFirstBaseline, NSGridRowAlignmentInherited, NSGridRowAlignmentLastBaseline,
-    NSGridRowAlignmentNone,
-};
 #[cfg(feature = "AppKit_NSGroupTouchBarItem")]
 pub use self::__NSGroupTouchBarItem::NSGroupTouchBarItem;
 #[cfg(feature = "AppKit_NSHapticFeedbackManager")]
@@ -2650,14 +2214,6 @@ pub use self::__NSHapticFeedback::NSHapticFeedbackManager;
 pub use self::__NSHapticFeedback::NSHapticFeedbackPattern;
 pub use self::__NSHapticFeedback::NSHapticFeedbackPerformanceTime;
 pub use self::__NSHapticFeedback::NSHapticFeedbackPerformer;
-pub use self::__NSHapticFeedback::{
-    NSHapticFeedbackPatternAlignment, NSHapticFeedbackPatternGeneric,
-    NSHapticFeedbackPatternLevelChange,
-};
-pub use self::__NSHapticFeedback::{
-    NSHapticFeedbackPerformanceTimeDefault, NSHapticFeedbackPerformanceTimeDrawCompleted,
-    NSHapticFeedbackPerformanceTimeNow,
-};
 #[cfg(feature = "Foundation_NSBundle")]
 pub use self::__NSHelpManager::NSBundleHelpExtension;
 pub use self::__NSHelpManager::NSContextHelpModeDidActivateNotification;
@@ -2820,46 +2376,19 @@ pub use self::__NSImage::NSImageNameUserGuest;
 #[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
 pub use self::__NSImage::NSImageSymbolConfiguration;
 pub use self::__NSImage::NSImageSymbolScale;
-pub use self::__NSImage::{
-    NSImageCacheAlways, NSImageCacheBySize, NSImageCacheDefault, NSImageCacheNever,
-};
-pub use self::__NSImage::{
-    NSImageLoadStatusCancelled, NSImageLoadStatusCompleted, NSImageLoadStatusInvalidData,
-    NSImageLoadStatusReadError, NSImageLoadStatusUnexpectedEOF,
-};
-pub use self::__NSImage::{
-    NSImageSymbolScaleLarge, NSImageSymbolScaleMedium, NSImageSymbolScaleSmall,
-};
 pub use self::__NSImageCell::NSImageAlignment;
 #[cfg(feature = "AppKit_NSImageCell")]
 pub use self::__NSImageCell::NSImageCell;
 pub use self::__NSImageCell::NSImageFrameStyle;
-pub use self::__NSImageCell::{
-    NSImageAlignBottom, NSImageAlignBottomLeft, NSImageAlignBottomRight, NSImageAlignCenter,
-    NSImageAlignLeft, NSImageAlignRight, NSImageAlignTop, NSImageAlignTopLeft,
-    NSImageAlignTopRight,
-};
-pub use self::__NSImageCell::{
-    NSImageFrameButton, NSImageFrameGrayBezel, NSImageFrameGroove, NSImageFrameNone,
-    NSImageFramePhoto,
-};
 pub use self::__NSImageRep::NSImageHintKey;
 pub use self::__NSImageRep::NSImageLayoutDirection;
 #[cfg(feature = "AppKit_NSImageRep")]
 pub use self::__NSImageRep::NSImageRep;
 pub use self::__NSImageRep::NSImageRepMatchesDevice;
 pub use self::__NSImageRep::NSImageRepRegistryDidChangeNotification;
-pub use self::__NSImageRep::{
-    NSImageLayoutDirectionLeftToRight, NSImageLayoutDirectionRightToLeft,
-    NSImageLayoutDirectionUnspecified,
-};
 pub use self::__NSImageView::NSImageDynamicRange;
 #[cfg(feature = "AppKit_NSImageView")]
 pub use self::__NSImageView::NSImageView;
-pub use self::__NSImageView::{
-    NSImageDynamicRangeConstrainedHigh, NSImageDynamicRangeHigh, NSImageDynamicRangeStandard,
-    NSImageDynamicRangeUnspecified,
-};
 #[cfg(feature = "AppKit_NSInputManager")]
 pub use self::__NSInputManager::NSInputManager;
 pub use self::__NSInputManager::NSTextInput;
@@ -3025,28 +2554,6 @@ pub use self::__NSLayoutConstraint::NSLayoutPriorityWindowSizeStayPut;
 pub use self::__NSLayoutConstraint::NSLayoutRelation;
 pub use self::__NSLayoutConstraint::NSViewNoInstrinsicMetric;
 pub use self::__NSLayoutConstraint::NSViewNoIntrinsicMetric;
-pub use self::__NSLayoutConstraint::{
-    NSLayoutAttributeBaseline, NSLayoutAttributeBottom, NSLayoutAttributeCenterX,
-    NSLayoutAttributeCenterY, NSLayoutAttributeFirstBaseline, NSLayoutAttributeHeight,
-    NSLayoutAttributeLastBaseline, NSLayoutAttributeLeading, NSLayoutAttributeLeft,
-    NSLayoutAttributeNotAnAttribute, NSLayoutAttributeRight, NSLayoutAttributeTop,
-    NSLayoutAttributeTrailing, NSLayoutAttributeWidth,
-};
-pub use self::__NSLayoutConstraint::{
-    NSLayoutConstraintOrientationHorizontal, NSLayoutConstraintOrientationVertical,
-};
-pub use self::__NSLayoutConstraint::{
-    NSLayoutFormatAlignAllBaseline, NSLayoutFormatAlignAllBottom, NSLayoutFormatAlignAllCenterX,
-    NSLayoutFormatAlignAllCenterY, NSLayoutFormatAlignAllFirstBaseline,
-    NSLayoutFormatAlignAllLastBaseline, NSLayoutFormatAlignAllLeading, NSLayoutFormatAlignAllLeft,
-    NSLayoutFormatAlignAllRight, NSLayoutFormatAlignAllTop, NSLayoutFormatAlignAllTrailing,
-    NSLayoutFormatAlignmentMask, NSLayoutFormatDirectionLeadingToTrailing,
-    NSLayoutFormatDirectionLeftToRight, NSLayoutFormatDirectionMask,
-    NSLayoutFormatDirectionRightToLeft,
-};
-pub use self::__NSLayoutConstraint::{
-    NSLayoutRelationEqual, NSLayoutRelationGreaterThanOrEqual, NSLayoutRelationLessThanOrEqual,
-};
 #[cfg(feature = "AppKit_NSLayoutGuide")]
 pub use self::__NSLayoutGuide::NSLayoutGuide;
 pub use self::__NSLayoutManager::NSControlCharacterAction;
@@ -3062,34 +2569,9 @@ pub use self::__NSLayoutManager::NSLayoutManagerDelegate;
 pub use self::__NSLayoutManager::NSTextLayoutOrientation;
 pub use self::__NSLayoutManager::NSTextLayoutOrientationProvider;
 pub use self::__NSLayoutManager::NSTypesetterBehavior;
-pub use self::__NSLayoutManager::{
-    NSControlCharacterActionContainerBreak, NSControlCharacterActionHorizontalTab,
-    NSControlCharacterActionLineBreak, NSControlCharacterActionParagraphBreak,
-    NSControlCharacterActionWhitespace, NSControlCharacterActionZeroAdvancement,
-};
-pub use self::__NSLayoutManager::{
-    NSGlyphInscribeAbove, NSGlyphInscribeBase, NSGlyphInscribeBelow, NSGlyphInscribeOverBelow,
-    NSGlyphInscribeOverstrike,
-};
-pub use self::__NSLayoutManager::{
-    NSGlyphPropertyControlCharacter, NSGlyphPropertyElastic, NSGlyphPropertyNonBaseCharacter,
-    NSGlyphPropertyNull,
-};
-pub use self::__NSLayoutManager::{
-    NSTextLayoutOrientationHorizontal, NSTextLayoutOrientationVertical,
-};
-pub use self::__NSLayoutManager::{
-    NSTypesetterBehavior_10_2, NSTypesetterBehavior_10_2_WithCompatibility,
-    NSTypesetterBehavior_10_3, NSTypesetterBehavior_10_4, NSTypesetterLatestBehavior,
-    NSTypesetterOriginalBehavior,
-};
 #[cfg(feature = "AppKit_NSLevelIndicator")]
 pub use self::__NSLevelIndicator::NSLevelIndicator;
 pub use self::__NSLevelIndicator::NSLevelIndicatorPlaceholderVisibility;
-pub use self::__NSLevelIndicator::{
-    NSLevelIndicatorPlaceholderVisibilityAlways, NSLevelIndicatorPlaceholderVisibilityAutomatic,
-    NSLevelIndicatorPlaceholderVisibilityWhileEditing,
-};
 pub use self::__NSLevelIndicatorCell::NSContinuousCapacityLevelIndicatorStyle;
 pub use self::__NSLevelIndicatorCell::NSDiscreteCapacityLevelIndicatorStyle;
 #[cfg(feature = "AppKit_NSLevelIndicatorCell")]
@@ -3097,25 +2579,15 @@ pub use self::__NSLevelIndicatorCell::NSLevelIndicatorCell;
 pub use self::__NSLevelIndicatorCell::NSLevelIndicatorStyle;
 pub use self::__NSLevelIndicatorCell::NSRatingLevelIndicatorStyle;
 pub use self::__NSLevelIndicatorCell::NSRelevancyLevelIndicatorStyle;
-pub use self::__NSLevelIndicatorCell::{
-    NSLevelIndicatorStyleContinuousCapacity, NSLevelIndicatorStyleDiscreteCapacity,
-    NSLevelIndicatorStyleRating, NSLevelIndicatorStyleRelevancy,
-};
 #[cfg(feature = "AppKit_NSMagnificationGestureRecognizer")]
 pub use self::__NSMagnificationGestureRecognizer::NSMagnificationGestureRecognizer;
 #[cfg(feature = "AppKit_NSMatrix")]
 pub use self::__NSMatrix::NSMatrix;
 pub use self::__NSMatrix::NSMatrixDelegate;
 pub use self::__NSMatrix::NSMatrixMode;
-pub use self::__NSMatrix::{
-    NSHighlightModeMatrix, NSListModeMatrix, NSRadioModeMatrix, NSTrackModeMatrix,
-};
 pub use self::__NSMediaLibraryBrowserController::NSMediaLibrary;
 #[cfg(feature = "AppKit_NSMediaLibraryBrowserController")]
 pub use self::__NSMediaLibraryBrowserController::NSMediaLibraryBrowserController;
-pub use self::__NSMediaLibraryBrowserController::{
-    NSMediaLibraryAudio, NSMediaLibraryImage, NSMediaLibraryMovie,
-};
 #[cfg(feature = "AppKit_NSMenu")]
 pub use self::__NSMenu::NSMenu;
 pub use self::__NSMenu::NSMenuDelegate;
@@ -3130,25 +2602,12 @@ pub use self::__NSMenu::NSMenuPresentationStyle;
 pub use self::__NSMenu::NSMenuProperties;
 pub use self::__NSMenu::NSMenuSelectionMode;
 pub use self::__NSMenu::NSMenuWillSendActionNotification;
-pub use self::__NSMenu::{NSMenuPresentationStylePalette, NSMenuPresentationStyleRegular};
-pub use self::__NSMenu::{
-    NSMenuPropertyItemAccessibilityDescription, NSMenuPropertyItemAttributedTitle,
-    NSMenuPropertyItemEnabled, NSMenuPropertyItemImage, NSMenuPropertyItemKeyEquivalent,
-    NSMenuPropertyItemTitle,
-};
-pub use self::__NSMenu::{
-    NSMenuSelectionModeAutomatic, NSMenuSelectionModeSelectAny, NSMenuSelectionModeSelectOne,
-};
 #[cfg(feature = "AppKit_NSMenuItem")]
 pub use self::__NSMenuItem::NSMenuItem;
 pub use self::__NSMenuItem::NSMenuItemImportFromDeviceIdentifier;
 #[cfg(feature = "AppKit_NSMenuItemBadge")]
 pub use self::__NSMenuItemBadge::NSMenuItemBadge;
 pub use self::__NSMenuItemBadge::NSMenuItemBadgeType;
-pub use self::__NSMenuItemBadge::{
-    NSMenuItemBadgeTypeAlerts, NSMenuItemBadgeTypeNewItems, NSMenuItemBadgeTypeNone,
-    NSMenuItemBadgeTypeUpdates,
-};
 #[cfg(feature = "AppKit_NSMenuItemCell")]
 pub use self::__NSMenuItemCell::NSMenuItemCell;
 #[cfg(feature = "AppKit_NSMenuToolbarItem")]
@@ -3223,20 +2682,6 @@ pub use self::__NSOpenGL::NSOpenGLPixelFormatAttribute;
 pub use self::__NSOpenGL::NSOpenGLProfileVersion3_2Core;
 pub use self::__NSOpenGL::NSOpenGLProfileVersion4_1Core;
 pub use self::__NSOpenGL::NSOpenGLProfileVersionLegacy;
-pub use self::__NSOpenGL::{
-    NSOpenGLContextParameterCurrentRendererID, NSOpenGLContextParameterGPUFragmentProcessing,
-    NSOpenGLContextParameterGPUVertexProcessing, NSOpenGLContextParameterHasDrawable,
-    NSOpenGLContextParameterMPSwapsInFlight, NSOpenGLContextParameterRasterizationEnable,
-    NSOpenGLContextParameterReclaimResources, NSOpenGLContextParameterStateValidation,
-    NSOpenGLContextParameterSurfaceBackingSize, NSOpenGLContextParameterSurfaceOpacity,
-    NSOpenGLContextParameterSurfaceOrder, NSOpenGLContextParameterSurfaceSurfaceVolatile,
-    NSOpenGLContextParameterSwapInterval, NSOpenGLContextParameterSwapRectangle,
-    NSOpenGLContextParameterSwapRectangleEnable,
-};
-pub use self::__NSOpenGL::{
-    NSOpenGLGOClearFormatCache, NSOpenGLGOFormatCacheSize, NSOpenGLGOResetLibrary,
-    NSOpenGLGORetainRenderers, NSOpenGLGOUseBuildCache,
-};
 #[cfg(feature = "AppKit_NSOpenPanel")]
 pub use self::__NSOpenPanel::NSOpenPanel;
 #[cfg(feature = "AppKit_NSOutlineView")]
@@ -3261,9 +2706,6 @@ pub use self::__NSPDFInfo::NSPDFInfo;
 #[cfg(feature = "AppKit_NSPDFPanel")]
 pub use self::__NSPDFPanel::NSPDFPanel;
 pub use self::__NSPDFPanel::NSPDFPanelOptions;
-pub use self::__NSPDFPanel::{
-    NSPDFPanelRequestsParentDirectory, NSPDFPanelShowsOrientation, NSPDFPanelShowsPaperSize,
-};
 #[cfg(feature = "AppKit_NSPICTImageRep")]
 pub use self::__NSPICTImageRep::NSPICTImageRep;
 #[cfg(feature = "AppKit_NSPageController")]
@@ -3271,14 +2713,9 @@ pub use self::__NSPageController::NSPageController;
 pub use self::__NSPageController::NSPageControllerDelegate;
 pub use self::__NSPageController::NSPageControllerObjectIdentifier;
 pub use self::__NSPageController::NSPageControllerTransitionStyle;
-pub use self::__NSPageController::{
-    NSPageControllerTransitionStyleHorizontalStrip, NSPageControllerTransitionStyleStackBook,
-    NSPageControllerTransitionStyleStackHistory,
-};
 #[cfg(feature = "AppKit_NSPageLayout")]
 pub use self::__NSPageLayout::NSPageLayout;
 pub use self::__NSPageLayout::NSPageLayoutResult;
-pub use self::__NSPageLayout::{NSPageLayoutResultCancelled, NSPageLayoutResultChanged};
 #[cfg(feature = "AppKit_NSPanGestureRecognizer")]
 pub use self::__NSPanGestureRecognizer::NSPanGestureRecognizer;
 pub use self::__NSPanel::NSAlertAlternateReturn;
@@ -3299,17 +2736,6 @@ pub use self::__NSParagraphStyle::NSTabColumnTerminatorsAttributeName;
 pub use self::__NSParagraphStyle::NSTextTab;
 pub use self::__NSParagraphStyle::NSTextTabOptionKey;
 pub use self::__NSParagraphStyle::NSTextTabType;
-pub use self::__NSParagraphStyle::{
-    NSCenterTabStopType, NSDecimalTabStopType, NSLeftTabStopType, NSRightTabStopType,
-};
-pub use self::__NSParagraphStyle::{
-    NSLineBreakByCharWrapping, NSLineBreakByClipping, NSLineBreakByTruncatingHead,
-    NSLineBreakByTruncatingMiddle, NSLineBreakByTruncatingTail, NSLineBreakByWordWrapping,
-};
-pub use self::__NSParagraphStyle::{
-    NSLineBreakStrategyHangulWordPriority, NSLineBreakStrategyNone, NSLineBreakStrategyPushOut,
-    NSLineBreakStrategyStandard,
-};
 pub use self::__NSPasteboard::NSColorPboardType;
 #[cfg(feature = "Foundation_NSString")]
 pub use self::__NSPasteboard::NSCreateFileContentsPboardType;
@@ -3334,7 +2760,6 @@ pub use self::__NSPasteboard::NSPDFPboardType;
 pub use self::__NSPasteboard::NSPICTPboardType;
 #[cfg(feature = "AppKit_NSPasteboard")]
 pub use self::__NSPasteboard::NSPasteboard;
-pub use self::__NSPasteboard::NSPasteboardContentsCurrentHostOnly;
 pub use self::__NSPasteboard::NSPasteboardContentsOptions;
 pub use self::__NSPasteboard::NSPasteboardName;
 pub use self::__NSPasteboard::NSPasteboardNameDrag;
@@ -3368,7 +2793,6 @@ pub use self::__NSPasteboard::NSPasteboardURLReadingContentsConformToTypesKey;
 pub use self::__NSPasteboard::NSPasteboardURLReadingFileURLsOnlyKey;
 pub use self::__NSPasteboard::NSPasteboardWriting;
 pub use self::__NSPasteboard::NSPasteboardWritingOptions;
-pub use self::__NSPasteboard::NSPasteboardWritingPromised;
 pub use self::__NSPasteboard::NSPostScriptPboardType;
 pub use self::__NSPasteboard::NSRTFDPboardType;
 pub use self::__NSPasteboard::NSRTFPboardType;
@@ -3381,10 +2805,6 @@ pub use self::__NSPasteboard::NSTabularTextPboardType;
 pub use self::__NSPasteboard::NSURLNSPasteboardSupport;
 pub use self::__NSPasteboard::NSURLPboardType;
 pub use self::__NSPasteboard::NSVCardPboardType;
-pub use self::__NSPasteboard::{
-    NSPasteboardReadingAsData, NSPasteboardReadingAsKeyedArchive,
-    NSPasteboardReadingAsPropertyList, NSPasteboardReadingAsString,
-};
 #[cfg(feature = "AppKit_NSPasteboardItem")]
 pub use self::__NSPasteboardItem::NSPasteboardItem;
 pub use self::__NSPasteboardItem::NSPasteboardItemDataProvider;
@@ -3392,7 +2812,6 @@ pub use self::__NSPasteboardItem::NSPasteboardItemDataProvider;
 pub use self::__NSPathCell::NSPathCell;
 pub use self::__NSPathCell::NSPathCellDelegate;
 pub use self::__NSPathCell::NSPathStyle;
-pub use self::__NSPathCell::{NSPathStyleNavigationBar, NSPathStylePopUp, NSPathStyleStandard};
 #[cfg(feature = "AppKit_NSPathComponentCell")]
 pub use self::__NSPathComponentCell::NSPathComponentCell;
 #[cfg(feature = "AppKit_NSPathControl")]
@@ -3406,15 +2825,6 @@ pub use self::__NSPersistentDocument::NSPersistentDocument;
 pub use self::__NSPickerTouchBarItem::NSPickerTouchBarItem;
 pub use self::__NSPickerTouchBarItem::NSPickerTouchBarItemControlRepresentation;
 pub use self::__NSPickerTouchBarItem::NSPickerTouchBarItemSelectionMode;
-pub use self::__NSPickerTouchBarItem::{
-    NSPickerTouchBarItemControlRepresentationAutomatic,
-    NSPickerTouchBarItemControlRepresentationCollapsed,
-    NSPickerTouchBarItemControlRepresentationExpanded,
-};
-pub use self::__NSPickerTouchBarItem::{
-    NSPickerTouchBarItemSelectionModeMomentary, NSPickerTouchBarItemSelectionModeSelectAny,
-    NSPickerTouchBarItemSelectionModeSelectOne,
-};
 #[cfg(feature = "AppKit_NSPopUpButton")]
 pub use self::__NSPopUpButton::NSPopUpButton;
 pub use self::__NSPopUpButton::NSPopUpButtonWillPopUpNotification;
@@ -3422,7 +2832,6 @@ pub use self::__NSPopUpButtonCell::NSPopUpArrowPosition;
 #[cfg(feature = "AppKit_NSPopUpButtonCell")]
 pub use self::__NSPopUpButtonCell::NSPopUpButtonCell;
 pub use self::__NSPopUpButtonCell::NSPopUpButtonCellWillPopUpNotification;
-pub use self::__NSPopUpButtonCell::{NSPopUpArrowAtBottom, NSPopUpArrowAtCenter, NSPopUpNoArrow};
 #[cfg(feature = "AppKit_NSPopover")]
 pub use self::__NSPopover::NSPopover;
 pub use self::__NSPopover::NSPopoverAppearance;
@@ -3436,10 +2845,6 @@ pub use self::__NSPopover::NSPopoverDidCloseNotification;
 pub use self::__NSPopover::NSPopoverDidShowNotification;
 pub use self::__NSPopover::NSPopoverWillCloseNotification;
 pub use self::__NSPopover::NSPopoverWillShowNotification;
-pub use self::__NSPopover::{NSPopoverAppearanceHUD, NSPopoverAppearanceMinimal};
-pub use self::__NSPopover::{
-    NSPopoverBehaviorApplicationDefined, NSPopoverBehaviorSemitransient, NSPopoverBehaviorTransient,
-};
 #[cfg(feature = "AppKit_NSPopoverTouchBarItem")]
 pub use self::__NSPopoverTouchBarItem::NSPopoverTouchBarItem;
 #[cfg(feature = "AppKit_NSPredicateEditor")]
@@ -3504,22 +2909,11 @@ pub use self::__NSPrintInfo::NSPrintVerticalPagination;
 pub use self::__NSPrintInfo::NSPrintVerticallyCentered;
 pub use self::__NSPrintInfo::NSPrintingOrientation;
 pub use self::__NSPrintInfo::NSPrintingPaginationMode;
-pub use self::__NSPrintInfo::{NSLandscapeOrientation, NSPortraitOrientation};
-pub use self::__NSPrintInfo::{NSPaperOrientationLandscape, NSPaperOrientationPortrait};
-pub use self::__NSPrintInfo::{
-    NSPrintingPaginationModeAutomatic, NSPrintingPaginationModeClip, NSPrintingPaginationModeFit,
-};
 #[cfg(feature = "AppKit_NSPrintOperation")]
 pub use self::__NSPrintOperation::NSPrintOperation;
 pub use self::__NSPrintOperation::NSPrintOperationExistsException;
 pub use self::__NSPrintOperation::NSPrintRenderingQuality;
 pub use self::__NSPrintOperation::NSPrintingPageOrder;
-pub use self::__NSPrintOperation::{
-    NSAscendingPageOrder, NSDescendingPageOrder, NSSpecialPageOrder, NSUnknownPageOrder,
-};
-pub use self::__NSPrintOperation::{
-    NSPrintRenderingQualityBest, NSPrintRenderingQualityResponsive,
-};
 pub use self::__NSPrintPanel::NSPrintAllPresetsJobStyleHint;
 pub use self::__NSPrintPanel::NSPrintNoPresetsJobStyleHint;
 #[cfg(feature = "AppKit_NSPrintPanel")]
@@ -3532,31 +2926,17 @@ pub use self::__NSPrintPanel::NSPrintPanelJobStyleHint;
 pub use self::__NSPrintPanel::NSPrintPanelOptions;
 pub use self::__NSPrintPanel::NSPrintPanelResult;
 pub use self::__NSPrintPanel::NSPrintPhotoJobStyleHint;
-pub use self::__NSPrintPanel::{NSPrintPanelResultCancelled, NSPrintPanelResultPrinted};
-pub use self::__NSPrintPanel::{
-    NSPrintPanelShowsCopies, NSPrintPanelShowsOrientation, NSPrintPanelShowsPageRange,
-    NSPrintPanelShowsPageSetupAccessory, NSPrintPanelShowsPaperSize, NSPrintPanelShowsPreview,
-    NSPrintPanelShowsPrintSelection, NSPrintPanelShowsScaling,
-};
 #[cfg(feature = "AppKit_NSPrinter")]
 pub use self::__NSPrinter::NSPrinter;
 pub use self::__NSPrinter::NSPrinterPaperName;
 pub use self::__NSPrinter::NSPrinterTableStatus;
 pub use self::__NSPrinter::NSPrinterTypeName;
-pub use self::__NSPrinter::{NSPrinterTableError, NSPrinterTableNotFound, NSPrinterTableOK};
 #[cfg(feature = "AppKit_NSProgressIndicator")]
 pub use self::__NSProgressIndicator::NSProgressIndicator;
 pub use self::__NSProgressIndicator::NSProgressIndicatorBarStyle;
 pub use self::__NSProgressIndicator::NSProgressIndicatorSpinningStyle;
 pub use self::__NSProgressIndicator::NSProgressIndicatorStyle;
 pub use self::__NSProgressIndicator::NSProgressIndicatorThickness;
-pub use self::__NSProgressIndicator::{
-    NSProgressIndicatorPreferredAquaThickness, NSProgressIndicatorPreferredLargeThickness,
-    NSProgressIndicatorPreferredSmallThickness, NSProgressIndicatorPreferredThickness,
-};
-pub use self::__NSProgressIndicator::{
-    NSProgressIndicatorStyleBar, NSProgressIndicatorStyleSpinning,
-};
 #[cfg(feature = "AppKit_NSResponder")]
 pub use self::__NSResponder::NSResponder;
 pub use self::__NSResponder::NSStandardKeyBindingResponding;
@@ -3576,11 +2956,6 @@ pub use self::__NSRuleEditor::NSRuleEditorPredicatePartKey;
 pub use self::__NSRuleEditor::NSRuleEditorPredicateRightExpression;
 pub use self::__NSRuleEditor::NSRuleEditorRowType;
 pub use self::__NSRuleEditor::NSRuleEditorRowsDidChangeNotification;
-pub use self::__NSRuleEditor::{
-    NSRuleEditorNestingModeCompound, NSRuleEditorNestingModeList, NSRuleEditorNestingModeSimple,
-    NSRuleEditorNestingModeSingle,
-};
-pub use self::__NSRuleEditor::{NSRuleEditorRowTypeCompound, NSRuleEditorRowTypeSimple};
 #[cfg(feature = "AppKit_NSRulerMarker")]
 pub use self::__NSRulerMarker::NSRulerMarker;
 pub use self::__NSRulerView::NSRulerOrientation;
@@ -3591,18 +2966,10 @@ pub use self::__NSRulerView::NSRulerViewUnitInches;
 pub use self::__NSRulerView::NSRulerViewUnitName;
 pub use self::__NSRulerView::NSRulerViewUnitPicas;
 pub use self::__NSRulerView::NSRulerViewUnitPoints;
-pub use self::__NSRulerView::{NSHorizontalRuler, NSVerticalRuler};
 pub use self::__NSRunningApplication::NSApplicationActivationOptions;
 pub use self::__NSRunningApplication::NSApplicationActivationPolicy;
 #[cfg(feature = "AppKit_NSRunningApplication")]
 pub use self::__NSRunningApplication::NSRunningApplication;
-pub use self::__NSRunningApplication::{
-    NSApplicationActivateAllWindows, NSApplicationActivateIgnoringOtherApps,
-};
-pub use self::__NSRunningApplication::{
-    NSApplicationActivationPolicyAccessory, NSApplicationActivationPolicyProhibited,
-    NSApplicationActivationPolicyRegular,
-};
 pub use self::__NSSavePanel::NSOpenSavePanelDelegate;
 #[cfg(feature = "AppKit_NSSavePanel")]
 pub use self::__NSSavePanel::NSSavePanel;
@@ -3618,13 +2985,6 @@ pub use self::__NSScrollView::NSScrollViewDidLiveScrollNotification;
 pub use self::__NSScrollView::NSScrollViewFindBarPosition;
 pub use self::__NSScrollView::NSScrollViewWillStartLiveMagnifyNotification;
 pub use self::__NSScrollView::NSScrollViewWillStartLiveScrollNotification;
-pub use self::__NSScrollView::{
-    NSScrollElasticityAllowed, NSScrollElasticityAutomatic, NSScrollElasticityNone,
-};
-pub use self::__NSScrollView::{
-    NSScrollViewFindBarPositionAboveContent, NSScrollViewFindBarPositionAboveHorizontalRuler,
-    NSScrollViewFindBarPositionBelowContent,
-};
 pub use self::__NSScroller::NSPreferredScrollerStyleDidChangeNotification;
 pub use self::__NSScroller::NSScrollArrowPosition;
 #[cfg(feature = "AppKit_NSScroller")]
@@ -3634,20 +2994,6 @@ pub use self::__NSScroller::NSScrollerKnobStyle;
 pub use self::__NSScroller::NSScrollerPart;
 pub use self::__NSScroller::NSScrollerStyle;
 pub use self::__NSScroller::NSUsableScrollerParts;
-pub use self::__NSScroller::{NSAllScrollerParts, NSNoScrollerParts, NSOnlyScrollerArrows};
-pub use self::__NSScroller::{
-    NSScrollerArrowsDefaultSetting, NSScrollerArrowsMaxEnd, NSScrollerArrowsMinEnd,
-    NSScrollerArrowsNone,
-};
-pub use self::__NSScroller::{NSScrollerDecrementArrow, NSScrollerIncrementArrow};
-pub use self::__NSScroller::{
-    NSScrollerDecrementLine, NSScrollerDecrementPage, NSScrollerIncrementLine,
-    NSScrollerIncrementPage, NSScrollerKnob, NSScrollerKnobSlot, NSScrollerNoPart,
-};
-pub use self::__NSScroller::{
-    NSScrollerKnobStyleDark, NSScrollerKnobStyleDefault, NSScrollerKnobStyleLight,
-};
-pub use self::__NSScroller::{NSScrollerStyleLegacy, NSScrollerStyleOverlay};
 #[cfg(feature = "AppKit_NSScrubber")]
 pub use self::__NSScrubber::NSScrubber;
 pub use self::__NSScrubber::NSScrubberAlignment;
@@ -3656,11 +3002,6 @@ pub use self::__NSScrubber::NSScrubberDelegate;
 pub use self::__NSScrubber::NSScrubberMode;
 #[cfg(feature = "AppKit_NSScrubberSelectionStyle")]
 pub use self::__NSScrubber::NSScrubberSelectionStyle;
-pub use self::__NSScrubber::{
-    NSScrubberAlignmentCenter, NSScrubberAlignmentLeading, NSScrubberAlignmentNone,
-    NSScrubberAlignmentTrailing,
-};
-pub use self::__NSScrubber::{NSScrubberModeFixed, NSScrubberModeFree};
 #[cfg(feature = "AppKit_NSScrubberArrangedView")]
 pub use self::__NSScrubberItemView::NSScrubberArrangedView;
 #[cfg(feature = "AppKit_NSScrubberImageItemView")]
@@ -3703,19 +3044,6 @@ pub use self::__NSSegmentedControl::NSSegmentStyle;
 pub use self::__NSSegmentedControl::NSSegmentSwitchTracking;
 #[cfg(feature = "AppKit_NSSegmentedControl")]
 pub use self::__NSSegmentedControl::NSSegmentedControl;
-pub use self::__NSSegmentedControl::{
-    NSSegmentDistributionFill, NSSegmentDistributionFillEqually,
-    NSSegmentDistributionFillProportionally, NSSegmentDistributionFit,
-};
-pub use self::__NSSegmentedControl::{
-    NSSegmentStyleAutomatic, NSSegmentStyleCapsule, NSSegmentStyleRoundRect, NSSegmentStyleRounded,
-    NSSegmentStyleSeparated, NSSegmentStyleSmallSquare, NSSegmentStyleTexturedRounded,
-    NSSegmentStyleTexturedSquare,
-};
-pub use self::__NSSegmentedControl::{
-    NSSegmentSwitchTrackingMomentary, NSSegmentSwitchTrackingMomentaryAccelerator,
-    NSSegmentSwitchTrackingSelectAny, NSSegmentSwitchTrackingSelectOne,
-};
 #[cfg(feature = "AppKit_NSShadow")]
 pub use self::__NSShadow::NSShadow;
 pub use self::__NSSharingService::NSCloudKitSharingServiceOptions;
@@ -3748,14 +3076,6 @@ pub use self::__NSSharingService::NSSharingServiceNameUseAsTwitterProfileImage;
 #[cfg(feature = "AppKit_NSSharingServicePicker")]
 pub use self::__NSSharingService::NSSharingServicePicker;
 pub use self::__NSSharingService::NSSharingServicePickerDelegate;
-pub use self::__NSSharingService::{
-    NSCloudKitSharingServiceAllowPrivate, NSCloudKitSharingServiceAllowPublic,
-    NSCloudKitSharingServiceAllowReadOnly, NSCloudKitSharingServiceAllowReadWrite,
-    NSCloudKitSharingServiceStandard,
-};
-pub use self::__NSSharingService::{
-    NSSharingContentScopeFull, NSSharingContentScopeItem, NSSharingContentScopePartial,
-};
 #[cfg(feature = "AppKit_NSSharingServicePickerToolbarItem")]
 pub use self::__NSSharingServicePickerToolbarItem::NSSharingServicePickerToolbarItem;
 pub use self::__NSSharingServicePickerToolbarItem::NSSharingServicePickerToolbarItemDelegate;
@@ -3778,11 +3098,6 @@ pub use self::__NSSliderCell::NSTickMarkBelow;
 pub use self::__NSSliderCell::NSTickMarkLeft;
 pub use self::__NSSliderCell::NSTickMarkPosition;
 pub use self::__NSSliderCell::NSTickMarkRight;
-pub use self::__NSSliderCell::{NSSliderTypeCircular, NSSliderTypeLinear};
-pub use self::__NSSliderCell::{
-    NSTickMarkPositionAbove, NSTickMarkPositionBelow, NSTickMarkPositionLeading,
-    NSTickMarkPositionTrailing,
-};
 pub use self::__NSSliderTouchBarItem::NSSliderAccessoryWidth;
 pub use self::__NSSliderTouchBarItem::NSSliderAccessoryWidthDefault;
 pub use self::__NSSliderTouchBarItem::NSSliderAccessoryWidthWide;
@@ -3871,9 +3186,6 @@ pub use self::__NSSpeechSynthesizer::NSVoiceLanguage;
 pub use self::__NSSpeechSynthesizer::NSVoiceLocaleIdentifier;
 pub use self::__NSSpeechSynthesizer::NSVoiceName;
 pub use self::__NSSpeechSynthesizer::NSVoiceSupportedCharacters;
-pub use self::__NSSpeechSynthesizer::{
-    NSSpeechImmediateBoundary, NSSpeechSentenceBoundary, NSSpeechWordBoundary,
-};
 pub use self::__NSSpellChecker::NSCorrectionIndicatorType;
 pub use self::__NSSpellChecker::NSCorrectionResponse;
 #[cfg(feature = "AppKit_NSSpellChecker")]
@@ -3898,14 +3210,6 @@ pub use self::__NSSpellChecker::NSTextCheckingReferenceTimeZoneKey;
 pub use self::__NSSpellChecker::NSTextCheckingRegularExpressionsKey;
 pub use self::__NSSpellChecker::NSTextCheckingReplacementsKey;
 pub use self::__NSSpellChecker::NSTextCheckingSelectedRangeKey;
-pub use self::__NSSpellChecker::{
-    NSCorrectionIndicatorTypeDefault, NSCorrectionIndicatorTypeGuesses,
-    NSCorrectionIndicatorTypeReversion,
-};
-pub use self::__NSSpellChecker::{
-    NSCorrectionResponseAccepted, NSCorrectionResponseEdited, NSCorrectionResponseIgnored,
-    NSCorrectionResponseNone, NSCorrectionResponseRejected, NSCorrectionResponseReverted,
-};
 pub use self::__NSSpellProtocol::NSChangeSpelling;
 pub use self::__NSSpellProtocol::NSIgnoreMisspelledWords;
 #[cfg(feature = "AppKit_NSSplitView")]
@@ -3915,9 +3219,6 @@ pub use self::__NSSplitView::NSSplitViewDelegate;
 pub use self::__NSSplitView::NSSplitViewDidResizeSubviewsNotification;
 pub use self::__NSSplitView::NSSplitViewDividerStyle;
 pub use self::__NSSplitView::NSSplitViewWillResizeSubviewsNotification;
-pub use self::__NSSplitView::{
-    NSSplitViewDividerStylePaneSplitter, NSSplitViewDividerStyleThick, NSSplitViewDividerStyleThin,
-};
 #[cfg(feature = "AppKit_NSSplitViewController")]
 pub use self::__NSSplitViewController::NSSplitViewController;
 pub use self::__NSSplitViewController::NSSplitViewControllerAutomaticDimension;
@@ -3926,16 +3227,6 @@ pub use self::__NSSplitViewItem::NSSplitViewItem;
 pub use self::__NSSplitViewItem::NSSplitViewItemBehavior;
 pub use self::__NSSplitViewItem::NSSplitViewItemCollapseBehavior;
 pub use self::__NSSplitViewItem::NSSplitViewItemUnspecifiedDimension;
-pub use self::__NSSplitViewItem::{
-    NSSplitViewItemBehaviorContentList, NSSplitViewItemBehaviorDefault,
-    NSSplitViewItemBehaviorInspector, NSSplitViewItemBehaviorSidebar,
-};
-pub use self::__NSSplitViewItem::{
-    NSSplitViewItemCollapseBehaviorDefault,
-    NSSplitViewItemCollapseBehaviorPreferResizingSiblingsWithFixedSplitView,
-    NSSplitViewItemCollapseBehaviorPreferResizingSplitViewWithFixedSiblings,
-    NSSplitViewItemCollapseBehaviorUseConstraints,
-};
 #[cfg(feature = "AppKit_NSStackView")]
 pub use self::__NSStackView::NSStackView;
 pub use self::__NSStackView::NSStackViewDelegate;
@@ -3946,15 +3237,6 @@ pub use self::__NSStackView::NSStackViewVisibilityPriority;
 pub use self::__NSStackView::NSStackViewVisibilityPriorityDetachOnlyIfNecessary;
 pub use self::__NSStackView::NSStackViewVisibilityPriorityMustHold;
 pub use self::__NSStackView::NSStackViewVisibilityPriorityNotVisible;
-pub use self::__NSStackView::{
-    NSStackViewDistributionEqualCentering, NSStackViewDistributionEqualSpacing,
-    NSStackViewDistributionFill, NSStackViewDistributionFillEqually,
-    NSStackViewDistributionFillProportionally, NSStackViewDistributionGravityAreas,
-};
-pub use self::__NSStackView::{
-    NSStackViewGravityBottom, NSStackViewGravityCenter, NSStackViewGravityLeading,
-    NSStackViewGravityTop, NSStackViewGravityTrailing,
-};
 pub use self::__NSStatusBar::NSSquareStatusItemLength;
 #[cfg(feature = "AppKit_NSStatusBar")]
 pub use self::__NSStatusBar::NSStatusBar;
@@ -3965,9 +3247,6 @@ pub use self::__NSStatusBarButton::NSStatusBarButton;
 pub use self::__NSStatusItem::NSStatusItem;
 pub use self::__NSStatusItem::NSStatusItemAutosaveName;
 pub use self::__NSStatusItem::NSStatusItemBehavior;
-pub use self::__NSStatusItem::{
-    NSStatusItemBehaviorRemovalAllowed, NSStatusItemBehaviorTerminationOnRemoval,
-};
 #[cfg(feature = "AppKit_NSStepper")]
 pub use self::__NSStepper::NSStepper;
 #[cfg(feature = "AppKit_NSStepperCell")]
@@ -3998,11 +3277,6 @@ pub use self::__NSStringDrawing::NSStringDrawingDeprecated;
 pub use self::__NSStringDrawing::NSStringDrawingOptions;
 #[cfg(feature = "Foundation_NSString")]
 pub use self::__NSStringDrawing::NSStringNSExtendedStringDrawing;
-pub use self::__NSStringDrawing::{
-    NSStringDrawingDisableScreenFontSubstitution, NSStringDrawingOneShot,
-    NSStringDrawingTruncatesLastVisibleLine, NSStringDrawingUsesDeviceMetrics,
-    NSStringDrawingUsesFontLeading, NSStringDrawingUsesLineFragmentOrigin,
-};
 #[cfg(feature = "AppKit_NSSwitch")]
 pub use self::__NSSwitch::NSSwitch;
 pub use self::__NSTabView::NSAppKitVersionNumberWithDirectionalTabs;
@@ -4012,36 +3286,17 @@ pub use self::__NSTabView::NSTabView;
 pub use self::__NSTabView::NSTabViewBorderType;
 pub use self::__NSTabView::NSTabViewDelegate;
 pub use self::__NSTabView::NSTabViewType;
-pub use self::__NSTabView::{
-    NSBottomTabsBezelBorder, NSLeftTabsBezelBorder, NSNoTabsBezelBorder, NSNoTabsLineBorder,
-    NSNoTabsNoBorder, NSRightTabsBezelBorder, NSTopTabsBezelBorder,
-};
-pub use self::__NSTabView::{
-    NSTabPositionBottom, NSTabPositionLeft, NSTabPositionNone, NSTabPositionRight, NSTabPositionTop,
-};
-pub use self::__NSTabView::{
-    NSTabViewBorderTypeBezel, NSTabViewBorderTypeLine, NSTabViewBorderTypeNone,
-};
 #[cfg(feature = "AppKit_NSTabViewController")]
 pub use self::__NSTabViewController::NSTabViewController;
 pub use self::__NSTabViewController::NSTabViewControllerTabStyle;
-pub use self::__NSTabViewController::{
-    NSTabViewControllerTabStyleSegmentedControlOnBottom,
-    NSTabViewControllerTabStyleSegmentedControlOnTop, NSTabViewControllerTabStyleToolbar,
-    NSTabViewControllerTabStyleUnspecified,
-};
 pub use self::__NSTabViewItem::NSTabState;
 #[cfg(feature = "AppKit_NSTabViewItem")]
 pub use self::__NSTabViewItem::NSTabViewItem;
-pub use self::__NSTabViewItem::{NSBackgroundTab, NSPressedTab, NSSelectedTab};
 #[cfg(feature = "AppKit_NSTableCellView")]
 pub use self::__NSTableCellView::NSTableCellView;
 #[cfg(feature = "AppKit_NSTableColumn")]
 pub use self::__NSTableColumn::NSTableColumn;
 pub use self::__NSTableColumn::NSTableColumnResizingOptions;
-pub use self::__NSTableColumn::{
-    NSTableColumnAutoresizingMask, NSTableColumnNoResizing, NSTableColumnUserResizingMask,
-};
 #[cfg(feature = "AppKit_NSTableHeaderCell")]
 pub use self::__NSTableHeaderCell::NSTableHeaderCell;
 #[cfg(feature = "AppKit_NSTableHeaderView")]
@@ -4067,40 +3322,6 @@ pub use self::__NSTableView::NSTableViewSelectionDidChangeNotification;
 pub use self::__NSTableView::NSTableViewSelectionHighlightStyle;
 pub use self::__NSTableView::NSTableViewSelectionIsChangingNotification;
 pub use self::__NSTableView::NSTableViewStyle;
-pub use self::__NSTableView::{NSTableRowActionEdgeLeading, NSTableRowActionEdgeTrailing};
-pub use self::__NSTableView::{
-    NSTableViewAnimationEffectFade, NSTableViewAnimationEffectGap, NSTableViewAnimationEffectNone,
-    NSTableViewAnimationSlideDown, NSTableViewAnimationSlideLeft, NSTableViewAnimationSlideRight,
-    NSTableViewAnimationSlideUp,
-};
-pub use self::__NSTableView::{
-    NSTableViewDashedHorizontalGridLineMask, NSTableViewGridNone,
-    NSTableViewSolidHorizontalGridLineMask, NSTableViewSolidVerticalGridLineMask,
-};
-pub use self::__NSTableView::{
-    NSTableViewDraggingDestinationFeedbackStyleGap,
-    NSTableViewDraggingDestinationFeedbackStyleNone,
-    NSTableViewDraggingDestinationFeedbackStyleRegular,
-    NSTableViewDraggingDestinationFeedbackStyleSourceList,
-};
-pub use self::__NSTableView::{NSTableViewDropAbove, NSTableViewDropOn};
-pub use self::__NSTableView::{
-    NSTableViewFirstColumnOnlyAutoresizingStyle, NSTableViewLastColumnOnlyAutoresizingStyle,
-    NSTableViewNoColumnAutoresizing, NSTableViewReverseSequentialColumnAutoresizingStyle,
-    NSTableViewSequentialColumnAutoresizingStyle, NSTableViewUniformColumnAutoresizingStyle,
-};
-pub use self::__NSTableView::{
-    NSTableViewRowSizeStyleCustom, NSTableViewRowSizeStyleDefault, NSTableViewRowSizeStyleLarge,
-    NSTableViewRowSizeStyleMedium, NSTableViewRowSizeStyleSmall,
-};
-pub use self::__NSTableView::{
-    NSTableViewSelectionHighlightStyleNone, NSTableViewSelectionHighlightStyleRegular,
-    NSTableViewSelectionHighlightStyleSourceList,
-};
-pub use self::__NSTableView::{
-    NSTableViewStyleAutomatic, NSTableViewStyleFullWidth, NSTableViewStyleInset,
-    NSTableViewStylePlain, NSTableViewStyleSourceList,
-};
 #[cfg(feature = "AppKit_NSTableViewDiffableDataSource")]
 pub use self::__NSTableViewDiffableDataSource::NSTableViewDiffableDataSource;
 pub use self::__NSTableViewDiffableDataSource::NSTableViewDiffableDataSourceCellProvider;
@@ -4109,9 +3330,6 @@ pub use self::__NSTableViewDiffableDataSource::NSTableViewDiffableDataSourceSect
 #[cfg(feature = "AppKit_NSTableViewRowAction")]
 pub use self::__NSTableViewRowAction::NSTableViewRowAction;
 pub use self::__NSTableViewRowAction::NSTableViewRowActionStyle;
-pub use self::__NSTableViewRowAction::{
-    NSTableViewRowActionStyleDestructive, NSTableViewRowActionStyleRegular,
-};
 pub use self::__NSText::NSBackTabCharacter;
 pub use self::__NSText::NSBackspaceCharacter;
 pub use self::__NSText::NSBacktabTextMovement;
@@ -4148,14 +3366,6 @@ pub use self::__NSText::NSTextWritingDirectionEmbedding;
 pub use self::__NSText::NSTextWritingDirectionOverride;
 pub use self::__NSText::NSUpTextMovement;
 pub use self::__NSText::NSWritingDirection;
-pub use self::__NSText::{
-    NSTextMovementBacktab, NSTextMovementCancel, NSTextMovementDown, NSTextMovementLeft,
-    NSTextMovementOther, NSTextMovementReturn, NSTextMovementRight, NSTextMovementTab,
-    NSTextMovementUp,
-};
-pub use self::__NSText::{
-    NSWritingDirectionLeftToRight, NSWritingDirectionNatural, NSWritingDirectionRightToLeft,
-};
 #[cfg(feature = "AppKit_NSTextAlternatives")]
 pub use self::__NSTextAlternatives::NSTextAlternatives;
 pub use self::__NSTextAlternatives::NSTextAlternativesSelectedAlternativeStringNotification;
@@ -4176,21 +3386,12 @@ pub use self::__NSTextAttachmentCell::NSTextAttachmentCellProtocol;
 pub use self::__NSTextCheckingClient::NSTextCheckingClient;
 pub use self::__NSTextCheckingClient::NSTextInputTraitType;
 pub use self::__NSTextCheckingClient::NSTextInputTraits;
-pub use self::__NSTextCheckingClient::{
-    NSTextInputTraitTypeDefault, NSTextInputTraitTypeNo, NSTextInputTraitTypeYes,
-};
 #[cfg(feature = "AppKit_NSTextCheckingController")]
 pub use self::__NSTextCheckingController::NSTextCheckingController;
 pub use self::__NSTextContainer::NSLineMovementDirection;
 pub use self::__NSTextContainer::NSLineSweepDirection;
 #[cfg(feature = "AppKit_NSTextContainer")]
 pub use self::__NSTextContainer::NSTextContainer;
-pub use self::__NSTextContainer::{
-    NSLineDoesntMove, NSLineMovesDown, NSLineMovesLeft, NSLineMovesRight, NSLineMovesUp,
-};
-pub use self::__NSTextContainer::{
-    NSLineSweepDown, NSLineSweepLeft, NSLineSweepRight, NSLineSweepUp,
-};
 pub use self::__NSTextContent::NSTextContent;
 pub use self::__NSTextContent::NSTextContentType;
 pub use self::__NSTextContent::NSTextContentTypeAddressCity;
@@ -4245,9 +3446,6 @@ pub use self::__NSTextContentManager::NSTextContentStorage;
 pub use self::__NSTextContentManager::NSTextContentStorageDelegate;
 pub use self::__NSTextContentManager::NSTextContentStorageUnsupportedAttributeAddedNotification;
 pub use self::__NSTextContentManager::NSTextElementProvider;
-pub use self::__NSTextContentManager::{
-    NSTextContentManagerEnumerationOptionsNone, NSTextContentManagerEnumerationOptionsReverse,
-};
 #[cfg(feature = "AppKit_NSTextElement")]
 pub use self::__NSTextElement::NSTextElement;
 #[cfg(feature = "AppKit_NSTextParagraph")]
@@ -4258,7 +3456,6 @@ pub use self::__NSTextField::NSTextFieldDelegate;
 pub use self::__NSTextFieldCell::NSTextFieldBezelStyle;
 #[cfg(feature = "AppKit_NSTextFieldCell")]
 pub use self::__NSTextFieldCell::NSTextFieldCell;
-pub use self::__NSTextFieldCell::{NSTextFieldRoundedBezel, NSTextFieldSquareBezel};
 pub use self::__NSTextFinder::NSPasteboardTypeTextFinderOptionKey;
 #[cfg(feature = "AppKit_NSTextFinder")]
 pub use self::__NSTextFinder::NSTextFinder;
@@ -4268,27 +3465,8 @@ pub use self::__NSTextFinder::NSTextFinderCaseInsensitiveKey;
 pub use self::__NSTextFinder::NSTextFinderClient;
 pub use self::__NSTextFinder::NSTextFinderMatchingType;
 pub use self::__NSTextFinder::NSTextFinderMatchingTypeKey;
-pub use self::__NSTextFinder::{
-    NSTextFinderActionHideFindInterface, NSTextFinderActionHideReplaceInterface,
-    NSTextFinderActionNextMatch, NSTextFinderActionPreviousMatch, NSTextFinderActionReplace,
-    NSTextFinderActionReplaceAll, NSTextFinderActionReplaceAllInSelection,
-    NSTextFinderActionReplaceAndFind, NSTextFinderActionSelectAll,
-    NSTextFinderActionSelectAllInSelection, NSTextFinderActionSetSearchString,
-    NSTextFinderActionShowFindInterface, NSTextFinderActionShowReplaceInterface,
-};
-pub use self::__NSTextFinder::{
-    NSTextFinderMatchingTypeContains, NSTextFinderMatchingTypeEndsWith,
-    NSTextFinderMatchingTypeFullWord, NSTextFinderMatchingTypeStartsWith,
-};
 pub use self::__NSTextInputClient::NSTextCursorAccessoryPlacement;
 pub use self::__NSTextInputClient::NSTextInputClient;
-pub use self::__NSTextInputClient::{
-    NSTextCursorAccessoryPlacementBackward, NSTextCursorAccessoryPlacementCenter,
-    NSTextCursorAccessoryPlacementForward, NSTextCursorAccessoryPlacementInvisible,
-    NSTextCursorAccessoryPlacementOffscreenBottom, NSTextCursorAccessoryPlacementOffscreenLeft,
-    NSTextCursorAccessoryPlacementOffscreenRight, NSTextCursorAccessoryPlacementOffscreenTop,
-    NSTextCursorAccessoryPlacementUnspecified,
-};
 #[cfg(feature = "AppKit_NSTextInputContext")]
 pub use self::__NSTextInputContext::NSTextInputContext;
 pub use self::__NSTextInputContext::NSTextInputContextKeyboardSelectionDidChangeNotification;
@@ -4297,44 +3475,15 @@ pub use self::__NSTextInputContext::NSTextInputSourceIdentifier;
 pub use self::__NSTextInsertionIndicator::NSTextInsertionIndicator;
 pub use self::__NSTextInsertionIndicator::NSTextInsertionIndicatorAutomaticModeOptions;
 pub use self::__NSTextInsertionIndicator::NSTextInsertionIndicatorDisplayMode;
-pub use self::__NSTextInsertionIndicator::{
-    NSTextInsertionIndicatorAutomaticModeOptionsShowEffectsView,
-    NSTextInsertionIndicatorAutomaticModeOptionsShowWhileTracking,
-};
-pub use self::__NSTextInsertionIndicator::{
-    NSTextInsertionIndicatorDisplayModeAutomatic, NSTextInsertionIndicatorDisplayModeHidden,
-    NSTextInsertionIndicatorDisplayModeVisible,
-};
 #[cfg(feature = "AppKit_NSTextLayoutFragment")]
 pub use self::__NSTextLayoutFragment::NSTextLayoutFragment;
 pub use self::__NSTextLayoutFragment::NSTextLayoutFragmentEnumerationOptions;
 pub use self::__NSTextLayoutFragment::NSTextLayoutFragmentState;
-pub use self::__NSTextLayoutFragment::{
-    NSTextLayoutFragmentEnumerationOptionsEnsuresExtraLineFragment,
-    NSTextLayoutFragmentEnumerationOptionsEnsuresLayout,
-    NSTextLayoutFragmentEnumerationOptionsEstimatesSize,
-    NSTextLayoutFragmentEnumerationOptionsNone, NSTextLayoutFragmentEnumerationOptionsReverse,
-};
-pub use self::__NSTextLayoutFragment::{
-    NSTextLayoutFragmentStateCalculatedUsageBounds, NSTextLayoutFragmentStateEstimatedUsageBounds,
-    NSTextLayoutFragmentStateLayoutAvailable, NSTextLayoutFragmentStateNone,
-};
 #[cfg(feature = "AppKit_NSTextLayoutManager")]
 pub use self::__NSTextLayoutManager::NSTextLayoutManager;
 pub use self::__NSTextLayoutManager::NSTextLayoutManagerDelegate;
 pub use self::__NSTextLayoutManager::NSTextLayoutManagerSegmentOptions;
 pub use self::__NSTextLayoutManager::NSTextLayoutManagerSegmentType;
-pub use self::__NSTextLayoutManager::{
-    NSTextLayoutManagerSegmentOptionsHeadSegmentExtended,
-    NSTextLayoutManagerSegmentOptionsMiddleFragmentsExcluded,
-    NSTextLayoutManagerSegmentOptionsNone, NSTextLayoutManagerSegmentOptionsRangeNotRequired,
-    NSTextLayoutManagerSegmentOptionsTailSegmentExtended,
-    NSTextLayoutManagerSegmentOptionsUpstreamAffinity,
-};
-pub use self::__NSTextLayoutManager::{
-    NSTextLayoutManagerSegmentTypeHighlight, NSTextLayoutManagerSegmentTypeSelection,
-    NSTextLayoutManagerSegmentTypeStandard,
-};
 #[cfg(feature = "AppKit_NSTextLineFragment")]
 pub use self::__NSTextLineFragment::NSTextLineFragment;
 #[cfg(feature = "AppKit_NSTextList")]
@@ -4358,7 +3507,6 @@ pub use self::__NSTextList::NSTextListMarkerUppercaseHexadecimal;
 pub use self::__NSTextList::NSTextListMarkerUppercaseLatin;
 pub use self::__NSTextList::NSTextListMarkerUppercaseRoman;
 pub use self::__NSTextList::NSTextListOptions;
-pub use self::__NSTextList::NSTextListPrependEnclosingMarker;
 #[cfg(feature = "AppKit_NSTextListElement")]
 pub use self::__NSTextListElement::NSTextListElement;
 pub use self::__NSTextRange::NSTextLocation;
@@ -4368,14 +3516,6 @@ pub use self::__NSTextRange::NSTextRange;
 pub use self::__NSTextSelection::NSTextSelection;
 pub use self::__NSTextSelection::NSTextSelectionAffinity;
 pub use self::__NSTextSelection::NSTextSelectionGranularity;
-pub use self::__NSTextSelection::{
-    NSTextSelectionAffinityDownstream, NSTextSelectionAffinityUpstream,
-};
-pub use self::__NSTextSelection::{
-    NSTextSelectionGranularityCharacter, NSTextSelectionGranularityLine,
-    NSTextSelectionGranularityParagraph, NSTextSelectionGranularitySentence,
-    NSTextSelectionGranularityWord,
-};
 pub use self::__NSTextSelectionNavigation::NSTextSelectionDataSource;
 #[cfg(feature = "AppKit_NSTextSelectionNavigation")]
 pub use self::__NSTextSelectionNavigation::NSTextSelectionNavigation;
@@ -4384,29 +3524,6 @@ pub use self::__NSTextSelectionNavigation::NSTextSelectionNavigationDirection;
 pub use self::__NSTextSelectionNavigation::NSTextSelectionNavigationLayoutOrientation;
 pub use self::__NSTextSelectionNavigation::NSTextSelectionNavigationModifier;
 pub use self::__NSTextSelectionNavigation::NSTextSelectionNavigationWritingDirection;
-pub use self::__NSTextSelectionNavigation::{
-    NSTextSelectionNavigationDestinationCharacter, NSTextSelectionNavigationDestinationContainer,
-    NSTextSelectionNavigationDestinationDocument, NSTextSelectionNavigationDestinationLine,
-    NSTextSelectionNavigationDestinationParagraph, NSTextSelectionNavigationDestinationSentence,
-    NSTextSelectionNavigationDestinationWord,
-};
-pub use self::__NSTextSelectionNavigation::{
-    NSTextSelectionNavigationDirectionBackward, NSTextSelectionNavigationDirectionDown,
-    NSTextSelectionNavigationDirectionForward, NSTextSelectionNavigationDirectionLeft,
-    NSTextSelectionNavigationDirectionRight, NSTextSelectionNavigationDirectionUp,
-};
-pub use self::__NSTextSelectionNavigation::{
-    NSTextSelectionNavigationLayoutOrientationHorizontal,
-    NSTextSelectionNavigationLayoutOrientationVertical,
-};
-pub use self::__NSTextSelectionNavigation::{
-    NSTextSelectionNavigationModifierExtend, NSTextSelectionNavigationModifierMultiple,
-    NSTextSelectionNavigationModifierVisual,
-};
-pub use self::__NSTextSelectionNavigation::{
-    NSTextSelectionNavigationWritingDirectionLeftToRight,
-    NSTextSelectionNavigationWritingDirectionRightToLeft,
-};
 #[cfg(feature = "AppKit_NSTextStorage")]
 pub use self::__NSTextStorage::NSTextStorage;
 pub use self::__NSTextStorage::NSTextStorageDelegate;
@@ -4415,7 +3532,6 @@ pub use self::__NSTextStorage::NSTextStorageEditActions;
 pub use self::__NSTextStorage::NSTextStorageEditedOptions;
 pub use self::__NSTextStorage::NSTextStorageObserving;
 pub use self::__NSTextStorage::NSTextStorageWillProcessEditingNotification;
-pub use self::__NSTextStorage::{NSTextStorageEditedAttributes, NSTextStorageEditedCharacters};
 #[cfg(feature = "AppKit_NSTextBlock")]
 pub use self::__NSTextTable::NSTextBlock;
 pub use self::__NSTextTable::NSTextBlockDimension;
@@ -4427,19 +3543,6 @@ pub use self::__NSTextTable::NSTextTable;
 #[cfg(feature = "AppKit_NSTextTableBlock")]
 pub use self::__NSTextTable::NSTextTableBlock;
 pub use self::__NSTextTable::NSTextTableLayoutAlgorithm;
-pub use self::__NSTextTable::{NSTextBlockAbsoluteValueType, NSTextBlockPercentageValueType};
-pub use self::__NSTextTable::{
-    NSTextBlockBaselineAlignment, NSTextBlockBottomAlignment, NSTextBlockMiddleAlignment,
-    NSTextBlockTopAlignment,
-};
-pub use self::__NSTextTable::{NSTextBlockBorder, NSTextBlockMargin, NSTextBlockPadding};
-pub use self::__NSTextTable::{
-    NSTextBlockHeight, NSTextBlockMaximumHeight, NSTextBlockMaximumWidth, NSTextBlockMinimumHeight,
-    NSTextBlockMinimumWidth, NSTextBlockWidth,
-};
-pub use self::__NSTextTable::{
-    NSTextTableAutomaticLayoutAlgorithm, NSTextTableFixedLayoutAlgorithm,
-};
 pub use self::__NSTextView::NSAllRomanInputSourcesLocaleIdentifier;
 pub use self::__NSTextView::NSFindPanelAction;
 pub use self::__NSTextView::NSFindPanelCaseInsensitiveSearch;
@@ -4463,19 +3566,6 @@ pub use self::__NSTextView::NSTouchBarItemIdentifierTextColorPicker;
 pub use self::__NSTextView::NSTouchBarItemIdentifierTextFormat;
 pub use self::__NSTextView::NSTouchBarItemIdentifierTextList;
 pub use self::__NSTextView::NSTouchBarItemIdentifierTextStyle;
-pub use self::__NSTextView::{
-    NSFindPanelActionNext, NSFindPanelActionPrevious, NSFindPanelActionReplace,
-    NSFindPanelActionReplaceAll, NSFindPanelActionReplaceAllInSelection,
-    NSFindPanelActionReplaceAndFind, NSFindPanelActionSelectAll,
-    NSFindPanelActionSelectAllInSelection, NSFindPanelActionSetFindString,
-    NSFindPanelActionShowFindPanel,
-};
-pub use self::__NSTextView::{
-    NSFindPanelSubstringMatchTypeContains, NSFindPanelSubstringMatchTypeEndsWith,
-    NSFindPanelSubstringMatchTypeFullWord, NSFindPanelSubstringMatchTypeStartsWith,
-};
-pub use self::__NSTextView::{NSSelectByCharacter, NSSelectByParagraph, NSSelectByWord};
-pub use self::__NSTextView::{NSSelectionAffinityDownstream, NSSelectionAffinityUpstream};
 #[cfg(feature = "AppKit_NSTextViewportLayoutController")]
 pub use self::__NSTextViewportLayoutController::NSTextViewportLayoutController;
 pub use self::__NSTextViewportLayoutController::NSTextViewportLayoutControllerDelegate;
@@ -4493,10 +3583,6 @@ pub use self::__NSTokenFieldCell::NSRoundedTokenStyle;
 pub use self::__NSTokenFieldCell::NSTokenFieldCell;
 pub use self::__NSTokenFieldCell::NSTokenFieldCellDelegate;
 pub use self::__NSTokenFieldCell::NSTokenStyle;
-pub use self::__NSTokenFieldCell::{
-    NSTokenStyleDefault, NSTokenStyleNone, NSTokenStylePlainSquared, NSTokenStyleRounded,
-    NSTokenStyleSquared,
-};
 #[cfg(feature = "AppKit_NSToolbar")]
 pub use self::__NSToolbar::NSToolbar;
 pub use self::__NSToolbar::NSToolbarDelegate;
@@ -4508,13 +3594,6 @@ pub use self::__NSToolbar::NSToolbarItemKey;
 pub use self::__NSToolbar::NSToolbarSizeMode;
 pub use self::__NSToolbar::NSToolbarUserInfoKey;
 pub use self::__NSToolbar::NSToolbarWillAddItemNotification;
-pub use self::__NSToolbar::{
-    NSToolbarDisplayModeDefault, NSToolbarDisplayModeIconAndLabel, NSToolbarDisplayModeIconOnly,
-    NSToolbarDisplayModeLabelOnly,
-};
-pub use self::__NSToolbar::{
-    NSToolbarSizeModeDefault, NSToolbarSizeModeRegular, NSToolbarSizeModeSmall,
-};
 pub use self::__NSToolbarItem::NSToolbarCloudSharingItemIdentifier;
 pub use self::__NSToolbarItem::NSToolbarCustomizeToolbarItemIdentifier;
 pub use self::__NSToolbarItem::NSToolbarFlexibleSpaceItemIdentifier;
@@ -4539,26 +3618,11 @@ pub use self::__NSToolbarItem::NSToolbarToggleSidebarItemIdentifier;
 pub use self::__NSToolbarItemGroup::NSToolbarItemGroup;
 pub use self::__NSToolbarItemGroup::NSToolbarItemGroupControlRepresentation;
 pub use self::__NSToolbarItemGroup::NSToolbarItemGroupSelectionMode;
-pub use self::__NSToolbarItemGroup::{
-    NSToolbarItemGroupControlRepresentationAutomatic,
-    NSToolbarItemGroupControlRepresentationCollapsed,
-    NSToolbarItemGroupControlRepresentationExpanded,
-};
-pub use self::__NSToolbarItemGroup::{
-    NSToolbarItemGroupSelectionModeMomentary, NSToolbarItemGroupSelectionModeSelectAny,
-    NSToolbarItemGroupSelectionModeSelectOne,
-};
 #[cfg(feature = "AppKit_NSTouch")]
 pub use self::__NSTouch::NSTouch;
 pub use self::__NSTouch::NSTouchPhase;
 pub use self::__NSTouch::NSTouchType;
 pub use self::__NSTouch::NSTouchTypeMask;
-pub use self::__NSTouch::{
-    NSTouchPhaseAny, NSTouchPhaseBegan, NSTouchPhaseCancelled, NSTouchPhaseEnded,
-    NSTouchPhaseMoved, NSTouchPhaseStationary, NSTouchPhaseTouching,
-};
-pub use self::__NSTouch::{NSTouchTypeDirect, NSTouchTypeIndirect};
-pub use self::__NSTouch::{NSTouchTypeMaskDirect, NSTouchTypeMaskIndirect};
 #[cfg(feature = "AppKit_NSTouchBar")]
 pub use self::__NSTouchBar::NSTouchBar;
 pub use self::__NSTouchBar::NSTouchBarCustomizationIdentifier;
@@ -4578,12 +3642,6 @@ pub use self::__NSTouchBarItem::NSTouchBarItemPriorityNormal;
 #[cfg(feature = "AppKit_NSTrackingArea")]
 pub use self::__NSTrackingArea::NSTrackingArea;
 pub use self::__NSTrackingArea::NSTrackingAreaOptions;
-pub use self::__NSTrackingArea::{
-    NSTrackingActiveAlways, NSTrackingActiveInActiveApp, NSTrackingActiveInKeyWindow,
-    NSTrackingActiveWhenFirstResponder, NSTrackingAssumeInside, NSTrackingCursorUpdate,
-    NSTrackingEnabledDuringMouseDrag, NSTrackingInVisibleRect, NSTrackingMouseEnteredAndExited,
-    NSTrackingMouseMoved,
-};
 #[cfg(feature = "AppKit_NSTrackingSeparatorToolbarItem")]
 pub use self::__NSTrackingSeparatorToolbarItem::NSTrackingSeparatorToolbarItem;
 #[cfg(feature = "AppKit_NSTreeController")]
@@ -4593,11 +3651,6 @@ pub use self::__NSTreeNode::NSTreeNode;
 #[cfg(feature = "AppKit_NSTypesetter")]
 pub use self::__NSTypesetter::NSTypesetter;
 pub use self::__NSTypesetter::NSTypesetterControlCharacterAction;
-pub use self::__NSTypesetter::{
-    NSTypesetterContainerBreakAction, NSTypesetterHorizontalTabAction, NSTypesetterLineBreakAction,
-    NSTypesetterParagraphBreakAction, NSTypesetterWhitespaceAction,
-    NSTypesetterZeroAdvancementAction,
-};
 pub use self::__NSUserActivity::NSUserActivityDocumentURLKey;
 pub use self::__NSUserActivity::NSUserActivityRestoring;
 #[cfg(feature = "AppKit_NSUserDefaultsController")]
@@ -4610,12 +3663,6 @@ pub use self::__NSUserInterfaceItemIdentification::NSUserInterfaceItemIdentifier
 pub use self::__NSUserInterfaceItemSearching::NSUserInterfaceItemSearching;
 pub use self::__NSUserInterfaceLayout::NSUserInterfaceLayoutDirection;
 pub use self::__NSUserInterfaceLayout::NSUserInterfaceLayoutOrientation;
-pub use self::__NSUserInterfaceLayout::{
-    NSUserInterfaceLayoutDirectionLeftToRight, NSUserInterfaceLayoutDirectionRightToLeft,
-};
-pub use self::__NSUserInterfaceLayout::{
-    NSUserInterfaceLayoutOrientationHorizontal, NSUserInterfaceLayoutOrientationVertical,
-};
 pub use self::__NSUserInterfaceValidation::NSUserInterfaceValidations;
 pub use self::__NSUserInterfaceValidation::NSValidatedUserInterfaceItem;
 pub use self::__NSView::NSAutoresizingMaskOptions;
@@ -4642,58 +3689,15 @@ pub use self::__NSView::NSViewGlobalFrameDidChangeNotification;
 pub use self::__NSView::NSViewLayerContentsPlacement;
 pub use self::__NSView::NSViewLayerContentsRedrawPolicy;
 pub use self::__NSView::NSViewToolTipOwner;
-pub use self::__NSView::{NSBezelBorder, NSGrooveBorder, NSLineBorder, NSNoBorder};
-pub use self::__NSView::{
-    NSViewHeightSizable, NSViewMaxXMargin, NSViewMaxYMargin, NSViewMinXMargin, NSViewMinYMargin,
-    NSViewNotSizable, NSViewWidthSizable,
-};
-pub use self::__NSView::{
-    NSViewLayerContentsPlacementBottom, NSViewLayerContentsPlacementBottomLeft,
-    NSViewLayerContentsPlacementBottomRight, NSViewLayerContentsPlacementCenter,
-    NSViewLayerContentsPlacementLeft, NSViewLayerContentsPlacementRight,
-    NSViewLayerContentsPlacementScaleAxesIndependently,
-    NSViewLayerContentsPlacementScaleProportionallyToFill,
-    NSViewLayerContentsPlacementScaleProportionallyToFit, NSViewLayerContentsPlacementTop,
-    NSViewLayerContentsPlacementTopLeft, NSViewLayerContentsPlacementTopRight,
-};
-pub use self::__NSView::{
-    NSViewLayerContentsRedrawBeforeViewResize, NSViewLayerContentsRedrawCrossfade,
-    NSViewLayerContentsRedrawDuringViewResize, NSViewLayerContentsRedrawNever,
-    NSViewLayerContentsRedrawOnSetNeedsDisplay,
-};
 #[cfg(feature = "AppKit_NSViewController")]
 pub use self::__NSViewController::NSViewController;
 pub use self::__NSViewController::NSViewControllerPresentationAnimator;
 pub use self::__NSViewController::NSViewControllerTransitionOptions;
-pub use self::__NSViewController::{
-    NSViewControllerTransitionAllowUserInteraction, NSViewControllerTransitionCrossfade,
-    NSViewControllerTransitionNone, NSViewControllerTransitionSlideBackward,
-    NSViewControllerTransitionSlideDown, NSViewControllerTransitionSlideForward,
-    NSViewControllerTransitionSlideLeft, NSViewControllerTransitionSlideRight,
-    NSViewControllerTransitionSlideUp,
-};
 pub use self::__NSVisualEffectView::NSVisualEffectBlendingMode;
 pub use self::__NSVisualEffectView::NSVisualEffectMaterial;
 pub use self::__NSVisualEffectView::NSVisualEffectState;
 #[cfg(feature = "AppKit_NSVisualEffectView")]
 pub use self::__NSVisualEffectView::NSVisualEffectView;
-pub use self::__NSVisualEffectView::{
-    NSVisualEffectBlendingModeBehindWindow, NSVisualEffectBlendingModeWithinWindow,
-};
-pub use self::__NSVisualEffectView::{
-    NSVisualEffectMaterialAppearanceBased, NSVisualEffectMaterialContentBackground,
-    NSVisualEffectMaterialDark, NSVisualEffectMaterialFullScreenUI,
-    NSVisualEffectMaterialHUDWindow, NSVisualEffectMaterialHeaderView, NSVisualEffectMaterialLight,
-    NSVisualEffectMaterialMediumLight, NSVisualEffectMaterialMenu, NSVisualEffectMaterialPopover,
-    NSVisualEffectMaterialSelection, NSVisualEffectMaterialSheet, NSVisualEffectMaterialSidebar,
-    NSVisualEffectMaterialTitlebar, NSVisualEffectMaterialToolTip, NSVisualEffectMaterialUltraDark,
-    NSVisualEffectMaterialUnderPageBackground, NSVisualEffectMaterialUnderWindowBackground,
-    NSVisualEffectMaterialWindowBackground,
-};
-pub use self::__NSVisualEffectView::{
-    NSVisualEffectStateActive, NSVisualEffectStateFollowsWindowActiveState,
-    NSVisualEffectStateInactive,
-};
 pub use self::__NSWindow::NSAppKitVersionNumberWithCustomSheetPosition;
 pub use self::__NSWindow::NSAppKitVersionNumberWithDeferredWindowDisplaySupport;
 pub use self::__NSWindow::NSBackingPropertyOldColorSpaceKey;
@@ -4761,7 +3765,6 @@ pub use self::__NSWindow::NSWindowFullScreenButton;
 pub use self::__NSWindow::NSWindowLevel;
 pub use self::__NSWindow::NSWindowNumberListOptions;
 pub use self::__NSWindow::NSWindowOcclusionState;
-pub use self::__NSWindow::NSWindowOcclusionStateVisible;
 pub use self::__NSWindow::NSWindowPersistableFrameDescriptor;
 pub use self::__NSWindow::NSWindowSharingType;
 pub use self::__NSWindow::NSWindowStyleMask;
@@ -4779,58 +3782,6 @@ pub use self::__NSWindow::NSWindowWillExitVersionBrowserNotification;
 pub use self::__NSWindow::NSWindowWillMiniaturizeNotification;
 pub use self::__NSWindow::NSWindowWillMoveNotification;
 pub use self::__NSWindow::NSWindowWillStartLiveResizeNotification;
-pub use self::__NSWindow::{NSDirectSelection, NSSelectingNext, NSSelectingPrevious};
-pub use self::__NSWindow::{
-    NSTitlebarSeparatorStyleAutomatic, NSTitlebarSeparatorStyleLine, NSTitlebarSeparatorStyleNone,
-    NSTitlebarSeparatorStyleShadow,
-};
-pub use self::__NSWindow::{
-    NSWindowAnimationBehaviorAlertPanel, NSWindowAnimationBehaviorDefault,
-    NSWindowAnimationBehaviorDocumentWindow, NSWindowAnimationBehaviorNone,
-    NSWindowAnimationBehaviorUtilityWindow,
-};
-pub use self::__NSWindow::{
-    NSWindowBackingLocationDefault, NSWindowBackingLocationMainMemory,
-    NSWindowBackingLocationVideoMemory,
-};
-pub use self::__NSWindow::{
-    NSWindowCloseButton, NSWindowDocumentIconButton, NSWindowDocumentVersionsButton,
-    NSWindowMiniaturizeButton, NSWindowToolbarButton, NSWindowZoomButton,
-};
-pub use self::__NSWindow::{
-    NSWindowCollectionBehaviorAuxiliary, NSWindowCollectionBehaviorCanJoinAllApplications,
-    NSWindowCollectionBehaviorCanJoinAllSpaces, NSWindowCollectionBehaviorDefault,
-    NSWindowCollectionBehaviorFullScreenAllowsTiling,
-    NSWindowCollectionBehaviorFullScreenAuxiliary,
-    NSWindowCollectionBehaviorFullScreenDisallowsTiling, NSWindowCollectionBehaviorFullScreenNone,
-    NSWindowCollectionBehaviorFullScreenPrimary, NSWindowCollectionBehaviorIgnoresCycle,
-    NSWindowCollectionBehaviorManaged, NSWindowCollectionBehaviorMoveToActiveSpace,
-    NSWindowCollectionBehaviorParticipatesInCycle, NSWindowCollectionBehaviorPrimary,
-    NSWindowCollectionBehaviorStationary, NSWindowCollectionBehaviorTransient,
-};
-pub use self::__NSWindow::{NSWindowNumberListAllApplications, NSWindowNumberListAllSpaces};
-pub use self::__NSWindow::{
-    NSWindowSharingNone, NSWindowSharingReadOnly, NSWindowSharingReadWrite,
-};
-pub use self::__NSWindow::{
-    NSWindowStyleMaskBorderless, NSWindowStyleMaskClosable, NSWindowStyleMaskDocModalWindow,
-    NSWindowStyleMaskFullScreen, NSWindowStyleMaskFullSizeContentView, NSWindowStyleMaskHUDWindow,
-    NSWindowStyleMaskMiniaturizable, NSWindowStyleMaskNonactivatingPanel,
-    NSWindowStyleMaskResizable, NSWindowStyleMaskTexturedBackground, NSWindowStyleMaskTitled,
-    NSWindowStyleMaskUnifiedTitleAndToolbar, NSWindowStyleMaskUtilityWindow,
-};
-pub use self::__NSWindow::{
-    NSWindowTabbingModeAutomatic, NSWindowTabbingModeDisallowed, NSWindowTabbingModePreferred,
-};
-pub use self::__NSWindow::{NSWindowTitleHidden, NSWindowTitleVisible};
-pub use self::__NSWindow::{
-    NSWindowToolbarStyleAutomatic, NSWindowToolbarStyleExpanded, NSWindowToolbarStylePreference,
-    NSWindowToolbarStyleUnified, NSWindowToolbarStyleUnifiedCompact,
-};
-pub use self::__NSWindow::{
-    NSWindowUserTabbingPreferenceAlways, NSWindowUserTabbingPreferenceInFullScreen,
-    NSWindowUserTabbingPreferenceManual,
-};
 #[cfg(feature = "AppKit_NSWindowController")]
 pub use self::__NSWindowController::NSWindowController;
 pub use self::__NSWindowRestoration::NSApplicationDidFinishRestoringWindowsNotification;
@@ -4901,18 +3852,3 @@ pub use self::__NSWorkspace::NSWorkspaceWillLaunchApplicationNotification;
 pub use self::__NSWorkspace::NSWorkspaceWillPowerOffNotification;
 pub use self::__NSWorkspace::NSWorkspaceWillSleepNotification;
 pub use self::__NSWorkspace::NSWorkspaceWillUnmountNotification;
-pub use self::__NSWorkspace::{
-    NSExclude10_4ElementsIconCreationOption, NSExcludeQuickDrawElementsIconCreationOption,
-};
-pub use self::__NSWorkspace::{
-    NSWorkspaceAuthorizationTypeCreateSymbolicLink, NSWorkspaceAuthorizationTypeReplaceFile,
-    NSWorkspaceAuthorizationTypeSetAttributes,
-};
-pub use self::__NSWorkspace::{
-    NSWorkspaceLaunchAllowingClassicStartup, NSWorkspaceLaunchAndHide,
-    NSWorkspaceLaunchAndHideOthers, NSWorkspaceLaunchAndPrint, NSWorkspaceLaunchAsync,
-    NSWorkspaceLaunchDefault, NSWorkspaceLaunchInhibitingBackgroundOnly,
-    NSWorkspaceLaunchNewInstance, NSWorkspaceLaunchPreferringClassic,
-    NSWorkspaceLaunchWithErrorPresentation, NSWorkspaceLaunchWithoutActivation,
-    NSWorkspaceLaunchWithoutAddingToRecents,
-};

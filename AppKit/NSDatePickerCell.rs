@@ -219,24 +219,24 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSDatePickerCellDelegate {}
 );
 
-extern_static!(NSTextFieldAndStepperDatePickerStyle: NSDatePickerStyle = NSDatePickerStyle(NSDatePickerStyleTextFieldAndStepper.0));
+extern_static!(NSTextFieldAndStepperDatePickerStyle: NSDatePickerStyle = NSDatePickerStyle(NSDatePickerStyle::NSDatePickerStyleTextFieldAndStepper.0));
 
-extern_static!(NSClockAndCalendarDatePickerStyle: NSDatePickerStyle = NSDatePickerStyle(NSDatePickerStyleClockAndCalendar.0));
+extern_static!(NSClockAndCalendarDatePickerStyle: NSDatePickerStyle = NSDatePickerStyle(NSDatePickerStyle::NSDatePickerStyleClockAndCalendar.0));
 
-extern_static!(NSTextFieldDatePickerStyle: NSDatePickerStyle = NSDatePickerStyle(NSDatePickerStyleTextField.0));
+extern_static!(NSTextFieldDatePickerStyle: NSDatePickerStyle = NSDatePickerStyle(NSDatePickerStyle::NSDatePickerStyleTextField.0));
 
-extern_static!(NSSingleDateMode: NSDatePickerMode = NSDatePickerMode(NSDatePickerModeSingle.0));
+extern_static!(NSSingleDateMode: NSDatePickerMode = NSDatePickerMode(NSDatePickerMode::NSDatePickerModeSingle.0));
 
-extern_static!(NSRangeDateMode: NSDatePickerMode = NSDatePickerMode(NSDatePickerModeRange.0));
+extern_static!(NSRangeDateMode: NSDatePickerMode = NSDatePickerMode(NSDatePickerMode::NSDatePickerModeRange.0));
 
-extern_static!(NSHourMinuteDatePickerElementFlag: NSDatePickerElementFlags = NSDatePickerElementFlags(NSDatePickerElementFlagHourMinute.0));
+extern_static!(NSHourMinuteDatePickerElementFlag: NSDatePickerElementFlags = NSDatePickerElementFlags(NSDatePickerElementFlags::NSDatePickerElementFlagHourMinute.0));
 
-extern_static!(NSHourMinuteSecondDatePickerElementFlag: NSDatePickerElementFlags = NSDatePickerElementFlags(NSDatePickerElementFlagHourMinuteSecond.0));
+extern_static!(NSHourMinuteSecondDatePickerElementFlag: NSDatePickerElementFlags = NSDatePickerElementFlags(NSDatePickerElementFlags::NSDatePickerElementFlagHourMinuteSecond.0));
 
-extern_static!(NSTimeZoneDatePickerElementFlag: NSDatePickerElementFlags = NSDatePickerElementFlags(NSDatePickerElementFlagTimeZone.0));
+extern_static!(NSTimeZoneDatePickerElementFlag: NSDatePickerElementFlags = NSDatePickerElementFlags(NSDatePickerElementFlags::NSDatePickerElementFlagTimeZone.0));
 
-extern_static!(NSYearMonthDatePickerElementFlag: NSDatePickerElementFlags = NSDatePickerElementFlags(NSDatePickerElementFlagYearMonth.0));
+extern_static!(NSYearMonthDatePickerElementFlag: NSDatePickerElementFlags = NSDatePickerElementFlags(NSDatePickerElementFlags::NSDatePickerElementFlagYearMonth.0));
 
-extern_static!(NSYearMonthDayDatePickerElementFlag: NSDatePickerElementFlags = NSDatePickerElementFlags(NSDatePickerElementFlagYearMonthDay.0));
+extern_static!(NSYearMonthDayDatePickerElementFlag: NSDatePickerElementFlags = NSDatePickerElementFlags(NSDatePickerElementFlags::NSDatePickerElementFlagYearMonthDay.0));
 
-extern_static!(NSEraDatePickerElementFlag: NSDatePickerElementFlags = NSDatePickerElementFlags(NSDatePickerElementFlagEra.0));
+extern_static!(NSEraDatePickerElementFlag: NSDatePickerElementFlags = NSDatePickerElementFlags(NSDatePickerElementFlags::NSDatePickerElementFlagEra.0));

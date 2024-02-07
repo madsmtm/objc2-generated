@@ -30,10 +30,6 @@ mod __LPMetadataProvider;
 
 pub use self::__LPError::LPErrorCode;
 pub use self::__LPError::LPErrorDomain;
-pub use self::__LPError::{
-    LPErrorMetadataFetchCancelled, LPErrorMetadataFetchFailed, LPErrorMetadataFetchNotAllowed,
-    LPErrorMetadataFetchTimedOut, LPErrorUnknown,
-};
 #[cfg(feature = "LinkPresentation_LPLinkMetadata")]
 pub use self::__LPLinkMetadata::LPLinkMetadata;
 #[cfg(feature = "LinkPresentation_LPLinkView")]

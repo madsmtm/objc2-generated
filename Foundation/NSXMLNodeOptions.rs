@@ -31,19 +31,20 @@ ns_options!(
         NSXMLNodePreserveDTD = 1 << 26,
         NSXMLNodePreserveCharacterReferences = 1 << 27,
         NSXMLNodePromoteSignificantWhitespace = 1 << 28,
-        NSXMLNodePreserveEmptyElements =
-            NSXMLNodeExpandEmptyElement.0 | NSXMLNodeCompactEmptyElement.0,
-        NSXMLNodePreserveQuotes = NSXMLNodeUseSingleQuotes.0 | NSXMLNodeUseDoubleQuotes.0,
-        NSXMLNodePreserveAll = NSXMLNodePreserveNamespaceOrder.0
-            | NSXMLNodePreserveAttributeOrder.0
-            | NSXMLNodePreserveEntities.0
-            | NSXMLNodePreservePrefixes.0
-            | NSXMLNodePreserveCDATA.0
-            | NSXMLNodePreserveEmptyElements.0
-            | NSXMLNodePreserveQuotes.0
-            | NSXMLNodePreserveWhitespace.0
-            | NSXMLNodePreserveDTD.0
-            | NSXMLNodePreserveCharacterReferences.0
+        NSXMLNodePreserveEmptyElements = NSXMLNodeOptions::NSXMLNodeExpandEmptyElement.0
+            | NSXMLNodeOptions::NSXMLNodeCompactEmptyElement.0,
+        NSXMLNodePreserveQuotes = NSXMLNodeOptions::NSXMLNodeUseSingleQuotes.0
+            | NSXMLNodeOptions::NSXMLNodeUseDoubleQuotes.0,
+        NSXMLNodePreserveAll = NSXMLNodeOptions::NSXMLNodePreserveNamespaceOrder.0
+            | NSXMLNodeOptions::NSXMLNodePreserveAttributeOrder.0
+            | NSXMLNodeOptions::NSXMLNodePreserveEntities.0
+            | NSXMLNodeOptions::NSXMLNodePreservePrefixes.0
+            | NSXMLNodeOptions::NSXMLNodePreserveCDATA.0
+            | NSXMLNodeOptions::NSXMLNodePreserveEmptyElements.0
+            | NSXMLNodeOptions::NSXMLNodePreserveQuotes.0
+            | NSXMLNodeOptions::NSXMLNodePreserveWhitespace.0
+            | NSXMLNodeOptions::NSXMLNodePreserveDTD.0
+            | NSXMLNodeOptions::NSXMLNodePreserveCharacterReferences.0
             | 0xFFF00000,
     }
 );

@@ -13,7 +13,9 @@ ns_options!(
         NSTouchPhaseStationary = 1 << 2,
         NSTouchPhaseEnded = 1 << 3,
         NSTouchPhaseCancelled = 1 << 4,
-        NSTouchPhaseTouching = NSTouchPhaseBegan.0 | NSTouchPhaseMoved.0 | NSTouchPhaseStationary.0,
+        NSTouchPhaseTouching = NSTouchPhase::NSTouchPhaseBegan.0
+            | NSTouchPhase::NSTouchPhaseMoved.0
+            | NSTouchPhase::NSTouchPhaseStationary.0,
         NSTouchPhaseAny = NSUIntegerMax as _,
     }
 );
@@ -29,8 +31,8 @@ ns_enum!(
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSTouchTypeMask {
-        NSTouchTypeMaskDirect = 1 << NSTouchTypeDirect.0,
-        NSTouchTypeMaskIndirect = 1 << NSTouchTypeIndirect.0,
+        NSTouchTypeMaskDirect = 1 << NSTouchType::NSTouchTypeDirect.0,
+        NSTouchTypeMaskIndirect = 1 << NSTouchType::NSTouchTypeIndirect.0,
     }
 );
 

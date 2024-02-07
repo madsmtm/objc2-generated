@@ -19,15 +19,12 @@ ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSDateComponentsFormatterZeroFormattingBehavior {
         NSDateComponentsFormatterZeroFormattingBehaviorNone = 0,
-        NSDateComponentsFormatterZeroFormattingBehaviorDefault = 1 << 0,
-        NSDateComponentsFormatterZeroFormattingBehaviorDropLeading = 1 << 1,
-        NSDateComponentsFormatterZeroFormattingBehaviorDropMiddle = 1 << 2,
-        NSDateComponentsFormatterZeroFormattingBehaviorDropTrailing = 1 << 3,
-        NSDateComponentsFormatterZeroFormattingBehaviorDropAll =
-            NSDateComponentsFormatterZeroFormattingBehaviorDropLeading.0
-                | NSDateComponentsFormatterZeroFormattingBehaviorDropMiddle.0
-                | NSDateComponentsFormatterZeroFormattingBehaviorDropTrailing.0,
-        NSDateComponentsFormatterZeroFormattingBehaviorPad = 1 << 16,
+        NSDateComponentsFormatterZeroFormattingBehaviorDefault = 1<<0,
+        NSDateComponentsFormatterZeroFormattingBehaviorDropLeading = 1<<1,
+        NSDateComponentsFormatterZeroFormattingBehaviorDropMiddle = 1<<2,
+        NSDateComponentsFormatterZeroFormattingBehaviorDropTrailing = 1<<3,
+        NSDateComponentsFormatterZeroFormattingBehaviorDropAll = NSDateComponentsFormatterZeroFormattingBehavior::NSDateComponentsFormatterZeroFormattingBehaviorDropLeading.0|NSDateComponentsFormatterZeroFormattingBehavior::NSDateComponentsFormatterZeroFormattingBehaviorDropMiddle.0|NSDateComponentsFormatterZeroFormattingBehavior::NSDateComponentsFormatterZeroFormattingBehaviorDropTrailing.0,
+        NSDateComponentsFormatterZeroFormattingBehaviorPad = 1<<16,
     }
 );
 

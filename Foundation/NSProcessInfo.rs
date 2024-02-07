@@ -159,12 +159,15 @@ ns_options!(
         NSActivityAutomaticTerminationDisabled = 1 << 15,
         NSActivityAnimationTrackingEnabled = 1 << 45,
         NSActivityTrackingEnabled = 1 << 46,
-        NSActivityUserInitiated = 0x00FFFFFF | NSActivityIdleSystemSleepDisabled.0,
-        NSActivityUserInitiatedAllowingIdleSystemSleep =
-            NSActivityUserInitiated.0 & !NSActivityIdleSystemSleepDisabled.0,
+        NSActivityUserInitiated =
+            0x00FFFFFF | NSActivityOptions::NSActivityIdleSystemSleepDisabled.0,
+        NSActivityUserInitiatedAllowingIdleSystemSleep = NSActivityOptions::NSActivityUserInitiated
+            .0
+            & !NSActivityOptions::NSActivityIdleSystemSleepDisabled.0,
         NSActivityBackground = 0x000000FF,
         NSActivityLatencyCritical = 0xFF00000000,
-        NSActivityUserInteractive = NSActivityUserInitiated.0 | NSActivityLatencyCritical.0,
+        NSActivityUserInteractive = NSActivityOptions::NSActivityUserInitiated.0
+            | NSActivityOptions::NSActivityLatencyCritical.0,
     }
 );
 

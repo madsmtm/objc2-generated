@@ -13,7 +13,7 @@ ns_enum!(
     pub enum HKErrorCode {
         HKUnknownError = 0,
         #[deprecated]
-        HKNoError = HKUnknownError.0,
+        HKNoError = HKErrorCode::HKUnknownError.0,
         HKErrorHealthDataUnavailable = 1,
         HKErrorHealthDataRestricted = 2,
         HKErrorInvalidArgument = 3,

@@ -3,15 +3,15 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-extern_static!(NSMapTableStrongMemory: NSPointerFunctionsOptions = NSPointerFunctionsOptions(NSPointerFunctionsStrongMemory.0));
+extern_static!(NSMapTableStrongMemory: NSPointerFunctionsOptions = NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsStrongMemory.0));
 
-extern_static!(NSMapTableZeroingWeakMemory: NSPointerFunctionsOptions = NSPointerFunctionsOptions(NSPointerFunctionsZeroingWeakMemory.0));
+extern_static!(NSMapTableZeroingWeakMemory: NSPointerFunctionsOptions = NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsZeroingWeakMemory.0));
 
-extern_static!(NSMapTableCopyIn: NSPointerFunctionsOptions = NSPointerFunctionsOptions(NSPointerFunctionsCopyIn.0));
+extern_static!(NSMapTableCopyIn: NSPointerFunctionsOptions = NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsCopyIn.0));
 
-extern_static!(NSMapTableObjectPointerPersonality: NSPointerFunctionsOptions = NSPointerFunctionsOptions(NSPointerFunctionsObjectPointerPersonality.0));
+extern_static!(NSMapTableObjectPointerPersonality: NSPointerFunctionsOptions = NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsObjectPointerPersonality.0));
 
-extern_static!(NSMapTableWeakMemory: NSPointerFunctionsOptions = NSPointerFunctionsOptions(NSPointerFunctionsWeakMemory.0));
+extern_static!(NSMapTableWeakMemory: NSPointerFunctionsOptions = NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsWeakMemory.0));
 
 pub type NSMapTableOptions = NSUInteger;
 

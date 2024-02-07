@@ -239,8 +239,8 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSTokenFieldCellDelegate {}
 );
 
-extern_static!(NSDefaultTokenStyle: NSTokenStyle = NSTokenStyle(NSTokenStyleDefault.0));
+extern_static!(NSDefaultTokenStyle: NSTokenStyle = NSTokenStyle(NSTokenStyle::NSTokenStyleDefault.0));
 
-extern_static!(NSPlainTextTokenStyle: NSTokenStyle = NSTokenStyle(NSTokenStyleNone.0));
+extern_static!(NSPlainTextTokenStyle: NSTokenStyle = NSTokenStyle(NSTokenStyle::NSTokenStyleNone.0));
 
-extern_static!(NSRoundedTokenStyle: NSTokenStyle = NSTokenStyle(NSTokenStyleRounded.0));
+extern_static!(NSRoundedTokenStyle: NSTokenStyle = NSTokenStyle(NSTokenStyle::NSTokenStyleRounded.0));

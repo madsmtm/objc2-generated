@@ -103,8 +103,7 @@ ns_enum!(
         HKCategoryValueOvulationTestResultNegative = 1,
         HKCategoryValueOvulationTestResultLuteinizingHormoneSurge = 2,
         #[deprecated]
-        HKCategoryValueOvulationTestResultPositive =
-            HKCategoryValueOvulationTestResultLuteinizingHormoneSurge.0,
+        HKCategoryValueOvulationTestResultPositive = HKCategoryValueOvulationTestResult::HKCategoryValueOvulationTestResultLuteinizingHormoneSurge.0,
         HKCategoryValueOvulationTestResultIndeterminate = 3,
         HKCategoryValueOvulationTestResultEstrogenSurge = 4,
     }
@@ -153,7 +152,8 @@ ns_enum!(
         HKCategoryValueSleepAnalysisInBed = 0,
         HKCategoryValueSleepAnalysisAsleepUnspecified = 1,
         #[deprecated]
-        HKCategoryValueSleepAnalysisAsleep = HKCategoryValueSleepAnalysisAsleepUnspecified.0,
+        HKCategoryValueSleepAnalysisAsleep =
+            HKCategoryValueSleepAnalysis::HKCategoryValueSleepAnalysisAsleepUnspecified.0,
         HKCategoryValueSleepAnalysisAwake = 2,
         HKCategoryValueSleepAnalysisAsleepCore = 3,
         HKCategoryValueSleepAnalysisAsleepDeep = 4,

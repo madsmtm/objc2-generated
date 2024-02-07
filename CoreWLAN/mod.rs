@@ -74,54 +74,5 @@ pub use self::__CoreWLANTypes::CWInterfaceMode;
 pub use self::__CoreWLANTypes::CWKeychainDomain;
 pub use self::__CoreWLANTypes::CWPHYMode;
 pub use self::__CoreWLANTypes::CWSecurity;
-pub use self::__CoreWLANTypes::{
-    kCWAPFullErr, kCWAssociationDeniedErr, kCWAuthenticationAlgorithmUnsupportedErr,
-    kCWChallengeFailureErr, kCWCipherSuiteRejectedErr, kCWDSSSOFDMUnsupportedErr, kCWEAPOLErr,
-    kCWErr, kCWHTFeaturesNotSupportedErr, kCWIPCFailureErr, kCWInvalidAKMPErr,
-    kCWInvalidAuthenticationSequenceNumberErr, kCWInvalidFormatErr, kCWInvalidGroupCipherErr,
-    kCWInvalidInformationElementErr, kCWInvalidPMKErr, kCWInvalidPairwiseCipherErr,
-    kCWInvalidParameterErr, kCWInvalidRSNCapabilitiesErr, kCWNoErr, kCWNoMemoryErr,
-    kCWNotSupportedErr, kCWOperationNotPermittedErr, kCWPCOTransitionTimeNotSupportedErr,
-    kCWReassociationDeniedErr, kCWReferenceNotBoundErr, kCWShortSlotUnsupportedErr,
-    kCWSupplicantTimeoutErr, kCWTimeoutErr, kCWUnknownErr, kCWUnspecifiedFailureErr,
-    kCWUnsupportedCapabilitiesErr, kCWUnsupportedRSNVersionErr, kCWUnsupportedRateSetErr,
-};
-pub use self::__CoreWLANTypes::{
-    kCWChannelBand2GHz, kCWChannelBand5GHz, kCWChannelBand6GHz, kCWChannelBandUnknown,
-};
-pub use self::__CoreWLANTypes::{
-    kCWChannelWidth160MHz, kCWChannelWidth20MHz, kCWChannelWidth40MHz, kCWChannelWidth80MHz,
-    kCWChannelWidthUnknown,
-};
-pub use self::__CoreWLANTypes::{
-    kCWCipherKeyFlagsMulticast, kCWCipherKeyFlagsNone, kCWCipherKeyFlagsRx, kCWCipherKeyFlagsTx,
-    kCWCipherKeyFlagsUnicast,
-};
-pub use self::__CoreWLANTypes::{
-    kCWIBSSModeSecurityNone, kCWIBSSModeSecurityWEP104, kCWIBSSModeSecurityWEP40,
-};
-pub use self::__CoreWLANTypes::{
-    kCWInterfaceModeHostAP, kCWInterfaceModeIBSS, kCWInterfaceModeNone, kCWInterfaceModeStation,
-};
-pub use self::__CoreWLANTypes::{
-    kCWKeychainDomainNone, kCWKeychainDomainSystem, kCWKeychainDomainUser,
-};
-pub use self::__CoreWLANTypes::{
-    kCWPHYMode11a, kCWPHYMode11ac, kCWPHYMode11ax, kCWPHYMode11b, kCWPHYMode11g, kCWPHYMode11n,
-    kCWPHYModeNone,
-};
-pub use self::__CoreWLANTypes::{
-    kCWSecurityDynamicWEP, kCWSecurityEnterprise, kCWSecurityNone, kCWSecurityOWE,
-    kCWSecurityOWETransition, kCWSecurityPersonal, kCWSecurityUnknown, kCWSecurityWEP,
-    kCWSecurityWPA2Enterprise, kCWSecurityWPA2Personal, kCWSecurityWPA3Enterprise,
-    kCWSecurityWPA3Personal, kCWSecurityWPA3Transition, kCWSecurityWPAEnterprise,
-    kCWSecurityWPAEnterpriseMixed, kCWSecurityWPAPersonal, kCWSecurityWPAPersonalMixed,
-};
-pub use self::__CoreWLANTypes::{
-    CWEventTypeBSSIDDidChange, CWEventTypeBtCoexStats, CWEventTypeCountryCodeDidChange,
-    CWEventTypeLinkDidChange, CWEventTypeLinkQualityDidChange, CWEventTypeModeDidChange,
-    CWEventTypeNone, CWEventTypePowerDidChange, CWEventTypeSSIDDidChange,
-    CWEventTypeScanCacheUpdated, CWEventTypeUnknown,
-};
 #[cfg(all(feature = "CoreWLAN_CWNetwork", feature = "Foundation_NSSet"))]
 pub use self::__CoreWLANUtil::CWMergeNetworks;

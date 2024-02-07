@@ -10,8 +10,7 @@ ns_options!(
     pub enum CKSharingParticipantAccessOption {
         CKSharingParticipantAccessOptionAnyoneWithLink = 1 << 0,
         CKSharingParticipantAccessOptionSpecifiedRecipientsOnly = 1 << 1,
-        CKSharingParticipantAccessOptionAny = CKSharingParticipantAccessOptionAnyoneWithLink.0
-            | CKSharingParticipantAccessOptionSpecifiedRecipientsOnly.0,
+        CKSharingParticipantAccessOptionAny = CKSharingParticipantAccessOption::CKSharingParticipantAccessOptionAnyoneWithLink.0 | CKSharingParticipantAccessOption::CKSharingParticipantAccessOptionSpecifiedRecipientsOnly.0,
     }
 );
 
@@ -20,8 +19,7 @@ ns_options!(
     pub enum CKSharingParticipantPermissionOption {
         CKSharingParticipantPermissionOptionReadOnly = 1 << 0,
         CKSharingParticipantPermissionOptionReadWrite = 1 << 1,
-        CKSharingParticipantPermissionOptionAny = CKSharingParticipantPermissionOptionReadOnly.0
-            | CKSharingParticipantPermissionOptionReadWrite.0,
+        CKSharingParticipantPermissionOptionAny = CKSharingParticipantPermissionOption::CKSharingParticipantPermissionOptionReadOnly.0 | CKSharingParticipantPermissionOption::CKSharingParticipantPermissionOptionReadWrite.0,
     }
 );
 

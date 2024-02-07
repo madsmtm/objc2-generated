@@ -118,10 +118,6 @@ pub use self::__CAConstraintLayoutManager::CAConstraint;
 pub use self::__CAConstraintLayoutManager::CAConstraintAttribute;
 #[cfg(feature = "QuartzCore_CAConstraintLayoutManager")]
 pub use self::__CAConstraintLayoutManager::CAConstraintLayoutManager;
-pub use self::__CAConstraintLayoutManager::{
-    kCAConstraintHeight, kCAConstraintMaxX, kCAConstraintMaxY, kCAConstraintMidX,
-    kCAConstraintMidY, kCAConstraintMinX, kCAConstraintMinY, kCAConstraintWidth,
-};
 #[cfg(feature = "QuartzCore_CADisplayLink")]
 pub use self::__CADisplayLink::CADisplayLink;
 #[cfg(feature = "QuartzCore_CAEDRMetadata")]
@@ -193,16 +189,6 @@ pub use self::__CALayer::CALayerContentsGravity;
 pub use self::__CALayer::CALayerCornerCurve;
 pub use self::__CALayer::CALayerDelegate;
 pub use self::__CALayer::CALayoutManager;
-pub use self::__CALayer::{
-    kCALayerBottomEdge, kCALayerLeftEdge, kCALayerRightEdge, kCALayerTopEdge,
-};
-pub use self::__CALayer::{
-    kCALayerHeightSizable, kCALayerMaxXMargin, kCALayerMaxYMargin, kCALayerMinXMargin,
-    kCALayerMinYMargin, kCALayerNotSizable, kCALayerWidthSizable,
-};
-pub use self::__CALayer::{
-    kCALayerMaxXMaxYCorner, kCALayerMaxXMinYCorner, kCALayerMinXMaxYCorner, kCALayerMinXMinYCorner,
-};
 pub use self::__CAMediaTiming::kCAFillModeBackwards;
 pub use self::__CAMediaTiming::kCAFillModeBoth;
 pub use self::__CAMediaTiming::kCAFillModeForwards;

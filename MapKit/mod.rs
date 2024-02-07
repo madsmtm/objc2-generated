@@ -165,15 +165,6 @@ pub use self::__MKAnnotationView::MKFeatureDisplayPriority;
 pub use self::__MKAnnotationView::MKFeatureDisplayPriorityDefaultHigh;
 pub use self::__MKAnnotationView::MKFeatureDisplayPriorityDefaultLow;
 pub use self::__MKAnnotationView::MKFeatureDisplayPriorityRequired;
-pub use self::__MKAnnotationView::{
-    MKAnnotationViewCollisionModeCircle, MKAnnotationViewCollisionModeNone,
-    MKAnnotationViewCollisionModeRectangle,
-};
-pub use self::__MKAnnotationView::{
-    MKAnnotationViewDragStateCanceling, MKAnnotationViewDragStateDragging,
-    MKAnnotationViewDragStateEnding, MKAnnotationViewDragStateNone,
-    MKAnnotationViewDragStateStarting,
-};
 #[cfg(feature = "MapKit_MKCircle")]
 pub use self::__MKCircle::MKCircle;
 #[cfg(feature = "MapKit_MKCircleRenderer")]
@@ -189,9 +180,6 @@ pub use self::__MKDirections::MKETAHandler;
 #[cfg(feature = "MapKit_MKDirectionsRequest")]
 pub use self::__MKDirectionsRequest::MKDirectionsRequest;
 pub use self::__MKDirectionsRequest::MKDirectionsRoutePreference;
-pub use self::__MKDirectionsRequest::{
-    MKDirectionsRoutePreferenceAny, MKDirectionsRoutePreferenceAvoid,
-};
 #[cfg(feature = "MapKit_MKDirectionsResponse")]
 pub use self::__MKDirectionsResponse::MKDirectionsResponse;
 #[cfg(feature = "MapKit_MKETAResponse")]
@@ -201,22 +189,10 @@ pub use self::__MKDirectionsResponse::MKRoute;
 #[cfg(feature = "MapKit_MKRouteStep")]
 pub use self::__MKDirectionsResponse::MKRouteStep;
 pub use self::__MKDirectionsTypes::MKDirectionsTransportType;
-pub use self::__MKDirectionsTypes::{
-    MKDirectionsTransportTypeAny, MKDirectionsTransportTypeAutomobile,
-    MKDirectionsTransportTypeTransit, MKDirectionsTransportTypeWalking,
-};
 #[cfg(feature = "MapKit_MKDistanceFormatter")]
 pub use self::__MKDistanceFormatter::MKDistanceFormatter;
 pub use self::__MKDistanceFormatter::MKDistanceFormatterUnitStyle;
 pub use self::__MKDistanceFormatter::MKDistanceFormatterUnits;
-pub use self::__MKDistanceFormatter::{
-    MKDistanceFormatterUnitStyleAbbreviated, MKDistanceFormatterUnitStyleDefault,
-    MKDistanceFormatterUnitStyleFull,
-};
-pub use self::__MKDistanceFormatter::{
-    MKDistanceFormatterUnitsDefault, MKDistanceFormatterUnitsImperial,
-    MKDistanceFormatterUnitsImperialWithYards, MKDistanceFormatterUnitsMetric,
-};
 #[cfg(feature = "MapKit_MKGeoJSONDecoder")]
 pub use self::__MKGeoJSONSerialization::MKGeoJSONDecoder;
 #[cfg(feature = "MapKit_MKGeoJSONFeature")]
@@ -270,19 +246,9 @@ pub use self::__MKLocalSearchCompleter::MKLocalSearchCompleterResultType;
 #[cfg(feature = "MapKit_MKLocalSearchCompletion")]
 pub use self::__MKLocalSearchCompleter::MKLocalSearchCompletion;
 pub use self::__MKLocalSearchCompleter::MKSearchCompletionFilterType;
-pub use self::__MKLocalSearchCompleter::{
-    MKLocalSearchCompleterResultTypeAddress, MKLocalSearchCompleterResultTypePointOfInterest,
-    MKLocalSearchCompleterResultTypeQuery,
-};
-pub use self::__MKLocalSearchCompleter::{
-    MKSearchCompletionFilterTypeLocationsAndQueries, MKSearchCompletionFilterTypeLocationsOnly,
-};
 #[cfg(feature = "MapKit_MKLocalSearchRequest")]
 pub use self::__MKLocalSearchRequest::MKLocalSearchRequest;
 pub use self::__MKLocalSearchRequest::MKLocalSearchResultType;
-pub use self::__MKLocalSearchRequest::{
-    MKLocalSearchResultTypeAddress, MKLocalSearchResultTypePointOfInterest,
-};
 #[cfg(feature = "MapKit_MKLocalSearchResponse")]
 pub use self::__MKLocalSearchResponse::MKLocalSearchResponse;
 #[cfg(feature = "MapKit_MKLookAroundScene")]
@@ -299,10 +265,6 @@ pub use self::__MKLookAroundViewController::MKLookAroundBadgePosition;
 #[cfg(feature = "MapKit_MKLookAroundViewController")]
 pub use self::__MKLookAroundViewController::MKLookAroundViewController;
 pub use self::__MKLookAroundViewController::MKLookAroundViewControllerDelegate;
-pub use self::__MKLookAroundViewController::{
-    MKLookAroundBadgePositionBottomTrailing, MKLookAroundBadgePositionTopLeading,
-    MKLookAroundBadgePositionTopTrailing,
-};
 #[cfg(feature = "MapKit_MKMapCamera")]
 pub use self::__MKMapCamera::MKMapCamera;
 #[cfg(feature = "MapKit_MKMapCameraBoundary")]
@@ -313,7 +275,6 @@ pub use self::__MKMapCameraZoomRange::MKMapCameraZoomRange;
 #[cfg(feature = "MapKit_MKMapConfiguration")]
 pub use self::__MKMapConfiguration::MKMapConfiguration;
 pub use self::__MKMapConfiguration::MKMapElevationStyle;
-pub use self::__MKMapConfiguration::{MKMapElevationStyleFlat, MKMapElevationStyleRealistic};
 pub use self::__MKMapItem::MKLaunchOptionsCameraKey;
 pub use self::__MKMapItem::MKLaunchOptionsDirectionsModeDefault;
 pub use self::__MKMapItem::MKLaunchOptionsDirectionsModeDriving;
@@ -341,10 +302,6 @@ pub use self::__MKMapView::MKMapViewDefaultClusterAnnotationViewReuseIdentifier;
 pub use self::__MKMapView::MKMapViewDelegate;
 pub use self::__MKMapView::MKOverlayLevel;
 pub use self::__MKMapView::MKUserTrackingMode;
-pub use self::__MKMapView::{MKOverlayLevelAboveLabels, MKOverlayLevelAboveRoads};
-pub use self::__MKMapView::{
-    MKUserTrackingModeFollow, MKUserTrackingModeFollowWithHeading, MKUserTrackingModeNone,
-};
 #[cfg(feature = "MapKit_MKMarkerAnnotationView")]
 pub use self::__MKMarkerAnnotationView::MKMarkerAnnotationView;
 #[cfg(feature = "MapKit_MKMultiPoint")]
@@ -366,9 +323,6 @@ pub use self::__MKOverlayRenderer::MKRoadWidthAtZoomScale;
 pub use self::__MKPinAnnotationView::MKPinAnnotationColor;
 #[cfg(feature = "MapKit_MKPinAnnotationView")]
 pub use self::__MKPinAnnotationView::MKPinAnnotationView;
-pub use self::__MKPinAnnotationView::{
-    MKPinAnnotationColorGreen, MKPinAnnotationColorPurple, MKPinAnnotationColorRed,
-};
 #[cfg(feature = "MapKit_MKPitchControl")]
 pub use self::__MKPitchControl::MKPitchControl;
 #[cfg(feature = "MapKit_MKPlacemark")]
@@ -431,9 +385,6 @@ pub use self::__MKShape::MKShape;
 #[cfg(feature = "MapKit_MKStandardMapConfiguration")]
 pub use self::__MKStandardMapConfiguration::MKStandardMapConfiguration;
 pub use self::__MKStandardMapConfiguration::MKStandardMapEmphasisStyle;
-pub use self::__MKStandardMapConfiguration::{
-    MKStandardMapEmphasisStyleDefault, MKStandardMapEmphasisStyleMuted,
-};
 #[cfg(feature = "MapKit_MKTileOverlay")]
 pub use self::__MKTileOverlay::MKTileOverlay;
 pub use self::__MKTileOverlay::MKTileOverlayPath;
@@ -443,17 +394,6 @@ pub use self::__MKTypes::MKErrorCode;
 pub use self::__MKTypes::MKErrorDomain;
 pub use self::__MKTypes::MKFeatureVisibility;
 pub use self::__MKTypes::MKMapType;
-pub use self::__MKTypes::{
-    MKErrorDecodingFailed, MKErrorDirectionsNotFound, MKErrorLoadingThrottled,
-    MKErrorPlacemarkNotFound, MKErrorServerFailure, MKErrorUnknown,
-};
-pub use self::__MKTypes::{
-    MKFeatureVisibilityAdaptive, MKFeatureVisibilityHidden, MKFeatureVisibilityVisible,
-};
-pub use self::__MKTypes::{
-    MKMapTypeHybrid, MKMapTypeHybridFlyover, MKMapTypeMutedStandard, MKMapTypeSatellite,
-    MKMapTypeSatelliteFlyover, MKMapTypeStandard,
-};
 #[cfg(feature = "MapKit_MKUserLocation")]
 pub use self::__MKUserLocation::MKUserLocation;
 #[cfg(feature = "MapKit_MKUserLocationView")]

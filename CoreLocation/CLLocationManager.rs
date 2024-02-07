@@ -27,7 +27,8 @@ ns_enum!(
         kCLAuthorizationStatusAuthorizedAlways = 3,
         kCLAuthorizationStatusAuthorizedWhenInUse = 4,
         #[deprecated = "Use kCLAuthorizationStatusAuthorizedAlways"]
-        kCLAuthorizationStatusAuthorized = kCLAuthorizationStatusAuthorizedAlways.0,
+        kCLAuthorizationStatusAuthorized =
+            CLAuthorizationStatus::kCLAuthorizationStatusAuthorizedAlways.0,
     }
 );
 

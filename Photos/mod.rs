@@ -133,17 +133,6 @@ pub use self::__PHContentEditingOutput::PHContentEditingOutput;
 pub use self::__PHError::PHLocalIdentifiersErrorKey;
 pub use self::__PHError::PHPhotosError;
 pub use self::__PHError::PHPhotosErrorDomain;
-pub use self::__PHError::{
-    PHPhotosErrorAccessRestricted, PHPhotosErrorAccessUserDenied, PHPhotosErrorChangeNotSupported,
-    PHPhotosErrorIdentifierNotFound, PHPhotosErrorInternalError, PHPhotosErrorInvalid,
-    PHPhotosErrorInvalidResource, PHPhotosErrorLibraryInFileProviderSyncRoot,
-    PHPhotosErrorLibraryVolumeOffline, PHPhotosErrorMissingResource,
-    PHPhotosErrorMultipleIdentifiersFound, PHPhotosErrorNetworkAccessRequired,
-    PHPhotosErrorNetworkError, PHPhotosErrorNotEnoughSpace, PHPhotosErrorOperationInterrupted,
-    PHPhotosErrorPersistentChangeDetailsUnavailable, PHPhotosErrorPersistentChangeTokenExpired,
-    PHPhotosErrorRelinquishingLibraryBundleToWriter, PHPhotosErrorRequestNotSupportedForAsset,
-    PHPhotosErrorSwitchingSystemPhotoLibrary, PHPhotosErrorUserCancelled,
-};
 #[cfg(feature = "Photos_PHFetchOptions")]
 pub use self::__PHFetchOptions::PHFetchOptions;
 #[cfg(feature = "Photos_PHFetchResult")]
@@ -173,27 +162,6 @@ pub use self::__PHImageManager::PHLivePhotoRequestOptions;
 pub use self::__PHImageManager::PHVideoRequestOptions;
 pub use self::__PHImageManager::PHVideoRequestOptionsDeliveryMode;
 pub use self::__PHImageManager::PHVideoRequestOptionsVersion;
-pub use self::__PHImageManager::{
-    PHImageRequestOptionsDeliveryModeFastFormat,
-    PHImageRequestOptionsDeliveryModeHighQualityFormat,
-    PHImageRequestOptionsDeliveryModeOpportunistic,
-};
-pub use self::__PHImageManager::{
-    PHImageRequestOptionsResizeModeExact, PHImageRequestOptionsResizeModeFast,
-    PHImageRequestOptionsResizeModeNone,
-};
-pub use self::__PHImageManager::{
-    PHImageRequestOptionsVersionCurrent, PHImageRequestOptionsVersionOriginal,
-    PHImageRequestOptionsVersionUnadjusted,
-};
-pub use self::__PHImageManager::{
-    PHVideoRequestOptionsDeliveryModeAutomatic, PHVideoRequestOptionsDeliveryModeFastFormat,
-    PHVideoRequestOptionsDeliveryModeHighQualityFormat,
-    PHVideoRequestOptionsDeliveryModeMediumQualityFormat,
-};
-pub use self::__PHImageManager::{
-    PHVideoRequestOptionsVersionCurrent, PHVideoRequestOptionsVersionOriginal,
-};
 #[cfg(feature = "Photos_PHLivePhoto")]
 pub use self::__PHLivePhoto::PHLivePhoto;
 pub use self::__PHLivePhoto::PHLivePhotoInfoCancelledKey;
@@ -209,10 +177,6 @@ pub use self::__PHLivePhotoEditingContext::PHLivePhotoEditingOption;
 pub use self::__PHLivePhotoEditingContext::PHLivePhotoFrame;
 pub use self::__PHLivePhotoEditingContext::PHLivePhotoFrameType;
 pub use self::__PHLivePhotoEditingContext::PHLivePhotoShouldRenderAtPlaybackTime;
-pub use self::__PHLivePhotoEditingContext::{
-    PHLivePhotoEditingErrorCodeAborted, PHLivePhotoEditingErrorCodeUnknown,
-};
-pub use self::__PHLivePhotoEditingContext::{PHLivePhotoFrameTypePhoto, PHLivePhotoFrameTypeVideo};
 #[cfg(feature = "Photos_PHObject")]
 pub use self::__PHObject::PHObject;
 #[cfg(feature = "Photos_PHObjectPlaceholder")]
@@ -231,11 +195,6 @@ pub use self::__PHPhotoLibrary::PHAuthorizationStatus;
 pub use self::__PHPhotoLibrary::PHPhotoLibrary;
 pub use self::__PHPhotoLibrary::PHPhotoLibraryAvailabilityObserver;
 pub use self::__PHPhotoLibrary::PHPhotoLibraryChangeObserver;
-pub use self::__PHPhotoLibrary::{PHAccessLevelAddOnly, PHAccessLevelReadWrite};
-pub use self::__PHPhotoLibrary::{
-    PHAuthorizationStatusAuthorized, PHAuthorizationStatusDenied, PHAuthorizationStatusLimited,
-    PHAuthorizationStatusNotDetermined, PHAuthorizationStatusRestricted,
-};
 #[cfg(feature = "Photos_PHProject")]
 pub use self::__PHProject::PHProject;
 #[cfg(feature = "Photos_PHProjectChangeRequest")]
@@ -254,75 +213,3 @@ pub use self::__PhotosTypes::PHCollectionListSubtype;
 pub use self::__PhotosTypes::PHCollectionListType;
 pub use self::__PhotosTypes::PHImageContentMode;
 pub use self::__PhotosTypes::PHObjectType;
-pub use self::__PhotosTypes::{
-    PHAssetBurstSelectionTypeAutoPick, PHAssetBurstSelectionTypeNone,
-    PHAssetBurstSelectionTypeUserPick,
-};
-pub use self::__PhotosTypes::{
-    PHAssetCollectionSubtypeAlbumCloudShared, PHAssetCollectionSubtypeAlbumImported,
-    PHAssetCollectionSubtypeAlbumMyPhotoStream, PHAssetCollectionSubtypeAlbumRegular,
-    PHAssetCollectionSubtypeAlbumSyncedAlbum, PHAssetCollectionSubtypeAlbumSyncedEvent,
-    PHAssetCollectionSubtypeAlbumSyncedFaces, PHAssetCollectionSubtypeAny,
-    PHAssetCollectionSubtypeSmartAlbumAllHidden, PHAssetCollectionSubtypeSmartAlbumAnimated,
-    PHAssetCollectionSubtypeSmartAlbumBursts, PHAssetCollectionSubtypeSmartAlbumCinematic,
-    PHAssetCollectionSubtypeSmartAlbumDepthEffect, PHAssetCollectionSubtypeSmartAlbumFavorites,
-    PHAssetCollectionSubtypeSmartAlbumGeneric, PHAssetCollectionSubtypeSmartAlbumLivePhotos,
-    PHAssetCollectionSubtypeSmartAlbumLongExposures, PHAssetCollectionSubtypeSmartAlbumPanoramas,
-    PHAssetCollectionSubtypeSmartAlbumRAW, PHAssetCollectionSubtypeSmartAlbumRecentlyAdded,
-    PHAssetCollectionSubtypeSmartAlbumScreenshots, PHAssetCollectionSubtypeSmartAlbumSelfPortraits,
-    PHAssetCollectionSubtypeSmartAlbumSlomoVideos, PHAssetCollectionSubtypeSmartAlbumTimelapses,
-    PHAssetCollectionSubtypeSmartAlbumUnableToUpload,
-    PHAssetCollectionSubtypeSmartAlbumUserLibrary, PHAssetCollectionSubtypeSmartAlbumVideos,
-};
-pub use self::__PhotosTypes::{
-    PHAssetCollectionTypeAlbum, PHAssetCollectionTypeMoment, PHAssetCollectionTypeSmartAlbum,
-};
-pub use self::__PhotosTypes::{
-    PHAssetEditOperationContent, PHAssetEditOperationDelete, PHAssetEditOperationProperties,
-};
-pub use self::__PhotosTypes::{
-    PHAssetMediaSubtypeNone, PHAssetMediaSubtypePhotoDepthEffect, PHAssetMediaSubtypePhotoHDR,
-    PHAssetMediaSubtypePhotoLive, PHAssetMediaSubtypePhotoPanorama,
-    PHAssetMediaSubtypePhotoScreenshot, PHAssetMediaSubtypeVideoCinematic,
-    PHAssetMediaSubtypeVideoHighFrameRate, PHAssetMediaSubtypeVideoStreamed,
-    PHAssetMediaSubtypeVideoTimelapse,
-};
-pub use self::__PhotosTypes::{
-    PHAssetMediaTypeAudio, PHAssetMediaTypeImage, PHAssetMediaTypeUnknown, PHAssetMediaTypeVideo,
-};
-pub use self::__PhotosTypes::{
-    PHAssetPlaybackStyleImage, PHAssetPlaybackStyleImageAnimated, PHAssetPlaybackStyleLivePhoto,
-    PHAssetPlaybackStyleUnsupported, PHAssetPlaybackStyleVideo, PHAssetPlaybackStyleVideoLooping,
-};
-pub use self::__PhotosTypes::{
-    PHAssetResourceTypeAdjustmentBasePairedVideo, PHAssetResourceTypeAdjustmentBasePhoto,
-    PHAssetResourceTypeAdjustmentBaseVideo, PHAssetResourceTypeAdjustmentData,
-    PHAssetResourceTypeAlternatePhoto, PHAssetResourceTypeAudio,
-    PHAssetResourceTypeFullSizePairedVideo, PHAssetResourceTypeFullSizePhoto,
-    PHAssetResourceTypeFullSizeVideo, PHAssetResourceTypePairedVideo, PHAssetResourceTypePhoto,
-    PHAssetResourceTypePhotoProxy, PHAssetResourceTypeVideo,
-};
-pub use self::__PhotosTypes::{
-    PHAssetSourceTypeCloudShared, PHAssetSourceTypeNone, PHAssetSourceTypeUserLibrary,
-    PHAssetSourceTypeiTunesSynced,
-};
-pub use self::__PhotosTypes::{
-    PHCollectionEditOperationAddContent, PHCollectionEditOperationCreateContent,
-    PHCollectionEditOperationDelete, PHCollectionEditOperationDeleteContent,
-    PHCollectionEditOperationRearrangeContent, PHCollectionEditOperationRemoveContent,
-    PHCollectionEditOperationRename,
-};
-pub use self::__PhotosTypes::{
-    PHCollectionListSubtypeAny, PHCollectionListSubtypeMomentListCluster,
-    PHCollectionListSubtypeMomentListYear, PHCollectionListSubtypeRegularFolder,
-    PHCollectionListSubtypeSmartFolderEvents, PHCollectionListSubtypeSmartFolderFaces,
-};
-pub use self::__PhotosTypes::{
-    PHCollectionListTypeFolder, PHCollectionListTypeMomentList, PHCollectionListTypeSmartFolder,
-};
-pub use self::__PhotosTypes::{
-    PHImageContentModeAspectFill, PHImageContentModeAspectFit, PHImageContentModeDefault,
-};
-pub use self::__PhotosTypes::{
-    PHObjectTypeAsset, PHObjectTypeAssetCollection, PHObjectTypeCollectionList,
-};

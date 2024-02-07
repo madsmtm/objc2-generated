@@ -43,30 +43,12 @@ pub use self::__BADownload::BADownloaderPriority;
 pub use self::__BADownload::BADownloaderPriorityDefault;
 pub use self::__BADownload::BADownloaderPriorityMax;
 pub use self::__BADownload::BADownloaderPriorityMin;
-pub use self::__BADownload::{
-    BADownloadStateCreated, BADownloadStateDownloading, BADownloadStateFailed,
-    BADownloadStateFinished, BADownloadStateWaiting,
-};
 #[cfg(feature = "BackgroundAssets_BADownloadManager")]
 pub use self::__BADownloadManager::BADownloadManager;
 pub use self::__BADownloadManager::BADownloadManagerDelegate;
 pub use self::__BADownloaderExtension::BADownloaderExtension;
 pub use self::__BAError::BAErrorCode;
 pub use self::__BAError::BAErrorDomain;
-pub use self::__BAError::{
-    BAErrorCodeCallFromExtensionNotAllowed, BAErrorCodeCallFromInactiveProcessNotAllowed,
-    BAErrorCodeCallerConnectionInvalid, BAErrorCodeCallerConnectionNotAccepted,
-    BAErrorCodeDownloadAlreadyFailed, BAErrorCodeDownloadAlreadyScheduled,
-    BAErrorCodeDownloadBackgroundActivityProhibited,
-    BAErrorCodeDownloadEssentialDownloadNotPermitted, BAErrorCodeDownloadFailedToStart,
-    BAErrorCodeDownloadInvalid, BAErrorCodeDownloadNotScheduled,
-    BAErrorCodeDownloadWouldExceedAllowance, BAErrorCodeSessionDownloadAllowanceExceeded,
-    BAErrorCodeSessionDownloadDisallowedByAllowance, BAErrorCodeSessionDownloadDisallowedByDomain,
-    BAErrorCodeSessionDownloadNotPermittedBeforeAppLaunch,
-};
 pub use self::__BATypes::BAContentRequest;
-pub use self::__BATypes::{
-    BAContentRequestInstall, BAContentRequestPeriodic, BAContentRequestUpdate,
-};
 #[cfg(feature = "BackgroundAssets_BAURLDownload")]
 pub use self::__BAURLDownload::BAURLDownload;

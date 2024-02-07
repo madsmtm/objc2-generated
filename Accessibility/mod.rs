@@ -50,12 +50,6 @@ pub use self::__AXAudiograph::AXLiveAudioGraph;
 #[cfg(feature = "Accessibility_AXNumericDataAxisDescriptor")]
 pub use self::__AXAudiograph::AXNumericDataAxisDescriptor;
 pub use self::__AXAudiograph::AXNumericDataAxisDescriptorScale;
-pub use self::__AXAudiograph::{
-    AXChartContentDirectionBottomToTop, AXChartContentDirectionLeftToRight,
-    AXChartContentDirectionRadialClockwise, AXChartContentDirectionRadialCounterClockwise,
-    AXChartContentDirectionRightToLeft, AXChartContentDirectionTopToBottom,
-};
-pub use self::__AXAudiograph::{AXScaleTypeLinear, AXScaleTypeLn, AXScaleTypeLog10};
 #[cfg(feature = "Accessibility_AXBrailleMap")]
 pub use self::__AXBrailleMap::AXBrailleMap;
 pub use self::__AXBrailleMap::AXBrailleMapRenderer;
@@ -64,9 +58,6 @@ pub use self::__AXCustomContent::AXCustomContent;
 pub use self::__AXCustomContent::AXCustomContentImportance;
 pub use self::__AXCustomContent::AXCustomContentProvider;
 pub use self::__AXCustomContent::AXCustomContentReturnBlock;
-pub use self::__AXCustomContent::{
-    AXCustomContentImportanceDefault, AXCustomContentImportanceHigh,
-};
 pub use self::__AXHearingUtilities::AXHearingDeviceEar;
 #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSUUID"))]
 pub use self::__AXHearingUtilities::AXMFiHearingDevicePairedUUIDs;
@@ -74,9 +65,6 @@ pub use self::__AXHearingUtilities::AXMFiHearingDevicePairedUUIDsDidChangeNotifi
 pub use self::__AXHearingUtilities::AXMFiHearingDeviceStreamingEar;
 pub use self::__AXHearingUtilities::AXMFiHearingDeviceStreamingEarDidChangeNotification;
 pub use self::__AXHearingUtilities::AXSupportsBidirectionalAXMFiHearingDeviceStreaming;
-pub use self::__AXHearingUtilities::{
-    AXHearingDeviceEarBoth, AXHearingDeviceEarLeft, AXHearingDeviceEarNone, AXHearingDeviceEarRight,
-};
 pub use self::__AXSettings::AXAnimatedImagesEnabled;
 pub use self::__AXSettings::AXAnimatedImagesEnabledDidChangeNotification;
 pub use self::__AXSettings::AXPrefersHorizontalTextLayout;

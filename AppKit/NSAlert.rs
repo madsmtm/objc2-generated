@@ -176,8 +176,8 @@ extern_methods!(
     }
 );
 
-extern_static!(NSWarningAlertStyle: NSAlertStyle = NSAlertStyle(NSAlertStyleWarning.0));
+extern_static!(NSWarningAlertStyle: NSAlertStyle = NSAlertStyle(NSAlertStyle::NSAlertStyleWarning.0));
 
-extern_static!(NSInformationalAlertStyle: NSAlertStyle = NSAlertStyle(NSAlertStyleInformational.0));
+extern_static!(NSInformationalAlertStyle: NSAlertStyle = NSAlertStyle(NSAlertStyle::NSAlertStyleInformational.0));
 
-extern_static!(NSCriticalAlertStyle: NSAlertStyle = NSAlertStyle(NSAlertStyleCritical.0));
+extern_static!(NSCriticalAlertStyle: NSAlertStyle = NSAlertStyle(NSAlertStyle::NSAlertStyleCritical.0));

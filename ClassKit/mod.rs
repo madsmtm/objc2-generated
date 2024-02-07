@@ -49,10 +49,6 @@ pub use self::__CLSActivityItem::CLSActivityItem;
 #[cfg(feature = "ClassKit_CLSBinaryItem")]
 pub use self::__CLSBinaryItem::CLSBinaryItem;
 pub use self::__CLSBinaryItem::CLSBinaryValueType;
-pub use self::__CLSBinaryItem::{
-    CLSBinaryValueTypeCorrectIncorrect, CLSBinaryValueTypePassFail, CLSBinaryValueTypeTrueFalse,
-    CLSBinaryValueTypeYesNo,
-};
 #[cfg(feature = "ClassKit_CLSContext")]
 pub use self::__CLSContext::CLSContext;
 pub use self::__CLSContext::CLSContextTopic;
@@ -65,13 +61,6 @@ pub use self::__CLSContext::CLSContextTopicScience;
 pub use self::__CLSContext::CLSContextTopicSocialScience;
 pub use self::__CLSContext::CLSContextTopicWorldLanguage;
 pub use self::__CLSContext::CLSContextType;
-pub use self::__CLSContext::{
-    CLSContextTypeApp, CLSContextTypeAudio, CLSContextTypeBook, CLSContextTypeChallenge,
-    CLSContextTypeChapter, CLSContextTypeCourse, CLSContextTypeCustom, CLSContextTypeDocument,
-    CLSContextTypeExercise, CLSContextTypeGame, CLSContextTypeLesson, CLSContextTypeLevel,
-    CLSContextTypeNone, CLSContextTypePage, CLSContextTypeQuiz, CLSContextTypeSection,
-    CLSContextTypeTask, CLSContextTypeVideo,
-};
 pub use self::__CLSContextProvider::CLSContextProvider;
 #[cfg(feature = "ClassKit_CLSDataStore")]
 pub use self::__CLSDataStore::CLSDataStore;
@@ -89,22 +78,11 @@ pub use self::__CLSDefines::CLSPredicateKeyPathParent;
 pub use self::__CLSDefines::CLSPredicateKeyPathTitle;
 pub use self::__CLSDefines::CLSPredicateKeyPathTopic;
 pub use self::__CLSDefines::CLSPredicateKeyPathUniversalLinkURL;
-pub use self::__CLSDefines::{
-    CLSErrorCodeAuthorizationDenied, CLSErrorCodeClassKitUnavailable,
-    CLSErrorCodeDatabaseInaccessible, CLSErrorCodeInvalidAccountCredentials,
-    CLSErrorCodeInvalidArgument, CLSErrorCodeInvalidCreate, CLSErrorCodeInvalidModification,
-    CLSErrorCodeInvalidUpdate, CLSErrorCodeLimits, CLSErrorCodeNone, CLSErrorCodePartialFailure,
-};
 #[cfg(feature = "ClassKit_CLSObject")]
 pub use self::__CLSObject::CLSObject;
 #[cfg(feature = "ClassKit_CLSProgressReportingCapability")]
 pub use self::__CLSProgressReportingCapability::CLSProgressReportingCapability;
 pub use self::__CLSProgressReportingCapability::CLSProgressReportingCapabilityKind;
-pub use self::__CLSProgressReportingCapability::{
-    CLSProgressReportingCapabilityKindBinary, CLSProgressReportingCapabilityKindDuration,
-    CLSProgressReportingCapabilityKindPercent, CLSProgressReportingCapabilityKindQuantity,
-    CLSProgressReportingCapabilityKindScore,
-};
 #[cfg(feature = "ClassKit_CLSQuantityItem")]
 pub use self::__CLSQuantityItem::CLSQuantityItem;
 #[cfg(feature = "ClassKit_CLSScoreItem")]

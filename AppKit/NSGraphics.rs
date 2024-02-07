@@ -41,63 +41,63 @@ ns_enum!(
     }
 );
 
-extern_static!(NSCompositeClear: NSCompositingOperation = NSCompositingOperation(NSCompositingOperationClear.0));
+extern_static!(NSCompositeClear: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::NSCompositingOperationClear.0));
 
-extern_static!(NSCompositeCopy: NSCompositingOperation = NSCompositingOperation(NSCompositingOperationCopy.0));
+extern_static!(NSCompositeCopy: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::NSCompositingOperationCopy.0));
 
-extern_static!(NSCompositeSourceOver: NSCompositingOperation = NSCompositingOperation(NSCompositingOperationSourceOver.0));
+extern_static!(NSCompositeSourceOver: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::NSCompositingOperationSourceOver.0));
 
-extern_static!(NSCompositeSourceIn: NSCompositingOperation = NSCompositingOperation(NSCompositingOperationSourceIn.0));
+extern_static!(NSCompositeSourceIn: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::NSCompositingOperationSourceIn.0));
 
-extern_static!(NSCompositeSourceOut: NSCompositingOperation = NSCompositingOperation(NSCompositingOperationSourceOut.0));
+extern_static!(NSCompositeSourceOut: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::NSCompositingOperationSourceOut.0));
 
-extern_static!(NSCompositeSourceAtop: NSCompositingOperation = NSCompositingOperation(NSCompositingOperationSourceAtop.0));
+extern_static!(NSCompositeSourceAtop: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::NSCompositingOperationSourceAtop.0));
 
-extern_static!(NSCompositeDestinationOver: NSCompositingOperation = NSCompositingOperation(NSCompositingOperationDestinationOver.0));
+extern_static!(NSCompositeDestinationOver: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::NSCompositingOperationDestinationOver.0));
 
-extern_static!(NSCompositeDestinationIn: NSCompositingOperation = NSCompositingOperation(NSCompositingOperationDestinationIn.0));
+extern_static!(NSCompositeDestinationIn: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::NSCompositingOperationDestinationIn.0));
 
-extern_static!(NSCompositeDestinationOut: NSCompositingOperation = NSCompositingOperation(NSCompositingOperationDestinationOut.0));
+extern_static!(NSCompositeDestinationOut: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::NSCompositingOperationDestinationOut.0));
 
-extern_static!(NSCompositeDestinationAtop: NSCompositingOperation = NSCompositingOperation(NSCompositingOperationDestinationAtop.0));
+extern_static!(NSCompositeDestinationAtop: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::NSCompositingOperationDestinationAtop.0));
 
-extern_static!(NSCompositeXOR: NSCompositingOperation = NSCompositingOperation(NSCompositingOperationXOR.0));
+extern_static!(NSCompositeXOR: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::NSCompositingOperationXOR.0));
 
-extern_static!(NSCompositePlusDarker: NSCompositingOperation = NSCompositingOperation(NSCompositingOperationPlusDarker.0));
+extern_static!(NSCompositePlusDarker: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::NSCompositingOperationPlusDarker.0));
 
-extern_static!(NSCompositeHighlight: NSCompositingOperation = NSCompositingOperation(NSCompositingOperationHighlight.0));
+extern_static!(NSCompositeHighlight: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::NSCompositingOperationHighlight.0));
 
-extern_static!(NSCompositePlusLighter: NSCompositingOperation = NSCompositingOperation(NSCompositingOperationPlusLighter.0));
+extern_static!(NSCompositePlusLighter: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::NSCompositingOperationPlusLighter.0));
 
-extern_static!(NSCompositeMultiply: NSCompositingOperation = NSCompositingOperation(NSCompositingOperationMultiply.0));
+extern_static!(NSCompositeMultiply: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::NSCompositingOperationMultiply.0));
 
-extern_static!(NSCompositeScreen: NSCompositingOperation = NSCompositingOperation(NSCompositingOperationScreen.0));
+extern_static!(NSCompositeScreen: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::NSCompositingOperationScreen.0));
 
-extern_static!(NSCompositeOverlay: NSCompositingOperation = NSCompositingOperation(NSCompositingOperationOverlay.0));
+extern_static!(NSCompositeOverlay: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::NSCompositingOperationOverlay.0));
 
-extern_static!(NSCompositeDarken: NSCompositingOperation = NSCompositingOperation(NSCompositingOperationDarken.0));
+extern_static!(NSCompositeDarken: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::NSCompositingOperationDarken.0));
 
-extern_static!(NSCompositeLighten: NSCompositingOperation = NSCompositingOperation(NSCompositingOperationLighten.0));
+extern_static!(NSCompositeLighten: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::NSCompositingOperationLighten.0));
 
-extern_static!(NSCompositeColorDodge: NSCompositingOperation = NSCompositingOperation(NSCompositingOperationColorDodge.0));
+extern_static!(NSCompositeColorDodge: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::NSCompositingOperationColorDodge.0));
 
-extern_static!(NSCompositeColorBurn: NSCompositingOperation = NSCompositingOperation(NSCompositingOperationColorBurn.0));
+extern_static!(NSCompositeColorBurn: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::NSCompositingOperationColorBurn.0));
 
-extern_static!(NSCompositeSoftLight: NSCompositingOperation = NSCompositingOperation(NSCompositingOperationSoftLight.0));
+extern_static!(NSCompositeSoftLight: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::NSCompositingOperationSoftLight.0));
 
-extern_static!(NSCompositeHardLight: NSCompositingOperation = NSCompositingOperation(NSCompositingOperationHardLight.0));
+extern_static!(NSCompositeHardLight: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::NSCompositingOperationHardLight.0));
 
-extern_static!(NSCompositeDifference: NSCompositingOperation = NSCompositingOperation(NSCompositingOperationDifference.0));
+extern_static!(NSCompositeDifference: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::NSCompositingOperationDifference.0));
 
-extern_static!(NSCompositeExclusion: NSCompositingOperation = NSCompositingOperation(NSCompositingOperationExclusion.0));
+extern_static!(NSCompositeExclusion: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::NSCompositingOperationExclusion.0));
 
-extern_static!(NSCompositeHue: NSCompositingOperation = NSCompositingOperation(NSCompositingOperationHue.0));
+extern_static!(NSCompositeHue: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::NSCompositingOperationHue.0));
 
-extern_static!(NSCompositeSaturation: NSCompositingOperation = NSCompositingOperation(NSCompositingOperationSaturation.0));
+extern_static!(NSCompositeSaturation: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::NSCompositingOperationSaturation.0));
 
-extern_static!(NSCompositeColor: NSCompositingOperation = NSCompositingOperation(NSCompositingOperationColor.0));
+extern_static!(NSCompositeColor: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::NSCompositingOperationColor.0));
 
-extern_static!(NSCompositeLuminosity: NSCompositingOperation = NSCompositingOperation(NSCompositingOperationLuminosity.0));
+extern_static!(NSCompositeLuminosity: NSCompositingOperation = NSCompositingOperation(NSCompositingOperation::NSCompositingOperationLuminosity.0));
 
 ns_enum!(
     #[underlying(NSUInteger)]

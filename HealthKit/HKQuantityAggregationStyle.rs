@@ -12,7 +12,8 @@ ns_enum!(
         HKQuantityAggregationStyleCumulative = 0,
         HKQuantityAggregationStyleDiscreteArithmetic = 1,
         #[deprecated]
-        HKQuantityAggregationStyleDiscrete = HKQuantityAggregationStyleDiscreteArithmetic.0,
+        HKQuantityAggregationStyleDiscrete =
+            HKQuantityAggregationStyle::HKQuantityAggregationStyleDiscreteArithmetic.0,
         HKQuantityAggregationStyleDiscreteTemporallyWeighted = 2,
         HKQuantityAggregationStyleDiscreteEquivalentContinuousLevel = 3,
     }

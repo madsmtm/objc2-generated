@@ -43,33 +43,13 @@ pub use self::__EAAccessoryManager::EAAccessorySelectedKey;
 pub use self::__EAAccessoryManager::EABluetoothAccessoryPickerCompletion;
 pub use self::__EAAccessoryManager::EABluetoothAccessoryPickerErrorCode;
 pub use self::__EAAccessoryManager::EABluetoothAccessoryPickerErrorDomain;
-pub use self::__EAAccessoryManager::{
-    EABluetoothAccessoryPickerAlreadyConnected, EABluetoothAccessoryPickerResultCancelled,
-    EABluetoothAccessoryPickerResultFailed, EABluetoothAccessoryPickerResultNotFound,
-};
 #[cfg(feature = "ExternalAccessory_EASession")]
 pub use self::__EASession::EASession;
 #[cfg(feature = "ExternalAccessory_EAWiFiUnconfiguredAccessory")]
 pub use self::__EAWiFiUnconfiguredAccessory::EAWiFiUnconfiguredAccessory;
 pub use self::__EAWiFiUnconfiguredAccessory::EAWiFiUnconfiguredAccessoryProperties;
-pub use self::__EAWiFiUnconfiguredAccessory::{
-    EAWiFiUnconfiguredAccessoryPropertySupportsAirPlay,
-    EAWiFiUnconfiguredAccessoryPropertySupportsAirPrint,
-    EAWiFiUnconfiguredAccessoryPropertySupportsHomeKit,
-};
 #[cfg(feature = "ExternalAccessory_EAWiFiUnconfiguredAccessoryBrowser")]
 pub use self::__EAWiFiUnconfiguredAccessoryBrowser::EAWiFiUnconfiguredAccessoryBrowser;
 pub use self::__EAWiFiUnconfiguredAccessoryBrowser::EAWiFiUnconfiguredAccessoryBrowserDelegate;
 pub use self::__EAWiFiUnconfiguredAccessoryBrowser::EAWiFiUnconfiguredAccessoryBrowserState;
 pub use self::__EAWiFiUnconfiguredAccessoryBrowser::EAWiFiUnconfiguredAccessoryConfigurationStatus;
-pub use self::__EAWiFiUnconfiguredAccessoryBrowser::{
-    EAWiFiUnconfiguredAccessoryBrowserStateConfiguring,
-    EAWiFiUnconfiguredAccessoryBrowserStateSearching,
-    EAWiFiUnconfiguredAccessoryBrowserStateStopped,
-    EAWiFiUnconfiguredAccessoryBrowserStateWiFiUnavailable,
-};
-pub use self::__EAWiFiUnconfiguredAccessoryBrowser::{
-    EAWiFiUnconfiguredAccessoryConfigurationStatusFailed,
-    EAWiFiUnconfiguredAccessoryConfigurationStatusSuccess,
-    EAWiFiUnconfiguredAccessoryConfigurationStatusUserCancelledConfiguration,
-};

@@ -12,7 +12,7 @@ ns_enum!(
     pub enum PHImageContentMode {
         PHImageContentModeAspectFit = 0,
         PHImageContentModeAspectFill = 1,
-        PHImageContentModeDefault = PHImageContentModeAspectFit.0,
+        PHImageContentModeDefault = PHImageContentMode::PHImageContentModeAspectFit.0,
     }
 );
 

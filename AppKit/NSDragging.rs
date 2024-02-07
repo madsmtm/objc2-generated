@@ -19,7 +19,7 @@ ns_options!(
         #[deprecated]
         NSDragOperationAll_Obsolete = 15,
         #[deprecated]
-        NSDragOperationAll = NSDragOperationAll_Obsolete.0,
+        NSDragOperationAll = NSDragOperation::NSDragOperationAll_Obsolete.0,
     }
 );
 
@@ -45,7 +45,7 @@ ns_enum!(
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSDraggingItemEnumerationOptions {
-        NSDraggingItemEnumerationConcurrent = NSEnumerationConcurrent.0,
+        NSDraggingItemEnumerationConcurrent = NSEnumerationOptions::NSEnumerationConcurrent.0,
         NSDraggingItemEnumerationClearNonenumeratedImages = 1 << 16,
     }
 );

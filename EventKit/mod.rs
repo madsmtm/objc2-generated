@@ -62,42 +62,16 @@ pub use self::__EKCalendar::EKCalendar;
 pub use self::__EKCalendarItem::EKCalendarItem;
 pub use self::__EKError::EKErrorCode;
 pub use self::__EKError::EKErrorDomain;
-pub use self::__EKError::{
-    EKErrorAlarmGreaterThanRecurrence, EKErrorAlarmProximityNotSupported,
-    EKErrorCalendarDoesNotAllowEvents, EKErrorCalendarDoesNotAllowReminders,
-    EKErrorCalendarHasNoSource, EKErrorCalendarIsImmutable, EKErrorCalendarReadOnly,
-    EKErrorCalendarSourceCannotBeModified, EKErrorDatesInverted,
-    EKErrorDurationGreaterThanRecurrence, EKErrorEventNotMutable, EKErrorEventStoreNotAuthorized,
-    EKErrorInternalFailure, EKErrorInvalidEntityType, EKErrorInvalidInviteReplyCalendar,
-    EKErrorInvalidSpan, EKErrorInvitesCannotBeMoved, EKErrorLast, EKErrorNoCalendar,
-    EKErrorNoEndDate, EKErrorNoStartDate, EKErrorNotificationCollectionMismatch,
-    EKErrorNotificationSavedWithoutCollection, EKErrorNotificationsCollectionFlagNotSet,
-    EKErrorOSNotSupported, EKErrorObjectBelongsToDifferentStore, EKErrorPriorityIsInvalid,
-    EKErrorProcedureAlarmsNotMutable, EKErrorRecurringReminderRequiresDueDate,
-    EKErrorReminderAlarmContainsEmailOrUrl, EKErrorReminderLocationsNotSupported,
-    EKErrorSourceDoesNotAllowCalendarAddDelete, EKErrorSourceDoesNotAllowEvents,
-    EKErrorSourceDoesNotAllowReminders, EKErrorSourceMismatch,
-    EKErrorStartDateCollidesWithOtherOccurrence, EKErrorStartDateTooFarInFuture,
-    EKErrorStructuredLocationsNotSupported,
-};
 #[cfg(feature = "EventKit_EKEvent")]
 pub use self::__EKEvent::EKEvent;
 pub use self::__EKEvent::EKEventAvailability;
 pub use self::__EKEvent::EKEventStatus;
-pub use self::__EKEvent::{
-    EKEventAvailabilityBusy, EKEventAvailabilityFree, EKEventAvailabilityNotSupported,
-    EKEventAvailabilityTentative, EKEventAvailabilityUnavailable,
-};
-pub use self::__EKEvent::{
-    EKEventStatusCanceled, EKEventStatusConfirmed, EKEventStatusNone, EKEventStatusTentative,
-};
 pub use self::__EKEventStore::EKEventSearchCallback;
 #[cfg(feature = "EventKit_EKEventStore")]
 pub use self::__EKEventStore::EKEventStore;
 pub use self::__EKEventStore::EKEventStoreChangedNotification;
 pub use self::__EKEventStore::EKEventStoreRequestAccessCompletionHandler;
 pub use self::__EKEventStore::EKSpan;
-pub use self::__EKEventStore::{EKSpanFutureEvents, EKSpanThisEvent};
 #[cfg(feature = "EventKit_EKObject")]
 pub use self::__EKObject::EKObject;
 #[cfg(feature = "EventKit_EKParticipant")]
@@ -129,62 +103,6 @@ pub use self::__EKTypes::EKRecurrenceFrequency;
 pub use self::__EKTypes::EKReminderPriority;
 pub use self::__EKTypes::EKSourceType;
 pub use self::__EKTypes::EKWeekday;
-pub use self::__EKTypes::{EKAlarmProximityEnter, EKAlarmProximityLeave, EKAlarmProximityNone};
-pub use self::__EKTypes::{
-    EKAlarmTypeAudio, EKAlarmTypeDisplay, EKAlarmTypeEmail, EKAlarmTypeProcedure,
-};
-pub use self::__EKTypes::{
-    EKAuthorizationStatusAuthorized, EKAuthorizationStatusDenied, EKAuthorizationStatusFullAccess,
-    EKAuthorizationStatusNotDetermined, EKAuthorizationStatusRestricted,
-    EKAuthorizationStatusWriteOnly,
-};
-pub use self::__EKTypes::{
-    EKCalendarEventAvailabilityBusy, EKCalendarEventAvailabilityFree,
-    EKCalendarEventAvailabilityNone, EKCalendarEventAvailabilityTentative,
-    EKCalendarEventAvailabilityUnavailable,
-};
-pub use self::__EKTypes::{
-    EKCalendarTypeBirthday, EKCalendarTypeCalDAV, EKCalendarTypeExchange, EKCalendarTypeLocal,
-    EKCalendarTypeSubscription,
-};
-pub use self::__EKTypes::{EKEntityMaskEvent, EKEntityMaskReminder};
-pub use self::__EKTypes::{EKEntityTypeEvent, EKEntityTypeReminder};
-pub use self::__EKTypes::{
-    EKFriday, EKMonday, EKSaturday, EKSunday, EKThursday, EKTuesday, EKWednesday, EKWeekdayFriday,
-    EKWeekdayMonday, EKWeekdaySaturday, EKWeekdaySunday, EKWeekdayThursday, EKWeekdayTuesday,
-    EKWeekdayWednesday,
-};
-pub use self::__EKTypes::{
-    EKParticipantRoleChair, EKParticipantRoleNonParticipant, EKParticipantRoleOptional,
-    EKParticipantRoleRequired, EKParticipantRoleUnknown,
-};
-pub use self::__EKTypes::{
-    EKParticipantScheduleStatusCannotDeliver, EKParticipantScheduleStatusDelivered,
-    EKParticipantScheduleStatusDeliveryFailed, EKParticipantScheduleStatusNoPrivileges,
-    EKParticipantScheduleStatusNone, EKParticipantScheduleStatusPending,
-    EKParticipantScheduleStatusRecipientNotAllowed,
-    EKParticipantScheduleStatusRecipientNotRecognized, EKParticipantScheduleStatusSent,
-};
-pub use self::__EKTypes::{
-    EKParticipantStatusAccepted, EKParticipantStatusCompleted, EKParticipantStatusDeclined,
-    EKParticipantStatusDelegated, EKParticipantStatusInProcess, EKParticipantStatusPending,
-    EKParticipantStatusTentative, EKParticipantStatusUnknown,
-};
-pub use self::__EKTypes::{
-    EKParticipantTypeGroup, EKParticipantTypePerson, EKParticipantTypeResource,
-    EKParticipantTypeRoom, EKParticipantTypeUnknown,
-};
-pub use self::__EKTypes::{
-    EKRecurrenceFrequencyDaily, EKRecurrenceFrequencyMonthly, EKRecurrenceFrequencyWeekly,
-    EKRecurrenceFrequencyYearly,
-};
-pub use self::__EKTypes::{
-    EKReminderPriorityHigh, EKReminderPriorityLow, EKReminderPriorityMedium, EKReminderPriorityNone,
-};
-pub use self::__EKTypes::{
-    EKSourceTypeBirthdays, EKSourceTypeCalDAV, EKSourceTypeExchange, EKSourceTypeLocal,
-    EKSourceTypeMobileMe, EKSourceTypeSubscribed,
-};
 #[cfg(feature = "EventKit_EKVirtualConferenceDescriptor")]
 pub use self::__EKVirtualConferenceDescriptor::EKVirtualConferenceDescriptor;
 #[cfg(feature = "EventKit_EKVirtualConferenceRoomTypeDescriptor")]

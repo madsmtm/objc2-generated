@@ -17,7 +17,7 @@ ns_options!(
         HKStatisticsOptionCumulativeSum = 1 << 4,
         HKStatisticsOptionMostRecent = 1 << 5,
         #[deprecated]
-        HKStatisticsOptionDiscreteMostRecent = HKStatisticsOptionMostRecent.0,
+        HKStatisticsOptionDiscreteMostRecent = HKStatisticsOptions::HKStatisticsOptionMostRecent.0,
         HKStatisticsOptionDuration = 1 << 6,
     }
 );

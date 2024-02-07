@@ -141,11 +141,6 @@ pub use self::__CNContact::CNContactType;
 pub use self::__CNContact::CNContactTypeKey;
 pub use self::__CNContact::CNContactUrlAddressesKey;
 pub use self::__CNContact::CNKeyDescriptor;
-pub use self::__CNContact::{
-    CNContactSortOrderFamilyName, CNContactSortOrderGivenName, CNContactSortOrderNone,
-    CNContactSortOrderUserDefault,
-};
-pub use self::__CNContact::{CNContactTypeOrganization, CNContactTypePerson};
 #[cfg(feature = "Contacts_CNContactFetchRequest")]
 pub use self::__CNContactFetchRequest::CNContactFetchRequest;
 pub use self::__CNContactFormatter::CNContactDisplayNameOrder;
@@ -153,13 +148,6 @@ pub use self::__CNContactFormatter::CNContactDisplayNameOrder;
 pub use self::__CNContactFormatter::CNContactFormatter;
 pub use self::__CNContactFormatter::CNContactFormatterStyle;
 pub use self::__CNContactFormatter::CNContactPropertyAttribute;
-pub use self::__CNContactFormatter::{
-    CNContactDisplayNameOrderFamilyNameFirst, CNContactDisplayNameOrderGivenNameFirst,
-    CNContactDisplayNameOrderUserDefault,
-};
-pub use self::__CNContactFormatter::{
-    CNContactFormatterStyleFullName, CNContactFormatterStylePhoneticFullName,
-};
 #[cfg(feature = "Contacts_CNContactProperty")]
 pub use self::__CNContactProperty::CNContactProperty;
 #[cfg(feature = "Contacts_CNContactRelation")]
@@ -385,11 +373,6 @@ pub use self::__CNContactStore::CNAuthorizationStatus;
 pub use self::__CNContactStore::CNContactStore;
 pub use self::__CNContactStore::CNContactStoreDidChangeNotification;
 pub use self::__CNContactStore::CNEntityType;
-pub use self::__CNContactStore::CNEntityTypeContacts;
-pub use self::__CNContactStore::{
-    CNAuthorizationStatusAuthorized, CNAuthorizationStatusDenied,
-    CNAuthorizationStatusNotDetermined, CNAuthorizationStatusRestricted,
-};
 #[cfg(feature = "Contacts_CNContactVCardSerialization")]
 pub use self::__CNContactVCardSerialization::CNContactVCardSerialization;
 #[cfg(feature = "Contacts_CNContactsUserDefaults")]
@@ -400,30 +383,12 @@ pub use self::__CNContainer::CNContainerIdentifierKey;
 pub use self::__CNContainer::CNContainerNameKey;
 pub use self::__CNContainer::CNContainerType;
 pub use self::__CNContainer::CNContainerTypeKey;
-pub use self::__CNContainer::{
-    CNContainerTypeCardDAV, CNContainerTypeExchange, CNContainerTypeLocal,
-    CNContainerTypeUnassigned,
-};
 pub use self::__CNError::CNErrorCode;
 pub use self::__CNError::CNErrorDomain;
 pub use self::__CNError::CNErrorUserInfoAffectedRecordIdentifiersKey;
 pub use self::__CNError::CNErrorUserInfoAffectedRecordsKey;
 pub use self::__CNError::CNErrorUserInfoKeyPathsKey;
 pub use self::__CNError::CNErrorUserInfoValidationErrorsKey;
-pub use self::__CNError::{
-    CNErrorCodeAuthorizationDenied, CNErrorCodeChangeHistoryExpired,
-    CNErrorCodeChangeHistoryInvalidAnchor, CNErrorCodeChangeHistoryInvalidFetchRequest,
-    CNErrorCodeClientIdentifierCollision, CNErrorCodeClientIdentifierDoesNotExist,
-    CNErrorCodeClientIdentifierInvalid, CNErrorCodeCommunicationError, CNErrorCodeContainmentCycle,
-    CNErrorCodeContainmentScope, CNErrorCodeDataAccessError, CNErrorCodeFeatureDisabledByUser,
-    CNErrorCodeFeatureNotAvailable, CNErrorCodeInsertedRecordAlreadyExists,
-    CNErrorCodeNoAccessableWritableContainers, CNErrorCodeParentContainerNotWritable,
-    CNErrorCodeParentRecordDoesNotExist, CNErrorCodePolicyViolation, CNErrorCodePredicateInvalid,
-    CNErrorCodeRecordDoesNotExist, CNErrorCodeRecordIdentifierInvalid,
-    CNErrorCodeRecordNotWritable, CNErrorCodeUnauthorizedKeys, CNErrorCodeVCardMalformed,
-    CNErrorCodeVCardSummarizationError, CNErrorCodeValidationConfigurationError,
-    CNErrorCodeValidationMultipleErrors, CNErrorCodeValidationTypeMismatch,
-};
 #[cfg(feature = "Contacts_CNFetchRequest")]
 pub use self::__CNFetchRequest::CNFetchRequest;
 #[cfg(feature = "Contacts_CNFetchResult")]
@@ -484,7 +449,6 @@ pub use self::__CNPostalAddress::CNPostalAddressSubLocalityKey;
 #[cfg(feature = "Contacts_CNPostalAddressFormatter")]
 pub use self::__CNPostalAddressFormatter::CNPostalAddressFormatter;
 pub use self::__CNPostalAddressFormatter::CNPostalAddressFormatterStyle;
-pub use self::__CNPostalAddressFormatter::CNPostalAddressFormatterStyleMailingAddress;
 pub use self::__CNPostalAddressFormatter::CNPostalAddressLocalizedPropertyNameAttribute;
 pub use self::__CNPostalAddressFormatter::CNPostalAddressPropertyAttribute;
 #[cfg(feature = "Contacts_CNSaveRequest")]

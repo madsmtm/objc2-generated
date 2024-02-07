@@ -525,18 +525,10 @@ pub use self::__DOMEvent::DOM_CAPTURING_PHASE;
 pub use self::__DOMEvent::DOM_NONE;
 pub use self::__DOMEventException::DOMEventException;
 pub use self::__DOMEventException::DOMEventExceptionCode;
-pub use self::__DOMEventException::DOM_UNSPECIFIED_EVENT_TYPE_ERR;
 pub use self::__DOMEventListener::DOMEventListener;
 pub use self::__DOMEventTarget::DOMEventTarget;
 pub use self::__DOMException::DOMException;
 pub use self::__DOMException::DOMExceptionCode;
-pub use self::__DOMException::{
-    DOM_DOMSTRING_SIZE_ERR, DOM_HIERARCHY_REQUEST_ERR, DOM_INDEX_SIZE_ERR, DOM_INUSE_ATTRIBUTE_ERR,
-    DOM_INVALID_ACCESS_ERR, DOM_INVALID_CHARACTER_ERR, DOM_INVALID_MODIFICATION_ERR,
-    DOM_INVALID_STATE_ERR, DOM_NAMESPACE_ERR, DOM_NOT_FOUND_ERR, DOM_NOT_SUPPORTED_ERR,
-    DOM_NO_DATA_ALLOWED_ERR, DOM_NO_MODIFICATION_ALLOWED_ERR, DOM_SYNTAX_ERR,
-    DOM_WRONG_DOCUMENT_ERR,
-};
 #[cfg(feature = "WebKit_DOMFile")]
 pub use self::__DOMFile::DOMFile;
 #[cfg(feature = "WebKit_DOMFileList")]
@@ -741,7 +733,6 @@ pub use self::__DOMRange::DOM_START_TO_END;
 pub use self::__DOMRange::DOM_START_TO_START;
 pub use self::__DOMRangeException::DOMRangeException;
 pub use self::__DOMRangeException::DOMRangeExceptionCode;
-pub use self::__DOMRangeException::{DOM_BAD_BOUNDARYPOINTS_ERR, DOM_INVALID_NODE_TYPE_ERR};
 #[cfg(feature = "WebKit_DOMRect")]
 pub use self::__DOMRect::DOMRect;
 #[cfg(feature = "WebKit_DOMStyleSheet")]
@@ -761,7 +752,6 @@ pub use self::__DOMWheelEvent::DOM_DOM_DELTA_PAGE;
 pub use self::__DOMWheelEvent::DOM_DOM_DELTA_PIXEL;
 pub use self::__DOMXPathException::DOMXPathException;
 pub use self::__DOMXPathException::DOMXPathExceptionCode;
-pub use self::__DOMXPathException::{DOM_INVALID_EXPRESSION_ERR, DOM_TYPE_ERR};
 #[cfg(feature = "WebKit_DOMXPathExpression")]
 pub use self::__DOMXPathExpression::DOMXPathExpression;
 pub use self::__DOMXPathNSResolver::DOMXPathNSResolver;
@@ -795,21 +785,8 @@ pub use self::__WKContentWorld::WKContentWorld;
 pub use self::__WKDownload::WKDownload;
 pub use self::__WKDownloadDelegate::WKDownloadDelegate;
 pub use self::__WKDownloadDelegate::WKDownloadRedirectPolicy;
-pub use self::__WKDownloadDelegate::{
-    WKDownloadRedirectPolicyAllow, WKDownloadRedirectPolicyCancel,
-};
 pub use self::__WKError::WKErrorCode;
 pub use self::__WKError::WKErrorDomain;
-pub use self::__WKError::{
-    WKErrorAttributedStringContentFailedToLoad, WKErrorAttributedStringContentLoadTimedOut,
-    WKErrorContentRuleListStoreCompileFailed, WKErrorContentRuleListStoreLookUpFailed,
-    WKErrorContentRuleListStoreRemoveFailed, WKErrorContentRuleListStoreVersionMismatch,
-    WKErrorCredentialNotFound, WKErrorDuplicateCredential, WKErrorJavaScriptAppBoundDomain,
-    WKErrorJavaScriptExceptionOccurred, WKErrorJavaScriptInvalidFrameTarget,
-    WKErrorJavaScriptResultTypeIsUnsupported, WKErrorMalformedCredential,
-    WKErrorNavigationAppBoundDomain, WKErrorUnknown, WKErrorWebContentProcessTerminated,
-    WKErrorWebViewInvalidated,
-};
 #[cfg(feature = "WebKit_WKFindConfiguration")]
 pub use self::__WKFindConfiguration::WKFindConfiguration;
 #[cfg(feature = "WebKit_WKFindResult")]
@@ -820,26 +797,14 @@ pub use self::__WKHTTPCookieStore::WKCookiePolicy;
 #[cfg(feature = "WebKit_WKHTTPCookieStore")]
 pub use self::__WKHTTPCookieStore::WKHTTPCookieStore;
 pub use self::__WKHTTPCookieStore::WKHTTPCookieStoreObserver;
-pub use self::__WKHTTPCookieStore::{WKCookiePolicyAllow, WKCookiePolicyDisallow};
 #[cfg(feature = "WebKit_WKNavigation")]
 pub use self::__WKNavigation::WKNavigation;
 #[cfg(feature = "WebKit_WKNavigationAction")]
 pub use self::__WKNavigationAction::WKNavigationAction;
 pub use self::__WKNavigationAction::WKNavigationType;
-pub use self::__WKNavigationAction::{
-    WKNavigationTypeBackForward, WKNavigationTypeFormResubmitted, WKNavigationTypeFormSubmitted,
-    WKNavigationTypeLinkActivated, WKNavigationTypeOther, WKNavigationTypeReload,
-};
 pub use self::__WKNavigationDelegate::WKNavigationActionPolicy;
 pub use self::__WKNavigationDelegate::WKNavigationDelegate;
 pub use self::__WKNavigationDelegate::WKNavigationResponsePolicy;
-pub use self::__WKNavigationDelegate::{
-    WKNavigationActionPolicyAllow, WKNavigationActionPolicyCancel, WKNavigationActionPolicyDownload,
-};
-pub use self::__WKNavigationDelegate::{
-    WKNavigationResponsePolicyAllow, WKNavigationResponsePolicyCancel,
-    WKNavigationResponsePolicyDownload,
-};
 #[cfg(feature = "WebKit_WKNavigationResponse")]
 pub use self::__WKNavigationResponse::WKNavigationResponse;
 #[cfg(feature = "WebKit_WKOpenPanelParameters")]
@@ -849,10 +814,6 @@ pub use self::__WKPDFConfiguration::WKPDFConfiguration;
 pub use self::__WKPreferences::WKInactiveSchedulingPolicy;
 #[cfg(feature = "WebKit_WKPreferences")]
 pub use self::__WKPreferences::WKPreferences;
-pub use self::__WKPreferences::{
-    WKInactiveSchedulingPolicyNone, WKInactiveSchedulingPolicySuspend,
-    WKInactiveSchedulingPolicyThrottle,
-};
 #[cfg(feature = "WebKit_WKProcessPool")]
 pub use self::__WKProcessPool::WKProcessPool;
 #[cfg(feature = "WebKit_WKScriptMessage")]
@@ -867,15 +828,6 @@ pub use self::__WKUIDelegate::WKDialogResult;
 pub use self::__WKUIDelegate::WKMediaCaptureType;
 pub use self::__WKUIDelegate::WKPermissionDecision;
 pub use self::__WKUIDelegate::WKUIDelegate;
-pub use self::__WKUIDelegate::{
-    WKDialogResultAskAgain, WKDialogResultHandled, WKDialogResultShowDefault,
-};
-pub use self::__WKUIDelegate::{
-    WKMediaCaptureTypeCamera, WKMediaCaptureTypeCameraAndMicrophone, WKMediaCaptureTypeMicrophone,
-};
-pub use self::__WKUIDelegate::{
-    WKPermissionDecisionDeny, WKPermissionDecisionGrant, WKPermissionDecisionPrompt,
-};
 pub use self::__WKURLSchemeHandler::WKURLSchemeHandler;
 pub use self::__WKURLSchemeTask::WKURLSchemeTask;
 #[cfg(feature = "WebKit_WKUserContentController")]
@@ -883,42 +835,18 @@ pub use self::__WKUserContentController::WKUserContentController;
 #[cfg(feature = "WebKit_WKUserScript")]
 pub use self::__WKUserScript::WKUserScript;
 pub use self::__WKUserScript::WKUserScriptInjectionTime;
-pub use self::__WKUserScript::{
-    WKUserScriptInjectionTimeAtDocumentEnd, WKUserScriptInjectionTimeAtDocumentStart,
-};
 pub use self::__WKWebView::WKFullscreenState;
 pub use self::__WKWebView::WKMediaCaptureState;
 pub use self::__WKWebView::WKMediaPlaybackState;
 #[cfg(feature = "WebKit_WKWebView")]
 pub use self::__WKWebView::WKWebView;
-pub use self::__WKWebView::{
-    WKFullscreenStateEnteringFullscreen, WKFullscreenStateExitingFullscreen,
-    WKFullscreenStateInFullscreen, WKFullscreenStateNotInFullscreen,
-};
-pub use self::__WKWebView::{
-    WKMediaCaptureStateActive, WKMediaCaptureStateMuted, WKMediaCaptureStateNone,
-};
-pub use self::__WKWebView::{
-    WKMediaPlaybackStateNone, WKMediaPlaybackStatePaused, WKMediaPlaybackStatePlaying,
-    WKMediaPlaybackStateSuspended,
-};
 pub use self::__WKWebViewConfiguration::WKAudiovisualMediaTypes;
 pub use self::__WKWebViewConfiguration::WKUserInterfaceDirectionPolicy;
 #[cfg(feature = "WebKit_WKWebViewConfiguration")]
 pub use self::__WKWebViewConfiguration::WKWebViewConfiguration;
-pub use self::__WKWebViewConfiguration::{
-    WKAudiovisualMediaTypeAll, WKAudiovisualMediaTypeAudio, WKAudiovisualMediaTypeNone,
-    WKAudiovisualMediaTypeVideo,
-};
-pub use self::__WKWebViewConfiguration::{
-    WKUserInterfaceDirectionPolicyContent, WKUserInterfaceDirectionPolicySystem,
-};
 pub use self::__WKWebpagePreferences::WKContentMode;
 #[cfg(feature = "WebKit_WKWebpagePreferences")]
 pub use self::__WKWebpagePreferences::WKWebpagePreferences;
-pub use self::__WKWebpagePreferences::{
-    WKContentModeDesktop, WKContentModeMobile, WKContentModeRecommended,
-};
 #[cfg(feature = "WebKit_WKWebsiteDataRecord")]
 pub use self::__WKWebsiteDataRecord::WKWebsiteDataRecord;
 pub use self::__WKWebsiteDataRecord::WKWebsiteDataTypeCookies;
@@ -955,9 +883,6 @@ pub use self::__WebDownload::WebDownload;
 pub use self::__WebDownload::WebDownloadDelegate;
 pub use self::__WebEditingDelegate::WebEditingDelegate;
 pub use self::__WebEditingDelegate::WebViewInsertAction;
-pub use self::__WebEditingDelegate::{
-    WebViewInsertActionDropped, WebViewInsertActionPasted, WebViewInsertActionTyped,
-};
 #[cfg(feature = "WebKit_WebFrame")]
 pub use self::__WebFrame::WebFrame;
 pub use self::__WebFrameLoadDelegate::WebFrameLoadDelegate;
@@ -1001,17 +926,10 @@ pub use self::__WebPolicyDelegate::WebActionOriginalURLKey;
 pub use self::__WebPolicyDelegate::WebNavigationType;
 pub use self::__WebPolicyDelegate::WebPolicyDecisionListener;
 pub use self::__WebPolicyDelegate::WebPolicyDelegate;
-pub use self::__WebPolicyDelegate::{
-    WebNavigationTypeBackForward, WebNavigationTypeFormResubmitted, WebNavigationTypeFormSubmitted,
-    WebNavigationTypeLinkClicked, WebNavigationTypeOther, WebNavigationTypeReload,
-};
 pub use self::__WebPreferences::WebCacheModel;
 #[cfg(feature = "WebKit_WebPreferences")]
 pub use self::__WebPreferences::WebPreferences;
 pub use self::__WebPreferences::WebPreferencesChangedNotification;
-pub use self::__WebPreferences::{
-    WebCacheModelDocumentBrowser, WebCacheModelDocumentViewer, WebCacheModelPrimaryWebBrowser,
-};
 #[cfg(feature = "WebKit_WebResource")]
 pub use self::__WebResource::WebResource;
 pub use self::__WebResourceLoadDelegate::WebResourceLoadDelegate;
@@ -1056,14 +974,6 @@ pub use self::__WebUIDelegate::WebMenuItemTagSpellingGuess;
 pub use self::__WebUIDelegate::WebMenuItemTagStop;
 pub use self::__WebUIDelegate::WebOpenPanelResultListener;
 pub use self::__WebUIDelegate::WebUIDelegate;
-pub use self::__WebUIDelegate::{
-    WebDragDestinationActionAny, WebDragDestinationActionDHTML, WebDragDestinationActionEdit,
-    WebDragDestinationActionLoad, WebDragDestinationActionNone,
-};
-pub use self::__WebUIDelegate::{
-    WebDragSourceActionAny, WebDragSourceActionDHTML, WebDragSourceActionImage,
-    WebDragSourceActionLink, WebDragSourceActionNone, WebDragSourceActionSelection,
-};
 pub use self::__WebView::WebElementDOMNodeKey;
 pub use self::__WebView::WebElementFrameKey;
 pub use self::__WebView::WebElementImageAltStringKey;

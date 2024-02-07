@@ -82,10 +82,6 @@ pub use self::__CXCallDirectoryExtensionContext::CXCallDirectoryExtensionContext
 pub use self::__CXCallDirectoryManager::CXCallDirectoryEnabledStatus;
 #[cfg(feature = "CallKit_CXCallDirectoryManager")]
 pub use self::__CXCallDirectoryManager::CXCallDirectoryManager;
-pub use self::__CXCallDirectoryManager::{
-    CXCallDirectoryEnabledStatusDisabled, CXCallDirectoryEnabledStatusEnabled,
-    CXCallDirectoryEnabledStatusUnknown,
-};
 #[cfg(feature = "CallKit_CXCallDirectoryProvider")]
 pub use self::__CXCallDirectoryProvider::CXCallDirectoryProvider;
 #[cfg(feature = "CallKit_CXCallObserver")]
@@ -105,63 +101,16 @@ pub use self::__CXError::CXErrorDomainCallDirectoryManager;
 pub use self::__CXError::CXErrorDomainIncomingCall;
 pub use self::__CXError::CXErrorDomainNotificationServiceExtension;
 pub use self::__CXError::CXErrorDomainRequestTransaction;
-pub use self::__CXError::{
-    CXErrorCodeCallDirectoryManagerErrorCurrentlyLoading,
-    CXErrorCodeCallDirectoryManagerErrorDuplicateEntries,
-    CXErrorCodeCallDirectoryManagerErrorEntriesOutOfOrder,
-    CXErrorCodeCallDirectoryManagerErrorExtensionDisabled,
-    CXErrorCodeCallDirectoryManagerErrorLoadingInterrupted,
-    CXErrorCodeCallDirectoryManagerErrorMaximumEntriesExceeded,
-    CXErrorCodeCallDirectoryManagerErrorNoExtensionFound,
-    CXErrorCodeCallDirectoryManagerErrorUnexpectedIncrementalRemoval,
-    CXErrorCodeCallDirectoryManagerErrorUnknown,
-};
-pub use self::__CXError::{
-    CXErrorCodeIncomingCallErrorCallUUIDAlreadyExists,
-    CXErrorCodeIncomingCallErrorFilteredByBlockList,
-    CXErrorCodeIncomingCallErrorFilteredByDoNotDisturb,
-    CXErrorCodeIncomingCallErrorFilteredDuringRestrictedSharingMode,
-    CXErrorCodeIncomingCallErrorUnentitled, CXErrorCodeIncomingCallErrorUnknown,
-};
-pub use self::__CXError::{
-    CXErrorCodeInvalidArgument, CXErrorCodeMissingVoIPBackgroundMode, CXErrorCodeUnentitled,
-    CXErrorCodeUnknownError,
-};
-pub use self::__CXError::{
-    CXErrorCodeNotificationServiceExtensionErrorInvalidClientProcess,
-    CXErrorCodeNotificationServiceExtensionErrorMissingNotificationFilteringEntitlement,
-    CXErrorCodeNotificationServiceExtensionErrorUnknown,
-};
-pub use self::__CXError::{
-    CXErrorCodeRequestTransactionErrorCallUUIDAlreadyExists,
-    CXErrorCodeRequestTransactionErrorEmptyTransaction,
-    CXErrorCodeRequestTransactionErrorInvalidAction,
-    CXErrorCodeRequestTransactionErrorMaximumCallGroupsReached,
-    CXErrorCodeRequestTransactionErrorUnentitled, CXErrorCodeRequestTransactionErrorUnknown,
-    CXErrorCodeRequestTransactionErrorUnknownCallProvider,
-    CXErrorCodeRequestTransactionErrorUnknownCallUUID,
-};
 #[cfg(feature = "CallKit_CXHandle")]
 pub use self::__CXHandle::CXHandle;
 pub use self::__CXHandle::CXHandleType;
-pub use self::__CXHandle::{
-    CXHandleTypeEmailAddress, CXHandleTypeGeneric, CXHandleTypePhoneNumber,
-};
 #[cfg(feature = "CallKit_CXPlayDTMFCallAction")]
 pub use self::__CXPlayDTMFCallAction::CXPlayDTMFCallAction;
 pub use self::__CXPlayDTMFCallAction::CXPlayDTMFCallActionType;
-pub use self::__CXPlayDTMFCallAction::{
-    CXPlayDTMFCallActionTypeHardPause, CXPlayDTMFCallActionTypeSingleTone,
-    CXPlayDTMFCallActionTypeSoftPause,
-};
 pub use self::__CXProvider::CXCallEndedReason;
 #[cfg(feature = "CallKit_CXProvider")]
 pub use self::__CXProvider::CXProvider;
 pub use self::__CXProvider::CXProviderDelegate;
-pub use self::__CXProvider::{
-    CXCallEndedReasonAnsweredElsewhere, CXCallEndedReasonDeclinedElsewhere,
-    CXCallEndedReasonFailed, CXCallEndedReasonRemoteEnded, CXCallEndedReasonUnanswered,
-};
 #[cfg(feature = "CallKit_CXProviderConfiguration")]
 pub use self::__CXProviderConfiguration::CXProviderConfiguration;
 #[cfg(feature = "CallKit_CXSetGroupCallAction")]

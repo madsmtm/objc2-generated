@@ -46,21 +46,6 @@ pub use self::__LAContext::LABiometryType;
 pub use self::__LAContext::LAContext;
 pub use self::__LAContext::LAPolicy;
 pub use self::__LAContext::LATouchIDAuthenticationMaximumAllowableReuseDuration;
-pub use self::__LAContext::{
-    LAAccessControlOperationCreateItem, LAAccessControlOperationCreateKey,
-    LAAccessControlOperationUseItem, LAAccessControlOperationUseKeyDecrypt,
-    LAAccessControlOperationUseKeyKeyExchange, LAAccessControlOperationUseKeySign,
-};
-pub use self::__LAContext::{
-    LABiometryNone, LABiometryTypeFaceID, LABiometryTypeNone, LABiometryTypeOpticID,
-    LABiometryTypeTouchID,
-};
-pub use self::__LAContext::{
-    LAPolicyDeviceOwnerAuthentication, LAPolicyDeviceOwnerAuthenticationWithBiometrics,
-    LAPolicyDeviceOwnerAuthenticationWithBiometricsOrWatch,
-    LAPolicyDeviceOwnerAuthenticationWithWatch,
-    LAPolicyDeviceOwnerAuthenticationWithWristDetection,
-};
 pub use self::__LAError::LAErrorDomain;
 #[cfg(feature = "LocalAuthentication_LAPersistedRight")]
 pub use self::__LAPersistedRight::LAPersistedRight;
@@ -75,9 +60,6 @@ pub use self::__LARequirement::LABiometryFallbackRequirement;
 #[cfg(feature = "LocalAuthentication_LARight")]
 pub use self::__LARight::LARight;
 pub use self::__LARight::LARightState;
-pub use self::__LARight::{
-    LARightStateAuthorized, LARightStateAuthorizing, LARightStateNotAuthorized, LARightStateUnknown,
-};
 #[cfg(feature = "LocalAuthentication_LARightStore")]
 pub use self::__LARightStore::LARightStore;
 #[cfg(feature = "LocalAuthentication_LASecret")]

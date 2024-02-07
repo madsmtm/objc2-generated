@@ -333,8 +333,8 @@ ns_enum!(
     }
 );
 
-extern_static!(NSAutoPagination: NSPrintingPaginationMode = NSPrintingPaginationMode(NSPrintingPaginationModeAutomatic.0));
+extern_static!(NSAutoPagination: NSPrintingPaginationMode = NSPrintingPaginationMode(NSPrintingPaginationMode::NSPrintingPaginationModeAutomatic.0));
 
-extern_static!(NSFitPagination: NSPrintingPaginationMode = NSPrintingPaginationMode(NSPrintingPaginationModeFit.0));
+extern_static!(NSFitPagination: NSPrintingPaginationMode = NSPrintingPaginationMode(NSPrintingPaginationMode::NSPrintingPaginationModeFit.0));
 
-extern_static!(NSClipPagination: NSPrintingPaginationMode = NSPrintingPaginationMode(NSPrintingPaginationModeClip.0));
+extern_static!(NSClipPagination: NSPrintingPaginationMode = NSPrintingPaginationMode(NSPrintingPaginationMode::NSPrintingPaginationModeClip.0));

@@ -363,28 +363,28 @@ extern_methods!(
     }
 );
 
-extern_static!(NSTIFFFileType: NSBitmapImageFileType = NSBitmapImageFileType(NSBitmapImageFileTypeTIFF.0));
+extern_static!(NSTIFFFileType: NSBitmapImageFileType = NSBitmapImageFileType(NSBitmapImageFileType::NSBitmapImageFileTypeTIFF.0));
 
-extern_static!(NSBMPFileType: NSBitmapImageFileType = NSBitmapImageFileType(NSBitmapImageFileTypeBMP.0));
+extern_static!(NSBMPFileType: NSBitmapImageFileType = NSBitmapImageFileType(NSBitmapImageFileType::NSBitmapImageFileTypeBMP.0));
 
-extern_static!(NSGIFFileType: NSBitmapImageFileType = NSBitmapImageFileType(NSBitmapImageFileTypeGIF.0));
+extern_static!(NSGIFFileType: NSBitmapImageFileType = NSBitmapImageFileType(NSBitmapImageFileType::NSBitmapImageFileTypeGIF.0));
 
-extern_static!(NSJPEGFileType: NSBitmapImageFileType = NSBitmapImageFileType(NSBitmapImageFileTypeJPEG.0));
+extern_static!(NSJPEGFileType: NSBitmapImageFileType = NSBitmapImageFileType(NSBitmapImageFileType::NSBitmapImageFileTypeJPEG.0));
 
-extern_static!(NSPNGFileType: NSBitmapImageFileType = NSBitmapImageFileType(NSBitmapImageFileTypePNG.0));
+extern_static!(NSPNGFileType: NSBitmapImageFileType = NSBitmapImageFileType(NSBitmapImageFileType::NSBitmapImageFileTypePNG.0));
 
-extern_static!(NSJPEG2000FileType: NSBitmapImageFileType = NSBitmapImageFileType(NSBitmapImageFileTypeJPEG2000.0));
+extern_static!(NSJPEG2000FileType: NSBitmapImageFileType = NSBitmapImageFileType(NSBitmapImageFileType::NSBitmapImageFileTypeJPEG2000.0));
 
-extern_static!(NSAlphaFirstBitmapFormat: NSBitmapFormat = NSBitmapFormat(NSBitmapFormatAlphaFirst.0));
+extern_static!(NSAlphaFirstBitmapFormat: NSBitmapFormat = NSBitmapFormat(NSBitmapFormat::NSBitmapFormatAlphaFirst.0));
 
-extern_static!(NSAlphaNonpremultipliedBitmapFormat: NSBitmapFormat = NSBitmapFormat(NSBitmapFormatAlphaNonpremultiplied.0));
+extern_static!(NSAlphaNonpremultipliedBitmapFormat: NSBitmapFormat = NSBitmapFormat(NSBitmapFormat::NSBitmapFormatAlphaNonpremultiplied.0));
 
-extern_static!(NSFloatingPointSamplesBitmapFormat: NSBitmapFormat = NSBitmapFormat(NSBitmapFormatFloatingPointSamples.0));
+extern_static!(NSFloatingPointSamplesBitmapFormat: NSBitmapFormat = NSBitmapFormat(NSBitmapFormat::NSBitmapFormatFloatingPointSamples.0));
 
-extern_static!(NS16BitLittleEndianBitmapFormat: NSBitmapFormat = NSBitmapFormat(NSBitmapFormatSixteenBitLittleEndian.0));
+extern_static!(NS16BitLittleEndianBitmapFormat: NSBitmapFormat = NSBitmapFormat(NSBitmapFormat::NSBitmapFormatSixteenBitLittleEndian.0));
 
-extern_static!(NS32BitLittleEndianBitmapFormat: NSBitmapFormat = NSBitmapFormat(NSBitmapFormatThirtyTwoBitLittleEndian.0));
+extern_static!(NS32BitLittleEndianBitmapFormat: NSBitmapFormat = NSBitmapFormat(NSBitmapFormat::NSBitmapFormatThirtyTwoBitLittleEndian.0));
 
-extern_static!(NS16BitBigEndianBitmapFormat: NSBitmapFormat = NSBitmapFormat(NSBitmapFormatSixteenBitBigEndian.0));
+extern_static!(NS16BitBigEndianBitmapFormat: NSBitmapFormat = NSBitmapFormat(NSBitmapFormat::NSBitmapFormatSixteenBitBigEndian.0));
 
-extern_static!(NS32BitBigEndianBitmapFormat: NSBitmapFormat = NSBitmapFormat(NSBitmapFormatThirtyTwoBitBigEndian.0));
+extern_static!(NS32BitBigEndianBitmapFormat: NSBitmapFormat = NSBitmapFormat(NSBitmapFormat::NSBitmapFormatThirtyTwoBitBigEndian.0));

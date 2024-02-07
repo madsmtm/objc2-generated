@@ -46,7 +46,3 @@ pub use self::__BGTaskRequest::BGTaskRequest;
 pub use self::__BGTaskScheduler::BGTaskScheduler;
 pub use self::__BGTaskScheduler::BGTaskSchedulerErrorCode;
 pub use self::__BGTaskScheduler::BGTaskSchedulerErrorDomain;
-pub use self::__BGTaskScheduler::{
-    BGTaskSchedulerErrorCodeNotPermitted, BGTaskSchedulerErrorCodeTooManyPendingTaskRequests,
-    BGTaskSchedulerErrorCodeUnavailable,
-};

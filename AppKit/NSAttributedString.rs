@@ -616,17 +616,17 @@ extern_category!(
     unsafe impl NSMutableAttributedStringKitAdditions for NSMutableAttributedString {}
 );
 
-extern_static!(NSUnderlinePatternSolid: NSUnderlineStyle = NSUnderlineStyle(NSUnderlineStylePatternSolid.0));
+extern_static!(NSUnderlinePatternSolid: NSUnderlineStyle = NSUnderlineStyle(NSUnderlineStyle::NSUnderlineStylePatternSolid.0));
 
-extern_static!(NSUnderlinePatternDot: NSUnderlineStyle = NSUnderlineStyle(NSUnderlineStylePatternDot.0));
+extern_static!(NSUnderlinePatternDot: NSUnderlineStyle = NSUnderlineStyle(NSUnderlineStyle::NSUnderlineStylePatternDot.0));
 
-extern_static!(NSUnderlinePatternDash: NSUnderlineStyle = NSUnderlineStyle(NSUnderlineStylePatternDash.0));
+extern_static!(NSUnderlinePatternDash: NSUnderlineStyle = NSUnderlineStyle(NSUnderlineStyle::NSUnderlineStylePatternDash.0));
 
-extern_static!(NSUnderlinePatternDashDot: NSUnderlineStyle = NSUnderlineStyle(NSUnderlineStylePatternDashDot.0));
+extern_static!(NSUnderlinePatternDashDot: NSUnderlineStyle = NSUnderlineStyle(NSUnderlineStyle::NSUnderlineStylePatternDashDot.0));
 
-extern_static!(NSUnderlinePatternDashDotDot: NSUnderlineStyle = NSUnderlineStyle(NSUnderlineStylePatternDashDotDot.0));
+extern_static!(NSUnderlinePatternDashDotDot: NSUnderlineStyle = NSUnderlineStyle(NSUnderlineStyle::NSUnderlineStylePatternDashDotDot.0));
 
-extern_static!(NSUnderlineByWord: NSUnderlineStyle = NSUnderlineStyle(NSUnderlineStyleByWord.0));
+extern_static!(NSUnderlineByWord: NSUnderlineStyle = NSUnderlineStyle(NSUnderlineStyle::NSUnderlineStyleByWord.0));
 
 extern_static!(NSCharacterShapeAttributeName: &'static NSAttributedStringKey);
 

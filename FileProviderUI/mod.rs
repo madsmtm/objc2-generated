@@ -29,8 +29,5 @@ pub use self::__FPUIActionExtensionContext::FPUIActionExtensionContext;
 pub use self::__FPUIActionExtensionContext::FPUIActionIdentifier;
 pub use self::__FPUIActionExtensionContext::FPUIErrorDomain;
 pub use self::__FPUIActionExtensionContext::FPUIExtensionErrorCode;
-pub use self::__FPUIActionExtensionContext::{
-    FPUIExtensionErrorCodeFailed, FPUIExtensionErrorCodeUserCancelled,
-};
 #[cfg(feature = "FileProviderUI_FPUIActionExtensionViewController")]
 pub use self::__FPUIActionExtensionViewController::FPUIActionExtensionViewController;

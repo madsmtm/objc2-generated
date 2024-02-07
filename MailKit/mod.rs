@@ -67,19 +67,11 @@ pub use self::__MEAddressAnnotation::MEAddressAnnotation;
 #[cfg(feature = "MailKit_MEComposeContext")]
 pub use self::__MEComposeContext::MEComposeContext;
 pub use self::__MEComposeContext::MEComposeUserAction;
-pub use self::__MEComposeContext::{
-    MEComposeUserActionForward, MEComposeUserActionNewMessage, MEComposeUserActionReply,
-    MEComposeUserActionReplyAll,
-};
 #[cfg(feature = "MailKit_MEComposeSession")]
 pub use self::__MEComposeSession::MEComposeSession;
 pub use self::__MEComposeSession::MEComposeSessionErrorCode;
 pub use self::__MEComposeSession::MEComposeSessionErrorDomain;
 pub use self::__MEComposeSession::MEComposeSessionHandler;
-pub use self::__MEComposeSession::{
-    MEComposeSessionErrorCodeInvalidBody, MEComposeSessionErrorCodeInvalidHeaders,
-    MEComposeSessionErrorCodeInvalidRecipients,
-};
 pub use self::__MEContentBlocker::MEContentBlocker;
 #[cfg(feature = "MailKit_MEDecodedMessage")]
 pub use self::__MEDecodedMessage::MEDecodedMessage;
@@ -98,26 +90,10 @@ pub use self::__MEExtensionViewController::MEExtensionViewController;
 pub use self::__MEMessage::MEMessage;
 pub use self::__MEMessage::MEMessageEncryptionState;
 pub use self::__MEMessage::MEMessageState;
-pub use self::__MEMessage::{
-    MEMessageEncryptionStateEncrypted, MEMessageEncryptionStateNotEncrypted,
-    MEMessageEncryptionStateUnknown,
-};
-pub use self::__MEMessage::{MEMessageStateDraft, MEMessageStateReceived, MEMessageStateSending};
 #[cfg(feature = "MailKit_MEMessageAction")]
 pub use self::__MEMessageAction::MEMessageAction;
 pub use self::__MEMessageAction::MEMessageActionFlag;
 pub use self::__MEMessageAction::MEMessageActionMessageColor;
-pub use self::__MEMessageAction::{
-    MEMessageActionFlagBlue, MEMessageActionFlagDefaultColor, MEMessageActionFlagGray,
-    MEMessageActionFlagGreen, MEMessageActionFlagNone, MEMessageActionFlagOrange,
-    MEMessageActionFlagPurple, MEMessageActionFlagRed, MEMessageActionFlagYellow,
-};
-pub use self::__MEMessageAction::{
-    MEMessageActionMessageColorBlue, MEMessageActionMessageColorGray,
-    MEMessageActionMessageColorGreen, MEMessageActionMessageColorNone,
-    MEMessageActionMessageColorOrange, MEMessageActionMessageColorPurple,
-    MEMessageActionMessageColorRed, MEMessageActionMessageColorYellow,
-};
 #[cfg(feature = "MailKit_MEMessageActionDecision")]
 pub use self::__MEMessageActionDecision::MEMessageActionDecision;
 pub use self::__MEMessageActionHandler::MEMessageActionHandler;
@@ -128,9 +104,6 @@ pub use self::__MEMessageEncodingResult::MEMessageEncodingResult;
 pub use self::__MEMessageSecurityHandler::MEMessageSecurityErrorCode;
 pub use self::__MEMessageSecurityHandler::MEMessageSecurityErrorDomain;
 pub use self::__MEMessageSecurityHandler::MEMessageSecurityHandler;
-pub use self::__MEMessageSecurityHandler::{
-    MEMessageSecurityDecodingError, MEMessageSecurityEncodingError,
-};
 #[cfg(feature = "MailKit_MEMessageSecurityInformation")]
 pub use self::__MEMessageSecurityInformation::MEMessageSecurityInformation;
 #[cfg(feature = "MailKit_MEMessageSigner")]

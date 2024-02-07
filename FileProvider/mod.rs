@@ -56,9 +56,6 @@ pub use self::__NSFileProviderDomain::NSFileProviderDomainIdentifier;
 pub use self::__NSFileProviderDomain::NSFileProviderDomainTestingModes;
 #[cfg(feature = "FileProvider_NSFileProviderDomainVersion")]
 pub use self::__NSFileProviderDomain::NSFileProviderDomainVersion;
-pub use self::__NSFileProviderDomain::{
-    NSFileProviderDomainTestingModeAlwaysEnabled, NSFileProviderDomainTestingModeInteractive,
-};
 pub use self::__NSFileProviderEnumerating::NSFileProviderChangeObserver;
 pub use self::__NSFileProviderEnumerating::NSFileProviderEnumerationObserver;
 pub use self::__NSFileProviderEnumerating::NSFileProviderEnumerator;
@@ -73,18 +70,6 @@ pub use self::__NSFileProviderError::NSFileProviderErrorCollidingItemKey;
 pub use self::__NSFileProviderError::NSFileProviderErrorDomain;
 pub use self::__NSFileProviderError::NSFileProviderErrorItemKey;
 pub use self::__NSFileProviderError::NSFileProviderErrorNonExistentItemIdentifierKey;
-pub use self::__NSFileProviderError::{
-    NSFileProviderErrorCannotSynchronize, NSFileProviderErrorDeletionRejected,
-    NSFileProviderErrorDirectoryNotEmpty, NSFileProviderErrorDomainDisabled,
-    NSFileProviderErrorExcludedFromSync, NSFileProviderErrorFilenameCollision,
-    NSFileProviderErrorInsufficientQuota, NSFileProviderErrorNewerExtensionVersionFound,
-    NSFileProviderErrorNoSuchItem, NSFileProviderErrorNonEvictable,
-    NSFileProviderErrorNonEvictableChildren, NSFileProviderErrorNotAuthenticated,
-    NSFileProviderErrorOlderExtensionVersionRunning, NSFileProviderErrorPageExpired,
-    NSFileProviderErrorProviderNotFound, NSFileProviderErrorProviderTranslocated,
-    NSFileProviderErrorServerUnreachable, NSFileProviderErrorSyncAnchorExpired,
-    NSFileProviderErrorUnsyncedEdits, NSFileProviderErrorVersionNoLongerAvailable,
-};
 #[cfg(feature = "FileProvider_NSFileProviderExtension")]
 pub use self::__NSFileProviderExtension::NSFileProviderExtension;
 pub use self::__NSFileProviderItem::NSFileProviderContentPolicy;
@@ -101,69 +86,29 @@ pub use self::__NSFileProviderItem::NSFileProviderRootContainerItemIdentifier;
 pub use self::__NSFileProviderItem::NSFileProviderTrashContainerItemIdentifier;
 pub use self::__NSFileProviderItem::NSFileProviderTypeAndCreator;
 pub use self::__NSFileProviderItem::NSFileProviderWorkingSetContainerItemIdentifier;
-pub use self::__NSFileProviderItem::{
-    NSFileProviderContentPolicyDownloadEagerlyAndKeepDownloaded,
-    NSFileProviderContentPolicyDownloadLazily,
-    NSFileProviderContentPolicyDownloadLazilyAndEvictOnRemoteUpdate,
-    NSFileProviderContentPolicyInherited,
-};
-pub use self::__NSFileProviderItem::{
-    NSFileProviderFileSystemHidden, NSFileProviderFileSystemPathExtensionHidden,
-    NSFileProviderFileSystemUserExecutable, NSFileProviderFileSystemUserReadable,
-    NSFileProviderFileSystemUserWritable,
-};
-pub use self::__NSFileProviderItem::{
-    NSFileProviderItemCapabilitiesAllowsAddingSubItems, NSFileProviderItemCapabilitiesAllowsAll,
-    NSFileProviderItemCapabilitiesAllowsContentEnumerating,
-    NSFileProviderItemCapabilitiesAllowsDeleting, NSFileProviderItemCapabilitiesAllowsEvicting,
-    NSFileProviderItemCapabilitiesAllowsExcludingFromSync,
-    NSFileProviderItemCapabilitiesAllowsReading, NSFileProviderItemCapabilitiesAllowsRenaming,
-    NSFileProviderItemCapabilitiesAllowsReparenting, NSFileProviderItemCapabilitiesAllowsTrashing,
-    NSFileProviderItemCapabilitiesAllowsWriting,
-};
-pub use self::__NSFileProviderItem::{
-    NSFileProviderItemContentModificationDate, NSFileProviderItemContents,
-    NSFileProviderItemCreationDate, NSFileProviderItemExtendedAttributes,
-    NSFileProviderItemFavoriteRank, NSFileProviderItemFileSystemFlags, NSFileProviderItemFilename,
-    NSFileProviderItemLastUsedDate, NSFileProviderItemParentItemIdentifier,
-    NSFileProviderItemTagData, NSFileProviderItemTypeAndCreator,
-};
 pub use self::__NSFileProviderItemDecoration::NSFileProviderItemDecorating;
 pub use self::__NSFileProviderItemDecoration::NSFileProviderItemDecorationIdentifier;
 pub use self::__NSFileProviderManager::NSFileProviderDomainRemovalMode;
 #[cfg(feature = "FileProvider_NSFileProviderManager")]
 pub use self::__NSFileProviderManager::NSFileProviderManager;
 pub use self::__NSFileProviderManager::NSFileProviderManagerDisconnectionOptions;
-pub use self::__NSFileProviderManager::NSFileProviderManagerDisconnectionOptionsTemporary;
 pub use self::__NSFileProviderManager::NSFileProviderMaterializedSetDidChange;
 pub use self::__NSFileProviderManager::NSFileProviderPendingSetDidChange;
 pub use self::__NSFileProviderManager::NSFileProviderPendingSetEnumerator;
-pub use self::__NSFileProviderManager::{
-    NSFileProviderDomainRemovalModePreserveDirtyUserData,
-    NSFileProviderDomainRemovalModePreserveDownloadedUserData,
-    NSFileProviderDomainRemovalModeRemoveAll,
-};
-pub use self::__NSFileProviderModifyItemOptions::NSFileProviderModifyItemMayAlreadyExist;
 pub use self::__NSFileProviderModifyItemOptions::NSFileProviderModifyItemOptions;
 pub use self::__NSFileProviderReplicatedExtension::NSFileProviderCreateItemOptions;
 pub use self::__NSFileProviderReplicatedExtension::NSFileProviderCustomAction;
 pub use self::__NSFileProviderReplicatedExtension::NSFileProviderDeleteItemOptions;
-pub use self::__NSFileProviderReplicatedExtension::NSFileProviderDeleteItemRecursive;
 pub use self::__NSFileProviderReplicatedExtension::NSFileProviderDomainState;
 pub use self::__NSFileProviderReplicatedExtension::NSFileProviderEnumerating;
 pub use self::__NSFileProviderReplicatedExtension::NSFileProviderFetchContentsOptions;
-pub use self::__NSFileProviderReplicatedExtension::NSFileProviderFetchContentsOptionsStrictVersioning;
 pub use self::__NSFileProviderReplicatedExtension::NSFileProviderIncrementalContentFetching;
 pub use self::__NSFileProviderReplicatedExtension::NSFileProviderMaterializationFlags;
-pub use self::__NSFileProviderReplicatedExtension::NSFileProviderMaterializationFlagsKnownSparseRanges;
 pub use self::__NSFileProviderReplicatedExtension::NSFileProviderPartialContentFetching;
 pub use self::__NSFileProviderReplicatedExtension::NSFileProviderReplicatedExtension;
 pub use self::__NSFileProviderReplicatedExtension::NSFileProviderServicing;
 pub use self::__NSFileProviderReplicatedExtension::NSFileProviderThumbnailing;
 pub use self::__NSFileProviderReplicatedExtension::NSFileProviderUserInteractionSuppressing;
-pub use self::__NSFileProviderReplicatedExtension::{
-    NSFileProviderCreateItemDeletionConflicted, NSFileProviderCreateItemMayAlreadyExist,
-};
 #[cfg(feature = "FileProvider_NSFileProviderRequest")]
 pub use self::__NSFileProviderRequest::NSFileProviderRequest;
 pub use self::__NSFileProviderService::NSFileProviderServiceSource;
@@ -178,13 +123,3 @@ pub use self::__NSFileProviderTesting::NSFileProviderTestingModification;
 pub use self::__NSFileProviderTesting::NSFileProviderTestingOperation;
 pub use self::__NSFileProviderTesting::NSFileProviderTestingOperationSide;
 pub use self::__NSFileProviderTesting::NSFileProviderTestingOperationType;
-pub use self::__NSFileProviderTesting::{
-    NSFileProviderTestingOperationSideDisk, NSFileProviderTestingOperationSideFileProvider,
-};
-pub use self::__NSFileProviderTesting::{
-    NSFileProviderTestingOperationTypeChildrenEnumeration,
-    NSFileProviderTestingOperationTypeCollisionResolution,
-    NSFileProviderTestingOperationTypeContentFetch, NSFileProviderTestingOperationTypeCreation,
-    NSFileProviderTestingOperationTypeDeletion, NSFileProviderTestingOperationTypeIngestion,
-    NSFileProviderTestingOperationTypeLookup, NSFileProviderTestingOperationTypeModification,
-};

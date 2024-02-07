@@ -34,7 +34,7 @@ ns_enum!(
     pub enum LABiometryType {
         LABiometryTypeNone = 0,
         #[deprecated]
-        LABiometryNone = LABiometryTypeNone.0,
+        LABiometryNone = LABiometryType::LABiometryTypeNone.0,
         LABiometryTypeTouchID = 1,
         LABiometryTypeFaceID = 2,
         LABiometryTypeOpticID = 4,

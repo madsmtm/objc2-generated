@@ -83,16 +83,17 @@ ns_options!(
         NSFileProviderItemCapabilitiesAllowsEvicting = 1 << 6,
         NSFileProviderItemCapabilitiesAllowsExcludingFromSync = 1 << 7,
         NSFileProviderItemCapabilitiesAllowsAddingSubItems =
-            NSFileProviderItemCapabilitiesAllowsWriting.0,
+            NSFileProviderItemCapabilities::NSFileProviderItemCapabilitiesAllowsWriting.0,
         NSFileProviderItemCapabilitiesAllowsContentEnumerating =
-            NSFileProviderItemCapabilitiesAllowsReading.0,
+            NSFileProviderItemCapabilities::NSFileProviderItemCapabilitiesAllowsReading.0,
         #[deprecated = "This capability is no longer supported, and does not contain all capabilities. Please migrate to directly specifying each of the individual capabilities that should be allowed for the item."]
-        NSFileProviderItemCapabilitiesAllowsAll = NSFileProviderItemCapabilitiesAllowsReading.0
-            | NSFileProviderItemCapabilitiesAllowsWriting.0
-            | NSFileProviderItemCapabilitiesAllowsReparenting.0
-            | NSFileProviderItemCapabilitiesAllowsRenaming.0
-            | NSFileProviderItemCapabilitiesAllowsTrashing.0
-            | NSFileProviderItemCapabilitiesAllowsDeleting.0,
+        NSFileProviderItemCapabilitiesAllowsAll =
+            NSFileProviderItemCapabilities::NSFileProviderItemCapabilitiesAllowsReading.0
+                | NSFileProviderItemCapabilities::NSFileProviderItemCapabilitiesAllowsWriting.0
+                | NSFileProviderItemCapabilities::NSFileProviderItemCapabilitiesAllowsReparenting.0
+                | NSFileProviderItemCapabilities::NSFileProviderItemCapabilitiesAllowsRenaming.0
+                | NSFileProviderItemCapabilities::NSFileProviderItemCapabilitiesAllowsTrashing.0
+                | NSFileProviderItemCapabilities::NSFileProviderItemCapabilitiesAllowsDeleting.0,
     }
 );
 

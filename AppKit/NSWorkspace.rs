@@ -586,7 +586,7 @@ ns_options!(
         #[deprecated = "Use -[NSWorkspaceOpenConfiguration setHidesOthers:YES] instead."]
         NSWorkspaceLaunchAndHideOthers = 0x00200000,
         #[deprecated = "Use NSWorkspaceOpenConfiguration instead."]
-        NSWorkspaceLaunchDefault = NSWorkspaceLaunchAsync.0,
+        NSWorkspaceLaunchDefault = NSWorkspaceLaunchOptions::NSWorkspaceLaunchAsync.0,
         #[deprecated = "The Classic environment is no longer supported."]
         NSWorkspaceLaunchAllowingClassicStartup = 0x00020000,
         #[deprecated = "The Classic environment is no longer supported."]

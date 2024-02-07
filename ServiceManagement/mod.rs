@@ -27,10 +27,6 @@ mod __SMLoginItem;
 #[cfg(feature = "ServiceManagement_SMAppService")]
 pub use self::__SMAppService::SMAppService;
 pub use self::__SMAppService::SMAppServiceStatus;
-pub use self::__SMAppService::{
-    SMAppServiceStatusEnabled, SMAppServiceStatusNotFound, SMAppServiceStatusNotRegistered,
-    SMAppServiceStatusRequiresApproval,
-};
 pub use self::__SMErrors::kSMErrorAlreadyRegistered;
 pub use self::__SMErrors::kSMErrorAuthorizationFailure;
 pub use self::__SMErrors::kSMErrorInternalFailure;

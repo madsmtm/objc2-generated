@@ -42,10 +42,6 @@ mod __SFVoiceAnalytics;
 
 pub use self::__SFErrors::SFSpeechErrorCode;
 pub use self::__SFErrors::SFSpeechErrorDomain;
-pub use self::__SFErrors::{
-    SFSpeechErrorCodeInternalServiceError, SFSpeechErrorCodeMalformedSupplementalModel,
-    SFSpeechErrorCodeUndefinedTemplateClassName,
-};
 #[cfg(feature = "Speech_SFSpeechLanguageModel")]
 pub use self::__SFSpeechLanguageModel::SFSpeechLanguageModel;
 #[cfg(feature = "Speech_SFSpeechLanguageModelConfiguration")]
@@ -64,25 +60,11 @@ pub use self::__SFSpeechRecognitionResult::SFSpeechRecognitionResult;
 pub use self::__SFSpeechRecognitionTask::SFSpeechRecognitionTask;
 pub use self::__SFSpeechRecognitionTask::SFSpeechRecognitionTaskDelegate;
 pub use self::__SFSpeechRecognitionTask::SFSpeechRecognitionTaskState;
-pub use self::__SFSpeechRecognitionTask::{
-    SFSpeechRecognitionTaskStateCanceling, SFSpeechRecognitionTaskStateCompleted,
-    SFSpeechRecognitionTaskStateFinishing, SFSpeechRecognitionTaskStateRunning,
-    SFSpeechRecognitionTaskStateStarting,
-};
 pub use self::__SFSpeechRecognitionTaskHint::SFSpeechRecognitionTaskHint;
-pub use self::__SFSpeechRecognitionTaskHint::{
-    SFSpeechRecognitionTaskHintConfirmation, SFSpeechRecognitionTaskHintDictation,
-    SFSpeechRecognitionTaskHintSearch, SFSpeechRecognitionTaskHintUnspecified,
-};
 #[cfg(feature = "Speech_SFSpeechRecognizer")]
 pub use self::__SFSpeechRecognizer::SFSpeechRecognizer;
 pub use self::__SFSpeechRecognizer::SFSpeechRecognizerAuthorizationStatus;
 pub use self::__SFSpeechRecognizer::SFSpeechRecognizerDelegate;
-pub use self::__SFSpeechRecognizer::{
-    SFSpeechRecognizerAuthorizationStatusAuthorized, SFSpeechRecognizerAuthorizationStatusDenied,
-    SFSpeechRecognizerAuthorizationStatusNotDetermined,
-    SFSpeechRecognizerAuthorizationStatusRestricted,
-};
 #[cfg(feature = "Speech_SFTranscription")]
 pub use self::__SFTranscription::SFTranscription;
 #[cfg(feature = "Speech_SFTranscriptionSegment")]

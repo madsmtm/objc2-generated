@@ -24,7 +24,3 @@ mod __AAAttribution;
 pub use self::__AAAttribution::AAAttribution;
 pub use self::__AAAttribution::AAAttributionErrorCode;
 pub use self::__AAAttribution::AAAttributionErrorDomain;
-pub use self::__AAAttribution::{
-    AAAttributionErrorCodeInternalError, AAAttributionErrorCodeNetworkError,
-    AAAttributionErrorCodePlatformNotSupported,
-};

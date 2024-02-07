@@ -128,10 +128,6 @@ pub use self::__MXDiskWriteExceptionDiagnostic::MXDiskWriteExceptionDiagnostic;
 pub use self::__MXDisplayMetric::MXDisplayMetric;
 pub use self::__MXError::MXErrorCode;
 pub use self::__MXError::MXErrorDomain;
-pub use self::__MXError::{
-    MXErrorLaunchTaskDuplicated, MXErrorLaunchTaskInternalFailure, MXErrorLaunchTaskInvalidID,
-    MXErrorLaunchTaskMaxCount, MXErrorLaunchTaskPastDeadline, MXErrorLaunchTaskUnknown,
-};
 #[cfg(feature = "MetricKit_MXGPUMetric")]
 pub use self::__MXGPUMetric::MXGPUMetric;
 #[cfg(feature = "MetricKit_MXHangDiagnostic")]

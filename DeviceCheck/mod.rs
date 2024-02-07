@@ -30,7 +30,3 @@ pub use self::__DCAppAttestService::DCAppAttestService;
 pub use self::__DCDevice::DCDevice;
 pub use self::__DCError::DCError;
 pub use self::__DCError::DCErrorDomain;
-pub use self::__DCError::{
-    DCErrorFeatureUnsupported, DCErrorInvalidInput, DCErrorInvalidKey, DCErrorServerUnavailable,
-    DCErrorUnknownSystemFailure,
-};

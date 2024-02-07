@@ -14,7 +14,8 @@ ns_enum!(
         NSGestureRecognizerStateEnded = 3,
         NSGestureRecognizerStateCancelled = 4,
         NSGestureRecognizerStateFailed = 5,
-        NSGestureRecognizerStateRecognized = NSGestureRecognizerStateEnded.0,
+        NSGestureRecognizerStateRecognized =
+            NSGestureRecognizerState::NSGestureRecognizerStateEnded.0,
     }
 );
 

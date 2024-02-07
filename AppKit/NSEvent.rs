@@ -45,137 +45,137 @@ ns_enum!(
     }
 );
 
-extern_static!(NSLeftMouseDown: NSEventType = NSEventType(NSEventTypeLeftMouseDown.0));
+extern_static!(NSLeftMouseDown: NSEventType = NSEventType(NSEventType::NSEventTypeLeftMouseDown.0));
 
-extern_static!(NSLeftMouseUp: NSEventType = NSEventType(NSEventTypeLeftMouseUp.0));
+extern_static!(NSLeftMouseUp: NSEventType = NSEventType(NSEventType::NSEventTypeLeftMouseUp.0));
 
-extern_static!(NSRightMouseDown: NSEventType = NSEventType(NSEventTypeRightMouseDown.0));
+extern_static!(NSRightMouseDown: NSEventType = NSEventType(NSEventType::NSEventTypeRightMouseDown.0));
 
-extern_static!(NSRightMouseUp: NSEventType = NSEventType(NSEventTypeRightMouseUp.0));
+extern_static!(NSRightMouseUp: NSEventType = NSEventType(NSEventType::NSEventTypeRightMouseUp.0));
 
-extern_static!(NSMouseMoved: NSEventType = NSEventType(NSEventTypeMouseMoved.0));
+extern_static!(NSMouseMoved: NSEventType = NSEventType(NSEventType::NSEventTypeMouseMoved.0));
 
-extern_static!(NSLeftMouseDragged: NSEventType = NSEventType(NSEventTypeLeftMouseDragged.0));
+extern_static!(NSLeftMouseDragged: NSEventType = NSEventType(NSEventType::NSEventTypeLeftMouseDragged.0));
 
-extern_static!(NSRightMouseDragged: NSEventType = NSEventType(NSEventTypeRightMouseDragged.0));
+extern_static!(NSRightMouseDragged: NSEventType = NSEventType(NSEventType::NSEventTypeRightMouseDragged.0));
 
-extern_static!(NSMouseEntered: NSEventType = NSEventType(NSEventTypeMouseEntered.0));
+extern_static!(NSMouseEntered: NSEventType = NSEventType(NSEventType::NSEventTypeMouseEntered.0));
 
-extern_static!(NSMouseExited: NSEventType = NSEventType(NSEventTypeMouseExited.0));
+extern_static!(NSMouseExited: NSEventType = NSEventType(NSEventType::NSEventTypeMouseExited.0));
 
-extern_static!(NSKeyDown: NSEventType = NSEventType(NSEventTypeKeyDown.0));
+extern_static!(NSKeyDown: NSEventType = NSEventType(NSEventType::NSEventTypeKeyDown.0));
 
-extern_static!(NSKeyUp: NSEventType = NSEventType(NSEventTypeKeyUp.0));
+extern_static!(NSKeyUp: NSEventType = NSEventType(NSEventType::NSEventTypeKeyUp.0));
 
-extern_static!(NSFlagsChanged: NSEventType = NSEventType(NSEventTypeFlagsChanged.0));
+extern_static!(NSFlagsChanged: NSEventType = NSEventType(NSEventType::NSEventTypeFlagsChanged.0));
 
-extern_static!(NSAppKitDefined: NSEventType = NSEventType(NSEventTypeAppKitDefined.0));
+extern_static!(NSAppKitDefined: NSEventType = NSEventType(NSEventType::NSEventTypeAppKitDefined.0));
 
-extern_static!(NSSystemDefined: NSEventType = NSEventType(NSEventTypeSystemDefined.0));
+extern_static!(NSSystemDefined: NSEventType = NSEventType(NSEventType::NSEventTypeSystemDefined.0));
 
-extern_static!(NSApplicationDefined: NSEventType = NSEventType(NSEventTypeApplicationDefined.0));
+extern_static!(NSApplicationDefined: NSEventType = NSEventType(NSEventType::NSEventTypeApplicationDefined.0));
 
-extern_static!(NSPeriodic: NSEventType = NSEventType(NSEventTypePeriodic.0));
+extern_static!(NSPeriodic: NSEventType = NSEventType(NSEventType::NSEventTypePeriodic.0));
 
-extern_static!(NSCursorUpdate: NSEventType = NSEventType(NSEventTypeCursorUpdate.0));
+extern_static!(NSCursorUpdate: NSEventType = NSEventType(NSEventType::NSEventTypeCursorUpdate.0));
 
-extern_static!(NSScrollWheel: NSEventType = NSEventType(NSEventTypeScrollWheel.0));
+extern_static!(NSScrollWheel: NSEventType = NSEventType(NSEventType::NSEventTypeScrollWheel.0));
 
-extern_static!(NSTabletPoint: NSEventType = NSEventType(NSEventTypeTabletPoint.0));
+extern_static!(NSTabletPoint: NSEventType = NSEventType(NSEventType::NSEventTypeTabletPoint.0));
 
-extern_static!(NSTabletProximity: NSEventType = NSEventType(NSEventTypeTabletProximity.0));
+extern_static!(NSTabletProximity: NSEventType = NSEventType(NSEventType::NSEventTypeTabletProximity.0));
 
-extern_static!(NSOtherMouseDown: NSEventType = NSEventType(NSEventTypeOtherMouseDown.0));
+extern_static!(NSOtherMouseDown: NSEventType = NSEventType(NSEventType::NSEventTypeOtherMouseDown.0));
 
-extern_static!(NSOtherMouseUp: NSEventType = NSEventType(NSEventTypeOtherMouseUp.0));
+extern_static!(NSOtherMouseUp: NSEventType = NSEventType(NSEventType::NSEventTypeOtherMouseUp.0));
 
-extern_static!(NSOtherMouseDragged: NSEventType = NSEventType(NSEventTypeOtherMouseDragged.0));
+extern_static!(NSOtherMouseDragged: NSEventType = NSEventType(NSEventType::NSEventTypeOtherMouseDragged.0));
 
 ns_options!(
     #[underlying(c_ulonglong)]
     pub enum NSEventMask {
-        NSEventMaskLeftMouseDown = 1 << NSEventTypeLeftMouseDown.0,
-        NSEventMaskLeftMouseUp = 1 << NSEventTypeLeftMouseUp.0,
-        NSEventMaskRightMouseDown = 1 << NSEventTypeRightMouseDown.0,
-        NSEventMaskRightMouseUp = 1 << NSEventTypeRightMouseUp.0,
-        NSEventMaskMouseMoved = 1 << NSEventTypeMouseMoved.0,
-        NSEventMaskLeftMouseDragged = 1 << NSEventTypeLeftMouseDragged.0,
-        NSEventMaskRightMouseDragged = 1 << NSEventTypeRightMouseDragged.0,
-        NSEventMaskMouseEntered = 1 << NSEventTypeMouseEntered.0,
-        NSEventMaskMouseExited = 1 << NSEventTypeMouseExited.0,
-        NSEventMaskKeyDown = 1 << NSEventTypeKeyDown.0,
-        NSEventMaskKeyUp = 1 << NSEventTypeKeyUp.0,
-        NSEventMaskFlagsChanged = 1 << NSEventTypeFlagsChanged.0,
-        NSEventMaskAppKitDefined = 1 << NSEventTypeAppKitDefined.0,
-        NSEventMaskSystemDefined = 1 << NSEventTypeSystemDefined.0,
-        NSEventMaskApplicationDefined = 1 << NSEventTypeApplicationDefined.0,
-        NSEventMaskPeriodic = 1 << NSEventTypePeriodic.0,
-        NSEventMaskCursorUpdate = 1 << NSEventTypeCursorUpdate.0,
-        NSEventMaskScrollWheel = 1 << NSEventTypeScrollWheel.0,
-        NSEventMaskTabletPoint = 1 << NSEventTypeTabletPoint.0,
-        NSEventMaskTabletProximity = 1 << NSEventTypeTabletProximity.0,
-        NSEventMaskOtherMouseDown = 1 << NSEventTypeOtherMouseDown.0,
-        NSEventMaskOtherMouseUp = 1 << NSEventTypeOtherMouseUp.0,
-        NSEventMaskOtherMouseDragged = 1 << NSEventTypeOtherMouseDragged.0,
-        NSEventMaskGesture = 1 << NSEventTypeGesture.0,
-        NSEventMaskMagnify = 1 << NSEventTypeMagnify.0,
-        NSEventMaskSwipe = 1 << NSEventTypeSwipe.0,
-        NSEventMaskRotate = 1 << NSEventTypeRotate.0,
-        NSEventMaskBeginGesture = 1 << NSEventTypeBeginGesture.0,
-        NSEventMaskEndGesture = 1 << NSEventTypeEndGesture.0,
-        NSEventMaskSmartMagnify = 1 << NSEventTypeSmartMagnify.0,
-        NSEventMaskPressure = 1 << NSEventTypePressure.0,
-        NSEventMaskDirectTouch = 1 << NSEventTypeDirectTouch.0,
-        NSEventMaskChangeMode = 1 << NSEventTypeChangeMode.0,
+        NSEventMaskLeftMouseDown = 1 << NSEventType::NSEventTypeLeftMouseDown.0,
+        NSEventMaskLeftMouseUp = 1 << NSEventType::NSEventTypeLeftMouseUp.0,
+        NSEventMaskRightMouseDown = 1 << NSEventType::NSEventTypeRightMouseDown.0,
+        NSEventMaskRightMouseUp = 1 << NSEventType::NSEventTypeRightMouseUp.0,
+        NSEventMaskMouseMoved = 1 << NSEventType::NSEventTypeMouseMoved.0,
+        NSEventMaskLeftMouseDragged = 1 << NSEventType::NSEventTypeLeftMouseDragged.0,
+        NSEventMaskRightMouseDragged = 1 << NSEventType::NSEventTypeRightMouseDragged.0,
+        NSEventMaskMouseEntered = 1 << NSEventType::NSEventTypeMouseEntered.0,
+        NSEventMaskMouseExited = 1 << NSEventType::NSEventTypeMouseExited.0,
+        NSEventMaskKeyDown = 1 << NSEventType::NSEventTypeKeyDown.0,
+        NSEventMaskKeyUp = 1 << NSEventType::NSEventTypeKeyUp.0,
+        NSEventMaskFlagsChanged = 1 << NSEventType::NSEventTypeFlagsChanged.0,
+        NSEventMaskAppKitDefined = 1 << NSEventType::NSEventTypeAppKitDefined.0,
+        NSEventMaskSystemDefined = 1 << NSEventType::NSEventTypeSystemDefined.0,
+        NSEventMaskApplicationDefined = 1 << NSEventType::NSEventTypeApplicationDefined.0,
+        NSEventMaskPeriodic = 1 << NSEventType::NSEventTypePeriodic.0,
+        NSEventMaskCursorUpdate = 1 << NSEventType::NSEventTypeCursorUpdate.0,
+        NSEventMaskScrollWheel = 1 << NSEventType::NSEventTypeScrollWheel.0,
+        NSEventMaskTabletPoint = 1 << NSEventType::NSEventTypeTabletPoint.0,
+        NSEventMaskTabletProximity = 1 << NSEventType::NSEventTypeTabletProximity.0,
+        NSEventMaskOtherMouseDown = 1 << NSEventType::NSEventTypeOtherMouseDown.0,
+        NSEventMaskOtherMouseUp = 1 << NSEventType::NSEventTypeOtherMouseUp.0,
+        NSEventMaskOtherMouseDragged = 1 << NSEventType::NSEventTypeOtherMouseDragged.0,
+        NSEventMaskGesture = 1 << NSEventType::NSEventTypeGesture.0,
+        NSEventMaskMagnify = 1 << NSEventType::NSEventTypeMagnify.0,
+        NSEventMaskSwipe = 1 << NSEventType::NSEventTypeSwipe.0,
+        NSEventMaskRotate = 1 << NSEventType::NSEventTypeRotate.0,
+        NSEventMaskBeginGesture = 1 << NSEventType::NSEventTypeBeginGesture.0,
+        NSEventMaskEndGesture = 1 << NSEventType::NSEventTypeEndGesture.0,
+        NSEventMaskSmartMagnify = 1 << NSEventType::NSEventTypeSmartMagnify.0,
+        NSEventMaskPressure = 1 << NSEventType::NSEventTypePressure.0,
+        NSEventMaskDirectTouch = 1 << NSEventType::NSEventTypeDirectTouch.0,
+        NSEventMaskChangeMode = 1 << NSEventType::NSEventTypeChangeMode.0,
         NSEventMaskAny = NSUIntegerMax as _,
     }
 );
 
-extern_static!(NSLeftMouseDownMask: NSEventMask = NSEventMask(NSEventMaskLeftMouseDown.0));
+extern_static!(NSLeftMouseDownMask: NSEventMask = NSEventMask(NSEventMask::NSEventMaskLeftMouseDown.0));
 
-extern_static!(NSLeftMouseUpMask: NSEventMask = NSEventMask(NSEventMaskLeftMouseUp.0));
+extern_static!(NSLeftMouseUpMask: NSEventMask = NSEventMask(NSEventMask::NSEventMaskLeftMouseUp.0));
 
-extern_static!(NSRightMouseDownMask: NSEventMask = NSEventMask(NSEventMaskRightMouseDown.0));
+extern_static!(NSRightMouseDownMask: NSEventMask = NSEventMask(NSEventMask::NSEventMaskRightMouseDown.0));
 
-extern_static!(NSRightMouseUpMask: NSEventMask = NSEventMask(NSEventMaskRightMouseUp.0));
+extern_static!(NSRightMouseUpMask: NSEventMask = NSEventMask(NSEventMask::NSEventMaskRightMouseUp.0));
 
-extern_static!(NSMouseMovedMask: NSEventMask = NSEventMask(NSEventMaskMouseMoved.0));
+extern_static!(NSMouseMovedMask: NSEventMask = NSEventMask(NSEventMask::NSEventMaskMouseMoved.0));
 
-extern_static!(NSLeftMouseDraggedMask: NSEventMask = NSEventMask(NSEventMaskLeftMouseDragged.0));
+extern_static!(NSLeftMouseDraggedMask: NSEventMask = NSEventMask(NSEventMask::NSEventMaskLeftMouseDragged.0));
 
-extern_static!(NSRightMouseDraggedMask: NSEventMask = NSEventMask(NSEventMaskRightMouseDragged.0));
+extern_static!(NSRightMouseDraggedMask: NSEventMask = NSEventMask(NSEventMask::NSEventMaskRightMouseDragged.0));
 
-extern_static!(NSMouseEnteredMask: NSEventMask = NSEventMask(NSEventMaskMouseEntered.0));
+extern_static!(NSMouseEnteredMask: NSEventMask = NSEventMask(NSEventMask::NSEventMaskMouseEntered.0));
 
-extern_static!(NSMouseExitedMask: NSEventMask = NSEventMask(NSEventMaskMouseExited.0));
+extern_static!(NSMouseExitedMask: NSEventMask = NSEventMask(NSEventMask::NSEventMaskMouseExited.0));
 
-extern_static!(NSKeyDownMask: NSEventMask = NSEventMask(NSEventMaskKeyDown.0));
+extern_static!(NSKeyDownMask: NSEventMask = NSEventMask(NSEventMask::NSEventMaskKeyDown.0));
 
-extern_static!(NSKeyUpMask: NSEventMask = NSEventMask(NSEventMaskKeyUp.0));
+extern_static!(NSKeyUpMask: NSEventMask = NSEventMask(NSEventMask::NSEventMaskKeyUp.0));
 
-extern_static!(NSFlagsChangedMask: NSEventMask = NSEventMask(NSEventMaskFlagsChanged.0));
+extern_static!(NSFlagsChangedMask: NSEventMask = NSEventMask(NSEventMask::NSEventMaskFlagsChanged.0));
 
-extern_static!(NSAppKitDefinedMask: NSEventMask = NSEventMask(NSEventMaskAppKitDefined.0));
+extern_static!(NSAppKitDefinedMask: NSEventMask = NSEventMask(NSEventMask::NSEventMaskAppKitDefined.0));
 
-extern_static!(NSSystemDefinedMask: NSEventMask = NSEventMask(NSEventMaskSystemDefined.0));
+extern_static!(NSSystemDefinedMask: NSEventMask = NSEventMask(NSEventMask::NSEventMaskSystemDefined.0));
 
-extern_static!(NSApplicationDefinedMask: NSEventMask = NSEventMask(NSEventMaskApplicationDefined.0));
+extern_static!(NSApplicationDefinedMask: NSEventMask = NSEventMask(NSEventMask::NSEventMaskApplicationDefined.0));
 
-extern_static!(NSPeriodicMask: NSEventMask = NSEventMask(NSEventMaskPeriodic.0));
+extern_static!(NSPeriodicMask: NSEventMask = NSEventMask(NSEventMask::NSEventMaskPeriodic.0));
 
-extern_static!(NSCursorUpdateMask: NSEventMask = NSEventMask(NSEventMaskCursorUpdate.0));
+extern_static!(NSCursorUpdateMask: NSEventMask = NSEventMask(NSEventMask::NSEventMaskCursorUpdate.0));
 
-extern_static!(NSScrollWheelMask: NSEventMask = NSEventMask(NSEventMaskScrollWheel.0));
+extern_static!(NSScrollWheelMask: NSEventMask = NSEventMask(NSEventMask::NSEventMaskScrollWheel.0));
 
-extern_static!(NSTabletPointMask: NSEventMask = NSEventMask(NSEventMaskTabletPoint.0));
+extern_static!(NSTabletPointMask: NSEventMask = NSEventMask(NSEventMask::NSEventMaskTabletPoint.0));
 
-extern_static!(NSTabletProximityMask: NSEventMask = NSEventMask(NSEventMaskTabletProximity.0));
+extern_static!(NSTabletProximityMask: NSEventMask = NSEventMask(NSEventMask::NSEventMaskTabletProximity.0));
 
-extern_static!(NSOtherMouseDownMask: NSEventMask = NSEventMask(NSEventMaskOtherMouseDown.0));
+extern_static!(NSOtherMouseDownMask: NSEventMask = NSEventMask(NSEventMask::NSEventMaskOtherMouseDown.0));
 
-extern_static!(NSOtherMouseUpMask: NSEventMask = NSEventMask(NSEventMaskOtherMouseUp.0));
+extern_static!(NSOtherMouseUpMask: NSEventMask = NSEventMask(NSEventMask::NSEventMaskOtherMouseUp.0));
 
-extern_static!(NSOtherMouseDraggedMask: NSEventMask = NSEventMask(NSEventMaskOtherMouseDragged.0));
+extern_static!(NSOtherMouseDraggedMask: NSEventMask = NSEventMask(NSEventMask::NSEventMaskOtherMouseDragged.0));
 
 extern_static!(NSAnyEventMask: NSEventMask = NSEventMask(NSUIntegerMax as _));
 
@@ -200,23 +200,23 @@ ns_options!(
     }
 );
 
-extern_static!(NSAlphaShiftKeyMask: NSEventModifierFlags = NSEventModifierFlags(NSEventModifierFlagCapsLock.0));
+extern_static!(NSAlphaShiftKeyMask: NSEventModifierFlags = NSEventModifierFlags(NSEventModifierFlags::NSEventModifierFlagCapsLock.0));
 
-extern_static!(NSShiftKeyMask: NSEventModifierFlags = NSEventModifierFlags(NSEventModifierFlagShift.0));
+extern_static!(NSShiftKeyMask: NSEventModifierFlags = NSEventModifierFlags(NSEventModifierFlags::NSEventModifierFlagShift.0));
 
-extern_static!(NSControlKeyMask: NSEventModifierFlags = NSEventModifierFlags(NSEventModifierFlagControl.0));
+extern_static!(NSControlKeyMask: NSEventModifierFlags = NSEventModifierFlags(NSEventModifierFlags::NSEventModifierFlagControl.0));
 
-extern_static!(NSAlternateKeyMask: NSEventModifierFlags = NSEventModifierFlags(NSEventModifierFlagOption.0));
+extern_static!(NSAlternateKeyMask: NSEventModifierFlags = NSEventModifierFlags(NSEventModifierFlags::NSEventModifierFlagOption.0));
 
-extern_static!(NSCommandKeyMask: NSEventModifierFlags = NSEventModifierFlags(NSEventModifierFlagCommand.0));
+extern_static!(NSCommandKeyMask: NSEventModifierFlags = NSEventModifierFlags(NSEventModifierFlags::NSEventModifierFlagCommand.0));
 
-extern_static!(NSNumericPadKeyMask: NSEventModifierFlags = NSEventModifierFlags(NSEventModifierFlagNumericPad.0));
+extern_static!(NSNumericPadKeyMask: NSEventModifierFlags = NSEventModifierFlags(NSEventModifierFlags::NSEventModifierFlagNumericPad.0));
 
-extern_static!(NSHelpKeyMask: NSEventModifierFlags = NSEventModifierFlags(NSEventModifierFlagHelp.0));
+extern_static!(NSHelpKeyMask: NSEventModifierFlags = NSEventModifierFlags(NSEventModifierFlags::NSEventModifierFlagHelp.0));
 
-extern_static!(NSFunctionKeyMask: NSEventModifierFlags = NSEventModifierFlags(NSEventModifierFlagFunction.0));
+extern_static!(NSFunctionKeyMask: NSEventModifierFlags = NSEventModifierFlags(NSEventModifierFlags::NSEventModifierFlagFunction.0));
 
-extern_static!(NSDeviceIndependentModifierFlagsMask: NSEventModifierFlags = NSEventModifierFlags(NSEventModifierFlagDeviceIndependentFlagsMask.0));
+extern_static!(NSDeviceIndependentModifierFlagsMask: NSEventModifierFlags = NSEventModifierFlags(NSEventModifierFlags::NSEventModifierFlagDeviceIndependentFlagsMask.0));
 
 ns_enum!(
     #[underlying(NSUInteger)]
@@ -228,13 +228,13 @@ ns_enum!(
     }
 );
 
-extern_static!(NSUnknownPointingDevice: NSPointingDeviceType = NSPointingDeviceType(NSPointingDeviceTypeUnknown.0));
+extern_static!(NSUnknownPointingDevice: NSPointingDeviceType = NSPointingDeviceType(NSPointingDeviceType::NSPointingDeviceTypeUnknown.0));
 
-extern_static!(NSPenPointingDevice: NSPointingDeviceType = NSPointingDeviceType(NSPointingDeviceTypePen.0));
+extern_static!(NSPenPointingDevice: NSPointingDeviceType = NSPointingDeviceType(NSPointingDeviceType::NSPointingDeviceTypePen.0));
 
-extern_static!(NSCursorPointingDevice: NSPointingDeviceType = NSPointingDeviceType(NSPointingDeviceTypeCursor.0));
+extern_static!(NSCursorPointingDevice: NSPointingDeviceType = NSPointingDeviceType(NSPointingDeviceType::NSPointingDeviceTypeCursor.0));
 
-extern_static!(NSEraserPointingDevice: NSPointingDeviceType = NSPointingDeviceType(NSPointingDeviceTypeEraser.0));
+extern_static!(NSEraserPointingDevice: NSPointingDeviceType = NSPointingDeviceType(NSPointingDeviceType::NSPointingDeviceTypeEraser.0));
 
 ns_options!(
     #[underlying(NSUInteger)]
@@ -245,11 +245,11 @@ ns_options!(
     }
 );
 
-extern_static!(NSPenTipMask: NSEventButtonMask = NSEventButtonMask(NSEventButtonMaskPenTip.0));
+extern_static!(NSPenTipMask: NSEventButtonMask = NSEventButtonMask(NSEventButtonMask::NSEventButtonMaskPenTip.0));
 
-extern_static!(NSPenLowerSideMask: NSEventButtonMask = NSEventButtonMask(NSEventButtonMaskPenLowerSide.0));
+extern_static!(NSPenLowerSideMask: NSEventButtonMask = NSEventButtonMask(NSEventButtonMask::NSEventButtonMaskPenLowerSide.0));
 
-extern_static!(NSPenUpperSideMask: NSEventButtonMask = NSEventButtonMask(NSEventButtonMaskPenUpperSide.0));
+extern_static!(NSPenUpperSideMask: NSEventButtonMask = NSEventButtonMask(NSEventButtonMask::NSEventButtonMaskPenUpperSide.0));
 
 ns_options!(
     #[underlying(NSUInteger)]
@@ -297,27 +297,27 @@ ns_enum!(
     }
 );
 
-extern_static!(NSWindowExposedEventType: NSEventSubtype = NSEventSubtype(NSEventSubtypeWindowExposed.0));
+extern_static!(NSWindowExposedEventType: NSEventSubtype = NSEventSubtype(NSEventSubtype::NSEventSubtypeWindowExposed.0));
 
-extern_static!(NSApplicationActivatedEventType: NSEventSubtype = NSEventSubtype(NSEventSubtypeApplicationActivated.0));
+extern_static!(NSApplicationActivatedEventType: NSEventSubtype = NSEventSubtype(NSEventSubtype::NSEventSubtypeApplicationActivated.0));
 
-extern_static!(NSApplicationDeactivatedEventType: NSEventSubtype = NSEventSubtype(NSEventSubtypeApplicationDeactivated.0));
+extern_static!(NSApplicationDeactivatedEventType: NSEventSubtype = NSEventSubtype(NSEventSubtype::NSEventSubtypeApplicationDeactivated.0));
 
-extern_static!(NSWindowMovedEventType: NSEventSubtype = NSEventSubtype(NSEventSubtypeWindowMoved.0));
+extern_static!(NSWindowMovedEventType: NSEventSubtype = NSEventSubtype(NSEventSubtype::NSEventSubtypeWindowMoved.0));
 
-extern_static!(NSScreenChangedEventType: NSEventSubtype = NSEventSubtype(NSEventSubtypeScreenChanged.0));
+extern_static!(NSScreenChangedEventType: NSEventSubtype = NSEventSubtype(NSEventSubtype::NSEventSubtypeScreenChanged.0));
 
 extern_static!(NSAWTEventType: NSEventSubtype = NSEventSubtype(16));
 
-extern_static!(NSPowerOffEventType: NSEventSubtype = NSEventSubtype(NSEventSubtypePowerOff.0));
+extern_static!(NSPowerOffEventType: NSEventSubtype = NSEventSubtype(NSEventSubtype::NSEventSubtypePowerOff.0));
 
-extern_static!(NSMouseEventSubtype: NSEventSubtype = NSEventSubtype(NSEventSubtypeMouseEvent.0));
+extern_static!(NSMouseEventSubtype: NSEventSubtype = NSEventSubtype(NSEventSubtype::NSEventSubtypeMouseEvent.0));
 
-extern_static!(NSTabletPointEventSubtype: NSEventSubtype = NSEventSubtype(NSEventSubtypeTabletPoint.0));
+extern_static!(NSTabletPointEventSubtype: NSEventSubtype = NSEventSubtype(NSEventSubtype::NSEventSubtypeTabletPoint.0));
 
-extern_static!(NSTabletProximityEventSubtype: NSEventSubtype = NSEventSubtype(NSEventSubtypeTabletProximity.0));
+extern_static!(NSTabletProximityEventSubtype: NSEventSubtype = NSEventSubtype(NSEventSubtype::NSEventSubtypeTabletProximity.0));
 
-extern_static!(NSTouchEventSubtype: NSEventSubtype = NSEventSubtype(NSEventSubtypeTouch.0));
+extern_static!(NSTouchEventSubtype: NSEventSubtype = NSEventSubtype(NSEventSubtype::NSEventSubtypeTouch.0));
 
 ns_enum!(
     #[underlying(NSInteger)]
