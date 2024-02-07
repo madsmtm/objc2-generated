@@ -5,4 +5,4 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameKit::*;
 
-pub type GKMatchProperties = AnyObject;
+pub type GKMatchProperties = NSDictionary<NSString, AnyObject>;
