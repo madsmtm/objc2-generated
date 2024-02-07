@@ -38,6 +38,8 @@ extern_static!(NSStackViewVisibilityPriorityDetachOnlyIfNecessary: NSStackViewVi
 
 extern_static!(NSStackViewVisibilityPriorityNotVisible: NSStackViewVisibilityPriority = 0);
 
+extern_static!(NSStackViewSpacingUseDefault: CGFloat = c_float::MAX as _);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AppKit_NSStackView")]

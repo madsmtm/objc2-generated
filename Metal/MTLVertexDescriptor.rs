@@ -75,6 +75,8 @@ ns_enum!(
     }
 );
 
+extern_static!(MTLBufferLayoutStrideDynamic: NSUInteger = NSUIntegerMax as _);
+
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "Metal_MTLVertexBufferLayoutDescriptor")]

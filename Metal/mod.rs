@@ -273,6 +273,7 @@ pub use self::__MTLArgument::{
     MTLDataTypeUShort2, MTLDataTypeUShort3, MTLDataTypeUShort4, MTLDataTypeVisibleFunctionTable,
 };
 pub use self::__MTLArgumentEncoder::MTLArgumentEncoder;
+pub use self::__MTLArgumentEncoder::MTLAttributeStrideStatic;
 pub use self::__MTLBinaryArchive::MTLBinaryArchive;
 #[cfg(feature = "Metal_MTLBinaryArchiveDescriptor")]
 pub use self::__MTLBinaryArchive::MTLBinaryArchiveDescriptor;
@@ -967,6 +968,7 @@ pub use self::__MTLTypes::MTLRegion;
 pub use self::__MTLTypes::MTLResourceID;
 pub use self::__MTLTypes::MTLSamplePosition;
 pub use self::__MTLTypes::MTLSize;
+pub use self::__MTLVertexDescriptor::MTLBufferLayoutStrideDynamic;
 #[cfg(feature = "Metal_MTLVertexAttributeDescriptor")]
 pub use self::__MTLVertexDescriptor::MTLVertexAttributeDescriptor;
 #[cfg(feature = "Metal_MTLVertexAttributeDescriptorArray")]

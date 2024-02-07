@@ -4,6 +4,8 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
+extern_static!(MTLAttributeStrideStatic: NSUInteger = NSUIntegerMax as _);
+
 extern_protocol!(
     pub unsafe trait MTLArgumentEncoder: NSObjectProtocol {
         #[method_id(@__retain_semantics Other device)]

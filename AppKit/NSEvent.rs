@@ -177,6 +177,8 @@ extern_static!(NSOtherMouseUpMask: NSEventMask = NSEventMaskOtherMouseUp);
 
 extern_static!(NSOtherMouseDraggedMask: NSEventMask = NSEventMaskOtherMouseDragged);
 
+extern_static!(NSAnyEventMask: NSEventMask = NSUIntegerMax as _);
+
 inline_fn!(
     pub unsafe fn NSEventMaskFromType(r#type: NSEventType) -> NSEventMask {
         todo!()

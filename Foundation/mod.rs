@@ -1710,6 +1710,7 @@ pub use self::__NSObjCRuntime::NSEnumerationOptions;
 pub use self::__NSObjCRuntime::NSExceptionName;
 pub use self::__NSObjCRuntime::NSFoundationVersionNumber;
 pub use self::__NSObjCRuntime::NSGetSizeAndAlignment;
+pub use self::__NSObjCRuntime::NSNotFound;
 #[cfg(feature = "Foundation_NSString")]
 pub use self::__NSObjCRuntime::NSProtocolFromString;
 pub use self::__NSObjCRuntime::NSQualityOfService;

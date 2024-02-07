@@ -80,3 +80,5 @@ ns_enum!(
         NSQualityOfServiceDefault = -1,
     }
 );
+
+extern_static!(NSNotFound: NSInteger = NSIntegerMax as _);

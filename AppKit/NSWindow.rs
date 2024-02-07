@@ -102,6 +102,24 @@ typed_extensible_enum!(
     pub type NSWindowLevel = NSInteger;
 );
 
+extern_static!(NSNormalWindowLevel: NSWindowLevel = 0);
+
+extern_static!(NSFloatingWindowLevel: NSWindowLevel = 3);
+
+extern_static!(NSSubmenuWindowLevel: NSWindowLevel = 3);
+
+extern_static!(NSTornOffMenuWindowLevel: NSWindowLevel = 3);
+
+extern_static!(NSMainMenuWindowLevel: NSWindowLevel = 24);
+
+extern_static!(NSStatusWindowLevel: NSWindowLevel = 25);
+
+extern_static!(NSModalPanelWindowLevel: NSWindowLevel = 8);
+
+extern_static!(NSPopUpMenuWindowLevel: NSWindowLevel = 101);
+
+extern_static!(NSScreenSaverWindowLevel: NSWindowLevel = 1000);
+
 ns_enum!(
     #[underlying(NSUInteger)]
     pub enum NSSelectionDirection {
@@ -141,6 +159,8 @@ ns_enum!(
         NSWindowToolbarStyleUnifiedCompact = 4,
     }
 );
+
+extern_static!(NSEventDurationForever: NSTimeInterval = c_double::MAX as _);
 
 ns_enum!(
     #[underlying(NSInteger)]
@@ -1927,3 +1947,5 @@ extern_static!(NSHUDWindowMask: NSWindowStyleMask = NSWindowStyleMaskHUDWindow);
 extern_static!(NSUnscaledWindowMask: NSWindowStyleMask = 1<<11);
 
 extern_static!(NSWindowFullScreenButton: NSWindowButton = 7);
+
+extern_static!(NSDockWindowLevel: NSWindowLevel = 20);
