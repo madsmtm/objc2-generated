@@ -5,40 +5,34 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::WebKit::*;
 
-extern_enum!(
-    #[underlying(c_uint)]
-    #[deprecated]
-    pub enum __anonymous__ {
-        #[deprecated]
-        DOM_UNKNOWN_RULE = 0,
-        #[deprecated]
-        DOM_STYLE_RULE = 1,
-        #[deprecated]
-        DOM_CHARSET_RULE = 2,
-        #[deprecated]
-        DOM_IMPORT_RULE = 3,
-        #[deprecated]
-        DOM_MEDIA_RULE = 4,
-        #[deprecated]
-        DOM_FONT_FACE_RULE = 5,
-        #[deprecated]
-        DOM_PAGE_RULE = 6,
-        #[deprecated]
-        DOM_KEYFRAMES_RULE = 7,
-        #[deprecated]
-        DOM_KEYFRAME_RULE = 8,
-        #[deprecated]
-        DOM_NAMESPACE_RULE = 10,
-        #[deprecated]
-        DOM_SUPPORTS_RULE = 12,
-        #[deprecated]
-        DOM_WEBKIT_REGION_RULE = 16,
-        #[deprecated]
-        DOM_WEBKIT_KEYFRAMES_RULE = 7,
-        #[deprecated]
-        DOM_WEBKIT_KEYFRAME_RULE = 8,
-    }
-);
+#[deprecated]
+pub const DOM_UNKNOWN_RULE: c_uint = 0;
+#[deprecated]
+pub const DOM_STYLE_RULE: c_uint = 1;
+#[deprecated]
+pub const DOM_CHARSET_RULE: c_uint = 2;
+#[deprecated]
+pub const DOM_IMPORT_RULE: c_uint = 3;
+#[deprecated]
+pub const DOM_MEDIA_RULE: c_uint = 4;
+#[deprecated]
+pub const DOM_FONT_FACE_RULE: c_uint = 5;
+#[deprecated]
+pub const DOM_PAGE_RULE: c_uint = 6;
+#[deprecated]
+pub const DOM_KEYFRAMES_RULE: c_uint = 7;
+#[deprecated]
+pub const DOM_KEYFRAME_RULE: c_uint = 8;
+#[deprecated]
+pub const DOM_NAMESPACE_RULE: c_uint = 10;
+#[deprecated]
+pub const DOM_SUPPORTS_RULE: c_uint = 12;
+#[deprecated]
+pub const DOM_WEBKIT_REGION_RULE: c_uint = 16;
+#[deprecated]
+pub const DOM_WEBKIT_KEYFRAMES_RULE: c_uint = 7;
+#[deprecated]
+pub const DOM_WEBKIT_KEYFRAME_RULE: c_uint = 8;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

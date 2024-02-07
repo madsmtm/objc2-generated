@@ -5,20 +5,14 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::WebKit::*;
 
-extern_enum!(
-    #[underlying(c_uint)]
-    #[deprecated]
-    pub enum __anonymous__ {
-        #[deprecated]
-        DOM_KEY_LOCATION_STANDARD = 0x00,
-        #[deprecated]
-        DOM_KEY_LOCATION_LEFT = 0x01,
-        #[deprecated]
-        DOM_KEY_LOCATION_RIGHT = 0x02,
-        #[deprecated]
-        DOM_KEY_LOCATION_NUMPAD = 0x03,
-    }
-);
+#[deprecated]
+pub const DOM_KEY_LOCATION_STANDARD: c_uint = 0x00;
+#[deprecated]
+pub const DOM_KEY_LOCATION_LEFT: c_uint = 0x01;
+#[deprecated]
+pub const DOM_KEY_LOCATION_RIGHT: c_uint = 0x02;
+#[deprecated]
+pub const DOM_KEY_LOCATION_NUMPAD: c_uint = 0x03;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

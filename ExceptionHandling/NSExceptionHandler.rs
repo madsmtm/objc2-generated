@@ -14,32 +14,22 @@ extern_fn!(
     pub unsafe fn NSExceptionHandlerResume();
 );
 
-extern_enum!(
-    #[underlying(c_uint)]
-    pub enum __anonymous__ {
-        NSLogUncaughtExceptionMask = 1 << 0,
-        NSHandleUncaughtExceptionMask = 1 << 1,
-        NSLogUncaughtSystemExceptionMask = 1 << 2,
-        NSHandleUncaughtSystemExceptionMask = 1 << 3,
-        NSLogUncaughtRuntimeErrorMask = 1 << 4,
-        NSHandleUncaughtRuntimeErrorMask = 1 << 5,
-        NSLogTopLevelExceptionMask = 1 << 6,
-        NSHandleTopLevelExceptionMask = 1 << 7,
-        NSLogOtherExceptionMask = 1 << 8,
-        NSHandleOtherExceptionMask = 1 << 9,
-    }
-);
+pub const NSLogUncaughtExceptionMask: c_uint = 1 << 0;
+pub const NSHandleUncaughtExceptionMask: c_uint = 1 << 1;
+pub const NSLogUncaughtSystemExceptionMask: c_uint = 1 << 2;
+pub const NSHandleUncaughtSystemExceptionMask: c_uint = 1 << 3;
+pub const NSLogUncaughtRuntimeErrorMask: c_uint = 1 << 4;
+pub const NSHandleUncaughtRuntimeErrorMask: c_uint = 1 << 5;
+pub const NSLogTopLevelExceptionMask: c_uint = 1 << 6;
+pub const NSHandleTopLevelExceptionMask: c_uint = 1 << 7;
+pub const NSLogOtherExceptionMask: c_uint = 1 << 8;
+pub const NSHandleOtherExceptionMask: c_uint = 1 << 9;
 
-extern_enum!(
-    #[underlying(c_uint)]
-    pub enum __anonymous__ {
-        NSHangOnUncaughtExceptionMask = 1 << 0,
-        NSHangOnUncaughtSystemExceptionMask = 1 << 1,
-        NSHangOnUncaughtRuntimeErrorMask = 1 << 2,
-        NSHangOnTopLevelExceptionMask = 1 << 3,
-        NSHangOnOtherExceptionMask = 1 << 4,
-    }
-);
+pub const NSHangOnUncaughtExceptionMask: c_uint = 1 << 0;
+pub const NSHangOnUncaughtSystemExceptionMask: c_uint = 1 << 1;
+pub const NSHangOnUncaughtRuntimeErrorMask: c_uint = 1 << 2;
+pub const NSHangOnTopLevelExceptionMask: c_uint = 1 << 3;
+pub const NSHangOnOtherExceptionMask: c_uint = 1 << 4;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -570,14 +570,9 @@ extern_methods!(
 
 extern_static!(NSCalendarDayChangedNotification: &'static NSNotificationName);
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum __anonymous__ {
-        NSDateComponentUndefined = NSIntegerMax as _,
-        #[deprecated]
-        NSUndefinedDateComponent = NSDateComponentUndefined,
-    }
-);
+pub const NSDateComponentUndefined: NSInteger = NSIntegerMax as _;
+#[deprecated]
+pub const NSUndefinedDateComponent: NSInteger = NSDateComponentUndefined;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

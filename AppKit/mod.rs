@@ -574,19 +574,32 @@ mod __NSWindowTabGroup;
 #[path = "NSWorkspace.rs"]
 mod __NSWorkspace;
 
-pub use self::__AppKitErrors::{
-    NSFontAssetDownloadError, NSFontErrorMaximum, NSFontErrorMinimum,
-    NSServiceApplicationLaunchFailedError, NSServiceApplicationNotFoundError,
-    NSServiceErrorMaximum, NSServiceErrorMinimum, NSServiceInvalidPasteboardDataError,
-    NSServiceMalformedServiceDictionaryError, NSServiceMiscellaneousError,
-    NSServiceRequestTimedOutError, NSSharingServiceErrorMaximum, NSSharingServiceErrorMinimum,
-    NSSharingServiceNotConfiguredError, NSTextReadInapplicableDocumentTypeError,
-    NSTextReadWriteErrorMaximum, NSTextReadWriteErrorMinimum,
-    NSTextWriteInapplicableDocumentTypeError, NSWindowSharingErrorMaximum,
-    NSWindowSharingErrorMinimum, NSWindowSharingRequestAlreadyRequested,
-    NSWindowSharingRequestNoEligibleSession, NSWindowSharingRequestUnspecifiedError,
-    NSWorkspaceAuthorizationInvalidError, NSWorkspaceErrorMaximum, NSWorkspaceErrorMinimum,
-};
+pub use self::__AppKitErrors::NSFontAssetDownloadError;
+pub use self::__AppKitErrors::NSFontErrorMaximum;
+pub use self::__AppKitErrors::NSFontErrorMinimum;
+pub use self::__AppKitErrors::NSServiceApplicationLaunchFailedError;
+pub use self::__AppKitErrors::NSServiceApplicationNotFoundError;
+pub use self::__AppKitErrors::NSServiceErrorMaximum;
+pub use self::__AppKitErrors::NSServiceErrorMinimum;
+pub use self::__AppKitErrors::NSServiceInvalidPasteboardDataError;
+pub use self::__AppKitErrors::NSServiceMalformedServiceDictionaryError;
+pub use self::__AppKitErrors::NSServiceMiscellaneousError;
+pub use self::__AppKitErrors::NSServiceRequestTimedOutError;
+pub use self::__AppKitErrors::NSSharingServiceErrorMaximum;
+pub use self::__AppKitErrors::NSSharingServiceErrorMinimum;
+pub use self::__AppKitErrors::NSSharingServiceNotConfiguredError;
+pub use self::__AppKitErrors::NSTextReadInapplicableDocumentTypeError;
+pub use self::__AppKitErrors::NSTextReadWriteErrorMaximum;
+pub use self::__AppKitErrors::NSTextReadWriteErrorMinimum;
+pub use self::__AppKitErrors::NSTextWriteInapplicableDocumentTypeError;
+pub use self::__AppKitErrors::NSWindowSharingErrorMaximum;
+pub use self::__AppKitErrors::NSWindowSharingErrorMinimum;
+pub use self::__AppKitErrors::NSWindowSharingRequestAlreadyRequested;
+pub use self::__AppKitErrors::NSWindowSharingRequestNoEligibleSession;
+pub use self::__AppKitErrors::NSWindowSharingRequestUnspecifiedError;
+pub use self::__AppKitErrors::NSWorkspaceAuthorizationInvalidError;
+pub use self::__AppKitErrors::NSWorkspaceErrorMaximum;
+pub use self::__AppKitErrors::NSWorkspaceErrorMinimum;
 #[cfg(feature = "AppKit_NSATSTypesetter")]
 pub use self::__NSATSTypesetter::NSATSTypesetter;
 #[cfg(feature = "Foundation_NSString")]
@@ -1218,6 +1231,9 @@ pub use self::__NSApplication::NSPerformService;
 pub use self::__NSApplication::NSRegisterServicesProvider;
 pub use self::__NSApplication::NSRemoteNotificationType;
 pub use self::__NSApplication::NSRequestUserAttentionType;
+pub use self::__NSApplication::NSRunAbortedResponse;
+pub use self::__NSApplication::NSRunContinuesResponse;
+pub use self::__NSApplication::NSRunStoppedResponse;
 pub use self::__NSApplication::NSServiceProviderName;
 pub use self::__NSApplication::NSServicesMenuRequestor;
 #[cfg(feature = "Foundation_NSString")]
@@ -1251,9 +1267,6 @@ pub use self::__NSApplication::{
 pub use self::__NSApplication::{
     NSRemoteNotificationTypeAlert, NSRemoteNotificationTypeBadge, NSRemoteNotificationTypeNone,
     NSRemoteNotificationTypeSound,
-};
-pub use self::__NSApplication::{
-    NSRunAbortedResponse, NSRunContinuesResponse, NSRunStoppedResponse,
 };
 pub use self::__NSApplication::{NSTerminateCancel, NSTerminateLater, NSTerminateNow};
 #[cfg(feature = "AppKit_NSArrayController")]
@@ -1320,6 +1333,7 @@ pub use self::__NSAttributedString::NSModificationTimeDocumentAttribute;
 pub use self::__NSAttributedString::NSMutableAttributedStringDocumentFormats;
 #[cfg(feature = "Foundation_NSMutableAttributedString")]
 pub use self::__NSAttributedString::NSMutableAttributedStringKitAdditions;
+pub use self::__NSAttributedString::NSNoUnderlineStyle;
 pub use self::__NSAttributedString::NSObliquenessAttributeName;
 pub use self::__NSAttributedString::NSOfficeOpenXMLTextDocumentType;
 pub use self::__NSAttributedString::NSOpenDocumentTextDocumentType;
@@ -1332,6 +1346,7 @@ pub use self::__NSAttributedString::NSRTFTextDocumentType;
 pub use self::__NSAttributedString::NSReadOnlyDocumentAttribute;
 pub use self::__NSAttributedString::NSRightMarginDocumentAttribute;
 pub use self::__NSAttributedString::NSShadowAttributeName;
+pub use self::__NSAttributedString::NSSingleUnderlineStyle;
 pub use self::__NSAttributedString::NSSourceTextScalingDocumentAttribute;
 pub use self::__NSAttributedString::NSSourceTextScalingDocumentOption;
 pub use self::__NSAttributedString::NSSpellingState;
@@ -1383,7 +1398,6 @@ pub use self::__NSAttributedString::NSWebResourceLoadDelegateDocumentOption;
 pub use self::__NSAttributedString::NSWordMLTextDocumentType;
 pub use self::__NSAttributedString::NSWritingDirectionAttributeName;
 pub use self::__NSAttributedString::NSWritingDirectionFormatType;
-pub use self::__NSAttributedString::{NSNoUnderlineStyle, NSSingleUnderlineStyle};
 pub use self::__NSAttributedString::{NSSpellingStateGrammarFlag, NSSpellingStateSpellingFlag};
 pub use self::__NSAttributedString::{NSTextScalingStandard, NSTextScalingiOS};
 pub use self::__NSAttributedString::{
@@ -1560,6 +1574,7 @@ pub use self::__NSCachedImageRep::NSCachedImageRep;
 pub use self::__NSCandidateListTouchBarItem::NSCandidateListTouchBarItem;
 pub use self::__NSCandidateListTouchBarItem::NSCandidateListTouchBarItemDelegate;
 pub use self::__NSCandidateListTouchBarItem::NSTouchBarItemIdentifierCandidateList;
+pub use self::__NSCell::NSAnyType;
 pub use self::__NSCell::NSBackgroundStyle;
 pub use self::__NSCell::NSBackgroundStyleDark;
 pub use self::__NSCell::NSBackgroundStyleLight;
@@ -1578,21 +1593,23 @@ pub use self::__NSCell::NSControlStateValueOff;
 pub use self::__NSCell::NSControlStateValueOn;
 pub use self::__NSCell::NSControlTint;
 pub use self::__NSCell::NSControlTintDidChangeNotification;
+pub use self::__NSCell::NSDoubleType;
 #[cfg(feature = "AppKit_NSImage")]
 pub use self::__NSCell::NSDrawNinePartImage;
 #[cfg(feature = "AppKit_NSImage")]
 pub use self::__NSCell::NSDrawThreePartImage;
+pub use self::__NSCell::NSFloatType;
 pub use self::__NSCell::NSImageScaling;
+pub use self::__NSCell::NSIntType;
 pub use self::__NSCell::NSMiniControlSize;
 pub use self::__NSCell::NSMixedState;
 pub use self::__NSCell::NSOffState;
 pub use self::__NSCell::NSOnState;
+pub use self::__NSCell::NSPositiveDoubleType;
+pub use self::__NSCell::NSPositiveFloatType;
+pub use self::__NSCell::NSPositiveIntType;
 pub use self::__NSCell::NSRegularControlSize;
 pub use self::__NSCell::NSSmallControlSize;
-pub use self::__NSCell::{
-    NSAnyType, NSDoubleType, NSFloatType, NSIntType, NSPositiveDoubleType, NSPositiveFloatType,
-    NSPositiveIntType,
-};
 pub use self::__NSCell::{
     NSBackgroundStyleEmphasized, NSBackgroundStyleLowered, NSBackgroundStyleNormal,
     NSBackgroundStyleRaised,
@@ -2015,12 +2032,21 @@ pub use self::__NSEvent::NSApplicationActivatedEventType;
 pub use self::__NSEvent::NSApplicationDeactivatedEventType;
 pub use self::__NSEvent::NSApplicationDefined;
 pub use self::__NSEvent::NSApplicationDefinedMask;
+pub use self::__NSEvent::NSBeginFunctionKey;
+pub use self::__NSEvent::NSBreakFunctionKey;
+pub use self::__NSEvent::NSClearDisplayFunctionKey;
+pub use self::__NSEvent::NSClearLineFunctionKey;
 pub use self::__NSEvent::NSCommandKeyMask;
 pub use self::__NSEvent::NSControlKeyMask;
 pub use self::__NSEvent::NSCursorPointingDevice;
 pub use self::__NSEvent::NSCursorUpdate;
 pub use self::__NSEvent::NSCursorUpdateMask;
+pub use self::__NSEvent::NSDeleteCharFunctionKey;
+pub use self::__NSEvent::NSDeleteFunctionKey;
+pub use self::__NSEvent::NSDeleteLineFunctionKey;
 pub use self::__NSEvent::NSDeviceIndependentModifierFlagsMask;
+pub use self::__NSEvent::NSDownArrowFunctionKey;
+pub use self::__NSEvent::NSEndFunctionKey;
 pub use self::__NSEvent::NSEraserPointingDevice;
 #[cfg(feature = "AppKit_NSEvent")]
 pub use self::__NSEvent::NSEvent;
@@ -2032,20 +2058,65 @@ pub use self::__NSEvent::NSEventPhase;
 pub use self::__NSEvent::NSEventSubtype;
 pub use self::__NSEvent::NSEventSwipeTrackingOptions;
 pub use self::__NSEvent::NSEventType;
+pub use self::__NSEvent::NSExecuteFunctionKey;
+pub use self::__NSEvent::NSF10FunctionKey;
+pub use self::__NSEvent::NSF11FunctionKey;
+pub use self::__NSEvent::NSF12FunctionKey;
+pub use self::__NSEvent::NSF13FunctionKey;
+pub use self::__NSEvent::NSF14FunctionKey;
+pub use self::__NSEvent::NSF15FunctionKey;
+pub use self::__NSEvent::NSF16FunctionKey;
+pub use self::__NSEvent::NSF17FunctionKey;
+pub use self::__NSEvent::NSF18FunctionKey;
+pub use self::__NSEvent::NSF19FunctionKey;
+pub use self::__NSEvent::NSF1FunctionKey;
+pub use self::__NSEvent::NSF20FunctionKey;
+pub use self::__NSEvent::NSF21FunctionKey;
+pub use self::__NSEvent::NSF22FunctionKey;
+pub use self::__NSEvent::NSF23FunctionKey;
+pub use self::__NSEvent::NSF24FunctionKey;
+pub use self::__NSEvent::NSF25FunctionKey;
+pub use self::__NSEvent::NSF26FunctionKey;
+pub use self::__NSEvent::NSF27FunctionKey;
+pub use self::__NSEvent::NSF28FunctionKey;
+pub use self::__NSEvent::NSF29FunctionKey;
+pub use self::__NSEvent::NSF2FunctionKey;
+pub use self::__NSEvent::NSF30FunctionKey;
+pub use self::__NSEvent::NSF31FunctionKey;
+pub use self::__NSEvent::NSF32FunctionKey;
+pub use self::__NSEvent::NSF33FunctionKey;
+pub use self::__NSEvent::NSF34FunctionKey;
+pub use self::__NSEvent::NSF35FunctionKey;
+pub use self::__NSEvent::NSF3FunctionKey;
+pub use self::__NSEvent::NSF4FunctionKey;
+pub use self::__NSEvent::NSF5FunctionKey;
+pub use self::__NSEvent::NSF6FunctionKey;
+pub use self::__NSEvent::NSF7FunctionKey;
+pub use self::__NSEvent::NSF8FunctionKey;
+pub use self::__NSEvent::NSF9FunctionKey;
+pub use self::__NSEvent::NSFindFunctionKey;
 pub use self::__NSEvent::NSFlagsChanged;
 pub use self::__NSEvent::NSFlagsChangedMask;
 pub use self::__NSEvent::NSFunctionKeyMask;
+pub use self::__NSEvent::NSHelpFunctionKey;
 pub use self::__NSEvent::NSHelpKeyMask;
+pub use self::__NSEvent::NSHomeFunctionKey;
+pub use self::__NSEvent::NSInsertCharFunctionKey;
+pub use self::__NSEvent::NSInsertFunctionKey;
+pub use self::__NSEvent::NSInsertLineFunctionKey;
 pub use self::__NSEvent::NSKeyDown;
 pub use self::__NSEvent::NSKeyDownMask;
 pub use self::__NSEvent::NSKeyUp;
 pub use self::__NSEvent::NSKeyUpMask;
+pub use self::__NSEvent::NSLeftArrowFunctionKey;
 pub use self::__NSEvent::NSLeftMouseDown;
 pub use self::__NSEvent::NSLeftMouseDownMask;
 pub use self::__NSEvent::NSLeftMouseDragged;
 pub use self::__NSEvent::NSLeftMouseDraggedMask;
 pub use self::__NSEvent::NSLeftMouseUp;
 pub use self::__NSEvent::NSLeftMouseUpMask;
+pub use self::__NSEvent::NSMenuFunctionKey;
+pub use self::__NSEvent::NSModeSwitchFunctionKey;
 pub use self::__NSEvent::NSMouseEntered;
 pub use self::__NSEvent::NSMouseEnteredMask;
 pub use self::__NSEvent::NSMouseEventSubtype;
@@ -2053,6 +2124,7 @@ pub use self::__NSEvent::NSMouseExited;
 pub use self::__NSEvent::NSMouseExitedMask;
 pub use self::__NSEvent::NSMouseMoved;
 pub use self::__NSEvent::NSMouseMovedMask;
+pub use self::__NSEvent::NSNextFunctionKey;
 pub use self::__NSEvent::NSNumericPadKeyMask;
 pub use self::__NSEvent::NSOtherMouseDown;
 pub use self::__NSEvent::NSOtherMouseDownMask;
@@ -2060,6 +2132,9 @@ pub use self::__NSEvent::NSOtherMouseDragged;
 pub use self::__NSEvent::NSOtherMouseDraggedMask;
 pub use self::__NSEvent::NSOtherMouseUp;
 pub use self::__NSEvent::NSOtherMouseUpMask;
+pub use self::__NSEvent::NSPageDownFunctionKey;
+pub use self::__NSEvent::NSPageUpFunctionKey;
+pub use self::__NSEvent::NSPauseFunctionKey;
 pub use self::__NSEvent::NSPenLowerSideMask;
 pub use self::__NSEvent::NSPenPointingDevice;
 pub use self::__NSEvent::NSPenTipMask;
@@ -2069,6 +2144,12 @@ pub use self::__NSEvent::NSPeriodicMask;
 pub use self::__NSEvent::NSPointingDeviceType;
 pub use self::__NSEvent::NSPowerOffEventType;
 pub use self::__NSEvent::NSPressureBehavior;
+pub use self::__NSEvent::NSPrevFunctionKey;
+pub use self::__NSEvent::NSPrintFunctionKey;
+pub use self::__NSEvent::NSPrintScreenFunctionKey;
+pub use self::__NSEvent::NSRedoFunctionKey;
+pub use self::__NSEvent::NSResetFunctionKey;
+pub use self::__NSEvent::NSRightArrowFunctionKey;
 pub use self::__NSEvent::NSRightMouseDown;
 pub use self::__NSEvent::NSRightMouseDownMask;
 pub use self::__NSEvent::NSRightMouseDragged;
@@ -2076,11 +2157,16 @@ pub use self::__NSEvent::NSRightMouseDraggedMask;
 pub use self::__NSEvent::NSRightMouseUp;
 pub use self::__NSEvent::NSRightMouseUpMask;
 pub use self::__NSEvent::NSScreenChangedEventType;
+pub use self::__NSEvent::NSScrollLockFunctionKey;
 pub use self::__NSEvent::NSScrollWheel;
 pub use self::__NSEvent::NSScrollWheelMask;
+pub use self::__NSEvent::NSSelectFunctionKey;
 pub use self::__NSEvent::NSShiftKeyMask;
+pub use self::__NSEvent::NSStopFunctionKey;
+pub use self::__NSEvent::NSSysReqFunctionKey;
 pub use self::__NSEvent::NSSystemDefined;
 pub use self::__NSEvent::NSSystemDefinedMask;
+pub use self::__NSEvent::NSSystemFunctionKey;
 pub use self::__NSEvent::NSTabletPoint;
 pub use self::__NSEvent::NSTabletPointEventSubtype;
 pub use self::__NSEvent::NSTabletPointMask;
@@ -2088,27 +2174,12 @@ pub use self::__NSEvent::NSTabletProximity;
 pub use self::__NSEvent::NSTabletProximityEventSubtype;
 pub use self::__NSEvent::NSTabletProximityMask;
 pub use self::__NSEvent::NSTouchEventSubtype;
+pub use self::__NSEvent::NSUndoFunctionKey;
 pub use self::__NSEvent::NSUnknownPointingDevice;
+pub use self::__NSEvent::NSUpArrowFunctionKey;
+pub use self::__NSEvent::NSUserFunctionKey;
 pub use self::__NSEvent::NSWindowExposedEventType;
 pub use self::__NSEvent::NSWindowMovedEventType;
-pub use self::__NSEvent::{
-    NSBeginFunctionKey, NSBreakFunctionKey, NSClearDisplayFunctionKey, NSClearLineFunctionKey,
-    NSDeleteCharFunctionKey, NSDeleteFunctionKey, NSDeleteLineFunctionKey, NSDownArrowFunctionKey,
-    NSEndFunctionKey, NSExecuteFunctionKey, NSF10FunctionKey, NSF11FunctionKey, NSF12FunctionKey,
-    NSF13FunctionKey, NSF14FunctionKey, NSF15FunctionKey, NSF16FunctionKey, NSF17FunctionKey,
-    NSF18FunctionKey, NSF19FunctionKey, NSF1FunctionKey, NSF20FunctionKey, NSF21FunctionKey,
-    NSF22FunctionKey, NSF23FunctionKey, NSF24FunctionKey, NSF25FunctionKey, NSF26FunctionKey,
-    NSF27FunctionKey, NSF28FunctionKey, NSF29FunctionKey, NSF2FunctionKey, NSF30FunctionKey,
-    NSF31FunctionKey, NSF32FunctionKey, NSF33FunctionKey, NSF34FunctionKey, NSF35FunctionKey,
-    NSF3FunctionKey, NSF4FunctionKey, NSF5FunctionKey, NSF6FunctionKey, NSF7FunctionKey,
-    NSF8FunctionKey, NSF9FunctionKey, NSFindFunctionKey, NSHelpFunctionKey, NSHomeFunctionKey,
-    NSInsertCharFunctionKey, NSInsertFunctionKey, NSInsertLineFunctionKey, NSLeftArrowFunctionKey,
-    NSMenuFunctionKey, NSModeSwitchFunctionKey, NSNextFunctionKey, NSPageDownFunctionKey,
-    NSPageUpFunctionKey, NSPauseFunctionKey, NSPrevFunctionKey, NSPrintFunctionKey,
-    NSPrintScreenFunctionKey, NSRedoFunctionKey, NSResetFunctionKey, NSRightArrowFunctionKey,
-    NSScrollLockFunctionKey, NSSelectFunctionKey, NSStopFunctionKey, NSSysReqFunctionKey,
-    NSSystemFunctionKey, NSUndoFunctionKey, NSUpArrowFunctionKey, NSUserFunctionKey,
-};
 pub use self::__NSEvent::{
     NSEventButtonMaskPenLowerSide, NSEventButtonMaskPenTip, NSEventButtonMaskPenUpperSide,
 };
@@ -2175,6 +2246,7 @@ pub use self::__NSFilePromiseReceiver::NSFilePromiseReceiver;
 #[cfg(feature = "Foundation_NSFileWrapper")]
 pub use self::__NSFileWrapperExtensions::NSFileWrapperNSExtensions;
 pub use self::__NSFont::NSAntialiasThresholdChangedNotification;
+pub use self::__NSFont::NSControlGlyph;
 pub use self::__NSFont::NSConvertGlyphsToPackedGlyphs;
 #[cfg(feature = "AppKit_NSFont")]
 pub use self::__NSFont::NSFont;
@@ -2184,7 +2256,7 @@ pub use self::__NSFont::NSFontSetChangedNotification;
 pub use self::__NSFont::NSGlyph;
 pub use self::__NSFont::NSMultibyteGlyphPacking;
 pub use self::__NSFont::NSNativeShortGlyphPacking;
-pub use self::__NSFont::{NSControlGlyph, NSNullGlyph};
+pub use self::__NSFont::NSNullGlyph;
 pub use self::__NSFont::{
     NSFontAntialiasedIntegerAdvancementsRenderingMode, NSFontAntialiasedRenderingMode,
     NSFontDefaultRenderingMode, NSFontIntegerAdvancementsRenderingMode,
@@ -2221,9 +2293,12 @@ pub use self::__NSFontCollection::{
     NSFontCollectionVisibilityComputer, NSFontCollectionVisibilityProcess,
     NSFontCollectionVisibilityUser,
 };
+pub use self::__NSFontDescriptor::NSFontBoldTrait;
 pub use self::__NSFontDescriptor::NSFontCascadeListAttribute;
 pub use self::__NSFontDescriptor::NSFontCharacterSetAttribute;
+pub use self::__NSFontDescriptor::NSFontClarendonSerifsClass;
 pub use self::__NSFontDescriptor::NSFontColorAttribute;
+pub use self::__NSFontDescriptor::NSFontCondensedTrait;
 #[cfg(feature = "AppKit_NSFontDescriptor")]
 pub use self::__NSFontDescriptor::NSFontDescriptor;
 pub use self::__NSFontDescriptor::NSFontDescriptorAttributeName;
@@ -2236,6 +2311,7 @@ pub use self::__NSFontDescriptor::NSFontDescriptorSystemDesignRounded;
 pub use self::__NSFontDescriptor::NSFontDescriptorSystemDesignSerif;
 pub use self::__NSFontDescriptor::NSFontDescriptorTraitKey;
 pub use self::__NSFontDescriptor::NSFontDescriptorVariationKey;
+pub use self::__NSFontDescriptor::NSFontExpandedTrait;
 pub use self::__NSFontDescriptor::NSFontFaceAttribute;
 pub use self::__NSFontDescriptor::NSFontFamilyAttribute;
 pub use self::__NSFontDescriptor::NSFontFamilyClass;
@@ -2244,10 +2320,20 @@ pub use self::__NSFontDescriptor::NSFontFeatureSelectorIdentifierKey;
 pub use self::__NSFontDescriptor::NSFontFeatureSettingsAttribute;
 pub use self::__NSFontDescriptor::NSFontFeatureTypeIdentifierKey;
 pub use self::__NSFontDescriptor::NSFontFixedAdvanceAttribute;
+pub use self::__NSFontDescriptor::NSFontFreeformSerifsClass;
+pub use self::__NSFontDescriptor::NSFontItalicTrait;
 pub use self::__NSFontDescriptor::NSFontMatrixAttribute;
+pub use self::__NSFontDescriptor::NSFontModernSerifsClass;
+pub use self::__NSFontDescriptor::NSFontMonoSpaceTrait;
 pub use self::__NSFontDescriptor::NSFontNameAttribute;
+pub use self::__NSFontDescriptor::NSFontOldStyleSerifsClass;
+pub use self::__NSFontDescriptor::NSFontOrnamentalsClass;
+pub use self::__NSFontDescriptor::NSFontSansSerifClass;
+pub use self::__NSFontDescriptor::NSFontScriptsClass;
 pub use self::__NSFontDescriptor::NSFontSizeAttribute;
+pub use self::__NSFontDescriptor::NSFontSlabSerifsClass;
 pub use self::__NSFontDescriptor::NSFontSlantTrait;
+pub use self::__NSFontDescriptor::NSFontSymbolicClass;
 pub use self::__NSFontDescriptor::NSFontSymbolicTrait;
 pub use self::__NSFontDescriptor::NSFontSymbolicTraits;
 pub use self::__NSFontDescriptor::NSFontTextStyle;
@@ -2264,12 +2350,16 @@ pub use self::__NSFontDescriptor::NSFontTextStyleTitle1;
 pub use self::__NSFontDescriptor::NSFontTextStyleTitle2;
 pub use self::__NSFontDescriptor::NSFontTextStyleTitle3;
 pub use self::__NSFontDescriptor::NSFontTraitsAttribute;
+pub use self::__NSFontDescriptor::NSFontTransitionalSerifsClass;
+pub use self::__NSFontDescriptor::NSFontUIOptimizedTrait;
+pub use self::__NSFontDescriptor::NSFontUnknownClass;
 pub use self::__NSFontDescriptor::NSFontVariationAttribute;
 pub use self::__NSFontDescriptor::NSFontVariationAxisDefaultValueKey;
 pub use self::__NSFontDescriptor::NSFontVariationAxisIdentifierKey;
 pub use self::__NSFontDescriptor::NSFontVariationAxisMaximumValueKey;
 pub use self::__NSFontDescriptor::NSFontVariationAxisMinimumValueKey;
 pub use self::__NSFontDescriptor::NSFontVariationAxisNameKey;
+pub use self::__NSFontDescriptor::NSFontVerticalTrait;
 pub use self::__NSFontDescriptor::NSFontVisibleNameAttribute;
 pub use self::__NSFontDescriptor::NSFontWeight;
 pub use self::__NSFontDescriptor::NSFontWeightBlack;
@@ -2288,15 +2378,6 @@ pub use self::__NSFontDescriptor::NSFontWidthCondensed;
 pub use self::__NSFontDescriptor::NSFontWidthExpanded;
 pub use self::__NSFontDescriptor::NSFontWidthStandard;
 pub use self::__NSFontDescriptor::NSFontWidthTrait;
-pub use self::__NSFontDescriptor::{
-    NSFontBoldTrait, NSFontCondensedTrait, NSFontExpandedTrait, NSFontItalicTrait,
-    NSFontMonoSpaceTrait, NSFontUIOptimizedTrait, NSFontVerticalTrait,
-};
-pub use self::__NSFontDescriptor::{
-    NSFontClarendonSerifsClass, NSFontFreeformSerifsClass, NSFontModernSerifsClass,
-    NSFontOldStyleSerifsClass, NSFontOrnamentalsClass, NSFontSansSerifClass, NSFontScriptsClass,
-    NSFontSlabSerifsClass, NSFontSymbolicClass, NSFontTransitionalSerifsClass, NSFontUnknownClass,
-};
 pub use self::__NSFontDescriptor::{
     NSFontDescriptorClassClarendonSerifs, NSFontDescriptorClassFreeformSerifs,
     NSFontDescriptorClassMask, NSFontDescriptorClassModernSerifs,
@@ -2324,21 +2405,28 @@ pub use self::__NSFontManager::{
     NSFixedPitchFontMask, NSItalicFontMask, NSNarrowFontMask, NSNonStandardCharacterSetFontMask,
     NSPosterFontMask, NSSmallCapsFontMask, NSUnboldFontMask, NSUnitalicFontMask,
 };
+pub use self::__NSFontPanel::NSFPCurrentField;
+pub use self::__NSFontPanel::NSFPPreviewButton;
+pub use self::__NSFontPanel::NSFPPreviewField;
+pub use self::__NSFontPanel::NSFPRevertButton;
+pub use self::__NSFontPanel::NSFPSetButton;
+pub use self::__NSFontPanel::NSFPSizeField;
+pub use self::__NSFontPanel::NSFPSizeTitle;
 pub use self::__NSFontPanel::NSFontChanging;
 #[cfg(feature = "AppKit_NSFontPanel")]
 pub use self::__NSFontPanel::NSFontPanel;
+pub use self::__NSFontPanel::NSFontPanelAllEffectsModeMask;
+pub use self::__NSFontPanel::NSFontPanelAllModesMask;
+pub use self::__NSFontPanel::NSFontPanelCollectionModeMask;
+pub use self::__NSFontPanel::NSFontPanelDocumentColorEffectModeMask;
+pub use self::__NSFontPanel::NSFontPanelFaceModeMask;
 pub use self::__NSFontPanel::NSFontPanelModeMask;
-pub use self::__NSFontPanel::{
-    NSFPCurrentField, NSFPPreviewButton, NSFPPreviewField, NSFPRevertButton, NSFPSetButton,
-    NSFPSizeField, NSFPSizeTitle,
-};
-pub use self::__NSFontPanel::{
-    NSFontPanelAllEffectsModeMask, NSFontPanelAllModesMask, NSFontPanelCollectionModeMask,
-    NSFontPanelDocumentColorEffectModeMask, NSFontPanelFaceModeMask,
-    NSFontPanelShadowEffectModeMask, NSFontPanelSizeModeMask, NSFontPanelStandardModesMask,
-    NSFontPanelStrikethroughEffectModeMask, NSFontPanelTextColorEffectModeMask,
-    NSFontPanelUnderlineEffectModeMask,
-};
+pub use self::__NSFontPanel::NSFontPanelShadowEffectModeMask;
+pub use self::__NSFontPanel::NSFontPanelSizeModeMask;
+pub use self::__NSFontPanel::NSFontPanelStandardModesMask;
+pub use self::__NSFontPanel::NSFontPanelStrikethroughEffectModeMask;
+pub use self::__NSFontPanel::NSFontPanelTextColorEffectModeMask;
+pub use self::__NSFontPanel::NSFontPanelUnderlineEffectModeMask;
 pub use self::__NSFontPanel::{
     NSFontPanelModeMaskAllEffects, NSFontPanelModeMaskCollection,
     NSFontPanelModeMaskDocumentColorEffect, NSFontPanelModeMaskFace,
@@ -2363,7 +2451,9 @@ pub use self::__NSGestureRecognizer::{
 #[cfg(feature = "AppKit_NSGlyphGenerator")]
 pub use self::__NSGlyphGenerator::NSGlyphGenerator;
 pub use self::__NSGlyphGenerator::NSGlyphStorage;
-pub use self::__NSGlyphGenerator::{NSShowControlGlyphs, NSShowInvisibleGlyphs, NSWantsBidiLevels};
+pub use self::__NSGlyphGenerator::NSShowControlGlyphs;
+pub use self::__NSGlyphGenerator::NSShowInvisibleGlyphs;
+pub use self::__NSGlyphGenerator::NSWantsBidiLevels;
 pub use self::__NSGlyphInfo::NSCharacterCollection;
 #[cfg(feature = "AppKit_NSGlyphInfo")]
 pub use self::__NSGlyphInfo::NSGlyphInfo;
@@ -2781,10 +2871,10 @@ pub use self::__NSInterfaceStyle::NSInterfaceStyle;
 pub use self::__NSInterfaceStyle::NSInterfaceStyleDefault;
 #[cfg(all(feature = "AppKit_NSResponder", feature = "Foundation_NSString"))]
 pub use self::__NSInterfaceStyle::NSInterfaceStyleForKey;
-pub use self::__NSInterfaceStyle::{
-    NSMacintoshInterfaceStyle, NSNextStepInterfaceStyle, NSNoInterfaceStyle,
-    NSWindows95InterfaceStyle,
-};
+pub use self::__NSInterfaceStyle::NSMacintoshInterfaceStyle;
+pub use self::__NSInterfaceStyle::NSNextStepInterfaceStyle;
+pub use self::__NSInterfaceStyle::NSNoInterfaceStyle;
+pub use self::__NSInterfaceStyle::NSWindows95InterfaceStyle;
 #[cfg(feature = "Foundation_NSItemProvider")]
 pub use self::__NSItemProvider::NSItemProviderNSItemSourceInfo;
 pub use self::__NSItemProvider::NSTypeIdentifierAddressText;
@@ -2960,6 +3050,10 @@ pub use self::__NSLayoutConstraint::{
 #[cfg(feature = "AppKit_NSLayoutGuide")]
 pub use self::__NSLayoutGuide::NSLayoutGuide;
 pub use self::__NSLayoutManager::NSControlCharacterAction;
+pub use self::__NSLayoutManager::NSGlyphAttributeBidiLevel;
+pub use self::__NSLayoutManager::NSGlyphAttributeElastic;
+pub use self::__NSLayoutManager::NSGlyphAttributeInscribe;
+pub use self::__NSLayoutManager::NSGlyphAttributeSoft;
 pub use self::__NSLayoutManager::NSGlyphInscription;
 pub use self::__NSLayoutManager::NSGlyphProperty;
 #[cfg(feature = "AppKit_NSLayoutManager")]
@@ -2972,10 +3066,6 @@ pub use self::__NSLayoutManager::{
     NSControlCharacterActionContainerBreak, NSControlCharacterActionHorizontalTab,
     NSControlCharacterActionLineBreak, NSControlCharacterActionParagraphBreak,
     NSControlCharacterActionWhitespace, NSControlCharacterActionZeroAdvancement,
-};
-pub use self::__NSLayoutManager::{
-    NSGlyphAttributeBidiLevel, NSGlyphAttributeElastic, NSGlyphAttributeInscribe,
-    NSGlyphAttributeSoft,
 };
 pub use self::__NSLayoutManager::{
     NSGlyphInscribeAbove, NSGlyphInscribeBase, NSGlyphInscribeBelow, NSGlyphInscribeOverBelow,
@@ -3090,7 +3180,49 @@ pub use self::__NSOpenGL::NSOpenGLCPSwapRectangle;
 pub use self::__NSOpenGL::NSOpenGLCPSwapRectangleEnable;
 pub use self::__NSOpenGL::NSOpenGLContextParameter;
 pub use self::__NSOpenGL::NSOpenGLGlobalOption;
+pub use self::__NSOpenGL::NSOpenGLPFAAccelerated;
+pub use self::__NSOpenGL::NSOpenGLPFAAcceleratedCompute;
+pub use self::__NSOpenGL::NSOpenGLPFAAccumSize;
+pub use self::__NSOpenGL::NSOpenGLPFAAllRenderers;
+pub use self::__NSOpenGL::NSOpenGLPFAAllowOfflineRenderers;
+pub use self::__NSOpenGL::NSOpenGLPFAAlphaSize;
+pub use self::__NSOpenGL::NSOpenGLPFAAuxBuffers;
+pub use self::__NSOpenGL::NSOpenGLPFAAuxDepthStencil;
+pub use self::__NSOpenGL::NSOpenGLPFABackingStore;
+pub use self::__NSOpenGL::NSOpenGLPFAClosestPolicy;
+pub use self::__NSOpenGL::NSOpenGLPFAColorFloat;
+pub use self::__NSOpenGL::NSOpenGLPFAColorSize;
+pub use self::__NSOpenGL::NSOpenGLPFACompliant;
+pub use self::__NSOpenGL::NSOpenGLPFADepthSize;
+pub use self::__NSOpenGL::NSOpenGLPFADoubleBuffer;
+pub use self::__NSOpenGL::NSOpenGLPFAFullScreen;
+pub use self::__NSOpenGL::NSOpenGLPFAMPSafe;
+pub use self::__NSOpenGL::NSOpenGLPFAMaximumPolicy;
+pub use self::__NSOpenGL::NSOpenGLPFAMinimumPolicy;
+pub use self::__NSOpenGL::NSOpenGLPFAMultiScreen;
+pub use self::__NSOpenGL::NSOpenGLPFAMultisample;
+pub use self::__NSOpenGL::NSOpenGLPFANoRecovery;
+pub use self::__NSOpenGL::NSOpenGLPFAOffScreen;
+pub use self::__NSOpenGL::NSOpenGLPFAOpenGLProfile;
+pub use self::__NSOpenGL::NSOpenGLPFAPixelBuffer;
+pub use self::__NSOpenGL::NSOpenGLPFARemotePixelBuffer;
+pub use self::__NSOpenGL::NSOpenGLPFARendererID;
+pub use self::__NSOpenGL::NSOpenGLPFARobust;
+pub use self::__NSOpenGL::NSOpenGLPFASampleAlpha;
+pub use self::__NSOpenGL::NSOpenGLPFASampleBuffers;
+pub use self::__NSOpenGL::NSOpenGLPFASamples;
+pub use self::__NSOpenGL::NSOpenGLPFAScreenMask;
+pub use self::__NSOpenGL::NSOpenGLPFASingleRenderer;
+pub use self::__NSOpenGL::NSOpenGLPFAStencilSize;
+pub use self::__NSOpenGL::NSOpenGLPFAStereo;
+pub use self::__NSOpenGL::NSOpenGLPFASupersample;
+pub use self::__NSOpenGL::NSOpenGLPFATripleBuffer;
+pub use self::__NSOpenGL::NSOpenGLPFAVirtualScreenCount;
+pub use self::__NSOpenGL::NSOpenGLPFAWindow;
 pub use self::__NSOpenGL::NSOpenGLPixelFormatAttribute;
+pub use self::__NSOpenGL::NSOpenGLProfileVersion3_2Core;
+pub use self::__NSOpenGL::NSOpenGLProfileVersion4_1Core;
+pub use self::__NSOpenGL::NSOpenGLProfileVersionLegacy;
 pub use self::__NSOpenGL::{
     NSOpenGLContextParameterCurrentRendererID, NSOpenGLContextParameterGPUFragmentProcessing,
     NSOpenGLContextParameterGPUVertexProcessing, NSOpenGLContextParameterHasDrawable,
@@ -3104,22 +3236,6 @@ pub use self::__NSOpenGL::{
 pub use self::__NSOpenGL::{
     NSOpenGLGOClearFormatCache, NSOpenGLGOFormatCacheSize, NSOpenGLGOResetLibrary,
     NSOpenGLGORetainRenderers, NSOpenGLGOUseBuildCache,
-};
-pub use self::__NSOpenGL::{
-    NSOpenGLPFAAccelerated, NSOpenGLPFAAcceleratedCompute, NSOpenGLPFAAccumSize,
-    NSOpenGLPFAAllRenderers, NSOpenGLPFAAllowOfflineRenderers, NSOpenGLPFAAlphaSize,
-    NSOpenGLPFAAuxBuffers, NSOpenGLPFAAuxDepthStencil, NSOpenGLPFABackingStore,
-    NSOpenGLPFAClosestPolicy, NSOpenGLPFAColorFloat, NSOpenGLPFAColorSize, NSOpenGLPFACompliant,
-    NSOpenGLPFADepthSize, NSOpenGLPFADoubleBuffer, NSOpenGLPFAFullScreen, NSOpenGLPFAMPSafe,
-    NSOpenGLPFAMaximumPolicy, NSOpenGLPFAMinimumPolicy, NSOpenGLPFAMultiScreen,
-    NSOpenGLPFAMultisample, NSOpenGLPFANoRecovery, NSOpenGLPFAOffScreen, NSOpenGLPFAOpenGLProfile,
-    NSOpenGLPFAPixelBuffer, NSOpenGLPFARemotePixelBuffer, NSOpenGLPFARendererID, NSOpenGLPFARobust,
-    NSOpenGLPFASampleAlpha, NSOpenGLPFASampleBuffers, NSOpenGLPFASamples, NSOpenGLPFAScreenMask,
-    NSOpenGLPFASingleRenderer, NSOpenGLPFAStencilSize, NSOpenGLPFAStereo, NSOpenGLPFASupersample,
-    NSOpenGLPFATripleBuffer, NSOpenGLPFAVirtualScreenCount, NSOpenGLPFAWindow,
-};
-pub use self::__NSOpenGL::{
-    NSOpenGLProfileVersion3_2Core, NSOpenGLProfileVersion4_1Core, NSOpenGLProfileVersionLegacy,
 };
 #[cfg(feature = "AppKit_NSOpenPanel")]
 pub use self::__NSOpenPanel::NSOpenPanel;
@@ -3165,12 +3281,13 @@ pub use self::__NSPageLayout::NSPageLayoutResult;
 pub use self::__NSPageLayout::{NSPageLayoutResultCancelled, NSPageLayoutResultChanged};
 #[cfg(feature = "AppKit_NSPanGestureRecognizer")]
 pub use self::__NSPanGestureRecognizer::NSPanGestureRecognizer;
+pub use self::__NSPanel::NSAlertAlternateReturn;
+pub use self::__NSPanel::NSAlertDefaultReturn;
+pub use self::__NSPanel::NSAlertErrorReturn;
+pub use self::__NSPanel::NSAlertOtherReturn;
 #[cfg(feature = "AppKit_NSPanel")]
 pub use self::__NSPanel::NSPanel;
 pub use self::__NSPanel::NSReleaseAlertPanel;
-pub use self::__NSPanel::{
-    NSAlertAlternateReturn, NSAlertDefaultReturn, NSAlertErrorReturn, NSAlertOtherReturn,
-};
 pub use self::__NSParagraphStyle::NSLineBreakMode;
 pub use self::__NSParagraphStyle::NSLineBreakStrategy;
 #[cfg(feature = "AppKit_NSMutableParagraphStyle")]
@@ -3995,11 +4112,30 @@ pub use self::__NSTableViewRowAction::NSTableViewRowActionStyle;
 pub use self::__NSTableViewRowAction::{
     NSTableViewRowActionStyleDestructive, NSTableViewRowActionStyleRegular,
 };
+pub use self::__NSText::NSBackTabCharacter;
+pub use self::__NSText::NSBackspaceCharacter;
+pub use self::__NSText::NSBacktabTextMovement;
+pub use self::__NSText::NSCancelTextMovement;
+pub use self::__NSText::NSCarriageReturnCharacter;
 pub use self::__NSText::NSCenterTextAlignment;
+pub use self::__NSText::NSDeleteCharacter;
+pub use self::__NSText::NSDownTextMovement;
+pub use self::__NSText::NSEnterCharacter;
+pub use self::__NSText::NSFormFeedCharacter;
+pub use self::__NSText::NSIllegalTextMovement;
 pub use self::__NSText::NSJustifiedTextAlignment;
 pub use self::__NSText::NSLeftTextAlignment;
+pub use self::__NSText::NSLeftTextMovement;
+pub use self::__NSText::NSLineSeparatorCharacter;
 pub use self::__NSText::NSNaturalTextAlignment;
+pub use self::__NSText::NSNewlineCharacter;
+pub use self::__NSText::NSOtherTextMovement;
+pub use self::__NSText::NSParagraphSeparatorCharacter;
+pub use self::__NSText::NSReturnTextMovement;
 pub use self::__NSText::NSRightTextAlignment;
+pub use self::__NSText::NSRightTextMovement;
+pub use self::__NSText::NSTabCharacter;
+pub use self::__NSText::NSTabTextMovement;
 #[cfg(feature = "AppKit_NSText")]
 pub use self::__NSText::NSText;
 pub use self::__NSText::NSTextDelegate;
@@ -4008,23 +4144,15 @@ pub use self::__NSText::NSTextDidChangeNotification;
 pub use self::__NSText::NSTextDidEndEditingNotification;
 pub use self::__NSText::NSTextMovement;
 pub use self::__NSText::NSTextMovementUserInfoKey;
+pub use self::__NSText::NSTextWritingDirectionEmbedding;
+pub use self::__NSText::NSTextWritingDirectionOverride;
+pub use self::__NSText::NSUpTextMovement;
 pub use self::__NSText::NSWritingDirection;
-pub use self::__NSText::{
-    NSBackTabCharacter, NSBackspaceCharacter, NSCarriageReturnCharacter, NSDeleteCharacter,
-    NSEnterCharacter, NSFormFeedCharacter, NSLineSeparatorCharacter, NSNewlineCharacter,
-    NSParagraphSeparatorCharacter, NSTabCharacter,
-};
-pub use self::__NSText::{
-    NSBacktabTextMovement, NSCancelTextMovement, NSDownTextMovement, NSIllegalTextMovement,
-    NSLeftTextMovement, NSOtherTextMovement, NSReturnTextMovement, NSRightTextMovement,
-    NSTabTextMovement, NSUpTextMovement,
-};
 pub use self::__NSText::{
     NSTextMovementBacktab, NSTextMovementCancel, NSTextMovementDown, NSTextMovementLeft,
     NSTextMovementOther, NSTextMovementReturn, NSTextMovementRight, NSTextMovementTab,
     NSTextMovementUp,
 };
-pub use self::__NSText::{NSTextWritingDirectionEmbedding, NSTextWritingDirectionOverride};
 pub use self::__NSText::{
     NSWritingDirectionLeftToRight, NSWritingDirectionNatural, NSWritingDirectionRightToLeft,
 };
@@ -4572,6 +4700,7 @@ pub use self::__NSWindow::NSBackingPropertyOldColorSpaceKey;
 pub use self::__NSWindow::NSBackingPropertyOldScaleFactorKey;
 pub use self::__NSWindow::NSBorderlessWindowMask;
 pub use self::__NSWindow::NSClosableWindowMask;
+pub use self::__NSWindow::NSDisplayWindowRunLoopOrdering;
 pub use self::__NSWindow::NSDocModalWindowMask;
 pub use self::__NSWindow::NSDockWindowLevel;
 pub use self::__NSWindow::NSEventDurationForever;
@@ -4587,6 +4716,7 @@ pub use self::__NSWindow::NSModalResponseOK;
 pub use self::__NSWindow::NSNonactivatingPanelMask;
 pub use self::__NSWindow::NSNormalWindowLevel;
 pub use self::__NSWindow::NSPopUpMenuWindowLevel;
+pub use self::__NSWindow::NSResetCursorRectsRunLoopOrdering;
 pub use self::__NSWindow::NSResizableWindowMask;
 pub use self::__NSWindow::NSScreenSaverWindowLevel;
 pub use self::__NSWindow::NSSelectionDirection;
@@ -4650,7 +4780,6 @@ pub use self::__NSWindow::NSWindowWillMiniaturizeNotification;
 pub use self::__NSWindow::NSWindowWillMoveNotification;
 pub use self::__NSWindow::NSWindowWillStartLiveResizeNotification;
 pub use self::__NSWindow::{NSDirectSelection, NSSelectingNext, NSSelectingPrevious};
-pub use self::__NSWindow::{NSDisplayWindowRunLoopOrdering, NSResetCursorRectsRunLoopOrdering};
 pub use self::__NSWindow::{
     NSTitlebarSeparatorStyleAutomatic, NSTitlebarSeparatorStyleLine, NSTitlebarSeparatorStyleNone,
     NSTitlebarSeparatorStyleShadow,

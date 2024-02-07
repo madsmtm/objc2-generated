@@ -31,9 +31,14 @@ pub use self::__SMAppService::{
     SMAppServiceStatusEnabled, SMAppServiceStatusNotFound, SMAppServiceStatusNotRegistered,
     SMAppServiceStatusRequiresApproval,
 };
-pub use self::__SMErrors::{
-    kSMErrorAlreadyRegistered, kSMErrorAuthorizationFailure, kSMErrorInternalFailure,
-    kSMErrorInvalidPlist, kSMErrorInvalidSignature, kSMErrorJobMustBeEnabled, kSMErrorJobNotFound,
-    kSMErrorJobPlistNotFound, kSMErrorLaunchDeniedByUser, kSMErrorServiceUnavailable,
-    kSMErrorToolNotValid,
-};
+pub use self::__SMErrors::kSMErrorAlreadyRegistered;
+pub use self::__SMErrors::kSMErrorAuthorizationFailure;
+pub use self::__SMErrors::kSMErrorInternalFailure;
+pub use self::__SMErrors::kSMErrorInvalidPlist;
+pub use self::__SMErrors::kSMErrorInvalidSignature;
+pub use self::__SMErrors::kSMErrorJobMustBeEnabled;
+pub use self::__SMErrors::kSMErrorJobNotFound;
+pub use self::__SMErrors::kSMErrorJobPlistNotFound;
+pub use self::__SMErrors::kSMErrorLaunchDeniedByUser;
+pub use self::__SMErrors::kSMErrorServiceUnavailable;
+pub use self::__SMErrors::kSMErrorToolNotValid;

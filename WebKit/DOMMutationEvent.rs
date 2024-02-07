@@ -5,18 +5,12 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::WebKit::*;
 
-extern_enum!(
-    #[underlying(c_uint)]
-    #[deprecated]
-    pub enum __anonymous__ {
-        #[deprecated]
-        DOM_MODIFICATION = 1,
-        #[deprecated]
-        DOM_ADDITION = 2,
-        #[deprecated]
-        DOM_REMOVAL = 3,
-    }
-);
+#[deprecated]
+pub const DOM_MODIFICATION: c_uint = 1;
+#[deprecated]
+pub const DOM_ADDITION: c_uint = 2;
+#[deprecated]
+pub const DOM_REMOVAL: c_uint = 3;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

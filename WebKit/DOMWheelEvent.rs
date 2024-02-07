@@ -5,18 +5,12 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::WebKit::*;
 
-extern_enum!(
-    #[underlying(c_uint)]
-    #[deprecated]
-    pub enum __anonymous__ {
-        #[deprecated]
-        DOM_DOM_DELTA_PIXEL = 0x00,
-        #[deprecated]
-        DOM_DOM_DELTA_LINE = 0x01,
-        #[deprecated]
-        DOM_DOM_DELTA_PAGE = 0x02,
-    }
-);
+#[deprecated]
+pub const DOM_DOM_DELTA_PIXEL: c_uint = 0x00;
+#[deprecated]
+pub const DOM_DOM_DELTA_LINE: c_uint = 0x01;
+#[deprecated]
+pub const DOM_DOM_DELTA_PAGE: c_uint = 0x02;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

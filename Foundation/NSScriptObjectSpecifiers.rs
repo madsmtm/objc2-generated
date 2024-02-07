@@ -3,18 +3,13 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum __anonymous__ {
-        NSNoSpecifierError = 0,
-        NSNoTopLevelContainersSpecifierError = 1,
-        NSContainerSpecifierError = 2,
-        NSUnknownKeySpecifierError = 3,
-        NSInvalidIndexSpecifierError = 4,
-        NSInternalSpecifierError = 5,
-        NSOperationNotSupportedForKeySpecifierError = 6,
-    }
-);
+pub const NSNoSpecifierError: NSInteger = 0;
+pub const NSNoTopLevelContainersSpecifierError: NSInteger = 1;
+pub const NSContainerSpecifierError: NSInteger = 2;
+pub const NSUnknownKeySpecifierError: NSInteger = 3;
+pub const NSInvalidIndexSpecifierError: NSInteger = 4;
+pub const NSInternalSpecifierError: NSInteger = 5;
+pub const NSOperationNotSupportedForKeySpecifierError: NSInteger = 6;
 
 ns_enum!(
     #[underlying(NSUInteger)]

@@ -5,12 +5,7 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-extern_enum!(
-    #[underlying(c_uint)]
-    pub enum __anonymous__ {
-        NSAttachmentCharacter = 0xFFFC,
-    }
-);
+pub const NSAttachmentCharacter: c_uint = 0xFFFC;
 
 extern_protocol!(
     pub unsafe trait NSTextAttachmentContainer: NSObjectProtocol {

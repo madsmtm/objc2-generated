@@ -177,12 +177,7 @@ extern_static!(NSModalResponseAbort: NSModalResponse = -1001);
 
 extern_static!(NSModalResponseContinue: NSModalResponse = -1002);
 
-extern_enum!(
-    #[underlying(c_uint)]
-    pub enum __anonymous__ {
-        NSUpdateWindowsRunLoopOrdering = 500000,
-    }
-);
+pub const NSUpdateWindowsRunLoopOrdering: c_uint = 500000;
 
 ns_options!(
     #[underlying(NSUInteger)]
@@ -1211,17 +1206,12 @@ extern_static!(NSApplicationLaunchRemoteNotificationKey: &'static NSString);
 
 extern_static!(NSApplicationDidChangeOcclusionStateNotification: &'static NSNotificationName);
 
-extern_enum!(
-    #[underlying(c_int)]
-    pub enum __anonymous__ {
-        #[deprecated = "Use NSModalResponseStop instead"]
-        NSRunStoppedResponse = -1000,
-        #[deprecated = "Use NSModalResponseAbort instead"]
-        NSRunAbortedResponse = -1001,
-        #[deprecated = "Use NSModalResponseContinue instead"]
-        NSRunContinuesResponse = -1002,
-    }
-);
+#[deprecated = "Use NSModalResponseStop instead"]
+pub const NSRunStoppedResponse: c_int = -1000;
+#[deprecated = "Use NSModalResponseAbort instead"]
+pub const NSRunAbortedResponse: c_int = -1001;
+#[deprecated = "Use NSModalResponseContinue instead"]
+pub const NSRunContinuesResponse: c_int = -1002;
 
 extern_methods!(
     /// NSDeprecated

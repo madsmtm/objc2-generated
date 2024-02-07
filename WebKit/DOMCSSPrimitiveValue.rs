@@ -5,72 +5,66 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::WebKit::*;
 
-extern_enum!(
-    #[underlying(c_uint)]
-    #[deprecated]
-    pub enum __anonymous__ {
-        #[deprecated]
-        DOM_CSS_UNKNOWN = 0,
-        #[deprecated]
-        DOM_CSS_NUMBER = 1,
-        #[deprecated]
-        DOM_CSS_PERCENTAGE = 2,
-        #[deprecated]
-        DOM_CSS_EMS = 3,
-        #[deprecated]
-        DOM_CSS_EXS = 4,
-        #[deprecated]
-        DOM_CSS_PX = 5,
-        #[deprecated]
-        DOM_CSS_CM = 6,
-        #[deprecated]
-        DOM_CSS_MM = 7,
-        #[deprecated]
-        DOM_CSS_IN = 8,
-        #[deprecated]
-        DOM_CSS_PT = 9,
-        #[deprecated]
-        DOM_CSS_PC = 10,
-        #[deprecated]
-        DOM_CSS_DEG = 11,
-        #[deprecated]
-        DOM_CSS_RAD = 12,
-        #[deprecated]
-        DOM_CSS_GRAD = 13,
-        #[deprecated]
-        DOM_CSS_MS = 14,
-        #[deprecated]
-        DOM_CSS_S = 15,
-        #[deprecated]
-        DOM_CSS_HZ = 16,
-        #[deprecated]
-        DOM_CSS_KHZ = 17,
-        #[deprecated]
-        DOM_CSS_DIMENSION = 18,
-        #[deprecated]
-        DOM_CSS_STRING = 19,
-        #[deprecated]
-        DOM_CSS_URI = 20,
-        #[deprecated]
-        DOM_CSS_IDENT = 21,
-        #[deprecated]
-        DOM_CSS_ATTR = 22,
-        #[deprecated]
-        DOM_CSS_COUNTER = 23,
-        #[deprecated]
-        DOM_CSS_RECT = 24,
-        #[deprecated]
-        DOM_CSS_RGBCOLOR = 25,
-        #[deprecated]
-        DOM_CSS_VW = 26,
-        #[deprecated]
-        DOM_CSS_VH = 27,
-        #[deprecated]
-        DOM_CSS_VMIN = 28,
-        #[deprecated]
-        DOM_CSS_VMAX = 29,
-    }
-);
+#[deprecated]
+pub const DOM_CSS_UNKNOWN: c_uint = 0;
+#[deprecated]
+pub const DOM_CSS_NUMBER: c_uint = 1;
+#[deprecated]
+pub const DOM_CSS_PERCENTAGE: c_uint = 2;
+#[deprecated]
+pub const DOM_CSS_EMS: c_uint = 3;
+#[deprecated]
+pub const DOM_CSS_EXS: c_uint = 4;
+#[deprecated]
+pub const DOM_CSS_PX: c_uint = 5;
+#[deprecated]
+pub const DOM_CSS_CM: c_uint = 6;
+#[deprecated]
+pub const DOM_CSS_MM: c_uint = 7;
+#[deprecated]
+pub const DOM_CSS_IN: c_uint = 8;
+#[deprecated]
+pub const DOM_CSS_PT: c_uint = 9;
+#[deprecated]
+pub const DOM_CSS_PC: c_uint = 10;
+#[deprecated]
+pub const DOM_CSS_DEG: c_uint = 11;
+#[deprecated]
+pub const DOM_CSS_RAD: c_uint = 12;
+#[deprecated]
+pub const DOM_CSS_GRAD: c_uint = 13;
+#[deprecated]
+pub const DOM_CSS_MS: c_uint = 14;
+#[deprecated]
+pub const DOM_CSS_S: c_uint = 15;
+#[deprecated]
+pub const DOM_CSS_HZ: c_uint = 16;
+#[deprecated]
+pub const DOM_CSS_KHZ: c_uint = 17;
+#[deprecated]
+pub const DOM_CSS_DIMENSION: c_uint = 18;
+#[deprecated]
+pub const DOM_CSS_STRING: c_uint = 19;
+#[deprecated]
+pub const DOM_CSS_URI: c_uint = 20;
+#[deprecated]
+pub const DOM_CSS_IDENT: c_uint = 21;
+#[deprecated]
+pub const DOM_CSS_ATTR: c_uint = 22;
+#[deprecated]
+pub const DOM_CSS_COUNTER: c_uint = 23;
+#[deprecated]
+pub const DOM_CSS_RECT: c_uint = 24;
+#[deprecated]
+pub const DOM_CSS_RGBCOLOR: c_uint = 25;
+#[deprecated]
+pub const DOM_CSS_VW: c_uint = 26;
+#[deprecated]
+pub const DOM_CSS_VH: c_uint = 27;
+#[deprecated]
+pub const DOM_CSS_VMIN: c_uint = 28;
+#[deprecated]
+pub const DOM_CSS_VMAX: c_uint = 29;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

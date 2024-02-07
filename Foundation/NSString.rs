@@ -20,34 +20,31 @@ ns_options!(
     }
 );
 
-ns_enum!(
-    #[underlying(NSUInteger)]
-    pub enum NSStringEncoding {
-        NSASCIIStringEncoding = 1,
-        NSNEXTSTEPStringEncoding = 2,
-        NSJapaneseEUCStringEncoding = 3,
-        NSUTF8StringEncoding = 4,
-        NSISOLatin1StringEncoding = 5,
-        NSSymbolStringEncoding = 6,
-        NSNonLossyASCIIStringEncoding = 7,
-        NSShiftJISStringEncoding = 8,
-        NSISOLatin2StringEncoding = 9,
-        NSUnicodeStringEncoding = 10,
-        NSWindowsCP1251StringEncoding = 11,
-        NSWindowsCP1252StringEncoding = 12,
-        NSWindowsCP1253StringEncoding = 13,
-        NSWindowsCP1254StringEncoding = 14,
-        NSWindowsCP1250StringEncoding = 15,
-        NSISO2022JPStringEncoding = 21,
-        NSMacOSRomanStringEncoding = 30,
-        NSUTF16StringEncoding = NSUnicodeStringEncoding,
-        NSUTF16BigEndianStringEncoding = 0x90000100,
-        NSUTF16LittleEndianStringEncoding = 0x94000100,
-        NSUTF32StringEncoding = 0x8c000100,
-        NSUTF32BigEndianStringEncoding = 0x98000100,
-        NSUTF32LittleEndianStringEncoding = 0x9c000100,
-    }
-);
+pub type NSStringEncoding = NSUInteger;
+
+pub const NSASCIIStringEncoding: NSStringEncoding = 1;
+pub const NSNEXTSTEPStringEncoding: NSStringEncoding = 2;
+pub const NSJapaneseEUCStringEncoding: NSStringEncoding = 3;
+pub const NSUTF8StringEncoding: NSStringEncoding = 4;
+pub const NSISOLatin1StringEncoding: NSStringEncoding = 5;
+pub const NSSymbolStringEncoding: NSStringEncoding = 6;
+pub const NSNonLossyASCIIStringEncoding: NSStringEncoding = 7;
+pub const NSShiftJISStringEncoding: NSStringEncoding = 8;
+pub const NSISOLatin2StringEncoding: NSStringEncoding = 9;
+pub const NSUnicodeStringEncoding: NSStringEncoding = 10;
+pub const NSWindowsCP1251StringEncoding: NSStringEncoding = 11;
+pub const NSWindowsCP1252StringEncoding: NSStringEncoding = 12;
+pub const NSWindowsCP1253StringEncoding: NSStringEncoding = 13;
+pub const NSWindowsCP1254StringEncoding: NSStringEncoding = 14;
+pub const NSWindowsCP1250StringEncoding: NSStringEncoding = 15;
+pub const NSISO2022JPStringEncoding: NSStringEncoding = 21;
+pub const NSMacOSRomanStringEncoding: NSStringEncoding = 30;
+pub const NSUTF16StringEncoding: NSStringEncoding = NSUnicodeStringEncoding;
+pub const NSUTF16BigEndianStringEncoding: NSStringEncoding = 0x90000100;
+pub const NSUTF16LittleEndianStringEncoding: NSStringEncoding = 0x94000100;
+pub const NSUTF32StringEncoding: NSStringEncoding = 0x8c000100;
+pub const NSUTF32BigEndianStringEncoding: NSStringEncoding = 0x98000100;
+pub const NSUTF32LittleEndianStringEncoding: NSStringEncoding = 0x9c000100;
 
 ns_options!(
     #[underlying(NSUInteger)]

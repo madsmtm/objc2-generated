@@ -918,20 +918,14 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSLayoutManagerDelegate {}
 );
 
-extern_enum!(
-    #[underlying(c_uint)]
-    #[deprecated = "Use NSGlyphProperty instead"]
-    pub enum __anonymous__ {
-        #[deprecated]
-        NSGlyphAttributeSoft = 0,
-        #[deprecated]
-        NSGlyphAttributeElastic = 1,
-        #[deprecated]
-        NSGlyphAttributeBidiLevel = 2,
-        #[deprecated]
-        NSGlyphAttributeInscribe = 5,
-    }
-);
+#[deprecated]
+pub const NSGlyphAttributeSoft: c_uint = 0;
+#[deprecated]
+pub const NSGlyphAttributeElastic: c_uint = 1;
+#[deprecated]
+pub const NSGlyphAttributeBidiLevel: c_uint = 2;
+#[deprecated]
+pub const NSGlyphAttributeInscribe: c_uint = 5;
 
 ns_enum!(
     #[underlying(NSUInteger)]

@@ -126,12 +126,7 @@ extern_static!(NSUbiquitousKeyValueStoreChangeReasonKey: &'static NSString);
 
 extern_static!(NSUbiquitousKeyValueStoreChangedKeysKey: &'static NSString);
 
-ns_enum!(
-    #[underlying(NSInteger)]
-    pub enum __anonymous__ {
-        NSUbiquitousKeyValueStoreServerChange = 0,
-        NSUbiquitousKeyValueStoreInitialSyncChange = 1,
-        NSUbiquitousKeyValueStoreQuotaViolationChange = 2,
-        NSUbiquitousKeyValueStoreAccountChange = 3,
-    }
-);
+pub const NSUbiquitousKeyValueStoreServerChange: NSInteger = 0;
+pub const NSUbiquitousKeyValueStoreInitialSyncChange: NSInteger = 1;
+pub const NSUbiquitousKeyValueStoreQuotaViolationChange: NSInteger = 2;
+pub const NSUbiquitousKeyValueStoreAccountChange: NSInteger = 3;

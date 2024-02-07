@@ -127,16 +127,11 @@ extern_fn!(
     pub unsafe fn NSReleaseAlertPanel(panel: Option<&AnyObject>);
 );
 
-extern_enum!(
-    #[underlying(c_int)]
-    pub enum __anonymous__ {
-        #[deprecated = "Use NSAlertFirstButtonReturn with an NSAlert presentation instead"]
-        NSAlertDefaultReturn = 1,
-        #[deprecated = "Use NSAlertFirstButtonReturn and other NSModalResponses with an NSAlert presentation instead"]
-        NSAlertAlternateReturn = 0,
-        #[deprecated = "Use NSAlertFirstButtonReturn and other NSModalResponses with an NSAlert presentation instead"]
-        NSAlertOtherReturn = -1,
-        #[deprecated = "Use NSAlertFirstButtonReturn and other NSModalResponses with an NSAlert presentation instead"]
-        NSAlertErrorReturn = -2,
-    }
-);
+#[deprecated = "Use NSAlertFirstButtonReturn with an NSAlert presentation instead"]
+pub const NSAlertDefaultReturn: c_int = 1;
+#[deprecated = "Use NSAlertFirstButtonReturn and other NSModalResponses with an NSAlert presentation instead"]
+pub const NSAlertAlternateReturn: c_int = 0;
+#[deprecated = "Use NSAlertFirstButtonReturn and other NSModalResponses with an NSAlert presentation instead"]
+pub const NSAlertOtherReturn: c_int = -1;
+#[deprecated = "Use NSAlertFirstButtonReturn and other NSModalResponses with an NSAlert presentation instead"]
+pub const NSAlertErrorReturn: c_int = -2;

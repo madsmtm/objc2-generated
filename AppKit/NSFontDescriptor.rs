@@ -332,42 +332,27 @@ extern_static!(NSFontTextStyleCaption2: &'static NSFontTextStyle);
 
 pub type NSFontFamilyClass = u32;
 
-extern_enum!(
-    #[underlying(c_int)]
-    pub enum __anonymous__ {
-        NSFontUnknownClass = 0 << 28,
-        NSFontOldStyleSerifsClass = 1 << 28,
-        NSFontTransitionalSerifsClass = 2 << 28,
-        NSFontModernSerifsClass = 3 << 28,
-        NSFontClarendonSerifsClass = 4 << 28,
-        NSFontSlabSerifsClass = 5 << 28,
-        NSFontFreeformSerifsClass = 7 << 28,
-        NSFontSansSerifClass = 8 << 28,
-        NSFontOrnamentalsClass = 9 << 28,
-        NSFontScriptsClass = 10 << 28,
-        NSFontSymbolicClass = 12 << 28,
-    }
-);
+pub const NSFontUnknownClass: c_int = 0 << 28;
+pub const NSFontOldStyleSerifsClass: c_int = 1 << 28;
+pub const NSFontTransitionalSerifsClass: c_int = 2 << 28;
+pub const NSFontModernSerifsClass: c_int = 3 << 28;
+pub const NSFontClarendonSerifsClass: c_int = 4 << 28;
+pub const NSFontSlabSerifsClass: c_int = 5 << 28;
+pub const NSFontFreeformSerifsClass: c_int = 7 << 28;
+pub const NSFontSansSerifClass: c_int = 8 << 28;
+pub const NSFontOrnamentalsClass: c_int = 9 << 28;
+pub const NSFontScriptsClass: c_int = 10 << 28;
+pub const NSFontSymbolicClass: c_int = 12 << 28;
 
-extern_enum!(
-    #[underlying(c_uint)]
-    pub enum __anonymous__ {
-        NSFontFamilyClassMask = 0xF0000000,
-    }
-);
+pub const NSFontFamilyClassMask: c_uint = 0xF0000000;
 
-extern_enum!(
-    #[underlying(c_uint)]
-    pub enum __anonymous__ {
-        NSFontItalicTrait = 1 << 0,
-        NSFontBoldTrait = 1 << 1,
-        NSFontExpandedTrait = 1 << 5,
-        NSFontCondensedTrait = 1 << 6,
-        NSFontMonoSpaceTrait = 1 << 10,
-        NSFontVerticalTrait = 1 << 11,
-        NSFontUIOptimizedTrait = 1 << 12,
-    }
-);
+pub const NSFontItalicTrait: c_uint = 1 << 0;
+pub const NSFontBoldTrait: c_uint = 1 << 1;
+pub const NSFontExpandedTrait: c_uint = 1 << 5;
+pub const NSFontCondensedTrait: c_uint = 1 << 6;
+pub const NSFontMonoSpaceTrait: c_uint = 1 << 10;
+pub const NSFontVerticalTrait: c_uint = 1 << 11;
+pub const NSFontUIOptimizedTrait: c_uint = 1 << 12;
 
 extern_static!(NSFontColorAttribute: &'static NSString);
 

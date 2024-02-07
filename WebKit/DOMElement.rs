@@ -5,14 +5,8 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::WebKit::*;
 
-extern_enum!(
-    #[underlying(c_uint)]
-    #[deprecated]
-    pub enum __anonymous__ {
-        #[deprecated]
-        DOM_ALLOW_KEYBOARD_INPUT = 1,
-    }
-);
+#[deprecated]
+pub const DOM_ALLOW_KEYBOARD_INPUT: c_uint = 1;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -5,37 +5,22 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::InputMethodKit::*;
 
-extern_enum!(
-    #[underlying(c_uint)]
-    pub enum __anonymous__ {
-        kIMKSingleColumnScrollingCandidatePanel = 1,
-        kIMKScrollingGridCandidatePanel = 2,
-        kIMKSingleRowSteppingCandidatePanel = 3,
-    }
-);
+pub const kIMKSingleColumnScrollingCandidatePanel: c_uint = 1;
+pub const kIMKScrollingGridCandidatePanel: c_uint = 2;
+pub const kIMKSingleRowSteppingCandidatePanel: c_uint = 3;
 
 pub type IMKCandidatePanelType = NSUInteger;
 
-extern_enum!(
-    #[underlying(c_uint)]
-    pub enum __anonymous__ {
-        kIMKMain = 0,
-        kIMKAnnotation = 1,
-        kIMKSubList = 2,
-    }
-);
+pub const kIMKMain: c_uint = 0;
+pub const kIMKAnnotation: c_uint = 1;
+pub const kIMKSubList: c_uint = 2;
 
 pub type IMKStyleType = NSUInteger;
 
-extern_enum!(
-    #[underlying(c_uint)]
-    pub enum __anonymous__ {
-        kIMKLocateCandidatesAboveHint = 1,
-        kIMKLocateCandidatesBelowHint = 2,
-        kIMKLocateCandidatesLeftHint = 3,
-        kIMKLocateCandidatesRightHint = 4,
-    }
-);
+pub const kIMKLocateCandidatesAboveHint: c_uint = 1;
+pub const kIMKLocateCandidatesBelowHint: c_uint = 2;
+pub const kIMKLocateCandidatesLeftHint: c_uint = 3;
+pub const kIMKLocateCandidatesRightHint: c_uint = 4;
 
 pub type IMKCandidatesLocationHint = NSUInteger;
 

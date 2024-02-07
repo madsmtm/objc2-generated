@@ -5,32 +5,26 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::WebKit::*;
 
-extern_enum!(
-    #[underlying(c_uint)]
-    #[deprecated]
-    pub enum __anonymous__ {
-        #[deprecated]
-        DOM_ANY_TYPE = 0,
-        #[deprecated]
-        DOM_NUMBER_TYPE = 1,
-        #[deprecated]
-        DOM_STRING_TYPE = 2,
-        #[deprecated]
-        DOM_BOOLEAN_TYPE = 3,
-        #[deprecated]
-        DOM_UNORDERED_NODE_ITERATOR_TYPE = 4,
-        #[deprecated]
-        DOM_ORDERED_NODE_ITERATOR_TYPE = 5,
-        #[deprecated]
-        DOM_UNORDERED_NODE_SNAPSHOT_TYPE = 6,
-        #[deprecated]
-        DOM_ORDERED_NODE_SNAPSHOT_TYPE = 7,
-        #[deprecated]
-        DOM_ANY_UNORDERED_NODE_TYPE = 8,
-        #[deprecated]
-        DOM_FIRST_ORDERED_NODE_TYPE = 9,
-    }
-);
+#[deprecated]
+pub const DOM_ANY_TYPE: c_uint = 0;
+#[deprecated]
+pub const DOM_NUMBER_TYPE: c_uint = 1;
+#[deprecated]
+pub const DOM_STRING_TYPE: c_uint = 2;
+#[deprecated]
+pub const DOM_BOOLEAN_TYPE: c_uint = 3;
+#[deprecated]
+pub const DOM_UNORDERED_NODE_ITERATOR_TYPE: c_uint = 4;
+#[deprecated]
+pub const DOM_ORDERED_NODE_ITERATOR_TYPE: c_uint = 5;
+#[deprecated]
+pub const DOM_UNORDERED_NODE_SNAPSHOT_TYPE: c_uint = 6;
+#[deprecated]
+pub const DOM_ORDERED_NODE_SNAPSHOT_TYPE: c_uint = 7;
+#[deprecated]
+pub const DOM_ANY_UNORDERED_NODE_TYPE: c_uint = 8;
+#[deprecated]
+pub const DOM_FIRST_ORDERED_NODE_TYPE: c_uint = 9;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -3,16 +3,11 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-extern_enum!(
-    #[underlying(c_uint)]
-    pub enum __anonymous__ {
-        NSBundleExecutableArchitectureI386 = 0x00000007,
-        NSBundleExecutableArchitecturePPC = 0x00000012,
-        NSBundleExecutableArchitectureX86_64 = 0x01000007,
-        NSBundleExecutableArchitecturePPC64 = 0x01000012,
-        NSBundleExecutableArchitectureARM64 = 0x0100000c,
-    }
-);
+pub const NSBundleExecutableArchitectureI386: c_uint = 0x00000007;
+pub const NSBundleExecutableArchitecturePPC: c_uint = 0x00000012;
+pub const NSBundleExecutableArchitectureX86_64: c_uint = 0x01000007;
+pub const NSBundleExecutableArchitecturePPC64: c_uint = 0x01000012;
+pub const NSBundleExecutableArchitectureARM64: c_uint = 0x0100000c;
 
 extern_class!(
     #[derive(PartialEq, Eq, Hash)]

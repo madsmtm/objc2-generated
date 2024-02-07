@@ -5,20 +5,14 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::WebKit::*;
 
-extern_enum!(
-    #[underlying(c_uint)]
-    #[deprecated]
-    pub enum __anonymous__ {
-        #[deprecated]
-        DOM_CSS_INHERIT = 0,
-        #[deprecated]
-        DOM_CSS_PRIMITIVE_VALUE = 1,
-        #[deprecated]
-        DOM_CSS_VALUE_LIST = 2,
-        #[deprecated]
-        DOM_CSS_CUSTOM = 3,
-    }
-);
+#[deprecated]
+pub const DOM_CSS_INHERIT: c_uint = 0;
+#[deprecated]
+pub const DOM_CSS_PRIMITIVE_VALUE: c_uint = 1;
+#[deprecated]
+pub const DOM_CSS_VALUE_LIST: c_uint = 2;
+#[deprecated]
+pub const DOM_CSS_CUSTOM: c_uint = 3;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

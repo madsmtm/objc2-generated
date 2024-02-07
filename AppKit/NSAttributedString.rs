@@ -638,15 +638,10 @@ extern_static!(NSExpansionAttributeName: &'static NSAttributedStringKey);
 
 extern_static!(NSVerticalGlyphFormAttributeName: &'static NSAttributedStringKey);
 
-extern_enum!(
-    #[underlying(c_uint)]
-    pub enum __anonymous__ {
-        #[deprecated = "Use NSUnderlineStyleNone instead"]
-        NSNoUnderlineStyle = 0,
-        #[deprecated = "Use NSUnderlineStyleSingle instead"]
-        NSSingleUnderlineStyle = 1,
-    }
-);
+#[deprecated = "Use NSUnderlineStyleNone instead"]
+pub const NSNoUnderlineStyle: c_uint = 0;
+#[deprecated = "Use NSUnderlineStyleSingle instead"]
+pub const NSSingleUnderlineStyle: c_uint = 1;
 
 extern_static!(NSUnderlineStrikethroughMask: NSUInteger);
 

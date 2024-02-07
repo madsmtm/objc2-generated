@@ -9,12 +9,7 @@ typed_enum!(
     pub type NSImageHintKey = NSString;
 );
 
-extern_enum!(
-    #[underlying(c_uint)]
-    pub enum __anonymous__ {
-        NSImageRepMatchesDevice = 0,
-    }
-);
+pub const NSImageRepMatchesDevice: c_uint = 0;
 
 ns_enum!(
     #[underlying(NSInteger)]

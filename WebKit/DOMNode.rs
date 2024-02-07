@@ -5,48 +5,42 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::WebKit::*;
 
-extern_enum!(
-    #[underlying(c_uint)]
-    #[deprecated]
-    pub enum __anonymous__ {
-        #[deprecated]
-        DOM_ELEMENT_NODE = 1,
-        #[deprecated]
-        DOM_ATTRIBUTE_NODE = 2,
-        #[deprecated]
-        DOM_TEXT_NODE = 3,
-        #[deprecated]
-        DOM_CDATA_SECTION_NODE = 4,
-        #[deprecated]
-        DOM_ENTITY_REFERENCE_NODE = 5,
-        #[deprecated]
-        DOM_ENTITY_NODE = 6,
-        #[deprecated]
-        DOM_PROCESSING_INSTRUCTION_NODE = 7,
-        #[deprecated]
-        DOM_COMMENT_NODE = 8,
-        #[deprecated]
-        DOM_DOCUMENT_NODE = 9,
-        #[deprecated]
-        DOM_DOCUMENT_TYPE_NODE = 10,
-        #[deprecated]
-        DOM_DOCUMENT_FRAGMENT_NODE = 11,
-        #[deprecated]
-        DOM_NOTATION_NODE = 12,
-        #[deprecated]
-        DOM_DOCUMENT_POSITION_DISCONNECTED = 0x01,
-        #[deprecated]
-        DOM_DOCUMENT_POSITION_PRECEDING = 0x02,
-        #[deprecated]
-        DOM_DOCUMENT_POSITION_FOLLOWING = 0x04,
-        #[deprecated]
-        DOM_DOCUMENT_POSITION_CONTAINS = 0x08,
-        #[deprecated]
-        DOM_DOCUMENT_POSITION_CONTAINED_BY = 0x10,
-        #[deprecated]
-        DOM_DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC = 0x20,
-    }
-);
+#[deprecated]
+pub const DOM_ELEMENT_NODE: c_uint = 1;
+#[deprecated]
+pub const DOM_ATTRIBUTE_NODE: c_uint = 2;
+#[deprecated]
+pub const DOM_TEXT_NODE: c_uint = 3;
+#[deprecated]
+pub const DOM_CDATA_SECTION_NODE: c_uint = 4;
+#[deprecated]
+pub const DOM_ENTITY_REFERENCE_NODE: c_uint = 5;
+#[deprecated]
+pub const DOM_ENTITY_NODE: c_uint = 6;
+#[deprecated]
+pub const DOM_PROCESSING_INSTRUCTION_NODE: c_uint = 7;
+#[deprecated]
+pub const DOM_COMMENT_NODE: c_uint = 8;
+#[deprecated]
+pub const DOM_DOCUMENT_NODE: c_uint = 9;
+#[deprecated]
+pub const DOM_DOCUMENT_TYPE_NODE: c_uint = 10;
+#[deprecated]
+pub const DOM_DOCUMENT_FRAGMENT_NODE: c_uint = 11;
+#[deprecated]
+pub const DOM_NOTATION_NODE: c_uint = 12;
+#[deprecated]
+pub const DOM_DOCUMENT_POSITION_DISCONNECTED: c_uint = 0x01;
+#[deprecated]
+pub const DOM_DOCUMENT_POSITION_PRECEDING: c_uint = 0x02;
+#[deprecated]
+pub const DOM_DOCUMENT_POSITION_FOLLOWING: c_uint = 0x04;
+#[deprecated]
+pub const DOM_DOCUMENT_POSITION_CONTAINS: c_uint = 0x08;
+#[deprecated]
+pub const DOM_DOCUMENT_POSITION_CONTAINED_BY: c_uint = 0x10;
+#[deprecated]
+pub const DOM_DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC: c_uint = 0x20;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

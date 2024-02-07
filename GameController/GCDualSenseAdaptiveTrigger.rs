@@ -5,12 +5,7 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameController::*;
 
-extern_enum!(
-    #[underlying(c_uint)]
-    pub enum __anonymous__ {
-        GCDualSenseAdaptiveTriggerDiscretePositionCount = 10,
-    }
-);
+pub const GCDualSenseAdaptiveTriggerDiscretePositionCount: c_uint = 10;
 
 ns_enum!(
     #[underlying(NSInteger)]

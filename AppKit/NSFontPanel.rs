@@ -174,33 +174,22 @@ extern_methods!(
     }
 );
 
-extern_enum!(
-    #[underlying(c_uint)]
-    pub enum __anonymous__ {
-        NSFontPanelFaceModeMask = 1 << 0,
-        NSFontPanelSizeModeMask = 1 << 1,
-        NSFontPanelCollectionModeMask = 1 << 2,
-        NSFontPanelUnderlineEffectModeMask = 1 << 8,
-        NSFontPanelStrikethroughEffectModeMask = 1 << 9,
-        NSFontPanelTextColorEffectModeMask = 1 << 10,
-        NSFontPanelDocumentColorEffectModeMask = 1 << 11,
-        NSFontPanelShadowEffectModeMask = 1 << 12,
-        NSFontPanelAllEffectsModeMask = 0xFFF00,
-        NSFontPanelStandardModesMask = 0xFFFF,
-        NSFontPanelAllModesMask = 0xFFFFFFFF,
-    }
-);
+pub const NSFontPanelFaceModeMask: c_uint = 1 << 0;
+pub const NSFontPanelSizeModeMask: c_uint = 1 << 1;
+pub const NSFontPanelCollectionModeMask: c_uint = 1 << 2;
+pub const NSFontPanelUnderlineEffectModeMask: c_uint = 1 << 8;
+pub const NSFontPanelStrikethroughEffectModeMask: c_uint = 1 << 9;
+pub const NSFontPanelTextColorEffectModeMask: c_uint = 1 << 10;
+pub const NSFontPanelDocumentColorEffectModeMask: c_uint = 1 << 11;
+pub const NSFontPanelShadowEffectModeMask: c_uint = 1 << 12;
+pub const NSFontPanelAllEffectsModeMask: c_uint = 0xFFF00;
+pub const NSFontPanelStandardModesMask: c_uint = 0xFFFF;
+pub const NSFontPanelAllModesMask: c_uint = 0xFFFFFFFF;
 
-extern_enum!(
-    #[underlying(c_uint)]
-    #[deprecated]
-    pub enum __anonymous__ {
-        NSFPPreviewButton = 131,
-        NSFPRevertButton = 130,
-        NSFPSetButton = 132,
-        NSFPPreviewField = 128,
-        NSFPSizeField = 129,
-        NSFPSizeTitle = 133,
-        NSFPCurrentField = 134,
-    }
-);
+pub const NSFPPreviewButton: c_uint = 131;
+pub const NSFPRevertButton: c_uint = 130;
+pub const NSFPSetButton: c_uint = 132;
+pub const NSFPPreviewField: c_uint = 128;
+pub const NSFPSizeField: c_uint = 129;
+pub const NSFPSizeTitle: c_uint = 133;
+pub const NSFPCurrentField: c_uint = 134;

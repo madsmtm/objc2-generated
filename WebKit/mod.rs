@@ -434,20 +434,52 @@ pub use self::__DOMCSSMediaRule::DOMCSSMediaRule;
 pub use self::__DOMCSSPageRule::DOMCSSPageRule;
 #[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
 pub use self::__DOMCSSPrimitiveValue::DOMCSSPrimitiveValue;
-pub use self::__DOMCSSPrimitiveValue::{
-    DOM_CSS_ATTR, DOM_CSS_CM, DOM_CSS_COUNTER, DOM_CSS_DEG, DOM_CSS_DIMENSION, DOM_CSS_EMS,
-    DOM_CSS_EXS, DOM_CSS_GRAD, DOM_CSS_HZ, DOM_CSS_IDENT, DOM_CSS_IN, DOM_CSS_KHZ, DOM_CSS_MM,
-    DOM_CSS_MS, DOM_CSS_NUMBER, DOM_CSS_PC, DOM_CSS_PERCENTAGE, DOM_CSS_PT, DOM_CSS_PX,
-    DOM_CSS_RAD, DOM_CSS_RECT, DOM_CSS_RGBCOLOR, DOM_CSS_S, DOM_CSS_STRING, DOM_CSS_UNKNOWN,
-    DOM_CSS_URI, DOM_CSS_VH, DOM_CSS_VMAX, DOM_CSS_VMIN, DOM_CSS_VW,
-};
+pub use self::__DOMCSSPrimitiveValue::DOM_CSS_ATTR;
+pub use self::__DOMCSSPrimitiveValue::DOM_CSS_CM;
+pub use self::__DOMCSSPrimitiveValue::DOM_CSS_COUNTER;
+pub use self::__DOMCSSPrimitiveValue::DOM_CSS_DEG;
+pub use self::__DOMCSSPrimitiveValue::DOM_CSS_DIMENSION;
+pub use self::__DOMCSSPrimitiveValue::DOM_CSS_EMS;
+pub use self::__DOMCSSPrimitiveValue::DOM_CSS_EXS;
+pub use self::__DOMCSSPrimitiveValue::DOM_CSS_GRAD;
+pub use self::__DOMCSSPrimitiveValue::DOM_CSS_HZ;
+pub use self::__DOMCSSPrimitiveValue::DOM_CSS_IDENT;
+pub use self::__DOMCSSPrimitiveValue::DOM_CSS_IN;
+pub use self::__DOMCSSPrimitiveValue::DOM_CSS_KHZ;
+pub use self::__DOMCSSPrimitiveValue::DOM_CSS_MM;
+pub use self::__DOMCSSPrimitiveValue::DOM_CSS_MS;
+pub use self::__DOMCSSPrimitiveValue::DOM_CSS_NUMBER;
+pub use self::__DOMCSSPrimitiveValue::DOM_CSS_PC;
+pub use self::__DOMCSSPrimitiveValue::DOM_CSS_PERCENTAGE;
+pub use self::__DOMCSSPrimitiveValue::DOM_CSS_PT;
+pub use self::__DOMCSSPrimitiveValue::DOM_CSS_PX;
+pub use self::__DOMCSSPrimitiveValue::DOM_CSS_RAD;
+pub use self::__DOMCSSPrimitiveValue::DOM_CSS_RECT;
+pub use self::__DOMCSSPrimitiveValue::DOM_CSS_RGBCOLOR;
+pub use self::__DOMCSSPrimitiveValue::DOM_CSS_S;
+pub use self::__DOMCSSPrimitiveValue::DOM_CSS_STRING;
+pub use self::__DOMCSSPrimitiveValue::DOM_CSS_UNKNOWN;
+pub use self::__DOMCSSPrimitiveValue::DOM_CSS_URI;
+pub use self::__DOMCSSPrimitiveValue::DOM_CSS_VH;
+pub use self::__DOMCSSPrimitiveValue::DOM_CSS_VMAX;
+pub use self::__DOMCSSPrimitiveValue::DOM_CSS_VMIN;
+pub use self::__DOMCSSPrimitiveValue::DOM_CSS_VW;
 #[cfg(feature = "WebKit_DOMCSSRule")]
 pub use self::__DOMCSSRule::DOMCSSRule;
-pub use self::__DOMCSSRule::{
-    DOM_CHARSET_RULE, DOM_FONT_FACE_RULE, DOM_IMPORT_RULE, DOM_KEYFRAMES_RULE, DOM_KEYFRAME_RULE,
-    DOM_MEDIA_RULE, DOM_NAMESPACE_RULE, DOM_PAGE_RULE, DOM_STYLE_RULE, DOM_SUPPORTS_RULE,
-    DOM_UNKNOWN_RULE, DOM_WEBKIT_KEYFRAMES_RULE, DOM_WEBKIT_KEYFRAME_RULE, DOM_WEBKIT_REGION_RULE,
-};
+pub use self::__DOMCSSRule::DOM_CHARSET_RULE;
+pub use self::__DOMCSSRule::DOM_FONT_FACE_RULE;
+pub use self::__DOMCSSRule::DOM_IMPORT_RULE;
+pub use self::__DOMCSSRule::DOM_KEYFRAMES_RULE;
+pub use self::__DOMCSSRule::DOM_KEYFRAME_RULE;
+pub use self::__DOMCSSRule::DOM_MEDIA_RULE;
+pub use self::__DOMCSSRule::DOM_NAMESPACE_RULE;
+pub use self::__DOMCSSRule::DOM_PAGE_RULE;
+pub use self::__DOMCSSRule::DOM_STYLE_RULE;
+pub use self::__DOMCSSRule::DOM_SUPPORTS_RULE;
+pub use self::__DOMCSSRule::DOM_UNKNOWN_RULE;
+pub use self::__DOMCSSRule::DOM_WEBKIT_KEYFRAMES_RULE;
+pub use self::__DOMCSSRule::DOM_WEBKIT_KEYFRAME_RULE;
+pub use self::__DOMCSSRule::DOM_WEBKIT_REGION_RULE;
 #[cfg(feature = "WebKit_DOMCSSRuleList")]
 pub use self::__DOMCSSRuleList::DOMCSSRuleList;
 #[cfg(feature = "WebKit_DOMCSSStyleDeclaration")]
@@ -460,9 +492,10 @@ pub use self::__DOMCSSStyleSheet::DOMCSSStyleSheet;
 pub use self::__DOMCSSUnknownRule::DOMCSSUnknownRule;
 #[cfg(feature = "WebKit_DOMCSSValue")]
 pub use self::__DOMCSSValue::DOMCSSValue;
-pub use self::__DOMCSSValue::{
-    DOM_CSS_CUSTOM, DOM_CSS_INHERIT, DOM_CSS_PRIMITIVE_VALUE, DOM_CSS_VALUE_LIST,
-};
+pub use self::__DOMCSSValue::DOM_CSS_CUSTOM;
+pub use self::__DOMCSSValue::DOM_CSS_INHERIT;
+pub use self::__DOMCSSValue::DOM_CSS_PRIMITIVE_VALUE;
+pub use self::__DOMCSSValue::DOM_CSS_VALUE_LIST;
 #[cfg(feature = "WebKit_DOMCSSValueList")]
 pub use self::__DOMCSSValueList::DOMCSSValueList;
 #[cfg(feature = "WebKit_DOMCharacterData")]
@@ -486,7 +519,10 @@ pub use self::__DOMEntity::DOMEntity;
 pub use self::__DOMEntityReference::DOMEntityReference;
 #[cfg(feature = "WebKit_DOMEvent")]
 pub use self::__DOMEvent::DOMEvent;
-pub use self::__DOMEvent::{DOM_AT_TARGET, DOM_BUBBLING_PHASE, DOM_CAPTURING_PHASE, DOM_NONE};
+pub use self::__DOMEvent::DOM_AT_TARGET;
+pub use self::__DOMEvent::DOM_BUBBLING_PHASE;
+pub use self::__DOMEvent::DOM_CAPTURING_PHASE;
+pub use self::__DOMEvent::DOM_NONE;
 pub use self::__DOMEventException::DOMEventException;
 pub use self::__DOMEventException::DOMEventExceptionCode;
 pub use self::__DOMEventException::DOM_UNSPECIFIED_EVENT_TYPE_ERR;
@@ -623,36 +659,58 @@ pub use self::__DOMHTMLUListElement::DOMHTMLUListElement;
 pub use self::__DOMImplementation::DOMImplementation;
 #[cfg(feature = "WebKit_DOMKeyboardEvent")]
 pub use self::__DOMKeyboardEvent::DOMKeyboardEvent;
-pub use self::__DOMKeyboardEvent::{
-    DOM_KEY_LOCATION_LEFT, DOM_KEY_LOCATION_NUMPAD, DOM_KEY_LOCATION_RIGHT,
-    DOM_KEY_LOCATION_STANDARD,
-};
+pub use self::__DOMKeyboardEvent::DOM_KEY_LOCATION_LEFT;
+pub use self::__DOMKeyboardEvent::DOM_KEY_LOCATION_NUMPAD;
+pub use self::__DOMKeyboardEvent::DOM_KEY_LOCATION_RIGHT;
+pub use self::__DOMKeyboardEvent::DOM_KEY_LOCATION_STANDARD;
 #[cfg(feature = "WebKit_DOMMediaList")]
 pub use self::__DOMMediaList::DOMMediaList;
 #[cfg(feature = "WebKit_DOMMouseEvent")]
 pub use self::__DOMMouseEvent::DOMMouseEvent;
 #[cfg(feature = "WebKit_DOMMutationEvent")]
 pub use self::__DOMMutationEvent::DOMMutationEvent;
-pub use self::__DOMMutationEvent::{DOM_ADDITION, DOM_MODIFICATION, DOM_REMOVAL};
+pub use self::__DOMMutationEvent::DOM_ADDITION;
+pub use self::__DOMMutationEvent::DOM_MODIFICATION;
+pub use self::__DOMMutationEvent::DOM_REMOVAL;
 #[cfg(feature = "WebKit_DOMNamedNodeMap")]
 pub use self::__DOMNamedNodeMap::DOMNamedNodeMap;
 #[cfg(feature = "WebKit_DOMNode")]
 pub use self::__DOMNode::DOMNode;
-pub use self::__DOMNode::{
-    DOM_ATTRIBUTE_NODE, DOM_CDATA_SECTION_NODE, DOM_COMMENT_NODE, DOM_DOCUMENT_FRAGMENT_NODE,
-    DOM_DOCUMENT_NODE, DOM_DOCUMENT_POSITION_CONTAINED_BY, DOM_DOCUMENT_POSITION_CONTAINS,
-    DOM_DOCUMENT_POSITION_DISCONNECTED, DOM_DOCUMENT_POSITION_FOLLOWING,
-    DOM_DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC, DOM_DOCUMENT_POSITION_PRECEDING,
-    DOM_DOCUMENT_TYPE_NODE, DOM_ELEMENT_NODE, DOM_ENTITY_NODE, DOM_ENTITY_REFERENCE_NODE,
-    DOM_NOTATION_NODE, DOM_PROCESSING_INSTRUCTION_NODE, DOM_TEXT_NODE,
-};
+pub use self::__DOMNode::DOM_ATTRIBUTE_NODE;
+pub use self::__DOMNode::DOM_CDATA_SECTION_NODE;
+pub use self::__DOMNode::DOM_COMMENT_NODE;
+pub use self::__DOMNode::DOM_DOCUMENT_FRAGMENT_NODE;
+pub use self::__DOMNode::DOM_DOCUMENT_NODE;
+pub use self::__DOMNode::DOM_DOCUMENT_POSITION_CONTAINED_BY;
+pub use self::__DOMNode::DOM_DOCUMENT_POSITION_CONTAINS;
+pub use self::__DOMNode::DOM_DOCUMENT_POSITION_DISCONNECTED;
+pub use self::__DOMNode::DOM_DOCUMENT_POSITION_FOLLOWING;
+pub use self::__DOMNode::DOM_DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC;
+pub use self::__DOMNode::DOM_DOCUMENT_POSITION_PRECEDING;
+pub use self::__DOMNode::DOM_DOCUMENT_TYPE_NODE;
+pub use self::__DOMNode::DOM_ELEMENT_NODE;
+pub use self::__DOMNode::DOM_ENTITY_NODE;
+pub use self::__DOMNode::DOM_ENTITY_REFERENCE_NODE;
+pub use self::__DOMNode::DOM_NOTATION_NODE;
+pub use self::__DOMNode::DOM_PROCESSING_INSTRUCTION_NODE;
+pub use self::__DOMNode::DOM_TEXT_NODE;
 pub use self::__DOMNodeFilter::DOMNodeFilter;
-pub use self::__DOMNodeFilter::{
-    DOM_FILTER_ACCEPT, DOM_FILTER_REJECT, DOM_FILTER_SKIP, DOM_SHOW_ALL, DOM_SHOW_ATTRIBUTE,
-    DOM_SHOW_CDATA_SECTION, DOM_SHOW_COMMENT, DOM_SHOW_DOCUMENT, DOM_SHOW_DOCUMENT_FRAGMENT,
-    DOM_SHOW_DOCUMENT_TYPE, DOM_SHOW_ELEMENT, DOM_SHOW_ENTITY, DOM_SHOW_ENTITY_REFERENCE,
-    DOM_SHOW_NOTATION, DOM_SHOW_PROCESSING_INSTRUCTION, DOM_SHOW_TEXT,
-};
+pub use self::__DOMNodeFilter::DOM_FILTER_ACCEPT;
+pub use self::__DOMNodeFilter::DOM_FILTER_REJECT;
+pub use self::__DOMNodeFilter::DOM_FILTER_SKIP;
+pub use self::__DOMNodeFilter::DOM_SHOW_ALL;
+pub use self::__DOMNodeFilter::DOM_SHOW_ATTRIBUTE;
+pub use self::__DOMNodeFilter::DOM_SHOW_CDATA_SECTION;
+pub use self::__DOMNodeFilter::DOM_SHOW_COMMENT;
+pub use self::__DOMNodeFilter::DOM_SHOW_DOCUMENT;
+pub use self::__DOMNodeFilter::DOM_SHOW_DOCUMENT_FRAGMENT;
+pub use self::__DOMNodeFilter::DOM_SHOW_DOCUMENT_TYPE;
+pub use self::__DOMNodeFilter::DOM_SHOW_ELEMENT;
+pub use self::__DOMNodeFilter::DOM_SHOW_ENTITY;
+pub use self::__DOMNodeFilter::DOM_SHOW_ENTITY_REFERENCE;
+pub use self::__DOMNodeFilter::DOM_SHOW_NOTATION;
+pub use self::__DOMNodeFilter::DOM_SHOW_PROCESSING_INSTRUCTION;
+pub use self::__DOMNodeFilter::DOM_SHOW_TEXT;
 #[cfg(feature = "WebKit_DOMNodeIterator")]
 pub use self::__DOMNodeIterator::DOMNodeIterator;
 #[cfg(feature = "WebKit_DOMNodeList")]
@@ -662,7 +720,9 @@ pub use self::__DOMObject::DOMObject;
 pub use self::__DOMObject::DOMTimeStamp;
 #[cfg(feature = "WebKit_DOMOverflowEvent")]
 pub use self::__DOMOverflowEvent::DOMOverflowEvent;
-pub use self::__DOMOverflowEvent::{DOM_BOTH, DOM_HORIZONTAL, DOM_VERTICAL};
+pub use self::__DOMOverflowEvent::DOM_BOTH;
+pub use self::__DOMOverflowEvent::DOM_HORIZONTAL;
+pub use self::__DOMOverflowEvent::DOM_VERTICAL;
 #[cfg(feature = "WebKit_DOMProcessingInstruction")]
 pub use self::__DOMProcessingInstruction::DOMProcessingInstruction;
 #[cfg(feature = "WebKit_DOMProgressEvent")]
@@ -671,10 +731,14 @@ pub use self::__DOMProgressEvent::DOMProgressEvent;
 pub use self::__DOMRGBColor::DOMRGBColor;
 #[cfg(feature = "WebKit_DOMRange")]
 pub use self::__DOMRange::DOMRange;
-pub use self::__DOMRange::{
-    DOM_END_TO_END, DOM_END_TO_START, DOM_NODE_AFTER, DOM_NODE_BEFORE, DOM_NODE_BEFORE_AND_AFTER,
-    DOM_NODE_INSIDE, DOM_START_TO_END, DOM_START_TO_START,
-};
+pub use self::__DOMRange::DOM_END_TO_END;
+pub use self::__DOMRange::DOM_END_TO_START;
+pub use self::__DOMRange::DOM_NODE_AFTER;
+pub use self::__DOMRange::DOM_NODE_BEFORE;
+pub use self::__DOMRange::DOM_NODE_BEFORE_AND_AFTER;
+pub use self::__DOMRange::DOM_NODE_INSIDE;
+pub use self::__DOMRange::DOM_START_TO_END;
+pub use self::__DOMRange::DOM_START_TO_START;
 pub use self::__DOMRangeException::DOMRangeException;
 pub use self::__DOMRangeException::DOMRangeExceptionCode;
 pub use self::__DOMRangeException::{DOM_BAD_BOUNDARYPOINTS_ERR, DOM_INVALID_NODE_TYPE_ERR};
@@ -692,7 +756,9 @@ pub use self::__DOMTreeWalker::DOMTreeWalker;
 pub use self::__DOMUIEvent::DOMUIEvent;
 #[cfg(feature = "WebKit_DOMWheelEvent")]
 pub use self::__DOMWheelEvent::DOMWheelEvent;
-pub use self::__DOMWheelEvent::{DOM_DOM_DELTA_LINE, DOM_DOM_DELTA_PAGE, DOM_DOM_DELTA_PIXEL};
+pub use self::__DOMWheelEvent::DOM_DOM_DELTA_LINE;
+pub use self::__DOMWheelEvent::DOM_DOM_DELTA_PAGE;
+pub use self::__DOMWheelEvent::DOM_DOM_DELTA_PIXEL;
 pub use self::__DOMXPathException::DOMXPathException;
 pub use self::__DOMXPathException::DOMXPathExceptionCode;
 pub use self::__DOMXPathException::{DOM_INVALID_EXPRESSION_ERR, DOM_TYPE_ERR};
@@ -701,11 +767,16 @@ pub use self::__DOMXPathExpression::DOMXPathExpression;
 pub use self::__DOMXPathNSResolver::DOMXPathNSResolver;
 #[cfg(feature = "WebKit_DOMXPathResult")]
 pub use self::__DOMXPathResult::DOMXPathResult;
-pub use self::__DOMXPathResult::{
-    DOM_ANY_TYPE, DOM_ANY_UNORDERED_NODE_TYPE, DOM_BOOLEAN_TYPE, DOM_FIRST_ORDERED_NODE_TYPE,
-    DOM_NUMBER_TYPE, DOM_ORDERED_NODE_ITERATOR_TYPE, DOM_ORDERED_NODE_SNAPSHOT_TYPE,
-    DOM_STRING_TYPE, DOM_UNORDERED_NODE_ITERATOR_TYPE, DOM_UNORDERED_NODE_SNAPSHOT_TYPE,
-};
+pub use self::__DOMXPathResult::DOM_ANY_TYPE;
+pub use self::__DOMXPathResult::DOM_ANY_UNORDERED_NODE_TYPE;
+pub use self::__DOMXPathResult::DOM_BOOLEAN_TYPE;
+pub use self::__DOMXPathResult::DOM_FIRST_ORDERED_NODE_TYPE;
+pub use self::__DOMXPathResult::DOM_NUMBER_TYPE;
+pub use self::__DOMXPathResult::DOM_ORDERED_NODE_ITERATOR_TYPE;
+pub use self::__DOMXPathResult::DOM_ORDERED_NODE_SNAPSHOT_TYPE;
+pub use self::__DOMXPathResult::DOM_STRING_TYPE;
+pub use self::__DOMXPathResult::DOM_UNORDERED_NODE_ITERATOR_TYPE;
+pub use self::__DOMXPathResult::DOM_UNORDERED_NODE_SNAPSHOT_TYPE;
 pub use self::__NSAttributedString::NSAttributedStringCompletionHandler;
 #[cfg(feature = "Foundation_NSAttributedString")]
 pub use self::__NSAttributedString::NSAttributedStringWebKitAdditions;
@@ -903,18 +974,17 @@ pub use self::__WebHistory::WebHistorySavedNotification;
 #[cfg(feature = "WebKit_WebHistoryItem")]
 pub use self::__WebHistoryItem::WebHistoryItem;
 pub use self::__WebHistoryItem::WebHistoryItemChangedNotification;
+pub use self::__WebKitErrors::WebKitErrorBlockedPlugInVersion;
+pub use self::__WebKitErrors::WebKitErrorCannotFindPlugIn;
+pub use self::__WebKitErrors::WebKitErrorCannotLoadPlugIn;
+pub use self::__WebKitErrors::WebKitErrorCannotShowMIMEType;
+pub use self::__WebKitErrors::WebKitErrorCannotShowURL;
 pub use self::__WebKitErrors::WebKitErrorDomain;
+pub use self::__WebKitErrors::WebKitErrorFrameLoadInterruptedByPolicyChange;
+pub use self::__WebKitErrors::WebKitErrorJavaUnavailable;
 pub use self::__WebKitErrors::WebKitErrorMIMETypeKey;
 pub use self::__WebKitErrors::WebKitErrorPlugInNameKey;
 pub use self::__WebKitErrors::WebKitErrorPlugInPageURLStringKey;
-pub use self::__WebKitErrors::{
-    WebKitErrorBlockedPlugInVersion, WebKitErrorCannotFindPlugIn, WebKitErrorCannotLoadPlugIn,
-    WebKitErrorJavaUnavailable,
-};
-pub use self::__WebKitErrors::{
-    WebKitErrorCannotShowMIMEType, WebKitErrorCannotShowURL,
-    WebKitErrorFrameLoadInterruptedByPolicyChange,
-};
 pub use self::__WebPlugin::NSObjectWebPlugIn;
 pub use self::__WebPluginContainer::NSObjectWebPlugInContainer;
 pub use self::__WebPluginViewFactory::WebPlugInAttributesKey;
@@ -952,6 +1022,38 @@ pub use self::__WebScriptObject::WebScriptObject;
 pub use self::__WebScriptObject::WebUndefined;
 pub use self::__WebUIDelegate::WebDragDestinationAction;
 pub use self::__WebUIDelegate::WebDragSourceAction;
+pub use self::__WebUIDelegate::WebMenuItemPDFActualSize;
+pub use self::__WebUIDelegate::WebMenuItemPDFAutoSize;
+pub use self::__WebUIDelegate::WebMenuItemPDFContinuous;
+pub use self::__WebUIDelegate::WebMenuItemPDFFacingPages;
+pub use self::__WebUIDelegate::WebMenuItemPDFNextPage;
+pub use self::__WebUIDelegate::WebMenuItemPDFPreviousPage;
+pub use self::__WebUIDelegate::WebMenuItemPDFSinglePage;
+pub use self::__WebUIDelegate::WebMenuItemPDFZoomIn;
+pub use self::__WebUIDelegate::WebMenuItemPDFZoomOut;
+pub use self::__WebUIDelegate::WebMenuItemTagCopy;
+pub use self::__WebUIDelegate::WebMenuItemTagCopyImageToClipboard;
+pub use self::__WebUIDelegate::WebMenuItemTagCopyLinkToClipboard;
+pub use self::__WebUIDelegate::WebMenuItemTagCut;
+pub use self::__WebUIDelegate::WebMenuItemTagDownloadImageToDisk;
+pub use self::__WebUIDelegate::WebMenuItemTagDownloadLinkToDisk;
+pub use self::__WebUIDelegate::WebMenuItemTagGoBack;
+pub use self::__WebUIDelegate::WebMenuItemTagGoForward;
+pub use self::__WebUIDelegate::WebMenuItemTagIgnoreSpelling;
+pub use self::__WebUIDelegate::WebMenuItemTagLearnSpelling;
+pub use self::__WebUIDelegate::WebMenuItemTagLookUpInDictionary;
+pub use self::__WebUIDelegate::WebMenuItemTagNoGuessesFound;
+pub use self::__WebUIDelegate::WebMenuItemTagOpenFrameInNewWindow;
+pub use self::__WebUIDelegate::WebMenuItemTagOpenImageInNewWindow;
+pub use self::__WebUIDelegate::WebMenuItemTagOpenLinkInNewWindow;
+pub use self::__WebUIDelegate::WebMenuItemTagOpenWithDefaultApplication;
+pub use self::__WebUIDelegate::WebMenuItemTagOther;
+pub use self::__WebUIDelegate::WebMenuItemTagPaste;
+pub use self::__WebUIDelegate::WebMenuItemTagReload;
+pub use self::__WebUIDelegate::WebMenuItemTagSearchInSpotlight;
+pub use self::__WebUIDelegate::WebMenuItemTagSearchWeb;
+pub use self::__WebUIDelegate::WebMenuItemTagSpellingGuess;
+pub use self::__WebUIDelegate::WebMenuItemTagStop;
 pub use self::__WebUIDelegate::WebOpenPanelResultListener;
 pub use self::__WebUIDelegate::WebUIDelegate;
 pub use self::__WebUIDelegate::{
@@ -961,20 +1063,6 @@ pub use self::__WebUIDelegate::{
 pub use self::__WebUIDelegate::{
     WebDragSourceActionAny, WebDragSourceActionDHTML, WebDragSourceActionImage,
     WebDragSourceActionLink, WebDragSourceActionNone, WebDragSourceActionSelection,
-};
-pub use self::__WebUIDelegate::{
-    WebMenuItemPDFActualSize, WebMenuItemPDFAutoSize, WebMenuItemPDFContinuous,
-    WebMenuItemPDFFacingPages, WebMenuItemPDFNextPage, WebMenuItemPDFPreviousPage,
-    WebMenuItemPDFSinglePage, WebMenuItemPDFZoomIn, WebMenuItemPDFZoomOut, WebMenuItemTagCopy,
-    WebMenuItemTagCopyImageToClipboard, WebMenuItemTagCopyLinkToClipboard, WebMenuItemTagCut,
-    WebMenuItemTagDownloadImageToDisk, WebMenuItemTagDownloadLinkToDisk, WebMenuItemTagGoBack,
-    WebMenuItemTagGoForward, WebMenuItemTagIgnoreSpelling, WebMenuItemTagLearnSpelling,
-    WebMenuItemTagLookUpInDictionary, WebMenuItemTagNoGuessesFound,
-    WebMenuItemTagOpenFrameInNewWindow, WebMenuItemTagOpenImageInNewWindow,
-    WebMenuItemTagOpenLinkInNewWindow, WebMenuItemTagOpenWithDefaultApplication,
-    WebMenuItemTagOther, WebMenuItemTagPaste, WebMenuItemTagReload,
-    WebMenuItemTagSearchInSpotlight, WebMenuItemTagSearchWeb, WebMenuItemTagSpellingGuess,
-    WebMenuItemTagStop,
 };
 pub use self::__WebView::WebElementDOMNodeKey;
 pub use self::__WebView::WebElementFrameKey;

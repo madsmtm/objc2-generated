@@ -24,20 +24,21 @@ mod __IMKInputController;
 #[path = "IMKServer.rs"]
 mod __IMKServer;
 
+pub use self::__IMKCandidates::kIMKAnnotation;
+pub use self::__IMKCandidates::kIMKLocateCandidatesAboveHint;
+pub use self::__IMKCandidates::kIMKLocateCandidatesBelowHint;
+pub use self::__IMKCandidates::kIMKLocateCandidatesLeftHint;
+pub use self::__IMKCandidates::kIMKLocateCandidatesRightHint;
+pub use self::__IMKCandidates::kIMKMain;
+pub use self::__IMKCandidates::kIMKScrollingGridCandidatePanel;
+pub use self::__IMKCandidates::kIMKSingleColumnScrollingCandidatePanel;
+pub use self::__IMKCandidates::kIMKSingleRowSteppingCandidatePanel;
+pub use self::__IMKCandidates::kIMKSubList;
 pub use self::__IMKCandidates::IMKCandidatePanelType;
 #[cfg(feature = "InputMethodKit_IMKCandidates")]
 pub use self::__IMKCandidates::IMKCandidates;
 pub use self::__IMKCandidates::IMKCandidatesLocationHint;
 pub use self::__IMKCandidates::IMKStyleType;
-pub use self::__IMKCandidates::{kIMKAnnotation, kIMKMain, kIMKSubList};
-pub use self::__IMKCandidates::{
-    kIMKLocateCandidatesAboveHint, kIMKLocateCandidatesBelowHint, kIMKLocateCandidatesLeftHint,
-    kIMKLocateCandidatesRightHint,
-};
-pub use self::__IMKCandidates::{
-    kIMKScrollingGridCandidatePanel, kIMKSingleColumnScrollingCandidatePanel,
-    kIMKSingleRowSteppingCandidatePanel,
-};
 #[cfg(feature = "InputMethodKit_IMKInputController")]
 pub use self::__IMKInputController::IMKInputController;
 pub use self::__IMKInputController::IMKMouseHandling;

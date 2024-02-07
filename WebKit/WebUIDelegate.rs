@@ -5,76 +5,70 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::WebKit::*;
 
-extern_enum!(
-    #[underlying(c_uint)]
-    #[deprecated]
-    pub enum __anonymous__ {
-        #[deprecated]
-        WebMenuItemTagOpenLinkInNewWindow = 1,
-        #[deprecated]
-        WebMenuItemTagDownloadLinkToDisk = 2,
-        #[deprecated]
-        WebMenuItemTagCopyLinkToClipboard = 3,
-        #[deprecated]
-        WebMenuItemTagOpenImageInNewWindow = 4,
-        #[deprecated]
-        WebMenuItemTagDownloadImageToDisk = 5,
-        #[deprecated]
-        WebMenuItemTagCopyImageToClipboard = 6,
-        #[deprecated]
-        WebMenuItemTagOpenFrameInNewWindow = 7,
-        #[deprecated]
-        WebMenuItemTagCopy = 8,
-        #[deprecated]
-        WebMenuItemTagGoBack = 9,
-        #[deprecated]
-        WebMenuItemTagGoForward = 10,
-        #[deprecated]
-        WebMenuItemTagStop = 11,
-        #[deprecated]
-        WebMenuItemTagReload = 12,
-        #[deprecated]
-        WebMenuItemTagCut = 13,
-        #[deprecated]
-        WebMenuItemTagPaste = 14,
-        #[deprecated]
-        WebMenuItemTagSpellingGuess = 15,
-        #[deprecated]
-        WebMenuItemTagNoGuessesFound = 16,
-        #[deprecated]
-        WebMenuItemTagIgnoreSpelling = 17,
-        #[deprecated]
-        WebMenuItemTagLearnSpelling = 18,
-        #[deprecated]
-        WebMenuItemTagOther = 19,
-        #[deprecated]
-        WebMenuItemTagSearchInSpotlight = 20,
-        #[deprecated]
-        WebMenuItemTagSearchWeb = 21,
-        #[deprecated]
-        WebMenuItemTagLookUpInDictionary = 22,
-        #[deprecated]
-        WebMenuItemTagOpenWithDefaultApplication = 23,
-        #[deprecated]
-        WebMenuItemPDFActualSize = 24,
-        #[deprecated]
-        WebMenuItemPDFZoomIn = 25,
-        #[deprecated]
-        WebMenuItemPDFZoomOut = 26,
-        #[deprecated]
-        WebMenuItemPDFAutoSize = 27,
-        #[deprecated]
-        WebMenuItemPDFSinglePage = 28,
-        #[deprecated]
-        WebMenuItemPDFFacingPages = 29,
-        #[deprecated]
-        WebMenuItemPDFContinuous = 30,
-        #[deprecated]
-        WebMenuItemPDFNextPage = 31,
-        #[deprecated]
-        WebMenuItemPDFPreviousPage = 32,
-    }
-);
+#[deprecated]
+pub const WebMenuItemTagOpenLinkInNewWindow: c_uint = 1;
+#[deprecated]
+pub const WebMenuItemTagDownloadLinkToDisk: c_uint = 2;
+#[deprecated]
+pub const WebMenuItemTagCopyLinkToClipboard: c_uint = 3;
+#[deprecated]
+pub const WebMenuItemTagOpenImageInNewWindow: c_uint = 4;
+#[deprecated]
+pub const WebMenuItemTagDownloadImageToDisk: c_uint = 5;
+#[deprecated]
+pub const WebMenuItemTagCopyImageToClipboard: c_uint = 6;
+#[deprecated]
+pub const WebMenuItemTagOpenFrameInNewWindow: c_uint = 7;
+#[deprecated]
+pub const WebMenuItemTagCopy: c_uint = 8;
+#[deprecated]
+pub const WebMenuItemTagGoBack: c_uint = 9;
+#[deprecated]
+pub const WebMenuItemTagGoForward: c_uint = 10;
+#[deprecated]
+pub const WebMenuItemTagStop: c_uint = 11;
+#[deprecated]
+pub const WebMenuItemTagReload: c_uint = 12;
+#[deprecated]
+pub const WebMenuItemTagCut: c_uint = 13;
+#[deprecated]
+pub const WebMenuItemTagPaste: c_uint = 14;
+#[deprecated]
+pub const WebMenuItemTagSpellingGuess: c_uint = 15;
+#[deprecated]
+pub const WebMenuItemTagNoGuessesFound: c_uint = 16;
+#[deprecated]
+pub const WebMenuItemTagIgnoreSpelling: c_uint = 17;
+#[deprecated]
+pub const WebMenuItemTagLearnSpelling: c_uint = 18;
+#[deprecated]
+pub const WebMenuItemTagOther: c_uint = 19;
+#[deprecated]
+pub const WebMenuItemTagSearchInSpotlight: c_uint = 20;
+#[deprecated]
+pub const WebMenuItemTagSearchWeb: c_uint = 21;
+#[deprecated]
+pub const WebMenuItemTagLookUpInDictionary: c_uint = 22;
+#[deprecated]
+pub const WebMenuItemTagOpenWithDefaultApplication: c_uint = 23;
+#[deprecated]
+pub const WebMenuItemPDFActualSize: c_uint = 24;
+#[deprecated]
+pub const WebMenuItemPDFZoomIn: c_uint = 25;
+#[deprecated]
+pub const WebMenuItemPDFZoomOut: c_uint = 26;
+#[deprecated]
+pub const WebMenuItemPDFAutoSize: c_uint = 27;
+#[deprecated]
+pub const WebMenuItemPDFSinglePage: c_uint = 28;
+#[deprecated]
+pub const WebMenuItemPDFFacingPages: c_uint = 29;
+#[deprecated]
+pub const WebMenuItemPDFContinuous: c_uint = 30;
+#[deprecated]
+pub const WebMenuItemPDFNextPage: c_uint = 31;
+#[deprecated]
+pub const WebMenuItemPDFPreviousPage: c_uint = 32;
 
 ns_options!(
     #[underlying(NSUInteger)]

@@ -3,26 +3,20 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-extern_enum!(
-    #[underlying(c_uint)]
-    #[deprecated = "Not supported"]
-    pub enum __anonymous__ {
-        #[deprecated = "Not supported"]
-        NSWindowsNTOperatingSystem = 1,
-        #[deprecated = "Not supported"]
-        NSWindows95OperatingSystem = 2,
-        #[deprecated = "Not supported"]
-        NSSolarisOperatingSystem = 3,
-        #[deprecated = "Not supported"]
-        NSHPUXOperatingSystem = 4,
-        #[deprecated = "Not supported"]
-        NSMACHOperatingSystem = 5,
-        #[deprecated = "Not supported"]
-        NSSunOSOperatingSystem = 6,
-        #[deprecated = "Not supported"]
-        NSOSF1OperatingSystem = 7,
-    }
-);
+#[deprecated = "Not supported"]
+pub const NSWindowsNTOperatingSystem: c_uint = 1;
+#[deprecated = "Not supported"]
+pub const NSWindows95OperatingSystem: c_uint = 2;
+#[deprecated = "Not supported"]
+pub const NSSolarisOperatingSystem: c_uint = 3;
+#[deprecated = "Not supported"]
+pub const NSHPUXOperatingSystem: c_uint = 4;
+#[deprecated = "Not supported"]
+pub const NSMACHOperatingSystem: c_uint = 5;
+#[deprecated = "Not supported"]
+pub const NSSunOSOperatingSystem: c_uint = 6;
+#[deprecated = "Not supported"]
+pub const NSOSF1OperatingSystem: c_uint = 7;
 
 extern_struct!(
     #[encoding_name("?")]

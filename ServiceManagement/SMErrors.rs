@@ -4,19 +4,14 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::ServiceManagement::*;
 
-extern_enum!(
-    #[underlying(c_uint)]
-    pub enum __anonymous__ {
-        kSMErrorInternalFailure = 2,
-        kSMErrorInvalidSignature = 3,
-        kSMErrorAuthorizationFailure = 4,
-        kSMErrorToolNotValid = 5,
-        kSMErrorJobNotFound = 6,
-        kSMErrorServiceUnavailable = 7,
-        kSMErrorJobPlistNotFound = 8,
-        kSMErrorJobMustBeEnabled = 9,
-        kSMErrorInvalidPlist = 10,
-        kSMErrorLaunchDeniedByUser = 11,
-        kSMErrorAlreadyRegistered = 12,
-    }
-);
+pub const kSMErrorInternalFailure: c_uint = 2;
+pub const kSMErrorInvalidSignature: c_uint = 3;
+pub const kSMErrorAuthorizationFailure: c_uint = 4;
+pub const kSMErrorToolNotValid: c_uint = 5;
+pub const kSMErrorJobNotFound: c_uint = 6;
+pub const kSMErrorServiceUnavailable: c_uint = 7;
+pub const kSMErrorJobPlistNotFound: c_uint = 8;
+pub const kSMErrorJobMustBeEnabled: c_uint = 9;
+pub const kSMErrorInvalidPlist: c_uint = 10;
+pub const kSMErrorLaunchDeniedByUser: c_uint = 11;
+pub const kSMErrorAlreadyRegistered: c_uint = 12;

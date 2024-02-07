@@ -5,12 +5,7 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-extern_enum!(
-    #[underlying(c_int)]
-    pub enum __anonymous__ {
-        NSOutlineViewDropOnItemIndex = -1,
-    }
-);
+pub const NSOutlineViewDropOnItemIndex: c_int = -1;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

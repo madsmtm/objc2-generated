@@ -5,19 +5,14 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-extern_enum!(
-    #[underlying(c_uint)]
-    pub enum __anonymous__ {
-        #[deprecated]
-        NSNoInterfaceStyle = 0,
-        #[deprecated]
-        NSNextStepInterfaceStyle = 1,
-        #[deprecated]
-        NSWindows95InterfaceStyle = 2,
-        #[deprecated]
-        NSMacintoshInterfaceStyle = 3,
-    }
-);
+#[deprecated]
+pub const NSNoInterfaceStyle: c_uint = 0;
+#[deprecated]
+pub const NSNextStepInterfaceStyle: c_uint = 1;
+#[deprecated]
+pub const NSWindows95InterfaceStyle: c_uint = 2;
+#[deprecated]
+pub const NSMacintoshInterfaceStyle: c_uint = 3;
 
 pub type NSInterfaceStyle = NSUInteger;
 

@@ -352,40 +352,90 @@ mod __NSXPCConnection;
 #[path = "NSZone.rs"]
 mod __NSZone;
 
-pub use self::__FoundationErrors::{
-    NSBundleErrorMaximum, NSBundleErrorMinimum, NSBundleOnDemandResourceExceededMaximumSizeError,
-    NSBundleOnDemandResourceInvalidTagError, NSBundleOnDemandResourceOutOfSpaceError,
-    NSCloudSharingConflictError, NSCloudSharingErrorMaximum, NSCloudSharingErrorMinimum,
-    NSCloudSharingNetworkFailureError, NSCloudSharingNoPermissionError, NSCloudSharingOtherError,
-    NSCloudSharingQuotaExceededError, NSCloudSharingTooManyParticipantsError, NSCoderErrorMaximum,
-    NSCoderErrorMinimum, NSCoderInvalidValueError, NSCoderReadCorruptError,
-    NSCoderValueNotFoundError, NSCompressionErrorMaximum, NSCompressionErrorMinimum,
-    NSCompressionFailedError, NSDecompressionFailedError, NSExecutableArchitectureMismatchError,
-    NSExecutableErrorMaximum, NSExecutableErrorMinimum, NSExecutableLinkError,
-    NSExecutableLoadError, NSExecutableNotLoadableError, NSExecutableRuntimeMismatchError,
-    NSFeatureUnsupportedError, NSFileErrorMaximum, NSFileErrorMinimum, NSFileLockingError,
-    NSFileManagerUnmountBusyError, NSFileManagerUnmountUnknownError, NSFileNoSuchFileError,
-    NSFileReadCorruptFileError, NSFileReadInapplicableStringEncodingError,
-    NSFileReadInvalidFileNameError, NSFileReadNoPermissionError, NSFileReadNoSuchFileError,
-    NSFileReadTooLargeError, NSFileReadUnknownError, NSFileReadUnknownStringEncodingError,
-    NSFileReadUnsupportedSchemeError, NSFileWriteFileExistsError,
-    NSFileWriteInapplicableStringEncodingError, NSFileWriteInvalidFileNameError,
-    NSFileWriteNoPermissionError, NSFileWriteOutOfSpaceError, NSFileWriteUnknownError,
-    NSFileWriteUnsupportedSchemeError, NSFileWriteVolumeReadOnlyError, NSFormattingError,
-    NSFormattingErrorMaximum, NSFormattingErrorMinimum, NSKeyValueValidationError,
-    NSPropertyListErrorMaximum, NSPropertyListErrorMinimum, NSPropertyListReadCorruptError,
-    NSPropertyListReadStreamError, NSPropertyListReadUnknownVersionError,
-    NSPropertyListWriteInvalidError, NSPropertyListWriteStreamError, NSUbiquitousFileErrorMaximum,
-    NSUbiquitousFileErrorMinimum, NSUbiquitousFileNotUploadedDueToQuotaError,
-    NSUbiquitousFileUbiquityServerNotAvailable, NSUbiquitousFileUnavailableError,
-    NSUserActivityConnectionUnavailableError, NSUserActivityErrorMaximum,
-    NSUserActivityErrorMinimum, NSUserActivityHandoffFailedError,
-    NSUserActivityHandoffUserInfoTooLargeError, NSUserActivityRemoteApplicationTimedOutError,
-    NSUserCancelledError, NSValidationErrorMaximum, NSValidationErrorMinimum,
-    NSXPCConnectionCodeSigningRequirementFailure, NSXPCConnectionErrorMaximum,
-    NSXPCConnectionErrorMinimum, NSXPCConnectionInterrupted, NSXPCConnectionInvalid,
-    NSXPCConnectionReplyInvalid,
-};
+pub use self::__FoundationErrors::NSBundleErrorMaximum;
+pub use self::__FoundationErrors::NSBundleErrorMinimum;
+pub use self::__FoundationErrors::NSBundleOnDemandResourceExceededMaximumSizeError;
+pub use self::__FoundationErrors::NSBundleOnDemandResourceInvalidTagError;
+pub use self::__FoundationErrors::NSBundleOnDemandResourceOutOfSpaceError;
+pub use self::__FoundationErrors::NSCloudSharingConflictError;
+pub use self::__FoundationErrors::NSCloudSharingErrorMaximum;
+pub use self::__FoundationErrors::NSCloudSharingErrorMinimum;
+pub use self::__FoundationErrors::NSCloudSharingNetworkFailureError;
+pub use self::__FoundationErrors::NSCloudSharingNoPermissionError;
+pub use self::__FoundationErrors::NSCloudSharingOtherError;
+pub use self::__FoundationErrors::NSCloudSharingQuotaExceededError;
+pub use self::__FoundationErrors::NSCloudSharingTooManyParticipantsError;
+pub use self::__FoundationErrors::NSCoderErrorMaximum;
+pub use self::__FoundationErrors::NSCoderErrorMinimum;
+pub use self::__FoundationErrors::NSCoderInvalidValueError;
+pub use self::__FoundationErrors::NSCoderReadCorruptError;
+pub use self::__FoundationErrors::NSCoderValueNotFoundError;
+pub use self::__FoundationErrors::NSCompressionErrorMaximum;
+pub use self::__FoundationErrors::NSCompressionErrorMinimum;
+pub use self::__FoundationErrors::NSCompressionFailedError;
+pub use self::__FoundationErrors::NSDecompressionFailedError;
+pub use self::__FoundationErrors::NSExecutableArchitectureMismatchError;
+pub use self::__FoundationErrors::NSExecutableErrorMaximum;
+pub use self::__FoundationErrors::NSExecutableErrorMinimum;
+pub use self::__FoundationErrors::NSExecutableLinkError;
+pub use self::__FoundationErrors::NSExecutableLoadError;
+pub use self::__FoundationErrors::NSExecutableNotLoadableError;
+pub use self::__FoundationErrors::NSExecutableRuntimeMismatchError;
+pub use self::__FoundationErrors::NSFeatureUnsupportedError;
+pub use self::__FoundationErrors::NSFileErrorMaximum;
+pub use self::__FoundationErrors::NSFileErrorMinimum;
+pub use self::__FoundationErrors::NSFileLockingError;
+pub use self::__FoundationErrors::NSFileManagerUnmountBusyError;
+pub use self::__FoundationErrors::NSFileManagerUnmountUnknownError;
+pub use self::__FoundationErrors::NSFileNoSuchFileError;
+pub use self::__FoundationErrors::NSFileReadCorruptFileError;
+pub use self::__FoundationErrors::NSFileReadInapplicableStringEncodingError;
+pub use self::__FoundationErrors::NSFileReadInvalidFileNameError;
+pub use self::__FoundationErrors::NSFileReadNoPermissionError;
+pub use self::__FoundationErrors::NSFileReadNoSuchFileError;
+pub use self::__FoundationErrors::NSFileReadTooLargeError;
+pub use self::__FoundationErrors::NSFileReadUnknownError;
+pub use self::__FoundationErrors::NSFileReadUnknownStringEncodingError;
+pub use self::__FoundationErrors::NSFileReadUnsupportedSchemeError;
+pub use self::__FoundationErrors::NSFileWriteFileExistsError;
+pub use self::__FoundationErrors::NSFileWriteInapplicableStringEncodingError;
+pub use self::__FoundationErrors::NSFileWriteInvalidFileNameError;
+pub use self::__FoundationErrors::NSFileWriteNoPermissionError;
+pub use self::__FoundationErrors::NSFileWriteOutOfSpaceError;
+pub use self::__FoundationErrors::NSFileWriteUnknownError;
+pub use self::__FoundationErrors::NSFileWriteUnsupportedSchemeError;
+pub use self::__FoundationErrors::NSFileWriteVolumeReadOnlyError;
+pub use self::__FoundationErrors::NSFormattingError;
+pub use self::__FoundationErrors::NSFormattingErrorMaximum;
+pub use self::__FoundationErrors::NSFormattingErrorMinimum;
+pub use self::__FoundationErrors::NSKeyValueValidationError;
+pub use self::__FoundationErrors::NSPropertyListErrorMaximum;
+pub use self::__FoundationErrors::NSPropertyListErrorMinimum;
+pub use self::__FoundationErrors::NSPropertyListReadCorruptError;
+pub use self::__FoundationErrors::NSPropertyListReadStreamError;
+pub use self::__FoundationErrors::NSPropertyListReadUnknownVersionError;
+pub use self::__FoundationErrors::NSPropertyListWriteInvalidError;
+pub use self::__FoundationErrors::NSPropertyListWriteStreamError;
+pub use self::__FoundationErrors::NSUbiquitousFileErrorMaximum;
+pub use self::__FoundationErrors::NSUbiquitousFileErrorMinimum;
+pub use self::__FoundationErrors::NSUbiquitousFileNotUploadedDueToQuotaError;
+pub use self::__FoundationErrors::NSUbiquitousFileUbiquityServerNotAvailable;
+pub use self::__FoundationErrors::NSUbiquitousFileUnavailableError;
+pub use self::__FoundationErrors::NSUserActivityConnectionUnavailableError;
+pub use self::__FoundationErrors::NSUserActivityErrorMaximum;
+pub use self::__FoundationErrors::NSUserActivityErrorMinimum;
+pub use self::__FoundationErrors::NSUserActivityHandoffFailedError;
+pub use self::__FoundationErrors::NSUserActivityHandoffUserInfoTooLargeError;
+pub use self::__FoundationErrors::NSUserActivityRemoteApplicationTimedOutError;
+pub use self::__FoundationErrors::NSUserCancelledError;
+pub use self::__FoundationErrors::NSValidationErrorMaximum;
+pub use self::__FoundationErrors::NSValidationErrorMinimum;
+pub use self::__FoundationErrors::NSXPCConnectionCodeSigningRequirementFailure;
+pub use self::__FoundationErrors::NSXPCConnectionErrorMaximum;
+pub use self::__FoundationErrors::NSXPCConnectionErrorMinimum;
+pub use self::__FoundationErrors::NSXPCConnectionInterrupted;
+pub use self::__FoundationErrors::NSXPCConnectionInvalid;
+pub use self::__FoundationErrors::NSXPCConnectionReplyInvalid;
 #[cfg(feature = "Foundation_NSAffineTransform")]
 pub use self::__NSAffineTransform::NSAffineTransform;
 pub use self::__NSAffineTransform::NSAffineTransformStruct;
@@ -500,16 +550,16 @@ pub use self::__NSBackgroundActivityScheduler::{
 #[cfg(feature = "Foundation_NSBundle")]
 pub use self::__NSBundle::NSBundle;
 pub use self::__NSBundle::NSBundleDidLoadNotification;
+pub use self::__NSBundle::NSBundleExecutableArchitectureARM64;
+pub use self::__NSBundle::NSBundleExecutableArchitectureI386;
+pub use self::__NSBundle::NSBundleExecutableArchitecturePPC;
+pub use self::__NSBundle::NSBundleExecutableArchitecturePPC64;
+pub use self::__NSBundle::NSBundleExecutableArchitectureX86_64;
 #[cfg(feature = "Foundation_NSBundleResourceRequest")]
 pub use self::__NSBundle::NSBundleResourceRequest;
 pub use self::__NSBundle::NSBundleResourceRequestLoadingPriorityUrgent;
 pub use self::__NSBundle::NSBundleResourceRequestLowDiskSpaceNotification;
 pub use self::__NSBundle::NSLoadedClasses;
-pub use self::__NSBundle::{
-    NSBundleExecutableArchitectureARM64, NSBundleExecutableArchitectureI386,
-    NSBundleExecutableArchitecturePPC, NSBundleExecutableArchitecturePPC64,
-    NSBundleExecutableArchitectureX86_64,
-};
 #[cfg(feature = "Foundation_NSByteCountFormatter")]
 pub use self::__NSByteCountFormatter::NSByteCountFormatter;
 pub use self::__NSByteCountFormatter::NSByteCountFormatterCountStyle;
@@ -551,8 +601,10 @@ pub use self::__NSCalendar::NSCalendarIdentifierPersian;
 pub use self::__NSCalendar::NSCalendarIdentifierRepublicOfChina;
 pub use self::__NSCalendar::NSCalendarOptions;
 pub use self::__NSCalendar::NSCalendarUnit;
+pub use self::__NSCalendar::NSDateComponentUndefined;
 #[cfg(feature = "Foundation_NSDateComponents")]
 pub use self::__NSCalendar::NSDateComponents;
+pub use self::__NSCalendar::NSUndefinedDateComponent;
 pub use self::__NSCalendar::{
     NSCalendarCalendarUnit, NSCalendarUnitCalendar, NSCalendarUnitDay, NSCalendarUnitEra,
     NSCalendarUnitHour, NSCalendarUnitMinute, NSCalendarUnitMonth, NSCalendarUnitNanosecond,
@@ -570,7 +622,6 @@ pub use self::__NSCalendar::{
     NSCalendarMatchPreviousTimePreservingSmallerUnits, NSCalendarMatchStrictly,
     NSCalendarSearchBackwards, NSCalendarWrapComponents,
 };
-pub use self::__NSCalendar::{NSDateComponentUndefined, NSUndefinedDateComponent};
 #[cfg(feature = "Foundation_NSCalendarDate")]
 pub use self::__NSCalendarDate::NSCalendarDate;
 #[cfg(feature = "Foundation_NSCharacterSet")]
@@ -1867,22 +1918,25 @@ pub use self::__NSPortNameServer::NSSocketPortNameServer;
 #[cfg(feature = "Foundation_NSPredicate")]
 pub use self::__NSPredicate::NSPredicate;
 pub use self::__NSProcessInfo::NSActivityOptions;
+pub use self::__NSProcessInfo::NSHPUXOperatingSystem;
+pub use self::__NSProcessInfo::NSMACHOperatingSystem;
+pub use self::__NSProcessInfo::NSOSF1OperatingSystem;
 pub use self::__NSProcessInfo::NSOperatingSystemVersion;
 #[cfg(feature = "Foundation_NSProcessInfo")]
 pub use self::__NSProcessInfo::NSProcessInfo;
 pub use self::__NSProcessInfo::NSProcessInfoPowerStateDidChangeNotification;
 pub use self::__NSProcessInfo::NSProcessInfoThermalState;
 pub use self::__NSProcessInfo::NSProcessInfoThermalStateDidChangeNotification;
+pub use self::__NSProcessInfo::NSSolarisOperatingSystem;
+pub use self::__NSProcessInfo::NSSunOSOperatingSystem;
+pub use self::__NSProcessInfo::NSWindows95OperatingSystem;
+pub use self::__NSProcessInfo::NSWindowsNTOperatingSystem;
 pub use self::__NSProcessInfo::{
     NSActivityAnimationTrackingEnabled, NSActivityAutomaticTerminationDisabled,
     NSActivityBackground, NSActivityIdleDisplaySleepDisabled, NSActivityIdleSystemSleepDisabled,
     NSActivityLatencyCritical, NSActivitySuddenTerminationDisabled, NSActivityTrackingEnabled,
     NSActivityUserInitiated, NSActivityUserInitiatedAllowingIdleSystemSleep,
     NSActivityUserInteractive,
-};
-pub use self::__NSProcessInfo::{
-    NSHPUXOperatingSystem, NSMACHOperatingSystem, NSOSF1OperatingSystem, NSSolarisOperatingSystem,
-    NSSunOSOperatingSystem, NSWindows95OperatingSystem, NSWindowsNTOperatingSystem,
 };
 pub use self::__NSProcessInfo::{
     NSProcessInfoThermalStateCritical, NSProcessInfoThermalStateFair,
@@ -1978,29 +2032,39 @@ pub use self::__NSScriptClassDescription::NSObjectNSScriptClassDescription;
 pub use self::__NSScriptClassDescription::NSScriptClassDescription;
 #[cfg(feature = "Foundation_NSScriptCoercionHandler")]
 pub use self::__NSScriptCoercionHandler::NSScriptCoercionHandler;
+pub use self::__NSScriptCommand::NSArgumentEvaluationScriptError;
+pub use self::__NSScriptCommand::NSArgumentsWrongScriptError;
+pub use self::__NSScriptCommand::NSCannotCreateScriptCommandError;
+pub use self::__NSScriptCommand::NSInternalScriptError;
+pub use self::__NSScriptCommand::NSKeySpecifierEvaluationScriptError;
+pub use self::__NSScriptCommand::NSNoScriptError;
+pub use self::__NSScriptCommand::NSOperationNotSupportedForKeyScriptError;
+pub use self::__NSScriptCommand::NSReceiverEvaluationScriptError;
+pub use self::__NSScriptCommand::NSReceiversCantHandleCommandScriptError;
+pub use self::__NSScriptCommand::NSRequiredArgumentsMissingScriptError;
 #[cfg(feature = "Foundation_NSScriptCommand")]
 pub use self::__NSScriptCommand::NSScriptCommand;
-pub use self::__NSScriptCommand::{
-    NSArgumentEvaluationScriptError, NSArgumentsWrongScriptError, NSCannotCreateScriptCommandError,
-    NSInternalScriptError, NSKeySpecifierEvaluationScriptError, NSNoScriptError,
-    NSOperationNotSupportedForKeyScriptError, NSReceiverEvaluationScriptError,
-    NSReceiversCantHandleCommandScriptError, NSRequiredArgumentsMissingScriptError,
-    NSUnknownKeyScriptError,
-};
+pub use self::__NSScriptCommand::NSUnknownKeyScriptError;
 #[cfg(feature = "Foundation_NSScriptCommandDescription")]
 pub use self::__NSScriptCommandDescription::NSScriptCommandDescription;
 #[cfg(feature = "Foundation_NSScriptExecutionContext")]
 pub use self::__NSScriptExecutionContext::NSScriptExecutionContext;
 pub use self::__NSScriptKeyValueCoding::NSObjectNSScriptKeyValueCoding;
 pub use self::__NSScriptKeyValueCoding::NSOperationNotSupportedForKeyException;
+pub use self::__NSScriptObjectSpecifiers::NSContainerSpecifierError;
 #[cfg(feature = "Foundation_NSIndexSpecifier")]
 pub use self::__NSScriptObjectSpecifiers::NSIndexSpecifier;
 pub use self::__NSScriptObjectSpecifiers::NSInsertionPosition;
+pub use self::__NSScriptObjectSpecifiers::NSInternalSpecifierError;
+pub use self::__NSScriptObjectSpecifiers::NSInvalidIndexSpecifierError;
 #[cfg(feature = "Foundation_NSMiddleSpecifier")]
 pub use self::__NSScriptObjectSpecifiers::NSMiddleSpecifier;
 #[cfg(feature = "Foundation_NSNameSpecifier")]
 pub use self::__NSScriptObjectSpecifiers::NSNameSpecifier;
+pub use self::__NSScriptObjectSpecifiers::NSNoSpecifierError;
+pub use self::__NSScriptObjectSpecifiers::NSNoTopLevelContainersSpecifierError;
 pub use self::__NSScriptObjectSpecifiers::NSObjectNSScriptObjectSpecifiers;
+pub use self::__NSScriptObjectSpecifiers::NSOperationNotSupportedForKeySpecifierError;
 #[cfg(feature = "Foundation_NSPositionalSpecifier")]
 pub use self::__NSScriptObjectSpecifiers::NSPositionalSpecifier;
 #[cfg(feature = "Foundation_NSPropertySpecifier")]
@@ -2016,14 +2080,10 @@ pub use self::__NSScriptObjectSpecifiers::NSRelativeSpecifier;
 pub use self::__NSScriptObjectSpecifiers::NSScriptObjectSpecifier;
 #[cfg(feature = "Foundation_NSUniqueIDSpecifier")]
 pub use self::__NSScriptObjectSpecifiers::NSUniqueIDSpecifier;
+pub use self::__NSScriptObjectSpecifiers::NSUnknownKeySpecifierError;
 #[cfg(feature = "Foundation_NSWhoseSpecifier")]
 pub use self::__NSScriptObjectSpecifiers::NSWhoseSpecifier;
 pub use self::__NSScriptObjectSpecifiers::NSWhoseSubelementIdentifier;
-pub use self::__NSScriptObjectSpecifiers::{
-    NSContainerSpecifierError, NSInternalSpecifierError, NSInvalidIndexSpecifierError,
-    NSNoSpecifierError, NSNoTopLevelContainersSpecifierError,
-    NSOperationNotSupportedForKeySpecifierError, NSUnknownKeySpecifierError,
-};
 pub use self::__NSScriptObjectSpecifiers::{
     NSEverySubelement, NSIndexSubelement, NSMiddleSubelement, NSNoSubelement, NSRandomSubelement,
 };
@@ -2126,12 +2186,21 @@ pub use self::__NSStream::{
     NSStreamStatusOpen, NSStreamStatusOpening, NSStreamStatusReading, NSStreamStatusWriting,
 };
 pub use self::__NSString::unichar;
+pub use self::__NSString::NSASCIIStringEncoding;
 pub use self::__NSString::NSCharacterConversionException;
 #[cfg(feature = "Foundation_NSConstantString")]
 pub use self::__NSString::NSConstantString;
+pub use self::__NSString::NSISO2022JPStringEncoding;
+pub use self::__NSString::NSISOLatin1StringEncoding;
+pub use self::__NSString::NSISOLatin2StringEncoding;
+pub use self::__NSString::NSJapaneseEUCStringEncoding;
+pub use self::__NSString::NSMacOSRomanStringEncoding;
 #[cfg(feature = "Foundation_NSMutableString")]
 pub use self::__NSString::NSMutableString;
+pub use self::__NSString::NSNEXTSTEPStringEncoding;
+pub use self::__NSString::NSNonLossyASCIIStringEncoding;
 pub use self::__NSString::NSParseErrorException;
+pub use self::__NSString::NSShiftJISStringEncoding;
 #[cfg(feature = "Foundation_NSSimpleCString")]
 pub use self::__NSString::NSSimpleCString;
 #[cfg(feature = "Foundation_NSString")]
@@ -2165,16 +2234,20 @@ pub use self::__NSString::NSStringTransformStripDiacritics;
 pub use self::__NSString::NSStringTransformToLatin;
 pub use self::__NSString::NSStringTransformToUnicodeName;
 pub use self::__NSString::NSStringTransformToXMLHex;
-pub use self::__NSString::{
-    NSASCIIStringEncoding, NSISO2022JPStringEncoding, NSISOLatin1StringEncoding,
-    NSISOLatin2StringEncoding, NSJapaneseEUCStringEncoding, NSMacOSRomanStringEncoding,
-    NSNEXTSTEPStringEncoding, NSNonLossyASCIIStringEncoding, NSShiftJISStringEncoding,
-    NSSymbolStringEncoding, NSUTF16BigEndianStringEncoding, NSUTF16LittleEndianStringEncoding,
-    NSUTF16StringEncoding, NSUTF32BigEndianStringEncoding, NSUTF32LittleEndianStringEncoding,
-    NSUTF32StringEncoding, NSUTF8StringEncoding, NSUnicodeStringEncoding,
-    NSWindowsCP1250StringEncoding, NSWindowsCP1251StringEncoding, NSWindowsCP1252StringEncoding,
-    NSWindowsCP1253StringEncoding, NSWindowsCP1254StringEncoding,
-};
+pub use self::__NSString::NSSymbolStringEncoding;
+pub use self::__NSString::NSUTF16BigEndianStringEncoding;
+pub use self::__NSString::NSUTF16LittleEndianStringEncoding;
+pub use self::__NSString::NSUTF16StringEncoding;
+pub use self::__NSString::NSUTF32BigEndianStringEncoding;
+pub use self::__NSString::NSUTF32LittleEndianStringEncoding;
+pub use self::__NSString::NSUTF32StringEncoding;
+pub use self::__NSString::NSUTF8StringEncoding;
+pub use self::__NSString::NSUnicodeStringEncoding;
+pub use self::__NSString::NSWindowsCP1250StringEncoding;
+pub use self::__NSString::NSWindowsCP1251StringEncoding;
+pub use self::__NSString::NSWindowsCP1252StringEncoding;
+pub use self::__NSString::NSWindowsCP1253StringEncoding;
+pub use self::__NSString::NSWindowsCP1254StringEncoding;
 pub use self::__NSString::{
     NSAnchoredSearch, NSBackwardsSearch, NSCaseInsensitiveSearch, NSDiacriticInsensitiveSearch,
     NSForcedOrderingSearch, NSLiteralSearch, NSNumericSearch, NSRegularExpressionSearch,
@@ -2198,6 +2271,9 @@ pub use self::__NSTask::{NSTaskTerminationReasonExit, NSTaskTerminationReasonUnc
 #[cfg(feature = "Foundation_NSTermOfAddress")]
 pub use self::__NSTermOfAddress::NSTermOfAddress;
 pub use self::__NSTextCheckingResult::NSTextCheckingAirlineKey;
+pub use self::__NSTextCheckingResult::NSTextCheckingAllCustomTypes;
+pub use self::__NSTextCheckingResult::NSTextCheckingAllSystemTypes;
+pub use self::__NSTextCheckingResult::NSTextCheckingAllTypes;
 pub use self::__NSTextCheckingResult::NSTextCheckingCityKey;
 pub use self::__NSTextCheckingResult::NSTextCheckingCountryKey;
 pub use self::__NSTextCheckingResult::NSTextCheckingFlightKey;
@@ -2213,9 +2289,6 @@ pub use self::__NSTextCheckingResult::NSTextCheckingStreetKey;
 pub use self::__NSTextCheckingResult::NSTextCheckingType;
 pub use self::__NSTextCheckingResult::NSTextCheckingTypes;
 pub use self::__NSTextCheckingResult::NSTextCheckingZIPKey;
-pub use self::__NSTextCheckingResult::{
-    NSTextCheckingAllCustomTypes, NSTextCheckingAllSystemTypes, NSTextCheckingAllTypes,
-};
 pub use self::__NSTextCheckingResult::{
     NSTextCheckingTypeAddress, NSTextCheckingTypeCorrection, NSTextCheckingTypeDash,
     NSTextCheckingTypeDate, NSTextCheckingTypeGrammar, NSTextCheckingTypeLink,
@@ -2271,41 +2344,65 @@ pub use self::__NSURLCredentialStorage::NSURLCredentialStorageRemoveSynchronizab
 pub use self::__NSURLDownload::NSURLDownload;
 pub use self::__NSURLDownload::NSURLDownloadDelegate;
 pub use self::__NSURLError::NSErrorFailingURLStringKey;
+pub use self::__NSURLError::NSURLErrorAppTransportSecurityRequiresSecureConnection;
+pub use self::__NSURLError::NSURLErrorBackgroundSessionInUseByAnotherProcess;
+pub use self::__NSURLError::NSURLErrorBackgroundSessionRequiresSharedContainer;
+pub use self::__NSURLError::NSURLErrorBackgroundSessionWasDisconnected;
 pub use self::__NSURLError::NSURLErrorBackgroundTaskCancelledReasonKey;
+pub use self::__NSURLError::NSURLErrorBadServerResponse;
+pub use self::__NSURLError::NSURLErrorBadURL;
+pub use self::__NSURLError::NSURLErrorCallIsActive;
+pub use self::__NSURLError::NSURLErrorCancelled;
+pub use self::__NSURLError::NSURLErrorCancelledReasonBackgroundUpdatesDisabled;
+pub use self::__NSURLError::NSURLErrorCancelledReasonInsufficientSystemResources;
+pub use self::__NSURLError::NSURLErrorCancelledReasonUserForceQuitApplication;
+pub use self::__NSURLError::NSURLErrorCannotCloseFile;
+pub use self::__NSURLError::NSURLErrorCannotConnectToHost;
+pub use self::__NSURLError::NSURLErrorCannotCreateFile;
+pub use self::__NSURLError::NSURLErrorCannotDecodeContentData;
+pub use self::__NSURLError::NSURLErrorCannotDecodeRawData;
+pub use self::__NSURLError::NSURLErrorCannotFindHost;
+pub use self::__NSURLError::NSURLErrorCannotLoadFromNetwork;
+pub use self::__NSURLError::NSURLErrorCannotMoveFile;
+pub use self::__NSURLError::NSURLErrorCannotOpenFile;
+pub use self::__NSURLError::NSURLErrorCannotParseResponse;
+pub use self::__NSURLError::NSURLErrorCannotRemoveFile;
+pub use self::__NSURLError::NSURLErrorCannotWriteToFile;
+pub use self::__NSURLError::NSURLErrorClientCertificateRejected;
+pub use self::__NSURLError::NSURLErrorClientCertificateRequired;
+pub use self::__NSURLError::NSURLErrorDNSLookupFailed;
+pub use self::__NSURLError::NSURLErrorDataLengthExceedsMaximum;
+pub use self::__NSURLError::NSURLErrorDataNotAllowed;
 pub use self::__NSURLError::NSURLErrorDomain;
+pub use self::__NSURLError::NSURLErrorDownloadDecodingFailedMidStream;
+pub use self::__NSURLError::NSURLErrorDownloadDecodingFailedToComplete;
 pub use self::__NSURLError::NSURLErrorFailingURLErrorKey;
 pub use self::__NSURLError::NSURLErrorFailingURLPeerTrustErrorKey;
 pub use self::__NSURLError::NSURLErrorFailingURLStringErrorKey;
+pub use self::__NSURLError::NSURLErrorFileDoesNotExist;
+pub use self::__NSURLError::NSURLErrorFileIsDirectory;
+pub use self::__NSURLError::NSURLErrorFileOutsideSafeArea;
+pub use self::__NSURLError::NSURLErrorHTTPTooManyRedirects;
+pub use self::__NSURLError::NSURLErrorInternationalRoamingOff;
+pub use self::__NSURLError::NSURLErrorNetworkConnectionLost;
 pub use self::__NSURLError::NSURLErrorNetworkUnavailableReason;
 pub use self::__NSURLError::NSURLErrorNetworkUnavailableReasonKey;
-pub use self::__NSURLError::{
-    NSURLErrorAppTransportSecurityRequiresSecureConnection,
-    NSURLErrorBackgroundSessionInUseByAnotherProcess,
-    NSURLErrorBackgroundSessionRequiresSharedContainer, NSURLErrorBackgroundSessionWasDisconnected,
-    NSURLErrorBadServerResponse, NSURLErrorBadURL, NSURLErrorCallIsActive, NSURLErrorCancelled,
-    NSURLErrorCannotCloseFile, NSURLErrorCannotConnectToHost, NSURLErrorCannotCreateFile,
-    NSURLErrorCannotDecodeContentData, NSURLErrorCannotDecodeRawData, NSURLErrorCannotFindHost,
-    NSURLErrorCannotLoadFromNetwork, NSURLErrorCannotMoveFile, NSURLErrorCannotOpenFile,
-    NSURLErrorCannotParseResponse, NSURLErrorCannotRemoveFile, NSURLErrorCannotWriteToFile,
-    NSURLErrorClientCertificateRejected, NSURLErrorClientCertificateRequired,
-    NSURLErrorDNSLookupFailed, NSURLErrorDataLengthExceedsMaximum, NSURLErrorDataNotAllowed,
-    NSURLErrorDownloadDecodingFailedMidStream, NSURLErrorDownloadDecodingFailedToComplete,
-    NSURLErrorFileDoesNotExist, NSURLErrorFileIsDirectory, NSURLErrorFileOutsideSafeArea,
-    NSURLErrorHTTPTooManyRedirects, NSURLErrorInternationalRoamingOff,
-    NSURLErrorNetworkConnectionLost, NSURLErrorNoPermissionsToReadFile,
-    NSURLErrorNotConnectedToInternet, NSURLErrorRedirectToNonExistentLocation,
-    NSURLErrorRequestBodyStreamExhausted, NSURLErrorResourceUnavailable,
-    NSURLErrorSecureConnectionFailed, NSURLErrorServerCertificateHasBadDate,
-    NSURLErrorServerCertificateHasUnknownRoot, NSURLErrorServerCertificateNotYetValid,
-    NSURLErrorServerCertificateUntrusted, NSURLErrorTimedOut, NSURLErrorUnknown,
-    NSURLErrorUnsupportedURL, NSURLErrorUserAuthenticationRequired,
-    NSURLErrorUserCancelledAuthentication, NSURLErrorZeroByteResource,
-};
-pub use self::__NSURLError::{
-    NSURLErrorCancelledReasonBackgroundUpdatesDisabled,
-    NSURLErrorCancelledReasonInsufficientSystemResources,
-    NSURLErrorCancelledReasonUserForceQuitApplication,
-};
+pub use self::__NSURLError::NSURLErrorNoPermissionsToReadFile;
+pub use self::__NSURLError::NSURLErrorNotConnectedToInternet;
+pub use self::__NSURLError::NSURLErrorRedirectToNonExistentLocation;
+pub use self::__NSURLError::NSURLErrorRequestBodyStreamExhausted;
+pub use self::__NSURLError::NSURLErrorResourceUnavailable;
+pub use self::__NSURLError::NSURLErrorSecureConnectionFailed;
+pub use self::__NSURLError::NSURLErrorServerCertificateHasBadDate;
+pub use self::__NSURLError::NSURLErrorServerCertificateHasUnknownRoot;
+pub use self::__NSURLError::NSURLErrorServerCertificateNotYetValid;
+pub use self::__NSURLError::NSURLErrorServerCertificateUntrusted;
+pub use self::__NSURLError::NSURLErrorTimedOut;
+pub use self::__NSURLError::NSURLErrorUnknown;
+pub use self::__NSURLError::NSURLErrorUnsupportedURL;
+pub use self::__NSURLError::NSURLErrorUserAuthenticationRequired;
+pub use self::__NSURLError::NSURLErrorUserCancelledAuthentication;
+pub use self::__NSURLError::NSURLErrorZeroByteResource;
 pub use self::__NSURLError::{
     NSURLErrorNetworkUnavailableReasonCellular, NSURLErrorNetworkUnavailableReasonConstrained,
     NSURLErrorNetworkUnavailableReasonExpensive,
@@ -2465,13 +2562,13 @@ pub use self::__NSURLSession::{
 };
 #[cfg(feature = "Foundation_NSUbiquitousKeyValueStore")]
 pub use self::__NSUbiquitousKeyValueStore::NSUbiquitousKeyValueStore;
+pub use self::__NSUbiquitousKeyValueStore::NSUbiquitousKeyValueStoreAccountChange;
 pub use self::__NSUbiquitousKeyValueStore::NSUbiquitousKeyValueStoreChangeReasonKey;
 pub use self::__NSUbiquitousKeyValueStore::NSUbiquitousKeyValueStoreChangedKeysKey;
 pub use self::__NSUbiquitousKeyValueStore::NSUbiquitousKeyValueStoreDidChangeExternallyNotification;
-pub use self::__NSUbiquitousKeyValueStore::{
-    NSUbiquitousKeyValueStoreAccountChange, NSUbiquitousKeyValueStoreInitialSyncChange,
-    NSUbiquitousKeyValueStoreQuotaViolationChange, NSUbiquitousKeyValueStoreServerChange,
-};
+pub use self::__NSUbiquitousKeyValueStore::NSUbiquitousKeyValueStoreInitialSyncChange;
+pub use self::__NSUbiquitousKeyValueStore::NSUbiquitousKeyValueStoreQuotaViolationChange;
+pub use self::__NSUbiquitousKeyValueStore::NSUbiquitousKeyValueStoreServerChange;
 pub use self::__NSUndoManager::NSUndoCloseGroupingRunLoopOrdering;
 #[cfg(feature = "Foundation_NSUndoManager")]
 pub use self::__NSUndoManager::NSUndoManager;
@@ -2733,6 +2830,7 @@ pub use self::__NSXPCConnection::NSXPCListenerEndpoint;
 pub use self::__NSXPCConnection::NSXPCProxyCreating;
 pub use self::__NSZone::NSAllocateCollectable;
 pub use self::__NSZone::NSAllocateMemoryPages;
+pub use self::__NSZone::NSCollectorDisabledOption;
 pub use self::__NSZone::NSCopyMemoryPages;
 pub use self::__NSZone::NSCreateZone;
 pub use self::__NSZone::NSDeallocateMemoryPages;
@@ -2744,6 +2842,7 @@ pub use self::__NSZone::NSReallocateCollectable;
 pub use self::__NSZone::NSRecycleZone;
 pub use self::__NSZone::NSRoundDownToMultipleOfPageSize;
 pub use self::__NSZone::NSRoundUpToMultipleOfPageSize;
+pub use self::__NSZone::NSScannedOption;
 #[cfg(feature = "Foundation_NSString")]
 pub use self::__NSZone::NSSetZoneName;
 pub use self::__NSZone::NSZoneCalloc;
@@ -2753,7 +2852,6 @@ pub use self::__NSZone::NSZoneMalloc;
 #[cfg(feature = "Foundation_NSString")]
 pub use self::__NSZone::NSZoneName;
 pub use self::__NSZone::NSZoneRealloc;
-pub use self::__NSZone::{NSCollectorDisabledOption, NSScannedOption};
 #[cfg(feature = "Foundation_NSFileSecurity")]
 pub use self::__NSURL::NSFileSecurity;
 pub use self::__NSURL::NSThumbnail1024x1024SizeKey;

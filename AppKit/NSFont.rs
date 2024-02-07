@@ -249,13 +249,8 @@ extern_static!(NSFontSetChangedNotification: &'static NSNotificationName);
 
 pub type NSGlyph = c_uint;
 
-extern_enum!(
-    #[underlying(c_uint)]
-    pub enum __anonymous__ {
-        NSControlGlyph = 0x00FFFFFF,
-        NSNullGlyph = 0x0,
-    }
-);
+pub const NSControlGlyph: c_uint = 0x00FFFFFF;
+pub const NSNullGlyph: c_uint = 0x0;
 
 ns_enum!(
     #[underlying(NSUInteger)]

@@ -22,103 +22,93 @@ ns_enum!(
     }
 );
 
-extern_enum!(
-    #[underlying(c_uint)]
-    pub enum __anonymous__ {
-        #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-        NSOpenGLPFAAllRenderers = 1,
-        #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-        NSOpenGLPFATripleBuffer = 3,
-        #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-        NSOpenGLPFADoubleBuffer = 5,
-        #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-        NSOpenGLPFAAuxBuffers = 7,
-        #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-        NSOpenGLPFAColorSize = 8,
-        #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-        NSOpenGLPFAAlphaSize = 11,
-        #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-        NSOpenGLPFADepthSize = 12,
-        #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-        NSOpenGLPFAStencilSize = 13,
-        #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-        NSOpenGLPFAAccumSize = 14,
-        #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-        NSOpenGLPFAMinimumPolicy = 51,
-        #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-        NSOpenGLPFAMaximumPolicy = 52,
-        #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-        NSOpenGLPFASampleBuffers = 55,
-        #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-        NSOpenGLPFASamples = 56,
-        #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-        NSOpenGLPFAAuxDepthStencil = 57,
-        #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-        NSOpenGLPFAColorFloat = 58,
-        #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-        NSOpenGLPFAMultisample = 59,
-        #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-        NSOpenGLPFASupersample = 60,
-        #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-        NSOpenGLPFASampleAlpha = 61,
-        #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-        NSOpenGLPFARendererID = 70,
-        #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-        NSOpenGLPFANoRecovery = 72,
-        #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-        NSOpenGLPFAAccelerated = 73,
-        #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-        NSOpenGLPFAClosestPolicy = 74,
-        #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-        NSOpenGLPFABackingStore = 76,
-        #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-        NSOpenGLPFAScreenMask = 84,
-        #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-        NSOpenGLPFAAllowOfflineRenderers = 96,
-        #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-        NSOpenGLPFAAcceleratedCompute = 97,
-        #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-        NSOpenGLPFAOpenGLProfile = 99,
-        #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-        NSOpenGLPFAVirtualScreenCount = 128,
-        #[deprecated]
-        NSOpenGLPFAStereo = 6,
-        #[deprecated]
-        NSOpenGLPFAOffScreen = 53,
-        #[deprecated]
-        NSOpenGLPFAFullScreen = 54,
-        #[deprecated]
-        NSOpenGLPFASingleRenderer = 71,
-        #[deprecated]
-        NSOpenGLPFARobust = 75,
-        #[deprecated]
-        NSOpenGLPFAMPSafe = 78,
-        #[deprecated]
-        NSOpenGLPFAWindow = 80,
-        #[deprecated]
-        NSOpenGLPFAMultiScreen = 81,
-        #[deprecated]
-        NSOpenGLPFACompliant = 83,
-        #[deprecated]
-        NSOpenGLPFAPixelBuffer = 90,
-        #[deprecated]
-        NSOpenGLPFARemotePixelBuffer = 91,
-    }
-);
+#[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
+pub const NSOpenGLPFAAllRenderers: c_uint = 1;
+#[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
+pub const NSOpenGLPFATripleBuffer: c_uint = 3;
+#[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
+pub const NSOpenGLPFADoubleBuffer: c_uint = 5;
+#[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
+pub const NSOpenGLPFAAuxBuffers: c_uint = 7;
+#[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
+pub const NSOpenGLPFAColorSize: c_uint = 8;
+#[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
+pub const NSOpenGLPFAAlphaSize: c_uint = 11;
+#[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
+pub const NSOpenGLPFADepthSize: c_uint = 12;
+#[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
+pub const NSOpenGLPFAStencilSize: c_uint = 13;
+#[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
+pub const NSOpenGLPFAAccumSize: c_uint = 14;
+#[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
+pub const NSOpenGLPFAMinimumPolicy: c_uint = 51;
+#[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
+pub const NSOpenGLPFAMaximumPolicy: c_uint = 52;
+#[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
+pub const NSOpenGLPFASampleBuffers: c_uint = 55;
+#[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
+pub const NSOpenGLPFASamples: c_uint = 56;
+#[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
+pub const NSOpenGLPFAAuxDepthStencil: c_uint = 57;
+#[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
+pub const NSOpenGLPFAColorFloat: c_uint = 58;
+#[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
+pub const NSOpenGLPFAMultisample: c_uint = 59;
+#[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
+pub const NSOpenGLPFASupersample: c_uint = 60;
+#[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
+pub const NSOpenGLPFASampleAlpha: c_uint = 61;
+#[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
+pub const NSOpenGLPFARendererID: c_uint = 70;
+#[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
+pub const NSOpenGLPFANoRecovery: c_uint = 72;
+#[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
+pub const NSOpenGLPFAAccelerated: c_uint = 73;
+#[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
+pub const NSOpenGLPFAClosestPolicy: c_uint = 74;
+#[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
+pub const NSOpenGLPFABackingStore: c_uint = 76;
+#[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
+pub const NSOpenGLPFAScreenMask: c_uint = 84;
+#[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
+pub const NSOpenGLPFAAllowOfflineRenderers: c_uint = 96;
+#[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
+pub const NSOpenGLPFAAcceleratedCompute: c_uint = 97;
+#[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
+pub const NSOpenGLPFAOpenGLProfile: c_uint = 99;
+#[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
+pub const NSOpenGLPFAVirtualScreenCount: c_uint = 128;
+#[deprecated]
+pub const NSOpenGLPFAStereo: c_uint = 6;
+#[deprecated]
+pub const NSOpenGLPFAOffScreen: c_uint = 53;
+#[deprecated]
+pub const NSOpenGLPFAFullScreen: c_uint = 54;
+#[deprecated]
+pub const NSOpenGLPFASingleRenderer: c_uint = 71;
+#[deprecated]
+pub const NSOpenGLPFARobust: c_uint = 75;
+#[deprecated]
+pub const NSOpenGLPFAMPSafe: c_uint = 78;
+#[deprecated]
+pub const NSOpenGLPFAWindow: c_uint = 80;
+#[deprecated]
+pub const NSOpenGLPFAMultiScreen: c_uint = 81;
+#[deprecated]
+pub const NSOpenGLPFACompliant: c_uint = 83;
+#[deprecated]
+pub const NSOpenGLPFAPixelBuffer: c_uint = 90;
+#[deprecated]
+pub const NSOpenGLPFARemotePixelBuffer: c_uint = 91;
 
 pub type NSOpenGLPixelFormatAttribute = u32;
 
-extern_enum!(
-    #[underlying(c_uint)]
-    pub enum __anonymous__ {
-        #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-        NSOpenGLProfileVersionLegacy = 0x1000,
-        #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-        NSOpenGLProfileVersion3_2Core = 0x3200,
-        #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-        NSOpenGLProfileVersion4_1Core = 0x4100,
-    }
-);
+#[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
+pub const NSOpenGLProfileVersionLegacy: c_uint = 0x1000;
+#[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
+pub const NSOpenGLProfileVersion3_2Core: c_uint = 0x3200;
+#[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
+pub const NSOpenGLProfileVersion4_1Core: c_uint = 0x4100;
 
 ns_enum!(
     #[underlying(NSInteger)]

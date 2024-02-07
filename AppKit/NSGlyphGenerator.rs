@@ -5,14 +5,9 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-extern_enum!(
-    #[underlying(c_uint)]
-    pub enum __anonymous__ {
-        NSShowControlGlyphs = 1 << 0,
-        NSShowInvisibleGlyphs = 1 << 1,
-        NSWantsBidiLevels = 1 << 2,
-    }
-);
+pub const NSShowControlGlyphs: c_uint = 1 << 0;
+pub const NSShowInvisibleGlyphs: c_uint = 1 << 1;
+pub const NSWantsBidiLevels: c_uint = 1 << 2;
 
 extern_protocol!(
     pub unsafe trait NSGlyphStorage {

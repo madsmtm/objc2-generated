@@ -5,20 +5,14 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::WebKit::*;
 
-extern_enum!(
-    #[underlying(c_uint)]
-    #[deprecated]
-    pub enum __anonymous__ {
-        #[deprecated]
-        DOM_NONE = 0,
-        #[deprecated]
-        DOM_CAPTURING_PHASE = 1,
-        #[deprecated]
-        DOM_AT_TARGET = 2,
-        #[deprecated]
-        DOM_BUBBLING_PHASE = 3,
-    }
-);
+#[deprecated]
+pub const DOM_NONE: c_uint = 0;
+#[deprecated]
+pub const DOM_CAPTURING_PHASE: c_uint = 1;
+#[deprecated]
+pub const DOM_AT_TARGET: c_uint = 2;
+#[deprecated]
+pub const DOM_BUBBLING_PHASE: c_uint = 3;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]

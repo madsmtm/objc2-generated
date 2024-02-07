@@ -3,12 +3,7 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-extern_enum!(
-    #[underlying(c_uint)]
-    pub enum __anonymous__ {
-        NSOpenStepUnicodeReservedBase = 0xF400,
-    }
-);
+pub const NSOpenStepUnicodeReservedBase: c_uint = 0xF400;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
