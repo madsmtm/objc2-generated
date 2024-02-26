@@ -125,7 +125,10 @@ extern_methods!(
         ) -> NSInteger;
 
         #[method(rowViewProvider)]
-        pub unsafe fn rowViewProvider(&self) -> NSTableViewDiffableDataSourceRowProvider;
+        pub unsafe fn rowViewProvider(
+            &self,
+            mtm: MainThreadMarker,
+        ) -> NSTableViewDiffableDataSourceRowProvider;
 
         #[method(setRowViewProvider:)]
         pub unsafe fn setRowViewProvider(
@@ -136,6 +139,7 @@ extern_methods!(
         #[method(sectionHeaderViewProvider)]
         pub unsafe fn sectionHeaderViewProvider(
             &self,
+            mtm: MainThreadMarker,
         ) -> NSTableViewDiffableDataSourceSectionHeaderViewProvider;
 
         #[method(setSectionHeaderViewProvider:)]

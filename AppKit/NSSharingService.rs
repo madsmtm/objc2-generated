@@ -68,7 +68,10 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSSharingService")]
     unsafe impl NSSharingService {
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSSharingServiceDelegate>>>;
+        pub unsafe fn delegate(
+            &self,
+            mtm: MainThreadMarker,
+        ) -> Option<Id<ProtocolObject<dyn NSSharingServiceDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -395,6 +398,7 @@ extern_protocol!(
             &self,
             sharing_service_picker: &NSSharingServicePicker,
             sharing_service: &NSSharingService,
+            mtm: MainThreadMarker,
         ) -> Option<Id<ProtocolObject<dyn NSSharingServiceDelegate>>>;
 
         #[cfg(all(

@@ -33,8 +33,10 @@ extern_methods!(
         pub unsafe fn stopListening(&self);
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self)
-            -> Option<Id<ProtocolObject<dyn NSSpeechRecognizerDelegate>>>;
+        pub unsafe fn delegate(
+            &self,
+            mtm: MainThreadMarker,
+        ) -> Option<Id<ProtocolObject<dyn NSSpeechRecognizerDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(

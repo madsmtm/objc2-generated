@@ -108,7 +108,10 @@ extern_methods!(
         pub unsafe fn isPlaying(&self) -> bool;
 
         #[method_id(@__retain_semantics Other delegate)]
-        pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSSoundDelegate>>>;
+        pub unsafe fn delegate(
+            &self,
+            mtm: MainThreadMarker,
+        ) -> Option<Id<ProtocolObject<dyn NSSoundDelegate>>>;
 
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSSoundDelegate>>);

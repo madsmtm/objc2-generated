@@ -96,6 +96,7 @@ extern_protocol!(
         unsafe fn presentationAnchorForWebAuthenticationSession(
             &self,
             session: &ASWebAuthenticationSession,
+            mtm: MainThreadMarker,
         ) -> Id<ASPresentationAnchor>;
     }
 

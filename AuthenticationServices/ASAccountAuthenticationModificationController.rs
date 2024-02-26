@@ -50,6 +50,7 @@ extern_protocol!(
         unsafe fn presentationAnchorForAccountAuthenticationModificationController(
             &self,
             controller: &ASAccountAuthenticationModificationController,
+            mtm: MainThreadMarker,
         ) -> Id<ASPresentationAnchor>;
     }
 

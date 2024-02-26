@@ -164,6 +164,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
+            mtm: MainThreadMarker,
         ) -> Option<Id<ProtocolObject<dyn NSSpeechSynthesizerDelegate>>>;
 
         #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]

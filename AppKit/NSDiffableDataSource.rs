@@ -300,6 +300,7 @@ extern_methods!(
         #[method(supplementaryViewProvider)]
         pub unsafe fn supplementaryViewProvider(
             &self,
+            mtm: MainThreadMarker,
         ) -> NSCollectionViewDiffableDataSourceSupplementaryViewProvider;
 
         #[method(setSupplementaryViewProvider:)]
