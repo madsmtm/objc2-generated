@@ -90,10 +90,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSButtonCell")]
+    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
     pub struct NSButtonCell;
 
-    #[cfg(feature = "AppKit_NSButtonCell")]
+    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
     unsafe impl ClassType for NSButtonCell {
         #[inherits(NSCell, NSObject)]
         type Super = NSActionCell;
@@ -101,26 +101,46 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSButtonCell")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell"
+))]
 unsafe impl NSAccessibility for NSButtonCell {}
 
-#[cfg(feature = "AppKit_NSButtonCell")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell"
+))]
 unsafe impl NSAccessibilityElementProtocol for NSButtonCell {}
 
-#[cfg(feature = "AppKit_NSButtonCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSButtonCell {}
 
-#[cfg(feature = "AppKit_NSButtonCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCopying for NSButtonCell {}
 
-#[cfg(feature = "AppKit_NSButtonCell")]
+#[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
 unsafe impl NSObjectProtocol for NSButtonCell {}
 
-#[cfg(feature = "AppKit_NSButtonCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSUserInterfaceItemIdentification"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSButtonCell {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSButtonCell")]
+    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
     unsafe impl NSButtonCell {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initTextCell:)]
@@ -218,9 +238,11 @@ extern_methods!(
         #[method(setKeyEquivalent:)]
         pub unsafe fn setKeyEquivalent(&self, key_equivalent: &NSString);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(keyEquivalentModifierMask)]
         pub unsafe fn keyEquivalentModifierMask(&self) -> NSEventModifierFlags;
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(setKeyEquivalentModifierMask:)]
         pub unsafe fn setKeyEquivalentModifierMask(
             &self,
@@ -288,11 +310,20 @@ extern_methods!(
         #[method(mouseExited:)]
         pub unsafe fn mouseExited(&self, event: &NSEvent);
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[method(drawBezelWithFrame:inView:)]
         pub unsafe fn drawBezelWithFrame_inView(&self, frame: NSRect, control_view: &NSView);
 
-        #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSView"))]
+        #[cfg(all(
+            feature = "AppKit_NSImage",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[method(drawImage:withFrame:inView:)]
         pub unsafe fn drawImage_withFrame_inView(
             &self,
@@ -301,7 +332,12 @@ extern_methods!(
             control_view: &NSView,
         );
 
-        #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSAttributedString"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSAttributedString",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[method(drawTitle:withFrame:inView:)]
         pub unsafe fn drawTitle_withFrame_inView(
             &self,
@@ -314,7 +350,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSCell`
-    #[cfg(feature = "AppKit_NSButtonCell")]
+    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
     unsafe impl NSButtonCell {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -323,7 +359,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSButtonCell")]
+    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
     unsafe impl NSButtonCell {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -400,7 +436,7 @@ extern_static!(NSThickerSquareBezelStyle: NSBezelStyle = NSBezelStyle(4));
 
 extern_methods!(
     /// NSDeprecated
-    #[cfg(feature = "AppKit_NSButtonCell")]
+    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
     unsafe impl NSButtonCell {
         #[deprecated = "The gradientType property is unused, and setting it has no effect."]
         #[method(gradientType)]
@@ -446,7 +482,7 @@ extern_methods!(
         #[method(setKeyEquivalentFont:)]
         pub unsafe fn setKeyEquivalentFont(&self, key_equivalent_font: Option<&NSFont>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSGeometry", feature = "Foundation_NSString"))]
         #[deprecated = "The keyEquivalentFont property is no longer used. Setting it has no effect."]
         #[method(setKeyEquivalentFont:size:)]
         pub unsafe fn setKeyEquivalentFont_size(&self, font_name: &NSString, font_size: CGFloat);

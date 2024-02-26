@@ -6,21 +6,17 @@ use crate::LocalAuthentication::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "LocalAuthentication_LAAuthenticationRequirement")]
     pub struct LAAuthenticationRequirement;
 
-    #[cfg(feature = "LocalAuthentication_LAAuthenticationRequirement")]
     unsafe impl ClassType for LAAuthenticationRequirement {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "LocalAuthentication_LAAuthenticationRequirement")]
 unsafe impl NSObjectProtocol for LAAuthenticationRequirement {}
 
 extern_methods!(
-    #[cfg(feature = "LocalAuthentication_LAAuthenticationRequirement")]
     unsafe impl LAAuthenticationRequirement {
         #[method_id(@__retain_semantics Other defaultRequirement)]
         pub unsafe fn defaultRequirement() -> Id<LAAuthenticationRequirement>;
@@ -31,7 +27,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other biometryCurrentSetRequirement)]
         pub unsafe fn biometryCurrentSetRequirement() -> Id<LAAuthenticationRequirement>;
 
-        #[cfg(feature = "LocalAuthentication_LABiometryFallbackRequirement")]
         #[method_id(@__retain_semantics Other biometryRequirementWithFallback:)]
         pub unsafe fn biometryRequirementWithFallback(
             fallback: &LABiometryFallbackRequirement,
@@ -41,7 +36,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "LocalAuthentication_LAAuthenticationRequirement")]
     unsafe impl LAAuthenticationRequirement {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -53,21 +47,17 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "LocalAuthentication_LABiometryFallbackRequirement")]
     pub struct LABiometryFallbackRequirement;
 
-    #[cfg(feature = "LocalAuthentication_LABiometryFallbackRequirement")]
     unsafe impl ClassType for LABiometryFallbackRequirement {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "LocalAuthentication_LABiometryFallbackRequirement")]
 unsafe impl NSObjectProtocol for LABiometryFallbackRequirement {}
 
 extern_methods!(
-    #[cfg(feature = "LocalAuthentication_LABiometryFallbackRequirement")]
     unsafe impl LABiometryFallbackRequirement {
         #[method_id(@__retain_semantics Other defaultRequirement)]
         pub unsafe fn defaultRequirement() -> Id<LABiometryFallbackRequirement>;
@@ -79,7 +69,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "LocalAuthentication_LABiometryFallbackRequirement")]
     unsafe impl LABiometryFallbackRequirement {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

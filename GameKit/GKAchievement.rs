@@ -7,27 +7,23 @@ use crate::GameKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameKit_GKAchievement")]
     pub struct GKAchievement;
 
-    #[cfg(feature = "GameKit_GKAchievement")]
     unsafe impl ClassType for GKAchievement {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "GameKit_GKAchievement")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for GKAchievement {}
 
-#[cfg(feature = "GameKit_GKAchievement")]
 unsafe impl NSObjectProtocol for GKAchievement {}
 
-#[cfg(feature = "GameKit_GKAchievement")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for GKAchievement {}
 
 extern_methods!(
-    #[cfg(feature = "GameKit_GKAchievement")]
     unsafe impl GKAchievement {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSError"))]
         #[method(loadAchievementsWithCompletionHandler:)]
@@ -48,7 +44,11 @@ extern_methods!(
             identifier: Option<&NSString>,
         ) -> Id<Self>;
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "GameKit_GKPlayer"))]
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "GameKit_GKBasePlayer",
+            feature = "GameKit_GKPlayer"
+        ))]
         #[method_id(@__retain_semantics Init initWithIdentifier:player:)]
         pub unsafe fn initWithIdentifier_player(
             this: Allocated<Self>,
@@ -90,7 +90,7 @@ extern_methods!(
         #[method(setShowsCompletionBanner:)]
         pub unsafe fn setShowsCompletionBanner(&self, shows_completion_banner: bool);
 
-        #[cfg(feature = "GameKit_GKPlayer")]
+        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
         #[method_id(@__retain_semantics Other player)]
         pub unsafe fn player(&self) -> Option<Id<GKPlayer>>;
     }
@@ -98,7 +98,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameKit_GKAchievement")]
     unsafe impl GKAchievement {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -110,7 +109,6 @@ extern_methods!(
 
 extern_methods!(
     /// Deprecated
-    #[cfg(feature = "GameKit_GKAchievement")]
     unsafe impl GKAchievement {
         #[cfg(feature = "Foundation_NSError")]
         #[deprecated]
@@ -128,7 +126,6 @@ extern_methods!(
 
 extern_methods!(
     /// Obsoleted
-    #[cfg(feature = "GameKit_GKAchievement")]
     unsafe impl GKAchievement {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]

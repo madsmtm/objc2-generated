@@ -7,27 +7,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(
-        feature = "AuthenticationServices_ASAuthorizationProviderExtensionUserLoginConfiguration"
-    )]
     pub struct ASAuthorizationProviderExtensionUserLoginConfiguration;
 
-    #[cfg(
-        feature = "AuthenticationServices_ASAuthorizationProviderExtensionUserLoginConfiguration"
-    )]
     unsafe impl ClassType for ASAuthorizationProviderExtensionUserLoginConfiguration {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionUserLoginConfiguration")]
 unsafe impl NSObjectProtocol for ASAuthorizationProviderExtensionUserLoginConfiguration {}
 
 extern_methods!(
-    #[cfg(
-        feature = "AuthenticationServices_ASAuthorizationProviderExtensionUserLoginConfiguration"
-    )]
     unsafe impl ASAuthorizationProviderExtensionUserLoginConfiguration {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

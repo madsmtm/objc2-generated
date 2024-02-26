@@ -28,21 +28,17 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Contacts_CNContactStore")]
     pub struct CNContactStore;
 
-    #[cfg(feature = "Contacts_CNContactStore")]
     unsafe impl ClassType for CNContactStore {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Contacts_CNContactStore")]
 unsafe impl NSObjectProtocol for CNContactStore {}
 
 extern_methods!(
-    #[cfg(feature = "Contacts_CNContactStore")]
     unsafe impl CNContactStore {
         #[method(authorizationStatusForEntityType:)]
         pub unsafe fn authorizationStatusForEntityType(
@@ -61,6 +57,7 @@ extern_methods!(
             feature = "Contacts_CNContact",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSError",
+            feature = "Foundation_NSObject",
             feature = "Foundation_NSPredicate"
         ))]
         #[method_id(@__retain_semantics Other unifiedContactsMatchingPredicate:keysToFetch:error:_)]
@@ -74,6 +71,7 @@ extern_methods!(
             feature = "Contacts_CNContact",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSError",
+            feature = "Foundation_NSObject",
             feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other unifiedContactWithIdentifier:keysToFetch:error:_)]
@@ -86,7 +84,8 @@ extern_methods!(
         #[cfg(all(
             feature = "Contacts_CNContact",
             feature = "Foundation_NSArray",
-            feature = "Foundation_NSError"
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSObject"
         ))]
         #[method_id(@__retain_semantics Other unifiedMeContactWithKeysToFetch:error:_)]
         pub unsafe fn unifiedMeContactWithKeysToFetch_error(
@@ -97,6 +96,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Contacts_CNContact",
             feature = "Contacts_CNContactFetchRequest",
+            feature = "Contacts_CNFetchRequest",
             feature = "Contacts_CNFetchResult",
             feature = "Foundation_NSEnumerator",
             feature = "Foundation_NSError"
@@ -110,6 +110,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Contacts_CNChangeHistoryEvent",
             feature = "Contacts_CNChangeHistoryFetchRequest",
+            feature = "Contacts_CNFetchRequest",
             feature = "Contacts_CNFetchResult",
             feature = "Foundation_NSEnumerator",
             feature = "Foundation_NSError"
@@ -123,6 +124,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Contacts_CNContact",
             feature = "Contacts_CNContactFetchRequest",
+            feature = "Contacts_CNFetchRequest",
             feature = "Foundation_NSError"
         ))]
         #[method(enumerateContactsWithFetchRequest:error:usingBlock:)]
@@ -176,7 +178,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Contacts_CNContactStore")]
     unsafe impl CNContactStore {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

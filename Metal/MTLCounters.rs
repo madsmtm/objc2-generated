@@ -127,24 +127,20 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLCounterSampleBufferDescriptor")]
     pub struct MTLCounterSampleBufferDescriptor;
 
-    #[cfg(feature = "Metal_MTLCounterSampleBufferDescriptor")]
     unsafe impl ClassType for MTLCounterSampleBufferDescriptor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLCounterSampleBufferDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLCounterSampleBufferDescriptor {}
 
-#[cfg(feature = "Metal_MTLCounterSampleBufferDescriptor")]
 unsafe impl NSObjectProtocol for MTLCounterSampleBufferDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLCounterSampleBufferDescriptor")]
     unsafe impl MTLCounterSampleBufferDescriptor {
         #[method_id(@__retain_semantics Other counterSet)]
         pub unsafe fn counterSet(&self) -> Option<Id<ProtocolObject<dyn MTLCounterSet>>>;
@@ -160,9 +156,11 @@ extern_methods!(
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: &NSString);
 
+        #[cfg(feature = "Metal_MTLResource")]
         #[method(storageMode)]
         pub unsafe fn storageMode(&self) -> MTLStorageMode;
 
+        #[cfg(feature = "Metal_MTLResource")]
         #[method(setStorageMode:)]
         pub unsafe fn setStorageMode(&self, storage_mode: MTLStorageMode);
 
@@ -176,7 +174,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLCounterSampleBufferDescriptor")]
     unsafe impl MTLCounterSampleBufferDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -188,6 +185,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait MTLCounterSampleBuffer: NSObjectProtocol {
+        #[cfg(feature = "Metal_MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
         unsafe fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
 
@@ -198,7 +196,7 @@ extern_protocol!(
         #[method(sampleCount)]
         unsafe fn sampleCount(&self) -> NSUInteger;
 
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSRange"))]
         #[method_id(@__retain_semantics Other resolveCounterRange:)]
         unsafe fn resolveCounterRange(&self, range: NSRange) -> Option<Id<NSData>>;
     }
@@ -206,7 +204,7 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn MTLCounterSampleBuffer {}
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
 extern_static!(MTLCounterErrorDomain: &'static NSErrorDomain);
 
 ns_enum!(

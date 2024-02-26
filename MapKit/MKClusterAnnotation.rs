@@ -9,24 +9,20 @@ use crate::MapKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKClusterAnnotation")]
     pub struct MKClusterAnnotation;
 
-    #[cfg(feature = "MapKit_MKClusterAnnotation")]
     unsafe impl ClassType for MKClusterAnnotation {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MapKit_MKClusterAnnotation")]
+#[cfg(feature = "MapKit_MKAnnotation")]
 unsafe impl MKAnnotation for MKClusterAnnotation {}
 
-#[cfg(feature = "MapKit_MKClusterAnnotation")]
 unsafe impl NSObjectProtocol for MKClusterAnnotation {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKClusterAnnotation")]
     unsafe impl MKClusterAnnotation {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
@@ -44,14 +40,14 @@ extern_methods!(
         #[method(setSubtitle:)]
         pub unsafe fn setSubtitle(&self, subtitle: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "MapKit_MKAnnotation"))]
         #[method_id(@__retain_semantics Other memberAnnotations)]
         pub unsafe fn memberAnnotations(&self) -> Id<NSArray<ProtocolObject<dyn MKAnnotation>>>;
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "MapKit_MKAnnotation"))]
         #[method_id(@__retain_semantics Init initWithMemberAnnotations:)]
         pub unsafe fn initWithMemberAnnotations(
             this: Allocated<Self>,
@@ -62,7 +58,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MapKit_MKClusterAnnotation")]
     unsafe impl MKClusterAnnotation {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

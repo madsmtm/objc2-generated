@@ -17,24 +17,20 @@ typed_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSBindingSelectionMarker")]
     pub struct NSBindingSelectionMarker;
 
-    #[cfg(feature = "AppKit_NSBindingSelectionMarker")]
     unsafe impl ClassType for NSBindingSelectionMarker {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSBindingSelectionMarker")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSBindingSelectionMarker {}
 
-#[cfg(feature = "AppKit_NSBindingSelectionMarker")]
 unsafe impl NSObjectProtocol for NSBindingSelectionMarker {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSBindingSelectionMarker")]
     unsafe impl NSBindingSelectionMarker {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -69,7 +65,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSBindingSelectionMarker")]
     unsafe impl NSBindingSelectionMarker {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -104,20 +99,28 @@ extern_category!(
     /// Category "NSKeyValueBindingCreation" on [`NSObject`].
     #[doc(alias = "NSKeyValueBindingCreation")]
     pub unsafe trait NSObjectNSKeyValueBindingCreation {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "AppKit_NSKeyValueBinding", feature = "Foundation_NSString"))]
         #[method(exposeBinding:)]
         unsafe fn exposeBinding(binding: &NSBindingName);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSKeyValueBinding",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other exposedBindings)]
         unsafe fn exposedBindings(&self) -> Id<NSArray<NSBindingName>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "AppKit_NSKeyValueBinding", feature = "Foundation_NSString"))]
         #[method(valueClassForBinding:)]
         unsafe fn valueClassForBinding(&self, binding: &NSBindingName)
             -> Option<&'static AnyClass>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSKeyValueBinding",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
+        ))]
         #[method(bind:toObject:withKeyPath:options:)]
         unsafe fn bind_toObject_withKeyPath_options(
             &self,
@@ -127,11 +130,15 @@ extern_category!(
             options: Option<&NSDictionary<NSBindingOption, AnyObject>>,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "AppKit_NSKeyValueBinding", feature = "Foundation_NSString"))]
         #[method(unbind:)]
         unsafe fn unbind(&self, binding: &NSBindingName);
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSKeyValueBinding",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other infoForBinding:)]
         unsafe fn infoForBinding(
             &self,
@@ -139,7 +146,9 @@ extern_category!(
         ) -> Option<Id<NSDictionary<NSBindingInfoKey, AnyObject>>>;
 
         #[cfg(all(
+            feature = "AppKit_NSKeyValueBinding",
             feature = "CoreData_NSAttributeDescription",
+            feature = "CoreData_NSPropertyDescription",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSString"
         ))]

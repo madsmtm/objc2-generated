@@ -7,10 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKFetchShareMetadataOperation")]
+    #[cfg(all(feature = "CloudKit_CKOperation", feature = "Foundation_NSOperation"))]
     pub struct CKFetchShareMetadataOperation;
 
-    #[cfg(feature = "CloudKit_CKFetchShareMetadataOperation")]
+    #[cfg(all(feature = "CloudKit_CKOperation", feature = "Foundation_NSOperation"))]
     unsafe impl ClassType for CKFetchShareMetadataOperation {
         #[inherits(NSOperation, NSObject)]
         type Super = CKOperation;
@@ -18,11 +18,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CloudKit_CKFetchShareMetadataOperation")]
+#[cfg(all(feature = "CloudKit_CKOperation", feature = "Foundation_NSOperation"))]
 unsafe impl NSObjectProtocol for CKFetchShareMetadataOperation {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKFetchShareMetadataOperation")]
+    #[cfg(all(feature = "CloudKit_CKOperation", feature = "Foundation_NSOperation"))]
     unsafe impl CKFetchShareMetadataOperation {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -48,11 +48,19 @@ extern_methods!(
         #[method(setShouldFetchRootRecord:)]
         pub unsafe fn setShouldFetchRootRecord(&self, should_fetch_root_record: bool);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "CloudKit_CKRecord",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other rootRecordDesiredKeys)]
         pub unsafe fn rootRecordDesiredKeys(&self) -> Option<Id<NSArray<CKRecordFieldKey>>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "CloudKit_CKRecord",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[method(setRootRecordDesiredKeys:)]
         pub unsafe fn setRootRecordDesiredKeys(
             &self,
@@ -97,7 +105,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CloudKit_CKFetchShareMetadataOperation")]
+    #[cfg(all(feature = "CloudKit_CKOperation", feature = "Foundation_NSOperation"))]
     unsafe impl CKFetchShareMetadataOperation {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

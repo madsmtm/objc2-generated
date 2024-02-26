@@ -7,43 +7,43 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AuthenticationServices_ASPasskeyCredentialRequest")]
     pub struct ASPasskeyCredentialRequest;
 
-    #[cfg(feature = "AuthenticationServices_ASPasskeyCredentialRequest")]
     unsafe impl ClassType for ASPasskeyCredentialRequest {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASPasskeyCredentialRequest")]
+#[cfg(all(
+    feature = "AuthenticationServices_ASCredentialRequest",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl ASCredentialRequest for ASPasskeyCredentialRequest {}
 
-#[cfg(feature = "AuthenticationServices_ASPasskeyCredentialRequest")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for ASPasskeyCredentialRequest {}
 
-#[cfg(feature = "AuthenticationServices_ASPasskeyCredentialRequest")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for ASPasskeyCredentialRequest {}
 
-#[cfg(feature = "AuthenticationServices_ASPasskeyCredentialRequest")]
 unsafe impl NSObjectProtocol for ASPasskeyCredentialRequest {}
 
-#[cfg(feature = "AuthenticationServices_ASPasskeyCredentialRequest")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for ASPasskeyCredentialRequest {}
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASPasskeyCredentialRequest")]
     unsafe impl ASPasskeyCredentialRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
         #[cfg(all(
+            feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialConstants",
             feature = "AuthenticationServices_ASPasskeyCredentialIdentity",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSData",
-            feature = "Foundation_NSNumber",
-            feature = "Foundation_NSString"
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSValue"
         ))]
         #[method_id(@__retain_semantics Init initWithCredentialIdentity:clientDataHash:userVerificationPreference:supportedAlgorithms:)]
         pub unsafe fn initWithCredentialIdentity_clientDataHash_userVerificationPreference_supportedAlgorithms(
@@ -55,11 +55,12 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(all(
+            feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialConstants",
             feature = "AuthenticationServices_ASPasskeyCredentialIdentity",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSData",
-            feature = "Foundation_NSNumber",
-            feature = "Foundation_NSString"
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSValue"
         ))]
         #[method_id(@__retain_semantics Other requestWithCredentialIdentity:clientDataHash:userVerificationPreference:supportedAlgorithms:)]
         pub unsafe fn requestWithCredentialIdentity_clientDataHash_userVerificationPreference_supportedAlgorithms(
@@ -73,20 +74,26 @@ extern_methods!(
         #[method_id(@__retain_semantics Other clientDataHash)]
         pub unsafe fn clientDataHash(&self) -> Id<NSData>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialConstants",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other userVerificationPreference)]
         pub unsafe fn userVerificationPreference(
             &self,
         ) -> Id<ASAuthorizationPublicKeyCredentialUserVerificationPreference>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialConstants",
+            feature = "Foundation_NSString"
+        ))]
         #[method(setUserVerificationPreference:)]
         pub unsafe fn setUserVerificationPreference(
             &self,
             user_verification_preference: &ASAuthorizationPublicKeyCredentialUserVerificationPreference,
         );
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Other supportedAlgorithms)]
         pub unsafe fn supportedAlgorithms(&self) -> Id<NSArray<NSNumber>>;
     }
@@ -94,7 +101,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AuthenticationServices_ASPasskeyCredentialRequest")]
     unsafe impl ASPasskeyCredentialRequest {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

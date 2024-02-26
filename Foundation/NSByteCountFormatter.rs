@@ -36,10 +36,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSByteCountFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     pub struct NSByteCountFormatter;
 
-    #[cfg(feature = "Foundation_NSByteCountFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl ClassType for NSByteCountFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;
@@ -47,17 +47,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSByteCountFormatter")]
+#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for NSByteCountFormatter {}
 
-#[cfg(feature = "Foundation_NSByteCountFormatter")]
+#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
 unsafe impl NSCopying for NSByteCountFormatter {}
 
-#[cfg(feature = "Foundation_NSByteCountFormatter")]
+#[cfg(feature = "Foundation_NSFormatter")]
 unsafe impl NSObjectProtocol for NSByteCountFormatter {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSByteCountFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl NSByteCountFormatter {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringFromByteCount:countStyle:)]
@@ -73,7 +73,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSMeasurement",
             feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitInformationStorage"
+            feature = "Foundation_NSUnit"
         ))]
         #[method_id(@__retain_semantics Other stringFromMeasurement:countStyle:)]
         pub unsafe fn stringFromMeasurement_countStyle(
@@ -84,7 +84,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSMeasurement",
             feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitInformationStorage"
+            feature = "Foundation_NSUnit"
         ))]
         #[method_id(@__retain_semantics Other stringFromMeasurement:)]
         pub unsafe fn stringFromMeasurement(
@@ -154,7 +154,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSByteCountFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl NSByteCountFormatter {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

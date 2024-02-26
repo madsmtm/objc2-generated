@@ -18,10 +18,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSPersistentCloudKitContainer")]
+    #[cfg(feature = "CoreData_NSPersistentContainer")]
     pub struct NSPersistentCloudKitContainer;
 
-    #[cfg(feature = "CoreData_NSPersistentCloudKitContainer")]
+    #[cfg(feature = "CoreData_NSPersistentContainer")]
     unsafe impl ClassType for NSPersistentCloudKitContainer {
         #[inherits(NSObject)]
         type Super = NSPersistentContainer;
@@ -29,17 +29,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CoreData_NSPersistentCloudKitContainer")]
+#[cfg(feature = "CoreData_NSPersistentContainer")]
 unsafe impl Send for NSPersistentCloudKitContainer {}
 
-#[cfg(feature = "CoreData_NSPersistentCloudKitContainer")]
+#[cfg(feature = "CoreData_NSPersistentContainer")]
 unsafe impl Sync for NSPersistentCloudKitContainer {}
 
-#[cfg(feature = "CoreData_NSPersistentCloudKitContainer")]
+#[cfg(feature = "CoreData_NSPersistentContainer")]
 unsafe impl NSObjectProtocol for NSPersistentCloudKitContainer {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSPersistentCloudKitContainer")]
+    #[cfg(feature = "CoreData_NSPersistentContainer")]
     unsafe impl NSPersistentCloudKitContainer {
         #[cfg(feature = "Foundation_NSError")]
         #[method(initializeCloudKitSchemaWithOptions:error:_)]
@@ -70,7 +70,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSPersistentContainer`
-    #[cfg(feature = "CoreData_NSPersistentCloudKitContainer")]
+    #[cfg(feature = "CoreData_NSPersistentContainer")]
     unsafe impl NSPersistentCloudKitContainer {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other persistentContainerWithName:)]
@@ -105,7 +105,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSPersistentCloudKitContainer")]
+    #[cfg(feature = "CoreData_NSPersistentContainer")]
     unsafe impl NSPersistentCloudKitContainer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

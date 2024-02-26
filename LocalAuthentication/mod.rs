@@ -17,51 +17,78 @@
 #[link(name = "LocalAuthentication", kind = "framework")]
 extern "C" {}
 
+#[cfg(feature = "LocalAuthentication_LABase")]
 #[path = "LABase.rs"]
 mod __LABase;
+#[cfg(feature = "LocalAuthentication_LAContext")]
 #[path = "LAContext.rs"]
 mod __LAContext;
+#[cfg(feature = "LocalAuthentication_LAError")]
 #[path = "LAError.rs"]
 mod __LAError;
+#[cfg(feature = "LocalAuthentication_LAPersistedRight")]
 #[path = "LAPersistedRight.rs"]
 mod __LAPersistedRight;
+#[cfg(feature = "LocalAuthentication_LAPrivateKey")]
 #[path = "LAPrivateKey.rs"]
 mod __LAPrivateKey;
+#[cfg(feature = "LocalAuthentication_LAPublicDefines")]
 #[path = "LAPublicDefines.rs"]
 mod __LAPublicDefines;
+#[cfg(feature = "LocalAuthentication_LAPublicKey")]
 #[path = "LAPublicKey.rs"]
 mod __LAPublicKey;
+#[cfg(feature = "LocalAuthentication_LARequirement")]
 #[path = "LARequirement.rs"]
 mod __LARequirement;
+#[cfg(feature = "LocalAuthentication_LARight")]
 #[path = "LARight.rs"]
 mod __LARight;
+#[cfg(feature = "LocalAuthentication_LARightStore")]
 #[path = "LARightStore.rs"]
 mod __LARightStore;
+#[cfg(feature = "LocalAuthentication_LASecret")]
 #[path = "LASecret.rs"]
 mod __LASecret;
 
+#[cfg(feature = "LocalAuthentication_LAContext")]
 pub use self::__LAContext::LAAccessControlOperation;
+#[cfg(feature = "LocalAuthentication_LAContext")]
 pub use self::__LAContext::LABiometryType;
 #[cfg(feature = "LocalAuthentication_LAContext")]
 pub use self::__LAContext::LAContext;
+#[cfg(feature = "LocalAuthentication_LAContext")]
 pub use self::__LAContext::LACredentialType;
+#[cfg(feature = "LocalAuthentication_LAContext")]
 pub use self::__LAContext::LAPolicy;
+#[cfg(all(
+    feature = "Foundation_NSDate",
+    feature = "LocalAuthentication_LAContext"
+))]
 pub use self::__LAContext::LATouchIDAuthenticationMaximumAllowableReuseDuration;
+#[cfg(feature = "LocalAuthentication_LAError")]
 pub use self::__LAError::LAError;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSString",
+    feature = "LocalAuthentication_LAError"
+))]
 pub use self::__LAError::LAErrorDomain;
-#[cfg(feature = "LocalAuthentication_LAPersistedRight")]
+#[cfg(all(
+    feature = "LocalAuthentication_LAPersistedRight",
+    feature = "LocalAuthentication_LARight"
+))]
 pub use self::__LAPersistedRight::LAPersistedRight;
 #[cfg(feature = "LocalAuthentication_LAPrivateKey")]
 pub use self::__LAPrivateKey::LAPrivateKey;
 #[cfg(feature = "LocalAuthentication_LAPublicKey")]
 pub use self::__LAPublicKey::LAPublicKey;
-#[cfg(feature = "LocalAuthentication_LAAuthenticationRequirement")]
+#[cfg(feature = "LocalAuthentication_LARequirement")]
 pub use self::__LARequirement::LAAuthenticationRequirement;
-#[cfg(feature = "LocalAuthentication_LABiometryFallbackRequirement")]
+#[cfg(feature = "LocalAuthentication_LARequirement")]
 pub use self::__LARequirement::LABiometryFallbackRequirement;
 #[cfg(feature = "LocalAuthentication_LARight")]
 pub use self::__LARight::LARight;
+#[cfg(feature = "LocalAuthentication_LARight")]
 pub use self::__LARight::LARightState;
 #[cfg(feature = "LocalAuthentication_LARightStore")]
 pub use self::__LARightStore::LARightStore;

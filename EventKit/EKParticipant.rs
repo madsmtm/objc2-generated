@@ -9,10 +9,10 @@ use crate::MapKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "EventKit_EKParticipant")]
+    #[cfg(feature = "EventKit_EKObject")]
     pub struct EKParticipant;
 
-    #[cfg(feature = "EventKit_EKParticipant")]
+    #[cfg(feature = "EventKit_EKObject")]
     unsafe impl ClassType for EKParticipant {
         #[inherits(NSObject)]
         type Super = EKObject;
@@ -20,14 +20,14 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "EventKit_EKParticipant")]
+#[cfg(all(feature = "EventKit_EKObject", feature = "Foundation_NSObject"))]
 unsafe impl NSCopying for EKParticipant {}
 
-#[cfg(feature = "EventKit_EKParticipant")]
+#[cfg(feature = "EventKit_EKObject")]
 unsafe impl NSObjectProtocol for EKParticipant {}
 
 extern_methods!(
-    #[cfg(feature = "EventKit_EKParticipant")]
+    #[cfg(feature = "EventKit_EKObject")]
     unsafe impl EKParticipant {
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other URL)]
@@ -37,12 +37,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Id<NSString>>;
 
+        #[cfg(feature = "EventKit_EKTypes")]
         #[method(participantStatus)]
         pub unsafe fn participantStatus(&self) -> EKParticipantStatus;
 
+        #[cfg(feature = "EventKit_EKTypes")]
         #[method(participantRole)]
         pub unsafe fn participantRole(&self) -> EKParticipantRole;
 
+        #[cfg(feature = "EventKit_EKTypes")]
         #[method(participantType)]
         pub unsafe fn participantType(&self) -> EKParticipantType;
 
@@ -52,20 +55,12 @@ extern_methods!(
         #[cfg(feature = "Foundation_NSPredicate")]
         #[method_id(@__retain_semantics Other contactPredicate)]
         pub unsafe fn contactPredicate(&self) -> Id<NSPredicate>;
-
-        #[cfg(all(feature = "EventKit_ABAddressBook", feature = "EventKit_ABPerson"))]
-        #[deprecated = "Use contactPredicate instead"]
-        #[method_id(@__retain_semantics Other ABPersonInAddressBook:)]
-        pub unsafe fn ABPersonInAddressBook(
-            &self,
-            address_book: &ABAddressBook,
-        ) -> Option<Id<ABPerson>>;
     }
 );
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "EventKit_EKParticipant")]
+    #[cfg(feature = "EventKit_EKObject")]
     unsafe impl EKParticipant {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

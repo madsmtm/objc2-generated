@@ -50,36 +50,30 @@ extern_static!(NSURLAuthenticationMethodServerTrust: &'static NSString);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSURLProtectionSpace")]
     pub struct NSURLProtectionSpace;
 
-    #[cfg(feature = "Foundation_NSURLProtectionSpace")]
     unsafe impl ClassType for NSURLProtectionSpace {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSURLProtectionSpace")]
 unsafe impl Send for NSURLProtectionSpace {}
 
-#[cfg(feature = "Foundation_NSURLProtectionSpace")]
 unsafe impl Sync for NSURLProtectionSpace {}
 
-#[cfg(feature = "Foundation_NSURLProtectionSpace")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSURLProtectionSpace {}
 
-#[cfg(feature = "Foundation_NSURLProtectionSpace")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSURLProtectionSpace {}
 
-#[cfg(feature = "Foundation_NSURLProtectionSpace")]
 unsafe impl NSObjectProtocol for NSURLProtectionSpace {}
 
-#[cfg(feature = "Foundation_NSURLProtectionSpace")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSURLProtectionSpace {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSURLProtectionSpace")]
     unsafe impl NSURLProtectionSpace {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithHost:port:protocol:realm:authenticationMethod:)]
@@ -136,7 +130,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSURLProtectionSpace")]
     unsafe impl NSURLProtectionSpace {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -148,7 +141,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSClientCertificateSpace
-    #[cfg(feature = "Foundation_NSURLProtectionSpace")]
     unsafe impl NSURLProtectionSpace {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSData"))]
         #[method_id(@__retain_semantics Other distinguishedNames)]
@@ -158,6 +150,5 @@ extern_methods!(
 
 extern_methods!(
     /// NSServerTrustValidationSpace
-    #[cfg(feature = "Foundation_NSURLProtectionSpace")]
     unsafe impl NSURLProtectionSpace {}
 );

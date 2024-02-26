@@ -6,27 +6,23 @@ use crate::IdentityLookup::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "IdentityLookup_ILCommunication")]
     pub struct ILCommunication;
 
-    #[cfg(feature = "IdentityLookup_ILCommunication")]
     unsafe impl ClassType for ILCommunication {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "IdentityLookup_ILCommunication")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for ILCommunication {}
 
-#[cfg(feature = "IdentityLookup_ILCommunication")]
 unsafe impl NSObjectProtocol for ILCommunication {}
 
-#[cfg(feature = "IdentityLookup_ILCommunication")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for ILCommunication {}
 
 extern_methods!(
-    #[cfg(feature = "IdentityLookup_ILCommunication")]
     unsafe impl ILCommunication {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other sender)]
@@ -46,7 +42,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "IdentityLookup_ILCommunication")]
     unsafe impl ILCommunication {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

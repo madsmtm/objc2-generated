@@ -7,7 +7,11 @@ use crate::WebKit::*;
 
 extern_methods!(
     /// WebDOMNodeOperations
-    #[cfg(feature = "WebKit_DOMNode")]
+    #[cfg(all(
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMNode {
         #[cfg(feature = "WebKit_WebArchive")]
         #[deprecated]
@@ -18,7 +22,12 @@ extern_methods!(
 
 extern_methods!(
     /// WebDOMDocumentOperations
-    #[cfg(feature = "WebKit_DOMDocument")]
+    #[cfg(all(
+        feature = "WebKit_DOMDocument",
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMDocument {
         #[cfg(feature = "WebKit_WebFrame")]
         #[deprecated]
@@ -35,7 +44,11 @@ extern_methods!(
 
 extern_methods!(
     /// WebDOMRangeOperations
-    #[cfg(feature = "WebKit_DOMRange")]
+    #[cfg(all(
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_DOMRange",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMRange {
         #[cfg(feature = "WebKit_WebArchive")]
         #[deprecated]
@@ -51,7 +64,14 @@ extern_methods!(
 
 extern_methods!(
     /// WebDOMHTMLFrameElementOperations
-    #[cfg(feature = "WebKit_DOMHTMLFrameElement")]
+    #[cfg(all(
+        feature = "WebKit_DOMElement",
+        feature = "WebKit_DOMHTMLElement",
+        feature = "WebKit_DOMHTMLFrameElement",
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMHTMLFrameElement {
         #[cfg(feature = "WebKit_WebFrame")]
         #[deprecated]
@@ -62,7 +82,14 @@ extern_methods!(
 
 extern_methods!(
     /// WebDOMHTMLIFrameElementOperations
-    #[cfg(feature = "WebKit_DOMHTMLIFrameElement")]
+    #[cfg(all(
+        feature = "WebKit_DOMElement",
+        feature = "WebKit_DOMHTMLElement",
+        feature = "WebKit_DOMHTMLIFrameElement",
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMHTMLIFrameElement {
         #[cfg(feature = "WebKit_WebFrame")]
         #[deprecated]
@@ -73,7 +100,14 @@ extern_methods!(
 
 extern_methods!(
     /// WebDOMHTMLObjectElementOperations
-    #[cfg(feature = "WebKit_DOMHTMLObjectElement")]
+    #[cfg(all(
+        feature = "WebKit_DOMElement",
+        feature = "WebKit_DOMHTMLElement",
+        feature = "WebKit_DOMHTMLObjectElement",
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMHTMLObjectElement {
         #[cfg(feature = "WebKit_WebFrame")]
         #[deprecated]

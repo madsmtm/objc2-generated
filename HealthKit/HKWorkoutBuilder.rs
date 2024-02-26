@@ -8,21 +8,17 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKWorkoutBuilder")]
     pub struct HKWorkoutBuilder;
 
-    #[cfg(feature = "HealthKit_HKWorkoutBuilder")]
     unsafe impl ClassType for HKWorkoutBuilder {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "HealthKit_HKWorkoutBuilder")]
 unsafe impl NSObjectProtocol for HKWorkoutBuilder {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKWorkoutBuilder")]
     unsafe impl HKWorkoutBuilder {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -47,7 +43,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other metadata)]
         pub unsafe fn metadata(&self) -> Id<NSDictionary<NSString, AnyObject>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "HealthKit_HKWorkoutEvent"))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "HealthKit_HKWorkout"))]
         #[method_id(@__retain_semantics Other workoutEvents)]
         pub unsafe fn workoutEvents(&self) -> Id<NSArray<HKWorkoutEvent>>;
 
@@ -60,7 +56,7 @@ extern_methods!(
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
-            feature = "HealthKit_HKQuantityType",
+            feature = "HealthKit_HKObjectType",
             feature = "HealthKit_HKStatistics"
         ))]
         #[method_id(@__retain_semantics Other allStatistics)]
@@ -90,6 +86,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSError",
+            feature = "HealthKit_HKObject",
             feature = "HealthKit_HKSample"
         ))]
         #[method(addSamples:completion:)]
@@ -102,7 +99,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSError",
-            feature = "HealthKit_HKWorkoutEvent"
+            feature = "HealthKit_HKWorkout"
         ))]
         #[method(addWorkoutEvents:completion:)]
         pub unsafe fn addWorkoutEvents_completion(
@@ -169,7 +166,12 @@ extern_methods!(
             completion: &Block<dyn Fn(Bool, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "HealthKit_HKWorkout"))]
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "HealthKit_HKObject",
+            feature = "HealthKit_HKSample",
+            feature = "HealthKit_HKWorkout"
+        ))]
         #[method(finishWorkoutWithCompletion:)]
         pub unsafe fn finishWorkoutWithCompletion(
             &self,
@@ -183,10 +185,7 @@ extern_methods!(
         #[method(elapsedTimeAtDate:)]
         pub unsafe fn elapsedTimeAtDate(&self, date: &NSDate) -> NSTimeInterval;
 
-        #[cfg(all(
-            feature = "HealthKit_HKQuantityType",
-            feature = "HealthKit_HKStatistics"
-        ))]
+        #[cfg(all(feature = "HealthKit_HKObjectType", feature = "HealthKit_HKStatistics"))]
         #[method_id(@__retain_semantics Other statisticsForType:)]
         pub unsafe fn statisticsForType(
             &self,
@@ -194,8 +193,8 @@ extern_methods!(
         ) -> Option<Id<HKStatistics>>;
 
         #[cfg(all(
-            feature = "HealthKit_HKSeriesBuilder",
-            feature = "HealthKit_HKSeriesType"
+            feature = "HealthKit_HKObjectType",
+            feature = "HealthKit_HKSeriesBuilder"
         ))]
         #[method_id(@__retain_semantics Other seriesBuilderForType:)]
         pub unsafe fn seriesBuilderForType(
@@ -207,7 +206,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKWorkoutBuilder")]
     unsafe impl HKWorkoutBuilder {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

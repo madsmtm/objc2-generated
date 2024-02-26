@@ -6,6 +6,8 @@ use crate::CoreData::*;
 use crate::Foundation::*;
 
 #[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
     feature = "AppKit_NSTableColumn",
     feature = "AppKit_NSTableView",
     feature = "AppKit_NSView"
@@ -19,18 +21,28 @@ pub type NSTableViewDiffableDataSourceCellProvider = *mut Block<
     ) -> NonNull<NSView>,
 >;
 
-#[cfg(all(feature = "AppKit_NSTableRowView", feature = "AppKit_NSTableView"))]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSTableRowView",
+    feature = "AppKit_NSTableView",
+    feature = "AppKit_NSView"
+))]
 pub type NSTableViewDiffableDataSourceRowProvider = *mut Block<
     dyn Fn(NonNull<NSTableView>, NSInteger, NonNull<AnyObject>) -> NonNull<NSTableRowView>,
 >;
 
-#[cfg(all(feature = "AppKit_NSTableView", feature = "AppKit_NSView"))]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSTableView",
+    feature = "AppKit_NSView"
+))]
 pub type NSTableViewDiffableDataSourceSectionHeaderViewProvider =
     *mut Block<dyn Fn(NonNull<NSTableView>, NSInteger, NonNull<AnyObject>) -> NonNull<NSView>>;
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTableViewDiffableDataSource")]
     pub struct NSTableViewDiffableDataSource<
         SectionIdentifierType: ?Sized = AnyObject,
         ItemIdentifierType: ?Sized = AnyObject,
@@ -41,7 +53,6 @@ __inner_extern_class!(
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
-    #[cfg(feature = "AppKit_NSTableViewDiffableDataSource")]
     unsafe impl<SectionIdentifierType: ?Sized + Message, ItemIdentifierType: ?Sized + Message>
         ClassType for NSTableViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
     {
@@ -58,24 +69,24 @@ __inner_extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSTableViewDiffableDataSource")]
 unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSObjectProtocol
     for NSTableViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
 {
 }
 
-#[cfg(feature = "AppKit_NSTableViewDiffableDataSource")]
+#[cfg(feature = "AppKit_NSTableView")]
 unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSTableViewDataSource
     for NSTableViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
 {
 }
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTableViewDiffableDataSource")]
     unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
         NSTableViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
     {
         #[cfg(all(
+            feature = "AppKit_NSControl",
+            feature = "AppKit_NSResponder",
             feature = "AppKit_NSTableColumn",
             feature = "AppKit_NSTableView",
             feature = "AppKit_NSView"
@@ -93,13 +104,13 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSDiffableDataSourceSnapshot")]
+        #[cfg(feature = "AppKit_NSDiffableDataSource")]
         #[method_id(@__retain_semantics Other snapshot)]
         pub unsafe fn snapshot(
             &self,
         ) -> Id<NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>>;
 
-        #[cfg(feature = "AppKit_NSDiffableDataSourceSnapshot")]
+        #[cfg(feature = "AppKit_NSDiffableDataSource")]
         #[method(applySnapshot:animatingDifferences:)]
         pub unsafe fn applySnapshot_animatingDifferences(
             &self,
@@ -107,7 +118,7 @@ extern_methods!(
             animating_differences: bool,
         );
 
-        #[cfg(feature = "AppKit_NSDiffableDataSourceSnapshot")]
+        #[cfg(feature = "AppKit_NSDiffableDataSource")]
         #[method(applySnapshot:animatingDifferences:completion:)]
         pub unsafe fn applySnapshot_animatingDifferences_completion(
             &self,
@@ -135,37 +146,61 @@ extern_methods!(
             identifier: &SectionIdentifierType,
         ) -> NSInteger;
 
-        #[cfg(all(feature = "AppKit_NSTableRowView", feature = "AppKit_NSTableView"))]
+        #[cfg(all(
+            feature = "AppKit_NSControl",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSTableRowView",
+            feature = "AppKit_NSTableView",
+            feature = "AppKit_NSView"
+        ))]
         #[method(rowViewProvider)]
         pub unsafe fn rowViewProvider(
             &self,
             mtm: MainThreadMarker,
         ) -> NSTableViewDiffableDataSourceRowProvider;
 
-        #[cfg(all(feature = "AppKit_NSTableRowView", feature = "AppKit_NSTableView"))]
+        #[cfg(all(
+            feature = "AppKit_NSControl",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSTableRowView",
+            feature = "AppKit_NSTableView",
+            feature = "AppKit_NSView"
+        ))]
         #[method(setRowViewProvider:)]
         pub unsafe fn setRowViewProvider(
             &self,
             row_view_provider: NSTableViewDiffableDataSourceRowProvider,
         );
 
-        #[cfg(all(feature = "AppKit_NSTableView", feature = "AppKit_NSView"))]
+        #[cfg(all(
+            feature = "AppKit_NSControl",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSTableView",
+            feature = "AppKit_NSView"
+        ))]
         #[method(sectionHeaderViewProvider)]
         pub unsafe fn sectionHeaderViewProvider(
             &self,
             mtm: MainThreadMarker,
         ) -> NSTableViewDiffableDataSourceSectionHeaderViewProvider;
 
-        #[cfg(all(feature = "AppKit_NSTableView", feature = "AppKit_NSView"))]
+        #[cfg(all(
+            feature = "AppKit_NSControl",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSTableView",
+            feature = "AppKit_NSView"
+        ))]
         #[method(setSectionHeaderViewProvider:)]
         pub unsafe fn setSectionHeaderViewProvider(
             &self,
             section_header_view_provider: NSTableViewDiffableDataSourceSectionHeaderViewProvider,
         );
 
+        #[cfg(feature = "AppKit_NSTableView")]
         #[method(defaultRowAnimation)]
         pub unsafe fn defaultRowAnimation(&self) -> NSTableViewAnimationOptions;
 
+        #[cfg(feature = "AppKit_NSTableView")]
         #[method(setDefaultRowAnimation:)]
         pub unsafe fn setDefaultRowAnimation(
             &self,

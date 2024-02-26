@@ -7,11 +7,11 @@ use crate::WebKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_DOMStyleSheet")]
+    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
     #[deprecated]
     pub struct DOMStyleSheet;
 
-    #[cfg(feature = "WebKit_DOMStyleSheet")]
+    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
     unsafe impl ClassType for DOMStyleSheet {
         #[inherits(WebScriptObject, NSObject)]
         type Super = DOMObject;
@@ -19,14 +19,18 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "WebKit_DOMStyleSheet")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSCopying for DOMStyleSheet {}
 
-#[cfg(feature = "WebKit_DOMStyleSheet")]
+#[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
 unsafe impl NSObjectProtocol for DOMStyleSheet {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_DOMStyleSheet")]
+    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
     unsafe impl DOMStyleSheet {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
@@ -69,7 +73,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
-    #[cfg(feature = "WebKit_DOMStyleSheet")]
+    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
     unsafe impl DOMStyleSheet {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
@@ -79,7 +83,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_DOMStyleSheet")]
+    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
     unsafe impl DOMStyleSheet {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

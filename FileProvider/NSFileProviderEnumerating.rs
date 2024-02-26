@@ -24,7 +24,10 @@ extern_static!(NSFileProviderInitialPageSortedByName: &'static NSFileProviderPag
 
 extern_protocol!(
     pub unsafe trait NSFileProviderEnumerationObserver: NSObjectProtocol {
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(
+            feature = "FileProvider_NSFileProviderItem",
+            feature = "Foundation_NSArray"
+        ))]
         #[method(didEnumerateItems:)]
         unsafe fn didEnumerateItems(
             &self,
@@ -49,14 +52,21 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait NSFileProviderChangeObserver: NSObjectProtocol {
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(
+            feature = "FileProvider_NSFileProviderItem",
+            feature = "Foundation_NSArray"
+        ))]
         #[method(didUpdateItems:)]
         unsafe fn didUpdateItems(
             &self,
             updated_items: &NSArray<ProtocolObject<dyn NSFileProviderItemProtocol>>,
         );
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "FileProvider_NSFileProviderItem",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[method(didDeleteItemsWithIdentifiers:)]
         unsafe fn didDeleteItemsWithIdentifiers(
             &self,
@@ -121,7 +131,12 @@ extern_methods!(
     /// NSFileProviderEnumeration
     #[cfg(feature = "FileProvider_NSFileProviderExtension")]
     unsafe impl NSFileProviderExtension {
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "FileProvider_NSFileProviderEnumerating",
+            feature = "FileProvider_NSFileProviderItem",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other enumeratorForContainerItemIdentifier:error:_)]
         pub unsafe fn enumeratorForContainerItemIdentifier_error(
             &self,

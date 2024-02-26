@@ -228,67 +228,130 @@ extern_static!(NSAccessibilityStyleRangeForIndexParameterizedAttribute: &'static
 #[cfg(feature = "Foundation_NSString")]
 extern_static!(NSAccessibilityAttributedStringForRangeParameterizedAttribute: &'static NSAccessibilityParameterizedAttributeName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSAccessibilityFontTextAttribute: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSAccessibilityForegroundColorTextAttribute: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSAccessibilityBackgroundColorTextAttribute: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSAccessibilityUnderlineColorTextAttribute: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSAccessibilityStrikethroughColorTextAttribute: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSAccessibilityUnderlineTextAttribute: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSAccessibilitySuperscriptTextAttribute: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSAccessibilityStrikethroughTextAttribute: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSAccessibilityShadowTextAttribute: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSAccessibilityAttachmentTextAttribute: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSAccessibilityLinkTextAttribute: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSAccessibilityAutocorrectedTextAttribute: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSAccessibilityTextAlignmentAttribute: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSAccessibilityListItemPrefixTextAttribute: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSAccessibilityListItemIndexTextAttribute: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSAccessibilityListItemLevelTextAttribute: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSAccessibilityMisspelledTextAttribute: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSAccessibilityMarkedMisspelledTextAttribute: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSAccessibilityLanguageTextAttribute: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSAccessibilityCustomTextAttribute: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSAccessibilityAnnotationTextAttribute: &'static NSAttributedStringKey);
 
 #[cfg(feature = "Foundation_NSString")]
@@ -1116,6 +1179,7 @@ ns_enum!(
     }
 );
 
+#[cfg(feature = "Foundation_NSObject")]
 pub type NSAccessibilityLoadingToken = TodoProtocols;
 
 #[cfg(feature = "Foundation_NSString")]

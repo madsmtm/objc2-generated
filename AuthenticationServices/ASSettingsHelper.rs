@@ -7,21 +7,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AuthenticationServices_ASSettingsHelper")]
     pub struct ASSettingsHelper;
 
-    #[cfg(feature = "AuthenticationServices_ASSettingsHelper")]
     unsafe impl ClassType for ASSettingsHelper {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASSettingsHelper")]
 unsafe impl NSObjectProtocol for ASSettingsHelper {}
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASSettingsHelper")]
     unsafe impl ASSettingsHelper {
         #[cfg(feature = "Foundation_NSError")]
         #[method(openCredentialProviderAppSettingsWithCompletionHandler:)]

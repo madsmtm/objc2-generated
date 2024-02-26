@@ -5,25 +5,25 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSDistantObject")]
+    #[cfg(feature = "Foundation_NSProxy")]
     #[deprecated = "Use NSXPCConnection instead"]
     pub struct NSDistantObject;
 
-    #[cfg(feature = "Foundation_NSDistantObject")]
+    #[cfg(feature = "Foundation_NSProxy")]
     unsafe impl ClassType for NSDistantObject {
         type Super = NSProxy;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSDistantObject")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "Foundation_NSProxy"))]
 unsafe impl NSCoding for NSDistantObject {}
 
-#[cfg(feature = "Foundation_NSDistantObject")]
+#[cfg(feature = "Foundation_NSProxy")]
 unsafe impl NSObjectProtocol for NSDistantObject {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSDistantObject")]
+    #[cfg(feature = "Foundation_NSProxy")]
     unsafe impl NSDistantObject {
         #[cfg(feature = "Foundation_NSConnection")]
         #[deprecated = "Use NSXPCConnection instead"]

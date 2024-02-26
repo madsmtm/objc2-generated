@@ -13,27 +13,23 @@ pub type NSColorName = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSColorList")]
     pub struct NSColorList;
 
-    #[cfg(feature = "AppKit_NSColorList")]
     unsafe impl ClassType for NSColorList {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSColorList")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSColorList {}
 
-#[cfg(feature = "AppKit_NSColorList")]
 unsafe impl NSObjectProtocol for NSColorList {}
 
-#[cfg(feature = "AppKit_NSColorList")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSColorList {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSColorList")]
     unsafe impl NSColorList {
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other availableColorLists)]
@@ -103,7 +99,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSColorList")]
     unsafe impl NSColorList {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -113,5 +108,5 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSColorListDidChangeNotification: &'static NSNotificationName);

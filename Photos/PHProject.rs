@@ -9,10 +9,10 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Photos_PHProject")]
+    #[cfg(all(feature = "Photos_PHCollection", feature = "Photos_PHObject"))]
     pub struct PHProject;
 
-    #[cfg(feature = "Photos_PHProject")]
+    #[cfg(all(feature = "Photos_PHCollection", feature = "Photos_PHObject"))]
     unsafe impl ClassType for PHProject {
         #[inherits(PHCollection, PHObject, NSObject)]
         type Super = PHAssetCollection;
@@ -20,14 +20,18 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Photos_PHProject")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "Photos_PHCollection",
+    feature = "Photos_PHObject"
+))]
 unsafe impl NSCopying for PHProject {}
 
-#[cfg(feature = "Photos_PHProject")]
+#[cfg(all(feature = "Photos_PHCollection", feature = "Photos_PHObject"))]
 unsafe impl NSObjectProtocol for PHProject {}
 
 extern_methods!(
-    #[cfg(feature = "Photos_PHProject")]
+    #[cfg(all(feature = "Photos_PHCollection", feature = "Photos_PHObject"))]
     unsafe impl PHProject {
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other projectExtensionData)]
@@ -40,7 +44,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Photos_PHProject")]
+    #[cfg(all(feature = "Photos_PHCollection", feature = "Photos_PHObject"))]
     unsafe impl PHProject {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -7,21 +7,17 @@ use crate::WebKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_WKNavigationResponse")]
     pub struct WKNavigationResponse;
 
-    #[cfg(feature = "WebKit_WKNavigationResponse")]
     unsafe impl ClassType for WKNavigationResponse {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "WebKit_WKNavigationResponse")]
 unsafe impl NSObjectProtocol for WKNavigationResponse {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_WKNavigationResponse")]
     unsafe impl WKNavigationResponse {
         #[method(isForMainFrame)]
         pub unsafe fn isForMainFrame(&self) -> bool;
@@ -37,7 +33,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_WKNavigationResponse")]
     unsafe impl WKNavigationResponse {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -7,28 +7,24 @@ use crate::GameKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameKit_GKScore")]
     #[deprecated]
     pub struct GKScore;
 
-    #[cfg(feature = "GameKit_GKScore")]
     unsafe impl ClassType for GKScore {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "GameKit_GKScore")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for GKScore {}
 
-#[cfg(feature = "GameKit_GKScore")]
 unsafe impl NSObjectProtocol for GKScore {}
 
-#[cfg(feature = "GameKit_GKScore")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for GKScore {}
 
 extern_methods!(
-    #[cfg(feature = "GameKit_GKScore")]
     unsafe impl GKScore {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
@@ -38,7 +34,11 @@ extern_methods!(
             identifier: &NSString,
         ) -> Id<Self>;
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "GameKit_GKPlayer"))]
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "GameKit_GKBasePlayer",
+            feature = "GameKit_GKPlayer"
+        ))]
         #[method_id(@__retain_semantics Init initWithLeaderboardIdentifier:player:)]
         pub unsafe fn initWithLeaderboardIdentifier_player(
             this: Allocated<Self>,
@@ -78,7 +78,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other date)]
         pub unsafe fn date(&self) -> Id<NSDate>;
 
-        #[cfg(feature = "GameKit_GKPlayer")]
+        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
         #[method_id(@__retain_semantics Other player)]
         pub unsafe fn player(&self) -> Option<Id<GKPlayer>>;
 
@@ -103,7 +103,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameKit_GKScore")]
     unsafe impl GKScore {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -115,7 +114,6 @@ extern_methods!(
 
 extern_methods!(
     /// Deprecated
-    #[cfg(feature = "GameKit_GKScore")]
     unsafe impl GKScore {
         #[cfg(feature = "Foundation_NSError")]
         #[deprecated]
@@ -147,7 +145,6 @@ extern_methods!(
 
 extern_methods!(
     /// Obsoleted
-    #[cfg(feature = "GameKit_GKScore")]
     unsafe impl GKScore {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]

@@ -7,26 +7,26 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSAccessibilityElement")]
     pub struct NSAccessibilityElement;
 
-    #[cfg(feature = "AppKit_NSAccessibilityElement")]
     unsafe impl ClassType for NSAccessibilityElement {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSAccessibilityElement")]
+#[cfg(feature = "AppKit_NSAccessibilityProtocols")]
 unsafe impl NSAccessibility for NSAccessibilityElement {}
 
-#[cfg(feature = "AppKit_NSAccessibilityElement")]
 unsafe impl NSObjectProtocol for NSAccessibilityElement {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSAccessibilityElement")]
     unsafe impl NSAccessibilityElement {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "AppKit_NSAccessibilityConstants",
+            feature = "Foundation_NSGeometry",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other accessibilityElementWithRole:frame:label:parent:)]
         pub unsafe fn accessibilityElementWithRole_frame_label_parent(
             role: &NSAccessibilityRole,
@@ -38,9 +38,11 @@ extern_methods!(
         #[method(accessibilityAddChildElement:)]
         pub unsafe fn accessibilityAddChildElement(&self, child_element: &NSAccessibilityElement);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(accessibilityFrameInParentSpace)]
         pub unsafe fn accessibilityFrameInParentSpace(&self) -> NSRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setAccessibilityFrameInParentSpace:)]
         pub unsafe fn setAccessibilityFrameInParentSpace(
             &self,
@@ -51,7 +53,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSAccessibilityElement")]
     unsafe impl NSAccessibilityElement {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

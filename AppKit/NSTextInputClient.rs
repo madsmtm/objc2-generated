@@ -31,6 +31,7 @@ ns_enum!(
 
 extern_protocol!(
     pub unsafe trait NSTextInputClient {
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(insertText:replacementRange:)]
         unsafe fn insertText_replacementRange(
             &self,
@@ -41,6 +42,7 @@ extern_protocol!(
         #[method(doCommandBySelector:)]
         unsafe fn doCommandBySelector(&self, selector: Sel);
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(setMarkedText:selectedRange:replacementRange:)]
         unsafe fn setMarkedText_selectedRange_replacementRange(
             &self,
@@ -52,16 +54,21 @@ extern_protocol!(
         #[method(unmarkText)]
         unsafe fn unmarkText(&self);
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(selectedRange)]
         unsafe fn selectedRange(&self) -> NSRange;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(markedRange)]
         unsafe fn markedRange(&self) -> NSRange;
 
         #[method(hasMarkedText)]
         unsafe fn hasMarkedText(&self) -> bool;
 
-        #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(all(
+            feature = "Foundation_NSAttributedString",
+            feature = "Foundation_NSRange"
+        ))]
         #[method_id(@__retain_semantics Other attributedSubstringForProposedRange:actualRange:)]
         unsafe fn attributedSubstringForProposedRange_actualRange(
             &self,
@@ -69,10 +76,15 @@ extern_protocol!(
             actual_range: NSRangePointer,
         ) -> Option<Id<NSAttributedString>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSAttributedString",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other validAttributesForMarkedText)]
         unsafe fn validAttributesForMarkedText(&self) -> Id<NSArray<NSAttributedStringKey>>;
 
+        #[cfg(all(feature = "Foundation_NSGeometry", feature = "Foundation_NSRange"))]
         #[method(firstRectForCharacterRange:actualRange:)]
         unsafe fn firstRectForCharacterRange_actualRange(
             &self,
@@ -80,6 +92,7 @@ extern_protocol!(
             actual_range: NSRangePointer,
         ) -> NSRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(characterIndexForPoint:)]
         unsafe fn characterIndexForPoint(&self, point: NSPoint) -> NSUInteger;
 
@@ -88,10 +101,12 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other attributedString)]
         unsafe fn attributedString(&self) -> Id<NSAttributedString>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[optional]
         #[method(fractionOfDistanceThroughGlyphForPoint:)]
         unsafe fn fractionOfDistanceThroughGlyphForPoint(&self, point: NSPoint) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[optional]
         #[method(baselineDeltaForCharacterAtIndex:)]
         unsafe fn baselineDeltaForCharacterAtIndex(&self, an_index: NSUInteger) -> CGFloat;
@@ -108,10 +123,12 @@ extern_protocol!(
         #[method(preferredTextAccessoryPlacement)]
         unsafe fn preferredTextAccessoryPlacement(&self) -> NSTextCursorAccessoryPlacement;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[optional]
         #[method(unionRectInVisibleSelectedRange)]
         unsafe fn unionRectInVisibleSelectedRange(&self) -> NSRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[optional]
         #[method(documentVisibleRect)]
         unsafe fn documentVisibleRect(&self) -> NSRect;

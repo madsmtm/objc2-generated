@@ -7,27 +7,23 @@ use crate::MailKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MailKit_MEEncodedOutgoingMessage")]
     pub struct MEEncodedOutgoingMessage;
 
-    #[cfg(feature = "MailKit_MEEncodedOutgoingMessage")]
     unsafe impl ClassType for MEEncodedOutgoingMessage {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MailKit_MEEncodedOutgoingMessage")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for MEEncodedOutgoingMessage {}
 
-#[cfg(feature = "MailKit_MEEncodedOutgoingMessage")]
 unsafe impl NSObjectProtocol for MEEncodedOutgoingMessage {}
 
-#[cfg(feature = "MailKit_MEEncodedOutgoingMessage")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for MEEncodedOutgoingMessage {}
 
 extern_methods!(
-    #[cfg(feature = "MailKit_MEEncodedOutgoingMessage")]
     unsafe impl MEEncodedOutgoingMessage {
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Init initWithRawData:isSigned:isEncrypted:)]
@@ -52,7 +48,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MailKit_MEEncodedOutgoingMessage")]
     unsafe impl MEEncodedOutgoingMessage {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

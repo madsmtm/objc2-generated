@@ -5,36 +5,30 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSTimeZone")]
     pub struct NSTimeZone;
 
-    #[cfg(feature = "Foundation_NSTimeZone")]
     unsafe impl ClassType for NSTimeZone {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSTimeZone")]
 unsafe impl Send for NSTimeZone {}
 
-#[cfg(feature = "Foundation_NSTimeZone")]
 unsafe impl Sync for NSTimeZone {}
 
-#[cfg(feature = "Foundation_NSTimeZone")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSTimeZone {}
 
-#[cfg(feature = "Foundation_NSTimeZone")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSTimeZone {}
 
-#[cfg(feature = "Foundation_NSTimeZone")]
 unsafe impl NSObjectProtocol for NSTimeZone {}
 
-#[cfg(feature = "Foundation_NSTimeZone")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSTimeZone {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSTimeZone")]
     unsafe impl NSTimeZone {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
@@ -71,7 +65,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSTimeZone")]
     unsafe impl NSTimeZone {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -101,7 +94,6 @@ ns_enum!(
 
 extern_methods!(
     /// NSExtendedTimeZone
-    #[cfg(feature = "Foundation_NSTimeZone")]
     unsafe impl NSTimeZone {
         #[method_id(@__retain_semantics Other systemTimeZone)]
         pub unsafe fn systemTimeZone() -> Id<NSTimeZone>;
@@ -146,6 +138,7 @@ extern_methods!(
         #[method(isDaylightSavingTime)]
         pub unsafe fn isDaylightSavingTime(&self) -> bool;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(daylightSavingTimeOffset)]
         pub unsafe fn daylightSavingTimeOffset(&self) -> NSTimeInterval;
 
@@ -172,7 +165,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSTimeZoneCreation
-    #[cfg(feature = "Foundation_NSTimeZone")]
     unsafe impl NSTimeZone {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other timeZoneWithName:)]
@@ -206,5 +198,5 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSSystemTimeZoneDidChangeNotification: &'static NSNotificationName);

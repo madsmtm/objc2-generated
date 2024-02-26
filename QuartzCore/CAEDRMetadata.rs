@@ -6,30 +6,26 @@ use crate::QuartzCore::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "QuartzCore_CAEDRMetadata")]
     pub struct CAEDRMetadata;
 
-    #[cfg(feature = "QuartzCore_CAEDRMetadata")]
     unsafe impl ClassType for CAEDRMetadata {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "QuartzCore_CAEDRMetadata")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CAEDRMetadata {}
 
-#[cfg(feature = "QuartzCore_CAEDRMetadata")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for CAEDRMetadata {}
 
-#[cfg(feature = "QuartzCore_CAEDRMetadata")]
 unsafe impl NSObjectProtocol for CAEDRMetadata {}
 
-#[cfg(feature = "QuartzCore_CAEDRMetadata")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CAEDRMetadata {}
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CAEDRMetadata")]
     unsafe impl CAEDRMetadata {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -63,7 +59,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "QuartzCore_CAEDRMetadata")]
     unsafe impl CAEDRMetadata {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

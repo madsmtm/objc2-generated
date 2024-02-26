@@ -7,10 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSButtonTouchBarItem")]
+    #[cfg(feature = "AppKit_NSTouchBarItem")]
     pub struct NSButtonTouchBarItem;
 
-    #[cfg(feature = "AppKit_NSButtonTouchBarItem")]
+    #[cfg(feature = "AppKit_NSTouchBarItem")]
     unsafe impl ClassType for NSButtonTouchBarItem {
         #[inherits(NSObject)]
         type Super = NSTouchBarItem;
@@ -18,14 +18,14 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSButtonTouchBarItem")]
+#[cfg(all(feature = "AppKit_NSTouchBarItem", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for NSButtonTouchBarItem {}
 
-#[cfg(feature = "AppKit_NSButtonTouchBarItem")]
+#[cfg(feature = "AppKit_NSTouchBarItem")]
 unsafe impl NSObjectProtocol for NSButtonTouchBarItem {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSButtonTouchBarItem")]
+    #[cfg(feature = "AppKit_NSTouchBarItem")]
     unsafe impl NSButtonTouchBarItem {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other buttonTouchBarItemWithIdentifier:title:target:action:)]
@@ -112,7 +112,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSTouchBarItem`
-    #[cfg(feature = "AppKit_NSButtonTouchBarItem")]
+    #[cfg(feature = "AppKit_NSTouchBarItem")]
     unsafe impl NSButtonTouchBarItem {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
@@ -132,7 +132,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSButtonTouchBarItem")]
+    #[cfg(feature = "AppKit_NSTouchBarItem")]
     unsafe impl NSButtonTouchBarItem {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

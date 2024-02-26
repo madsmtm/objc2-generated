@@ -6,6 +6,7 @@ use crate::Metal::*;
 
 extern_protocol!(
     pub unsafe trait MTLFence: NSObjectProtocol {
+        #[cfg(feature = "Metal_MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
         fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
 

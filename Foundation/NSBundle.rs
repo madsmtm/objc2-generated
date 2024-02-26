@@ -11,27 +11,21 @@ pub const NSBundleExecutableArchitectureARM64: c_uint = 0x0100000c;
 
 extern_class!(
     #[derive(PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSBundle")]
     pub struct NSBundle;
 
-    #[cfg(feature = "Foundation_NSBundle")]
     unsafe impl ClassType for NSBundle {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSBundle")]
 unsafe impl Send for NSBundle {}
 
-#[cfg(feature = "Foundation_NSBundle")]
 unsafe impl Sync for NSBundle {}
 
-#[cfg(feature = "Foundation_NSBundle")]
 unsafe impl NSObjectProtocol for NSBundle {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSBundle")]
     unsafe impl NSBundle {
         #[method_id(@__retain_semantics Other mainBundle)]
         pub fn mainBundle() -> Id<NSBundle>;
@@ -349,7 +343,7 @@ extern_methods!(
             preferences_array: Option<&NSArray<NSString>>,
         ) -> Id<NSArray<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Other executableArchitectures)]
         pub unsafe fn executableArchitectures(&self) -> Option<Id<NSArray<NSNumber>>>;
     }
@@ -357,7 +351,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSBundle")]
     unsafe impl NSBundle {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -376,7 +369,7 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSBundleDidLoadNotification: &'static NSNotificationName);
 
 #[cfg(feature = "Foundation_NSString")]
@@ -384,24 +377,20 @@ extern_static!(NSLoadedClasses: &'static NSString);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSBundleResourceRequest")]
     pub struct NSBundleResourceRequest;
 
-    #[cfg(feature = "Foundation_NSBundleResourceRequest")]
     unsafe impl ClassType for NSBundleResourceRequest {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSBundleResourceRequest")]
 unsafe impl NSObjectProtocol for NSBundleResourceRequest {}
 
-#[cfg(feature = "Foundation_NSBundleResourceRequest")]
+#[cfg(feature = "Foundation_NSProgress")]
 unsafe impl NSProgressReporting for NSBundleResourceRequest {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSBundleResourceRequest")]
     unsafe impl NSBundleResourceRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -410,11 +399,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithTags:)]
         pub unsafe fn initWithTags(this: Allocated<Self>, tags: &NSSet<NSString>) -> Id<Self>;
 
-        #[cfg(all(
-            feature = "Foundation_NSBundle",
-            feature = "Foundation_NSSet",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithTags:bundle:)]
         pub unsafe fn initWithTags_bundle(
             this: Allocated<Self>,
@@ -432,7 +417,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other tags)]
         pub unsafe fn tags(&self) -> Id<NSSet<NSString>>;
 
-        #[cfg(feature = "Foundation_NSBundle")]
         #[method_id(@__retain_semantics Other bundle)]
         pub unsafe fn bundle(&self) -> Id<NSBundle>;
 
@@ -460,7 +444,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSBundleResourceRequest")]
     unsafe impl NSBundleResourceRequest {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -469,7 +452,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSBundleResourceRequestAdditions
-    #[cfg(feature = "Foundation_NSBundle")]
     unsafe impl NSBundle {
         #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
         #[method(setPreservationPriority:forTags:)]
@@ -485,7 +467,7 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSBundleResourceRequestLowDiskSpaceNotification: &'static NSNotificationName);
 
 extern_static!(NSBundleResourceRequestLoadingPriorityUrgent: c_double);

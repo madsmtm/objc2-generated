@@ -37,86 +37,68 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKSyncEngineEvent")]
     pub struct CKSyncEngineEvent;
 
-    #[cfg(feature = "CloudKit_CKSyncEngineEvent")]
     unsafe impl ClassType for CKSyncEngineEvent {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CloudKit_CKSyncEngineEvent")]
 unsafe impl Send for CKSyncEngineEvent {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineEvent")]
 unsafe impl Sync for CKSyncEngineEvent {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineEvent")]
 unsafe impl NSObjectProtocol for CKSyncEngineEvent {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKSyncEngineEvent")]
     unsafe impl CKSyncEngineEvent {
         #[method(type)]
         pub unsafe fn r#type(&self) -> CKSyncEngineEventType;
 
-        #[cfg(feature = "CloudKit_CKSyncEngineStateUpdateEvent")]
         #[method_id(@__retain_semantics Other stateUpdateEvent)]
         pub unsafe fn stateUpdateEvent(&self) -> Id<CKSyncEngineStateUpdateEvent>;
 
-        #[cfg(feature = "CloudKit_CKSyncEngineAccountChangeEvent")]
         #[method_id(@__retain_semantics Other accountChangeEvent)]
         pub unsafe fn accountChangeEvent(&self) -> Id<CKSyncEngineAccountChangeEvent>;
 
-        #[cfg(feature = "CloudKit_CKSyncEngineFetchedDatabaseChangesEvent")]
         #[method_id(@__retain_semantics Other fetchedDatabaseChangesEvent)]
         pub unsafe fn fetchedDatabaseChangesEvent(
             &self,
         ) -> Id<CKSyncEngineFetchedDatabaseChangesEvent>;
 
-        #[cfg(feature = "CloudKit_CKSyncEngineFetchedRecordZoneChangesEvent")]
         #[method_id(@__retain_semantics Other fetchedRecordZoneChangesEvent)]
         pub unsafe fn fetchedRecordZoneChangesEvent(
             &self,
         ) -> Id<CKSyncEngineFetchedRecordZoneChangesEvent>;
 
-        #[cfg(feature = "CloudKit_CKSyncEngineSentDatabaseChangesEvent")]
         #[method_id(@__retain_semantics Other sentDatabaseChangesEvent)]
         pub unsafe fn sentDatabaseChangesEvent(&self) -> Id<CKSyncEngineSentDatabaseChangesEvent>;
 
-        #[cfg(feature = "CloudKit_CKSyncEngineSentRecordZoneChangesEvent")]
         #[method_id(@__retain_semantics Other sentRecordZoneChangesEvent)]
         pub unsafe fn sentRecordZoneChangesEvent(
             &self,
         ) -> Id<CKSyncEngineSentRecordZoneChangesEvent>;
 
-        #[cfg(feature = "CloudKit_CKSyncEngineWillFetchChangesEvent")]
         #[method_id(@__retain_semantics Other willFetchChangesEvent)]
         pub unsafe fn willFetchChangesEvent(&self) -> Id<CKSyncEngineWillFetchChangesEvent>;
 
-        #[cfg(feature = "CloudKit_CKSyncEngineWillFetchRecordZoneChangesEvent")]
         #[method_id(@__retain_semantics Other willFetchRecordZoneChangesEvent)]
         pub unsafe fn willFetchRecordZoneChangesEvent(
             &self,
         ) -> Id<CKSyncEngineWillFetchRecordZoneChangesEvent>;
 
-        #[cfg(feature = "CloudKit_CKSyncEngineDidFetchRecordZoneChangesEvent")]
         #[method_id(@__retain_semantics Other didFetchRecordZoneChangesEvent)]
         pub unsafe fn didFetchRecordZoneChangesEvent(
             &self,
         ) -> Id<CKSyncEngineDidFetchRecordZoneChangesEvent>;
 
-        #[cfg(feature = "CloudKit_CKSyncEngineDidFetchChangesEvent")]
         #[method_id(@__retain_semantics Other didFetchChangesEvent)]
         pub unsafe fn didFetchChangesEvent(&self) -> Id<CKSyncEngineDidFetchChangesEvent>;
 
-        #[cfg(feature = "CloudKit_CKSyncEngineWillSendChangesEvent")]
         #[method_id(@__retain_semantics Other willSendChangesEvent)]
         pub unsafe fn willSendChangesEvent(&self) -> Id<CKSyncEngineWillSendChangesEvent>;
 
-        #[cfg(feature = "CloudKit_CKSyncEngineDidSendChangesEvent")]
         #[method_id(@__retain_semantics Other didSendChangesEvent)]
         pub unsafe fn didSendChangesEvent(&self) -> Id<CKSyncEngineDidSendChangesEvent>;
 
@@ -130,10 +112,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKSyncEngineStateUpdateEvent")]
     pub struct CKSyncEngineStateUpdateEvent;
 
-    #[cfg(feature = "CloudKit_CKSyncEngineStateUpdateEvent")]
     unsafe impl ClassType for CKSyncEngineStateUpdateEvent {
         #[inherits(NSObject)]
         type Super = CKSyncEngineEvent;
@@ -141,19 +121,15 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CloudKit_CKSyncEngineStateUpdateEvent")]
 unsafe impl Send for CKSyncEngineStateUpdateEvent {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineStateUpdateEvent")]
 unsafe impl Sync for CKSyncEngineStateUpdateEvent {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineStateUpdateEvent")]
 unsafe impl NSObjectProtocol for CKSyncEngineStateUpdateEvent {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKSyncEngineStateUpdateEvent")]
     unsafe impl CKSyncEngineStateUpdateEvent {
-        #[cfg(feature = "CloudKit_CKSyncEngineStateSerialization")]
+        #[cfg(feature = "CloudKit_CKSyncEngineState")]
         #[method_id(@__retain_semantics Other stateSerialization)]
         pub unsafe fn stateSerialization(&self) -> Id<CKSyncEngineStateSerialization>;
     }
@@ -161,7 +137,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CKSyncEngineEvent`
-    #[cfg(feature = "CloudKit_CKSyncEngineStateUpdateEvent")]
     unsafe impl CKSyncEngineStateUpdateEvent {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -185,10 +160,8 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKSyncEngineAccountChangeEvent")]
     pub struct CKSyncEngineAccountChangeEvent;
 
-    #[cfg(feature = "CloudKit_CKSyncEngineAccountChangeEvent")]
     unsafe impl ClassType for CKSyncEngineAccountChangeEvent {
         #[inherits(NSObject)]
         type Super = CKSyncEngineEvent;
@@ -196,17 +169,13 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CloudKit_CKSyncEngineAccountChangeEvent")]
 unsafe impl Send for CKSyncEngineAccountChangeEvent {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineAccountChangeEvent")]
 unsafe impl Sync for CKSyncEngineAccountChangeEvent {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineAccountChangeEvent")]
 unsafe impl NSObjectProtocol for CKSyncEngineAccountChangeEvent {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKSyncEngineAccountChangeEvent")]
     unsafe impl CKSyncEngineAccountChangeEvent {
         #[method(changeType)]
         pub unsafe fn changeType(&self) -> CKSyncEngineAccountChangeType;
@@ -223,7 +192,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CKSyncEngineEvent`
-    #[cfg(feature = "CloudKit_CKSyncEngineAccountChangeEvent")]
     unsafe impl CKSyncEngineAccountChangeEvent {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -235,10 +203,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKSyncEngineFetchedDatabaseChangesEvent")]
     pub struct CKSyncEngineFetchedDatabaseChangesEvent;
 
-    #[cfg(feature = "CloudKit_CKSyncEngineFetchedDatabaseChangesEvent")]
     unsafe impl ClassType for CKSyncEngineFetchedDatabaseChangesEvent {
         #[inherits(NSObject)]
         type Super = CKSyncEngineEvent;
@@ -246,26 +212,19 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CloudKit_CKSyncEngineFetchedDatabaseChangesEvent")]
 unsafe impl Send for CKSyncEngineFetchedDatabaseChangesEvent {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineFetchedDatabaseChangesEvent")]
 unsafe impl Sync for CKSyncEngineFetchedDatabaseChangesEvent {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineFetchedDatabaseChangesEvent")]
 unsafe impl NSObjectProtocol for CKSyncEngineFetchedDatabaseChangesEvent {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKSyncEngineFetchedDatabaseChangesEvent")]
     unsafe impl CKSyncEngineFetchedDatabaseChangesEvent {
         #[cfg(all(feature = "CloudKit_CKRecordZone", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other modifications)]
         pub unsafe fn modifications(&self) -> Id<NSArray<CKRecordZone>>;
 
-        #[cfg(all(
-            feature = "CloudKit_CKSyncEngineFetchedZoneDeletion",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other deletions)]
         pub unsafe fn deletions(&self) -> Id<NSArray<CKSyncEngineFetchedZoneDeletion>>;
     }
@@ -273,7 +232,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CKSyncEngineEvent`
-    #[cfg(feature = "CloudKit_CKSyncEngineFetchedDatabaseChangesEvent")]
     unsafe impl CKSyncEngineFetchedDatabaseChangesEvent {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -285,10 +243,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKSyncEngineFetchedRecordZoneChangesEvent")]
     pub struct CKSyncEngineFetchedRecordZoneChangesEvent;
 
-    #[cfg(feature = "CloudKit_CKSyncEngineFetchedRecordZoneChangesEvent")]
     unsafe impl ClassType for CKSyncEngineFetchedRecordZoneChangesEvent {
         #[inherits(NSObject)]
         type Super = CKSyncEngineEvent;
@@ -296,26 +252,19 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CloudKit_CKSyncEngineFetchedRecordZoneChangesEvent")]
 unsafe impl Send for CKSyncEngineFetchedRecordZoneChangesEvent {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineFetchedRecordZoneChangesEvent")]
 unsafe impl Sync for CKSyncEngineFetchedRecordZoneChangesEvent {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineFetchedRecordZoneChangesEvent")]
 unsafe impl NSObjectProtocol for CKSyncEngineFetchedRecordZoneChangesEvent {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKSyncEngineFetchedRecordZoneChangesEvent")]
     unsafe impl CKSyncEngineFetchedRecordZoneChangesEvent {
         #[cfg(all(feature = "CloudKit_CKRecord", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other modifications)]
         pub unsafe fn modifications(&self) -> Id<NSArray<CKRecord>>;
 
-        #[cfg(all(
-            feature = "CloudKit_CKSyncEngineFetchedRecordDeletion",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other deletions)]
         pub unsafe fn deletions(&self) -> Id<NSArray<CKSyncEngineFetchedRecordDeletion>>;
     }
@@ -323,7 +272,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CKSyncEngineEvent`
-    #[cfg(feature = "CloudKit_CKSyncEngineFetchedRecordZoneChangesEvent")]
     unsafe impl CKSyncEngineFetchedRecordZoneChangesEvent {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -335,10 +283,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKSyncEngineSentDatabaseChangesEvent")]
     pub struct CKSyncEngineSentDatabaseChangesEvent;
 
-    #[cfg(feature = "CloudKit_CKSyncEngineSentDatabaseChangesEvent")]
     unsafe impl ClassType for CKSyncEngineSentDatabaseChangesEvent {
         #[inherits(NSObject)]
         type Super = CKSyncEngineEvent;
@@ -346,26 +292,19 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CloudKit_CKSyncEngineSentDatabaseChangesEvent")]
 unsafe impl Send for CKSyncEngineSentDatabaseChangesEvent {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineSentDatabaseChangesEvent")]
 unsafe impl Sync for CKSyncEngineSentDatabaseChangesEvent {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineSentDatabaseChangesEvent")]
 unsafe impl NSObjectProtocol for CKSyncEngineSentDatabaseChangesEvent {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKSyncEngineSentDatabaseChangesEvent")]
     unsafe impl CKSyncEngineSentDatabaseChangesEvent {
         #[cfg(all(feature = "CloudKit_CKRecordZone", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other savedZones)]
         pub unsafe fn savedZones(&self) -> Id<NSArray<CKRecordZone>>;
 
-        #[cfg(all(
-            feature = "CloudKit_CKSyncEngineFailedZoneSave",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other failedZoneSaves)]
         pub unsafe fn failedZoneSaves(&self) -> Id<NSArray<CKSyncEngineFailedZoneSave>>;
 
@@ -385,7 +324,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CKSyncEngineEvent`
-    #[cfg(feature = "CloudKit_CKSyncEngineSentDatabaseChangesEvent")]
     unsafe impl CKSyncEngineSentDatabaseChangesEvent {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -397,10 +335,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKSyncEngineSentRecordZoneChangesEvent")]
     pub struct CKSyncEngineSentRecordZoneChangesEvent;
 
-    #[cfg(feature = "CloudKit_CKSyncEngineSentRecordZoneChangesEvent")]
     unsafe impl ClassType for CKSyncEngineSentRecordZoneChangesEvent {
         #[inherits(NSObject)]
         type Super = CKSyncEngineEvent;
@@ -408,26 +344,19 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CloudKit_CKSyncEngineSentRecordZoneChangesEvent")]
 unsafe impl Send for CKSyncEngineSentRecordZoneChangesEvent {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineSentRecordZoneChangesEvent")]
 unsafe impl Sync for CKSyncEngineSentRecordZoneChangesEvent {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineSentRecordZoneChangesEvent")]
 unsafe impl NSObjectProtocol for CKSyncEngineSentRecordZoneChangesEvent {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKSyncEngineSentRecordZoneChangesEvent")]
     unsafe impl CKSyncEngineSentRecordZoneChangesEvent {
         #[cfg(all(feature = "CloudKit_CKRecord", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other savedRecords)]
         pub unsafe fn savedRecords(&self) -> Id<NSArray<CKRecord>>;
 
-        #[cfg(all(
-            feature = "CloudKit_CKSyncEngineFailedRecordSave",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other failedRecordSaves)]
         pub unsafe fn failedRecordSaves(&self) -> Id<NSArray<CKSyncEngineFailedRecordSave>>;
 
@@ -447,7 +376,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CKSyncEngineEvent`
-    #[cfg(feature = "CloudKit_CKSyncEngineSentRecordZoneChangesEvent")]
     unsafe impl CKSyncEngineSentRecordZoneChangesEvent {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -459,10 +387,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKSyncEngineWillFetchChangesEvent")]
     pub struct CKSyncEngineWillFetchChangesEvent;
 
-    #[cfg(feature = "CloudKit_CKSyncEngineWillFetchChangesEvent")]
     unsafe impl ClassType for CKSyncEngineWillFetchChangesEvent {
         #[inherits(NSObject)]
         type Super = CKSyncEngineEvent;
@@ -470,19 +396,15 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CloudKit_CKSyncEngineWillFetchChangesEvent")]
 unsafe impl Send for CKSyncEngineWillFetchChangesEvent {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineWillFetchChangesEvent")]
 unsafe impl Sync for CKSyncEngineWillFetchChangesEvent {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineWillFetchChangesEvent")]
 unsafe impl NSObjectProtocol for CKSyncEngineWillFetchChangesEvent {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKSyncEngineWillFetchChangesEvent")]
     unsafe impl CKSyncEngineWillFetchChangesEvent {
-        #[cfg(feature = "CloudKit_CKSyncEngineFetchChangesContext")]
+        #[cfg(feature = "CloudKit_CKSyncEngine")]
         #[method_id(@__retain_semantics Other context)]
         pub unsafe fn context(&self) -> Id<CKSyncEngineFetchChangesContext>;
     }
@@ -490,7 +412,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CKSyncEngineEvent`
-    #[cfg(feature = "CloudKit_CKSyncEngineWillFetchChangesEvent")]
     unsafe impl CKSyncEngineWillFetchChangesEvent {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -502,10 +423,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKSyncEngineWillFetchRecordZoneChangesEvent")]
     pub struct CKSyncEngineWillFetchRecordZoneChangesEvent;
 
-    #[cfg(feature = "CloudKit_CKSyncEngineWillFetchRecordZoneChangesEvent")]
     unsafe impl ClassType for CKSyncEngineWillFetchRecordZoneChangesEvent {
         #[inherits(NSObject)]
         type Super = CKSyncEngineEvent;
@@ -513,17 +432,13 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CloudKit_CKSyncEngineWillFetchRecordZoneChangesEvent")]
 unsafe impl Send for CKSyncEngineWillFetchRecordZoneChangesEvent {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineWillFetchRecordZoneChangesEvent")]
 unsafe impl Sync for CKSyncEngineWillFetchRecordZoneChangesEvent {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineWillFetchRecordZoneChangesEvent")]
 unsafe impl NSObjectProtocol for CKSyncEngineWillFetchRecordZoneChangesEvent {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKSyncEngineWillFetchRecordZoneChangesEvent")]
     unsafe impl CKSyncEngineWillFetchRecordZoneChangesEvent {
         #[cfg(feature = "CloudKit_CKRecordZoneID")]
         #[method_id(@__retain_semantics Other zoneID)]
@@ -533,7 +448,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CKSyncEngineEvent`
-    #[cfg(feature = "CloudKit_CKSyncEngineWillFetchRecordZoneChangesEvent")]
     unsafe impl CKSyncEngineWillFetchRecordZoneChangesEvent {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -545,10 +459,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKSyncEngineDidFetchRecordZoneChangesEvent")]
     pub struct CKSyncEngineDidFetchRecordZoneChangesEvent;
 
-    #[cfg(feature = "CloudKit_CKSyncEngineDidFetchRecordZoneChangesEvent")]
     unsafe impl ClassType for CKSyncEngineDidFetchRecordZoneChangesEvent {
         #[inherits(NSObject)]
         type Super = CKSyncEngineEvent;
@@ -556,17 +468,13 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CloudKit_CKSyncEngineDidFetchRecordZoneChangesEvent")]
 unsafe impl Send for CKSyncEngineDidFetchRecordZoneChangesEvent {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineDidFetchRecordZoneChangesEvent")]
 unsafe impl Sync for CKSyncEngineDidFetchRecordZoneChangesEvent {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineDidFetchRecordZoneChangesEvent")]
 unsafe impl NSObjectProtocol for CKSyncEngineDidFetchRecordZoneChangesEvent {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKSyncEngineDidFetchRecordZoneChangesEvent")]
     unsafe impl CKSyncEngineDidFetchRecordZoneChangesEvent {
         #[cfg(feature = "CloudKit_CKRecordZoneID")]
         #[method_id(@__retain_semantics Other zoneID)]
@@ -580,7 +488,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CKSyncEngineEvent`
-    #[cfg(feature = "CloudKit_CKSyncEngineDidFetchRecordZoneChangesEvent")]
     unsafe impl CKSyncEngineDidFetchRecordZoneChangesEvent {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -592,10 +499,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKSyncEngineDidFetchChangesEvent")]
     pub struct CKSyncEngineDidFetchChangesEvent;
 
-    #[cfg(feature = "CloudKit_CKSyncEngineDidFetchChangesEvent")]
     unsafe impl ClassType for CKSyncEngineDidFetchChangesEvent {
         #[inherits(NSObject)]
         type Super = CKSyncEngineEvent;
@@ -603,19 +508,15 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CloudKit_CKSyncEngineDidFetchChangesEvent")]
 unsafe impl Send for CKSyncEngineDidFetchChangesEvent {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineDidFetchChangesEvent")]
 unsafe impl Sync for CKSyncEngineDidFetchChangesEvent {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineDidFetchChangesEvent")]
 unsafe impl NSObjectProtocol for CKSyncEngineDidFetchChangesEvent {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKSyncEngineDidFetchChangesEvent")]
     unsafe impl CKSyncEngineDidFetchChangesEvent {
-        #[cfg(feature = "CloudKit_CKSyncEngineFetchChangesContext")]
+        #[cfg(feature = "CloudKit_CKSyncEngine")]
         #[method_id(@__retain_semantics Other context)]
         pub unsafe fn context(&self) -> Id<CKSyncEngineFetchChangesContext>;
     }
@@ -623,7 +524,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CKSyncEngineEvent`
-    #[cfg(feature = "CloudKit_CKSyncEngineDidFetchChangesEvent")]
     unsafe impl CKSyncEngineDidFetchChangesEvent {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -635,10 +535,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKSyncEngineWillSendChangesEvent")]
     pub struct CKSyncEngineWillSendChangesEvent;
 
-    #[cfg(feature = "CloudKit_CKSyncEngineWillSendChangesEvent")]
     unsafe impl ClassType for CKSyncEngineWillSendChangesEvent {
         #[inherits(NSObject)]
         type Super = CKSyncEngineEvent;
@@ -646,19 +544,15 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CloudKit_CKSyncEngineWillSendChangesEvent")]
 unsafe impl Send for CKSyncEngineWillSendChangesEvent {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineWillSendChangesEvent")]
 unsafe impl Sync for CKSyncEngineWillSendChangesEvent {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineWillSendChangesEvent")]
 unsafe impl NSObjectProtocol for CKSyncEngineWillSendChangesEvent {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKSyncEngineWillSendChangesEvent")]
     unsafe impl CKSyncEngineWillSendChangesEvent {
-        #[cfg(feature = "CloudKit_CKSyncEngineSendChangesContext")]
+        #[cfg(feature = "CloudKit_CKSyncEngine")]
         #[method_id(@__retain_semantics Other context)]
         pub unsafe fn context(&self) -> Id<CKSyncEngineSendChangesContext>;
     }
@@ -666,7 +560,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CKSyncEngineEvent`
-    #[cfg(feature = "CloudKit_CKSyncEngineWillSendChangesEvent")]
     unsafe impl CKSyncEngineWillSendChangesEvent {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -678,10 +571,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKSyncEngineDidSendChangesEvent")]
     pub struct CKSyncEngineDidSendChangesEvent;
 
-    #[cfg(feature = "CloudKit_CKSyncEngineDidSendChangesEvent")]
     unsafe impl ClassType for CKSyncEngineDidSendChangesEvent {
         #[inherits(NSObject)]
         type Super = CKSyncEngineEvent;
@@ -689,19 +580,15 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CloudKit_CKSyncEngineDidSendChangesEvent")]
 unsafe impl Send for CKSyncEngineDidSendChangesEvent {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineDidSendChangesEvent")]
 unsafe impl Sync for CKSyncEngineDidSendChangesEvent {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineDidSendChangesEvent")]
 unsafe impl NSObjectProtocol for CKSyncEngineDidSendChangesEvent {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKSyncEngineDidSendChangesEvent")]
     unsafe impl CKSyncEngineDidSendChangesEvent {
-        #[cfg(feature = "CloudKit_CKSyncEngineSendChangesContext")]
+        #[cfg(feature = "CloudKit_CKSyncEngine")]
         #[method_id(@__retain_semantics Other context)]
         pub unsafe fn context(&self) -> Id<CKSyncEngineSendChangesContext>;
     }
@@ -709,7 +596,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CKSyncEngineEvent`
-    #[cfg(feature = "CloudKit_CKSyncEngineDidSendChangesEvent")]
     unsafe impl CKSyncEngineDidSendChangesEvent {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -721,27 +607,21 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKSyncEngineFetchedRecordDeletion")]
     pub struct CKSyncEngineFetchedRecordDeletion;
 
-    #[cfg(feature = "CloudKit_CKSyncEngineFetchedRecordDeletion")]
     unsafe impl ClassType for CKSyncEngineFetchedRecordDeletion {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CloudKit_CKSyncEngineFetchedRecordDeletion")]
 unsafe impl Send for CKSyncEngineFetchedRecordDeletion {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineFetchedRecordDeletion")]
 unsafe impl Sync for CKSyncEngineFetchedRecordDeletion {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineFetchedRecordDeletion")]
 unsafe impl NSObjectProtocol for CKSyncEngineFetchedRecordDeletion {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKSyncEngineFetchedRecordDeletion")]
     unsafe impl CKSyncEngineFetchedRecordDeletion {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -753,7 +633,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other recordID)]
         pub unsafe fn recordID(&self) -> Id<CKRecordID>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "CloudKit_CKRecord", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other recordType)]
         pub unsafe fn recordType(&self) -> Id<CKRecordType>;
     }
@@ -773,27 +653,21 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKSyncEngineFetchedZoneDeletion")]
     pub struct CKSyncEngineFetchedZoneDeletion;
 
-    #[cfg(feature = "CloudKit_CKSyncEngineFetchedZoneDeletion")]
     unsafe impl ClassType for CKSyncEngineFetchedZoneDeletion {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CloudKit_CKSyncEngineFetchedZoneDeletion")]
 unsafe impl Send for CKSyncEngineFetchedZoneDeletion {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineFetchedZoneDeletion")]
 unsafe impl Sync for CKSyncEngineFetchedZoneDeletion {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineFetchedZoneDeletion")]
 unsafe impl NSObjectProtocol for CKSyncEngineFetchedZoneDeletion {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKSyncEngineFetchedZoneDeletion")]
     unsafe impl CKSyncEngineFetchedZoneDeletion {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -812,27 +686,21 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKSyncEngineFailedRecordSave")]
     pub struct CKSyncEngineFailedRecordSave;
 
-    #[cfg(feature = "CloudKit_CKSyncEngineFailedRecordSave")]
     unsafe impl ClassType for CKSyncEngineFailedRecordSave {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CloudKit_CKSyncEngineFailedRecordSave")]
 unsafe impl Send for CKSyncEngineFailedRecordSave {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineFailedRecordSave")]
 unsafe impl Sync for CKSyncEngineFailedRecordSave {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineFailedRecordSave")]
 unsafe impl NSObjectProtocol for CKSyncEngineFailedRecordSave {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKSyncEngineFailedRecordSave")]
     unsafe impl CKSyncEngineFailedRecordSave {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -852,27 +720,21 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKSyncEngineFailedZoneSave")]
     pub struct CKSyncEngineFailedZoneSave;
 
-    #[cfg(feature = "CloudKit_CKSyncEngineFailedZoneSave")]
     unsafe impl ClassType for CKSyncEngineFailedZoneSave {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CloudKit_CKSyncEngineFailedZoneSave")]
 unsafe impl Send for CKSyncEngineFailedZoneSave {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineFailedZoneSave")]
 unsafe impl Sync for CKSyncEngineFailedZoneSave {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineFailedZoneSave")]
 unsafe impl NSObjectProtocol for CKSyncEngineFailedZoneSave {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKSyncEngineFailedZoneSave")]
     unsafe impl CKSyncEngineFailedZoneSave {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

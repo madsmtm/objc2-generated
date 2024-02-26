@@ -8,27 +8,21 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKHealthStore")]
     pub struct HKHealthStore;
 
-    #[cfg(feature = "HealthKit_HKHealthStore")]
     unsafe impl ClassType for HKHealthStore {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "HealthKit_HKHealthStore")]
 unsafe impl Send for HKHealthStore {}
 
-#[cfg(feature = "HealthKit_HKHealthStore")]
 unsafe impl Sync for HKHealthStore {}
 
-#[cfg(feature = "HealthKit_HKHealthStore")]
 unsafe impl NSObjectProtocol for HKHealthStore {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKHealthStore")]
     unsafe impl HKHealthStore {
         #[method(isHealthDataAvailable)]
         pub unsafe fn isHealthDataAvailable() -> bool;
@@ -36,7 +30,7 @@ extern_methods!(
         #[method(supportsHealthRecords)]
         pub unsafe fn supportsHealthRecords(&self) -> bool;
 
-        #[cfg(feature = "HealthKit_HKObjectType")]
+        #[cfg(all(feature = "HealthKit_HKDefines", feature = "HealthKit_HKObjectType"))]
         #[method(authorizationStatusForType:)]
         pub unsafe fn authorizationStatusForType(
             &self,
@@ -46,8 +40,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSError",
             feature = "Foundation_NSSet",
-            feature = "HealthKit_HKObjectType",
-            feature = "HealthKit_HKSampleType"
+            feature = "HealthKit_HKObjectType"
         ))]
         #[method(requestAuthorizationToShareTypes:readTypes:completion:)]
         pub unsafe fn requestAuthorizationToShareTypes_readTypes_completion(
@@ -73,8 +66,8 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSError",
             feature = "Foundation_NSSet",
-            feature = "HealthKit_HKObjectType",
-            feature = "HealthKit_HKSampleType"
+            feature = "HealthKit_HKDefines",
+            feature = "HealthKit_HKObjectType"
         ))]
         #[method(getRequestStatusForAuthorizationToShareTypes:readTypes:completion:)]
         pub unsafe fn getRequestStatusForAuthorizationToShareTypes_readTypes_completion(
@@ -176,10 +169,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other dateOfBirthWithError:_)]
         pub unsafe fn dateOfBirthWithError(&self) -> Result<Id<NSDate>, Id<NSError>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSDateComponents",
-            feature = "Foundation_NSError"
-        ))]
+        #[cfg(all(feature = "Foundation_NSCalendar", feature = "Foundation_NSError"))]
         #[method_id(@__retain_semantics Other dateOfBirthComponentsWithError:_)]
         pub unsafe fn dateOfBirthComponentsWithError(
             &self,
@@ -187,7 +177,7 @@ extern_methods!(
 
         #[cfg(all(
             feature = "Foundation_NSError",
-            feature = "HealthKit_HKBiologicalSexObject"
+            feature = "HealthKit_HKCharacteristicObjects"
         ))]
         #[method_id(@__retain_semantics Other biologicalSexWithError:_)]
         pub unsafe fn biologicalSexWithError(
@@ -196,14 +186,14 @@ extern_methods!(
 
         #[cfg(all(
             feature = "Foundation_NSError",
-            feature = "HealthKit_HKBloodTypeObject"
+            feature = "HealthKit_HKCharacteristicObjects"
         ))]
         #[method_id(@__retain_semantics Other bloodTypeWithError:_)]
         pub unsafe fn bloodTypeWithError(&self) -> Result<Id<HKBloodTypeObject>, Id<NSError>>;
 
         #[cfg(all(
             feature = "Foundation_NSError",
-            feature = "HealthKit_HKFitzpatrickSkinTypeObject"
+            feature = "HealthKit_HKCharacteristicObjects"
         ))]
         #[method_id(@__retain_semantics Other fitzpatrickSkinTypeWithError:_)]
         pub unsafe fn fitzpatrickSkinTypeWithError(
@@ -212,7 +202,7 @@ extern_methods!(
 
         #[cfg(all(
             feature = "Foundation_NSError",
-            feature = "HealthKit_HKWheelchairUseObject"
+            feature = "HealthKit_HKCharacteristicObjects"
         ))]
         #[method_id(@__retain_semantics Other wheelchairUseWithError:_)]
         pub unsafe fn wheelchairUseWithError(
@@ -221,7 +211,7 @@ extern_methods!(
 
         #[cfg(all(
             feature = "Foundation_NSError",
-            feature = "HealthKit_HKActivityMoveModeObject"
+            feature = "HealthKit_HKCharacteristicObjects"
         ))]
         #[method_id(@__retain_semantics Other activityMoveModeWithError:_)]
         pub unsafe fn activityMoveModeWithError(
@@ -232,7 +222,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKHealthStore")]
     unsafe impl HKHealthStore {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -244,7 +233,6 @@ extern_methods!(
 
 extern_methods!(
     /// HKWorkout
-    #[cfg(feature = "HealthKit_HKHealthStore")]
     unsafe impl HKHealthStore {
         #[cfg(feature = "HealthKit_HKWorkoutSession")]
         #[method(workoutSessionMirroringStartHandler)]
@@ -264,6 +252,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSError",
+            feature = "HealthKit_HKObject",
             feature = "HealthKit_HKSample",
             feature = "HealthKit_HKWorkout"
         ))]
@@ -318,9 +307,12 @@ extern_methods!(
 
 extern_methods!(
     /// HKBackgroundDelivery
-    #[cfg(feature = "HealthKit_HKHealthStore")]
     unsafe impl HKHealthStore {
-        #[cfg(all(feature = "Foundation_NSError", feature = "HealthKit_HKObjectType"))]
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "HealthKit_HKDefines",
+            feature = "HealthKit_HKObjectType"
+        ))]
         #[method(enableBackgroundDeliveryForType:frequency:withCompletion:)]
         pub unsafe fn enableBackgroundDeliveryForType_frequency_withCompletion(
             &self,
@@ -351,13 +343,12 @@ extern_static!(HKUserPreferencesDidChangeNotification: &'static NSString);
 
 extern_methods!(
     /// HKUserPreferences
-    #[cfg(feature = "HealthKit_HKHealthStore")]
     unsafe impl HKHealthStore {
         #[cfg(all(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
             feature = "Foundation_NSSet",
-            feature = "HealthKit_HKQuantityType",
+            feature = "HealthKit_HKObjectType",
             feature = "HealthKit_HKUnit"
         ))]
         #[method(preferredUnitsForQuantityTypes:completion:)]
@@ -371,12 +362,11 @@ extern_methods!(
 
 extern_methods!(
     /// HKRecalibrateEstimates
-    #[cfg(feature = "HealthKit_HKHealthStore")]
     unsafe impl HKHealthStore {
         #[cfg(all(
             feature = "Foundation_NSDate",
             feature = "Foundation_NSError",
-            feature = "HealthKit_HKSampleType"
+            feature = "HealthKit_HKObjectType"
         ))]
         #[method(recalibrateEstimatesForSampleType:atDate:completion:)]
         pub unsafe fn recalibrateEstimatesForSampleType_atDate_completion(

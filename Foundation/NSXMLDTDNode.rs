@@ -31,10 +31,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSXMLDTDNode")]
+    #[cfg(feature = "Foundation_NSXMLNode")]
     pub struct NSXMLDTDNode;
 
-    #[cfg(feature = "Foundation_NSXMLDTDNode")]
+    #[cfg(feature = "Foundation_NSXMLNode")]
     unsafe impl ClassType for NSXMLDTDNode {
         #[inherits(NSObject)]
         type Super = NSXMLNode;
@@ -42,14 +42,14 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSXMLDTDNode")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "Foundation_NSXMLNode"))]
 unsafe impl NSCopying for NSXMLDTDNode {}
 
-#[cfg(feature = "Foundation_NSXMLDTDNode")]
+#[cfg(feature = "Foundation_NSXMLNode")]
 unsafe impl NSObjectProtocol for NSXMLDTDNode {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSXMLDTDNode")]
+    #[cfg(feature = "Foundation_NSXMLNode")]
     unsafe impl NSXMLDTDNode {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithXMLString:)]
@@ -58,6 +58,7 @@ extern_methods!(
             string: &NSString,
         ) -> Option<Id<Self>>;
 
+        #[cfg(feature = "Foundation_NSXMLNodeOptions")]
         #[method_id(@__retain_semantics Init initWithKind:options:)]
         pub unsafe fn initWithKind_options(
             this: Allocated<Self>,
@@ -105,7 +106,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSXMLNode`
-    #[cfg(feature = "Foundation_NSXMLDTDNode")]
+    #[cfg(feature = "Foundation_NSXMLNode")]
     unsafe impl NSXMLDTDNode {
         #[method_id(@__retain_semantics Init initWithKind:)]
         pub unsafe fn initWithKind(this: Allocated<Self>, kind: NSXMLNodeKind) -> Id<Self>;
@@ -114,7 +115,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSXMLDTDNode")]
+    #[cfg(feature = "Foundation_NSXMLNode")]
     unsafe impl NSXMLDTDNode {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -10,27 +10,23 @@ extern_static!(WebHistoryItemChangedNotification: Option<&'static NSString>);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_WebHistoryItem")]
     #[deprecated]
     pub struct WebHistoryItem;
 
-    #[cfg(feature = "WebKit_WebHistoryItem")]
     unsafe impl ClassType for WebHistoryItem {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "WebKit_WebHistoryItem")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for WebHistoryItem {}
 
-#[cfg(feature = "WebKit_WebHistoryItem")]
 unsafe impl NSObjectProtocol for WebHistoryItem {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_WebHistoryItem")]
     unsafe impl WebHistoryItem {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSString"))]
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithURLString:title:lastVisitedTimeInterval:)]
         pub unsafe fn initWithURLString_title_lastVisitedTimeInterval(
@@ -55,6 +51,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Id<NSString>;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[deprecated]
         #[method(lastVisitedTimeInterval)]
         pub unsafe fn lastVisitedTimeInterval(&self) -> NSTimeInterval;
@@ -78,7 +75,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_WebHistoryItem")]
     unsafe impl WebHistoryItem {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

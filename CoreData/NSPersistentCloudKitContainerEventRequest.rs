@@ -6,10 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSPersistentCloudKitContainerEventRequest")]
+    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
     pub struct NSPersistentCloudKitContainerEventRequest;
 
-    #[cfg(feature = "CoreData_NSPersistentCloudKitContainerEventRequest")]
+    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
     unsafe impl ClassType for NSPersistentCloudKitContainerEventRequest {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreRequest;
@@ -17,18 +17,23 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CoreData_NSPersistentCloudKitContainerEventRequest")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreRequest",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCopying for NSPersistentCloudKitContainerEventRequest {}
 
-#[cfg(feature = "CoreData_NSPersistentCloudKitContainerEventRequest")]
+#[cfg(feature = "CoreData_NSPersistentStoreRequest")]
 unsafe impl NSObjectProtocol for NSPersistentCloudKitContainerEventRequest {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSPersistentCloudKitContainerEventRequest")]
+    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
     unsafe impl NSPersistentCloudKitContainerEventRequest {
+        #[cfg(feature = "CoreData_NSPersistentStoreResult")]
         #[method(resultType)]
         pub unsafe fn resultType(&self) -> NSPersistentCloudKitContainerEventResultType;
 
+        #[cfg(feature = "CoreData_NSPersistentStoreResult")]
         #[method(setResultType:)]
         pub unsafe fn setResultType(
             &self,
@@ -57,7 +62,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSPersistentCloudKitContainerEventRequest")]
+    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
     unsafe impl NSPersistentCloudKitContainerEventRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

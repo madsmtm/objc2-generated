@@ -22,15 +22,21 @@ extern_methods!(
     /// CAConstraintLayoutManager
     #[cfg(feature = "QuartzCore_CALayer")]
     unsafe impl CALayer {
-        #[cfg(all(feature = "Foundation_NSArray", feature = "QuartzCore_CAConstraint"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "QuartzCore_CAConstraintLayoutManager"
+        ))]
         #[method_id(@__retain_semantics Other constraints)]
         pub unsafe fn constraints(&self) -> Option<Id<NSArray<CAConstraint>>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "QuartzCore_CAConstraint"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "QuartzCore_CAConstraintLayoutManager"
+        ))]
         #[method(setConstraints:)]
         pub unsafe fn setConstraints(&self, constraints: Option<&NSArray<CAConstraint>>);
 
-        #[cfg(feature = "QuartzCore_CAConstraint")]
+        #[cfg(feature = "QuartzCore_CAConstraintLayoutManager")]
         #[method(addConstraint:)]
         pub unsafe fn addConstraint(&self, c: &CAConstraint);
     }
@@ -38,24 +44,20 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "QuartzCore_CAConstraintLayoutManager")]
     pub struct CAConstraintLayoutManager;
 
-    #[cfg(feature = "QuartzCore_CAConstraintLayoutManager")]
     unsafe impl ClassType for CAConstraintLayoutManager {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "QuartzCore_CAConstraintLayoutManager")]
+#[cfg(feature = "QuartzCore_CALayer")]
 unsafe impl CALayoutManager for CAConstraintLayoutManager {}
 
-#[cfg(feature = "QuartzCore_CAConstraintLayoutManager")]
 unsafe impl NSObjectProtocol for CAConstraintLayoutManager {}
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CAConstraintLayoutManager")]
     unsafe impl CAConstraintLayoutManager {
         #[method_id(@__retain_semantics Other layoutManager)]
         pub unsafe fn layoutManager() -> Id<Self>;
@@ -64,7 +66,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "QuartzCore_CAConstraintLayoutManager")]
     unsafe impl CAConstraintLayoutManager {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -76,29 +77,25 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "QuartzCore_CAConstraint")]
     pub struct CAConstraint;
 
-    #[cfg(feature = "QuartzCore_CAConstraint")]
     unsafe impl ClassType for CAConstraint {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "QuartzCore_CAConstraint")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CAConstraint {}
 
-#[cfg(feature = "QuartzCore_CAConstraint")]
 unsafe impl NSObjectProtocol for CAConstraint {}
 
-#[cfg(feature = "QuartzCore_CAConstraint")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CAConstraint {}
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CAConstraint")]
     unsafe impl CAConstraint {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSGeometry", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other constraintWithAttribute:relativeTo:attribute:scale:offset:)]
         pub unsafe fn constraintWithAttribute_relativeTo_attribute_scale_offset(
             attr: CAConstraintAttribute,
@@ -108,7 +105,7 @@ extern_methods!(
             c: CGFloat,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSGeometry", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other constraintWithAttribute:relativeTo:attribute:offset:)]
         pub unsafe fn constraintWithAttribute_relativeTo_attribute_offset(
             attr: CAConstraintAttribute,
@@ -125,7 +122,7 @@ extern_methods!(
             src_attr: CAConstraintAttribute,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSGeometry", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithAttribute:relativeTo:attribute:scale:offset:)]
         pub unsafe fn initWithAttribute_relativeTo_attribute_scale_offset(
             this: Allocated<Self>,
@@ -146,9 +143,11 @@ extern_methods!(
         #[method(sourceAttribute)]
         pub unsafe fn sourceAttribute(&self) -> CAConstraintAttribute;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(scale)]
         pub unsafe fn scale(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(offset)]
         pub unsafe fn offset(&self) -> CGFloat;
     }
@@ -156,7 +155,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "QuartzCore_CAConstraint")]
     unsafe impl CAConstraint {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

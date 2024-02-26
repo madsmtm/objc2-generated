@@ -7,21 +7,17 @@ use crate::GameKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameKit_GKVoiceChatService")]
     pub struct GKVoiceChatService;
 
-    #[cfg(feature = "GameKit_GKVoiceChatService")]
     unsafe impl ClassType for GKVoiceChatService {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "GameKit_GKVoiceChatService")]
 unsafe impl NSObjectProtocol for GKVoiceChatService {}
 
 extern_methods!(
-    #[cfg(feature = "GameKit_GKVoiceChatService")]
     unsafe impl GKVoiceChatService {
         #[method_id(@__retain_semantics Other defaultVoiceChatService)]
         pub unsafe fn defaultVoiceChatService() -> Option<Id<GKVoiceChatService>>;
@@ -29,9 +25,11 @@ extern_methods!(
         #[method(isVoIPAllowed)]
         pub unsafe fn isVoIPAllowed() -> bool;
 
+        #[cfg(feature = "GameKit_GKPublicProtocols")]
         #[method_id(@__retain_semantics Other client)]
         pub unsafe fn client(&self) -> Option<Id<ProtocolObject<dyn GKVoiceChatClient>>>;
 
+        #[cfg(feature = "GameKit_GKPublicProtocols")]
         #[method(setClient:)]
         pub unsafe fn setClient(&self, client: Option<&ProtocolObject<dyn GKVoiceChatClient>>);
 
@@ -92,7 +90,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameKit_GKVoiceChatService")]
     unsafe impl GKVoiceChatService {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

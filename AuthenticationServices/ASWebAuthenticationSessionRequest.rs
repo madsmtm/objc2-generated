@@ -7,10 +7,7 @@ use crate::Foundation::*;
 
 extern_protocol!(
     pub unsafe trait ASWebAuthenticationSessionRequestDelegate: NSObjectProtocol {
-        #[cfg(all(
-            feature = "AuthenticationServices_ASWebAuthenticationSessionRequest",
-            feature = "Foundation_NSURL"
-        ))]
+        #[cfg(feature = "Foundation_NSURL")]
         #[optional]
         #[method(authenticationSessionRequest:didCompleteWithCallbackURL:)]
         unsafe fn authenticationSessionRequest_didCompleteWithCallbackURL(
@@ -19,10 +16,7 @@ extern_protocol!(
             callback_url: &NSURL,
         );
 
-        #[cfg(all(
-            feature = "AuthenticationServices_ASWebAuthenticationSessionRequest",
-            feature = "Foundation_NSError"
-        ))]
+        #[cfg(feature = "Foundation_NSError")]
         #[optional]
         #[method(authenticationSessionRequest:didCancelWithError:)]
         unsafe fn authenticationSessionRequest_didCancelWithError(
@@ -37,30 +31,26 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSessionRequest")]
     pub struct ASWebAuthenticationSessionRequest;
 
-    #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSessionRequest")]
     unsafe impl ClassType for ASWebAuthenticationSessionRequest {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASWebAuthenticationSessionRequest")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for ASWebAuthenticationSessionRequest {}
 
-#[cfg(feature = "AuthenticationServices_ASWebAuthenticationSessionRequest")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for ASWebAuthenticationSessionRequest {}
 
-#[cfg(feature = "AuthenticationServices_ASWebAuthenticationSessionRequest")]
 unsafe impl NSObjectProtocol for ASWebAuthenticationSessionRequest {}
 
-#[cfg(feature = "AuthenticationServices_ASWebAuthenticationSessionRequest")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for ASWebAuthenticationSessionRequest {}
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSessionRequest")]
     unsafe impl ASWebAuthenticationSessionRequest {
         #[cfg(feature = "Foundation_NSUUID")]
         #[method_id(@__retain_semantics Other UUID)]

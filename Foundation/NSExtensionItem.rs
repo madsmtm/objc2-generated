@@ -5,30 +5,26 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSExtensionItem")]
     pub struct NSExtensionItem;
 
-    #[cfg(feature = "Foundation_NSExtensionItem")]
     unsafe impl ClassType for NSExtensionItem {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSExtensionItem")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSExtensionItem {}
 
-#[cfg(feature = "Foundation_NSExtensionItem")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSExtensionItem {}
 
-#[cfg(feature = "Foundation_NSExtensionItem")]
 unsafe impl NSObjectProtocol for NSExtensionItem {}
 
-#[cfg(feature = "Foundation_NSExtensionItem")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSExtensionItem {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSExtensionItem")]
     unsafe impl NSExtensionItem {
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other attributedTitle)]
@@ -69,7 +65,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSExtensionItem")]
     unsafe impl NSExtensionItem {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

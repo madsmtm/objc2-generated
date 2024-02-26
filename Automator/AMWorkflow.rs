@@ -8,24 +8,20 @@ use crate::OSAKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Automator_AMWorkflow")]
     pub struct AMWorkflow;
 
-    #[cfg(feature = "Automator_AMWorkflow")]
     unsafe impl ClassType for AMWorkflow {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Automator_AMWorkflow")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for AMWorkflow {}
 
-#[cfg(feature = "Automator_AMWorkflow")]
 unsafe impl NSObjectProtocol for AMWorkflow {}
 
 extern_methods!(
-    #[cfg(feature = "Automator_AMWorkflow")]
     unsafe impl AMWorkflow {
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other runWorkflowAtURL:withInput:error:_)]
@@ -103,7 +99,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Automator_AMWorkflow")]
     unsafe impl AMWorkflow {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

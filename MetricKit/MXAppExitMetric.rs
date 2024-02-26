@@ -6,27 +6,23 @@ use crate::MetricKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MetricKit_MXForegroundExitData")]
     pub struct MXForegroundExitData;
 
-    #[cfg(feature = "MetricKit_MXForegroundExitData")]
     unsafe impl ClassType for MXForegroundExitData {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MetricKit_MXForegroundExitData")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for MXForegroundExitData {}
 
-#[cfg(feature = "MetricKit_MXForegroundExitData")]
 unsafe impl NSObjectProtocol for MXForegroundExitData {}
 
-#[cfg(feature = "MetricKit_MXForegroundExitData")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for MXForegroundExitData {}
 
 extern_methods!(
-    #[cfg(feature = "MetricKit_MXForegroundExitData")]
     unsafe impl MXForegroundExitData {
         #[method(cumulativeNormalAppExitCount)]
         pub unsafe fn cumulativeNormalAppExitCount(&self) -> NSUInteger;
@@ -50,7 +46,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MetricKit_MXForegroundExitData")]
     unsafe impl MXForegroundExitData {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -62,27 +57,23 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MetricKit_MXBackgroundExitData")]
     pub struct MXBackgroundExitData;
 
-    #[cfg(feature = "MetricKit_MXBackgroundExitData")]
     unsafe impl ClassType for MXBackgroundExitData {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MetricKit_MXBackgroundExitData")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for MXBackgroundExitData {}
 
-#[cfg(feature = "MetricKit_MXBackgroundExitData")]
 unsafe impl NSObjectProtocol for MXBackgroundExitData {}
 
-#[cfg(feature = "MetricKit_MXBackgroundExitData")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for MXBackgroundExitData {}
 
 extern_methods!(
-    #[cfg(feature = "MetricKit_MXBackgroundExitData")]
     unsafe impl MXBackgroundExitData {
         #[method(cumulativeNormalAppExitCount)]
         pub unsafe fn cumulativeNormalAppExitCount(&self) -> NSUInteger;
@@ -118,7 +109,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MetricKit_MXBackgroundExitData")]
     unsafe impl MXBackgroundExitData {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -130,10 +120,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MetricKit_MXAppExitMetric")]
+    #[cfg(feature = "MetricKit_MXMetric")]
     pub struct MXAppExitMetric;
 
-    #[cfg(feature = "MetricKit_MXAppExitMetric")]
+    #[cfg(feature = "MetricKit_MXMetric")]
     unsafe impl ClassType for MXAppExitMetric {
         #[inherits(NSObject)]
         type Super = MXMetric;
@@ -141,23 +131,21 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MetricKit_MXAppExitMetric")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "MetricKit_MXMetric"))]
 unsafe impl NSCoding for MXAppExitMetric {}
 
-#[cfg(feature = "MetricKit_MXAppExitMetric")]
+#[cfg(feature = "MetricKit_MXMetric")]
 unsafe impl NSObjectProtocol for MXAppExitMetric {}
 
-#[cfg(feature = "MetricKit_MXAppExitMetric")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "MetricKit_MXMetric"))]
 unsafe impl NSSecureCoding for MXAppExitMetric {}
 
 extern_methods!(
-    #[cfg(feature = "MetricKit_MXAppExitMetric")]
+    #[cfg(feature = "MetricKit_MXMetric")]
     unsafe impl MXAppExitMetric {
-        #[cfg(feature = "MetricKit_MXForegroundExitData")]
         #[method_id(@__retain_semantics Other foregroundExitData)]
         pub unsafe fn foregroundExitData(&self) -> Id<MXForegroundExitData>;
 
-        #[cfg(feature = "MetricKit_MXBackgroundExitData")]
         #[method_id(@__retain_semantics Other backgroundExitData)]
         pub unsafe fn backgroundExitData(&self) -> Id<MXBackgroundExitData>;
     }
@@ -165,7 +153,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MetricKit_MXAppExitMetric")]
+    #[cfg(feature = "MetricKit_MXMetric")]
     unsafe impl MXAppExitMetric {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

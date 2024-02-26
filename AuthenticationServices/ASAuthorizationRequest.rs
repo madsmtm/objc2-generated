@@ -7,31 +7,28 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
     pub struct ASAuthorizationRequest;
 
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
     unsafe impl ClassType for ASAuthorizationRequest {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for ASAuthorizationRequest {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for ASAuthorizationRequest {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
 unsafe impl NSObjectProtocol for ASAuthorizationRequest {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for ASAuthorizationRequest {}
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
     unsafe impl ASAuthorizationRequest {
+        #[cfg(feature = "AuthenticationServices_ASAuthorizationProvider")]
         #[method_id(@__retain_semantics Other provider)]
         pub unsafe fn provider(&self) -> Id<ProtocolObject<dyn ASAuthorizationProvider>>;
 

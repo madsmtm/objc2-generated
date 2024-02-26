@@ -10,11 +10,19 @@ pub const DOM_ALLOW_KEYBOARD_INPUT: c_uint = 1;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_DOMElement")]
+    #[cfg(all(
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     #[deprecated]
     pub struct DOMElement;
 
-    #[cfg(feature = "WebKit_DOMElement")]
+    #[cfg(all(
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl ClassType for DOMElement {
         #[inherits(DOMObject, WebScriptObject, NSObject)]
         type Super = DOMNode;
@@ -22,17 +30,36 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "WebKit_DOMElement")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "WebKit_DOMEventTarget",
+    feature = "WebKit_DOMNode",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl DOMEventTarget for DOMElement {}
 
-#[cfg(feature = "WebKit_DOMElement")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "WebKit_DOMNode",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSCopying for DOMElement {}
 
-#[cfg(feature = "WebKit_DOMElement")]
+#[cfg(all(
+    feature = "WebKit_DOMNode",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSObjectProtocol for DOMElement {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_DOMElement")]
+    #[cfg(all(
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMElement {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
@@ -291,7 +318,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
-    #[cfg(feature = "WebKit_DOMElement")]
+    #[cfg(all(
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMElement {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
@@ -301,7 +332,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_DOMElement")]
+    #[cfg(all(
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMElement {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -310,7 +345,11 @@ extern_methods!(
 
 extern_methods!(
     /// DOMElementDeprecated
-    #[cfg(feature = "WebKit_DOMElement")]
+    #[cfg(all(
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMElement {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]

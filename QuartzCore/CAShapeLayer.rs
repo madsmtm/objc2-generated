@@ -21,10 +21,10 @@ typed_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "QuartzCore_CAShapeLayer")]
+    #[cfg(feature = "QuartzCore_CALayer")]
     pub struct CAShapeLayer;
 
-    #[cfg(feature = "QuartzCore_CAShapeLayer")]
+    #[cfg(feature = "QuartzCore_CALayer")]
     unsafe impl ClassType for CAShapeLayer {
         #[inherits(NSObject)]
         type Super = CALayer;
@@ -32,20 +32,20 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "QuartzCore_CAShapeLayer")]
+#[cfg(all(feature = "QuartzCore_CALayer", feature = "QuartzCore_CAMediaTiming"))]
 unsafe impl CAMediaTiming for CAShapeLayer {}
 
-#[cfg(feature = "QuartzCore_CAShapeLayer")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "QuartzCore_CALayer"))]
 unsafe impl NSCoding for CAShapeLayer {}
 
-#[cfg(feature = "QuartzCore_CAShapeLayer")]
+#[cfg(feature = "QuartzCore_CALayer")]
 unsafe impl NSObjectProtocol for CAShapeLayer {}
 
-#[cfg(feature = "QuartzCore_CAShapeLayer")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "QuartzCore_CALayer"))]
 unsafe impl NSSecureCoding for CAShapeLayer {}
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CAShapeLayer")]
+    #[cfg(feature = "QuartzCore_CALayer")]
     unsafe impl CAShapeLayer {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fillRule)]
@@ -55,27 +55,35 @@ extern_methods!(
         #[method(setFillRule:)]
         pub unsafe fn setFillRule(&self, fill_rule: &CAShapeLayerFillRule);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(strokeStart)]
         pub unsafe fn strokeStart(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setStrokeStart:)]
         pub unsafe fn setStrokeStart(&self, stroke_start: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(strokeEnd)]
         pub unsafe fn strokeEnd(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setStrokeEnd:)]
         pub unsafe fn setStrokeEnd(&self, stroke_end: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(lineWidth)]
         pub unsafe fn lineWidth(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setLineWidth:)]
         pub unsafe fn setLineWidth(&self, line_width: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(miterLimit)]
         pub unsafe fn miterLimit(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setMiterLimit:)]
         pub unsafe fn setMiterLimit(&self, miter_limit: CGFloat);
 
@@ -95,17 +103,19 @@ extern_methods!(
         #[method(setLineJoin:)]
         pub unsafe fn setLineJoin(&self, line_join: &CAShapeLayerLineJoin);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(lineDashPhase)]
         pub unsafe fn lineDashPhase(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setLineDashPhase:)]
         pub unsafe fn setLineDashPhase(&self, line_dash_phase: CGFloat);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Other lineDashPattern)]
         pub unsafe fn lineDashPattern(&self) -> Option<Id<NSArray<NSNumber>>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method(setLineDashPattern:)]
         pub unsafe fn setLineDashPattern(&self, line_dash_pattern: Option<&NSArray<NSNumber>>);
     }
@@ -113,7 +123,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CALayer`
-    #[cfg(feature = "QuartzCore_CAShapeLayer")]
+    #[cfg(feature = "QuartzCore_CALayer")]
     unsafe impl CAShapeLayer {
         #[method_id(@__retain_semantics Other layer)]
         pub unsafe fn layer() -> Id<Self>;
@@ -128,7 +138,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "QuartzCore_CAShapeLayer")]
+    #[cfg(feature = "QuartzCore_CALayer")]
     unsafe impl CAShapeLayer {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -7,29 +7,28 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTextLineFragment")]
     pub struct NSTextLineFragment;
 
-    #[cfg(feature = "AppKit_NSTextLineFragment")]
     unsafe impl ClassType for NSTextLineFragment {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSTextLineFragment")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSTextLineFragment {}
 
-#[cfg(feature = "AppKit_NSTextLineFragment")]
 unsafe impl NSObjectProtocol for NSTextLineFragment {}
 
-#[cfg(feature = "AppKit_NSTextLineFragment")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSTextLineFragment {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTextLineFragment")]
     unsafe impl NSTextLineFragment {
-        #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(all(
+            feature = "Foundation_NSAttributedString",
+            feature = "Foundation_NSRange"
+        ))]
         #[method_id(@__retain_semantics Init initWithAttributedString:range:)]
         pub unsafe fn initWithAttributedString_range(
             this: Allocated<Self>,
@@ -42,7 +41,12 @@ extern_methods!(
         pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder)
             -> Option<Id<Self>>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSAttributedString",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSRange",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithString:attributes:range:)]
         pub unsafe fn initWithString_attributes_range(
             this: Allocated<Self>,
@@ -58,21 +62,27 @@ extern_methods!(
         #[method_id(@__retain_semantics Other attributedString)]
         pub unsafe fn attributedString(&self) -> Id<NSAttributedString>;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(characterRange)]
         pub unsafe fn characterRange(&self) -> NSRange;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(typographicBounds)]
         pub unsafe fn typographicBounds(&self) -> CGRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(glyphOrigin)]
         pub unsafe fn glyphOrigin(&self) -> CGPoint;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(locationForCharacterAtIndex:)]
         pub unsafe fn locationForCharacterAtIndex(&self, index: NSInteger) -> CGPoint;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(characterIndexForPoint:)]
         pub unsafe fn characterIndexForPoint(&self, point: CGPoint) -> NSInteger;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(fractionOfDistanceThroughGlyphForPoint:)]
         pub unsafe fn fractionOfDistanceThroughGlyphForPoint(&self, point: CGPoint) -> CGFloat;
     }
@@ -80,7 +90,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTextLineFragment")]
     unsafe impl NSTextLineFragment {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

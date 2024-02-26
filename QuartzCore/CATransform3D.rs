@@ -5,6 +5,7 @@ use crate::Foundation::*;
 use crate::QuartzCore::*;
 
 extern_struct!(
+    #[cfg(feature = "Foundation_NSGeometry")]
     pub struct CATransform3D {
         pub m11: CGFloat,
         pub m12: CGFloat,
@@ -25,25 +26,31 @@ extern_struct!(
     }
 );
 
+#[cfg(feature = "Foundation_NSGeometry")]
 extern_static!(CATransform3DIdentity: CATransform3D);
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSGeometry")]
     pub fn CATransform3DIsIdentity(t: CATransform3D) -> bool;
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSGeometry")]
     pub fn CATransform3DEqualToTransform(a: CATransform3D, b: CATransform3D) -> bool;
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSGeometry")]
     pub fn CATransform3DMakeTranslation(tx: CGFloat, ty: CGFloat, tz: CGFloat) -> CATransform3D;
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSGeometry")]
     pub fn CATransform3DMakeScale(sx: CGFloat, sy: CGFloat, sz: CGFloat) -> CATransform3D;
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSGeometry")]
     pub fn CATransform3DMakeRotation(
         angle: CGFloat,
         x: CGFloat,
@@ -53,6 +60,7 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSGeometry")]
     pub fn CATransform3DTranslate(
         t: CATransform3D,
         tx: CGFloat,
@@ -62,6 +70,7 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSGeometry")]
     pub fn CATransform3DScale(
         t: CATransform3D,
         sx: CGFloat,
@@ -71,6 +80,7 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSGeometry")]
     pub fn CATransform3DRotate(
         t: CATransform3D,
         angle: CGFloat,
@@ -81,14 +91,17 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSGeometry")]
     pub fn CATransform3DConcat(a: CATransform3D, b: CATransform3D) -> CATransform3D;
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSGeometry")]
     pub fn CATransform3DInvert(t: CATransform3D) -> CATransform3D;
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSGeometry")]
     pub fn CATransform3DIsAffine(t: CATransform3D) -> bool;
 );
 
@@ -96,10 +109,18 @@ extern_category!(
     /// Category "CATransform3DAdditions" on [`NSValue`].
     #[doc(alias = "CATransform3DAdditions")]
     pub unsafe trait NSValueCATransform3DAdditions {
-        #[cfg(feature = "Foundation_NSValue")]
+        #[cfg(all(
+            feature = "Foundation_NSGeometry",
+            feature = "Foundation_NSValue",
+            feature = "QuartzCore_CATransform3D"
+        ))]
         #[method_id(@__retain_semantics Other valueWithCATransform3D:)]
         unsafe fn valueWithCATransform3D(t: CATransform3D) -> Id<NSValue>;
 
+        #[cfg(all(
+            feature = "Foundation_NSGeometry",
+            feature = "QuartzCore_CATransform3D"
+        ))]
         #[method(CATransform3DValue)]
         unsafe fn CATransform3DValue(&self) -> CATransform3D;
     }

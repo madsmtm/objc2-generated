@@ -7,32 +7,26 @@ use crate::StoreKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "StoreKit_SKPaymentDiscount")]
     pub struct SKPaymentDiscount;
 
-    #[cfg(feature = "StoreKit_SKPaymentDiscount")]
     unsafe impl ClassType for SKPaymentDiscount {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "StoreKit_SKPaymentDiscount")]
 unsafe impl Send for SKPaymentDiscount {}
 
-#[cfg(feature = "StoreKit_SKPaymentDiscount")]
 unsafe impl Sync for SKPaymentDiscount {}
 
-#[cfg(feature = "StoreKit_SKPaymentDiscount")]
 unsafe impl NSObjectProtocol for SKPaymentDiscount {}
 
 extern_methods!(
-    #[cfg(feature = "StoreKit_SKPaymentDiscount")]
     unsafe impl SKPaymentDiscount {
         #[cfg(all(
-            feature = "Foundation_NSNumber",
             feature = "Foundation_NSString",
-            feature = "Foundation_NSUUID"
+            feature = "Foundation_NSUUID",
+            feature = "Foundation_NSValue"
         ))]
         #[method_id(@__retain_semantics Init initWithIdentifier:keyIdentifier:nonce:signature:timestamp:)]
         pub unsafe fn initWithIdentifier_keyIdentifier_nonce_signature_timestamp(
@@ -60,7 +54,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other signature)]
         pub unsafe fn signature(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method_id(@__retain_semantics Other timestamp)]
         pub unsafe fn timestamp(&self) -> Id<NSNumber>;
     }
@@ -68,7 +62,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "StoreKit_SKPaymentDiscount")]
     unsafe impl SKPaymentDiscount {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

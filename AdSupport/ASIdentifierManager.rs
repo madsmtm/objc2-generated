@@ -6,21 +6,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AdSupport_ASIdentifierManager")]
     pub struct ASIdentifierManager;
 
-    #[cfg(feature = "AdSupport_ASIdentifierManager")]
     unsafe impl ClassType for ASIdentifierManager {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AdSupport_ASIdentifierManager")]
 unsafe impl NSObjectProtocol for ASIdentifierManager {}
 
 extern_methods!(
-    #[cfg(feature = "AdSupport_ASIdentifierManager")]
     unsafe impl ASIdentifierManager {
         #[method_id(@__retain_semantics Other sharedManager)]
         pub unsafe fn sharedManager() -> Id<ASIdentifierManager>;
@@ -37,7 +33,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AdSupport_ASIdentifierManager")]
     unsafe impl ASIdentifierManager {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

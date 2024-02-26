@@ -7,10 +7,18 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKFetchWebAuthTokenOperation")]
+    #[cfg(all(
+        feature = "CloudKit_CKDatabaseOperation",
+        feature = "CloudKit_CKOperation",
+        feature = "Foundation_NSOperation"
+    ))]
     pub struct CKFetchWebAuthTokenOperation;
 
-    #[cfg(feature = "CloudKit_CKFetchWebAuthTokenOperation")]
+    #[cfg(all(
+        feature = "CloudKit_CKDatabaseOperation",
+        feature = "CloudKit_CKOperation",
+        feature = "Foundation_NSOperation"
+    ))]
     unsafe impl ClassType for CKFetchWebAuthTokenOperation {
         #[inherits(CKOperation, NSOperation, NSObject)]
         type Super = CKDatabaseOperation;
@@ -18,11 +26,19 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CloudKit_CKFetchWebAuthTokenOperation")]
+#[cfg(all(
+    feature = "CloudKit_CKDatabaseOperation",
+    feature = "CloudKit_CKOperation",
+    feature = "Foundation_NSOperation"
+))]
 unsafe impl NSObjectProtocol for CKFetchWebAuthTokenOperation {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKFetchWebAuthTokenOperation")]
+    #[cfg(all(
+        feature = "CloudKit_CKDatabaseOperation",
+        feature = "CloudKit_CKOperation",
+        feature = "Foundation_NSOperation"
+    ))]
     unsafe impl CKFetchWebAuthTokenOperation {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -58,7 +74,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CloudKit_CKFetchWebAuthTokenOperation")]
+    #[cfg(all(
+        feature = "CloudKit_CKDatabaseOperation",
+        feature = "CloudKit_CKOperation",
+        feature = "Foundation_NSOperation"
+    ))]
     unsafe impl CKFetchWebAuthTokenOperation {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

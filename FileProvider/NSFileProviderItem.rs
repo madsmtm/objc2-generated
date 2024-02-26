@@ -22,21 +22,17 @@ extern_static!(NSFileProviderTrashContainerItemIdentifier: &'static NSFileProvid
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "FileProvider_NSFileProviderItemVersion")]
     pub struct NSFileProviderItemVersion;
 
-    #[cfg(feature = "FileProvider_NSFileProviderItemVersion")]
     unsafe impl ClassType for NSFileProviderItemVersion {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "FileProvider_NSFileProviderItemVersion")]
 unsafe impl NSObjectProtocol for NSFileProviderItemVersion {}
 
 extern_methods!(
-    #[cfg(feature = "FileProvider_NSFileProviderItemVersion")]
     unsafe impl NSFileProviderItemVersion {
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other beforeFirstSyncComponent)]
@@ -62,7 +58,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "FileProvider_NSFileProviderItemVersion")]
     unsafe impl NSFileProviderItemVersion {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -195,12 +190,12 @@ extern_protocol!(
         #[method(fileSystemFlags)]
         unsafe fn fileSystemFlags(&self) -> NSFileProviderFileSystemFlags;
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[optional]
         #[method_id(@__retain_semantics Other documentSize)]
         unsafe fn documentSize(&self) -> Option<Id<NSNumber>>;
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[optional]
         #[method_id(@__retain_semantics Other childItemCount)]
         unsafe fn childItemCount(&self) -> Option<Id<NSNumber>>;
@@ -234,7 +229,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other tagData)]
         unsafe fn tagData(&self) -> Option<Id<NSData>>;
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[optional]
         #[method_id(@__retain_semantics Other favoriteRank)]
         unsafe fn favoriteRank(&self) -> Option<Id<NSNumber>>;
@@ -296,7 +291,6 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other versionIdentifier)]
         unsafe fn versionIdentifier(&self) -> Option<Id<NSData>>;
 
-        #[cfg(feature = "FileProvider_NSFileProviderItemVersion")]
         #[optional]
         #[method_id(@__retain_semantics Other itemVersion)]
         unsafe fn itemVersion(&self) -> Id<NSFileProviderItemVersion>;

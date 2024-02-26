@@ -7,21 +7,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKAsset")]
     pub struct CKAsset;
 
-    #[cfg(feature = "CloudKit_CKAsset")]
     unsafe impl ClassType for CKAsset {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CloudKit_CKAsset")]
 unsafe impl NSObjectProtocol for CKAsset {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKAsset")]
     unsafe impl CKAsset {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

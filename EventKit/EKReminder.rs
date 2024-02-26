@@ -9,10 +9,10 @@ use crate::MapKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "EventKit_EKReminder")]
+    #[cfg(all(feature = "EventKit_EKCalendarItem", feature = "EventKit_EKObject"))]
     pub struct EKReminder;
 
-    #[cfg(feature = "EventKit_EKReminder")]
+    #[cfg(all(feature = "EventKit_EKCalendarItem", feature = "EventKit_EKObject"))]
     unsafe impl ClassType for EKReminder {
         #[inherits(EKObject, NSObject)]
         type Super = EKCalendarItem;
@@ -20,32 +20,32 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "EventKit_EKReminder")]
+#[cfg(all(feature = "EventKit_EKCalendarItem", feature = "EventKit_EKObject"))]
 unsafe impl NSObjectProtocol for EKReminder {}
 
 extern_methods!(
-    #[cfg(feature = "EventKit_EKReminder")]
+    #[cfg(all(feature = "EventKit_EKCalendarItem", feature = "EventKit_EKObject"))]
     unsafe impl EKReminder {
         #[cfg(feature = "EventKit_EKEventStore")]
         #[method_id(@__retain_semantics Other reminderWithEventStore:)]
         pub unsafe fn reminderWithEventStore(event_store: &EKEventStore) -> Id<EKReminder>;
 
-        #[cfg(feature = "Foundation_NSDateComponents")]
+        #[cfg(feature = "Foundation_NSCalendar")]
         #[method_id(@__retain_semantics Other startDateComponents)]
         pub unsafe fn startDateComponents(&self) -> Option<Id<NSDateComponents>>;
 
-        #[cfg(feature = "Foundation_NSDateComponents")]
+        #[cfg(feature = "Foundation_NSCalendar")]
         #[method(setStartDateComponents:)]
         pub unsafe fn setStartDateComponents(
             &self,
             start_date_components: Option<&NSDateComponents>,
         );
 
-        #[cfg(feature = "Foundation_NSDateComponents")]
+        #[cfg(feature = "Foundation_NSCalendar")]
         #[method_id(@__retain_semantics Other dueDateComponents)]
         pub unsafe fn dueDateComponents(&self) -> Option<Id<NSDateComponents>>;
 
-        #[cfg(feature = "Foundation_NSDateComponents")]
+        #[cfg(feature = "Foundation_NSCalendar")]
         #[method(setDueDateComponents:)]
         pub unsafe fn setDueDateComponents(&self, due_date_components: Option<&NSDateComponents>);
 
@@ -73,7 +73,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "EventKit_EKReminder")]
+    #[cfg(all(feature = "EventKit_EKCalendarItem", feature = "EventKit_EKObject"))]
     unsafe impl EKReminder {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

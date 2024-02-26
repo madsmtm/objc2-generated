@@ -7,6 +7,7 @@ use crate::GameController::*;
 
 extern_protocol!(
     pub unsafe trait GCTouchedStateInput: NSObjectProtocol {
+        #[cfg(feature = "GameController_GCPhysicalInputElement")]
         #[method(touchedDidChangeHandler)]
         unsafe fn touchedDidChangeHandler(
             &self,
@@ -18,6 +19,7 @@ extern_protocol!(
             ),
         >;
 
+        #[cfg(feature = "GameController_GCPhysicalInputElement")]
         #[method(setTouchedDidChangeHandler:)]
         unsafe fn setTouchedDidChangeHandler(
             &self,
@@ -35,13 +37,18 @@ extern_protocol!(
         #[method(isTouched)]
         unsafe fn isTouched(&self) -> bool;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(lastTouchedStateTimestamp)]
         unsafe fn lastTouchedStateTimestamp(&self) -> NSTimeInterval;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(lastTouchedStateLatency)]
         unsafe fn lastTouchedStateLatency(&self) -> NSTimeInterval;
 
-        #[cfg(feature = "Foundation_NSSet")]
+        #[cfg(all(
+            feature = "Foundation_NSSet",
+            feature = "GameController_GCPhysicalInputSource"
+        ))]
         #[method_id(@__retain_semantics Other sources)]
         unsafe fn sources(&self) -> Id<NSSet<ProtocolObject<dyn GCPhysicalInputSource>>>;
     }

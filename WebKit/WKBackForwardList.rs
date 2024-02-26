@@ -7,21 +7,17 @@ use crate::WebKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_WKBackForwardList")]
     pub struct WKBackForwardList;
 
-    #[cfg(feature = "WebKit_WKBackForwardList")]
     unsafe impl ClassType for WKBackForwardList {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "WebKit_WKBackForwardList")]
 unsafe impl NSObjectProtocol for WKBackForwardList {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_WKBackForwardList")]
     unsafe impl WKBackForwardList {
         #[cfg(feature = "WebKit_WKBackForwardListItem")]
         #[method_id(@__retain_semantics Other currentItem)]
@@ -57,7 +53,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_WKBackForwardList")]
     unsafe impl WKBackForwardList {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

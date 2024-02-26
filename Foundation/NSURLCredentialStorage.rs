@@ -5,27 +5,21 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSURLCredentialStorage")]
     pub struct NSURLCredentialStorage;
 
-    #[cfg(feature = "Foundation_NSURLCredentialStorage")]
     unsafe impl ClassType for NSURLCredentialStorage {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSURLCredentialStorage")]
 unsafe impl Send for NSURLCredentialStorage {}
 
-#[cfg(feature = "Foundation_NSURLCredentialStorage")]
 unsafe impl Sync for NSURLCredentialStorage {}
 
-#[cfg(feature = "Foundation_NSURLCredentialStorage")]
 unsafe impl NSObjectProtocol for NSURLCredentialStorage {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSURLCredentialStorage")]
     unsafe impl NSURLCredentialStorage {
         #[method_id(@__retain_semantics Other sharedCredentialStorage)]
         pub unsafe fn sharedCredentialStorage() -> Id<NSURLCredentialStorage>;
@@ -114,7 +108,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSURLCredentialStorage")]
     unsafe impl NSURLCredentialStorage {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -126,14 +119,13 @@ extern_methods!(
 
 extern_methods!(
     /// NSURLSessionTaskAdditions
-    #[cfg(feature = "Foundation_NSURLCredentialStorage")]
     unsafe impl NSURLCredentialStorage {
         #[cfg(all(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString",
             feature = "Foundation_NSURLCredential",
             feature = "Foundation_NSURLProtectionSpace",
-            feature = "Foundation_NSURLSessionTask"
+            feature = "Foundation_NSURLSession"
         ))]
         #[method(getCredentialsForProtectionSpace:task:completionHandler:)]
         pub unsafe fn getCredentialsForProtectionSpace_task_completionHandler(
@@ -146,7 +138,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSURLCredential",
             feature = "Foundation_NSURLProtectionSpace",
-            feature = "Foundation_NSURLSessionTask"
+            feature = "Foundation_NSURLSession"
         ))]
         #[method(setCredential:forProtectionSpace:task:)]
         pub unsafe fn setCredential_forProtectionSpace_task(
@@ -161,7 +153,7 @@ extern_methods!(
             feature = "Foundation_NSString",
             feature = "Foundation_NSURLCredential",
             feature = "Foundation_NSURLProtectionSpace",
-            feature = "Foundation_NSURLSessionTask"
+            feature = "Foundation_NSURLSession"
         ))]
         #[method(removeCredential:forProtectionSpace:options:task:)]
         pub unsafe fn removeCredential_forProtectionSpace_options_task(
@@ -175,7 +167,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSURLCredential",
             feature = "Foundation_NSURLProtectionSpace",
-            feature = "Foundation_NSURLSessionTask"
+            feature = "Foundation_NSURLSession"
         ))]
         #[method(getDefaultCredentialForProtectionSpace:task:completionHandler:)]
         pub unsafe fn getDefaultCredentialForProtectionSpace_task_completionHandler(
@@ -188,7 +180,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSURLCredential",
             feature = "Foundation_NSURLProtectionSpace",
-            feature = "Foundation_NSURLSessionTask"
+            feature = "Foundation_NSURLSession"
         ))]
         #[method(setDefaultCredential:forProtectionSpace:task:)]
         pub unsafe fn setDefaultCredential_forProtectionSpace_task(
@@ -200,7 +192,7 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSURLCredentialStorageChangedNotification: &'static NSNotificationName);
 
 #[cfg(feature = "Foundation_NSString")]

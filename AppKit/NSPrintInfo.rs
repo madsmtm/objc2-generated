@@ -144,27 +144,23 @@ pub type NSPrintInfoSettingKey = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSPrintInfo")]
     pub struct NSPrintInfo;
 
-    #[cfg(feature = "AppKit_NSPrintInfo")]
     unsafe impl ClassType for NSPrintInfo {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSPrintInfo {}
 
-#[cfg(feature = "AppKit_NSPrintInfo")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSPrintInfo {}
 
-#[cfg(feature = "AppKit_NSPrintInfo")]
 unsafe impl NSObjectProtocol for NSPrintInfo {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSPrintInfo")]
     unsafe impl NSPrintInfo {
         #[method_id(@__retain_semantics Other sharedPrintInfo)]
         pub unsafe fn sharedPrintInfo() -> Id<NSPrintInfo>;
@@ -186,26 +182,25 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(all(
-            feature = "Foundation_NSMutableDictionary",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other dictionary)]
         pub unsafe fn dictionary(
             &self,
         ) -> Id<NSMutableDictionary<NSPrintInfoAttributeKey, AnyObject>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "AppKit_NSPrinter", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other paperName)]
         pub unsafe fn paperName(&self) -> Option<Id<NSPrinterPaperName>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "AppKit_NSPrinter", feature = "Foundation_NSString"))]
         #[method(setPaperName:)]
         pub unsafe fn setPaperName(&self, paper_name: Option<&NSPrinterPaperName>);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(paperSize)]
         pub unsafe fn paperSize(&self) -> NSSize;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setPaperSize:)]
         pub unsafe fn setPaperSize(&self, paper_size: NSSize);
 
@@ -215,33 +210,43 @@ extern_methods!(
         #[method(setOrientation:)]
         pub unsafe fn setOrientation(&self, orientation: NSPaperOrientation);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(scalingFactor)]
         pub unsafe fn scalingFactor(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setScalingFactor:)]
         pub unsafe fn setScalingFactor(&self, scaling_factor: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(leftMargin)]
         pub unsafe fn leftMargin(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setLeftMargin:)]
         pub unsafe fn setLeftMargin(&self, left_margin: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(rightMargin)]
         pub unsafe fn rightMargin(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setRightMargin:)]
         pub unsafe fn setRightMargin(&self, right_margin: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(topMargin)]
         pub unsafe fn topMargin(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setTopMargin:)]
         pub unsafe fn setTopMargin(&self, top_margin: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(bottomMargin)]
         pub unsafe fn bottomMargin(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setBottomMargin:)]
         pub unsafe fn setBottomMargin(&self, bottom_margin: CGFloat);
 
@@ -291,6 +296,7 @@ extern_methods!(
         #[method(setUpPrintOperationDefaultValues)]
         pub unsafe fn setUpPrintOperationDefaultValues(&self);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(imageablePageBounds)]
         pub unsafe fn imageablePageBounds(&self) -> NSRect;
 
@@ -302,10 +308,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other defaultPrinter)]
         pub unsafe fn defaultPrinter() -> Option<Id<NSPrinter>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSMutableDictionary",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other printSettings)]
         pub unsafe fn printSettings(
             &self,
@@ -340,7 +343,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSPrintInfo")]
     unsafe impl NSPrintInfo {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -349,14 +351,17 @@ extern_methods!(
 
 extern_methods!(
     /// NSDeprecated
-    #[cfg(feature = "AppKit_NSPrintInfo")]
     unsafe impl NSPrintInfo {
         #[cfg(feature = "AppKit_NSPrinter")]
         #[deprecated = "NSPrintInfo's implementation has no effect"]
         #[method(setDefaultPrinter:)]
         pub unsafe fn setDefaultPrinter(printer: Option<&NSPrinter>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "AppKit_NSPrinter",
+            feature = "Foundation_NSGeometry",
+            feature = "Foundation_NSString"
+        ))]
         #[deprecated = "Use -[NSPrinter pageSizeForPaper:] instead"]
         #[method(sizeForPaperName:)]
         pub unsafe fn sizeForPaperName(name: Option<&NSPrinterPaperName>) -> NSSize;

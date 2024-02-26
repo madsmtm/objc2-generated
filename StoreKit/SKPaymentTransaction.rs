@@ -23,27 +23,21 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "StoreKit_SKPaymentTransaction")]
     pub struct SKPaymentTransaction;
 
-    #[cfg(feature = "StoreKit_SKPaymentTransaction")]
     unsafe impl ClassType for SKPaymentTransaction {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "StoreKit_SKPaymentTransaction")]
 unsafe impl Send for SKPaymentTransaction {}
 
-#[cfg(feature = "StoreKit_SKPaymentTransaction")]
 unsafe impl Sync for SKPaymentTransaction {}
 
-#[cfg(feature = "StoreKit_SKPaymentTransaction")]
 unsafe impl NSObjectProtocol for SKPaymentTransaction {}
 
 extern_methods!(
-    #[cfg(feature = "StoreKit_SKPaymentTransaction")]
     unsafe impl SKPaymentTransaction {
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other error)]
@@ -81,7 +75,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "StoreKit_SKPaymentTransaction")]
     unsafe impl SKPaymentTransaction {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

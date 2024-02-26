@@ -9,12 +9,19 @@ extern_category!(
     /// Category "NSAccessibility" on [`NSObject`].
     #[doc(alias = "NSAccessibility")]
     pub unsafe trait NSObjectNSAccessibility {
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSAccessibilityConstants",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
         #[method_id(@__retain_semantics Other accessibilityAttributeNames)]
         unsafe fn accessibilityAttributeNames(&self) -> Id<NSArray<NSAccessibilityAttributeName>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "AppKit_NSAccessibilityConstants",
+            feature = "Foundation_NSString"
+        ))]
         #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
         #[method_id(@__retain_semantics Other accessibilityAttributeValue:)]
         unsafe fn accessibilityAttributeValue(
@@ -22,7 +29,10 @@ extern_category!(
             attribute: &NSAccessibilityAttributeName,
         ) -> Option<Id<AnyObject>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "AppKit_NSAccessibilityConstants",
+            feature = "Foundation_NSString"
+        ))]
         #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
         #[method(accessibilityIsAttributeSettable:)]
         unsafe fn accessibilityIsAttributeSettable(
@@ -30,7 +40,10 @@ extern_category!(
             attribute: &NSAccessibilityAttributeName,
         ) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "AppKit_NSAccessibilityConstants",
+            feature = "Foundation_NSString"
+        ))]
         #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
         #[method(accessibilitySetValue:forAttribute:)]
         unsafe fn accessibilitySetValue_forAttribute(
@@ -39,14 +52,21 @@ extern_category!(
             attribute: &NSAccessibilityAttributeName,
         );
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSAccessibilityConstants",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
         #[method_id(@__retain_semantics Other accessibilityParameterizedAttributeNames)]
         unsafe fn accessibilityParameterizedAttributeNames(
             &self,
         ) -> Id<NSArray<NSAccessibilityParameterizedAttributeName>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "AppKit_NSAccessibilityConstants",
+            feature = "Foundation_NSString"
+        ))]
         #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
         #[method_id(@__retain_semantics Other accessibilityAttributeValue:forParameter:)]
         unsafe fn accessibilityAttributeValue_forParameter(
@@ -55,12 +75,19 @@ extern_category!(
             parameter: Option<&AnyObject>,
         ) -> Option<Id<AnyObject>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSAccessibilityConstants",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
         #[method_id(@__retain_semantics Other accessibilityActionNames)]
         unsafe fn accessibilityActionNames(&self) -> Id<NSArray<NSAccessibilityActionName>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "AppKit_NSAccessibilityConstants",
+            feature = "Foundation_NSString"
+        ))]
         #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
         #[method_id(@__retain_semantics Other accessibilityActionDescription:)]
         unsafe fn accessibilityActionDescription(
@@ -68,7 +95,10 @@ extern_category!(
             action: &NSAccessibilityActionName,
         ) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "AppKit_NSAccessibilityConstants",
+            feature = "Foundation_NSString"
+        ))]
         #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
         #[method(accessibilityPerformAction:)]
         unsafe fn accessibilityPerformAction(&self, action: &NSAccessibilityActionName);
@@ -77,6 +107,7 @@ extern_category!(
         #[method(accessibilityIsIgnored)]
         unsafe fn accessibilityIsIgnored(&self) -> bool;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Other accessibilityHitTest:)]
         unsafe fn accessibilityHitTest(&self, point: NSPoint) -> Option<Id<AnyObject>>;
 
@@ -86,14 +117,21 @@ extern_category!(
         #[method(accessibilityIndexOfChild:)]
         unsafe fn accessibilityIndexOfChild(&self, child: &AnyObject) -> NSUInteger;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "AppKit_NSAccessibilityConstants",
+            feature = "Foundation_NSString"
+        ))]
         #[method(accessibilityArrayAttributeCount:)]
         unsafe fn accessibilityArrayAttributeCount(
             &self,
             attribute: &NSAccessibilityAttributeName,
         ) -> NSUInteger;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSAccessibilityConstants",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other accessibilityArrayAttributeValues:index:maxCount:)]
         unsafe fn accessibilityArrayAttributeValues_index_maxCount(
             &self,
@@ -142,16 +180,24 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSWorkspaceAccessibilityDisplayOptionsDidChangeNotification: &'static NSNotificationName);
 
 extern_fn!(
-    #[cfg(feature = "AppKit_NSView")]
+    #[cfg(all(
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView",
+        feature = "Foundation_NSGeometry"
+    ))]
     pub unsafe fn NSAccessibilityFrameInView(parent_view: &NSView, frame: NSRect) -> NSRect;
 );
 
 extern_fn!(
-    #[cfg(feature = "AppKit_NSView")]
+    #[cfg(all(
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView",
+        feature = "Foundation_NSGeometry"
+    ))]
     pub unsafe fn NSAccessibilityPointInView(parent_view: &NSView, point: NSPoint) -> NSPoint;
 );
 
@@ -160,7 +206,10 @@ extern_fn!(
 );
 
 extern_fn!(
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(all(
+        feature = "AppKit_NSAccessibilityConstants",
+        feature = "Foundation_NSString"
+    ))]
     pub unsafe fn NSAccessibilityRoleDescription(
         role: &NSAccessibilityRole,
         subrole: Option<&NSAccessibilitySubrole>,
@@ -173,14 +222,20 @@ extern_fn!(
 );
 
 extern_fn!(
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(all(
+        feature = "AppKit_NSAccessibilityConstants",
+        feature = "Foundation_NSString"
+    ))]
     pub unsafe fn NSAccessibilityActionDescription(
         action: &NSAccessibilityActionName,
     ) -> *mut NSString;
 );
 
 extern_fn!(
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(all(
+        feature = "AppKit_NSAccessibilityConstants",
+        feature = "Foundation_NSString"
+    ))]
     #[deprecated = "Exceptions are no longer appropriate for indicating errors in accessibility API. Unexpected values should be handled through appropriate type checking."]
     pub unsafe fn NSAccessibilityRaiseBadArgumentException(
         element: Option<&AnyObject>,
@@ -211,7 +266,10 @@ extern_fn!(
 );
 
 extern_fn!(
-    #[cfg(feature = "Foundation_NSString")]
+    #[cfg(all(
+        feature = "AppKit_NSAccessibilityConstants",
+        feature = "Foundation_NSString"
+    ))]
     pub unsafe fn NSAccessibilityPostNotification(
         element: &AnyObject,
         notification: &NSAccessibilityNotificationName,

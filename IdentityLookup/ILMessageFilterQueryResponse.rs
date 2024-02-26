@@ -6,37 +6,37 @@ use crate::IdentityLookup::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "IdentityLookup_ILMessageFilterQueryResponse")]
     pub struct ILMessageFilterQueryResponse;
 
-    #[cfg(feature = "IdentityLookup_ILMessageFilterQueryResponse")]
     unsafe impl ClassType for ILMessageFilterQueryResponse {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "IdentityLookup_ILMessageFilterQueryResponse")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for ILMessageFilterQueryResponse {}
 
-#[cfg(feature = "IdentityLookup_ILMessageFilterQueryResponse")]
 unsafe impl NSObjectProtocol for ILMessageFilterQueryResponse {}
 
-#[cfg(feature = "IdentityLookup_ILMessageFilterQueryResponse")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for ILMessageFilterQueryResponse {}
 
 extern_methods!(
-    #[cfg(feature = "IdentityLookup_ILMessageFilterQueryResponse")]
     unsafe impl ILMessageFilterQueryResponse {
+        #[cfg(feature = "IdentityLookup_ILMessageFilterAction")]
         #[method(action)]
         pub unsafe fn action(&self) -> ILMessageFilterAction;
 
+        #[cfg(feature = "IdentityLookup_ILMessageFilterAction")]
         #[method(setAction:)]
         pub unsafe fn setAction(&self, action: ILMessageFilterAction);
 
+        #[cfg(feature = "IdentityLookup_ILMessageFilterAction")]
         #[method(subAction)]
         pub unsafe fn subAction(&self) -> ILMessageFilterSubAction;
 
+        #[cfg(feature = "IdentityLookup_ILMessageFilterAction")]
         #[method(setSubAction:)]
         pub unsafe fn setSubAction(&self, sub_action: ILMessageFilterSubAction);
     }
@@ -44,7 +44,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "IdentityLookup_ILMessageFilterQueryResponse")]
     unsafe impl ILMessageFilterQueryResponse {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

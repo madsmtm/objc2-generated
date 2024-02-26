@@ -16,26 +16,22 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTabViewItem")]
     pub struct NSTabViewItem;
 
-    #[cfg(feature = "AppKit_NSTabViewItem")]
     unsafe impl ClassType for NSTabViewItem {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSTabViewItem")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSTabViewItem {}
 
-#[cfg(feature = "AppKit_NSTabViewItem")]
 unsafe impl NSObjectProtocol for NSTabViewItem {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTabViewItem")]
     unsafe impl NSTabViewItem {
-        #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
         #[method_id(@__retain_semantics Other tabViewItemWithViewController:)]
         pub unsafe fn tabViewItemWithViewController(view_controller: &NSViewController)
             -> Id<Self>;
@@ -76,34 +72,38 @@ extern_methods!(
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[method_id(@__retain_semantics Other view)]
         pub unsafe fn view(&self, mtm: MainThreadMarker) -> Option<Id<NSView>>;
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[method(setView:)]
         pub unsafe fn setView(&self, view: Option<&NSView>);
 
-        #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
         #[method_id(@__retain_semantics Other viewController)]
         pub unsafe fn viewController(&self, mtm: MainThreadMarker) -> Option<Id<NSViewController>>;
 
-        #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
         #[method(setViewController:)]
         pub unsafe fn setViewController(&self, view_controller: Option<&NSViewController>);
 
         #[method(tabState)]
         pub unsafe fn tabState(&self) -> NSTabState;
 
-        #[cfg(feature = "AppKit_NSTabView")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSTabView",
+            feature = "AppKit_NSView"
+        ))]
         #[method_id(@__retain_semantics Other tabView)]
         pub unsafe fn tabView(&self, mtm: MainThreadMarker) -> Option<Id<NSTabView>>;
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[method_id(@__retain_semantics Other initialFirstResponder)]
         pub unsafe fn initialFirstResponder(&self, mtm: MainThreadMarker) -> Option<Id<NSView>>;
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[method(setInitialFirstResponder:)]
         pub unsafe fn setInitialFirstResponder(&self, initial_first_responder: Option<&NSView>);
 
@@ -115,9 +115,11 @@ extern_methods!(
         #[method(setToolTip:)]
         pub unsafe fn setToolTip(&self, tool_tip: Option<&NSString>);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(drawLabel:inRect:)]
         pub unsafe fn drawLabel_inRect(&self, should_truncate_label: bool, label_rect: NSRect);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(sizeOfLabel:)]
         pub unsafe fn sizeOfLabel(&self, compute_min: bool) -> NSSize;
     }
@@ -125,7 +127,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTabViewItem")]
     unsafe impl NSTabViewItem {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

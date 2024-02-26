@@ -17,10 +17,18 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSComboButton")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     pub struct NSComboButton;
 
-    #[cfg(feature = "AppKit_NSComboButton")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl ClassType for NSComboButton {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;
@@ -28,32 +36,75 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSComboButton")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibility for NSComboButton {}
 
-#[cfg(feature = "AppKit_NSComboButton")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibilityElementProtocol for NSComboButton {}
 
-#[cfg(feature = "AppKit_NSComboButton")]
+#[cfg(all(
+    feature = "AppKit_NSAnimation",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAnimatablePropertyContainer for NSComboButton {}
 
-#[cfg(feature = "AppKit_NSComboButton")]
+#[cfg(all(
+    feature = "AppKit_NSAppearance",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAppearanceCustomization for NSComboButton {}
 
-#[cfg(feature = "AppKit_NSComboButton")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSComboButton {}
 
-#[cfg(feature = "AppKit_NSComboButton")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSDragging",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSDraggingDestination for NSComboButton {}
 
-#[cfg(feature = "AppKit_NSComboButton")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSObjectProtocol for NSComboButton {}
 
-#[cfg(feature = "AppKit_NSComboButton")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSComboButton {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSComboButton")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSComboButton {
         #[cfg(all(feature = "AppKit_NSMenu", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other comboButtonWithTitle:menu:target:action:)]
@@ -106,9 +157,11 @@ extern_methods!(
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
+        #[cfg(feature = "AppKit_NSCell")]
         #[method(imageScaling)]
         pub unsafe fn imageScaling(&self) -> NSImageScaling;
 
+        #[cfg(feature = "AppKit_NSCell")]
         #[method(setImageScaling:)]
         pub unsafe fn setImageScaling(&self, image_scaling: NSImageScaling);
 
@@ -130,8 +183,13 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSControl`
-    #[cfg(feature = "AppKit_NSComboButton")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSComboButton {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
 
@@ -143,7 +201,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "AppKit_NSComboButton")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSComboButton {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -152,7 +214,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSComboButton")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSComboButton {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

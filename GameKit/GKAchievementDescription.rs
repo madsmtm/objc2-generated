@@ -7,27 +7,23 @@ use crate::GameKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameKit_GKAchievementDescription")]
     pub struct GKAchievementDescription;
 
-    #[cfg(feature = "GameKit_GKAchievementDescription")]
     unsafe impl ClassType for GKAchievementDescription {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "GameKit_GKAchievementDescription")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for GKAchievementDescription {}
 
-#[cfg(feature = "GameKit_GKAchievementDescription")]
 unsafe impl NSObjectProtocol for GKAchievementDescription {}
 
-#[cfg(feature = "GameKit_GKAchievementDescription")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for GKAchievementDescription {}
 
 extern_methods!(
-    #[cfg(feature = "GameKit_GKAchievementDescription")]
     unsafe impl GKAchievementDescription {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSError"))]
         #[method(loadAchievementDescriptionsWithCompletionHandler:)]
@@ -66,7 +62,7 @@ extern_methods!(
         #[method(isReplayable)]
         pub unsafe fn isReplayable(&self) -> bool;
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method_id(@__retain_semantics Other rarityPercent)]
         pub unsafe fn rarityPercent(&self) -> Option<Id<NSNumber>>;
     }
@@ -74,7 +70,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameKit_GKAchievementDescription")]
     unsafe impl GKAchievementDescription {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -86,7 +81,6 @@ extern_methods!(
 
 extern_methods!(
     /// UI
-    #[cfg(feature = "GameKit_GKAchievementDescription")]
     unsafe impl GKAchievementDescription {
         #[cfg(feature = "AppKit_NSImage")]
         #[deprecated]

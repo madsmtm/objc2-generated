@@ -5,21 +5,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSInvocation")]
     pub struct NSInvocation;
 
-    #[cfg(feature = "Foundation_NSInvocation")]
     unsafe impl ClassType for NSInvocation {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSInvocation")]
 unsafe impl NSObjectProtocol for NSInvocation {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSInvocation")]
     unsafe impl NSInvocation {
         #[cfg(feature = "Foundation_NSMethodSignature")]
         #[method_id(@__retain_semantics Other invocationWithMethodSignature:)]
@@ -80,7 +76,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSInvocation")]
     unsafe impl NSInvocation {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -9,30 +9,26 @@ use crate::MapKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
     pub struct MKPointOfInterestFilter;
 
-    #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
     unsafe impl ClassType for MKPointOfInterestFilter {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MapKit_MKPointOfInterestFilter")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for MKPointOfInterestFilter {}
 
-#[cfg(feature = "MapKit_MKPointOfInterestFilter")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MKPointOfInterestFilter {}
 
-#[cfg(feature = "MapKit_MKPointOfInterestFilter")]
 unsafe impl NSObjectProtocol for MKPointOfInterestFilter {}
 
-#[cfg(feature = "MapKit_MKPointOfInterestFilter")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for MKPointOfInterestFilter {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
     unsafe impl MKPointOfInterestFilter {
         #[method_id(@__retain_semantics Other filterIncludingAllCategories)]
         pub unsafe fn filterIncludingAllCategories() -> Id<MKPointOfInterestFilter>;
@@ -40,25 +36,39 @@ extern_methods!(
         #[method_id(@__retain_semantics Other filterExcludingAllCategories)]
         pub unsafe fn filterExcludingAllCategories() -> Id<MKPointOfInterestFilter>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString",
+            feature = "MapKit_MKPointOfInterestCategory"
+        ))]
         #[method_id(@__retain_semantics Init initIncludingCategories:)]
         pub unsafe fn initIncludingCategories(
             this: Allocated<Self>,
             categories: &NSArray<MKPointOfInterestCategory>,
         ) -> Id<Self>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString",
+            feature = "MapKit_MKPointOfInterestCategory"
+        ))]
         #[method_id(@__retain_semantics Init initExcludingCategories:)]
         pub unsafe fn initExcludingCategories(
             this: Allocated<Self>,
             categories: &NSArray<MKPointOfInterestCategory>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "MapKit_MKPointOfInterestCategory"
+        ))]
         #[method(includesCategory:)]
         pub unsafe fn includesCategory(&self, category: &MKPointOfInterestCategory) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "MapKit_MKPointOfInterestCategory"
+        ))]
         #[method(excludesCategory:)]
         pub unsafe fn excludesCategory(&self, category: &MKPointOfInterestCategory) -> bool;
     }
@@ -66,7 +76,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
     unsafe impl MKPointOfInterestFilter {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

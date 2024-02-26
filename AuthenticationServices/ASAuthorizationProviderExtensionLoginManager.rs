@@ -29,21 +29,17 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionLoginManager")]
     pub struct ASAuthorizationProviderExtensionLoginManager;
 
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionLoginManager")]
     unsafe impl ClassType for ASAuthorizationProviderExtensionLoginManager {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionLoginManager")]
 unsafe impl NSObjectProtocol for ASAuthorizationProviderExtensionLoginManager {}
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionLoginManager")]
     unsafe impl ASAuthorizationProviderExtensionLoginManager {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

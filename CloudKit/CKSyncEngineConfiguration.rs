@@ -7,31 +7,26 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKSyncEngineConfiguration")]
     pub struct CKSyncEngineConfiguration;
 
-    #[cfg(feature = "CloudKit_CKSyncEngineConfiguration")]
     unsafe impl ClassType for CKSyncEngineConfiguration {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CloudKit_CKSyncEngineConfiguration")]
 unsafe impl Send for CKSyncEngineConfiguration {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineConfiguration")]
 unsafe impl Sync for CKSyncEngineConfiguration {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineConfiguration")]
 unsafe impl NSObjectProtocol for CKSyncEngineConfiguration {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKSyncEngineConfiguration")]
     unsafe impl CKSyncEngineConfiguration {
         #[cfg(all(
             feature = "CloudKit_CKDatabase",
-            feature = "CloudKit_CKSyncEngineStateSerialization"
+            feature = "CloudKit_CKSyncEngine",
+            feature = "CloudKit_CKSyncEngineState"
         ))]
         #[method_id(@__retain_semantics Init initWithDatabase:stateSerialization:delegate:)]
         pub unsafe fn initWithDatabase_stateSerialization_delegate(
@@ -55,20 +50,22 @@ extern_methods!(
         #[method(setDatabase:)]
         pub unsafe fn setDatabase(&self, database: &CKDatabase);
 
-        #[cfg(feature = "CloudKit_CKSyncEngineStateSerialization")]
+        #[cfg(feature = "CloudKit_CKSyncEngineState")]
         #[method_id(@__retain_semantics Other stateSerialization)]
         pub unsafe fn stateSerialization(&self) -> Option<Id<CKSyncEngineStateSerialization>>;
 
-        #[cfg(feature = "CloudKit_CKSyncEngineStateSerialization")]
+        #[cfg(feature = "CloudKit_CKSyncEngineState")]
         #[method(setStateSerialization:)]
         pub unsafe fn setStateSerialization(
             &self,
             state_serialization: Option<&CKSyncEngineStateSerialization>,
         );
 
+        #[cfg(feature = "CloudKit_CKSyncEngine")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn CKSyncEngineDelegate>>>;
 
+        #[cfg(feature = "CloudKit_CKSyncEngine")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -81,11 +78,11 @@ extern_methods!(
         #[method(setAutomaticallySync:)]
         pub unsafe fn setAutomaticallySync(&self, automatically_sync: bool);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "CloudKit_CKSubscription", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other subscriptionID)]
         pub unsafe fn subscriptionID(&self) -> Option<Id<CKSubscriptionID>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "CloudKit_CKSubscription", feature = "Foundation_NSString"))]
         #[method(setSubscriptionID:)]
         pub unsafe fn setSubscriptionID(&self, subscription_id: Option<&CKSubscriptionID>);
     }

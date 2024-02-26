@@ -28,21 +28,17 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSRunningApplication")]
     pub struct NSRunningApplication;
 
-    #[cfg(feature = "AppKit_NSRunningApplication")]
     unsafe impl ClassType for NSRunningApplication {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSRunningApplication")]
 unsafe impl NSObjectProtocol for NSRunningApplication {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSRunningApplication")]
     unsafe impl NSRunningApplication {
         #[method(isTerminated)]
         pub unsafe fn isTerminated(&self) -> bool;
@@ -127,7 +123,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSRunningApplication")]
     unsafe impl NSRunningApplication {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

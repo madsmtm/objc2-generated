@@ -7,10 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSColorPickerTouchBarItem")]
+    #[cfg(feature = "AppKit_NSTouchBarItem")]
     pub struct NSColorPickerTouchBarItem;
 
-    #[cfg(feature = "AppKit_NSColorPickerTouchBarItem")]
+    #[cfg(feature = "AppKit_NSTouchBarItem")]
     unsafe impl ClassType for NSColorPickerTouchBarItem {
         #[inherits(NSObject)]
         type Super = NSTouchBarItem;
@@ -18,14 +18,14 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSColorPickerTouchBarItem")]
+#[cfg(all(feature = "AppKit_NSTouchBarItem", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for NSColorPickerTouchBarItem {}
 
-#[cfg(feature = "AppKit_NSColorPickerTouchBarItem")]
+#[cfg(feature = "AppKit_NSTouchBarItem")]
 unsafe impl NSObjectProtocol for NSColorPickerTouchBarItem {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSColorPickerTouchBarItem")]
+    #[cfg(feature = "AppKit_NSTouchBarItem")]
     unsafe impl NSColorPickerTouchBarItem {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other colorPickerWithIdentifier:)]
@@ -119,7 +119,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSTouchBarItem`
-    #[cfg(feature = "AppKit_NSColorPickerTouchBarItem")]
+    #[cfg(feature = "AppKit_NSTouchBarItem")]
     unsafe impl NSColorPickerTouchBarItem {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
@@ -139,7 +139,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSColorPickerTouchBarItem")]
+    #[cfg(feature = "AppKit_NSTouchBarItem")]
     unsafe impl NSColorPickerTouchBarItem {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

@@ -20,18 +20,12 @@ extern_protocol!(
     pub unsafe trait ASAuthorizationProviderExtensionAuthorizationRequestHandler:
         NSObjectProtocol
     {
-        #[cfg(
-            feature = "AuthenticationServices_ASAuthorizationProviderExtensionAuthorizationRequest"
-        )]
         #[method(beginAuthorizationWithRequest:)]
         unsafe fn beginAuthorizationWithRequest(
             &self,
             request: &ASAuthorizationProviderExtensionAuthorizationRequest,
         );
 
-        #[cfg(
-            feature = "AuthenticationServices_ASAuthorizationProviderExtensionAuthorizationRequest"
-        )]
         #[optional]
         #[method(cancelAuthorizationWithRequest:)]
         unsafe fn cancelAuthorizationWithRequest(
@@ -45,21 +39,17 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionAuthorizationRequest")]
     pub struct ASAuthorizationProviderExtensionAuthorizationRequest;
 
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionAuthorizationRequest")]
     unsafe impl ClassType for ASAuthorizationProviderExtensionAuthorizationRequest {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionAuthorizationRequest")]
 unsafe impl NSObjectProtocol for ASAuthorizationProviderExtensionAuthorizationRequest {}
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionAuthorizationRequest")]
     unsafe impl ASAuthorizationProviderExtensionAuthorizationRequest {
         #[method(doNotHandle)]
         pub unsafe fn doNotHandle(&self);
@@ -77,10 +67,7 @@ extern_methods!(
             http_authorization_headers: &NSDictionary<NSString, NSString>,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSData",
-            feature = "Foundation_NSHTTPURLResponse"
-        ))]
+        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSURLResponse"))]
         #[method(completeWithHTTPResponse:httpBody:)]
         pub unsafe fn completeWithHTTPResponse_httpBody(
             &self,
@@ -170,7 +157,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionAuthorizationRequest")]
     unsafe impl ASAuthorizationProviderExtensionAuthorizationRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

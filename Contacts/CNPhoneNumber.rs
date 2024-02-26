@@ -6,30 +6,26 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Contacts_CNPhoneNumber")]
     pub struct CNPhoneNumber;
 
-    #[cfg(feature = "Contacts_CNPhoneNumber")]
     unsafe impl ClassType for CNPhoneNumber {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Contacts_CNPhoneNumber")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CNPhoneNumber {}
 
-#[cfg(feature = "Contacts_CNPhoneNumber")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for CNPhoneNumber {}
 
-#[cfg(feature = "Contacts_CNPhoneNumber")]
 unsafe impl NSObjectProtocol for CNPhoneNumber {}
 
-#[cfg(feature = "Contacts_CNPhoneNumber")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CNPhoneNumber {}
 
 extern_methods!(
-    #[cfg(feature = "Contacts_CNPhoneNumber")]
     unsafe impl CNPhoneNumber {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other phoneNumberWithStringValue:)]

@@ -7,30 +7,25 @@ use crate::GameController::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameController_GCControllerInputState")]
     pub struct GCControllerInputState;
 
-    #[cfg(feature = "GameController_GCControllerInputState")]
     unsafe impl ClassType for GCControllerInputState {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "GameController_GCControllerInputState")]
+#[cfg(feature = "GameController_GCDevicePhysicalInputState")]
 unsafe impl GCDevicePhysicalInputState for GCControllerInputState {}
 
-#[cfg(feature = "GameController_GCControllerInputState")]
 unsafe impl NSObjectProtocol for GCControllerInputState {}
 
 extern_methods!(
-    #[cfg(feature = "GameController_GCControllerInputState")]
     unsafe impl GCControllerInputState {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameController_GCControllerInputState")]
     unsafe impl GCControllerInputState {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -42,10 +37,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameController_GCControllerLiveInput")]
     pub struct GCControllerLiveInput;
 
-    #[cfg(feature = "GameController_GCControllerLiveInput")]
     unsafe impl ClassType for GCControllerLiveInput {
         #[inherits(NSObject)]
         type Super = GCControllerInputState;
@@ -53,17 +46,18 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "GameController_GCControllerLiveInput")]
+#[cfg(all(
+    feature = "GameController_GCDevicePhysicalInput",
+    feature = "GameController_GCDevicePhysicalInputState"
+))]
 unsafe impl GCDevicePhysicalInput for GCControllerLiveInput {}
 
-#[cfg(feature = "GameController_GCControllerLiveInput")]
+#[cfg(feature = "GameController_GCDevicePhysicalInputState")]
 unsafe impl GCDevicePhysicalInputState for GCControllerLiveInput {}
 
-#[cfg(feature = "GameController_GCControllerLiveInput")]
 unsafe impl NSObjectProtocol for GCControllerLiveInput {}
 
 extern_methods!(
-    #[cfg(feature = "GameController_GCControllerLiveInput")]
     unsafe impl GCControllerLiveInput {
         #[method_id(@__retain_semantics Other unmappedInput)]
         pub unsafe fn unmappedInput(&self) -> Option<Id<GCControllerLiveInput>>;
@@ -71,6 +65,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other capture)]
         pub unsafe fn capture(&self) -> Id<GCControllerInputState>;
 
+        #[cfg(feature = "GameController_GCDevicePhysicalInputStateDiff")]
         #[method_id(@__retain_semantics Other nextInputState)]
         pub unsafe fn nextInputState(&self) -> Option<Id<GCControllerInputState>>;
     }
@@ -78,7 +73,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameController_GCControllerLiveInput")]
     unsafe impl GCControllerLiveInput {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

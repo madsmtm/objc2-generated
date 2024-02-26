@@ -9,10 +9,10 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Photos_PHAssetCollectionChangeRequest")]
+    #[cfg(feature = "Photos_PHChangeRequest")]
     pub struct PHAssetCollectionChangeRequest;
 
-    #[cfg(feature = "Photos_PHAssetCollectionChangeRequest")]
+    #[cfg(feature = "Photos_PHChangeRequest")]
     unsafe impl ClassType for PHAssetCollectionChangeRequest {
         #[inherits(NSObject)]
         type Super = PHChangeRequest;
@@ -20,26 +20,27 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Photos_PHAssetCollectionChangeRequest")]
+#[cfg(feature = "Photos_PHChangeRequest")]
 unsafe impl NSObjectProtocol for PHAssetCollectionChangeRequest {}
 
 extern_methods!(
-    #[cfg(feature = "Photos_PHAssetCollectionChangeRequest")]
+    #[cfg(feature = "Photos_PHChangeRequest")]
     unsafe impl PHAssetCollectionChangeRequest {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other creationRequestForAssetCollectionWithTitle:)]
         pub unsafe fn creationRequestForAssetCollectionWithTitle(title: &NSString) -> Id<Self>;
 
-        #[cfg(feature = "Photos_PHObjectPlaceholder")]
+        #[cfg(feature = "Photos_PHObject")]
         #[method_id(@__retain_semantics Other placeholderForCreatedAssetCollection)]
         pub unsafe fn placeholderForCreatedAssetCollection(&self) -> Id<PHObjectPlaceholder>;
 
+        #[cfg(feature = "Foundation_NSEnumerator")]
         #[method(deleteAssetCollections:)]
         pub unsafe fn deleteAssetCollections(
             asset_collections: &ProtocolObject<dyn NSFastEnumeration>,
         );
 
-        #[cfg(feature = "Photos_PHAssetCollection")]
+        #[cfg(all(feature = "Photos_PHCollection", feature = "Photos_PHObject"))]
         #[method_id(@__retain_semantics Other changeRequestForAssetCollection:)]
         pub unsafe fn changeRequestForAssetCollection(
             asset_collection: &PHAssetCollection,
@@ -47,8 +48,9 @@ extern_methods!(
 
         #[cfg(all(
             feature = "Photos_PHAsset",
-            feature = "Photos_PHAssetCollection",
-            feature = "Photos_PHFetchResult"
+            feature = "Photos_PHCollection",
+            feature = "Photos_PHFetchResult",
+            feature = "Photos_PHObject"
         ))]
         #[method_id(@__retain_semantics Other changeRequestForAssetCollection:assets:)]
         pub unsafe fn changeRequestForAssetCollection_assets(
@@ -64,10 +66,11 @@ extern_methods!(
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
+        #[cfg(feature = "Foundation_NSEnumerator")]
         #[method(addAssets:)]
         pub unsafe fn addAssets(&self, assets: &ProtocolObject<dyn NSFastEnumeration>);
 
-        #[cfg(feature = "Foundation_NSIndexSet")]
+        #[cfg(all(feature = "Foundation_NSEnumerator", feature = "Foundation_NSIndexSet"))]
         #[method(insertAssets:atIndexes:)]
         pub unsafe fn insertAssets_atIndexes(
             &self,
@@ -75,6 +78,7 @@ extern_methods!(
             indexes: &NSIndexSet,
         );
 
+        #[cfg(feature = "Foundation_NSEnumerator")]
         #[method(removeAssets:)]
         pub unsafe fn removeAssets(&self, assets: &ProtocolObject<dyn NSFastEnumeration>);
 
@@ -82,7 +86,7 @@ extern_methods!(
         #[method(removeAssetsAtIndexes:)]
         pub unsafe fn removeAssetsAtIndexes(&self, indexes: &NSIndexSet);
 
-        #[cfg(feature = "Foundation_NSIndexSet")]
+        #[cfg(all(feature = "Foundation_NSEnumerator", feature = "Foundation_NSIndexSet"))]
         #[method(replaceAssetsAtIndexes:withAssets:)]
         pub unsafe fn replaceAssetsAtIndexes_withAssets(
             &self,
@@ -102,7 +106,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Photos_PHAssetCollectionChangeRequest")]
+    #[cfg(feature = "Photos_PHChangeRequest")]
     unsafe impl PHAssetCollectionChangeRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

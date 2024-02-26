@@ -36,32 +36,30 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKWorkoutSession")]
     pub struct HKWorkoutSession;
 
-    #[cfg(feature = "HealthKit_HKWorkoutSession")]
     unsafe impl ClassType for HKWorkoutSession {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "HealthKit_HKWorkoutSession")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for HKWorkoutSession {}
 
-#[cfg(feature = "HealthKit_HKWorkoutSession")]
 unsafe impl NSObjectProtocol for HKWorkoutSession {}
 
-#[cfg(feature = "HealthKit_HKWorkoutSession")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for HKWorkoutSession {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKWorkoutSession")]
     unsafe impl HKWorkoutSession {
+        #[cfg(feature = "HealthKit_HKWorkout")]
         #[deprecated]
         #[method(activityType)]
         pub unsafe fn activityType(&self) -> HKWorkoutActivityType;
 
+        #[cfg(feature = "HealthKit_HKWorkoutConfiguration")]
         #[deprecated]
         #[method(locationType)]
         pub unsafe fn locationType(&self) -> HKWorkoutSessionLocationType;
@@ -97,6 +95,10 @@ extern_methods!(
         #[method_id(@__retain_semantics Other currentActivity)]
         pub unsafe fn currentActivity(&self) -> Id<HKWorkoutActivity>;
 
+        #[cfg(all(
+            feature = "HealthKit_HKWorkout",
+            feature = "HealthKit_HKWorkoutConfiguration"
+        ))]
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithActivityType:locationType:)]
         pub unsafe fn initWithActivityType_locationType(
@@ -151,7 +153,10 @@ extern_methods!(
         #[method(resume)]
         pub unsafe fn resume(&self);
 
-        #[cfg(feature = "HealthKit_HKLiveWorkoutBuilder")]
+        #[cfg(all(
+            feature = "HealthKit_HKLiveWorkoutBuilder",
+            feature = "HealthKit_HKWorkoutBuilder"
+        ))]
         #[method_id(@__retain_semantics Other associatedWorkoutBuilder)]
         pub unsafe fn associatedWorkoutBuilder(&self) -> Id<HKLiveWorkoutBuilder>;
 
@@ -199,7 +204,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKWorkoutSession")]
     unsafe impl HKWorkoutSession {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -208,7 +212,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait HKWorkoutSessionDelegate: NSObjectProtocol {
-        #[cfg(all(feature = "Foundation_NSDate", feature = "HealthKit_HKWorkoutSession"))]
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(workoutSession:didChangeToState:fromState:date:)]
         unsafe fn workoutSession_didChangeToState_fromState_date(
             &self,
@@ -218,7 +222,7 @@ extern_protocol!(
             date: &NSDate,
         );
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "HealthKit_HKWorkoutSession"))]
+        #[cfg(feature = "Foundation_NSError")]
         #[method(workoutSession:didFailWithError:)]
         unsafe fn workoutSession_didFailWithError(
             &self,
@@ -226,10 +230,7 @@ extern_protocol!(
             error: &NSError,
         );
 
-        #[cfg(all(
-            feature = "HealthKit_HKWorkoutEvent",
-            feature = "HealthKit_HKWorkoutSession"
-        ))]
+        #[cfg(feature = "HealthKit_HKWorkout")]
         #[optional]
         #[method(workoutSession:didGenerateEvent:)]
         unsafe fn workoutSession_didGenerateEvent(
@@ -240,8 +241,7 @@ extern_protocol!(
 
         #[cfg(all(
             feature = "Foundation_NSDate",
-            feature = "HealthKit_HKWorkoutConfiguration",
-            feature = "HealthKit_HKWorkoutSession"
+            feature = "HealthKit_HKWorkoutConfiguration"
         ))]
         #[optional]
         #[method(workoutSession:didBeginActivityWithConfiguration:date:)]
@@ -254,8 +254,7 @@ extern_protocol!(
 
         #[cfg(all(
             feature = "Foundation_NSDate",
-            feature = "HealthKit_HKWorkoutConfiguration",
-            feature = "HealthKit_HKWorkoutSession"
+            feature = "HealthKit_HKWorkoutConfiguration"
         ))]
         #[optional]
         #[method(workoutSession:didEndActivityWithConfiguration:date:)]
@@ -266,11 +265,7 @@ extern_protocol!(
             date: &NSDate,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSData",
-            feature = "HealthKit_HKWorkoutSession"
-        ))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSData"))]
         #[optional]
         #[method(workoutSession:didReceiveDataFromRemoteWorkoutSession:)]
         unsafe fn workoutSession_didReceiveDataFromRemoteWorkoutSession(
@@ -279,7 +274,7 @@ extern_protocol!(
             data: &NSArray<NSData>,
         );
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "HealthKit_HKWorkoutSession"))]
+        #[cfg(feature = "Foundation_NSError")]
         #[optional]
         #[method(workoutSession:didDisconnectFromRemoteDeviceWithError:)]
         unsafe fn workoutSession_didDisconnectFromRemoteDeviceWithError(

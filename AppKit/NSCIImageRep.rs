@@ -4,37 +4,3 @@ use crate::common::*;
 use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
-
-extern_category!(
-    /// Category "NSAppKitAdditions" on [`CIImage`].
-    #[doc(alias = "NSAppKitAdditions")]
-    pub unsafe trait CIImageNSAppKitAdditions {
-        #[cfg(feature = "AppKit_NSBitmapImageRep")]
-        #[method_id(@__retain_semantics Init initWithBitmapImageRep:)]
-        unsafe fn initWithBitmapImageRep(
-            this: Allocated<Self>,
-            bitmap_image_rep: &NSBitmapImageRep,
-        ) -> Option<Id<Self>>;
-
-        #[method(drawInRect:fromRect:operation:fraction:)]
-        unsafe fn drawInRect_fromRect_operation_fraction(
-            &self,
-            rect: NSRect,
-            from_rect: NSRect,
-            op: NSCompositingOperation,
-            delta: CGFloat,
-        );
-
-        #[method(drawAtPoint:fromRect:operation:fraction:)]
-        unsafe fn drawAtPoint_fromRect_operation_fraction(
-            &self,
-            point: NSPoint,
-            from_rect: NSRect,
-            op: NSCompositingOperation,
-            delta: CGFloat,
-        );
-    }
-
-    #[cfg(feature = "CoreImage_CIImage")]
-    unsafe impl CIImageNSAppKitAdditions for CIImage {}
-);

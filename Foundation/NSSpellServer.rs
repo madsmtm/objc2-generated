@@ -5,21 +5,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSSpellServer")]
     pub struct NSSpellServer;
 
-    #[cfg(feature = "Foundation_NSSpellServer")]
     unsafe impl ClassType for NSSpellServer {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSSpellServer")]
 unsafe impl NSObjectProtocol for NSSpellServer {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSSpellServer")]
     unsafe impl NSSpellServer {
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSSpellServerDelegate>>>;
@@ -53,7 +49,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSSpellServer")]
     unsafe impl NSSpellServer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -74,7 +69,7 @@ extern_static!(NSGrammarCorrections: &'static NSString);
 
 extern_protocol!(
     pub unsafe trait NSSpellServerDelegate: NSObjectProtocol {
-        #[cfg(all(feature = "Foundation_NSSpellServer", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "Foundation_NSRange", feature = "Foundation_NSString"))]
         #[optional]
         #[method(spellServer:findMisspelledWordInString:language:wordCount:countOnly:)]
         unsafe fn spellServer_findMisspelledWordInString_language_wordCount_countOnly(
@@ -86,11 +81,7 @@ extern_protocol!(
             count_only: bool,
         ) -> NSRange;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSSpellServer",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[optional]
         #[method_id(@__retain_semantics Other spellServer:suggestGuessesForWord:inLanguage:)]
         unsafe fn spellServer_suggestGuessesForWord_inLanguage(
@@ -100,7 +91,7 @@ extern_protocol!(
             language: &NSString,
         ) -> Option<Id<NSArray<NSString>>>;
 
-        #[cfg(all(feature = "Foundation_NSSpellServer", feature = "Foundation_NSString"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method(spellServer:didLearnWord:inLanguage:)]
         unsafe fn spellServer_didLearnWord_inLanguage(
@@ -110,7 +101,7 @@ extern_protocol!(
             language: &NSString,
         );
 
-        #[cfg(all(feature = "Foundation_NSSpellServer", feature = "Foundation_NSString"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method(spellServer:didForgetWord:inLanguage:)]
         unsafe fn spellServer_didForgetWord_inLanguage(
@@ -122,7 +113,7 @@ extern_protocol!(
 
         #[cfg(all(
             feature = "Foundation_NSArray",
-            feature = "Foundation_NSSpellServer",
+            feature = "Foundation_NSRange",
             feature = "Foundation_NSString"
         ))]
         #[optional]
@@ -138,7 +129,7 @@ extern_protocol!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSSpellServer",
+            feature = "Foundation_NSRange",
             feature = "Foundation_NSString"
         ))]
         #[optional]
@@ -155,7 +146,6 @@ extern_protocol!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSOrthography",
-            feature = "Foundation_NSSpellServer",
             feature = "Foundation_NSString",
             feature = "Foundation_NSTextCheckingResult"
         ))]
@@ -172,7 +162,7 @@ extern_protocol!(
             word_count: NonNull<NSInteger>,
         ) -> Option<Id<NSArray<NSTextCheckingResult>>>;
 
-        #[cfg(all(feature = "Foundation_NSSpellServer", feature = "Foundation_NSString"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method(spellServer:recordResponse:toCorrection:forWord:language:)]
         unsafe fn spellServer_recordResponse_toCorrection_forWord_language(

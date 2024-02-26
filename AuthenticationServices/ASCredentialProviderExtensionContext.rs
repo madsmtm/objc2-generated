@@ -7,10 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AuthenticationServices_ASCredentialProviderExtensionContext")]
+    #[cfg(feature = "Foundation_NSExtensionContext")]
     pub struct ASCredentialProviderExtensionContext;
 
-    #[cfg(feature = "AuthenticationServices_ASCredentialProviderExtensionContext")]
+    #[cfg(feature = "Foundation_NSExtensionContext")]
     unsafe impl ClassType for ASCredentialProviderExtensionContext {
         #[inherits(NSObject)]
         type Super = NSExtensionContext;
@@ -18,11 +18,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASCredentialProviderExtensionContext")]
+#[cfg(feature = "Foundation_NSExtensionContext")]
 unsafe impl NSObjectProtocol for ASCredentialProviderExtensionContext {}
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASCredentialProviderExtensionContext")]
+    #[cfg(feature = "Foundation_NSExtensionContext")]
     unsafe impl ASCredentialProviderExtensionContext {
         #[cfg(feature = "AuthenticationServices_ASPasswordCredential")]
         #[method(completeRequestWithSelectedCredential:completionHandler:)]
@@ -67,7 +67,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AuthenticationServices_ASCredentialProviderExtensionContext")]
+    #[cfg(feature = "Foundation_NSExtensionContext")]
     unsafe impl ASCredentialProviderExtensionContext {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

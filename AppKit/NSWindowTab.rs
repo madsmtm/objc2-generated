@@ -7,21 +7,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSWindowTab")]
     pub struct NSWindowTab;
 
-    #[cfg(feature = "AppKit_NSWindowTab")]
     unsafe impl ClassType for NSWindowTab {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSWindowTab")]
 unsafe impl NSObjectProtocol for NSWindowTab {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSWindowTab")]
     unsafe impl NSWindowTab {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
@@ -47,11 +43,11 @@ extern_methods!(
         #[method(setToolTip:)]
         pub unsafe fn setToolTip(&self, tool_tip: Option<&NSString>);
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[method_id(@__retain_semantics Other accessoryView)]
         pub unsafe fn accessoryView(&self, mtm: MainThreadMarker) -> Option<Id<NSView>>;
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[method(setAccessoryView:)]
         pub unsafe fn setAccessoryView(&self, accessory_view: Option<&NSView>);
     }
@@ -59,7 +55,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSWindowTab")]
     unsafe impl NSWindowTab {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

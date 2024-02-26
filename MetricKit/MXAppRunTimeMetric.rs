@@ -6,10 +6,10 @@ use crate::MetricKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MetricKit_MXAppRunTimeMetric")]
+    #[cfg(feature = "MetricKit_MXMetric")]
     pub struct MXAppRunTimeMetric;
 
-    #[cfg(feature = "MetricKit_MXAppRunTimeMetric")]
+    #[cfg(feature = "MetricKit_MXMetric")]
     unsafe impl ClassType for MXAppRunTimeMetric {
         #[inherits(NSObject)]
         type Super = MXMetric;
@@ -17,43 +17,31 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MetricKit_MXAppRunTimeMetric")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "MetricKit_MXMetric"))]
 unsafe impl NSCoding for MXAppRunTimeMetric {}
 
-#[cfg(feature = "MetricKit_MXAppRunTimeMetric")]
+#[cfg(feature = "MetricKit_MXMetric")]
 unsafe impl NSObjectProtocol for MXAppRunTimeMetric {}
 
-#[cfg(feature = "MetricKit_MXAppRunTimeMetric")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "MetricKit_MXMetric"))]
 unsafe impl NSSecureCoding for MXAppRunTimeMetric {}
 
 extern_methods!(
-    #[cfg(feature = "MetricKit_MXAppRunTimeMetric")]
+    #[cfg(feature = "MetricKit_MXMetric")]
     unsafe impl MXAppRunTimeMetric {
-        #[cfg(all(
-            feature = "Foundation_NSMeasurement",
-            feature = "Foundation_NSUnitDuration"
-        ))]
+        #[cfg(all(feature = "Foundation_NSMeasurement", feature = "Foundation_NSUnit"))]
         #[method_id(@__retain_semantics Other cumulativeForegroundTime)]
         pub unsafe fn cumulativeForegroundTime(&self) -> Id<NSMeasurement<NSUnitDuration>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSMeasurement",
-            feature = "Foundation_NSUnitDuration"
-        ))]
+        #[cfg(all(feature = "Foundation_NSMeasurement", feature = "Foundation_NSUnit"))]
         #[method_id(@__retain_semantics Other cumulativeBackgroundTime)]
         pub unsafe fn cumulativeBackgroundTime(&self) -> Id<NSMeasurement<NSUnitDuration>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSMeasurement",
-            feature = "Foundation_NSUnitDuration"
-        ))]
+        #[cfg(all(feature = "Foundation_NSMeasurement", feature = "Foundation_NSUnit"))]
         #[method_id(@__retain_semantics Other cumulativeBackgroundAudioTime)]
         pub unsafe fn cumulativeBackgroundAudioTime(&self) -> Id<NSMeasurement<NSUnitDuration>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSMeasurement",
-            feature = "Foundation_NSUnitDuration"
-        ))]
+        #[cfg(all(feature = "Foundation_NSMeasurement", feature = "Foundation_NSUnit"))]
         #[method_id(@__retain_semantics Other cumulativeBackgroundLocationTime)]
         pub unsafe fn cumulativeBackgroundLocationTime(&self) -> Id<NSMeasurement<NSUnitDuration>>;
     }
@@ -61,7 +49,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MetricKit_MXAppRunTimeMetric")]
+    #[cfg(feature = "MetricKit_MXMetric")]
     unsafe impl MXAppRunTimeMetric {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

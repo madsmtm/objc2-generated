@@ -17,24 +17,20 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTableViewRowAction")]
     pub struct NSTableViewRowAction;
 
-    #[cfg(feature = "AppKit_NSTableViewRowAction")]
     unsafe impl ClassType for NSTableViewRowAction {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSTableViewRowAction")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSTableViewRowAction {}
 
-#[cfg(feature = "AppKit_NSTableViewRowAction")]
 unsafe impl NSObjectProtocol for NSTableViewRowAction {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTableViewRowAction")]
     unsafe impl NSTableViewRowAction {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other rowActionWithStyle:title:handler:)]
@@ -75,7 +71,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTableViewRowAction")]
     unsafe impl NSTableViewRowAction {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

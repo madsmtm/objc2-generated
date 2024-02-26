@@ -7,10 +7,10 @@ use crate::MediaPlayer::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MediaPlayer_MPMediaItemCollection")]
+    #[cfg(feature = "MediaPlayer_MPMediaEntity")]
     pub struct MPMediaItemCollection;
 
-    #[cfg(feature = "MediaPlayer_MPMediaItemCollection")]
+    #[cfg(feature = "MediaPlayer_MPMediaEntity")]
     unsafe impl ClassType for MPMediaItemCollection {
         #[inherits(NSObject)]
         type Super = MPMediaEntity;
@@ -18,17 +18,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MediaPlayer_MPMediaItemCollection")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "MediaPlayer_MPMediaEntity"))]
 unsafe impl NSCoding for MPMediaItemCollection {}
 
-#[cfg(feature = "MediaPlayer_MPMediaItemCollection")]
+#[cfg(feature = "MediaPlayer_MPMediaEntity")]
 unsafe impl NSObjectProtocol for MPMediaItemCollection {}
 
-#[cfg(feature = "MediaPlayer_MPMediaItemCollection")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "MediaPlayer_MPMediaEntity"))]
 unsafe impl NSSecureCoding for MPMediaItemCollection {}
 
 extern_methods!(
-    #[cfg(feature = "MediaPlayer_MPMediaItemCollection")]
+    #[cfg(feature = "MediaPlayer_MPMediaEntity")]
     unsafe impl MPMediaItemCollection {
         #[cfg(all(feature = "Foundation_NSArray", feature = "MediaPlayer_MPMediaItem"))]
         #[method_id(@__retain_semantics Other collectionWithItems:)]
@@ -54,6 +54,7 @@ extern_methods!(
         #[method(count)]
         pub unsafe fn count(&self) -> NSUInteger;
 
+        #[cfg(feature = "MediaPlayer_MPMediaItem")]
         #[method(mediaTypes)]
         pub unsafe fn mediaTypes(&self) -> MPMediaType;
     }
@@ -61,7 +62,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MediaPlayer_MPMediaItemCollection")]
+    #[cfg(feature = "MediaPlayer_MPMediaEntity")]
     unsafe impl MPMediaItemCollection {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

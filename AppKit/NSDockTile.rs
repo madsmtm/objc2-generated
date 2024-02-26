@@ -5,34 +5,32 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "AppKit_NSApplication")]
 extern_static!(NSAppKitVersionNumberWithDockTilePlugInSupport: NSAppKitVersion = 1001.0);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSDockTile")]
     pub struct NSDockTile;
 
-    #[cfg(feature = "AppKit_NSDockTile")]
     unsafe impl ClassType for NSDockTile {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSDockTile")]
 unsafe impl NSObjectProtocol for NSDockTile {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSDockTile")]
     unsafe impl NSDockTile {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(size)]
         pub unsafe fn size(&self) -> NSSize;
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[method_id(@__retain_semantics Other contentView)]
         pub unsafe fn contentView(&self, mtm: MainThreadMarker) -> Option<Id<NSView>>;
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[method(setContentView:)]
         pub unsafe fn setContentView(&self, content_view: Option<&NSView>);
 
@@ -60,7 +58,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSDockTile")]
     unsafe impl NSDockTile {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -72,7 +69,6 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSDockTilePlugIn: NSObjectProtocol {
-        #[cfg(feature = "AppKit_NSDockTile")]
         #[method(setDockTile:)]
         unsafe fn setDockTile(&self, dock_tile: Option<&NSDockTile>);
 

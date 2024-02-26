@@ -5,30 +5,26 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSPredicate")]
     pub struct NSPredicate;
 
-    #[cfg(feature = "Foundation_NSPredicate")]
     unsafe impl ClassType for NSPredicate {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSPredicate")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSPredicate {}
 
-#[cfg(feature = "Foundation_NSPredicate")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSPredicate {}
 
-#[cfg(feature = "Foundation_NSPredicate")]
 unsafe impl NSObjectProtocol for NSPredicate {}
 
-#[cfg(feature = "Foundation_NSPredicate")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSPredicate {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSPredicate")]
     unsafe impl NSPredicate {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other predicateWithFormat:argumentArray:)]
@@ -81,7 +77,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSPredicate")]
     unsafe impl NSPredicate {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -106,7 +101,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSPredicateSupport
-    #[cfg(feature = "Foundation_NSMutableArray")]
+    #[cfg(feature = "Foundation_NSArray")]
     unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
         #[cfg(feature = "Foundation_NSPredicate")]
         #[method(filterUsingPredicate:)]
@@ -129,7 +124,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSPredicateSupport
-    #[cfg(feature = "Foundation_NSMutableSet")]
+    #[cfg(feature = "Foundation_NSSet")]
     unsafe impl<ObjectType: Message> NSMutableSet<ObjectType> {
         #[cfg(feature = "Foundation_NSPredicate")]
         #[method(filterUsingPredicate:)]
@@ -152,7 +147,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSPredicateSupport
-    #[cfg(feature = "Foundation_NSMutableOrderedSet")]
+    #[cfg(feature = "Foundation_NSOrderedSet")]
     unsafe impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
         #[cfg(feature = "Foundation_NSPredicate")]
         #[method(filterUsingPredicate:)]

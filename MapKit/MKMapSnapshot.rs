@@ -9,21 +9,17 @@ use crate::MapKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKMapSnapshot")]
     pub struct MKMapSnapshot;
 
-    #[cfg(feature = "MapKit_MKMapSnapshot")]
     unsafe impl ClassType for MKMapSnapshot {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MapKit_MKMapSnapshot")]
 unsafe impl NSObjectProtocol for MKMapSnapshot {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKMapSnapshot")]
     unsafe impl MKMapSnapshot {
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other image)]
@@ -33,6 +29,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other appearance)]
         pub unsafe fn appearance(&self) -> Id<NSAppearance>;
 
+        #[cfg(all(feature = "CoreLocation_CLLocation", feature = "Foundation_NSGeometry"))]
         #[method(pointForCoordinate:)]
         pub unsafe fn pointForCoordinate(&self, coordinate: CLLocationCoordinate2D) -> NSPoint;
     }
@@ -40,7 +37,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MapKit_MKMapSnapshot")]
     unsafe impl MKMapSnapshot {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

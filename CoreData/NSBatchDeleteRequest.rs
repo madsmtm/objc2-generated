@@ -6,10 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSBatchDeleteRequest")]
+    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
     pub struct NSBatchDeleteRequest;
 
-    #[cfg(feature = "CoreData_NSBatchDeleteRequest")]
+    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
     unsafe impl ClassType for NSBatchDeleteRequest {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreRequest;
@@ -17,14 +17,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CoreData_NSBatchDeleteRequest")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreRequest",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCopying for NSBatchDeleteRequest {}
 
-#[cfg(feature = "CoreData_NSBatchDeleteRequest")]
+#[cfg(feature = "CoreData_NSPersistentStoreRequest")]
 unsafe impl NSObjectProtocol for NSBatchDeleteRequest {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSBatchDeleteRequest")]
+    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
     unsafe impl NSBatchDeleteRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -43,9 +46,11 @@ extern_methods!(
             objects: &NSArray<NSManagedObjectID>,
         ) -> Id<Self>;
 
+        #[cfg(feature = "CoreData_NSPersistentStoreResult")]
         #[method(resultType)]
         pub unsafe fn resultType(&self) -> NSBatchDeleteRequestResultType;
 
+        #[cfg(feature = "CoreData_NSPersistentStoreResult")]
         #[method(setResultType:)]
         pub unsafe fn setResultType(&self, result_type: NSBatchDeleteRequestResultType);
 
@@ -57,7 +62,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSBatchDeleteRequest")]
+    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
     unsafe impl NSBatchDeleteRequest {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

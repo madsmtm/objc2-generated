@@ -7,11 +7,11 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSEPSImageRep")]
+    #[cfg(feature = "AppKit_NSImageRep")]
     #[deprecated = "`NSEPSImageRep` instances cannot be created on macOS 14.0 and later"]
     pub struct NSEPSImageRep;
 
-    #[cfg(feature = "AppKit_NSEPSImageRep")]
+    #[cfg(feature = "AppKit_NSImageRep")]
     unsafe impl ClassType for NSEPSImageRep {
         #[inherits(NSObject)]
         type Super = NSImageRep;
@@ -19,17 +19,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSEPSImageRep")]
+#[cfg(all(feature = "AppKit_NSImageRep", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for NSEPSImageRep {}
 
-#[cfg(feature = "AppKit_NSEPSImageRep")]
+#[cfg(all(feature = "AppKit_NSImageRep", feature = "Foundation_NSObject"))]
 unsafe impl NSCopying for NSEPSImageRep {}
 
-#[cfg(feature = "AppKit_NSEPSImageRep")]
+#[cfg(feature = "AppKit_NSImageRep")]
 unsafe impl NSObjectProtocol for NSEPSImageRep {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSEPSImageRep")]
+    #[cfg(feature = "AppKit_NSImageRep")]
     unsafe impl NSEPSImageRep {
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other imageRepWithData:)]
@@ -39,6 +39,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithData:)]
         pub unsafe fn initWithData(this: Allocated<Self>, eps_data: &NSData) -> Option<Id<Self>>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(boundingBox)]
         pub unsafe fn boundingBox(&self) -> NSRect;
 
@@ -54,7 +55,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSImageRep`
-    #[cfg(feature = "AppKit_NSEPSImageRep")]
+    #[cfg(feature = "AppKit_NSImageRep")]
     unsafe impl NSEPSImageRep {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -67,7 +68,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSEPSImageRep")]
+    #[cfg(feature = "AppKit_NSImageRep")]
     unsafe impl NSEPSImageRep {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

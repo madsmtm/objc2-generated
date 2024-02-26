@@ -43,30 +43,26 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKRecord")]
     pub struct CKRecord;
 
-    #[cfg(feature = "CloudKit_CKRecord")]
     unsafe impl ClassType for CKRecord {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CloudKit_CKRecord")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CKRecord {}
 
-#[cfg(feature = "CloudKit_CKRecord")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for CKRecord {}
 
-#[cfg(feature = "CloudKit_CKRecord")]
 unsafe impl NSObjectProtocol for CKRecord {}
 
-#[cfg(feature = "CloudKit_CKRecord")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CKRecord {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKRecord")]
     unsafe impl CKRecord {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -195,7 +191,7 @@ extern_methods!(
 #[cfg(feature = "Foundation_NSString")]
 unsafe impl CKRecordValue for NSString {}
 
-#[cfg(feature = "Foundation_NSNumber")]
+#[cfg(feature = "Foundation_NSValue")]
 unsafe impl CKRecordValue for NSNumber {}
 
 #[cfg(feature = "Foundation_NSArray")]
@@ -274,12 +270,10 @@ extern_protocol!(
 
 extern_methods!(
     /// CKRecordKeyValueSettingConformance
-    #[cfg(feature = "CloudKit_CKRecord")]
     unsafe impl CKRecord {
         #[method_id(@__retain_semantics Other encryptedValues)]
         pub unsafe fn encryptedValues(&self) -> Id<ProtocolObject<dyn CKRecordKeyValueSetting>>;
     }
 );
 
-#[cfg(feature = "CloudKit_CKRecord")]
 unsafe impl CKRecordKeyValueSetting for CKRecord {}

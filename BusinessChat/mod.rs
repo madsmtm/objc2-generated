@@ -17,21 +17,29 @@
 #[link(name = "BusinessChat", kind = "framework")]
 extern "C" {}
 
+#[cfg(feature = "BusinessChat_BCChatAction")]
 #[path = "BCChatAction.rs"]
 mod __BCChatAction;
+#[cfg(feature = "BusinessChat_BCChatButton")]
 #[path = "BCChatButton.rs"]
 mod __BCChatButton;
 
 #[cfg(feature = "BusinessChat_BCChatAction")]
 pub use self::__BCChatAction::BCChatAction;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "BusinessChat_BCChatAction", feature = "Foundation_NSString"))]
 pub use self::__BCChatAction::BCParameterName;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "BusinessChat_BCChatAction", feature = "Foundation_NSString"))]
 pub use self::__BCChatAction::BCParameterNameBody;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "BusinessChat_BCChatAction", feature = "Foundation_NSString"))]
 pub use self::__BCChatAction::BCParameterNameGroup;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "BusinessChat_BCChatAction", feature = "Foundation_NSString"))]
 pub use self::__BCChatAction::BCParameterNameIntent;
-#[cfg(feature = "BusinessChat_BCChatButton")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "BusinessChat_BCChatButton"
+))]
 pub use self::__BCChatButton::BCChatButton;
+#[cfg(feature = "BusinessChat_BCChatButton")]
 pub use self::__BCChatButton::BCChatButtonStyle;

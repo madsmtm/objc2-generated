@@ -4,7 +4,7 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
 extern_static!(MTLBinaryArchiveDomain: &'static NSErrorDomain);
 
 ns_enum!(
@@ -25,24 +25,20 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLBinaryArchiveDescriptor")]
     pub struct MTLBinaryArchiveDescriptor;
 
-    #[cfg(feature = "Metal_MTLBinaryArchiveDescriptor")]
     unsafe impl ClassType for MTLBinaryArchiveDescriptor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLBinaryArchiveDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLBinaryArchiveDescriptor {}
 
-#[cfg(feature = "Metal_MTLBinaryArchiveDescriptor")]
 unsafe impl NSObjectProtocol for MTLBinaryArchiveDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLBinaryArchiveDescriptor")]
     unsafe impl MTLBinaryArchiveDescriptor {
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other url)]
@@ -56,7 +52,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLBinaryArchiveDescriptor")]
     unsafe impl MTLBinaryArchiveDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub fn init(this: Allocated<Self>) -> Id<Self>;
@@ -66,7 +61,6 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Metal_MTLBinaryArchiveDescriptor")]
 impl DefaultId for MTLBinaryArchiveDescriptor {
     #[inline]
     fn default_id() -> Id<Self> {
@@ -84,33 +78,25 @@ extern_protocol!(
         #[method(setLabel:)]
         fn setLabel(&self, label: Option<&NSString>);
 
+        #[cfg(feature = "Metal_MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
         fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "Metal_MTLComputePipelineDescriptor"
-        ))]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Metal_MTLComputePipeline"))]
         #[method(addComputePipelineFunctionsWithDescriptor:error:_)]
         fn addComputePipelineFunctionsWithDescriptor_error(
             &self,
             descriptor: &MTLComputePipelineDescriptor,
         ) -> Result<(), Id<NSError>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "Metal_MTLRenderPipelineDescriptor"
-        ))]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Metal_MTLRenderPipeline"))]
         #[method(addRenderPipelineFunctionsWithDescriptor:error:_)]
         fn addRenderPipelineFunctionsWithDescriptor_error(
             &self,
             descriptor: &MTLRenderPipelineDescriptor,
         ) -> Result<(), Id<NSError>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "Metal_MTLTileRenderPipelineDescriptor"
-        ))]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Metal_MTLRenderPipeline"))]
         #[method(addTileRenderPipelineFunctionsWithDescriptor:error:_)]
         unsafe fn addTileRenderPipelineFunctionsWithDescriptor_error(
             &self,
@@ -123,7 +109,8 @@ extern_protocol!(
 
         #[cfg(all(
             feature = "Foundation_NSError",
-            feature = "Metal_MTLFunctionDescriptor"
+            feature = "Metal_MTLFunctionDescriptor",
+            feature = "Metal_MTLLibrary"
         ))]
         #[method(addFunctionWithDescriptor:library:error:_)]
         unsafe fn addFunctionWithDescriptor_library_error(

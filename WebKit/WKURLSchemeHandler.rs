@@ -7,7 +7,12 @@ use crate::WebKit::*;
 
 extern_protocol!(
     pub unsafe trait WKURLSchemeHandler: NSObjectProtocol {
-        #[cfg(feature = "WebKit_WKWebView")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "WebKit_WKURLSchemeTask",
+            feature = "WebKit_WKWebView"
+        ))]
         #[method(webView:startURLSchemeTask:)]
         unsafe fn webView_startURLSchemeTask(
             &self,
@@ -15,7 +20,12 @@ extern_protocol!(
             url_scheme_task: &ProtocolObject<dyn WKURLSchemeTask>,
         );
 
-        #[cfg(feature = "WebKit_WKWebView")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "WebKit_WKURLSchemeTask",
+            feature = "WebKit_WKWebView"
+        ))]
         #[method(webView:stopURLSchemeTask:)]
         unsafe fn webView_stopURLSchemeTask(
             &self,

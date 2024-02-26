@@ -6,21 +6,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CallKit_CXCall")]
     pub struct CXCall;
 
-    #[cfg(feature = "CallKit_CXCall")]
     unsafe impl ClassType for CXCall {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CallKit_CXCall")]
 unsafe impl NSObjectProtocol for CXCall {}
 
 extern_methods!(
-    #[cfg(feature = "CallKit_CXCall")]
     unsafe impl CXCall {
         #[cfg(feature = "Foundation_NSUUID")]
         #[method_id(@__retain_semantics Other UUID)]
@@ -48,7 +44,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CallKit_CXCall")]
     unsafe impl CXCall {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

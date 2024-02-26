@@ -22,34 +22,31 @@ extern_static!(PHLivePhotoInfoCancelledKey: &'static NSString);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Photos_PHLivePhoto")]
     pub struct PHLivePhoto;
 
-    #[cfg(feature = "Photos_PHLivePhoto")]
     unsafe impl ClassType for PHLivePhoto {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Photos_PHLivePhoto")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for PHLivePhoto {}
 
-#[cfg(feature = "Photos_PHLivePhoto")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for PHLivePhoto {}
 
-#[cfg(feature = "Photos_PHLivePhoto")]
 unsafe impl NSObjectProtocol for PHLivePhoto {}
 
-#[cfg(feature = "Photos_PHLivePhoto")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for PHLivePhoto {}
 
 extern_methods!(
-    #[cfg(feature = "Photos_PHLivePhoto")]
     unsafe impl PHLivePhoto {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(size)]
         pub unsafe fn size(&self) -> CGSize;
 
@@ -57,7 +54,9 @@ extern_methods!(
             feature = "AppKit_NSImage",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSURL"
+            feature = "Foundation_NSGeometry",
+            feature = "Foundation_NSURL",
+            feature = "Photos_PhotosTypes"
         ))]
         #[method(requestLivePhotoWithResourceFileURLs:placeholderImage:targetSize:contentMode:resultHandler:)]
         pub unsafe fn requestLivePhotoWithResourceFileURLs_placeholderImage_targetSize_contentMode_resultHandler(
@@ -75,7 +74,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Photos_PHLivePhoto")]
     unsafe impl PHLivePhoto {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -84,9 +82,8 @@ extern_methods!(
 
 extern_methods!(
     /// NSItemProvider
-    #[cfg(feature = "Photos_PHLivePhoto")]
     unsafe impl PHLivePhoto {}
 );
 
-#[cfg(feature = "Photos_PHLivePhoto")]
+#[cfg(feature = "Foundation_NSItemProvider")]
 unsafe impl NSItemProviderReading for PHLivePhoto {}

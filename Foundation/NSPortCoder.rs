@@ -5,11 +5,11 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSPortCoder")]
+    #[cfg(feature = "Foundation_NSCoder")]
     #[deprecated = "Use NSXPCConnection instead"]
     pub struct NSPortCoder;
 
-    #[cfg(feature = "Foundation_NSPortCoder")]
+    #[cfg(feature = "Foundation_NSCoder")]
     unsafe impl ClassType for NSPortCoder {
         #[inherits(NSObject)]
         type Super = NSCoder;
@@ -17,11 +17,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSPortCoder")]
+#[cfg(feature = "Foundation_NSCoder")]
 unsafe impl NSObjectProtocol for NSPortCoder {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSPortCoder")]
+    #[cfg(feature = "Foundation_NSCoder")]
     unsafe impl NSPortCoder {
         #[deprecated = "Use NSXPCConnection instead"]
         #[method(isBycopy)]
@@ -73,7 +73,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSPortCoder")]
+    #[cfg(feature = "Foundation_NSCoder")]
     unsafe impl NSPortCoder {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

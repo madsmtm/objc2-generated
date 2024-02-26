@@ -18,21 +18,17 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSEntityMapping")]
     pub struct NSEntityMapping;
 
-    #[cfg(feature = "CoreData_NSEntityMapping")]
     unsafe impl ClassType for NSEntityMapping {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreData_NSEntityMapping")]
 unsafe impl NSObjectProtocol for NSEntityMapping {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSEntityMapping")]
     unsafe impl NSEntityMapping {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
@@ -139,7 +135,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSEntityMapping")]
     unsafe impl NSEntityMapping {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

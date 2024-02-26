@@ -7,38 +7,34 @@ use crate::StoreKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "StoreKit_SKAdImpression")]
     pub struct SKAdImpression;
 
-    #[cfg(feature = "StoreKit_SKAdImpression")]
     unsafe impl ClassType for SKAdImpression {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "StoreKit_SKAdImpression")]
 unsafe impl NSObjectProtocol for SKAdImpression {}
 
 extern_methods!(
-    #[cfg(feature = "StoreKit_SKAdImpression")]
     unsafe impl SKAdImpression {
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method_id(@__retain_semantics Other sourceAppStoreItemIdentifier)]
         pub unsafe fn sourceAppStoreItemIdentifier(&self) -> Id<NSNumber>;
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method(setSourceAppStoreItemIdentifier:)]
         pub unsafe fn setSourceAppStoreItemIdentifier(
             &self,
             source_app_store_item_identifier: &NSNumber,
         );
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method_id(@__retain_semantics Other advertisedAppStoreItemIdentifier)]
         pub unsafe fn advertisedAppStoreItemIdentifier(&self) -> Id<NSNumber>;
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method(setAdvertisedAppStoreItemIdentifier:)]
         pub unsafe fn setAdvertisedAppStoreItemIdentifier(
             &self,
@@ -53,19 +49,19 @@ extern_methods!(
         #[method(setAdNetworkIdentifier:)]
         pub unsafe fn setAdNetworkIdentifier(&self, ad_network_identifier: &NSString);
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method_id(@__retain_semantics Other adCampaignIdentifier)]
         pub unsafe fn adCampaignIdentifier(&self) -> Id<NSNumber>;
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method(setAdCampaignIdentifier:)]
         pub unsafe fn setAdCampaignIdentifier(&self, ad_campaign_identifier: &NSNumber);
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method_id(@__retain_semantics Other sourceIdentifier)]
         pub unsafe fn sourceIdentifier(&self) -> Id<NSNumber>;
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method(setSourceIdentifier:)]
         pub unsafe fn setSourceIdentifier(&self, source_identifier: &NSNumber);
 
@@ -101,11 +97,11 @@ extern_methods!(
         #[method(setAdPurchaserName:)]
         pub unsafe fn setAdPurchaserName(&self, ad_purchaser_name: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method_id(@__retain_semantics Other timestamp)]
         pub unsafe fn timestamp(&self) -> Id<NSNumber>;
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method(setTimestamp:)]
         pub unsafe fn setTimestamp(&self, timestamp: &NSNumber);
 
@@ -129,7 +125,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "StoreKit_SKAdImpression")]
     unsafe impl SKAdImpression {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

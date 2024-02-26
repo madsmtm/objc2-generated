@@ -21,30 +21,26 @@ extern_static!(UNNotificationCategoryOptionNone: UNNotificationCategoryOptions =
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "UserNotifications_UNNotificationCategory")]
     pub struct UNNotificationCategory;
 
-    #[cfg(feature = "UserNotifications_UNNotificationCategory")]
     unsafe impl ClassType for UNNotificationCategory {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "UserNotifications_UNNotificationCategory")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for UNNotificationCategory {}
 
-#[cfg(feature = "UserNotifications_UNNotificationCategory")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for UNNotificationCategory {}
 
-#[cfg(feature = "UserNotifications_UNNotificationCategory")]
 unsafe impl NSObjectProtocol for UNNotificationCategory {}
 
-#[cfg(feature = "UserNotifications_UNNotificationCategory")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for UNNotificationCategory {}
 
 extern_methods!(
-    #[cfg(feature = "UserNotifications_UNNotificationCategory")]
     unsafe impl UNNotificationCategory {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
@@ -121,7 +117,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UserNotifications_UNNotificationCategory")]
     unsafe impl UNNotificationCategory {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -6,6 +6,7 @@ use crate::Metal::*;
 
 extern_protocol!(
     pub unsafe trait MTLEvent: NSObjectProtocol {
+        #[cfg(feature = "Metal_MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
         fn device(&self) -> Option<Id<ProtocolObject<dyn MTLDevice>>>;
 
@@ -23,21 +24,17 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLSharedEventListener")]
     pub struct MTLSharedEventListener;
 
-    #[cfg(feature = "Metal_MTLSharedEventListener")]
     unsafe impl ClassType for MTLSharedEventListener {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLSharedEventListener")]
 unsafe impl NSObjectProtocol for MTLSharedEventListener {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLSharedEventListener")]
     unsafe impl MTLSharedEventListener {
         #[method_id(@__retain_semantics Init init)]
         pub fn init(this: Allocated<Self>) -> Id<Self>;
@@ -46,14 +43,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLSharedEventListener")]
     unsafe impl MTLSharedEventListener {
         #[method_id(@__retain_semantics New new)]
         pub fn new() -> Id<Self>;
     }
 );
 
-#[cfg(feature = "Metal_MTLSharedEventListener")]
 impl DefaultId for MTLSharedEventListener {
     #[inline]
     fn default_id() -> Id<Self> {
@@ -66,7 +61,6 @@ pub type MTLSharedEventNotificationBlock =
 
 extern_protocol!(
     pub unsafe trait MTLSharedEvent: MTLEvent {
-        #[cfg(feature = "Metal_MTLSharedEventListener")]
         #[method(notifyListener:atValue:block:)]
         unsafe fn notifyListener_atValue_block(
             &self,
@@ -75,7 +69,6 @@ extern_protocol!(
             block: MTLSharedEventNotificationBlock,
         );
 
-        #[cfg(feature = "Metal_MTLSharedEventHandle")]
         #[method_id(@__retain_semantics New newSharedEventHandle)]
         unsafe fn newSharedEventHandle(&self) -> Id<MTLSharedEventHandle>;
 
@@ -91,27 +84,23 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLSharedEventHandle")]
     pub struct MTLSharedEventHandle;
 
-    #[cfg(feature = "Metal_MTLSharedEventHandle")]
     unsafe impl ClassType for MTLSharedEventHandle {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLSharedEventHandle")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for MTLSharedEventHandle {}
 
-#[cfg(feature = "Metal_MTLSharedEventHandle")]
 unsafe impl NSObjectProtocol for MTLSharedEventHandle {}
 
-#[cfg(feature = "Metal_MTLSharedEventHandle")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for MTLSharedEventHandle {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLSharedEventHandle")]
     unsafe impl MTLSharedEventHandle {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
@@ -121,7 +110,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLSharedEventHandle")]
     unsafe impl MTLSharedEventHandle {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

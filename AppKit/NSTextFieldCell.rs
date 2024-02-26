@@ -15,10 +15,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTextFieldCell")]
+    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
     pub struct NSTextFieldCell;
 
-    #[cfg(feature = "AppKit_NSTextFieldCell")]
+    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
     unsafe impl ClassType for NSTextFieldCell {
         #[inherits(NSCell, NSObject)]
         type Super = NSActionCell;
@@ -26,26 +26,46 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSTextFieldCell")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell"
+))]
 unsafe impl NSAccessibility for NSTextFieldCell {}
 
-#[cfg(feature = "AppKit_NSTextFieldCell")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell"
+))]
 unsafe impl NSAccessibilityElementProtocol for NSTextFieldCell {}
 
-#[cfg(feature = "AppKit_NSTextFieldCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSTextFieldCell {}
 
-#[cfg(feature = "AppKit_NSTextFieldCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCopying for NSTextFieldCell {}
 
-#[cfg(feature = "AppKit_NSTextFieldCell")]
+#[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
 unsafe impl NSObjectProtocol for NSTextFieldCell {}
 
-#[cfg(feature = "AppKit_NSTextFieldCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSUserInterfaceItemIdentification"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSTextFieldCell {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTextFieldCell")]
+    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
     unsafe impl NSTextFieldCell {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initTextCell:)]
@@ -81,7 +101,11 @@ extern_methods!(
         #[method(setTextColor:)]
         pub unsafe fn setTextColor(&self, text_color: Option<&NSColor>);
 
-        #[cfg(feature = "AppKit_NSText")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSText",
+            feature = "AppKit_NSView"
+        ))]
         #[method_id(@__retain_semantics Other setUpFieldEditorAttributes:)]
         pub unsafe fn setUpFieldEditorAttributes(&self, text_obj: &NSText) -> Id<NSText>;
 
@@ -128,7 +152,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSCell`
-    #[cfg(feature = "AppKit_NSTextFieldCell")]
+    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
     unsafe impl NSTextFieldCell {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -137,7 +161,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTextFieldCell")]
+    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
     unsafe impl NSTextFieldCell {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

@@ -6,27 +6,23 @@ use crate::IdentityLookup::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "IdentityLookup_ILMessageFilterCapabilitiesQueryRequest")]
     pub struct ILMessageFilterCapabilitiesQueryRequest;
 
-    #[cfg(feature = "IdentityLookup_ILMessageFilterCapabilitiesQueryRequest")]
     unsafe impl ClassType for ILMessageFilterCapabilitiesQueryRequest {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "IdentityLookup_ILMessageFilterCapabilitiesQueryRequest")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for ILMessageFilterCapabilitiesQueryRequest {}
 
-#[cfg(feature = "IdentityLookup_ILMessageFilterCapabilitiesQueryRequest")]
 unsafe impl NSObjectProtocol for ILMessageFilterCapabilitiesQueryRequest {}
 
-#[cfg(feature = "IdentityLookup_ILMessageFilterCapabilitiesQueryRequest")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for ILMessageFilterCapabilitiesQueryRequest {}
 
 extern_methods!(
-    #[cfg(feature = "IdentityLookup_ILMessageFilterCapabilitiesQueryRequest")]
     unsafe impl ILMessageFilterCapabilitiesQueryRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -35,7 +31,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "IdentityLookup_ILMessageFilterCapabilitiesQueryRequest")]
     unsafe impl ILMessageFilterCapabilitiesQueryRequest {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

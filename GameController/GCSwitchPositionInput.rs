@@ -7,6 +7,7 @@ use crate::GameController::*;
 
 extern_protocol!(
     pub unsafe trait GCSwitchPositionInput: NSObjectProtocol {
+        #[cfg(feature = "GameController_GCPhysicalInputElement")]
         #[method(positionDidChangeHandler)]
         unsafe fn positionDidChangeHandler(
             &self,
@@ -18,6 +19,7 @@ extern_protocol!(
             ),
         >;
 
+        #[cfg(feature = "GameController_GCPhysicalInputElement")]
         #[method(setPositionDidChangeHandler:)]
         unsafe fn setPositionDidChangeHandler(
             &self,
@@ -35,6 +37,7 @@ extern_protocol!(
         #[method(position)]
         unsafe fn position(&self) -> NSInteger;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(positionRange)]
         unsafe fn positionRange(&self) -> NSRange;
 
@@ -44,13 +47,18 @@ extern_protocol!(
         #[method(canWrap)]
         unsafe fn canWrap(&self) -> bool;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(lastPositionTimestamp)]
         unsafe fn lastPositionTimestamp(&self) -> NSTimeInterval;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(lastPositionLatency)]
         unsafe fn lastPositionLatency(&self) -> NSTimeInterval;
 
-        #[cfg(feature = "Foundation_NSSet")]
+        #[cfg(all(
+            feature = "Foundation_NSSet",
+            feature = "GameController_GCPhysicalInputSource"
+        ))]
         #[method_id(@__retain_semantics Other sources)]
         unsafe fn sources(&self) -> Id<NSSet<ProtocolObject<dyn GCPhysicalInputSource>>>;
     }

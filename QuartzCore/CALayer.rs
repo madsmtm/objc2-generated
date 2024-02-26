@@ -59,30 +59,26 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "QuartzCore_CALayer")]
     pub struct CALayer;
 
-    #[cfg(feature = "QuartzCore_CALayer")]
     unsafe impl ClassType for CALayer {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "QuartzCore_CALayer")]
+#[cfg(feature = "QuartzCore_CAMediaTiming")]
 unsafe impl CAMediaTiming for CALayer {}
 
-#[cfg(feature = "QuartzCore_CALayer")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CALayer {}
 
-#[cfg(feature = "QuartzCore_CALayer")]
 unsafe impl NSObjectProtocol for CALayer {}
 
-#[cfg(feature = "QuartzCore_CALayer")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CALayer {}
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CALayer")]
     unsafe impl CALayer {
         #[method_id(@__retain_semantics Other layer)]
         pub fn layer() -> Id<Self>;
@@ -111,45 +107,65 @@ extern_methods!(
         #[method(shouldArchiveValueForKey:)]
         pub unsafe fn shouldArchiveValueForKey(&self, key: &NSString) -> bool;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(bounds)]
         pub fn bounds(&self) -> CGRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setBounds:)]
         pub fn setBounds(&self, bounds: CGRect);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(position)]
         pub fn position(&self) -> CGPoint;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setPosition:)]
         pub fn setPosition(&self, position: CGPoint);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(zPosition)]
         pub fn zPosition(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setZPosition:)]
         pub fn setZPosition(&self, z_position: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(anchorPoint)]
         pub fn anchorPoint(&self) -> CGPoint;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setAnchorPoint:)]
         pub fn setAnchorPoint(&self, anchor_point: CGPoint);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(anchorPointZ)]
         pub fn anchorPointZ(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setAnchorPointZ:)]
         pub fn setAnchorPointZ(&self, anchor_point_z: CGFloat);
 
+        #[cfg(all(
+            feature = "Foundation_NSGeometry",
+            feature = "QuartzCore_CATransform3D"
+        ))]
         #[method(transform)]
         pub fn transform(&self) -> CATransform3D;
 
+        #[cfg(all(
+            feature = "Foundation_NSGeometry",
+            feature = "QuartzCore_CATransform3D"
+        ))]
         #[method(setTransform:)]
         pub fn setTransform(&self, transform: CATransform3D);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(frame)]
         pub fn frame(&self) -> CGRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setFrame:)]
         pub fn setFrame(&self, frame: CGRect);
 
@@ -203,9 +219,17 @@ extern_methods!(
         #[method(replaceSublayer:with:)]
         pub unsafe fn replaceSublayer_with(&self, old_layer: &CALayer, new_layer: &CALayer);
 
+        #[cfg(all(
+            feature = "Foundation_NSGeometry",
+            feature = "QuartzCore_CATransform3D"
+        ))]
         #[method(sublayerTransform)]
         pub fn sublayerTransform(&self) -> CATransform3D;
 
+        #[cfg(all(
+            feature = "Foundation_NSGeometry",
+            feature = "QuartzCore_CATransform3D"
+        ))]
         #[method(setSublayerTransform:)]
         pub fn setSublayerTransform(&self, sublayer_transform: CATransform3D);
 
@@ -221,15 +245,19 @@ extern_methods!(
         #[method(setMasksToBounds:)]
         pub fn setMasksToBounds(&self, masks_to_bounds: bool);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(convertPoint:fromLayer:)]
         pub fn convertPoint_fromLayer(&self, p: CGPoint, l: Option<&CALayer>) -> CGPoint;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(convertPoint:toLayer:)]
         pub fn convertPoint_toLayer(&self, p: CGPoint, l: Option<&CALayer>) -> CGPoint;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(convertRect:fromLayer:)]
         pub fn convertRect_fromLayer(&self, r: CGRect, l: Option<&CALayer>) -> CGRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(convertRect:toLayer:)]
         pub fn convertRect_toLayer(&self, r: CGRect, l: Option<&CALayer>) -> CGRect;
 
@@ -244,9 +272,11 @@ extern_methods!(
         pub fn convertTime_toLayer(&self, t: CFTimeInterval, l: Option<&CALayer>)
             -> CFTimeInterval;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Other hitTest:)]
         pub fn hitTest(&self, p: CGPoint) -> Option<Id<CALayer>>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(containsPoint:)]
         pub fn containsPoint(&self, p: CGPoint) -> bool;
 
@@ -256,9 +286,11 @@ extern_methods!(
         #[method(setContents:)]
         pub unsafe fn setContents(&self, contents: Option<&AnyObject>);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(contentsRect)]
         pub fn contentsRect(&self) -> CGRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setContentsRect:)]
         pub fn setContentsRect(&self, contents_rect: CGRect);
 
@@ -270,15 +302,19 @@ extern_methods!(
         #[method(setContentsGravity:)]
         pub fn setContentsGravity(&self, contents_gravity: &CALayerContentsGravity);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(contentsScale)]
         pub fn contentsScale(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setContentsScale:)]
         pub fn setContentsScale(&self, contents_scale: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(contentsCenter)]
         pub fn contentsCenter(&self) -> CGRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setContentsCenter:)]
         pub fn setContentsCenter(&self, contents_center: CGRect);
 
@@ -333,6 +369,7 @@ extern_methods!(
         #[method(setNeedsDisplay)]
         pub fn setNeedsDisplay(&self);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setNeedsDisplayInRect:)]
         pub fn setNeedsDisplayInRect(&self, r: CGRect);
 
@@ -366,9 +403,11 @@ extern_methods!(
         #[method(setAllowsEdgeAntialiasing:)]
         pub fn setAllowsEdgeAntialiasing(&self, allows_edge_antialiasing: bool);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(cornerRadius)]
         pub fn cornerRadius(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setCornerRadius:)]
         pub fn setCornerRadius(&self, corner_radius: CGFloat);
 
@@ -386,13 +425,15 @@ extern_methods!(
         #[method(setCornerCurve:)]
         pub fn setCornerCurve(&self, corner_curve: &CALayerCornerCurve);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSGeometry", feature = "Foundation_NSString"))]
         #[method(cornerCurveExpansionFactor:)]
         pub fn cornerCurveExpansionFactor(curve: &CALayerCornerCurve) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(borderWidth)]
         pub fn borderWidth(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setBorderWidth:)]
         pub fn setBorderWidth(&self, border_width: CGFloat);
 
@@ -436,9 +477,11 @@ extern_methods!(
         #[method(setShouldRasterize:)]
         pub fn setShouldRasterize(&self, should_rasterize: bool);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(rasterizationScale)]
         pub fn rasterizationScale(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setRasterizationScale:)]
         pub fn setRasterizationScale(&self, rasterization_scale: CGFloat);
 
@@ -448,15 +491,19 @@ extern_methods!(
         #[method(setShadowOpacity:)]
         pub fn setShadowOpacity(&self, shadow_opacity: c_float);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(shadowOffset)]
         pub fn shadowOffset(&self) -> CGSize;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setShadowOffset:)]
         pub fn setShadowOffset(&self, shadow_offset: CGSize);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(shadowRadius)]
         pub fn shadowRadius(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setShadowRadius:)]
         pub fn setShadowRadius(&self, shadow_radius: CGFloat);
 
@@ -475,6 +522,7 @@ extern_methods!(
             layout_manager: Option<&ProtocolObject<dyn CALayoutManager>>,
         );
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(preferredFrameSize)]
         pub fn preferredFrameSize(&self) -> CGSize;
 
@@ -490,9 +538,11 @@ extern_methods!(
         #[method(layoutSublayers)]
         pub fn layoutSublayers(&self);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(resizeSublayersWithOldSize:)]
         pub fn resizeSublayersWithOldSize(&self, size: CGSize);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(resizeWithOldSuperlayerSize:)]
         pub fn resizeWithOldSuperlayerSize(&self, size: CGSize);
 
@@ -560,14 +610,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "QuartzCore_CALayer")]
     unsafe impl CALayer {
         #[method_id(@__retain_semantics New new)]
         pub fn new() -> Id<Self>;
     }
 );
 
-#[cfg(feature = "QuartzCore_CALayer")]
 impl DefaultId for CALayer {
     #[inline]
     fn default_id() -> Id<Self> {
@@ -577,17 +625,15 @@ impl DefaultId for CALayer {
 
 extern_protocol!(
     pub unsafe trait CALayoutManager: NSObjectProtocol {
-        #[cfg(feature = "QuartzCore_CALayer")]
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[optional]
         #[method(preferredSizeOfLayer:)]
         unsafe fn preferredSizeOfLayer(&self, layer: &CALayer) -> CGSize;
 
-        #[cfg(feature = "QuartzCore_CALayer")]
         #[optional]
         #[method(invalidateLayoutOfLayer:)]
         unsafe fn invalidateLayoutOfLayer(&self, layer: &CALayer);
 
-        #[cfg(feature = "QuartzCore_CALayer")]
         #[optional]
         #[method(layoutSublayersOfLayer:)]
         unsafe fn layoutSublayersOfLayer(&self, layer: &CALayer);
@@ -616,22 +662,19 @@ unsafe impl CAAction for NSNull {}
 
 extern_protocol!(
     pub unsafe trait CALayerDelegate: NSObjectProtocol {
-        #[cfg(feature = "QuartzCore_CALayer")]
         #[optional]
         #[method(displayLayer:)]
         unsafe fn displayLayer(&self, layer: &CALayer);
 
-        #[cfg(feature = "QuartzCore_CALayer")]
         #[optional]
         #[method(layerWillDraw:)]
         unsafe fn layerWillDraw(&self, layer: &CALayer);
 
-        #[cfg(feature = "QuartzCore_CALayer")]
         #[optional]
         #[method(layoutSublayersOfLayer:)]
         unsafe fn layoutSublayersOfLayer(&self, layer: &CALayer);
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CALayer"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method_id(@__retain_semantics Other actionForLayer:forKey:)]
         unsafe fn actionForLayer_forKey(

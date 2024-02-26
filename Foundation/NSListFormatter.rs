@@ -5,10 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSListFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     pub struct NSListFormatter;
 
-    #[cfg(feature = "Foundation_NSListFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl ClassType for NSListFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;
@@ -16,17 +16,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSListFormatter")]
+#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for NSListFormatter {}
 
-#[cfg(feature = "Foundation_NSListFormatter")]
+#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
 unsafe impl NSCopying for NSListFormatter {}
 
-#[cfg(feature = "Foundation_NSListFormatter")]
+#[cfg(feature = "Foundation_NSFormatter")]
 unsafe impl NSObjectProtocol for NSListFormatter {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSListFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl NSListFormatter {
         #[cfg(feature = "Foundation_NSLocale")]
         #[method_id(@__retain_semantics Other locale)]
@@ -58,7 +58,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSListFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl NSListFormatter {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

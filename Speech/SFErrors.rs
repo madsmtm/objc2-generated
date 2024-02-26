@@ -4,7 +4,7 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Speech::*;
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
 extern_static!(SFSpeechErrorDomain: &'static NSErrorDomain);
 
 ns_error_enum!(

@@ -6,22 +6,19 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Contacts_CNContactVCardSerialization")]
     pub struct CNContactVCardSerialization;
 
-    #[cfg(feature = "Contacts_CNContactVCardSerialization")]
     unsafe impl ClassType for CNContactVCardSerialization {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Contacts_CNContactVCardSerialization")]
 unsafe impl NSObjectProtocol for CNContactVCardSerialization {}
 
 extern_methods!(
-    #[cfg(feature = "Contacts_CNContactVCardSerialization")]
     unsafe impl CNContactVCardSerialization {
+        #[cfg(all(feature = "Contacts_CNContact", feature = "Foundation_NSObject"))]
         #[method_id(@__retain_semantics Other descriptorForRequiredKeys)]
         pub unsafe fn descriptorForRequiredKeys() -> Id<ProtocolObject<dyn CNKeyDescriptor>>;
 
@@ -51,7 +48,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Contacts_CNContactVCardSerialization")]
     unsafe impl CNContactVCardSerialization {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

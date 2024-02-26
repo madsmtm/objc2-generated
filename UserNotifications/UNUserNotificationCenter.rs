@@ -26,21 +26,17 @@ extern_static!(UNAuthorizationOptionNone: UNAuthorizationOptions = UNAuthorizati
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "UserNotifications_UNUserNotificationCenter")]
     pub struct UNUserNotificationCenter;
 
-    #[cfg(feature = "UserNotifications_UNUserNotificationCenter")]
     unsafe impl ClassType for UNUserNotificationCenter {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "UserNotifications_UNUserNotificationCenter")]
 unsafe impl NSObjectProtocol for UNUserNotificationCenter {}
 
 extern_methods!(
-    #[cfg(feature = "UserNotifications_UNUserNotificationCenter")]
     unsafe impl UNUserNotificationCenter {
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
@@ -157,7 +153,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UserNotifications_UNUserNotificationCenter")]
     unsafe impl UNUserNotificationCenter {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -180,10 +175,7 @@ extern_static!(UNNotificationPresentationOptionNone: UNNotificationPresentationO
 
 extern_protocol!(
     pub unsafe trait UNUserNotificationCenterDelegate: NSObjectProtocol {
-        #[cfg(all(
-            feature = "UserNotifications_UNNotification",
-            feature = "UserNotifications_UNUserNotificationCenter"
-        ))]
+        #[cfg(feature = "UserNotifications_UNNotification")]
         #[optional]
         #[method(userNotificationCenter:willPresentNotification:withCompletionHandler:)]
         unsafe fn userNotificationCenter_willPresentNotification_withCompletionHandler(
@@ -193,10 +185,7 @@ extern_protocol!(
             completion_handler: &Block<dyn Fn(UNNotificationPresentationOptions)>,
         );
 
-        #[cfg(all(
-            feature = "UserNotifications_UNNotificationResponse",
-            feature = "UserNotifications_UNUserNotificationCenter"
-        ))]
+        #[cfg(feature = "UserNotifications_UNNotificationResponse")]
         #[optional]
         #[method(userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:)]
         unsafe fn userNotificationCenter_didReceiveNotificationResponse_withCompletionHandler(
@@ -206,10 +195,7 @@ extern_protocol!(
             completion_handler: &Block<dyn Fn()>,
         );
 
-        #[cfg(all(
-            feature = "UserNotifications_UNNotification",
-            feature = "UserNotifications_UNUserNotificationCenter"
-        ))]
+        #[cfg(feature = "UserNotifications_UNNotification")]
         #[optional]
         #[method(userNotificationCenter:openSettingsForNotification:)]
         unsafe fn userNotificationCenter_openSettingsForNotification(

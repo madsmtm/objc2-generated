@@ -25,22 +25,18 @@ extern_static!(WebHistoryItemsKey: Option<&'static NSString>);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_WebHistory")]
     #[deprecated]
     pub struct WebHistory;
 
-    #[cfg(feature = "WebKit_WebHistory")]
     unsafe impl ClassType for WebHistory {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "WebKit_WebHistory")]
 unsafe impl NSObjectProtocol for WebHistory {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_WebHistory")]
     unsafe impl WebHistory {
         #[deprecated]
         #[method_id(@__retain_semantics Other optionalSharedHistory)]
@@ -69,7 +65,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other orderedLastVisitedDays)]
         pub unsafe fn orderedLastVisitedDays(&self) -> Id<NSArray>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSCalendarDate"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSCalendarDate",
+            feature = "Foundation_NSDate"
+        ))]
         #[deprecated]
         #[method_id(@__retain_semantics Other orderedItemsLastVisitedOnDay:)]
         pub unsafe fn orderedItemsLastVisitedOnDay(
@@ -102,7 +102,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_WebHistory")]
     unsafe impl WebHistory {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

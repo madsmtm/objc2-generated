@@ -6,25 +6,22 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Contacts_CNContactsUserDefaults")]
     pub struct CNContactsUserDefaults;
 
-    #[cfg(feature = "Contacts_CNContactsUserDefaults")]
     unsafe impl ClassType for CNContactsUserDefaults {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Contacts_CNContactsUserDefaults")]
 unsafe impl NSObjectProtocol for CNContactsUserDefaults {}
 
 extern_methods!(
-    #[cfg(feature = "Contacts_CNContactsUserDefaults")]
     unsafe impl CNContactsUserDefaults {
         #[method_id(@__retain_semantics Other sharedDefaults)]
         pub unsafe fn sharedDefaults() -> Id<Self>;
 
+        #[cfg(feature = "Contacts_CNContact")]
         #[method(sortOrder)]
         pub unsafe fn sortOrder(&self) -> CNContactSortOrder;
 
@@ -36,7 +33,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Contacts_CNContactsUserDefaults")]
     unsafe impl CNContactsUserDefaults {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

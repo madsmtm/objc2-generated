@@ -7,21 +7,17 @@ use crate::MediaPlayer::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MediaPlayer_MPMusicPlayerControllerQueue")]
     pub struct MPMusicPlayerControllerQueue;
 
-    #[cfg(feature = "MediaPlayer_MPMusicPlayerControllerQueue")]
     unsafe impl ClassType for MPMusicPlayerControllerQueue {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MediaPlayer_MPMusicPlayerControllerQueue")]
 unsafe impl NSObjectProtocol for MPMusicPlayerControllerQueue {}
 
 extern_methods!(
-    #[cfg(feature = "MediaPlayer_MPMusicPlayerControllerQueue")]
     unsafe impl MPMusicPlayerControllerQueue {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -29,7 +25,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "MediaPlayer_MPMediaItem"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "MediaPlayer_MPMediaEntity",
+            feature = "MediaPlayer_MPMediaItem"
+        ))]
         #[method_id(@__retain_semantics Other items)]
         pub unsafe fn items(&self) -> Id<NSArray<MPMediaItem>>;
     }
@@ -37,10 +37,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MediaPlayer_MPMusicPlayerControllerMutableQueue")]
     pub struct MPMusicPlayerControllerMutableQueue;
 
-    #[cfg(feature = "MediaPlayer_MPMusicPlayerControllerMutableQueue")]
     unsafe impl ClassType for MPMusicPlayerControllerMutableQueue {
         #[inherits(NSObject)]
         type Super = MPMusicPlayerControllerQueue;
@@ -48,13 +46,12 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MediaPlayer_MPMusicPlayerControllerMutableQueue")]
 unsafe impl NSObjectProtocol for MPMusicPlayerControllerMutableQueue {}
 
 extern_methods!(
-    #[cfg(feature = "MediaPlayer_MPMusicPlayerControllerMutableQueue")]
     unsafe impl MPMusicPlayerControllerMutableQueue {
         #[cfg(all(
+            feature = "MediaPlayer_MPMediaEntity",
             feature = "MediaPlayer_MPMediaItem",
             feature = "MediaPlayer_MPMusicPlayerQueueDescriptor"
         ))]
@@ -65,7 +62,10 @@ extern_methods!(
             after_item: Option<&MPMediaItem>,
         );
 
-        #[cfg(feature = "MediaPlayer_MPMediaItem")]
+        #[cfg(all(
+            feature = "MediaPlayer_MPMediaEntity",
+            feature = "MediaPlayer_MPMediaItem"
+        ))]
         #[method(removeItem:)]
         pub unsafe fn removeItem(&self, item: &MPMediaItem);
     }
@@ -73,7 +73,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPMusicPlayerControllerQueue`
-    #[cfg(feature = "MediaPlayer_MPMusicPlayerControllerMutableQueue")]
     unsafe impl MPMusicPlayerControllerMutableQueue {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -85,10 +84,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MediaPlayer_MPMusicPlayerApplicationController")]
+    #[cfg(feature = "MediaPlayer_MPMusicPlayerController")]
     pub struct MPMusicPlayerApplicationController;
 
-    #[cfg(feature = "MediaPlayer_MPMusicPlayerApplicationController")]
+    #[cfg(feature = "MediaPlayer_MPMusicPlayerController")]
     unsafe impl ClassType for MPMusicPlayerApplicationController {
         #[inherits(NSObject)]
         type Super = MPMusicPlayerController;
@@ -96,20 +95,19 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MediaPlayer_MPMusicPlayerApplicationController")]
+#[cfg(all(
+    feature = "MediaPlayer_MPMediaPlayback",
+    feature = "MediaPlayer_MPMusicPlayerController"
+))]
 unsafe impl MPMediaPlayback for MPMusicPlayerApplicationController {}
 
-#[cfg(feature = "MediaPlayer_MPMusicPlayerApplicationController")]
+#[cfg(feature = "MediaPlayer_MPMusicPlayerController")]
 unsafe impl NSObjectProtocol for MPMusicPlayerApplicationController {}
 
 extern_methods!(
-    #[cfg(feature = "MediaPlayer_MPMusicPlayerApplicationController")]
+    #[cfg(feature = "MediaPlayer_MPMusicPlayerController")]
     unsafe impl MPMusicPlayerApplicationController {
-        #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "MediaPlayer_MPMusicPlayerControllerMutableQueue",
-            feature = "MediaPlayer_MPMusicPlayerControllerQueue"
-        ))]
+        #[cfg(feature = "Foundation_NSError")]
         #[method(performQueueTransaction:completionHandler:)]
         pub unsafe fn performQueueTransaction_completionHandler(
             &self,
@@ -121,7 +119,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPMusicPlayerController`
-    #[cfg(feature = "MediaPlayer_MPMusicPlayerApplicationController")]
+    #[cfg(feature = "MediaPlayer_MPMusicPlayerController")]
     unsafe impl MPMusicPlayerApplicationController {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

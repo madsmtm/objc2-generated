@@ -6,27 +6,23 @@ use crate::MetricKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MetricKit_MXSignpostRecord")]
     pub struct MXSignpostRecord;
 
-    #[cfg(feature = "MetricKit_MXSignpostRecord")]
     unsafe impl ClassType for MXSignpostRecord {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MetricKit_MXSignpostRecord")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for MXSignpostRecord {}
 
-#[cfg(feature = "MetricKit_MXSignpostRecord")]
 unsafe impl NSObjectProtocol for MXSignpostRecord {}
 
-#[cfg(feature = "MetricKit_MXSignpostRecord")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for MXSignpostRecord {}
 
 extern_methods!(
-    #[cfg(feature = "MetricKit_MXSignpostRecord")]
     unsafe impl MXSignpostRecord {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other subsystem)]
@@ -48,10 +44,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other endTimeStamp)]
         pub unsafe fn endTimeStamp(&self) -> Option<Id<NSDate>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSMeasurement",
-            feature = "Foundation_NSUnitDuration"
-        ))]
+        #[cfg(all(feature = "Foundation_NSMeasurement", feature = "Foundation_NSUnit"))]
         #[method_id(@__retain_semantics Other duration)]
         pub unsafe fn duration(&self) -> Option<Id<NSMeasurement<NSUnitDuration>>>;
 
@@ -70,7 +63,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MetricKit_MXSignpostRecord")]
     unsafe impl MXSignpostRecord {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

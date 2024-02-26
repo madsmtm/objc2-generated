@@ -6,27 +6,25 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentSession")]
     pub struct AEAssessmentSession;
 
-    #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentSession")]
     unsafe impl ClassType for AEAssessmentSession {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentSession")]
 unsafe impl NSObjectProtocol for AEAssessmentSession {}
 
 extern_methods!(
-    #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentSession")]
     unsafe impl AEAssessmentSession {
+        #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentSessionDelegate")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Id<ProtocolObject<dyn AEAssessmentSessionDelegate>>>;
 
+        #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentSessionDelegate")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,

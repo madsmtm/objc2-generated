@@ -22,21 +22,17 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Automator_AMAction")]
     pub struct AMAction;
 
-    #[cfg(feature = "Automator_AMAction")]
     unsafe impl ClassType for AMAction {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Automator_AMAction")]
 unsafe impl NSObjectProtocol for AMAction {}
 
 extern_methods!(
-    #[cfg(feature = "Automator_AMAction")]
     unsafe impl AMAction {
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithDefinition:fromArchive:)]
@@ -76,9 +72,11 @@ extern_methods!(
         #[method(setSelectedOutputType:)]
         pub unsafe fn setSelectedOutputType(&self, selected_output_type: Option<&NSString>);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(progressValue)]
         pub unsafe fn progressValue(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setProgressValue:)]
         pub unsafe fn setProgressValue(&self, progress_value: CGFloat);
 
@@ -129,10 +127,7 @@ extern_methods!(
         #[method(reset)]
         pub unsafe fn reset(&self);
 
-        #[cfg(all(
-            feature = "Foundation_NSMutableDictionary",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(writeToDictionary:)]
         pub unsafe fn writeToDictionary(
             &self,
@@ -161,7 +156,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Automator_AMAction")]
     unsafe impl AMAction {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

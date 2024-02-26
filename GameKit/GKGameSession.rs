@@ -27,22 +27,18 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameKit_GKGameSession")]
     #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
     pub struct GKGameSession;
 
-    #[cfg(feature = "GameKit_GKGameSession")]
     unsafe impl ClassType for GKGameSession {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "GameKit_GKGameSession")]
 unsafe impl NSObjectProtocol for GKGameSession {}
 
 extern_methods!(
-    #[cfg(feature = "GameKit_GKGameSession")]
     unsafe impl GKGameSession {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
@@ -54,12 +50,16 @@ extern_methods!(
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Id<NSString>;
 
-        #[cfg(feature = "GameKit_GKCloudPlayer")]
+        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKCloudPlayer"))]
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
         #[method_id(@__retain_semantics Other owner)]
         pub unsafe fn owner(&self) -> Id<GKCloudPlayer>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "GameKit_GKCloudPlayer"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "GameKit_GKBasePlayer",
+            feature = "GameKit_GKCloudPlayer"
+        ))]
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
         #[method_id(@__retain_semantics Other players)]
         pub unsafe fn players(&self) -> Id<NSArray<GKCloudPlayer>>;
@@ -69,7 +69,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other lastModifiedDate)]
         pub unsafe fn lastModifiedDate(&self) -> Id<NSDate>;
 
-        #[cfg(feature = "GameKit_GKCloudPlayer")]
+        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKCloudPlayer"))]
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
         #[method_id(@__retain_semantics Other lastModifiedPlayer)]
         pub unsafe fn lastModifiedPlayer(&self) -> Id<GKCloudPlayer>;
@@ -78,7 +78,11 @@ extern_methods!(
         #[method(maxNumberOfConnectedPlayers)]
         pub unsafe fn maxNumberOfConnectedPlayers(&self) -> NSInteger;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "GameKit_GKCloudPlayer"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "GameKit_GKBasePlayer",
+            feature = "GameKit_GKCloudPlayer"
+        ))]
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
         #[method_id(@__retain_semantics Other badgedPlayers)]
         pub unsafe fn badgedPlayers(&self) -> Id<NSArray<GKCloudPlayer>>;
@@ -155,7 +159,11 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "GameKit_GKCloudPlayer"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "GameKit_GKBasePlayer",
+            feature = "GameKit_GKCloudPlayer"
+        ))]
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
         #[method_id(@__retain_semantics Other playersWithConnectionState:)]
         pub unsafe fn playersWithConnectionState(
@@ -178,6 +186,7 @@ extern_methods!(
             feature = "Foundation_NSData",
             feature = "Foundation_NSError",
             feature = "Foundation_NSString",
+            feature = "GameKit_GKBasePlayer",
             feature = "GameKit_GKCloudPlayer"
         ))]
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
@@ -195,6 +204,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSError",
+            feature = "GameKit_GKBasePlayer",
             feature = "GameKit_GKCloudPlayer"
         ))]
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
@@ -209,7 +219,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameKit_GKGameSession")]
     unsafe impl GKGameSession {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

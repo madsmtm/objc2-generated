@@ -7,11 +7,19 @@ use crate::WebKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_DOMDocumentType")]
+    #[cfg(all(
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     #[deprecated]
     pub struct DOMDocumentType;
 
-    #[cfg(feature = "WebKit_DOMDocumentType")]
+    #[cfg(all(
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl ClassType for DOMDocumentType {
         #[inherits(DOMObject, WebScriptObject, NSObject)]
         type Super = DOMNode;
@@ -19,17 +27,36 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "WebKit_DOMDocumentType")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "WebKit_DOMEventTarget",
+    feature = "WebKit_DOMNode",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl DOMEventTarget for DOMDocumentType {}
 
-#[cfg(feature = "WebKit_DOMDocumentType")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "WebKit_DOMNode",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSCopying for DOMDocumentType {}
 
-#[cfg(feature = "WebKit_DOMDocumentType")]
+#[cfg(all(
+    feature = "WebKit_DOMNode",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSObjectProtocol for DOMDocumentType {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_DOMDocumentType")]
+    #[cfg(all(
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMDocumentType {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
@@ -65,7 +92,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
-    #[cfg(feature = "WebKit_DOMDocumentType")]
+    #[cfg(all(
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMDocumentType {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
@@ -75,7 +106,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_DOMDocumentType")]
+    #[cfg(all(
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMDocumentType {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

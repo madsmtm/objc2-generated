@@ -34,21 +34,17 @@ extern_static!(EAAccessorySelectedKey: &'static NSString);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "ExternalAccessory_EAAccessoryManager")]
     pub struct EAAccessoryManager;
 
-    #[cfg(feature = "ExternalAccessory_EAAccessoryManager")]
     unsafe impl ClassType for EAAccessoryManager {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "ExternalAccessory_EAAccessoryManager")]
 unsafe impl NSObjectProtocol for EAAccessoryManager {}
 
 extern_methods!(
-    #[cfg(feature = "ExternalAccessory_EAAccessoryManager")]
     unsafe impl EAAccessoryManager {
         #[method_id(@__retain_semantics Other sharedAccessoryManager)]
         pub unsafe fn sharedAccessoryManager() -> Id<EAAccessoryManager>;
@@ -78,7 +74,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "ExternalAccessory_EAAccessoryManager")]
     unsafe impl EAAccessoryManager {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

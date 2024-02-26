@@ -6,10 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "ClassKit_CLSActivity")]
+    #[cfg(feature = "ClassKit_CLSObject")]
     pub struct CLSActivity;
 
-    #[cfg(feature = "ClassKit_CLSActivity")]
+    #[cfg(feature = "ClassKit_CLSObject")]
     unsafe impl ClassType for CLSActivity {
         #[inherits(NSObject)]
         type Super = CLSObject;
@@ -17,17 +17,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "ClassKit_CLSActivity")]
+#[cfg(all(feature = "ClassKit_CLSObject", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for CLSActivity {}
 
-#[cfg(feature = "ClassKit_CLSActivity")]
+#[cfg(feature = "ClassKit_CLSObject")]
 unsafe impl NSObjectProtocol for CLSActivity {}
 
-#[cfg(feature = "ClassKit_CLSActivity")]
+#[cfg(all(feature = "ClassKit_CLSObject", feature = "Foundation_NSObject"))]
 unsafe impl NSSecureCoding for CLSActivity {}
 
 extern_methods!(
-    #[cfg(feature = "ClassKit_CLSActivity")]
+    #[cfg(feature = "ClassKit_CLSObject")]
     unsafe impl CLSActivity {
         #[method(progress)]
         pub unsafe fn progress(&self) -> c_double;
@@ -35,6 +35,7 @@ extern_methods!(
         #[method(setProgress:)]
         pub unsafe fn setProgress(&self, progress: c_double);
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(duration)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
@@ -64,7 +65,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CLSObject`
-    #[cfg(feature = "ClassKit_CLSActivity")]
+    #[cfg(feature = "ClassKit_CLSObject")]
     unsafe impl CLSActivity {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -76,7 +77,7 @@ extern_methods!(
 
 extern_methods!(
     /// Activation
-    #[cfg(feature = "ClassKit_CLSActivity")]
+    #[cfg(feature = "ClassKit_CLSObject")]
     unsafe impl CLSActivity {
         #[method(isStarted)]
         pub unsafe fn isStarted(&self) -> bool;
@@ -94,7 +95,7 @@ extern_methods!(
 
 extern_methods!(
     /// Activity
-    #[cfg(feature = "ClassKit_CLSContext")]
+    #[cfg(all(feature = "ClassKit_CLSContext", feature = "ClassKit_CLSObject"))]
     unsafe impl CLSContext {
         #[cfg(feature = "ClassKit_CLSActivity")]
         #[method_id(@__retain_semantics Other currentActivity)]

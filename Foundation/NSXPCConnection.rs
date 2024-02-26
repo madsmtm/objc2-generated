@@ -36,24 +36,19 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSXPCConnection")]
     pub struct NSXPCConnection;
 
-    #[cfg(feature = "Foundation_NSXPCConnection")]
     unsafe impl ClassType for NSXPCConnection {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSXPCConnection")]
 unsafe impl NSObjectProtocol for NSXPCConnection {}
 
-#[cfg(feature = "Foundation_NSXPCConnection")]
 unsafe impl NSXPCProxyCreating for NSXPCConnection {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSXPCConnection")]
     unsafe impl NSXPCConnection {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithServiceName:)]
@@ -74,22 +69,18 @@ extern_methods!(
             options: NSXPCConnectionOptions,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSXPCListenerEndpoint")]
         #[method_id(@__retain_semantics Init initWithListenerEndpoint:)]
         pub unsafe fn initWithListenerEndpoint(
             this: Allocated<Self>,
             endpoint: &NSXPCListenerEndpoint,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSXPCListenerEndpoint")]
         #[method_id(@__retain_semantics Other endpoint)]
         pub unsafe fn endpoint(&self) -> Id<NSXPCListenerEndpoint>;
 
-        #[cfg(feature = "Foundation_NSXPCInterface")]
         #[method_id(@__retain_semantics Other exportedInterface)]
         pub unsafe fn exportedInterface(&self) -> Option<Id<NSXPCInterface>>;
 
-        #[cfg(feature = "Foundation_NSXPCInterface")]
         #[method(setExportedInterface:)]
         pub unsafe fn setExportedInterface(&self, exported_interface: Option<&NSXPCInterface>);
 
@@ -99,11 +90,9 @@ extern_methods!(
         #[method(setExportedObject:)]
         pub unsafe fn setExportedObject(&self, exported_object: Option<&AnyObject>);
 
-        #[cfg(feature = "Foundation_NSXPCInterface")]
         #[method_id(@__retain_semantics Other remoteObjectInterface)]
         pub unsafe fn remoteObjectInterface(&self) -> Option<Id<NSXPCInterface>>;
 
-        #[cfg(feature = "Foundation_NSXPCInterface")]
         #[method(setRemoteObjectInterface:)]
         pub unsafe fn setRemoteObjectInterface(
             &self,
@@ -165,7 +154,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSXPCConnection")]
     unsafe impl NSXPCConnection {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -177,21 +165,17 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSXPCListener")]
     pub struct NSXPCListener;
 
-    #[cfg(feature = "Foundation_NSXPCListener")]
     unsafe impl ClassType for NSXPCListener {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSXPCListener")]
 unsafe impl NSObjectProtocol for NSXPCListener {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSXPCListener")]
     unsafe impl NSXPCListener {
         #[method_id(@__retain_semantics Other serviceListener)]
         pub unsafe fn serviceListener() -> Id<NSXPCListener>;
@@ -212,7 +196,6 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn NSXPCListenerDelegate>>,
         );
 
-        #[cfg(feature = "Foundation_NSXPCListenerEndpoint")]
         #[method_id(@__retain_semantics Other endpoint)]
         pub unsafe fn endpoint(&self) -> Id<NSXPCListenerEndpoint>;
 
@@ -236,7 +219,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSXPCListener")]
     unsafe impl NSXPCListener {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -248,10 +230,6 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSXPCListenerDelegate: NSObjectProtocol {
-        #[cfg(all(
-            feature = "Foundation_NSXPCConnection",
-            feature = "Foundation_NSXPCListener"
-        ))]
         #[optional]
         #[method(listener:shouldAcceptNewConnection:)]
         unsafe fn listener_shouldAcceptNewConnection(
@@ -266,21 +244,17 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSXPCInterface")]
     pub struct NSXPCInterface;
 
-    #[cfg(feature = "Foundation_NSXPCInterface")]
     unsafe impl ClassType for NSXPCInterface {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSXPCInterface")]
 unsafe impl NSObjectProtocol for NSXPCInterface {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSXPCInterface")]
     unsafe impl NSXPCInterface {
         #[method_id(@__retain_semantics Other interfaceWithProtocol:)]
         pub unsafe fn interfaceWithProtocol(protocol: &AnyProtocol) -> Id<NSXPCInterface>;
@@ -331,7 +305,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSXPCInterface")]
     unsafe impl NSXPCInterface {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -343,39 +316,32 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSXPCListenerEndpoint")]
     pub struct NSXPCListenerEndpoint;
 
-    #[cfg(feature = "Foundation_NSXPCListenerEndpoint")]
     unsafe impl ClassType for NSXPCListenerEndpoint {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSXPCListenerEndpoint")]
 unsafe impl Send for NSXPCListenerEndpoint {}
 
-#[cfg(feature = "Foundation_NSXPCListenerEndpoint")]
 unsafe impl Sync for NSXPCListenerEndpoint {}
 
-#[cfg(feature = "Foundation_NSXPCListenerEndpoint")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSXPCListenerEndpoint {}
 
-#[cfg(feature = "Foundation_NSXPCListenerEndpoint")]
 unsafe impl NSObjectProtocol for NSXPCListenerEndpoint {}
 
-#[cfg(feature = "Foundation_NSXPCListenerEndpoint")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSXPCListenerEndpoint {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSXPCListenerEndpoint")]
     unsafe impl NSXPCListenerEndpoint {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSXPCListenerEndpoint")]
     unsafe impl NSXPCListenerEndpoint {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -387,10 +353,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSXPCCoder")]
+    #[cfg(feature = "Foundation_NSCoder")]
     pub struct NSXPCCoder;
 
-    #[cfg(feature = "Foundation_NSXPCCoder")]
+    #[cfg(feature = "Foundation_NSCoder")]
     unsafe impl ClassType for NSXPCCoder {
         #[inherits(NSObject)]
         type Super = NSCoder;
@@ -398,11 +364,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSXPCCoder")]
+#[cfg(feature = "Foundation_NSCoder")]
 unsafe impl NSObjectProtocol for NSXPCCoder {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSXPCCoder")]
+    #[cfg(feature = "Foundation_NSCoder")]
     unsafe impl NSXPCCoder {
         #[method_id(@__retain_semantics Other userInfo)]
         pub unsafe fn userInfo(&self) -> Option<Id<NSObject>>;
@@ -410,7 +376,6 @@ extern_methods!(
         #[method(setUserInfo:)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&NSObject>);
 
-        #[cfg(feature = "Foundation_NSXPCConnection")]
         #[method_id(@__retain_semantics Other connection)]
         pub unsafe fn connection(&self) -> Option<Id<NSXPCConnection>>;
     }
@@ -418,7 +383,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSXPCCoder")]
+    #[cfg(feature = "Foundation_NSCoder")]
     unsafe impl NSXPCCoder {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

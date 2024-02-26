@@ -23,10 +23,18 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTokenFieldCell")]
+    #[cfg(all(
+        feature = "AppKit_NSActionCell",
+        feature = "AppKit_NSCell",
+        feature = "AppKit_NSTextFieldCell"
+    ))]
     pub struct NSTokenFieldCell;
 
-    #[cfg(feature = "AppKit_NSTokenFieldCell")]
+    #[cfg(all(
+        feature = "AppKit_NSActionCell",
+        feature = "AppKit_NSCell",
+        feature = "AppKit_NSTextFieldCell"
+    ))]
     unsafe impl ClassType for NSTokenFieldCell {
         #[inherits(NSActionCell, NSCell, NSObject)]
         type Super = NSTextFieldCell;
@@ -34,26 +42,59 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSTokenFieldCell")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSTextFieldCell"
+))]
 unsafe impl NSAccessibility for NSTokenFieldCell {}
 
-#[cfg(feature = "AppKit_NSTokenFieldCell")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSTextFieldCell"
+))]
 unsafe impl NSAccessibilityElementProtocol for NSTokenFieldCell {}
 
-#[cfg(feature = "AppKit_NSTokenFieldCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSTextFieldCell",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSTokenFieldCell {}
 
-#[cfg(feature = "AppKit_NSTokenFieldCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSTextFieldCell",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCopying for NSTokenFieldCell {}
 
-#[cfg(feature = "AppKit_NSTokenFieldCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSTextFieldCell"
+))]
 unsafe impl NSObjectProtocol for NSTokenFieldCell {}
 
-#[cfg(feature = "AppKit_NSTokenFieldCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSTextFieldCell",
+    feature = "AppKit_NSUserInterfaceItemIdentification"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSTokenFieldCell {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTokenFieldCell")]
+    #[cfg(all(
+        feature = "AppKit_NSActionCell",
+        feature = "AppKit_NSCell",
+        feature = "AppKit_NSTextFieldCell"
+    ))]
     unsafe impl NSTokenFieldCell {
         #[method(tokenStyle)]
         pub unsafe fn tokenStyle(&self) -> NSTokenStyle;
@@ -61,12 +102,15 @@ extern_methods!(
         #[method(setTokenStyle:)]
         pub unsafe fn setTokenStyle(&self, token_style: NSTokenStyle);
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(completionDelay)]
         pub unsafe fn completionDelay(&self) -> NSTimeInterval;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(setCompletionDelay:)]
         pub unsafe fn setCompletionDelay(&self, completion_delay: NSTimeInterval);
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(defaultCompletionDelay)]
         pub unsafe fn defaultCompletionDelay(mtm: MainThreadMarker) -> NSTimeInterval;
 
@@ -98,7 +142,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSTextFieldCell`
-    #[cfg(feature = "AppKit_NSTokenFieldCell")]
+    #[cfg(all(
+        feature = "AppKit_NSActionCell",
+        feature = "AppKit_NSCell",
+        feature = "AppKit_NSTextFieldCell"
+    ))]
     unsafe impl NSTokenFieldCell {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initTextCell:)]
@@ -116,7 +164,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSCell`
-    #[cfg(feature = "AppKit_NSTokenFieldCell")]
+    #[cfg(all(
+        feature = "AppKit_NSActionCell",
+        feature = "AppKit_NSCell",
+        feature = "AppKit_NSTextFieldCell"
+    ))]
     unsafe impl NSTokenFieldCell {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -125,7 +177,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTokenFieldCell")]
+    #[cfg(all(
+        feature = "AppKit_NSActionCell",
+        feature = "AppKit_NSCell",
+        feature = "AppKit_NSTextFieldCell"
+    ))]
     unsafe impl NSTokenFieldCell {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -135,7 +191,9 @@ extern_methods!(
 extern_protocol!(
     pub unsafe trait NSTokenFieldCellDelegate: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(all(
-            feature = "AppKit_NSTokenFieldCell",
+            feature = "AppKit_NSActionCell",
+            feature = "AppKit_NSCell",
+            feature = "AppKit_NSTextFieldCell",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSString"
         ))]
@@ -149,7 +207,12 @@ extern_protocol!(
             selected_index: NonNull<NSInteger>,
         ) -> Id<NSArray>;
 
-        #[cfg(all(feature = "AppKit_NSTokenFieldCell", feature = "Foundation_NSArray"))]
+        #[cfg(all(
+            feature = "AppKit_NSActionCell",
+            feature = "AppKit_NSCell",
+            feature = "AppKit_NSTextFieldCell",
+            feature = "Foundation_NSArray"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other tokenFieldCell:shouldAddObjects:atIndex:)]
         unsafe fn tokenFieldCell_shouldAddObjects_atIndex(
@@ -159,7 +222,12 @@ extern_protocol!(
             index: NSUInteger,
         ) -> Id<NSArray>;
 
-        #[cfg(all(feature = "AppKit_NSTokenFieldCell", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSActionCell",
+            feature = "AppKit_NSCell",
+            feature = "AppKit_NSTextFieldCell",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other tokenFieldCell:displayStringForRepresentedObject:)]
         unsafe fn tokenFieldCell_displayStringForRepresentedObject(
@@ -168,7 +236,12 @@ extern_protocol!(
             represented_object: &AnyObject,
         ) -> Option<Id<NSString>>;
 
-        #[cfg(all(feature = "AppKit_NSTokenFieldCell", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSActionCell",
+            feature = "AppKit_NSCell",
+            feature = "AppKit_NSTextFieldCell",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other tokenFieldCell:editingStringForRepresentedObject:)]
         unsafe fn tokenFieldCell_editingStringForRepresentedObject(
@@ -177,7 +250,12 @@ extern_protocol!(
             represented_object: &AnyObject,
         ) -> Option<Id<NSString>>;
 
-        #[cfg(all(feature = "AppKit_NSTokenFieldCell", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSActionCell",
+            feature = "AppKit_NSCell",
+            feature = "AppKit_NSTextFieldCell",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other tokenFieldCell:representedObjectForEditingString:)]
         unsafe fn tokenFieldCell_representedObjectForEditingString(
@@ -187,8 +265,10 @@ extern_protocol!(
         ) -> Option<Id<AnyObject>>;
 
         #[cfg(all(
+            feature = "AppKit_NSActionCell",
+            feature = "AppKit_NSCell",
             feature = "AppKit_NSPasteboard",
-            feature = "AppKit_NSTokenFieldCell",
+            feature = "AppKit_NSTextFieldCell",
             feature = "Foundation_NSArray"
         ))]
         #[optional]
@@ -201,8 +281,10 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(
+            feature = "AppKit_NSActionCell",
+            feature = "AppKit_NSCell",
             feature = "AppKit_NSPasteboard",
-            feature = "AppKit_NSTokenFieldCell",
+            feature = "AppKit_NSTextFieldCell",
             feature = "Foundation_NSArray"
         ))]
         #[optional]
@@ -213,7 +295,12 @@ extern_protocol!(
             pboard: &NSPasteboard,
         ) -> Option<Id<NSArray>>;
 
-        #[cfg(all(feature = "AppKit_NSMenu", feature = "AppKit_NSTokenFieldCell"))]
+        #[cfg(all(
+            feature = "AppKit_NSActionCell",
+            feature = "AppKit_NSCell",
+            feature = "AppKit_NSMenu",
+            feature = "AppKit_NSTextFieldCell"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other tokenFieldCell:menuForRepresentedObject:)]
         unsafe fn tokenFieldCell_menuForRepresentedObject(
@@ -222,7 +309,11 @@ extern_protocol!(
             represented_object: &AnyObject,
         ) -> Option<Id<NSMenu>>;
 
-        #[cfg(feature = "AppKit_NSTokenFieldCell")]
+        #[cfg(all(
+            feature = "AppKit_NSActionCell",
+            feature = "AppKit_NSCell",
+            feature = "AppKit_NSTextFieldCell"
+        ))]
         #[optional]
         #[method(tokenFieldCell:hasMenuForRepresentedObject:)]
         unsafe fn tokenFieldCell_hasMenuForRepresentedObject(
@@ -231,7 +322,11 @@ extern_protocol!(
             represented_object: &AnyObject,
         ) -> bool;
 
-        #[cfg(feature = "AppKit_NSTokenFieldCell")]
+        #[cfg(all(
+            feature = "AppKit_NSActionCell",
+            feature = "AppKit_NSCell",
+            feature = "AppKit_NSTextFieldCell"
+        ))]
         #[optional]
         #[method(tokenFieldCell:styleForRepresentedObject:)]
         unsafe fn tokenFieldCell_styleForRepresentedObject(

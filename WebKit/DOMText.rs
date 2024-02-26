@@ -7,11 +7,21 @@ use crate::WebKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_DOMText")]
+    #[cfg(all(
+        feature = "WebKit_DOMCharacterData",
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     #[deprecated]
     pub struct DOMText;
 
-    #[cfg(feature = "WebKit_DOMText")]
+    #[cfg(all(
+        feature = "WebKit_DOMCharacterData",
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl ClassType for DOMText {
         #[inherits(DOMNode, DOMObject, WebScriptObject, NSObject)]
         type Super = DOMCharacterData;
@@ -19,17 +29,40 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "WebKit_DOMText")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "WebKit_DOMCharacterData",
+    feature = "WebKit_DOMEventTarget",
+    feature = "WebKit_DOMNode",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl DOMEventTarget for DOMText {}
 
-#[cfg(feature = "WebKit_DOMText")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "WebKit_DOMCharacterData",
+    feature = "WebKit_DOMNode",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSCopying for DOMText {}
 
-#[cfg(feature = "WebKit_DOMText")]
+#[cfg(all(
+    feature = "WebKit_DOMCharacterData",
+    feature = "WebKit_DOMNode",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSObjectProtocol for DOMText {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_DOMText")]
+    #[cfg(all(
+        feature = "WebKit_DOMCharacterData",
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMText {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other wholeText)]
@@ -47,7 +80,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
-    #[cfg(feature = "WebKit_DOMText")]
+    #[cfg(all(
+        feature = "WebKit_DOMCharacterData",
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMText {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
@@ -57,7 +95,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_DOMText")]
+    #[cfg(all(
+        feature = "WebKit_DOMCharacterData",
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMText {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

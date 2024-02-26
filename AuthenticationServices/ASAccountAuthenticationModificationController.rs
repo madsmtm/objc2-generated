@@ -10,7 +10,6 @@ extern_protocol!(
         NSObjectProtocol
     {
         #[cfg(all(
-            feature = "AuthenticationServices_ASAccountAuthenticationModificationController",
             feature = "AuthenticationServices_ASAccountAuthenticationModificationRequest",
             feature = "Foundation_NSDictionary"
         ))]
@@ -24,7 +23,6 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "AuthenticationServices_ASAccountAuthenticationModificationController",
             feature = "AuthenticationServices_ASAccountAuthenticationModificationRequest",
             feature = "Foundation_NSError"
         ))]
@@ -46,8 +44,9 @@ extern_protocol!(
         NSObjectProtocol
     {
         #[cfg(all(
+            feature = "AppKit_NSResponder",
             feature = "AppKit_NSWindow",
-            feature = "AuthenticationServices_ASAccountAuthenticationModificationController"
+            feature = "AuthenticationServices_ASFoundation"
         ))]
         #[method_id(@__retain_semantics Other presentationAnchorForAccountAuthenticationModificationController:)]
         unsafe fn presentationAnchorForAccountAuthenticationModificationController(
@@ -65,21 +64,17 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationController")]
     pub struct ASAccountAuthenticationModificationController;
 
-    #[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationController")]
     unsafe impl ClassType for ASAccountAuthenticationModificationController {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationController")]
 unsafe impl NSObjectProtocol for ASAccountAuthenticationModificationController {}
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationController")]
     unsafe impl ASAccountAuthenticationModificationController {
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
@@ -123,7 +118,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationController")]
     unsafe impl ASAccountAuthenticationModificationController {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

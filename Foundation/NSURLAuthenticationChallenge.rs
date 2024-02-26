@@ -5,10 +5,7 @@ use crate::Foundation::*;
 
 extern_protocol!(
     pub unsafe trait NSURLAuthenticationChallengeSender: NSObjectProtocol {
-        #[cfg(all(
-            feature = "Foundation_NSURLAuthenticationChallenge",
-            feature = "Foundation_NSURLCredential"
-        ))]
+        #[cfg(feature = "Foundation_NSURLCredential")]
         #[method(useCredential:forAuthenticationChallenge:)]
         unsafe fn useCredential_forAuthenticationChallenge(
             &self,
@@ -16,18 +13,15 @@ extern_protocol!(
             challenge: &NSURLAuthenticationChallenge,
         );
 
-        #[cfg(feature = "Foundation_NSURLAuthenticationChallenge")]
         #[method(continueWithoutCredentialForAuthenticationChallenge:)]
         unsafe fn continueWithoutCredentialForAuthenticationChallenge(
             &self,
             challenge: &NSURLAuthenticationChallenge,
         );
 
-        #[cfg(feature = "Foundation_NSURLAuthenticationChallenge")]
         #[method(cancelAuthenticationChallenge:)]
         unsafe fn cancelAuthenticationChallenge(&self, challenge: &NSURLAuthenticationChallenge);
 
-        #[cfg(feature = "Foundation_NSURLAuthenticationChallenge")]
         #[optional]
         #[method(performDefaultHandlingForAuthenticationChallenge:)]
         unsafe fn performDefaultHandlingForAuthenticationChallenge(
@@ -35,7 +29,6 @@ extern_protocol!(
             challenge: &NSURLAuthenticationChallenge,
         );
 
-        #[cfg(feature = "Foundation_NSURLAuthenticationChallenge")]
         #[optional]
         #[method(rejectProtectionSpaceAndContinueWithChallenge:)]
         unsafe fn rejectProtectionSpaceAndContinueWithChallenge(
@@ -49,33 +42,27 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSURLAuthenticationChallenge")]
     pub struct NSURLAuthenticationChallenge;
 
-    #[cfg(feature = "Foundation_NSURLAuthenticationChallenge")]
     unsafe impl ClassType for NSURLAuthenticationChallenge {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSURLAuthenticationChallenge")]
 unsafe impl Send for NSURLAuthenticationChallenge {}
 
-#[cfg(feature = "Foundation_NSURLAuthenticationChallenge")]
 unsafe impl Sync for NSURLAuthenticationChallenge {}
 
-#[cfg(feature = "Foundation_NSURLAuthenticationChallenge")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSURLAuthenticationChallenge {}
 
-#[cfg(feature = "Foundation_NSURLAuthenticationChallenge")]
 unsafe impl NSObjectProtocol for NSURLAuthenticationChallenge {}
 
-#[cfg(feature = "Foundation_NSURLAuthenticationChallenge")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSURLAuthenticationChallenge {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSURLAuthenticationChallenge")]
     unsafe impl NSURLAuthenticationChallenge {
         #[cfg(all(
             feature = "Foundation_NSError",
@@ -129,7 +116,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSURLAuthenticationChallenge")]
     unsafe impl NSURLAuthenticationChallenge {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

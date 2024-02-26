@@ -44,6 +44,7 @@ extern_static!(kCLLocationAccuracyReduced: CLLocationAccuracy);
 
 extern_static!(CLLocationDistanceMax: CLLocationDistance);
 
+#[cfg(feature = "Foundation_NSDate")]
 extern_static!(CLTimeIntervalMax: NSTimeInterval);
 
 extern_static!(kCLLocationCoordinate2DInvalid: CLLocationCoordinate2D);
@@ -61,30 +62,26 @@ extern_fn!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreLocation_CLFloor")]
     pub struct CLFloor;
 
-    #[cfg(feature = "CoreLocation_CLFloor")]
     unsafe impl ClassType for CLFloor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreLocation_CLFloor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CLFloor {}
 
-#[cfg(feature = "CoreLocation_CLFloor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for CLFloor {}
 
-#[cfg(feature = "CoreLocation_CLFloor")]
 unsafe impl NSObjectProtocol for CLFloor {}
 
-#[cfg(feature = "CoreLocation_CLFloor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CLFloor {}
 
 extern_methods!(
-    #[cfg(feature = "CoreLocation_CLFloor")]
     unsafe impl CLFloor {
         #[method(level)]
         pub unsafe fn level(&self) -> NSInteger;
@@ -93,7 +90,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreLocation_CLFloor")]
     unsafe impl CLFloor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -105,30 +101,26 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreLocation_CLLocationSourceInformation")]
     pub struct CLLocationSourceInformation;
 
-    #[cfg(feature = "CoreLocation_CLLocationSourceInformation")]
     unsafe impl ClassType for CLLocationSourceInformation {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreLocation_CLLocationSourceInformation")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CLLocationSourceInformation {}
 
-#[cfg(feature = "CoreLocation_CLLocationSourceInformation")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for CLLocationSourceInformation {}
 
-#[cfg(feature = "CoreLocation_CLLocationSourceInformation")]
 unsafe impl NSObjectProtocol for CLLocationSourceInformation {}
 
-#[cfg(feature = "CoreLocation_CLLocationSourceInformation")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CLLocationSourceInformation {}
 
 extern_methods!(
-    #[cfg(feature = "CoreLocation_CLLocationSourceInformation")]
     unsafe impl CLLocationSourceInformation {
         #[method_id(@__retain_semantics Init initWithSoftwareSimulationState:andExternalAccessoryState:)]
         pub unsafe fn initWithSoftwareSimulationState_andExternalAccessoryState(
@@ -147,7 +139,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreLocation_CLLocationSourceInformation")]
     unsafe impl CLLocationSourceInformation {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -159,36 +150,30 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreLocation_CLLocation")]
     pub struct CLLocation;
 
-    #[cfg(feature = "CoreLocation_CLLocation")]
     unsafe impl ClassType for CLLocation {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreLocation_CLLocation")]
 unsafe impl Send for CLLocation {}
 
-#[cfg(feature = "CoreLocation_CLLocation")]
 unsafe impl Sync for CLLocation {}
 
-#[cfg(feature = "CoreLocation_CLLocation")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CLLocation {}
 
-#[cfg(feature = "CoreLocation_CLLocation")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for CLLocation {}
 
-#[cfg(feature = "CoreLocation_CLLocation")]
 unsafe impl NSObjectProtocol for CLLocation {}
 
-#[cfg(feature = "CoreLocation_CLLocation")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CLLocation {}
 
 extern_methods!(
-    #[cfg(feature = "CoreLocation_CLLocation")]
     unsafe impl CLLocation {
         #[method_id(@__retain_semantics Init initWithLatitude:longitude:)]
         pub unsafe fn initWithLatitude_longitude(
@@ -236,10 +221,7 @@ extern_methods!(
             timestamp: &NSDate,
         ) -> Id<Self>;
 
-        #[cfg(all(
-            feature = "CoreLocation_CLLocationSourceInformation",
-            feature = "Foundation_NSDate"
-        ))]
+        #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Init initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:course:courseAccuracy:speed:speedAccuracy:timestamp:sourceInfo:)]
         pub unsafe fn initWithCoordinate_altitude_horizontalAccuracy_verticalAccuracy_course_courseAccuracy_speed_speedAccuracy_timestamp_sourceInfo(
             this: Allocated<Self>,
@@ -286,11 +268,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Other timestamp)]
         pub unsafe fn timestamp(&self) -> Id<NSDate>;
 
-        #[cfg(feature = "CoreLocation_CLFloor")]
         #[method_id(@__retain_semantics Other floor)]
         pub unsafe fn floor(&self) -> Option<Id<CLFloor>>;
 
-        #[cfg(feature = "CoreLocation_CLLocationSourceInformation")]
         #[method_id(@__retain_semantics Other sourceInformation)]
         pub unsafe fn sourceInformation(&self) -> Option<Id<CLLocationSourceInformation>>;
     }
@@ -298,7 +278,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreLocation_CLLocation")]
     unsafe impl CLLocation {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

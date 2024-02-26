@@ -7,6 +7,7 @@ use crate::GameController::*;
 
 extern_protocol!(
     pub unsafe trait GCAxisInput: NSObjectProtocol {
+        #[cfg(feature = "GameController_GCPhysicalInputElement")]
         #[method(valueDidChangeHandler)]
         unsafe fn valueDidChangeHandler(
             &self,
@@ -18,6 +19,7 @@ extern_protocol!(
             ),
         >;
 
+        #[cfg(feature = "GameController_GCPhysicalInputElement")]
         #[method(setValueDidChangeHandler:)]
         unsafe fn setValueDidChangeHandler(
             &self,
@@ -41,13 +43,18 @@ extern_protocol!(
         #[method(canWrap)]
         unsafe fn canWrap(&self) -> bool;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(lastValueTimestamp)]
         unsafe fn lastValueTimestamp(&self) -> NSTimeInterval;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(lastValueLatency)]
         unsafe fn lastValueLatency(&self) -> NSTimeInterval;
 
-        #[cfg(feature = "Foundation_NSSet")]
+        #[cfg(all(
+            feature = "Foundation_NSSet",
+            feature = "GameController_GCPhysicalInputSource"
+        ))]
         #[method_id(@__retain_semantics Other sources)]
         unsafe fn sources(&self) -> Id<NSSet<ProtocolObject<dyn GCPhysicalInputSource>>>;
     }

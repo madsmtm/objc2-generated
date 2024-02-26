@@ -5,16 +5,16 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameController::*;
 
-#[cfg(feature = "GameController_GCControllerAxisInput")]
+#[cfg(feature = "GameController_GCControllerElement")]
 pub type GCControllerAxisValueChangedHandler =
     *mut Block<dyn Fn(NonNull<GCControllerAxisInput>, c_float)>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameController_GCControllerAxisInput")]
+    #[cfg(feature = "GameController_GCControllerElement")]
     pub struct GCControllerAxisInput;
 
-    #[cfg(feature = "GameController_GCControllerAxisInput")]
+    #[cfg(feature = "GameController_GCControllerElement")]
     unsafe impl ClassType for GCControllerAxisInput {
         #[inherits(NSObject)]
         type Super = GCControllerElement;
@@ -22,11 +22,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "GameController_GCControllerAxisInput")]
+#[cfg(feature = "GameController_GCControllerElement")]
 unsafe impl NSObjectProtocol for GCControllerAxisInput {}
 
 extern_methods!(
-    #[cfg(feature = "GameController_GCControllerAxisInput")]
+    #[cfg(feature = "GameController_GCControllerElement")]
     unsafe impl GCControllerAxisInput {
         #[method(valueChangedHandler)]
         pub unsafe fn valueChangedHandler(&self) -> GCControllerAxisValueChangedHandler;
@@ -47,7 +47,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameController_GCControllerAxisInput")]
+    #[cfg(feature = "GameController_GCControllerElement")]
     unsafe impl GCControllerAxisInput {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

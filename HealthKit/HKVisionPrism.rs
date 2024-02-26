@@ -34,30 +34,26 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKVisionPrism")]
     pub struct HKVisionPrism;
 
-    #[cfg(feature = "HealthKit_HKVisionPrism")]
     unsafe impl ClassType for HKVisionPrism {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "HealthKit_HKVisionPrism")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for HKVisionPrism {}
 
-#[cfg(feature = "HealthKit_HKVisionPrism")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for HKVisionPrism {}
 
-#[cfg(feature = "HealthKit_HKVisionPrism")]
 unsafe impl NSObjectProtocol for HKVisionPrism {}
 
-#[cfg(feature = "HealthKit_HKVisionPrism")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for HKVisionPrism {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKVisionPrism")]
     unsafe impl HKVisionPrism {
         #[cfg(feature = "HealthKit_HKQuantity")]
         #[method_id(@__retain_semantics Other amount)]

@@ -34,24 +34,20 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameController_GCController")]
     pub struct GCController;
 
-    #[cfg(feature = "GameController_GCController")]
     unsafe impl ClassType for GCController {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "GameController_GCController")]
+#[cfg(feature = "GameController_GCDevice")]
 unsafe impl GCDevice for GCController {}
 
-#[cfg(feature = "GameController_GCController")]
 unsafe impl NSObjectProtocol for GCController {}
 
 extern_methods!(
-    #[cfg(feature = "GameController_GCController")]
     unsafe impl GCController {
         #[deprecated = "controllerPausedHandler has been deprecated. Use the Menu button found on the controller's profile, if it exists."]
         #[method(controllerPausedHandler)]
@@ -85,7 +81,7 @@ extern_methods!(
         #[method(setPlayerIndex:)]
         pub unsafe fn setPlayerIndex(&self, player_index: GCControllerPlayerIndex);
 
-        #[cfg(feature = "GameController_GCControllerLiveInput")]
+        #[cfg(feature = "GameController_GCControllerInput")]
         #[method_id(@__retain_semantics Other input)]
         pub unsafe fn input(&self) -> Id<GCControllerLiveInput>;
 
@@ -97,16 +93,25 @@ extern_methods!(
         #[method_id(@__retain_semantics Other physicalInputProfile)]
         pub unsafe fn physicalInputProfile(&self) -> Id<GCPhysicalInputProfile>;
 
-        #[cfg(feature = "GameController_GCGamepad")]
+        #[cfg(all(
+            feature = "GameController_GCGamepad",
+            feature = "GameController_GCPhysicalInputProfile"
+        ))]
         #[deprecated]
         #[method_id(@__retain_semantics Other gamepad)]
         pub unsafe fn gamepad(&self) -> Option<Id<GCGamepad>>;
 
-        #[cfg(feature = "GameController_GCMicroGamepad")]
+        #[cfg(all(
+            feature = "GameController_GCMicroGamepad",
+            feature = "GameController_GCPhysicalInputProfile"
+        ))]
         #[method_id(@__retain_semantics Other microGamepad)]
         pub unsafe fn microGamepad(&self) -> Option<Id<GCMicroGamepad>>;
 
-        #[cfg(feature = "GameController_GCExtendedGamepad")]
+        #[cfg(all(
+            feature = "GameController_GCExtendedGamepad",
+            feature = "GameController_GCPhysicalInputProfile"
+        ))]
         #[method_id(@__retain_semantics Other extendedGamepad)]
         pub unsafe fn extendedGamepad(&self) -> Option<Id<GCExtendedGamepad>>;
 
@@ -147,7 +152,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameController_GCController")]
     unsafe impl GCController {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

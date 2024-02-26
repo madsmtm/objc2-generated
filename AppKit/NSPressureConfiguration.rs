@@ -7,25 +7,23 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSPressureConfiguration")]
     pub struct NSPressureConfiguration;
 
-    #[cfg(feature = "AppKit_NSPressureConfiguration")]
     unsafe impl ClassType for NSPressureConfiguration {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSPressureConfiguration")]
 unsafe impl NSObjectProtocol for NSPressureConfiguration {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSPressureConfiguration")]
     unsafe impl NSPressureConfiguration {
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(pressureBehavior)]
         pub unsafe fn pressureBehavior(&self) -> NSPressureBehavior;
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method_id(@__retain_semantics Init initWithPressureBehavior:)]
         pub unsafe fn initWithPressureBehavior(
             this: Allocated<Self>,
@@ -39,7 +37,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSPressureConfiguration")]
     unsafe impl NSPressureConfiguration {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -51,7 +48,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSPressureConfiguration
-    #[cfg(feature = "AppKit_NSView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSView {
         #[cfg(feature = "AppKit_NSPressureConfiguration")]
         #[method_id(@__retain_semantics Other pressureConfiguration)]

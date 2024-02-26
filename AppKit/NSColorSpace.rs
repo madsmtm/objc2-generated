@@ -29,33 +29,27 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSColorSpace")]
     pub struct NSColorSpace;
 
-    #[cfg(feature = "AppKit_NSColorSpace")]
     unsafe impl ClassType for NSColorSpace {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSColorSpace")]
 unsafe impl Send for NSColorSpace {}
 
-#[cfg(feature = "AppKit_NSColorSpace")]
 unsafe impl Sync for NSColorSpace {}
 
-#[cfg(feature = "AppKit_NSColorSpace")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSColorSpace {}
 
-#[cfg(feature = "AppKit_NSColorSpace")]
 unsafe impl NSObjectProtocol for NSColorSpace {}
 
-#[cfg(feature = "AppKit_NSColorSpace")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSColorSpace {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSColorSpace")]
     unsafe impl NSColorSpace {
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Init initWithICCProfileData:)]
@@ -133,7 +127,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSColorSpace")]
     unsafe impl NSColorSpace {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

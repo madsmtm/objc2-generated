@@ -17,30 +17,26 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AuthenticationServices_ASCredentialServiceIdentifier")]
     pub struct ASCredentialServiceIdentifier;
 
-    #[cfg(feature = "AuthenticationServices_ASCredentialServiceIdentifier")]
     unsafe impl ClassType for ASCredentialServiceIdentifier {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASCredentialServiceIdentifier")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for ASCredentialServiceIdentifier {}
 
-#[cfg(feature = "AuthenticationServices_ASCredentialServiceIdentifier")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for ASCredentialServiceIdentifier {}
 
-#[cfg(feature = "AuthenticationServices_ASCredentialServiceIdentifier")]
 unsafe impl NSObjectProtocol for ASCredentialServiceIdentifier {}
 
-#[cfg(feature = "AuthenticationServices_ASCredentialServiceIdentifier")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for ASCredentialServiceIdentifier {}
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASCredentialServiceIdentifier")]
     unsafe impl ASCredentialServiceIdentifier {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithIdentifier:type:)]
@@ -61,7 +57,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AuthenticationServices_ASCredentialServiceIdentifier")]
     unsafe impl ASCredentialServiceIdentifier {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

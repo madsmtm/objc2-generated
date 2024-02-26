@@ -17,21 +17,17 @@ pub type NSBackgroundActivityCompletionHandler = *mut Block<dyn Fn(NSBackgroundA
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSBackgroundActivityScheduler")]
     pub struct NSBackgroundActivityScheduler;
 
-    #[cfg(feature = "Foundation_NSBackgroundActivityScheduler")]
     unsafe impl ClassType for NSBackgroundActivityScheduler {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSBackgroundActivityScheduler")]
 unsafe impl NSObjectProtocol for NSBackgroundActivityScheduler {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSBackgroundActivityScheduler")]
     unsafe impl NSBackgroundActivityScheduler {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
@@ -41,9 +37,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Id<NSString>;
 
+        #[cfg(feature = "Foundation_NSObjCRuntime")]
         #[method(qualityOfService)]
         pub unsafe fn qualityOfService(&self) -> NSQualityOfService;
 
+        #[cfg(feature = "Foundation_NSObjCRuntime")]
         #[method(setQualityOfService:)]
         pub unsafe fn setQualityOfService(&self, quality_of_service: NSQualityOfService);
 
@@ -53,15 +51,19 @@ extern_methods!(
         #[method(setRepeats:)]
         pub unsafe fn setRepeats(&self, repeats: bool);
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(interval)]
         pub unsafe fn interval(&self) -> NSTimeInterval;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(setInterval:)]
         pub unsafe fn setInterval(&self, interval: NSTimeInterval);
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(tolerance)]
         pub unsafe fn tolerance(&self) -> NSTimeInterval;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(setTolerance:)]
         pub unsafe fn setTolerance(&self, tolerance: NSTimeInterval);
 
@@ -81,7 +83,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSBackgroundActivityScheduler")]
     unsafe impl NSBackgroundActivityScheduler {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

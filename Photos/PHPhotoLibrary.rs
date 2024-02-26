@@ -45,7 +45,6 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait PHPhotoLibraryAvailabilityObserver: NSObjectProtocol {
-        #[cfg(feature = "Photos_PHPhotoLibrary")]
         #[method(photoLibraryDidBecomeUnavailable:)]
         unsafe fn photoLibraryDidBecomeUnavailable(&self, photo_library: &PHPhotoLibrary);
     }
@@ -55,27 +54,21 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Photos_PHPhotoLibrary")]
     pub struct PHPhotoLibrary;
 
-    #[cfg(feature = "Photos_PHPhotoLibrary")]
     unsafe impl ClassType for PHPhotoLibrary {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Photos_PHPhotoLibrary")]
 unsafe impl Send for PHPhotoLibrary {}
 
-#[cfg(feature = "Photos_PHPhotoLibrary")]
 unsafe impl Sync for PHPhotoLibrary {}
 
-#[cfg(feature = "Photos_PHPhotoLibrary")]
 unsafe impl NSObjectProtocol for PHPhotoLibrary {}
 
 extern_methods!(
-    #[cfg(feature = "Photos_PHPhotoLibrary")]
     unsafe impl PHPhotoLibrary {
         #[method_id(@__retain_semantics Other sharedPhotoLibrary)]
         pub unsafe fn sharedPhotoLibrary() -> Id<PHPhotoLibrary>;
@@ -146,7 +139,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Photos_PHPhotoLibrary")]
     unsafe impl PHPhotoLibrary {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -7,10 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSPersistentDocument")]
+    #[cfg(feature = "AppKit_NSDocument")]
     pub struct NSPersistentDocument;
 
-    #[cfg(feature = "AppKit_NSPersistentDocument")]
+    #[cfg(feature = "AppKit_NSDocument")]
     unsafe impl ClassType for NSPersistentDocument {
         #[inherits(NSObject)]
         type Super = NSDocument;
@@ -18,23 +18,26 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSPersistentDocument")]
+#[cfg(all(feature = "AppKit_NSDocument", feature = "AppKit_NSKeyValueBinding"))]
 unsafe impl NSEditorRegistration for NSPersistentDocument {}
 
-#[cfg(feature = "AppKit_NSPersistentDocument")]
+#[cfg(all(feature = "AppKit_NSDocument", feature = "Foundation_NSFilePresenter"))]
 unsafe impl NSFilePresenter for NSPersistentDocument {}
 
-#[cfg(feature = "AppKit_NSPersistentDocument")]
+#[cfg(all(feature = "AppKit_NSDocument", feature = "AppKit_NSMenu"))]
 unsafe impl NSMenuItemValidation for NSPersistentDocument {}
 
-#[cfg(feature = "AppKit_NSPersistentDocument")]
+#[cfg(feature = "AppKit_NSDocument")]
 unsafe impl NSObjectProtocol for NSPersistentDocument {}
 
-#[cfg(feature = "AppKit_NSPersistentDocument")]
+#[cfg(all(
+    feature = "AppKit_NSDocument",
+    feature = "AppKit_NSUserInterfaceValidation"
+))]
 unsafe impl NSUserInterfaceValidations for NSPersistentDocument {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSPersistentDocument")]
+    #[cfg(feature = "AppKit_NSDocument")]
     unsafe impl NSPersistentDocument {
         #[cfg(feature = "CoreData_NSManagedObjectContext")]
         #[method_id(@__retain_semantics Other managedObjectContext)]
@@ -112,7 +115,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSDocument`
-    #[cfg(feature = "AppKit_NSPersistentDocument")]
+    #[cfg(feature = "AppKit_NSDocument")]
     unsafe impl NSPersistentDocument {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -153,7 +156,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSPersistentDocument")]
+    #[cfg(feature = "AppKit_NSDocument")]
     unsafe impl NSPersistentDocument {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -162,7 +165,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSDeprecated
-    #[cfg(feature = "AppKit_NSPersistentDocument")]
+    #[cfg(feature = "AppKit_NSDocument")]
     unsafe impl NSPersistentDocument {
         #[cfg(all(
             feature = "Foundation_NSError",

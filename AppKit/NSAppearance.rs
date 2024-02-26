@@ -12,27 +12,23 @@ typed_extensible_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSAppearance")]
     pub struct NSAppearance;
 
-    #[cfg(feature = "AppKit_NSAppearance")]
     unsafe impl ClassType for NSAppearance {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSAppearance")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSAppearance {}
 
-#[cfg(feature = "AppKit_NSAppearance")]
 unsafe impl NSObjectProtocol for NSAppearance {}
 
-#[cfg(feature = "AppKit_NSAppearance")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSAppearance {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSAppearance")]
     unsafe impl NSAppearance {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
@@ -82,7 +78,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSAppearance")]
     unsafe impl NSAppearance {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -121,15 +116,12 @@ extern_static!(NSAppearanceNameAccessibilityHighContrastVibrantDark: &'static NS
 
 extern_protocol!(
     pub unsafe trait NSAppearanceCustomization: NSObjectProtocol {
-        #[cfg(feature = "AppKit_NSAppearance")]
         #[method_id(@__retain_semantics Other appearance)]
         unsafe fn appearance(&self) -> Option<Id<NSAppearance>>;
 
-        #[cfg(feature = "AppKit_NSAppearance")]
         #[method(setAppearance:)]
         unsafe fn setAppearance(&self, appearance: Option<&NSAppearance>);
 
-        #[cfg(feature = "AppKit_NSAppearance")]
         #[method_id(@__retain_semantics Other effectiveAppearance)]
         unsafe fn effectiveAppearance(&self) -> Id<NSAppearance>;
     }

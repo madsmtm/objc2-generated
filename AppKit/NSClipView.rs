@@ -7,10 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSClipView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     pub struct NSClipView;
 
-    #[cfg(feature = "AppKit_NSClipView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl ClassType for NSClipView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
@@ -18,32 +18,60 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSClipView")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibility for NSClipView {}
 
-#[cfg(feature = "AppKit_NSClipView")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibilityElementProtocol for NSClipView {}
 
-#[cfg(feature = "AppKit_NSClipView")]
+#[cfg(all(
+    feature = "AppKit_NSAnimation",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAnimatablePropertyContainer for NSClipView {}
 
-#[cfg(feature = "AppKit_NSClipView")]
+#[cfg(all(
+    feature = "AppKit_NSAppearance",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAppearanceCustomization for NSClipView {}
 
-#[cfg(feature = "AppKit_NSClipView")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSClipView {}
 
-#[cfg(feature = "AppKit_NSClipView")]
+#[cfg(all(
+    feature = "AppKit_NSDragging",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSDraggingDestination for NSClipView {}
 
-#[cfg(feature = "AppKit_NSClipView")]
+#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
 unsafe impl NSObjectProtocol for NSClipView {}
 
-#[cfg(feature = "AppKit_NSClipView")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSClipView {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSClipView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSClipView {
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other backgroundColor)]
@@ -65,6 +93,7 @@ extern_methods!(
         #[method(setDocumentView:)]
         pub unsafe fn setDocumentView(&self, document_view: Option<&NSView>);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(documentRect)]
         pub unsafe fn documentRect(&self) -> NSRect;
 
@@ -76,6 +105,7 @@ extern_methods!(
         #[method(setDocumentCursor:)]
         pub unsafe fn setDocumentCursor(&self, document_cursor: Option<&NSCursor>);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(documentVisibleRect)]
         pub unsafe fn documentVisibleRect(&self) -> NSRect;
 
@@ -91,15 +121,19 @@ extern_methods!(
         #[method(autoscroll:)]
         pub unsafe fn autoscroll(&self, event: &NSEvent) -> bool;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(scrollToPoint:)]
         pub unsafe fn scrollToPoint(&self, new_origin: NSPoint);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(constrainBoundsRect:)]
         pub unsafe fn constrainBoundsRect(&self, proposed_bounds: NSRect) -> NSRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(contentInsets)]
         pub unsafe fn contentInsets(&self) -> NSEdgeInsets;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setContentInsets:)]
         pub unsafe fn setContentInsets(&self, content_insets: NSEdgeInsets);
 
@@ -116,8 +150,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSView`
-    #[cfg(feature = "AppKit_NSClipView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSClipView {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
 
@@ -129,7 +164,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "AppKit_NSClipView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSClipView {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -138,7 +173,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSClipView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSClipView {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -147,21 +182,22 @@ extern_methods!(
 
 extern_methods!(
     /// NSClipViewSuperview
-    #[cfg(feature = "AppKit_NSView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSView {
         #[cfg(feature = "AppKit_NSClipView")]
         #[method(reflectScrolledClipView:)]
         pub unsafe fn reflectScrolledClipView(&self, clip_view: &NSClipView);
 
-        #[cfg(feature = "AppKit_NSClipView")]
+        #[cfg(all(feature = "AppKit_NSClipView", feature = "Foundation_NSGeometry"))]
         #[method(scrollClipView:toPoint:)]
         pub unsafe fn scrollClipView_toPoint(&self, clip_view: &NSClipView, point: NSPoint);
     }
 );
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSClipView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSClipView {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[deprecated = "Use -constrainBoundsRect: instead."]
         #[method(constrainScrollPoint:)]
         pub unsafe fn constrainScrollPoint(&self, new_origin: NSPoint) -> NSPoint;

@@ -33,21 +33,17 @@ unsafe impl Sync for NSOperatingSystemVersion {}
 
 extern_class!(
     #[derive(PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSProcessInfo")]
     pub struct NSProcessInfo;
 
-    #[cfg(feature = "Foundation_NSProcessInfo")]
     unsafe impl ClassType for NSProcessInfo {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSProcessInfo")]
 unsafe impl NSObjectProtocol for NSProcessInfo {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSProcessInfo")]
     unsafe impl NSProcessInfo {
         #[method_id(@__retain_semantics Other processInfo)]
         pub fn processInfo() -> Id<NSProcessInfo>;
@@ -110,6 +106,7 @@ extern_methods!(
             version: NSOperatingSystemVersion,
         ) -> bool;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(systemUptime)]
         pub unsafe fn systemUptime(&self) -> NSTimeInterval;
 
@@ -140,7 +137,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSProcessInfo")]
     unsafe impl NSProcessInfo {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -173,7 +169,6 @@ ns_options!(
 
 extern_methods!(
     /// NSProcessInfoActivity
-    #[cfg(feature = "Foundation_NSProcessInfo")]
     unsafe impl NSProcessInfo {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other beginActivityWithOptions:reason:)]
@@ -207,7 +202,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSUserInformation
-    #[cfg(feature = "Foundation_NSProcessInfo")]
     unsafe impl NSProcessInfo {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other userName)]
@@ -235,7 +229,6 @@ ns_enum!(
 
 extern_methods!(
     /// NSProcessInfoThermalState
-    #[cfg(feature = "Foundation_NSProcessInfo")]
     unsafe impl NSProcessInfo {
         #[method(thermalState)]
         pub unsafe fn thermalState(&self) -> NSProcessInfoThermalState;
@@ -244,22 +237,20 @@ extern_methods!(
 
 extern_methods!(
     /// NSProcessInfoPowerState
-    #[cfg(feature = "Foundation_NSProcessInfo")]
     unsafe impl NSProcessInfo {
         #[method(isLowPowerModeEnabled)]
         pub unsafe fn isLowPowerModeEnabled(&self) -> bool;
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSProcessInfoThermalStateDidChangeNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSProcessInfoPowerStateDidChangeNotification: &'static NSNotificationName);
 
 extern_methods!(
     /// NSProcessInfoPlatform
-    #[cfg(feature = "Foundation_NSProcessInfo")]
     unsafe impl NSProcessInfo {
         #[method(isMacCatalystApp)]
         pub unsafe fn isMacCatalystApp(&self) -> bool;

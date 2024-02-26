@@ -6,12 +6,14 @@ use crate::Metal::*;
 
 extern_protocol!(
     pub unsafe trait MTLIndirectRenderCommand: NSObjectProtocol {
+        #[cfg(feature = "Metal_MTLRenderPipeline")]
         #[method(setRenderPipelineState:)]
         unsafe fn setRenderPipelineState(
             &self,
             pipeline_state: &ProtocolObject<dyn MTLRenderPipelineState>,
         );
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method(setVertexBuffer:offset:atIndex:)]
         unsafe fn setVertexBuffer_offset_atIndex(
             &self,
@@ -20,6 +22,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method(setFragmentBuffer:offset:atIndex:)]
         unsafe fn setFragmentBuffer_offset_atIndex(
             &self,
@@ -28,6 +31,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method(setVertexBuffer:offset:attributeStride:atIndex:)]
         unsafe fn setVertexBuffer_offset_attributeStride_atIndex(
             &self,
@@ -37,6 +41,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method(drawPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:instanceCount:baseInstance:tessellationFactorBuffer:tessellationFactorBufferOffset:tessellationFactorBufferInstanceStride:)]
         unsafe fn drawPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_instanceCount_baseInstance_tessellationFactorBuffer_tessellationFactorBufferOffset_tessellationFactorBufferInstanceStride(
             &self,
@@ -52,6 +57,7 @@ extern_protocol!(
             instance_stride: NSUInteger,
         );
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method(drawIndexedPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:instanceCount:baseInstance:tessellationFactorBuffer:tessellationFactorBufferOffset:tessellationFactorBufferInstanceStride:)]
         unsafe fn drawIndexedPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_controlPointIndexBuffer_controlPointIndexBufferOffset_instanceCount_baseInstance_tessellationFactorBuffer_tessellationFactorBufferOffset_tessellationFactorBufferInstanceStride(
             &self,
@@ -69,6 +75,7 @@ extern_protocol!(
             instance_stride: NSUInteger,
         );
 
+        #[cfg(feature = "Metal_MTLRenderCommandEncoder")]
         #[method(drawPrimitives:vertexStart:vertexCount:instanceCount:baseInstance:)]
         unsafe fn drawPrimitives_vertexStart_vertexCount_instanceCount_baseInstance(
             &self,
@@ -79,6 +86,12 @@ extern_protocol!(
             base_instance: NSUInteger,
         );
 
+        #[cfg(all(
+            feature = "Metal_MTLBuffer",
+            feature = "Metal_MTLRenderCommandEncoder",
+            feature = "Metal_MTLResource",
+            feature = "Metal_MTLStageInputOutputDescriptor"
+        ))]
         #[method(drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:baseVertex:baseInstance:)]
         unsafe fn drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_instanceCount_baseVertex_baseInstance(
             &self,
@@ -99,6 +112,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method(setObjectBuffer:offset:atIndex:)]
         unsafe fn setObjectBuffer_offset_atIndex(
             &self,
@@ -107,6 +121,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method(setMeshBuffer:offset:atIndex:)]
         unsafe fn setMeshBuffer_offset_atIndex(
             &self,
@@ -115,6 +130,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
+        #[cfg(feature = "Metal_MTLTypes")]
         #[method(drawMeshThreadgroups:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:)]
         unsafe fn drawMeshThreadgroups_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(
             &self,
@@ -123,6 +139,7 @@ extern_protocol!(
             threads_per_mesh_threadgroup: MTLSize,
         );
 
+        #[cfg(feature = "Metal_MTLTypes")]
         #[method(drawMeshThreads:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:)]
         unsafe fn drawMeshThreads_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(
             &self,
@@ -146,12 +163,14 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait MTLIndirectComputeCommand: NSObjectProtocol {
+        #[cfg(feature = "Metal_MTLComputePipeline")]
         #[method(setComputePipelineState:)]
         unsafe fn setComputePipelineState(
             &self,
             pipeline_state: &ProtocolObject<dyn MTLComputePipelineState>,
         );
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method(setKernelBuffer:offset:atIndex:)]
         unsafe fn setKernelBuffer_offset_atIndex(
             &self,
@@ -160,6 +179,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method(setKernelBuffer:offset:attributeStride:atIndex:)]
         unsafe fn setKernelBuffer_offset_attributeStride_atIndex(
             &self,
@@ -169,6 +189,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
+        #[cfg(feature = "Metal_MTLTypes")]
         #[method(concurrentDispatchThreadgroups:threadsPerThreadgroup:)]
         unsafe fn concurrentDispatchThreadgroups_threadsPerThreadgroup(
             &self,
@@ -176,6 +197,7 @@ extern_protocol!(
             threads_per_threadgroup: MTLSize,
         );
 
+        #[cfg(feature = "Metal_MTLTypes")]
         #[method(concurrentDispatchThreads:threadsPerThreadgroup:)]
         unsafe fn concurrentDispatchThreads_threadsPerThreadgroup(
             &self,
@@ -198,6 +220,7 @@ extern_protocol!(
         #[method(setThreadgroupMemoryLength:atIndex:)]
         unsafe fn setThreadgroupMemoryLength_atIndex(&self, length: NSUInteger, index: NSUInteger);
 
+        #[cfg(feature = "Metal_MTLTypes")]
         #[method(setStageInRegion:)]
         unsafe fn setStageInRegion(&self, region: MTLRegion);
     }

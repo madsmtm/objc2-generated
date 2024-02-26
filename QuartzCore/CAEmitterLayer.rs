@@ -21,10 +21,10 @@ typed_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "QuartzCore_CAEmitterLayer")]
+    #[cfg(feature = "QuartzCore_CALayer")]
     pub struct CAEmitterLayer;
 
-    #[cfg(feature = "QuartzCore_CAEmitterLayer")]
+    #[cfg(feature = "QuartzCore_CALayer")]
     unsafe impl ClassType for CAEmitterLayer {
         #[inherits(NSObject)]
         type Super = CALayer;
@@ -32,20 +32,20 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "QuartzCore_CAEmitterLayer")]
+#[cfg(all(feature = "QuartzCore_CALayer", feature = "QuartzCore_CAMediaTiming"))]
 unsafe impl CAMediaTiming for CAEmitterLayer {}
 
-#[cfg(feature = "QuartzCore_CAEmitterLayer")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "QuartzCore_CALayer"))]
 unsafe impl NSCoding for CAEmitterLayer {}
 
-#[cfg(feature = "QuartzCore_CAEmitterLayer")]
+#[cfg(feature = "QuartzCore_CALayer")]
 unsafe impl NSObjectProtocol for CAEmitterLayer {}
 
-#[cfg(feature = "QuartzCore_CAEmitterLayer")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "QuartzCore_CALayer"))]
 unsafe impl NSSecureCoding for CAEmitterLayer {}
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CAEmitterLayer")]
+    #[cfg(feature = "QuartzCore_CALayer")]
     unsafe impl CAEmitterLayer {
         #[cfg(all(feature = "Foundation_NSArray", feature = "QuartzCore_CAEmitterCell"))]
         #[method_id(@__retain_semantics Other emitterCells)]
@@ -67,27 +67,35 @@ extern_methods!(
         #[method(setLifetime:)]
         pub unsafe fn setLifetime(&self, lifetime: c_float);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(emitterPosition)]
         pub unsafe fn emitterPosition(&self) -> CGPoint;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setEmitterPosition:)]
         pub unsafe fn setEmitterPosition(&self, emitter_position: CGPoint);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(emitterZPosition)]
         pub unsafe fn emitterZPosition(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setEmitterZPosition:)]
         pub unsafe fn setEmitterZPosition(&self, emitter_z_position: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(emitterSize)]
         pub unsafe fn emitterSize(&self) -> CGSize;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setEmitterSize:)]
         pub unsafe fn setEmitterSize(&self, emitter_size: CGSize);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(emitterDepth)]
         pub unsafe fn emitterDepth(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setEmitterDepth:)]
         pub unsafe fn setEmitterDepth(&self, emitter_depth: CGFloat);
 
@@ -149,7 +157,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CALayer`
-    #[cfg(feature = "QuartzCore_CAEmitterLayer")]
+    #[cfg(feature = "QuartzCore_CALayer")]
     unsafe impl CAEmitterLayer {
         #[method_id(@__retain_semantics Other layer)]
         pub unsafe fn layer() -> Id<Self>;
@@ -164,7 +172,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "QuartzCore_CAEmitterLayer")]
+    #[cfg(feature = "QuartzCore_CALayer")]
     unsafe impl CAEmitterLayer {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

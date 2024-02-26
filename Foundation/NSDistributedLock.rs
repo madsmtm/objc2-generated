@@ -5,27 +5,21 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSDistributedLock")]
     pub struct NSDistributedLock;
 
-    #[cfg(feature = "Foundation_NSDistributedLock")]
     unsafe impl ClassType for NSDistributedLock {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSDistributedLock")]
 unsafe impl Send for NSDistributedLock {}
 
-#[cfg(feature = "Foundation_NSDistributedLock")]
 unsafe impl Sync for NSDistributedLock {}
 
-#[cfg(feature = "Foundation_NSDistributedLock")]
 unsafe impl NSObjectProtocol for NSDistributedLock {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSDistributedLock")]
     unsafe impl NSDistributedLock {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other lockWithPath:)]
@@ -55,7 +49,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSDistributedLock")]
     unsafe impl NSDistributedLock {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

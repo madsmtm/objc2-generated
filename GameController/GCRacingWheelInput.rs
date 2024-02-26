@@ -7,35 +7,43 @@ use crate::GameController::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameController_GCRacingWheelInputState")]
     pub struct GCRacingWheelInputState;
 
-    #[cfg(feature = "GameController_GCRacingWheelInputState")]
     unsafe impl ClassType for GCRacingWheelInputState {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "GameController_GCRacingWheelInputState")]
+#[cfg(feature = "GameController_GCDevicePhysicalInputState")]
 unsafe impl GCDevicePhysicalInputState for GCRacingWheelInputState {}
 
-#[cfg(feature = "GameController_GCRacingWheelInputState")]
 unsafe impl NSObjectProtocol for GCRacingWheelInputState {}
 
 extern_methods!(
-    #[cfg(feature = "GameController_GCRacingWheelInputState")]
     unsafe impl GCRacingWheelInputState {
         #[cfg(feature = "GameController_GCSteeringWheelElement")]
         #[method_id(@__retain_semantics Other wheel)]
         pub unsafe fn wheel(&self) -> Id<GCSteeringWheelElement>;
 
+        #[cfg(all(
+            feature = "GameController_GCButtonElement",
+            feature = "GameController_GCPhysicalInputElement"
+        ))]
         #[method_id(@__retain_semantics Other acceleratorPedal)]
         pub unsafe fn acceleratorPedal(&self) -> Option<Id<ProtocolObject<dyn GCButtonElement>>>;
 
+        #[cfg(all(
+            feature = "GameController_GCButtonElement",
+            feature = "GameController_GCPhysicalInputElement"
+        ))]
         #[method_id(@__retain_semantics Other brakePedal)]
         pub unsafe fn brakePedal(&self) -> Option<Id<ProtocolObject<dyn GCButtonElement>>>;
 
+        #[cfg(all(
+            feature = "GameController_GCButtonElement",
+            feature = "GameController_GCPhysicalInputElement"
+        ))]
         #[method_id(@__retain_semantics Other clutchPedal)]
         pub unsafe fn clutchPedal(&self) -> Option<Id<ProtocolObject<dyn GCButtonElement>>>;
 
@@ -47,7 +55,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameController_GCRacingWheelInputState")]
     unsafe impl GCRacingWheelInputState {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -59,10 +66,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameController_GCRacingWheelInput")]
     pub struct GCRacingWheelInput;
 
-    #[cfg(feature = "GameController_GCRacingWheelInput")]
     unsafe impl ClassType for GCRacingWheelInput {
         #[inherits(NSObject)]
         type Super = GCRacingWheelInputState;
@@ -70,21 +75,23 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "GameController_GCRacingWheelInput")]
+#[cfg(all(
+    feature = "GameController_GCDevicePhysicalInput",
+    feature = "GameController_GCDevicePhysicalInputState"
+))]
 unsafe impl GCDevicePhysicalInput for GCRacingWheelInput {}
 
-#[cfg(feature = "GameController_GCRacingWheelInput")]
+#[cfg(feature = "GameController_GCDevicePhysicalInputState")]
 unsafe impl GCDevicePhysicalInputState for GCRacingWheelInput {}
 
-#[cfg(feature = "GameController_GCRacingWheelInput")]
 unsafe impl NSObjectProtocol for GCRacingWheelInput {}
 
 extern_methods!(
-    #[cfg(feature = "GameController_GCRacingWheelInput")]
     unsafe impl GCRacingWheelInput {
         #[method_id(@__retain_semantics Other capture)]
         pub unsafe fn capture(&self) -> Id<GCRacingWheelInputState>;
 
+        #[cfg(feature = "GameController_GCDevicePhysicalInputStateDiff")]
         #[method_id(@__retain_semantics Other nextInputState)]
         pub unsafe fn nextInputState(&self) -> Option<Id<GCRacingWheelInputState>>;
     }
@@ -92,7 +99,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameController_GCRacingWheelInput")]
     unsafe impl GCRacingWheelInput {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

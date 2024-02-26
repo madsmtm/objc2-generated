@@ -27,42 +27,35 @@ extern_fn!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(
-        feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor"
-    )]
     pub struct ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor;
 
-    #[cfg(
-        feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor"
-    )]
     unsafe impl ClassType for ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor")]
+#[cfg(all(
+    feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialDescriptor",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl ASAuthorizationPublicKeyCredentialDescriptor
     for ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor
 {
 }
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor")]
 unsafe impl NSObjectProtocol for ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor {}
 
 extern_methods!(
-    #[cfg(
-        feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor"
-    )]
     unsafe impl ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor {
         #[cfg(all(
             feature = "Foundation_NSArray",

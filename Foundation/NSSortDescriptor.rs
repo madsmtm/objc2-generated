@@ -5,30 +5,26 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSSortDescriptor")]
     pub struct NSSortDescriptor;
 
-    #[cfg(feature = "Foundation_NSSortDescriptor")]
     unsafe impl ClassType for NSSortDescriptor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSSortDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSSortDescriptor {}
 
-#[cfg(feature = "Foundation_NSSortDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSSortDescriptor {}
 
-#[cfg(feature = "Foundation_NSSortDescriptor")]
 unsafe impl NSObjectProtocol for NSSortDescriptor {}
 
-#[cfg(feature = "Foundation_NSSortDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSSortDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSSortDescriptor")]
     unsafe impl NSSortDescriptor {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other sortDescriptorWithKey:ascending:)]
@@ -79,7 +75,7 @@ extern_methods!(
         #[method(allowEvaluation)]
         pub unsafe fn allowEvaluation(&self);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other sortDescriptorWithKey:ascending:comparator:)]
         pub unsafe fn sortDescriptorWithKey_ascending_comparator(
             key: Option<&NSString>,
@@ -87,7 +83,7 @@ extern_methods!(
             cmptr: NSComparator,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithKey:ascending:comparator:)]
         pub unsafe fn initWithKey_ascending_comparator(
             this: Allocated<Self>,
@@ -96,9 +92,11 @@ extern_methods!(
             cmptr: NSComparator,
         ) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSObjCRuntime")]
         #[method(comparator)]
         pub unsafe fn comparator(&self) -> NSComparator;
 
+        #[cfg(feature = "Foundation_NSObjCRuntime")]
         #[method(compareObject:toObject:)]
         pub unsafe fn compareObject_toObject(
             &self,
@@ -113,7 +111,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSSortDescriptor")]
     unsafe impl NSSortDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -154,7 +151,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSSortDescriptorSorting
-    #[cfg(feature = "Foundation_NSMutableArray")]
+    #[cfg(feature = "Foundation_NSArray")]
     unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
         #[cfg(feature = "Foundation_NSSortDescriptor")]
         #[method(sortUsingDescriptors:)]
@@ -180,7 +177,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSKeyValueSorting
-    #[cfg(feature = "Foundation_NSMutableOrderedSet")]
+    #[cfg(feature = "Foundation_NSOrderedSet")]
     unsafe impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
         #[cfg(all(
             feature = "Foundation_NSArray",

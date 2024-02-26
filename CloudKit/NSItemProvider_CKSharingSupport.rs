@@ -5,10 +5,18 @@ use crate::CloudKit::*;
 use crate::CoreLocation::*;
 use crate::Foundation::*;
 
-#[cfg(all(feature = "CloudKit_CKShare", feature = "Foundation_NSError"))]
+#[cfg(all(
+    feature = "CloudKit_CKRecord",
+    feature = "CloudKit_CKShare",
+    feature = "Foundation_NSError"
+))]
 pub type CKSharePreparationCompletionHandler = *mut Block<dyn Fn(*mut CKShare, *mut NSError)>;
 
-#[cfg(all(feature = "CloudKit_CKShare", feature = "Foundation_NSError"))]
+#[cfg(all(
+    feature = "CloudKit_CKRecord",
+    feature = "CloudKit_CKShare",
+    feature = "Foundation_NSError"
+))]
 pub type CKSharePreparationHandler = *mut Block<dyn Fn(CKSharePreparationCompletionHandler)>;
 
 extern_category!(
@@ -18,7 +26,9 @@ extern_category!(
         #[cfg(all(
             feature = "CloudKit_CKAllowedSharingOptions",
             feature = "CloudKit_CKContainer",
+            feature = "CloudKit_CKRecord",
             feature = "CloudKit_CKShare",
+            feature = "CloudKit_NSItemProvider_CKSharingSupport",
             feature = "Foundation_NSError"
         ))]
         #[method(registerCKShareWithContainer:allowedSharingOptions:preparationHandler:)]
@@ -32,6 +42,7 @@ extern_category!(
         #[cfg(all(
             feature = "CloudKit_CKAllowedSharingOptions",
             feature = "CloudKit_CKContainer",
+            feature = "CloudKit_CKRecord",
             feature = "CloudKit_CKShare"
         ))]
         #[method(registerCKShare:container:allowedSharingOptions:)]

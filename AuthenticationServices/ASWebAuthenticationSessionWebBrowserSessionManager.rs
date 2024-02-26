@@ -7,30 +7,32 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSessionWebBrowserSessionManager")]
     pub struct ASWebAuthenticationSessionWebBrowserSessionManager;
 
-    #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSessionWebBrowserSessionManager")]
     unsafe impl ClassType for ASWebAuthenticationSessionWebBrowserSessionManager {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASWebAuthenticationSessionWebBrowserSessionManager")]
 unsafe impl NSObjectProtocol for ASWebAuthenticationSessionWebBrowserSessionManager {}
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSessionWebBrowserSessionManager")]
     unsafe impl ASWebAuthenticationSessionWebBrowserSessionManager {
         #[method_id(@__retain_semantics Other sharedManager)]
         pub unsafe fn sharedManager() -> Id<ASWebAuthenticationSessionWebBrowserSessionManager>;
 
+        #[cfg(
+            feature = "AuthenticationServices_ASWebAuthenticationSessionWebBrowserSessionHandling"
+        )]
         #[method_id(@__retain_semantics Other sessionHandler)]
         pub unsafe fn sessionHandler(
             &self,
         ) -> Id<ProtocolObject<dyn ASWebAuthenticationSessionWebBrowserSessionHandling>>;
 
+        #[cfg(
+            feature = "AuthenticationServices_ASWebAuthenticationSessionWebBrowserSessionHandling"
+        )]
         #[method(setSessionHandler:)]
         pub unsafe fn setSessionHandler(
             &self,
@@ -46,7 +48,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AuthenticationServices_ASWebAuthenticationSessionWebBrowserSessionManager")]
     unsafe impl ASWebAuthenticationSessionWebBrowserSessionManager {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -54,27 +54,22 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSPersistentStoreResult")]
     pub struct NSPersistentStoreResult;
 
-    #[cfg(feature = "CoreData_NSPersistentStoreResult")]
     unsafe impl ClassType for NSPersistentStoreResult {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreData_NSPersistentStoreResult")]
 unsafe impl NSObjectProtocol for NSPersistentStoreResult {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSPersistentStoreResult")]
     unsafe impl NSPersistentStoreResult {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSPersistentStoreResult")]
     unsafe impl NSPersistentStoreResult {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -86,10 +81,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSPersistentStoreAsynchronousResult")]
     pub struct NSPersistentStoreAsynchronousResult;
 
-    #[cfg(feature = "CoreData_NSPersistentStoreAsynchronousResult")]
     unsafe impl ClassType for NSPersistentStoreAsynchronousResult {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreResult;
@@ -97,11 +90,9 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CoreData_NSPersistentStoreAsynchronousResult")]
 unsafe impl NSObjectProtocol for NSPersistentStoreAsynchronousResult {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSPersistentStoreAsynchronousResult")]
     unsafe impl NSPersistentStoreAsynchronousResult {
         #[cfg(feature = "CoreData_NSManagedObjectContext")]
         #[method_id(@__retain_semantics Other managedObjectContext)]
@@ -122,7 +113,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSPersistentStoreAsynchronousResult")]
     unsafe impl NSPersistentStoreAsynchronousResult {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -134,14 +124,12 @@ extern_methods!(
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSAsynchronousFetchResult")]
     pub struct NSAsynchronousFetchResult<ResultType: ?Sized = AnyObject> {
         __superclass: NSPersistentStoreAsynchronousResult,
         _inner0: PhantomData<*mut ResultType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
-    #[cfg(feature = "CoreData_NSAsynchronousFetchResult")]
     unsafe impl<ResultType: ?Sized + Message> ClassType for NSAsynchronousFetchResult<ResultType> {
         #[inherits(NSPersistentStoreResult, NSObject)]
         type Super = NSPersistentStoreAsynchronousResult;
@@ -157,13 +145,14 @@ __inner_extern_class!(
     }
 );
 
-#[cfg(feature = "CoreData_NSAsynchronousFetchResult")]
 unsafe impl<ResultType: ?Sized> NSObjectProtocol for NSAsynchronousFetchResult<ResultType> {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSAsynchronousFetchResult")]
     unsafe impl<ResultType: Message> NSAsynchronousFetchResult<ResultType> {
-        #[cfg(feature = "CoreData_NSAsynchronousFetchRequest")]
+        #[cfg(all(
+            feature = "CoreData_NSFetchRequest",
+            feature = "CoreData_NSPersistentStoreRequest"
+        ))]
         #[method_id(@__retain_semantics Other fetchRequest)]
         pub unsafe fn fetchRequest(&self) -> Id<NSAsynchronousFetchRequest<ResultType>>;
 
@@ -175,7 +164,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSAsynchronousFetchResult")]
     unsafe impl<ResultType: Message> NSAsynchronousFetchResult<ResultType> {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -187,10 +175,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSBatchInsertResult")]
     pub struct NSBatchInsertResult;
 
-    #[cfg(feature = "CoreData_NSBatchInsertResult")]
     unsafe impl ClassType for NSBatchInsertResult {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreResult;
@@ -198,11 +184,9 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CoreData_NSBatchInsertResult")]
 unsafe impl NSObjectProtocol for NSBatchInsertResult {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSBatchInsertResult")]
     unsafe impl NSBatchInsertResult {
         #[method_id(@__retain_semantics Other result)]
         pub unsafe fn result(&self) -> Option<Id<AnyObject>>;
@@ -214,7 +198,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSBatchInsertResult")]
     unsafe impl NSBatchInsertResult {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -226,10 +209,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSBatchUpdateResult")]
     pub struct NSBatchUpdateResult;
 
-    #[cfg(feature = "CoreData_NSBatchUpdateResult")]
     unsafe impl ClassType for NSBatchUpdateResult {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreResult;
@@ -237,11 +218,9 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CoreData_NSBatchUpdateResult")]
 unsafe impl NSObjectProtocol for NSBatchUpdateResult {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSBatchUpdateResult")]
     unsafe impl NSBatchUpdateResult {
         #[method_id(@__retain_semantics Other result)]
         pub unsafe fn result(&self) -> Option<Id<AnyObject>>;
@@ -253,7 +232,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSBatchUpdateResult")]
     unsafe impl NSBatchUpdateResult {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -265,10 +243,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSBatchDeleteResult")]
     pub struct NSBatchDeleteResult;
 
-    #[cfg(feature = "CoreData_NSBatchDeleteResult")]
     unsafe impl ClassType for NSBatchDeleteResult {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreResult;
@@ -276,11 +252,9 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CoreData_NSBatchDeleteResult")]
 unsafe impl NSObjectProtocol for NSBatchDeleteResult {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSBatchDeleteResult")]
     unsafe impl NSBatchDeleteResult {
         #[method_id(@__retain_semantics Other result)]
         pub unsafe fn result(&self) -> Option<Id<AnyObject>>;
@@ -292,7 +266,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSBatchDeleteResult")]
     unsafe impl NSBatchDeleteResult {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -304,10 +277,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSPersistentHistoryResult")]
     pub struct NSPersistentHistoryResult;
 
-    #[cfg(feature = "CoreData_NSPersistentHistoryResult")]
     unsafe impl ClassType for NSPersistentHistoryResult {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreResult;
@@ -315,11 +286,9 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CoreData_NSPersistentHistoryResult")]
 unsafe impl NSObjectProtocol for NSPersistentHistoryResult {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSPersistentHistoryResult")]
     unsafe impl NSPersistentHistoryResult {
         #[method_id(@__retain_semantics Other result)]
         pub unsafe fn result(&self) -> Option<Id<AnyObject>>;
@@ -331,7 +300,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSPersistentHistoryResult")]
     unsafe impl NSPersistentHistoryResult {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -353,10 +321,8 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSPersistentCloudKitContainerEventResult")]
     pub struct NSPersistentCloudKitContainerEventResult;
 
-    #[cfg(feature = "CoreData_NSPersistentCloudKitContainerEventResult")]
     unsafe impl ClassType for NSPersistentCloudKitContainerEventResult {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreResult;
@@ -364,11 +330,9 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CoreData_NSPersistentCloudKitContainerEventResult")]
 unsafe impl NSObjectProtocol for NSPersistentCloudKitContainerEventResult {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSPersistentCloudKitContainerEventResult")]
     unsafe impl NSPersistentCloudKitContainerEventResult {
         #[method_id(@__retain_semantics Other result)]
         pub unsafe fn result(&self) -> Option<Id<AnyObject>>;

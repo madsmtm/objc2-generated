@@ -6,24 +6,20 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentApplication")]
     pub struct AEAssessmentApplication;
 
-    #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentApplication")]
     unsafe impl ClassType for AEAssessmentApplication {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentApplication")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for AEAssessmentApplication {}
 
-#[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentApplication")]
 unsafe impl NSObjectProtocol for AEAssessmentApplication {}
 
 extern_methods!(
-    #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentApplication")]
     unsafe impl AEAssessmentApplication {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other bundleIdentifier)]

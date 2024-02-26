@@ -9,27 +9,23 @@ use crate::MapKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKTileOverlay")]
     pub struct MKTileOverlay;
 
-    #[cfg(feature = "MapKit_MKTileOverlay")]
     unsafe impl ClassType for MKTileOverlay {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MapKit_MKTileOverlay")]
+#[cfg(feature = "MapKit_MKAnnotation")]
 unsafe impl MKAnnotation for MKTileOverlay {}
 
-#[cfg(feature = "MapKit_MKTileOverlay")]
+#[cfg(all(feature = "MapKit_MKAnnotation", feature = "MapKit_MKOverlay"))]
 unsafe impl MKOverlay for MKTileOverlay {}
 
-#[cfg(feature = "MapKit_MKTileOverlay")]
 unsafe impl NSObjectProtocol for MKTileOverlay {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKTileOverlay")]
     unsafe impl MKTileOverlay {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithURLTemplate:)]
@@ -38,9 +34,11 @@ extern_methods!(
             url_template: Option<&NSString>,
         ) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(tileSize)]
         pub unsafe fn tileSize(&self) -> CGSize;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setTileSize:)]
         pub unsafe fn setTileSize(&self, tile_size: CGSize);
 
@@ -76,7 +74,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MapKit_MKTileOverlay")]
     unsafe impl MKTileOverlay {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -88,6 +85,7 @@ extern_methods!(
 
 extern_struct!(
     #[encoding_name("?")]
+    #[cfg(feature = "Foundation_NSGeometry")]
     pub struct MKTileOverlayPath {
         pub x: NSInteger,
         pub y: NSInteger,
@@ -98,13 +96,16 @@ extern_struct!(
 
 extern_methods!(
     /// CustomLoading
-    #[cfg(feature = "MapKit_MKTileOverlay")]
     unsafe impl MKTileOverlay {
-        #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(all(feature = "Foundation_NSGeometry", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other URLForTilePath:)]
         pub unsafe fn URLForTilePath(&self, path: MKTileOverlayPath) -> Id<NSURL>;
 
-        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
+        #[cfg(all(
+            feature = "Foundation_NSData",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[method(loadTileAtPath:result:)]
         pub unsafe fn loadTileAtPath_result(
             &self,

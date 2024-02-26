@@ -34,33 +34,29 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSDocument")]
     pub struct NSDocument;
 
-    #[cfg(feature = "AppKit_NSDocument")]
     unsafe impl ClassType for NSDocument {
         type Super = NSObject;
         type Mutability = MainThreadOnly;
     }
 );
 
-#[cfg(feature = "AppKit_NSDocument")]
+#[cfg(feature = "AppKit_NSKeyValueBinding")]
 unsafe impl NSEditorRegistration for NSDocument {}
 
-#[cfg(feature = "AppKit_NSDocument")]
+#[cfg(feature = "Foundation_NSFilePresenter")]
 unsafe impl NSFilePresenter for NSDocument {}
 
-#[cfg(feature = "AppKit_NSDocument")]
+#[cfg(feature = "AppKit_NSMenu")]
 unsafe impl NSMenuItemValidation for NSDocument {}
 
-#[cfg(feature = "AppKit_NSDocument")]
 unsafe impl NSObjectProtocol for NSDocument {}
 
-#[cfg(feature = "AppKit_NSDocument")]
+#[cfg(feature = "AppKit_NSUserInterfaceValidation")]
 unsafe impl NSUserInterfaceValidations for NSDocument {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSDocument")]
     unsafe impl NSDocument {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -331,7 +327,12 @@ extern_methods!(
         #[method(shouldRunSavePanelWithAccessoryView)]
         pub unsafe fn shouldRunSavePanelWithAccessoryView(&self) -> bool;
 
-        #[cfg(feature = "AppKit_NSSavePanel")]
+        #[cfg(all(
+            feature = "AppKit_NSPanel",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSSavePanel",
+            feature = "AppKit_NSWindow"
+        ))]
         #[method(prepareSavePanel:)]
         pub unsafe fn prepareSavePanel(&self, save_panel: &NSSavePanel) -> bool;
 
@@ -555,7 +556,11 @@ extern_methods!(
         #[method(printDocument:)]
         pub unsafe fn printDocument(&self, sender: Option<&AnyObject>);
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSPrintInfo",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
+        ))]
         #[method(printDocumentWithSettings:showPrintPanel:delegate:didPrintSelector:contextInfo:)]
         pub unsafe fn printDocumentWithSettings_showPrintPanel_delegate_didPrintSelector_contextInfo(
             &self,
@@ -567,6 +572,7 @@ extern_methods!(
         );
 
         #[cfg(all(
+            feature = "AppKit_NSPrintInfo",
             feature = "AppKit_NSPrintOperation",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
@@ -606,20 +612,26 @@ extern_methods!(
             completion_handler: Option<&Block<dyn Fn(Bool)>>,
         );
 
-        #[cfg(feature = "AppKit_NSSharingServicePicker")]
+        #[cfg(feature = "AppKit_NSSharingService")]
         #[method(prepareSharingServicePicker:)]
         pub unsafe fn prepareSharingServicePicker(
             &self,
             sharing_service_picker: &NSSharingServicePicker,
         );
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(
+            feature = "AppKit_NSPreviewRepresentingActivityItem",
+            feature = "Foundation_NSArray"
+        ))]
         #[method_id(@__retain_semantics Other previewRepresentableActivityItems)]
         pub unsafe fn previewRepresentableActivityItems(
             &self,
         ) -> Option<Id<NSArray<ProtocolObject<dyn NSPreviewRepresentableActivityItem>>>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(
+            feature = "AppKit_NSPreviewRepresentingActivityItem",
+            feature = "Foundation_NSArray"
+        ))]
         #[method(setPreviewRepresentableActivityItems:)]
         pub unsafe fn setPreviewRepresentableActivityItems(
             &self,
@@ -664,7 +676,11 @@ extern_methods!(
         #[method(setHasUndoManager:)]
         pub unsafe fn setHasUndoManager(&self, has_undo_manager: bool);
 
-        #[cfg(all(feature = "AppKit_NSWindow", feature = "Foundation_NSError"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSWindow",
+            feature = "Foundation_NSError"
+        ))]
         #[method(presentError:modalForWindow:delegate:didPresentSelector:contextInfo:)]
         pub unsafe fn presentError_modalForWindow_delegate_didPresentSelector_contextInfo(
             &self,
@@ -690,38 +706,42 @@ extern_methods!(
         #[method(makeWindowControllers)]
         pub unsafe fn makeWindowControllers(&self);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "AppKit_NSNib", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other windowNibName)]
         pub unsafe fn windowNibName(&self) -> Option<Id<NSNibName>>;
 
-        #[cfg(feature = "AppKit_NSWindowController")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindowController"))]
         #[method(windowControllerWillLoadNib:)]
         pub unsafe fn windowControllerWillLoadNib(&self, window_controller: &NSWindowController);
 
-        #[cfg(feature = "AppKit_NSWindowController")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindowController"))]
         #[method(windowControllerDidLoadNib:)]
         pub unsafe fn windowControllerDidLoadNib(&self, window_controller: &NSWindowController);
 
-        #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
         #[method(setWindow:)]
         pub unsafe fn setWindow(&self, window: Option<&NSWindow>);
 
-        #[cfg(feature = "AppKit_NSWindowController")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindowController"))]
         #[method(addWindowController:)]
         pub unsafe fn addWindowController(&self, window_controller: &NSWindowController);
 
-        #[cfg(feature = "AppKit_NSWindowController")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindowController"))]
         #[method(removeWindowController:)]
         pub unsafe fn removeWindowController(&self, window_controller: &NSWindowController);
 
         #[method(showWindows)]
         pub unsafe fn showWindows(&self);
 
-        #[cfg(all(feature = "AppKit_NSWindowController", feature = "Foundation_NSArray"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSWindowController",
+            feature = "Foundation_NSArray"
+        ))]
         #[method_id(@__retain_semantics Other windowControllers)]
         pub unsafe fn windowControllers(&self) -> Id<NSArray<NSWindowController>>;
 
-        #[cfg(feature = "AppKit_NSWindowController")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindowController"))]
         #[method(shouldCloseWindowController:delegate:shouldCloseSelector:contextInfo:)]
         pub unsafe fn shouldCloseWindowController_delegate_shouldCloseSelector_contextInfo(
             &self,
@@ -739,7 +759,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other defaultDraftName)]
         pub unsafe fn defaultDraftName(&self) -> Id<NSString>;
 
-        #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
         #[method_id(@__retain_semantics Other windowForSheet)]
         pub unsafe fn windowForSheet(&self) -> Option<Id<NSWindow>>;
 
@@ -770,6 +790,7 @@ extern_methods!(
             save_operation: NSSaveOperationType,
         ) -> Option<Id<NSString>>;
 
+        #[cfg(feature = "AppKit_NSUserInterfaceValidation")]
         #[method(validateUserInterfaceItem:)]
         pub unsafe fn validateUserInterfaceItem(
             &self,
@@ -783,7 +804,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other presentedItemURL)]
         pub unsafe fn presentedItemURL(&self) -> Option<Id<NSURL>>;
 
-        #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSSet",
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSURL"
+        ))]
         #[method_id(@__retain_semantics Other observedPresentedItemUbiquityAttributes)]
         pub unsafe fn observedPresentedItemUbiquityAttributes(&self)
             -> Id<NSSet<NSURLResourceKey>>;
@@ -821,7 +846,11 @@ extern_methods!(
         #[method(presentedItemDidChange)]
         pub unsafe fn presentedItemDidChange(&self);
 
-        #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSSet",
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSURL"
+        ))]
         #[method(presentedItemDidChangeUbiquityAttributes:)]
         pub unsafe fn presentedItemDidChangeUbiquityAttributes(
             &self,
@@ -844,7 +873,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSDocument")]
     unsafe impl NSDocument {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -853,7 +881,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSDeprecated
-    #[cfg(feature = "AppKit_NSDocument")]
     unsafe impl NSDocument {
         #[cfg(all(
             feature = "Foundation_NSError",

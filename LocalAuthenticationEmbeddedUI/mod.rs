@@ -17,15 +17,27 @@
 #[link(name = "LocalAuthenticationEmbeddedUI", kind = "framework")]
 extern "C" {}
 
+#[cfg(feature = "LocalAuthenticationEmbeddedUI_LAAuthenticationView")]
 #[path = "LAAuthenticationView.rs"]
 mod __LAAuthenticationView;
+#[cfg(feature = "LocalAuthenticationEmbeddedUI_LAPresentationContext")]
 #[path = "LAPresentationContext.rs"]
 mod __LAPresentationContext;
+#[cfg(feature = "LocalAuthenticationEmbeddedUI_LARight_UI")]
 #[path = "LARight_UI.rs"]
 mod __LARight_UI;
 
-#[cfg(feature = "LocalAuthenticationEmbeddedUI_LAAuthenticationView")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "LocalAuthenticationEmbeddedUI_LAAuthenticationView"
+))]
 pub use self::__LAAuthenticationView::LAAuthenticationView;
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSWindow",
+    feature = "LocalAuthenticationEmbeddedUI_LAPresentationContext"
+))]
 pub use self::__LAPresentationContext::LAPresentationContext;
+#[cfg(feature = "LocalAuthenticationEmbeddedUI_LARight_UI")]
 pub use self::__LARight_UI::LARightUI;

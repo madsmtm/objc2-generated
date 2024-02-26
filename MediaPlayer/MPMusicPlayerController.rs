@@ -63,24 +63,20 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MediaPlayer_MPMusicPlayerController")]
     pub struct MPMusicPlayerController;
 
-    #[cfg(feature = "MediaPlayer_MPMusicPlayerController")]
     unsafe impl ClassType for MPMusicPlayerController {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MediaPlayer_MPMusicPlayerController")]
+#[cfg(feature = "MediaPlayer_MPMediaPlayback")]
 unsafe impl MPMediaPlayback for MPMusicPlayerController {}
 
-#[cfg(feature = "MediaPlayer_MPMusicPlayerController")]
 unsafe impl NSObjectProtocol for MPMusicPlayerController {}
 
 extern_methods!(
-    #[cfg(feature = "MediaPlayer_MPMusicPlayerController")]
     unsafe impl MPMusicPlayerController {
         #[method_id(@__retain_semantics Other applicationMusicPlayer)]
         pub unsafe fn applicationMusicPlayer() -> Id<MPMusicPlayerController>;
@@ -121,11 +117,17 @@ extern_methods!(
         #[method(setVolume:)]
         pub unsafe fn setVolume(&self, volume: c_float);
 
-        #[cfg(feature = "MediaPlayer_MPMediaItem")]
+        #[cfg(all(
+            feature = "MediaPlayer_MPMediaEntity",
+            feature = "MediaPlayer_MPMediaItem"
+        ))]
         #[method_id(@__retain_semantics Other nowPlayingItem)]
         pub unsafe fn nowPlayingItem(&self) -> Option<Id<MPMediaItem>>;
 
-        #[cfg(feature = "MediaPlayer_MPMediaItem")]
+        #[cfg(all(
+            feature = "MediaPlayer_MPMediaEntity",
+            feature = "MediaPlayer_MPMediaItem"
+        ))]
         #[method(setNowPlayingItem:)]
         pub unsafe fn setNowPlayingItem(&self, now_playing_item: Option<&MPMediaItem>);
 
@@ -136,7 +138,10 @@ extern_methods!(
         #[method(setQueueWithQuery:)]
         pub unsafe fn setQueueWithQuery(&self, query: &MPMediaQuery);
 
-        #[cfg(feature = "MediaPlayer_MPMediaItemCollection")]
+        #[cfg(all(
+            feature = "MediaPlayer_MPMediaEntity",
+            feature = "MediaPlayer_MPMediaItemCollection"
+        ))]
         #[method(setQueueWithItemCollection:)]
         pub unsafe fn setQueueWithItemCollection(&self, item_collection: &MPMediaItemCollection);
 
@@ -184,11 +189,11 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(MPMusicPlayerControllerPlaybackStateDidChangeNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(MPMusicPlayerControllerNowPlayingItemDidChangeNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(MPMusicPlayerControllerVolumeDidChangeNotification: &'static NSNotificationName);

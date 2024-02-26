@@ -6,10 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSFetchedPropertyDescription")]
+    #[cfg(feature = "CoreData_NSPropertyDescription")]
     pub struct NSFetchedPropertyDescription;
 
-    #[cfg(feature = "CoreData_NSFetchedPropertyDescription")]
+    #[cfg(feature = "CoreData_NSPropertyDescription")]
     unsafe impl ClassType for NSFetchedPropertyDescription {
         #[inherits(NSObject)]
         type Super = NSPropertyDescription;
@@ -17,23 +17,35 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CoreData_NSFetchedPropertyDescription")]
+#[cfg(all(
+    feature = "CoreData_NSPropertyDescription",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSFetchedPropertyDescription {}
 
-#[cfg(feature = "CoreData_NSFetchedPropertyDescription")]
+#[cfg(all(
+    feature = "CoreData_NSPropertyDescription",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCopying for NSFetchedPropertyDescription {}
 
-#[cfg(feature = "CoreData_NSFetchedPropertyDescription")]
+#[cfg(feature = "CoreData_NSPropertyDescription")]
 unsafe impl NSObjectProtocol for NSFetchedPropertyDescription {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSFetchedPropertyDescription")]
+    #[cfg(feature = "CoreData_NSPropertyDescription")]
     unsafe impl NSFetchedPropertyDescription {
-        #[cfg(feature = "CoreData_NSFetchRequest")]
+        #[cfg(all(
+            feature = "CoreData_NSFetchRequest",
+            feature = "CoreData_NSPersistentStoreRequest"
+        ))]
         #[method_id(@__retain_semantics Other fetchRequest)]
         pub unsafe fn fetchRequest(&self) -> Option<Id<NSFetchRequest>>;
 
-        #[cfg(feature = "CoreData_NSFetchRequest")]
+        #[cfg(all(
+            feature = "CoreData_NSFetchRequest",
+            feature = "CoreData_NSPersistentStoreRequest"
+        ))]
         #[method(setFetchRequest:)]
         pub unsafe fn setFetchRequest(&self, fetch_request: Option<&NSFetchRequest>);
     }
@@ -41,7 +53,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSFetchedPropertyDescription")]
+    #[cfg(feature = "CoreData_NSPropertyDescription")]
     unsafe impl NSFetchedPropertyDescription {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

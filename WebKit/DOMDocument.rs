@@ -7,11 +7,19 @@ use crate::WebKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_DOMDocument")]
+    #[cfg(all(
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     #[deprecated]
     pub struct DOMDocument;
 
-    #[cfg(feature = "WebKit_DOMDocument")]
+    #[cfg(all(
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl ClassType for DOMDocument {
         #[inherits(DOMObject, WebScriptObject, NSObject)]
         type Super = DOMNode;
@@ -19,17 +27,36 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "WebKit_DOMDocument")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "WebKit_DOMEventTarget",
+    feature = "WebKit_DOMNode",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl DOMEventTarget for DOMDocument {}
 
-#[cfg(feature = "WebKit_DOMDocument")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "WebKit_DOMNode",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSCopying for DOMDocument {}
 
-#[cfg(feature = "WebKit_DOMDocument")]
+#[cfg(all(
+    feature = "WebKit_DOMNode",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSObjectProtocol for DOMDocument {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_DOMDocument")]
+    #[cfg(all(
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMDocument {
         #[cfg(feature = "WebKit_DOMDocumentType")]
         #[deprecated]
@@ -121,12 +148,12 @@ extern_methods!(
         #[method(setCookie:)]
         pub unsafe fn setCookie(&self, cookie: Option<&NSString>);
 
-        #[cfg(feature = "WebKit_DOMHTMLElement")]
+        #[cfg(all(feature = "WebKit_DOMElement", feature = "WebKit_DOMHTMLElement"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other body)]
         pub unsafe fn body(&self) -> Option<Id<DOMHTMLElement>>;
 
-        #[cfg(feature = "WebKit_DOMHTMLElement")]
+        #[cfg(all(feature = "WebKit_DOMElement", feature = "WebKit_DOMHTMLElement"))]
         #[deprecated]
         #[method(setBody:)]
         pub unsafe fn setBody(&self, body: Option<&DOMHTMLElement>);
@@ -206,17 +233,30 @@ extern_methods!(
         #[method_id(@__retain_semantics Other createDocumentFragment)]
         pub unsafe fn createDocumentFragment(&self) -> Option<Id<DOMDocumentFragment>>;
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMText"))]
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "WebKit_DOMCharacterData",
+            feature = "WebKit_DOMText"
+        ))]
         #[deprecated]
         #[method_id(@__retain_semantics Other createTextNode:)]
         pub unsafe fn createTextNode(&self, data: Option<&NSString>) -> Option<Id<DOMText>>;
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMComment"))]
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "WebKit_DOMCharacterData",
+            feature = "WebKit_DOMComment"
+        ))]
         #[deprecated]
         #[method_id(@__retain_semantics Other createComment:)]
         pub unsafe fn createComment(&self, data: Option<&NSString>) -> Option<Id<DOMComment>>;
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMCDATASection"))]
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "WebKit_DOMCDATASection",
+            feature = "WebKit_DOMCharacterData",
+            feature = "WebKit_DOMText"
+        ))]
         #[deprecated]
         #[method_id(@__retain_semantics Other createCDATASection:)]
         pub unsafe fn createCDATASection(
@@ -226,6 +266,7 @@ extern_methods!(
 
         #[cfg(all(
             feature = "Foundation_NSString",
+            feature = "WebKit_DOMCharacterData",
             feature = "WebKit_DOMProcessingInstruction"
         ))]
         #[method_id(@__retain_semantics Other createProcessingInstruction:data:)]
@@ -300,7 +341,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other createRange)]
         pub unsafe fn createRange(&self) -> Option<Id<DOMRange>>;
 
-        #[cfg(feature = "WebKit_DOMNodeIterator")]
+        #[cfg(all(feature = "WebKit_DOMNodeFilter", feature = "WebKit_DOMNodeIterator"))]
         #[method_id(@__retain_semantics Other createNodeIterator:whatToShow:filter:expandEntityReferences:)]
         pub unsafe fn createNodeIterator_whatToShow_filter_expandEntityReferences(
             &self,
@@ -310,7 +351,7 @@ extern_methods!(
             expand_entity_references: bool,
         ) -> Option<Id<DOMNodeIterator>>;
 
-        #[cfg(feature = "WebKit_DOMTreeWalker")]
+        #[cfg(all(feature = "WebKit_DOMNodeFilter", feature = "WebKit_DOMTreeWalker"))]
         #[method_id(@__retain_semantics Other createTreeWalker:whatToShow:filter:expandEntityReferences:)]
         pub unsafe fn createTreeWalker_whatToShow_filter_expandEntityReferences(
             &self,
@@ -332,7 +373,11 @@ extern_methods!(
             pseudo_element: Option<&NSString>,
         ) -> Option<Id<DOMCSSStyleDeclaration>>;
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMXPathExpression"))]
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "WebKit_DOMXPathExpression",
+            feature = "WebKit_DOMXPathNSResolver"
+        ))]
         #[method_id(@__retain_semantics Other createExpression:resolver:)]
         pub unsafe fn createExpression_resolver(
             &self,
@@ -340,13 +385,18 @@ extern_methods!(
             resolver: Option<&ProtocolObject<dyn DOMXPathNSResolver>>,
         ) -> Option<Id<DOMXPathExpression>>;
 
+        #[cfg(feature = "WebKit_DOMXPathNSResolver")]
         #[method_id(@__retain_semantics Other createNSResolver:)]
         pub unsafe fn createNSResolver(
             &self,
             node_resolver: Option<&DOMNode>,
         ) -> Option<Id<ProtocolObject<dyn DOMXPathNSResolver>>>;
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMXPathResult"))]
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "WebKit_DOMXPathNSResolver",
+            feature = "WebKit_DOMXPathResult"
+        ))]
         #[method_id(@__retain_semantics Other evaluate:contextNode:resolver:type:inResult:)]
         pub unsafe fn evaluate_contextNode_resolver_type_inResult(
             &self,
@@ -487,7 +537,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
-    #[cfg(feature = "WebKit_DOMDocument")]
+    #[cfg(all(
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMDocument {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
@@ -497,7 +551,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_DOMDocument")]
+    #[cfg(all(
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMDocument {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -506,10 +564,15 @@ extern_methods!(
 
 extern_methods!(
     /// DOMDocumentDeprecated
-    #[cfg(feature = "WebKit_DOMDocument")]
+    #[cfg(all(
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMDocument {
         #[cfg(all(
             feature = "Foundation_NSString",
+            feature = "WebKit_DOMCharacterData",
             feature = "WebKit_DOMProcessingInstruction"
         ))]
         #[deprecated]
@@ -555,7 +618,7 @@ extern_methods!(
             local_name: Option<&NSString>,
         ) -> Option<Id<DOMNodeList>>;
 
-        #[cfg(feature = "WebKit_DOMNodeIterator")]
+        #[cfg(all(feature = "WebKit_DOMNodeFilter", feature = "WebKit_DOMNodeIterator"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other createNodeIterator::::)]
         pub unsafe fn createNodeIterator(
@@ -566,7 +629,7 @@ extern_methods!(
             expand_entity_references: bool,
         ) -> Option<Id<DOMNodeIterator>>;
 
-        #[cfg(feature = "WebKit_DOMTreeWalker")]
+        #[cfg(all(feature = "WebKit_DOMNodeFilter", feature = "WebKit_DOMTreeWalker"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other createTreeWalker::::)]
         pub unsafe fn createTreeWalker(
@@ -590,7 +653,11 @@ extern_methods!(
             pseudo_element: Option<&NSString>,
         ) -> Option<Id<DOMCSSStyleDeclaration>>;
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMXPathExpression"))]
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "WebKit_DOMXPathExpression",
+            feature = "WebKit_DOMXPathNSResolver"
+        ))]
         #[deprecated]
         #[method_id(@__retain_semantics Other createExpression::)]
         pub unsafe fn createExpression(
@@ -599,7 +666,11 @@ extern_methods!(
             resolver: Option<&ProtocolObject<dyn DOMXPathNSResolver>>,
         ) -> Option<Id<DOMXPathExpression>>;
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMXPathResult"))]
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "WebKit_DOMXPathNSResolver",
+            feature = "WebKit_DOMXPathResult"
+        ))]
         #[deprecated]
         #[method_id(@__retain_semantics Other evaluate:::::)]
         pub unsafe fn evaluate(

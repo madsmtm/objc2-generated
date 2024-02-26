@@ -7,21 +7,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSAccessibilityCustomAction")]
     pub struct NSAccessibilityCustomAction;
 
-    #[cfg(feature = "AppKit_NSAccessibilityCustomAction")]
     unsafe impl ClassType for NSAccessibilityCustomAction {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSAccessibilityCustomAction")]
 unsafe impl NSObjectProtocol for NSAccessibilityCustomAction {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSAccessibilityCustomAction")]
     unsafe impl NSAccessibilityCustomAction {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithName:handler:)]
@@ -70,7 +66,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSAccessibilityCustomAction")]
     unsafe impl NSAccessibilityCustomAction {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

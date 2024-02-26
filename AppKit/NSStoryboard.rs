@@ -16,21 +16,17 @@ pub type NSStoryboardControllerCreator = *mut Block<dyn Fn(NonNull<NSCoder>) -> 
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSStoryboard")]
     pub struct NSStoryboard;
 
-    #[cfg(feature = "AppKit_NSStoryboard")]
     unsafe impl ClassType for NSStoryboard {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSStoryboard")]
 unsafe impl NSObjectProtocol for NSStoryboard {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSStoryboard")]
     unsafe impl NSStoryboard {
         #[method_id(@__retain_semantics Other mainStoryboard)]
         pub unsafe fn mainStoryboard() -> Option<Id<NSStoryboard>>;
@@ -71,7 +67,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSStoryboard")]
     unsafe impl NSStoryboard {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

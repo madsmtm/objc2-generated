@@ -5,21 +5,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSMetadataQuery")]
     pub struct NSMetadataQuery;
 
-    #[cfg(feature = "Foundation_NSMetadataQuery")]
     unsafe impl ClassType for NSMetadataQuery {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSMetadataQuery")]
 unsafe impl NSObjectProtocol for NSMetadataQuery {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSMetadataQuery")]
     unsafe impl NSMetadataQuery {
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSMetadataQueryDelegate>>>;
@@ -68,9 +64,11 @@ extern_methods!(
         #[method(setGroupingAttributes:)]
         pub unsafe fn setGroupingAttributes(&self, grouping_attributes: Option<&NSArray<NSString>>);
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(notificationBatchingInterval)]
         pub unsafe fn notificationBatchingInterval(&self) -> NSTimeInterval;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(setNotificationBatchingInterval:)]
         pub unsafe fn setNotificationBatchingInterval(
             &self,
@@ -93,11 +91,11 @@ extern_methods!(
         #[method(setSearchItems:)]
         pub unsafe fn setSearchItems(&self, search_items: Option<&NSArray>);
 
-        #[cfg(feature = "Foundation_NSOperationQueue")]
+        #[cfg(feature = "Foundation_NSOperation")]
         #[method_id(@__retain_semantics Other operationQueue)]
         pub unsafe fn operationQueue(&self) -> Option<Id<NSOperationQueue>>;
 
-        #[cfg(feature = "Foundation_NSOperationQueue")]
+        #[cfg(feature = "Foundation_NSOperation")]
         #[method(setOperationQueue:)]
         pub unsafe fn setOperationQueue(&self, operation_queue: Option<&NSOperationQueue>);
 
@@ -134,6 +132,7 @@ extern_methods!(
             block: &Block<dyn Fn(NonNull<AnyObject>, NSUInteger, NonNull<Bool>) + '_>,
         );
 
+        #[cfg(feature = "Foundation_NSObjCRuntime")]
         #[method(enumerateResultsWithOptions:usingBlock:)]
         pub unsafe fn enumerateResultsWithOptions_usingBlock(
             &self,
@@ -151,7 +150,6 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSMetadataQueryAttributeValueTuple",
             feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other valueLists)]
@@ -159,10 +157,7 @@ extern_methods!(
             &self,
         ) -> Id<NSDictionary<NSString, NSArray<NSMetadataQueryAttributeValueTuple>>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSMetadataQueryResultGroup"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other groupedResults)]
         pub unsafe fn groupedResults(&self) -> Id<NSArray<NSMetadataQueryResultGroup>>;
 
@@ -178,7 +173,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSMetadataQuery")]
     unsafe impl NSMetadataQuery {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -190,10 +184,6 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSMetadataQueryDelegate: NSObjectProtocol {
-        #[cfg(all(
-            feature = "Foundation_NSMetadataItem",
-            feature = "Foundation_NSMetadataQuery"
-        ))]
         #[optional]
         #[method_id(@__retain_semantics Other metadataQuery:replacementObjectForResultObject:)]
         unsafe fn metadataQuery_replacementObjectForResultObject(
@@ -202,10 +192,7 @@ extern_protocol!(
             result: &NSMetadataItem,
         ) -> Id<AnyObject>;
 
-        #[cfg(all(
-            feature = "Foundation_NSMetadataQuery",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method_id(@__retain_semantics Other metadataQuery:replacementValueForAttribute:value:)]
         unsafe fn metadataQuery_replacementValueForAttribute_value(
@@ -219,16 +206,16 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSMetadataQueryDelegate {}
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSMetadataQueryDidStartGatheringNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSMetadataQueryGatheringProgressNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSMetadataQueryDidFinishGatheringNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSMetadataQueryDidUpdateNotification: &'static NSNotificationName);
 
 #[cfg(feature = "Foundation_NSString")]
@@ -269,21 +256,17 @@ extern_static!(NSMetadataQueryAccessibleUbiquitousExternalDocumentsScope: &'stat
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSMetadataItem")]
     pub struct NSMetadataItem;
 
-    #[cfg(feature = "Foundation_NSMetadataItem")]
     unsafe impl ClassType for NSMetadataItem {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSMetadataItem")]
 unsafe impl NSObjectProtocol for NSMetadataItem {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSMetadataItem")]
     unsafe impl NSMetadataItem {
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Init initWithURL:)]
@@ -312,7 +295,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSMetadataItem")]
     unsafe impl NSMetadataItem {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -324,21 +306,17 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSMetadataQueryAttributeValueTuple")]
     pub struct NSMetadataQueryAttributeValueTuple;
 
-    #[cfg(feature = "Foundation_NSMetadataQueryAttributeValueTuple")]
     unsafe impl ClassType for NSMetadataQueryAttributeValueTuple {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSMetadataQueryAttributeValueTuple")]
 unsafe impl NSObjectProtocol for NSMetadataQueryAttributeValueTuple {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSMetadataQueryAttributeValueTuple")]
     unsafe impl NSMetadataQueryAttributeValueTuple {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other attribute)]
@@ -354,7 +332,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSMetadataQueryAttributeValueTuple")]
     unsafe impl NSMetadataQueryAttributeValueTuple {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -366,21 +343,17 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSMetadataQueryResultGroup")]
     pub struct NSMetadataQueryResultGroup;
 
-    #[cfg(feature = "Foundation_NSMetadataQueryResultGroup")]
     unsafe impl ClassType for NSMetadataQueryResultGroup {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSMetadataQueryResultGroup")]
 unsafe impl NSObjectProtocol for NSMetadataQueryResultGroup {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSMetadataQueryResultGroup")]
     unsafe impl NSMetadataQueryResultGroup {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other attribute)]
@@ -407,7 +380,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSMetadataQueryResultGroup")]
     unsafe impl NSMetadataQueryResultGroup {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

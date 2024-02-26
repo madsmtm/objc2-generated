@@ -9,24 +9,20 @@ use crate::MapKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKShape")]
     pub struct MKShape;
 
-    #[cfg(feature = "MapKit_MKShape")]
     unsafe impl ClassType for MKShape {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MapKit_MKShape")]
+#[cfg(feature = "MapKit_MKAnnotation")]
 unsafe impl MKAnnotation for MKShape {}
 
-#[cfg(feature = "MapKit_MKShape")]
 unsafe impl NSObjectProtocol for MKShape {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKShape")]
     unsafe impl MKShape {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
@@ -48,7 +44,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MapKit_MKShape")]
     unsafe impl MKShape {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

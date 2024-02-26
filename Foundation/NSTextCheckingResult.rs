@@ -49,34 +49,31 @@ typed_extensible_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSTextCheckingResult")]
     pub struct NSTextCheckingResult;
 
-    #[cfg(feature = "Foundation_NSTextCheckingResult")]
     unsafe impl ClassType for NSTextCheckingResult {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSTextCheckingResult")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSTextCheckingResult {}
 
-#[cfg(feature = "Foundation_NSTextCheckingResult")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSTextCheckingResult {}
 
-#[cfg(feature = "Foundation_NSTextCheckingResult")]
 unsafe impl NSObjectProtocol for NSTextCheckingResult {}
 
-#[cfg(feature = "Foundation_NSTextCheckingResult")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSTextCheckingResult {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSTextCheckingResult")]
     unsafe impl NSTextCheckingResult {
         #[method(resultType)]
         pub unsafe fn resultType(&self) -> NSTextCheckingType;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(range)]
         pub unsafe fn range(&self) -> NSRange;
     }
@@ -84,7 +81,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSTextCheckingResult")]
     unsafe impl NSTextCheckingResult {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -96,7 +92,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSTextCheckingResultOptional
-    #[cfg(feature = "Foundation_NSTextCheckingResult")]
     unsafe impl NSTextCheckingResult {
         #[cfg(feature = "Foundation_NSOrthography")]
         #[method_id(@__retain_semantics Other orthography)]
@@ -120,6 +115,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other timeZone)]
         pub unsafe fn timeZone(&self) -> Option<Id<NSTimeZone>>;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(duration)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
@@ -150,10 +146,11 @@ extern_methods!(
         #[method(numberOfRanges)]
         pub unsafe fn numberOfRanges(&self) -> NSUInteger;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(rangeAtIndex:)]
         pub unsafe fn rangeAtIndex(&self, idx: NSUInteger) -> NSRange;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSRange", feature = "Foundation_NSString"))]
         #[method(rangeWithName:)]
         pub unsafe fn rangeWithName(&self, name: &NSString) -> NSRange;
 
@@ -206,21 +203,22 @@ extern_static!(NSTextCheckingFlightKey: &'static NSTextCheckingKey);
 
 extern_methods!(
     /// NSTextCheckingResultCreation
-    #[cfg(feature = "Foundation_NSTextCheckingResult")]
     unsafe impl NSTextCheckingResult {
-        #[cfg(feature = "Foundation_NSOrthography")]
+        #[cfg(all(feature = "Foundation_NSOrthography", feature = "Foundation_NSRange"))]
         #[method_id(@__retain_semantics Other orthographyCheckingResultWithRange:orthography:)]
         pub unsafe fn orthographyCheckingResultWithRange_orthography(
             range: NSRange,
             orthography: &NSOrthography,
         ) -> Id<NSTextCheckingResult>;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method_id(@__retain_semantics Other spellCheckingResultWithRange:)]
         pub unsafe fn spellCheckingResultWithRange(range: NSRange) -> Id<NSTextCheckingResult>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSRange",
             feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other grammarCheckingResultWithRange:details:)]
@@ -229,14 +227,18 @@ extern_methods!(
             details: &NSArray<NSDictionary<NSString, AnyObject>>,
         ) -> Id<NSTextCheckingResult>;
 
-        #[cfg(feature = "Foundation_NSDate")]
+        #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSRange"))]
         #[method_id(@__retain_semantics Other dateCheckingResultWithRange:date:)]
         pub unsafe fn dateCheckingResultWithRange_date(
             range: NSRange,
             date: &NSDate,
         ) -> Id<NSTextCheckingResult>;
 
-        #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSTimeZone"))]
+        #[cfg(all(
+            feature = "Foundation_NSDate",
+            feature = "Foundation_NSRange",
+            feature = "Foundation_NSTimeZone"
+        ))]
         #[method_id(@__retain_semantics Other dateCheckingResultWithRange:date:timeZone:duration:)]
         pub unsafe fn dateCheckingResultWithRange_date_timeZone_duration(
             range: NSRange,
@@ -245,49 +247,57 @@ extern_methods!(
             duration: NSTimeInterval,
         ) -> Id<NSTextCheckingResult>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSRange",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other addressCheckingResultWithRange:components:)]
         pub unsafe fn addressCheckingResultWithRange_components(
             range: NSRange,
             components: &NSDictionary<NSTextCheckingKey, NSString>,
         ) -> Id<NSTextCheckingResult>;
 
-        #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(all(feature = "Foundation_NSRange", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other linkCheckingResultWithRange:URL:)]
         pub unsafe fn linkCheckingResultWithRange_URL(
             range: NSRange,
             url: &NSURL,
         ) -> Id<NSTextCheckingResult>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSRange", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other quoteCheckingResultWithRange:replacementString:)]
         pub unsafe fn quoteCheckingResultWithRange_replacementString(
             range: NSRange,
             replacement_string: &NSString,
         ) -> Id<NSTextCheckingResult>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSRange", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other dashCheckingResultWithRange:replacementString:)]
         pub unsafe fn dashCheckingResultWithRange_replacementString(
             range: NSRange,
             replacement_string: &NSString,
         ) -> Id<NSTextCheckingResult>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSRange", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other replacementCheckingResultWithRange:replacementString:)]
         pub unsafe fn replacementCheckingResultWithRange_replacementString(
             range: NSRange,
             replacement_string: &NSString,
         ) -> Id<NSTextCheckingResult>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSRange", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other correctionCheckingResultWithRange:replacementString:)]
         pub unsafe fn correctionCheckingResultWithRange_replacementString(
             range: NSRange,
             replacement_string: &NSString,
         ) -> Id<NSTextCheckingResult>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSRange",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other correctionCheckingResultWithRange:replacementString:alternativeStrings:)]
         pub unsafe fn correctionCheckingResultWithRange_replacementString_alternativeStrings(
             range: NSRange,
@@ -295,7 +305,10 @@ extern_methods!(
             alternative_strings: &NSArray<NSString>,
         ) -> Id<NSTextCheckingResult>;
 
-        #[cfg(feature = "Foundation_NSRegularExpression")]
+        #[cfg(all(
+            feature = "Foundation_NSRange",
+            feature = "Foundation_NSRegularExpression"
+        ))]
         #[method_id(@__retain_semantics Other regularExpressionCheckingResultWithRanges:count:regularExpression:)]
         pub unsafe fn regularExpressionCheckingResultWithRanges_count_regularExpression(
             ranges: NSRangePointer,
@@ -303,14 +316,18 @@ extern_methods!(
             regular_expression: &NSRegularExpression,
         ) -> Id<NSTextCheckingResult>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSRange", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other phoneNumberCheckingResultWithRange:phoneNumber:)]
         pub unsafe fn phoneNumberCheckingResultWithRange_phoneNumber(
             range: NSRange,
             phone_number: &NSString,
         ) -> Id<NSTextCheckingResult>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSRange",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other transitInformationCheckingResultWithRange:components:)]
         pub unsafe fn transitInformationCheckingResultWithRange_components(
             range: NSRange,

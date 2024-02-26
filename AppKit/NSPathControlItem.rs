@@ -7,21 +7,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSPathControlItem")]
     pub struct NSPathControlItem;
 
-    #[cfg(feature = "AppKit_NSPathControlItem")]
     unsafe impl ClassType for NSPathControlItem {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSPathControlItem")]
 unsafe impl NSObjectProtocol for NSPathControlItem {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSPathControlItem")]
     unsafe impl NSPathControlItem {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
@@ -55,7 +51,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSPathControlItem")]
     unsafe impl NSPathControlItem {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

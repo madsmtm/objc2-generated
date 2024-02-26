@@ -436,27 +436,23 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSEvent")]
     pub struct NSEvent;
 
-    #[cfg(feature = "AppKit_NSEvent")]
     unsafe impl ClassType for NSEvent {
         type Super = NSObject;
         type Mutability = Immutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSEvent {}
 
-#[cfg(feature = "AppKit_NSEvent")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSEvent {}
 
-#[cfg(feature = "AppKit_NSEvent")]
 unsafe impl NSObjectProtocol for NSEvent {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSEvent")]
     unsafe impl NSEvent {
         #[method(type)]
         pub unsafe fn r#type(&self) -> NSEventType;
@@ -464,10 +460,11 @@ extern_methods!(
         #[method(modifierFlags)]
         pub unsafe fn modifierFlags(&self) -> NSEventModifierFlags;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(timestamp)]
         pub unsafe fn timestamp(&self) -> NSTimeInterval;
 
-        #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
         #[method_id(@__retain_semantics Other window)]
         pub unsafe fn window(&self, mtm: MainThreadMarker) -> Option<Id<NSWindow>>;
 
@@ -491,24 +488,30 @@ extern_methods!(
         #[method(pressure)]
         pub unsafe fn pressure(&self) -> c_float;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(locationInWindow)]
         pub unsafe fn locationInWindow(&self) -> NSPoint;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(deltaX)]
         pub unsafe fn deltaX(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(deltaY)]
         pub unsafe fn deltaY(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(deltaZ)]
         pub unsafe fn deltaZ(&self) -> CGFloat;
 
         #[method(hasPreciseScrollingDeltas)]
         pub unsafe fn hasPreciseScrollingDeltas(&self) -> bool;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(scrollingDeltaX)]
         pub unsafe fn scrollingDeltaX(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(scrollingDeltaY)]
         pub unsafe fn scrollingDeltaY(&self) -> CGFloat;
 
@@ -570,6 +573,7 @@ extern_methods!(
         #[method(setMouseCoalescingEnabled:)]
         pub unsafe fn setMouseCoalescingEnabled(mouse_coalescing_enabled: bool);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(magnification)]
         pub unsafe fn magnification(&self) -> CGFloat;
 
@@ -591,6 +595,7 @@ extern_methods!(
         #[method(buttonMask)]
         pub unsafe fn buttonMask(&self) -> NSEventButtonMask;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(tilt)]
         pub unsafe fn tilt(&self) -> NSPoint;
 
@@ -631,6 +636,7 @@ extern_methods!(
         pub unsafe fn isEnteringProximity(&self) -> bool;
 
         #[cfg(all(
+            feature = "AppKit_NSResponder",
             feature = "AppKit_NSTouch",
             feature = "AppKit_NSView",
             feature = "Foundation_NSSet"
@@ -647,6 +653,7 @@ extern_methods!(
         pub unsafe fn allTouches(&self) -> Id<NSSet<NSTouch>>;
 
         #[cfg(all(
+            feature = "AppKit_NSResponder",
             feature = "AppKit_NSTouch",
             feature = "AppKit_NSView",
             feature = "Foundation_NSSet"
@@ -664,6 +671,7 @@ extern_methods!(
         #[method(stage)]
         pub unsafe fn stage(&self) -> NSInteger;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(stageTransition)]
         pub unsafe fn stageTransition(&self) -> CGFloat;
 
@@ -676,6 +684,7 @@ extern_methods!(
         #[method(isSwipeTrackingFromScrollEventsEnabled)]
         pub unsafe fn isSwipeTrackingFromScrollEventsEnabled() -> bool;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(trackSwipeEventWithOptions:dampenAmountThresholdMin:max:usingHandler:)]
         pub unsafe fn trackSwipeEventWithOptions_dampenAmountThresholdMin_max_usingHandler(
             &self,
@@ -685,6 +694,7 @@ extern_methods!(
             tracking_handler: &Block<dyn Fn(CGFloat, NSEventPhase, Bool, NonNull<Bool>)>,
         );
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(startPeriodicEventsAfterDelay:withPeriod:)]
         pub unsafe fn startPeriodicEventsAfterDelay_withPeriod(
             delay: NSTimeInterval,
@@ -694,7 +704,11 @@ extern_methods!(
         #[method(stopPeriodicEvents)]
         pub unsafe fn stopPeriodicEvents();
 
-        #[cfg(feature = "AppKit_NSGraphicsContext")]
+        #[cfg(all(
+            feature = "AppKit_NSGraphicsContext",
+            feature = "Foundation_NSDate",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[method_id(@__retain_semantics Other mouseEventWithType:location:modifierFlags:timestamp:windowNumber:context:eventNumber:clickCount:pressure:)]
         pub unsafe fn mouseEventWithType_location_modifierFlags_timestamp_windowNumber_context_eventNumber_clickCount_pressure(
             r#type: NSEventType,
@@ -708,7 +722,12 @@ extern_methods!(
             pressure: c_float,
         ) -> Option<Id<NSEvent>>;
 
-        #[cfg(all(feature = "AppKit_NSGraphicsContext", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSGraphicsContext",
+            feature = "Foundation_NSDate",
+            feature = "Foundation_NSGeometry",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other keyEventWithType:location:modifierFlags:timestamp:windowNumber:context:characters:charactersIgnoringModifiers:isARepeat:keyCode:)]
         pub unsafe fn keyEventWithType_location_modifierFlags_timestamp_windowNumber_context_characters_charactersIgnoringModifiers_isARepeat_keyCode(
             r#type: NSEventType,
@@ -723,7 +742,11 @@ extern_methods!(
             code: c_ushort,
         ) -> Option<Id<NSEvent>>;
 
-        #[cfg(feature = "AppKit_NSGraphicsContext")]
+        #[cfg(all(
+            feature = "AppKit_NSGraphicsContext",
+            feature = "Foundation_NSDate",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[method_id(@__retain_semantics Other enterExitEventWithType:location:modifierFlags:timestamp:windowNumber:context:eventNumber:trackingNumber:userData:)]
         pub unsafe fn enterExitEventWithType_location_modifierFlags_timestamp_windowNumber_context_eventNumber_trackingNumber_userData(
             r#type: NSEventType,
@@ -737,7 +760,11 @@ extern_methods!(
             data: *mut c_void,
         ) -> Option<Id<NSEvent>>;
 
-        #[cfg(feature = "AppKit_NSGraphicsContext")]
+        #[cfg(all(
+            feature = "AppKit_NSGraphicsContext",
+            feature = "Foundation_NSDate",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[method_id(@__retain_semantics Other otherEventWithType:location:modifierFlags:timestamp:windowNumber:context:subtype:data1:data2:)]
         pub unsafe fn otherEventWithType_location_modifierFlags_timestamp_windowNumber_context_subtype_data1_data2(
             r#type: NSEventType,
@@ -751,6 +778,7 @@ extern_methods!(
             d2: NSInteger,
         ) -> Option<Id<NSEvent>>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(mouseLocation)]
         pub unsafe fn mouseLocation() -> NSPoint;
 
@@ -760,12 +788,15 @@ extern_methods!(
         #[method(pressedMouseButtons)]
         pub unsafe fn pressedMouseButtons() -> NSUInteger;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(doubleClickInterval)]
         pub unsafe fn doubleClickInterval() -> NSTimeInterval;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(keyRepeatDelay)]
         pub unsafe fn keyRepeatDelay() -> NSTimeInterval;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(keyRepeatInterval)]
         pub unsafe fn keyRepeatInterval() -> NSTimeInterval;
 
@@ -788,7 +819,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSEvent")]
     unsafe impl NSEvent {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

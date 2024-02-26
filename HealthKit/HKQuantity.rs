@@ -8,36 +8,30 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKQuantity")]
     pub struct HKQuantity;
 
-    #[cfg(feature = "HealthKit_HKQuantity")]
     unsafe impl ClassType for HKQuantity {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "HealthKit_HKQuantity")]
 unsafe impl Send for HKQuantity {}
 
-#[cfg(feature = "HealthKit_HKQuantity")]
 unsafe impl Sync for HKQuantity {}
 
-#[cfg(feature = "HealthKit_HKQuantity")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for HKQuantity {}
 
-#[cfg(feature = "HealthKit_HKQuantity")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for HKQuantity {}
 
-#[cfg(feature = "HealthKit_HKQuantity")]
 unsafe impl NSObjectProtocol for HKQuantity {}
 
-#[cfg(feature = "HealthKit_HKQuantity")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for HKQuantity {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKQuantity")]
     unsafe impl HKQuantity {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -54,6 +48,7 @@ extern_methods!(
         #[method(doubleValueForUnit:)]
         pub unsafe fn doubleValueForUnit(&self, unit: &HKUnit) -> c_double;
 
+        #[cfg(feature = "Foundation_NSObjCRuntime")]
         #[method(compare:)]
         pub unsafe fn compare(&self, quantity: &HKQuantity) -> NSComparisonResult;
     }
@@ -61,7 +56,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKQuantity")]
     unsafe impl HKQuantity {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

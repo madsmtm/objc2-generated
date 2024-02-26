@@ -7,11 +7,19 @@ use crate::GameKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameKit_GKLeaderboardViewController")]
+    #[cfg(all(
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSViewController",
+        feature = "GameKit_GKGameCenterViewController"
+    ))]
     #[deprecated]
     pub struct GKLeaderboardViewController;
 
-    #[cfg(feature = "GameKit_GKLeaderboardViewController")]
+    #[cfg(all(
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSViewController",
+        feature = "GameKit_GKGameCenterViewController"
+    ))]
     unsafe impl ClassType for GKLeaderboardViewController {
         #[inherits(NSViewController, NSResponder, NSObject)]
         type Super = GKGameCenterViewController;
@@ -19,34 +27,75 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "GameKit_GKLeaderboardViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController",
+    feature = "GameKit_GKDialogController",
+    feature = "GameKit_GKGameCenterViewController"
+))]
 unsafe impl GKViewController for GKLeaderboardViewController {}
 
-#[cfg(feature = "GameKit_GKLeaderboardViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController",
+    feature = "Foundation_NSObject",
+    feature = "GameKit_GKGameCenterViewController"
+))]
 unsafe impl NSCoding for GKLeaderboardViewController {}
 
-#[cfg(feature = "GameKit_GKLeaderboardViewController")]
+#[cfg(all(
+    feature = "AppKit_NSKeyValueBinding",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController",
+    feature = "GameKit_GKGameCenterViewController"
+))]
 unsafe impl NSEditor for GKLeaderboardViewController {}
 
-#[cfg(feature = "GameKit_GKLeaderboardViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController",
+    feature = "GameKit_GKGameCenterViewController"
+))]
 unsafe impl NSObjectProtocol for GKLeaderboardViewController {}
 
-#[cfg(feature = "GameKit_GKLeaderboardViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSStoryboardSegue",
+    feature = "AppKit_NSViewController",
+    feature = "GameKit_GKGameCenterViewController"
+))]
 unsafe impl NSSeguePerforming for GKLeaderboardViewController {}
 
-#[cfg(feature = "GameKit_GKLeaderboardViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSViewController",
+    feature = "GameKit_GKGameCenterViewController"
+))]
 unsafe impl NSUserInterfaceItemIdentification for GKLeaderboardViewController {}
 
 extern_methods!(
-    #[cfg(feature = "GameKit_GKLeaderboardViewController")]
+    #[cfg(all(
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSViewController",
+        feature = "GameKit_GKGameCenterViewController"
+    ))]
     unsafe impl GKLeaderboardViewController {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `NSViewController`
-    #[cfg(feature = "GameKit_GKLeaderboardViewController")]
+    #[cfg(all(
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSViewController",
+        feature = "GameKit_GKGameCenterViewController"
+    ))]
     unsafe impl GKLeaderboardViewController {
-        #[cfg(all(feature = "Foundation_NSBundle", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSNib",
+            feature = "Foundation_NSBundle",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -62,7 +111,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "GameKit_GKLeaderboardViewController")]
+    #[cfg(all(
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSViewController",
+        feature = "GameKit_GKGameCenterViewController"
+    ))]
     unsafe impl GKLeaderboardViewController {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -71,7 +124,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameKit_GKLeaderboardViewController")]
+    #[cfg(all(
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSViewController",
+        feature = "GameKit_GKGameCenterViewController"
+    ))]
     unsafe impl GKLeaderboardViewController {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -79,12 +136,18 @@ extern_methods!(
 );
 
 extern_methods!(
-    #[cfg(feature = "GameKit_GKLeaderboardViewController")]
+    #[cfg(all(
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSViewController",
+        feature = "GameKit_GKGameCenterViewController"
+    ))]
     unsafe impl GKLeaderboardViewController {
+        #[cfg(feature = "GameKit_GKLeaderboard")]
         #[deprecated]
         #[method(timeScope)]
         pub unsafe fn timeScope(&self) -> GKLeaderboardTimeScope;
 
+        #[cfg(feature = "GameKit_GKLeaderboard")]
         #[deprecated]
         #[method(setTimeScope:)]
         pub unsafe fn setTimeScope(&self, time_scope: GKLeaderboardTimeScope);
@@ -117,7 +180,11 @@ extern_methods!(
 extern_protocol!(
     #[deprecated]
     pub unsafe trait GKLeaderboardViewControllerDelegate: NSObjectProtocol {
-        #[cfg(feature = "GameKit_GKLeaderboardViewController")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSViewController",
+            feature = "GameKit_GKGameCenterViewController"
+        ))]
         #[deprecated]
         #[method(leaderboardViewControllerDidFinish:)]
         unsafe fn leaderboardViewControllerDidFinish(

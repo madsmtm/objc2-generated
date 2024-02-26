@@ -9,24 +9,20 @@ use crate::MapKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKUserLocation")]
     pub struct MKUserLocation;
 
-    #[cfg(feature = "MapKit_MKUserLocation")]
     unsafe impl ClassType for MKUserLocation {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MapKit_MKUserLocation")]
+#[cfg(feature = "MapKit_MKAnnotation")]
 unsafe impl MKAnnotation for MKUserLocation {}
 
-#[cfg(feature = "MapKit_MKUserLocation")]
 unsafe impl NSObjectProtocol for MKUserLocation {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKUserLocation")]
     unsafe impl MKUserLocation {
         #[method(isUpdating)]
         pub unsafe fn isUpdating(&self) -> bool;
@@ -59,7 +55,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MapKit_MKUserLocation")]
     unsafe impl MKUserLocation {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

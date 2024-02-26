@@ -20,24 +20,20 @@ extern_static!(NSAppleScriptErrorRange: &'static NSString);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSAppleScript")]
     pub struct NSAppleScript;
 
-    #[cfg(feature = "Foundation_NSAppleScript")]
     unsafe impl ClassType for NSAppleScript {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSAppleScript")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSAppleScript {}
 
-#[cfg(feature = "Foundation_NSAppleScript")]
 unsafe impl NSObjectProtocol for NSAppleScript {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSAppleScript")]
     unsafe impl NSAppleScript {
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -96,7 +92,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSAppleScript")]
     unsafe impl NSAppleScript {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

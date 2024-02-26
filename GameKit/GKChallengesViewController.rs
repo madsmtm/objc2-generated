@@ -7,11 +7,11 @@ use crate::GameKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameKit_GKChallengesViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     #[deprecated]
     pub struct GKChallengesViewController;
 
-    #[cfg(feature = "GameKit_GKChallengesViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl ClassType for GKChallengesViewController {
         #[inherits(NSResponder, NSObject)]
         type Super = NSViewController;
@@ -19,26 +19,46 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "GameKit_GKChallengesViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController",
+    feature = "GameKit_GKDialogController"
+))]
 unsafe impl GKViewController for GKChallengesViewController {}
 
-#[cfg(feature = "GameKit_GKChallengesViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for GKChallengesViewController {}
 
-#[cfg(feature = "GameKit_GKChallengesViewController")]
+#[cfg(all(
+    feature = "AppKit_NSKeyValueBinding",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSEditor for GKChallengesViewController {}
 
-#[cfg(feature = "GameKit_GKChallengesViewController")]
+#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
 unsafe impl NSObjectProtocol for GKChallengesViewController {}
 
-#[cfg(feature = "GameKit_GKChallengesViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSStoryboardSegue",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSSeguePerforming for GKChallengesViewController {}
 
-#[cfg(feature = "GameKit_GKChallengesViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSUserInterfaceItemIdentification for GKChallengesViewController {}
 
 extern_methods!(
-    #[cfg(feature = "GameKit_GKChallengesViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl GKChallengesViewController {
         #[deprecated]
         #[method_id(@__retain_semantics Other challengeDelegate)]
@@ -57,9 +77,13 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSViewController`
-    #[cfg(feature = "GameKit_GKChallengesViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl GKChallengesViewController {
-        #[cfg(all(feature = "Foundation_NSBundle", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSNib",
+            feature = "Foundation_NSBundle",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -75,7 +99,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "GameKit_GKChallengesViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl GKChallengesViewController {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -84,7 +108,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameKit_GKChallengesViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl GKChallengesViewController {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -93,7 +117,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait GKChallengesViewControllerDelegate {
-        #[cfg(feature = "GameKit_GKChallengesViewController")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
         #[method(challengesViewControllerDidFinish:)]
         unsafe fn challengesViewControllerDidFinish(
             &self,

@@ -8,30 +8,26 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKWorkoutActivity")]
     pub struct HKWorkoutActivity;
 
-    #[cfg(feature = "HealthKit_HKWorkoutActivity")]
     unsafe impl ClassType for HKWorkoutActivity {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "HealthKit_HKWorkoutActivity")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for HKWorkoutActivity {}
 
-#[cfg(feature = "HealthKit_HKWorkoutActivity")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for HKWorkoutActivity {}
 
-#[cfg(feature = "HealthKit_HKWorkoutActivity")]
 unsafe impl NSObjectProtocol for HKWorkoutActivity {}
 
-#[cfg(feature = "HealthKit_HKWorkoutActivity")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for HKWorkoutActivity {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKWorkoutActivity")]
     unsafe impl HKWorkoutActivity {
         #[cfg(feature = "Foundation_NSUUID")]
         #[method_id(@__retain_semantics Other UUID)]
@@ -53,25 +49,23 @@ extern_methods!(
         #[method_id(@__retain_semantics Other metadata)]
         pub unsafe fn metadata(&self) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(duration)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "HealthKit_HKWorkoutEvent"))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "HealthKit_HKWorkout"))]
         #[method_id(@__retain_semantics Other workoutEvents)]
         pub unsafe fn workoutEvents(&self) -> Id<NSArray<HKWorkoutEvent>>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
-            feature = "HealthKit_HKQuantityType",
+            feature = "HealthKit_HKObjectType",
             feature = "HealthKit_HKStatistics"
         ))]
         #[method_id(@__retain_semantics Other allStatistics)]
         pub unsafe fn allStatistics(&self) -> Id<NSDictionary<HKQuantityType, HKStatistics>>;
 
-        #[cfg(all(
-            feature = "HealthKit_HKQuantityType",
-            feature = "HealthKit_HKStatistics"
-        ))]
+        #[cfg(all(feature = "HealthKit_HKObjectType", feature = "HealthKit_HKStatistics"))]
         #[method_id(@__retain_semantics Other statisticsForType:)]
         pub unsafe fn statisticsForType(
             &self,

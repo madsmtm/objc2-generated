@@ -3,21 +3,25 @@
 use crate::common::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSPointerFunctions")]
 extern_static!(NSMapTableStrongMemory: NSPointerFunctionsOptions = NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsStrongMemory.0));
 
+#[cfg(feature = "Foundation_NSPointerFunctions")]
 extern_static!(NSMapTableZeroingWeakMemory: NSPointerFunctionsOptions = NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsZeroingWeakMemory.0));
 
+#[cfg(feature = "Foundation_NSPointerFunctions")]
 extern_static!(NSMapTableCopyIn: NSPointerFunctionsOptions = NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsCopyIn.0));
 
+#[cfg(feature = "Foundation_NSPointerFunctions")]
 extern_static!(NSMapTableObjectPointerPersonality: NSPointerFunctionsOptions = NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsObjectPointerPersonality.0));
 
+#[cfg(feature = "Foundation_NSPointerFunctions")]
 extern_static!(NSMapTableWeakMemory: NSPointerFunctionsOptions = NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsWeakMemory.0));
 
 pub type NSMapTableOptions = NSUInteger;
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSMapTable")]
     pub struct NSMapTable<KeyType: ?Sized = AnyObject, ObjectType: ?Sized = AnyObject> {
         __superclass: NSObject,
         _inner0: PhantomData<*mut KeyType>,
@@ -25,7 +29,6 @@ __inner_extern_class!(
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
-    #[cfg(feature = "Foundation_NSMapTable")]
     unsafe impl<KeyType: ?Sized + Message, ObjectType: ?Sized + Message> ClassType
         for NSMapTable<KeyType, ObjectType>
     {
@@ -42,39 +45,38 @@ __inner_extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSMapTable")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl<KeyType: ?Sized + NSCoding, ObjectType: ?Sized + NSCoding> NSCoding
     for NSMapTable<KeyType, ObjectType>
 {
 }
 
-#[cfg(feature = "Foundation_NSMapTable")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl<KeyType: ?Sized + IsIdCloneable, ObjectType: ?Sized + IsIdCloneable> NSCopying
     for NSMapTable<KeyType, ObjectType>
 {
 }
 
-#[cfg(feature = "Foundation_NSMapTable")]
+#[cfg(feature = "Foundation_NSEnumerator")]
 unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSFastEnumeration
     for NSMapTable<KeyType, ObjectType>
 {
 }
 
-#[cfg(feature = "Foundation_NSMapTable")]
 unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSObjectProtocol
     for NSMapTable<KeyType, ObjectType>
 {
 }
 
-#[cfg(feature = "Foundation_NSMapTable")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl<KeyType: ?Sized + NSSecureCoding, ObjectType: ?Sized + NSSecureCoding> NSSecureCoding
     for NSMapTable<KeyType, ObjectType>
 {
 }
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSMapTable")]
     unsafe impl<KeyType: Message, ObjectType: Message> NSMapTable<KeyType, ObjectType> {
+        #[cfg(feature = "Foundation_NSPointerFunctions")]
         #[method_id(@__retain_semantics Init initWithKeyOptions:valueOptions:capacity:)]
         pub unsafe fn initWithKeyOptions_valueOptions_capacity(
             this: Allocated<Self>,
@@ -92,6 +94,7 @@ extern_methods!(
             initial_capacity: NSUInteger,
         ) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSPointerFunctions")]
         #[method_id(@__retain_semantics Other mapTableWithKeyOptions:valueOptions:)]
         pub unsafe fn mapTableWithKeyOptions_valueOptions(
             key_options: NSPointerFunctionsOptions,
@@ -169,7 +172,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSMapTable")]
     unsafe impl<KeyType: Message, ObjectType: Message> NSMapTable<KeyType, ObjectType> {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -189,17 +191,15 @@ extern_struct!(
 );
 
 extern_fn!(
-    #[cfg(feature = "Foundation_NSMapTable")]
     pub unsafe fn NSResetMapTable(table: &NSMapTable);
 );
 
 extern_fn!(
-    #[cfg(feature = "Foundation_NSMapTable")]
     pub unsafe fn NSCompareMapTables(table1: &NSMapTable, table2: &NSMapTable) -> Bool;
 );
 
 extern_fn!(
-    #[cfg(feature = "Foundation_NSMapTable")]
+    #[cfg(feature = "Foundation_NSZone")]
     pub unsafe fn NSCopyMapTableWithZone(
         table: &NSMapTable,
         zone: *mut NSZone,
@@ -207,7 +207,6 @@ extern_fn!(
 );
 
 extern_fn!(
-    #[cfg(feature = "Foundation_NSMapTable")]
     pub unsafe fn NSMapMember(
         table: &NSMapTable,
         key: NonNull<c_void>,
@@ -217,22 +216,18 @@ extern_fn!(
 );
 
 extern_fn!(
-    #[cfg(feature = "Foundation_NSMapTable")]
     pub unsafe fn NSMapGet(table: &NSMapTable, key: *mut c_void) -> *mut c_void;
 );
 
 extern_fn!(
-    #[cfg(feature = "Foundation_NSMapTable")]
     pub unsafe fn NSMapInsert(table: &NSMapTable, key: *mut c_void, value: *mut c_void);
 );
 
 extern_fn!(
-    #[cfg(feature = "Foundation_NSMapTable")]
     pub unsafe fn NSMapInsertKnownAbsent(table: &NSMapTable, key: *mut c_void, value: *mut c_void);
 );
 
 extern_fn!(
-    #[cfg(feature = "Foundation_NSMapTable")]
     pub unsafe fn NSMapInsertIfAbsent(
         table: &NSMapTable,
         key: *mut c_void,
@@ -241,12 +236,10 @@ extern_fn!(
 );
 
 extern_fn!(
-    #[cfg(feature = "Foundation_NSMapTable")]
     pub unsafe fn NSMapRemove(table: &NSMapTable, key: *mut c_void);
 );
 
 extern_fn!(
-    #[cfg(feature = "Foundation_NSMapTable")]
     pub unsafe fn NSEnumerateMapTable(table: &NSMapTable) -> NSMapEnumerator;
 );
 
@@ -263,28 +256,27 @@ extern_fn!(
 );
 
 extern_fn!(
-    #[cfg(feature = "Foundation_NSMapTable")]
     pub unsafe fn NSCountMapTable(table: &NSMapTable) -> NSUInteger;
 );
 
 extern_fn!(
-    #[cfg(all(feature = "Foundation_NSMapTable", feature = "Foundation_NSString"))]
+    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSStringFromMapTable(table: &NSMapTable) -> NonNull<NSString>;
 );
 
 extern_fn!(
-    #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSMapTable"))]
+    #[cfg(feature = "Foundation_NSArray")]
     pub unsafe fn NSAllMapTableKeys(table: &NSMapTable) -> NonNull<NSArray>;
 );
 
 extern_fn!(
-    #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSMapTable"))]
+    #[cfg(feature = "Foundation_NSArray")]
     pub unsafe fn NSAllMapTableValues(table: &NSMapTable) -> NonNull<NSArray>;
 );
 
 extern_struct!(
     #[encoding_name("?")]
-    #[cfg(all(feature = "Foundation_NSMapTable", feature = "Foundation_NSString"))]
+    #[cfg(feature = "Foundation_NSString")]
     pub struct NSMapTableKeyCallBacks {
         pub hash: Option<unsafe extern "C" fn(NonNull<NSMapTable>, NonNull<c_void>) -> NSUInteger>,
         pub isEqual: Option<
@@ -300,7 +292,7 @@ extern_struct!(
 
 extern_struct!(
     #[encoding_name("?")]
-    #[cfg(all(feature = "Foundation_NSMapTable", feature = "Foundation_NSString"))]
+    #[cfg(feature = "Foundation_NSString")]
     pub struct NSMapTableValueCallBacks {
         pub retain: Option<unsafe extern "C" fn(NonNull<NSMapTable>, NonNull<c_void>)>,
         pub release: Option<unsafe extern "C" fn(NonNull<NSMapTable>, NonNull<c_void>)>,
@@ -310,7 +302,7 @@ extern_struct!(
 );
 
 extern_fn!(
-    #[cfg(all(feature = "Foundation_NSMapTable", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSZone"))]
     pub unsafe fn NSCreateMapTableWithZone(
         key_call_backs: NSMapTableKeyCallBacks,
         value_call_backs: NSMapTableValueCallBacks,
@@ -320,7 +312,7 @@ extern_fn!(
 );
 
 extern_fn!(
-    #[cfg(all(feature = "Foundation_NSMapTable", feature = "Foundation_NSString"))]
+    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSCreateMapTable(
         key_call_backs: NSMapTableKeyCallBacks,
         value_call_backs: NSMapTableValueCallBacks,
@@ -328,41 +320,41 @@ extern_fn!(
     ) -> NonNull<NSMapTable>;
 );
 
-#[cfg(all(feature = "Foundation_NSMapTable", feature = "Foundation_NSString"))]
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSIntegerMapKeyCallBacks: NSMapTableKeyCallBacks);
 
-#[cfg(all(feature = "Foundation_NSMapTable", feature = "Foundation_NSString"))]
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSNonOwnedPointerMapKeyCallBacks: NSMapTableKeyCallBacks);
 
-#[cfg(all(feature = "Foundation_NSMapTable", feature = "Foundation_NSString"))]
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSNonOwnedPointerOrNullMapKeyCallBacks: NSMapTableKeyCallBacks);
 
-#[cfg(all(feature = "Foundation_NSMapTable", feature = "Foundation_NSString"))]
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSNonRetainedObjectMapKeyCallBacks: NSMapTableKeyCallBacks);
 
-#[cfg(all(feature = "Foundation_NSMapTable", feature = "Foundation_NSString"))]
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSObjectMapKeyCallBacks: NSMapTableKeyCallBacks);
 
-#[cfg(all(feature = "Foundation_NSMapTable", feature = "Foundation_NSString"))]
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSOwnedPointerMapKeyCallBacks: NSMapTableKeyCallBacks);
 
-#[cfg(all(feature = "Foundation_NSMapTable", feature = "Foundation_NSString"))]
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSIntMapKeyCallBacks: NSMapTableKeyCallBacks);
 
-#[cfg(all(feature = "Foundation_NSMapTable", feature = "Foundation_NSString"))]
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSIntegerMapValueCallBacks: NSMapTableValueCallBacks);
 
-#[cfg(all(feature = "Foundation_NSMapTable", feature = "Foundation_NSString"))]
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSNonOwnedPointerMapValueCallBacks: NSMapTableValueCallBacks);
 
-#[cfg(all(feature = "Foundation_NSMapTable", feature = "Foundation_NSString"))]
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSObjectMapValueCallBacks: NSMapTableValueCallBacks);
 
-#[cfg(all(feature = "Foundation_NSMapTable", feature = "Foundation_NSString"))]
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSNonRetainedObjectMapValueCallBacks: NSMapTableValueCallBacks);
 
-#[cfg(all(feature = "Foundation_NSMapTable", feature = "Foundation_NSString"))]
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSOwnedPointerMapValueCallBacks: NSMapTableValueCallBacks);
 
-#[cfg(all(feature = "Foundation_NSMapTable", feature = "Foundation_NSString"))]
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSIntMapValueCallBacks: NSMapTableValueCallBacks);

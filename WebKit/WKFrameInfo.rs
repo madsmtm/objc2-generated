@@ -7,24 +7,20 @@ use crate::WebKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_WKFrameInfo")]
     pub struct WKFrameInfo;
 
-    #[cfg(feature = "WebKit_WKFrameInfo")]
     unsafe impl ClassType for WKFrameInfo {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "WebKit_WKFrameInfo")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for WKFrameInfo {}
 
-#[cfg(feature = "WebKit_WKFrameInfo")]
 unsafe impl NSObjectProtocol for WKFrameInfo {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_WKFrameInfo")]
     unsafe impl WKFrameInfo {
         #[method(isMainFrame)]
         pub unsafe fn isMainFrame(&self) -> bool;
@@ -37,7 +33,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other securityOrigin)]
         pub unsafe fn securityOrigin(&self) -> Id<WKSecurityOrigin>;
 
-        #[cfg(feature = "WebKit_WKWebView")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "WebKit_WKWebView"
+        ))]
         #[method_id(@__retain_semantics Other webView)]
         pub unsafe fn webView(&self, mtm: MainThreadMarker) -> Option<Id<WKWebView>>;
     }
@@ -45,7 +45,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_WKFrameInfo")]
     unsafe impl WKFrameInfo {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

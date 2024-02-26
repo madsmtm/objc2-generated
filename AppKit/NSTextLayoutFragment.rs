@@ -37,27 +37,23 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTextLayoutFragment")]
     pub struct NSTextLayoutFragment;
 
-    #[cfg(feature = "AppKit_NSTextLayoutFragment")]
     unsafe impl ClassType for NSTextLayoutFragment {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSTextLayoutFragment")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSTextLayoutFragment {}
 
-#[cfg(feature = "AppKit_NSTextLayoutFragment")]
 unsafe impl NSObjectProtocol for NSTextLayoutFragment {}
 
-#[cfg(feature = "AppKit_NSTextLayoutFragment")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSTextLayoutFragment {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTextLayoutFragment")]
     unsafe impl NSTextLayoutFragment {
         #[cfg(all(feature = "AppKit_NSTextElement", feature = "AppKit_NSTextRange"))]
         #[method_id(@__retain_semantics Init initWithTextElement:range:)]
@@ -90,7 +86,10 @@ extern_methods!(
         #[method_id(@__retain_semantics Other textLineFragments)]
         pub unsafe fn textLineFragments(&self) -> Id<NSArray<NSTextLineFragment>>;
 
-        #[cfg(feature = "AppKit_NSTextLineFragment")]
+        #[cfg(all(
+            feature = "AppKit_NSTextLineFragment",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[method_id(@__retain_semantics Other textLineFragmentForVerticalOffset:requiresExactMatch:)]
         pub unsafe fn textLineFragmentForVerticalOffset_requiresExactMatch(
             &self,
@@ -98,7 +97,7 @@ extern_methods!(
             requires_exact_match: bool,
         ) -> Option<Id<NSTextLineFragment>>;
 
-        #[cfg(feature = "AppKit_NSTextLineFragment")]
+        #[cfg(all(feature = "AppKit_NSTextLineFragment", feature = "AppKit_NSTextRange"))]
         #[method_id(@__retain_semantics Other textLineFragmentForTextLocation:isUpstreamAffinity:)]
         pub unsafe fn textLineFragmentForTextLocation_isUpstreamAffinity(
             &self,
@@ -106,11 +105,11 @@ extern_methods!(
             is_upstream_affinity: bool,
         ) -> Option<Id<NSTextLineFragment>>;
 
-        #[cfg(feature = "Foundation_NSOperationQueue")]
+        #[cfg(feature = "Foundation_NSOperation")]
         #[method_id(@__retain_semantics Other layoutQueue)]
         pub unsafe fn layoutQueue(&self) -> Option<Id<NSOperationQueue>>;
 
-        #[cfg(feature = "Foundation_NSOperationQueue")]
+        #[cfg(feature = "Foundation_NSOperation")]
         #[method(setLayoutQueue:)]
         pub unsafe fn setLayoutQueue(&self, layout_queue: Option<&NSOperationQueue>);
 
@@ -120,33 +119,37 @@ extern_methods!(
         #[method(invalidateLayout)]
         pub unsafe fn invalidateLayout(&self);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(layoutFragmentFrame)]
         pub unsafe fn layoutFragmentFrame(&self) -> CGRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(renderingSurfaceBounds)]
         pub unsafe fn renderingSurfaceBounds(&self) -> CGRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(leadingPadding)]
         pub unsafe fn leadingPadding(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(trailingPadding)]
         pub unsafe fn trailingPadding(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(topMargin)]
         pub unsafe fn topMargin(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(bottomMargin)]
         pub unsafe fn bottomMargin(&self) -> CGFloat;
 
-        #[cfg(all(
-            feature = "AppKit_NSTextAttachmentViewProvider",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(all(feature = "AppKit_NSTextAttachment", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other textAttachmentViewProviders)]
         pub unsafe fn textAttachmentViewProviders(
             &self,
         ) -> Id<NSArray<NSTextAttachmentViewProvider>>;
 
+        #[cfg(all(feature = "AppKit_NSTextRange", feature = "Foundation_NSGeometry"))]
         #[method(frameForTextAttachmentAtLocation:)]
         pub unsafe fn frameForTextAttachmentAtLocation(
             &self,
@@ -157,7 +160,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTextLayoutFragment")]
     unsafe impl NSTextLayoutFragment {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

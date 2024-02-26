@@ -17,22 +17,31 @@
 #[link(name = "CoreWLAN", kind = "framework")]
 extern "C" {}
 
+#[cfg(feature = "CoreWLAN_CWChannel")]
 #[path = "CWChannel.rs"]
 mod __CWChannel;
+#[cfg(feature = "CoreWLAN_CWConfiguration")]
 #[path = "CWConfiguration.rs"]
 mod __CWConfiguration;
+#[cfg(feature = "CoreWLAN_CWInterface")]
 #[path = "CWInterface.rs"]
 mod __CWInterface;
+#[cfg(feature = "CoreWLAN_CWNetwork")]
 #[path = "CWNetwork.rs"]
 mod __CWNetwork;
+#[cfg(feature = "CoreWLAN_CWNetworkProfile")]
 #[path = "CWNetworkProfile.rs"]
 mod __CWNetworkProfile;
+#[cfg(feature = "CoreWLAN_CWWiFiClient")]
 #[path = "CWWiFiClient.rs"]
 mod __CWWiFiClient;
+#[cfg(feature = "CoreWLAN_CoreWLANConstants")]
 #[path = "CoreWLANConstants.rs"]
 mod __CoreWLANConstants;
+#[cfg(feature = "CoreWLAN_CoreWLANTypes")]
 #[path = "CoreWLANTypes.rs"]
 mod __CoreWLANTypes;
+#[cfg(feature = "CoreWLAN_CoreWLANUtil")]
 #[path = "CoreWLANUtil.rs"]
 mod __CoreWLANUtil;
 
@@ -40,50 +49,98 @@ mod __CoreWLANUtil;
 pub use self::__CWChannel::CWChannel;
 #[cfg(feature = "CoreWLAN_CWConfiguration")]
 pub use self::__CWConfiguration::CWConfiguration;
-#[cfg(feature = "CoreWLAN_CWMutableConfiguration")]
+#[cfg(feature = "CoreWLAN_CWConfiguration")]
 pub use self::__CWConfiguration::CWMutableConfiguration;
 #[cfg(feature = "CoreWLAN_CWInterface")]
 pub use self::__CWInterface::CWInterface;
 #[cfg(feature = "CoreWLAN_CWNetwork")]
 pub use self::__CWNetwork::CWNetwork;
-#[cfg(feature = "CoreWLAN_CWMutableNetworkProfile")]
+#[cfg(feature = "CoreWLAN_CWNetworkProfile")]
 pub use self::__CWNetworkProfile::CWMutableNetworkProfile;
 #[cfg(feature = "CoreWLAN_CWNetworkProfile")]
 pub use self::__CWNetworkProfile::CWNetworkProfile;
+#[cfg(feature = "CoreWLAN_CWWiFiClient")]
 pub use self::__CWWiFiClient::CWEventDelegate;
 #[cfg(feature = "CoreWLAN_CWWiFiClient")]
 pub use self::__CWWiFiClient::CWWiFiClient;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreWLAN_CoreWLANConstants",
+    feature = "Foundation_NSString"
+))]
 pub use self::__CoreWLANConstants::CWBSSIDDidChangeNotification;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreWLAN_CoreWLANConstants",
+    feature = "Foundation_NSString"
+))]
 pub use self::__CoreWLANConstants::CWCountryCodeDidChangeNotification;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreWLAN_CoreWLANConstants",
+    feature = "Foundation_NSString"
+))]
 pub use self::__CoreWLANConstants::CWErrorDomain;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreWLAN_CoreWLANConstants",
+    feature = "Foundation_NSString"
+))]
 pub use self::__CoreWLANConstants::CWLinkDidChangeNotification;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreWLAN_CoreWLANConstants",
+    feature = "Foundation_NSString"
+))]
 pub use self::__CoreWLANConstants::CWLinkQualityDidChangeNotification;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreWLAN_CoreWLANConstants",
+    feature = "Foundation_NSString"
+))]
 pub use self::__CoreWLANConstants::CWLinkQualityNotificationRSSIKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreWLAN_CoreWLANConstants",
+    feature = "Foundation_NSString"
+))]
 pub use self::__CoreWLANConstants::CWLinkQualityNotificationTransmitRateKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreWLAN_CoreWLANConstants",
+    feature = "Foundation_NSString"
+))]
 pub use self::__CoreWLANConstants::CWModeDidChangeNotification;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreWLAN_CoreWLANConstants",
+    feature = "Foundation_NSString"
+))]
 pub use self::__CoreWLANConstants::CWPowerDidChangeNotification;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreWLAN_CoreWLANConstants",
+    feature = "Foundation_NSString"
+))]
 pub use self::__CoreWLANConstants::CWSSIDDidChangeNotification;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreWLAN_CoreWLANConstants",
+    feature = "Foundation_NSString"
+))]
 pub use self::__CoreWLANConstants::CWScanCacheDidUpdateNotification;
+#[cfg(feature = "CoreWLAN_CoreWLANTypes")]
 pub use self::__CoreWLANTypes::CWChannelBand;
+#[cfg(feature = "CoreWLAN_CoreWLANTypes")]
 pub use self::__CoreWLANTypes::CWChannelWidth;
+#[cfg(feature = "CoreWLAN_CoreWLANTypes")]
 pub use self::__CoreWLANTypes::CWCipherKeyFlags;
+#[cfg(feature = "CoreWLAN_CoreWLANTypes")]
 pub use self::__CoreWLANTypes::CWErr;
+#[cfg(feature = "CoreWLAN_CoreWLANTypes")]
 pub use self::__CoreWLANTypes::CWEventType;
+#[cfg(feature = "CoreWLAN_CoreWLANTypes")]
 pub use self::__CoreWLANTypes::CWIBSSModeSecurity;
+#[cfg(feature = "CoreWLAN_CoreWLANTypes")]
 pub use self::__CoreWLANTypes::CWInterfaceMode;
+#[cfg(feature = "CoreWLAN_CoreWLANTypes")]
 pub use self::__CoreWLANTypes::CWKeychainDomain;
+#[cfg(feature = "CoreWLAN_CoreWLANTypes")]
 pub use self::__CoreWLANTypes::CWPHYMode;
+#[cfg(feature = "CoreWLAN_CoreWLANTypes")]
 pub use self::__CoreWLANTypes::CWSecurity;
-#[cfg(all(feature = "CoreWLAN_CWNetwork", feature = "Foundation_NSSet"))]
+#[cfg(all(
+    feature = "CoreWLAN_CWNetwork",
+    feature = "CoreWLAN_CoreWLANUtil",
+    feature = "Foundation_NSSet"
+))]
 pub use self::__CoreWLANUtil::CWMergeNetworks;

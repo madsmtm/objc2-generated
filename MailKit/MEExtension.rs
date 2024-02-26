@@ -15,15 +15,22 @@ extern_protocol!(
             session: &MEComposeSession,
         ) -> Id<ProtocolObject<dyn MEComposeSessionHandler>>;
 
+        #[cfg(feature = "MailKit_MEMessageActionHandler")]
         #[optional]
         #[method_id(@__retain_semantics Other handlerForMessageActions)]
         unsafe fn handlerForMessageActions(&self)
             -> Id<ProtocolObject<dyn MEMessageActionHandler>>;
 
+        #[cfg(feature = "MailKit_MEContentBlocker")]
         #[optional]
         #[method_id(@__retain_semantics Other handlerForContentBlocker)]
         unsafe fn handlerForContentBlocker(&self) -> Id<ProtocolObject<dyn MEContentBlocker>>;
 
+        #[cfg(all(
+            feature = "MailKit_MEMessageDecoder",
+            feature = "MailKit_MEMessageEncoder",
+            feature = "MailKit_MEMessageSecurityHandler"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other handlerForMessageSecurity)]
         unsafe fn handlerForMessageSecurity(

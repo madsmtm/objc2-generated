@@ -25,28 +25,28 @@ ns_enum!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
 extern_static!(NSPrintOperationExistsException: &'static NSExceptionName);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSPrintOperation")]
     pub struct NSPrintOperation;
 
-    #[cfg(feature = "AppKit_NSPrintOperation")]
     unsafe impl ClassType for NSPrintOperation {
         type Super = NSObject;
         type Mutability = MainThreadOnly;
     }
 );
 
-#[cfg(feature = "AppKit_NSPrintOperation")]
 unsafe impl NSObjectProtocol for NSPrintOperation {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSPrintOperation")]
     unsafe impl NSPrintOperation {
-        #[cfg(all(feature = "AppKit_NSPrintInfo", feature = "AppKit_NSView"))]
+        #[cfg(all(
+            feature = "AppKit_NSPrintInfo",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView"
+        ))]
         #[method_id(@__retain_semantics Other printOperationWithView:printInfo:)]
         pub unsafe fn printOperationWithView_printInfo(
             view: &NSView,
@@ -55,8 +55,10 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSPrintInfo",
+            feature = "AppKit_NSResponder",
             feature = "AppKit_NSView",
-            feature = "Foundation_NSMutableData"
+            feature = "Foundation_NSData",
+            feature = "Foundation_NSGeometry"
         ))]
         #[method_id(@__retain_semantics Other PDFOperationWithView:insideRect:toData:printInfo:)]
         pub unsafe fn PDFOperationWithView_insideRect_toData_printInfo(
@@ -68,7 +70,9 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSPrintInfo",
+            feature = "AppKit_NSResponder",
             feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry",
             feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other PDFOperationWithView:insideRect:toPath:printInfo:)]
@@ -81,8 +85,10 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSPrintInfo",
+            feature = "AppKit_NSResponder",
             feature = "AppKit_NSView",
-            feature = "Foundation_NSMutableData"
+            feature = "Foundation_NSData",
+            feature = "Foundation_NSGeometry"
         ))]
         #[method_id(@__retain_semantics Other EPSOperationWithView:insideRect:toData:printInfo:)]
         pub unsafe fn EPSOperationWithView_insideRect_toData_printInfo(
@@ -94,7 +100,9 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSPrintInfo",
+            feature = "AppKit_NSResponder",
             feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry",
             feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other EPSOperationWithView:insideRect:toPath:printInfo:)]
@@ -105,11 +113,16 @@ extern_methods!(
             print_info: &NSPrintInfo,
         ) -> Id<NSPrintOperation>;
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[method_id(@__retain_semantics Other printOperationWithView:)]
         pub unsafe fn printOperationWithView(view: &NSView) -> Id<NSPrintOperation>;
 
-        #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSMutableData"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSData",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[method_id(@__retain_semantics Other PDFOperationWithView:insideRect:toData:)]
         pub unsafe fn PDFOperationWithView_insideRect_toData(
             view: &NSView,
@@ -117,7 +130,12 @@ extern_methods!(
             data: &NSMutableData,
         ) -> Id<NSPrintOperation>;
 
-        #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSMutableData"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSData",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[method_id(@__retain_semantics Other EPSOperationWithView:insideRect:toData:)]
         pub unsafe fn EPSOperationWithView_insideRect_toData(
             view: &NSView,
@@ -188,7 +206,7 @@ extern_methods!(
         #[method(setPageOrder:)]
         pub unsafe fn setPageOrder(&self, page_order: NSPrintingPageOrder);
 
-        #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
         #[method(runOperationModalForWindow:delegate:didRunSelector:contextInfo:)]
         pub unsafe fn runOperationModalForWindow_delegate_didRunSelector_contextInfo(
             &self,
@@ -201,7 +219,7 @@ extern_methods!(
         #[method(runOperation)]
         pub unsafe fn runOperation(&self) -> bool;
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[method_id(@__retain_semantics Other view)]
         pub unsafe fn view(&self) -> Option<Id<NSView>>;
 
@@ -217,6 +235,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other context)]
         pub unsafe fn context(&self) -> Option<Id<NSGraphicsContext>>;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(pageRange)]
         pub unsafe fn pageRange(&self) -> NSRange;
 
@@ -240,7 +259,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSPrintOperation")]
     unsafe impl NSPrintOperation {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -252,14 +270,13 @@ extern_methods!(
 
 extern_methods!(
     /// NSDeprecated
-    #[cfg(feature = "AppKit_NSPrintOperation")]
     unsafe impl NSPrintOperation {
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[deprecated = "Use -[NSPrintPanel addAccessoryController:] and -[NSPrintPanel removeAccessoryController:] instead"]
         #[method(setAccessoryView:)]
         pub unsafe fn setAccessoryView(&self, view: Option<&NSView>);
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[deprecated = "Use -[NSPrintPanel accessoryControllers] instead"]
         #[method_id(@__retain_semantics Other accessoryView)]
         pub unsafe fn accessoryView(&self) -> Option<Id<NSView>>;

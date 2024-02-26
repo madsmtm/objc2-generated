@@ -47,21 +47,17 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MediaPlayer_MPNowPlayingInfoLanguageOption")]
     pub struct MPNowPlayingInfoLanguageOption;
 
-    #[cfg(feature = "MediaPlayer_MPNowPlayingInfoLanguageOption")]
     unsafe impl ClassType for MPNowPlayingInfoLanguageOption {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MediaPlayer_MPNowPlayingInfoLanguageOption")]
 unsafe impl NSObjectProtocol for MPNowPlayingInfoLanguageOption {}
 
 extern_methods!(
-    #[cfg(feature = "MediaPlayer_MPNowPlayingInfoLanguageOption")]
     unsafe impl MPNowPlayingInfoLanguageOption {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithType:languageTag:characteristics:displayName:identifier:)]
@@ -103,7 +99,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MediaPlayer_MPNowPlayingInfoLanguageOption")]
     unsafe impl MPNowPlayingInfoLanguageOption {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -115,26 +110,19 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MediaPlayer_MPNowPlayingInfoLanguageOptionGroup")]
     pub struct MPNowPlayingInfoLanguageOptionGroup;
 
-    #[cfg(feature = "MediaPlayer_MPNowPlayingInfoLanguageOptionGroup")]
     unsafe impl ClassType for MPNowPlayingInfoLanguageOptionGroup {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MediaPlayer_MPNowPlayingInfoLanguageOptionGroup")]
 unsafe impl NSObjectProtocol for MPNowPlayingInfoLanguageOptionGroup {}
 
 extern_methods!(
-    #[cfg(feature = "MediaPlayer_MPNowPlayingInfoLanguageOptionGroup")]
     unsafe impl MPNowPlayingInfoLanguageOptionGroup {
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "MediaPlayer_MPNowPlayingInfoLanguageOption"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Init initWithLanguageOptions:defaultLanguageOption:allowEmptySelection:)]
         pub unsafe fn initWithLanguageOptions_defaultLanguageOption_allowEmptySelection(
             this: Allocated<Self>,
@@ -143,14 +131,10 @@ extern_methods!(
             allow_empty_selection: bool,
         ) -> Id<Self>;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "MediaPlayer_MPNowPlayingInfoLanguageOption"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other languageOptions)]
         pub unsafe fn languageOptions(&self) -> Id<NSArray<MPNowPlayingInfoLanguageOption>>;
 
-        #[cfg(feature = "MediaPlayer_MPNowPlayingInfoLanguageOption")]
         #[method_id(@__retain_semantics Other defaultLanguageOption)]
         pub unsafe fn defaultLanguageOption(&self) -> Option<Id<MPNowPlayingInfoLanguageOption>>;
 
@@ -161,7 +145,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MediaPlayer_MPNowPlayingInfoLanguageOptionGroup")]
     unsafe impl MPNowPlayingInfoLanguageOptionGroup {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

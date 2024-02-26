@@ -20,30 +20,26 @@ extern_static!(CKRecordZoneDefaultName: &'static NSString);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKRecordZone")]
     pub struct CKRecordZone;
 
-    #[cfg(feature = "CloudKit_CKRecordZone")]
     unsafe impl ClassType for CKRecordZone {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CloudKit_CKRecordZone")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CKRecordZone {}
 
-#[cfg(feature = "CloudKit_CKRecordZone")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for CKRecordZone {}
 
-#[cfg(feature = "CloudKit_CKRecordZone")]
 unsafe impl NSObjectProtocol for CKRecordZone {}
 
-#[cfg(feature = "CloudKit_CKRecordZone")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CKRecordZone {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKRecordZone")]
     unsafe impl CKRecordZone {
         #[method_id(@__retain_semantics Other defaultRecordZone)]
         pub unsafe fn defaultRecordZone() -> Id<CKRecordZone>;

@@ -58,24 +58,20 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLSamplerDescriptor")]
     pub struct MTLSamplerDescriptor;
 
-    #[cfg(feature = "Metal_MTLSamplerDescriptor")]
     unsafe impl ClassType for MTLSamplerDescriptor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLSamplerDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLSamplerDescriptor {}
 
-#[cfg(feature = "Metal_MTLSamplerDescriptor")]
 unsafe impl NSObjectProtocol for MTLSamplerDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLSamplerDescriptor")]
     unsafe impl MTLSamplerDescriptor {
         #[method(minFilter)]
         pub fn minFilter(&self) -> MTLSamplerMinMagFilter;
@@ -149,9 +145,11 @@ extern_methods!(
         #[method(setLodAverage:)]
         pub fn setLodAverage(&self, lod_average: bool);
 
+        #[cfg(feature = "Metal_MTLDepthStencil")]
         #[method(compareFunction)]
         pub fn compareFunction(&self) -> MTLCompareFunction;
 
+        #[cfg(feature = "Metal_MTLDepthStencil")]
         #[method(setCompareFunction:)]
         pub fn setCompareFunction(&self, compare_function: MTLCompareFunction);
 
@@ -173,7 +171,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLSamplerDescriptor")]
     unsafe impl MTLSamplerDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub fn init(this: Allocated<Self>) -> Id<Self>;
@@ -183,7 +180,6 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Metal_MTLSamplerDescriptor")]
 impl DefaultId for MTLSamplerDescriptor {
     #[inline]
     fn default_id() -> Id<Self> {
@@ -197,9 +193,11 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other label)]
         fn label(&self) -> Option<Id<NSString>>;
 
+        #[cfg(feature = "Metal_MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
         fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
 
+        #[cfg(feature = "Metal_MTLTypes")]
         #[method(gpuResourceID)]
         unsafe fn gpuResourceID(&self) -> MTLResourceID;
     }

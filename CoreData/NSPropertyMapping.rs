@@ -6,21 +6,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSPropertyMapping")]
     pub struct NSPropertyMapping;
 
-    #[cfg(feature = "CoreData_NSPropertyMapping")]
     unsafe impl ClassType for NSPropertyMapping {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreData_NSPropertyMapping")]
 unsafe impl NSObjectProtocol for NSPropertyMapping {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSPropertyMapping")]
     unsafe impl NSPropertyMapping {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
@@ -50,7 +46,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSPropertyMapping")]
     unsafe impl NSPropertyMapping {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

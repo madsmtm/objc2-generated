@@ -17,289 +17,700 @@
 #[link(name = "UniformTypeIdentifiers", kind = "framework")]
 extern "C" {}
 
+#[cfg(feature = "UniformTypeIdentifiers_NSItemProvider_UTType")]
 #[path = "NSItemProvider_UTType.rs"]
 mod __NSItemProvider_UTType;
+#[cfg(feature = "UniformTypeIdentifiers_UTAdditions")]
 #[path = "UTAdditions.rs"]
 mod __UTAdditions;
+#[cfg(feature = "UniformTypeIdentifiers_UTCoreTypes")]
 #[path = "UTCoreTypes.rs"]
 mod __UTCoreTypes;
+#[cfg(feature = "UniformTypeIdentifiers_UTDefines")]
 #[path = "UTDefines.rs"]
 mod __UTDefines;
+#[cfg(feature = "UniformTypeIdentifiers_UTTagClass")]
 #[path = "UTTagClass.rs"]
 mod __UTTagClass;
+#[cfg(feature = "UniformTypeIdentifiers_UTType")]
 #[path = "UTType.rs"]
 mod __UTType;
 
+#[cfg(feature = "UniformTypeIdentifiers_NSItemProvider_UTType")]
 pub use self::__NSItemProvider_UTType::NSItemProviderUTType;
+#[cfg(feature = "UniformTypeIdentifiers_UTAdditions")]
 pub use self::__UTAdditions::NSStringUTAdditions;
+#[cfg(feature = "UniformTypeIdentifiers_UTAdditions")]
 pub use self::__UTAdditions::NSURLUTAdditions;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTType3DContent;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeAHAP;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeAIFF;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeARReferenceObject;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeAVI;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeAliasFile;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeAppleArchive;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeAppleProtectedMPEG4Audio;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeAppleProtectedMPEG4Video;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeAppleScript;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeApplication;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeApplicationBundle;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeApplicationExtension;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeArchive;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeAssemblyLanguageSource;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeAudio;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeAudiovisualContent;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeBMP;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeBZ2;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeBinaryPropertyList;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeBookmark;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeBundle;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeCHeader;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeCPlusPlusHeader;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeCPlusPlusSource;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeCSource;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeCalendarEvent;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeCommaSeparatedText;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeCompositeContent;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeContact;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeContent;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeData;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeDatabase;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeDelimitedText;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeDirectory;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeDiskImage;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeEPUB;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeEXE;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeEmailMessage;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeExecutable;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeFileURL;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeFlatRTFD;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeFolder;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeFont;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeFramework;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeGIF;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeGZIP;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeHEIC;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeHEIF;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeHTML;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeICNS;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeICO;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeImage;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeInternetLocation;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeInternetShortcut;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeItem;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeJPEG;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeJSON;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeJavaScript;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeLivePhoto;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeLog;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeM3UPlaylist;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeMIDI;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeMP3;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeMPEG;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeMPEG2TransportStream;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeMPEG2Video;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeMPEG4Audio;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeMPEG4Movie;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeMakefile;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeMessage;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeMountPoint;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeMovie;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeOSAScript;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeOSAScriptBundle;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeObjectiveCPlusPlusSource;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeObjectiveCSource;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypePDF;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypePHPScript;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypePKCS12;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypePNG;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypePackage;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypePerlScript;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypePlainText;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypePlaylist;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypePluginBundle;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypePresentation;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypePropertyList;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypePythonScript;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeQuickLookGenerator;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeQuickTimeMovie;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeRAWImage;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeRTF;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeRTFD;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeRealityFile;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeResolvable;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeRubyScript;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeSVG;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeSceneKitScene;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeScript;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeShellScript;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeSourceCode;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeSpotlightImporter;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeSpreadsheet;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeSwiftSource;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeSymbolicLink;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeSystemPreferencesPane;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeTIFF;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeTabSeparatedText;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeText;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeToDoItem;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeURL;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeURLBookmarkData;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeUSD;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeUSDZ;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeUTF16ExternalPlainText;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeUTF16PlainText;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeUTF8PlainText;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeUTF8TabSeparatedText;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeUnixExecutable;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeVCard;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeVideo;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeVolume;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeWAV;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeWebArchive;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeWebP;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeX509Certificate;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeXML;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeXMLPropertyList;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeXPCService;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeYAML;
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(all(
+    feature = "UniformTypeIdentifiers_UTCoreTypes",
+    feature = "UniformTypeIdentifiers_UTType"
+))]
 pub use self::__UTCoreTypes::UTTypeZIP;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSString",
+    feature = "UniformTypeIdentifiers_UTTagClass"
+))]
 pub use self::__UTTagClass::UTTagClassFilenameExtension;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSString",
+    feature = "UniformTypeIdentifiers_UTTagClass"
+))]
 pub use self::__UTTagClass::UTTagClassMIMEType;
 #[cfg(feature = "UniformTypeIdentifiers_UTType")]
 pub use self::__UTType::UTType;

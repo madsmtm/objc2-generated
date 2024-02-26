@@ -3,79 +3,79 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
 extern_static!(NSGenericException: &'static NSExceptionName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
 extern_static!(NSRangeException: &'static NSExceptionName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
 extern_static!(NSInvalidArgumentException: &'static NSExceptionName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
 extern_static!(NSInternalInconsistencyException: &'static NSExceptionName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
 extern_static!(NSMallocException: &'static NSExceptionName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
 extern_static!(NSObjectInaccessibleException: &'static NSExceptionName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
 extern_static!(NSObjectNotAvailableException: &'static NSExceptionName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
 extern_static!(NSDestinationInvalidException: &'static NSExceptionName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
 extern_static!(NSPortTimeoutException: &'static NSExceptionName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
 extern_static!(NSInvalidSendPortException: &'static NSExceptionName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
 extern_static!(NSInvalidReceivePortException: &'static NSExceptionName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
 extern_static!(NSPortSendException: &'static NSExceptionName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
 extern_static!(NSPortReceiveException: &'static NSExceptionName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
 extern_static!(NSOldStyleException: &'static NSExceptionName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
 extern_static!(NSInconsistentArchiveException: &'static NSExceptionName);
 
 extern_class!(
     #[derive(PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSException")]
     pub struct NSException;
 
-    #[cfg(feature = "Foundation_NSException")]
     unsafe impl ClassType for NSException {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSException")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSException {}
 
-#[cfg(feature = "Foundation_NSException")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSException {}
 
-#[cfg(feature = "Foundation_NSException")]
 unsafe impl NSObjectProtocol for NSException {}
 
-#[cfg(feature = "Foundation_NSException")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSException {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSException")]
     unsafe impl NSException {
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSObjCRuntime",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other exceptionWithName:reason:userInfo:)]
         pub unsafe fn exceptionWithName_reason_userInfo(
             name: &NSExceptionName,
@@ -83,7 +83,11 @@ extern_methods!(
             user_info: Option<&NSDictionary>,
         ) -> Id<NSException>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSObjCRuntime",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithName:reason:userInfo:)]
         pub unsafe fn initWithName_reason_userInfo(
             this: Allocated<Self>,
@@ -92,7 +96,7 @@ extern_methods!(
             a_user_info: Option<&NSDictionary>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other name)]
         pub fn name(&self) -> Id<NSExceptionName>;
 
@@ -104,7 +108,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other userInfo)]
         pub fn userInfo(&self) -> Option<Id<NSDictionary>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Other callStackReturnAddresses)]
         pub unsafe fn callStackReturnAddresses(&self) -> Id<NSArray<NSNumber>>;
 
@@ -116,7 +120,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSException")]
     unsafe impl NSException {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -125,20 +128,16 @@ extern_methods!(
 
 extern_methods!(
     /// NSExceptionRaisingConveniences
-    #[cfg(feature = "Foundation_NSException")]
     unsafe impl NSException {}
 );
 
-#[cfg(feature = "Foundation_NSException")]
 pub type NSUncaughtExceptionHandler = TodoFunction;
 
 extern_fn!(
-    #[cfg(feature = "Foundation_NSException")]
     pub unsafe fn NSGetUncaughtExceptionHandler() -> *mut NSUncaughtExceptionHandler;
 );
 
 extern_fn!(
-    #[cfg(feature = "Foundation_NSException")]
     pub unsafe fn NSSetUncaughtExceptionHandler(_: *mut NSUncaughtExceptionHandler);
 );
 
@@ -147,21 +146,17 @@ extern_static!(NSAssertionHandlerKey: &'static NSString);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSAssertionHandler")]
     pub struct NSAssertionHandler;
 
-    #[cfg(feature = "Foundation_NSAssertionHandler")]
     unsafe impl ClassType for NSAssertionHandler {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSAssertionHandler")]
 unsafe impl NSObjectProtocol for NSAssertionHandler {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSAssertionHandler")]
     unsafe impl NSAssertionHandler {
         #[method_id(@__retain_semantics Other currentHandler)]
         pub unsafe fn currentHandler() -> Id<NSAssertionHandler>;
@@ -170,7 +165,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSAssertionHandler")]
     unsafe impl NSAssertionHandler {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -5,21 +5,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSThread")]
     pub struct NSThread;
 
-    #[cfg(feature = "Foundation_NSThread")]
     unsafe impl ClassType for NSThread {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSThread")]
 unsafe impl NSObjectProtocol for NSThread {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSThread")]
     unsafe impl NSThread {
         #[method_id(@__retain_semantics Other currentThread)]
         pub fn currentThread() -> Id<NSThread>;
@@ -37,7 +33,7 @@ extern_methods!(
         #[method(isMultiThreaded)]
         pub fn isMultiThreaded() -> bool;
 
-        #[cfg(feature = "Foundation_NSMutableDictionary")]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other threadDictionary)]
         pub unsafe fn threadDictionary(&self) -> Id<NSMutableDictionary>;
 
@@ -45,6 +41,7 @@ extern_methods!(
         #[method(sleepUntilDate:)]
         pub unsafe fn sleepUntilDate(date: &NSDate);
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(sleepForTimeInterval:)]
         pub unsafe fn sleepForTimeInterval(ti: NSTimeInterval);
 
@@ -63,13 +60,15 @@ extern_methods!(
         #[method(setThreadPriority:)]
         pub unsafe fn setThreadPriority(&self, thread_priority: c_double);
 
+        #[cfg(feature = "Foundation_NSObjCRuntime")]
         #[method(qualityOfService)]
         pub unsafe fn qualityOfService(&self) -> NSQualityOfService;
 
+        #[cfg(feature = "Foundation_NSObjCRuntime")]
         #[method(setQualityOfService:)]
         pub unsafe fn setQualityOfService(&self, quality_of_service: NSQualityOfService);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Other callStackReturnAddresses)]
         pub unsafe fn callStackReturnAddresses() -> Id<NSArray<NSNumber>>;
 
@@ -136,14 +135,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSThread")]
     unsafe impl NSThread {
         #[method_id(@__retain_semantics New new)]
         pub fn new() -> Id<Self>;
     }
 );
 
-#[cfg(feature = "Foundation_NSThread")]
 impl DefaultId for NSThread {
     #[inline]
     fn default_id() -> Id<Self> {
@@ -151,13 +148,13 @@ impl DefaultId for NSThread {
     }
 }
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSWillBecomeMultiThreadedNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSDidBecomeSingleThreadedNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSThreadWillExitNotification: &'static NSNotificationName);
 
 extern_category!(

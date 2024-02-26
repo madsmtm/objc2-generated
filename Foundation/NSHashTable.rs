@@ -3,28 +3,31 @@
 use crate::common::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSPointerFunctions")]
 extern_static!(NSHashTableStrongMemory: NSPointerFunctionsOptions = NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsStrongMemory.0));
 
+#[cfg(feature = "Foundation_NSPointerFunctions")]
 extern_static!(NSHashTableZeroingWeakMemory: NSPointerFunctionsOptions = NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsZeroingWeakMemory.0));
 
+#[cfg(feature = "Foundation_NSPointerFunctions")]
 extern_static!(NSHashTableCopyIn: NSPointerFunctionsOptions = NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsCopyIn.0));
 
+#[cfg(feature = "Foundation_NSPointerFunctions")]
 extern_static!(NSHashTableObjectPointerPersonality: NSPointerFunctionsOptions = NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsObjectPointerPersonality.0));
 
+#[cfg(feature = "Foundation_NSPointerFunctions")]
 extern_static!(NSHashTableWeakMemory: NSPointerFunctionsOptions = NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsWeakMemory.0));
 
 pub type NSHashTableOptions = NSUInteger;
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSHashTable")]
     pub struct NSHashTable<ObjectType: ?Sized = AnyObject> {
         __superclass: NSObject,
         _inner0: PhantomData<*mut ObjectType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
-    #[cfg(feature = "Foundation_NSHashTable")]
     unsafe impl<ObjectType: ?Sized + Message> ClassType for NSHashTable<ObjectType> {
         type Super = NSObject;
         type Mutability = InteriorMutable;
@@ -39,24 +42,23 @@ __inner_extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSHashTable")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for NSHashTable<ObjectType> {}
 
-#[cfg(feature = "Foundation_NSHashTable")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl<ObjectType: ?Sized + IsIdCloneable> NSCopying for NSHashTable<ObjectType> {}
 
-#[cfg(feature = "Foundation_NSHashTable")]
+#[cfg(feature = "Foundation_NSEnumerator")]
 unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSHashTable<ObjectType> {}
 
-#[cfg(feature = "Foundation_NSHashTable")]
 unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSHashTable<ObjectType> {}
 
-#[cfg(feature = "Foundation_NSHashTable")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding for NSHashTable<ObjectType> {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSHashTable")]
     unsafe impl<ObjectType: Message> NSHashTable<ObjectType> {
+        #[cfg(feature = "Foundation_NSPointerFunctions")]
         #[method_id(@__retain_semantics Init initWithOptions:capacity:)]
         pub unsafe fn initWithOptions_capacity(
             this: Allocated<Self>,
@@ -72,6 +74,7 @@ extern_methods!(
             initial_capacity: NSUInteger,
         ) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSPointerFunctions")]
         #[method_id(@__retain_semantics Other hashTableWithOptions:)]
         pub unsafe fn hashTableWithOptions(
             options: NSPointerFunctionsOptions,
@@ -143,7 +146,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSHashTable")]
     unsafe impl<ObjectType: Message> NSHashTable<ObjectType> {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -163,22 +165,19 @@ extern_struct!(
 );
 
 extern_fn!(
-    #[cfg(feature = "Foundation_NSHashTable")]
     pub unsafe fn NSFreeHashTable(table: &NSHashTable);
 );
 
 extern_fn!(
-    #[cfg(feature = "Foundation_NSHashTable")]
     pub unsafe fn NSResetHashTable(table: &NSHashTable);
 );
 
 extern_fn!(
-    #[cfg(feature = "Foundation_NSHashTable")]
     pub unsafe fn NSCompareHashTables(table1: &NSHashTable, table2: &NSHashTable) -> Bool;
 );
 
 extern_fn!(
-    #[cfg(feature = "Foundation_NSHashTable")]
+    #[cfg(feature = "Foundation_NSZone")]
     pub unsafe fn NSCopyHashTableWithZone(
         table: &NSHashTable,
         zone: *mut NSZone,
@@ -186,32 +185,26 @@ extern_fn!(
 );
 
 extern_fn!(
-    #[cfg(feature = "Foundation_NSHashTable")]
     pub unsafe fn NSHashGet(table: &NSHashTable, pointer: *mut c_void) -> NonNull<c_void>;
 );
 
 extern_fn!(
-    #[cfg(feature = "Foundation_NSHashTable")]
     pub unsafe fn NSHashInsert(table: &NSHashTable, pointer: *mut c_void);
 );
 
 extern_fn!(
-    #[cfg(feature = "Foundation_NSHashTable")]
     pub unsafe fn NSHashInsertKnownAbsent(table: &NSHashTable, pointer: *mut c_void);
 );
 
 extern_fn!(
-    #[cfg(feature = "Foundation_NSHashTable")]
     pub unsafe fn NSHashInsertIfAbsent(table: &NSHashTable, pointer: *mut c_void) -> *mut c_void;
 );
 
 extern_fn!(
-    #[cfg(feature = "Foundation_NSHashTable")]
     pub unsafe fn NSHashRemove(table: &NSHashTable, pointer: *mut c_void);
 );
 
 extern_fn!(
-    #[cfg(feature = "Foundation_NSHashTable")]
     pub unsafe fn NSEnumerateHashTable(table: &NSHashTable) -> NSHashEnumerator;
 );
 
@@ -224,23 +217,22 @@ extern_fn!(
 );
 
 extern_fn!(
-    #[cfg(feature = "Foundation_NSHashTable")]
     pub unsafe fn NSCountHashTable(table: &NSHashTable) -> NSUInteger;
 );
 
 extern_fn!(
-    #[cfg(all(feature = "Foundation_NSHashTable", feature = "Foundation_NSString"))]
+    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSStringFromHashTable(table: &NSHashTable) -> NonNull<NSString>;
 );
 
 extern_fn!(
-    #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSHashTable"))]
+    #[cfg(feature = "Foundation_NSArray")]
     pub unsafe fn NSAllHashTableObjects(table: &NSHashTable) -> NonNull<NSArray>;
 );
 
 extern_struct!(
     #[encoding_name("?")]
-    #[cfg(all(feature = "Foundation_NSHashTable", feature = "Foundation_NSString"))]
+    #[cfg(feature = "Foundation_NSString")]
     pub struct NSHashTableCallBacks {
         pub hash: Option<unsafe extern "C" fn(NonNull<NSHashTable>, NonNull<c_void>) -> NSUInteger>,
         pub isEqual: Option<
@@ -254,7 +246,7 @@ extern_struct!(
 );
 
 extern_fn!(
-    #[cfg(all(feature = "Foundation_NSHashTable", feature = "Foundation_NSString"))]
+    #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSZone"))]
     pub unsafe fn NSCreateHashTableWithZone(
         call_backs: NSHashTableCallBacks,
         capacity: NSUInteger,
@@ -263,33 +255,33 @@ extern_fn!(
 );
 
 extern_fn!(
-    #[cfg(all(feature = "Foundation_NSHashTable", feature = "Foundation_NSString"))]
+    #[cfg(feature = "Foundation_NSString")]
     pub unsafe fn NSCreateHashTable(
         call_backs: NSHashTableCallBacks,
         capacity: NSUInteger,
     ) -> NonNull<NSHashTable>;
 );
 
-#[cfg(all(feature = "Foundation_NSHashTable", feature = "Foundation_NSString"))]
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSIntegerHashCallBacks: NSHashTableCallBacks);
 
-#[cfg(all(feature = "Foundation_NSHashTable", feature = "Foundation_NSString"))]
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSNonOwnedPointerHashCallBacks: NSHashTableCallBacks);
 
-#[cfg(all(feature = "Foundation_NSHashTable", feature = "Foundation_NSString"))]
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSNonRetainedObjectHashCallBacks: NSHashTableCallBacks);
 
-#[cfg(all(feature = "Foundation_NSHashTable", feature = "Foundation_NSString"))]
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSObjectHashCallBacks: NSHashTableCallBacks);
 
-#[cfg(all(feature = "Foundation_NSHashTable", feature = "Foundation_NSString"))]
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSOwnedObjectIdentityHashCallBacks: NSHashTableCallBacks);
 
-#[cfg(all(feature = "Foundation_NSHashTable", feature = "Foundation_NSString"))]
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSOwnedPointerHashCallBacks: NSHashTableCallBacks);
 
-#[cfg(all(feature = "Foundation_NSHashTable", feature = "Foundation_NSString"))]
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPointerToStructHashCallBacks: NSHashTableCallBacks);
 
-#[cfg(all(feature = "Foundation_NSHashTable", feature = "Foundation_NSString"))]
+#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSIntHashCallBacks: NSHashTableCallBacks);

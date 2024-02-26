@@ -91,6 +91,7 @@ extern_protocol!(
         #[method(setLabel:)]
         fn setLabel(&self, label: Option<&NSString>);
 
+        #[cfg(feature = "Metal_MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
         fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
 
@@ -109,6 +110,7 @@ extern_protocol!(
         #[method(setPurgeableState:)]
         fn setPurgeableState(&self, state: MTLPurgeableState) -> MTLPurgeableState;
 
+        #[cfg(feature = "Metal_MTLHeap")]
         #[method_id(@__retain_semantics Other heap)]
         fn heap(&self) -> Option<Id<ProtocolObject<dyn MTLHeap>>>;
 

@@ -7,24 +7,20 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSFilePromiseProvider")]
     pub struct NSFilePromiseProvider;
 
-    #[cfg(feature = "AppKit_NSFilePromiseProvider")]
     unsafe impl ClassType for NSFilePromiseProvider {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSFilePromiseProvider")]
 unsafe impl NSObjectProtocol for NSFilePromiseProvider {}
 
-#[cfg(feature = "AppKit_NSFilePromiseProvider")]
+#[cfg(feature = "AppKit_NSPasteboard")]
 unsafe impl NSPasteboardWriting for NSFilePromiseProvider {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSFilePromiseProvider")]
     unsafe impl NSFilePromiseProvider {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fileType)]
@@ -66,7 +62,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSFilePromiseProvider")]
     unsafe impl NSFilePromiseProvider {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -75,10 +70,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSFilePromiseProviderDelegate: NSObjectProtocol {
-        #[cfg(all(
-            feature = "AppKit_NSFilePromiseProvider",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other filePromiseProvider:fileNameForType:)]
         unsafe fn filePromiseProvider_fileNameForType(
             &self,
@@ -87,11 +79,7 @@ extern_protocol!(
             mtm: MainThreadMarker,
         ) -> Id<NSString>;
 
-        #[cfg(all(
-            feature = "AppKit_NSFilePromiseProvider",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSURL"
-        ))]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method(filePromiseProvider:writePromiseToURL:completionHandler:)]
         unsafe fn filePromiseProvider_writePromiseToURL_completionHandler(
             &self,
@@ -100,10 +88,7 @@ extern_protocol!(
             completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
-        #[cfg(all(
-            feature = "AppKit_NSFilePromiseProvider",
-            feature = "Foundation_NSOperationQueue"
-        ))]
+        #[cfg(feature = "Foundation_NSOperation")]
         #[optional]
         #[method_id(@__retain_semantics Other operationQueueForFilePromiseProvider:)]
         unsafe fn operationQueueForFilePromiseProvider(

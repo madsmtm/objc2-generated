@@ -6,24 +6,20 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CallKit_CXProviderConfiguration")]
     pub struct CXProviderConfiguration;
 
-    #[cfg(feature = "CallKit_CXProviderConfiguration")]
     unsafe impl ClassType for CXProviderConfiguration {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CallKit_CXProviderConfiguration")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for CXProviderConfiguration {}
 
-#[cfg(feature = "CallKit_CXProviderConfiguration")]
 unsafe impl NSObjectProtocol for CXProviderConfiguration {}
 
 extern_methods!(
-    #[cfg(feature = "CallKit_CXProviderConfiguration")]
     unsafe impl CXProviderConfiguration {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "No longer supported"]
@@ -70,11 +66,11 @@ extern_methods!(
         #[method(setSupportsVideo:)]
         pub unsafe fn setSupportsVideo(&self, supports_video: bool);
 
-        #[cfg(all(feature = "Foundation_NSNumber", feature = "Foundation_NSSet"))]
+        #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Other supportedHandleTypes)]
         pub unsafe fn supportedHandleTypes(&self) -> Id<NSSet<NSNumber>>;
 
-        #[cfg(all(feature = "Foundation_NSNumber", feature = "Foundation_NSSet"))]
+        #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSValue"))]
         #[method(setSupportedHandleTypes:)]
         pub unsafe fn setSupportedHandleTypes(&self, supported_handle_types: &NSSet<NSNumber>);
 
@@ -93,7 +89,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CallKit_CXProviderConfiguration")]
     unsafe impl CXProviderConfiguration {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -7,11 +7,11 @@ use crate::WebKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_DOMCounter")]
+    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
     #[deprecated]
     pub struct DOMCounter;
 
-    #[cfg(feature = "WebKit_DOMCounter")]
+    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
     unsafe impl ClassType for DOMCounter {
         #[inherits(WebScriptObject, NSObject)]
         type Super = DOMObject;
@@ -19,14 +19,18 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "WebKit_DOMCounter")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSCopying for DOMCounter {}
 
-#[cfg(feature = "WebKit_DOMCounter")]
+#[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
 unsafe impl NSObjectProtocol for DOMCounter {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_DOMCounter")]
+    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
     unsafe impl DOMCounter {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
@@ -47,7 +51,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
-    #[cfg(feature = "WebKit_DOMCounter")]
+    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
     unsafe impl DOMCounter {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
@@ -57,7 +61,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_DOMCounter")]
+    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
     unsafe impl DOMCounter {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

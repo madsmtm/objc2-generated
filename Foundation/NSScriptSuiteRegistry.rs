@@ -5,21 +5,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSScriptSuiteRegistry")]
     pub struct NSScriptSuiteRegistry;
 
-    #[cfg(feature = "Foundation_NSScriptSuiteRegistry")]
     unsafe impl ClassType for NSScriptSuiteRegistry {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSScriptSuiteRegistry")]
 unsafe impl NSObjectProtocol for NSScriptSuiteRegistry {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSScriptSuiteRegistry")]
     unsafe impl NSScriptSuiteRegistry {
         #[method_id(@__retain_semantics Other sharedScriptSuiteRegistry)]
         pub unsafe fn sharedScriptSuiteRegistry() -> Id<NSScriptSuiteRegistry>;
@@ -39,7 +35,10 @@ extern_methods!(
             bundle: &NSBundle,
         );
 
-        #[cfg(feature = "Foundation_NSScriptClassDescription")]
+        #[cfg(all(
+            feature = "Foundation_NSClassDescription",
+            feature = "Foundation_NSScriptClassDescription"
+        ))]
         #[method(registerClassDescription:)]
         pub unsafe fn registerClassDescription(&self, class_description: &NSScriptClassDescription);
 
@@ -63,6 +62,7 @@ extern_methods!(
         pub unsafe fn bundleForSuite(&self, suite_name: &NSString) -> Option<Id<NSBundle>>;
 
         #[cfg(all(
+            feature = "Foundation_NSClassDescription",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSScriptClassDescription",
             feature = "Foundation_NSString"
@@ -91,7 +91,10 @@ extern_methods!(
             apple_event_code: FourCharCode,
         ) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSScriptClassDescription")]
+        #[cfg(all(
+            feature = "Foundation_NSClassDescription",
+            feature = "Foundation_NSScriptClassDescription"
+        ))]
         #[method_id(@__retain_semantics Other classDescriptionWithAppleEventCode:)]
         pub unsafe fn classDescriptionWithAppleEventCode(
             &self,
@@ -114,7 +117,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSScriptSuiteRegistry")]
     unsafe impl NSScriptSuiteRegistry {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

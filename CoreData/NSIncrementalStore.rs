@@ -6,10 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSIncrementalStore")]
+    #[cfg(feature = "CoreData_NSPersistentStore")]
     pub struct NSIncrementalStore;
 
-    #[cfg(feature = "CoreData_NSIncrementalStore")]
+    #[cfg(feature = "CoreData_NSPersistentStore")]
     unsafe impl ClassType for NSIncrementalStore {
         #[inherits(NSObject)]
         type Super = NSPersistentStore;
@@ -17,11 +17,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CoreData_NSIncrementalStore")]
+#[cfg(feature = "CoreData_NSPersistentStore")]
 unsafe impl NSObjectProtocol for NSIncrementalStore {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSIncrementalStore")]
+    #[cfg(feature = "CoreData_NSPersistentStore")]
     unsafe impl NSIncrementalStore {
         #[cfg(feature = "Foundation_NSError")]
         #[method(loadMetadata:_)]
@@ -55,6 +55,7 @@ extern_methods!(
         #[cfg(all(
             feature = "CoreData_NSManagedObjectContext",
             feature = "CoreData_NSManagedObjectID",
+            feature = "CoreData_NSPropertyDescription",
             feature = "CoreData_NSRelationshipDescription",
             feature = "Foundation_NSError"
         ))]
@@ -118,7 +119,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSPersistentStore`
-    #[cfg(feature = "CoreData_NSIncrementalStore")]
+    #[cfg(feature = "CoreData_NSPersistentStore")]
     unsafe impl NSIncrementalStore {
         #[cfg(all(
             feature = "CoreData_NSPersistentStoreCoordinator",
@@ -142,7 +143,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSIncrementalStore")]
+    #[cfg(feature = "CoreData_NSPersistentStore")]
     unsafe impl NSIncrementalStore {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

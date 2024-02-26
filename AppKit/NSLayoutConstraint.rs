@@ -104,21 +104,17 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSLayoutConstraint")]
     pub struct NSLayoutConstraint;
 
-    #[cfg(feature = "AppKit_NSLayoutConstraint")]
     unsafe impl ClassType for NSLayoutConstraint {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSLayoutConstraint")]
 unsafe impl NSObjectProtocol for NSLayoutConstraint {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSLayoutConstraint")]
     unsafe impl NSLayoutConstraint {
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -133,6 +129,7 @@ extern_methods!(
             views: &NSDictionary<NSString, AnyObject>,
         ) -> Id<NSArray<NSLayoutConstraint>>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Other constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:)]
         pub unsafe fn constraintWithItem_attribute_relatedBy_toItem_attribute_multiplier_constant(
             view1: &AnyObject,
@@ -179,12 +176,15 @@ extern_methods!(
         #[method(relation)]
         pub unsafe fn relation(&self) -> NSLayoutRelation;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(multiplier)]
         pub unsafe fn multiplier(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(constant)]
         pub unsafe fn constant(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setConstant:)]
         pub unsafe fn setConstant(&self, constant: CGFloat);
 
@@ -206,7 +206,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSLayoutConstraint")]
     unsafe impl NSLayoutConstraint {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -218,7 +217,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSIdentifier
-    #[cfg(feature = "AppKit_NSLayoutConstraint")]
     unsafe impl NSLayoutConstraint {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
@@ -231,62 +229,61 @@ extern_methods!(
 );
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSLayoutConstraint")]
     unsafe impl NSLayoutConstraint {}
 );
 
-#[cfg(feature = "AppKit_NSLayoutConstraint")]
+#[cfg(feature = "AppKit_NSAnimation")]
 unsafe impl NSAnimatablePropertyContainer for NSLayoutConstraint {}
 
 extern_methods!(
     /// NSConstraintBasedLayoutInstallingConstraints
-    #[cfg(feature = "AppKit_NSView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSView {
-        #[cfg(feature = "AppKit_NSLayoutXAxisAnchor")]
+        #[cfg(feature = "AppKit_NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other leadingAnchor)]
         pub unsafe fn leadingAnchor(&self) -> Id<NSLayoutXAxisAnchor>;
 
-        #[cfg(feature = "AppKit_NSLayoutXAxisAnchor")]
+        #[cfg(feature = "AppKit_NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other trailingAnchor)]
         pub unsafe fn trailingAnchor(&self) -> Id<NSLayoutXAxisAnchor>;
 
-        #[cfg(feature = "AppKit_NSLayoutXAxisAnchor")]
+        #[cfg(feature = "AppKit_NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other leftAnchor)]
         pub unsafe fn leftAnchor(&self) -> Id<NSLayoutXAxisAnchor>;
 
-        #[cfg(feature = "AppKit_NSLayoutXAxisAnchor")]
+        #[cfg(feature = "AppKit_NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other rightAnchor)]
         pub unsafe fn rightAnchor(&self) -> Id<NSLayoutXAxisAnchor>;
 
-        #[cfg(feature = "AppKit_NSLayoutYAxisAnchor")]
+        #[cfg(feature = "AppKit_NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other topAnchor)]
         pub unsafe fn topAnchor(&self) -> Id<NSLayoutYAxisAnchor>;
 
-        #[cfg(feature = "AppKit_NSLayoutYAxisAnchor")]
+        #[cfg(feature = "AppKit_NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other bottomAnchor)]
         pub unsafe fn bottomAnchor(&self) -> Id<NSLayoutYAxisAnchor>;
 
-        #[cfg(feature = "AppKit_NSLayoutDimension")]
+        #[cfg(feature = "AppKit_NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other widthAnchor)]
         pub unsafe fn widthAnchor(&self) -> Id<NSLayoutDimension>;
 
-        #[cfg(feature = "AppKit_NSLayoutDimension")]
+        #[cfg(feature = "AppKit_NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other heightAnchor)]
         pub unsafe fn heightAnchor(&self) -> Id<NSLayoutDimension>;
 
-        #[cfg(feature = "AppKit_NSLayoutXAxisAnchor")]
+        #[cfg(feature = "AppKit_NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other centerXAnchor)]
         pub unsafe fn centerXAnchor(&self) -> Id<NSLayoutXAxisAnchor>;
 
-        #[cfg(feature = "AppKit_NSLayoutYAxisAnchor")]
+        #[cfg(feature = "AppKit_NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other centerYAnchor)]
         pub unsafe fn centerYAnchor(&self) -> Id<NSLayoutYAxisAnchor>;
 
-        #[cfg(feature = "AppKit_NSLayoutYAxisAnchor")]
+        #[cfg(feature = "AppKit_NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other firstBaselineAnchor)]
         pub unsafe fn firstBaselineAnchor(&self) -> Id<NSLayoutYAxisAnchor>;
 
-        #[cfg(feature = "AppKit_NSLayoutYAxisAnchor")]
+        #[cfg(feature = "AppKit_NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other lastBaselineAnchor)]
         pub unsafe fn lastBaselineAnchor(&self) -> Id<NSLayoutYAxisAnchor>;
 
@@ -314,7 +311,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSConstraintBasedLayoutCoreMethods
-    #[cfg(feature = "AppKit_NSWindow")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
     unsafe impl NSWindow {
         #[method(updateConstraintsIfNeeded)]
         pub unsafe fn updateConstraintsIfNeeded(&self);
@@ -326,7 +323,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSConstraintBasedLayoutCoreMethods
-    #[cfg(feature = "AppKit_NSView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSView {
         #[method(updateConstraintsForSubtreeIfNeeded)]
         pub unsafe fn updateConstraintsForSubtreeIfNeeded(&self);
@@ -344,7 +341,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSConstraintBasedCompatibility
-    #[cfg(feature = "AppKit_NSView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSView {
         #[method(translatesAutoresizingMaskIntoConstraints)]
         pub unsafe fn translatesAutoresizingMaskIntoConstraints(&self) -> bool;
@@ -360,44 +357,55 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "Foundation_NSGeometry")]
 extern_static!(NSViewNoInstrinsicMetric: CGFloat);
 
+#[cfg(feature = "Foundation_NSGeometry")]
 extern_static!(NSViewNoIntrinsicMetric: CGFloat);
 
 extern_methods!(
     /// NSConstraintBasedLayoutLayering
-    #[cfg(feature = "AppKit_NSView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSView {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(alignmentRectForFrame:)]
         pub unsafe fn alignmentRectForFrame(&self, frame: NSRect) -> NSRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(frameForAlignmentRect:)]
         pub unsafe fn frameForAlignmentRect(&self, alignment_rect: NSRect) -> NSRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(alignmentRectInsets)]
         pub unsafe fn alignmentRectInsets(&self) -> NSEdgeInsets;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(firstBaselineOffsetFromTop)]
         pub unsafe fn firstBaselineOffsetFromTop(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(lastBaselineOffsetFromBottom)]
         pub unsafe fn lastBaselineOffsetFromBottom(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(baselineOffsetFromBottom)]
         pub unsafe fn baselineOffsetFromBottom(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(intrinsicContentSize)]
         pub unsafe fn intrinsicContentSize(&self) -> NSSize;
 
         #[method(invalidateIntrinsicContentSize)]
         pub unsafe fn invalidateIntrinsicContentSize(&self);
 
+        #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method(contentHuggingPriorityForOrientation:)]
         pub unsafe fn contentHuggingPriorityForOrientation(
             &self,
             orientation: NSLayoutConstraintOrientation,
         ) -> NSLayoutPriority;
 
+        #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method(setContentHuggingPriority:forOrientation:)]
         pub unsafe fn setContentHuggingPriority_forOrientation(
             &self,
@@ -405,12 +413,14 @@ extern_methods!(
             orientation: NSLayoutConstraintOrientation,
         );
 
+        #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method(contentCompressionResistancePriorityForOrientation:)]
         pub unsafe fn contentCompressionResistancePriorityForOrientation(
             &self,
             orientation: NSLayoutConstraintOrientation,
         ) -> NSLayoutPriority;
 
+        #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method(setContentCompressionResistancePriority:forOrientation:)]
         pub unsafe fn setContentCompressionResistancePriority_forOrientation(
             &self,
@@ -440,7 +450,11 @@ extern_methods!(
 
 extern_methods!(
     /// NSConstraintBasedLayoutLayering
-    #[cfg(feature = "AppKit_NSControl")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSControl {
         #[cfg(feature = "AppKit_NSCell")]
         #[method(invalidateIntrinsicContentSizeForCell:)]
@@ -450,14 +464,16 @@ extern_methods!(
 
 extern_methods!(
     /// NSConstraintBasedLayoutAnchoring
-    #[cfg(feature = "AppKit_NSWindow")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
     unsafe impl NSWindow {
+        #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method(anchorAttributeForOrientation:)]
         pub unsafe fn anchorAttributeForOrientation(
             &self,
             orientation: NSLayoutConstraintOrientation,
         ) -> NSLayoutAttribute;
 
+        #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method(setAnchorAttribute:forOrientation:)]
         pub unsafe fn setAnchorAttribute_forOrientation(
             &self,
@@ -469,8 +485,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSConstraintBasedLayoutFittingSize
-    #[cfg(feature = "AppKit_NSView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSView {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(fittingSize)]
         pub unsafe fn fittingSize(&self) -> NSSize;
     }
@@ -478,7 +495,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSConstraintBasedLayoutDebugging
-    #[cfg(feature = "AppKit_NSView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSView {
         #[cfg(all(feature = "AppKit_NSLayoutConstraint", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other constraintsAffectingLayoutForOrientation:)]
@@ -497,7 +514,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSConstraintBasedLayoutDebugging
-    #[cfg(feature = "AppKit_NSWindow")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
     unsafe impl NSWindow {
         #[cfg(all(feature = "AppKit_NSLayoutConstraint", feature = "Foundation_NSArray"))]
         #[method(visualizeConstraints:)]

@@ -53,21 +53,17 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSToolbar")]
     pub struct NSToolbar;
 
-    #[cfg(feature = "AppKit_NSToolbar")]
     unsafe impl ClassType for NSToolbar {
         type Super = NSObject;
         type Mutability = MainThreadOnly;
     }
 );
 
-#[cfg(feature = "AppKit_NSToolbar")]
 unsafe impl NSObjectProtocol for NSToolbar {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSToolbar")]
     unsafe impl NSToolbar {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
@@ -211,7 +207,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSToolbar")]
     unsafe impl NSToolbar {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -220,11 +215,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSToolbarDelegate: NSObjectProtocol + IsMainThreadOnly {
-        #[cfg(all(
-            feature = "AppKit_NSToolbar",
-            feature = "AppKit_NSToolbarItem",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "AppKit_NSToolbarItem", feature = "Foundation_NSString"))]
         #[optional]
         #[method_id(@__retain_semantics Other toolbar:itemForItemIdentifier:willBeInsertedIntoToolbar:)]
         unsafe fn toolbar_itemForItemIdentifier_willBeInsertedIntoToolbar(
@@ -234,11 +225,7 @@ extern_protocol!(
             flag: bool,
         ) -> Option<Id<NSToolbarItem>>;
 
-        #[cfg(all(
-            feature = "AppKit_NSToolbar",
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[optional]
         #[method_id(@__retain_semantics Other toolbarDefaultItemIdentifiers:)]
         unsafe fn toolbarDefaultItemIdentifiers(
@@ -246,11 +233,7 @@ extern_protocol!(
             toolbar: &NSToolbar,
         ) -> Id<NSArray<NSToolbarItemIdentifier>>;
 
-        #[cfg(all(
-            feature = "AppKit_NSToolbar",
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[optional]
         #[method_id(@__retain_semantics Other toolbarAllowedItemIdentifiers:)]
         unsafe fn toolbarAllowedItemIdentifiers(
@@ -258,11 +241,7 @@ extern_protocol!(
             toolbar: &NSToolbar,
         ) -> Id<NSArray<NSToolbarItemIdentifier>>;
 
-        #[cfg(all(
-            feature = "AppKit_NSToolbar",
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[optional]
         #[method_id(@__retain_semantics Other toolbarSelectableItemIdentifiers:)]
         unsafe fn toolbarSelectableItemIdentifiers(
@@ -270,11 +249,7 @@ extern_protocol!(
             toolbar: &NSToolbar,
         ) -> Id<NSArray<NSToolbarItemIdentifier>>;
 
-        #[cfg(all(
-            feature = "AppKit_NSToolbar",
-            feature = "Foundation_NSSet",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
         #[optional]
         #[method_id(@__retain_semantics Other toolbarImmovableItemIdentifiers:)]
         unsafe fn toolbarImmovableItemIdentifiers(
@@ -282,7 +257,7 @@ extern_protocol!(
             toolbar: &NSToolbar,
         ) -> Id<NSSet<NSToolbarItemIdentifier>>;
 
-        #[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSString"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method(toolbar:itemIdentifier:canBeInsertedAtIndex:)]
         unsafe fn toolbar_itemIdentifier_canBeInsertedAtIndex(
@@ -306,22 +281,21 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSToolbarDelegate {}
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSToolbarWillAddItemNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSToolbarDidRemoveItemNotification: &'static NSNotificationName);
 
 extern_methods!(
     /// NSDeprecated
-    #[cfg(feature = "AppKit_NSToolbar")]
     unsafe impl NSToolbar {
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[deprecated = "Use NSTitlebarAccessoryViewController with NSWindow instead"]
         #[method_id(@__retain_semantics Other fullScreenAccessoryView)]
         pub unsafe fn fullScreenAccessoryView(&self) -> Option<Id<NSView>>;
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[deprecated = "Use NSTitlebarAccessoryViewController with NSWindow instead"]
         #[method(setFullScreenAccessoryView:)]
         pub unsafe fn setFullScreenAccessoryView(
@@ -329,10 +303,12 @@ extern_methods!(
             full_screen_accessory_view: Option<&NSView>,
         );
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[deprecated = "Use NSTitlebarAccessoryViewController and its fullScreenMinHeight property with NSWindow instead."]
         #[method(fullScreenAccessoryViewMinHeight)]
         pub unsafe fn fullScreenAccessoryViewMinHeight(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[deprecated = "Use NSTitlebarAccessoryViewController and its fullScreenMinHeight property with NSWindow instead."]
         #[method(setFullScreenAccessoryViewMinHeight:)]
         pub unsafe fn setFullScreenAccessoryViewMinHeight(
@@ -340,10 +316,12 @@ extern_methods!(
             full_screen_accessory_view_min_height: CGFloat,
         );
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[deprecated = "Use NSTitlebarAccessoryViewController with NSWindow instead. The max height of a titlebar accessory is implied by its view's height."]
         #[method(fullScreenAccessoryViewMaxHeight)]
         pub unsafe fn fullScreenAccessoryViewMaxHeight(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[deprecated = "Use NSTitlebarAccessoryViewController with NSWindow instead. The max height of a titlebar accessory is implied by its view's height."]
         #[method(setFullScreenAccessoryViewMaxHeight:)]
         pub unsafe fn setFullScreenAccessoryViewMaxHeight(

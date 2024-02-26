@@ -41,26 +41,21 @@ extern_struct!(
     }
 );
 
-#[cfg(feature = "GameController_GCMotion")]
 pub type GCMotionValueChangedHandler = *mut Block<dyn Fn(NonNull<GCMotion>)>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameController_GCMotion")]
     pub struct GCMotion;
 
-    #[cfg(feature = "GameController_GCMotion")]
     unsafe impl ClassType for GCMotion {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "GameController_GCMotion")]
 unsafe impl NSObjectProtocol for GCMotion {}
 
 extern_methods!(
-    #[cfg(feature = "GameController_GCMotion")]
     unsafe impl GCMotion {
         #[cfg(feature = "GameController_GCController")]
         #[method_id(@__retain_semantics Other controller)]
@@ -134,7 +129,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameController_GCMotion")]
     unsafe impl GCMotion {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

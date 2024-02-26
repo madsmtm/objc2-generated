@@ -22,21 +22,17 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Speech_SFSpeechRecognitionTask")]
     pub struct SFSpeechRecognitionTask;
 
-    #[cfg(feature = "Speech_SFSpeechRecognitionTask")]
     unsafe impl ClassType for SFSpeechRecognitionTask {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Speech_SFSpeechRecognitionTask")]
 unsafe impl NSObjectProtocol for SFSpeechRecognitionTask {}
 
 extern_methods!(
-    #[cfg(feature = "Speech_SFSpeechRecognitionTask")]
     unsafe impl SFSpeechRecognitionTask {
         #[method(state)]
         pub unsafe fn state(&self) -> SFSpeechRecognitionTaskState;
@@ -61,7 +57,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Speech_SFSpeechRecognitionTask")]
     unsafe impl SFSpeechRecognitionTask {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -73,15 +68,11 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait SFSpeechRecognitionTaskDelegate: NSObjectProtocol {
-        #[cfg(feature = "Speech_SFSpeechRecognitionTask")]
         #[optional]
         #[method(speechRecognitionDidDetectSpeech:)]
         unsafe fn speechRecognitionDidDetectSpeech(&self, task: &SFSpeechRecognitionTask);
 
-        #[cfg(all(
-            feature = "Speech_SFSpeechRecognitionTask",
-            feature = "Speech_SFTranscription"
-        ))]
+        #[cfg(feature = "Speech_SFTranscription")]
         #[optional]
         #[method(speechRecognitionTask:didHypothesizeTranscription:)]
         unsafe fn speechRecognitionTask_didHypothesizeTranscription(
@@ -90,10 +81,7 @@ extern_protocol!(
             transcription: &SFTranscription,
         );
 
-        #[cfg(all(
-            feature = "Speech_SFSpeechRecognitionResult",
-            feature = "Speech_SFSpeechRecognitionTask"
-        ))]
+        #[cfg(feature = "Speech_SFSpeechRecognitionResult")]
         #[optional]
         #[method(speechRecognitionTask:didFinishRecognition:)]
         unsafe fn speechRecognitionTask_didFinishRecognition(
@@ -102,17 +90,14 @@ extern_protocol!(
             recognition_result: &SFSpeechRecognitionResult,
         );
 
-        #[cfg(feature = "Speech_SFSpeechRecognitionTask")]
         #[optional]
         #[method(speechRecognitionTaskFinishedReadingAudio:)]
         unsafe fn speechRecognitionTaskFinishedReadingAudio(&self, task: &SFSpeechRecognitionTask);
 
-        #[cfg(feature = "Speech_SFSpeechRecognitionTask")]
         #[optional]
         #[method(speechRecognitionTaskWasCancelled:)]
         unsafe fn speechRecognitionTaskWasCancelled(&self, task: &SFSpeechRecognitionTask);
 
-        #[cfg(feature = "Speech_SFSpeechRecognitionTask")]
         #[optional]
         #[method(speechRecognitionTask:didFinishSuccessfully:)]
         unsafe fn speechRecognitionTask_didFinishSuccessfully(

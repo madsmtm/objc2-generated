@@ -9,26 +9,22 @@ extern_static!(NSAppleEventTimeOutDefault: c_double);
 
 extern_static!(NSAppleEventTimeOutNone: c_double);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSAppleEventManagerWillProcessFirstEventNotification: &'static NSNotificationName);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSAppleEventManager")]
     pub struct NSAppleEventManager;
 
-    #[cfg(feature = "Foundation_NSAppleEventManager")]
     unsafe impl ClassType for NSAppleEventManager {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSAppleEventManager")]
 unsafe impl NSObjectProtocol for NSAppleEventManager {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSAppleEventManager")]
     unsafe impl NSAppleEventManager {
         #[method_id(@__retain_semantics Other sharedAppleEventManager)]
         pub unsafe fn sharedAppleEventManager() -> Id<NSAppleEventManager>;
@@ -71,7 +67,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSAppleEventManager")]
     unsafe impl NSAppleEventManager {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

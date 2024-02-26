@@ -7,27 +7,26 @@ use crate::GameController::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameController_GCSteeringWheelElement")]
     pub struct GCSteeringWheelElement;
 
-    #[cfg(feature = "GameController_GCSteeringWheelElement")]
     unsafe impl ClassType for GCSteeringWheelElement {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "GameController_GCSteeringWheelElement")]
+#[cfg(all(
+    feature = "GameController_GCAxisElement",
+    feature = "GameController_GCPhysicalInputElement"
+))]
 unsafe impl GCAxisElement for GCSteeringWheelElement {}
 
-#[cfg(feature = "GameController_GCSteeringWheelElement")]
+#[cfg(feature = "GameController_GCPhysicalInputElement")]
 unsafe impl GCPhysicalInputElement for GCSteeringWheelElement {}
 
-#[cfg(feature = "GameController_GCSteeringWheelElement")]
 unsafe impl NSObjectProtocol for GCSteeringWheelElement {}
 
 extern_methods!(
-    #[cfg(feature = "GameController_GCSteeringWheelElement")]
     unsafe impl GCSteeringWheelElement {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -39,7 +38,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameController_GCSteeringWheelElement")]
     unsafe impl GCSteeringWheelElement {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

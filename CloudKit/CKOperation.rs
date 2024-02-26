@@ -10,10 +10,10 @@ pub type CKOperationID = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKOperation")]
+    #[cfg(feature = "Foundation_NSOperation")]
     pub struct CKOperation;
 
-    #[cfg(feature = "CloudKit_CKOperation")]
+    #[cfg(feature = "Foundation_NSOperation")]
     unsafe impl ClassType for CKOperation {
         #[inherits(NSObject)]
         type Super = NSOperation;
@@ -21,20 +21,18 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CloudKit_CKOperation")]
+#[cfg(feature = "Foundation_NSOperation")]
 unsafe impl NSObjectProtocol for CKOperation {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKOperation")]
+    #[cfg(feature = "Foundation_NSOperation")]
     unsafe impl CKOperation {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKOperationConfiguration")]
         #[method_id(@__retain_semantics Other configuration)]
         pub unsafe fn configuration(&self) -> Id<CKOperationConfiguration>;
 
-        #[cfg(feature = "CloudKit_CKOperationConfiguration")]
         #[method(setConfiguration:)]
         pub unsafe fn setConfiguration(&self, configuration: Option<&CKOperationConfiguration>);
 
@@ -63,7 +61,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CloudKit_CKOperation")]
+    #[cfg(feature = "Foundation_NSOperation")]
     unsafe impl CKOperation {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -72,21 +70,17 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKOperationConfiguration")]
     pub struct CKOperationConfiguration;
 
-    #[cfg(feature = "CloudKit_CKOperationConfiguration")]
     unsafe impl ClassType for CKOperationConfiguration {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CloudKit_CKOperationConfiguration")]
 unsafe impl NSObjectProtocol for CKOperationConfiguration {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKOperationConfiguration")]
     unsafe impl CKOperationConfiguration {
         #[cfg(feature = "CloudKit_CKContainer")]
         #[method_id(@__retain_semantics Other container)]
@@ -96,9 +90,11 @@ extern_methods!(
         #[method(setContainer:)]
         pub unsafe fn setContainer(&self, container: Option<&CKContainer>);
 
+        #[cfg(feature = "Foundation_NSObjCRuntime")]
         #[method(qualityOfService)]
         pub unsafe fn qualityOfService(&self) -> NSQualityOfService;
 
+        #[cfg(feature = "Foundation_NSObjCRuntime")]
         #[method(setQualityOfService:)]
         pub unsafe fn setQualityOfService(&self, quality_of_service: NSQualityOfService);
 
@@ -114,18 +110,22 @@ extern_methods!(
         #[method(setLongLived:)]
         pub unsafe fn setLongLived(&self, long_lived: bool);
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(timeoutIntervalForRequest)]
         pub unsafe fn timeoutIntervalForRequest(&self) -> NSTimeInterval;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(setTimeoutIntervalForRequest:)]
         pub unsafe fn setTimeoutIntervalForRequest(
             &self,
             timeout_interval_for_request: NSTimeInterval,
         );
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(timeoutIntervalForResource)]
         pub unsafe fn timeoutIntervalForResource(&self) -> NSTimeInterval;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(setTimeoutIntervalForResource:)]
         pub unsafe fn setTimeoutIntervalForResource(
             &self,
@@ -136,7 +136,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CloudKit_CKOperationConfiguration")]
     unsafe impl CKOperationConfiguration {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -148,7 +147,7 @@ extern_methods!(
 
 extern_methods!(
     /// CKOperationDeprecated
-    #[cfg(feature = "CloudKit_CKOperation")]
+    #[cfg(feature = "Foundation_NSOperation")]
     unsafe impl CKOperation {
         #[cfg(feature = "CloudKit_CKContainer")]
         #[deprecated = "Use CKOperationConfiguration"]
@@ -176,10 +175,12 @@ extern_methods!(
         #[method(setLongLived:)]
         pub unsafe fn setLongLived(&self, long_lived: bool);
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[deprecated = "Use CKOperationConfiguration"]
         #[method(timeoutIntervalForRequest)]
         pub unsafe fn timeoutIntervalForRequest(&self) -> NSTimeInterval;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[deprecated = "Use CKOperationConfiguration"]
         #[method(setTimeoutIntervalForRequest:)]
         pub unsafe fn setTimeoutIntervalForRequest(
@@ -187,10 +188,12 @@ extern_methods!(
             timeout_interval_for_request: NSTimeInterval,
         );
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[deprecated = "Use CKOperationConfiguration"]
         #[method(timeoutIntervalForResource)]
         pub unsafe fn timeoutIntervalForResource(&self) -> NSTimeInterval;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[deprecated = "Use CKOperationConfiguration"]
         #[method(setTimeoutIntervalForResource:)]
         pub unsafe fn setTimeoutIntervalForResource(

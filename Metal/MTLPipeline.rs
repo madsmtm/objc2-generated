@@ -18,24 +18,20 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLPipelineBufferDescriptor")]
     pub struct MTLPipelineBufferDescriptor;
 
-    #[cfg(feature = "Metal_MTLPipelineBufferDescriptor")]
     unsafe impl ClassType for MTLPipelineBufferDescriptor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLPipelineBufferDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLPipelineBufferDescriptor {}
 
-#[cfg(feature = "Metal_MTLPipelineBufferDescriptor")]
 unsafe impl NSObjectProtocol for MTLPipelineBufferDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLPipelineBufferDescriptor")]
     unsafe impl MTLPipelineBufferDescriptor {
         #[method(mutability)]
         pub fn mutability(&self) -> MTLMutability;
@@ -47,7 +43,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLPipelineBufferDescriptor")]
     unsafe impl MTLPipelineBufferDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -59,30 +54,24 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLPipelineBufferDescriptorArray")]
     pub struct MTLPipelineBufferDescriptorArray;
 
-    #[cfg(feature = "Metal_MTLPipelineBufferDescriptorArray")]
     unsafe impl ClassType for MTLPipelineBufferDescriptorArray {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLPipelineBufferDescriptorArray")]
 unsafe impl NSObjectProtocol for MTLPipelineBufferDescriptorArray {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLPipelineBufferDescriptorArray")]
     unsafe impl MTLPipelineBufferDescriptorArray {
-        #[cfg(feature = "Metal_MTLPipelineBufferDescriptor")]
         #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             buffer_index: NSUInteger,
         ) -> Id<MTLPipelineBufferDescriptor>;
 
-        #[cfg(feature = "Metal_MTLPipelineBufferDescriptor")]
         #[method(setObject:atIndexedSubscript:)]
         pub unsafe fn setObject_atIndexedSubscript(
             &self,
@@ -94,7 +83,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLPipelineBufferDescriptorArray")]
     unsafe impl MTLPipelineBufferDescriptorArray {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

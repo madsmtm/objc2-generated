@@ -7,24 +7,20 @@ use crate::GameKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameKit_GKSavedGame")]
     pub struct GKSavedGame;
 
-    #[cfg(feature = "GameKit_GKSavedGame")]
     unsafe impl ClassType for GKSavedGame {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "GameKit_GKSavedGame")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for GKSavedGame {}
 
-#[cfg(feature = "GameKit_GKSavedGame")]
 unsafe impl NSObjectProtocol for GKSavedGame {}
 
 extern_methods!(
-    #[cfg(feature = "GameKit_GKSavedGame")]
     unsafe impl GKSavedGame {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
@@ -49,7 +45,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameKit_GKSavedGame")]
     unsafe impl GKSavedGame {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -61,7 +56,11 @@ extern_methods!(
 
 extern_methods!(
     /// GKSavedGame
-    #[cfg(feature = "GameKit_GKLocalPlayer")]
+    #[cfg(all(
+        feature = "GameKit_GKBasePlayer",
+        feature = "GameKit_GKLocalPlayer",
+        feature = "GameKit_GKPlayer"
+    ))]
     unsafe impl GKLocalPlayer {
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -112,5 +111,10 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "GameKit_GKLocalPlayer")]
+#[cfg(all(
+    feature = "GameKit_GKBasePlayer",
+    feature = "GameKit_GKLocalPlayer",
+    feature = "GameKit_GKPlayer",
+    feature = "GameKit_GKSavedGameListener"
+))]
 unsafe impl GKSavedGameListener for GKLocalPlayer {}

@@ -7,10 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationPasswordRequest")]
+    #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
     pub struct ASAuthorizationPasswordRequest;
 
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationPasswordRequest")]
+    #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
     unsafe impl ClassType for ASAuthorizationPasswordRequest {
         #[inherits(NSObject)]
         type Super = ASAuthorizationRequest;
@@ -18,26 +18,35 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationPasswordRequest")]
+#[cfg(all(
+    feature = "AuthenticationServices_ASAuthorizationRequest",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for ASAuthorizationPasswordRequest {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationPasswordRequest")]
+#[cfg(all(
+    feature = "AuthenticationServices_ASAuthorizationRequest",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCopying for ASAuthorizationPasswordRequest {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationPasswordRequest")]
+#[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
 unsafe impl NSObjectProtocol for ASAuthorizationPasswordRequest {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationPasswordRequest")]
+#[cfg(all(
+    feature = "AuthenticationServices_ASAuthorizationRequest",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSSecureCoding for ASAuthorizationPasswordRequest {}
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationPasswordRequest")]
+    #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
     unsafe impl ASAuthorizationPasswordRequest {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `ASAuthorizationRequest`
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationPasswordRequest")]
+    #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
     unsafe impl ASAuthorizationPasswordRequest {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

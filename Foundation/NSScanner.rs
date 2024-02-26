@@ -5,24 +5,20 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSScanner")]
     pub struct NSScanner;
 
-    #[cfg(feature = "Foundation_NSScanner")]
     unsafe impl ClassType for NSScanner {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSScanner")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSScanner {}
 
-#[cfg(feature = "Foundation_NSScanner")]
 unsafe impl NSObjectProtocol for NSScanner {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSScanner")]
     unsafe impl NSScanner {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other string)]
@@ -65,7 +61,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSScanner")]
     unsafe impl NSScanner {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -77,7 +72,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSExtendedScanner
-    #[cfg(feature = "Foundation_NSScanner")]
     unsafe impl NSScanner {
         #[method(scanInt:)]
         pub unsafe fn scanInt(&self, result: *mut c_int) -> bool;

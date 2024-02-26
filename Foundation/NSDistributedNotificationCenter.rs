@@ -39,10 +39,10 @@ extern_static!(NSNotificationPostToAllSessions: NSDistributedNotificationOptions
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSDistributedNotificationCenter")]
+    #[cfg(feature = "Foundation_NSNotification")]
     pub struct NSDistributedNotificationCenter;
 
-    #[cfg(feature = "Foundation_NSDistributedNotificationCenter")]
+    #[cfg(feature = "Foundation_NSNotification")]
     unsafe impl ClassType for NSDistributedNotificationCenter {
         #[inherits(NSObject)]
         type Super = NSNotificationCenter;
@@ -50,11 +50,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSDistributedNotificationCenter")]
+#[cfg(feature = "Foundation_NSNotification")]
 unsafe impl NSObjectProtocol for NSDistributedNotificationCenter {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSDistributedNotificationCenter")]
+    #[cfg(feature = "Foundation_NSNotification")]
     unsafe impl NSDistributedNotificationCenter {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other notificationCenterForType:)]
@@ -142,7 +142,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSDistributedNotificationCenter")]
+    #[cfg(feature = "Foundation_NSNotification")]
     unsafe impl NSDistributedNotificationCenter {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

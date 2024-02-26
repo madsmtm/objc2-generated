@@ -33,10 +33,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSImageCell")]
+    #[cfg(feature = "AppKit_NSCell")]
     pub struct NSImageCell;
 
-    #[cfg(feature = "AppKit_NSImageCell")]
+    #[cfg(feature = "AppKit_NSCell")]
     unsafe impl ClassType for NSImageCell {
         #[inherits(NSObject)]
         type Super = NSCell;
@@ -44,26 +44,29 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSImageCell")]
+#[cfg(all(feature = "AppKit_NSAccessibilityProtocols", feature = "AppKit_NSCell"))]
 unsafe impl NSAccessibility for NSImageCell {}
 
-#[cfg(feature = "AppKit_NSImageCell")]
+#[cfg(all(feature = "AppKit_NSAccessibilityProtocols", feature = "AppKit_NSCell"))]
 unsafe impl NSAccessibilityElementProtocol for NSImageCell {}
 
-#[cfg(feature = "AppKit_NSImageCell")]
+#[cfg(all(feature = "AppKit_NSCell", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for NSImageCell {}
 
-#[cfg(feature = "AppKit_NSImageCell")]
+#[cfg(all(feature = "AppKit_NSCell", feature = "Foundation_NSObject"))]
 unsafe impl NSCopying for NSImageCell {}
 
-#[cfg(feature = "AppKit_NSImageCell")]
+#[cfg(feature = "AppKit_NSCell")]
 unsafe impl NSObjectProtocol for NSImageCell {}
 
-#[cfg(feature = "AppKit_NSImageCell")]
+#[cfg(all(
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSUserInterfaceItemIdentification"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSImageCell {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSImageCell")]
+    #[cfg(feature = "AppKit_NSCell")]
     unsafe impl NSImageCell {
         #[method(imageAlignment)]
         pub unsafe fn imageAlignment(&self) -> NSImageAlignment;
@@ -87,7 +90,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSCell`
-    #[cfg(feature = "AppKit_NSImageCell")]
+    #[cfg(feature = "AppKit_NSCell")]
     unsafe impl NSImageCell {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -108,7 +111,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSImageCell")]
+    #[cfg(feature = "AppKit_NSCell")]
     unsafe impl NSImageCell {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

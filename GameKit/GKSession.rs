@@ -7,24 +7,20 @@ use crate::GameKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameKit_GKSession")]
     #[deprecated]
     pub struct GKSession;
 
-    #[cfg(feature = "GameKit_GKSession")]
     unsafe impl ClassType for GKSession {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "GameKit_GKSession")]
 unsafe impl NSObjectProtocol for GKSession {}
 
 extern_methods!(
-    #[cfg(feature = "GameKit_GKSession")]
     unsafe impl GKSession {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSString", feature = "GameKit_GKPublicConstants"))]
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithSessionID:displayName:sessionMode:)]
         pub unsafe fn initWithSessionID_displayName_sessionMode(
@@ -34,10 +30,12 @@ extern_methods!(
             mode: GKSessionMode,
         ) -> Option<Id<Self>>;
 
+        #[cfg(feature = "GameKit_GKPublicProtocols")]
         #[deprecated]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn GKSessionDelegate>>>;
 
+        #[cfg(feature = "GameKit_GKPublicProtocols")]
         #[deprecated]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn GKSessionDelegate>>);
@@ -52,6 +50,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other displayName)]
         pub unsafe fn displayName(&self) -> Option<Id<NSString>>;
 
+        #[cfg(feature = "GameKit_GKPublicConstants")]
         #[deprecated]
         #[method(sessionMode)]
         pub unsafe fn sessionMode(&self) -> GKSessionMode;
@@ -69,10 +68,12 @@ extern_methods!(
         #[method(setAvailable:)]
         pub unsafe fn setAvailable(&self, available: bool);
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[deprecated]
         #[method(disconnectTimeout)]
         pub unsafe fn disconnectTimeout(&self) -> NSTimeInterval;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[deprecated]
         #[method(setDisconnectTimeout:)]
         pub unsafe fn setDisconnectTimeout(&self, disconnect_timeout: NSTimeInterval);
@@ -91,7 +92,7 @@ extern_methods!(
             context: *mut c_void,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSString"))]
         #[deprecated]
         #[method(connectToPeer:withTimeout:)]
         pub unsafe fn connectToPeer_withTimeout(
@@ -119,7 +120,7 @@ extern_methods!(
         #[method(disconnectFromAllPeers)]
         pub unsafe fn disconnectFromAllPeers(&self);
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "GameKit_GKPublicConstants"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other peersWithConnectionState:)]
         pub unsafe fn peersWithConnectionState(
@@ -131,7 +132,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameKit_GKSession")]
     unsafe impl GKSession {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

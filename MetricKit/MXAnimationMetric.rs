@@ -6,10 +6,10 @@ use crate::MetricKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MetricKit_MXAnimationMetric")]
+    #[cfg(feature = "MetricKit_MXMetric")]
     pub struct MXAnimationMetric;
 
-    #[cfg(feature = "MetricKit_MXAnimationMetric")]
+    #[cfg(feature = "MetricKit_MXMetric")]
     unsafe impl ClassType for MXAnimationMetric {
         #[inherits(NSObject)]
         type Super = MXMetric;
@@ -17,17 +17,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MetricKit_MXAnimationMetric")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "MetricKit_MXMetric"))]
 unsafe impl NSCoding for MXAnimationMetric {}
 
-#[cfg(feature = "MetricKit_MXAnimationMetric")]
+#[cfg(feature = "MetricKit_MXMetric")]
 unsafe impl NSObjectProtocol for MXAnimationMetric {}
 
-#[cfg(feature = "MetricKit_MXAnimationMetric")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "MetricKit_MXMetric"))]
 unsafe impl NSSecureCoding for MXAnimationMetric {}
 
 extern_methods!(
-    #[cfg(feature = "MetricKit_MXAnimationMetric")]
+    #[cfg(feature = "MetricKit_MXMetric")]
     unsafe impl MXAnimationMetric {
         #[cfg(all(feature = "Foundation_NSMeasurement", feature = "Foundation_NSUnit"))]
         #[method_id(@__retain_semantics Other scrollHitchTimeRatio)]
@@ -37,7 +37,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MetricKit_MXAnimationMetric")]
+    #[cfg(feature = "MetricKit_MXMetric")]
     unsafe impl MXAnimationMetric {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

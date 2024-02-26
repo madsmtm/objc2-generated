@@ -15,21 +15,17 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSCoder")]
     pub struct NSCoder;
 
-    #[cfg(feature = "Foundation_NSCoder")]
     unsafe impl ClassType for NSCoder {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSCoder")]
 unsafe impl NSObjectProtocol for NSCoder {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSCoder")]
     unsafe impl NSCoder {
         #[method(encodeValueOfObjCType:at:)]
         pub unsafe fn encodeValueOfObjCType_at(
@@ -62,7 +58,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSCoder")]
     unsafe impl NSCoder {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -74,7 +69,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSExtendedCoder
-    #[cfg(feature = "Foundation_NSCoder")]
     unsafe impl NSCoder {
         #[method(encodeObject:)]
         pub unsafe fn encodeObject(&self, object: Option<&AnyObject>);
@@ -131,9 +125,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other decodePropertyList)]
         pub unsafe fn decodePropertyList(&self) -> Option<Id<AnyObject>>;
 
+        #[cfg(feature = "Foundation_NSZone")]
         #[method(setObjectZone:)]
         pub unsafe fn setObjectZone(&self, zone: *mut NSZone);
 
+        #[cfg(feature = "Foundation_NSZone")]
         #[method(objectZone)]
         pub unsafe fn objectZone(&self) -> *mut NSZone;
 
@@ -346,14 +342,12 @@ extern_methods!(
 );
 
 extern_fn!(
-    #[cfg(feature = "Foundation_NSCoder")]
     #[deprecated = "Not supported"]
     pub unsafe fn NXReadNSObjectFromCoder(decoder: &NSCoder) -> *mut NSObject;
 );
 
 extern_methods!(
     /// NSTypedstreamCompatibility
-    #[cfg(feature = "Foundation_NSCoder")]
     unsafe impl NSCoder {
         #[deprecated = "Not supported"]
         #[method(encodeNXObject:)]
@@ -367,7 +361,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSDeprecated
-    #[cfg(feature = "Foundation_NSCoder")]
     unsafe impl NSCoder {
         #[deprecated]
         #[method(decodeValueOfObjCType:at:)]

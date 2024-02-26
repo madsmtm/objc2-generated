@@ -6,27 +6,23 @@ use crate::IdentityLookup::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "IdentityLookup_ILMessageFilterQueryRequest")]
     pub struct ILMessageFilterQueryRequest;
 
-    #[cfg(feature = "IdentityLookup_ILMessageFilterQueryRequest")]
     unsafe impl ClassType for ILMessageFilterQueryRequest {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "IdentityLookup_ILMessageFilterQueryRequest")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for ILMessageFilterQueryRequest {}
 
-#[cfg(feature = "IdentityLookup_ILMessageFilterQueryRequest")]
 unsafe impl NSObjectProtocol for ILMessageFilterQueryRequest {}
 
-#[cfg(feature = "IdentityLookup_ILMessageFilterQueryRequest")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for ILMessageFilterQueryRequest {}
 
 extern_methods!(
-    #[cfg(feature = "IdentityLookup_ILMessageFilterQueryRequest")]
     unsafe impl ILMessageFilterQueryRequest {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other sender)]

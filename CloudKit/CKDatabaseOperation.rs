@@ -7,10 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKDatabaseOperation")]
+    #[cfg(all(feature = "CloudKit_CKOperation", feature = "Foundation_NSOperation"))]
     pub struct CKDatabaseOperation;
 
-    #[cfg(feature = "CloudKit_CKDatabaseOperation")]
+    #[cfg(all(feature = "CloudKit_CKOperation", feature = "Foundation_NSOperation"))]
     unsafe impl ClassType for CKDatabaseOperation {
         #[inherits(NSOperation, NSObject)]
         type Super = CKOperation;
@@ -18,11 +18,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CloudKit_CKDatabaseOperation")]
+#[cfg(all(feature = "CloudKit_CKOperation", feature = "Foundation_NSOperation"))]
 unsafe impl NSObjectProtocol for CKDatabaseOperation {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKDatabaseOperation")]
+    #[cfg(all(feature = "CloudKit_CKOperation", feature = "Foundation_NSOperation"))]
     unsafe impl CKDatabaseOperation {
         #[cfg(feature = "CloudKit_CKDatabase")]
         #[method_id(@__retain_semantics Other database)]
@@ -36,7 +36,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CKOperation`
-    #[cfg(feature = "CloudKit_CKDatabaseOperation")]
+    #[cfg(all(feature = "CloudKit_CKOperation", feature = "Foundation_NSOperation"))]
     unsafe impl CKDatabaseOperation {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -45,7 +45,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CloudKit_CKDatabaseOperation")]
+    #[cfg(all(feature = "CloudKit_CKOperation", feature = "Foundation_NSOperation"))]
     unsafe impl CKDatabaseOperation {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

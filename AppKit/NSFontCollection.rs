@@ -38,30 +38,26 @@ typed_extensible_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSFontCollection")]
     pub struct NSFontCollection;
 
-    #[cfg(feature = "AppKit_NSFontCollection")]
     unsafe impl ClassType for NSFontCollection {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSFontCollection")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSFontCollection {}
 
-#[cfg(feature = "AppKit_NSFontCollection")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSFontCollection {}
 
-#[cfg(feature = "AppKit_NSFontCollection")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSMutableCopying for NSFontCollection {}
 
-#[cfg(feature = "AppKit_NSFontCollection")]
 unsafe impl NSObjectProtocol for NSFontCollection {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSFontCollection")]
     unsafe impl NSFontCollection {
         #[cfg(all(feature = "AppKit_NSFontDescriptor", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other fontCollectionWithDescriptors:)]
@@ -132,8 +128,8 @@ extern_methods!(
             feature = "AppKit_NSFontDescriptor",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSNumber",
-            feature = "Foundation_NSString"
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSValue"
         ))]
         #[method_id(@__retain_semantics Other matchingDescriptorsWithOptions:)]
         pub unsafe fn matchingDescriptorsWithOptions(
@@ -156,8 +152,8 @@ extern_methods!(
             feature = "AppKit_NSFontDescriptor",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSNumber",
-            feature = "Foundation_NSString"
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSValue"
         ))]
         #[method_id(@__retain_semantics Other matchingDescriptorsForFamily:options:)]
         pub unsafe fn matchingDescriptorsForFamily_options(
@@ -170,7 +166,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSFontCollection")]
     unsafe impl NSFontCollection {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -182,10 +177,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSMutableFontCollection")]
     pub struct NSMutableFontCollection;
 
-    #[cfg(feature = "AppKit_NSMutableFontCollection")]
     unsafe impl ClassType for NSMutableFontCollection {
         #[inherits(NSObject)]
         type Super = NSFontCollection;
@@ -193,20 +186,18 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSMutableFontCollection")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSMutableFontCollection {}
 
-#[cfg(feature = "AppKit_NSMutableFontCollection")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSMutableFontCollection {}
 
-#[cfg(feature = "AppKit_NSMutableFontCollection")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSMutableCopying for NSMutableFontCollection {}
 
-#[cfg(feature = "AppKit_NSMutableFontCollection")]
 unsafe impl NSObjectProtocol for NSMutableFontCollection {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSMutableFontCollection")]
     unsafe impl NSMutableFontCollection {
         #[cfg(all(feature = "AppKit_NSFontDescriptor", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other fontCollectionWithDescriptors:)]
@@ -268,7 +259,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSMutableFontCollection")]
     unsafe impl NSMutableFontCollection {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -278,7 +268,7 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSFontCollectionDidChangeNotification: &'static NSNotificationName);
 
 #[cfg(feature = "Foundation_NSString")]

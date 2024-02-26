@@ -6,27 +6,23 @@ use crate::MetricKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MetricKit_MXMetricPayload")]
     pub struct MXMetricPayload;
 
-    #[cfg(feature = "MetricKit_MXMetricPayload")]
     unsafe impl ClassType for MXMetricPayload {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MetricKit_MXMetricPayload")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for MXMetricPayload {}
 
-#[cfg(feature = "MetricKit_MXMetricPayload")]
 unsafe impl NSObjectProtocol for MXMetricPayload {}
 
-#[cfg(feature = "MetricKit_MXMetricPayload")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for MXMetricPayload {}
 
 extern_methods!(
-    #[cfg(feature = "MetricKit_MXMetricPayload")]
     unsafe impl MXMetricPayload {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other latestApplicationVersion)]
@@ -43,61 +39,86 @@ extern_methods!(
         #[method_id(@__retain_semantics Other timeStampEnd)]
         pub unsafe fn timeStampEnd(&self) -> Id<NSDate>;
 
-        #[cfg(feature = "MetricKit_MXCPUMetric")]
+        #[cfg(all(feature = "MetricKit_MXCPUMetric", feature = "MetricKit_MXMetric"))]
         #[method_id(@__retain_semantics Other cpuMetrics)]
         pub unsafe fn cpuMetrics(&self) -> Option<Id<MXCPUMetric>>;
 
-        #[cfg(feature = "MetricKit_MXGPUMetric")]
+        #[cfg(all(feature = "MetricKit_MXGPUMetric", feature = "MetricKit_MXMetric"))]
         #[method_id(@__retain_semantics Other gpuMetrics)]
         pub unsafe fn gpuMetrics(&self) -> Option<Id<MXGPUMetric>>;
 
-        #[cfg(feature = "MetricKit_MXCellularConditionMetric")]
+        #[cfg(all(
+            feature = "MetricKit_MXCellularConditionMetric",
+            feature = "MetricKit_MXMetric"
+        ))]
         #[method_id(@__retain_semantics Other cellularConditionMetrics)]
         pub unsafe fn cellularConditionMetrics(&self) -> Option<Id<MXCellularConditionMetric>>;
 
-        #[cfg(feature = "MetricKit_MXAppRunTimeMetric")]
+        #[cfg(all(
+            feature = "MetricKit_MXAppRunTimeMetric",
+            feature = "MetricKit_MXMetric"
+        ))]
         #[method_id(@__retain_semantics Other applicationTimeMetrics)]
         pub unsafe fn applicationTimeMetrics(&self) -> Option<Id<MXAppRunTimeMetric>>;
 
-        #[cfg(feature = "MetricKit_MXLocationActivityMetric")]
+        #[cfg(all(
+            feature = "MetricKit_MXLocationActivityMetric",
+            feature = "MetricKit_MXMetric"
+        ))]
         #[method_id(@__retain_semantics Other locationActivityMetrics)]
         pub unsafe fn locationActivityMetrics(&self) -> Option<Id<MXLocationActivityMetric>>;
 
-        #[cfg(feature = "MetricKit_MXNetworkTransferMetric")]
+        #[cfg(all(
+            feature = "MetricKit_MXMetric",
+            feature = "MetricKit_MXNetworkTransferMetric"
+        ))]
         #[method_id(@__retain_semantics Other networkTransferMetrics)]
         pub unsafe fn networkTransferMetrics(&self) -> Option<Id<MXNetworkTransferMetric>>;
 
-        #[cfg(feature = "MetricKit_MXAppLaunchMetric")]
+        #[cfg(all(
+            feature = "MetricKit_MXAppLaunchMetric",
+            feature = "MetricKit_MXMetric"
+        ))]
         #[method_id(@__retain_semantics Other applicationLaunchMetrics)]
         pub unsafe fn applicationLaunchMetrics(&self) -> Option<Id<MXAppLaunchMetric>>;
 
-        #[cfg(feature = "MetricKit_MXAppResponsivenessMetric")]
+        #[cfg(all(
+            feature = "MetricKit_MXAppResponsivenessMetric",
+            feature = "MetricKit_MXMetric"
+        ))]
         #[method_id(@__retain_semantics Other applicationResponsivenessMetrics)]
         pub unsafe fn applicationResponsivenessMetrics(
             &self,
         ) -> Option<Id<MXAppResponsivenessMetric>>;
 
-        #[cfg(feature = "MetricKit_MXDiskIOMetric")]
+        #[cfg(all(feature = "MetricKit_MXDiskIOMetric", feature = "MetricKit_MXMetric"))]
         #[method_id(@__retain_semantics Other diskIOMetrics)]
         pub unsafe fn diskIOMetrics(&self) -> Option<Id<MXDiskIOMetric>>;
 
-        #[cfg(feature = "MetricKit_MXMemoryMetric")]
+        #[cfg(all(feature = "MetricKit_MXMemoryMetric", feature = "MetricKit_MXMetric"))]
         #[method_id(@__retain_semantics Other memoryMetrics)]
         pub unsafe fn memoryMetrics(&self) -> Option<Id<MXMemoryMetric>>;
 
-        #[cfg(feature = "MetricKit_MXDisplayMetric")]
+        #[cfg(all(feature = "MetricKit_MXDisplayMetric", feature = "MetricKit_MXMetric"))]
         #[method_id(@__retain_semantics Other displayMetrics)]
         pub unsafe fn displayMetrics(&self) -> Option<Id<MXDisplayMetric>>;
 
-        #[cfg(feature = "MetricKit_MXAnimationMetric")]
+        #[cfg(all(
+            feature = "MetricKit_MXAnimationMetric",
+            feature = "MetricKit_MXMetric"
+        ))]
         #[method_id(@__retain_semantics Other animationMetrics)]
         pub unsafe fn animationMetrics(&self) -> Option<Id<MXAnimationMetric>>;
 
-        #[cfg(feature = "MetricKit_MXAppExitMetric")]
+        #[cfg(all(feature = "MetricKit_MXAppExitMetric", feature = "MetricKit_MXMetric"))]
         #[method_id(@__retain_semantics Other applicationExitMetrics)]
         pub unsafe fn applicationExitMetrics(&self) -> Option<Id<MXAppExitMetric>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "MetricKit_MXSignpostMetric"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "MetricKit_MXMetric",
+            feature = "MetricKit_MXSignpostMetric"
+        ))]
         #[method_id(@__retain_semantics Other signpostMetrics)]
         pub unsafe fn signpostMetrics(&self) -> Option<Id<NSArray<MXSignpostMetric>>>;
 
@@ -122,7 +143,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MetricKit_MXMetricPayload")]
     unsafe impl MXMetricPayload {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

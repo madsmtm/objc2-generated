@@ -7,10 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKAcceptSharesOperation")]
+    #[cfg(all(feature = "CloudKit_CKOperation", feature = "Foundation_NSOperation"))]
     pub struct CKAcceptSharesOperation;
 
-    #[cfg(feature = "CloudKit_CKAcceptSharesOperation")]
+    #[cfg(all(feature = "CloudKit_CKOperation", feature = "Foundation_NSOperation"))]
     unsafe impl ClassType for CKAcceptSharesOperation {
         #[inherits(NSOperation, NSObject)]
         type Super = CKOperation;
@@ -18,11 +18,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CloudKit_CKAcceptSharesOperation")]
+#[cfg(all(feature = "CloudKit_CKOperation", feature = "Foundation_NSOperation"))]
 unsafe impl NSObjectProtocol for CKAcceptSharesOperation {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKAcceptSharesOperation")]
+    #[cfg(all(feature = "CloudKit_CKOperation", feature = "Foundation_NSOperation"))]
     unsafe impl CKAcceptSharesOperation {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -43,6 +43,7 @@ extern_methods!(
         pub unsafe fn setShareMetadatas(&self, share_metadatas: Option<&NSArray<CKShareMetadata>>);
 
         #[cfg(all(
+            feature = "CloudKit_CKRecord",
             feature = "CloudKit_CKShare",
             feature = "CloudKit_CKShareMetadata",
             feature = "Foundation_NSError"
@@ -53,6 +54,7 @@ extern_methods!(
         ) -> *mut Block<dyn Fn(NonNull<CKShareMetadata>, *mut CKShare, *mut NSError)>;
 
         #[cfg(all(
+            feature = "CloudKit_CKRecord",
             feature = "CloudKit_CKShare",
             feature = "CloudKit_CKShareMetadata",
             feature = "Foundation_NSError"
@@ -80,7 +82,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CloudKit_CKAcceptSharesOperation")]
+    #[cfg(all(feature = "CloudKit_CKOperation", feature = "Foundation_NSOperation"))]
     unsafe impl CKAcceptSharesOperation {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

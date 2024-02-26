@@ -7,14 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(
-        feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest"
-    )]
+    #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
     pub struct ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest;
 
-    #[cfg(
-        feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest"
-    )]
+    #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
     unsafe impl ClassType for ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest {
         #[inherits(NSObject)]
         type Super = ASAuthorizationRequest;
@@ -22,38 +18,39 @@ extern_class!(
     }
 );
 
-#[cfg(
-    feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest"
-)]
+#[cfg(all(
+    feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialRegistrationRequest",
+    feature = "AuthenticationServices_ASAuthorizationRequest",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl ASAuthorizationPublicKeyCredentialRegistrationRequest
     for ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest
 {
 }
 
-#[cfg(
-    feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest"
-)]
+#[cfg(all(
+    feature = "AuthenticationServices_ASAuthorizationRequest",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest {}
 
-#[cfg(
-    feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest"
-)]
+#[cfg(all(
+    feature = "AuthenticationServices_ASAuthorizationRequest",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCopying for ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest {}
 
-#[cfg(
-    feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest"
-)]
+#[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
 unsafe impl NSObjectProtocol for ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest {}
 
-#[cfg(
-    feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest"
-)]
+#[cfg(all(
+    feature = "AuthenticationServices_ASAuthorizationRequest",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSSecureCoding for ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest {}
 
 extern_methods!(
-    #[cfg(
-        feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest"
-    )]
+    #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
     unsafe impl ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest {
         #[cfg(all(
             feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialParameters",
@@ -93,13 +90,19 @@ extern_methods!(
             excluded_credentials: &NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor>,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialConstants",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other residentKeyPreference)]
         pub unsafe fn residentKeyPreference(
             &self,
         ) -> Id<ASAuthorizationPublicKeyCredentialResidentKeyPreference>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialConstants",
+            feature = "Foundation_NSString"
+        ))]
         #[method(setResidentKeyPreference:)]
         pub unsafe fn setResidentKeyPreference(
             &self,

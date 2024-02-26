@@ -67,27 +67,23 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSManagedObjectContext")]
     pub struct NSManagedObjectContext;
 
-    #[cfg(feature = "CoreData_NSManagedObjectContext")]
     unsafe impl ClassType for NSManagedObjectContext {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreData_NSManagedObjectContext")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSManagedObjectContext {}
 
-#[cfg(feature = "CoreData_NSManagedObjectContext")]
+#[cfg(feature = "Foundation_NSLock")]
 unsafe impl NSLocking for NSManagedObjectContext {}
 
-#[cfg(feature = "CoreData_NSManagedObjectContext")]
 unsafe impl NSObjectProtocol for NSManagedObjectContext {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSManagedObjectContext")]
     unsafe impl NSManagedObjectContext {
         #[deprecated = "Use -initWithConcurrencyType: instead"]
         #[method_id(@__retain_semantics New new)]
@@ -146,7 +142,7 @@ extern_methods!(
         #[method(hasChanges)]
         pub unsafe fn hasChanges(&self) -> bool;
 
-        #[cfg(feature = "Foundation_NSMutableDictionary")]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other userInfo)]
         pub unsafe fn userInfo(&self) -> Id<NSMutableDictionary>;
 
@@ -183,6 +179,7 @@ extern_methods!(
 
         #[cfg(all(
             feature = "CoreData_NSFetchRequest",
+            feature = "CoreData_NSPersistentStoreRequest",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSError"
         ))]
@@ -324,9 +321,11 @@ extern_methods!(
             property: Option<&NSPropertyDescription>,
         ) -> bool;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(stalenessInterval)]
         pub unsafe fn stalenessInterval(&self) -> NSTimeInterval;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(setStalenessInterval:)]
         pub unsafe fn setStalenessInterval(&self, staleness_interval: NSTimeInterval);
 

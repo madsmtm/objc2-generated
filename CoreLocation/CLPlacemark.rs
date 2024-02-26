@@ -7,30 +7,26 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreLocation_CLPlacemark")]
     pub struct CLPlacemark;
 
-    #[cfg(feature = "CoreLocation_CLPlacemark")]
     unsafe impl ClassType for CLPlacemark {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreLocation_CLPlacemark")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CLPlacemark {}
 
-#[cfg(feature = "CoreLocation_CLPlacemark")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for CLPlacemark {}
 
-#[cfg(feature = "CoreLocation_CLPlacemark")]
 unsafe impl NSObjectProtocol for CLPlacemark {}
 
-#[cfg(feature = "CoreLocation_CLPlacemark")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CLPlacemark {}
 
 extern_methods!(
-    #[cfg(feature = "CoreLocation_CLPlacemark")]
     unsafe impl CLPlacemark {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -115,7 +111,6 @@ extern_methods!(
 
 extern_methods!(
     /// ContactsAdditions
-    #[cfg(feature = "CoreLocation_CLPlacemark")]
     unsafe impl CLPlacemark {
         #[cfg(feature = "Contacts_CNPostalAddress")]
         #[method_id(@__retain_semantics Other postalAddress)]

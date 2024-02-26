@@ -19,10 +19,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSEnergyFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     pub struct NSEnergyFormatter;
 
-    #[cfg(feature = "Foundation_NSEnergyFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl ClassType for NSEnergyFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;
@@ -30,17 +30,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSEnergyFormatter")]
+#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for NSEnergyFormatter {}
 
-#[cfg(feature = "Foundation_NSEnergyFormatter")]
+#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
 unsafe impl NSCopying for NSEnergyFormatter {}
 
-#[cfg(feature = "Foundation_NSEnergyFormatter")]
+#[cfg(feature = "Foundation_NSFormatter")]
 unsafe impl NSObjectProtocol for NSEnergyFormatter {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSEnergyFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl NSEnergyFormatter {
         #[cfg(feature = "Foundation_NSNumberFormatter")]
         #[method_id(@__retain_semantics Other numberFormatter)]
@@ -103,7 +103,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSEnergyFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl NSEnergyFormatter {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

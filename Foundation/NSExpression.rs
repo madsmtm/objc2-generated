@@ -24,30 +24,26 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSExpression")]
     pub struct NSExpression;
 
-    #[cfg(feature = "Foundation_NSExpression")]
     unsafe impl ClassType for NSExpression {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSExpression")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSExpression {}
 
-#[cfg(feature = "Foundation_NSExpression")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSExpression {}
 
-#[cfg(feature = "Foundation_NSExpression")]
 unsafe impl NSObjectProtocol for NSExpression {}
 
-#[cfg(feature = "Foundation_NSExpression")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSExpression {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSExpression")]
     unsafe impl NSExpression {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other expressionWithFormat:argumentArray:)]
@@ -120,10 +116,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other expressionForAnyKey)]
         pub unsafe fn expressionForAnyKey() -> Id<NSExpression>;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSMutableDictionary"
-        ))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSDictionary"))]
         #[method_id(@__retain_semantics Other expressionForBlock:arguments:)]
         pub unsafe fn expressionForBlock_arguments(
             block: &Block<
@@ -198,10 +191,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other falseExpression)]
         pub unsafe fn falseExpression(&self) -> Id<NSExpression>;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSMutableDictionary"
-        ))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSDictionary"))]
         #[method(expressionBlock)]
         pub unsafe fn expressionBlock(
             &self,
@@ -215,7 +205,7 @@ extern_methods!(
             >,
         >;
 
-        #[cfg(feature = "Foundation_NSMutableDictionary")]
+        #[cfg(feature = "Foundation_NSDictionary")]
         #[method_id(@__retain_semantics Other expressionValueWithObject:context:)]
         pub unsafe fn expressionValueWithObject_context(
             &self,
@@ -230,7 +220,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSExpression")]
     unsafe impl NSExpression {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

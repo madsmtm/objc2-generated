@@ -7,33 +7,32 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AuthenticationServices_ASPasskeyRegistrationCredential")]
     pub struct ASPasskeyRegistrationCredential;
 
-    #[cfg(feature = "AuthenticationServices_ASPasskeyRegistrationCredential")]
     unsafe impl ClassType for ASPasskeyRegistrationCredential {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASPasskeyRegistrationCredential")]
+#[cfg(all(
+    feature = "AuthenticationServices_ASAuthorizationCredential",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl ASAuthorizationCredential for ASPasskeyRegistrationCredential {}
 
-#[cfg(feature = "AuthenticationServices_ASPasskeyRegistrationCredential")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for ASPasskeyRegistrationCredential {}
 
-#[cfg(feature = "AuthenticationServices_ASPasskeyRegistrationCredential")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for ASPasskeyRegistrationCredential {}
 
-#[cfg(feature = "AuthenticationServices_ASPasskeyRegistrationCredential")]
 unsafe impl NSObjectProtocol for ASPasskeyRegistrationCredential {}
 
-#[cfg(feature = "AuthenticationServices_ASPasskeyRegistrationCredential")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for ASPasskeyRegistrationCredential {}
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASPasskeyRegistrationCredential")]
     unsafe impl ASPasskeyRegistrationCredential {
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithRelyingParty:clientDataHash:credentialID:attestationObject:)]
@@ -74,7 +73,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AuthenticationServices_ASPasskeyRegistrationCredential")]
     unsafe impl ASPasskeyRegistrationCredential {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

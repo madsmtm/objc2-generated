@@ -6,30 +6,24 @@ use crate::Speech::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Speech_SFSpeechLanguageModelConfiguration")]
     pub struct SFSpeechLanguageModelConfiguration;
 
-    #[cfg(feature = "Speech_SFSpeechLanguageModelConfiguration")]
     unsafe impl ClassType for SFSpeechLanguageModelConfiguration {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Speech_SFSpeechLanguageModelConfiguration")]
 unsafe impl Send for SFSpeechLanguageModelConfiguration {}
 
-#[cfg(feature = "Speech_SFSpeechLanguageModelConfiguration")]
 unsafe impl Sync for SFSpeechLanguageModelConfiguration {}
 
-#[cfg(feature = "Speech_SFSpeechLanguageModelConfiguration")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for SFSpeechLanguageModelConfiguration {}
 
-#[cfg(feature = "Speech_SFSpeechLanguageModelConfiguration")]
 unsafe impl NSObjectProtocol for SFSpeechLanguageModelConfiguration {}
 
 extern_methods!(
-    #[cfg(feature = "Speech_SFSpeechLanguageModelConfiguration")]
     unsafe impl SFSpeechLanguageModelConfiguration {
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other languageModel)]
@@ -58,7 +52,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Speech_SFSpeechLanguageModelConfiguration")]
     unsafe impl SFSpeechLanguageModelConfiguration {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -70,27 +63,22 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Speech_SFSpeechLanguageModel")]
     pub struct SFSpeechLanguageModel;
 
-    #[cfg(feature = "Speech_SFSpeechLanguageModel")]
     unsafe impl ClassType for SFSpeechLanguageModel {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Speech_SFSpeechLanguageModel")]
 unsafe impl NSObjectProtocol for SFSpeechLanguageModel {}
 
 extern_methods!(
-    #[cfg(feature = "Speech_SFSpeechLanguageModel")]
     unsafe impl SFSpeechLanguageModel {
         #[cfg(all(
             feature = "Foundation_NSError",
             feature = "Foundation_NSString",
-            feature = "Foundation_NSURL",
-            feature = "Speech_SFSpeechLanguageModelConfiguration"
+            feature = "Foundation_NSURL"
         ))]
         #[method(prepareCustomLanguageModelForUrl:clientIdentifier:configuration:completion:)]
         pub unsafe fn prepareCustomLanguageModelForUrl_clientIdentifier_configuration_completion(
@@ -103,8 +91,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSError",
             feature = "Foundation_NSString",
-            feature = "Foundation_NSURL",
-            feature = "Speech_SFSpeechLanguageModelConfiguration"
+            feature = "Foundation_NSURL"
         ))]
         #[method(prepareCustomLanguageModelForUrl:clientIdentifier:configuration:ignoresCache:completion:)]
         pub unsafe fn prepareCustomLanguageModelForUrl_clientIdentifier_configuration_ignoresCache_completion(
@@ -119,7 +106,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Speech_SFSpeechLanguageModel")]
     unsafe impl SFSpeechLanguageModel {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

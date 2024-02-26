@@ -9,10 +9,10 @@ use crate::MapKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKPolyline")]
+    #[cfg(all(feature = "MapKit_MKMultiPoint", feature = "MapKit_MKShape"))]
     pub struct MKPolyline;
 
-    #[cfg(feature = "MapKit_MKPolyline")]
+    #[cfg(all(feature = "MapKit_MKMultiPoint", feature = "MapKit_MKShape"))]
     unsafe impl ClassType for MKPolyline {
         #[inherits(MKShape, NSObject)]
         type Super = MKMultiPoint;
@@ -20,24 +20,35 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MapKit_MKPolyline")]
+#[cfg(all(
+    feature = "MapKit_MKAnnotation",
+    feature = "MapKit_MKMultiPoint",
+    feature = "MapKit_MKShape"
+))]
 unsafe impl MKAnnotation for MKPolyline {}
 
-#[cfg(feature = "MapKit_MKPolyline")]
+#[cfg(all(
+    feature = "MapKit_MKAnnotation",
+    feature = "MapKit_MKMultiPoint",
+    feature = "MapKit_MKOverlay",
+    feature = "MapKit_MKShape"
+))]
 unsafe impl MKOverlay for MKPolyline {}
 
-#[cfg(feature = "MapKit_MKPolyline")]
+#[cfg(all(feature = "MapKit_MKMultiPoint", feature = "MapKit_MKShape"))]
 unsafe impl NSObjectProtocol for MKPolyline {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKPolyline")]
+    #[cfg(all(feature = "MapKit_MKMultiPoint", feature = "MapKit_MKShape"))]
     unsafe impl MKPolyline {
+        #[cfg(feature = "MapKit_MKGeometry")]
         #[method_id(@__retain_semantics Other polylineWithPoints:count:)]
         pub unsafe fn polylineWithPoints_count(
             points: NonNull<MKMapPoint>,
             count: NSUInteger,
         ) -> Id<Self>;
 
+        #[cfg(feature = "CoreLocation_CLLocation")]
         #[method_id(@__retain_semantics Other polylineWithCoordinates:count:)]
         pub unsafe fn polylineWithCoordinates_count(
             coords: NonNull<CLLocationCoordinate2D>,
@@ -48,7 +59,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MapKit_MKPolyline")]
+    #[cfg(all(feature = "MapKit_MKMultiPoint", feature = "MapKit_MKShape"))]
     unsafe impl MKPolyline {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

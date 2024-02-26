@@ -8,10 +8,10 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKActivitySummaryQuery")]
+    #[cfg(feature = "HealthKit_HKQuery")]
     pub struct HKActivitySummaryQuery;
 
-    #[cfg(feature = "HealthKit_HKActivitySummaryQuery")]
+    #[cfg(feature = "HealthKit_HKQuery")]
     unsafe impl ClassType for HKActivitySummaryQuery {
         #[inherits(NSObject)]
         type Super = HKQuery;
@@ -19,11 +19,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKActivitySummaryQuery")]
+#[cfg(feature = "HealthKit_HKQuery")]
 unsafe impl NSObjectProtocol for HKActivitySummaryQuery {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKActivitySummaryQuery")]
+    #[cfg(feature = "HealthKit_HKQuery")]
     unsafe impl HKActivitySummaryQuery {
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -79,7 +79,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `HKQuery`
-    #[cfg(feature = "HealthKit_HKActivitySummaryQuery")]
+    #[cfg(feature = "HealthKit_HKQuery")]
     unsafe impl HKActivitySummaryQuery {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -88,7 +88,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKActivitySummaryQuery")]
+    #[cfg(feature = "HealthKit_HKQuery")]
     unsafe impl HKActivitySummaryQuery {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

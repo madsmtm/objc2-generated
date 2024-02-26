@@ -5,27 +5,23 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSConnection")]
     #[deprecated = "Use NSXPCConnection instead"]
     pub struct NSConnection;
 
-    #[cfg(feature = "Foundation_NSConnection")]
     unsafe impl ClassType for NSConnection {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSConnection")]
 unsafe impl NSObjectProtocol for NSConnection {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSConnection")]
     unsafe impl NSConnection {
         #[cfg(all(
             feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSNumber",
-            feature = "Foundation_NSString"
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSValue"
         ))]
         #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Other statistics)]
@@ -62,6 +58,7 @@ extern_methods!(
 
         #[cfg(all(
             feature = "Foundation_NSDistantObject",
+            feature = "Foundation_NSProxy",
             feature = "Foundation_NSString"
         ))]
         #[deprecated = "Use NSXPCConnection instead"]
@@ -74,6 +71,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSDistantObject",
             feature = "Foundation_NSPortNameServer",
+            feature = "Foundation_NSProxy",
             feature = "Foundation_NSString"
         ))]
         #[deprecated = "Use NSXPCConnection instead"]
@@ -102,18 +100,22 @@ extern_methods!(
             root: &AnyObject,
         ) -> Option<Id<Self>>;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[deprecated = "Use NSXPCConnection instead"]
         #[method(requestTimeout)]
         pub unsafe fn requestTimeout(&self) -> NSTimeInterval;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[deprecated = "Use NSXPCConnection instead"]
         #[method(setRequestTimeout:)]
         pub unsafe fn setRequestTimeout(&self, request_timeout: NSTimeInterval);
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[deprecated = "Use NSXPCConnection instead"]
         #[method(replyTimeout)]
         pub unsafe fn replyTimeout(&self) -> NSTimeInterval;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[deprecated = "Use NSXPCConnection instead"]
         #[method(setReplyTimeout:)]
         pub unsafe fn setReplyTimeout(&self, reply_timeout: NSTimeInterval);
@@ -152,7 +154,7 @@ extern_methods!(
         #[method(isValid)]
         pub unsafe fn isValid(&self) -> bool;
 
-        #[cfg(feature = "Foundation_NSDistantObject")]
+        #[cfg(all(feature = "Foundation_NSDistantObject", feature = "Foundation_NSProxy"))]
         #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Other rootProxy)]
         pub unsafe fn rootProxy(&self) -> Id<NSDistantObject>;
@@ -264,7 +266,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSConnection")]
     unsafe impl NSConnection {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -283,7 +284,6 @@ extern_static!(NSConnectionDidDieNotification: &'static NSString);
 extern_protocol!(
     #[deprecated = "Use NSXPCConnection instead"]
     pub unsafe trait NSConnectionDelegate: NSObjectProtocol {
-        #[cfg(feature = "Foundation_NSConnection")]
         #[deprecated = "Use NSXPCConnection instead"]
         #[optional]
         #[method(makeNewConnection:sender:)]
@@ -293,7 +293,6 @@ extern_protocol!(
             ancestor: &NSConnection,
         ) -> bool;
 
-        #[cfg(feature = "Foundation_NSConnection")]
         #[deprecated = "Use NSXPCConnection instead"]
         #[optional]
         #[method(connection:shouldMakeNewConnection:)]
@@ -319,16 +318,11 @@ extern_protocol!(
             signature: &NSData,
         ) -> bool;
 
-        #[cfg(feature = "Foundation_NSConnection")]
         #[deprecated = "Use NSXPCConnection instead"]
         #[optional]
         #[method_id(@__retain_semantics Other createConversationForConnection:)]
         unsafe fn createConversationForConnection(&self, conn: &NSConnection) -> Id<AnyObject>;
 
-        #[cfg(all(
-            feature = "Foundation_NSConnection",
-            feature = "Foundation_NSDistantObjectRequest"
-        ))]
         #[deprecated = "Use NSXPCConnection instead"]
         #[optional]
         #[method(connection:handleRequest:)]
@@ -350,29 +344,24 @@ extern_static!(NSConnectionDidInitializeNotification: &'static NSString);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSDistantObjectRequest")]
     #[deprecated = "Use NSXPCConnection instead"]
     pub struct NSDistantObjectRequest;
 
-    #[cfg(feature = "Foundation_NSDistantObjectRequest")]
     unsafe impl ClassType for NSDistantObjectRequest {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSDistantObjectRequest")]
 unsafe impl NSObjectProtocol for NSDistantObjectRequest {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSDistantObjectRequest")]
     unsafe impl NSDistantObjectRequest {
         #[cfg(feature = "Foundation_NSInvocation")]
         #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Other invocation)]
         pub unsafe fn invocation(&self) -> Id<NSInvocation>;
 
-        #[cfg(feature = "Foundation_NSConnection")]
         #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Other connection)]
         pub unsafe fn connection(&self) -> Id<NSConnection>;
@@ -390,7 +379,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSDistantObjectRequest")]
     unsafe impl NSDistantObjectRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

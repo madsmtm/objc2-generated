@@ -7,27 +7,23 @@ use crate::MailKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MailKit_MEComposeSession")]
     pub struct MEComposeSession;
 
-    #[cfg(feature = "MailKit_MEComposeSession")]
     unsafe impl ClassType for MEComposeSession {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MailKit_MEComposeSession")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for MEComposeSession {}
 
-#[cfg(feature = "MailKit_MEComposeSession")]
 unsafe impl NSObjectProtocol for MEComposeSession {}
 
-#[cfg(feature = "MailKit_MEComposeSession")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for MEComposeSession {}
 
 extern_methods!(
-    #[cfg(feature = "MailKit_MEComposeSession")]
     unsafe impl MEComposeSession {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -52,7 +48,7 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
 extern_static!(MEComposeSessionErrorDomain: &'static NSErrorDomain);
 
 ns_error_enum!(
@@ -69,16 +65,15 @@ ns_error_enum!(
 
 extern_protocol!(
     pub unsafe trait MEComposeSessionHandler: NSObjectProtocol {
-        #[cfg(feature = "MailKit_MEComposeSession")]
         #[method(mailComposeSessionDidBegin:)]
         unsafe fn mailComposeSessionDidBegin(&self, session: &MEComposeSession);
 
-        #[cfg(feature = "MailKit_MEComposeSession")]
         #[method(mailComposeSessionDidEnd:)]
         unsafe fn mailComposeSessionDidEnd(&self, session: &MEComposeSession);
 
         #[cfg(all(
-            feature = "MailKit_MEComposeSession",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSViewController",
             feature = "MailKit_MEExtensionViewController"
         ))]
         #[method_id(@__retain_semantics Other viewControllerForSession:)]
@@ -91,7 +86,6 @@ extern_protocol!(
         #[cfg(all(
             feature = "Foundation_NSDictionary",
             feature = "MailKit_MEAddressAnnotation",
-            feature = "MailKit_MEComposeSession",
             feature = "MailKit_MEEmailAddress"
         ))]
         #[optional]
@@ -104,7 +98,7 @@ extern_protocol!(
             >,
         );
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "MailKit_MEComposeSession"))]
+        #[cfg(feature = "Foundation_NSError")]
         #[optional]
         #[method(session:canSendMessageWithCompletionHandler:)]
         unsafe fn session_canSendMessageWithCompletionHandler(
@@ -116,8 +110,7 @@ extern_protocol!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString",
-            feature = "MailKit_MEComposeSession"
+            feature = "Foundation_NSString"
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other additionalHeadersForSession:)]

@@ -33,8 +33,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "Foundation_NSHTTPURLResponse",
             feature = "Foundation_NSURLRequest",
+            feature = "Foundation_NSURLResponse",
             feature = "WebKit_WKDownload"
         ))]
         #[optional]
@@ -50,6 +50,7 @@ extern_protocol!(
         #[cfg(all(
             feature = "Foundation_NSURLAuthenticationChallenge",
             feature = "Foundation_NSURLCredential",
+            feature = "Foundation_NSURLSession",
             feature = "WebKit_WKDownload"
         ))]
         #[optional]

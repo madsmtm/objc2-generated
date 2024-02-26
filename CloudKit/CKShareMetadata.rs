@@ -7,30 +7,26 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKShareMetadata")]
     pub struct CKShareMetadata;
 
-    #[cfg(feature = "CloudKit_CKShareMetadata")]
     unsafe impl ClassType for CKShareMetadata {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CloudKit_CKShareMetadata")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CKShareMetadata {}
 
-#[cfg(feature = "CloudKit_CKShareMetadata")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for CKShareMetadata {}
 
-#[cfg(feature = "CloudKit_CKShareMetadata")]
 unsafe impl NSObjectProtocol for CKShareMetadata {}
 
-#[cfg(feature = "CloudKit_CKShareMetadata")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CKShareMetadata {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKShareMetadata")]
     unsafe impl CKShareMetadata {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -42,7 +38,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other containerIdentifier)]
         pub unsafe fn containerIdentifier(&self) -> Id<NSString>;
 
-        #[cfg(feature = "CloudKit_CKShare")]
+        #[cfg(all(feature = "CloudKit_CKRecord", feature = "CloudKit_CKShare"))]
         #[method_id(@__retain_semantics Other share)]
         pub unsafe fn share(&self) -> Id<CKShare>;
 
@@ -50,12 +46,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Other hierarchicalRootRecordID)]
         pub unsafe fn hierarchicalRootRecordID(&self) -> Option<Id<CKRecordID>>;
 
+        #[cfg(feature = "CloudKit_CKShareParticipant")]
         #[method(participantRole)]
         pub unsafe fn participantRole(&self) -> CKShareParticipantRole;
 
+        #[cfg(feature = "CloudKit_CKShareParticipant")]
         #[method(participantStatus)]
         pub unsafe fn participantStatus(&self) -> CKShareParticipantAcceptanceStatus;
 
+        #[cfg(feature = "CloudKit_CKShareParticipant")]
         #[method(participantPermission)]
         pub unsafe fn participantPermission(&self) -> CKShareParticipantPermission;
 
@@ -67,6 +66,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other rootRecord)]
         pub unsafe fn rootRecord(&self) -> Option<Id<CKRecord>>;
 
+        #[cfg(feature = "CloudKit_CKShareParticipant")]
         #[deprecated]
         #[method(participantType)]
         pub unsafe fn participantType(&self) -> CKShareParticipantType;

@@ -5,7 +5,7 @@ use crate::Contacts::*;
 use crate::CoreLocation::*;
 use crate::Foundation::*;
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
 extern_static!(CLLocationPushServiceErrorDomain: Option<&'static NSErrorDomain>);
 
 ns_error_enum!(

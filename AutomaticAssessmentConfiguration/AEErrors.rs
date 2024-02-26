@@ -4,7 +4,7 @@ use crate::common::*;
 use crate::AutomaticAssessmentConfiguration::*;
 use crate::Foundation::*;
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
 extern_static!(AEAssessmentErrorDomain: &'static NSErrorDomain);
 
 ns_error_enum!(

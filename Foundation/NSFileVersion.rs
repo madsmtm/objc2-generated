@@ -19,21 +19,17 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSFileVersion")]
     pub struct NSFileVersion;
 
-    #[cfg(feature = "Foundation_NSFileVersion")]
     unsafe impl ClassType for NSFileVersion {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSFileVersion")]
 unsafe impl NSObjectProtocol for NSFileVersion {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSFileVersion")]
     unsafe impl NSFileVersion {
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other currentVersionOfItemAtURL:)]
@@ -99,6 +95,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other modificationDate)]
         pub unsafe fn modificationDate(&self) -> Option<Id<NSDate>>;
 
+        #[cfg(feature = "Foundation_NSObject")]
         #[method_id(@__retain_semantics Other persistentIdentifier)]
         pub unsafe fn persistentIdentifier(&self) -> Id<ProtocolObject<dyn NSCoding>>;
 
@@ -143,7 +140,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSFileVersion")]
     unsafe impl NSFileVersion {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

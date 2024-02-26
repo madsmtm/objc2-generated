@@ -6,5 +6,5 @@ use crate::Foundation::*;
 use crate::LocalAuthentication::*;
 use crate::LocalAuthenticationEmbeddedUI::*;
 
-#[cfg(feature = "AppKit_NSWindow")]
+#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
 pub type LAPresentationContext = NSWindow;

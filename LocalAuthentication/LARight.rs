@@ -20,21 +20,17 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "LocalAuthentication_LARight")]
     pub struct LARight;
 
-    #[cfg(feature = "LocalAuthentication_LARight")]
     unsafe impl ClassType for LARight {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "LocalAuthentication_LARight")]
 unsafe impl NSObjectProtocol for LARight {}
 
 extern_methods!(
-    #[cfg(feature = "LocalAuthentication_LARight")]
     unsafe impl LARight {
         #[method(state)]
         pub unsafe fn state(&self) -> LARightState;
@@ -48,7 +44,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "LocalAuthentication_LAAuthenticationRequirement")]
+        #[cfg(feature = "LocalAuthentication_LARequirement")]
         #[method_id(@__retain_semantics Init initWithRequirement:)]
         pub unsafe fn initWithRequirement(
             this: Allocated<Self>,
@@ -74,7 +70,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "LocalAuthentication_LARight")]
     unsafe impl LARight {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

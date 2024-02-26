@@ -8,7 +8,11 @@ use crate::WebKit::*;
 extern_protocol!(
     #[deprecated]
     pub unsafe trait DOMEventListener: NSObjectProtocol {
-        #[cfg(feature = "WebKit_DOMEvent")]
+        #[cfg(all(
+            feature = "WebKit_DOMEvent",
+            feature = "WebKit_DOMObject",
+            feature = "WebKit_WebScriptObject"
+        ))]
         #[deprecated]
         #[method(handleEvent:)]
         unsafe fn handleEvent(&self, event: Option<&DOMEvent>);

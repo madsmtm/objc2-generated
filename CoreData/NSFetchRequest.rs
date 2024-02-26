@@ -20,7 +20,7 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSFetchRequestResult {}
 );
 
-#[cfg(feature = "Foundation_NSNumber")]
+#[cfg(feature = "Foundation_NSValue")]
 unsafe impl NSFetchRequestResult for NSNumber {}
 
 #[cfg(feature = "Foundation_NSDictionary")]
@@ -46,14 +46,14 @@ unsafe impl NSFetchRequestResult for NSManagedObjectID {}
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSFetchRequest")]
+    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
     pub struct NSFetchRequest<ResultType: ?Sized = AnyObject> {
         __superclass: NSPersistentStoreRequest,
         _inner0: PhantomData<*mut ResultType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
-    #[cfg(feature = "CoreData_NSFetchRequest")]
+    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
     unsafe impl<ResultType: ?Sized + Message> ClassType for NSFetchRequest<ResultType> {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreRequest;
@@ -69,17 +69,23 @@ __inner_extern_class!(
     }
 );
 
-#[cfg(feature = "CoreData_NSFetchRequest")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreRequest",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl<ResultType: ?Sized + NSCoding> NSCoding for NSFetchRequest<ResultType> {}
 
-#[cfg(feature = "CoreData_NSFetchRequest")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreRequest",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl<ResultType: ?Sized + IsIdCloneable> NSCopying for NSFetchRequest<ResultType> {}
 
-#[cfg(feature = "CoreData_NSFetchRequest")]
+#[cfg(feature = "CoreData_NSPersistentStoreRequest")]
 unsafe impl<ResultType: ?Sized> NSObjectProtocol for NSFetchRequest<ResultType> {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSFetchRequest")]
+    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
     unsafe impl<ResultType: Message> NSFetchRequest<ResultType> {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fetchRequestWithEntityName:)]
@@ -247,27 +253,27 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSFetchRequest")]
+    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
     unsafe impl<ResultType: Message> NSFetchRequest<ResultType> {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
     }
 );
 
-#[cfg(feature = "CoreData_NSAsynchronousFetchResult")]
+#[cfg(feature = "CoreData_NSPersistentStoreResult")]
 pub type NSPersistentStoreAsynchronousFetchResultCompletionBlock =
     *mut Block<dyn Fn(NonNull<NSAsynchronousFetchResult>)>;
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSAsynchronousFetchRequest")]
+    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
     pub struct NSAsynchronousFetchRequest<ResultType: ?Sized = AnyObject> {
         __superclass: NSPersistentStoreRequest,
         _inner0: PhantomData<*mut ResultType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
-    #[cfg(feature = "CoreData_NSAsynchronousFetchRequest")]
+    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
     unsafe impl<ResultType: ?Sized + Message> ClassType for NSAsynchronousFetchRequest<ResultType> {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreRequest;
@@ -283,23 +289,25 @@ __inner_extern_class!(
     }
 );
 
-#[cfg(feature = "CoreData_NSAsynchronousFetchRequest")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreRequest",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl<ResultType: ?Sized + IsIdCloneable> NSCopying
     for NSAsynchronousFetchRequest<ResultType>
 {
 }
 
-#[cfg(feature = "CoreData_NSAsynchronousFetchRequest")]
+#[cfg(feature = "CoreData_NSPersistentStoreRequest")]
 unsafe impl<ResultType: ?Sized> NSObjectProtocol for NSAsynchronousFetchRequest<ResultType> {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSAsynchronousFetchRequest")]
+    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
     unsafe impl<ResultType: Message> NSAsynchronousFetchRequest<ResultType> {
-        #[cfg(feature = "CoreData_NSFetchRequest")]
         #[method_id(@__retain_semantics Other fetchRequest)]
         pub unsafe fn fetchRequest(&self) -> Id<NSFetchRequest<ResultType>>;
 
-        #[cfg(feature = "CoreData_NSAsynchronousFetchResult")]
+        #[cfg(feature = "CoreData_NSPersistentStoreResult")]
         #[method(completionBlock)]
         pub unsafe fn completionBlock(
             &self,
@@ -311,10 +319,7 @@ extern_methods!(
         #[method(setEstimatedResultCount:)]
         pub unsafe fn setEstimatedResultCount(&self, estimated_result_count: NSInteger);
 
-        #[cfg(all(
-            feature = "CoreData_NSAsynchronousFetchResult",
-            feature = "CoreData_NSFetchRequest"
-        ))]
+        #[cfg(feature = "CoreData_NSPersistentStoreResult")]
         #[method_id(@__retain_semantics Init initWithFetchRequest:completionBlock:)]
         pub unsafe fn initWithFetchRequest_completionBlock(
             this: Allocated<Self>,
@@ -326,7 +331,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSAsynchronousFetchRequest")]
+    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
     unsafe impl<ResultType: Message> NSAsynchronousFetchRequest<ResultType> {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -13,26 +13,25 @@ use crate::MapKit::*;
 ))]
 pub type MKDirectionsHandler = *mut Block<dyn Fn(*mut MKDirectionsResponse, *mut NSError)>;
 
-#[cfg(all(feature = "Foundation_NSError", feature = "MapKit_MKETAResponse"))]
+#[cfg(all(
+    feature = "Foundation_NSError",
+    feature = "MapKit_MKDirectionsResponse"
+))]
 pub type MKETAHandler = *mut Block<dyn Fn(*mut MKETAResponse, *mut NSError)>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKDirections")]
     pub struct MKDirections;
 
-    #[cfg(feature = "MapKit_MKDirections")]
     unsafe impl ClassType for MKDirections {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MapKit_MKDirections")]
 unsafe impl NSObjectProtocol for MKDirections {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKDirections")]
     unsafe impl MKDirections {
         #[cfg(feature = "MapKit_MKDirectionsRequest")]
         #[method_id(@__retain_semantics Init initWithRequest:)]
@@ -51,7 +50,10 @@ extern_methods!(
             completion_handler: MKDirectionsHandler,
         );
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "MapKit_MKETAResponse"))]
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "MapKit_MKDirectionsResponse"
+        ))]
         #[method(calculateETAWithCompletionHandler:)]
         pub unsafe fn calculateETAWithCompletionHandler(&self, completion_handler: MKETAHandler);
 
@@ -65,7 +67,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MapKit_MKDirections")]
     unsafe impl MKDirections {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

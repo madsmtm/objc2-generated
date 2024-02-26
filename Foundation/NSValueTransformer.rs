@@ -28,21 +28,17 @@ extern_static!(NSSecureUnarchiveFromDataTransformerName: &'static NSValueTransfo
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSValueTransformer")]
     pub struct NSValueTransformer;
 
-    #[cfg(feature = "Foundation_NSValueTransformer")]
     unsafe impl ClassType for NSValueTransformer {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSValueTransformer")]
 unsafe impl NSObjectProtocol for NSValueTransformer {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSValueTransformer")]
     unsafe impl NSValueTransformer {
         #[cfg(feature = "Foundation_NSString")]
         #[method(setValueTransformer:forName:)]
@@ -80,7 +76,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSValueTransformer")]
     unsafe impl NSValueTransformer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -92,10 +87,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSSecureUnarchiveFromDataTransformer")]
     pub struct NSSecureUnarchiveFromDataTransformer;
 
-    #[cfg(feature = "Foundation_NSSecureUnarchiveFromDataTransformer")]
     unsafe impl ClassType for NSSecureUnarchiveFromDataTransformer {
         #[inherits(NSObject)]
         type Super = NSValueTransformer;
@@ -103,11 +96,9 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSSecureUnarchiveFromDataTransformer")]
 unsafe impl NSObjectProtocol for NSSecureUnarchiveFromDataTransformer {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSSecureUnarchiveFromDataTransformer")]
     unsafe impl NSSecureUnarchiveFromDataTransformer {
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other allowedTopLevelClasses)]
@@ -117,7 +108,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSSecureUnarchiveFromDataTransformer")]
     unsafe impl NSSecureUnarchiveFromDataTransformer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

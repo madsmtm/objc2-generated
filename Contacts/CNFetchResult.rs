@@ -6,14 +6,12 @@ use crate::Foundation::*;
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Contacts_CNFetchResult")]
     pub struct CNFetchResult<ValueType: ?Sized = AnyObject> {
         __superclass: NSObject,
         _inner0: PhantomData<*mut ValueType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
-    #[cfg(feature = "Contacts_CNFetchResult")]
     unsafe impl<ValueType: ?Sized + Message> ClassType for CNFetchResult<ValueType> {
         type Super = NSObject;
         type Mutability = InteriorMutable;
@@ -28,11 +26,9 @@ __inner_extern_class!(
     }
 );
 
-#[cfg(feature = "Contacts_CNFetchResult")]
 unsafe impl<ValueType: ?Sized> NSObjectProtocol for CNFetchResult<ValueType> {}
 
 extern_methods!(
-    #[cfg(feature = "Contacts_CNFetchResult")]
     unsafe impl<ValueType: Message> CNFetchResult<ValueType> {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -7,10 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSPDFImageRep")]
+    #[cfg(feature = "AppKit_NSImageRep")]
     pub struct NSPDFImageRep;
 
-    #[cfg(feature = "AppKit_NSPDFImageRep")]
+    #[cfg(feature = "AppKit_NSImageRep")]
     unsafe impl ClassType for NSPDFImageRep {
         #[inherits(NSObject)]
         type Super = NSImageRep;
@@ -18,17 +18,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSPDFImageRep")]
+#[cfg(all(feature = "AppKit_NSImageRep", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for NSPDFImageRep {}
 
-#[cfg(feature = "AppKit_NSPDFImageRep")]
+#[cfg(all(feature = "AppKit_NSImageRep", feature = "Foundation_NSObject"))]
 unsafe impl NSCopying for NSPDFImageRep {}
 
-#[cfg(feature = "AppKit_NSPDFImageRep")]
+#[cfg(feature = "AppKit_NSImageRep")]
 unsafe impl NSObjectProtocol for NSPDFImageRep {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSPDFImageRep")]
+    #[cfg(feature = "AppKit_NSImageRep")]
     unsafe impl NSPDFImageRep {
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other imageRepWithData:)]
@@ -42,6 +42,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other PDFRepresentation)]
         pub unsafe fn PDFRepresentation(&self) -> Id<NSData>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(bounds)]
         pub unsafe fn bounds(&self) -> NSRect;
 
@@ -58,7 +59,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSImageRep`
-    #[cfg(feature = "AppKit_NSPDFImageRep")]
+    #[cfg(feature = "AppKit_NSImageRep")]
     unsafe impl NSPDFImageRep {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -71,7 +72,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSPDFImageRep")]
+    #[cfg(feature = "AppKit_NSImageRep")]
     unsafe impl NSPDFImageRep {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

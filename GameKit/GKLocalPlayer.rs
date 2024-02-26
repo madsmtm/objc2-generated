@@ -7,10 +7,10 @@ use crate::GameKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameKit_GKLocalPlayer")]
+    #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
     pub struct GKLocalPlayer;
 
-    #[cfg(feature = "GameKit_GKLocalPlayer")]
+    #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
     unsafe impl ClassType for GKLocalPlayer {
         #[inherits(GKBasePlayer, NSObject)]
         type Super = GKPlayer;
@@ -18,11 +18,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "GameKit_GKLocalPlayer")]
+#[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
 unsafe impl NSObjectProtocol for GKLocalPlayer {}
 
 extern_methods!(
-    #[cfg(feature = "GameKit_GKLocalPlayer")]
+    #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
     unsafe impl GKLocalPlayer {
         #[method_id(@__retain_semantics Other local)]
         pub unsafe fn local() -> Id<GKLocalPlayer>;
@@ -88,7 +88,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `GKPlayer`
-    #[cfg(feature = "GameKit_GKLocalPlayer")]
+    #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
     unsafe impl GKLocalPlayer {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other anonymousGuestPlayerWithIdentifier:)]
@@ -98,7 +98,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameKit_GKLocalPlayer")]
+    #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
     unsafe impl GKLocalPlayer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -109,21 +109,45 @@ extern_methods!(
 );
 
 extern_protocol!(
+    #[cfg(all(
+        feature = "GameKit_GKEventListener",
+        feature = "GameKit_GKMatchmaker",
+        feature = "GameKit_GKSavedGameListener",
+        feature = "GameKit_GKTurnBasedMatch"
+    ))]
     pub unsafe trait GKLocalPlayerListener:
         GKChallengeListener + GKInviteEventListener + GKSavedGameListener + GKTurnBasedEventListener
     {
     }
 
+    #[cfg(all(
+        feature = "GameKit_GKEventListener",
+        feature = "GameKit_GKMatchmaker",
+        feature = "GameKit_GKSavedGameListener",
+        feature = "GameKit_GKTurnBasedMatch"
+    ))]
     unsafe impl ProtocolType for dyn GKLocalPlayerListener {}
 );
 
 extern_methods!(
     /// GKLocalPlayerEvents
-    #[cfg(feature = "GameKit_GKLocalPlayer")]
+    #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
     unsafe impl GKLocalPlayer {
+        #[cfg(all(
+            feature = "GameKit_GKEventListener",
+            feature = "GameKit_GKMatchmaker",
+            feature = "GameKit_GKSavedGameListener",
+            feature = "GameKit_GKTurnBasedMatch"
+        ))]
         #[method(registerListener:)]
         pub unsafe fn registerListener(&self, listener: &ProtocolObject<dyn GKLocalPlayerListener>);
 
+        #[cfg(all(
+            feature = "GameKit_GKEventListener",
+            feature = "GameKit_GKMatchmaker",
+            feature = "GameKit_GKSavedGameListener",
+            feature = "GameKit_GKTurnBasedMatch"
+        ))]
         #[method(unregisterListener:)]
         pub unsafe fn unregisterListener(
             &self,
@@ -135,12 +159,12 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(GKPlayerAuthenticationDidChangeNotificationName: &'static NSNotificationName);
 
 extern_methods!(
     /// Deprecated
-    #[cfg(feature = "GameKit_GKLocalPlayer")]
+    #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
     unsafe impl GKLocalPlayer {
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[deprecated]
@@ -193,7 +217,7 @@ extern_methods!(
 
 extern_methods!(
     /// Obsoleted
-    #[cfg(feature = "GameKit_GKLocalPlayer")]
+    #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
     unsafe impl GKLocalPlayer {
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -230,7 +254,7 @@ ns_enum!(
 
 extern_methods!(
     /// FriendsList
-    #[cfg(feature = "GameKit_GKLocalPlayer")]
+    #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
     unsafe impl GKLocalPlayer {
         #[cfg(feature = "Foundation_NSError")]
         #[method(loadFriendsAuthorizationStatus:)]
@@ -262,16 +286,24 @@ extern_methods!(
 
 extern_methods!(
     /// UI
-    #[cfg(feature = "GameKit_GKLocalPlayer")]
+    #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
     unsafe impl GKLocalPlayer {
-        #[cfg(all(feature = "AppKit_NSViewController", feature = "Foundation_NSError"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSViewController",
+            feature = "Foundation_NSError"
+        ))]
         #[method(authenticateHandler)]
         pub unsafe fn authenticateHandler(
             &self,
             mtm: MainThreadMarker,
         ) -> *mut Block<dyn Fn(*mut NSViewController, *mut NSError)>;
 
-        #[cfg(all(feature = "AppKit_NSViewController", feature = "Foundation_NSError"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSViewController",
+            feature = "Foundation_NSError"
+        ))]
         #[method(setAuthenticateHandler:)]
         pub unsafe fn setAuthenticateHandler(
             &self,
@@ -281,7 +313,11 @@ extern_methods!(
         #[method(isPresentingFriendRequestViewController)]
         pub unsafe fn isPresentingFriendRequestViewController(&self) -> bool;
 
-        #[cfg(all(feature = "AppKit_NSWindow", feature = "Foundation_NSError"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSWindow",
+            feature = "Foundation_NSError"
+        ))]
         #[method(presentFriendRequestCreatorFromWindow:error:_)]
         pub unsafe fn presentFriendRequestCreatorFromWindow_error(
             &self,

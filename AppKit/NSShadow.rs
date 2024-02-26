@@ -7,43 +7,43 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSShadow")]
     pub struct NSShadow;
 
-    #[cfg(feature = "AppKit_NSShadow")]
     unsafe impl ClassType for NSShadow {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSShadow")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSShadow {}
 
-#[cfg(feature = "AppKit_NSShadow")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSShadow {}
 
-#[cfg(feature = "AppKit_NSShadow")]
 unsafe impl NSObjectProtocol for NSShadow {}
 
-#[cfg(feature = "AppKit_NSShadow")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSShadow {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSShadow")]
     unsafe impl NSShadow {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(shadowOffset)]
         pub unsafe fn shadowOffset(&self) -> NSSize;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setShadowOffset:)]
         pub unsafe fn setShadowOffset(&self, shadow_offset: NSSize);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(shadowBlurRadius)]
         pub unsafe fn shadowBlurRadius(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setShadowBlurRadius:)]
         pub unsafe fn setShadowBlurRadius(&self, shadow_blur_radius: CGFloat);
 
@@ -62,7 +62,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSShadow")]
     unsafe impl NSShadow {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

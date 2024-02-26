@@ -5,30 +5,26 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSTermOfAddress")]
     pub struct NSTermOfAddress;
 
-    #[cfg(feature = "Foundation_NSTermOfAddress")]
     unsafe impl ClassType for NSTermOfAddress {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSTermOfAddress")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSTermOfAddress {}
 
-#[cfg(feature = "Foundation_NSTermOfAddress")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSTermOfAddress {}
 
-#[cfg(feature = "Foundation_NSTermOfAddress")]
 unsafe impl NSObjectProtocol for NSTermOfAddress {}
 
-#[cfg(feature = "Foundation_NSTermOfAddress")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSTermOfAddress {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSTermOfAddress")]
     unsafe impl NSTermOfAddress {
         #[method_id(@__retain_semantics Other neutral)]
         pub unsafe fn neutral() -> Id<Self>;
@@ -41,7 +37,7 @@ extern_methods!(
 
         #[cfg(all(
             feature = "Foundation_NSArray",
-            feature = "Foundation_NSMorphologyPronoun",
+            feature = "Foundation_NSMorphology",
             feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other localizedForLanguageIdentifier:withPronouns:)]
@@ -60,10 +56,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other languageIdentifier)]
         pub unsafe fn languageIdentifier(&self) -> Option<Id<NSString>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSMorphologyPronoun"
-        ))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSMorphology"))]
         #[method_id(@__retain_semantics Other pronouns)]
         pub unsafe fn pronouns(&self) -> Option<Id<NSArray<NSMorphologyPronoun>>>;
     }

@@ -7,27 +7,23 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTextAlternatives")]
     pub struct NSTextAlternatives;
 
-    #[cfg(feature = "AppKit_NSTextAlternatives")]
     unsafe impl ClassType for NSTextAlternatives {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSTextAlternatives")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSTextAlternatives {}
 
-#[cfg(feature = "AppKit_NSTextAlternatives")]
 unsafe impl NSObjectProtocol for NSTextAlternatives {}
 
-#[cfg(feature = "AppKit_NSTextAlternatives")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSTextAlternatives {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTextAlternatives")]
     unsafe impl NSTextAlternatives {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithPrimaryString:alternativeStrings:)]
@@ -53,7 +49,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTextAlternatives")]
     unsafe impl NSTextAlternatives {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -63,5 +58,5 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSTextAlternativesSelectedAlternativeStringNotification: &'static NSNotificationName);

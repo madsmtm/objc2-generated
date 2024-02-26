@@ -21,10 +21,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTabViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     pub struct NSTabViewController;
 
-    #[cfg(feature = "AppKit_NSTabViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl ClassType for NSTabViewController {
         #[inherits(NSResponder, NSObject)]
         type Super = NSViewController;
@@ -32,29 +32,53 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSTabViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSTabViewController {}
 
-#[cfg(feature = "AppKit_NSTabViewController")]
+#[cfg(all(
+    feature = "AppKit_NSKeyValueBinding",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSEditor for NSTabViewController {}
 
-#[cfg(feature = "AppKit_NSTabViewController")]
+#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
 unsafe impl NSObjectProtocol for NSTabViewController {}
 
-#[cfg(feature = "AppKit_NSTabViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSStoryboardSegue",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSSeguePerforming for NSTabViewController {}
 
-#[cfg(feature = "AppKit_NSTabViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSTabView",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSTabViewDelegate for NSTabViewController {}
 
-#[cfg(feature = "AppKit_NSTabViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSToolbar",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSToolbarDelegate for NSTabViewController {}
 
-#[cfg(feature = "AppKit_NSTabViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSTabViewController {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTabViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl NSTabViewController {
         #[method(tabStyle)]
         pub unsafe fn tabStyle(&self) -> NSTabViewControllerTabStyle;
@@ -62,11 +86,11 @@ extern_methods!(
         #[method(setTabStyle:)]
         pub unsafe fn setTabStyle(&self, tab_style: NSTabViewControllerTabStyle);
 
-        #[cfg(feature = "AppKit_NSTabView")]
+        #[cfg(all(feature = "AppKit_NSTabView", feature = "AppKit_NSView"))]
         #[method_id(@__retain_semantics Other tabView)]
         pub unsafe fn tabView(&self) -> Id<NSTabView>;
 
-        #[cfg(feature = "AppKit_NSTabView")]
+        #[cfg(all(feature = "AppKit_NSTabView", feature = "AppKit_NSView"))]
         #[method(setTabView:)]
         pub unsafe fn setTabView(&self, tab_view: &NSTabView);
 
@@ -128,7 +152,11 @@ extern_methods!(
         #[method(viewDidLoad)]
         pub unsafe fn viewDidLoad(&self);
 
-        #[cfg(all(feature = "AppKit_NSTabView", feature = "AppKit_NSTabViewItem"))]
+        #[cfg(all(
+            feature = "AppKit_NSTabView",
+            feature = "AppKit_NSTabViewItem",
+            feature = "AppKit_NSView"
+        ))]
         #[method(tabView:willSelectTabViewItem:)]
         pub unsafe fn tabView_willSelectTabViewItem(
             &self,
@@ -136,7 +164,11 @@ extern_methods!(
             tab_view_item: Option<&NSTabViewItem>,
         );
 
-        #[cfg(all(feature = "AppKit_NSTabView", feature = "AppKit_NSTabViewItem"))]
+        #[cfg(all(
+            feature = "AppKit_NSTabView",
+            feature = "AppKit_NSTabViewItem",
+            feature = "AppKit_NSView"
+        ))]
         #[method(tabView:didSelectTabViewItem:)]
         pub unsafe fn tabView_didSelectTabViewItem(
             &self,
@@ -144,7 +176,11 @@ extern_methods!(
             tab_view_item: Option<&NSTabViewItem>,
         );
 
-        #[cfg(all(feature = "AppKit_NSTabView", feature = "AppKit_NSTabViewItem"))]
+        #[cfg(all(
+            feature = "AppKit_NSTabView",
+            feature = "AppKit_NSTabViewItem",
+            feature = "AppKit_NSView"
+        ))]
         #[method(tabView:shouldSelectTabViewItem:)]
         pub unsafe fn tabView_shouldSelectTabViewItem(
             &self,
@@ -202,9 +238,13 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSViewController`
-    #[cfg(feature = "AppKit_NSTabViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl NSTabViewController {
-        #[cfg(all(feature = "Foundation_NSBundle", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSNib",
+            feature = "Foundation_NSBundle",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -220,7 +260,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "AppKit_NSTabViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl NSTabViewController {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -229,7 +269,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTabViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl NSTabViewController {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

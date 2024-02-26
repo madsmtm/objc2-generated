@@ -21,6 +21,7 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Metal_MTLDevice")]
     pub unsafe fn MTLIOCreateCompressionContext(
         path: NonNull<c_char>,
         r#type: MTLIOCompressionMethod,

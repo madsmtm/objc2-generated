@@ -6,29 +6,27 @@ use crate::Metal::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLBlitPassSampleBufferAttachmentDescriptor")]
     pub struct MTLBlitPassSampleBufferAttachmentDescriptor;
 
-    #[cfg(feature = "Metal_MTLBlitPassSampleBufferAttachmentDescriptor")]
     unsafe impl ClassType for MTLBlitPassSampleBufferAttachmentDescriptor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLBlitPassSampleBufferAttachmentDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLBlitPassSampleBufferAttachmentDescriptor {}
 
-#[cfg(feature = "Metal_MTLBlitPassSampleBufferAttachmentDescriptor")]
 unsafe impl NSObjectProtocol for MTLBlitPassSampleBufferAttachmentDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLBlitPassSampleBufferAttachmentDescriptor")]
     unsafe impl MTLBlitPassSampleBufferAttachmentDescriptor {
+        #[cfg(feature = "Metal_MTLCounters")]
         #[method_id(@__retain_semantics Other sampleBuffer)]
         pub unsafe fn sampleBuffer(&self)
             -> Option<Id<ProtocolObject<dyn MTLCounterSampleBuffer>>>;
 
+        #[cfg(feature = "Metal_MTLCounters")]
         #[method(setSampleBuffer:)]
         pub unsafe fn setSampleBuffer(
             &self,
@@ -54,7 +52,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLBlitPassSampleBufferAttachmentDescriptor")]
     unsafe impl MTLBlitPassSampleBufferAttachmentDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -66,30 +63,24 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLBlitPassSampleBufferAttachmentDescriptorArray")]
     pub struct MTLBlitPassSampleBufferAttachmentDescriptorArray;
 
-    #[cfg(feature = "Metal_MTLBlitPassSampleBufferAttachmentDescriptorArray")]
     unsafe impl ClassType for MTLBlitPassSampleBufferAttachmentDescriptorArray {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLBlitPassSampleBufferAttachmentDescriptorArray")]
 unsafe impl NSObjectProtocol for MTLBlitPassSampleBufferAttachmentDescriptorArray {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLBlitPassSampleBufferAttachmentDescriptorArray")]
     unsafe impl MTLBlitPassSampleBufferAttachmentDescriptorArray {
-        #[cfg(feature = "Metal_MTLBlitPassSampleBufferAttachmentDescriptor")]
         #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             attachment_index: NSUInteger,
         ) -> Id<MTLBlitPassSampleBufferAttachmentDescriptor>;
 
-        #[cfg(feature = "Metal_MTLBlitPassSampleBufferAttachmentDescriptor")]
         #[method(setObject:atIndexedSubscript:)]
         pub unsafe fn setObject_atIndexedSubscript(
             &self,
@@ -101,7 +92,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLBlitPassSampleBufferAttachmentDescriptorArray")]
     unsafe impl MTLBlitPassSampleBufferAttachmentDescriptorArray {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -113,29 +103,24 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLBlitPassDescriptor")]
     pub struct MTLBlitPassDescriptor;
 
-    #[cfg(feature = "Metal_MTLBlitPassDescriptor")]
     unsafe impl ClassType for MTLBlitPassDescriptor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLBlitPassDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLBlitPassDescriptor {}
 
-#[cfg(feature = "Metal_MTLBlitPassDescriptor")]
 unsafe impl NSObjectProtocol for MTLBlitPassDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLBlitPassDescriptor")]
     unsafe impl MTLBlitPassDescriptor {
         #[method_id(@__retain_semantics Other blitPassDescriptor)]
         pub unsafe fn blitPassDescriptor() -> Id<MTLBlitPassDescriptor>;
 
-        #[cfg(feature = "Metal_MTLBlitPassSampleBufferAttachmentDescriptorArray")]
         #[method_id(@__retain_semantics Other sampleBufferAttachments)]
         pub unsafe fn sampleBufferAttachments(
             &self,
@@ -145,7 +130,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLBlitPassDescriptor")]
     unsafe impl MTLBlitPassDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

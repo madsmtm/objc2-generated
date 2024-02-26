@@ -7,27 +7,21 @@ use crate::StoreKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "StoreKit_SKStorefront")]
     pub struct SKStorefront;
 
-    #[cfg(feature = "StoreKit_SKStorefront")]
     unsafe impl ClassType for SKStorefront {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "StoreKit_SKStorefront")]
 unsafe impl Send for SKStorefront {}
 
-#[cfg(feature = "StoreKit_SKStorefront")]
 unsafe impl Sync for SKStorefront {}
 
-#[cfg(feature = "StoreKit_SKStorefront")]
 unsafe impl NSObjectProtocol for SKStorefront {}
 
 extern_methods!(
-    #[cfg(feature = "StoreKit_SKStorefront")]
     unsafe impl SKStorefront {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other countryCode)]
@@ -41,7 +35,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "StoreKit_SKStorefront")]
     unsafe impl SKStorefront {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

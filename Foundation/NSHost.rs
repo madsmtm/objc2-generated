@@ -5,22 +5,18 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSHost")]
     #[deprecated = "Use Network framework instead, see deprecation notice in <Foundation/NSHost.h>"]
     pub struct NSHost;
 
-    #[cfg(feature = "Foundation_NSHost")]
     unsafe impl ClassType for NSHost {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSHost")]
 unsafe impl NSObjectProtocol for NSHost {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSHost")]
     unsafe impl NSHost {
         #[deprecated = "Use Network framework instead, see deprecation notice in <Foundation/NSHost.h>"]
         #[method_id(@__retain_semantics Other currentHost)]
@@ -80,7 +76,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSHost")]
     unsafe impl NSHost {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

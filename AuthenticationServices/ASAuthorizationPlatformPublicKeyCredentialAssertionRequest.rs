@@ -7,14 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(
-        feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialAssertionRequest"
-    )]
+    #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
     pub struct ASAuthorizationPlatformPublicKeyCredentialAssertionRequest;
 
-    #[cfg(
-        feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialAssertionRequest"
-    )]
+    #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
     unsafe impl ClassType for ASAuthorizationPlatformPublicKeyCredentialAssertionRequest {
         #[inherits(NSObject)]
         type Super = ASAuthorizationRequest;
@@ -22,38 +18,39 @@ extern_class!(
     }
 );
 
-#[cfg(
-    feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialAssertionRequest"
-)]
+#[cfg(all(
+    feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialAssertionRequest",
+    feature = "AuthenticationServices_ASAuthorizationRequest",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl ASAuthorizationPublicKeyCredentialAssertionRequest
     for ASAuthorizationPlatformPublicKeyCredentialAssertionRequest
 {
 }
 
-#[cfg(
-    feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialAssertionRequest"
-)]
+#[cfg(all(
+    feature = "AuthenticationServices_ASAuthorizationRequest",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for ASAuthorizationPlatformPublicKeyCredentialAssertionRequest {}
 
-#[cfg(
-    feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialAssertionRequest"
-)]
+#[cfg(all(
+    feature = "AuthenticationServices_ASAuthorizationRequest",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCopying for ASAuthorizationPlatformPublicKeyCredentialAssertionRequest {}
 
-#[cfg(
-    feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialAssertionRequest"
-)]
+#[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
 unsafe impl NSObjectProtocol for ASAuthorizationPlatformPublicKeyCredentialAssertionRequest {}
 
-#[cfg(
-    feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialAssertionRequest"
-)]
+#[cfg(all(
+    feature = "AuthenticationServices_ASAuthorizationRequest",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSSecureCoding for ASAuthorizationPlatformPublicKeyCredentialAssertionRequest {}
 
 extern_methods!(
-    #[cfg(
-        feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialAssertionRequest"
-    )]
+    #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
     unsafe impl ASAuthorizationPlatformPublicKeyCredentialAssertionRequest {
         #[cfg(all(
             feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialDescriptor",
@@ -100,30 +97,28 @@ extern_methods!(
 );
 
 extern_methods!(
-    #[cfg(
-        feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialAssertionRequest"
-    )]
+    #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
     unsafe impl ASAuthorizationPlatformPublicKeyCredentialAssertionRequest {}
 );
 
-#[cfg(
-    feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialAssertionRequest"
-)]
+#[cfg(all(
+    feature = "AuthenticationServices_ASAuthorizationRequest",
+    feature = "AuthenticationServices_ASAuthorizationWebBrowserExternallyAuthenticatableRequest"
+))]
 unsafe impl ASAuthorizationWebBrowserExternallyAuthenticatableRequest
     for ASAuthorizationPlatformPublicKeyCredentialAssertionRequest
 {
 }
 
 extern_methods!(
-    #[cfg(
-        feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialAssertionRequest"
-    )]
+    #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
     unsafe impl ASAuthorizationPlatformPublicKeyCredentialAssertionRequest {}
 );
 
-#[cfg(
-    feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialAssertionRequest"
-)]
+#[cfg(all(
+    feature = "AuthenticationServices_ASAuthorizationRequest",
+    feature = "AuthenticationServices_ASAuthorizationWebBrowserPlatformPublicKeyCredentialAssertionRequest"
+))]
 unsafe impl ASAuthorizationWebBrowserPlatformPublicKeyCredentialAssertionRequest
     for ASAuthorizationPlatformPublicKeyCredentialAssertionRequest
 {

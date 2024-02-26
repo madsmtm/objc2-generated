@@ -6,10 +6,10 @@ use crate::MetricKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MetricKit_MXCrashDiagnostic")]
+    #[cfg(feature = "MetricKit_MXDiagnostic")]
     pub struct MXCrashDiagnostic;
 
-    #[cfg(feature = "MetricKit_MXCrashDiagnostic")]
+    #[cfg(feature = "MetricKit_MXDiagnostic")]
     unsafe impl ClassType for MXCrashDiagnostic {
         #[inherits(NSObject)]
         type Super = MXDiagnostic;
@@ -17,17 +17,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MetricKit_MXCrashDiagnostic")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "MetricKit_MXDiagnostic"))]
 unsafe impl NSCoding for MXCrashDiagnostic {}
 
-#[cfg(feature = "MetricKit_MXCrashDiagnostic")]
+#[cfg(feature = "MetricKit_MXDiagnostic")]
 unsafe impl NSObjectProtocol for MXCrashDiagnostic {}
 
-#[cfg(feature = "MetricKit_MXCrashDiagnostic")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "MetricKit_MXDiagnostic"))]
 unsafe impl NSSecureCoding for MXCrashDiagnostic {}
 
 extern_methods!(
-    #[cfg(feature = "MetricKit_MXCrashDiagnostic")]
+    #[cfg(feature = "MetricKit_MXDiagnostic")]
     unsafe impl MXCrashDiagnostic {
         #[cfg(feature = "MetricKit_MXCallStackTree")]
         #[method_id(@__retain_semantics Other callStackTree)]
@@ -41,15 +41,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Other virtualMemoryRegionInfo)]
         pub unsafe fn virtualMemoryRegionInfo(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method_id(@__retain_semantics Other exceptionType)]
         pub unsafe fn exceptionType(&self) -> Option<Id<NSNumber>>;
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method_id(@__retain_semantics Other exceptionCode)]
         pub unsafe fn exceptionCode(&self) -> Option<Id<NSNumber>>;
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method_id(@__retain_semantics Other signal)]
         pub unsafe fn signal(&self) -> Option<Id<NSNumber>>;
 
@@ -63,7 +63,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MetricKit_MXCrashDiagnostic")]
+    #[cfg(feature = "MetricKit_MXDiagnostic")]
     unsafe impl MXCrashDiagnostic {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

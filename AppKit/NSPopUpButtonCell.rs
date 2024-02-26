@@ -16,10 +16,20 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSPopUpButtonCell")]
+    #[cfg(all(
+        feature = "AppKit_NSActionCell",
+        feature = "AppKit_NSButtonCell",
+        feature = "AppKit_NSCell",
+        feature = "AppKit_NSMenuItemCell"
+    ))]
     pub struct NSPopUpButtonCell;
 
-    #[cfg(feature = "AppKit_NSPopUpButtonCell")]
+    #[cfg(all(
+        feature = "AppKit_NSActionCell",
+        feature = "AppKit_NSButtonCell",
+        feature = "AppKit_NSCell",
+        feature = "AppKit_NSMenuItemCell"
+    ))]
     unsafe impl ClassType for NSPopUpButtonCell {
         #[inherits(NSButtonCell, NSActionCell, NSCell, NSObject)]
         type Super = NSMenuItemCell;
@@ -27,29 +37,75 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSPopUpButtonCell")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSButtonCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSMenuItemCell"
+))]
 unsafe impl NSAccessibility for NSPopUpButtonCell {}
 
-#[cfg(feature = "AppKit_NSPopUpButtonCell")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSButtonCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSMenuItemCell"
+))]
 unsafe impl NSAccessibilityElementProtocol for NSPopUpButtonCell {}
 
-#[cfg(feature = "AppKit_NSPopUpButtonCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSButtonCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSMenuItemCell",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSPopUpButtonCell {}
 
-#[cfg(feature = "AppKit_NSPopUpButtonCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSButtonCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSMenuItemCell",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCopying for NSPopUpButtonCell {}
 
-#[cfg(feature = "AppKit_NSPopUpButtonCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSButtonCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSMenu",
+    feature = "AppKit_NSMenuItemCell"
+))]
 unsafe impl NSMenuItemValidation for NSPopUpButtonCell {}
 
-#[cfg(feature = "AppKit_NSPopUpButtonCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSButtonCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSMenuItemCell"
+))]
 unsafe impl NSObjectProtocol for NSPopUpButtonCell {}
 
-#[cfg(feature = "AppKit_NSPopUpButtonCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSButtonCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSMenuItemCell",
+    feature = "AppKit_NSUserInterfaceItemIdentification"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSPopUpButtonCell {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSPopUpButtonCell")]
+    #[cfg(all(
+        feature = "AppKit_NSActionCell",
+        feature = "AppKit_NSButtonCell",
+        feature = "AppKit_NSCell",
+        feature = "AppKit_NSMenuItemCell"
+    ))]
     unsafe impl NSPopUpButtonCell {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initTextCell:pullsDown:)]
@@ -83,9 +139,11 @@ extern_methods!(
         #[method(setAutoenablesItems:)]
         pub unsafe fn setAutoenablesItems(&self, autoenables_items: bool);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(preferredEdge)]
         pub unsafe fn preferredEdge(&self) -> NSRectEdge;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setPreferredEdge:)]
         pub unsafe fn setPreferredEdge(&self, preferred_edge: NSRectEdge);
 
@@ -204,14 +262,22 @@ extern_methods!(
         #[method_id(@__retain_semantics Other titleOfSelectedItem)]
         pub unsafe fn titleOfSelectedItem(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[method(attachPopUpWithFrame:inView:)]
         pub unsafe fn attachPopUpWithFrame_inView(&self, cell_frame: NSRect, control_view: &NSView);
 
         #[method(dismissPopUp)]
         pub unsafe fn dismissPopUp(&self);
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[method(performClickWithFrame:inView:)]
         pub unsafe fn performClickWithFrame_inView(&self, frame: NSRect, control_view: &NSView);
 
@@ -225,7 +291,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSMenuItemCell`
-    #[cfg(feature = "AppKit_NSPopUpButtonCell")]
+    #[cfg(all(
+        feature = "AppKit_NSActionCell",
+        feature = "AppKit_NSButtonCell",
+        feature = "AppKit_NSCell",
+        feature = "AppKit_NSMenuItemCell"
+    ))]
     unsafe impl NSPopUpButtonCell {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initTextCell:)]
@@ -235,7 +306,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSButtonCell`
-    #[cfg(feature = "AppKit_NSPopUpButtonCell")]
+    #[cfg(all(
+        feature = "AppKit_NSActionCell",
+        feature = "AppKit_NSButtonCell",
+        feature = "AppKit_NSCell",
+        feature = "AppKit_NSMenuItemCell"
+    ))]
     unsafe impl NSPopUpButtonCell {
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Init initImageCell:)]
@@ -245,7 +321,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSCell`
-    #[cfg(feature = "AppKit_NSPopUpButtonCell")]
+    #[cfg(all(
+        feature = "AppKit_NSActionCell",
+        feature = "AppKit_NSButtonCell",
+        feature = "AppKit_NSCell",
+        feature = "AppKit_NSMenuItemCell"
+    ))]
     unsafe impl NSPopUpButtonCell {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -254,12 +335,17 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSPopUpButtonCell")]
+    #[cfg(all(
+        feature = "AppKit_NSActionCell",
+        feature = "AppKit_NSButtonCell",
+        feature = "AppKit_NSCell",
+        feature = "AppKit_NSMenuItemCell"
+    ))]
     unsafe impl NSPopUpButtonCell {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSPopUpButtonCellWillPopUpNotification: &'static NSNotificationName);

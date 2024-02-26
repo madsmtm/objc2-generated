@@ -6,10 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSBatchInsertRequest")]
+    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
     pub struct NSBatchInsertRequest;
 
-    #[cfg(feature = "CoreData_NSBatchInsertRequest")]
+    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
     unsafe impl ClassType for NSBatchInsertRequest {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreRequest;
@@ -17,14 +17,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CoreData_NSBatchInsertRequest")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreRequest",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCopying for NSBatchInsertRequest {}
 
-#[cfg(feature = "CoreData_NSBatchInsertRequest")]
+#[cfg(feature = "CoreData_NSPersistentStoreRequest")]
 unsafe impl NSObjectProtocol for NSBatchInsertRequest {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSBatchInsertRequest")]
+    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
     unsafe impl NSBatchInsertRequest {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other entityName)]
@@ -55,19 +58,13 @@ extern_methods!(
             objects_to_insert: Option<&NSArray<NSDictionary<NSString, AnyObject>>>,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSMutableDictionary",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(dictionaryHandler)]
         pub unsafe fn dictionaryHandler(
             &self,
         ) -> *mut Block<dyn Fn(NonNull<NSMutableDictionary<NSString, AnyObject>>) -> Bool>;
 
-        #[cfg(all(
-            feature = "Foundation_NSMutableDictionary",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setDictionaryHandler:)]
         pub unsafe fn setDictionaryHandler(
             &self,
@@ -89,9 +86,11 @@ extern_methods!(
             managed_object_handler: Option<&Block<dyn Fn(NonNull<NSManagedObject>) -> Bool>>,
         );
 
+        #[cfg(feature = "CoreData_NSPersistentStoreResult")]
         #[method(resultType)]
         pub unsafe fn resultType(&self) -> NSBatchInsertRequestResultType;
 
+        #[cfg(feature = "CoreData_NSPersistentStoreResult")]
         #[method(setResultType:)]
         pub unsafe fn setResultType(&self, result_type: NSBatchInsertRequestResultType);
 
@@ -106,10 +105,7 @@ extern_methods!(
             dictionaries: &NSArray<NSDictionary<NSString, AnyObject>>,
         ) -> Id<Self>;
 
-        #[cfg(all(
-            feature = "Foundation_NSMutableDictionary",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other batchInsertRequestWithEntityName:dictionaryHandler:)]
         pub unsafe fn batchInsertRequestWithEntityName_dictionaryHandler(
             entity_name: &NSString,
@@ -154,7 +150,7 @@ extern_methods!(
 
         #[cfg(all(
             feature = "CoreData_NSEntityDescription",
-            feature = "Foundation_NSMutableDictionary",
+            feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Init initWithEntity:dictionaryHandler:)]
@@ -175,10 +171,7 @@ extern_methods!(
             handler: &Block<dyn Fn(NonNull<NSManagedObject>) -> Bool>,
         ) -> Id<Self>;
 
-        #[cfg(all(
-            feature = "Foundation_NSMutableDictionary",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithEntityName:dictionaryHandler:)]
         pub unsafe fn initWithEntityName_dictionaryHandler(
             this: Allocated<Self>,
@@ -198,7 +191,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSBatchInsertRequest")]
+    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
     unsafe impl NSBatchInsertRequest {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

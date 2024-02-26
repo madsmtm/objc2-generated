@@ -8,27 +8,23 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKQuantitySeriesSampleBuilder")]
     pub struct HKQuantitySeriesSampleBuilder;
 
-    #[cfg(feature = "HealthKit_HKQuantitySeriesSampleBuilder")]
     unsafe impl ClassType for HKQuantitySeriesSampleBuilder {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "HealthKit_HKQuantitySeriesSampleBuilder")]
 unsafe impl NSObjectProtocol for HKQuantitySeriesSampleBuilder {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKQuantitySeriesSampleBuilder")]
     unsafe impl HKQuantitySeriesSampleBuilder {
         #[cfg(all(
             feature = "Foundation_NSDate",
             feature = "HealthKit_HKDevice",
             feature = "HealthKit_HKHealthStore",
-            feature = "HealthKit_HKQuantityType"
+            feature = "HealthKit_HKObjectType"
         ))]
         #[method_id(@__retain_semantics Init initWithHealthStore:quantityType:startDate:device:)]
         pub unsafe fn initWithHealthStore_quantityType_startDate_device(
@@ -42,7 +38,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "HealthKit_HKQuantityType")]
+        #[cfg(feature = "HealthKit_HKObjectType")]
         #[method_id(@__retain_semantics Other quantityType)]
         pub unsafe fn quantityType(&self) -> Id<HKQuantityType>;
 
@@ -84,7 +80,9 @@ extern_methods!(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
             feature = "Foundation_NSString",
-            feature = "HealthKit_HKQuantitySample"
+            feature = "HealthKit_HKObject",
+            feature = "HealthKit_HKQuantitySample",
+            feature = "HealthKit_HKSample"
         ))]
         #[method(finishSeriesWithMetadata:endDate:completion:)]
         pub unsafe fn finishSeriesWithMetadata_endDate_completion(
@@ -99,7 +97,9 @@ extern_methods!(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
             feature = "Foundation_NSString",
-            feature = "HealthKit_HKQuantitySample"
+            feature = "HealthKit_HKObject",
+            feature = "HealthKit_HKQuantitySample",
+            feature = "HealthKit_HKSample"
         ))]
         #[method(finishSeriesWithMetadata:completion:)]
         pub unsafe fn finishSeriesWithMetadata_completion(
@@ -115,7 +115,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKQuantitySeriesSampleBuilder")]
     unsafe impl HKQuantitySeriesSampleBuilder {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

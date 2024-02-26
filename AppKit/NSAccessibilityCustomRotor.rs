@@ -67,21 +67,17 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSAccessibilityCustomRotor")]
     pub struct NSAccessibilityCustomRotor;
 
-    #[cfg(feature = "AppKit_NSAccessibilityCustomRotor")]
     unsafe impl ClassType for NSAccessibilityCustomRotor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSAccessibilityCustomRotor")]
 unsafe impl NSObjectProtocol for NSAccessibilityCustomRotor {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSAccessibilityCustomRotor")]
     unsafe impl NSAccessibilityCustomRotor {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithLabel:itemSearchDelegate:)]
@@ -125,11 +121,13 @@ extern_methods!(
             >,
         );
 
+        #[cfg(feature = "AppKit_NSAccessibilityProtocols")]
         #[method_id(@__retain_semantics Other itemLoadingDelegate)]
         pub unsafe fn itemLoadingDelegate(
             &self,
         ) -> Option<Id<ProtocolObject<dyn NSAccessibilityElementLoading>>>;
 
+        #[cfg(feature = "AppKit_NSAccessibilityProtocols")]
         #[method(setItemLoadingDelegate:)]
         pub unsafe fn setItemLoadingDelegate(
             &self,
@@ -140,7 +138,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSAccessibilityCustomRotor")]
     unsafe impl NSAccessibilityCustomRotor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -152,27 +149,21 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSAccessibilityCustomRotorSearchParameters")]
     pub struct NSAccessibilityCustomRotorSearchParameters;
 
-    #[cfg(feature = "AppKit_NSAccessibilityCustomRotorSearchParameters")]
     unsafe impl ClassType for NSAccessibilityCustomRotorSearchParameters {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSAccessibilityCustomRotorSearchParameters")]
 unsafe impl NSObjectProtocol for NSAccessibilityCustomRotorSearchParameters {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSAccessibilityCustomRotorSearchParameters")]
     unsafe impl NSAccessibilityCustomRotorSearchParameters {
-        #[cfg(feature = "AppKit_NSAccessibilityCustomRotorItemResult")]
         #[method_id(@__retain_semantics Other currentItem)]
         pub unsafe fn currentItem(&self) -> Option<Id<NSAccessibilityCustomRotorItemResult>>;
 
-        #[cfg(feature = "AppKit_NSAccessibilityCustomRotorItemResult")]
         #[method(setCurrentItem:)]
         pub unsafe fn setCurrentItem(
             &self,
@@ -200,7 +191,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSAccessibilityCustomRotorSearchParameters")]
     unsafe impl NSAccessibilityCustomRotorSearchParameters {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -212,21 +202,17 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSAccessibilityCustomRotorItemResult")]
     pub struct NSAccessibilityCustomRotorItemResult;
 
-    #[cfg(feature = "AppKit_NSAccessibilityCustomRotorItemResult")]
     unsafe impl ClassType for NSAccessibilityCustomRotorItemResult {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSAccessibilityCustomRotorItemResult")]
 unsafe impl NSObjectProtocol for NSAccessibilityCustomRotorItemResult {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSAccessibilityCustomRotorItemResult")]
     unsafe impl NSAccessibilityCustomRotorItemResult {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -234,13 +220,18 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
+        #[cfg(feature = "AppKit_NSAccessibilityProtocols")]
         #[method_id(@__retain_semantics Init initWithTargetElement:)]
         pub unsafe fn initWithTargetElement(
             this: Allocated<Self>,
             target_element: &ProtocolObject<dyn NSAccessibilityElementProtocol>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "AppKit_NSAccessibilityConstants",
+            feature = "Foundation_NSObject",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithItemLoadingToken:customLabel:)]
         pub unsafe fn initWithItemLoadingToken_customLabel(
             this: Allocated<Self>,
@@ -248,17 +239,24 @@ extern_methods!(
             custom_label: &NSString,
         ) -> Id<Self>;
 
+        #[cfg(feature = "AppKit_NSAccessibilityProtocols")]
         #[method_id(@__retain_semantics Other targetElement)]
         pub unsafe fn targetElement(
             &self,
         ) -> Option<Id<ProtocolObject<dyn NSAccessibilityElementProtocol>>>;
 
+        #[cfg(all(
+            feature = "AppKit_NSAccessibilityConstants",
+            feature = "Foundation_NSObject"
+        ))]
         #[method_id(@__retain_semantics Other itemLoadingToken)]
         pub unsafe fn itemLoadingToken(&self) -> Option<Id<NSAccessibilityLoadingToken>>;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(targetRange)]
         pub unsafe fn targetRange(&self) -> NSRange;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(setTargetRange:)]
         pub unsafe fn setTargetRange(&self, target_range: NSRange);
 
@@ -274,11 +272,6 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSAccessibilityCustomRotorItemSearchDelegate: NSObjectProtocol {
-        #[cfg(all(
-            feature = "AppKit_NSAccessibilityCustomRotor",
-            feature = "AppKit_NSAccessibilityCustomRotorItemResult",
-            feature = "AppKit_NSAccessibilityCustomRotorSearchParameters"
-        ))]
         #[method_id(@__retain_semantics Other rotor:resultForSearchParameters:)]
         unsafe fn rotor_resultForSearchParameters(
             &self,

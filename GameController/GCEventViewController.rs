@@ -7,10 +7,10 @@ use crate::GameController::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameController_GCEventViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     pub struct GCEventViewController;
 
-    #[cfg(feature = "GameController_GCEventViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl ClassType for GCEventViewController {
         #[inherits(NSResponder, NSObject)]
         type Super = NSViewController;
@@ -18,23 +18,39 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "GameController_GCEventViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for GCEventViewController {}
 
-#[cfg(feature = "GameController_GCEventViewController")]
+#[cfg(all(
+    feature = "AppKit_NSKeyValueBinding",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSEditor for GCEventViewController {}
 
-#[cfg(feature = "GameController_GCEventViewController")]
+#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
 unsafe impl NSObjectProtocol for GCEventViewController {}
 
-#[cfg(feature = "GameController_GCEventViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSStoryboardSegue",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSSeguePerforming for GCEventViewController {}
 
-#[cfg(feature = "GameController_GCEventViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSUserInterfaceItemIdentification for GCEventViewController {}
 
 extern_methods!(
-    #[cfg(feature = "GameController_GCEventViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl GCEventViewController {
         #[method(controllerUserInteractionEnabled)]
         pub unsafe fn controllerUserInteractionEnabled(&self) -> bool;
@@ -49,9 +65,13 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSViewController`
-    #[cfg(feature = "GameController_GCEventViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl GCEventViewController {
-        #[cfg(all(feature = "Foundation_NSBundle", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSNib",
+            feature = "Foundation_NSBundle",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -67,7 +87,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "GameController_GCEventViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl GCEventViewController {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -76,7 +96,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameController_GCEventViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl GCEventViewController {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

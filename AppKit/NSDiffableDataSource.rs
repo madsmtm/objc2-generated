@@ -7,7 +7,6 @@ use crate::Foundation::*;
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSDiffableDataSourceSnapshot")]
     pub struct NSDiffableDataSourceSnapshot<
         SectionIdentifierType: ?Sized = AnyObject,
         ItemIdentifierType: ?Sized = AnyObject,
@@ -18,7 +17,6 @@ __inner_extern_class!(
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
-    #[cfg(feature = "AppKit_NSDiffableDataSourceSnapshot")]
     unsafe impl<SectionIdentifierType: ?Sized + Message, ItemIdentifierType: ?Sized + Message>
         ClassType for NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
     {
@@ -35,20 +33,18 @@ __inner_extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSDiffableDataSourceSnapshot")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl<SectionIdentifierType: ?Sized + IsIdCloneable, ItemIdentifierType: ?Sized + IsIdCloneable>
     NSCopying for NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
 {
 }
 
-#[cfg(feature = "AppKit_NSDiffableDataSourceSnapshot")]
 unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSObjectProtocol
     for NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
 {
 }
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSDiffableDataSourceSnapshot")]
     unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
         NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
     {
@@ -205,7 +201,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSDiffableDataSourceSnapshot")]
     unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
         NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
     {
@@ -219,6 +214,7 @@ extern_methods!(
 
 #[cfg(all(
     feature = "AppKit_NSCollectionView",
+    feature = "AppKit_NSResponder",
     feature = "AppKit_NSView",
     feature = "Foundation_NSIndexPath",
     feature = "Foundation_NSString"
@@ -229,7 +225,6 @@ pub type NSCollectionViewDiffableDataSourceSupplementaryViewProvider = *mut Bloc
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSCollectionViewDiffableDataSource")]
     pub struct NSCollectionViewDiffableDataSource<
         SectionIdentifierType: ?Sized = AnyObject,
         ItemIdentifierType: ?Sized = AnyObject,
@@ -240,7 +235,6 @@ __inner_extern_class!(
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
-    #[cfg(feature = "AppKit_NSCollectionViewDiffableDataSource")]
     unsafe impl<SectionIdentifierType: ?Sized + Message, ItemIdentifierType: ?Sized + Message>
         ClassType
         for NSCollectionViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
@@ -258,14 +252,12 @@ __inner_extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSCollectionViewDiffableDataSource")]
 unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSObjectProtocol
     for NSCollectionViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
 {
 }
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSCollectionViewDiffableDataSource")]
     unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
         NSCollectionViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
     {
@@ -275,13 +267,11 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSDiffableDataSourceSnapshot")]
         #[method_id(@__retain_semantics Other snapshot)]
         pub unsafe fn snapshot(
             &self,
         ) -> Id<NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>>;
 
-        #[cfg(feature = "AppKit_NSDiffableDataSourceSnapshot")]
         #[method(applySnapshot:animatingDifferences:)]
         pub unsafe fn applySnapshot_animatingDifferences(
             &self,
@@ -305,6 +295,7 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSCollectionView",
+            feature = "AppKit_NSResponder",
             feature = "AppKit_NSView",
             feature = "Foundation_NSIndexPath",
             feature = "Foundation_NSString"
@@ -317,6 +308,7 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSCollectionView",
+            feature = "AppKit_NSResponder",
             feature = "AppKit_NSView",
             feature = "Foundation_NSIndexPath",
             feature = "Foundation_NSString"

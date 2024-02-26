@@ -31,27 +31,23 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MailKit_MEMessage")]
     pub struct MEMessage;
 
-    #[cfg(feature = "MailKit_MEMessage")]
     unsafe impl ClassType for MEMessage {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MailKit_MEMessage")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for MEMessage {}
 
-#[cfg(feature = "MailKit_MEMessage")]
 unsafe impl NSObjectProtocol for MEMessage {}
 
-#[cfg(feature = "MailKit_MEMessage")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for MEMessage {}
 
 extern_methods!(
-    #[cfg(feature = "MailKit_MEMessage")]
     unsafe impl MEMessage {
         #[method(state)]
         pub unsafe fn state(&self) -> MEMessageState;

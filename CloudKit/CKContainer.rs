@@ -13,27 +13,21 @@ extern_static!(CKOwnerDefaultName: &'static NSString);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKContainer")]
     pub struct CKContainer;
 
-    #[cfg(feature = "CloudKit_CKContainer")]
     unsafe impl ClassType for CKContainer {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CloudKit_CKContainer")]
 unsafe impl Send for CKContainer {}
 
-#[cfg(feature = "CloudKit_CKContainer")]
 unsafe impl Sync for CKContainer {}
 
-#[cfg(feature = "CloudKit_CKContainer")]
 unsafe impl NSObjectProtocol for CKContainer {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKContainer")]
     unsafe impl CKContainer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -52,7 +46,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other containerIdentifier)]
         pub unsafe fn containerIdentifier(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "CloudKit_CKOperation")]
+        #[cfg(all(feature = "CloudKit_CKOperation", feature = "Foundation_NSOperation"))]
         #[method(addOperation:)]
         pub unsafe fn addOperation(&self, operation: &CKOperation);
     }
@@ -60,7 +54,6 @@ extern_methods!(
 
 extern_methods!(
     /// Database
-    #[cfg(feature = "CloudKit_CKContainer")]
     unsafe impl CKContainer {
         #[cfg(feature = "CloudKit_CKDatabase")]
         #[method_id(@__retain_semantics Other privateCloudDatabase)]
@@ -104,7 +97,6 @@ extern_static!(CKAccountChangedNotification: &'static NSString);
 
 extern_methods!(
     /// AccountStatus
-    #[cfg(feature = "CloudKit_CKContainer")]
     unsafe impl CKContainer {
         #[cfg(feature = "Foundation_NSError")]
         #[method(accountStatusWithCompletionHandler:)]
@@ -148,7 +140,6 @@ pub type CKApplicationPermissionBlock =
 
 extern_methods!(
     /// ApplicationPermission
-    #[cfg(feature = "CloudKit_CKContainer")]
     unsafe impl CKContainer {
         #[cfg(feature = "Foundation_NSError")]
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
@@ -172,7 +163,6 @@ extern_methods!(
 
 extern_methods!(
     /// UserRecords
-    #[cfg(feature = "CloudKit_CKContainer")]
     unsafe impl CKContainer {
         #[cfg(all(feature = "CloudKit_CKRecordID", feature = "Foundation_NSError"))]
         #[method(fetchUserRecordIDWithCompletionHandler:)]
@@ -236,7 +226,6 @@ extern_methods!(
 
 extern_methods!(
     /// Sharing
-    #[cfg(feature = "CloudKit_CKContainer")]
     unsafe impl CKContainer {
         #[cfg(all(
             feature = "CloudKit_CKShareParticipant",
@@ -287,6 +276,7 @@ extern_methods!(
         );
 
         #[cfg(all(
+            feature = "CloudKit_CKRecord",
             feature = "CloudKit_CKShare",
             feature = "CloudKit_CKShareMetadata",
             feature = "Foundation_NSError"
@@ -302,9 +292,9 @@ extern_methods!(
 
 extern_methods!(
     /// CKLongLivedOperations
-    #[cfg(feature = "CloudKit_CKContainer")]
     unsafe impl CKContainer {
         #[cfg(all(
+            feature = "CloudKit_CKOperation",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSError",
             feature = "Foundation_NSString"
@@ -318,6 +308,7 @@ extern_methods!(
         #[cfg(all(
             feature = "CloudKit_CKOperation",
             feature = "Foundation_NSError",
+            feature = "Foundation_NSOperation",
             feature = "Foundation_NSString"
         ))]
         #[method(fetchLongLivedOperationWithID:completionHandler:)]

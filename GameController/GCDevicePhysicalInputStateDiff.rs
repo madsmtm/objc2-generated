@@ -17,13 +17,17 @@ ns_enum!(
 
 extern_protocol!(
     pub unsafe trait GCDevicePhysicalInputStateDiff: NSObjectProtocol {
+        #[cfg(feature = "GameController_GCPhysicalInputElement")]
         #[method(changeForElement:)]
         unsafe fn changeForElement(
             &self,
             element: &ProtocolObject<dyn GCPhysicalInputElement>,
         ) -> GCDevicePhysicalInputElementChange;
 
-        #[cfg(feature = "Foundation_NSEnumerator")]
+        #[cfg(all(
+            feature = "Foundation_NSEnumerator",
+            feature = "GameController_GCPhysicalInputElement"
+        ))]
         #[method_id(@__retain_semantics Other changedElements)]
         unsafe fn changedElements(
             &self,

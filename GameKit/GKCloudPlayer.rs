@@ -7,11 +7,11 @@ use crate::GameKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameKit_GKCloudPlayer")]
+    #[cfg(feature = "GameKit_GKBasePlayer")]
     #[deprecated]
     pub struct GKCloudPlayer;
 
-    #[cfg(feature = "GameKit_GKCloudPlayer")]
+    #[cfg(feature = "GameKit_GKBasePlayer")]
     unsafe impl ClassType for GKCloudPlayer {
         #[inherits(NSObject)]
         type Super = GKBasePlayer;
@@ -19,11 +19,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "GameKit_GKCloudPlayer")]
+#[cfg(feature = "GameKit_GKBasePlayer")]
 unsafe impl NSObjectProtocol for GKCloudPlayer {}
 
 extern_methods!(
-    #[cfg(feature = "GameKit_GKCloudPlayer")]
+    #[cfg(feature = "GameKit_GKBasePlayer")]
     unsafe impl GKCloudPlayer {
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[deprecated]
@@ -37,7 +37,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameKit_GKCloudPlayer")]
+    #[cfg(feature = "GameKit_GKBasePlayer")]
     unsafe impl GKCloudPlayer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

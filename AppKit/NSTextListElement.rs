@@ -7,10 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTextListElement")]
+    #[cfg(feature = "AppKit_NSTextElement")]
     pub struct NSTextListElement;
 
-    #[cfg(feature = "AppKit_NSTextListElement")]
+    #[cfg(feature = "AppKit_NSTextElement")]
     unsafe impl ClassType for NSTextListElement {
         #[inherits(NSTextElement, NSObject)]
         type Super = NSTextParagraph;
@@ -18,11 +18,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSTextListElement")]
+#[cfg(feature = "AppKit_NSTextElement")]
 unsafe impl NSObjectProtocol for NSTextListElement {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTextListElement")]
+    #[cfg(feature = "AppKit_NSTextElement")]
     unsafe impl NSTextListElement {
         #[cfg(all(
             feature = "AppKit_NSTextList",
@@ -79,7 +79,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other contents)]
         pub unsafe fn contents(&self) -> Option<Id<NSAttributedString>>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSAttributedString",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other markerAttributes)]
         pub unsafe fn markerAttributes(
             &self,
@@ -100,7 +104,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSTextElement`
-    #[cfg(feature = "AppKit_NSTextListElement")]
+    #[cfg(feature = "AppKit_NSTextElement")]
     unsafe impl NSTextListElement {
         #[cfg(feature = "AppKit_NSTextContentManager")]
         #[method_id(@__retain_semantics Init initWithTextContentManager:)]
@@ -113,7 +117,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTextListElement")]
+    #[cfg(feature = "AppKit_NSTextElement")]
     unsafe impl NSTextListElement {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -33,30 +33,26 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKAllowedSharingOptions")]
     pub struct CKAllowedSharingOptions;
 
-    #[cfg(feature = "CloudKit_CKAllowedSharingOptions")]
     unsafe impl ClassType for CKAllowedSharingOptions {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CloudKit_CKAllowedSharingOptions")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CKAllowedSharingOptions {}
 
-#[cfg(feature = "CloudKit_CKAllowedSharingOptions")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for CKAllowedSharingOptions {}
 
-#[cfg(feature = "CloudKit_CKAllowedSharingOptions")]
 unsafe impl NSObjectProtocol for CKAllowedSharingOptions {}
 
-#[cfg(feature = "CloudKit_CKAllowedSharingOptions")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CKAllowedSharingOptions {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKAllowedSharingOptions")]
     unsafe impl CKAllowedSharingOptions {
         #[method_id(@__retain_semantics Init initWithAllowedParticipantPermissionOptions:allowedParticipantAccessOptions:)]
         pub unsafe fn initWithAllowedParticipantPermissionOptions_allowedParticipantAccessOptions(
@@ -92,7 +88,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CloudKit_CKAllowedSharingOptions")]
     unsafe impl CKAllowedSharingOptions {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

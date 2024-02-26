@@ -18,24 +18,20 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentConfiguration")]
     pub struct AEAssessmentConfiguration;
 
-    #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentConfiguration")]
     unsafe impl ClassType for AEAssessmentConfiguration {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentConfiguration")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for AEAssessmentConfiguration {}
 
-#[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentConfiguration")]
 unsafe impl NSObjectProtocol for AEAssessmentConfiguration {}
 
 extern_methods!(
-    #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentConfiguration")]
     unsafe impl AEAssessmentConfiguration {
         #[method(autocorrectMode)]
         pub unsafe fn autocorrectMode(&self) -> AEAutocorrectMode;
@@ -126,7 +122,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentConfiguration")]
     unsafe impl AEAssessmentConfiguration {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

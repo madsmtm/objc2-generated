@@ -7,17 +7,14 @@ use crate::Foundation::*;
 
 extern_protocol!(
     pub unsafe trait NSTextViewportLayoutControllerDelegate: NSObjectProtocol {
-        #[cfg(feature = "AppKit_NSTextViewportLayoutController")]
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(viewportBoundsForTextViewportLayoutController:)]
         unsafe fn viewportBoundsForTextViewportLayoutController(
             &self,
             text_viewport_layout_controller: &NSTextViewportLayoutController,
         ) -> CGRect;
 
-        #[cfg(all(
-            feature = "AppKit_NSTextLayoutFragment",
-            feature = "AppKit_NSTextViewportLayoutController"
-        ))]
+        #[cfg(feature = "AppKit_NSTextLayoutFragment")]
         #[method(textViewportLayoutController:configureRenderingSurfaceForTextLayoutFragment:)]
         unsafe fn textViewportLayoutController_configureRenderingSurfaceForTextLayoutFragment(
             &self,
@@ -25,7 +22,6 @@ extern_protocol!(
             text_layout_fragment: &NSTextLayoutFragment,
         );
 
-        #[cfg(feature = "AppKit_NSTextViewportLayoutController")]
         #[optional]
         #[method(textViewportLayoutControllerWillLayout:)]
         unsafe fn textViewportLayoutControllerWillLayout(
@@ -33,7 +29,6 @@ extern_protocol!(
             text_viewport_layout_controller: &NSTextViewportLayoutController,
         );
 
-        #[cfg(feature = "AppKit_NSTextViewportLayoutController")]
         #[optional]
         #[method(textViewportLayoutControllerDidLayout:)]
         unsafe fn textViewportLayoutControllerDidLayout(
@@ -47,21 +42,17 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTextViewportLayoutController")]
     pub struct NSTextViewportLayoutController;
 
-    #[cfg(feature = "AppKit_NSTextViewportLayoutController")]
     unsafe impl ClassType for NSTextViewportLayoutController {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSTextViewportLayoutController")]
 unsafe impl NSObjectProtocol for NSTextViewportLayoutController {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTextViewportLayoutController")]
     unsafe impl NSTextViewportLayoutController {
         #[cfg(feature = "AppKit_NSTextLayoutManager")]
         #[method_id(@__retain_semantics Init initWithTextLayoutManager:)]
@@ -91,6 +82,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other textLayoutManager)]
         pub unsafe fn textLayoutManager(&self) -> Option<Id<NSTextLayoutManager>>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(viewportBounds)]
         pub unsafe fn viewportBounds(&self) -> CGRect;
 
@@ -101,12 +93,14 @@ extern_methods!(
         #[method(layoutViewport)]
         pub unsafe fn layoutViewport(&self);
 
+        #[cfg(all(feature = "AppKit_NSTextRange", feature = "Foundation_NSGeometry"))]
         #[method(relocateViewportToTextLocation:)]
         pub unsafe fn relocateViewportToTextLocation(
             &self,
             text_location: &ProtocolObject<dyn NSTextLocation>,
         ) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(adjustViewportByVerticalOffset:)]
         pub unsafe fn adjustViewportByVerticalOffset(&self, vertical_offset: CGFloat);
     }

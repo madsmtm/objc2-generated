@@ -32,10 +32,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSPopover")]
+    #[cfg(feature = "AppKit_NSResponder")]
     pub struct NSPopover;
 
-    #[cfg(feature = "AppKit_NSPopover")]
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl ClassType for NSPopover {
         #[inherits(NSObject)]
         type Super = NSResponder;
@@ -43,23 +43,29 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSPopover")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder"
+))]
 unsafe impl NSAccessibility for NSPopover {}
 
-#[cfg(feature = "AppKit_NSPopover")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder"
+))]
 unsafe impl NSAccessibilityElementProtocol for NSPopover {}
 
-#[cfg(feature = "AppKit_NSPopover")]
+#[cfg(all(feature = "AppKit_NSAppearance", feature = "AppKit_NSResponder"))]
 unsafe impl NSAppearanceCustomization for NSPopover {}
 
-#[cfg(feature = "AppKit_NSPopover")]
+#[cfg(all(feature = "AppKit_NSResponder", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for NSPopover {}
 
-#[cfg(feature = "AppKit_NSPopover")]
+#[cfg(feature = "AppKit_NSResponder")]
 unsafe impl NSObjectProtocol for NSPopover {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSPopover")]
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSPopover {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -109,9 +115,11 @@ extern_methods!(
             content_view_controller: Option<&NSViewController>,
         );
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(contentSize)]
         pub unsafe fn contentSize(&self) -> NSSize;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setContentSize:)]
         pub unsafe fn setContentSize(&self, content_size: NSSize);
 
@@ -121,9 +129,11 @@ extern_methods!(
         #[method(isDetached)]
         pub unsafe fn isDetached(&self) -> bool;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(positioningRect)]
         pub unsafe fn positioningRect(&self) -> NSRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setPositioningRect:)]
         pub unsafe fn setPositioningRect(&self, positioning_rect: NSRect);
 
@@ -133,7 +143,7 @@ extern_methods!(
         #[method(setHasFullSizeContent:)]
         pub unsafe fn setHasFullSizeContent(&self, has_full_size_content: bool);
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSGeometry"))]
         #[method(showRelativeToRect:ofView:preferredEdge:)]
         pub unsafe fn showRelativeToRect_ofView_preferredEdge(
             &self,
@@ -156,7 +166,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSPopover")]
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSPopover {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -177,36 +187,36 @@ extern_static!(NSPopoverCloseReasonStandard: &'static NSPopoverCloseReasonValue)
 #[cfg(feature = "Foundation_NSString")]
 extern_static!(NSPopoverCloseReasonDetachToWindow: &'static NSPopoverCloseReasonValue);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSPopoverWillShowNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSPopoverDidShowNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSPopoverWillCloseNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSPopoverDidCloseNotification: &'static NSNotificationName);
 
 extern_protocol!(
     pub unsafe trait NSPopoverDelegate: NSObjectProtocol + IsMainThreadOnly {
-        #[cfg(feature = "AppKit_NSPopover")]
+        #[cfg(feature = "AppKit_NSResponder")]
         #[optional]
         #[method(popoverShouldClose:)]
         unsafe fn popoverShouldClose(&self, popover: &NSPopover) -> bool;
 
-        #[cfg(feature = "AppKit_NSPopover")]
+        #[cfg(feature = "AppKit_NSResponder")]
         #[optional]
         #[method(popoverShouldDetach:)]
         unsafe fn popoverShouldDetach(&self, popover: &NSPopover) -> bool;
 
-        #[cfg(feature = "AppKit_NSPopover")]
+        #[cfg(feature = "AppKit_NSResponder")]
         #[optional]
         #[method(popoverDidDetach:)]
         unsafe fn popoverDidDetach(&self, popover: &NSPopover);
 
-        #[cfg(all(feature = "AppKit_NSPopover", feature = "AppKit_NSWindow"))]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
         #[optional]
         #[method_id(@__retain_semantics Other detachableWindowForPopover:)]
         unsafe fn detachableWindowForPopover(&self, popover: &NSPopover) -> Option<Id<NSWindow>>;

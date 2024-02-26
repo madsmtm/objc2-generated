@@ -10,28 +10,24 @@ extern_static!(WebArchivePboardType: Option<&'static NSString>);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_WebArchive")]
     #[deprecated]
     pub struct WebArchive;
 
-    #[cfg(feature = "WebKit_WebArchive")]
     unsafe impl ClassType for WebArchive {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "WebKit_WebArchive")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for WebArchive {}
 
-#[cfg(feature = "WebKit_WebArchive")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for WebArchive {}
 
-#[cfg(feature = "WebKit_WebArchive")]
 unsafe impl NSObjectProtocol for WebArchive {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_WebArchive")]
     unsafe impl WebArchive {
         #[cfg(all(feature = "Foundation_NSArray", feature = "WebKit_WebResource"))]
         #[deprecated]
@@ -75,7 +71,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_WebArchive")]
     unsafe impl WebArchive {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

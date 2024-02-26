@@ -7,10 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSActionCell")]
+    #[cfg(feature = "AppKit_NSCell")]
     pub struct NSActionCell;
 
-    #[cfg(feature = "AppKit_NSActionCell")]
+    #[cfg(feature = "AppKit_NSCell")]
     unsafe impl ClassType for NSActionCell {
         #[inherits(NSObject)]
         type Super = NSCell;
@@ -18,26 +18,29 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSActionCell")]
+#[cfg(all(feature = "AppKit_NSAccessibilityProtocols", feature = "AppKit_NSCell"))]
 unsafe impl NSAccessibility for NSActionCell {}
 
-#[cfg(feature = "AppKit_NSActionCell")]
+#[cfg(all(feature = "AppKit_NSAccessibilityProtocols", feature = "AppKit_NSCell"))]
 unsafe impl NSAccessibilityElementProtocol for NSActionCell {}
 
-#[cfg(feature = "AppKit_NSActionCell")]
+#[cfg(all(feature = "AppKit_NSCell", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for NSActionCell {}
 
-#[cfg(feature = "AppKit_NSActionCell")]
+#[cfg(all(feature = "AppKit_NSCell", feature = "Foundation_NSObject"))]
 unsafe impl NSCopying for NSActionCell {}
 
-#[cfg(feature = "AppKit_NSActionCell")]
+#[cfg(feature = "AppKit_NSCell")]
 unsafe impl NSObjectProtocol for NSActionCell {}
 
-#[cfg(feature = "AppKit_NSActionCell")]
+#[cfg(all(
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSUserInterfaceItemIdentification"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSActionCell {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSActionCell")]
+    #[cfg(feature = "AppKit_NSCell")]
     unsafe impl NSActionCell {
         #[method_id(@__retain_semantics Other target)]
         pub unsafe fn target(&self) -> Option<Id<AnyObject>>;
@@ -61,7 +64,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSCell`
-    #[cfg(feature = "AppKit_NSActionCell")]
+    #[cfg(feature = "AppKit_NSCell")]
     unsafe impl NSActionCell {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -82,7 +85,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSActionCell")]
+    #[cfg(feature = "AppKit_NSCell")]
     unsafe impl NSActionCell {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

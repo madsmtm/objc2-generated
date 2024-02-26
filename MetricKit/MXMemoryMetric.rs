@@ -6,10 +6,10 @@ use crate::MetricKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MetricKit_MXMemoryMetric")]
+    #[cfg(feature = "MetricKit_MXMetric")]
     pub struct MXMemoryMetric;
 
-    #[cfg(feature = "MetricKit_MXMemoryMetric")]
+    #[cfg(feature = "MetricKit_MXMetric")]
     unsafe impl ClassType for MXMemoryMetric {
         #[inherits(NSObject)]
         type Super = MXMetric;
@@ -17,29 +17,23 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MetricKit_MXMemoryMetric")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "MetricKit_MXMetric"))]
 unsafe impl NSCoding for MXMemoryMetric {}
 
-#[cfg(feature = "MetricKit_MXMemoryMetric")]
+#[cfg(feature = "MetricKit_MXMetric")]
 unsafe impl NSObjectProtocol for MXMemoryMetric {}
 
-#[cfg(feature = "MetricKit_MXMemoryMetric")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "MetricKit_MXMetric"))]
 unsafe impl NSSecureCoding for MXMemoryMetric {}
 
 extern_methods!(
-    #[cfg(feature = "MetricKit_MXMemoryMetric")]
+    #[cfg(feature = "MetricKit_MXMetric")]
     unsafe impl MXMemoryMetric {
-        #[cfg(all(
-            feature = "Foundation_NSMeasurement",
-            feature = "Foundation_NSUnitInformationStorage"
-        ))]
+        #[cfg(all(feature = "Foundation_NSMeasurement", feature = "Foundation_NSUnit"))]
         #[method_id(@__retain_semantics Other peakMemoryUsage)]
         pub unsafe fn peakMemoryUsage(&self) -> Id<NSMeasurement<NSUnitInformationStorage>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSUnitInformationStorage",
-            feature = "MetricKit_MXAverage"
-        ))]
+        #[cfg(all(feature = "Foundation_NSUnit", feature = "MetricKit_MXAverage"))]
         #[method_id(@__retain_semantics Other averageSuspendedMemory)]
         pub unsafe fn averageSuspendedMemory(&self) -> Id<MXAverage<NSUnitInformationStorage>>;
     }
@@ -47,7 +41,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MetricKit_MXMemoryMetric")]
+    #[cfg(feature = "MetricKit_MXMetric")]
     unsafe impl MXMemoryMetric {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

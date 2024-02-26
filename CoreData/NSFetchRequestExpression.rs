@@ -4,14 +4,15 @@ use crate::common::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSExpression")]
 extern_static!(NSFetchRequestExpressionType: NSExpressionType = NSExpressionType(50));
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSFetchRequestExpression")]
+    #[cfg(feature = "Foundation_NSExpression")]
     pub struct NSFetchRequestExpression;
 
-    #[cfg(feature = "CoreData_NSFetchRequestExpression")]
+    #[cfg(feature = "Foundation_NSExpression")]
     unsafe impl ClassType for NSFetchRequestExpression {
         #[inherits(NSObject)]
         type Super = NSExpression;
@@ -19,20 +20,20 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CoreData_NSFetchRequestExpression")]
+#[cfg(all(feature = "Foundation_NSExpression", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for NSFetchRequestExpression {}
 
-#[cfg(feature = "CoreData_NSFetchRequestExpression")]
+#[cfg(all(feature = "Foundation_NSExpression", feature = "Foundation_NSObject"))]
 unsafe impl NSCopying for NSFetchRequestExpression {}
 
-#[cfg(feature = "CoreData_NSFetchRequestExpression")]
+#[cfg(feature = "Foundation_NSExpression")]
 unsafe impl NSObjectProtocol for NSFetchRequestExpression {}
 
-#[cfg(feature = "CoreData_NSFetchRequestExpression")]
+#[cfg(all(feature = "Foundation_NSExpression", feature = "Foundation_NSObject"))]
 unsafe impl NSSecureCoding for NSFetchRequestExpression {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSFetchRequestExpression")]
+    #[cfg(feature = "Foundation_NSExpression")]
     unsafe impl NSFetchRequestExpression {
         #[method_id(@__retain_semantics Other expressionForFetch:context:countOnly:)]
         pub unsafe fn expressionForFetch_context_countOnly(
@@ -54,7 +55,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSExpression`
-    #[cfg(feature = "CoreData_NSFetchRequestExpression")]
+    #[cfg(feature = "Foundation_NSExpression")]
     unsafe impl NSFetchRequestExpression {
         #[method_id(@__retain_semantics Init initWithExpressionType:)]
         pub unsafe fn initWithExpressionType(
@@ -70,7 +71,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSFetchRequestExpression")]
+    #[cfg(feature = "Foundation_NSExpression")]
     unsafe impl NSFetchRequestExpression {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

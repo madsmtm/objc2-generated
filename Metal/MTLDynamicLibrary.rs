@@ -4,7 +4,7 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
 extern_static!(MTLDynamicLibraryDomain: &'static NSErrorDomain);
 
 ns_enum!(
@@ -35,6 +35,7 @@ extern_protocol!(
         #[method(setLabel:)]
         fn setLabel(&self, label: Option<&NSString>);
 
+        #[cfg(feature = "Metal_MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
         fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
 

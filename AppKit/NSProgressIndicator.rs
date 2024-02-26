@@ -17,10 +17,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSProgressIndicator")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     pub struct NSProgressIndicator;
 
-    #[cfg(feature = "AppKit_NSProgressIndicator")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl ClassType for NSProgressIndicator {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
@@ -28,38 +28,74 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSProgressIndicator")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibility for NSProgressIndicator {}
 
-#[cfg(feature = "AppKit_NSProgressIndicator")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibilityElementProtocol for NSProgressIndicator {}
 
-#[cfg(feature = "AppKit_NSProgressIndicator")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibilityGroup for NSProgressIndicator {}
 
-#[cfg(feature = "AppKit_NSProgressIndicator")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibilityProgressIndicator for NSProgressIndicator {}
 
-#[cfg(feature = "AppKit_NSProgressIndicator")]
+#[cfg(all(
+    feature = "AppKit_NSAnimation",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAnimatablePropertyContainer for NSProgressIndicator {}
 
-#[cfg(feature = "AppKit_NSProgressIndicator")]
+#[cfg(all(
+    feature = "AppKit_NSAppearance",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAppearanceCustomization for NSProgressIndicator {}
 
-#[cfg(feature = "AppKit_NSProgressIndicator")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSProgressIndicator {}
 
-#[cfg(feature = "AppKit_NSProgressIndicator")]
+#[cfg(all(
+    feature = "AppKit_NSDragging",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSDraggingDestination for NSProgressIndicator {}
 
-#[cfg(feature = "AppKit_NSProgressIndicator")]
+#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
 unsafe impl NSObjectProtocol for NSProgressIndicator {}
 
-#[cfg(feature = "AppKit_NSProgressIndicator")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSProgressIndicator {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSProgressIndicator")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSProgressIndicator {
         #[method(isIndeterminate)]
         pub unsafe fn isIndeterminate(&self) -> bool;
@@ -67,9 +103,11 @@ extern_methods!(
         #[method(setIndeterminate:)]
         pub unsafe fn setIndeterminate(&self, indeterminate: bool);
 
+        #[cfg(feature = "AppKit_NSCell")]
         #[method(controlSize)]
         pub unsafe fn controlSize(&self) -> NSControlSize;
 
+        #[cfg(feature = "AppKit_NSCell")]
         #[method(setControlSize:)]
         pub unsafe fn setControlSize(&self, control_size: NSControlSize);
 
@@ -133,8 +171,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSView`
-    #[cfg(feature = "AppKit_NSProgressIndicator")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSProgressIndicator {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
 
@@ -146,7 +185,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "AppKit_NSProgressIndicator")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSProgressIndicator {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -155,7 +194,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSProgressIndicator")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSProgressIndicator {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -183,12 +222,14 @@ extern_static!(NSProgressIndicatorSpinningStyle: NSProgressIndicatorStyle = NSPr
 
 extern_methods!(
     /// NSProgressIndicatorDeprecated
-    #[cfg(feature = "AppKit_NSProgressIndicator")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSProgressIndicator {
+        #[cfg(feature = "Foundation_NSDate")]
         #[deprecated = "The animationDelay property does nothing."]
         #[method(animationDelay)]
         pub unsafe fn animationDelay(&self) -> NSTimeInterval;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[deprecated = "The animationDelay property does nothing."]
         #[method(setAnimationDelay:)]
         pub unsafe fn setAnimationDelay(&self, delay: NSTimeInterval);
@@ -205,10 +246,12 @@ extern_methods!(
         #[method(setBezeled:)]
         pub unsafe fn setBezeled(&self, bezeled: bool);
 
+        #[cfg(feature = "AppKit_NSCell")]
         #[deprecated = "The controlTint property is not respected on 10.15 and later"]
         #[method(controlTint)]
         pub unsafe fn controlTint(&self) -> NSControlTint;
 
+        #[cfg(feature = "AppKit_NSCell")]
         #[deprecated = "The controlTint property is not respected on 10.15 and later"]
         #[method(setControlTint:)]
         pub unsafe fn setControlTint(&self, control_tint: NSControlTint);

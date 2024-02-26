@@ -16,7 +16,7 @@ ns_enum!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSPersistentCloudKitContainerEventChangedNotification: &'static NSNotificationName);
 
 #[cfg(feature = "Foundation_NSString")]
@@ -24,24 +24,20 @@ extern_static!(NSPersistentCloudKitContainerEventUserInfoKey: &'static NSString)
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSPersistentCloudKitContainerEvent")]
     pub struct NSPersistentCloudKitContainerEvent;
 
-    #[cfg(feature = "CoreData_NSPersistentCloudKitContainerEvent")]
     unsafe impl ClassType for NSPersistentCloudKitContainerEvent {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreData_NSPersistentCloudKitContainerEvent")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSPersistentCloudKitContainerEvent {}
 
-#[cfg(feature = "CoreData_NSPersistentCloudKitContainerEvent")]
 unsafe impl NSObjectProtocol for NSPersistentCloudKitContainerEvent {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSPersistentCloudKitContainerEvent")]
     unsafe impl NSPersistentCloudKitContainerEvent {
         #[cfg(feature = "Foundation_NSUUID")]
         #[method_id(@__retain_semantics Other identifier)]

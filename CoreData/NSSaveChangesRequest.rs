@@ -6,10 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSSaveChangesRequest")]
+    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
     pub struct NSSaveChangesRequest;
 
-    #[cfg(feature = "CoreData_NSSaveChangesRequest")]
+    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
     unsafe impl ClassType for NSSaveChangesRequest {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreRequest;
@@ -17,14 +17,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CoreData_NSSaveChangesRequest")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreRequest",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCopying for NSSaveChangesRequest {}
 
-#[cfg(feature = "CoreData_NSSaveChangesRequest")]
+#[cfg(feature = "CoreData_NSPersistentStoreRequest")]
 unsafe impl NSObjectProtocol for NSSaveChangesRequest {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSSaveChangesRequest")]
+    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
     unsafe impl NSSaveChangesRequest {
         #[cfg(all(feature = "CoreData_NSManagedObject", feature = "Foundation_NSSet"))]
         #[method_id(@__retain_semantics Init initWithInsertedObjects:updatedObjects:deletedObjects:lockedObjects:)]
@@ -56,7 +59,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSSaveChangesRequest")]
+    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
     unsafe impl NSSaveChangesRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -7,24 +7,20 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSScrubberLayoutAttributes")]
     pub struct NSScrubberLayoutAttributes;
 
-    #[cfg(feature = "AppKit_NSScrubberLayoutAttributes")]
     unsafe impl ClassType for NSScrubberLayoutAttributes {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSScrubberLayoutAttributes")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSScrubberLayoutAttributes {}
 
-#[cfg(feature = "AppKit_NSScrubberLayoutAttributes")]
 unsafe impl NSObjectProtocol for NSScrubberLayoutAttributes {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSScrubberLayoutAttributes")]
     unsafe impl NSScrubberLayoutAttributes {
         #[method(itemIndex)]
         pub unsafe fn itemIndex(&self) -> NSInteger;
@@ -32,15 +28,19 @@ extern_methods!(
         #[method(setItemIndex:)]
         pub unsafe fn setItemIndex(&self, item_index: NSInteger);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(frame)]
         pub unsafe fn frame(&self) -> NSRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setFrame:)]
         pub unsafe fn setFrame(&self, frame: NSRect);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(alpha)]
         pub unsafe fn alpha(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setAlpha:)]
         pub unsafe fn setAlpha(&self, alpha: CGFloat);
 
@@ -51,7 +51,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSScrubberLayoutAttributes")]
     unsafe impl NSScrubberLayoutAttributes {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -63,32 +62,33 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSScrubberLayout")]
     pub struct NSScrubberLayout;
 
-    #[cfg(feature = "AppKit_NSScrubberLayout")]
     unsafe impl ClassType for NSScrubberLayout {
         type Super = NSObject;
         type Mutability = MainThreadOnly;
     }
 );
 
-#[cfg(feature = "AppKit_NSScrubberLayout")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSScrubberLayout {}
 
-#[cfg(feature = "AppKit_NSScrubberLayout")]
 unsafe impl NSObjectProtocol for NSScrubberLayout {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSScrubberLayout")]
     unsafe impl NSScrubberLayout {
         #[method(layoutAttributesClass)]
         pub unsafe fn layoutAttributesClass(mtm: MainThreadMarker) -> &'static AnyClass;
 
-        #[cfg(feature = "AppKit_NSScrubber")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSScrubber",
+            feature = "AppKit_NSView"
+        ))]
         #[method_id(@__retain_semantics Other scrubber)]
         pub unsafe fn scrubber(&self) -> Option<Id<NSScrubber>>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(visibleRect)]
         pub unsafe fn visibleRect(&self) -> NSRect;
 
@@ -105,20 +105,17 @@ extern_methods!(
         #[method(prepareLayout)]
         pub unsafe fn prepareLayout(&self);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(scrubberContentSize)]
         pub unsafe fn scrubberContentSize(&self) -> NSSize;
 
-        #[cfg(feature = "AppKit_NSScrubberLayoutAttributes")]
         #[method_id(@__retain_semantics Other layoutAttributesForItemAtIndex:)]
         pub unsafe fn layoutAttributesForItemAtIndex(
             &self,
             index: NSInteger,
         ) -> Option<Id<NSScrubberLayoutAttributes>>;
 
-        #[cfg(all(
-            feature = "AppKit_NSScrubberLayoutAttributes",
-            feature = "Foundation_NSSet"
-        ))]
+        #[cfg(all(feature = "Foundation_NSGeometry", feature = "Foundation_NSSet"))]
         #[method_id(@__retain_semantics Other layoutAttributesForItemsInRect:)]
         pub unsafe fn layoutAttributesForItemsInRect(
             &self,
@@ -131,6 +128,7 @@ extern_methods!(
         #[method(shouldInvalidateLayoutForHighlightChange)]
         pub unsafe fn shouldInvalidateLayoutForHighlightChange(&self) -> bool;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(shouldInvalidateLayoutForChangeFromVisibleRect:toVisibleRect:)]
         pub unsafe fn shouldInvalidateLayoutForChangeFromVisibleRect_toVisibleRect(
             &self,
@@ -145,7 +143,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSScrubberLayout")]
     unsafe impl NSScrubberLayout {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -153,8 +150,13 @@ extern_methods!(
 );
 
 extern_protocol!(
+    #[cfg(feature = "AppKit_NSScrubber")]
     pub unsafe trait NSScrubberFlowLayoutDelegate: NSScrubberDelegate {
-        #[cfg(all(feature = "AppKit_NSScrubber", feature = "AppKit_NSScrubberFlowLayout"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[optional]
         #[method(scrubber:layout:sizeForItemAtIndex:)]
         unsafe fn scrubber_layout_sizeForItemAtIndex(
@@ -165,15 +167,14 @@ extern_protocol!(
         ) -> NSSize;
     }
 
+    #[cfg(feature = "AppKit_NSScrubber")]
     unsafe impl ProtocolType for dyn NSScrubberFlowLayoutDelegate {}
 );
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSScrubberFlowLayout")]
     pub struct NSScrubberFlowLayout;
 
-    #[cfg(feature = "AppKit_NSScrubberFlowLayout")]
     unsafe impl ClassType for NSScrubberFlowLayout {
         #[inherits(NSObject)]
         type Super = NSScrubberLayout;
@@ -181,24 +182,26 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSScrubberFlowLayout")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSScrubberFlowLayout {}
 
-#[cfg(feature = "AppKit_NSScrubberFlowLayout")]
 unsafe impl NSObjectProtocol for NSScrubberFlowLayout {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSScrubberFlowLayout")]
     unsafe impl NSScrubberFlowLayout {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(itemSpacing)]
         pub unsafe fn itemSpacing(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setItemSpacing:)]
         pub unsafe fn setItemSpacing(&self, item_spacing: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(itemSize)]
         pub unsafe fn itemSize(&self) -> NSSize;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setItemSize:)]
         pub unsafe fn setItemSize(&self, item_size: NSSize);
 
@@ -210,7 +213,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSScrubberLayout`
-    #[cfg(feature = "AppKit_NSScrubberFlowLayout")]
     unsafe impl NSScrubberFlowLayout {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -223,7 +225,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSScrubberFlowLayout")]
     unsafe impl NSScrubberFlowLayout {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -232,10 +233,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSScrubberProportionalLayout")]
     pub struct NSScrubberProportionalLayout;
 
-    #[cfg(feature = "AppKit_NSScrubberProportionalLayout")]
     unsafe impl ClassType for NSScrubberProportionalLayout {
         #[inherits(NSObject)]
         type Super = NSScrubberLayout;
@@ -243,14 +242,12 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSScrubberProportionalLayout")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSScrubberProportionalLayout {}
 
-#[cfg(feature = "AppKit_NSScrubberProportionalLayout")]
 unsafe impl NSObjectProtocol for NSScrubberProportionalLayout {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSScrubberProportionalLayout")]
     unsafe impl NSScrubberProportionalLayout {
         #[method(numberOfVisibleItems)]
         pub unsafe fn numberOfVisibleItems(&self) -> NSInteger;
@@ -272,7 +269,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSScrubberLayout`
-    #[cfg(feature = "AppKit_NSScrubberProportionalLayout")]
     unsafe impl NSScrubberProportionalLayout {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -281,7 +277,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSScrubberProportionalLayout")]
     unsafe impl NSScrubberProportionalLayout {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

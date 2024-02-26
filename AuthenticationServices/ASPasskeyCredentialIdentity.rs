@@ -7,33 +7,29 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AuthenticationServices_ASPasskeyCredentialIdentity")]
     pub struct ASPasskeyCredentialIdentity;
 
-    #[cfg(feature = "AuthenticationServices_ASPasskeyCredentialIdentity")]
     unsafe impl ClassType for ASPasskeyCredentialIdentity {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASPasskeyCredentialIdentity")]
+#[cfg(feature = "AuthenticationServices_ASCredentialIdentity")]
 unsafe impl ASCredentialIdentity for ASPasskeyCredentialIdentity {}
 
-#[cfg(feature = "AuthenticationServices_ASPasskeyCredentialIdentity")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for ASPasskeyCredentialIdentity {}
 
-#[cfg(feature = "AuthenticationServices_ASPasskeyCredentialIdentity")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for ASPasskeyCredentialIdentity {}
 
-#[cfg(feature = "AuthenticationServices_ASPasskeyCredentialIdentity")]
 unsafe impl NSObjectProtocol for ASPasskeyCredentialIdentity {}
 
-#[cfg(feature = "AuthenticationServices_ASPasskeyCredentialIdentity")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for ASPasskeyCredentialIdentity {}
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASPasskeyCredentialIdentity")]
     unsafe impl ASPasskeyCredentialIdentity {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -89,7 +85,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AuthenticationServices_ASPasskeyCredentialIdentity")]
     unsafe impl ASPasskeyCredentialIdentity {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

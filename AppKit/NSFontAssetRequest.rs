@@ -14,24 +14,20 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSFontAssetRequest")]
     pub struct NSFontAssetRequest;
 
-    #[cfg(feature = "AppKit_NSFontAssetRequest")]
     unsafe impl ClassType for NSFontAssetRequest {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSFontAssetRequest")]
 unsafe impl NSObjectProtocol for NSFontAssetRequest {}
 
-#[cfg(feature = "AppKit_NSFontAssetRequest")]
+#[cfg(feature = "Foundation_NSProgress")]
 unsafe impl NSProgressReporting for NSFontAssetRequest {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSFontAssetRequest")]
     unsafe impl NSFontAssetRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -63,7 +59,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSFontAssetRequest")]
     unsafe impl NSFontAssetRequest {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

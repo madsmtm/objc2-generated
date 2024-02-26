@@ -15,24 +15,20 @@ pub type PHAssetResourceProgressHandler = *mut Block<dyn Fn(c_double)>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Photos_PHAssetResourceRequestOptions")]
     pub struct PHAssetResourceRequestOptions;
 
-    #[cfg(feature = "Photos_PHAssetResourceRequestOptions")]
     unsafe impl ClassType for PHAssetResourceRequestOptions {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Photos_PHAssetResourceRequestOptions")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for PHAssetResourceRequestOptions {}
 
-#[cfg(feature = "Photos_PHAssetResourceRequestOptions")]
 unsafe impl NSObjectProtocol for PHAssetResourceRequestOptions {}
 
 extern_methods!(
-    #[cfg(feature = "Photos_PHAssetResourceRequestOptions")]
     unsafe impl PHAssetResourceRequestOptions {
         #[method(isNetworkAccessAllowed)]
         pub unsafe fn isNetworkAccessAllowed(&self) -> bool;
@@ -50,7 +46,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Photos_PHAssetResourceRequestOptions")]
     unsafe impl PHAssetResourceRequestOptions {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -62,21 +57,17 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Photos_PHAssetResourceManager")]
     pub struct PHAssetResourceManager;
 
-    #[cfg(feature = "Photos_PHAssetResourceManager")]
     unsafe impl ClassType for PHAssetResourceManager {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Photos_PHAssetResourceManager")]
 unsafe impl NSObjectProtocol for PHAssetResourceManager {}
 
 extern_methods!(
-    #[cfg(feature = "Photos_PHAssetResourceManager")]
     unsafe impl PHAssetResourceManager {
         #[method_id(@__retain_semantics Other defaultManager)]
         pub unsafe fn defaultManager() -> Id<PHAssetResourceManager>;
@@ -84,8 +75,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSData",
             feature = "Foundation_NSError",
-            feature = "Photos_PHAssetResource",
-            feature = "Photos_PHAssetResourceRequestOptions"
+            feature = "Photos_PHAssetResource"
         ))]
         #[method(requestDataForAssetResource:options:dataReceivedHandler:completionHandler:)]
         pub unsafe fn requestDataForAssetResource_options_dataReceivedHandler_completionHandler(
@@ -99,8 +89,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSError",
             feature = "Foundation_NSURL",
-            feature = "Photos_PHAssetResource",
-            feature = "Photos_PHAssetResourceRequestOptions"
+            feature = "Photos_PHAssetResource"
         ))]
         #[method(writeDataForAssetResource:toFile:options:completionHandler:)]
         pub unsafe fn writeDataForAssetResource_toFile_options_completionHandler(
@@ -118,7 +107,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Photos_PHAssetResourceManager")]
     unsafe impl PHAssetResourceManager {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

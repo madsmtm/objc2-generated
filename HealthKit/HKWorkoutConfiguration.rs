@@ -20,34 +20,32 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKWorkoutConfiguration")]
     pub struct HKWorkoutConfiguration;
 
-    #[cfg(feature = "HealthKit_HKWorkoutConfiguration")]
     unsafe impl ClassType for HKWorkoutConfiguration {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "HealthKit_HKWorkoutConfiguration")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for HKWorkoutConfiguration {}
 
-#[cfg(feature = "HealthKit_HKWorkoutConfiguration")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for HKWorkoutConfiguration {}
 
-#[cfg(feature = "HealthKit_HKWorkoutConfiguration")]
 unsafe impl NSObjectProtocol for HKWorkoutConfiguration {}
 
-#[cfg(feature = "HealthKit_HKWorkoutConfiguration")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for HKWorkoutConfiguration {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKWorkoutConfiguration")]
     unsafe impl HKWorkoutConfiguration {
+        #[cfg(feature = "HealthKit_HKWorkout")]
         #[method(activityType)]
         pub unsafe fn activityType(&self) -> HKWorkoutActivityType;
 
+        #[cfg(feature = "HealthKit_HKWorkout")]
         #[method(setActivityType:)]
         pub unsafe fn setActivityType(&self, activity_type: HKWorkoutActivityType);
 
@@ -57,9 +55,11 @@ extern_methods!(
         #[method(setLocationType:)]
         pub unsafe fn setLocationType(&self, location_type: HKWorkoutSessionLocationType);
 
+        #[cfg(feature = "HealthKit_HKMetadata")]
         #[method(swimmingLocationType)]
         pub unsafe fn swimmingLocationType(&self) -> HKWorkoutSwimmingLocationType;
 
+        #[cfg(feature = "HealthKit_HKMetadata")]
         #[method(setSwimmingLocationType:)]
         pub unsafe fn setSwimmingLocationType(
             &self,
@@ -78,7 +78,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKWorkoutConfiguration")]
     unsafe impl HKWorkoutConfiguration {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -7,7 +7,12 @@ use crate::Foundation::*;
 
 extern_protocol!(
     pub unsafe trait NSColorPickingDefault: IsMainThreadOnly {
-        #[cfg(feature = "AppKit_NSColorPanel")]
+        #[cfg(all(
+            feature = "AppKit_NSColorPanel",
+            feature = "AppKit_NSPanel",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSWindow"
+        ))]
         #[method_id(@__retain_semantics Init initWithPickerMask:colorPanel:)]
         unsafe fn initWithPickerMask_colorPanel(
             this: Allocated<Self>,
@@ -19,7 +24,12 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other provideNewButtonImage)]
         unsafe fn provideNewButtonImage(&self) -> Id<NSImage>;
 
-        #[cfg(all(feature = "AppKit_NSButtonCell", feature = "AppKit_NSImage"))]
+        #[cfg(all(
+            feature = "AppKit_NSActionCell",
+            feature = "AppKit_NSButtonCell",
+            feature = "AppKit_NSCell",
+            feature = "AppKit_NSImage"
+        ))]
         #[method(insertNewButtonImage:in:)]
         unsafe fn insertNewButtonImage_in(
             &self,
@@ -41,6 +51,7 @@ extern_protocol!(
         #[method(detachColorList:)]
         unsafe fn detachColorList(&self, color_list: &NSColorList);
 
+        #[cfg(feature = "AppKit_NSColorPanel")]
         #[method(setMode:)]
         unsafe fn setMode(&self, mode: NSColorPanelMode);
 
@@ -48,6 +59,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other buttonToolTip)]
         unsafe fn buttonToolTip(&self) -> Id<NSString>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(minContentSize)]
         unsafe fn minContentSize(&self) -> NSSize;
     }
@@ -57,13 +69,15 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait NSColorPickingCustom: NSColorPickingDefault + IsMainThreadOnly {
+        #[cfg(feature = "AppKit_NSColorPanel")]
         #[method(supportsMode:)]
         unsafe fn supportsMode(&self, mode: NSColorPanelMode) -> bool;
 
+        #[cfg(feature = "AppKit_NSColorPanel")]
         #[method(currentMode)]
         unsafe fn currentMode(&self) -> NSColorPanelMode;
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[method_id(@__retain_semantics Other provideNewView:)]
         unsafe fn provideNewView(&self, initial_request: bool) -> Id<NSView>;
 

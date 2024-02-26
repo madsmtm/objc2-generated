@@ -49,7 +49,7 @@ ns_enum!(
 extern_protocol!(
     #[deprecated]
     pub unsafe trait NSURLHandleClient {
-        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSURLHandle"))]
+        #[cfg(feature = "Foundation_NSData")]
         #[deprecated]
         #[method(URLHandle:resourceDataDidBecomeAvailable:)]
         unsafe fn URLHandle_resourceDataDidBecomeAvailable(
@@ -58,22 +58,19 @@ extern_protocol!(
             new_bytes: Option<&NSData>,
         );
 
-        #[cfg(feature = "Foundation_NSURLHandle")]
         #[deprecated]
         #[method(URLHandleResourceDidBeginLoading:)]
         unsafe fn URLHandleResourceDidBeginLoading(&self, sender: Option<&NSURLHandle>);
 
-        #[cfg(feature = "Foundation_NSURLHandle")]
         #[deprecated]
         #[method(URLHandleResourceDidFinishLoading:)]
         unsafe fn URLHandleResourceDidFinishLoading(&self, sender: Option<&NSURLHandle>);
 
-        #[cfg(feature = "Foundation_NSURLHandle")]
         #[deprecated]
         #[method(URLHandleResourceDidCancelLoading:)]
         unsafe fn URLHandleResourceDidCancelLoading(&self, sender: Option<&NSURLHandle>);
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURLHandle"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[method(URLHandle:resourceDidFailLoadingWithReason:)]
         unsafe fn URLHandle_resourceDidFailLoadingWithReason(
@@ -88,21 +85,17 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSURLHandle")]
     pub struct NSURLHandle;
 
-    #[cfg(feature = "Foundation_NSURLHandle")]
     unsafe impl ClassType for NSURLHandle {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSURLHandle")]
 unsafe impl NSObjectProtocol for NSURLHandle {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSURLHandle")]
     unsafe impl NSURLHandle {
         #[deprecated]
         #[method(registerURLHandleClass:)]
@@ -232,7 +225,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSURLHandle")]
     unsafe impl NSURLHandle {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -7,10 +7,18 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKFetchRecordZonesOperation")]
+    #[cfg(all(
+        feature = "CloudKit_CKDatabaseOperation",
+        feature = "CloudKit_CKOperation",
+        feature = "Foundation_NSOperation"
+    ))]
     pub struct CKFetchRecordZonesOperation;
 
-    #[cfg(feature = "CloudKit_CKFetchRecordZonesOperation")]
+    #[cfg(all(
+        feature = "CloudKit_CKDatabaseOperation",
+        feature = "CloudKit_CKOperation",
+        feature = "Foundation_NSOperation"
+    ))]
     unsafe impl ClassType for CKFetchRecordZonesOperation {
         #[inherits(CKOperation, NSOperation, NSObject)]
         type Super = CKDatabaseOperation;
@@ -18,11 +26,19 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CloudKit_CKFetchRecordZonesOperation")]
+#[cfg(all(
+    feature = "CloudKit_CKDatabaseOperation",
+    feature = "CloudKit_CKOperation",
+    feature = "Foundation_NSOperation"
+))]
 unsafe impl NSObjectProtocol for CKFetchRecordZonesOperation {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKFetchRecordZonesOperation")]
+    #[cfg(all(
+        feature = "CloudKit_CKDatabaseOperation",
+        feature = "CloudKit_CKOperation",
+        feature = "Foundation_NSOperation"
+    ))]
     unsafe impl CKFetchRecordZonesOperation {
         #[method_id(@__retain_semantics Other fetchAllRecordZonesOperation)]
         pub unsafe fn fetchAllRecordZonesOperation() -> Id<Self>;
@@ -97,7 +113,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CloudKit_CKFetchRecordZonesOperation")]
+    #[cfg(all(
+        feature = "CloudKit_CKDatabaseOperation",
+        feature = "CloudKit_CKOperation",
+        feature = "Foundation_NSOperation"
+    ))]
     unsafe impl CKFetchRecordZonesOperation {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

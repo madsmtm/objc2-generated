@@ -7,21 +7,17 @@ use crate::WebKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_WKContentRuleListStore")]
     pub struct WKContentRuleListStore;
 
-    #[cfg(feature = "WebKit_WKContentRuleListStore")]
     unsafe impl ClassType for WKContentRuleListStore {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "WebKit_WKContentRuleListStore")]
 unsafe impl NSObjectProtocol for WKContentRuleListStore {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_WKContentRuleListStore")]
     unsafe impl WKContentRuleListStore {
         #[method_id(@__retain_semantics Other defaultStore)]
         pub unsafe fn defaultStore() -> Option<Id<Self>>;
@@ -74,7 +70,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_WKContentRuleListStore")]
     unsafe impl WKContentRuleListStore {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

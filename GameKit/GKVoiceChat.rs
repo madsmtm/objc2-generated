@@ -18,21 +18,17 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameKit_GKVoiceChat")]
     pub struct GKVoiceChat;
 
-    #[cfg(feature = "GameKit_GKVoiceChat")]
     unsafe impl ClassType for GKVoiceChat {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "GameKit_GKVoiceChat")]
 unsafe impl NSObjectProtocol for GKVoiceChat {}
 
 extern_methods!(
-    #[cfg(feature = "GameKit_GKVoiceChat")]
     unsafe impl GKVoiceChat {
         #[method(start)]
         pub unsafe fn start(&self);
@@ -40,17 +36,17 @@ extern_methods!(
         #[method(stop)]
         pub unsafe fn stop(&self);
 
-        #[cfg(feature = "GameKit_GKPlayer")]
+        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
         #[method(setPlayer:muted:)]
         pub unsafe fn setPlayer_muted(&self, player: &GKPlayer, is_muted: bool);
 
-        #[cfg(feature = "GameKit_GKPlayer")]
+        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
         #[method(playerVoiceChatStateDidChangeHandler)]
         pub unsafe fn playerVoiceChatStateDidChangeHandler(
             &self,
         ) -> NonNull<Block<dyn Fn(NonNull<GKPlayer>, GKVoiceChatPlayerState)>>;
 
-        #[cfg(feature = "GameKit_GKPlayer")]
+        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
         #[method(setPlayerVoiceChatStateDidChangeHandler:)]
         pub unsafe fn setPlayerVoiceChatStateDidChangeHandler(
             &self,
@@ -75,7 +71,11 @@ extern_methods!(
         #[method(setVolume:)]
         pub unsafe fn setVolume(&self, volume: c_float);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "GameKit_GKPlayer"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "GameKit_GKBasePlayer",
+            feature = "GameKit_GKPlayer"
+        ))]
         #[method_id(@__retain_semantics Other players)]
         pub unsafe fn players(&self) -> Id<NSArray<GKPlayer>>;
 
@@ -86,7 +86,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameKit_GKVoiceChat")]
     unsafe impl GKVoiceChat {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -98,7 +97,6 @@ extern_methods!(
 
 extern_methods!(
     /// Deprecated
-    #[cfg(feature = "GameKit_GKVoiceChat")]
     unsafe impl GKVoiceChat {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
@@ -119,7 +117,6 @@ extern_methods!(
 
 extern_methods!(
     /// Obsoleted
-    #[cfg(feature = "GameKit_GKVoiceChat")]
     unsafe impl GKVoiceChat {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[deprecated]

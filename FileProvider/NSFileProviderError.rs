@@ -6,16 +6,16 @@ use crate::FileProvider::*;
 use crate::Foundation::*;
 use crate::UniformTypeIdentifiers::*;
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
 extern_static!(NSFileProviderErrorDomain: &'static NSErrorDomain);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
 extern_static!(NSFileProviderErrorCollidingItemKey: &'static NSErrorUserInfoKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
 extern_static!(NSFileProviderErrorItemKey: &'static NSErrorUserInfoKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
 extern_static!(NSFileProviderErrorNonExistentItemIdentifierKey: &'static NSErrorUserInfoKey);
 
 ns_error_enum!(
@@ -49,17 +49,22 @@ extern_category!(
     /// Category "NSFileProviderError" on [`NSError`].
     #[doc(alias = "NSFileProviderError")]
     pub unsafe trait NSErrorNSFileProviderError {
+        #[cfg(feature = "FileProvider_NSFileProviderItem")]
         #[method_id(@__retain_semantics Other fileProviderErrorForCollisionWithItem:)]
         unsafe fn fileProviderErrorForCollisionWithItem(
             existing_item: &NSFileProviderItem,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "FileProvider_NSFileProviderItem",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other fileProviderErrorForNonExistentItemWithIdentifier:)]
         unsafe fn fileProviderErrorForNonExistentItemWithIdentifier(
             item_identifier: &NSFileProviderItemIdentifier,
         ) -> Id<Self>;
 
+        #[cfg(feature = "FileProvider_NSFileProviderItem")]
         #[method_id(@__retain_semantics Other fileProviderErrorForRejectedDeletionOfItem:)]
         unsafe fn fileProviderErrorForRejectedDeletionOfItem(
             updated_version: &NSFileProviderItem,

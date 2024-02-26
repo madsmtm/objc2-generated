@@ -149,22 +149,18 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSSpeechSynthesizer")]
     #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
     pub struct NSSpeechSynthesizer;
 
-    #[cfg(feature = "AppKit_NSSpeechSynthesizer")]
     unsafe impl ClassType for NSSpeechSynthesizer {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSSpeechSynthesizer")]
 unsafe impl NSObjectProtocol for NSSpeechSynthesizer {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSSpeechSynthesizer")]
     unsafe impl NSSpeechSynthesizer {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
@@ -296,7 +292,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSSpeechSynthesizer")]
     unsafe impl NSSpeechSynthesizer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -311,7 +306,6 @@ extern_protocol!(
     pub unsafe trait NSSpeechSynthesizerDelegate:
         NSObjectProtocol + IsMainThreadOnly
     {
-        #[cfg(feature = "AppKit_NSSpeechSynthesizer")]
         #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         #[optional]
         #[method(speechSynthesizer:didFinishSpeaking:)]
@@ -321,10 +315,7 @@ extern_protocol!(
             finished_speaking: bool,
         );
 
-        #[cfg(all(
-            feature = "AppKit_NSSpeechSynthesizer",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSRange", feature = "Foundation_NSString"))]
         #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         #[optional]
         #[method(speechSynthesizer:willSpeakWord:ofString:)]
@@ -335,7 +326,6 @@ extern_protocol!(
             string: &NSString,
         );
 
-        #[cfg(feature = "AppKit_NSSpeechSynthesizer")]
         #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         #[optional]
         #[method(speechSynthesizer:willSpeakPhoneme:)]
@@ -345,10 +335,7 @@ extern_protocol!(
             phoneme_opcode: c_short,
         );
 
-        #[cfg(all(
-            feature = "AppKit_NSSpeechSynthesizer",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method(speechSynthesizer:didEncounterErrorAtIndex:ofString:message:)]
         unsafe fn speechSynthesizer_didEncounterErrorAtIndex_ofString_message(
@@ -359,10 +346,7 @@ extern_protocol!(
             message: &NSString,
         );
 
-        #[cfg(all(
-            feature = "AppKit_NSSpeechSynthesizer",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method(speechSynthesizer:didEncounterSyncMessage:)]
         unsafe fn speechSynthesizer_didEncounterSyncMessage(

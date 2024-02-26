@@ -7,27 +7,23 @@ use crate::WebKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_WebResource")]
     pub struct WebResource;
 
-    #[cfg(feature = "WebKit_WebResource")]
     unsafe impl ClassType for WebResource {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "WebKit_WebResource")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for WebResource {}
 
-#[cfg(feature = "WebKit_WebResource")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for WebResource {}
 
-#[cfg(feature = "WebKit_WebResource")]
 unsafe impl NSObjectProtocol for WebResource {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_WebResource")]
     unsafe impl WebResource {
         #[cfg(all(
             feature = "Foundation_NSData",
@@ -68,7 +64,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_WebResource")]
     unsafe impl WebResource {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

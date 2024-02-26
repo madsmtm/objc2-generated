@@ -7,30 +7,26 @@ use crate::GameController::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameController_GCColor")]
     pub struct GCColor;
 
-    #[cfg(feature = "GameController_GCColor")]
     unsafe impl ClassType for GCColor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "GameController_GCColor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for GCColor {}
 
-#[cfg(feature = "GameController_GCColor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for GCColor {}
 
-#[cfg(feature = "GameController_GCColor")]
 unsafe impl NSObjectProtocol for GCColor {}
 
-#[cfg(feature = "GameController_GCColor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for GCColor {}
 
 extern_methods!(
-    #[cfg(feature = "GameController_GCColor")]
     unsafe impl GCColor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -56,7 +52,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameController_GCColor")]
     unsafe impl GCColor {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

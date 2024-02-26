@@ -7,11 +7,11 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKFetchNotificationChangesOperation")]
+    #[cfg(all(feature = "CloudKit_CKOperation", feature = "Foundation_NSOperation"))]
     #[deprecated = "Instead of iterating notifications to enumerate changed record zones, use CKDatabaseSubscription, CKFetchDatabaseChangesOperation, and CKFetchRecordZoneChangesOperation"]
     pub struct CKFetchNotificationChangesOperation;
 
-    #[cfg(feature = "CloudKit_CKFetchNotificationChangesOperation")]
+    #[cfg(all(feature = "CloudKit_CKOperation", feature = "Foundation_NSOperation"))]
     unsafe impl ClassType for CKFetchNotificationChangesOperation {
         #[inherits(NSOperation, NSObject)]
         type Super = CKOperation;
@@ -19,11 +19,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CloudKit_CKFetchNotificationChangesOperation")]
+#[cfg(all(feature = "CloudKit_CKOperation", feature = "Foundation_NSOperation"))]
 unsafe impl NSObjectProtocol for CKFetchNotificationChangesOperation {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKFetchNotificationChangesOperation")]
+    #[cfg(all(feature = "CloudKit_CKOperation", feature = "Foundation_NSOperation"))]
     unsafe impl CKFetchNotificationChangesOperation {
         #[deprecated = "Instead of iterating notifications to enumerate changed record zones, use CKDatabaseSubscription, CKFetchDatabaseChangesOperation, and CKFetchRecordZoneChangesOperation"]
         #[method_id(@__retain_semantics Init init)]
@@ -104,7 +104,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CloudKit_CKFetchNotificationChangesOperation")]
+    #[cfg(all(feature = "CloudKit_CKOperation", feature = "Foundation_NSOperation"))]
     unsafe impl CKFetchNotificationChangesOperation {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

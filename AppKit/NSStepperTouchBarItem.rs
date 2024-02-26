@@ -7,10 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSStepperTouchBarItem")]
+    #[cfg(feature = "AppKit_NSTouchBarItem")]
     pub struct NSStepperTouchBarItem;
 
-    #[cfg(feature = "AppKit_NSStepperTouchBarItem")]
+    #[cfg(feature = "AppKit_NSTouchBarItem")]
     unsafe impl ClassType for NSStepperTouchBarItem {
         #[inherits(NSObject)]
         type Super = NSTouchBarItem;
@@ -18,14 +18,14 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSStepperTouchBarItem")]
+#[cfg(all(feature = "AppKit_NSTouchBarItem", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for NSStepperTouchBarItem {}
 
-#[cfg(feature = "AppKit_NSStepperTouchBarItem")]
+#[cfg(feature = "AppKit_NSTouchBarItem")]
 unsafe impl NSObjectProtocol for NSStepperTouchBarItem {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSStepperTouchBarItem")]
+    #[cfg(feature = "AppKit_NSTouchBarItem")]
     unsafe impl NSStepperTouchBarItem {
         #[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other stepperTouchBarItemWithIdentifier:formatter:)]
@@ -35,7 +35,7 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSGeometry", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other stepperTouchBarItemWithIdentifier:drawingHandler:)]
         pub unsafe fn stepperTouchBarItemWithIdentifier_drawingHandler(
             identifier: &NSTouchBarItemIdentifier,
@@ -91,7 +91,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSTouchBarItem`
-    #[cfg(feature = "AppKit_NSStepperTouchBarItem")]
+    #[cfg(feature = "AppKit_NSTouchBarItem")]
     unsafe impl NSStepperTouchBarItem {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
@@ -111,7 +111,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSStepperTouchBarItem")]
+    #[cfg(feature = "AppKit_NSTouchBarItem")]
     unsafe impl NSStepperTouchBarItem {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

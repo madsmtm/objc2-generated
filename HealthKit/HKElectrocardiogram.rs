@@ -50,10 +50,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKElectrocardiogram")]
+    #[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
     pub struct HKElectrocardiogram;
 
-    #[cfg(feature = "HealthKit_HKElectrocardiogram")]
+    #[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
     unsafe impl ClassType for HKElectrocardiogram {
         #[inherits(HKObject, NSObject)]
         type Super = HKSample;
@@ -61,17 +61,25 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKElectrocardiogram")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "HealthKit_HKObject",
+    feature = "HealthKit_HKSample"
+))]
 unsafe impl NSCoding for HKElectrocardiogram {}
 
-#[cfg(feature = "HealthKit_HKElectrocardiogram")]
+#[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
 unsafe impl NSObjectProtocol for HKElectrocardiogram {}
 
-#[cfg(feature = "HealthKit_HKElectrocardiogram")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "HealthKit_HKObject",
+    feature = "HealthKit_HKSample"
+))]
 unsafe impl NSSecureCoding for HKElectrocardiogram {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKElectrocardiogram")]
+    #[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
     unsafe impl HKElectrocardiogram {
         #[method(numberOfVoltageMeasurements)]
         pub unsafe fn numberOfVoltageMeasurements(&self) -> NSInteger;
@@ -94,7 +102,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `HKObject`
-    #[cfg(feature = "HealthKit_HKElectrocardiogram")]
+    #[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
     unsafe impl HKElectrocardiogram {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -103,7 +111,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKElectrocardiogram")]
+    #[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
     unsafe impl HKElectrocardiogram {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

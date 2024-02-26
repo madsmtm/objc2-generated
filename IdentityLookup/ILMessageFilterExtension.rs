@@ -6,27 +6,22 @@ use crate::IdentityLookup::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "IdentityLookup_ILMessageFilterExtension")]
     pub struct ILMessageFilterExtension;
 
-    #[cfg(feature = "IdentityLookup_ILMessageFilterExtension")]
     unsafe impl ClassType for ILMessageFilterExtension {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "IdentityLookup_ILMessageFilterExtension")]
 unsafe impl NSObjectProtocol for ILMessageFilterExtension {}
 
 extern_methods!(
-    #[cfg(feature = "IdentityLookup_ILMessageFilterExtension")]
     unsafe impl ILMessageFilterExtension {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "IdentityLookup_ILMessageFilterExtension")]
     unsafe impl ILMessageFilterExtension {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

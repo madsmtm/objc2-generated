@@ -6,10 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSCustomMigrationStage")]
+    #[cfg(feature = "CoreData_NSMigrationStage")]
     pub struct NSCustomMigrationStage;
 
-    #[cfg(feature = "CoreData_NSCustomMigrationStage")]
+    #[cfg(feature = "CoreData_NSMigrationStage")]
     unsafe impl ClassType for NSCustomMigrationStage {
         #[inherits(NSObject)]
         type Super = NSMigrationStage;
@@ -17,11 +17,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CoreData_NSCustomMigrationStage")]
+#[cfg(feature = "CoreData_NSMigrationStage")]
 unsafe impl NSObjectProtocol for NSCustomMigrationStage {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSCustomMigrationStage")]
+    #[cfg(feature = "CoreData_NSMigrationStage")]
     unsafe impl NSCustomMigrationStage {
         #[cfg(feature = "CoreData_NSManagedObjectModelReference")]
         #[method_id(@__retain_semantics Other currentModel)]
@@ -112,7 +112,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSCustomMigrationStage")]
+    #[cfg(feature = "CoreData_NSMigrationStage")]
     unsafe impl NSCustomMigrationStage {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

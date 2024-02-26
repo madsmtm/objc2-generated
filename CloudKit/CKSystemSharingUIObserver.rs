@@ -7,21 +7,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKSystemSharingUIObserver")]
     pub struct CKSystemSharingUIObserver;
 
-    #[cfg(feature = "CloudKit_CKSystemSharingUIObserver")]
     unsafe impl ClassType for CKSystemSharingUIObserver {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CloudKit_CKSystemSharingUIObserver")]
 unsafe impl NSObjectProtocol for CKSystemSharingUIObserver {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKSystemSharingUIObserver")]
     unsafe impl CKSystemSharingUIObserver {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -35,6 +31,7 @@ extern_methods!(
             -> Id<Self>;
 
         #[cfg(all(
+            feature = "CloudKit_CKRecord",
             feature = "CloudKit_CKRecordID",
             feature = "CloudKit_CKShare",
             feature = "Foundation_NSError"
@@ -45,6 +42,7 @@ extern_methods!(
         ) -> *mut Block<dyn Fn(NonNull<CKRecordID>, *mut CKShare, *mut NSError)>;
 
         #[cfg(all(
+            feature = "CloudKit_CKRecord",
             feature = "CloudKit_CKRecordID",
             feature = "CloudKit_CKShare",
             feature = "Foundation_NSError"

@@ -9,10 +9,10 @@ use crate::MapKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKPitchControl")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     pub struct MKPitchControl;
 
-    #[cfg(feature = "MapKit_MKPitchControl")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl ClassType for MKPitchControl {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
@@ -20,32 +20,60 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MapKit_MKPitchControl")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibility for MKPitchControl {}
 
-#[cfg(feature = "MapKit_MKPitchControl")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibilityElementProtocol for MKPitchControl {}
 
-#[cfg(feature = "MapKit_MKPitchControl")]
+#[cfg(all(
+    feature = "AppKit_NSAnimation",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAnimatablePropertyContainer for MKPitchControl {}
 
-#[cfg(feature = "MapKit_MKPitchControl")]
+#[cfg(all(
+    feature = "AppKit_NSAppearance",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAppearanceCustomization for MKPitchControl {}
 
-#[cfg(feature = "MapKit_MKPitchControl")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for MKPitchControl {}
 
-#[cfg(feature = "MapKit_MKPitchControl")]
+#[cfg(all(
+    feature = "AppKit_NSDragging",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSDraggingDestination for MKPitchControl {}
 
-#[cfg(feature = "MapKit_MKPitchControl")]
+#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
 unsafe impl NSObjectProtocol for MKPitchControl {}
 
-#[cfg(feature = "MapKit_MKPitchControl")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSUserInterfaceItemIdentification for MKPitchControl {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKPitchControl")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl MKPitchControl {
         #[cfg(feature = "MapKit_MKMapView")]
         #[method_id(@__retain_semantics Other pitchControlWithMapView:)]
@@ -66,8 +94,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSView`
-    #[cfg(feature = "MapKit_MKPitchControl")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl MKPitchControl {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
 
@@ -79,7 +108,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "MapKit_MKPitchControl")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl MKPitchControl {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -88,7 +117,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MapKit_MKPitchControl")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl MKPitchControl {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

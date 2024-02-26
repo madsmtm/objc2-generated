@@ -29,29 +29,23 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "StoreKit_SKProductDiscount")]
     pub struct SKProductDiscount;
 
-    #[cfg(feature = "StoreKit_SKProductDiscount")]
     unsafe impl ClassType for SKProductDiscount {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "StoreKit_SKProductDiscount")]
 unsafe impl Send for SKProductDiscount {}
 
-#[cfg(feature = "StoreKit_SKProductDiscount")]
 unsafe impl Sync for SKProductDiscount {}
 
-#[cfg(feature = "StoreKit_SKProductDiscount")]
 unsafe impl NSObjectProtocol for SKProductDiscount {}
 
 extern_methods!(
-    #[cfg(feature = "StoreKit_SKProductDiscount")]
     unsafe impl SKProductDiscount {
-        #[cfg(feature = "Foundation_NSDecimalNumber")]
+        #[cfg(all(feature = "Foundation_NSDecimalNumber", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Other price)]
         pub unsafe fn price(&self) -> Id<NSDecimalNumber>;
 
@@ -63,7 +57,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "StoreKit_SKProductSubscriptionPeriod")]
+        #[cfg(feature = "StoreKit_SKProduct")]
         #[method_id(@__retain_semantics Other subscriptionPeriod)]
         pub unsafe fn subscriptionPeriod(&self) -> Id<SKProductSubscriptionPeriod>;
 
@@ -80,7 +74,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "StoreKit_SKProductDiscount")]
     unsafe impl SKProductDiscount {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -3,7 +3,7 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
 extern_static!(NSURLErrorDomain: &'static NSErrorDomain);
 
 #[cfg(feature = "Foundation_NSString")]
@@ -25,7 +25,7 @@ pub const NSURLErrorCancelledReasonUserForceQuitApplication: NSInteger = 0;
 pub const NSURLErrorCancelledReasonBackgroundUpdatesDisabled: NSInteger = 1;
 pub const NSURLErrorCancelledReasonInsufficientSystemResources: NSInteger = 2;
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
 extern_static!(NSURLErrorNetworkUnavailableReasonKey: &'static NSErrorUserInfoKey);
 
 ns_enum!(

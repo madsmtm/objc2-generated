@@ -7,21 +7,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTextElement")]
     pub struct NSTextElement;
 
-    #[cfg(feature = "AppKit_NSTextElement")]
     unsafe impl ClassType for NSTextElement {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSTextElement")]
 unsafe impl NSObjectProtocol for NSTextElement {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTextElement")]
     unsafe impl NSTextElement {
         #[cfg(feature = "AppKit_NSTextContentManager")]
         #[method_id(@__retain_semantics Init initWithTextContentManager:)]
@@ -63,7 +59,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTextElement")]
     unsafe impl NSTextElement {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -75,10 +70,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTextParagraph")]
     pub struct NSTextParagraph;
 
-    #[cfg(feature = "AppKit_NSTextParagraph")]
     unsafe impl ClassType for NSTextParagraph {
         #[inherits(NSObject)]
         type Super = NSTextElement;
@@ -86,11 +79,9 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSTextParagraph")]
 unsafe impl NSObjectProtocol for NSTextParagraph {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTextParagraph")]
     unsafe impl NSTextParagraph {
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Init initWithAttributedString:)]
@@ -115,7 +106,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSTextElement`
-    #[cfg(feature = "AppKit_NSTextParagraph")]
     unsafe impl NSTextParagraph {
         #[cfg(feature = "AppKit_NSTextContentManager")]
         #[method_id(@__retain_semantics Init initWithTextContentManager:)]
@@ -128,7 +118,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTextParagraph")]
     unsafe impl NSTextParagraph {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -6,23 +6,23 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Contacts_CNSaveRequest")]
     pub struct CNSaveRequest;
 
-    #[cfg(feature = "Contacts_CNSaveRequest")]
     unsafe impl ClassType for CNSaveRequest {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Contacts_CNSaveRequest")]
 unsafe impl NSObjectProtocol for CNSaveRequest {}
 
 extern_methods!(
-    #[cfg(feature = "Contacts_CNSaveRequest")]
     unsafe impl CNSaveRequest {
-        #[cfg(all(feature = "Contacts_CNMutableContact", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Contacts_CNContact",
+            feature = "Contacts_CNMutableContact",
+            feature = "Foundation_NSString"
+        ))]
         #[method(addContact:toContainerWithIdentifier:)]
         pub unsafe fn addContact_toContainerWithIdentifier(
             &self,
@@ -30,15 +30,19 @@ extern_methods!(
             identifier: Option<&NSString>,
         );
 
-        #[cfg(feature = "Contacts_CNMutableContact")]
+        #[cfg(all(feature = "Contacts_CNContact", feature = "Contacts_CNMutableContact"))]
         #[method(updateContact:)]
         pub unsafe fn updateContact(&self, contact: &CNMutableContact);
 
-        #[cfg(feature = "Contacts_CNMutableContact")]
+        #[cfg(all(feature = "Contacts_CNContact", feature = "Contacts_CNMutableContact"))]
         #[method(deleteContact:)]
         pub unsafe fn deleteContact(&self, contact: &CNMutableContact);
 
-        #[cfg(all(feature = "Contacts_CNMutableGroup", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Contacts_CNGroup",
+            feature = "Contacts_CNMutableGroup",
+            feature = "Foundation_NSString"
+        ))]
         #[method(addGroup:toContainerWithIdentifier:)]
         pub unsafe fn addGroup_toContainerWithIdentifier(
             &self,
@@ -46,11 +50,11 @@ extern_methods!(
             identifier: Option<&NSString>,
         );
 
-        #[cfg(feature = "Contacts_CNMutableGroup")]
+        #[cfg(all(feature = "Contacts_CNGroup", feature = "Contacts_CNMutableGroup"))]
         #[method(updateGroup:)]
         pub unsafe fn updateGroup(&self, group: &CNMutableGroup);
 
-        #[cfg(feature = "Contacts_CNMutableGroup")]
+        #[cfg(all(feature = "Contacts_CNGroup", feature = "Contacts_CNMutableGroup"))]
         #[method(deleteGroup:)]
         pub unsafe fn deleteGroup(&self, group: &CNMutableGroup);
 
@@ -88,7 +92,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Contacts_CNSaveRequest")]
     unsafe impl CNSaveRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

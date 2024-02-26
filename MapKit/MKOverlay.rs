@@ -8,13 +8,17 @@ use crate::Foundation::*;
 use crate::MapKit::*;
 
 extern_protocol!(
+    #[cfg(feature = "MapKit_MKAnnotation")]
     pub unsafe trait MKOverlay: MKAnnotation {
+        #[cfg(feature = "CoreLocation_CLLocation")]
         #[method(coordinate)]
         unsafe fn coordinate(&self) -> CLLocationCoordinate2D;
 
+        #[cfg(feature = "MapKit_MKGeometry")]
         #[method(boundingMapRect)]
         unsafe fn boundingMapRect(&self) -> MKMapRect;
 
+        #[cfg(feature = "MapKit_MKGeometry")]
         #[optional]
         #[method(intersectsMapRect:)]
         unsafe fn intersectsMapRect(&self, map_rect: MKMapRect) -> bool;
@@ -24,5 +28,6 @@ extern_protocol!(
         unsafe fn canReplaceMapContent(&self) -> bool;
     }
 
+    #[cfg(feature = "MapKit_MKAnnotation")]
     unsafe impl ProtocolType for dyn MKOverlay {}
 );

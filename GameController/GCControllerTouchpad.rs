@@ -17,16 +17,16 @@ ns_enum!(
     }
 );
 
-#[cfg(feature = "GameController_GCControllerTouchpad")]
+#[cfg(feature = "GameController_GCControllerElement")]
 pub type GCControllerTouchpadHandler =
     *mut Block<dyn Fn(NonNull<GCControllerTouchpad>, c_float, c_float, c_float, Bool)>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameController_GCControllerTouchpad")]
+    #[cfg(feature = "GameController_GCControllerElement")]
     pub struct GCControllerTouchpad;
 
-    #[cfg(feature = "GameController_GCControllerTouchpad")]
+    #[cfg(feature = "GameController_GCControllerElement")]
     unsafe impl ClassType for GCControllerTouchpad {
         #[inherits(NSObject)]
         type Super = GCControllerElement;
@@ -34,11 +34,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "GameController_GCControllerTouchpad")]
+#[cfg(feature = "GameController_GCControllerElement")]
 unsafe impl NSObjectProtocol for GCControllerTouchpad {}
 
 extern_methods!(
-    #[cfg(feature = "GameController_GCControllerTouchpad")]
+    #[cfg(feature = "GameController_GCControllerElement")]
     unsafe impl GCControllerTouchpad {
         #[cfg(feature = "GameController_GCControllerButtonInput")]
         #[method_id(@__retain_semantics Other button)]
@@ -91,7 +91,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameController_GCControllerTouchpad")]
+    #[cfg(feature = "GameController_GCControllerElement")]
     unsafe impl GCControllerTouchpad {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

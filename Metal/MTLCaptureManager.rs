@@ -4,7 +4,7 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::Metal::*;
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
 extern_static!(MTLCaptureErrorDomain: &'static NSErrorDomain);
 
 ns_enum!(
@@ -31,24 +31,20 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLCaptureDescriptor")]
     pub struct MTLCaptureDescriptor;
 
-    #[cfg(feature = "Metal_MTLCaptureDescriptor")]
     unsafe impl ClassType for MTLCaptureDescriptor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLCaptureDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLCaptureDescriptor {}
 
-#[cfg(feature = "Metal_MTLCaptureDescriptor")]
 unsafe impl NSObjectProtocol for MTLCaptureDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLCaptureDescriptor")]
     unsafe impl MTLCaptureDescriptor {
         #[method_id(@__retain_semantics Other captureObject)]
         pub unsafe fn captureObject(&self) -> Option<Id<AnyObject>>;
@@ -74,7 +70,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLCaptureDescriptor")]
     unsafe impl MTLCaptureDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub fn init(this: Allocated<Self>) -> Id<Self>;
@@ -84,7 +79,6 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Metal_MTLCaptureDescriptor")]
 impl DefaultId for MTLCaptureDescriptor {
     #[inline]
     fn default_id() -> Id<Self> {
@@ -94,21 +88,17 @@ impl DefaultId for MTLCaptureDescriptor {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLCaptureManager")]
     pub struct MTLCaptureManager;
 
-    #[cfg(feature = "Metal_MTLCaptureManager")]
     unsafe impl ClassType for MTLCaptureManager {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLCaptureManager")]
 unsafe impl NSObjectProtocol for MTLCaptureManager {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLCaptureManager")]
     unsafe impl MTLCaptureManager {
         #[method_id(@__retain_semantics Other sharedCaptureManager)]
         pub unsafe fn sharedCaptureManager() -> Id<MTLCaptureManager>;
@@ -116,12 +106,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
+        #[cfg(all(feature = "Metal_MTLCaptureScope", feature = "Metal_MTLDevice"))]
         #[method_id(@__retain_semantics New newCaptureScopeWithDevice:)]
         pub fn newCaptureScopeWithDevice(
             &self,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Id<ProtocolObject<dyn MTLCaptureScope>>;
 
+        #[cfg(all(feature = "Metal_MTLCaptureScope", feature = "Metal_MTLCommandQueue"))]
         #[method_id(@__retain_semantics New newCaptureScopeWithCommandQueue:)]
         pub fn newCaptureScopeWithCommandQueue(
             &self,
@@ -131,17 +123,19 @@ extern_methods!(
         #[method(supportsDestination:)]
         pub fn supportsDestination(&self, destination: MTLCaptureDestination) -> bool;
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "Metal_MTLCaptureDescriptor"))]
+        #[cfg(feature = "Foundation_NSError")]
         #[method(startCaptureWithDescriptor:error:_)]
         pub fn startCaptureWithDescriptor_error(
             &self,
             descriptor: &MTLCaptureDescriptor,
         ) -> Result<(), Id<NSError>>;
 
+        #[cfg(feature = "Metal_MTLDevice")]
         #[deprecated = "Use startCaptureWithDescriptor:error: instead"]
         #[method(startCaptureWithDevice:)]
         pub fn startCaptureWithDevice(&self, device: &ProtocolObject<dyn MTLDevice>);
 
+        #[cfg(feature = "Metal_MTLCommandQueue")]
         #[deprecated = "Use startCaptureWithDescriptor:error: instead"]
         #[method(startCaptureWithCommandQueue:)]
         pub fn startCaptureWithCommandQueue(
@@ -149,6 +143,7 @@ extern_methods!(
             command_queue: &ProtocolObject<dyn MTLCommandQueue>,
         );
 
+        #[cfg(feature = "Metal_MTLCaptureScope")]
         #[deprecated = "Use startCaptureWithDescriptor:error: instead"]
         #[method(startCaptureWithScope:)]
         pub fn startCaptureWithScope(&self, capture_scope: &ProtocolObject<dyn MTLCaptureScope>);
@@ -156,9 +151,11 @@ extern_methods!(
         #[method(stopCapture)]
         pub fn stopCapture(&self);
 
+        #[cfg(feature = "Metal_MTLCaptureScope")]
         #[method_id(@__retain_semantics Other defaultCaptureScope)]
         pub fn defaultCaptureScope(&self) -> Option<Id<ProtocolObject<dyn MTLCaptureScope>>>;
 
+        #[cfg(feature = "Metal_MTLCaptureScope")]
         #[method(setDefaultCaptureScope:)]
         pub fn setDefaultCaptureScope(
             &self,
@@ -172,7 +169,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLCaptureManager")]
     unsafe impl MTLCaptureManager {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

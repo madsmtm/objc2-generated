@@ -147,30 +147,24 @@ extern_static!(NSPersistentStoreDeferredLightweightMigrationOptionKey: &'static 
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSPersistentStoreCoordinator")]
     pub struct NSPersistentStoreCoordinator;
 
-    #[cfg(feature = "CoreData_NSPersistentStoreCoordinator")]
     unsafe impl ClassType for NSPersistentStoreCoordinator {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreData_NSPersistentStoreCoordinator")]
 unsafe impl Send for NSPersistentStoreCoordinator {}
 
-#[cfg(feature = "CoreData_NSPersistentStoreCoordinator")]
 unsafe impl Sync for NSPersistentStoreCoordinator {}
 
-#[cfg(feature = "CoreData_NSPersistentStoreCoordinator")]
+#[cfg(feature = "Foundation_NSLock")]
 unsafe impl NSLocking for NSPersistentStoreCoordinator {}
 
-#[cfg(feature = "CoreData_NSPersistentStoreCoordinator")]
 unsafe impl NSObjectProtocol for NSPersistentStoreCoordinator {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSPersistentStoreCoordinator")]
     unsafe impl NSPersistentStoreCoordinator {
         #[cfg(feature = "CoreData_NSManagedObjectModel")]
         #[method_id(@__retain_semantics Init initWithManagedObjectModel:)]
@@ -488,7 +482,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSPersistentStoreCoordinator")]
     unsafe impl NSPersistentStoreCoordinator {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

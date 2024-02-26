@@ -7,10 +7,20 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSStatusBarButton")]
+    #[cfg(all(
+        feature = "AppKit_NSButton",
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     pub struct NSStatusBarButton;
 
-    #[cfg(feature = "AppKit_NSStatusBarButton")]
+    #[cfg(all(
+        feature = "AppKit_NSButton",
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl ClassType for NSStatusBarButton {
         #[inherits(NSControl, NSView, NSResponder, NSObject)]
         type Super = NSButton;
@@ -18,41 +28,111 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSStatusBarButton")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSButton",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibility for NSStatusBarButton {}
 
-#[cfg(feature = "AppKit_NSStatusBarButton")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSButton",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibilityButton for NSStatusBarButton {}
 
-#[cfg(feature = "AppKit_NSStatusBarButton")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSButton",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibilityElementProtocol for NSStatusBarButton {}
 
-#[cfg(feature = "AppKit_NSStatusBarButton")]
+#[cfg(all(
+    feature = "AppKit_NSAnimation",
+    feature = "AppKit_NSButton",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAnimatablePropertyContainer for NSStatusBarButton {}
 
-#[cfg(feature = "AppKit_NSStatusBarButton")]
+#[cfg(all(
+    feature = "AppKit_NSAppearance",
+    feature = "AppKit_NSButton",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAppearanceCustomization for NSStatusBarButton {}
 
-#[cfg(feature = "AppKit_NSStatusBarButton")]
+#[cfg(all(
+    feature = "AppKit_NSButton",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSStatusBarButton {}
 
-#[cfg(feature = "AppKit_NSStatusBarButton")]
+#[cfg(all(
+    feature = "AppKit_NSButton",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSDragging",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSDraggingDestination for NSStatusBarButton {}
 
-#[cfg(feature = "AppKit_NSStatusBarButton")]
+#[cfg(all(
+    feature = "AppKit_NSButton",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSObjectProtocol for NSStatusBarButton {}
 
-#[cfg(feature = "AppKit_NSStatusBarButton")]
+#[cfg(all(
+    feature = "AppKit_NSButton",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceCompression",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSUserInterfaceCompression for NSStatusBarButton {}
 
-#[cfg(feature = "AppKit_NSStatusBarButton")]
+#[cfg(all(
+    feature = "AppKit_NSButton",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSStatusBarButton {}
 
-#[cfg(feature = "AppKit_NSStatusBarButton")]
+#[cfg(all(
+    feature = "AppKit_NSButton",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceValidation",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSUserInterfaceValidations for NSStatusBarButton {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSStatusBarButton")]
+    #[cfg(all(
+        feature = "AppKit_NSButton",
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSStatusBarButton {
         #[method(appearsDisabled)]
         pub unsafe fn appearsDisabled(&self) -> bool;
@@ -64,7 +144,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSButton`
-    #[cfg(feature = "AppKit_NSStatusBarButton")]
+    #[cfg(all(
+        feature = "AppKit_NSButton",
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSStatusBarButton {
         #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other buttonWithTitle:image:target:action:)]
@@ -116,8 +201,14 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSControl`
-    #[cfg(feature = "AppKit_NSStatusBarButton")]
+    #[cfg(all(
+        feature = "AppKit_NSButton",
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSStatusBarButton {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
 
@@ -129,7 +220,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "AppKit_NSStatusBarButton")]
+    #[cfg(all(
+        feature = "AppKit_NSButton",
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSStatusBarButton {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -138,7 +234,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSStatusBarButton")]
+    #[cfg(all(
+        feature = "AppKit_NSButton",
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSStatusBarButton {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

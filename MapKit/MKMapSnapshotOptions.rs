@@ -9,24 +9,20 @@ use crate::MapKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKMapSnapshotOptions")]
     pub struct MKMapSnapshotOptions;
 
-    #[cfg(feature = "MapKit_MKMapSnapshotOptions")]
     unsafe impl ClassType for MKMapSnapshotOptions {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MapKit_MKMapSnapshotOptions")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MKMapSnapshotOptions {}
 
-#[cfg(feature = "MapKit_MKMapSnapshotOptions")]
 unsafe impl NSObjectProtocol for MKMapSnapshotOptions {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKMapSnapshotOptions")]
     unsafe impl MKMapSnapshotOptions {
         #[cfg(feature = "MapKit_MKMapConfiguration")]
         #[method_id(@__retain_semantics Other preferredConfiguration)]
@@ -47,22 +43,28 @@ extern_methods!(
         #[method(setCamera:)]
         pub unsafe fn setCamera(&self, camera: &MKMapCamera);
 
+        #[cfg(feature = "MapKit_MKGeometry")]
         #[method(mapRect)]
         pub unsafe fn mapRect(&self) -> MKMapRect;
 
+        #[cfg(feature = "MapKit_MKGeometry")]
         #[method(setMapRect:)]
         pub unsafe fn setMapRect(&self, map_rect: MKMapRect);
 
+        #[cfg(all(feature = "CoreLocation_CLLocation", feature = "MapKit_MKGeometry"))]
         #[method(region)]
         pub unsafe fn region(&self) -> MKCoordinateRegion;
 
+        #[cfg(all(feature = "CoreLocation_CLLocation", feature = "MapKit_MKGeometry"))]
         #[method(setRegion:)]
         pub unsafe fn setRegion(&self, region: MKCoordinateRegion);
 
+        #[cfg(feature = "MapKit_MKTypes")]
         #[deprecated = "Use preferredConfiguration"]
         #[method(mapType)]
         pub unsafe fn mapType(&self) -> MKMapType;
 
+        #[cfg(feature = "MapKit_MKTypes")]
         #[deprecated = "Use preferredConfiguration"]
         #[method(setMapType:)]
         pub unsafe fn setMapType(&self, map_type: MKMapType);
@@ -96,9 +98,11 @@ extern_methods!(
         #[method(setShowsBuildings:)]
         pub unsafe fn setShowsBuildings(&self, shows_buildings: bool);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(size)]
         pub unsafe fn size(&self) -> NSSize;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setSize:)]
         pub unsafe fn setSize(&self, size: NSSize);
 
@@ -114,7 +118,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MapKit_MKMapSnapshotOptions")]
     unsafe impl MKMapSnapshotOptions {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

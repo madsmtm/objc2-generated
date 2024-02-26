@@ -6,21 +6,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreWLAN_CWInterface")]
     pub struct CWInterface;
 
-    #[cfg(feature = "CoreWLAN_CWInterface")]
     unsafe impl ClassType for CWInterface {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreWLAN_CWInterface")]
 unsafe impl NSObjectProtocol for CWInterface {}
 
 extern_methods!(
-    #[cfg(feature = "CoreWLAN_CWInterface")]
     unsafe impl CWInterface {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other interfaceName)]
@@ -37,6 +33,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other wlanChannel)]
         pub unsafe fn wlanChannel(&self) -> Option<Id<CWChannel>>;
 
+        #[cfg(feature = "CoreWLAN_CoreWLANTypes")]
         #[method(activePHYMode)]
         pub unsafe fn activePHYMode(&self) -> CWPHYMode;
 
@@ -58,6 +55,7 @@ extern_methods!(
         #[method(noiseMeasurement)]
         pub unsafe fn noiseMeasurement(&self) -> NSInteger;
 
+        #[cfg(feature = "CoreWLAN_CoreWLANTypes")]
         #[method(security)]
         pub unsafe fn security(&self) -> CWSecurity;
 
@@ -68,6 +66,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other countryCode)]
         pub unsafe fn countryCode(&self) -> Option<Id<NSString>>;
 
+        #[cfg(feature = "CoreWLAN_CoreWLANTypes")]
         #[method(interfaceMode)]
         pub unsafe fn interfaceMode(&self) -> CWInterfaceMode;
 
@@ -126,7 +125,11 @@ extern_methods!(
             key: Option<&NSData>,
         ) -> Result<(), Id<NSError>>;
 
-        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
+        #[cfg(all(
+            feature = "CoreWLAN_CoreWLANTypes",
+            feature = "Foundation_NSData",
+            feature = "Foundation_NSError"
+        ))]
         #[method(setWEPKey:flags:index:error:_)]
         pub unsafe fn setWEPKey_flags_index_error(
             &self,
@@ -201,6 +204,7 @@ extern_methods!(
         pub unsafe fn disassociate(&self);
 
         #[cfg(all(
+            feature = "CoreWLAN_CoreWLANTypes",
             feature = "Foundation_NSData",
             feature = "Foundation_NSError",
             feature = "Foundation_NSString"
@@ -214,24 +218,11 @@ extern_methods!(
             channel: NSUInteger,
             password: Option<&NSString>,
         ) -> Result<(), Id<NSError>>;
-
-        #[cfg(all(
-            feature = "CoreWLAN_CWConfiguration",
-            feature = "CoreWLAN_SFAuthorization",
-            feature = "Foundation_NSError"
-        ))]
-        #[method(commitConfiguration:authorization:error:_)]
-        pub unsafe fn commitConfiguration_authorization_error(
-            &self,
-            configuration: &CWConfiguration,
-            authorization: Option<&SFAuthorization>,
-        ) -> Result<(), Id<NSError>>;
     }
 );
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreWLAN_CWInterface")]
     unsafe impl CWInterface {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

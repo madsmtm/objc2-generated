@@ -8,44 +8,39 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKActivitySummary")]
     pub struct HKActivitySummary;
 
-    #[cfg(feature = "HealthKit_HKActivitySummary")]
     unsafe impl ClassType for HKActivitySummary {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "HealthKit_HKActivitySummary")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for HKActivitySummary {}
 
-#[cfg(feature = "HealthKit_HKActivitySummary")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for HKActivitySummary {}
 
-#[cfg(feature = "HealthKit_HKActivitySummary")]
 unsafe impl NSObjectProtocol for HKActivitySummary {}
 
-#[cfg(feature = "HealthKit_HKActivitySummary")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for HKActivitySummary {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKActivitySummary")]
     unsafe impl HKActivitySummary {
-        #[cfg(all(
-            feature = "Foundation_NSCalendar",
-            feature = "Foundation_NSDateComponents"
-        ))]
+        #[cfg(feature = "Foundation_NSCalendar")]
         #[method_id(@__retain_semantics Other dateComponentsForCalendar:)]
         pub unsafe fn dateComponentsForCalendar(
             &self,
             calendar: &NSCalendar,
         ) -> Id<NSDateComponents>;
 
+        #[cfg(feature = "HealthKit_HKCharacteristicValues")]
         #[method(activityMoveMode)]
         pub unsafe fn activityMoveMode(&self) -> HKActivityMoveMode;
 
+        #[cfg(feature = "HealthKit_HKCharacteristicValues")]
         #[method(setActivityMoveMode:)]
         pub unsafe fn setActivityMoveMode(&self, activity_move_mode: HKActivityMoveMode);
 
@@ -137,7 +132,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKActivitySummary")]
     unsafe impl HKActivitySummary {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

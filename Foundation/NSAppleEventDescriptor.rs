@@ -22,30 +22,26 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
     pub struct NSAppleEventDescriptor;
 
-    #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
     unsafe impl ClassType for NSAppleEventDescriptor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSAppleEventDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSAppleEventDescriptor {}
 
-#[cfg(feature = "Foundation_NSAppleEventDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSAppleEventDescriptor {}
 
-#[cfg(feature = "Foundation_NSAppleEventDescriptor")]
 unsafe impl NSObjectProtocol for NSAppleEventDescriptor {}
 
-#[cfg(feature = "Foundation_NSAppleEventDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSAppleEventDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
     unsafe impl NSAppleEventDescriptor {
         #[method_id(@__retain_semantics Other nullDescriptor)]
         pub unsafe fn nullDescriptor() -> Id<NSAppleEventDescriptor>;
@@ -161,7 +157,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSAppleEventDescriptor")]
     unsafe impl NSAppleEventDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

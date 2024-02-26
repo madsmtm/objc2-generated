@@ -7,22 +7,18 @@ use crate::WebKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_WebDataSource")]
     #[deprecated]
     pub struct WebDataSource;
 
-    #[cfg(feature = "WebKit_WebDataSource")]
     unsafe impl ClassType for WebDataSource {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "WebKit_WebDataSource")]
 unsafe impl NSObjectProtocol for WebDataSource {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_WebDataSource")]
     unsafe impl WebDataSource {
         #[cfg(feature = "Foundation_NSURLRequest")]
         #[deprecated]
@@ -37,6 +33,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other data)]
         pub unsafe fn data(&self) -> Id<NSData>;
 
+        #[cfg(feature = "WebKit_WebDocument")]
         #[deprecated]
         #[method_id(@__retain_semantics Other representation)]
         pub unsafe fn representation(
@@ -53,7 +50,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other initialRequest)]
         pub unsafe fn initialRequest(&self) -> Option<Id<NSURLRequest>>;
 
-        #[cfg(feature = "Foundation_NSMutableURLRequest")]
+        #[cfg(feature = "Foundation_NSURLRequest")]
         #[deprecated]
         #[method_id(@__retain_semantics Other request)]
         pub unsafe fn request(&self) -> Option<Id<NSMutableURLRequest>>;
@@ -111,7 +108,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_WebDataSource")]
     unsafe impl WebDataSource {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

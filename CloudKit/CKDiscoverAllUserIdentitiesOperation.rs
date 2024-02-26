@@ -7,11 +7,11 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKDiscoverAllUserIdentitiesOperation")]
+    #[cfg(all(feature = "CloudKit_CKOperation", feature = "Foundation_NSOperation"))]
     #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
     pub struct CKDiscoverAllUserIdentitiesOperation;
 
-    #[cfg(feature = "CloudKit_CKDiscoverAllUserIdentitiesOperation")]
+    #[cfg(all(feature = "CloudKit_CKOperation", feature = "Foundation_NSOperation"))]
     unsafe impl ClassType for CKDiscoverAllUserIdentitiesOperation {
         #[inherits(NSOperation, NSObject)]
         type Super = CKOperation;
@@ -19,11 +19,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CloudKit_CKDiscoverAllUserIdentitiesOperation")]
+#[cfg(all(feature = "CloudKit_CKOperation", feature = "Foundation_NSOperation"))]
 unsafe impl NSObjectProtocol for CKDiscoverAllUserIdentitiesOperation {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKDiscoverAllUserIdentitiesOperation")]
+    #[cfg(all(feature = "CloudKit_CKOperation", feature = "Foundation_NSOperation"))]
     unsafe impl CKDiscoverAllUserIdentitiesOperation {
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method_id(@__retain_semantics Init init)]
@@ -63,7 +63,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CloudKit_CKDiscoverAllUserIdentitiesOperation")]
+    #[cfg(all(feature = "CloudKit_CKOperation", feature = "Foundation_NSOperation"))]
     unsafe impl CKDiscoverAllUserIdentitiesOperation {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

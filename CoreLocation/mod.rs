@@ -17,83 +17,132 @@
 #[link(name = "CoreLocation", kind = "framework")]
 extern "C" {}
 
+#[cfg(feature = "CoreLocation_CLAvailability")]
 #[path = "CLAvailability.rs"]
 mod __CLAvailability;
+#[cfg(feature = "CoreLocation_CLBackgroundActivitySession")]
 #[path = "CLBackgroundActivitySession.rs"]
 mod __CLBackgroundActivitySession;
+#[cfg(feature = "CoreLocation_CLBeaconIdentityCondition")]
 #[path = "CLBeaconIdentityCondition.rs"]
 mod __CLBeaconIdentityCondition;
+#[cfg(feature = "CoreLocation_CLBeaconIdentityConstraint")]
 #[path = "CLBeaconIdentityConstraint.rs"]
 mod __CLBeaconIdentityConstraint;
+#[cfg(feature = "CoreLocation_CLBeaconRegion")]
 #[path = "CLBeaconRegion.rs"]
 mod __CLBeaconRegion;
+#[cfg(feature = "CoreLocation_CLCircularGeographicCondition")]
 #[path = "CLCircularGeographicCondition.rs"]
 mod __CLCircularGeographicCondition;
+#[cfg(feature = "CoreLocation_CLCircularRegion")]
 #[path = "CLCircularRegion.rs"]
 mod __CLCircularRegion;
+#[cfg(feature = "CoreLocation_CLCondition")]
 #[path = "CLCondition.rs"]
 mod __CLCondition;
+#[cfg(feature = "CoreLocation_CLError")]
 #[path = "CLError.rs"]
 mod __CLError;
+#[cfg(feature = "CoreLocation_CLErrorDomain")]
 #[path = "CLErrorDomain.rs"]
 mod __CLErrorDomain;
+#[cfg(feature = "CoreLocation_CLGeocoder")]
 #[path = "CLGeocoder.rs"]
 mod __CLGeocoder;
+#[cfg(feature = "CoreLocation_CLHeading")]
 #[path = "CLHeading.rs"]
 mod __CLHeading;
+#[cfg(feature = "CoreLocation_CLLocation")]
 #[path = "CLLocation.rs"]
 mod __CLLocation;
+#[cfg(feature = "CoreLocation_CLLocationManager")]
 #[path = "CLLocationManager.rs"]
 mod __CLLocationManager;
+#[cfg(feature = "CoreLocation_CLLocationManagerDelegate")]
 #[path = "CLLocationManagerDelegate.rs"]
 mod __CLLocationManagerDelegate;
+#[cfg(feature = "CoreLocation_CLLocationManager_CLVisitExtensions")]
 #[path = "CLLocationManager_CLVisitExtensions.rs"]
 mod __CLLocationManager_CLVisitExtensions;
+#[cfg(feature = "CoreLocation_CLLocationPushServiceError")]
 #[path = "CLLocationPushServiceError.rs"]
 mod __CLLocationPushServiceError;
+#[cfg(feature = "CoreLocation_CLLocationPushServiceExtension")]
 #[path = "CLLocationPushServiceExtension.rs"]
 mod __CLLocationPushServiceExtension;
+#[cfg(feature = "CoreLocation_CLLocationUpdater")]
 #[path = "CLLocationUpdater.rs"]
 mod __CLLocationUpdater;
+#[cfg(feature = "CoreLocation_CLMonitor")]
 #[path = "CLMonitor.rs"]
 mod __CLMonitor;
+#[cfg(feature = "CoreLocation_CLMonitorConfiguration")]
 #[path = "CLMonitorConfiguration.rs"]
 mod __CLMonitorConfiguration;
+#[cfg(feature = "CoreLocation_CLMonitoringEvent")]
 #[path = "CLMonitoringEvent.rs"]
 mod __CLMonitoringEvent;
+#[cfg(feature = "CoreLocation_CLMonitoringRecord")]
 #[path = "CLMonitoringRecord.rs"]
 mod __CLMonitoringRecord;
+#[cfg(feature = "CoreLocation_CLPlacemark")]
 #[path = "CLPlacemark.rs"]
 mod __CLPlacemark;
+#[cfg(feature = "CoreLocation_CLRegion")]
 #[path = "CLRegion.rs"]
 mod __CLRegion;
+#[cfg(feature = "CoreLocation_CLVisit")]
 #[path = "CLVisit.rs"]
 mod __CLVisit;
 
 #[cfg(feature = "CoreLocation_CLBackgroundActivitySession")]
 pub use self::__CLBackgroundActivitySession::CLBackgroundActivitySession;
-#[cfg(feature = "CoreLocation_CLBeaconIdentityCondition")]
+#[cfg(all(
+    feature = "CoreLocation_CLBeaconIdentityCondition",
+    feature = "CoreLocation_CLCondition"
+))]
 pub use self::__CLBeaconIdentityCondition::CLBeaconIdentityCondition;
+#[cfg(feature = "CoreLocation_CLBeaconIdentityCondition")]
 pub use self::__CLBeaconIdentityCondition::CLBeaconMajorValue;
+#[cfg(feature = "CoreLocation_CLBeaconIdentityCondition")]
 pub use self::__CLBeaconIdentityCondition::CLBeaconMinorValue;
-#[cfg(feature = "CoreLocation_CLBeaconIdentityConstraint")]
+#[cfg(all(
+    feature = "CoreLocation_CLBeaconIdentityCondition",
+    feature = "CoreLocation_CLBeaconIdentityConstraint",
+    feature = "CoreLocation_CLCondition"
+))]
 pub use self::__CLBeaconIdentityConstraint::CLBeaconIdentityConstraint;
-#[cfg(feature = "CoreLocation_CLBeacon")]
-pub use self::__CLBeaconRegion::CLBeacon;
 #[cfg(feature = "CoreLocation_CLBeaconRegion")]
+pub use self::__CLBeaconRegion::CLBeacon;
+#[cfg(all(
+    feature = "CoreLocation_CLBeaconRegion",
+    feature = "CoreLocation_CLRegion"
+))]
 pub use self::__CLBeaconRegion::CLBeaconRegion;
-#[cfg(feature = "CoreLocation_CLCircularGeographicCondition")]
+#[cfg(all(
+    feature = "CoreLocation_CLCircularGeographicCondition",
+    feature = "CoreLocation_CLCondition"
+))]
 pub use self::__CLCircularGeographicCondition::CLCircularGeographicCondition;
-#[cfg(feature = "CoreLocation_CLCircularRegion")]
+#[cfg(all(
+    feature = "CoreLocation_CLCircularRegion",
+    feature = "CoreLocation_CLRegion"
+))]
 pub use self::__CLCircularRegion::CLCircularRegion;
 #[cfg(feature = "CoreLocation_CLCondition")]
 pub use self::__CLCondition::CLCondition;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "CoreLocation_CLError", feature = "Foundation_NSString"))]
 pub use self::__CLError::kCLErrorUserInfoAlternateRegionKey;
+#[cfg(feature = "CoreLocation_CLError")]
 pub use self::__CLError::CLError;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreLocation_CLErrorDomain",
+    feature = "Foundation_NSString"
+))]
 pub use self::__CLErrorDomain::kCLErrorDomain;
 #[cfg(all(
+    feature = "CoreLocation_CLGeocoder",
     feature = "CoreLocation_CLPlacemark",
     feature = "Foundation_NSArray",
     feature = "Foundation_NSError"
@@ -101,52 +150,90 @@ pub use self::__CLErrorDomain::kCLErrorDomain;
 pub use self::__CLGeocoder::CLGeocodeCompletionHandler;
 #[cfg(feature = "CoreLocation_CLGeocoder")]
 pub use self::__CLGeocoder::CLGeocoder;
+#[cfg(all(
+    feature = "CoreLocation_CLHeading",
+    feature = "CoreLocation_CLLocation"
+))]
 pub use self::__CLHeading::kCLHeadingFilterNone;
 #[cfg(feature = "CoreLocation_CLHeading")]
 pub use self::__CLHeading::CLHeading;
+#[cfg(feature = "CoreLocation_CLHeading")]
 pub use self::__CLHeading::CLHeadingComponentValue;
+#[cfg(feature = "CoreLocation_CLLocation")]
 pub use self::__CLLocation::kCLDistanceFilterNone;
+#[cfg(feature = "CoreLocation_CLLocation")]
 pub use self::__CLLocation::kCLLocationAccuracyBest;
+#[cfg(feature = "CoreLocation_CLLocation")]
 pub use self::__CLLocation::kCLLocationAccuracyBestForNavigation;
+#[cfg(feature = "CoreLocation_CLLocation")]
 pub use self::__CLLocation::kCLLocationAccuracyHundredMeters;
+#[cfg(feature = "CoreLocation_CLLocation")]
 pub use self::__CLLocation::kCLLocationAccuracyKilometer;
+#[cfg(feature = "CoreLocation_CLLocation")]
 pub use self::__CLLocation::kCLLocationAccuracyNearestTenMeters;
+#[cfg(feature = "CoreLocation_CLLocation")]
 pub use self::__CLLocation::kCLLocationAccuracyReduced;
+#[cfg(feature = "CoreLocation_CLLocation")]
 pub use self::__CLLocation::kCLLocationAccuracyThreeKilometers;
+#[cfg(feature = "CoreLocation_CLLocation")]
 pub use self::__CLLocation::kCLLocationCoordinate2DInvalid;
-#[cfg(feature = "CoreLocation_CLFloor")]
+#[cfg(feature = "CoreLocation_CLLocation")]
 pub use self::__CLLocation::CLFloor;
 #[cfg(feature = "CoreLocation_CLLocation")]
 pub use self::__CLLocation::CLLocation;
+#[cfg(feature = "CoreLocation_CLLocation")]
 pub use self::__CLLocation::CLLocationAccuracy;
+#[cfg(feature = "CoreLocation_CLLocation")]
 pub use self::__CLLocation::CLLocationCoordinate2D;
+#[cfg(feature = "CoreLocation_CLLocation")]
 pub use self::__CLLocation::CLLocationCoordinate2DIsValid;
+#[cfg(feature = "CoreLocation_CLLocation")]
 pub use self::__CLLocation::CLLocationCoordinate2DMake;
+#[cfg(feature = "CoreLocation_CLLocation")]
 pub use self::__CLLocation::CLLocationDegrees;
+#[cfg(feature = "CoreLocation_CLLocation")]
 pub use self::__CLLocation::CLLocationDirection;
+#[cfg(feature = "CoreLocation_CLLocation")]
 pub use self::__CLLocation::CLLocationDirectionAccuracy;
+#[cfg(feature = "CoreLocation_CLLocation")]
 pub use self::__CLLocation::CLLocationDistance;
+#[cfg(feature = "CoreLocation_CLLocation")]
 pub use self::__CLLocation::CLLocationDistanceMax;
-#[cfg(feature = "CoreLocation_CLLocationSourceInformation")]
+#[cfg(feature = "CoreLocation_CLLocation")]
 pub use self::__CLLocation::CLLocationSourceInformation;
+#[cfg(feature = "CoreLocation_CLLocation")]
 pub use self::__CLLocation::CLLocationSpeed;
+#[cfg(feature = "CoreLocation_CLLocation")]
 pub use self::__CLLocation::CLLocationSpeedAccuracy;
+#[cfg(all(feature = "CoreLocation_CLLocation", feature = "Foundation_NSDate"))]
 pub use self::__CLLocation::CLTimeIntervalMax;
+#[cfg(feature = "CoreLocation_CLLocationManager")]
 pub use self::__CLLocationManager::CLAccuracyAuthorization;
+#[cfg(feature = "CoreLocation_CLLocationManager")]
 pub use self::__CLLocationManager::CLActivityType;
+#[cfg(feature = "CoreLocation_CLLocationManager")]
 pub use self::__CLLocationManager::CLAuthorizationStatus;
+#[cfg(feature = "CoreLocation_CLLocationManager")]
 pub use self::__CLLocationManager::CLDeviceOrientation;
 #[cfg(feature = "CoreLocation_CLLocationManager")]
 pub use self::__CLLocationManager::CLLocationManager;
+#[cfg(feature = "CoreLocation_CLLocationManagerDelegate")]
 pub use self::__CLLocationManagerDelegate::CLLocationManagerDelegate;
+#[cfg(feature = "CoreLocation_CLLocationPushServiceError")]
 pub use self::__CLLocationPushServiceError::CLLocationPushServiceError;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreLocation_CLLocationPushServiceError",
+    feature = "Foundation_NSError",
+    feature = "Foundation_NSString"
+))]
 pub use self::__CLLocationPushServiceError::CLLocationPushServiceErrorDomain;
+#[cfg(feature = "CoreLocation_CLLocationPushServiceExtension")]
 pub use self::__CLLocationPushServiceExtension::CLLocationPushServiceExtension;
+#[cfg(feature = "CoreLocation_CLLocationUpdater")]
 pub use self::__CLLocationUpdater::CLLiveUpdateConfiguration;
 #[cfg(feature = "CoreLocation_CLLocationUpdater")]
 pub use self::__CLLocationUpdater::CLLocationUpdater;
-#[cfg(feature = "CoreLocation_CLUpdate")]
+#[cfg(feature = "CoreLocation_CLLocationUpdater")]
 pub use self::__CLLocationUpdater::CLUpdate;
 #[cfg(feature = "CoreLocation_CLMonitor")]
 pub use self::__CLMonitor::CLMonitor;
@@ -154,14 +241,17 @@ pub use self::__CLMonitor::CLMonitor;
 pub use self::__CLMonitorConfiguration::CLMonitorConfiguration;
 #[cfg(feature = "CoreLocation_CLMonitoringEvent")]
 pub use self::__CLMonitoringEvent::CLMonitoringEvent;
+#[cfg(feature = "CoreLocation_CLMonitoringEvent")]
 pub use self::__CLMonitoringEvent::CLMonitoringState;
 #[cfg(feature = "CoreLocation_CLMonitoringRecord")]
 pub use self::__CLMonitoringRecord::CLMonitoringRecord;
 #[cfg(feature = "CoreLocation_CLPlacemark")]
 pub use self::__CLPlacemark::CLPlacemark;
+#[cfg(feature = "CoreLocation_CLRegion")]
 pub use self::__CLRegion::CLProximity;
 #[cfg(feature = "CoreLocation_CLRegion")]
 pub use self::__CLRegion::CLRegion;
+#[cfg(feature = "CoreLocation_CLRegion")]
 pub use self::__CLRegion::CLRegionState;
 #[cfg(feature = "CoreLocation_CLVisit")]
 pub use self::__CLVisit::CLVisit;

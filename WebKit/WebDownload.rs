@@ -7,11 +7,11 @@ use crate::WebKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_WebDownload")]
+    #[cfg(feature = "Foundation_NSURLDownload")]
     #[deprecated]
     pub struct WebDownload;
 
-    #[cfg(feature = "WebKit_WebDownload")]
+    #[cfg(feature = "Foundation_NSURLDownload")]
     unsafe impl ClassType for WebDownload {
         #[inherits(NSObject)]
         type Super = NSURLDownload;
@@ -19,17 +19,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "WebKit_WebDownload")]
+#[cfg(feature = "Foundation_NSURLDownload")]
 unsafe impl NSObjectProtocol for WebDownload {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_WebDownload")]
+    #[cfg(feature = "Foundation_NSURLDownload")]
     unsafe impl WebDownload {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `NSURLDownload`
-    #[cfg(feature = "WebKit_WebDownload")]
+    #[cfg(feature = "Foundation_NSURLDownload")]
     unsafe impl WebDownload {
         #[cfg(feature = "Foundation_NSURLRequest")]
         #[deprecated = "Use NSURLSession downloadTask (see NSURLSession.h)"]
@@ -54,7 +54,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_WebDownload")]
+    #[cfg(feature = "Foundation_NSURLDownload")]
     unsafe impl WebDownload {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -65,9 +65,10 @@ extern_methods!(
 );
 
 extern_protocol!(
+    #[cfg(feature = "Foundation_NSURLDownload")]
     #[deprecated]
     pub unsafe trait WebDownloadDelegate: NSURLDownloadDelegate {
-        #[cfg(all(feature = "AppKit_NSWindow", feature = "WebKit_WebDownload"))]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
         #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other downloadWindowForAuthenticationSheet:)]
@@ -78,5 +79,6 @@ extern_protocol!(
         ) -> Option<Id<NSWindow>>;
     }
 
+    #[cfg(feature = "Foundation_NSURLDownload")]
     unsafe impl ProtocolType for dyn WebDownloadDelegate {}
 );

@@ -10,21 +10,17 @@ extern_static!(NSUndoManagerGroupIsDiscardableKey: &'static NSString);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSUndoManager")]
     pub struct NSUndoManager;
 
-    #[cfg(feature = "Foundation_NSUndoManager")]
     unsafe impl ClassType for NSUndoManager {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSUndoManager")]
 unsafe impl NSObjectProtocol for NSUndoManager {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSUndoManager")]
     unsafe impl NSUndoManager {
         #[method(beginUndoGrouping)]
         pub unsafe fn beginUndoGrouping(&self);
@@ -56,11 +52,19 @@ extern_methods!(
         #[method(setLevelsOfUndo:)]
         pub unsafe fn setLevelsOfUndo(&self, levels_of_undo: NSUInteger);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSObjCRuntime",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other runLoopModes)]
         pub unsafe fn runLoopModes(&self) -> Id<NSArray<NSRunLoopMode>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSObjCRuntime",
+            feature = "Foundation_NSString"
+        ))]
         #[method(setRunLoopModes:)]
         pub unsafe fn setRunLoopModes(&self, run_loop_modes: &NSArray<NSRunLoopMode>);
 
@@ -152,7 +156,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSUndoManager")]
     unsafe impl NSUndoManager {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -162,26 +165,26 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSUndoManagerCheckpointNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSUndoManagerWillUndoChangeNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSUndoManagerWillRedoChangeNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSUndoManagerDidUndoChangeNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSUndoManagerDidRedoChangeNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSUndoManagerDidOpenUndoGroupNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSUndoManagerWillCloseUndoGroupNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSUndoManagerDidCloseUndoGroupNotification: &'static NSNotificationName);

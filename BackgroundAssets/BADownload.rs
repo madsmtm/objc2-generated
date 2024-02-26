@@ -32,30 +32,26 @@ extern_static!(BADownloaderPriorityMax: BADownloaderPriority);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "BackgroundAssets_BADownload")]
     pub struct BADownload;
 
-    #[cfg(feature = "BackgroundAssets_BADownload")]
     unsafe impl ClassType for BADownload {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "BackgroundAssets_BADownload")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for BADownload {}
 
-#[cfg(feature = "BackgroundAssets_BADownload")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for BADownload {}
 
-#[cfg(feature = "BackgroundAssets_BADownload")]
 unsafe impl NSObjectProtocol for BADownload {}
 
-#[cfg(feature = "BackgroundAssets_BADownload")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for BADownload {}
 
 extern_methods!(
-    #[cfg(feature = "BackgroundAssets_BADownload")]
     unsafe impl BADownload {
         #[method(state)]
         pub unsafe fn state(&self) -> BADownloadState;

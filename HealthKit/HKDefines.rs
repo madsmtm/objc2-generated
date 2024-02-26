@@ -71,6 +71,6 @@ ns_enum!(
 );
 
 extern_fn!(
-    #[cfg(all(feature = "Foundation_NSNumber", feature = "Foundation_NSSet"))]
+    #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSValue"))]
     pub unsafe fn HKCategoryValueSleepAnalysisAsleepValues() -> NonNull<NSSet<NSNumber>>;
 );

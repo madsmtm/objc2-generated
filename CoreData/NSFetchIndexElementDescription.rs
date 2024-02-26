@@ -16,27 +16,23 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSFetchIndexElementDescription")]
     pub struct NSFetchIndexElementDescription;
 
-    #[cfg(feature = "CoreData_NSFetchIndexElementDescription")]
     unsafe impl ClassType for NSFetchIndexElementDescription {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreData_NSFetchIndexElementDescription")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSFetchIndexElementDescription {}
 
-#[cfg(feature = "CoreData_NSFetchIndexElementDescription")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSFetchIndexElementDescription {}
 
-#[cfg(feature = "CoreData_NSFetchIndexElementDescription")]
 unsafe impl NSObjectProtocol for NSFetchIndexElementDescription {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSFetchIndexElementDescription")]
     unsafe impl NSFetchIndexElementDescription {
         #[cfg(feature = "CoreData_NSPropertyDescription")]
         #[method_id(@__retain_semantics Init initWithProperty:collationType:)]
@@ -74,7 +70,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSFetchIndexElementDescription")]
     unsafe impl NSFetchIndexElementDescription {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

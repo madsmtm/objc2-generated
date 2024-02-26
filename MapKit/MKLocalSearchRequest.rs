@@ -19,24 +19,20 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKLocalSearchRequest")]
     pub struct MKLocalSearchRequest;
 
-    #[cfg(feature = "MapKit_MKLocalSearchRequest")]
     unsafe impl ClassType for MKLocalSearchRequest {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MapKit_MKLocalSearchRequest")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MKLocalSearchRequest {}
 
-#[cfg(feature = "MapKit_MKLocalSearchRequest")]
 unsafe impl NSObjectProtocol for MKLocalSearchRequest {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKLocalSearchRequest")]
     unsafe impl MKLocalSearchRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -48,7 +44,11 @@ extern_methods!(
             natural_language_query: &NSString,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "CoreLocation_CLLocation",
+            feature = "Foundation_NSString",
+            feature = "MapKit_MKGeometry"
+        ))]
         #[method_id(@__retain_semantics Init initWithNaturalLanguageQuery:region:)]
         pub unsafe fn initWithNaturalLanguageQuery_region(
             this: Allocated<Self>,
@@ -64,9 +64,11 @@ extern_methods!(
         #[method(setNaturalLanguageQuery:)]
         pub unsafe fn setNaturalLanguageQuery(&self, natural_language_query: Option<&NSString>);
 
+        #[cfg(all(feature = "CoreLocation_CLLocation", feature = "MapKit_MKGeometry"))]
         #[method(region)]
         pub unsafe fn region(&self) -> MKCoordinateRegion;
 
+        #[cfg(all(feature = "CoreLocation_CLLocation", feature = "MapKit_MKGeometry"))]
         #[method(setRegion:)]
         pub unsafe fn setRegion(&self, region: MKCoordinateRegion);
 
@@ -91,7 +93,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MapKit_MKLocalSearchRequest")]
     unsafe impl MKLocalSearchRequest {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

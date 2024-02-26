@@ -71,38 +71,45 @@ extern_static!(MTKTextureLoaderOriginFlippedVertically: &'static MTKTextureLoade
 #[cfg(feature = "Foundation_NSString")]
 extern_static!(MTKTextureLoaderOptionLoadAsArray: &'static MTKTextureLoaderOption);
 
-#[cfg(feature = "Foundation_NSError")]
+#[cfg(all(
+    feature = "Foundation_NSError",
+    feature = "Metal_MTLResource",
+    feature = "Metal_MTLTexture"
+))]
 pub type MTKTextureLoaderCallback =
     *mut Block<dyn Fn(*mut ProtocolObject<dyn MTLTexture>, *mut NSError)>;
 
-#[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSError"))]
+#[cfg(all(
+    feature = "Foundation_NSArray",
+    feature = "Foundation_NSError",
+    feature = "Metal_MTLResource",
+    feature = "Metal_MTLTexture"
+))]
 pub type MTKTextureLoaderArrayCallback =
     *mut Block<dyn Fn(NonNull<NSArray<ProtocolObject<dyn MTLTexture>>>, *mut NSError)>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MetalKit_MTKTextureLoader")]
     pub struct MTKTextureLoader;
 
-    #[cfg(feature = "MetalKit_MTKTextureLoader")]
     unsafe impl ClassType for MTKTextureLoader {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MetalKit_MTKTextureLoader")]
 unsafe impl NSObjectProtocol for MTKTextureLoader {}
 
 extern_methods!(
-    #[cfg(feature = "MetalKit_MTKTextureLoader")]
     unsafe impl MTKTextureLoader {
+        #[cfg(feature = "Metal_MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
         pub unsafe fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
+        #[cfg(feature = "Metal_MTLDevice")]
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -113,7 +120,9 @@ extern_methods!(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
             feature = "Foundation_NSString",
-            feature = "Foundation_NSURL"
+            feature = "Foundation_NSURL",
+            feature = "Metal_MTLResource",
+            feature = "Metal_MTLTexture"
         ))]
         #[method(newTextureWithContentsOfURL:options:completionHandler:)]
         pub unsafe fn newTextureWithContentsOfURL_options_completionHandler(
@@ -127,7 +136,10 @@ extern_methods!(
             feature = "Foundation_NSBundle",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
-            feature = "Foundation_NSString"
+            feature = "Foundation_NSGeometry",
+            feature = "Foundation_NSString",
+            feature = "Metal_MTLResource",
+            feature = "Metal_MTLTexture"
         ))]
         #[method(newTextureWithName:scaleFactor:bundle:options:completionHandler:)]
         pub unsafe fn newTextureWithName_scaleFactor_bundle_options_completionHandler(
@@ -140,10 +152,14 @@ extern_methods!(
         );
 
         #[cfg(all(
+            feature = "AppKit_NSGraphics",
             feature = "Foundation_NSBundle",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
-            feature = "Foundation_NSString"
+            feature = "Foundation_NSGeometry",
+            feature = "Foundation_NSString",
+            feature = "Metal_MTLResource",
+            feature = "Metal_MTLTexture"
         ))]
         #[method(newTextureWithName:scaleFactor:displayGamut:bundle:options:completionHandler:)]
         pub unsafe fn newTextureWithName_scaleFactor_displayGamut_bundle_options_completionHandler(
@@ -161,7 +177,9 @@ extern_methods!(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
             feature = "Foundation_NSString",
-            feature = "Foundation_NSURL"
+            feature = "Foundation_NSURL",
+            feature = "Metal_MTLResource",
+            feature = "Metal_MTLTexture"
         ))]
         #[method(newTexturesWithContentsOfURLs:options:completionHandler:)]
         pub unsafe fn newTexturesWithContentsOfURLs_options_completionHandler(
@@ -176,7 +194,10 @@ extern_methods!(
             feature = "Foundation_NSBundle",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
-            feature = "Foundation_NSString"
+            feature = "Foundation_NSGeometry",
+            feature = "Foundation_NSString",
+            feature = "Metal_MTLResource",
+            feature = "Metal_MTLTexture"
         ))]
         #[method(newTexturesWithNames:scaleFactor:bundle:options:completionHandler:)]
         pub unsafe fn newTexturesWithNames_scaleFactor_bundle_options_completionHandler(
@@ -189,11 +210,15 @@ extern_methods!(
         );
 
         #[cfg(all(
+            feature = "AppKit_NSGraphics",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSBundle",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
-            feature = "Foundation_NSString"
+            feature = "Foundation_NSGeometry",
+            feature = "Foundation_NSString",
+            feature = "Metal_MTLResource",
+            feature = "Metal_MTLTexture"
         ))]
         #[method(newTexturesWithNames:scaleFactor:displayGamut:bundle:options:completionHandler:)]
         pub unsafe fn newTexturesWithNames_scaleFactor_displayGamut_bundle_options_completionHandler(
@@ -210,7 +235,9 @@ extern_methods!(
             feature = "Foundation_NSData",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
-            feature = "Foundation_NSString"
+            feature = "Foundation_NSString",
+            feature = "Metal_MTLResource",
+            feature = "Metal_MTLTexture"
         ))]
         #[method(newTextureWithData:options:completionHandler:)]
         pub unsafe fn newTextureWithData_options_completionHandler(
@@ -224,21 +251,9 @@ extern_methods!(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
             feature = "Foundation_NSString",
-            feature = "ModelIO_MDLTexture"
-        ))]
-        #[method(newTextureWithMDLTexture:options:completionHandler:)]
-        pub unsafe fn newTextureWithMDLTexture_options_completionHandler(
-            &self,
-            texture: &MDLTexture,
-            options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
-            completion_handler: MTKTextureLoaderCallback,
-        );
-
-        #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSURL"
+            feature = "Foundation_NSURL",
+            feature = "Metal_MTLResource",
+            feature = "Metal_MTLTexture"
         ))]
         #[method_id(@__retain_semantics New newTextureWithContentsOfURL:options:error:_)]
         pub unsafe fn newTextureWithContentsOfURL_options_error(
@@ -251,7 +266,9 @@ extern_methods!(
             feature = "Foundation_NSData",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
-            feature = "Foundation_NSString"
+            feature = "Foundation_NSString",
+            feature = "Metal_MTLResource",
+            feature = "Metal_MTLTexture"
         ))]
         #[method_id(@__retain_semantics New newTextureWithData:options:error:_)]
         pub unsafe fn newTextureWithData_options_error(
@@ -261,23 +278,13 @@ extern_methods!(
         ) -> Result<Id<ProtocolObject<dyn MTLTexture>>, Id<NSError>>;
 
         #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSString",
-            feature = "ModelIO_MDLTexture"
-        ))]
-        #[method_id(@__retain_semantics New newTextureWithMDLTexture:options:error:_)]
-        pub unsafe fn newTextureWithMDLTexture_options_error(
-            &self,
-            texture: &MDLTexture,
-            options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
-        ) -> Result<Id<ProtocolObject<dyn MTLTexture>>, Id<NSError>>;
-
-        #[cfg(all(
             feature = "Foundation_NSBundle",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
-            feature = "Foundation_NSString"
+            feature = "Foundation_NSGeometry",
+            feature = "Foundation_NSString",
+            feature = "Metal_MTLResource",
+            feature = "Metal_MTLTexture"
         ))]
         #[method_id(@__retain_semantics New newTextureWithName:scaleFactor:bundle:options:error:_)]
         pub unsafe fn newTextureWithName_scaleFactor_bundle_options_error(
@@ -289,10 +296,14 @@ extern_methods!(
         ) -> Result<Id<ProtocolObject<dyn MTLTexture>>, Id<NSError>>;
 
         #[cfg(all(
+            feature = "AppKit_NSGraphics",
             feature = "Foundation_NSBundle",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
-            feature = "Foundation_NSString"
+            feature = "Foundation_NSGeometry",
+            feature = "Foundation_NSString",
+            feature = "Metal_MTLResource",
+            feature = "Metal_MTLTexture"
         ))]
         #[method_id(@__retain_semantics New newTextureWithName:scaleFactor:displayGamut:bundle:options:error:_)]
         pub unsafe fn newTextureWithName_scaleFactor_displayGamut_bundle_options_error(
@@ -308,7 +319,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MetalKit_MTKTextureLoader")]
     unsafe impl MTKTextureLoader {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

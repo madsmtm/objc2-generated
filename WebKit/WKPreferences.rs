@@ -19,31 +19,29 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_WKPreferences")]
     pub struct WKPreferences;
 
-    #[cfg(feature = "WebKit_WKPreferences")]
     unsafe impl ClassType for WKPreferences {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "WebKit_WKPreferences")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for WKPreferences {}
 
-#[cfg(feature = "WebKit_WKPreferences")]
 unsafe impl NSObjectProtocol for WKPreferences {}
 
-#[cfg(feature = "WebKit_WKPreferences")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for WKPreferences {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_WKPreferences")]
     unsafe impl WKPreferences {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(minimumFontSize)]
         pub unsafe fn minimumFontSize(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setMinimumFontSize:)]
         pub unsafe fn setMinimumFontSize(&self, minimum_font_size: CGFloat);
 
@@ -111,7 +109,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_WKPreferences")]
     unsafe impl WKPreferences {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -123,7 +120,6 @@ extern_methods!(
 
 extern_methods!(
     /// WKDeprecated
-    #[cfg(feature = "WebKit_WKPreferences")]
     unsafe impl WKPreferences {
         #[deprecated = "Java is no longer supported"]
         #[method(javaEnabled)]

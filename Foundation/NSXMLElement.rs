@@ -5,10 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSXMLElement")]
+    #[cfg(feature = "Foundation_NSXMLNode")]
     pub struct NSXMLElement;
 
-    #[cfg(feature = "Foundation_NSXMLElement")]
+    #[cfg(feature = "Foundation_NSXMLNode")]
     unsafe impl ClassType for NSXMLElement {
         #[inherits(NSObject)]
         type Super = NSXMLNode;
@@ -16,14 +16,14 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSXMLElement")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "Foundation_NSXMLNode"))]
 unsafe impl NSCopying for NSXMLElement {}
 
-#[cfg(feature = "Foundation_NSXMLElement")]
+#[cfg(feature = "Foundation_NSXMLNode")]
 unsafe impl NSObjectProtocol for NSXMLElement {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSXMLElement")]
+    #[cfg(feature = "Foundation_NSXMLNode")]
     unsafe impl NSXMLElement {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithName:)]
@@ -52,6 +52,7 @@ extern_methods!(
             string: &NSString,
         ) -> Result<Id<Self>, Id<NSError>>;
 
+        #[cfg(feature = "Foundation_NSXMLNodeOptions")]
         #[method_id(@__retain_semantics Init initWithKind:options:)]
         pub unsafe fn initWithKind_options(
             this: Allocated<Self>,
@@ -166,7 +167,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSXMLNode`
-    #[cfg(feature = "Foundation_NSXMLElement")]
+    #[cfg(feature = "Foundation_NSXMLNode")]
     unsafe impl NSXMLElement {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -178,7 +179,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSXMLElement")]
+    #[cfg(feature = "Foundation_NSXMLNode")]
     unsafe impl NSXMLElement {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -187,7 +188,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSDeprecated
-    #[cfg(feature = "Foundation_NSXMLElement")]
+    #[cfg(feature = "Foundation_NSXMLNode")]
     unsafe impl NSXMLElement {
         #[cfg(feature = "Foundation_NSDictionary")]
         #[deprecated]

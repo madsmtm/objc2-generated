@@ -21,24 +21,20 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSMenuItemBadge")]
     pub struct NSMenuItemBadge;
 
-    #[cfg(feature = "AppKit_NSMenuItemBadge")]
     unsafe impl ClassType for NSMenuItemBadge {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSMenuItemBadge")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSMenuItemBadge {}
 
-#[cfg(feature = "AppKit_NSMenuItemBadge")]
 unsafe impl NSObjectProtocol for NSMenuItemBadge {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSMenuItemBadge")]
     unsafe impl NSMenuItemBadge {
         #[method_id(@__retain_semantics Other updatesWithCount:)]
         pub unsafe fn updatesWithCount(item_count: NSInteger) -> Id<Self>;
@@ -80,7 +76,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSMenuItemBadge")]
     unsafe impl NSMenuItemBadge {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

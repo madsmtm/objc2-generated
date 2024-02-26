@@ -7,10 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSSearchToolbarItem")]
+    #[cfg(feature = "AppKit_NSToolbarItem")]
     pub struct NSSearchToolbarItem;
 
-    #[cfg(feature = "AppKit_NSSearchToolbarItem")]
+    #[cfg(feature = "AppKit_NSToolbarItem")]
     unsafe impl ClassType for NSSearchToolbarItem {
         #[inherits(NSObject)]
         type Super = NSToolbarItem;
@@ -18,28 +18,40 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSSearchToolbarItem")]
+#[cfg(all(feature = "AppKit_NSToolbarItem", feature = "Foundation_NSObject"))]
 unsafe impl NSCopying for NSSearchToolbarItem {}
 
-#[cfg(feature = "AppKit_NSSearchToolbarItem")]
+#[cfg(feature = "AppKit_NSToolbarItem")]
 unsafe impl NSObjectProtocol for NSSearchToolbarItem {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSSearchToolbarItem")]
+    #[cfg(feature = "AppKit_NSToolbarItem")]
     unsafe impl NSSearchToolbarItem {
-        #[cfg(feature = "AppKit_NSSearchField")]
+        #[cfg(all(
+            feature = "AppKit_NSControl",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSSearchField",
+            feature = "AppKit_NSTextField",
+            feature = "AppKit_NSView"
+        ))]
         #[method_id(@__retain_semantics Other searchField)]
         pub unsafe fn searchField(&self) -> Id<NSSearchField>;
 
-        #[cfg(feature = "AppKit_NSSearchField")]
+        #[cfg(all(
+            feature = "AppKit_NSControl",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSSearchField",
+            feature = "AppKit_NSTextField",
+            feature = "AppKit_NSView"
+        ))]
         #[method(setSearchField:)]
         pub unsafe fn setSearchField(&self, search_field: &NSSearchField);
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[method_id(@__retain_semantics Other view)]
         pub unsafe fn view(&self) -> Option<Id<NSView>>;
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[method(setView:)]
         pub unsafe fn setView(&self, view: Option<&NSView>);
 
@@ -52,9 +64,11 @@ extern_methods!(
             resigns_first_responder_with_cancel: bool,
         );
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(preferredWidthForSearchField)]
         pub unsafe fn preferredWidthForSearchField(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setPreferredWidthForSearchField:)]
         pub unsafe fn setPreferredWidthForSearchField(
             &self,
@@ -71,9 +85,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSToolbarItem`
-    #[cfg(feature = "AppKit_NSSearchToolbarItem")]
+    #[cfg(feature = "AppKit_NSToolbarItem")]
     unsafe impl NSSearchToolbarItem {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
         pub unsafe fn initWithItemIdentifier(
             this: Allocated<Self>,
@@ -84,7 +98,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSSearchToolbarItem")]
+    #[cfg(feature = "AppKit_NSToolbarItem")]
     unsafe impl NSSearchToolbarItem {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

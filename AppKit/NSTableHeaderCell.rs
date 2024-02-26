@@ -7,10 +7,18 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTableHeaderCell")]
+    #[cfg(all(
+        feature = "AppKit_NSActionCell",
+        feature = "AppKit_NSCell",
+        feature = "AppKit_NSTextFieldCell"
+    ))]
     pub struct NSTableHeaderCell;
 
-    #[cfg(feature = "AppKit_NSTableHeaderCell")]
+    #[cfg(all(
+        feature = "AppKit_NSActionCell",
+        feature = "AppKit_NSCell",
+        feature = "AppKit_NSTextFieldCell"
+    ))]
     unsafe impl ClassType for NSTableHeaderCell {
         #[inherits(NSActionCell, NSCell, NSObject)]
         type Super = NSTextFieldCell;
@@ -18,28 +26,65 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSTableHeaderCell")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSTextFieldCell"
+))]
 unsafe impl NSAccessibility for NSTableHeaderCell {}
 
-#[cfg(feature = "AppKit_NSTableHeaderCell")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSTextFieldCell"
+))]
 unsafe impl NSAccessibilityElementProtocol for NSTableHeaderCell {}
 
-#[cfg(feature = "AppKit_NSTableHeaderCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSTextFieldCell",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSTableHeaderCell {}
 
-#[cfg(feature = "AppKit_NSTableHeaderCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSTextFieldCell",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCopying for NSTableHeaderCell {}
 
-#[cfg(feature = "AppKit_NSTableHeaderCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSTextFieldCell"
+))]
 unsafe impl NSObjectProtocol for NSTableHeaderCell {}
 
-#[cfg(feature = "AppKit_NSTableHeaderCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSTextFieldCell",
+    feature = "AppKit_NSUserInterfaceItemIdentification"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSTableHeaderCell {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTableHeaderCell")]
+    #[cfg(all(
+        feature = "AppKit_NSActionCell",
+        feature = "AppKit_NSCell",
+        feature = "AppKit_NSTextFieldCell"
+    ))]
     unsafe impl NSTableHeaderCell {
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[method(drawSortIndicatorWithFrame:inView:ascending:priority:)]
         pub unsafe fn drawSortIndicatorWithFrame_inView_ascending_priority(
             &self,
@@ -49,6 +94,7 @@ extern_methods!(
             priority: NSInteger,
         );
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(sortIndicatorRectForBounds:)]
         pub unsafe fn sortIndicatorRectForBounds(&self, rect: NSRect) -> NSRect;
     }
@@ -56,7 +102,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSTextFieldCell`
-    #[cfg(feature = "AppKit_NSTableHeaderCell")]
+    #[cfg(all(
+        feature = "AppKit_NSActionCell",
+        feature = "AppKit_NSCell",
+        feature = "AppKit_NSTextFieldCell"
+    ))]
     unsafe impl NSTableHeaderCell {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initTextCell:)]
@@ -74,7 +124,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSCell`
-    #[cfg(feature = "AppKit_NSTableHeaderCell")]
+    #[cfg(all(
+        feature = "AppKit_NSActionCell",
+        feature = "AppKit_NSCell",
+        feature = "AppKit_NSTextFieldCell"
+    ))]
     unsafe impl NSTableHeaderCell {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -83,7 +137,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTableHeaderCell")]
+    #[cfg(all(
+        feature = "AppKit_NSActionCell",
+        feature = "AppKit_NSCell",
+        feature = "AppKit_NSTextFieldCell"
+    ))]
     unsafe impl NSTableHeaderCell {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

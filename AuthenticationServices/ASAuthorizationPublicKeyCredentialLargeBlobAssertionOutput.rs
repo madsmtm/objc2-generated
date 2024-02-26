@@ -7,29 +7,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(
-        feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput"
-    )]
     pub struct ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput;
 
-    #[cfg(
-        feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput"
-    )]
     unsafe impl ClassType for ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(
-    feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput"
-)]
 unsafe impl NSObjectProtocol for ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput {}
 
 extern_methods!(
-    #[cfg(
-        feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput"
-    )]
     unsafe impl ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -6,33 +6,28 @@ use crate::IdentityLookup::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "IdentityLookup_ILClassificationRequest")]
     pub struct ILClassificationRequest;
 
-    #[cfg(feature = "IdentityLookup_ILClassificationRequest")]
     unsafe impl ClassType for ILClassificationRequest {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "IdentityLookup_ILClassificationRequest")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for ILClassificationRequest {}
 
-#[cfg(feature = "IdentityLookup_ILClassificationRequest")]
 unsafe impl NSObjectProtocol for ILClassificationRequest {}
 
-#[cfg(feature = "IdentityLookup_ILClassificationRequest")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for ILClassificationRequest {}
 
 extern_methods!(
-    #[cfg(feature = "IdentityLookup_ILClassificationRequest")]
     unsafe impl ILClassificationRequest {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "IdentityLookup_ILClassificationRequest")]
     unsafe impl ILClassificationRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

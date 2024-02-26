@@ -10,36 +10,30 @@ typed_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSLocale")]
     pub struct NSLocale;
 
-    #[cfg(feature = "Foundation_NSLocale")]
     unsafe impl ClassType for NSLocale {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSLocale")]
 unsafe impl Send for NSLocale {}
 
-#[cfg(feature = "Foundation_NSLocale")]
 unsafe impl Sync for NSLocale {}
 
-#[cfg(feature = "Foundation_NSLocale")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSLocale {}
 
-#[cfg(feature = "Foundation_NSLocale")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSLocale {}
 
-#[cfg(feature = "Foundation_NSLocale")]
 unsafe impl NSObjectProtocol for NSLocale {}
 
-#[cfg(feature = "Foundation_NSLocale")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSLocale {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSLocale")]
     unsafe impl NSLocale {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other objectForKey:)]
@@ -68,7 +62,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSExtendedLocale
-    #[cfg(feature = "Foundation_NSLocale")]
     unsafe impl NSLocale {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other localeIdentifier)]
@@ -217,7 +210,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSLocaleCreation
-    #[cfg(feature = "Foundation_NSLocale")]
     unsafe impl NSLocale {
         #[method_id(@__retain_semantics Other autoupdatingCurrentLocale)]
         pub unsafe fn autoupdatingCurrentLocale() -> Id<NSLocale>;
@@ -252,7 +244,6 @@ ns_enum!(
 
 extern_methods!(
     /// NSLocaleGeneralInfo
-    #[cfg(feature = "Foundation_NSLocale")]
     unsafe impl NSLocale {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other availableLocaleIdentifiers)]
@@ -320,7 +311,7 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSCurrentLocaleDidChangeNotification: &'static NSNotificationName);
 
 #[cfg(feature = "Foundation_NSString")]

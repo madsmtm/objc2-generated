@@ -6,30 +6,26 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CallKit_CXAction")]
     pub struct CXAction;
 
-    #[cfg(feature = "CallKit_CXAction")]
     unsafe impl ClassType for CXAction {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CallKit_CXAction")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CXAction {}
 
-#[cfg(feature = "CallKit_CXAction")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for CXAction {}
 
-#[cfg(feature = "CallKit_CXAction")]
 unsafe impl NSObjectProtocol for CXAction {}
 
-#[cfg(feature = "CallKit_CXAction")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CXAction {}
 
 extern_methods!(
-    #[cfg(feature = "CallKit_CXAction")]
     unsafe impl CXAction {
         #[cfg(feature = "Foundation_NSUUID")]
         #[method_id(@__retain_semantics Other UUID)]
@@ -60,7 +56,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CallKit_CXAction")]
     unsafe impl CXAction {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

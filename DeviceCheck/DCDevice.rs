@@ -6,21 +6,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "DeviceCheck_DCDevice")]
     pub struct DCDevice;
 
-    #[cfg(feature = "DeviceCheck_DCDevice")]
     unsafe impl ClassType for DCDevice {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "DeviceCheck_DCDevice")]
 unsafe impl NSObjectProtocol for DCDevice {}
 
 extern_methods!(
-    #[cfg(feature = "DeviceCheck_DCDevice")]
     unsafe impl DCDevice {
         #[method_id(@__retain_semantics Other currentDevice)]
         pub unsafe fn currentDevice() -> Id<DCDevice>;
@@ -39,7 +35,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "DeviceCheck_DCDevice")]
     unsafe impl DCDevice {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

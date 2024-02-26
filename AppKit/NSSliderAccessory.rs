@@ -7,24 +7,20 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSSliderAccessory")]
     pub struct NSSliderAccessory;
 
-    #[cfg(feature = "AppKit_NSSliderAccessory")]
     unsafe impl ClassType for NSSliderAccessory {
         type Super = NSObject;
         type Mutability = MainThreadOnly;
     }
 );
 
-#[cfg(feature = "AppKit_NSSliderAccessory")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSSliderAccessory {}
 
-#[cfg(feature = "AppKit_NSSliderAccessory")]
 unsafe impl NSObjectProtocol for NSSliderAccessory {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSSliderAccessory")]
     unsafe impl NSSliderAccessory {
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other accessoryWithImage:)]
@@ -33,11 +29,9 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Id<NSSliderAccessory>;
 
-        #[cfg(feature = "AppKit_NSSliderAccessoryBehavior")]
         #[method_id(@__retain_semantics Other behavior)]
         pub unsafe fn behavior(&self) -> Id<NSSliderAccessoryBehavior>;
 
-        #[cfg(feature = "AppKit_NSSliderAccessoryBehavior")]
         #[method(setBehavior:)]
         pub unsafe fn setBehavior(&self, behavior: &NSSliderAccessoryBehavior);
 
@@ -51,7 +45,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSSliderAccessory")]
     unsafe impl NSSliderAccessory {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -62,39 +55,34 @@ extern_methods!(
 );
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSSliderAccessory")]
     unsafe impl NSSliderAccessory {}
 );
 
-#[cfg(feature = "AppKit_NSSliderAccessory")]
+#[cfg(feature = "AppKit_NSAccessibilityProtocols")]
 unsafe impl NSAccessibility for NSSliderAccessory {}
 
-#[cfg(feature = "AppKit_NSSliderAccessory")]
+#[cfg(feature = "AppKit_NSAccessibilityProtocols")]
 unsafe impl NSAccessibilityElementProtocol for NSSliderAccessory {}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSSliderAccessoryBehavior")]
     pub struct NSSliderAccessoryBehavior;
 
-    #[cfg(feature = "AppKit_NSSliderAccessoryBehavior")]
     unsafe impl ClassType for NSSliderAccessoryBehavior {
         type Super = NSObject;
         type Mutability = MainThreadOnly;
     }
 );
 
-#[cfg(feature = "AppKit_NSSliderAccessoryBehavior")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSSliderAccessoryBehavior {}
 
-#[cfg(feature = "AppKit_NSSliderAccessoryBehavior")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSSliderAccessoryBehavior {}
 
-#[cfg(feature = "AppKit_NSSliderAccessoryBehavior")]
 unsafe impl NSObjectProtocol for NSSliderAccessoryBehavior {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSSliderAccessoryBehavior")]
     unsafe impl NSSliderAccessoryBehavior {
         #[method_id(@__retain_semantics Other automaticBehavior)]
         pub unsafe fn automaticBehavior(mtm: MainThreadMarker) -> Id<NSSliderAccessoryBehavior>;
@@ -112,14 +100,12 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Id<NSSliderAccessoryBehavior>;
 
-        #[cfg(feature = "AppKit_NSSliderAccessory")]
         #[method_id(@__retain_semantics Other behaviorWithHandler:)]
         pub unsafe fn behaviorWithHandler(
             handler: &Block<dyn Fn(NonNull<NSSliderAccessory>)>,
             mtm: MainThreadMarker,
         ) -> Id<NSSliderAccessoryBehavior>;
 
-        #[cfg(feature = "AppKit_NSSliderAccessory")]
         #[method(handleAction:)]
         pub unsafe fn handleAction(&self, sender: &NSSliderAccessory);
     }
@@ -127,7 +113,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSSliderAccessoryBehavior")]
     unsafe impl NSSliderAccessoryBehavior {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -77,6 +77,7 @@ extern_category!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSZone")]
     pub unsafe fn NSAllocateObject(
         a_class: &AnyClass,
         extra_bytes: NSUInteger,
@@ -89,6 +90,7 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSZone")]
     #[deprecated = "Not supported"]
     pub unsafe fn NSCopyObject(
         object: &AnyObject,
@@ -98,6 +100,7 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSZone")]
     pub unsafe fn NSShouldRetainWithZone(
         an_object: &AnyObject,
         requested_zone: *mut NSZone,

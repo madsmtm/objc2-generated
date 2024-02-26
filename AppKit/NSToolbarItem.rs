@@ -19,33 +19,29 @@ extern_static!(NSToolbarItemVisibilityPriorityUser: NSToolbarItemVisibilityPrior
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSToolbarItem")]
     pub struct NSToolbarItem;
 
-    #[cfg(feature = "AppKit_NSToolbarItem")]
     unsafe impl ClassType for NSToolbarItem {
         type Super = NSObject;
         type Mutability = MainThreadOnly;
     }
 );
 
-#[cfg(feature = "AppKit_NSToolbarItem")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSToolbarItem {}
 
-#[cfg(feature = "AppKit_NSToolbarItem")]
 unsafe impl NSObjectProtocol for NSToolbarItem {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSToolbarItem")]
     unsafe impl NSToolbarItem {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
         pub unsafe fn initWithItemIdentifier(
             this: Allocated<Self>,
             item_identifier: &NSToolbarItemIdentifier,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other itemIdentifier)]
         pub unsafe fn itemIdentifier(&self) -> Id<NSToolbarItemIdentifier>;
 
@@ -148,29 +144,33 @@ extern_methods!(
         #[method(setNavigational:)]
         pub unsafe fn setNavigational(&self, navigational: bool);
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[method_id(@__retain_semantics Other view)]
         pub unsafe fn view(&self) -> Option<Id<NSView>>;
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[method(setView:)]
         pub unsafe fn setView(&self, view: Option<&NSView>);
 
         #[method(isVisible)]
         pub unsafe fn isVisible(&self) -> bool;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[deprecated = "This property is no longer recommended. Instead, let the system automatically measure the size of the view using constraints."]
         #[method(minSize)]
         pub unsafe fn minSize(&self) -> NSSize;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[deprecated = "This property is no longer recommended. Instead, let the system automatically measure the size of the view using constraints."]
         #[method(setMinSize:)]
         pub unsafe fn setMinSize(&self, min_size: NSSize);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[deprecated = "This property is no longer recommended. Instead, let the system automatically measure the size of the view using constraints."]
         #[method(maxSize)]
         pub unsafe fn maxSize(&self) -> NSSize;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[deprecated = "This property is no longer recommended. Instead, let the system automatically measure the size of the view using constraints."]
         #[method(setMaxSize:)]
         pub unsafe fn setMaxSize(&self, max_size: NSSize);
@@ -200,7 +200,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSToolbarItem")]
     unsafe impl NSToolbarItem {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -211,19 +210,17 @@ extern_methods!(
 );
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSToolbarItem")]
     unsafe impl NSToolbarItem {}
 );
 
-#[cfg(feature = "AppKit_NSToolbarItem")]
+#[cfg(feature = "AppKit_NSMenu")]
 unsafe impl NSMenuItemValidation for NSToolbarItem {}
 
-#[cfg(feature = "AppKit_NSToolbarItem")]
+#[cfg(feature = "AppKit_NSUserInterfaceValidation")]
 unsafe impl NSValidatedUserInterfaceItem for NSToolbarItem {}
 
 extern_protocol!(
     pub unsafe trait NSToolbarItemValidation: NSObjectProtocol + IsMainThreadOnly {
-        #[cfg(feature = "AppKit_NSToolbarItem")]
         #[method(validateToolbarItem:)]
         unsafe fn validateToolbarItem(&self, item: &NSToolbarItem) -> bool;
     }
@@ -231,38 +228,38 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSToolbarItemValidation {}
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSString"))]
 extern_static!(NSToolbarSpaceItemIdentifier: &'static NSToolbarItemIdentifier);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSString"))]
 extern_static!(NSToolbarFlexibleSpaceItemIdentifier: &'static NSToolbarItemIdentifier);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSString"))]
 extern_static!(NSToolbarShowColorsItemIdentifier: &'static NSToolbarItemIdentifier);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSString"))]
 extern_static!(NSToolbarShowFontsItemIdentifier: &'static NSToolbarItemIdentifier);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSString"))]
 extern_static!(NSToolbarPrintItemIdentifier: &'static NSToolbarItemIdentifier);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSString"))]
 extern_static!(NSToolbarToggleSidebarItemIdentifier: &'static NSToolbarItemIdentifier);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSString"))]
 extern_static!(NSToolbarToggleInspectorItemIdentifier: &'static NSToolbarItemIdentifier);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSString"))]
 extern_static!(NSToolbarCloudSharingItemIdentifier: &'static NSToolbarItemIdentifier);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSString"))]
 extern_static!(NSToolbarSidebarTrackingSeparatorItemIdentifier: &'static NSToolbarItemIdentifier);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSString"))]
 extern_static!(NSToolbarInspectorTrackingSeparatorItemIdentifier: &'static NSToolbarItemIdentifier);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSString"))]
 extern_static!(NSToolbarSeparatorItemIdentifier: &'static NSToolbarItemIdentifier);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSString"))]
 extern_static!(NSToolbarCustomizeToolbarItemIdentifier: &'static NSToolbarItemIdentifier);

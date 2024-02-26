@@ -45,24 +45,20 @@ inline_fn!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLIndirectCommandBufferDescriptor")]
     pub struct MTLIndirectCommandBufferDescriptor;
 
-    #[cfg(feature = "Metal_MTLIndirectCommandBufferDescriptor")]
     unsafe impl ClassType for MTLIndirectCommandBufferDescriptor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLIndirectCommandBufferDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLIndirectCommandBufferDescriptor {}
 
-#[cfg(feature = "Metal_MTLIndirectCommandBufferDescriptor")]
 unsafe impl NSObjectProtocol for MTLIndirectCommandBufferDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLIndirectCommandBufferDescriptor")]
     unsafe impl MTLIndirectCommandBufferDescriptor {
         #[method(commandTypes)]
         pub fn commandTypes(&self) -> MTLIndirectCommandType;
@@ -149,7 +145,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLIndirectCommandBufferDescriptor")]
     unsafe impl MTLIndirectCommandBufferDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -160,22 +155,27 @@ extern_methods!(
 );
 
 extern_protocol!(
+    #[cfg(feature = "Metal_MTLResource")]
     pub unsafe trait MTLIndirectCommandBuffer: MTLResource {
         #[method(size)]
         fn size(&self) -> NSUInteger;
 
+        #[cfg(feature = "Metal_MTLTypes")]
         #[method(gpuResourceID)]
         unsafe fn gpuResourceID(&self) -> MTLResourceID;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(resetWithRange:)]
         unsafe fn resetWithRange(&self, range: NSRange);
 
+        #[cfg(feature = "Metal_MTLIndirectCommandEncoder")]
         #[method_id(@__retain_semantics Other indirectRenderCommandAtIndex:)]
         unsafe fn indirectRenderCommandAtIndex(
             &self,
             command_index: NSUInteger,
         ) -> Id<ProtocolObject<dyn MTLIndirectRenderCommand>>;
 
+        #[cfg(feature = "Metal_MTLIndirectCommandEncoder")]
         #[method_id(@__retain_semantics Other indirectComputeCommandAtIndex:)]
         unsafe fn indirectComputeCommandAtIndex(
             &self,
@@ -183,5 +183,6 @@ extern_protocol!(
         ) -> Id<ProtocolObject<dyn MTLIndirectComputeCommand>>;
     }
 
+    #[cfg(feature = "Metal_MTLResource")]
     unsafe impl ProtocolType for dyn MTLIndirectCommandBuffer {}
 );

@@ -9,10 +9,10 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Photos_PHProjectChangeRequest")]
+    #[cfg(feature = "Photos_PHChangeRequest")]
     pub struct PHProjectChangeRequest;
 
-    #[cfg(feature = "Photos_PHProjectChangeRequest")]
+    #[cfg(feature = "Photos_PHChangeRequest")]
     unsafe impl ClassType for PHProjectChangeRequest {
         #[inherits(NSObject)]
         type Super = PHChangeRequest;
@@ -20,13 +20,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Photos_PHProjectChangeRequest")]
+#[cfg(feature = "Photos_PHChangeRequest")]
 unsafe impl NSObjectProtocol for PHProjectChangeRequest {}
 
 extern_methods!(
-    #[cfg(feature = "Photos_PHProjectChangeRequest")]
+    #[cfg(feature = "Photos_PHChangeRequest")]
     unsafe impl PHProjectChangeRequest {
-        #[cfg(feature = "Photos_PHProject")]
+        #[cfg(all(
+            feature = "Photos_PHCollection",
+            feature = "Photos_PHObject",
+            feature = "Photos_PHProject"
+        ))]
         #[method_id(@__retain_semantics Init initWithProject:)]
         pub unsafe fn initWithProject(this: Allocated<Self>, project: &PHProject) -> Id<Self>;
 
@@ -46,7 +50,7 @@ extern_methods!(
         #[method(setProjectExtensionData:)]
         pub unsafe fn setProjectExtensionData(&self, project_extension_data: &NSData);
 
-        #[cfg(feature = "Photos_PHAsset")]
+        #[cfg(all(feature = "Photos_PHAsset", feature = "Photos_PHObject"))]
         #[deprecated]
         #[method(setKeyAsset:)]
         pub unsafe fn setKeyAsset(&self, key_asset: Option<&PHAsset>);
@@ -55,6 +59,7 @@ extern_methods!(
         #[method(setProjectPreviewImage:)]
         pub unsafe fn setProjectPreviewImage(&self, preview_image: &NSImage);
 
+        #[cfg(feature = "Foundation_NSEnumerator")]
         #[method(removeAssets:)]
         pub unsafe fn removeAssets(&self, assets: &ProtocolObject<dyn NSFastEnumeration>);
     }
@@ -62,7 +67,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Photos_PHProjectChangeRequest")]
+    #[cfg(feature = "Photos_PHChangeRequest")]
     unsafe impl PHProjectChangeRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

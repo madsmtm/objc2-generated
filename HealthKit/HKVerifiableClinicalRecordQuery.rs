@@ -8,10 +8,10 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKVerifiableClinicalRecordQuery")]
+    #[cfg(feature = "HealthKit_HKQuery")]
     pub struct HKVerifiableClinicalRecordQuery;
 
-    #[cfg(feature = "HealthKit_HKVerifiableClinicalRecordQuery")]
+    #[cfg(feature = "HealthKit_HKQuery")]
     unsafe impl ClassType for HKVerifiableClinicalRecordQuery {
         #[inherits(NSObject)]
         type Super = HKQuery;
@@ -19,17 +19,21 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKVerifiableClinicalRecordQuery")]
+#[cfg(feature = "HealthKit_HKQuery")]
 unsafe impl NSObjectProtocol for HKVerifiableClinicalRecordQuery {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKVerifiableClinicalRecordQuery")]
+    #[cfg(feature = "HealthKit_HKQuery")]
     unsafe impl HKVerifiableClinicalRecordQuery {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other recordTypes)]
         pub unsafe fn recordTypes(&self) -> Id<NSArray<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString",
+            feature = "HealthKit_HKVerifiableClinicalRecord"
+        ))]
         #[method_id(@__retain_semantics Other sourceTypes)]
         pub unsafe fn sourceTypes(&self) -> Id<NSArray<HKVerifiableClinicalRecordSourceType>>;
 
@@ -44,6 +48,8 @@ extern_methods!(
             feature = "Foundation_NSError",
             feature = "Foundation_NSPredicate",
             feature = "Foundation_NSString",
+            feature = "HealthKit_HKObject",
+            feature = "HealthKit_HKSample",
             feature = "HealthKit_HKVerifiableClinicalRecord"
         ))]
         #[method_id(@__retain_semantics Init initWithRecordTypes:predicate:resultsHandler:)]
@@ -65,6 +71,8 @@ extern_methods!(
             feature = "Foundation_NSError",
             feature = "Foundation_NSPredicate",
             feature = "Foundation_NSString",
+            feature = "HealthKit_HKObject",
+            feature = "HealthKit_HKSample",
             feature = "HealthKit_HKVerifiableClinicalRecord"
         ))]
         #[method_id(@__retain_semantics Init initWithRecordTypes:sourceTypes:predicate:resultsHandler:)]

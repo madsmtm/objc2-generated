@@ -5,22 +5,18 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSGarbageCollector")]
     #[deprecated = "Building Garbage Collected apps is no longer supported."]
     pub struct NSGarbageCollector;
 
-    #[cfg(feature = "Foundation_NSGarbageCollector")]
     unsafe impl ClassType for NSGarbageCollector {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSGarbageCollector")]
 unsafe impl NSObjectProtocol for NSGarbageCollector {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSGarbageCollector")]
     unsafe impl NSGarbageCollector {
         #[deprecated = "Building Garbage Collected apps is no longer supported."]
         #[method_id(@__retain_semantics Other defaultCollector)]
@@ -58,6 +54,7 @@ extern_methods!(
         #[method(enableCollectorForPointer:)]
         pub unsafe fn enableCollectorForPointer(&self, ptr: NonNull<c_void>);
 
+        #[cfg(feature = "Foundation_NSZone")]
         #[deprecated = "Building Garbage Collected apps is no longer supported."]
         #[method(zone)]
         pub unsafe fn zone(&self) -> NonNull<NSZone>;
@@ -66,7 +63,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSGarbageCollector")]
     unsafe impl NSGarbageCollector {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

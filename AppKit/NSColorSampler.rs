@@ -7,21 +7,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSColorSampler")]
     pub struct NSColorSampler;
 
-    #[cfg(feature = "AppKit_NSColorSampler")]
     unsafe impl ClassType for NSColorSampler {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSColorSampler")]
 unsafe impl NSObjectProtocol for NSColorSampler {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSColorSampler")]
     unsafe impl NSColorSampler {
         #[cfg(feature = "AppKit_NSColor")]
         #[method(showSamplerWithSelectionHandler:)]
@@ -34,7 +30,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSColorSampler")]
     unsafe impl NSColorSampler {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

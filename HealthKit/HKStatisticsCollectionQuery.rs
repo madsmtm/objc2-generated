@@ -8,21 +8,17 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKStatisticsCollection")]
     pub struct HKStatisticsCollection;
 
-    #[cfg(feature = "HealthKit_HKStatisticsCollection")]
     unsafe impl ClassType for HKStatisticsCollection {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "HealthKit_HKStatisticsCollection")]
 unsafe impl NSObjectProtocol for HKStatisticsCollection {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKStatisticsCollection")]
     unsafe impl HKStatisticsCollection {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -52,7 +48,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKStatisticsCollection")]
     unsafe impl HKStatisticsCollection {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -61,10 +56,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKStatisticsCollectionQuery")]
+    #[cfg(feature = "HealthKit_HKQuery")]
     pub struct HKStatisticsCollectionQuery;
 
-    #[cfg(feature = "HealthKit_HKStatisticsCollectionQuery")]
+    #[cfg(feature = "HealthKit_HKQuery")]
     unsafe impl ClassType for HKStatisticsCollectionQuery {
         #[inherits(NSObject)]
         type Super = HKQuery;
@@ -72,27 +67,25 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKStatisticsCollectionQuery")]
+#[cfg(feature = "HealthKit_HKQuery")]
 unsafe impl NSObjectProtocol for HKStatisticsCollectionQuery {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKStatisticsCollectionQuery")]
+    #[cfg(feature = "HealthKit_HKQuery")]
     unsafe impl HKStatisticsCollectionQuery {
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other anchorDate)]
         pub unsafe fn anchorDate(&self) -> Id<NSDate>;
 
+        #[cfg(feature = "HealthKit_HKStatistics")]
         #[method(options)]
         pub unsafe fn options(&self) -> HKStatisticsOptions;
 
-        #[cfg(feature = "Foundation_NSDateComponents")]
+        #[cfg(feature = "Foundation_NSCalendar")]
         #[method_id(@__retain_semantics Other intervalComponents)]
         pub unsafe fn intervalComponents(&self) -> Id<NSDateComponents>;
 
-        #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "HealthKit_HKStatisticsCollection"
-        ))]
+        #[cfg(feature = "Foundation_NSError")]
         #[method(initialResultsHandler)]
         pub unsafe fn initialResultsHandler(
             &self,
@@ -100,10 +93,7 @@ extern_methods!(
             dyn Fn(NonNull<HKStatisticsCollectionQuery>, *mut HKStatisticsCollection, *mut NSError),
         >;
 
-        #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "HealthKit_HKStatisticsCollection"
-        ))]
+        #[cfg(feature = "Foundation_NSError")]
         #[method(setInitialResultsHandler:)]
         pub unsafe fn setInitialResultsHandler(
             &self,
@@ -118,11 +108,7 @@ extern_methods!(
             >,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "HealthKit_HKStatistics",
-            feature = "HealthKit_HKStatisticsCollection"
-        ))]
+        #[cfg(all(feature = "Foundation_NSError", feature = "HealthKit_HKStatistics"))]
         #[method(statisticsUpdateHandler)]
         pub unsafe fn statisticsUpdateHandler(
             &self,
@@ -135,11 +121,7 @@ extern_methods!(
             ),
         >;
 
-        #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "HealthKit_HKStatistics",
-            feature = "HealthKit_HKStatisticsCollection"
-        ))]
+        #[cfg(all(feature = "Foundation_NSError", feature = "HealthKit_HKStatistics"))]
         #[method(setStatisticsUpdateHandler:)]
         pub unsafe fn setStatisticsUpdateHandler(
             &self,
@@ -156,10 +138,11 @@ extern_methods!(
         );
 
         #[cfg(all(
+            feature = "Foundation_NSCalendar",
             feature = "Foundation_NSDate",
-            feature = "Foundation_NSDateComponents",
             feature = "Foundation_NSPredicate",
-            feature = "HealthKit_HKQuantityType"
+            feature = "HealthKit_HKObjectType",
+            feature = "HealthKit_HKStatistics"
         ))]
         #[method_id(@__retain_semantics Init initWithQuantityType:quantitySamplePredicate:options:anchorDate:intervalComponents:)]
         pub unsafe fn initWithQuantityType_quantitySamplePredicate_options_anchorDate_intervalComponents(
@@ -175,7 +158,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `HKQuery`
-    #[cfg(feature = "HealthKit_HKStatisticsCollectionQuery")]
+    #[cfg(feature = "HealthKit_HKQuery")]
     unsafe impl HKStatisticsCollectionQuery {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -184,7 +167,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKStatisticsCollectionQuery")]
+    #[cfg(feature = "HealthKit_HKQuery")]
     unsafe impl HKStatisticsCollectionQuery {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

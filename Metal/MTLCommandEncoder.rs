@@ -31,6 +31,7 @@ ns_options!(
 
 extern_protocol!(
     pub unsafe trait MTLCommandEncoder: NSObjectProtocol {
+        #[cfg(feature = "Metal_MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
         unsafe fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
 

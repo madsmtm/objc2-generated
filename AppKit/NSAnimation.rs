@@ -26,7 +26,7 @@ ns_enum!(
 
 pub type NSAnimationProgress = c_float;
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSAnimationProgressMarkNotification: &'static NSNotificationName);
 
 #[cfg(feature = "Foundation_NSString")]
@@ -34,28 +34,25 @@ extern_static!(NSAnimationProgressMark: &'static NSString);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSAnimation")]
     pub struct NSAnimation;
 
-    #[cfg(feature = "AppKit_NSAnimation")]
     unsafe impl ClassType for NSAnimation {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSAnimation")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSAnimation {}
 
-#[cfg(feature = "AppKit_NSAnimation")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSAnimation {}
 
-#[cfg(feature = "AppKit_NSAnimation")]
 unsafe impl NSObjectProtocol for NSAnimation {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSAnimation")]
     unsafe impl NSAnimation {
+        #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Init initWithDuration:animationCurve:)]
         pub unsafe fn initWithDuration_animationCurve(
             this: Allocated<Self>,
@@ -82,9 +79,11 @@ extern_methods!(
         #[method(setCurrentProgress:)]
         pub unsafe fn setCurrentProgress(&self, current_progress: NSAnimationProgress);
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(duration)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(setDuration:)]
         pub unsafe fn setDuration(&self, duration: NSTimeInterval);
 
@@ -121,11 +120,11 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn NSAnimationDelegate>>,
         );
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Other progressMarks)]
         pub unsafe fn progressMarks(&self) -> Id<NSArray<NSNumber>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method(setProgressMarks:)]
         pub unsafe fn setProgressMarks(&self, progress_marks: &NSArray<NSNumber>);
 
@@ -155,7 +154,11 @@ extern_methods!(
         #[method(clearStopAnimation)]
         pub unsafe fn clearStopAnimation(&self);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSObjCRuntime",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other runLoopModesForAnimating)]
         pub unsafe fn runLoopModesForAnimating(&self) -> Option<Id<NSArray<NSRunLoopMode>>>;
     }
@@ -163,7 +166,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSAnimation")]
     unsafe impl NSAnimation {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -175,22 +177,18 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSAnimationDelegate: NSObjectProtocol {
-        #[cfg(feature = "AppKit_NSAnimation")]
         #[optional]
         #[method(animationShouldStart:)]
         unsafe fn animationShouldStart(&self, animation: &NSAnimation) -> bool;
 
-        #[cfg(feature = "AppKit_NSAnimation")]
         #[optional]
         #[method(animationDidStop:)]
         unsafe fn animationDidStop(&self, animation: &NSAnimation);
 
-        #[cfg(feature = "AppKit_NSAnimation")]
         #[optional]
         #[method(animationDidEnd:)]
         unsafe fn animationDidEnd(&self, animation: &NSAnimation);
 
-        #[cfg(feature = "AppKit_NSAnimation")]
         #[optional]
         #[method(animation:valueForProgress:)]
         unsafe fn animation_valueForProgress(
@@ -199,7 +197,6 @@ extern_protocol!(
             progress: NSAnimationProgress,
         ) -> c_float;
 
-        #[cfg(feature = "AppKit_NSAnimation")]
         #[optional]
         #[method(animation:didReachProgressMark:)]
         unsafe fn animation_didReachProgressMark(
@@ -242,10 +239,8 @@ extern_static!(NSViewAnimationFadeOutEffect: &'static NSViewAnimationEffectName)
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSViewAnimation")]
     pub struct NSViewAnimation;
 
-    #[cfg(feature = "AppKit_NSViewAnimation")]
     unsafe impl ClassType for NSViewAnimation {
         #[inherits(NSObject)]
         type Super = NSAnimation;
@@ -253,17 +248,15 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSViewAnimation")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSViewAnimation {}
 
-#[cfg(feature = "AppKit_NSViewAnimation")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSViewAnimation {}
 
-#[cfg(feature = "AppKit_NSViewAnimation")]
 unsafe impl NSObjectProtocol for NSViewAnimation {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSViewAnimation")]
     unsafe impl NSViewAnimation {
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -301,8 +294,8 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSAnimation`
-    #[cfg(feature = "AppKit_NSViewAnimation")]
     unsafe impl NSViewAnimation {
+        #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Init initWithDuration:animationCurve:)]
         pub unsafe fn initWithDuration_animationCurve(
             this: Allocated<Self>,
@@ -318,7 +311,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSViewAnimation")]
     unsafe impl NSViewAnimation {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

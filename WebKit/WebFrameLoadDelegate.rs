@@ -8,7 +8,12 @@ use crate::WebKit::*;
 extern_protocol!(
     #[deprecated]
     pub unsafe trait WebFrameLoadDelegate: NSObjectProtocol {
-        #[cfg(all(feature = "WebKit_WebFrame", feature = "WebKit_WebView"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "WebKit_WebFrame",
+            feature = "WebKit_WebView"
+        ))]
         #[deprecated]
         #[optional]
         #[method(webView:didStartProvisionalLoadForFrame:)]
@@ -18,7 +23,12 @@ extern_protocol!(
             frame: Option<&WebFrame>,
         );
 
-        #[cfg(all(feature = "WebKit_WebFrame", feature = "WebKit_WebView"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "WebKit_WebFrame",
+            feature = "WebKit_WebView"
+        ))]
         #[deprecated]
         #[optional]
         #[method(webView:didReceiveServerRedirectForProvisionalLoadForFrame:)]
@@ -29,6 +39,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSError",
             feature = "WebKit_WebFrame",
             feature = "WebKit_WebView"
@@ -43,7 +55,12 @@ extern_protocol!(
             frame: Option<&WebFrame>,
         );
 
-        #[cfg(all(feature = "WebKit_WebFrame", feature = "WebKit_WebView"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "WebKit_WebFrame",
+            feature = "WebKit_WebView"
+        ))]
         #[deprecated]
         #[optional]
         #[method(webView:didCommitLoadForFrame:)]
@@ -54,6 +71,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSString",
             feature = "WebKit_WebFrame",
             feature = "WebKit_WebView"
@@ -70,6 +89,8 @@ extern_protocol!(
 
         #[cfg(all(
             feature = "AppKit_NSImage",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "WebKit_WebFrame",
             feature = "WebKit_WebView"
         ))]
@@ -83,7 +104,12 @@ extern_protocol!(
             frame: Option<&WebFrame>,
         );
 
-        #[cfg(all(feature = "WebKit_WebFrame", feature = "WebKit_WebView"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "WebKit_WebFrame",
+            feature = "WebKit_WebView"
+        ))]
         #[deprecated]
         #[optional]
         #[method(webView:didFinishLoadForFrame:)]
@@ -94,6 +120,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSError",
             feature = "WebKit_WebFrame",
             feature = "WebKit_WebView"
@@ -108,7 +136,12 @@ extern_protocol!(
             frame: Option<&WebFrame>,
         );
 
-        #[cfg(all(feature = "WebKit_WebFrame", feature = "WebKit_WebView"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "WebKit_WebFrame",
+            feature = "WebKit_WebView"
+        ))]
         #[deprecated]
         #[optional]
         #[method(webView:didChangeLocationWithinPageForFrame:)]
@@ -119,6 +152,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSDate",
             feature = "Foundation_NSURL",
             feature = "WebKit_WebFrame",
@@ -136,7 +171,12 @@ extern_protocol!(
             frame: Option<&WebFrame>,
         );
 
-        #[cfg(all(feature = "WebKit_WebFrame", feature = "WebKit_WebView"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "WebKit_WebFrame",
+            feature = "WebKit_WebView"
+        ))]
         #[deprecated]
         #[optional]
         #[method(webView:didCancelClientRedirectForFrame:)]
@@ -146,13 +186,20 @@ extern_protocol!(
             frame: Option<&WebFrame>,
         );
 
-        #[cfg(all(feature = "WebKit_WebFrame", feature = "WebKit_WebView"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "WebKit_WebFrame",
+            feature = "WebKit_WebView"
+        ))]
         #[deprecated]
         #[optional]
         #[method(webView:willCloseFrame:)]
         unsafe fn webView_willCloseFrame(&self, sender: Option<&WebView>, frame: Option<&WebFrame>);
 
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "WebKit_WebFrame",
             feature = "WebKit_WebScriptObject",
             feature = "WebKit_WebView"
@@ -167,7 +214,12 @@ extern_protocol!(
             frame: Option<&WebFrame>,
         );
 
-        #[cfg(all(feature = "WebKit_WebScriptObject", feature = "WebKit_WebView"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "WebKit_WebScriptObject",
+            feature = "WebKit_WebView"
+        ))]
         #[deprecated]
         #[optional]
         #[method(webView:windowScriptObjectAvailable:)]

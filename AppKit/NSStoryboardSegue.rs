@@ -10,21 +10,17 @@ pub type NSStoryboardSegueIdentifier = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSStoryboardSegue")]
     pub struct NSStoryboardSegue;
 
-    #[cfg(feature = "AppKit_NSStoryboardSegue")]
     unsafe impl ClassType for NSStoryboardSegue {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSStoryboardSegue")]
 unsafe impl NSObjectProtocol for NSStoryboardSegue {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSStoryboardSegue")]
     unsafe impl NSStoryboardSegue {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other segueWithIdentifier:source:destination:performHandler:)]
@@ -61,7 +57,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSStoryboardSegue")]
     unsafe impl NSStoryboardSegue {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -73,7 +68,6 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSSeguePerforming: NSObjectProtocol + IsMainThreadOnly {
-        #[cfg(feature = "AppKit_NSStoryboardSegue")]
         #[optional]
         #[method(prepareForSegue:sender:)]
         unsafe fn prepareForSegue_sender(

@@ -41,14 +41,15 @@ ns_enum!(
     }
 );
 
+#[cfg(feature = "Foundation_NSGeometry")]
 extern_static!(NSGridViewSizeForContent: CGFloat);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSGridView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     pub struct NSGridView;
 
-    #[cfg(feature = "AppKit_NSGridView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl ClassType for NSGridView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
@@ -56,33 +57,62 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSGridView")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibility for NSGridView {}
 
-#[cfg(feature = "AppKit_NSGridView")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibilityElementProtocol for NSGridView {}
 
-#[cfg(feature = "AppKit_NSGridView")]
+#[cfg(all(
+    feature = "AppKit_NSAnimation",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAnimatablePropertyContainer for NSGridView {}
 
-#[cfg(feature = "AppKit_NSGridView")]
+#[cfg(all(
+    feature = "AppKit_NSAppearance",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAppearanceCustomization for NSGridView {}
 
-#[cfg(feature = "AppKit_NSGridView")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSGridView {}
 
-#[cfg(feature = "AppKit_NSGridView")]
+#[cfg(all(
+    feature = "AppKit_NSDragging",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSDraggingDestination for NSGridView {}
 
-#[cfg(feature = "AppKit_NSGridView")]
+#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
 unsafe impl NSObjectProtocol for NSGridView {}
 
-#[cfg(feature = "AppKit_NSGridView")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSGridView {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSGridView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSGridView {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
 
@@ -110,23 +140,18 @@ extern_methods!(
         #[method(numberOfColumns)]
         pub unsafe fn numberOfColumns(&self) -> NSInteger;
 
-        #[cfg(feature = "AppKit_NSGridRow")]
         #[method_id(@__retain_semantics Other rowAtIndex:)]
         pub unsafe fn rowAtIndex(&self, index: NSInteger) -> Id<NSGridRow>;
 
-        #[cfg(feature = "AppKit_NSGridRow")]
         #[method(indexOfRow:)]
         pub unsafe fn indexOfRow(&self, row: &NSGridRow) -> NSInteger;
 
-        #[cfg(feature = "AppKit_NSGridColumn")]
         #[method_id(@__retain_semantics Other columnAtIndex:)]
         pub unsafe fn columnAtIndex(&self, index: NSInteger) -> Id<NSGridColumn>;
 
-        #[cfg(feature = "AppKit_NSGridColumn")]
         #[method(indexOfColumn:)]
         pub unsafe fn indexOfColumn(&self, column: &NSGridColumn) -> NSInteger;
 
-        #[cfg(feature = "AppKit_NSGridCell")]
         #[method_id(@__retain_semantics Other cellAtColumnIndex:rowIndex:)]
         pub unsafe fn cellAtColumnIndex_rowIndex(
             &self,
@@ -134,15 +159,14 @@ extern_methods!(
             row_index: NSInteger,
         ) -> Id<NSGridCell>;
 
-        #[cfg(feature = "AppKit_NSGridCell")]
         #[method_id(@__retain_semantics Other cellForView:)]
         pub unsafe fn cellForView(&self, view: &NSView) -> Option<Id<NSGridCell>>;
 
-        #[cfg(all(feature = "AppKit_NSGridRow", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other addRowWithViews:)]
         pub unsafe fn addRowWithViews(&self, views: &NSArray<NSView>) -> Id<NSGridRow>;
 
-        #[cfg(all(feature = "AppKit_NSGridRow", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other insertRowAtIndex:withViews:)]
         pub unsafe fn insertRowAtIndex_withViews(
             &self,
@@ -156,11 +180,11 @@ extern_methods!(
         #[method(removeRowAtIndex:)]
         pub unsafe fn removeRowAtIndex(&self, index: NSInteger);
 
-        #[cfg(all(feature = "AppKit_NSGridColumn", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other addColumnWithViews:)]
         pub unsafe fn addColumnWithViews(&self, views: &NSArray<NSView>) -> Id<NSGridColumn>;
 
-        #[cfg(all(feature = "AppKit_NSGridColumn", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other insertColumnAtIndex:withViews:)]
         pub unsafe fn insertColumnAtIndex_withViews(
             &self,
@@ -192,18 +216,23 @@ extern_methods!(
         #[method(setRowAlignment:)]
         pub unsafe fn setRowAlignment(&self, row_alignment: NSGridRowAlignment);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(rowSpacing)]
         pub unsafe fn rowSpacing(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setRowSpacing:)]
         pub unsafe fn setRowSpacing(&self, row_spacing: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(columnSpacing)]
         pub unsafe fn columnSpacing(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setColumnSpacing:)]
         pub unsafe fn setColumnSpacing(&self, column_spacing: CGFloat);
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(mergeCellsInHorizontalRange:verticalRange:)]
         pub unsafe fn mergeCellsInHorizontalRange_verticalRange(
             &self,
@@ -215,7 +244,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "AppKit_NSGridView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSGridView {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -224,7 +253,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSGridView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSGridView {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -233,33 +262,28 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSGridRow")]
     pub struct NSGridRow;
 
-    #[cfg(feature = "AppKit_NSGridRow")]
     unsafe impl ClassType for NSGridRow {
         type Super = NSObject;
         type Mutability = MainThreadOnly;
     }
 );
 
-#[cfg(feature = "AppKit_NSGridRow")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSGridRow {}
 
-#[cfg(feature = "AppKit_NSGridRow")]
 unsafe impl NSObjectProtocol for NSGridRow {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSGridRow")]
     unsafe impl NSGridRow {
-        #[cfg(feature = "AppKit_NSGridView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[method_id(@__retain_semantics Other gridView)]
         pub unsafe fn gridView(&self) -> Option<Id<NSGridView>>;
 
         #[method(numberOfCells)]
         pub unsafe fn numberOfCells(&self) -> NSInteger;
 
-        #[cfg(feature = "AppKit_NSGridCell")]
         #[method_id(@__retain_semantics Other cellAtIndex:)]
         pub unsafe fn cellAtIndex(&self, index: NSInteger) -> Id<NSGridCell>;
 
@@ -275,21 +299,27 @@ extern_methods!(
         #[method(setRowAlignment:)]
         pub unsafe fn setRowAlignment(&self, row_alignment: NSGridRowAlignment);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(height)]
         pub unsafe fn height(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setHeight:)]
         pub unsafe fn setHeight(&self, height: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(topPadding)]
         pub unsafe fn topPadding(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setTopPadding:)]
         pub unsafe fn setTopPadding(&self, top_padding: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(bottomPadding)]
         pub unsafe fn bottomPadding(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setBottomPadding:)]
         pub unsafe fn setBottomPadding(&self, bottom_padding: CGFloat);
 
@@ -299,6 +329,7 @@ extern_methods!(
         #[method(setHidden:)]
         pub unsafe fn setHidden(&self, hidden: bool);
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(mergeCellsInRange:)]
         pub unsafe fn mergeCellsInRange(&self, range: NSRange);
     }
@@ -306,7 +337,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSGridRow")]
     unsafe impl NSGridRow {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -318,33 +348,28 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSGridColumn")]
     pub struct NSGridColumn;
 
-    #[cfg(feature = "AppKit_NSGridColumn")]
     unsafe impl ClassType for NSGridColumn {
         type Super = NSObject;
         type Mutability = MainThreadOnly;
     }
 );
 
-#[cfg(feature = "AppKit_NSGridColumn")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSGridColumn {}
 
-#[cfg(feature = "AppKit_NSGridColumn")]
 unsafe impl NSObjectProtocol for NSGridColumn {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSGridColumn")]
     unsafe impl NSGridColumn {
-        #[cfg(feature = "AppKit_NSGridView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[method_id(@__retain_semantics Other gridView)]
         pub unsafe fn gridView(&self) -> Option<Id<NSGridView>>;
 
         #[method(numberOfCells)]
         pub unsafe fn numberOfCells(&self) -> NSInteger;
 
-        #[cfg(feature = "AppKit_NSGridCell")]
         #[method_id(@__retain_semantics Other cellAtIndex:)]
         pub unsafe fn cellAtIndex(&self, index: NSInteger) -> Id<NSGridCell>;
 
@@ -354,21 +379,27 @@ extern_methods!(
         #[method(setXPlacement:)]
         pub unsafe fn setXPlacement(&self, x_placement: NSGridCellPlacement);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(width)]
         pub unsafe fn width(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setWidth:)]
         pub unsafe fn setWidth(&self, width: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(leadingPadding)]
         pub unsafe fn leadingPadding(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setLeadingPadding:)]
         pub unsafe fn setLeadingPadding(&self, leading_padding: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(trailingPadding)]
         pub unsafe fn trailingPadding(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setTrailingPadding:)]
         pub unsafe fn setTrailingPadding(&self, trailing_padding: CGFloat);
 
@@ -378,6 +409,7 @@ extern_methods!(
         #[method(setHidden:)]
         pub unsafe fn setHidden(&self, hidden: bool);
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(mergeCellsInRange:)]
         pub unsafe fn mergeCellsInRange(&self, range: NSRange);
     }
@@ -385,7 +417,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSGridColumn")]
     unsafe impl NSGridColumn {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -397,42 +428,36 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSGridCell")]
     pub struct NSGridCell;
 
-    #[cfg(feature = "AppKit_NSGridCell")]
     unsafe impl ClassType for NSGridCell {
         type Super = NSObject;
         type Mutability = MainThreadOnly;
     }
 );
 
-#[cfg(feature = "AppKit_NSGridCell")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSGridCell {}
 
-#[cfg(feature = "AppKit_NSGridCell")]
 unsafe impl NSObjectProtocol for NSGridCell {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSGridCell")]
     unsafe impl NSGridCell {
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[method_id(@__retain_semantics Other contentView)]
         pub unsafe fn contentView(&self) -> Option<Id<NSView>>;
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[method(setContentView:)]
         pub unsafe fn setContentView(&self, content_view: Option<&NSView>);
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[method_id(@__retain_semantics Other emptyContentView)]
         pub unsafe fn emptyContentView(mtm: MainThreadMarker) -> Id<NSView>;
 
-        #[cfg(feature = "AppKit_NSGridRow")]
         #[method_id(@__retain_semantics Other row)]
         pub unsafe fn row(&self) -> Option<Id<NSGridRow>>;
 
-        #[cfg(feature = "AppKit_NSGridColumn")]
         #[method_id(@__retain_semantics Other column)]
         pub unsafe fn column(&self) -> Option<Id<NSGridColumn>>;
 
@@ -469,7 +494,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSGridCell")]
     unsafe impl NSGridCell {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

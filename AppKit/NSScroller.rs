@@ -54,10 +54,18 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSScroller")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     pub struct NSScroller;
 
-    #[cfg(feature = "AppKit_NSScroller")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl ClassType for NSScroller {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;
@@ -65,36 +73,80 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSScroller")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibility for NSScroller {}
 
-#[cfg(feature = "AppKit_NSScroller")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibilityElementProtocol for NSScroller {}
 
-#[cfg(feature = "AppKit_NSScroller")]
+#[cfg(all(
+    feature = "AppKit_NSAnimation",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAnimatablePropertyContainer for NSScroller {}
 
-#[cfg(feature = "AppKit_NSScroller")]
+#[cfg(all(
+    feature = "AppKit_NSAppearance",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAppearanceCustomization for NSScroller {}
 
-#[cfg(feature = "AppKit_NSScroller")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSScroller {}
 
-#[cfg(feature = "AppKit_NSScroller")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSDragging",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSDraggingDestination for NSScroller {}
 
-#[cfg(feature = "AppKit_NSScroller")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSObjectProtocol for NSScroller {}
 
-#[cfg(feature = "AppKit_NSScroller")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSScroller {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSScroller")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSScroller {
         #[method(isCompatibleWithOverlayScrollers)]
         pub unsafe fn isCompatibleWithOverlayScrollers(mtm: MainThreadMarker) -> bool;
 
+        #[cfg(all(feature = "AppKit_NSCell", feature = "Foundation_NSGeometry"))]
         #[method(scrollerWidthForControlSize:scrollerStyle:)]
         pub unsafe fn scrollerWidthForControlSize_scrollerStyle(
             control_size: NSControlSize,
@@ -117,6 +169,7 @@ extern_methods!(
         #[method(setKnobStyle:)]
         pub unsafe fn setKnobStyle(&self, knob_style: NSScrollerKnobStyle);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(rectForPart:)]
         pub unsafe fn rectForPart(&self, part_code: NSScrollerPart) -> NSRect;
 
@@ -126,18 +179,22 @@ extern_methods!(
         #[method(usableParts)]
         pub unsafe fn usableParts(&self) -> NSUsableScrollerParts;
 
+        #[cfg(feature = "AppKit_NSCell")]
         #[method(controlSize)]
         pub unsafe fn controlSize(&self) -> NSControlSize;
 
+        #[cfg(feature = "AppKit_NSCell")]
         #[method(setControlSize:)]
         pub unsafe fn setControlSize(&self, control_size: NSControlSize);
 
         #[method(drawKnob)]
         pub unsafe fn drawKnob(&self);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(drawKnobSlotInRect:highlight:)]
         pub unsafe fn drawKnobSlotInRect_highlight(&self, slot_rect: NSRect, flag: bool);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(testPart:)]
         pub unsafe fn testPart(&self, point: NSPoint) -> NSScrollerPart;
 
@@ -148,9 +205,11 @@ extern_methods!(
         #[method(hitPart)]
         pub unsafe fn hitPart(&self) -> NSScrollerPart;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(knobProportion)]
         pub unsafe fn knobProportion(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setKnobProportion:)]
         pub unsafe fn setKnobProportion(&self, knob_proportion: CGFloat);
     }
@@ -158,8 +217,13 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSControl`
-    #[cfg(feature = "AppKit_NSScroller")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSScroller {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
 
@@ -171,7 +235,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "AppKit_NSScroller")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSScroller {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -180,14 +248,18 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSScroller")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSScroller {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSPreferredScrollerStyleDidChangeNotification: &'static NSNotificationName);
 
 ns_enum!(
@@ -212,8 +284,13 @@ ns_enum!(
 
 extern_methods!(
     /// NSDeprecated
-    #[cfg(feature = "AppKit_NSScroller")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSScroller {
+        #[cfg(all(feature = "AppKit_NSCell", feature = "Foundation_NSGeometry"))]
         #[deprecated = "Use +scrollerWidthForControlSize:scrollerStyle: instead"]
         #[method(scrollerWidthForControlSize:)]
         pub unsafe fn scrollerWidthForControlSize(
@@ -221,10 +298,12 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[deprecated = "Use +scrollerWidthForControlSize:scrollerStyle: instead"]
         #[method(scrollerWidth)]
         pub unsafe fn scrollerWidth(mtm: MainThreadMarker) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[deprecated]
         #[method(setFloatValue:knobProportion:)]
         pub unsafe fn setFloatValue_knobProportion(&self, value: c_float, proportion: CGFloat);
@@ -237,10 +316,12 @@ extern_methods!(
         #[method(setArrowsPosition:)]
         pub unsafe fn setArrowsPosition(&self, arrows_position: NSScrollArrowPosition);
 
+        #[cfg(feature = "AppKit_NSCell")]
         #[deprecated = "Has had no effect since 10.7"]
         #[method(controlTint)]
         pub unsafe fn controlTint(&self) -> NSControlTint;
 
+        #[cfg(feature = "AppKit_NSCell")]
         #[deprecated = "Has had no effect since 10.7"]
         #[method(setControlTint:)]
         pub unsafe fn setControlTint(&self, control_tint: NSControlTint);

@@ -75,21 +75,17 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSSpellChecker")]
     pub struct NSSpellChecker;
 
-    #[cfg(feature = "AppKit_NSSpellChecker")]
     unsafe impl ClassType for NSSpellChecker {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSSpellChecker")]
 unsafe impl NSObjectProtocol for NSSpellChecker {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSSpellChecker")]
     unsafe impl NSSpellChecker {
         #[method_id(@__retain_semantics Other sharedSpellChecker)]
         pub unsafe fn sharedSpellChecker() -> Id<NSSpellChecker>;
@@ -100,7 +96,7 @@ extern_methods!(
         #[method(uniqueSpellDocumentTag)]
         pub unsafe fn uniqueSpellDocumentTag() -> NSInteger;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSRange", feature = "Foundation_NSString"))]
         #[method(checkSpellingOfString:startingAt:language:wrap:inSpellDocumentWithTag:wordCount:)]
         pub unsafe fn checkSpellingOfString_startingAt_language_wrap_inSpellDocumentWithTag_wordCount(
             &self,
@@ -112,7 +108,7 @@ extern_methods!(
             word_count: *mut NSInteger,
         ) -> NSRange;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSRange", feature = "Foundation_NSString"))]
         #[method(checkSpellingOfString:startingAt:)]
         pub unsafe fn checkSpellingOfString_startingAt(
             &self,
@@ -131,6 +127,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSRange",
             feature = "Foundation_NSString"
         ))]
         #[method(checkGrammarOfString:startingAt:language:wrap:inSpellDocumentWithTag:details:)]
@@ -148,6 +145,7 @@ extern_methods!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSOrthography",
+            feature = "Foundation_NSRange",
             feature = "Foundation_NSString",
             feature = "Foundation_NSTextCheckingResult"
         ))]
@@ -167,6 +165,7 @@ extern_methods!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSOrthography",
+            feature = "Foundation_NSRange",
             feature = "Foundation_NSString",
             feature = "Foundation_NSTextCheckingResult"
         ))]
@@ -193,6 +192,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSRange",
             feature = "Foundation_NSString",
             feature = "Foundation_NSTextCheckingResult"
         ))]
@@ -211,8 +211,10 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSMenu",
+            feature = "AppKit_NSResponder",
             feature = "AppKit_NSView",
             feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSGeometry",
             feature = "Foundation_NSString",
             feature = "Foundation_NSTextCheckingResult"
         ))]
@@ -249,30 +251,38 @@ extern_methods!(
             detail: &NSDictionary<NSString, AnyObject>,
         );
 
-        #[cfg(feature = "AppKit_NSPanel")]
+        #[cfg(all(
+            feature = "AppKit_NSPanel",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSWindow"
+        ))]
         #[method_id(@__retain_semantics Other spellingPanel)]
         pub unsafe fn spellingPanel(&self, mtm: MainThreadMarker) -> Id<NSPanel>;
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[method_id(@__retain_semantics Other accessoryView)]
         pub unsafe fn accessoryView(&self, mtm: MainThreadMarker) -> Option<Id<NSView>>;
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[method(setAccessoryView:)]
         pub unsafe fn setAccessoryView(&self, accessory_view: Option<&NSView>);
 
-        #[cfg(feature = "AppKit_NSPanel")]
+        #[cfg(all(
+            feature = "AppKit_NSPanel",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSWindow"
+        ))]
         #[method_id(@__retain_semantics Other substitutionsPanel)]
         pub unsafe fn substitutionsPanel(&self, mtm: MainThreadMarker) -> Id<NSPanel>;
 
-        #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
         #[method_id(@__retain_semantics Other substitutionsPanelAccessoryViewController)]
         pub unsafe fn substitutionsPanelAccessoryViewController(
             &self,
             mtm: MainThreadMarker,
         ) -> Option<Id<NSViewController>>;
 
-        #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
         #[method(setSubstitutionsPanelAccessoryViewController:)]
         pub unsafe fn setSubstitutionsPanelAccessoryViewController(
             &self,
@@ -305,7 +315,11 @@ extern_methods!(
             tag: NSInteger,
         );
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSRange",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other guessesForWordRange:inString:language:inSpellDocumentWithTag:)]
         pub unsafe fn guessesForWordRange_inString_language_inSpellDocumentWithTag(
             &self,
@@ -315,7 +329,7 @@ extern_methods!(
             tag: NSInteger,
         ) -> Option<Id<NSArray<NSString>>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSRange", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other correctionForWordRange:inString:language:inSpellDocumentWithTag:)]
         pub unsafe fn correctionForWordRange_inString_language_inSpellDocumentWithTag(
             &self,
@@ -325,7 +339,11 @@ extern_methods!(
             tag: NSInteger,
         ) -> Option<Id<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSRange",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other completionsForPartialWordRange:inString:language:inSpellDocumentWithTag:)]
         pub unsafe fn completionsForPartialWordRange_inString_language_inSpellDocumentWithTag(
             &self,
@@ -335,7 +353,11 @@ extern_methods!(
             tag: NSInteger,
         ) -> Option<Id<NSArray<NSString>>>;
 
-        #[cfg(all(feature = "Foundation_NSOrthography", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSOrthography",
+            feature = "Foundation_NSRange",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other languageForWordRange:inString:orthography:)]
         pub unsafe fn languageForWordRange_inString_orthography(
             &self,
@@ -359,8 +381,10 @@ extern_methods!(
         );
 
         #[cfg(all(
+            feature = "AppKit_NSResponder",
             feature = "AppKit_NSView",
             feature = "Foundation_NSArray",
+            feature = "Foundation_NSGeometry",
             feature = "Foundation_NSString"
         ))]
         #[method(showCorrectionIndicatorOfType:primaryString:alternativeStrings:forStringInRect:view:completionHandler:)]
@@ -374,11 +398,12 @@ extern_methods!(
             completion_block: Option<&Block<dyn Fn(*mut NSString)>>,
         );
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[method(dismissCorrectionIndicatorForView:)]
         pub unsafe fn dismissCorrectionIndicatorForView(&self, view: &NSView);
 
         #[cfg(all(
+            feature = "AppKit_NSTextInputClient",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSTextCheckingResult"
         ))]
@@ -475,7 +500,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSSpellChecker")]
     unsafe impl NSSpellChecker {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -485,33 +509,32 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSSpellCheckerDidChangeAutomaticSpellingCorrectionNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSSpellCheckerDidChangeAutomaticTextReplacementNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSSpellCheckerDidChangeAutomaticQuoteSubstitutionNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSSpellCheckerDidChangeAutomaticDashSubstitutionNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSSpellCheckerDidChangeAutomaticCapitalizationNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSSpellCheckerDidChangeAutomaticPeriodSubstitutionNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSSpellCheckerDidChangeAutomaticTextCompletionNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSSpellCheckerDidChangeAutomaticInlinePredictionNotification: &'static NSNotificationName);
 
 extern_methods!(
     /// NSDeprecated
-    #[cfg(feature = "AppKit_NSSpellChecker")]
     unsafe impl NSSpellChecker {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[deprecated = "Use -guessesForWordRange:inString:language:inSpellDocumentWithTag instead"]

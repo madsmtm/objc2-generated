@@ -7,10 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSCollectionViewGridLayout")]
+    #[cfg(feature = "AppKit_NSCollectionViewLayout")]
     pub struct NSCollectionViewGridLayout;
 
-    #[cfg(feature = "AppKit_NSCollectionViewGridLayout")]
+    #[cfg(feature = "AppKit_NSCollectionViewLayout")]
     unsafe impl ClassType for NSCollectionViewGridLayout {
         #[inherits(NSObject)]
         type Super = NSCollectionViewLayout;
@@ -18,30 +18,39 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSCollectionViewGridLayout")]
+#[cfg(all(
+    feature = "AppKit_NSCollectionViewLayout",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSCollectionViewGridLayout {}
 
-#[cfg(feature = "AppKit_NSCollectionViewGridLayout")]
+#[cfg(feature = "AppKit_NSCollectionViewLayout")]
 unsafe impl NSObjectProtocol for NSCollectionViewGridLayout {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSCollectionViewGridLayout")]
+    #[cfg(feature = "AppKit_NSCollectionViewLayout")]
     unsafe impl NSCollectionViewGridLayout {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(margins)]
         pub unsafe fn margins(&self) -> NSEdgeInsets;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setMargins:)]
         pub unsafe fn setMargins(&self, margins: NSEdgeInsets);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(minimumInteritemSpacing)]
         pub unsafe fn minimumInteritemSpacing(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setMinimumInteritemSpacing:)]
         pub unsafe fn setMinimumInteritemSpacing(&self, minimum_interitem_spacing: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(minimumLineSpacing)]
         pub unsafe fn minimumLineSpacing(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setMinimumLineSpacing:)]
         pub unsafe fn setMinimumLineSpacing(&self, minimum_line_spacing: CGFloat);
 
@@ -57,15 +66,19 @@ extern_methods!(
         #[method(setMaximumNumberOfColumns:)]
         pub unsafe fn setMaximumNumberOfColumns(&self, maximum_number_of_columns: NSUInteger);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(minimumItemSize)]
         pub unsafe fn minimumItemSize(&self) -> NSSize;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setMinimumItemSize:)]
         pub unsafe fn setMinimumItemSize(&self, minimum_item_size: NSSize);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(maximumItemSize)]
         pub unsafe fn maximumItemSize(&self) -> NSSize;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setMaximumItemSize:)]
         pub unsafe fn setMaximumItemSize(&self, maximum_item_size: NSSize);
 
@@ -81,7 +94,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSCollectionViewGridLayout")]
+    #[cfg(feature = "AppKit_NSCollectionViewLayout")]
     unsafe impl NSCollectionViewGridLayout {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

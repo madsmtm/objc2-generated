@@ -53,37 +53,33 @@ inline_fn!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTouch")]
     pub struct NSTouch;
 
-    #[cfg(feature = "AppKit_NSTouch")]
     unsafe impl ClassType for NSTouch {
         type Super = NSObject;
         type Mutability = Immutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSTouch")]
 unsafe impl Send for NSTouch {}
 
-#[cfg(feature = "AppKit_NSTouch")]
 unsafe impl Sync for NSTouch {}
 
-#[cfg(feature = "AppKit_NSTouch")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSTouch {}
 
-#[cfg(feature = "AppKit_NSTouch")]
 unsafe impl NSObjectProtocol for NSTouch {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTouch")]
     unsafe impl NSTouch {
+        #[cfg(feature = "Foundation_NSObject")]
         #[method_id(@__retain_semantics Other identity)]
         pub unsafe fn identity(&self) -> Id<TodoProtocols>;
 
         #[method(phase)]
         pub unsafe fn phase(&self) -> NSTouchPhase;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(normalizedPosition)]
         pub unsafe fn normalizedPosition(&self) -> NSPoint;
 
@@ -93,6 +89,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other device)]
         pub unsafe fn device(&self) -> Option<Id<AnyObject>>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(deviceSize)]
         pub unsafe fn deviceSize(&self) -> NSSize;
     }
@@ -100,7 +97,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTouch")]
     unsafe impl NSTouch {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -112,16 +108,23 @@ extern_methods!(
 
 extern_methods!(
     /// NSTouchBar
-    #[cfg(feature = "AppKit_NSTouch")]
     unsafe impl NSTouch {
         #[method(type)]
         pub unsafe fn r#type(&self) -> NSTouchType;
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[method(locationInView:)]
         pub unsafe fn locationInView(&self, view: Option<&NSView>) -> NSPoint;
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[method(previousLocationInView:)]
         pub unsafe fn previousLocationInView(&self, view: Option<&NSView>) -> NSPoint;
     }

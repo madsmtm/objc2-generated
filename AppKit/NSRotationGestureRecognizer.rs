@@ -7,10 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSRotationGestureRecognizer")]
+    #[cfg(feature = "AppKit_NSGestureRecognizer")]
     pub struct NSRotationGestureRecognizer;
 
-    #[cfg(feature = "AppKit_NSRotationGestureRecognizer")]
+    #[cfg(feature = "AppKit_NSGestureRecognizer")]
     unsafe impl ClassType for NSRotationGestureRecognizer {
         #[inherits(NSObject)]
         type Super = NSGestureRecognizer;
@@ -18,24 +18,31 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSRotationGestureRecognizer")]
+#[cfg(all(
+    feature = "AppKit_NSGestureRecognizer",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSRotationGestureRecognizer {}
 
-#[cfg(feature = "AppKit_NSRotationGestureRecognizer")]
+#[cfg(feature = "AppKit_NSGestureRecognizer")]
 unsafe impl NSObjectProtocol for NSRotationGestureRecognizer {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSRotationGestureRecognizer")]
+    #[cfg(feature = "AppKit_NSGestureRecognizer")]
     unsafe impl NSRotationGestureRecognizer {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(rotation)]
         pub unsafe fn rotation(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setRotation:)]
         pub unsafe fn setRotation(&self, rotation: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(rotationInDegrees)]
         pub unsafe fn rotationInDegrees(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setRotationInDegrees:)]
         pub unsafe fn setRotationInDegrees(&self, rotation_in_degrees: CGFloat);
     }
@@ -43,7 +50,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSGestureRecognizer`
-    #[cfg(feature = "AppKit_NSRotationGestureRecognizer")]
+    #[cfg(feature = "AppKit_NSGestureRecognizer")]
     unsafe impl NSRotationGestureRecognizer {
         #[method_id(@__retain_semantics Init initWithTarget:action:)]
         pub unsafe fn initWithTarget_action(
@@ -60,7 +67,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSRotationGestureRecognizer")]
+    #[cfg(feature = "AppKit_NSGestureRecognizer")]
     unsafe impl NSRotationGestureRecognizer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

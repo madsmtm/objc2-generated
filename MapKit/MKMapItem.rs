@@ -9,23 +9,19 @@ use crate::MapKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKMapItem")]
     pub struct MKMapItem;
 
-    #[cfg(feature = "MapKit_MKMapItem")]
     unsafe impl ClassType for MKMapItem {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MapKit_MKMapItem")]
 unsafe impl NSObjectProtocol for MKMapItem {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKMapItem")]
     unsafe impl MKMapItem {
-        #[cfg(feature = "MapKit_MKPlacemark")]
+        #[cfg(all(feature = "CoreLocation_CLPlacemark", feature = "MapKit_MKPlacemark"))]
         #[method_id(@__retain_semantics Other placemark)]
         pub unsafe fn placemark(&self) -> Id<MKPlacemark>;
 
@@ -64,11 +60,17 @@ extern_methods!(
         #[method(setTimeZone:)]
         pub unsafe fn setTimeZone(&self, time_zone: Option<&NSTimeZone>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "MapKit_MKPointOfInterestCategory"
+        ))]
         #[method_id(@__retain_semantics Other pointOfInterestCategory)]
         pub unsafe fn pointOfInterestCategory(&self) -> Option<Id<MKPointOfInterestCategory>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "MapKit_MKPointOfInterestCategory"
+        ))]
         #[method(setPointOfInterestCategory:)]
         pub unsafe fn setPointOfInterestCategory(
             &self,
@@ -78,7 +80,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other mapItemForCurrentLocation)]
         pub unsafe fn mapItemForCurrentLocation() -> Id<MKMapItem>;
 
-        #[cfg(feature = "MapKit_MKPlacemark")]
+        #[cfg(all(feature = "CoreLocation_CLPlacemark", feature = "MapKit_MKPlacemark"))]
         #[method_id(@__retain_semantics Init initWithPlacemark:)]
         pub unsafe fn initWithPlacemark(this: Allocated<Self>, placemark: &MKPlacemark)
             -> Id<Self>;
@@ -105,7 +107,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MapKit_MKMapItem")]
     unsafe impl MKMapItem {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -147,11 +148,10 @@ extern_static!(MKLaunchOptionsCameraKey: &'static NSString);
 
 extern_methods!(
     /// MKMapItemSerialization
-    #[cfg(feature = "MapKit_MKMapItem")]
     unsafe impl MKMapItem {}
 );
 
-#[cfg(feature = "MapKit_MKMapItem")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for MKMapItem {}
 
 #[cfg(feature = "Foundation_NSString")]

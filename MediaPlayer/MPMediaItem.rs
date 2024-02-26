@@ -156,10 +156,10 @@ extern_static!(MPMediaItemPropertyIsPreorder: &'static NSString);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MediaPlayer_MPMediaItem")]
+    #[cfg(feature = "MediaPlayer_MPMediaEntity")]
     pub struct MPMediaItem;
 
-    #[cfg(feature = "MediaPlayer_MPMediaItem")]
+    #[cfg(feature = "MediaPlayer_MPMediaEntity")]
     unsafe impl ClassType for MPMediaItem {
         #[inherits(NSObject)]
         type Super = MPMediaEntity;
@@ -167,17 +167,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MediaPlayer_MPMediaItem")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "MediaPlayer_MPMediaEntity"))]
 unsafe impl NSCoding for MPMediaItem {}
 
-#[cfg(feature = "MediaPlayer_MPMediaItem")]
+#[cfg(feature = "MediaPlayer_MPMediaEntity")]
 unsafe impl NSObjectProtocol for MPMediaItem {}
 
-#[cfg(feature = "MediaPlayer_MPMediaItem")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "MediaPlayer_MPMediaEntity"))]
 unsafe impl NSSecureCoding for MPMediaItem {}
 
 extern_methods!(
-    #[cfg(feature = "MediaPlayer_MPMediaItem")]
+    #[cfg(feature = "MediaPlayer_MPMediaEntity")]
     unsafe impl MPMediaItem {
         #[method(persistentID)]
         pub unsafe fn persistentID(&self) -> MPMediaEntityPersistentID;
@@ -224,6 +224,7 @@ extern_methods!(
         #[method(composerPersistentID)]
         pub unsafe fn composerPersistentID(&self) -> MPMediaEntityPersistentID;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(playbackDuration)]
         pub unsafe fn playbackDuration(&self) -> NSTimeInterval;
 
@@ -239,7 +240,6 @@ extern_methods!(
         #[method(discCount)]
         pub unsafe fn discCount(&self) -> NSUInteger;
 
-        #[cfg(feature = "MediaPlayer_MPMediaItemArtwork")]
         #[method_id(@__retain_semantics Other artwork)]
         pub unsafe fn artwork(&self) -> Option<Id<MPMediaItemArtwork>>;
 
@@ -298,6 +298,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other userGrouping)]
         pub unsafe fn userGrouping(&self) -> Option<Id<NSString>>;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(bookmarkTime)]
         pub unsafe fn bookmarkTime(&self) -> NSTimeInterval;
 
@@ -316,7 +317,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MediaPlayer_MPMediaItem")]
+    #[cfg(feature = "MediaPlayer_MPMediaEntity")]
     unsafe impl MPMediaItem {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -328,21 +329,17 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MediaPlayer_MPMediaItemArtwork")]
     pub struct MPMediaItemArtwork;
 
-    #[cfg(feature = "MediaPlayer_MPMediaItemArtwork")]
     unsafe impl ClassType for MPMediaItemArtwork {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MediaPlayer_MPMediaItemArtwork")]
 unsafe impl NSObjectProtocol for MPMediaItemArtwork {}
 
 extern_methods!(
-    #[cfg(feature = "MediaPlayer_MPMediaItemArtwork")]
     unsafe impl MPMediaItemArtwork {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -350,7 +347,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSGeometry"))]
         #[method_id(@__retain_semantics Init initWithBoundsSize:requestHandler:)]
         pub unsafe fn initWithBoundsSize_requestHandler(
             this: Allocated<Self>,
@@ -358,13 +355,15 @@ extern_methods!(
             request_handler: &Block<dyn Fn(CGSize) -> NonNull<NSImage>>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSGeometry"))]
         #[method_id(@__retain_semantics Other imageWithSize:)]
         pub unsafe fn imageWithSize(&self, size: CGSize) -> Option<Id<NSImage>>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(bounds)]
         pub unsafe fn bounds(&self) -> CGRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[deprecated = "cropRect is no longer used"]
         #[method(imageCropRect)]
         pub unsafe fn imageCropRect(&self) -> CGRect;

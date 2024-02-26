@@ -6,11 +6,8 @@ use crate::Foundation::*;
 use crate::StoreKit::*;
 
 extern_protocol!(
+    #[cfg(feature = "StoreKit_SKRequest")]
     pub unsafe trait SKProductsRequestDelegate: SKRequestDelegate {
-        #[cfg(all(
-            feature = "StoreKit_SKProductsRequest",
-            feature = "StoreKit_SKProductsResponse"
-        ))]
         #[method(productsRequest:didReceiveResponse:)]
         unsafe fn productsRequest_didReceiveResponse(
             &self,
@@ -19,15 +16,16 @@ extern_protocol!(
         );
     }
 
+    #[cfg(feature = "StoreKit_SKRequest")]
     unsafe impl ProtocolType for dyn SKProductsRequestDelegate {}
 );
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "StoreKit_SKProductsRequest")]
+    #[cfg(feature = "StoreKit_SKRequest")]
     pub struct SKProductsRequest;
 
-    #[cfg(feature = "StoreKit_SKProductsRequest")]
+    #[cfg(feature = "StoreKit_SKRequest")]
     unsafe impl ClassType for SKProductsRequest {
         #[inherits(NSObject)]
         type Super = SKRequest;
@@ -35,11 +33,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "StoreKit_SKProductsRequest")]
+#[cfg(feature = "StoreKit_SKRequest")]
 unsafe impl NSObjectProtocol for SKProductsRequest {}
 
 extern_methods!(
-    #[cfg(feature = "StoreKit_SKProductsRequest")]
+    #[cfg(feature = "StoreKit_SKRequest")]
     unsafe impl SKProductsRequest {
         #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithProductIdentifiers:)]
@@ -61,7 +59,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "StoreKit_SKProductsRequest")]
+    #[cfg(feature = "StoreKit_SKRequest")]
     unsafe impl SKProductsRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -73,27 +71,21 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "StoreKit_SKProductsResponse")]
     pub struct SKProductsResponse;
 
-    #[cfg(feature = "StoreKit_SKProductsResponse")]
     unsafe impl ClassType for SKProductsResponse {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "StoreKit_SKProductsResponse")]
 unsafe impl Send for SKProductsResponse {}
 
-#[cfg(feature = "StoreKit_SKProductsResponse")]
 unsafe impl Sync for SKProductsResponse {}
 
-#[cfg(feature = "StoreKit_SKProductsResponse")]
 unsafe impl NSObjectProtocol for SKProductsResponse {}
 
 extern_methods!(
-    #[cfg(feature = "StoreKit_SKProductsResponse")]
     unsafe impl SKProductsResponse {
         #[cfg(all(feature = "Foundation_NSArray", feature = "StoreKit_SKProduct"))]
         #[method_id(@__retain_semantics Other products)]
@@ -107,7 +99,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "StoreKit_SKProductsResponse")]
     unsafe impl SKProductsResponse {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

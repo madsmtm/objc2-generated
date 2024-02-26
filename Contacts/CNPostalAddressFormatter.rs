@@ -14,10 +14,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Contacts_CNPostalAddressFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     pub struct CNPostalAddressFormatter;
 
-    #[cfg(feature = "Contacts_CNPostalAddressFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl ClassType for CNPostalAddressFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;
@@ -25,17 +25,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Contacts_CNPostalAddressFormatter")]
+#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for CNPostalAddressFormatter {}
 
-#[cfg(feature = "Contacts_CNPostalAddressFormatter")]
+#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
 unsafe impl NSCopying for CNPostalAddressFormatter {}
 
-#[cfg(feature = "Contacts_CNPostalAddressFormatter")]
+#[cfg(feature = "Foundation_NSFormatter")]
 unsafe impl NSObjectProtocol for CNPostalAddressFormatter {}
 
 extern_methods!(
-    #[cfg(feature = "Contacts_CNPostalAddressFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl CNPostalAddressFormatter {
         #[cfg(all(feature = "Contacts_CNPostalAddress", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other stringFromPostalAddress:style:)]
@@ -85,7 +85,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Contacts_CNPostalAddressFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl CNPostalAddressFormatter {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

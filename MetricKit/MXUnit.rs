@@ -6,10 +6,10 @@ use crate::MetricKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MetricKit_MXUnitSignalBars")]
+    #[cfg(feature = "Foundation_NSUnit")]
     pub struct MXUnitSignalBars;
 
-    #[cfg(feature = "MetricKit_MXUnitSignalBars")]
+    #[cfg(feature = "Foundation_NSUnit")]
     unsafe impl ClassType for MXUnitSignalBars {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -17,20 +17,20 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MetricKit_MXUnitSignalBars")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "Foundation_NSUnit"))]
 unsafe impl NSCoding for MXUnitSignalBars {}
 
-#[cfg(feature = "MetricKit_MXUnitSignalBars")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "Foundation_NSUnit"))]
 unsafe impl NSCopying for MXUnitSignalBars {}
 
-#[cfg(feature = "MetricKit_MXUnitSignalBars")]
+#[cfg(feature = "Foundation_NSUnit")]
 unsafe impl NSObjectProtocol for MXUnitSignalBars {}
 
-#[cfg(feature = "MetricKit_MXUnitSignalBars")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "Foundation_NSUnit"))]
 unsafe impl NSSecureCoding for MXUnitSignalBars {}
 
 extern_methods!(
-    #[cfg(feature = "MetricKit_MXUnitSignalBars")]
+    #[cfg(feature = "Foundation_NSUnit")]
     unsafe impl MXUnitSignalBars {
         #[method_id(@__retain_semantics Other bars)]
         pub unsafe fn bars() -> Id<MXUnitSignalBars>;
@@ -39,12 +39,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "MetricKit_MXUnitSignalBars")]
+    #[cfg(feature = "Foundation_NSUnit")]
     unsafe impl MXUnitSignalBars {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -59,7 +56,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "MetricKit_MXUnitSignalBars")]
+    #[cfg(feature = "Foundation_NSUnit")]
     unsafe impl MXUnitSignalBars {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -75,10 +72,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MetricKit_MXUnitAveragePixelLuminance")]
+    #[cfg(feature = "Foundation_NSUnit")]
     pub struct MXUnitAveragePixelLuminance;
 
-    #[cfg(feature = "MetricKit_MXUnitAveragePixelLuminance")]
+    #[cfg(feature = "Foundation_NSUnit")]
     unsafe impl ClassType for MXUnitAveragePixelLuminance {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -86,20 +83,20 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MetricKit_MXUnitAveragePixelLuminance")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "Foundation_NSUnit"))]
 unsafe impl NSCoding for MXUnitAveragePixelLuminance {}
 
-#[cfg(feature = "MetricKit_MXUnitAveragePixelLuminance")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "Foundation_NSUnit"))]
 unsafe impl NSCopying for MXUnitAveragePixelLuminance {}
 
-#[cfg(feature = "MetricKit_MXUnitAveragePixelLuminance")]
+#[cfg(feature = "Foundation_NSUnit")]
 unsafe impl NSObjectProtocol for MXUnitAveragePixelLuminance {}
 
-#[cfg(feature = "MetricKit_MXUnitAveragePixelLuminance")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "Foundation_NSUnit"))]
 unsafe impl NSSecureCoding for MXUnitAveragePixelLuminance {}
 
 extern_methods!(
-    #[cfg(feature = "MetricKit_MXUnitAveragePixelLuminance")]
+    #[cfg(feature = "Foundation_NSUnit")]
     unsafe impl MXUnitAveragePixelLuminance {
         #[method_id(@__retain_semantics Other apl)]
         pub unsafe fn apl() -> Id<MXUnitAveragePixelLuminance>;
@@ -108,12 +105,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "MetricKit_MXUnitAveragePixelLuminance")]
+    #[cfg(feature = "Foundation_NSUnit")]
     unsafe impl MXUnitAveragePixelLuminance {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -128,7 +122,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "MetricKit_MXUnitAveragePixelLuminance")]
+    #[cfg(feature = "Foundation_NSUnit")]
     unsafe impl MXUnitAveragePixelLuminance {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

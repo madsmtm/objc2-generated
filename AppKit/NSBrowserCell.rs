@@ -7,10 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSBrowserCell")]
+    #[cfg(feature = "AppKit_NSCell")]
     pub struct NSBrowserCell;
 
-    #[cfg(feature = "AppKit_NSBrowserCell")]
+    #[cfg(feature = "AppKit_NSCell")]
     unsafe impl ClassType for NSBrowserCell {
         #[inherits(NSObject)]
         type Super = NSCell;
@@ -18,26 +18,29 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSBrowserCell")]
+#[cfg(all(feature = "AppKit_NSAccessibilityProtocols", feature = "AppKit_NSCell"))]
 unsafe impl NSAccessibility for NSBrowserCell {}
 
-#[cfg(feature = "AppKit_NSBrowserCell")]
+#[cfg(all(feature = "AppKit_NSAccessibilityProtocols", feature = "AppKit_NSCell"))]
 unsafe impl NSAccessibilityElementProtocol for NSBrowserCell {}
 
-#[cfg(feature = "AppKit_NSBrowserCell")]
+#[cfg(all(feature = "AppKit_NSCell", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for NSBrowserCell {}
 
-#[cfg(feature = "AppKit_NSBrowserCell")]
+#[cfg(all(feature = "AppKit_NSCell", feature = "Foundation_NSObject"))]
 unsafe impl NSCopying for NSBrowserCell {}
 
-#[cfg(feature = "AppKit_NSBrowserCell")]
+#[cfg(feature = "AppKit_NSCell")]
 unsafe impl NSObjectProtocol for NSBrowserCell {}
 
-#[cfg(feature = "AppKit_NSBrowserCell")]
+#[cfg(all(
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSUserInterfaceItemIdentification"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSBrowserCell {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSBrowserCell")]
+    #[cfg(feature = "AppKit_NSCell")]
     unsafe impl NSBrowserCell {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initTextCell:)]
@@ -59,7 +62,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other highlightedBranchImage)]
         pub unsafe fn highlightedBranchImage(mtm: MainThreadMarker) -> Option<Id<NSImage>>;
 
-        #[cfg(all(feature = "AppKit_NSColor", feature = "AppKit_NSView"))]
+        #[cfg(all(
+            feature = "AppKit_NSColor",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView"
+        ))]
         #[method_id(@__retain_semantics Other highlightColorInView:)]
         pub unsafe fn highlightColorInView(&self, control_view: &NSView) -> Option<Id<NSColor>>;
 
@@ -101,7 +108,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSCell`
-    #[cfg(feature = "AppKit_NSBrowserCell")]
+    #[cfg(feature = "AppKit_NSCell")]
     unsafe impl NSBrowserCell {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -110,7 +117,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSBrowserCell")]
+    #[cfg(feature = "AppKit_NSCell")]
     unsafe impl NSBrowserCell {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

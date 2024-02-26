@@ -7,27 +7,23 @@ use crate::GameKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameKit_GKLeaderboardScore")]
     pub struct GKLeaderboardScore;
 
-    #[cfg(feature = "GameKit_GKLeaderboardScore")]
     unsafe impl ClassType for GKLeaderboardScore {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "GameKit_GKLeaderboardScore")]
 unsafe impl NSObjectProtocol for GKLeaderboardScore {}
 
 extern_methods!(
-    #[cfg(feature = "GameKit_GKLeaderboardScore")]
     unsafe impl GKLeaderboardScore {
-        #[cfg(feature = "GameKit_GKPlayer")]
+        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
         #[method_id(@__retain_semantics Other player)]
         pub unsafe fn player(&self) -> Id<GKPlayer>;
 
-        #[cfg(feature = "GameKit_GKPlayer")]
+        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
         #[method(setPlayer:)]
         pub unsafe fn setPlayer(&self, player: &GKPlayer);
 
@@ -55,7 +51,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameKit_GKLeaderboardScore")]
     unsafe impl GKLeaderboardScore {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

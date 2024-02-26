@@ -9,10 +9,18 @@ use crate::MapKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKMarkerAnnotationView")]
+    #[cfg(all(
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView",
+        feature = "MapKit_MKAnnotationView"
+    ))]
     pub struct MKMarkerAnnotationView;
 
-    #[cfg(feature = "MapKit_MKMarkerAnnotationView")]
+    #[cfg(all(
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView",
+        feature = "MapKit_MKAnnotationView"
+    ))]
     unsafe impl ClassType for MKMarkerAnnotationView {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = MKAnnotationView;
@@ -20,42 +28,89 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MapKit_MKMarkerAnnotationView")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "MapKit_MKAnnotationView"
+))]
 unsafe impl NSAccessibility for MKMarkerAnnotationView {}
 
-#[cfg(feature = "MapKit_MKMarkerAnnotationView")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "MapKit_MKAnnotationView"
+))]
 unsafe impl NSAccessibilityElementProtocol for MKMarkerAnnotationView {}
 
-#[cfg(feature = "MapKit_MKMarkerAnnotationView")]
+#[cfg(all(
+    feature = "AppKit_NSAnimation",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "MapKit_MKAnnotationView"
+))]
 unsafe impl NSAnimatablePropertyContainer for MKMarkerAnnotationView {}
 
-#[cfg(feature = "MapKit_MKMarkerAnnotationView")]
+#[cfg(all(
+    feature = "AppKit_NSAppearance",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "MapKit_MKAnnotationView"
+))]
 unsafe impl NSAppearanceCustomization for MKMarkerAnnotationView {}
 
-#[cfg(feature = "MapKit_MKMarkerAnnotationView")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "Foundation_NSObject",
+    feature = "MapKit_MKAnnotationView"
+))]
 unsafe impl NSCoding for MKMarkerAnnotationView {}
 
-#[cfg(feature = "MapKit_MKMarkerAnnotationView")]
+#[cfg(all(
+    feature = "AppKit_NSDragging",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "MapKit_MKAnnotationView"
+))]
 unsafe impl NSDraggingDestination for MKMarkerAnnotationView {}
 
-#[cfg(feature = "MapKit_MKMarkerAnnotationView")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "MapKit_MKAnnotationView"
+))]
 unsafe impl NSObjectProtocol for MKMarkerAnnotationView {}
 
-#[cfg(feature = "MapKit_MKMarkerAnnotationView")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSView",
+    feature = "MapKit_MKAnnotationView"
+))]
 unsafe impl NSUserInterfaceItemIdentification for MKMarkerAnnotationView {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKMarkerAnnotationView")]
+    #[cfg(all(
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView",
+        feature = "MapKit_MKAnnotationView"
+    ))]
     unsafe impl MKMarkerAnnotationView {
+        #[cfg(feature = "MapKit_MKTypes")]
         #[method(titleVisibility)]
         pub unsafe fn titleVisibility(&self) -> MKFeatureVisibility;
 
+        #[cfg(feature = "MapKit_MKTypes")]
         #[method(setTitleVisibility:)]
         pub unsafe fn setTitleVisibility(&self, title_visibility: MKFeatureVisibility);
 
+        #[cfg(feature = "MapKit_MKTypes")]
         #[method(subtitleVisibility)]
         pub unsafe fn subtitleVisibility(&self) -> MKFeatureVisibility;
 
+        #[cfg(feature = "MapKit_MKTypes")]
         #[method(setSubtitleVisibility:)]
         pub unsafe fn setSubtitleVisibility(&self, subtitle_visibility: MKFeatureVisibility);
 
@@ -109,9 +164,13 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MKAnnotationView`
-    #[cfg(feature = "MapKit_MKMarkerAnnotationView")]
+    #[cfg(all(
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView",
+        feature = "MapKit_MKAnnotationView"
+    ))]
     unsafe impl MKMarkerAnnotationView {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSString", feature = "MapKit_MKAnnotation"))]
         #[method_id(@__retain_semantics Init initWithAnnotation:reuseIdentifier:)]
         pub unsafe fn initWithAnnotation_reuseIdentifier(
             this: Allocated<Self>,
@@ -128,8 +187,13 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSView`
-    #[cfg(feature = "MapKit_MKMarkerAnnotationView")]
+    #[cfg(all(
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView",
+        feature = "MapKit_MKAnnotationView"
+    ))]
     unsafe impl MKMarkerAnnotationView {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
     }
@@ -137,7 +201,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "MapKit_MKMarkerAnnotationView")]
+    #[cfg(all(
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView",
+        feature = "MapKit_MKAnnotationView"
+    ))]
     unsafe impl MKMarkerAnnotationView {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -146,7 +214,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MapKit_MKMarkerAnnotationView")]
+    #[cfg(all(
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView",
+        feature = "MapKit_MKAnnotationView"
+    ))]
     unsafe impl MKMarkerAnnotationView {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

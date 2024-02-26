@@ -21,21 +21,17 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "OSAKit_OSALanguage")]
     pub struct OSALanguage;
 
-    #[cfg(feature = "OSAKit_OSALanguage")]
     unsafe impl ClassType for OSALanguage {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "OSAKit_OSALanguage")]
 unsafe impl NSObjectProtocol for OSALanguage {}
 
 extern_methods!(
-    #[cfg(feature = "OSAKit_OSALanguage")]
     unsafe impl OSALanguage {
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other availableLanguages)]
@@ -92,7 +88,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "OSAKit_OSALanguage")]
     unsafe impl OSALanguage {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

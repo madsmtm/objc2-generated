@@ -21,11 +21,11 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSDrawer")]
+    #[cfg(feature = "AppKit_NSResponder")]
     #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
     pub struct NSDrawer;
 
-    #[cfg(feature = "AppKit_NSDrawer")]
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl ClassType for NSDrawer {
         #[inherits(NSObject)]
         type Super = NSResponder;
@@ -33,21 +33,28 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSDrawer")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder"
+))]
 unsafe impl NSAccessibility for NSDrawer {}
 
-#[cfg(feature = "AppKit_NSDrawer")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder"
+))]
 unsafe impl NSAccessibilityElementProtocol for NSDrawer {}
 
-#[cfg(feature = "AppKit_NSDrawer")]
+#[cfg(all(feature = "AppKit_NSResponder", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for NSDrawer {}
 
-#[cfg(feature = "AppKit_NSDrawer")]
+#[cfg(feature = "AppKit_NSResponder")]
 unsafe impl NSObjectProtocol for NSDrawer {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSDrawer")]
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSDrawer {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Init initWithContentSize:preferredEdge:)]
         pub unsafe fn initWithContentSize_preferredEdge(
             this: Allocated<Self>,
@@ -71,9 +78,11 @@ extern_methods!(
         #[method(setContentView:)]
         pub unsafe fn setContentView(&self, content_view: Option<&NSView>);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(preferredEdge)]
         pub unsafe fn preferredEdge(&self) -> NSRectEdge;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setPreferredEdge:)]
         pub unsafe fn setPreferredEdge(&self, preferred_edge: NSRectEdge);
 
@@ -86,6 +95,7 @@ extern_methods!(
         #[method(open)]
         pub unsafe fn open(&self);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(openOnEdge:)]
         pub unsafe fn openOnEdge(&self, edge: NSRectEdge);
 
@@ -104,36 +114,47 @@ extern_methods!(
         #[method(state)]
         pub unsafe fn state(&self) -> NSInteger;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(edge)]
         pub unsafe fn edge(&self) -> NSRectEdge;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(contentSize)]
         pub unsafe fn contentSize(&self) -> NSSize;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setContentSize:)]
         pub unsafe fn setContentSize(&self, content_size: NSSize);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(minContentSize)]
         pub unsafe fn minContentSize(&self) -> NSSize;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setMinContentSize:)]
         pub unsafe fn setMinContentSize(&self, min_content_size: NSSize);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(maxContentSize)]
         pub unsafe fn maxContentSize(&self) -> NSSize;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setMaxContentSize:)]
         pub unsafe fn setMaxContentSize(&self, max_content_size: NSSize);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(leadingOffset)]
         pub unsafe fn leadingOffset(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setLeadingOffset:)]
         pub unsafe fn setLeadingOffset(&self, leading_offset: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(trailingOffset)]
         pub unsafe fn trailingOffset(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setTrailingOffset:)]
         pub unsafe fn setTrailingOffset(&self, trailing_offset: CGFloat);
     }
@@ -141,7 +162,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "AppKit_NSDrawer")]
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSDrawer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -154,7 +175,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSDrawer")]
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSDrawer {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -163,7 +184,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSDrawers
-    #[cfg(feature = "AppKit_NSWindow")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
     unsafe impl NSWindow {
         #[cfg(all(feature = "AppKit_NSDrawer", feature = "Foundation_NSArray"))]
         #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
@@ -174,19 +195,19 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSDrawerDelegate: NSObjectProtocol {
-        #[cfg(feature = "AppKit_NSDrawer")]
+        #[cfg(feature = "AppKit_NSResponder")]
         #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
         #[optional]
         #[method(drawerShouldOpen:)]
         unsafe fn drawerShouldOpen(&self, sender: &NSDrawer) -> bool;
 
-        #[cfg(feature = "AppKit_NSDrawer")]
+        #[cfg(feature = "AppKit_NSResponder")]
         #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
         #[optional]
         #[method(drawerShouldClose:)]
         unsafe fn drawerShouldClose(&self, sender: &NSDrawer) -> bool;
 
-        #[cfg(feature = "AppKit_NSDrawer")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "Foundation_NSGeometry"))]
         #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
         #[optional]
         #[method(drawerWillResizeContents:toSize:)]
@@ -224,14 +245,14 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSDrawerDelegate {}
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSDrawerWillOpenNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSDrawerDidOpenNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSDrawerWillCloseNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSDrawerDidCloseNotification: &'static NSNotificationName);

@@ -17,24 +17,20 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
     pub struct NSPersistentStoreRequest;
 
-    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
     unsafe impl ClassType for NSPersistentStoreRequest {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreData_NSPersistentStoreRequest")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSPersistentStoreRequest {}
 
-#[cfg(feature = "CoreData_NSPersistentStoreRequest")]
 unsafe impl NSObjectProtocol for NSPersistentStoreRequest {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
     unsafe impl NSPersistentStoreRequest {
         #[cfg(all(feature = "CoreData_NSPersistentStore", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other affectedStores)]
@@ -54,7 +50,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
     unsafe impl NSPersistentStoreRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -10,24 +10,20 @@ pub type NSDataAssetName = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSDataAsset")]
     pub struct NSDataAsset;
 
-    #[cfg(feature = "AppKit_NSDataAsset")]
     unsafe impl ClassType for NSDataAsset {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSDataAsset")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSDataAsset {}
 
-#[cfg(feature = "AppKit_NSDataAsset")]
 unsafe impl NSObjectProtocol for NSDataAsset {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSDataAsset")]
     unsafe impl NSDataAsset {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -63,7 +59,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSDataAsset")]
     unsafe impl NSDataAsset {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

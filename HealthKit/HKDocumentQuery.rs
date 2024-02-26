@@ -8,10 +8,10 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKDocumentQuery")]
+    #[cfg(feature = "HealthKit_HKQuery")]
     pub struct HKDocumentQuery;
 
-    #[cfg(feature = "HealthKit_HKDocumentQuery")]
+    #[cfg(feature = "HealthKit_HKQuery")]
     unsafe impl ClassType for HKDocumentQuery {
         #[inherits(NSObject)]
         type Super = HKQuery;
@@ -19,11 +19,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKDocumentQuery")]
+#[cfg(feature = "HealthKit_HKQuery")]
 unsafe impl NSObjectProtocol for HKDocumentQuery {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKDocumentQuery")]
+    #[cfg(feature = "HealthKit_HKQuery")]
     unsafe impl HKDocumentQuery {
         #[method(limit)]
         pub unsafe fn limit(&self) -> NSUInteger;
@@ -44,7 +44,9 @@ extern_methods!(
             feature = "Foundation_NSPredicate",
             feature = "Foundation_NSSortDescriptor",
             feature = "HealthKit_HKDocumentSample",
-            feature = "HealthKit_HKDocumentType"
+            feature = "HealthKit_HKObject",
+            feature = "HealthKit_HKObjectType",
+            feature = "HealthKit_HKSample"
         ))]
         #[method_id(@__retain_semantics Init initWithDocumentType:predicate:limit:sortDescriptors:includeDocumentData:resultsHandler:)]
         pub unsafe fn initWithDocumentType_predicate_limit_sortDescriptors_includeDocumentData_resultsHandler(
@@ -68,7 +70,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `HKQuery`
-    #[cfg(feature = "HealthKit_HKDocumentQuery")]
+    #[cfg(feature = "HealthKit_HKQuery")]
     unsafe impl HKDocumentQuery {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -77,7 +79,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKDocumentQuery")]
+    #[cfg(feature = "HealthKit_HKQuery")]
     unsafe impl HKDocumentQuery {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

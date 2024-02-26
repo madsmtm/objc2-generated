@@ -14,21 +14,17 @@ extern_static!(NSRegistrationDomain: &'static NSString);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSUserDefaults")]
     pub struct NSUserDefaults;
 
-    #[cfg(feature = "Foundation_NSUserDefaults")]
     unsafe impl ClassType for NSUserDefaults {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSUserDefaults")]
 unsafe impl NSObjectProtocol for NSUserDefaults {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSUserDefaults")]
     unsafe impl NSUserDefaults {
         #[method_id(@__retain_semantics Other standardUserDefaults)]
         pub unsafe fn standardUserDefaults() -> Id<NSUserDefaults>;
@@ -214,26 +210,25 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSUserDefaults")]
     unsafe impl NSUserDefaults {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSUserDefaultsSizeLimitExceededNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSUbiquitousUserDefaultsNoCloudAccountNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSUbiquitousUserDefaultsDidChangeAccountsNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSUbiquitousUserDefaultsCompletedInitialSyncNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSUserDefaultsDidChangeNotification: &'static NSNotificationName);
 
 #[cfg(feature = "Foundation_NSString")]

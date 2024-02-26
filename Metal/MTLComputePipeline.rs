@@ -6,23 +6,19 @@ use crate::Metal::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLComputePipelineReflection")]
     pub struct MTLComputePipelineReflection;
 
-    #[cfg(feature = "Metal_MTLComputePipelineReflection")]
     unsafe impl ClassType for MTLComputePipelineReflection {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLComputePipelineReflection")]
 unsafe impl NSObjectProtocol for MTLComputePipelineReflection {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLComputePipelineReflection")]
     unsafe impl MTLComputePipelineReflection {
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLArgument"))]
         #[method_id(@__retain_semantics Other bindings)]
         pub unsafe fn bindings(&self) -> Id<NSArray<ProtocolObject<dyn MTLBinding>>>;
 
@@ -35,7 +31,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLComputePipelineReflection")]
     unsafe impl MTLComputePipelineReflection {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -47,24 +42,20 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLComputePipelineDescriptor")]
     pub struct MTLComputePipelineDescriptor;
 
-    #[cfg(feature = "Metal_MTLComputePipelineDescriptor")]
     unsafe impl ClassType for MTLComputePipelineDescriptor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLComputePipelineDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLComputePipelineDescriptor {}
 
-#[cfg(feature = "Metal_MTLComputePipelineDescriptor")]
 unsafe impl NSObjectProtocol for MTLComputePipelineDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLComputePipelineDescriptor")]
     unsafe impl MTLComputePipelineDescriptor {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
@@ -74,9 +65,11 @@ extern_methods!(
         #[method(setLabel:)]
         pub fn setLabel(&self, label: Option<&NSString>);
 
+        #[cfg(feature = "Metal_MTLLibrary")]
         #[method_id(@__retain_semantics Other computeFunction)]
         pub fn computeFunction(&self) -> Option<Id<ProtocolObject<dyn MTLFunction>>>;
 
+        #[cfg(feature = "Metal_MTLLibrary")]
         #[method(setComputeFunction:)]
         pub fn setComputeFunction(
             &self,
@@ -112,7 +105,7 @@ extern_methods!(
             stage_input_descriptor: Option<&MTLStageInputOutputDescriptor>,
         );
 
-        #[cfg(feature = "Metal_MTLPipelineBufferDescriptorArray")]
+        #[cfg(feature = "Metal_MTLPipeline")]
         #[method_id(@__retain_semantics Other buffers)]
         pub fn buffers(&self) -> Id<MTLPipelineBufferDescriptorArray>;
 
@@ -122,13 +115,13 @@ extern_methods!(
         #[method(setSupportIndirectCommandBuffers:)]
         pub fn setSupportIndirectCommandBuffers(&self, support_indirect_command_buffers: bool);
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLDynamicLibrary"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other insertLibraries)]
         pub fn insertLibraries(&self)
             -> Option<Id<NSArray<ProtocolObject<dyn MTLDynamicLibrary>>>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLDynamicLibrary"))]
         #[deprecated]
         #[method(setInsertLibraries:)]
         pub fn setInsertLibraries(
@@ -136,22 +129,22 @@ extern_methods!(
             insert_libraries: Option<&NSArray<ProtocolObject<dyn MTLDynamicLibrary>>>,
         );
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLDynamicLibrary"))]
         #[method_id(@__retain_semantics Other preloadedLibraries)]
         pub fn preloadedLibraries(&self) -> Id<NSArray<ProtocolObject<dyn MTLDynamicLibrary>>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLDynamicLibrary"))]
         #[method(setPreloadedLibraries:)]
         pub fn setPreloadedLibraries(
             &self,
             preloaded_libraries: &NSArray<ProtocolObject<dyn MTLDynamicLibrary>>,
         );
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLBinaryArchive"))]
         #[method_id(@__retain_semantics Other binaryArchives)]
         pub fn binaryArchives(&self) -> Option<Id<NSArray<ProtocolObject<dyn MTLBinaryArchive>>>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLBinaryArchive"))]
         #[method(setBinaryArchives:)]
         pub fn setBinaryArchives(
             &self,
@@ -185,7 +178,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLComputePipelineDescriptor")]
     unsafe impl MTLComputePipelineDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub fn init(this: Allocated<Self>) -> Id<Self>;
@@ -195,7 +187,6 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Metal_MTLComputePipelineDescriptor")]
 impl DefaultId for MTLComputePipelineDescriptor {
     #[inline]
     fn default_id() -> Id<Self> {
@@ -209,6 +200,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other label)]
         fn label(&self) -> Option<Id<NSString>>;
 
+        #[cfg(feature = "Metal_MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
         fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
 
@@ -221,6 +213,7 @@ extern_protocol!(
         #[method(staticThreadgroupMemoryLength)]
         fn staticThreadgroupMemoryLength(&self) -> NSUInteger;
 
+        #[cfg(feature = "Metal_MTLTypes")]
         #[method(imageblockMemoryLengthForDimensions:)]
         unsafe fn imageblockMemoryLengthForDimensions(
             &self,
@@ -230,30 +223,42 @@ extern_protocol!(
         #[method(supportIndirectCommandBuffers)]
         fn supportIndirectCommandBuffers(&self) -> bool;
 
+        #[cfg(feature = "Metal_MTLTypes")]
         #[method(gpuResourceID)]
         unsafe fn gpuResourceID(&self) -> MTLResourceID;
 
+        #[cfg(all(feature = "Metal_MTLFunctionHandle", feature = "Metal_MTLLibrary"))]
         #[method_id(@__retain_semantics Other functionHandleWithFunction:)]
         fn functionHandleWithFunction(
             &self,
             function: &ProtocolObject<dyn MTLFunction>,
         ) -> Option<Id<ProtocolObject<dyn MTLFunctionHandle>>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSError"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSError",
+            feature = "Metal_MTLLibrary"
+        ))]
         #[method_id(@__retain_semantics New newComputePipelineStateWithAdditionalBinaryFunctions:error:_)]
         fn newComputePipelineStateWithAdditionalBinaryFunctions_error(
             &self,
             functions: &NSArray<ProtocolObject<dyn MTLFunction>>,
         ) -> Result<Id<ProtocolObject<dyn MTLComputePipelineState>>, Id<NSError>>;
 
-        #[cfg(feature = "Metal_MTLVisibleFunctionTableDescriptor")]
+        #[cfg(all(
+            feature = "Metal_MTLResource",
+            feature = "Metal_MTLVisibleFunctionTable"
+        ))]
         #[method_id(@__retain_semantics New newVisibleFunctionTableWithDescriptor:)]
         fn newVisibleFunctionTableWithDescriptor(
             &self,
             descriptor: &MTLVisibleFunctionTableDescriptor,
         ) -> Option<Id<ProtocolObject<dyn MTLVisibleFunctionTable>>>;
 
-        #[cfg(feature = "Metal_MTLIntersectionFunctionTableDescriptor")]
+        #[cfg(all(
+            feature = "Metal_MTLIntersectionFunctionTable",
+            feature = "Metal_MTLResource"
+        ))]
         #[method_id(@__retain_semantics New newIntersectionFunctionTableWithDescriptor:)]
         fn newIntersectionFunctionTableWithDescriptor(
             &self,

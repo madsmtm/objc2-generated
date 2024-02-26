@@ -6,36 +6,30 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
     pub struct UTType;
 
-    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
     unsafe impl ClassType for UTType {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
 unsafe impl Send for UTType {}
 
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
 unsafe impl Sync for UTType {}
 
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for UTType {}
 
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for UTType {}
 
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
 unsafe impl NSObjectProtocol for UTType {}
 
-#[cfg(feature = "UniformTypeIdentifiers_UTType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for UTType {}
 
 extern_methods!(
-    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
     unsafe impl UTType {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -85,7 +79,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other localizedDescription)]
         pub unsafe fn localizedDescription(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method_id(@__retain_semantics Other version)]
         pub unsafe fn version(&self) -> Option<Id<NSNumber>>;
 
@@ -106,7 +100,6 @@ extern_methods!(
 
 extern_methods!(
     /// Conformance
-    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
     unsafe impl UTType {
         #[method(conformsToType:)]
         pub unsafe fn conformsToType(&self, r#type: &UTType) -> bool;
@@ -125,7 +118,6 @@ extern_methods!(
 
 extern_methods!(
     /// UTTagSpecification
-    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
     unsafe impl UTType {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other typeWithTag:tagClass:conformingToType:)]
@@ -155,7 +147,6 @@ extern_methods!(
 
 extern_methods!(
     /// LocalConstants
-    #[cfg(feature = "UniformTypeIdentifiers_UTType")]
     unsafe impl UTType {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other exportedTypeWithIdentifier:)]

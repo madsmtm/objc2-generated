@@ -7,27 +7,23 @@ use crate::MailKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MailKit_MEMessageSigner")]
     pub struct MEMessageSigner;
 
-    #[cfg(feature = "MailKit_MEMessageSigner")]
     unsafe impl ClassType for MEMessageSigner {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MailKit_MEMessageSigner")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for MEMessageSigner {}
 
-#[cfg(feature = "MailKit_MEMessageSigner")]
 unsafe impl NSObjectProtocol for MEMessageSigner {}
 
-#[cfg(feature = "MailKit_MEMessageSigner")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for MEMessageSigner {}
 
 extern_methods!(
-    #[cfg(feature = "MailKit_MEMessageSigner")]
     unsafe impl MEMessageSigner {
         #[cfg(all(feature = "Foundation_NSArray", feature = "MailKit_MEEmailAddress"))]
         #[method_id(@__retain_semantics Other emailAddresses)]

@@ -5,32 +5,30 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSGeometry")]
 extern_static!(NSVariableStatusItemLength: CGFloat = -1.0);
 
+#[cfg(feature = "Foundation_NSGeometry")]
 extern_static!(NSSquareStatusItemLength: CGFloat = -2.0);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSStatusBar")]
     pub struct NSStatusBar;
 
-    #[cfg(feature = "AppKit_NSStatusBar")]
     unsafe impl ClassType for NSStatusBar {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSStatusBar")]
 unsafe impl NSObjectProtocol for NSStatusBar {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSStatusBar")]
     unsafe impl NSStatusBar {
         #[method_id(@__retain_semantics Other systemStatusBar)]
         pub unsafe fn systemStatusBar() -> Id<NSStatusBar>;
 
-        #[cfg(feature = "AppKit_NSStatusItem")]
+        #[cfg(all(feature = "AppKit_NSStatusItem", feature = "Foundation_NSGeometry"))]
         #[method_id(@__retain_semantics Other statusItemWithLength:)]
         pub unsafe fn statusItemWithLength(&self, length: CGFloat) -> Id<NSStatusItem>;
 
@@ -41,6 +39,7 @@ extern_methods!(
         #[method(isVertical)]
         pub unsafe fn isVertical(&self) -> bool;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(thickness)]
         pub unsafe fn thickness(&self) -> CGFloat;
     }
@@ -48,7 +47,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSStatusBar")]
     unsafe impl NSStatusBar {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

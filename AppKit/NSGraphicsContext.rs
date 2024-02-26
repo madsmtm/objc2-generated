@@ -45,21 +45,17 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSGraphicsContext")]
     pub struct NSGraphicsContext;
 
-    #[cfg(feature = "AppKit_NSGraphicsContext")]
     unsafe impl ClassType for NSGraphicsContext {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSGraphicsContext")]
 unsafe impl NSObjectProtocol for NSGraphicsContext {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSGraphicsContext")]
     unsafe impl NSGraphicsContext {
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other graphicsContextWithAttributes:)]
@@ -67,11 +63,11 @@ extern_methods!(
             attributes: &NSDictionary<NSGraphicsContextAttributeKey, AnyObject>,
         ) -> Option<Id<NSGraphicsContext>>;
 
-        #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
         #[method_id(@__retain_semantics Other graphicsContextWithWindow:)]
         pub unsafe fn graphicsContextWithWindow(window: &NSWindow) -> Id<NSGraphicsContext>;
 
-        #[cfg(feature = "AppKit_NSBitmapImageRep")]
+        #[cfg(all(feature = "AppKit_NSBitmapImageRep", feature = "AppKit_NSImageRep"))]
         #[method_id(@__retain_semantics Other graphicsContextWithBitmapImageRep:)]
         pub unsafe fn graphicsContextWithBitmapImageRep(
             bitmap_rep: &NSBitmapImageRep,
@@ -117,7 +113,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSGraphicsContext")]
     unsafe impl NSGraphicsContext {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -129,7 +124,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSGraphicsContext_RenderingOptions
-    #[cfg(feature = "AppKit_NSGraphicsContext")]
     unsafe impl NSGraphicsContext {
         #[method(shouldAntialias)]
         pub unsafe fn shouldAntialias(&self) -> bool;
@@ -143,21 +137,27 @@ extern_methods!(
         #[method(setImageInterpolation:)]
         pub unsafe fn setImageInterpolation(&self, image_interpolation: NSImageInterpolation);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(patternPhase)]
         pub unsafe fn patternPhase(&self) -> NSPoint;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setPatternPhase:)]
         pub unsafe fn setPatternPhase(&self, pattern_phase: NSPoint);
 
+        #[cfg(feature = "AppKit_NSGraphics")]
         #[method(compositingOperation)]
         pub unsafe fn compositingOperation(&self) -> NSCompositingOperation;
 
+        #[cfg(feature = "AppKit_NSGraphics")]
         #[method(setCompositingOperation:)]
         pub unsafe fn setCompositingOperation(&self, compositing_operation: NSCompositingOperation);
 
+        #[cfg(feature = "AppKit_NSGraphics")]
         #[method(colorRenderingIntent)]
         pub unsafe fn colorRenderingIntent(&self) -> NSColorRenderingIntent;
 
+        #[cfg(feature = "AppKit_NSGraphics")]
         #[method(setColorRenderingIntent:)]
         pub unsafe fn setColorRenderingIntent(
             &self,
@@ -168,13 +168,11 @@ extern_methods!(
 
 extern_methods!(
     /// NSQuartzCoreAdditions
-    #[cfg(feature = "AppKit_NSGraphicsContext")]
     unsafe impl NSGraphicsContext {}
 );
 
 extern_methods!(
     /// NSGraphicsContextDeprecated
-    #[cfg(feature = "AppKit_NSGraphicsContext")]
     unsafe impl NSGraphicsContext {
         #[deprecated = "This method has no effect"]
         #[method(setGraphicsState:)]

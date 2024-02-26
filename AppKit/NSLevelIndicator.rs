@@ -19,10 +19,18 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSLevelIndicator")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     pub struct NSLevelIndicator;
 
-    #[cfg(feature = "AppKit_NSLevelIndicator")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl ClassType for NSLevelIndicator {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;
@@ -30,36 +38,81 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSLevelIndicator")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibility for NSLevelIndicator {}
 
-#[cfg(feature = "AppKit_NSLevelIndicator")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibilityElementProtocol for NSLevelIndicator {}
 
-#[cfg(feature = "AppKit_NSLevelIndicator")]
+#[cfg(all(
+    feature = "AppKit_NSAnimation",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAnimatablePropertyContainer for NSLevelIndicator {}
 
-#[cfg(feature = "AppKit_NSLevelIndicator")]
+#[cfg(all(
+    feature = "AppKit_NSAppearance",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAppearanceCustomization for NSLevelIndicator {}
 
-#[cfg(feature = "AppKit_NSLevelIndicator")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSLevelIndicator {}
 
-#[cfg(feature = "AppKit_NSLevelIndicator")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSDragging",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSDraggingDestination for NSLevelIndicator {}
 
-#[cfg(feature = "AppKit_NSLevelIndicator")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSObjectProtocol for NSLevelIndicator {}
 
-#[cfg(feature = "AppKit_NSLevelIndicator")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSLevelIndicator {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSLevelIndicator")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSLevelIndicator {
+        #[cfg(feature = "AppKit_NSLevelIndicatorCell")]
         #[method(levelIndicatorStyle)]
         pub unsafe fn levelIndicatorStyle(&self) -> NSLevelIndicatorStyle;
 
+        #[cfg(feature = "AppKit_NSLevelIndicatorCell")]
         #[method(setLevelIndicatorStyle:)]
         pub unsafe fn setLevelIndicatorStyle(&self, level_indicator_style: NSLevelIndicatorStyle);
 
@@ -93,9 +146,11 @@ extern_methods!(
         #[method(setCriticalValue:)]
         pub unsafe fn setCriticalValue(&self, critical_value: c_double);
 
+        #[cfg(feature = "AppKit_NSSliderCell")]
         #[method(tickMarkPosition)]
         pub unsafe fn tickMarkPosition(&self) -> NSTickMarkPosition;
 
+        #[cfg(feature = "AppKit_NSSliderCell")]
         #[method(setTickMarkPosition:)]
         pub unsafe fn setTickMarkPosition(&self, tick_mark_position: NSTickMarkPosition);
 
@@ -114,6 +169,7 @@ extern_methods!(
         #[method(tickMarkValueAtIndex:)]
         pub unsafe fn tickMarkValueAtIndex(&self, index: NSInteger) -> c_double;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(rectOfTickMarkAtIndex:)]
         pub unsafe fn rectOfTickMarkAtIndex(&self, index: NSInteger) -> NSRect;
 
@@ -176,8 +232,13 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSControl`
-    #[cfg(feature = "AppKit_NSLevelIndicator")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSLevelIndicator {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
 
@@ -189,7 +250,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "AppKit_NSLevelIndicator")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSLevelIndicator {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -198,7 +263,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSLevelIndicator")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSLevelIndicator {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

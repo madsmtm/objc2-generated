@@ -6,24 +6,20 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "BackgroundTasks_BGTaskRequest")]
     pub struct BGTaskRequest;
 
-    #[cfg(feature = "BackgroundTasks_BGTaskRequest")]
     unsafe impl ClassType for BGTaskRequest {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "BackgroundTasks_BGTaskRequest")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for BGTaskRequest {}
 
-#[cfg(feature = "BackgroundTasks_BGTaskRequest")]
 unsafe impl NSObjectProtocol for BGTaskRequest {}
 
 extern_methods!(
-    #[cfg(feature = "BackgroundTasks_BGTaskRequest")]
     unsafe impl BGTaskRequest {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
@@ -47,10 +43,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "BackgroundTasks_BGAppRefreshTaskRequest")]
     pub struct BGAppRefreshTaskRequest;
 
-    #[cfg(feature = "BackgroundTasks_BGAppRefreshTaskRequest")]
     unsafe impl ClassType for BGAppRefreshTaskRequest {
         #[inherits(NSObject)]
         type Super = BGTaskRequest;
@@ -58,14 +52,12 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "BackgroundTasks_BGAppRefreshTaskRequest")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for BGAppRefreshTaskRequest {}
 
-#[cfg(feature = "BackgroundTasks_BGAppRefreshTaskRequest")]
 unsafe impl NSObjectProtocol for BGAppRefreshTaskRequest {}
 
 extern_methods!(
-    #[cfg(feature = "BackgroundTasks_BGAppRefreshTaskRequest")]
     unsafe impl BGAppRefreshTaskRequest {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
@@ -75,7 +67,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `BGTaskRequest`
-    #[cfg(feature = "BackgroundTasks_BGAppRefreshTaskRequest")]
     unsafe impl BGAppRefreshTaskRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -87,10 +78,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "BackgroundTasks_BGProcessingTaskRequest")]
     pub struct BGProcessingTaskRequest;
 
-    #[cfg(feature = "BackgroundTasks_BGProcessingTaskRequest")]
     unsafe impl ClassType for BGProcessingTaskRequest {
         #[inherits(NSObject)]
         type Super = BGTaskRequest;
@@ -98,14 +87,12 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "BackgroundTasks_BGProcessingTaskRequest")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for BGProcessingTaskRequest {}
 
-#[cfg(feature = "BackgroundTasks_BGProcessingTaskRequest")]
 unsafe impl NSObjectProtocol for BGProcessingTaskRequest {}
 
 extern_methods!(
-    #[cfg(feature = "BackgroundTasks_BGProcessingTaskRequest")]
     unsafe impl BGProcessingTaskRequest {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
@@ -127,7 +114,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `BGTaskRequest`
-    #[cfg(feature = "BackgroundTasks_BGProcessingTaskRequest")]
     unsafe impl BGProcessingTaskRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -139,10 +125,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "BackgroundTasks_BGHealthResearchTaskRequest")]
     pub struct BGHealthResearchTaskRequest;
 
-    #[cfg(feature = "BackgroundTasks_BGHealthResearchTaskRequest")]
     unsafe impl ClassType for BGHealthResearchTaskRequest {
         #[inherits(BGTaskRequest, NSObject)]
         type Super = BGProcessingTaskRequest;
@@ -150,20 +134,18 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "BackgroundTasks_BGHealthResearchTaskRequest")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for BGHealthResearchTaskRequest {}
 
-#[cfg(feature = "BackgroundTasks_BGHealthResearchTaskRequest")]
 unsafe impl NSObjectProtocol for BGHealthResearchTaskRequest {}
 
 extern_methods!(
-    #[cfg(feature = "BackgroundTasks_BGHealthResearchTaskRequest")]
     unsafe impl BGHealthResearchTaskRequest {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other protectionTypeOfRequiredData)]
         pub unsafe fn protectionTypeOfRequiredData(&self) -> Id<NSFileProtectionType>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
         #[method(setProtectionTypeOfRequiredData:)]
         pub unsafe fn setProtectionTypeOfRequiredData(
             &self,
@@ -174,7 +156,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `BGProcessingTaskRequest`
-    #[cfg(feature = "BackgroundTasks_BGHealthResearchTaskRequest")]
     unsafe impl BGHealthResearchTaskRequest {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
@@ -184,7 +165,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `BGTaskRequest`
-    #[cfg(feature = "BackgroundTasks_BGHealthResearchTaskRequest")]
     unsafe impl BGHealthResearchTaskRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

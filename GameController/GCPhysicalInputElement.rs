@@ -25,7 +25,6 @@ extern_protocol!(
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameController_GCPhysicalInputElementCollection")]
     pub struct GCPhysicalInputElementCollection<
         Key: ?Sized = AnyObject,
         Element: ?Sized = AnyObject,
@@ -36,7 +35,6 @@ __inner_extern_class!(
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
-    #[cfg(feature = "GameController_GCPhysicalInputElementCollection")]
     unsafe impl<Key: ?Sized + Message, Element: ?Sized + Message> ClassType
         for GCPhysicalInputElementCollection<Key, Element>
     {
@@ -53,20 +51,18 @@ __inner_extern_class!(
     }
 );
 
-#[cfg(feature = "GameController_GCPhysicalInputElementCollection")]
+#[cfg(feature = "Foundation_NSEnumerator")]
 unsafe impl<Key: ?Sized, Element: ?Sized> NSFastEnumeration
     for GCPhysicalInputElementCollection<Key, Element>
 {
 }
 
-#[cfg(feature = "GameController_GCPhysicalInputElementCollection")]
 unsafe impl<Key: ?Sized, Element: ?Sized> NSObjectProtocol
     for GCPhysicalInputElementCollection<Key, Element>
 {
 }
 
 extern_methods!(
-    #[cfg(feature = "GameController_GCPhysicalInputElementCollection")]
     unsafe impl<Key: Message, Element: Message> GCPhysicalInputElementCollection<Key, Element> {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

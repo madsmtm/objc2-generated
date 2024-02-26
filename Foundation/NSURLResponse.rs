@@ -5,36 +5,30 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSURLResponse")]
     pub struct NSURLResponse;
 
-    #[cfg(feature = "Foundation_NSURLResponse")]
     unsafe impl ClassType for NSURLResponse {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSURLResponse")]
 unsafe impl Send for NSURLResponse {}
 
-#[cfg(feature = "Foundation_NSURLResponse")]
 unsafe impl Sync for NSURLResponse {}
 
-#[cfg(feature = "Foundation_NSURLResponse")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSURLResponse {}
 
-#[cfg(feature = "Foundation_NSURLResponse")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSURLResponse {}
 
-#[cfg(feature = "Foundation_NSURLResponse")]
 unsafe impl NSObjectProtocol for NSURLResponse {}
 
-#[cfg(feature = "Foundation_NSURLResponse")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSURLResponse {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSURLResponse")]
     unsafe impl NSURLResponse {
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Init initWithURL:MIMEType:expectedContentLength:textEncodingName:)]
@@ -69,7 +63,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSURLResponse")]
     unsafe impl NSURLResponse {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -81,10 +74,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSHTTPURLResponse")]
     pub struct NSHTTPURLResponse;
 
-    #[cfg(feature = "Foundation_NSHTTPURLResponse")]
     unsafe impl ClassType for NSHTTPURLResponse {
         #[inherits(NSObject)]
         type Super = NSURLResponse;
@@ -92,26 +83,22 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSHTTPURLResponse")]
 unsafe impl Send for NSHTTPURLResponse {}
 
-#[cfg(feature = "Foundation_NSHTTPURLResponse")]
 unsafe impl Sync for NSHTTPURLResponse {}
 
-#[cfg(feature = "Foundation_NSHTTPURLResponse")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSHTTPURLResponse {}
 
-#[cfg(feature = "Foundation_NSHTTPURLResponse")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSHTTPURLResponse {}
 
-#[cfg(feature = "Foundation_NSHTTPURLResponse")]
 unsafe impl NSObjectProtocol for NSHTTPURLResponse {}
 
-#[cfg(feature = "Foundation_NSHTTPURLResponse")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSHTTPURLResponse {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSHTTPURLResponse")]
     unsafe impl NSHTTPURLResponse {
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -146,7 +133,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSURLResponse`
-    #[cfg(feature = "Foundation_NSHTTPURLResponse")]
     unsafe impl NSHTTPURLResponse {
         #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Init initWithURL:MIMEType:expectedContentLength:textEncodingName:)]
@@ -162,7 +148,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSHTTPURLResponse")]
     unsafe impl NSHTTPURLResponse {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

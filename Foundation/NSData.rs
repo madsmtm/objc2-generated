@@ -61,33 +61,29 @@ ns_options!(
 
 extern_class!(
     #[derive(PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSData")]
     pub struct NSData;
 
-    #[cfg(feature = "Foundation_NSData")]
     unsafe impl ClassType for NSData {
         type Super = NSObject;
         type Mutability = ImmutableWithMutableSubclass<NSMutableData>;
     }
 );
 
-#[cfg(feature = "Foundation_NSData")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSData {}
 
-#[cfg(feature = "Foundation_NSData")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSData {}
 
-#[cfg(feature = "Foundation_NSData")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSMutableCopying for NSData {}
 
-#[cfg(feature = "Foundation_NSData")]
 unsafe impl NSObjectProtocol for NSData {}
 
-#[cfg(feature = "Foundation_NSData")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSData {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSData")]
     unsafe impl NSData {
         #[method(length)]
         pub fn length(&self) -> NSUInteger;
@@ -96,7 +92,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSData")]
     unsafe impl NSData {
         #[method_id(@__retain_semantics Init init)]
         pub fn init(this: Allocated<Self>) -> Id<Self>;
@@ -106,7 +101,6 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSData")]
 impl DefaultId for NSData {
     #[inline]
     fn default_id() -> Id<Self> {
@@ -116,7 +110,6 @@ impl DefaultId for NSData {
 
 extern_methods!(
     /// NSExtendedData
-    #[cfg(feature = "Foundation_NSData")]
     unsafe impl NSData {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other description)]
@@ -125,12 +118,14 @@ extern_methods!(
         #[method(getBytes:length:)]
         pub unsafe fn getBytes_length(&self, buffer: NonNull<c_void>, length: NSUInteger);
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(getBytes:range:)]
         pub unsafe fn getBytes_range(&self, buffer: NonNull<c_void>, range: NSRange);
 
         #[method(isEqualToData:)]
         pub unsafe fn isEqualToData(&self, other: &NSData) -> bool;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method_id(@__retain_semantics Other subdataWithRange:)]
         pub unsafe fn subdataWithRange(&self, range: NSRange) -> Id<NSData>;
 
@@ -162,6 +157,7 @@ extern_methods!(
             write_options_mask: NSDataWritingOptions,
         ) -> Result<(), Id<NSError>>;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(rangeOfData:options:range:)]
         pub unsafe fn rangeOfData_options_range(
             &self,
@@ -170,6 +166,7 @@ extern_methods!(
             search_range: NSRange,
         ) -> NSRange;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(enumerateByteRangesUsingBlock:)]
         pub unsafe fn enumerateByteRangesUsingBlock(
             &self,
@@ -180,7 +177,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSDataCreation
-    #[cfg(feature = "Foundation_NSData")]
     unsafe impl NSData {
         #[method_id(@__retain_semantics Other data)]
         pub unsafe fn data() -> Id<Self>;
@@ -293,7 +289,6 @@ extern_methods!(
     /// Methods declared on superclass `NSData`
     ///
     /// NSDataCreation
-    #[cfg(feature = "Foundation_NSMutableData")]
     unsafe impl NSMutableData {
         #[method_id(@__retain_semantics Other data)]
         pub unsafe fn data() -> Id<Self>;
@@ -404,7 +399,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSDataBase64Encoding
-    #[cfg(feature = "Foundation_NSData")]
     unsafe impl NSData {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithBase64EncodedString:options:)]
@@ -440,7 +434,6 @@ extern_methods!(
     /// Methods declared on superclass `NSData`
     ///
     /// NSDataBase64Encoding
-    #[cfg(feature = "Foundation_NSMutableData")]
     unsafe impl NSMutableData {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithBase64EncodedString:options:)]
@@ -475,7 +468,6 @@ ns_enum!(
 
 extern_methods!(
     /// NSDataCompression
-    #[cfg(feature = "Foundation_NSData")]
     unsafe impl NSData {
         #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics Other decompressedDataUsingAlgorithm:error:_)]
@@ -495,7 +487,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSDeprecated
-    #[cfg(feature = "Foundation_NSData")]
     unsafe impl NSData {
         #[deprecated = "This method is unsafe because it could potentially cause buffer overruns. Use -getBytes:length: instead."]
         #[method(getBytes:)]
@@ -533,7 +524,6 @@ extern_methods!(
     /// Methods declared on superclass `NSData`
     ///
     /// NSDeprecated
-    #[cfg(feature = "Foundation_NSMutableData")]
     unsafe impl NSMutableData {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use -initWithContentsOfURL:options:error: and NSDataReadingMappedIfSafe or NSDataReadingMappedAlways instead."]
@@ -555,10 +545,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSData")]
     pub struct NSMutableData;
 
-    #[cfg(feature = "Foundation_NSData")]
     unsafe impl ClassType for NSMutableData {
         #[inherits(NSObject)]
         type Super = NSData;
@@ -566,23 +554,21 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSMutableData")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSMutableData {}
 
-#[cfg(feature = "Foundation_NSMutableData")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSMutableData {}
 
-#[cfg(feature = "Foundation_NSMutableData")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSMutableCopying for NSMutableData {}
 
-#[cfg(feature = "Foundation_NSMutableData")]
 unsafe impl NSObjectProtocol for NSMutableData {}
 
-#[cfg(feature = "Foundation_NSMutableData")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSMutableData {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSMutableData")]
     unsafe impl NSMutableData {
         #[method(setLength:)]
         pub fn setLength(&mut self, length: NSUInteger);
@@ -591,7 +577,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSMutableData")]
     unsafe impl NSMutableData {
         #[method_id(@__retain_semantics Init init)]
         pub fn init(this: Allocated<Self>) -> Id<Self>;
@@ -601,7 +586,6 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSMutableData")]
 impl DefaultId for NSMutableData {
     #[inline]
     fn default_id() -> Id<Self> {
@@ -611,7 +595,6 @@ impl DefaultId for NSMutableData {
 
 extern_methods!(
     /// NSExtendedMutableData
-    #[cfg(feature = "Foundation_NSMutableData")]
     unsafe impl NSMutableData {
         #[method(appendBytes:length:)]
         pub unsafe fn appendBytes_length(&mut self, bytes: NonNull<c_void>, length: NSUInteger);
@@ -622,6 +605,7 @@ extern_methods!(
         #[method(increaseLengthBy:)]
         pub unsafe fn increaseLengthBy(&mut self, extra_length: NSUInteger);
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(replaceBytesInRange:withBytes:)]
         pub unsafe fn replaceBytesInRange_withBytes(
             &mut self,
@@ -629,12 +613,14 @@ extern_methods!(
             bytes: NonNull<c_void>,
         );
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(resetBytesInRange:)]
         pub unsafe fn resetBytesInRange(&mut self, range: NSRange);
 
         #[method(setData:)]
         pub unsafe fn setData(&mut self, data: &NSData);
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(replaceBytesInRange:withBytes:length:)]
         pub unsafe fn replaceBytesInRange_withBytes_length(
             &mut self,
@@ -647,7 +633,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSMutableDataCreation
-    #[cfg(feature = "Foundation_NSMutableData")]
     unsafe impl NSMutableData {
         #[method_id(@__retain_semantics Other dataWithCapacity:)]
         pub fn dataWithCapacity(a_num_items: NSUInteger) -> Option<Id<Self>>;
@@ -666,7 +651,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSMutableDataCompression
-    #[cfg(feature = "Foundation_NSMutableData")]
     unsafe impl NSMutableData {
         #[cfg(feature = "Foundation_NSError")]
         #[method(decompressUsingAlgorithm:error:_)]
@@ -686,10 +670,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSPurgeableData")]
     pub struct NSPurgeableData;
 
-    #[cfg(feature = "Foundation_NSPurgeableData")]
     unsafe impl ClassType for NSPurgeableData {
         #[inherits(NSData, NSObject)]
         type Super = NSMutableData;
@@ -697,26 +679,23 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSPurgeableData")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSPurgeableData {}
 
-#[cfg(feature = "Foundation_NSPurgeableData")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSDiscardableContent for NSPurgeableData {}
 
-#[cfg(feature = "Foundation_NSPurgeableData")]
 unsafe impl NSObjectProtocol for NSPurgeableData {}
 
-#[cfg(feature = "Foundation_NSPurgeableData")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSPurgeableData {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSPurgeableData")]
     unsafe impl NSPurgeableData {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSPurgeableData")]
     unsafe impl NSPurgeableData {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -24,24 +24,20 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSXMLNode")]
     pub struct NSXMLNode;
 
-    #[cfg(feature = "Foundation_NSXMLNode")]
     unsafe impl ClassType for NSXMLNode {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSXMLNode")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSXMLNode {}
 
-#[cfg(feature = "Foundation_NSXMLNode")]
 unsafe impl NSObjectProtocol for NSXMLNode {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSXMLNode")]
     unsafe impl NSXMLNode {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -49,6 +45,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithKind:)]
         pub unsafe fn initWithKind(this: Allocated<Self>, kind: NSXMLNodeKind) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSXMLNodeOptions")]
         #[method_id(@__retain_semantics Init initWithKind:options:)]
         pub unsafe fn initWithKind_options(
             this: Allocated<Self>,
@@ -234,7 +231,10 @@ extern_methods!(
         #[method_id(@__retain_semantics Other XMLString)]
         pub unsafe fn XMLString(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSXMLNodeOptions"
+        ))]
         #[method_id(@__retain_semantics Other XMLStringWithOptions:)]
         pub unsafe fn XMLStringWithOptions(&self, options: NSXMLNodeOptions) -> Id<NSString>;
 
@@ -281,7 +281,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSXMLNode")]
     unsafe impl NSXMLNode {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

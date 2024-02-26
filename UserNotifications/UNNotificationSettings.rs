@@ -59,30 +59,26 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "UserNotifications_UNNotificationSettings")]
     pub struct UNNotificationSettings;
 
-    #[cfg(feature = "UserNotifications_UNNotificationSettings")]
     unsafe impl ClassType for UNNotificationSettings {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "UserNotifications_UNNotificationSettings")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for UNNotificationSettings {}
 
-#[cfg(feature = "UserNotifications_UNNotificationSettings")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for UNNotificationSettings {}
 
-#[cfg(feature = "UserNotifications_UNNotificationSettings")]
 unsafe impl NSObjectProtocol for UNNotificationSettings {}
 
-#[cfg(feature = "UserNotifications_UNNotificationSettings")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for UNNotificationSettings {}
 
 extern_methods!(
-    #[cfg(feature = "UserNotifications_UNNotificationSettings")]
     unsafe impl UNNotificationSettings {
         #[method(authorizationStatus)]
         pub unsafe fn authorizationStatus(&self) -> UNAuthorizationStatus;
@@ -136,7 +132,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UserNotifications_UNNotificationSettings")]
     unsafe impl UNNotificationSettings {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

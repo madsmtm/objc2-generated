@@ -17,95 +17,129 @@
 #[link(name = "ClassKit", kind = "framework")]
 extern "C" {}
 
+#[cfg(feature = "ClassKit_CLSActivity")]
 #[path = "CLSActivity.rs"]
 mod __CLSActivity;
+#[cfg(feature = "ClassKit_CLSActivityItem")]
 #[path = "CLSActivityItem.rs"]
 mod __CLSActivityItem;
+#[cfg(feature = "ClassKit_CLSBinaryItem")]
 #[path = "CLSBinaryItem.rs"]
 mod __CLSBinaryItem;
+#[cfg(feature = "ClassKit_CLSContext")]
 #[path = "CLSContext.rs"]
 mod __CLSContext;
+#[cfg(feature = "ClassKit_CLSContextProvider")]
 #[path = "CLSContextProvider.rs"]
 mod __CLSContextProvider;
+#[cfg(feature = "ClassKit_CLSDataStore")]
 #[path = "CLSDataStore.rs"]
 mod __CLSDataStore;
+#[cfg(feature = "ClassKit_CLSDefines")]
 #[path = "CLSDefines.rs"]
 mod __CLSDefines;
+#[cfg(feature = "ClassKit_CLSObject")]
 #[path = "CLSObject.rs"]
 mod __CLSObject;
+#[cfg(feature = "ClassKit_CLSProgressReportingCapability")]
 #[path = "CLSProgressReportingCapability.rs"]
 mod __CLSProgressReportingCapability;
+#[cfg(feature = "ClassKit_CLSQuantityItem")]
 #[path = "CLSQuantityItem.rs"]
 mod __CLSQuantityItem;
+#[cfg(feature = "ClassKit_CLSScoreItem")]
 #[path = "CLSScoreItem.rs"]
 mod __CLSScoreItem;
+#[cfg(feature = "ClassKit_NSUserActivity_CLSDeepLinks")]
 #[path = "NSUserActivity_CLSDeepLinks.rs"]
 mod __NSUserActivity_CLSDeepLinks;
 
-#[cfg(feature = "ClassKit_CLSActivity")]
+#[cfg(all(feature = "ClassKit_CLSActivity", feature = "ClassKit_CLSObject"))]
 pub use self::__CLSActivity::CLSActivity;
-#[cfg(feature = "ClassKit_CLSActivityItem")]
+#[cfg(all(feature = "ClassKit_CLSActivityItem", feature = "ClassKit_CLSObject"))]
 pub use self::__CLSActivityItem::CLSActivityItem;
-#[cfg(feature = "ClassKit_CLSBinaryItem")]
+#[cfg(all(
+    feature = "ClassKit_CLSActivityItem",
+    feature = "ClassKit_CLSBinaryItem",
+    feature = "ClassKit_CLSObject"
+))]
 pub use self::__CLSBinaryItem::CLSBinaryItem;
+#[cfg(feature = "ClassKit_CLSBinaryItem")]
 pub use self::__CLSBinaryItem::CLSBinaryValueType;
-#[cfg(feature = "ClassKit_CLSContext")]
+#[cfg(all(feature = "ClassKit_CLSContext", feature = "ClassKit_CLSObject"))]
 pub use self::__CLSContext::CLSContext;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "ClassKit_CLSContext", feature = "Foundation_NSString"))]
 pub use self::__CLSContext::CLSContextTopic;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "ClassKit_CLSContext", feature = "Foundation_NSString"))]
 pub use self::__CLSContext::CLSContextTopicArtsAndMusic;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "ClassKit_CLSContext", feature = "Foundation_NSString"))]
 pub use self::__CLSContext::CLSContextTopicComputerScienceAndEngineering;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "ClassKit_CLSContext", feature = "Foundation_NSString"))]
 pub use self::__CLSContext::CLSContextTopicHealthAndFitness;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "ClassKit_CLSContext", feature = "Foundation_NSString"))]
 pub use self::__CLSContext::CLSContextTopicLiteracyAndWriting;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "ClassKit_CLSContext", feature = "Foundation_NSString"))]
 pub use self::__CLSContext::CLSContextTopicMath;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "ClassKit_CLSContext", feature = "Foundation_NSString"))]
 pub use self::__CLSContext::CLSContextTopicScience;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "ClassKit_CLSContext", feature = "Foundation_NSString"))]
 pub use self::__CLSContext::CLSContextTopicSocialScience;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "ClassKit_CLSContext", feature = "Foundation_NSString"))]
 pub use self::__CLSContext::CLSContextTopicWorldLanguage;
+#[cfg(feature = "ClassKit_CLSContext")]
 pub use self::__CLSContext::CLSContextType;
+#[cfg(feature = "ClassKit_CLSContextProvider")]
 pub use self::__CLSContextProvider::CLSContextProvider;
 #[cfg(feature = "ClassKit_CLSDataStore")]
 pub use self::__CLSDataStore::CLSDataStore;
+#[cfg(feature = "ClassKit_CLSDataStore")]
 pub use self::__CLSDataStore::CLSDataStoreDelegate;
+#[cfg(feature = "ClassKit_CLSDefines")]
 pub use self::__CLSDefines::CLSErrorCode;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "ClassKit_CLSDefines", feature = "Foundation_NSString"))]
 pub use self::__CLSDefines::CLSErrorCodeDomain;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "ClassKit_CLSDefines", feature = "Foundation_NSString"))]
 pub use self::__CLSDefines::CLSErrorObjectKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "ClassKit_CLSDefines", feature = "Foundation_NSString"))]
 pub use self::__CLSDefines::CLSErrorSuccessfulObjectsKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "ClassKit_CLSDefines", feature = "Foundation_NSString"))]
 pub use self::__CLSDefines::CLSErrorUnderlyingErrorsKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "ClassKit_CLSDefines", feature = "Foundation_NSString"))]
 pub use self::__CLSDefines::CLSErrorUserInfoKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "ClassKit_CLSDefines", feature = "Foundation_NSString"))]
 pub use self::__CLSDefines::CLSPredicateKeyPath;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "ClassKit_CLSDefines", feature = "Foundation_NSString"))]
 pub use self::__CLSDefines::CLSPredicateKeyPathDateCreated;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "ClassKit_CLSDefines", feature = "Foundation_NSString"))]
 pub use self::__CLSDefines::CLSPredicateKeyPathIdentifier;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "ClassKit_CLSDefines", feature = "Foundation_NSString"))]
 pub use self::__CLSDefines::CLSPredicateKeyPathParent;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "ClassKit_CLSDefines", feature = "Foundation_NSString"))]
 pub use self::__CLSDefines::CLSPredicateKeyPathTitle;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "ClassKit_CLSDefines", feature = "Foundation_NSString"))]
 pub use self::__CLSDefines::CLSPredicateKeyPathTopic;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "ClassKit_CLSDefines", feature = "Foundation_NSString"))]
 pub use self::__CLSDefines::CLSPredicateKeyPathUniversalLinkURL;
 #[cfg(feature = "ClassKit_CLSObject")]
 pub use self::__CLSObject::CLSObject;
-#[cfg(feature = "ClassKit_CLSProgressReportingCapability")]
+#[cfg(all(
+    feature = "ClassKit_CLSObject",
+    feature = "ClassKit_CLSProgressReportingCapability"
+))]
 pub use self::__CLSProgressReportingCapability::CLSProgressReportingCapability;
+#[cfg(feature = "ClassKit_CLSProgressReportingCapability")]
 pub use self::__CLSProgressReportingCapability::CLSProgressReportingCapabilityKind;
-#[cfg(feature = "ClassKit_CLSQuantityItem")]
+#[cfg(all(
+    feature = "ClassKit_CLSActivityItem",
+    feature = "ClassKit_CLSObject",
+    feature = "ClassKit_CLSQuantityItem"
+))]
 pub use self::__CLSQuantityItem::CLSQuantityItem;
-#[cfg(feature = "ClassKit_CLSScoreItem")]
+#[cfg(all(
+    feature = "ClassKit_CLSActivityItem",
+    feature = "ClassKit_CLSObject",
+    feature = "ClassKit_CLSScoreItem"
+))]
 pub use self::__CLSScoreItem::CLSScoreItem;
+#[cfg(feature = "ClassKit_NSUserActivity_CLSDeepLinks")]
 pub use self::__NSUserActivity_CLSDeepLinks::NSUserActivityCLSDeepLinks;

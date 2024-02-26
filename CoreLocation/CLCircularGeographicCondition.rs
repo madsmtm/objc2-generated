@@ -7,10 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreLocation_CLCircularGeographicCondition")]
+    #[cfg(feature = "CoreLocation_CLCondition")]
     pub struct CLCircularGeographicCondition;
 
-    #[cfg(feature = "CoreLocation_CLCircularGeographicCondition")]
+    #[cfg(feature = "CoreLocation_CLCondition")]
     unsafe impl ClassType for CLCircularGeographicCondition {
         #[inherits(NSObject)]
         type Super = CLCondition;
@@ -18,27 +18,30 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CoreLocation_CLCircularGeographicCondition")]
+#[cfg(all(feature = "CoreLocation_CLCondition", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for CLCircularGeographicCondition {}
 
-#[cfg(feature = "CoreLocation_CLCircularGeographicCondition")]
+#[cfg(all(feature = "CoreLocation_CLCondition", feature = "Foundation_NSObject"))]
 unsafe impl NSCopying for CLCircularGeographicCondition {}
 
-#[cfg(feature = "CoreLocation_CLCircularGeographicCondition")]
+#[cfg(feature = "CoreLocation_CLCondition")]
 unsafe impl NSObjectProtocol for CLCircularGeographicCondition {}
 
-#[cfg(feature = "CoreLocation_CLCircularGeographicCondition")]
+#[cfg(all(feature = "CoreLocation_CLCondition", feature = "Foundation_NSObject"))]
 unsafe impl NSSecureCoding for CLCircularGeographicCondition {}
 
 extern_methods!(
-    #[cfg(feature = "CoreLocation_CLCircularGeographicCondition")]
+    #[cfg(feature = "CoreLocation_CLCondition")]
     unsafe impl CLCircularGeographicCondition {
+        #[cfg(feature = "CoreLocation_CLLocation")]
         #[method(center)]
         pub unsafe fn center(&self) -> CLLocationCoordinate2D;
 
+        #[cfg(feature = "CoreLocation_CLLocation")]
         #[method(radius)]
         pub unsafe fn radius(&self) -> CLLocationDistance;
 
+        #[cfg(feature = "CoreLocation_CLLocation")]
         #[method_id(@__retain_semantics Init initWithCenter:radius:)]
         pub unsafe fn initWithCenter_radius(
             this: Allocated<Self>,
@@ -50,7 +53,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CLCondition`
-    #[cfg(feature = "CoreLocation_CLCircularGeographicCondition")]
+    #[cfg(feature = "CoreLocation_CLCondition")]
     unsafe impl CLCircularGeographicCondition {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

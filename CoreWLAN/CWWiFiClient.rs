@@ -65,21 +65,17 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreWLAN_CWWiFiClient")]
     pub struct CWWiFiClient;
 
-    #[cfg(feature = "CoreWLAN_CWWiFiClient")]
     unsafe impl ClassType for CWWiFiClient {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreWLAN_CWWiFiClient")]
 unsafe impl NSObjectProtocol for CWWiFiClient {}
 
 extern_methods!(
-    #[cfg(feature = "CoreWLAN_CWWiFiClient")]
     unsafe impl CWWiFiClient {
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<AnyObject>>;
@@ -117,14 +113,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other interfaces)]
         pub unsafe fn interfaces(&self) -> Option<Id<NSArray<CWInterface>>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "CoreWLAN_CoreWLANTypes", feature = "Foundation_NSError"))]
         #[method(startMonitoringEventWithType:error:_)]
         pub unsafe fn startMonitoringEventWithType_error(
             &self,
             r#type: CWEventType,
         ) -> Result<(), Id<NSError>>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "CoreWLAN_CoreWLANTypes", feature = "Foundation_NSError"))]
         #[method(stopMonitoringEventWithType:error:_)]
         pub unsafe fn stopMonitoringEventWithType_error(
             &self,
@@ -139,7 +135,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreWLAN_CWWiFiClient")]
     unsafe impl CWWiFiClient {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

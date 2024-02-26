@@ -64,24 +64,20 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTextFinder")]
     pub struct NSTextFinder;
 
-    #[cfg(feature = "AppKit_NSTextFinder")]
     unsafe impl ClassType for NSTextFinder {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSTextFinder")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSTextFinder {}
 
-#[cfg(feature = "AppKit_NSTextFinder")]
 unsafe impl NSObjectProtocol for NSTextFinder {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTextFinder")]
     unsafe impl NSTextFinder {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -141,6 +137,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other incrementalMatchRanges)]
         pub unsafe fn incrementalMatchRanges(&self) -> Id<NSArray<NSValue>>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(drawIncrementalMatchHighlightInRect:)]
         pub unsafe fn drawIncrementalMatchHighlightInRect(rect: NSRect);
 
@@ -151,7 +148,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTextFinder")]
     unsafe impl NSTextFinder {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -177,7 +173,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other string)]
         unsafe fn string(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSRange", feature = "Foundation_NSString"))]
         #[optional]
         #[method_id(@__retain_semantics Other stringAtIndex:effectiveRange:endsWithSearchBoundary:)]
         unsafe fn stringAtIndex_effectiveRange_endsWithSearchBoundary(
@@ -191,6 +187,7 @@ extern_protocol!(
         #[method(stringLength)]
         unsafe fn stringLength(&self) -> NSUInteger;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[optional]
         #[method(firstSelectedRange)]
         unsafe fn firstSelectedRange(&self) -> NSRange;
@@ -205,6 +202,7 @@ extern_protocol!(
         #[method(setSelectedRanges:)]
         unsafe fn setSelectedRanges(&self, selected_ranges: &NSArray<NSValue>);
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[optional]
         #[method(scrollRangeToVisible:)]
         unsafe fn scrollRangeToVisible(&self, range: NSRange);
@@ -222,7 +220,7 @@ extern_protocol!(
             strings: &NSArray<NSString>,
         ) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSRange", feature = "Foundation_NSString"))]
         #[optional]
         #[method(replaceCharactersInRange:withString:)]
         unsafe fn replaceCharactersInRange_withString(&self, range: NSRange, string: &NSString);
@@ -231,7 +229,11 @@ extern_protocol!(
         #[method(didReplaceCharacters)]
         unsafe fn didReplaceCharacters(&self);
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSRange"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other contentViewAtIndex:effectiveCharacterRange:)]
         unsafe fn contentViewAtIndex_effectiveCharacterRange(
@@ -241,7 +243,11 @@ extern_protocol!(
             mtm: MainThreadMarker,
         ) -> Id<NSView>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSRange",
+            feature = "Foundation_NSValue"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other rectsForCharacterRange:)]
         unsafe fn rectsForCharacterRange(&self, range: NSRange) -> Option<Id<NSArray<NSValue>>>;
@@ -251,7 +257,11 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other visibleCharacterRanges)]
         unsafe fn visibleCharacterRanges(&self) -> Id<NSArray<NSValue>>;
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSRange"
+        ))]
         #[optional]
         #[method(drawCharactersInRange:forContentView:)]
         unsafe fn drawCharactersInRange_forContentView(&self, range: NSRange, view: &NSView);
@@ -262,11 +272,11 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait NSTextFinderBarContainer: NSObjectProtocol {
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[method_id(@__retain_semantics Other findBarView)]
         unsafe fn findBarView(&self, mtm: MainThreadMarker) -> Option<Id<NSView>>;
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[method(setFindBarView:)]
         unsafe fn setFindBarView(&self, find_bar_view: Option<&NSView>);
 
@@ -279,7 +289,7 @@ extern_protocol!(
         #[method(findBarViewDidChangeHeight)]
         unsafe fn findBarViewDidChangeHeight(&self);
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[optional]
         #[method_id(@__retain_semantics Other contentView)]
         unsafe fn contentView(&self, mtm: MainThreadMarker) -> Option<Id<NSView>>;

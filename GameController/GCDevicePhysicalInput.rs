@@ -6,10 +6,13 @@ use crate::Foundation::*;
 use crate::GameController::*;
 
 extern_protocol!(
+    #[cfg(feature = "GameController_GCDevicePhysicalInputState")]
     pub unsafe trait GCDevicePhysicalInput: GCDevicePhysicalInputState {
+        #[cfg(feature = "GameController_GCDevice")]
         #[method_id(@__retain_semantics Other device)]
         unsafe fn device(&self) -> Option<Id<ProtocolObject<dyn GCDevice>>>;
 
+        #[cfg(feature = "GameController_GCPhysicalInputElement")]
         #[method(elementValueDidChangeHandler)]
         unsafe fn elementValueDidChangeHandler(
             &self,
@@ -20,6 +23,7 @@ extern_protocol!(
             ),
         >;
 
+        #[cfg(feature = "GameController_GCPhysicalInputElement")]
         #[method(setElementValueDidChangeHandler:)]
         unsafe fn setElementValueDidChangeHandler(
             &self,
@@ -55,9 +59,11 @@ extern_protocol!(
         #[method(setInputStateQueueDepth:)]
         unsafe fn setInputStateQueueDepth(&self, input_state_queue_depth: NSInteger);
 
+        #[cfg(feature = "GameController_GCDevicePhysicalInputStateDiff")]
         #[method_id(@__retain_semantics Other nextInputState)]
         unsafe fn nextInputState(&self) -> Option<Id<TodoProtocols>>;
     }
 
+    #[cfg(feature = "GameController_GCDevicePhysicalInputState")]
     unsafe impl ProtocolType for dyn GCDevicePhysicalInput {}
 );

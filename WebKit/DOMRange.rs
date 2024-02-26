@@ -24,11 +24,11 @@ pub const DOM_NODE_INSIDE: c_uint = 3;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_DOMRange")]
+    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
     #[deprecated]
     pub struct DOMRange;
 
-    #[cfg(feature = "WebKit_DOMRange")]
+    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
     unsafe impl ClassType for DOMRange {
         #[inherits(WebScriptObject, NSObject)]
         type Super = DOMObject;
@@ -36,14 +36,18 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "WebKit_DOMRange")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSCopying for DOMRange {}
 
-#[cfg(feature = "WebKit_DOMRange")]
+#[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
 unsafe impl NSObjectProtocol for DOMRange {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_DOMRange")]
+    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
     unsafe impl DOMRange {
         #[cfg(feature = "WebKit_DOMNode")]
         #[deprecated]
@@ -129,12 +133,12 @@ extern_methods!(
         #[method(deleteContents)]
         pub unsafe fn deleteContents(&self);
 
-        #[cfg(feature = "WebKit_DOMDocumentFragment")]
+        #[cfg(all(feature = "WebKit_DOMDocumentFragment", feature = "WebKit_DOMNode"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other extractContents)]
         pub unsafe fn extractContents(&self) -> Option<Id<DOMDocumentFragment>>;
 
-        #[cfg(feature = "WebKit_DOMDocumentFragment")]
+        #[cfg(all(feature = "WebKit_DOMDocumentFragment", feature = "WebKit_DOMNode"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other cloneContents)]
         pub unsafe fn cloneContents(&self) -> Option<Id<DOMDocumentFragment>>;
@@ -164,7 +168,8 @@ extern_methods!(
 
         #[cfg(all(
             feature = "Foundation_NSString",
-            feature = "WebKit_DOMDocumentFragment"
+            feature = "WebKit_DOMDocumentFragment",
+            feature = "WebKit_DOMNode"
         ))]
         #[method_id(@__retain_semantics Other createContextualFragment:)]
         pub unsafe fn createContextualFragment(
@@ -200,7 +205,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
-    #[cfg(feature = "WebKit_DOMRange")]
+    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
     unsafe impl DOMRange {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
@@ -210,7 +215,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_DOMRange")]
+    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
     unsafe impl DOMRange {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -219,7 +224,7 @@ extern_methods!(
 
 extern_methods!(
     /// DOMRangeDeprecated
-    #[cfg(feature = "WebKit_DOMRange")]
+    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
     unsafe impl DOMRange {
         #[cfg(feature = "WebKit_DOMNode")]
         #[deprecated]

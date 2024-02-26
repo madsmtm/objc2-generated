@@ -9,30 +9,26 @@ use crate::MapKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "EventKit_EKRecurrenceEnd")]
     pub struct EKRecurrenceEnd;
 
-    #[cfg(feature = "EventKit_EKRecurrenceEnd")]
     unsafe impl ClassType for EKRecurrenceEnd {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "EventKit_EKRecurrenceEnd")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for EKRecurrenceEnd {}
 
-#[cfg(feature = "EventKit_EKRecurrenceEnd")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for EKRecurrenceEnd {}
 
-#[cfg(feature = "EventKit_EKRecurrenceEnd")]
 unsafe impl NSObjectProtocol for EKRecurrenceEnd {}
 
-#[cfg(feature = "EventKit_EKRecurrenceEnd")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for EKRecurrenceEnd {}
 
 extern_methods!(
-    #[cfg(feature = "EventKit_EKRecurrenceEnd")]
     unsafe impl EKRecurrenceEnd {
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other recurrenceEndWithEndDate:)]
@@ -52,7 +48,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "EventKit_EKRecurrenceEnd")]
     unsafe impl EKRecurrenceEnd {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

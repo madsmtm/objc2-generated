@@ -15,24 +15,20 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLFunctionDescriptor")]
     pub struct MTLFunctionDescriptor;
 
-    #[cfg(feature = "Metal_MTLFunctionDescriptor")]
     unsafe impl ClassType for MTLFunctionDescriptor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLFunctionDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLFunctionDescriptor {}
 
-#[cfg(feature = "Metal_MTLFunctionDescriptor")]
 unsafe impl NSObjectProtocol for MTLFunctionDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLFunctionDescriptor")]
     unsafe impl MTLFunctionDescriptor {
         #[method_id(@__retain_semantics Other functionDescriptor)]
         pub fn functionDescriptor() -> Id<MTLFunctionDescriptor>;
@@ -67,13 +63,13 @@ extern_methods!(
         #[method(setOptions:)]
         pub fn setOptions(&self, options: MTLFunctionOptions);
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLBinaryArchive"))]
         #[method_id(@__retain_semantics Other binaryArchives)]
         pub unsafe fn binaryArchives(
             &self,
         ) -> Option<Id<NSArray<ProtocolObject<dyn MTLBinaryArchive>>>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLBinaryArchive"))]
         #[method(setBinaryArchives:)]
         pub unsafe fn setBinaryArchives(
             &self,
@@ -84,7 +80,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLFunctionDescriptor")]
     unsafe impl MTLFunctionDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub fn init(this: Allocated<Self>) -> Id<Self>;
@@ -94,7 +89,6 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Metal_MTLFunctionDescriptor")]
 impl DefaultId for MTLFunctionDescriptor {
     #[inline]
     fn default_id() -> Id<Self> {
@@ -104,10 +98,8 @@ impl DefaultId for MTLFunctionDescriptor {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLIntersectionFunctionDescriptor")]
     pub struct MTLIntersectionFunctionDescriptor;
 
-    #[cfg(feature = "Metal_MTLIntersectionFunctionDescriptor")]
     unsafe impl ClassType for MTLIntersectionFunctionDescriptor {
         #[inherits(NSObject)]
         type Super = MTLFunctionDescriptor;
@@ -115,20 +107,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Metal_MTLIntersectionFunctionDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLIntersectionFunctionDescriptor {}
 
-#[cfg(feature = "Metal_MTLIntersectionFunctionDescriptor")]
 unsafe impl NSObjectProtocol for MTLIntersectionFunctionDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLIntersectionFunctionDescriptor")]
     unsafe impl MTLIntersectionFunctionDescriptor {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLIntersectionFunctionDescriptor")]
     unsafe impl MTLIntersectionFunctionDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

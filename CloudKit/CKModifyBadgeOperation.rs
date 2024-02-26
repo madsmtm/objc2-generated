@@ -7,11 +7,11 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKModifyBadgeOperation")]
+    #[cfg(all(feature = "CloudKit_CKOperation", feature = "Foundation_NSOperation"))]
     #[deprecated = "No longer supported, will cease working at some point in the future"]
     pub struct CKModifyBadgeOperation;
 
-    #[cfg(feature = "CloudKit_CKModifyBadgeOperation")]
+    #[cfg(all(feature = "CloudKit_CKOperation", feature = "Foundation_NSOperation"))]
     unsafe impl ClassType for CKModifyBadgeOperation {
         #[inherits(NSOperation, NSObject)]
         type Super = CKOperation;
@@ -19,11 +19,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CloudKit_CKModifyBadgeOperation")]
+#[cfg(all(feature = "CloudKit_CKOperation", feature = "Foundation_NSOperation"))]
 unsafe impl NSObjectProtocol for CKModifyBadgeOperation {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKModifyBadgeOperation")]
+    #[cfg(all(feature = "CloudKit_CKOperation", feature = "Foundation_NSOperation"))]
     unsafe impl CKModifyBadgeOperation {
         #[deprecated = "No longer supported, will cease working at some point in the future"]
         #[method_id(@__retain_semantics Init init)]
@@ -61,7 +61,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CloudKit_CKModifyBadgeOperation")]
+    #[cfg(all(feature = "CloudKit_CKOperation", feature = "Foundation_NSOperation"))]
     unsafe impl CKModifyBadgeOperation {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -6,26 +6,25 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CallKit_CXCallDirectoryProvider")]
     pub struct CXCallDirectoryProvider;
 
-    #[cfg(feature = "CallKit_CXCallDirectoryProvider")]
     unsafe impl ClassType for CXCallDirectoryProvider {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CallKit_CXCallDirectoryProvider")]
+#[cfg(feature = "Foundation_NSExtensionRequestHandling")]
 unsafe impl NSExtensionRequestHandling for CXCallDirectoryProvider {}
 
-#[cfg(feature = "CallKit_CXCallDirectoryProvider")]
 unsafe impl NSObjectProtocol for CXCallDirectoryProvider {}
 
 extern_methods!(
-    #[cfg(feature = "CallKit_CXCallDirectoryProvider")]
     unsafe impl CXCallDirectoryProvider {
-        #[cfg(feature = "CallKit_CXCallDirectoryExtensionContext")]
+        #[cfg(all(
+            feature = "CallKit_CXCallDirectoryExtensionContext",
+            feature = "Foundation_NSExtensionContext"
+        ))]
         #[method(beginRequestWithExtensionContext:)]
         pub unsafe fn beginRequestWithExtensionContext(
             &self,
@@ -36,7 +35,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CallKit_CXCallDirectoryProvider")]
     unsafe impl CXCallDirectoryProvider {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

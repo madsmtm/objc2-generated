@@ -138,24 +138,20 @@ extern_static!(MTLBufferLayoutStrideDynamic: NSUInteger = NSUIntegerMax as _);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLVertexBufferLayoutDescriptor")]
     pub struct MTLVertexBufferLayoutDescriptor;
 
-    #[cfg(feature = "Metal_MTLVertexBufferLayoutDescriptor")]
     unsafe impl ClassType for MTLVertexBufferLayoutDescriptor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLVertexBufferLayoutDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLVertexBufferLayoutDescriptor {}
 
-#[cfg(feature = "Metal_MTLVertexBufferLayoutDescriptor")]
 unsafe impl NSObjectProtocol for MTLVertexBufferLayoutDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLVertexBufferLayoutDescriptor")]
     unsafe impl MTLVertexBufferLayoutDescriptor {
         #[method(stride)]
         pub fn stride(&self) -> NSUInteger;
@@ -179,7 +175,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLVertexBufferLayoutDescriptor")]
     unsafe impl MTLVertexBufferLayoutDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub fn init(this: Allocated<Self>) -> Id<Self>;
@@ -189,7 +184,6 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Metal_MTLVertexBufferLayoutDescriptor")]
 impl DefaultId for MTLVertexBufferLayoutDescriptor {
     #[inline]
     fn default_id() -> Id<Self> {
@@ -199,30 +193,24 @@ impl DefaultId for MTLVertexBufferLayoutDescriptor {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLVertexBufferLayoutDescriptorArray")]
     pub struct MTLVertexBufferLayoutDescriptorArray;
 
-    #[cfg(feature = "Metal_MTLVertexBufferLayoutDescriptorArray")]
     unsafe impl ClassType for MTLVertexBufferLayoutDescriptorArray {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLVertexBufferLayoutDescriptorArray")]
 unsafe impl NSObjectProtocol for MTLVertexBufferLayoutDescriptorArray {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLVertexBufferLayoutDescriptorArray")]
     unsafe impl MTLVertexBufferLayoutDescriptorArray {
-        #[cfg(feature = "Metal_MTLVertexBufferLayoutDescriptor")]
         #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             index: NSUInteger,
         ) -> Id<MTLVertexBufferLayoutDescriptor>;
 
-        #[cfg(feature = "Metal_MTLVertexBufferLayoutDescriptor")]
         #[method(setObject:atIndexedSubscript:)]
         pub unsafe fn setObject_atIndexedSubscript(
             &self,
@@ -234,7 +222,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLVertexBufferLayoutDescriptorArray")]
     unsafe impl MTLVertexBufferLayoutDescriptorArray {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -246,24 +233,20 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLVertexAttributeDescriptor")]
     pub struct MTLVertexAttributeDescriptor;
 
-    #[cfg(feature = "Metal_MTLVertexAttributeDescriptor")]
     unsafe impl ClassType for MTLVertexAttributeDescriptor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLVertexAttributeDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLVertexAttributeDescriptor {}
 
-#[cfg(feature = "Metal_MTLVertexAttributeDescriptor")]
 unsafe impl NSObjectProtocol for MTLVertexAttributeDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLVertexAttributeDescriptor")]
     unsafe impl MTLVertexAttributeDescriptor {
         #[method(format)]
         pub fn format(&self) -> MTLVertexFormat;
@@ -287,7 +270,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLVertexAttributeDescriptor")]
     unsafe impl MTLVertexAttributeDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub fn init(this: Allocated<Self>) -> Id<Self>;
@@ -297,7 +279,6 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Metal_MTLVertexAttributeDescriptor")]
 impl DefaultId for MTLVertexAttributeDescriptor {
     #[inline]
     fn default_id() -> Id<Self> {
@@ -307,30 +288,24 @@ impl DefaultId for MTLVertexAttributeDescriptor {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLVertexAttributeDescriptorArray")]
     pub struct MTLVertexAttributeDescriptorArray;
 
-    #[cfg(feature = "Metal_MTLVertexAttributeDescriptorArray")]
     unsafe impl ClassType for MTLVertexAttributeDescriptorArray {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLVertexAttributeDescriptorArray")]
 unsafe impl NSObjectProtocol for MTLVertexAttributeDescriptorArray {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLVertexAttributeDescriptorArray")]
     unsafe impl MTLVertexAttributeDescriptorArray {
-        #[cfg(feature = "Metal_MTLVertexAttributeDescriptor")]
         #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             index: NSUInteger,
         ) -> Id<MTLVertexAttributeDescriptor>;
 
-        #[cfg(feature = "Metal_MTLVertexAttributeDescriptor")]
         #[method(setObject:atIndexedSubscript:)]
         pub unsafe fn setObject_atIndexedSubscript(
             &self,
@@ -342,7 +317,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLVertexAttributeDescriptorArray")]
     unsafe impl MTLVertexAttributeDescriptorArray {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -354,33 +328,27 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLVertexDescriptor")]
     pub struct MTLVertexDescriptor;
 
-    #[cfg(feature = "Metal_MTLVertexDescriptor")]
     unsafe impl ClassType for MTLVertexDescriptor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLVertexDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLVertexDescriptor {}
 
-#[cfg(feature = "Metal_MTLVertexDescriptor")]
 unsafe impl NSObjectProtocol for MTLVertexDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLVertexDescriptor")]
     unsafe impl MTLVertexDescriptor {
         #[method_id(@__retain_semantics Other vertexDescriptor)]
         pub fn vertexDescriptor() -> Id<MTLVertexDescriptor>;
 
-        #[cfg(feature = "Metal_MTLVertexBufferLayoutDescriptorArray")]
         #[method_id(@__retain_semantics Other layouts)]
         pub fn layouts(&self) -> Id<MTLVertexBufferLayoutDescriptorArray>;
 
-        #[cfg(feature = "Metal_MTLVertexAttributeDescriptorArray")]
         #[method_id(@__retain_semantics Other attributes)]
         pub fn attributes(&self) -> Id<MTLVertexAttributeDescriptorArray>;
 
@@ -391,7 +359,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLVertexDescriptor")]
     unsafe impl MTLVertexDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

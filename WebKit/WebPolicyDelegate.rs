@@ -68,6 +68,8 @@ extern_protocol!(
     #[deprecated]
     pub unsafe trait WebPolicyDelegate: NSObjectProtocol {
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSURLRequest",
             feature = "WebKit_WebFrame",
@@ -86,6 +88,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString",
             feature = "Foundation_NSURLRequest",
@@ -104,6 +108,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSString",
             feature = "Foundation_NSURLRequest",
             feature = "WebKit_WebFrame",
@@ -122,6 +128,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSError",
             feature = "WebKit_WebFrame",
             feature = "WebKit_WebView"

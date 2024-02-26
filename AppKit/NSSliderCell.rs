@@ -31,10 +31,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSSliderCell")]
+    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
     pub struct NSSliderCell;
 
-    #[cfg(feature = "AppKit_NSSliderCell")]
+    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
     unsafe impl ClassType for NSSliderCell {
         #[inherits(NSCell, NSObject)]
         type Super = NSActionCell;
@@ -42,26 +42,46 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSSliderCell")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell"
+))]
 unsafe impl NSAccessibility for NSSliderCell {}
 
-#[cfg(feature = "AppKit_NSSliderCell")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell"
+))]
 unsafe impl NSAccessibilityElementProtocol for NSSliderCell {}
 
-#[cfg(feature = "AppKit_NSSliderCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSSliderCell {}
 
-#[cfg(feature = "AppKit_NSSliderCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCopying for NSSliderCell {}
 
-#[cfg(feature = "AppKit_NSSliderCell")]
+#[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
 unsafe impl NSObjectProtocol for NSSliderCell {}
 
-#[cfg(feature = "AppKit_NSSliderCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSUserInterfaceItemIdentification"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSSliderCell {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSSliderCell")]
+    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
     unsafe impl NSSliderCell {
         #[method(prefersTrackingUntilMouseUp)]
         pub unsafe fn prefersTrackingUntilMouseUp(mtm: MainThreadMarker) -> bool;
@@ -93,24 +113,30 @@ extern_methods!(
         #[method(setVertical:)]
         pub unsafe fn setVertical(&self, vertical: bool);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(trackRect)]
         pub unsafe fn trackRect(&self) -> NSRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(knobThickness)]
         pub unsafe fn knobThickness(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(knobRectFlipped:)]
         pub unsafe fn knobRectFlipped(&self, flipped: bool) -> NSRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(barRectFlipped:)]
         pub unsafe fn barRectFlipped(&self, flipped: bool) -> NSRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(drawKnob:)]
         pub unsafe fn drawKnob_(&self, knob_rect: NSRect);
 
         #[method(drawKnob)]
         pub unsafe fn drawKnob(&self);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(drawBarInside:flipped:)]
         pub unsafe fn drawBarInside_flipped(&self, rect: NSRect, flipped: bool);
     }
@@ -118,7 +144,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSCell`
-    #[cfg(feature = "AppKit_NSSliderCell")]
+    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
     unsafe impl NSSliderCell {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -139,7 +165,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSSliderCell")]
+    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
     unsafe impl NSSliderCell {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -148,13 +174,13 @@ extern_methods!(
 
 extern_methods!(
     /// NSSliderCellVerticalGetter
-    #[cfg(feature = "AppKit_NSSliderCell")]
+    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
     unsafe impl NSSliderCell {}
 );
 
 extern_methods!(
     /// NSTickMarkSupport
-    #[cfg(feature = "AppKit_NSSliderCell")]
+    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
     unsafe impl NSSliderCell {
         #[method(numberOfTickMarks)]
         pub unsafe fn numberOfTickMarks(&self) -> NSInteger;
@@ -177,9 +203,11 @@ extern_methods!(
         #[method(tickMarkValueAtIndex:)]
         pub unsafe fn tickMarkValueAtIndex(&self, index: NSInteger) -> c_double;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(rectOfTickMarkAtIndex:)]
         pub unsafe fn rectOfTickMarkAtIndex(&self, index: NSInteger) -> NSRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(indexOfTickMarkAtPoint:)]
         pub unsafe fn indexOfTickMarkAtPoint(&self, point: NSPoint) -> NSInteger;
 
@@ -193,7 +221,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSDeprecated
-    #[cfg(feature = "AppKit_NSSliderCell")]
+    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
     unsafe impl NSSliderCell {
         #[deprecated = "-setTitleCell: had no effect since 10.0"]
         #[method(setTitleCell:)]
@@ -233,6 +261,7 @@ extern_methods!(
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, string: Option<&NSString>);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[deprecated = "-knobThickness has returned 0 since 10.0"]
         #[method(setKnobThickness:)]
         pub unsafe fn setKnobThickness(&self, thickness: CGFloat);

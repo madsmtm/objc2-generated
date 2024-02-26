@@ -6,27 +6,23 @@ use crate::MetricKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MetricKit_MXCrashDiagnosticObjectiveCExceptionReason")]
     pub struct MXCrashDiagnosticObjectiveCExceptionReason;
 
-    #[cfg(feature = "MetricKit_MXCrashDiagnosticObjectiveCExceptionReason")]
     unsafe impl ClassType for MXCrashDiagnosticObjectiveCExceptionReason {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MetricKit_MXCrashDiagnosticObjectiveCExceptionReason")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for MXCrashDiagnosticObjectiveCExceptionReason {}
 
-#[cfg(feature = "MetricKit_MXCrashDiagnosticObjectiveCExceptionReason")]
 unsafe impl NSObjectProtocol for MXCrashDiagnosticObjectiveCExceptionReason {}
 
-#[cfg(feature = "MetricKit_MXCrashDiagnosticObjectiveCExceptionReason")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for MXCrashDiagnosticObjectiveCExceptionReason {}
 
 extern_methods!(
-    #[cfg(feature = "MetricKit_MXCrashDiagnosticObjectiveCExceptionReason")]
     unsafe impl MXCrashDiagnosticObjectiveCExceptionReason {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other composedMessage)]
@@ -64,7 +60,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MetricKit_MXCrashDiagnosticObjectiveCExceptionReason")]
     unsafe impl MXCrashDiagnosticObjectiveCExceptionReason {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

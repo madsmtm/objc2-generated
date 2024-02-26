@@ -17,33 +17,61 @@
 #[link(name = "ExceptionHandling", kind = "framework")]
 extern "C" {}
 
+#[cfg(feature = "ExceptionHandling_ExceptionHandlingDefines")]
 #[path = "ExceptionHandlingDefines.rs"]
 mod __ExceptionHandlingDefines;
+#[cfg(feature = "ExceptionHandling_NSExceptionHandler")]
 #[path = "NSExceptionHandler.rs"]
 mod __NSExceptionHandler;
 
 #[cfg(feature = "ExceptionHandling_NSExceptionHandler")]
 pub use self::__NSExceptionHandler::NSExceptionHandler;
+#[cfg(feature = "ExceptionHandling_NSExceptionHandler")]
 pub use self::__NSExceptionHandler::NSExceptionHandlerResume;
+#[cfg(feature = "ExceptionHandling_NSExceptionHandler")]
 pub use self::__NSExceptionHandler::NSHandleOtherExceptionMask;
+#[cfg(feature = "ExceptionHandling_NSExceptionHandler")]
 pub use self::__NSExceptionHandler::NSHandleTopLevelExceptionMask;
+#[cfg(feature = "ExceptionHandling_NSExceptionHandler")]
 pub use self::__NSExceptionHandler::NSHandleUncaughtExceptionMask;
+#[cfg(feature = "ExceptionHandling_NSExceptionHandler")]
 pub use self::__NSExceptionHandler::NSHandleUncaughtRuntimeErrorMask;
+#[cfg(feature = "ExceptionHandling_NSExceptionHandler")]
 pub use self::__NSExceptionHandler::NSHandleUncaughtSystemExceptionMask;
+#[cfg(feature = "ExceptionHandling_NSExceptionHandler")]
 pub use self::__NSExceptionHandler::NSHangOnOtherExceptionMask;
+#[cfg(feature = "ExceptionHandling_NSExceptionHandler")]
 pub use self::__NSExceptionHandler::NSHangOnTopLevelExceptionMask;
+#[cfg(feature = "ExceptionHandling_NSExceptionHandler")]
 pub use self::__NSExceptionHandler::NSHangOnUncaughtExceptionMask;
+#[cfg(feature = "ExceptionHandling_NSExceptionHandler")]
 pub use self::__NSExceptionHandler::NSHangOnUncaughtRuntimeErrorMask;
+#[cfg(feature = "ExceptionHandling_NSExceptionHandler")]
 pub use self::__NSExceptionHandler::NSHangOnUncaughtSystemExceptionMask;
+#[cfg(feature = "ExceptionHandling_NSExceptionHandler")]
 pub use self::__NSExceptionHandler::NSLogOtherExceptionMask;
+#[cfg(feature = "ExceptionHandling_NSExceptionHandler")]
 pub use self::__NSExceptionHandler::NSLogTopLevelExceptionMask;
+#[cfg(feature = "ExceptionHandling_NSExceptionHandler")]
 pub use self::__NSExceptionHandler::NSLogUncaughtExceptionMask;
+#[cfg(feature = "ExceptionHandling_NSExceptionHandler")]
 pub use self::__NSExceptionHandler::NSLogUncaughtRuntimeErrorMask;
+#[cfg(feature = "ExceptionHandling_NSExceptionHandler")]
 pub use self::__NSExceptionHandler::NSLogUncaughtSystemExceptionMask;
+#[cfg(feature = "ExceptionHandling_NSExceptionHandler")]
 pub use self::__NSExceptionHandler::NSObjectNSExceptionHandlerDelegate;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "ExceptionHandling_NSExceptionHandler",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSExceptionHandler::NSStackTraceKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "ExceptionHandling_NSExceptionHandler",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSExceptionHandler::NSUncaughtRuntimeErrorException;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "ExceptionHandling_NSExceptionHandler",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSExceptionHandler::NSUncaughtSystemExceptionException;

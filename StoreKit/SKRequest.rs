@@ -7,21 +7,17 @@ use crate::StoreKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "StoreKit_SKRequest")]
     pub struct SKRequest;
 
-    #[cfg(feature = "StoreKit_SKRequest")]
     unsafe impl ClassType for SKRequest {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "StoreKit_SKRequest")]
 unsafe impl NSObjectProtocol for SKRequest {}
 
 extern_methods!(
-    #[cfg(feature = "StoreKit_SKRequest")]
     unsafe impl SKRequest {
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn SKRequestDelegate>>>;
@@ -39,7 +35,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "StoreKit_SKRequest")]
     unsafe impl SKRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -51,12 +46,11 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait SKRequestDelegate: NSObjectProtocol {
-        #[cfg(feature = "StoreKit_SKRequest")]
         #[optional]
         #[method(requestDidFinish:)]
         unsafe fn requestDidFinish(&self, request: &SKRequest);
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "StoreKit_SKRequest"))]
+        #[cfg(feature = "Foundation_NSError")]
         #[optional]
         #[method(request:didFailWithError:)]
         unsafe fn request_didFailWithError(&self, request: &SKRequest, error: &NSError);

@@ -5,23 +5,19 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSTimer")]
     pub struct NSTimer;
 
-    #[cfg(feature = "Foundation_NSTimer")]
     unsafe impl ClassType for NSTimer {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSTimer")]
 unsafe impl NSObjectProtocol for NSTimer {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSTimer")]
     unsafe impl NSTimer {
-        #[cfg(feature = "Foundation_NSInvocation")]
+        #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSInvocation"))]
         #[method_id(@__retain_semantics Other timerWithTimeInterval:invocation:repeats:)]
         pub unsafe fn timerWithTimeInterval_invocation_repeats(
             ti: NSTimeInterval,
@@ -29,7 +25,7 @@ extern_methods!(
             yes_or_no: bool,
         ) -> Id<NSTimer>;
 
-        #[cfg(feature = "Foundation_NSInvocation")]
+        #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSInvocation"))]
         #[method_id(@__retain_semantics Other scheduledTimerWithTimeInterval:invocation:repeats:)]
         pub unsafe fn scheduledTimerWithTimeInterval_invocation_repeats(
             ti: NSTimeInterval,
@@ -37,6 +33,7 @@ extern_methods!(
             yes_or_no: bool,
         ) -> Id<NSTimer>;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other timerWithTimeInterval:target:selector:userInfo:repeats:)]
         pub unsafe fn timerWithTimeInterval_target_selector_userInfo_repeats(
             ti: NSTimeInterval,
@@ -46,6 +43,7 @@ extern_methods!(
             yes_or_no: bool,
         ) -> Id<NSTimer>;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other scheduledTimerWithTimeInterval:target:selector:userInfo:repeats:)]
         pub unsafe fn scheduledTimerWithTimeInterval_target_selector_userInfo_repeats(
             ti: NSTimeInterval,
@@ -55,6 +53,7 @@ extern_methods!(
             yes_or_no: bool,
         ) -> Id<NSTimer>;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other timerWithTimeInterval:repeats:block:)]
         pub unsafe fn timerWithTimeInterval_repeats_block(
             interval: NSTimeInterval,
@@ -62,6 +61,7 @@ extern_methods!(
             block: &Block<dyn Fn(NonNull<NSTimer>)>,
         ) -> Id<NSTimer>;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other scheduledTimerWithTimeInterval:repeats:block:)]
         pub unsafe fn scheduledTimerWithTimeInterval_repeats_block(
             interval: NSTimeInterval,
@@ -102,12 +102,15 @@ extern_methods!(
         #[method(setFireDate:)]
         pub unsafe fn setFireDate(&self, fire_date: &NSDate);
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(timeInterval)]
         pub unsafe fn timeInterval(&self) -> NSTimeInterval;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(tolerance)]
         pub unsafe fn tolerance(&self) -> NSTimeInterval;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(setTolerance:)]
         pub unsafe fn setTolerance(&self, tolerance: NSTimeInterval);
 
@@ -124,7 +127,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSTimer")]
     unsafe impl NSTimer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

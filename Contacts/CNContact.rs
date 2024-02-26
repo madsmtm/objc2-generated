@@ -29,43 +29,41 @@ ns_enum!(
 );
 
 extern_protocol!(
+    #[cfg(feature = "Foundation_NSObject")]
     pub unsafe trait CNKeyDescriptor: NSCopying + NSObjectProtocol + NSSecureCoding {}
 
+    #[cfg(feature = "Foundation_NSObject")]
     unsafe impl ProtocolType for dyn CNKeyDescriptor {}
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "Foundation_NSString"))]
 unsafe impl CNKeyDescriptor for NSString {}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Contacts_CNContact")]
     pub struct CNContact;
 
-    #[cfg(feature = "Contacts_CNContact")]
     unsafe impl ClassType for CNContact {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Contacts_CNContact")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CNContact {}
 
-#[cfg(feature = "Contacts_CNContact")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for CNContact {}
 
-#[cfg(feature = "Contacts_CNContact")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSMutableCopying for CNContact {}
 
-#[cfg(feature = "Contacts_CNContact")]
 unsafe impl NSObjectProtocol for CNContact {}
 
-#[cfg(feature = "Contacts_CNContact")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CNContact {}
 
 extern_methods!(
-    #[cfg(feature = "Contacts_CNContact")]
     unsafe impl CNContact {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
@@ -203,18 +201,18 @@ extern_methods!(
             &self,
         ) -> Id<NSArray<CNLabeledValue<CNInstantMessageAddress>>>;
 
-        #[cfg(feature = "Foundation_NSDateComponents")]
+        #[cfg(feature = "Foundation_NSCalendar")]
         #[method_id(@__retain_semantics Other birthday)]
         pub unsafe fn birthday(&self) -> Option<Id<NSDateComponents>>;
 
-        #[cfg(feature = "Foundation_NSDateComponents")]
+        #[cfg(feature = "Foundation_NSCalendar")]
         #[method_id(@__retain_semantics Other nonGregorianBirthday)]
         pub unsafe fn nonGregorianBirthday(&self) -> Option<Id<NSDateComponents>>;
 
         #[cfg(all(
             feature = "Contacts_CNLabeledValue",
             feature = "Foundation_NSArray",
-            feature = "Foundation_NSDateComponents"
+            feature = "Foundation_NSCalendar"
         ))]
         #[method_id(@__retain_semantics Other dates)]
         pub unsafe fn dates(&self) -> Id<NSArray<CNLabeledValue<NSDateComponents>>>;
@@ -223,7 +221,7 @@ extern_methods!(
         #[method(isKeyAvailable:)]
         pub unsafe fn isKeyAvailable(&self, key: &NSString) -> bool;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSObject"))]
         #[method(areKeysAvailable:)]
         pub unsafe fn areKeysAvailable(
             &self,
@@ -234,9 +232,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other localizedStringForKey:)]
         pub unsafe fn localizedStringForKey(key: &NSString) -> Id<NSString>;
 
+        #[cfg(feature = "Foundation_NSObjCRuntime")]
         #[method(comparatorForNameSortOrder:)]
         pub unsafe fn comparatorForNameSortOrder(sort_order: CNContactSortOrder) -> NSComparator;
 
+        #[cfg(feature = "Foundation_NSObject")]
         #[method_id(@__retain_semantics Other descriptorForAllComparatorKeys)]
         pub unsafe fn descriptorForAllComparatorKeys() -> Id<ProtocolObject<dyn CNKeyDescriptor>>;
 
@@ -251,7 +251,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Contacts_CNContact")]
     unsafe impl CNContact {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

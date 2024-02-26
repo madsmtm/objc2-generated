@@ -3,26 +3,24 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-#[cfg(feature = "Foundation_NSSet")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for NSSet<ObjectType> {}
 
-#[cfg(feature = "Foundation_NSSet")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl<ObjectType: ?Sized + IsIdCloneable> NSCopying for NSSet<ObjectType> {}
 
-#[cfg(feature = "Foundation_NSSet")]
+#[cfg(feature = "Foundation_NSEnumerator")]
 unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSSet<ObjectType> {}
 
-#[cfg(feature = "Foundation_NSSet")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl<ObjectType: ?Sized + IsIdCloneable> NSMutableCopying for NSSet<ObjectType> {}
 
-#[cfg(feature = "Foundation_NSSet")]
 unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSSet<ObjectType> {}
 
-#[cfg(feature = "Foundation_NSSet")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding for NSSet<ObjectType> {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSSet")]
     unsafe impl<ObjectType: Message> NSSet<ObjectType> {
         #[method(count)]
         pub fn count(&self) -> NSUInteger;
@@ -52,14 +50,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSSet")]
     unsafe impl<ObjectType: Message> NSSet<ObjectType> {
         #[method_id(@__retain_semantics New new)]
         pub fn new() -> Id<Self>;
     }
 );
 
-#[cfg(feature = "Foundation_NSSet")]
 impl<ObjectType: Message> DefaultId for NSSet<ObjectType> {
     #[inline]
     fn default_id() -> Id<Self> {
@@ -69,7 +65,6 @@ impl<ObjectType: Message> DefaultId for NSSet<ObjectType> {
 
 extern_methods!(
     /// NSExtendedSet
-    #[cfg(feature = "Foundation_NSSet")]
     unsafe impl<ObjectType: Message> NSSet<ObjectType> {
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other allObjects)]
@@ -130,6 +125,7 @@ extern_methods!(
             block: &Block<dyn Fn(NonNull<ObjectType>, NonNull<Bool>) + '_>,
         );
 
+        #[cfg(feature = "Foundation_NSObjCRuntime")]
         #[method(enumerateObjectsWithOptions:usingBlock:)]
         pub unsafe fn enumerateObjectsWithOptions_usingBlock(
             &self,
@@ -143,6 +139,7 @@ extern_methods!(
             predicate: &Block<dyn Fn(NonNull<ObjectType>, NonNull<Bool>) -> Bool + '_>,
         ) -> Id<NSSet<ObjectType>>;
 
+        #[cfg(feature = "Foundation_NSObjCRuntime")]
         #[method_id(@__retain_semantics Other objectsWithOptions:passingTest:)]
         pub unsafe fn objectsWithOptions_passingTest(
             &self,
@@ -154,7 +151,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSSetCreation
-    #[cfg(feature = "Foundation_NSSet")]
     unsafe impl<ObjectType: Message> NSSet<ObjectType> {
         #[method_id(@__retain_semantics Other set)]
         pub unsafe fn set() -> Id<Self>;
@@ -196,7 +192,6 @@ extern_methods!(
     /// Methods declared on superclass `NSSet`
     ///
     /// NSSetCreation
-    #[cfg(feature = "Foundation_NSMutableSet")]
     unsafe impl<ObjectType: Message> NSMutableSet<ObjectType> {
         #[method_id(@__retain_semantics Other set)]
         pub unsafe fn set() -> Id<Self>;
@@ -234,26 +229,24 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSMutableSet")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for NSMutableSet<ObjectType> {}
 
-#[cfg(feature = "Foundation_NSMutableSet")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl<ObjectType: ?Sized + IsIdCloneable> NSCopying for NSMutableSet<ObjectType> {}
 
-#[cfg(feature = "Foundation_NSMutableSet")]
+#[cfg(feature = "Foundation_NSEnumerator")]
 unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSMutableSet<ObjectType> {}
 
-#[cfg(feature = "Foundation_NSMutableSet")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl<ObjectType: ?Sized + IsIdCloneable> NSMutableCopying for NSMutableSet<ObjectType> {}
 
-#[cfg(feature = "Foundation_NSMutableSet")]
 unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSMutableSet<ObjectType> {}
 
-#[cfg(feature = "Foundation_NSMutableSet")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding for NSMutableSet<ObjectType> {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSMutableSet")]
     unsafe impl<ObjectType: Message> NSMutableSet<ObjectType> {
         #[method(addObject:)]
         pub unsafe fn addObject(&mut self, object: &ObjectType);
@@ -275,7 +268,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSSet`
-    #[cfg(feature = "Foundation_NSMutableSet")]
     unsafe impl<ObjectType: Message> NSMutableSet<ObjectType> {
         #[method_id(@__retain_semantics Init initWithObjects:count:)]
         pub unsafe fn initWithObjects_count(
@@ -288,14 +280,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSMutableSet")]
     unsafe impl<ObjectType: Message> NSMutableSet<ObjectType> {
         #[method_id(@__retain_semantics New new)]
         pub fn new() -> Id<Self>;
     }
 );
 
-#[cfg(feature = "Foundation_NSMutableSet")]
 impl<ObjectType: Message> DefaultId for NSMutableSet<ObjectType> {
     #[inline]
     fn default_id() -> Id<Self> {
@@ -305,7 +295,6 @@ impl<ObjectType: Message> DefaultId for NSMutableSet<ObjectType> {
 
 extern_methods!(
     /// NSExtendedMutableSet
-    #[cfg(feature = "Foundation_NSMutableSet")]
     unsafe impl<ObjectType: Message> NSMutableSet<ObjectType> {
         #[cfg(feature = "Foundation_NSArray")]
         #[method(addObjectsFromArray:)]
@@ -330,33 +319,30 @@ extern_methods!(
 
 extern_methods!(
     /// NSMutableSetCreation
-    #[cfg(feature = "Foundation_NSMutableSet")]
     unsafe impl<ObjectType: Message> NSMutableSet<ObjectType> {
         #[method_id(@__retain_semantics Other setWithCapacity:)]
         pub unsafe fn setWithCapacity(num_items: NSUInteger) -> Id<Self>;
     }
 );
 
-#[cfg(feature = "Foundation_NSCountedSet")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for NSCountedSet<ObjectType> {}
 
-#[cfg(feature = "Foundation_NSCountedSet")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl<ObjectType: ?Sized + IsIdCloneable> NSCopying for NSCountedSet<ObjectType> {}
 
-#[cfg(feature = "Foundation_NSCountedSet")]
+#[cfg(feature = "Foundation_NSEnumerator")]
 unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSCountedSet<ObjectType> {}
 
-#[cfg(feature = "Foundation_NSCountedSet")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl<ObjectType: ?Sized + IsIdCloneable> NSMutableCopying for NSCountedSet<ObjectType> {}
 
-#[cfg(feature = "Foundation_NSCountedSet")]
 unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSCountedSet<ObjectType> {}
 
-#[cfg(feature = "Foundation_NSCountedSet")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding for NSCountedSet<ObjectType> {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSCountedSet")]
     unsafe impl<ObjectType: Message> NSCountedSet<ObjectType> {
         #[method_id(@__retain_semantics Init initWithCapacity:)]
         pub unsafe fn initWithCapacity(this: Allocated<Self>, num_items: NSUInteger) -> Id<Self>;
@@ -386,7 +372,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSMutableSet`
-    #[cfg(feature = "Foundation_NSCountedSet")]
     unsafe impl<ObjectType: Message> NSCountedSet<ObjectType> {
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
@@ -399,7 +384,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSSet`
-    #[cfg(feature = "Foundation_NSCountedSet")]
     unsafe impl<ObjectType: Message> NSCountedSet<ObjectType> {
         #[method_id(@__retain_semantics Init initWithObjects:count:)]
         pub unsafe fn initWithObjects_count(
@@ -412,7 +396,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSCountedSet")]
     unsafe impl<ObjectType: Message> NSCountedSet<ObjectType> {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

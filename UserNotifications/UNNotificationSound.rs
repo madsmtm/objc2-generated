@@ -12,30 +12,26 @@ typed_extensible_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "UserNotifications_UNNotificationSound")]
     pub struct UNNotificationSound;
 
-    #[cfg(feature = "UserNotifications_UNNotificationSound")]
     unsafe impl ClassType for UNNotificationSound {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "UserNotifications_UNNotificationSound")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for UNNotificationSound {}
 
-#[cfg(feature = "UserNotifications_UNNotificationSound")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for UNNotificationSound {}
 
-#[cfg(feature = "UserNotifications_UNNotificationSound")]
 unsafe impl NSObjectProtocol for UNNotificationSound {}
 
-#[cfg(feature = "UserNotifications_UNNotificationSound")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for UNNotificationSound {}
 
 extern_methods!(
-    #[cfg(feature = "UserNotifications_UNNotificationSound")]
     unsafe impl UNNotificationSound {
         #[method_id(@__retain_semantics Other defaultSound)]
         pub unsafe fn defaultSound() -> Id<UNNotificationSound>;
@@ -75,7 +71,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UserNotifications_UNNotificationSound")]
     unsafe impl UNNotificationSound {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

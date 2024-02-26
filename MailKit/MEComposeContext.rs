@@ -21,21 +21,17 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MailKit_MEComposeContext")]
     pub struct MEComposeContext;
 
-    #[cfg(feature = "MailKit_MEComposeContext")]
     unsafe impl ClassType for MEComposeContext {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MailKit_MEComposeContext")]
 unsafe impl NSObjectProtocol for MEComposeContext {}
 
 extern_methods!(
-    #[cfg(feature = "MailKit_MEComposeContext")]
     unsafe impl MEComposeContext {
         #[cfg(feature = "Foundation_NSUUID")]
         #[method_id(@__retain_semantics Other contextID)]
@@ -64,7 +60,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MailKit_MEComposeContext")]
     unsafe impl MEComposeContext {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

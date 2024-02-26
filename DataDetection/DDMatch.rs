@@ -6,21 +6,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "DataDetection_DDMatch")]
     pub struct DDMatch;
 
-    #[cfg(feature = "DataDetection_DDMatch")]
     unsafe impl ClassType for DDMatch {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "DataDetection_DDMatch")]
 unsafe impl NSObjectProtocol for DDMatch {}
 
 extern_methods!(
-    #[cfg(feature = "DataDetection_DDMatch")]
     unsafe impl DDMatch {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other matchedString)]
@@ -33,7 +29,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "DataDetection_DDMatch")]
     unsafe impl DDMatch {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -42,10 +37,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "DataDetection_DDMatchLink")]
     pub struct DDMatchLink;
 
-    #[cfg(feature = "DataDetection_DDMatchLink")]
     unsafe impl ClassType for DDMatchLink {
         #[inherits(NSObject)]
         type Super = DDMatch;
@@ -53,11 +46,9 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "DataDetection_DDMatchLink")]
 unsafe impl NSObjectProtocol for DDMatchLink {}
 
 extern_methods!(
-    #[cfg(feature = "DataDetection_DDMatchLink")]
     unsafe impl DDMatchLink {
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other URL)]
@@ -67,7 +58,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DDMatch`
-    #[cfg(feature = "DataDetection_DDMatchLink")]
     unsafe impl DDMatchLink {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -76,7 +66,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "DataDetection_DDMatchLink")]
     unsafe impl DDMatchLink {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -85,10 +74,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "DataDetection_DDMatchPhoneNumber")]
     pub struct DDMatchPhoneNumber;
 
-    #[cfg(feature = "DataDetection_DDMatchPhoneNumber")]
     unsafe impl ClassType for DDMatchPhoneNumber {
         #[inherits(NSObject)]
         type Super = DDMatch;
@@ -96,11 +83,9 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "DataDetection_DDMatchPhoneNumber")]
 unsafe impl NSObjectProtocol for DDMatchPhoneNumber {}
 
 extern_methods!(
-    #[cfg(feature = "DataDetection_DDMatchPhoneNumber")]
     unsafe impl DDMatchPhoneNumber {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other phoneNumber)]
@@ -114,7 +99,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DDMatch`
-    #[cfg(feature = "DataDetection_DDMatchPhoneNumber")]
     unsafe impl DDMatchPhoneNumber {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -123,7 +107,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "DataDetection_DDMatchPhoneNumber")]
     unsafe impl DDMatchPhoneNumber {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -132,10 +115,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "DataDetection_DDMatchEmailAddress")]
     pub struct DDMatchEmailAddress;
 
-    #[cfg(feature = "DataDetection_DDMatchEmailAddress")]
     unsafe impl ClassType for DDMatchEmailAddress {
         #[inherits(NSObject)]
         type Super = DDMatch;
@@ -143,11 +124,9 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "DataDetection_DDMatchEmailAddress")]
 unsafe impl NSObjectProtocol for DDMatchEmailAddress {}
 
 extern_methods!(
-    #[cfg(feature = "DataDetection_DDMatchEmailAddress")]
     unsafe impl DDMatchEmailAddress {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other emailAddress)]
@@ -161,7 +140,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DDMatch`
-    #[cfg(feature = "DataDetection_DDMatchEmailAddress")]
     unsafe impl DDMatchEmailAddress {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -170,7 +148,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "DataDetection_DDMatchEmailAddress")]
     unsafe impl DDMatchEmailAddress {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -179,10 +156,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "DataDetection_DDMatchPostalAddress")]
     pub struct DDMatchPostalAddress;
 
-    #[cfg(feature = "DataDetection_DDMatchPostalAddress")]
     unsafe impl ClassType for DDMatchPostalAddress {
         #[inherits(NSObject)]
         type Super = DDMatch;
@@ -190,11 +165,9 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "DataDetection_DDMatchPostalAddress")]
 unsafe impl NSObjectProtocol for DDMatchPostalAddress {}
 
 extern_methods!(
-    #[cfg(feature = "DataDetection_DDMatchPostalAddress")]
     unsafe impl DDMatchPostalAddress {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other street)]
@@ -220,7 +193,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DDMatch`
-    #[cfg(feature = "DataDetection_DDMatchPostalAddress")]
     unsafe impl DDMatchPostalAddress {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -229,7 +201,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "DataDetection_DDMatchPostalAddress")]
     unsafe impl DDMatchPostalAddress {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -238,10 +209,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "DataDetection_DDMatchCalendarEvent")]
     pub struct DDMatchCalendarEvent;
 
-    #[cfg(feature = "DataDetection_DDMatchCalendarEvent")]
     unsafe impl ClassType for DDMatchCalendarEvent {
         #[inherits(NSObject)]
         type Super = DDMatch;
@@ -249,11 +218,9 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "DataDetection_DDMatchCalendarEvent")]
 unsafe impl NSObjectProtocol for DDMatchCalendarEvent {}
 
 extern_methods!(
-    #[cfg(feature = "DataDetection_DDMatchCalendarEvent")]
     unsafe impl DDMatchCalendarEvent {
         #[method(isAllDay)]
         pub unsafe fn isAllDay(&self) -> bool;
@@ -278,7 +245,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DDMatch`
-    #[cfg(feature = "DataDetection_DDMatchCalendarEvent")]
     unsafe impl DDMatchCalendarEvent {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -287,7 +253,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "DataDetection_DDMatchCalendarEvent")]
     unsafe impl DDMatchCalendarEvent {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -296,10 +261,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "DataDetection_DDMatchShipmentTrackingNumber")]
     pub struct DDMatchShipmentTrackingNumber;
 
-    #[cfg(feature = "DataDetection_DDMatchShipmentTrackingNumber")]
     unsafe impl ClassType for DDMatchShipmentTrackingNumber {
         #[inherits(NSObject)]
         type Super = DDMatch;
@@ -307,11 +270,9 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "DataDetection_DDMatchShipmentTrackingNumber")]
 unsafe impl NSObjectProtocol for DDMatchShipmentTrackingNumber {}
 
 extern_methods!(
-    #[cfg(feature = "DataDetection_DDMatchShipmentTrackingNumber")]
     unsafe impl DDMatchShipmentTrackingNumber {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other carrier)]
@@ -325,7 +286,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DDMatch`
-    #[cfg(feature = "DataDetection_DDMatchShipmentTrackingNumber")]
     unsafe impl DDMatchShipmentTrackingNumber {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -334,7 +294,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "DataDetection_DDMatchShipmentTrackingNumber")]
     unsafe impl DDMatchShipmentTrackingNumber {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -343,10 +302,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "DataDetection_DDMatchFlightNumber")]
     pub struct DDMatchFlightNumber;
 
-    #[cfg(feature = "DataDetection_DDMatchFlightNumber")]
     unsafe impl ClassType for DDMatchFlightNumber {
         #[inherits(NSObject)]
         type Super = DDMatch;
@@ -354,11 +311,9 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "DataDetection_DDMatchFlightNumber")]
 unsafe impl NSObjectProtocol for DDMatchFlightNumber {}
 
 extern_methods!(
-    #[cfg(feature = "DataDetection_DDMatchFlightNumber")]
     unsafe impl DDMatchFlightNumber {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other airline)]
@@ -372,7 +327,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DDMatch`
-    #[cfg(feature = "DataDetection_DDMatchFlightNumber")]
     unsafe impl DDMatchFlightNumber {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -381,7 +335,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "DataDetection_DDMatchFlightNumber")]
     unsafe impl DDMatchFlightNumber {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -390,10 +343,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "DataDetection_DDMatchMoneyAmount")]
     pub struct DDMatchMoneyAmount;
 
-    #[cfg(feature = "DataDetection_DDMatchMoneyAmount")]
     unsafe impl ClassType for DDMatchMoneyAmount {
         #[inherits(NSObject)]
         type Super = DDMatch;
@@ -401,11 +352,9 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "DataDetection_DDMatchMoneyAmount")]
 unsafe impl NSObjectProtocol for DDMatchMoneyAmount {}
 
 extern_methods!(
-    #[cfg(feature = "DataDetection_DDMatchMoneyAmount")]
     unsafe impl DDMatchMoneyAmount {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other currency)]
@@ -418,7 +367,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DDMatch`
-    #[cfg(feature = "DataDetection_DDMatchMoneyAmount")]
     unsafe impl DDMatchMoneyAmount {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -427,7 +375,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "DataDetection_DDMatchMoneyAmount")]
     unsafe impl DDMatchMoneyAmount {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

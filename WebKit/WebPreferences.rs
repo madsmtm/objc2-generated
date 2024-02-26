@@ -26,25 +26,21 @@ extern_static!(WebPreferencesChangedNotification: Option<&'static NSString>);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_WebPreferences")]
     #[deprecated]
     pub struct WebPreferences;
 
-    #[cfg(feature = "WebKit_WebPreferences")]
     unsafe impl ClassType for WebPreferences {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "WebKit_WebPreferences")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for WebPreferences {}
 
-#[cfg(feature = "WebKit_WebPreferences")]
 unsafe impl NSObjectProtocol for WebPreferences {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_WebPreferences")]
     unsafe impl WebPreferences {
         #[deprecated]
         #[method_id(@__retain_semantics Other standardPreferences)]
@@ -319,7 +315,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_WebPreferences")]
     unsafe impl WebPreferences {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

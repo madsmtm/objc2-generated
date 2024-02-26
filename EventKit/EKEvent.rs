@@ -39,10 +39,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "EventKit_EKEvent")]
+    #[cfg(all(feature = "EventKit_EKCalendarItem", feature = "EventKit_EKObject"))]
     pub struct EKEvent;
 
-    #[cfg(feature = "EventKit_EKEvent")]
+    #[cfg(all(feature = "EventKit_EKCalendarItem", feature = "EventKit_EKObject"))]
     unsafe impl ClassType for EKEvent {
         #[inherits(EKObject, NSObject)]
         type Super = EKCalendarItem;
@@ -50,11 +50,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "EventKit_EKEvent")]
+#[cfg(all(feature = "EventKit_EKCalendarItem", feature = "EventKit_EKObject"))]
 unsafe impl NSObjectProtocol for EKEvent {}
 
 extern_methods!(
-    #[cfg(feature = "EventKit_EKEvent")]
+    #[cfg(all(feature = "EventKit_EKCalendarItem", feature = "EventKit_EKObject"))]
     unsafe impl EKEvent {
         #[cfg(feature = "EventKit_EKEventStore")]
         #[method_id(@__retain_semantics Other eventWithEventStore:)]
@@ -97,6 +97,7 @@ extern_methods!(
             structured_location: Option<&EKStructuredLocation>,
         );
 
+        #[cfg(feature = "Foundation_NSObjCRuntime")]
         #[method(compareStartDateWithEvent:)]
         pub unsafe fn compareStartDateWithEvent(&self, other: &EKEvent) -> NSComparisonResult;
 
@@ -139,7 +140,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "EventKit_EKEvent")]
+    #[cfg(all(feature = "EventKit_EKCalendarItem", feature = "EventKit_EKObject"))]
     unsafe impl EKEvent {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

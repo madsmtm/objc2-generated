@@ -30,7 +30,8 @@ extern_protocol!(
         #[cfg(all(
             feature = "BackgroundAssets_BADownload",
             feature = "Foundation_NSURLAuthenticationChallenge",
-            feature = "Foundation_NSURLCredential"
+            feature = "Foundation_NSURLCredential",
+            feature = "Foundation_NSURLSession"
         ))]
         #[optional]
         #[method(download:didReceiveChallenge:completionHandler:)]
@@ -62,21 +63,17 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "BackgroundAssets_BADownloadManager")]
     pub struct BADownloadManager;
 
-    #[cfg(feature = "BackgroundAssets_BADownloadManager")]
     unsafe impl ClassType for BADownloadManager {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "BackgroundAssets_BADownloadManager")]
 unsafe impl NSObjectProtocol for BADownloadManager {}
 
 extern_methods!(
-    #[cfg(feature = "BackgroundAssets_BADownloadManager")]
     unsafe impl BADownloadManager {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

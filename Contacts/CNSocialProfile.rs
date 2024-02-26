@@ -6,30 +6,26 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Contacts_CNSocialProfile")]
     pub struct CNSocialProfile;
 
-    #[cfg(feature = "Contacts_CNSocialProfile")]
     unsafe impl ClassType for CNSocialProfile {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Contacts_CNSocialProfile")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CNSocialProfile {}
 
-#[cfg(feature = "Contacts_CNSocialProfile")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for CNSocialProfile {}
 
-#[cfg(feature = "Contacts_CNSocialProfile")]
 unsafe impl NSObjectProtocol for CNSocialProfile {}
 
-#[cfg(feature = "Contacts_CNSocialProfile")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CNSocialProfile {}
 
 extern_methods!(
-    #[cfg(feature = "Contacts_CNSocialProfile")]
     unsafe impl CNSocialProfile {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other urlString)]
@@ -69,7 +65,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Contacts_CNSocialProfile")]
     unsafe impl CNSocialProfile {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

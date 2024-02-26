@@ -7,21 +7,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionAuthorizationResult")]
     pub struct ASAuthorizationProviderExtensionAuthorizationResult;
 
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionAuthorizationResult")]
     unsafe impl ClassType for ASAuthorizationProviderExtensionAuthorizationResult {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionAuthorizationResult")]
 unsafe impl NSObjectProtocol for ASAuthorizationProviderExtensionAuthorizationResult {}
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionAuthorizationResult")]
     unsafe impl ASAuthorizationProviderExtensionAuthorizationResult {
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithHTTPAuthorizationHeaders:)]
@@ -30,10 +26,7 @@ extern_methods!(
             http_authorization_headers: &NSDictionary<NSString, NSString>,
         ) -> Id<Self>;
 
-        #[cfg(all(
-            feature = "Foundation_NSData",
-            feature = "Foundation_NSHTTPURLResponse"
-        ))]
+        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSURLResponse"))]
         #[method_id(@__retain_semantics Init initWithHTTPResponse:httpBody:)]
         pub unsafe fn initWithHTTPResponse_httpBody(
             this: Allocated<Self>,
@@ -54,11 +47,11 @@ extern_methods!(
             http_authorization_headers: Option<&NSDictionary<NSString, NSString>>,
         );
 
-        #[cfg(feature = "Foundation_NSHTTPURLResponse")]
+        #[cfg(feature = "Foundation_NSURLResponse")]
         #[method_id(@__retain_semantics Other httpResponse)]
         pub unsafe fn httpResponse(&self) -> Option<Id<NSHTTPURLResponse>>;
 
-        #[cfg(feature = "Foundation_NSHTTPURLResponse")]
+        #[cfg(feature = "Foundation_NSURLResponse")]
         #[method(setHttpResponse:)]
         pub unsafe fn setHttpResponse(&self, http_response: Option<&NSHTTPURLResponse>);
 
@@ -82,7 +75,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionAuthorizationResult")]
     unsafe impl ASAuthorizationProviderExtensionAuthorizationResult {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

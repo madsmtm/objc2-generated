@@ -28,11 +28,11 @@ pub const DOM_FIRST_ORDERED_NODE_TYPE: c_uint = 9;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_DOMXPathResult")]
+    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
     #[deprecated]
     pub struct DOMXPathResult;
 
-    #[cfg(feature = "WebKit_DOMXPathResult")]
+    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
     unsafe impl ClassType for DOMXPathResult {
         #[inherits(WebScriptObject, NSObject)]
         type Super = DOMObject;
@@ -40,14 +40,18 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "WebKit_DOMXPathResult")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSCopying for DOMXPathResult {}
 
-#[cfg(feature = "WebKit_DOMXPathResult")]
+#[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
 unsafe impl NSObjectProtocol for DOMXPathResult {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_DOMXPathResult")]
+    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
     unsafe impl DOMXPathResult {
         #[deprecated]
         #[method(resultType)]
@@ -93,7 +97,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
-    #[cfg(feature = "WebKit_DOMXPathResult")]
+    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
     unsafe impl DOMXPathResult {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
@@ -103,7 +107,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_DOMXPathResult")]
+    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
     unsafe impl DOMXPathResult {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

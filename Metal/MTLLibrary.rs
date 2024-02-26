@@ -18,21 +18,17 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLVertexAttribute")]
     pub struct MTLVertexAttribute;
 
-    #[cfg(feature = "Metal_MTLVertexAttribute")]
     unsafe impl ClassType for MTLVertexAttribute {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLVertexAttribute")]
 unsafe impl NSObjectProtocol for MTLVertexAttribute {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLVertexAttribute")]
     unsafe impl MTLVertexAttribute {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
@@ -41,6 +37,7 @@ extern_methods!(
         #[method(attributeIndex)]
         pub fn attributeIndex(&self) -> NSUInteger;
 
+        #[cfg(feature = "Metal_MTLArgument")]
         #[method(attributeType)]
         pub fn attributeType(&self) -> MTLDataType;
 
@@ -57,7 +54,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLVertexAttribute")]
     unsafe impl MTLVertexAttribute {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -69,21 +65,17 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLAttribute")]
     pub struct MTLAttribute;
 
-    #[cfg(feature = "Metal_MTLAttribute")]
     unsafe impl ClassType for MTLAttribute {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLAttribute")]
 unsafe impl NSObjectProtocol for MTLAttribute {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLAttribute")]
     unsafe impl MTLAttribute {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
@@ -92,6 +84,7 @@ extern_methods!(
         #[method(attributeIndex)]
         pub fn attributeIndex(&self) -> NSUInteger;
 
+        #[cfg(feature = "Metal_MTLArgument")]
         #[method(attributeType)]
         pub fn attributeType(&self) -> MTLDataType;
 
@@ -108,7 +101,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLAttribute")]
     unsafe impl MTLAttribute {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -140,26 +132,23 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLFunctionConstant")]
     pub struct MTLFunctionConstant;
 
-    #[cfg(feature = "Metal_MTLFunctionConstant")]
     unsafe impl ClassType for MTLFunctionConstant {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLFunctionConstant")]
 unsafe impl NSObjectProtocol for MTLFunctionConstant {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLFunctionConstant")]
     unsafe impl MTLFunctionConstant {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
         pub fn name(&self) -> Id<NSString>;
 
+        #[cfg(feature = "Metal_MTLArgument")]
         #[method(type)]
         pub unsafe fn r#type(&self) -> MTLDataType;
 
@@ -173,7 +162,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLFunctionConstant")]
     unsafe impl MTLFunctionConstant {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -193,6 +181,7 @@ extern_protocol!(
         #[method(setLabel:)]
         fn setLabel(&self, label: Option<&NSString>);
 
+        #[cfg(feature = "Metal_MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
         fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
 
@@ -205,11 +194,11 @@ extern_protocol!(
         #[method(patchControlPointCount)]
         fn patchControlPointCount(&self) -> NSInteger;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLVertexAttribute"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other vertexAttributes)]
         fn vertexAttributes(&self) -> Option<Id<NSArray<MTLVertexAttribute>>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLAttribute"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other stageInputAttributes)]
         fn stageInputAttributes(&self) -> Option<Id<NSArray<MTLAttribute>>>;
 
@@ -217,20 +206,18 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other name)]
         fn name(&self) -> Id<NSString>;
 
-        #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString",
-            feature = "Metal_MTLFunctionConstant"
-        ))]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other functionConstantsDictionary)]
         fn functionConstantsDictionary(&self) -> Id<NSDictionary<NSString, MTLFunctionConstant>>;
 
+        #[cfg(feature = "Metal_MTLArgumentEncoder")]
         #[method_id(@__retain_semantics New newArgumentEncoderWithBufferIndex:)]
         unsafe fn newArgumentEncoderWithBufferIndex(
             &self,
             buffer_index: NSUInteger,
         ) -> Id<ProtocolObject<dyn MTLArgumentEncoder>>;
 
+        #[cfg(feature = "Metal_MTLFunctionDescriptor")]
         #[method(options)]
         fn options(&self) -> MTLFunctionOptions;
     }
@@ -287,24 +274,20 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLCompileOptions")]
     pub struct MTLCompileOptions;
 
-    #[cfg(feature = "Metal_MTLCompileOptions")]
     unsafe impl ClassType for MTLCompileOptions {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLCompileOptions")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLCompileOptions {}
 
-#[cfg(feature = "Metal_MTLCompileOptions")]
 unsafe impl NSObjectProtocol for MTLCompileOptions {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLCompileOptions")]
     unsafe impl MTLCompileOptions {
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other preprocessorMacros)]
@@ -343,11 +326,11 @@ extern_methods!(
         #[method(setInstallName:)]
         pub unsafe fn setInstallName(&self, install_name: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLDynamicLibrary"))]
         #[method_id(@__retain_semantics Other libraries)]
         pub fn libraries(&self) -> Option<Id<NSArray<ProtocolObject<dyn MTLDynamicLibrary>>>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLDynamicLibrary"))]
         #[method(setLibraries:)]
         pub fn setLibraries(
             &self,
@@ -397,7 +380,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLCompileOptions")]
     unsafe impl MTLCompileOptions {
         #[method_id(@__retain_semantics Init init)]
         pub fn init(this: Allocated<Self>) -> Id<Self>;
@@ -407,7 +389,6 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Metal_MTLCompileOptions")]
 impl DefaultId for MTLCompileOptions {
     #[inline]
     fn default_id() -> Id<Self> {
@@ -415,7 +396,7 @@ impl DefaultId for MTLCompileOptions {
     }
 }
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
 extern_static!(MTLLibraryErrorDomain: &'static NSErrorDomain);
 
 ns_enum!(
@@ -446,6 +427,7 @@ extern_protocol!(
         #[method(setLabel:)]
         fn setLabel(&self, label: Option<&NSString>);
 
+        #[cfg(feature = "Metal_MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
         fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
 
@@ -504,7 +486,7 @@ extern_protocol!(
 
         #[cfg(all(
             feature = "Foundation_NSError",
-            feature = "Metal_MTLIntersectionFunctionDescriptor"
+            feature = "Metal_MTLFunctionDescriptor"
         ))]
         #[method(newIntersectionFunctionWithDescriptor:completionHandler:)]
         unsafe fn newIntersectionFunctionWithDescriptor_completionHandler(
@@ -515,7 +497,7 @@ extern_protocol!(
 
         #[cfg(all(
             feature = "Foundation_NSError",
-            feature = "Metal_MTLIntersectionFunctionDescriptor"
+            feature = "Metal_MTLFunctionDescriptor"
         ))]
         #[method_id(@__retain_semantics New newIntersectionFunctionWithDescriptor:error:_)]
         fn newIntersectionFunctionWithDescriptor_error(

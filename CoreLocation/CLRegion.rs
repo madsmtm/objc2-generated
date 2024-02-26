@@ -33,32 +33,28 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreLocation_CLRegion")]
     pub struct CLRegion;
 
-    #[cfg(feature = "CoreLocation_CLRegion")]
     unsafe impl ClassType for CLRegion {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreLocation_CLRegion")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CLRegion {}
 
-#[cfg(feature = "CoreLocation_CLRegion")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for CLRegion {}
 
-#[cfg(feature = "CoreLocation_CLRegion")]
 unsafe impl NSObjectProtocol for CLRegion {}
 
-#[cfg(feature = "CoreLocation_CLRegion")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CLRegion {}
 
 extern_methods!(
-    #[cfg(feature = "CoreLocation_CLRegion")]
     unsafe impl CLRegion {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "CoreLocation_CLLocation", feature = "Foundation_NSString"))]
         #[deprecated = "Please see CLCircularRegion"]
         #[method_id(@__retain_semantics Init initCircularRegionWithCenter:radius:identifier:)]
         pub unsafe fn initCircularRegionWithCenter_radius_identifier(
@@ -68,10 +64,12 @@ extern_methods!(
             identifier: &NSString,
         ) -> Id<Self>;
 
+        #[cfg(feature = "CoreLocation_CLLocation")]
         #[deprecated = "Please see CLCircularRegion"]
         #[method(center)]
         pub unsafe fn center(&self) -> CLLocationCoordinate2D;
 
+        #[cfg(feature = "CoreLocation_CLLocation")]
         #[deprecated = "Please see CLCircularRegion"]
         #[method(radius)]
         pub unsafe fn radius(&self) -> CLLocationDistance;
@@ -92,6 +90,7 @@ extern_methods!(
         #[method(setNotifyOnExit:)]
         pub unsafe fn setNotifyOnExit(&self, notify_on_exit: bool);
 
+        #[cfg(feature = "CoreLocation_CLLocation")]
         #[deprecated = "Please see CLCircularRegion"]
         #[method(containsCoordinate:)]
         pub unsafe fn containsCoordinate(&self, coordinate: CLLocationCoordinate2D) -> bool;
@@ -100,7 +99,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreLocation_CLRegion")]
     unsafe impl CLRegion {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

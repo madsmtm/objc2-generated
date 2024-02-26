@@ -135,10 +135,10 @@ extern_static!(NSImageFallbackBackgroundColor: &'static NSBitmapImageRepProperty
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSBitmapImageRep")]
+    #[cfg(feature = "AppKit_NSImageRep")]
     pub struct NSBitmapImageRep;
 
-    #[cfg(feature = "AppKit_NSBitmapImageRep")]
+    #[cfg(feature = "AppKit_NSImageRep")]
     unsafe impl ClassType for NSBitmapImageRep {
         #[inherits(NSObject)]
         type Super = NSImageRep;
@@ -146,21 +146,22 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSBitmapImageRep")]
+#[cfg(all(feature = "AppKit_NSImageRep", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for NSBitmapImageRep {}
 
-#[cfg(feature = "AppKit_NSBitmapImageRep")]
+#[cfg(all(feature = "AppKit_NSImageRep", feature = "Foundation_NSObject"))]
 unsafe impl NSCopying for NSBitmapImageRep {}
 
-#[cfg(feature = "AppKit_NSBitmapImageRep")]
+#[cfg(feature = "AppKit_NSImageRep")]
 unsafe impl NSObjectProtocol for NSBitmapImageRep {}
 
-#[cfg(feature = "AppKit_NSBitmapImageRep")]
+#[cfg(all(feature = "AppKit_NSImageRep", feature = "Foundation_NSObject"))]
 unsafe impl NSSecureCoding for NSBitmapImageRep {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSBitmapImageRep")]
+    #[cfg(feature = "AppKit_NSImageRep")]
     unsafe impl NSBitmapImageRep {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[deprecated = "Use -[NSView cacheDisplayInRect:toBitmapImageRep:] to snapshot a view."]
         #[method_id(@__retain_semantics Init initWithFocusedViewRect:)]
         pub unsafe fn initWithFocusedViewRect(
@@ -168,7 +169,7 @@ extern_methods!(
             rect: NSRect,
         ) -> Option<Id<Self>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "AppKit_NSGraphics", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithBitmapDataPlanes:pixelsWide:pixelsHigh:bitsPerSample:samplesPerPixel:hasAlpha:isPlanar:colorSpaceName:bytesPerRow:bitsPerPixel:)]
         pub unsafe fn initWithBitmapDataPlanes_pixelsWide_pixelsHigh_bitsPerSample_samplesPerPixel_hasAlpha_isPlanar_colorSpaceName_bytesPerRow_bitsPerPixel(
             this: Allocated<Self>,
@@ -184,7 +185,7 @@ extern_methods!(
             p_bits: NSInteger,
         ) -> Option<Id<Self>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "AppKit_NSGraphics", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithBitmapDataPlanes:pixelsWide:pixelsHigh:bitsPerSample:samplesPerPixel:hasAlpha:isPlanar:colorSpaceName:bitmapFormat:bytesPerRow:bitsPerPixel:)]
         pub unsafe fn initWithBitmapDataPlanes_pixelsWide_pixelsHigh_bitsPerSample_samplesPerPixel_hasAlpha_isPlanar_colorSpaceName_bitmapFormat_bytesPerRow_bitsPerPixel(
             this: Allocated<Self>,
@@ -291,7 +292,7 @@ extern_methods!(
         #[method(canBeCompressedUsing:)]
         pub unsafe fn canBeCompressedUsing(&self, compression: NSTIFFCompression) -> bool;
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(all(feature = "AppKit_NSColor", feature = "Foundation_NSGeometry"))]
         #[method(colorizeByMappingGray:toColor:blackMapping:whiteMapping:)]
         pub unsafe fn colorizeByMappingGray_toColor_blackMapping_whiteMapping(
             &self,
@@ -330,7 +331,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other colorSpace)]
         pub unsafe fn colorSpace(&self) -> Id<NSColorSpace>;
 
-        #[cfg(feature = "AppKit_NSColorSpace")]
+        #[cfg(all(feature = "AppKit_NSColorSpace", feature = "AppKit_NSGraphics"))]
         #[method_id(@__retain_semantics Other bitmapImageRepByConvertingToColorSpace:renderingIntent:)]
         pub unsafe fn bitmapImageRepByConvertingToColorSpace_renderingIntent(
             &self,
@@ -349,7 +350,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSImageRep`
-    #[cfg(feature = "AppKit_NSBitmapImageRep")]
+    #[cfg(feature = "AppKit_NSImageRep")]
     unsafe impl NSBitmapImageRep {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -362,7 +363,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSBitmapImageRep")]
+    #[cfg(feature = "AppKit_NSImageRep")]
     unsafe impl NSBitmapImageRep {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -371,7 +372,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSBitmapImageFileTypeExtensions
-    #[cfg(feature = "AppKit_NSBitmapImageRep")]
+    #[cfg(feature = "AppKit_NSImageRep")]
     unsafe impl NSBitmapImageRep {
         #[cfg(all(
             feature = "Foundation_NSArray",

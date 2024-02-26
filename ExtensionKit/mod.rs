@@ -17,13 +17,24 @@
 #[link(name = "ExtensionKit", kind = "framework")]
 extern "C" {}
 
+#[cfg(feature = "ExtensionKit_EXAppExtensionBrowserViewController")]
 #[path = "EXAppExtensionBrowserViewController.rs"]
 mod __EXAppExtensionBrowserViewController;
+#[cfg(feature = "ExtensionKit_EXHostViewController")]
 #[path = "EXHostViewController.rs"]
 mod __EXHostViewController;
 
-#[cfg(feature = "ExtensionKit_EXAppExtensionBrowserViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController",
+    feature = "ExtensionKit_EXAppExtensionBrowserViewController"
+))]
 pub use self::__EXAppExtensionBrowserViewController::EXAppExtensionBrowserViewController;
-#[cfg(feature = "ExtensionKit_EXHostViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController",
+    feature = "ExtensionKit_EXHostViewController"
+))]
 pub use self::__EXHostViewController::EXHostViewController;
+#[cfg(feature = "ExtensionKit_EXHostViewController")]
 pub use self::__EXHostViewController::EXHostViewControllerDelegate;

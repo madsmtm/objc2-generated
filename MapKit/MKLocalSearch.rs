@@ -16,21 +16,17 @@ pub type MKLocalSearchCompletionHandler =
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKLocalSearch")]
     pub struct MKLocalSearch;
 
-    #[cfg(feature = "MapKit_MKLocalSearch")]
     unsafe impl ClassType for MKLocalSearch {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MapKit_MKLocalSearch")]
 unsafe impl NSObjectProtocol for MKLocalSearch {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKLocalSearch")]
     unsafe impl MKLocalSearch {
         #[cfg(feature = "MapKit_MKLocalSearchRequest")]
         #[method_id(@__retain_semantics Init initWithRequest:)]
@@ -66,7 +62,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MapKit_MKLocalSearch")]
     unsafe impl MKLocalSearch {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

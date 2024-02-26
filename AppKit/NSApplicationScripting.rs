@@ -7,7 +7,7 @@ use crate::Foundation::*;
 
 extern_methods!(
     /// NSScripting
-    #[cfg(feature = "AppKit_NSApplication")]
+    #[cfg(all(feature = "AppKit_NSApplication", feature = "AppKit_NSResponder"))]
     unsafe impl NSApplication {
         #[cfg(all(feature = "AppKit_NSDocument", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other orderedDocuments)]

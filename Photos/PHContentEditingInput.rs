@@ -9,25 +9,23 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Photos_PHContentEditingInput")]
     pub struct PHContentEditingInput;
 
-    #[cfg(feature = "Photos_PHContentEditingInput")]
     unsafe impl ClassType for PHContentEditingInput {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Photos_PHContentEditingInput")]
 unsafe impl NSObjectProtocol for PHContentEditingInput {}
 
 extern_methods!(
-    #[cfg(feature = "Photos_PHContentEditingInput")]
     unsafe impl PHContentEditingInput {
+        #[cfg(feature = "Photos_PhotosTypes")]
         #[method(mediaType)]
         pub unsafe fn mediaType(&self) -> PHAssetMediaType;
 
+        #[cfg(feature = "Photos_PhotosTypes")]
         #[method(mediaSubtypes)]
         pub unsafe fn mediaSubtypes(&self) -> PHAssetMediaSubtype;
 
@@ -43,6 +41,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other uniformTypeIdentifier)]
         pub unsafe fn uniformTypeIdentifier(&self) -> Option<Id<NSString>>;
 
+        #[cfg(feature = "Photos_PhotosTypes")]
         #[method(playbackStyle)]
         pub unsafe fn playbackStyle(&self) -> PHAssetPlaybackStyle;
 
@@ -61,15 +60,6 @@ extern_methods!(
         #[method(fullSizeImageOrientation)]
         pub unsafe fn fullSizeImageOrientation(&self) -> c_int;
 
-        #[cfg(feature = "AVFoundation_AVAsset")]
-        #[deprecated]
-        #[method_id(@__retain_semantics Other avAsset)]
-        pub unsafe fn avAsset(&self) -> Option<Id<AVAsset>>;
-
-        #[cfg(feature = "AVFoundation_AVAsset")]
-        #[method_id(@__retain_semantics Other audiovisualAsset)]
-        pub unsafe fn audiovisualAsset(&self) -> Option<Id<AVAsset>>;
-
         #[cfg(feature = "Photos_PHLivePhoto")]
         #[method_id(@__retain_semantics Other livePhoto)]
         pub unsafe fn livePhoto(&self) -> Option<Id<PHLivePhoto>>;
@@ -78,7 +68,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Photos_PHContentEditingInput")]
     unsafe impl PHContentEditingInput {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

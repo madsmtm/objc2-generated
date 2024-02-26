@@ -7,11 +7,19 @@ use crate::WebKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_DOMCSSPageRule")]
+    #[cfg(all(
+        feature = "WebKit_DOMCSSRule",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     #[deprecated]
     pub struct DOMCSSPageRule;
 
-    #[cfg(feature = "WebKit_DOMCSSPageRule")]
+    #[cfg(all(
+        feature = "WebKit_DOMCSSRule",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl ClassType for DOMCSSPageRule {
         #[inherits(DOMObject, WebScriptObject, NSObject)]
         type Super = DOMCSSRule;
@@ -19,14 +27,27 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "WebKit_DOMCSSPageRule")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "WebKit_DOMCSSRule",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSCopying for DOMCSSPageRule {}
 
-#[cfg(feature = "WebKit_DOMCSSPageRule")]
+#[cfg(all(
+    feature = "WebKit_DOMCSSRule",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSObjectProtocol for DOMCSSPageRule {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_DOMCSSPageRule")]
+    #[cfg(all(
+        feature = "WebKit_DOMCSSRule",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMCSSPageRule {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
@@ -47,7 +68,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
-    #[cfg(feature = "WebKit_DOMCSSPageRule")]
+    #[cfg(all(
+        feature = "WebKit_DOMCSSRule",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMCSSPageRule {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
@@ -57,7 +82,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_DOMCSSPageRule")]
+    #[cfg(all(
+        feature = "WebKit_DOMCSSRule",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMCSSPageRule {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

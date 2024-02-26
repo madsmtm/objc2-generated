@@ -7,33 +7,33 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSPredicateEditorRowTemplate")]
     pub struct NSPredicateEditorRowTemplate;
 
-    #[cfg(feature = "AppKit_NSPredicateEditorRowTemplate")]
     unsafe impl ClassType for NSPredicateEditorRowTemplate {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSPredicateEditorRowTemplate")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSPredicateEditorRowTemplate {}
 
-#[cfg(feature = "AppKit_NSPredicateEditorRowTemplate")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSPredicateEditorRowTemplate {}
 
-#[cfg(feature = "AppKit_NSPredicateEditorRowTemplate")]
 unsafe impl NSObjectProtocol for NSPredicateEditorRowTemplate {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSPredicateEditorRowTemplate")]
     unsafe impl NSPredicateEditorRowTemplate {
         #[cfg(feature = "Foundation_NSPredicate")]
         #[method(matchForPredicate:)]
         pub unsafe fn matchForPredicate(&self, predicate: &NSPredicate) -> c_double;
 
-        #[cfg(all(feature = "AppKit_NSView", feature = "Foundation_NSArray"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSArray"
+        ))]
         #[method_id(@__retain_semantics Other templateViews)]
         pub unsafe fn templateViews(&self, mtm: MainThreadMarker) -> Id<NSArray<NSView>>;
 
@@ -57,8 +57,9 @@ extern_methods!(
 
         #[cfg(all(
             feature = "Foundation_NSArray",
+            feature = "Foundation_NSComparisonPredicate",
             feature = "Foundation_NSExpression",
-            feature = "Foundation_NSNumber"
+            feature = "Foundation_NSValue"
         ))]
         #[method_id(@__retain_semantics Init initWithLeftExpressions:rightExpressions:modifier:operators:options:)]
         pub unsafe fn initWithLeftExpressions_rightExpressions_modifier_operators_options(
@@ -71,9 +72,11 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(all(
+            feature = "CoreData_NSAttributeDescription",
             feature = "Foundation_NSArray",
+            feature = "Foundation_NSComparisonPredicate",
             feature = "Foundation_NSExpression",
-            feature = "Foundation_NSNumber"
+            feature = "Foundation_NSValue"
         ))]
         #[method_id(@__retain_semantics Init initWithLeftExpressions:rightExpressionAttributeType:modifier:operators:options:)]
         pub unsafe fn initWithLeftExpressions_rightExpressionAttributeType_modifier_operators_options(
@@ -85,7 +88,7 @@ extern_methods!(
             options: NSUInteger,
         ) -> Id<Self>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Init initWithCompoundTypes:)]
         pub unsafe fn initWithCompoundTypes(
             this: Allocated<Self>,
@@ -100,20 +103,22 @@ extern_methods!(
         #[method_id(@__retain_semantics Other rightExpressions)]
         pub unsafe fn rightExpressions(&self) -> Option<Id<NSArray<NSExpression>>>;
 
+        #[cfg(feature = "CoreData_NSAttributeDescription")]
         #[method(rightExpressionAttributeType)]
         pub unsafe fn rightExpressionAttributeType(&self) -> NSAttributeType;
 
+        #[cfg(feature = "Foundation_NSComparisonPredicate")]
         #[method(modifier)]
         pub unsafe fn modifier(&self) -> NSComparisonPredicateModifier;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Other operators)]
         pub unsafe fn operators(&self) -> Option<Id<NSArray<NSNumber>>>;
 
         #[method(options)]
         pub unsafe fn options(&self) -> NSUInteger;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Other compoundTypes)]
         pub unsafe fn compoundTypes(&self) -> Option<Id<NSArray<NSNumber>>>;
 
@@ -132,7 +137,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSPredicateEditorRowTemplate")]
     unsafe impl NSPredicateEditorRowTemplate {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -7,10 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSPICTImageRep")]
+    #[cfg(feature = "AppKit_NSImageRep")]
     pub struct NSPICTImageRep;
 
-    #[cfg(feature = "AppKit_NSPICTImageRep")]
+    #[cfg(feature = "AppKit_NSImageRep")]
     unsafe impl ClassType for NSPICTImageRep {
         #[inherits(NSObject)]
         type Super = NSImageRep;
@@ -18,17 +18,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSPICTImageRep")]
+#[cfg(all(feature = "AppKit_NSImageRep", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for NSPICTImageRep {}
 
-#[cfg(feature = "AppKit_NSPICTImageRep")]
+#[cfg(all(feature = "AppKit_NSImageRep", feature = "Foundation_NSObject"))]
 unsafe impl NSCopying for NSPICTImageRep {}
 
-#[cfg(feature = "AppKit_NSPICTImageRep")]
+#[cfg(feature = "AppKit_NSImageRep")]
 unsafe impl NSObjectProtocol for NSPICTImageRep {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSPICTImageRep")]
+    #[cfg(feature = "AppKit_NSImageRep")]
     unsafe impl NSPICTImageRep {
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other imageRepWithData:)]
@@ -42,6 +42,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other PICTRepresentation)]
         pub unsafe fn PICTRepresentation(&self) -> Id<NSData>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(boundingBox)]
         pub unsafe fn boundingBox(&self) -> NSRect;
     }
@@ -49,7 +50,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSImageRep`
-    #[cfg(feature = "AppKit_NSPICTImageRep")]
+    #[cfg(feature = "AppKit_NSImageRep")]
     unsafe impl NSPICTImageRep {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -62,7 +63,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSPICTImageRep")]
+    #[cfg(feature = "AppKit_NSImageRep")]
     unsafe impl NSPICTImageRep {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

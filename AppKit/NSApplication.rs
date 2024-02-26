@@ -163,10 +163,10 @@ extern_static!(NSAppKitVersionNumber14_0: NSAppKitVersion = 2487);
 
 extern_static!(NSAppKitVersionNumber14_1: NSAppKitVersion = 2487.2);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
 extern_static!(NSModalPanelRunLoopMode: &'static NSRunLoopMode);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
 extern_static!(NSEventTrackingRunLoopMode: &'static NSRunLoopMode);
 
 typed_extensible_enum!(
@@ -240,10 +240,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSApplication")]
+    #[cfg(feature = "AppKit_NSResponder")]
     pub struct NSApplication;
 
-    #[cfg(feature = "AppKit_NSApplication")]
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl ClassType for NSApplication {
         #[inherits(NSObject)]
         type Super = NSResponder;
@@ -251,26 +251,35 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder"
+))]
 unsafe impl NSAccessibility for NSApplication {}
 
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder"
+))]
 unsafe impl NSAccessibilityElementProtocol for NSApplication {}
 
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(all(feature = "AppKit_NSResponder", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for NSApplication {}
 
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(all(feature = "AppKit_NSMenu", feature = "AppKit_NSResponder"))]
 unsafe impl NSMenuItemValidation for NSApplication {}
 
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(feature = "AppKit_NSResponder")]
 unsafe impl NSObjectProtocol for NSApplication {}
 
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceValidation"
+))]
 unsafe impl NSUserInterfaceValidations for NSApplication {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSApplication")]
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSApplication {
         #[method_id(@__retain_semantics Other sharedApplication)]
         pub fn sharedApplication(mtm: MainThreadMarker) -> Id<NSApplication>;
@@ -428,9 +437,11 @@ extern_methods!(
         #[method(setApplicationIconImage:)]
         pub unsafe fn setApplicationIconImage(&self, application_icon_image: Option<&NSImage>);
 
+        #[cfg(feature = "AppKit_NSRunningApplication")]
         #[method(activationPolicy)]
         pub unsafe fn activationPolicy(&self) -> NSApplicationActivationPolicy;
 
+        #[cfg(feature = "AppKit_NSRunningApplication")]
         #[method(setActivationPolicy:)]
         pub fn setActivationPolicy(&self, activation_policy: NSApplicationActivationPolicy)
             -> bool;
@@ -482,7 +493,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "AppKit_NSApplication")]
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSApplication {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -495,7 +506,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSApplication")]
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSApplication {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -504,7 +515,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSAppearanceCustomization
-    #[cfg(feature = "AppKit_NSApplication")]
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSApplication {
         #[cfg(feature = "AppKit_NSAppearance")]
         #[method_id(@__retain_semantics Other appearance)]
@@ -520,12 +531,12 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "AppKit_NSApplication")]
+#[cfg(all(feature = "AppKit_NSAppearance", feature = "AppKit_NSResponder"))]
 unsafe impl NSAppearanceCustomization for NSApplication {}
 
 extern_methods!(
     /// NSEvent
-    #[cfg(feature = "AppKit_NSApplication")]
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSApplication {
         #[cfg(feature = "AppKit_NSEvent")]
         #[method(sendEvent:)]
@@ -542,6 +553,7 @@ extern_methods!(
         #[cfg(all(
             feature = "AppKit_NSEvent",
             feature = "Foundation_NSDate",
+            feature = "Foundation_NSObjCRuntime",
             feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other nextEventMatchingMask:untilDate:inMode:dequeue:)]
@@ -565,7 +577,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSResponder
-    #[cfg(feature = "AppKit_NSApplication")]
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSApplication {
         #[method(sendAction:to:from:)]
         pub unsafe fn sendAction_to_from(
@@ -589,7 +601,7 @@ extern_methods!(
         #[method(tryToPerform:with:)]
         pub unsafe fn tryToPerform_with(&self, action: Sel, object: Option<&AnyObject>) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "AppKit_NSPasteboard", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other validRequestorForSendType:returnType:)]
         pub unsafe fn validRequestorForSendType_returnType(
             &self,
@@ -601,7 +613,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSWindowsMenu
-    #[cfg(feature = "AppKit_NSApplication")]
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSApplication {
         #[cfg(feature = "AppKit_NSMenu")]
         #[method_id(@__retain_semantics Other windowsMenu)]
@@ -647,7 +659,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSFullKeyboardAccess
-    #[cfg(feature = "AppKit_NSApplication")]
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSApplication {
         #[method(isFullKeyboardAccessEnabled)]
         pub unsafe fn isFullKeyboardAccessEnabled(&self) -> bool;
@@ -675,7 +687,7 @@ ns_enum!(
 
 extern_protocol!(
     pub unsafe trait NSApplicationDelegate: NSObjectProtocol + IsMainThreadOnly {
-        #[cfg(feature = "AppKit_NSApplication")]
+        #[cfg(feature = "AppKit_NSResponder")]
         #[optional]
         #[method(applicationShouldTerminate:)]
         unsafe fn applicationShouldTerminate(
@@ -684,7 +696,7 @@ extern_protocol!(
         ) -> NSApplicationTerminateReply;
 
         #[cfg(all(
-            feature = "AppKit_NSApplication",
+            feature = "AppKit_NSResponder",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSURL"
         ))]
@@ -692,13 +704,13 @@ extern_protocol!(
         #[method(application:openURLs:)]
         unsafe fn application_openURLs(&self, application: &NSApplication, urls: &NSArray<NSURL>);
 
-        #[cfg(all(feature = "AppKit_NSApplication", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "Foundation_NSString"))]
         #[optional]
         #[method(application:openFile:)]
         unsafe fn application_openFile(&self, sender: &NSApplication, filename: &NSString) -> bool;
 
         #[cfg(all(
-            feature = "AppKit_NSApplication",
+            feature = "AppKit_NSResponder",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSString"
         ))]
@@ -710,7 +722,7 @@ extern_protocol!(
             filenames: &NSArray<NSString>,
         );
 
-        #[cfg(all(feature = "AppKit_NSApplication", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "Foundation_NSString"))]
         #[optional]
         #[method(application:openTempFile:)]
         unsafe fn application_openTempFile(
@@ -719,12 +731,12 @@ extern_protocol!(
             filename: &NSString,
         ) -> bool;
 
-        #[cfg(feature = "AppKit_NSApplication")]
+        #[cfg(feature = "AppKit_NSResponder")]
         #[optional]
         #[method(applicationShouldOpenUntitledFile:)]
         unsafe fn applicationShouldOpenUntitledFile(&self, sender: &NSApplication) -> bool;
 
-        #[cfg(feature = "AppKit_NSApplication")]
+        #[cfg(feature = "AppKit_NSResponder")]
         #[optional]
         #[method(applicationOpenUntitledFile:)]
         unsafe fn applicationOpenUntitledFile(&self, sender: &NSApplication) -> bool;
@@ -738,14 +750,15 @@ extern_protocol!(
             filename: &NSString,
         ) -> bool;
 
-        #[cfg(all(feature = "AppKit_NSApplication", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "Foundation_NSString"))]
         #[optional]
         #[method(application:printFile:)]
         unsafe fn application_printFile(&self, sender: &NSApplication, filename: &NSString)
             -> bool;
 
         #[cfg(all(
-            feature = "AppKit_NSApplication",
+            feature = "AppKit_NSPrintInfo",
+            feature = "AppKit_NSResponder",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString"
@@ -760,7 +773,7 @@ extern_protocol!(
             show_print_panels: bool,
         ) -> NSApplicationPrintReply;
 
-        #[cfg(feature = "AppKit_NSApplication")]
+        #[cfg(feature = "AppKit_NSResponder")]
         #[optional]
         #[method(applicationShouldTerminateAfterLastWindowClosed:)]
         unsafe fn applicationShouldTerminateAfterLastWindowClosed(
@@ -768,7 +781,7 @@ extern_protocol!(
             sender: &NSApplication,
         ) -> bool;
 
-        #[cfg(feature = "AppKit_NSApplication")]
+        #[cfg(feature = "AppKit_NSResponder")]
         #[optional]
         #[method(applicationShouldHandleReopen:hasVisibleWindows:)]
         unsafe fn applicationShouldHandleReopen_hasVisibleWindows(
@@ -777,12 +790,12 @@ extern_protocol!(
             flag: bool,
         ) -> bool;
 
-        #[cfg(all(feature = "AppKit_NSApplication", feature = "AppKit_NSMenu"))]
+        #[cfg(all(feature = "AppKit_NSMenu", feature = "AppKit_NSResponder"))]
         #[optional]
         #[method_id(@__retain_semantics Other applicationDockMenu:)]
         unsafe fn applicationDockMenu(&self, sender: &NSApplication) -> Option<Id<NSMenu>>;
 
-        #[cfg(all(feature = "AppKit_NSApplication", feature = "Foundation_NSError"))]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "Foundation_NSError"))]
         #[optional]
         #[method_id(@__retain_semantics Other application:willPresentError:)]
         unsafe fn application_willPresentError(
@@ -791,7 +804,7 @@ extern_protocol!(
             error: &NSError,
         ) -> Id<NSError>;
 
-        #[cfg(all(feature = "AppKit_NSApplication", feature = "Foundation_NSData"))]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "Foundation_NSData"))]
         #[optional]
         #[method(application:didRegisterForRemoteNotificationsWithDeviceToken:)]
         unsafe fn application_didRegisterForRemoteNotificationsWithDeviceToken(
@@ -800,7 +813,7 @@ extern_protocol!(
             device_token: &NSData,
         );
 
-        #[cfg(all(feature = "AppKit_NSApplication", feature = "Foundation_NSError"))]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "Foundation_NSError"))]
         #[optional]
         #[method(application:didFailToRegisterForRemoteNotificationsWithError:)]
         unsafe fn application_didFailToRegisterForRemoteNotificationsWithError(
@@ -810,7 +823,7 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "AppKit_NSApplication",
+            feature = "AppKit_NSResponder",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString"
         ))]
@@ -822,12 +835,12 @@ extern_protocol!(
             user_info: &NSDictionary<NSString, AnyObject>,
         );
 
-        #[cfg(feature = "AppKit_NSApplication")]
+        #[cfg(feature = "AppKit_NSResponder")]
         #[optional]
         #[method(applicationSupportsSecureRestorableState:)]
         unsafe fn applicationSupportsSecureRestorableState(&self, app: &NSApplication) -> bool;
 
-        #[cfg(all(feature = "AppKit_NSApplication", feature = "Foundation_NSCoder"))]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "Foundation_NSCoder"))]
         #[optional]
         #[method(application:willEncodeRestorableState:)]
         unsafe fn application_willEncodeRestorableState(
@@ -836,12 +849,12 @@ extern_protocol!(
             coder: &NSCoder,
         );
 
-        #[cfg(all(feature = "AppKit_NSApplication", feature = "Foundation_NSCoder"))]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "Foundation_NSCoder"))]
         #[optional]
         #[method(application:didDecodeRestorableState:)]
         unsafe fn application_didDecodeRestorableState(&self, app: &NSApplication, coder: &NSCoder);
 
-        #[cfg(all(feature = "AppKit_NSApplication", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "Foundation_NSString"))]
         #[optional]
         #[method(application:willContinueUserActivityWithType:)]
         unsafe fn application_willContinueUserActivityWithType(
@@ -851,7 +864,8 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(
-            feature = "AppKit_NSApplication",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSUserActivity",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSUserActivity"
         ))]
@@ -867,7 +881,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(
-            feature = "AppKit_NSApplication",
+            feature = "AppKit_NSResponder",
             feature = "Foundation_NSError",
             feature = "Foundation_NSString"
         ))]
@@ -880,10 +894,7 @@ extern_protocol!(
             error: &NSError,
         );
 
-        #[cfg(all(
-            feature = "AppKit_NSApplication",
-            feature = "Foundation_NSUserActivity"
-        ))]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "Foundation_NSUserActivity"))]
         #[optional]
         #[method(application:didUpdateUserActivity:)]
         unsafe fn application_didUpdateUserActivity(
@@ -892,7 +903,7 @@ extern_protocol!(
             user_activity: &NSUserActivity,
         );
 
-        #[cfg(all(feature = "AppKit_NSApplication", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "Foundation_NSString"))]
         #[optional]
         #[method(application:delegateHandlesKey:)]
         unsafe fn application_delegateHandlesKey(
@@ -901,7 +912,7 @@ extern_protocol!(
             key: &NSString,
         ) -> bool;
 
-        #[cfg(feature = "AppKit_NSApplication")]
+        #[cfg(feature = "AppKit_NSResponder")]
         #[optional]
         #[method(applicationShouldAutomaticallyLocalizeKeyEquivalents:)]
         unsafe fn applicationShouldAutomaticallyLocalizeKeyEquivalents(
@@ -1003,7 +1014,7 @@ extern_protocol!(
 
 extern_methods!(
     /// NSServicesMenu
-    #[cfg(feature = "AppKit_NSApplication")]
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSApplication {
         #[cfg(feature = "AppKit_NSMenu")]
         #[method_id(@__retain_semantics Other servicesMenu)]
@@ -1013,7 +1024,11 @@ extern_methods!(
         #[method(setServicesMenu:)]
         pub unsafe fn setServicesMenu(&self, services_menu: Option<&NSMenu>);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSPasteboard",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[method(registerServicesMenuSendTypes:returnTypes:)]
         pub unsafe fn registerServicesMenuSendTypes_returnTypes(
             &self,
@@ -1049,7 +1064,7 @@ extern_protocol!(
 
 extern_methods!(
     /// NSServicesHandling
-    #[cfg(feature = "AppKit_NSApplication")]
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSApplication {
         #[method_id(@__retain_semantics Other servicesProvider)]
         pub unsafe fn servicesProvider(&self) -> Option<Id<AnyObject>>;
@@ -1081,7 +1096,7 @@ extern_static!(NSAboutPanelOptionApplicationVersion: &'static NSAboutPanelOption
 
 extern_methods!(
     /// NSStandardAboutPanel
-    #[cfg(feature = "AppKit_NSApplication")]
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSApplication {
         #[method(orderFrontStandardAboutPanel:)]
         pub unsafe fn orderFrontStandardAboutPanel(&self, sender: Option<&AnyObject>);
@@ -1097,8 +1112,9 @@ extern_methods!(
 
 extern_methods!(
     /// NSApplicationLayoutDirection
-    #[cfg(feature = "AppKit_NSApplication")]
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSApplication {
+        #[cfg(feature = "AppKit_NSUserInterfaceLayout")]
         #[method(userInterfaceLayoutDirection)]
         pub unsafe fn userInterfaceLayoutDirection(&self) -> NSUserInterfaceLayoutDirection;
     }
@@ -1106,7 +1122,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSRestorableUserInterface
-    #[cfg(feature = "AppKit_NSApplication")]
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSApplication {
         #[method(disableRelaunchOnLogin)]
         pub unsafe fn disableRelaunchOnLogin(&self);
@@ -1132,7 +1148,7 @@ ns_options!(
 
 extern_methods!(
     /// NSRemoteNotifications
-    #[cfg(feature = "AppKit_NSApplication")]
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSApplication {
         #[method(registerForRemoteNotifications)]
         pub unsafe fn registerForRemoteNotifications(&self);
@@ -1194,52 +1210,52 @@ extern_fn!(
     pub unsafe fn NSUnregisterServicesProvider(name: &NSServiceProviderName);
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSApplicationDidBecomeActiveNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSApplicationDidHideNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSApplicationDidFinishLaunchingNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSApplicationDidResignActiveNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSApplicationDidUnhideNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSApplicationDidUpdateNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSApplicationWillBecomeActiveNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSApplicationWillHideNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSApplicationWillFinishLaunchingNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSApplicationWillResignActiveNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSApplicationWillUnhideNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSApplicationWillUpdateNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSApplicationWillTerminateNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSApplicationDidChangeScreenParametersNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSApplicationProtectedDataWillBecomeUnavailableNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSApplicationProtectedDataDidBecomeAvailableNotification: &'static NSNotificationName);
 
 #[cfg(feature = "Foundation_NSString")]
@@ -1251,7 +1267,7 @@ extern_static!(NSApplicationLaunchUserNotificationKey: &'static NSString);
 #[cfg(feature = "Foundation_NSString")]
 extern_static!(NSApplicationLaunchRemoteNotificationKey: &'static NSString);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSApplicationDidChangeOcclusionStateNotification: &'static NSNotificationName);
 
 #[deprecated = "Use NSModalResponseStop instead"]
@@ -1263,7 +1279,7 @@ pub const NSRunContinuesResponse: c_int = -1002;
 
 extern_methods!(
     /// NSDeprecated
-    #[cfg(feature = "AppKit_NSApplication")]
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSApplication {
         #[cfg(feature = "AppKit_NSWindow")]
         #[deprecated = "Use -[NSWindow beginSheet:completionHandler:] instead"]

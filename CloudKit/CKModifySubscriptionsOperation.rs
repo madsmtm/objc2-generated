@@ -7,10 +7,18 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKModifySubscriptionsOperation")]
+    #[cfg(all(
+        feature = "CloudKit_CKDatabaseOperation",
+        feature = "CloudKit_CKOperation",
+        feature = "Foundation_NSOperation"
+    ))]
     pub struct CKModifySubscriptionsOperation;
 
-    #[cfg(feature = "CloudKit_CKModifySubscriptionsOperation")]
+    #[cfg(all(
+        feature = "CloudKit_CKDatabaseOperation",
+        feature = "CloudKit_CKOperation",
+        feature = "Foundation_NSOperation"
+    ))]
     unsafe impl ClassType for CKModifySubscriptionsOperation {
         #[inherits(CKOperation, NSOperation, NSObject)]
         type Super = CKDatabaseOperation;
@@ -18,11 +26,19 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CloudKit_CKModifySubscriptionsOperation")]
+#[cfg(all(
+    feature = "CloudKit_CKDatabaseOperation",
+    feature = "CloudKit_CKOperation",
+    feature = "Foundation_NSOperation"
+))]
 unsafe impl NSObjectProtocol for CKModifySubscriptionsOperation {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKModifySubscriptionsOperation")]
+    #[cfg(all(
+        feature = "CloudKit_CKDatabaseOperation",
+        feature = "CloudKit_CKOperation",
+        feature = "Foundation_NSOperation"
+    ))]
     unsafe impl CKModifySubscriptionsOperation {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -50,11 +66,19 @@ extern_methods!(
             subscriptions_to_save: Option<&NSArray<CKSubscription>>,
         );
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "CloudKit_CKSubscription",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other subscriptionIDsToDelete)]
         pub unsafe fn subscriptionIDsToDelete(&self) -> Option<Id<NSArray<CKSubscriptionID>>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "CloudKit_CKSubscription",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[method(setSubscriptionIDsToDelete:)]
         pub unsafe fn setSubscriptionIDsToDelete(
             &self,
@@ -84,13 +108,21 @@ extern_methods!(
             >,
         );
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "CloudKit_CKSubscription",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
+        ))]
         #[method(perSubscriptionDeleteBlock)]
         pub unsafe fn perSubscriptionDeleteBlock(
             &self,
         ) -> *mut Block<dyn Fn(NonNull<CKSubscriptionID>, *mut NSError)>;
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "CloudKit_CKSubscription",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
+        ))]
         #[method(setPerSubscriptionDeleteBlock:)]
         pub unsafe fn setPerSubscriptionDeleteBlock(
             &self,
@@ -136,7 +168,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CloudKit_CKModifySubscriptionsOperation")]
+    #[cfg(all(
+        feature = "CloudKit_CKDatabaseOperation",
+        feature = "CloudKit_CKOperation",
+        feature = "Foundation_NSOperation"
+    ))]
     unsafe impl CKModifySubscriptionsOperation {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -6,41 +6,40 @@ use crate::Speech::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Speech_SFTranscriptionSegment")]
     pub struct SFTranscriptionSegment;
 
-    #[cfg(feature = "Speech_SFTranscriptionSegment")]
     unsafe impl ClassType for SFTranscriptionSegment {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Speech_SFTranscriptionSegment")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for SFTranscriptionSegment {}
 
-#[cfg(feature = "Speech_SFTranscriptionSegment")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for SFTranscriptionSegment {}
 
-#[cfg(feature = "Speech_SFTranscriptionSegment")]
 unsafe impl NSObjectProtocol for SFTranscriptionSegment {}
 
-#[cfg(feature = "Speech_SFTranscriptionSegment")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for SFTranscriptionSegment {}
 
 extern_methods!(
-    #[cfg(feature = "Speech_SFTranscriptionSegment")]
     unsafe impl SFTranscriptionSegment {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other substring)]
         pub unsafe fn substring(&self) -> Id<NSString>;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(substringRange)]
         pub unsafe fn substringRange(&self) -> NSRange;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(timestamp)]
         pub unsafe fn timestamp(&self) -> NSTimeInterval;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(duration)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
@@ -60,7 +59,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Speech_SFTranscriptionSegment")]
     unsafe impl SFTranscriptionSegment {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

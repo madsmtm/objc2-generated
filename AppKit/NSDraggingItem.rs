@@ -18,21 +18,17 @@ extern_static!(NSDraggingImageComponentLabelKey: &'static NSDraggingImageCompone
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSDraggingImageComponent")]
     pub struct NSDraggingImageComponent;
 
-    #[cfg(feature = "AppKit_NSDraggingImageComponent")]
     unsafe impl ClassType for NSDraggingImageComponent {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSDraggingImageComponent")]
 unsafe impl NSObjectProtocol for NSDraggingImageComponent {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSDraggingImageComponent")]
     unsafe impl NSDraggingImageComponent {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other draggingImageComponentWithKey:)]
@@ -64,9 +60,11 @@ extern_methods!(
         #[method(setContents:)]
         pub unsafe fn setContents(&self, contents: Option<&AnyObject>);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(frame)]
         pub unsafe fn frame(&self) -> NSRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setFrame:)]
         pub unsafe fn setFrame(&self, frame: NSRect);
     }
@@ -74,7 +72,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSDraggingImageComponent")]
     unsafe impl NSDraggingImageComponent {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -83,22 +80,19 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSDraggingItem")]
     pub struct NSDraggingItem;
 
-    #[cfg(feature = "AppKit_NSDraggingItem")]
     unsafe impl ClassType for NSDraggingItem {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSDraggingItem")]
 unsafe impl NSObjectProtocol for NSDraggingItem {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSDraggingItem")]
     unsafe impl NSDraggingItem {
+        #[cfg(feature = "AppKit_NSPasteboard")]
         #[method_id(@__retain_semantics Init initWithPasteboardWriter:)]
         pub unsafe fn initWithPasteboardWriter(
             this: Allocated<Self>,
@@ -111,25 +105,21 @@ extern_methods!(
         #[method_id(@__retain_semantics Other item)]
         pub unsafe fn item(&self) -> Id<AnyObject>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(draggingFrame)]
         pub unsafe fn draggingFrame(&self) -> NSRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setDraggingFrame:)]
         pub unsafe fn setDraggingFrame(&self, dragging_frame: NSRect);
 
-        #[cfg(all(
-            feature = "AppKit_NSDraggingImageComponent",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(imageComponentsProvider)]
         pub unsafe fn imageComponentsProvider(
             &self,
         ) -> *mut Block<dyn Fn() -> NonNull<NSArray<NSDraggingImageComponent>>>;
 
-        #[cfg(all(
-            feature = "AppKit_NSDraggingImageComponent",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(setImageComponentsProvider:)]
         pub unsafe fn setImageComponentsProvider(
             &self,
@@ -138,13 +128,11 @@ extern_methods!(
             >,
         );
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setDraggingFrame:contents:)]
         pub unsafe fn setDraggingFrame_contents(&self, frame: NSRect, contents: Option<&AnyObject>);
 
-        #[cfg(all(
-            feature = "AppKit_NSDraggingImageComponent",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other imageComponents)]
         pub unsafe fn imageComponents(&self) -> Option<Id<NSArray<NSDraggingImageComponent>>>;
     }
@@ -152,7 +140,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSDraggingItem")]
     unsafe impl NSDraggingItem {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

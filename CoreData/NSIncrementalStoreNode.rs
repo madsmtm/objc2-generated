@@ -6,21 +6,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSIncrementalStoreNode")]
     pub struct NSIncrementalStoreNode;
 
-    #[cfg(feature = "CoreData_NSIncrementalStoreNode")]
     unsafe impl ClassType for NSIncrementalStoreNode {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreData_NSIncrementalStoreNode")]
 unsafe impl NSObjectProtocol for NSIncrementalStoreNode {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSIncrementalStoreNode")]
     unsafe impl NSIncrementalStoreNode {
         #[cfg(all(
             feature = "CoreData_NSManagedObjectID",
@@ -61,7 +57,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSIncrementalStoreNode")]
     unsafe impl NSIncrementalStoreNode {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

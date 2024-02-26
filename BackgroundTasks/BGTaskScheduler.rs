@@ -4,7 +4,7 @@ use crate::common::*;
 use crate::BackgroundTasks::*;
 use crate::Foundation::*;
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
 extern_static!(BGTaskSchedulerErrorDomain: &'static NSErrorDomain);
 
 ns_error_enum!(
@@ -21,21 +21,17 @@ ns_error_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "BackgroundTasks_BGTaskScheduler")]
     pub struct BGTaskScheduler;
 
-    #[cfg(feature = "BackgroundTasks_BGTaskScheduler")]
     unsafe impl ClassType for BGTaskScheduler {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "BackgroundTasks_BGTaskScheduler")]
 unsafe impl NSObjectProtocol for BGTaskScheduler {}
 
 extern_methods!(
-    #[cfg(feature = "BackgroundTasks_BGTaskScheduler")]
     unsafe impl BGTaskScheduler {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

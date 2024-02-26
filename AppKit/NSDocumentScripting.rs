@@ -24,7 +24,10 @@ extern_methods!(
             command: &NSScriptCommand,
         ) -> Option<Id<AnyObject>>;
 
-        #[cfg(feature = "Foundation_NSCloseCommand")]
+        #[cfg(all(
+            feature = "Foundation_NSScriptCommand",
+            feature = "Foundation_NSScriptStandardSuiteCommands"
+        ))]
         #[method_id(@__retain_semantics Other handleCloseScriptCommand:)]
         pub unsafe fn handleCloseScriptCommand(
             &self,
@@ -38,7 +41,7 @@ extern_methods!(
             command: &NSScriptCommand,
         ) -> Option<Id<AnyObject>>;
 
-        #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
+        #[cfg(feature = "Foundation_NSScriptObjectSpecifiers")]
         #[method_id(@__retain_semantics Other objectSpecifier)]
         pub unsafe fn objectSpecifier(&self) -> Id<NSScriptObjectSpecifier>;
     }

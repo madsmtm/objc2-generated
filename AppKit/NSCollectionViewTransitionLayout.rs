@@ -10,10 +10,10 @@ pub type NSCollectionViewTransitionLayoutAnimatedKey = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSCollectionViewTransitionLayout")]
+    #[cfg(feature = "AppKit_NSCollectionViewLayout")]
     pub struct NSCollectionViewTransitionLayout;
 
-    #[cfg(feature = "AppKit_NSCollectionViewTransitionLayout")]
+    #[cfg(feature = "AppKit_NSCollectionViewLayout")]
     unsafe impl ClassType for NSCollectionViewTransitionLayout {
         #[inherits(NSObject)]
         type Super = NSCollectionViewLayout;
@@ -21,18 +21,23 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSCollectionViewTransitionLayout")]
+#[cfg(all(
+    feature = "AppKit_NSCollectionViewLayout",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSCollectionViewTransitionLayout {}
 
-#[cfg(feature = "AppKit_NSCollectionViewTransitionLayout")]
+#[cfg(feature = "AppKit_NSCollectionViewLayout")]
 unsafe impl NSObjectProtocol for NSCollectionViewTransitionLayout {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSCollectionViewTransitionLayout")]
+    #[cfg(feature = "AppKit_NSCollectionViewLayout")]
     unsafe impl NSCollectionViewTransitionLayout {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(transitionProgress)]
         pub unsafe fn transitionProgress(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setTransitionProgress:)]
         pub unsafe fn setTransitionProgress(&self, transition_progress: CGFloat);
 
@@ -49,7 +54,7 @@ extern_methods!(
             new_layout: &NSCollectionViewLayout,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSGeometry", feature = "Foundation_NSString"))]
         #[method(updateValue:forAnimatedKey:)]
         pub unsafe fn updateValue_forAnimatedKey(
             &self,
@@ -57,7 +62,7 @@ extern_methods!(
             key: &NSCollectionViewTransitionLayoutAnimatedKey,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSGeometry", feature = "Foundation_NSString"))]
         #[method(valueForAnimatedKey:)]
         pub unsafe fn valueForAnimatedKey(
             &self,
@@ -68,7 +73,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSCollectionViewTransitionLayout")]
+    #[cfg(feature = "AppKit_NSCollectionViewLayout")]
     unsafe impl NSCollectionViewTransitionLayout {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -5,6 +5,7 @@ use crate::Foundation::*;
 
 extern_struct!(
     #[encoding_name("?")]
+    #[cfg(feature = "Foundation_NSGeometry")]
     pub struct NSAffineTransformStruct {
         pub m11: CGFloat,
         pub m12: CGFloat,
@@ -15,36 +16,34 @@ extern_struct!(
     }
 );
 
+#[cfg(feature = "Foundation_NSGeometry")]
 unsafe impl Send for NSAffineTransformStruct {}
 
+#[cfg(feature = "Foundation_NSGeometry")]
 unsafe impl Sync for NSAffineTransformStruct {}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSAffineTransform")]
     pub struct NSAffineTransform;
 
-    #[cfg(feature = "Foundation_NSAffineTransform")]
     unsafe impl ClassType for NSAffineTransform {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSAffineTransform")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSAffineTransform {}
 
-#[cfg(feature = "Foundation_NSAffineTransform")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSAffineTransform {}
 
-#[cfg(feature = "Foundation_NSAffineTransform")]
 unsafe impl NSObjectProtocol for NSAffineTransform {}
 
-#[cfg(feature = "Foundation_NSAffineTransform")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSAffineTransform {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSAffineTransform")]
     unsafe impl NSAffineTransform {
         #[method_id(@__retain_semantics Other transform)]
         pub unsafe fn transform() -> Id<NSAffineTransform>;
@@ -58,18 +57,23 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(translateXBy:yBy:)]
         pub unsafe fn translateXBy_yBy(&self, delta_x: CGFloat, delta_y: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(rotateByDegrees:)]
         pub unsafe fn rotateByDegrees(&self, angle: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(rotateByRadians:)]
         pub unsafe fn rotateByRadians(&self, angle: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(scaleBy:)]
         pub unsafe fn scaleBy(&self, scale: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(scaleXBy:yBy:)]
         pub unsafe fn scaleXBy_yBy(&self, scale_x: CGFloat, scale_y: CGFloat);
 
@@ -82,15 +86,19 @@ extern_methods!(
         #[method(prependTransform:)]
         pub unsafe fn prependTransform(&self, transform: &NSAffineTransform);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(transformPoint:)]
         pub unsafe fn transformPoint(&self, a_point: NSPoint) -> NSPoint;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(transformSize:)]
         pub unsafe fn transformSize(&self, a_size: NSSize) -> NSSize;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(transformStruct)]
         pub unsafe fn transformStruct(&self) -> NSAffineTransformStruct;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setTransformStruct:)]
         pub unsafe fn setTransformStruct(&self, transform_struct: NSAffineTransformStruct);
     }
@@ -98,7 +106,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSAffineTransform")]
     unsafe impl NSAffineTransform {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

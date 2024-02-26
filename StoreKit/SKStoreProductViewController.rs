@@ -7,10 +7,10 @@ use crate::StoreKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "StoreKit_SKStoreProductViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     pub struct SKStoreProductViewController;
 
-    #[cfg(feature = "StoreKit_SKStoreProductViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl ClassType for SKStoreProductViewController {
         #[inherits(NSResponder, NSObject)]
         type Super = NSViewController;
@@ -18,23 +18,39 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "StoreKit_SKStoreProductViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for SKStoreProductViewController {}
 
-#[cfg(feature = "StoreKit_SKStoreProductViewController")]
+#[cfg(all(
+    feature = "AppKit_NSKeyValueBinding",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSEditor for SKStoreProductViewController {}
 
-#[cfg(feature = "StoreKit_SKStoreProductViewController")]
+#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
 unsafe impl NSObjectProtocol for SKStoreProductViewController {}
 
-#[cfg(feature = "StoreKit_SKStoreProductViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSStoryboardSegue",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSSeguePerforming for SKStoreProductViewController {}
 
-#[cfg(feature = "StoreKit_SKStoreProductViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSUserInterfaceItemIdentification for SKStoreProductViewController {}
 
 extern_methods!(
-    #[cfg(feature = "StoreKit_SKStoreProductViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl SKStoreProductViewController {
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
@@ -77,9 +93,13 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSViewController`
-    #[cfg(feature = "StoreKit_SKStoreProductViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl SKStoreProductViewController {
-        #[cfg(all(feature = "Foundation_NSBundle", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSNib",
+            feature = "Foundation_NSBundle",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -95,7 +115,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "StoreKit_SKStoreProductViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl SKStoreProductViewController {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -104,7 +124,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "StoreKit_SKStoreProductViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl SKStoreProductViewController {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -113,7 +133,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait SKStoreProductViewControllerDelegate: NSObjectProtocol {
-        #[cfg(feature = "StoreKit_SKStoreProductViewController")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
         #[optional]
         #[method(productViewControllerDidFinish:)]
         unsafe fn productViewControllerDidFinish(

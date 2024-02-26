@@ -29,39 +29,35 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSMenu")]
     pub struct NSMenu;
 
-    #[cfg(feature = "AppKit_NSMenu")]
     unsafe impl ClassType for NSMenu {
         type Super = NSObject;
         type Mutability = MainThreadOnly;
     }
 );
 
-#[cfg(feature = "AppKit_NSMenu")]
+#[cfg(feature = "AppKit_NSAccessibilityProtocols")]
 unsafe impl NSAccessibility for NSMenu {}
 
-#[cfg(feature = "AppKit_NSMenu")]
+#[cfg(feature = "AppKit_NSAccessibilityProtocols")]
 unsafe impl NSAccessibilityElementProtocol for NSMenu {}
 
-#[cfg(feature = "AppKit_NSMenu")]
+#[cfg(feature = "AppKit_NSAppearance")]
 unsafe impl NSAppearanceCustomization for NSMenu {}
 
-#[cfg(feature = "AppKit_NSMenu")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSMenu {}
 
-#[cfg(feature = "AppKit_NSMenu")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSMenu {}
 
-#[cfg(feature = "AppKit_NSMenu")]
 unsafe impl NSObjectProtocol for NSMenu {}
 
-#[cfg(feature = "AppKit_NSMenu")]
+#[cfg(feature = "AppKit_NSUserInterfaceItemIdentification")]
 unsafe impl NSUserInterfaceItemIdentification for NSMenu {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSMenu")]
     unsafe impl NSMenu {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithTitle:)]
@@ -79,7 +75,11 @@ extern_methods!(
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
-        #[cfg(all(feature = "AppKit_NSEvent", feature = "AppKit_NSView"))]
+        #[cfg(all(
+            feature = "AppKit_NSEvent",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView"
+        ))]
         #[method(popUpContextMenu:withEvent:forView:)]
         pub unsafe fn popUpContextMenu_withEvent_forView(
             menu: &NSMenu,
@@ -90,6 +90,7 @@ extern_methods!(
         #[cfg(all(
             feature = "AppKit_NSEvent",
             feature = "AppKit_NSFont",
+            feature = "AppKit_NSResponder",
             feature = "AppKit_NSView"
         ))]
         #[method(popUpContextMenu:withEvent:forView:withFont:)]
@@ -100,7 +101,12 @@ extern_methods!(
             font: Option<&NSFont>,
         );
 
-        #[cfg(all(feature = "AppKit_NSMenuItem", feature = "AppKit_NSView"))]
+        #[cfg(all(
+            feature = "AppKit_NSMenuItem",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[method(popUpMenuPositioningItem:atLocation:inView:)]
         pub unsafe fn popUpMenuPositioningItem_atLocation_inView(
             &self,
@@ -238,6 +244,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSMenuDelegate>>);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(menuBarHeight)]
         pub unsafe fn menuBarHeight(&self) -> CGFloat;
 
@@ -251,12 +258,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Other highlightedItem)]
         pub unsafe fn highlightedItem(&self) -> Option<Id<NSMenuItem>>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(minimumWidth)]
         pub unsafe fn minimumWidth(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setMinimumWidth:)]
         pub unsafe fn setMinimumWidth(&self, minimum_width: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(size)]
         pub unsafe fn size(&self) -> NSSize;
 
@@ -280,9 +290,11 @@ extern_methods!(
         #[method(setShowsStateColumn:)]
         pub unsafe fn setShowsStateColumn(&self, shows_state_column: bool);
 
+        #[cfg(feature = "AppKit_NSUserInterfaceLayout")]
         #[method(userInterfaceLayoutDirection)]
         pub unsafe fn userInterfaceLayoutDirection(&self) -> NSUserInterfaceLayoutDirection;
 
+        #[cfg(feature = "AppKit_NSUserInterfaceLayout")]
         #[method(setUserInterfaceLayoutDirection:)]
         pub unsafe fn setUserInterfaceLayoutDirection(
             &self,
@@ -293,7 +305,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSMenu")]
     unsafe impl NSMenu {
         #[method_id(@__retain_semantics Init init)]
         pub fn init(this: Allocated<Self>) -> Id<Self>;
@@ -305,7 +316,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSPaletteMenus
-    #[cfg(feature = "AppKit_NSMenu")]
     unsafe impl NSMenu {
         #[cfg(all(
             feature = "AppKit_NSColor",
@@ -359,7 +369,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSSubmenuAction
-    #[cfg(feature = "AppKit_NSMenu")]
     unsafe impl NSMenu {
         #[method(submenuAction:)]
         pub unsafe fn submenuAction(&self, sender: Option<&AnyObject>);
@@ -378,17 +387,15 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait NSMenuDelegate: NSObjectProtocol + IsMainThreadOnly {
-        #[cfg(feature = "AppKit_NSMenu")]
         #[optional]
         #[method(menuNeedsUpdate:)]
         unsafe fn menuNeedsUpdate(&self, menu: &NSMenu);
 
-        #[cfg(feature = "AppKit_NSMenu")]
         #[optional]
         #[method(numberOfItemsInMenu:)]
         unsafe fn numberOfItemsInMenu(&self, menu: &NSMenu) -> NSInteger;
 
-        #[cfg(all(feature = "AppKit_NSMenu", feature = "AppKit_NSMenuItem"))]
+        #[cfg(feature = "AppKit_NSMenuItem")]
         #[optional]
         #[method(menu:updateItem:atIndex:shouldCancel:)]
         unsafe fn menu_updateItem_atIndex_shouldCancel(
@@ -399,22 +406,20 @@ extern_protocol!(
             should_cancel: bool,
         ) -> bool;
 
-        #[cfg(feature = "AppKit_NSMenu")]
         #[optional]
         #[method(menuWillOpen:)]
         unsafe fn menuWillOpen(&self, menu: &NSMenu);
 
-        #[cfg(feature = "AppKit_NSMenu")]
         #[optional]
         #[method(menuDidClose:)]
         unsafe fn menuDidClose(&self, menu: &NSMenu);
 
-        #[cfg(all(feature = "AppKit_NSMenu", feature = "AppKit_NSMenuItem"))]
+        #[cfg(feature = "AppKit_NSMenuItem")]
         #[optional]
         #[method(menu:willHighlightItem:)]
         unsafe fn menu_willHighlightItem(&self, menu: &NSMenu, item: Option<&NSMenuItem>);
 
-        #[cfg(all(feature = "AppKit_NSMenu", feature = "AppKit_NSScreen"))]
+        #[cfg(all(feature = "AppKit_NSScreen", feature = "Foundation_NSGeometry"))]
         #[optional]
         #[method(confinementRectForMenu:onScreen:)]
         unsafe fn confinementRectForMenu_onScreen(
@@ -441,37 +446,35 @@ ns_options!(
 
 extern_methods!(
     /// NSMenuPropertiesToUpdate
-    #[cfg(feature = "AppKit_NSMenu")]
     unsafe impl NSMenu {
         #[method(propertiesToUpdate)]
         pub unsafe fn propertiesToUpdate(&self) -> NSMenuProperties;
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSMenuWillSendActionNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSMenuDidSendActionNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSMenuDidAddItemNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSMenuDidRemoveItemNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSMenuDidChangeItemNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSMenuDidBeginTrackingNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSMenuDidEndTrackingNotification: &'static NSNotificationName);
 
 extern_methods!(
     /// NSDeprecated
-    #[cfg(feature = "AppKit_NSMenu")]
     unsafe impl NSMenu {
         #[deprecated]
         #[method(setMenuRepresentation:)]
@@ -497,10 +500,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Other tearOffMenuRepresentation)]
         pub unsafe fn tearOffMenuRepresentation(&self) -> Option<Id<AnyObject>>;
 
+        #[cfg(feature = "Foundation_NSZone")]
         #[deprecated]
         #[method(menuZone)]
         pub unsafe fn menuZone(mtm: MainThreadMarker) -> *mut NSZone;
 
+        #[cfg(feature = "Foundation_NSZone")]
         #[deprecated]
         #[method(setMenuZone:)]
         pub unsafe fn setMenuZone(zone: *mut NSZone, mtm: MainThreadMarker);
@@ -517,6 +522,7 @@ extern_methods!(
         #[method(sizeToFit)]
         pub unsafe fn sizeToFit(&self);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[deprecated]
         #[method(locationForSubmenu:)]
         pub unsafe fn locationForSubmenu(&self, submenu: Option<&NSMenu>) -> NSPoint;

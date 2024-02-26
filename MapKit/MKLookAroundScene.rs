@@ -9,24 +9,20 @@ use crate::MapKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKLookAroundScene")]
     pub struct MKLookAroundScene;
 
-    #[cfg(feature = "MapKit_MKLookAroundScene")]
     unsafe impl ClassType for MKLookAroundScene {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MapKit_MKLookAroundScene")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MKLookAroundScene {}
 
-#[cfg(feature = "MapKit_MKLookAroundScene")]
 unsafe impl NSObjectProtocol for MKLookAroundScene {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKLookAroundScene")]
     unsafe impl MKLookAroundScene {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

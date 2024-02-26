@@ -5,21 +5,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSScriptExecutionContext")]
     pub struct NSScriptExecutionContext;
 
-    #[cfg(feature = "Foundation_NSScriptExecutionContext")]
     unsafe impl ClassType for NSScriptExecutionContext {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSScriptExecutionContext")]
 unsafe impl NSObjectProtocol for NSScriptExecutionContext {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSScriptExecutionContext")]
     unsafe impl NSScriptExecutionContext {
         #[method_id(@__retain_semantics Other sharedScriptExecutionContext)]
         pub unsafe fn sharedScriptExecutionContext() -> Id<NSScriptExecutionContext>;
@@ -46,7 +42,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSScriptExecutionContext")]
     unsafe impl NSScriptExecutionContext {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

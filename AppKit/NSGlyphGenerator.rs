@@ -11,6 +11,7 @@ pub const NSWantsBidiLevels: c_uint = 1 << 2;
 
 extern_protocol!(
     pub unsafe trait NSGlyphStorage {
+        #[cfg(feature = "AppKit_NSFont")]
         #[method(insertGlyphs:length:forStartingGlyphAtIndex:characterIndex:)]
         unsafe fn insertGlyphs_length_forStartingGlyphAtIndex_characterIndex(
             &self,
@@ -41,21 +42,17 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSGlyphGenerator")]
     pub struct NSGlyphGenerator;
 
-    #[cfg(feature = "AppKit_NSGlyphGenerator")]
     unsafe impl ClassType for NSGlyphGenerator {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSGlyphGenerator")]
 unsafe impl NSObjectProtocol for NSGlyphGenerator {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSGlyphGenerator")]
     unsafe impl NSGlyphGenerator {
         #[method(generateGlyphsForGlyphStorage:desiredNumberOfCharacters:glyphIndex:characterIndex:)]
         pub unsafe fn generateGlyphsForGlyphStorage_desiredNumberOfCharacters_glyphIndex_characterIndex(
@@ -73,7 +70,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSGlyphGenerator")]
     unsafe impl NSGlyphGenerator {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -6,24 +6,20 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSPersistentHistoryTransaction")]
     pub struct NSPersistentHistoryTransaction;
 
-    #[cfg(feature = "CoreData_NSPersistentHistoryTransaction")]
     unsafe impl ClassType for NSPersistentHistoryTransaction {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreData_NSPersistentHistoryTransaction")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSPersistentHistoryTransaction {}
 
-#[cfg(feature = "CoreData_NSPersistentHistoryTransaction")]
 unsafe impl NSObjectProtocol for NSPersistentHistoryTransaction {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSPersistentHistoryTransaction")]
     unsafe impl NSPersistentHistoryTransaction {
         #[cfg(all(
             feature = "CoreData_NSEntityDescription",
@@ -38,7 +34,10 @@ extern_methods!(
         #[method_id(@__retain_semantics Other entityDescription)]
         pub unsafe fn entityDescription() -> Option<Id<NSEntityDescription>>;
 
-        #[cfg(feature = "CoreData_NSFetchRequest")]
+        #[cfg(all(
+            feature = "CoreData_NSFetchRequest",
+            feature = "CoreData_NSPersistentStoreRequest"
+        ))]
         #[method_id(@__retain_semantics Other fetchRequest)]
         pub unsafe fn fetchRequest() -> Option<Id<NSFetchRequest>>;
 
@@ -88,7 +87,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSPersistentHistoryTransaction")]
     unsafe impl NSPersistentHistoryTransaction {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

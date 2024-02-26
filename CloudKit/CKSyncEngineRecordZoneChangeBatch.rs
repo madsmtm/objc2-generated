@@ -7,32 +7,26 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKSyncEngineRecordZoneChangeBatch")]
     pub struct CKSyncEngineRecordZoneChangeBatch;
 
-    #[cfg(feature = "CloudKit_CKSyncEngineRecordZoneChangeBatch")]
     unsafe impl ClassType for CKSyncEngineRecordZoneChangeBatch {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CloudKit_CKSyncEngineRecordZoneChangeBatch")]
 unsafe impl Send for CKSyncEngineRecordZoneChangeBatch {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineRecordZoneChangeBatch")]
 unsafe impl Sync for CKSyncEngineRecordZoneChangeBatch {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineRecordZoneChangeBatch")]
 unsafe impl NSObjectProtocol for CKSyncEngineRecordZoneChangeBatch {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKSyncEngineRecordZoneChangeBatch")]
     unsafe impl CKSyncEngineRecordZoneChangeBatch {
         #[cfg(all(
             feature = "CloudKit_CKRecord",
             feature = "CloudKit_CKRecordID",
-            feature = "CloudKit_CKSyncEnginePendingRecordZoneChange",
+            feature = "CloudKit_CKSyncEngineState",
             feature = "Foundation_NSArray"
         ))]
         #[method_id(@__retain_semantics Init initWithPendingChanges:recordProvider:)]

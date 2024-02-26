@@ -4,7 +4,7 @@ use crate::common::*;
 use crate::AdServices::*;
 use crate::Foundation::*;
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
 extern_static!(AAAttributionErrorDomain: &'static NSErrorDomain);
 
 ns_error_enum!(
@@ -21,21 +21,17 @@ ns_error_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AdServices_AAAttribution")]
     pub struct AAAttribution;
 
-    #[cfg(feature = "AdServices_AAAttribution")]
     unsafe impl ClassType for AAAttribution {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AdServices_AAAttribution")]
 unsafe impl NSObjectProtocol for AAAttribution {}
 
 extern_methods!(
-    #[cfg(feature = "AdServices_AAAttribution")]
     unsafe impl AAAttribution {
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other attributionTokenWithError:_)]
@@ -45,7 +41,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AdServices_AAAttribution")]
     unsafe impl AAAttribution {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

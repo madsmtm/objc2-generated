@@ -17,29 +17,17 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(
-        feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput"
-    )]
     pub struct ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput;
 
-    #[cfg(
-        feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput"
-    )]
     unsafe impl ClassType for ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(
-    feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput"
-)]
 unsafe impl NSObjectProtocol for ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput {}
 
 extern_methods!(
-    #[cfg(
-        feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput"
-    )]
     unsafe impl ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput {
         #[method_id(@__retain_semantics Init initWithSupportRequirement:)]
         pub unsafe fn initWithSupportRequirement(

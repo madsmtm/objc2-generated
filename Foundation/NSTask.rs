@@ -15,27 +15,21 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSTask")]
     pub struct NSTask;
 
-    #[cfg(feature = "Foundation_NSTask")]
     unsafe impl ClassType for NSTask {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSTask")]
 unsafe impl Send for NSTask {}
 
-#[cfg(feature = "Foundation_NSTask")]
 unsafe impl Sync for NSTask {}
 
-#[cfg(feature = "Foundation_NSTask")]
 unsafe impl NSObjectProtocol for NSTask {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSTask")]
     unsafe impl NSTask {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -127,9 +121,11 @@ extern_methods!(
             termination_handler: Option<&Block<dyn Fn(NonNull<NSTask>)>>,
         );
 
+        #[cfg(feature = "Foundation_NSObjCRuntime")]
         #[method(qualityOfService)]
         pub unsafe fn qualityOfService(&self) -> NSQualityOfService;
 
+        #[cfg(feature = "Foundation_NSObjCRuntime")]
         #[method(setQualityOfService:)]
         pub unsafe fn setQualityOfService(&self, quality_of_service: NSQualityOfService);
     }
@@ -137,7 +133,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSTask")]
     unsafe impl NSTask {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -146,7 +141,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSTaskConveniences
-    #[cfg(feature = "Foundation_NSTask")]
     unsafe impl NSTask {
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -169,7 +163,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSDeprecated
-    #[cfg(feature = "Foundation_NSTask")]
     unsafe impl NSTask {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
@@ -205,5 +198,5 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSTaskDidTerminateNotification: &'static NSNotificationName);

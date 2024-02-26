@@ -18,10 +18,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKVisionPrescription")]
+    #[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
     pub struct HKVisionPrescription;
 
-    #[cfg(feature = "HealthKit_HKVisionPrescription")]
+    #[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
     unsafe impl ClassType for HKVisionPrescription {
         #[inherits(HKObject, NSObject)]
         type Super = HKSample;
@@ -29,20 +29,32 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKVisionPrescription")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "HealthKit_HKObject",
+    feature = "HealthKit_HKSample"
+))]
 unsafe impl NSCoding for HKVisionPrescription {}
 
-#[cfg(feature = "HealthKit_HKVisionPrescription")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "HealthKit_HKObject",
+    feature = "HealthKit_HKSample"
+))]
 unsafe impl NSCopying for HKVisionPrescription {}
 
-#[cfg(feature = "HealthKit_HKVisionPrescription")]
+#[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
 unsafe impl NSObjectProtocol for HKVisionPrescription {}
 
-#[cfg(feature = "HealthKit_HKVisionPrescription")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "HealthKit_HKObject",
+    feature = "HealthKit_HKSample"
+))]
 unsafe impl NSSecureCoding for HKVisionPrescription {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKVisionPrescription")]
+    #[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
     unsafe impl HKVisionPrescription {
         #[method(prescriptionType)]
         pub unsafe fn prescriptionType(&self) -> HKVisionPrescriptionType;

@@ -22,10 +22,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "ClassKit_CLSProgressReportingCapability")]
+    #[cfg(feature = "ClassKit_CLSObject")]
     pub struct CLSProgressReportingCapability;
 
-    #[cfg(feature = "ClassKit_CLSProgressReportingCapability")]
+    #[cfg(feature = "ClassKit_CLSObject")]
     unsafe impl ClassType for CLSProgressReportingCapability {
         #[inherits(NSObject)]
         type Super = CLSObject;
@@ -33,17 +33,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "ClassKit_CLSProgressReportingCapability")]
+#[cfg(all(feature = "ClassKit_CLSObject", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for CLSProgressReportingCapability {}
 
-#[cfg(feature = "ClassKit_CLSProgressReportingCapability")]
+#[cfg(feature = "ClassKit_CLSObject")]
 unsafe impl NSObjectProtocol for CLSProgressReportingCapability {}
 
-#[cfg(feature = "ClassKit_CLSProgressReportingCapability")]
+#[cfg(all(feature = "ClassKit_CLSObject", feature = "Foundation_NSObject"))]
 unsafe impl NSSecureCoding for CLSProgressReportingCapability {}
 
 extern_methods!(
-    #[cfg(feature = "ClassKit_CLSProgressReportingCapability")]
+    #[cfg(feature = "ClassKit_CLSObject")]
     unsafe impl CLSProgressReportingCapability {
         #[method(kind)]
         pub unsafe fn kind(&self) -> CLSProgressReportingCapabilityKind;
@@ -64,7 +64,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CLSObject`
-    #[cfg(feature = "ClassKit_CLSProgressReportingCapability")]
+    #[cfg(feature = "ClassKit_CLSObject")]
     unsafe impl CLSProgressReportingCapability {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

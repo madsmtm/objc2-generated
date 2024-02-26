@@ -5,30 +5,26 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSInflectionRule")]
     pub struct NSInflectionRule;
 
-    #[cfg(feature = "Foundation_NSInflectionRule")]
     unsafe impl ClassType for NSInflectionRule {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSInflectionRule")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSInflectionRule {}
 
-#[cfg(feature = "Foundation_NSInflectionRule")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSInflectionRule {}
 
-#[cfg(feature = "Foundation_NSInflectionRule")]
 unsafe impl NSObjectProtocol for NSInflectionRule {}
 
-#[cfg(feature = "Foundation_NSInflectionRule")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSInflectionRule {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSInflectionRule")]
     unsafe impl NSInflectionRule {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -40,7 +36,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSInflectionRule")]
     unsafe impl NSInflectionRule {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -49,10 +44,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSInflectionRuleExplicit")]
     pub struct NSInflectionRuleExplicit;
 
-    #[cfg(feature = "Foundation_NSInflectionRuleExplicit")]
     unsafe impl ClassType for NSInflectionRuleExplicit {
         #[inherits(NSObject)]
         type Super = NSInflectionRule;
@@ -60,20 +53,18 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSInflectionRuleExplicit")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSInflectionRuleExplicit {}
 
-#[cfg(feature = "Foundation_NSInflectionRuleExplicit")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSInflectionRuleExplicit {}
 
-#[cfg(feature = "Foundation_NSInflectionRuleExplicit")]
 unsafe impl NSObjectProtocol for NSInflectionRuleExplicit {}
 
-#[cfg(feature = "Foundation_NSInflectionRuleExplicit")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSInflectionRuleExplicit {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSInflectionRuleExplicit")]
     unsafe impl NSInflectionRuleExplicit {
         #[cfg(feature = "Foundation_NSMorphology")]
         #[method_id(@__retain_semantics Init initWithMorphology:)]
@@ -90,7 +81,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSInflectionRule`
-    #[cfg(feature = "Foundation_NSInflectionRuleExplicit")]
     unsafe impl NSInflectionRuleExplicit {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -99,7 +89,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSInflectionRuleExplicit")]
     unsafe impl NSInflectionRuleExplicit {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -108,7 +97,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSInflectionAvailability
-    #[cfg(feature = "Foundation_NSInflectionRule")]
     unsafe impl NSInflectionRule {
         #[cfg(feature = "Foundation_NSString")]
         #[method(canInflectLanguage:)]

@@ -28,21 +28,17 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSJSONSerialization")]
     pub struct NSJSONSerialization;
 
-    #[cfg(feature = "Foundation_NSJSONSerialization")]
     unsafe impl ClassType for NSJSONSerialization {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSJSONSerialization")]
 unsafe impl NSObjectProtocol for NSJSONSerialization {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSJSONSerialization")]
     unsafe impl NSJSONSerialization {
         #[method(isValidJSONObject:)]
         pub unsafe fn isValidJSONObject(obj: &AnyObject) -> bool;
@@ -61,7 +57,7 @@ extern_methods!(
             opt: NSJSONReadingOptions,
         ) -> Result<Id<AnyObject>, Id<NSError>>;
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSInputStream"))]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSStream"))]
         #[method_id(@__retain_semantics Other JSONObjectWithStream:options:error:_)]
         pub unsafe fn JSONObjectWithStream_options_error(
             stream: &NSInputStream,
@@ -72,7 +68,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSJSONSerialization")]
     unsafe impl NSJSONSerialization {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -7,10 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTitlebarAccessoryViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     pub struct NSTitlebarAccessoryViewController;
 
-    #[cfg(feature = "AppKit_NSTitlebarAccessoryViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl ClassType for NSTitlebarAccessoryViewController {
         #[inherits(NSResponder, NSObject)]
         type Super = NSViewController;
@@ -18,39 +18,67 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSTitlebarAccessoryViewController")]
+#[cfg(all(
+    feature = "AppKit_NSAnimation",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSAnimatablePropertyContainer for NSTitlebarAccessoryViewController {}
 
-#[cfg(feature = "AppKit_NSTitlebarAccessoryViewController")]
+#[cfg(all(
+    feature = "AppKit_NSAnimation",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSAnimationDelegate for NSTitlebarAccessoryViewController {}
 
-#[cfg(feature = "AppKit_NSTitlebarAccessoryViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSTitlebarAccessoryViewController {}
 
-#[cfg(feature = "AppKit_NSTitlebarAccessoryViewController")]
+#[cfg(all(
+    feature = "AppKit_NSKeyValueBinding",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSEditor for NSTitlebarAccessoryViewController {}
 
-#[cfg(feature = "AppKit_NSTitlebarAccessoryViewController")]
+#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
 unsafe impl NSObjectProtocol for NSTitlebarAccessoryViewController {}
 
-#[cfg(feature = "AppKit_NSTitlebarAccessoryViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSStoryboardSegue",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSSeguePerforming for NSTitlebarAccessoryViewController {}
 
-#[cfg(feature = "AppKit_NSTitlebarAccessoryViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSTitlebarAccessoryViewController {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTitlebarAccessoryViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl NSTitlebarAccessoryViewController {
+        #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method(layoutAttribute)]
         pub unsafe fn layoutAttribute(&self) -> NSLayoutAttribute;
 
+        #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method(setLayoutAttribute:)]
         pub unsafe fn setLayoutAttribute(&self, layout_attribute: NSLayoutAttribute);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(fullScreenMinHeight)]
         pub unsafe fn fullScreenMinHeight(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setFullScreenMinHeight:)]
         pub unsafe fn setFullScreenMinHeight(&self, full_screen_min_height: CGFloat);
 
@@ -79,9 +107,13 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSViewController`
-    #[cfg(feature = "AppKit_NSTitlebarAccessoryViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl NSTitlebarAccessoryViewController {
-        #[cfg(all(feature = "Foundation_NSBundle", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSNib",
+            feature = "Foundation_NSBundle",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -97,7 +129,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "AppKit_NSTitlebarAccessoryViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl NSTitlebarAccessoryViewController {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -106,7 +138,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTitlebarAccessoryViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl NSTitlebarAccessoryViewController {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

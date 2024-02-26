@@ -21,27 +21,23 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameKit_GKChallenge")]
     pub struct GKChallenge;
 
-    #[cfg(feature = "GameKit_GKChallenge")]
     unsafe impl ClassType for GKChallenge {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "GameKit_GKChallenge")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for GKChallenge {}
 
-#[cfg(feature = "GameKit_GKChallenge")]
 unsafe impl NSObjectProtocol for GKChallenge {}
 
-#[cfg(feature = "GameKit_GKChallenge")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for GKChallenge {}
 
 extern_methods!(
-    #[cfg(feature = "GameKit_GKChallenge")]
     unsafe impl GKChallenge {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSError"))]
         #[method(loadReceivedChallengesWithCompletionHandler:)]
@@ -52,11 +48,11 @@ extern_methods!(
         #[method(decline)]
         pub unsafe fn decline(&self);
 
-        #[cfg(feature = "GameKit_GKPlayer")]
+        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
         #[method_id(@__retain_semantics Other issuingPlayer)]
         pub unsafe fn issuingPlayer(&self) -> Option<Id<GKPlayer>>;
 
-        #[cfg(feature = "GameKit_GKPlayer")]
+        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
         #[method_id(@__retain_semantics Other receivingPlayer)]
         pub unsafe fn receivingPlayer(&self) -> Option<Id<GKPlayer>>;
 
@@ -79,7 +75,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameKit_GKChallenge")]
     unsafe impl GKChallenge {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -91,7 +86,6 @@ extern_methods!(
 
 extern_methods!(
     /// Obsoleted
-    #[cfg(feature = "GameKit_GKChallenge")]
     unsafe impl GKChallenge {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
@@ -107,10 +101,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameKit_GKScoreChallenge")]
     pub struct GKScoreChallenge;
 
-    #[cfg(feature = "GameKit_GKScoreChallenge")]
     unsafe impl ClassType for GKScoreChallenge {
         #[inherits(NSObject)]
         type Super = GKChallenge;
@@ -118,17 +110,15 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "GameKit_GKScoreChallenge")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for GKScoreChallenge {}
 
-#[cfg(feature = "GameKit_GKScoreChallenge")]
 unsafe impl NSObjectProtocol for GKScoreChallenge {}
 
-#[cfg(feature = "GameKit_GKScoreChallenge")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for GKScoreChallenge {}
 
 extern_methods!(
-    #[cfg(feature = "GameKit_GKScoreChallenge")]
     unsafe impl GKScoreChallenge {
         #[cfg(feature = "GameKit_GKScore")]
         #[method_id(@__retain_semantics Other score)]
@@ -138,7 +128,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameKit_GKScoreChallenge")]
     unsafe impl GKScoreChallenge {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -150,10 +139,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameKit_GKAchievementChallenge")]
     pub struct GKAchievementChallenge;
 
-    #[cfg(feature = "GameKit_GKAchievementChallenge")]
     unsafe impl ClassType for GKAchievementChallenge {
         #[inherits(NSObject)]
         type Super = GKChallenge;
@@ -161,17 +148,15 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "GameKit_GKAchievementChallenge")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for GKAchievementChallenge {}
 
-#[cfg(feature = "GameKit_GKAchievementChallenge")]
 unsafe impl NSObjectProtocol for GKAchievementChallenge {}
 
-#[cfg(feature = "GameKit_GKAchievementChallenge")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for GKAchievementChallenge {}
 
 extern_methods!(
-    #[cfg(feature = "GameKit_GKAchievementChallenge")]
     unsafe impl GKAchievementChallenge {
         #[cfg(feature = "GameKit_GKAchievement")]
         #[method_id(@__retain_semantics Other achievement)]
@@ -181,7 +166,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameKit_GKAchievementChallenge")]
     unsafe impl GKAchievementChallenge {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -230,6 +214,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSError",
+            feature = "GameKit_GKBasePlayer",
             feature = "GameKit_GKPlayer"
         ))]
         #[method(selectChallengeablePlayers:withCompletionHandler:)]
@@ -297,6 +282,7 @@ extern_methods!(
 );
 
 #[cfg(all(
+    feature = "AppKit_NSResponder",
     feature = "AppKit_NSViewController",
     feature = "Foundation_NSArray",
     feature = "Foundation_NSString"
@@ -305,8 +291,10 @@ pub type GKChallengeComposeCompletionBlock =
     *mut Block<dyn Fn(NonNull<NSViewController>, Bool, *mut NSArray<NSString>)>;
 
 #[cfg(all(
+    feature = "AppKit_NSResponder",
     feature = "AppKit_NSViewController",
     feature = "Foundation_NSArray",
+    feature = "GameKit_GKBasePlayer",
     feature = "GameKit_GKPlayer"
 ))]
 pub type GKChallengeComposeHandler =
@@ -317,9 +305,12 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKScore")]
     unsafe impl GKScore {
         #[cfg(all(
+            feature = "AppKit_NSResponder",
             feature = "AppKit_NSViewController",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSString",
+            feature = "GameKit_GKBasePlayer",
+            feature = "GameKit_GKChallenge",
             feature = "GameKit_GKPlayer"
         ))]
         #[deprecated]
@@ -333,9 +324,12 @@ extern_methods!(
         ) -> Id<NSViewController>;
 
         #[cfg(all(
+            feature = "AppKit_NSResponder",
             feature = "AppKit_NSViewController",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSString",
+            feature = "GameKit_GKBasePlayer",
+            feature = "GameKit_GKChallenge",
             feature = "GameKit_GKPlayer"
         ))]
         #[method_id(@__retain_semantics Other challengeComposeControllerWithMessage:players:completion:)]
@@ -354,9 +348,12 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKLeaderboardEntry")]
     unsafe impl GKLeaderboardEntry {
         #[cfg(all(
+            feature = "AppKit_NSResponder",
             feature = "AppKit_NSViewController",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSString",
+            feature = "GameKit_GKBasePlayer",
+            feature = "GameKit_GKChallenge",
             feature = "GameKit_GKPlayer"
         ))]
         #[deprecated]
@@ -370,9 +367,12 @@ extern_methods!(
         ) -> Id<NSViewController>;
 
         #[cfg(all(
+            feature = "AppKit_NSResponder",
             feature = "AppKit_NSViewController",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSString",
+            feature = "GameKit_GKBasePlayer",
+            feature = "GameKit_GKChallenge",
             feature = "GameKit_GKPlayer"
         ))]
         #[method_id(@__retain_semantics Other challengeComposeControllerWithMessage:players:completion:)]
@@ -391,9 +391,12 @@ extern_methods!(
     #[cfg(feature = "GameKit_GKAchievement")]
     unsafe impl GKAchievement {
         #[cfg(all(
+            feature = "AppKit_NSResponder",
             feature = "AppKit_NSViewController",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSString",
+            feature = "GameKit_GKBasePlayer",
+            feature = "GameKit_GKChallenge",
             feature = "GameKit_GKPlayer"
         ))]
         #[deprecated]
@@ -407,9 +410,12 @@ extern_methods!(
         ) -> Id<NSViewController>;
 
         #[cfg(all(
+            feature = "AppKit_NSResponder",
             feature = "AppKit_NSViewController",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSString",
+            feature = "GameKit_GKBasePlayer",
+            feature = "GameKit_GKChallenge",
             feature = "GameKit_GKPlayer"
         ))]
         #[method_id(@__retain_semantics Other challengeComposeControllerWithMessage:players:completion:)]

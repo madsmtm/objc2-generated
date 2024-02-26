@@ -4,30 +4,26 @@ use crate::common::*;
 use crate::Foundation::*;
 
 extern_class!(
-    #[cfg(feature = "Foundation_NSValue")]
     pub struct NSValue;
 
-    #[cfg(feature = "Foundation_NSValue")]
     unsafe impl ClassType for NSValue {
         type Super = NSObject;
         type Mutability = Immutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSValue")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSValue {}
 
-#[cfg(feature = "Foundation_NSValue")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSValue {}
 
-#[cfg(feature = "Foundation_NSValue")]
 unsafe impl NSObjectProtocol for NSValue {}
 
-#[cfg(feature = "Foundation_NSValue")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSValue {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSValue")]
     unsafe impl NSValue {
         #[method(getValue:size:)]
         pub unsafe fn getValue_size(&self, value: NonNull<c_void>, size: NSUInteger);
@@ -50,7 +46,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSValueCreation
-    #[cfg(feature = "Foundation_NSValue")]
     unsafe impl NSValue {
         #[method_id(@__retain_semantics Other valueWithBytes:objCType:)]
         pub unsafe fn valueWithBytes_objCType(
@@ -68,7 +63,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSValueExtensionMethods
-    #[cfg(feature = "Foundation_NSValue")]
     unsafe impl NSValue {
         #[method_id(@__retain_semantics Other valueWithNonretainedObject:)]
         pub unsafe fn valueWithNonretainedObject(an_object: Option<&AnyObject>) -> Id<NSValue>;
@@ -88,10 +82,8 @@ extern_methods!(
 );
 
 extern_class!(
-    #[cfg(feature = "Foundation_NSNumber")]
     pub struct NSNumber;
 
-    #[cfg(feature = "Foundation_NSNumber")]
     unsafe impl ClassType for NSNumber {
         #[inherits(NSObject)]
         type Super = NSValue;
@@ -99,26 +91,22 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSNumber")]
 unsafe impl Send for NSNumber {}
 
-#[cfg(feature = "Foundation_NSNumber")]
 unsafe impl Sync for NSNumber {}
 
-#[cfg(feature = "Foundation_NSNumber")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSNumber {}
 
-#[cfg(feature = "Foundation_NSNumber")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSNumber {}
 
-#[cfg(feature = "Foundation_NSNumber")]
 unsafe impl NSObjectProtocol for NSNumber {}
 
-#[cfg(feature = "Foundation_NSNumber")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSNumber {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSNumber")]
     unsafe impl NSNumber {
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
@@ -218,6 +206,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other stringValue)]
         pub fn stringValue(&self) -> Id<NSString>;
 
+        #[cfg(feature = "Foundation_NSObjCRuntime")]
         #[method(compare:)]
         pub fn compare(&self, other_number: &NSNumber) -> NSComparisonResult;
 
@@ -232,7 +221,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSValue`
-    #[cfg(feature = "Foundation_NSNumber")]
     unsafe impl NSNumber {
         #[method_id(@__retain_semantics Init initWithBytes:objCType:)]
         pub unsafe fn initWithBytes_objCType(
@@ -245,7 +233,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSNumberCreation
-    #[cfg(feature = "Foundation_NSNumber")]
     unsafe impl NSNumber {
         #[method_id(@__retain_semantics Other numberWithChar:)]
         pub fn numberWithChar(value: c_char) -> Id<NSNumber>;
@@ -296,7 +283,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSDeprecated
-    #[cfg(feature = "Foundation_NSValue")]
     unsafe impl NSValue {
         #[deprecated]
         #[method(getValue:)]

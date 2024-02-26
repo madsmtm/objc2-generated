@@ -7,24 +7,20 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialProvider")]
     pub struct ASAuthorizationSecurityKeyPublicKeyCredentialProvider;
 
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialProvider")]
     unsafe impl ClassType for ASAuthorizationSecurityKeyPublicKeyCredentialProvider {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialProvider")]
+#[cfg(feature = "AuthenticationServices_ASAuthorizationProvider")]
 unsafe impl ASAuthorizationProvider for ASAuthorizationSecurityKeyPublicKeyCredentialProvider {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialProvider")]
 unsafe impl NSObjectProtocol for ASAuthorizationSecurityKeyPublicKeyCredentialProvider {}
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialProvider")]
     unsafe impl ASAuthorizationSecurityKeyPublicKeyCredentialProvider {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithRelyingPartyIdentifier:)]
@@ -34,6 +30,7 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(all(
+            feature = "AuthenticationServices_ASAuthorizationRequest",
             feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest",
             feature = "Foundation_NSData",
             feature = "Foundation_NSString"
@@ -48,6 +45,7 @@ extern_methods!(
         ) -> Id<ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest>;
 
         #[cfg(all(
+            feature = "AuthenticationServices_ASAuthorizationRequest",
             feature = "AuthenticationServices_ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest",
             feature = "Foundation_NSData"
         ))]

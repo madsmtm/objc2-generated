@@ -11,10 +11,10 @@ typed_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "QuartzCore_CAScrollLayer")]
+    #[cfg(feature = "QuartzCore_CALayer")]
     pub struct CAScrollLayer;
 
-    #[cfg(feature = "QuartzCore_CAScrollLayer")]
+    #[cfg(feature = "QuartzCore_CALayer")]
     unsafe impl ClassType for CAScrollLayer {
         #[inherits(NSObject)]
         type Super = CALayer;
@@ -22,24 +22,26 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "QuartzCore_CAScrollLayer")]
+#[cfg(all(feature = "QuartzCore_CALayer", feature = "QuartzCore_CAMediaTiming"))]
 unsafe impl CAMediaTiming for CAScrollLayer {}
 
-#[cfg(feature = "QuartzCore_CAScrollLayer")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "QuartzCore_CALayer"))]
 unsafe impl NSCoding for CAScrollLayer {}
 
-#[cfg(feature = "QuartzCore_CAScrollLayer")]
+#[cfg(feature = "QuartzCore_CALayer")]
 unsafe impl NSObjectProtocol for CAScrollLayer {}
 
-#[cfg(feature = "QuartzCore_CAScrollLayer")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "QuartzCore_CALayer"))]
 unsafe impl NSSecureCoding for CAScrollLayer {}
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CAScrollLayer")]
+    #[cfg(feature = "QuartzCore_CALayer")]
     unsafe impl CAScrollLayer {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(scrollToPoint:)]
         pub unsafe fn scrollToPoint(&self, p: CGPoint);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(scrollToRect:)]
         pub unsafe fn scrollToRect(&self, r: CGRect);
 
@@ -55,7 +57,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CALayer`
-    #[cfg(feature = "QuartzCore_CAScrollLayer")]
+    #[cfg(feature = "QuartzCore_CALayer")]
     unsafe impl CAScrollLayer {
         #[method_id(@__retain_semantics Other layer)]
         pub unsafe fn layer() -> Id<Self>;
@@ -70,7 +72,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "QuartzCore_CAScrollLayer")]
+    #[cfg(feature = "QuartzCore_CALayer")]
     unsafe impl CAScrollLayer {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -81,12 +83,15 @@ extern_methods!(
     /// CALayerScrolling
     #[cfg(feature = "QuartzCore_CALayer")]
     unsafe impl CALayer {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(scrollPoint:)]
         pub unsafe fn scrollPoint(&self, p: CGPoint);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(scrollRectToVisible:)]
         pub unsafe fn scrollRectToVisible(&self, r: CGRect);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(visibleRect)]
         pub unsafe fn visibleRect(&self) -> CGRect;
     }

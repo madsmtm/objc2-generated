@@ -8,6 +8,7 @@ extern_protocol!(
     pub unsafe trait CLSDataStoreDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "ClassKit_CLSContext",
+            feature = "ClassKit_CLSObject",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSString"
         ))]
@@ -25,34 +26,30 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "ClassKit_CLSDataStore")]
     pub struct CLSDataStore;
 
-    #[cfg(feature = "ClassKit_CLSDataStore")]
     unsafe impl ClassType for CLSDataStore {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "ClassKit_CLSDataStore")]
 unsafe impl NSObjectProtocol for CLSDataStore {}
 
 extern_methods!(
-    #[cfg(feature = "ClassKit_CLSDataStore")]
     unsafe impl CLSDataStore {
         #[method_id(@__retain_semantics Other shared)]
         pub unsafe fn shared() -> Id<CLSDataStore>;
 
-        #[cfg(feature = "ClassKit_CLSContext")]
+        #[cfg(all(feature = "ClassKit_CLSContext", feature = "ClassKit_CLSObject"))]
         #[method_id(@__retain_semantics Other mainAppContext)]
         pub unsafe fn mainAppContext(&self) -> Id<CLSContext>;
 
-        #[cfg(feature = "ClassKit_CLSContext")]
+        #[cfg(all(feature = "ClassKit_CLSContext", feature = "ClassKit_CLSObject"))]
         #[method_id(@__retain_semantics Other activeContext)]
         pub unsafe fn activeContext(&self) -> Option<Id<CLSContext>>;
 
-        #[cfg(feature = "ClassKit_CLSActivity")]
+        #[cfg(all(feature = "ClassKit_CLSActivity", feature = "ClassKit_CLSObject"))]
         #[method_id(@__retain_semantics Other runningActivity)]
         pub unsafe fn runningActivity(&self) -> Option<Id<CLSActivity>>;
 
@@ -86,10 +83,10 @@ extern_methods!(
 
 extern_methods!(
     /// Contexts
-    #[cfg(feature = "ClassKit_CLSDataStore")]
     unsafe impl CLSDataStore {
         #[cfg(all(
             feature = "ClassKit_CLSContext",
+            feature = "ClassKit_CLSObject",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSError",
             feature = "Foundation_NSPredicate"
@@ -103,6 +100,7 @@ extern_methods!(
 
         #[cfg(all(
             feature = "ClassKit_CLSContext",
+            feature = "ClassKit_CLSObject",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSError",
             feature = "Foundation_NSString"
@@ -114,12 +112,13 @@ extern_methods!(
             completion: &Block<dyn Fn(NonNull<NSArray<CLSContext>>, *mut NSError)>,
         );
 
-        #[cfg(feature = "ClassKit_CLSContext")]
+        #[cfg(all(feature = "ClassKit_CLSContext", feature = "ClassKit_CLSObject"))]
         #[method(removeContext:)]
         pub unsafe fn removeContext(&self, context: &CLSContext);
 
         #[cfg(all(
             feature = "ClassKit_CLSActivity",
+            feature = "ClassKit_CLSObject",
             feature = "Foundation_NSError",
             feature = "Foundation_NSURL"
         ))]

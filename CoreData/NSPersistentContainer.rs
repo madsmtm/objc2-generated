@@ -6,27 +6,21 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSPersistentContainer")]
     pub struct NSPersistentContainer;
 
-    #[cfg(feature = "CoreData_NSPersistentContainer")]
     unsafe impl ClassType for NSPersistentContainer {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreData_NSPersistentContainer")]
 unsafe impl Send for NSPersistentContainer {}
 
-#[cfg(feature = "CoreData_NSPersistentContainer")]
 unsafe impl Sync for NSPersistentContainer {}
 
-#[cfg(feature = "CoreData_NSPersistentContainer")]
 unsafe impl NSObjectProtocol for NSPersistentContainer {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSPersistentContainer")]
     unsafe impl NSPersistentContainer {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other persistentContainerWithName:)]
@@ -121,7 +115,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSPersistentContainer")]
     unsafe impl NSPersistentContainer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

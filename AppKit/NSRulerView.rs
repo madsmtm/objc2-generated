@@ -32,10 +32,10 @@ extern_static!(NSRulerViewUnitPicas: &'static NSRulerViewUnitName);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSRulerView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     pub struct NSRulerView;
 
-    #[cfg(feature = "AppKit_NSRulerView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl ClassType for NSRulerView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
@@ -43,37 +43,66 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSRulerView")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibility for NSRulerView {}
 
-#[cfg(feature = "AppKit_NSRulerView")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibilityElementProtocol for NSRulerView {}
 
-#[cfg(feature = "AppKit_NSRulerView")]
+#[cfg(all(
+    feature = "AppKit_NSAnimation",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAnimatablePropertyContainer for NSRulerView {}
 
-#[cfg(feature = "AppKit_NSRulerView")]
+#[cfg(all(
+    feature = "AppKit_NSAppearance",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAppearanceCustomization for NSRulerView {}
 
-#[cfg(feature = "AppKit_NSRulerView")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSRulerView {}
 
-#[cfg(feature = "AppKit_NSRulerView")]
+#[cfg(all(
+    feature = "AppKit_NSDragging",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSDraggingDestination for NSRulerView {}
 
-#[cfg(feature = "AppKit_NSRulerView")]
+#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
 unsafe impl NSObjectProtocol for NSRulerView {}
 
-#[cfg(feature = "AppKit_NSRulerView")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSRulerView {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSRulerView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSRulerView {
         #[cfg(all(
             feature = "Foundation_NSArray",
-            feature = "Foundation_NSNumber",
-            feature = "Foundation_NSString"
+            feature = "Foundation_NSGeometry",
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSValue"
         ))]
         #[method(registerUnitWithName:abbreviation:unitToPointsConversionFactor:stepUpCycle:stepDownCycle:)]
         pub unsafe fn registerUnitWithName_abbreviation_unitToPointsConversionFactor_stepUpCycle_stepDownCycle(
@@ -111,30 +140,38 @@ extern_methods!(
         #[method(setOrientation:)]
         pub unsafe fn setOrientation(&self, orientation: NSRulerOrientation);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(baselineLocation)]
         pub unsafe fn baselineLocation(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(requiredThickness)]
         pub unsafe fn requiredThickness(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(ruleThickness)]
         pub unsafe fn ruleThickness(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setRuleThickness:)]
         pub unsafe fn setRuleThickness(&self, rule_thickness: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(reservedThicknessForMarkers)]
         pub unsafe fn reservedThicknessForMarkers(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setReservedThicknessForMarkers:)]
         pub unsafe fn setReservedThicknessForMarkers(
             &self,
             reserved_thickness_for_markers: CGFloat,
         );
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(reservedThicknessForAccessoryView)]
         pub unsafe fn reservedThicknessForAccessoryView(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setReservedThicknessForAccessoryView:)]
         pub unsafe fn setReservedThicknessForAccessoryView(
             &self,
@@ -149,9 +186,11 @@ extern_methods!(
         #[method(setMeasurementUnits:)]
         pub unsafe fn setMeasurementUnits(&self, measurement_units: &NSRulerViewUnitName);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(originOffset)]
         pub unsafe fn originOffset(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setOriginOffset:)]
         pub unsafe fn setOriginOffset(&self, origin_offset: CGFloat);
 
@@ -191,6 +230,7 @@ extern_methods!(
         #[method(setAccessoryView:)]
         pub unsafe fn setAccessoryView(&self, accessory_view: Option<&NSView>);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(moveRulerlineFromLocation:toLocation:)]
         pub unsafe fn moveRulerlineFromLocation_toLocation(
             &self,
@@ -201,9 +241,11 @@ extern_methods!(
         #[method(invalidateHashMarks)]
         pub unsafe fn invalidateHashMarks(&self);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(drawHashMarksAndLabelsInRect:)]
         pub unsafe fn drawHashMarksAndLabelsInRect(&self, rect: NSRect);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(drawMarkersInRect:)]
         pub unsafe fn drawMarkersInRect(&self, rect: NSRect);
 
@@ -214,8 +256,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSView`
-    #[cfg(feature = "AppKit_NSRulerView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSRulerView {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
     }
@@ -223,7 +266,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "AppKit_NSRulerView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSRulerView {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -232,7 +275,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSRulerView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSRulerView {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -241,7 +284,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSRulerMarkerClientViewDelegation
-    #[cfg(feature = "AppKit_NSView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSView {
         #[cfg(all(feature = "AppKit_NSRulerMarker", feature = "AppKit_NSRulerView"))]
         #[method(rulerView:shouldMoveMarker:)]
@@ -251,7 +294,11 @@ extern_methods!(
             marker: &NSRulerMarker,
         ) -> bool;
 
-        #[cfg(all(feature = "AppKit_NSRulerMarker", feature = "AppKit_NSRulerView"))]
+        #[cfg(all(
+            feature = "AppKit_NSRulerMarker",
+            feature = "AppKit_NSRulerView",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[method(rulerView:willMoveMarker:toLocation:)]
         pub unsafe fn rulerView_willMoveMarker_toLocation(
             &self,
@@ -284,7 +331,11 @@ extern_methods!(
             marker: &NSRulerMarker,
         ) -> bool;
 
-        #[cfg(all(feature = "AppKit_NSRulerMarker", feature = "AppKit_NSRulerView"))]
+        #[cfg(all(
+            feature = "AppKit_NSRulerMarker",
+            feature = "AppKit_NSRulerView",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[method(rulerView:willAddMarker:atLocation:)]
         pub unsafe fn rulerView_willAddMarker_atLocation(
             &self,
@@ -305,7 +356,7 @@ extern_methods!(
         #[method(rulerView:willSetClientView:)]
         pub unsafe fn rulerView_willSetClientView(&self, ruler: &NSRulerView, new_client: &NSView);
 
-        #[cfg(feature = "AppKit_NSRulerView")]
+        #[cfg(all(feature = "AppKit_NSRulerView", feature = "Foundation_NSGeometry"))]
         #[method(rulerView:locationForPoint:)]
         pub unsafe fn rulerView_locationForPoint(
             &self,
@@ -313,7 +364,7 @@ extern_methods!(
             point: NSPoint,
         ) -> CGFloat;
 
-        #[cfg(feature = "AppKit_NSRulerView")]
+        #[cfg(all(feature = "AppKit_NSRulerView", feature = "Foundation_NSGeometry"))]
         #[method(rulerView:pointForLocation:)]
         pub unsafe fn rulerView_pointForLocation(
             &self,

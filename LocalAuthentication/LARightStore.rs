@@ -6,21 +6,17 @@ use crate::LocalAuthentication::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "LocalAuthentication_LARightStore")]
     pub struct LARightStore;
 
-    #[cfg(feature = "LocalAuthentication_LARightStore")]
     unsafe impl ClassType for LARightStore {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "LocalAuthentication_LARightStore")]
 unsafe impl NSObjectProtocol for LARightStore {}
 
 extern_methods!(
-    #[cfg(feature = "LocalAuthentication_LARightStore")]
     unsafe impl LARightStore {
         #[method_id(@__retain_semantics Other sharedStore)]
         pub unsafe fn sharedStore() -> Id<LARightStore>;
@@ -28,7 +24,8 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSError",
             feature = "Foundation_NSString",
-            feature = "LocalAuthentication_LAPersistedRight"
+            feature = "LocalAuthentication_LAPersistedRight",
+            feature = "LocalAuthentication_LARight"
         ))]
         #[method(rightForIdentifier:completion:)]
         pub unsafe fn rightForIdentifier_completion(
@@ -69,7 +66,8 @@ extern_methods!(
 
         #[cfg(all(
             feature = "Foundation_NSError",
-            feature = "LocalAuthentication_LAPersistedRight"
+            feature = "LocalAuthentication_LAPersistedRight",
+            feature = "LocalAuthentication_LARight"
         ))]
         #[method(removeRight:completion:)]
         pub unsafe fn removeRight_completion(

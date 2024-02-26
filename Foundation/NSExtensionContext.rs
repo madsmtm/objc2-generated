@@ -5,21 +5,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSExtensionContext")]
     pub struct NSExtensionContext;
 
-    #[cfg(feature = "Foundation_NSExtensionContext")]
     unsafe impl ClassType for NSExtensionContext {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSExtensionContext")]
 unsafe impl NSObjectProtocol for NSExtensionContext {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSExtensionContext")]
     unsafe impl NSExtensionContext {
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other inputItems)]
@@ -49,7 +45,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSExtensionContext")]
     unsafe impl NSExtensionContext {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

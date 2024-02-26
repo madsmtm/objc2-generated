@@ -6,30 +6,26 @@ use crate::Speech::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Speech_SFTranscription")]
     pub struct SFTranscription;
 
-    #[cfg(feature = "Speech_SFTranscription")]
     unsafe impl ClassType for SFTranscription {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Speech_SFTranscription")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for SFTranscription {}
 
-#[cfg(feature = "Speech_SFTranscription")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for SFTranscription {}
 
-#[cfg(feature = "Speech_SFTranscription")]
 unsafe impl NSObjectProtocol for SFTranscription {}
 
-#[cfg(feature = "Speech_SFTranscription")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for SFTranscription {}
 
 extern_methods!(
-    #[cfg(feature = "Speech_SFTranscription")]
     unsafe impl SFTranscription {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other formattedString)]
@@ -46,6 +42,7 @@ extern_methods!(
         #[method(speakingRate)]
         pub unsafe fn speakingRate(&self) -> c_double;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[deprecated = "averagePauseDuration is moved to SFSpeechRecognitionMetadata"]
         #[method(averagePauseDuration)]
         pub unsafe fn averagePauseDuration(&self) -> NSTimeInterval;
@@ -54,7 +51,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Speech_SFTranscription")]
     unsafe impl SFTranscription {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

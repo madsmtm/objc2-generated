@@ -47,22 +47,18 @@ extern_category!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_WebScriptObject")]
     #[deprecated]
     pub struct WebScriptObject;
 
-    #[cfg(feature = "WebKit_WebScriptObject")]
     unsafe impl ClassType for WebScriptObject {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "WebKit_WebScriptObject")]
 unsafe impl NSObjectProtocol for WebScriptObject {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_WebScriptObject")]
     unsafe impl WebScriptObject {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
@@ -109,17 +105,11 @@ extern_methods!(
         #[deprecated]
         #[method(setException:)]
         pub unsafe fn setException(&self, description: Option<&NSString>);
-
-        #[cfg(feature = "WebKit_JSValue")]
-        #[deprecated]
-        #[method_id(@__retain_semantics Other JSValue)]
-        pub unsafe fn JSValue(&self) -> Option<Id<JSValue>>;
     }
 );
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_WebScriptObject")]
     unsafe impl WebScriptObject {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -131,28 +121,24 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_WebUndefined")]
     #[deprecated]
     pub struct WebUndefined;
 
-    #[cfg(feature = "WebKit_WebUndefined")]
     unsafe impl ClassType for WebUndefined {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "WebKit_WebUndefined")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for WebUndefined {}
 
-#[cfg(feature = "WebKit_WebUndefined")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for WebUndefined {}
 
-#[cfg(feature = "WebKit_WebUndefined")]
 unsafe impl NSObjectProtocol for WebUndefined {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_WebUndefined")]
     unsafe impl WebUndefined {
         #[deprecated]
         #[method_id(@__retain_semantics Other undefined)]
@@ -162,7 +148,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_WebUndefined")]
     unsafe impl WebUndefined {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

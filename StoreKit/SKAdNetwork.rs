@@ -21,21 +21,17 @@ extern_static!(SKAdNetworkCoarseConversionValueLow: &'static SKAdNetworkCoarseCo
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "StoreKit_SKAdNetwork")]
     pub struct SKAdNetwork;
 
-    #[cfg(feature = "StoreKit_SKAdNetwork")]
     unsafe impl ClassType for SKAdNetwork {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "StoreKit_SKAdNetwork")]
 unsafe impl NSObjectProtocol for SKAdNetwork {}
 
 extern_methods!(
-    #[cfg(feature = "StoreKit_SKAdNetwork")]
     unsafe impl SKAdNetwork {
         #[cfg(all(feature = "Foundation_NSError", feature = "StoreKit_SKAdImpression"))]
         #[method(startImpression:completionHandler:)]
@@ -87,7 +83,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "StoreKit_SKAdNetwork")]
     unsafe impl SKAdNetwork {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

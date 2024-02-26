@@ -55,6 +55,7 @@ ns_options!(
 pub type NSCollectionViewSupplementaryElementKind = NSString;
 
 extern_protocol!(
+    #[cfg(feature = "AppKit_NSUserInterfaceItemIdentification")]
     pub unsafe trait NSCollectionViewElement:
         NSObjectProtocol + NSUserInterfaceItemIdentification + IsMainThreadOnly
     {
@@ -62,7 +63,7 @@ extern_protocol!(
         #[method(prepareForReuse)]
         unsafe fn prepareForReuse(&self);
 
-        #[cfg(feature = "AppKit_NSCollectionViewLayoutAttributes")]
+        #[cfg(feature = "AppKit_NSCollectionViewLayout")]
         #[optional]
         #[method(applyLayoutAttributes:)]
         unsafe fn applyLayoutAttributes(
@@ -88,7 +89,7 @@ extern_protocol!(
             new_layout: &NSCollectionViewLayout,
         );
 
-        #[cfg(feature = "AppKit_NSCollectionViewLayoutAttributes")]
+        #[cfg(feature = "AppKit_NSCollectionViewLayout")]
         #[optional]
         #[method_id(@__retain_semantics Other preferredLayoutAttributesFittingAttributes:)]
         unsafe fn preferredLayoutAttributesFittingAttributes(
@@ -97,33 +98,46 @@ extern_protocol!(
         ) -> Id<NSCollectionViewLayoutAttributes>;
     }
 
+    #[cfg(feature = "AppKit_NSUserInterfaceItemIdentification")]
     unsafe impl ProtocolType for dyn NSCollectionViewElement {}
 );
 
 extern_protocol!(
+    #[cfg(feature = "AppKit_NSUserInterfaceItemIdentification")]
     pub unsafe trait NSCollectionViewSectionHeaderView:
         NSCollectionViewElement + IsMainThreadOnly
     {
-        #[cfg(feature = "AppKit_NSButton")]
+        #[cfg(all(
+            feature = "AppKit_NSButton",
+            feature = "AppKit_NSControl",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other sectionCollapseButton)]
         unsafe fn sectionCollapseButton(&self) -> Option<Id<NSButton>>;
 
-        #[cfg(feature = "AppKit_NSButton")]
+        #[cfg(all(
+            feature = "AppKit_NSButton",
+            feature = "AppKit_NSControl",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView"
+        ))]
         #[optional]
         #[method(setSectionCollapseButton:)]
         unsafe fn setSectionCollapseButton(&self, section_collapse_button: Option<&NSButton>);
     }
 
+    #[cfg(feature = "AppKit_NSUserInterfaceItemIdentification")]
     unsafe impl ProtocolType for dyn NSCollectionViewSectionHeaderView {}
 );
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSCollectionViewItem")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     pub struct NSCollectionViewItem;
 
-    #[cfg(feature = "AppKit_NSCollectionViewItem")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl ClassType for NSCollectionViewItem {
         #[inherits(NSResponder, NSObject)]
         type Super = NSViewController;
@@ -131,31 +145,55 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSCollectionViewItem")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSCollectionViewItem {}
 
-#[cfg(feature = "AppKit_NSCollectionViewItem")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSCollectionViewElement for NSCollectionViewItem {}
 
-#[cfg(feature = "AppKit_NSCollectionViewItem")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCopying for NSCollectionViewItem {}
 
-#[cfg(feature = "AppKit_NSCollectionViewItem")]
+#[cfg(all(
+    feature = "AppKit_NSKeyValueBinding",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSEditor for NSCollectionViewItem {}
 
-#[cfg(feature = "AppKit_NSCollectionViewItem")]
+#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
 unsafe impl NSObjectProtocol for NSCollectionViewItem {}
 
-#[cfg(feature = "AppKit_NSCollectionViewItem")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSStoryboardSegue",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSSeguePerforming for NSCollectionViewItem {}
 
-#[cfg(feature = "AppKit_NSCollectionViewItem")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSCollectionViewItem {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSCollectionViewItem")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl NSCollectionViewItem {
-        #[cfg(feature = "AppKit_NSCollectionView")]
+        #[cfg(feature = "AppKit_NSView")]
         #[method_id(@__retain_semantics Other collectionView)]
         pub unsafe fn collectionView(&self) -> Option<Id<NSCollectionView>>;
 
@@ -171,26 +209,39 @@ extern_methods!(
         #[method(setHighlightState:)]
         pub unsafe fn setHighlightState(&self, highlight_state: NSCollectionViewItemHighlightState);
 
-        #[cfg(feature = "AppKit_NSImageView")]
+        #[cfg(all(
+            feature = "AppKit_NSControl",
+            feature = "AppKit_NSImageView",
+            feature = "AppKit_NSView"
+        ))]
         #[method_id(@__retain_semantics Other imageView)]
         pub unsafe fn imageView(&self) -> Option<Id<NSImageView>>;
 
-        #[cfg(feature = "AppKit_NSImageView")]
+        #[cfg(all(
+            feature = "AppKit_NSControl",
+            feature = "AppKit_NSImageView",
+            feature = "AppKit_NSView"
+        ))]
         #[method(setImageView:)]
         pub unsafe fn setImageView(&self, image_view: Option<&NSImageView>);
 
-        #[cfg(feature = "AppKit_NSTextField")]
+        #[cfg(all(
+            feature = "AppKit_NSControl",
+            feature = "AppKit_NSTextField",
+            feature = "AppKit_NSView"
+        ))]
         #[method_id(@__retain_semantics Other textField)]
         pub unsafe fn textField(&self) -> Option<Id<NSTextField>>;
 
-        #[cfg(feature = "AppKit_NSTextField")]
+        #[cfg(all(
+            feature = "AppKit_NSControl",
+            feature = "AppKit_NSTextField",
+            feature = "AppKit_NSView"
+        ))]
         #[method(setTextField:)]
         pub unsafe fn setTextField(&self, text_field: Option<&NSTextField>);
 
-        #[cfg(all(
-            feature = "AppKit_NSDraggingImageComponent",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(all(feature = "AppKit_NSDraggingItem", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other draggingImageComponents)]
         pub unsafe fn draggingImageComponents(&self) -> Id<NSArray<NSDraggingImageComponent>>;
     }
@@ -198,9 +249,13 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSViewController`
-    #[cfg(feature = "AppKit_NSCollectionViewItem")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl NSCollectionViewItem {
-        #[cfg(all(feature = "Foundation_NSBundle", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSNib",
+            feature = "Foundation_NSBundle",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -216,7 +271,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "AppKit_NSCollectionViewItem")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl NSCollectionViewItem {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -225,7 +280,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSCollectionViewItem")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl NSCollectionViewItem {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -234,10 +289,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSCollectionView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     pub struct NSCollectionView;
 
-    #[cfg(feature = "AppKit_NSCollectionView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl ClassType for NSCollectionView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
@@ -245,35 +300,67 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSCollectionView")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibility for NSCollectionView {}
 
-#[cfg(feature = "AppKit_NSCollectionView")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibilityElementProtocol for NSCollectionView {}
 
-#[cfg(feature = "AppKit_NSCollectionView")]
+#[cfg(all(
+    feature = "AppKit_NSAnimation",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAnimatablePropertyContainer for NSCollectionView {}
 
-#[cfg(feature = "AppKit_NSCollectionView")]
+#[cfg(all(
+    feature = "AppKit_NSAppearance",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAppearanceCustomization for NSCollectionView {}
 
-#[cfg(feature = "AppKit_NSCollectionView")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSCollectionView {}
 
-#[cfg(feature = "AppKit_NSCollectionView")]
+#[cfg(all(
+    feature = "AppKit_NSDragging",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSDraggingDestination for NSCollectionView {}
 
-#[cfg(feature = "AppKit_NSCollectionView")]
+#[cfg(all(
+    feature = "AppKit_NSDragging",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSDraggingSource for NSCollectionView {}
 
-#[cfg(feature = "AppKit_NSCollectionView")]
+#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
 unsafe impl NSObjectProtocol for NSCollectionView {}
 
-#[cfg(feature = "AppKit_NSCollectionView")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSCollectionView {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSCollectionView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSCollectionView {
         #[method_id(@__retain_semantics Other dataSource)]
         pub unsafe fn dataSource(
@@ -344,7 +431,7 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionViewLayoutAttributes",
+            feature = "AppKit_NSCollectionViewLayout",
             feature = "Foundation_NSIndexPath"
         ))]
         #[method_id(@__retain_semantics Other layoutAttributesForItemAtIndexPath:)]
@@ -354,7 +441,7 @@ extern_methods!(
         ) -> Option<Id<NSCollectionViewLayoutAttributes>>;
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionViewLayoutAttributes",
+            feature = "AppKit_NSCollectionViewLayout",
             feature = "Foundation_NSIndexPath",
             feature = "Foundation_NSString"
         ))]
@@ -365,9 +452,11 @@ extern_methods!(
             index_path: &NSIndexPath,
         ) -> Option<Id<NSCollectionViewLayoutAttributes>>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(frameForItemAtIndex:)]
         pub unsafe fn frameForItemAtIndex(&self, index: NSUInteger) -> NSRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(frameForItemAtIndex:withNumberOfItems:)]
         pub unsafe fn frameForItemAtIndex_withNumberOfItems(
             &self,
@@ -444,7 +533,10 @@ extern_methods!(
         #[method(deselectAll:)]
         pub unsafe fn deselectAll(&self, sender: Option<&AnyObject>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "AppKit_NSUserInterfaceItemIdentification",
+            feature = "Foundation_NSString"
+        ))]
         #[method(registerClass:forItemWithIdentifier:)]
         pub unsafe fn registerClass_forItemWithIdentifier(
             &self,
@@ -452,7 +544,11 @@ extern_methods!(
             identifier: &NSUserInterfaceItemIdentifier,
         );
 
-        #[cfg(all(feature = "AppKit_NSNib", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSNib",
+            feature = "AppKit_NSUserInterfaceItemIdentification",
+            feature = "Foundation_NSString"
+        ))]
         #[method(registerNib:forItemWithIdentifier:)]
         pub unsafe fn registerNib_forItemWithIdentifier(
             &self,
@@ -460,7 +556,10 @@ extern_methods!(
             identifier: &NSUserInterfaceItemIdentifier,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "AppKit_NSUserInterfaceItemIdentification",
+            feature = "Foundation_NSString"
+        ))]
         #[method(registerClass:forSupplementaryViewOfKind:withIdentifier:)]
         pub unsafe fn registerClass_forSupplementaryViewOfKind_withIdentifier(
             &self,
@@ -469,7 +568,11 @@ extern_methods!(
             identifier: &NSUserInterfaceItemIdentifier,
         );
 
-        #[cfg(all(feature = "AppKit_NSNib", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSNib",
+            feature = "AppKit_NSUserInterfaceItemIdentification",
+            feature = "Foundation_NSString"
+        ))]
         #[method(registerNib:forSupplementaryViewOfKind:withIdentifier:)]
         pub unsafe fn registerNib_forSupplementaryViewOfKind_withIdentifier(
             &self,
@@ -479,7 +582,8 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionViewItem",
+            feature = "AppKit_NSUserInterfaceItemIdentification",
+            feature = "AppKit_NSViewController",
             feature = "Foundation_NSIndexPath",
             feature = "Foundation_NSString"
         ))]
@@ -490,7 +594,11 @@ extern_methods!(
             index_path: &NSIndexPath,
         ) -> Id<NSCollectionViewItem>;
 
-        #[cfg(all(feature = "Foundation_NSIndexPath", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSUserInterfaceItemIdentification",
+            feature = "Foundation_NSIndexPath",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other makeSupplementaryViewOfKind:withIdentifier:forIndexPath:)]
         pub unsafe fn makeSupplementaryViewOfKind_withIdentifier_forIndexPath(
             &self,
@@ -499,12 +607,12 @@ extern_methods!(
             index_path: &NSIndexPath,
         ) -> Id<NSView>;
 
-        #[cfg(feature = "AppKit_NSCollectionViewItem")]
+        #[cfg(feature = "AppKit_NSViewController")]
         #[method_id(@__retain_semantics Other itemAtIndex:)]
         pub unsafe fn itemAtIndex(&self, index: NSUInteger) -> Option<Id<NSCollectionViewItem>>;
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionViewItem",
+            feature = "AppKit_NSViewController",
             feature = "Foundation_NSIndexPath"
         ))]
         #[method_id(@__retain_semantics Other itemAtIndexPath:)]
@@ -513,10 +621,7 @@ extern_methods!(
             index_path: &NSIndexPath,
         ) -> Option<Id<NSCollectionViewItem>>;
 
-        #[cfg(all(
-            feature = "AppKit_NSCollectionViewItem",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(all(feature = "AppKit_NSViewController", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other visibleItems)]
         pub unsafe fn visibleItems(&self) -> Id<NSArray<NSCollectionViewItem>>;
 
@@ -525,7 +630,7 @@ extern_methods!(
         pub unsafe fn indexPathsForVisibleItems(&self) -> Id<NSSet<NSIndexPath>>;
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionViewItem",
+            feature = "AppKit_NSViewController",
             feature = "Foundation_NSIndexPath"
         ))]
         #[method_id(@__retain_semantics Other indexPathForItem:)]
@@ -534,11 +639,15 @@ extern_methods!(
             item: &NSCollectionViewItem,
         ) -> Option<Id<NSIndexPath>>;
 
-        #[cfg(feature = "Foundation_NSIndexPath")]
+        #[cfg(all(feature = "Foundation_NSGeometry", feature = "Foundation_NSIndexPath"))]
         #[method_id(@__retain_semantics Other indexPathForItemAtPoint:)]
         pub unsafe fn indexPathForItemAtPoint(&self, point: NSPoint) -> Option<Id<NSIndexPath>>;
 
-        #[cfg(all(feature = "Foundation_NSIndexPath", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSUserInterfaceItemIdentification",
+            feature = "Foundation_NSIndexPath",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other supplementaryViewForElementKind:atIndexPath:)]
         pub unsafe fn supplementaryViewForElementKind_atIndexPath(
             &self,
@@ -546,7 +655,11 @@ extern_methods!(
             index_path: &NSIndexPath,
         ) -> Option<Id<NSView>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSUserInterfaceItemIdentification",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other visibleSupplementaryViewsOfKind:)]
         pub unsafe fn visibleSupplementaryViewsOfKind(
             &self,
@@ -617,6 +730,7 @@ extern_methods!(
             scroll_position: NSCollectionViewScrollPosition,
         );
 
+        #[cfg(feature = "AppKit_NSDragging")]
         #[method(setDraggingSourceOperationMask:forLocal:)]
         pub unsafe fn setDraggingSourceOperationMask_forLocal(
             &self,
@@ -627,6 +741,7 @@ extern_methods!(
         #[cfg(all(
             feature = "AppKit_NSEvent",
             feature = "AppKit_NSImage",
+            feature = "Foundation_NSGeometry",
             feature = "Foundation_NSIndexPath",
             feature = "Foundation_NSSet"
         ))]
@@ -641,6 +756,7 @@ extern_methods!(
         #[cfg(all(
             feature = "AppKit_NSEvent",
             feature = "AppKit_NSImage",
+            feature = "Foundation_NSGeometry",
             feature = "Foundation_NSIndexSet"
         ))]
         #[method_id(@__retain_semantics Other draggingImageForItemsAtIndexes:withEvent:offset:)]
@@ -655,8 +771,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSView`
-    #[cfg(feature = "AppKit_NSCollectionView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSCollectionView {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
 
@@ -668,7 +785,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "AppKit_NSCollectionView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSCollectionView {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -677,7 +794,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSCollectionView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSCollectionView {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -688,7 +805,7 @@ extern_protocol!(
     pub unsafe trait NSCollectionViewDataSource:
         NSObjectProtocol + IsMainThreadOnly
     {
-        #[cfg(feature = "AppKit_NSCollectionView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[method(collectionView:numberOfItemsInSection:)]
         unsafe fn collectionView_numberOfItemsInSection(
             &self,
@@ -697,8 +814,9 @@ extern_protocol!(
         ) -> NSInteger;
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionView",
-            feature = "AppKit_NSCollectionViewItem",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "AppKit_NSViewController",
             feature = "Foundation_NSIndexPath"
         ))]
         #[method_id(@__retain_semantics Other collectionView:itemForRepresentedObjectAtIndexPath:)]
@@ -708,7 +826,7 @@ extern_protocol!(
             index_path: &NSIndexPath,
         ) -> Id<NSCollectionViewItem>;
 
-        #[cfg(feature = "AppKit_NSCollectionView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[optional]
         #[method(numberOfSectionsInCollectionView:)]
         unsafe fn numberOfSectionsInCollectionView(
@@ -717,7 +835,7 @@ extern_protocol!(
         ) -> NSInteger;
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionView",
+            feature = "AppKit_NSResponder",
             feature = "AppKit_NSView",
             feature = "Foundation_NSIndexPath",
             feature = "Foundation_NSString"
@@ -740,7 +858,8 @@ extern_protocol!(
         NSObjectProtocol + IsMainThreadOnly
     {
         #[cfg(all(
-            feature = "AppKit_NSCollectionView",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSIndexPath"
         ))]
@@ -752,7 +871,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionView",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSIndexPath"
         ))]
@@ -771,8 +891,9 @@ extern_protocol!(
 extern_protocol!(
     pub unsafe trait NSCollectionViewDelegate: NSObjectProtocol {
         #[cfg(all(
-            feature = "AppKit_NSCollectionView",
             feature = "AppKit_NSEvent",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSIndexPath",
             feature = "Foundation_NSSet"
         ))]
@@ -786,8 +907,9 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionView",
             feature = "AppKit_NSEvent",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSIndexSet"
         ))]
         #[optional]
@@ -800,8 +922,9 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionView",
             feature = "AppKit_NSPasteboard",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSIndexPath",
             feature = "Foundation_NSSet"
         ))]
@@ -816,8 +939,9 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionView",
             feature = "AppKit_NSPasteboard",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSIndexSet"
         ))]
         #[deprecated = "Use -collectionView:pasteboardWriterForItemAtIndexPath: instead"]
@@ -831,7 +955,8 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionView",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSIndexPath",
             feature = "Foundation_NSSet",
@@ -849,7 +974,8 @@ extern_protocol!(
         ) -> Id<NSArray<NSString>>;
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionView",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSIndexSet",
             feature = "Foundation_NSString",
@@ -866,9 +992,11 @@ extern_protocol!(
         ) -> Id<NSArray<NSString>>;
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionView",
             feature = "AppKit_NSEvent",
             feature = "AppKit_NSImage",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry",
             feature = "Foundation_NSIndexPath",
             feature = "Foundation_NSSet"
         ))]
@@ -883,9 +1011,11 @@ extern_protocol!(
         ) -> Id<NSImage>;
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionView",
             feature = "AppKit_NSEvent",
             feature = "AppKit_NSImage",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry",
             feature = "Foundation_NSIndexSet"
         ))]
         #[optional]
@@ -899,7 +1029,9 @@ extern_protocol!(
         ) -> Id<NSImage>;
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionView",
+            feature = "AppKit_NSDragging",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSIndexPath"
         ))]
         #[optional]
@@ -912,7 +1044,11 @@ extern_protocol!(
             proposed_drop_operation: NonNull<NSCollectionViewDropOperation>,
         ) -> NSDragOperation;
 
-        #[cfg(feature = "AppKit_NSCollectionView")]
+        #[cfg(all(
+            feature = "AppKit_NSDragging",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView"
+        ))]
         #[optional]
         #[method(collectionView:validateDrop:proposedIndex:dropOperation:)]
         unsafe fn collectionView_validateDrop_proposedIndex_dropOperation(
@@ -924,7 +1060,9 @@ extern_protocol!(
         ) -> NSDragOperation;
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionView",
+            feature = "AppKit_NSDragging",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSIndexPath"
         ))]
         #[optional]
@@ -937,7 +1075,11 @@ extern_protocol!(
             drop_operation: NSCollectionViewDropOperation,
         ) -> bool;
 
-        #[cfg(feature = "AppKit_NSCollectionView")]
+        #[cfg(all(
+            feature = "AppKit_NSDragging",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView"
+        ))]
         #[optional]
         #[method(collectionView:acceptDrop:index:dropOperation:)]
         unsafe fn collectionView_acceptDrop_index_dropOperation(
@@ -949,7 +1091,9 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionView",
+            feature = "AppKit_NSPasteboard",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSIndexPath"
         ))]
         #[optional]
@@ -960,7 +1104,11 @@ extern_protocol!(
             index_path: &NSIndexPath,
         ) -> Option<Id<ProtocolObject<dyn NSPasteboardWriting>>>;
 
-        #[cfg(feature = "AppKit_NSCollectionView")]
+        #[cfg(all(
+            feature = "AppKit_NSPasteboard",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other collectionView:pasteboardWriterForItemAtIndex:)]
         unsafe fn collectionView_pasteboardWriterForItemAtIndex(
@@ -970,8 +1118,10 @@ extern_protocol!(
         ) -> Option<Id<ProtocolObject<dyn NSPasteboardWriting>>>;
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionView",
             feature = "AppKit_NSDraggingSession",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry",
             feature = "Foundation_NSIndexPath",
             feature = "Foundation_NSSet"
         ))]
@@ -986,8 +1136,10 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionView",
             feature = "AppKit_NSDraggingSession",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry",
             feature = "Foundation_NSIndexSet"
         ))]
         #[optional]
@@ -1001,8 +1153,11 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionView",
-            feature = "AppKit_NSDraggingSession"
+            feature = "AppKit_NSDragging",
+            feature = "AppKit_NSDraggingSession",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry"
         ))]
         #[optional]
         #[method(collectionView:draggingSession:endedAtPoint:dragOperation:)]
@@ -1014,7 +1169,11 @@ extern_protocol!(
             operation: NSDragOperation,
         );
 
-        #[cfg(feature = "AppKit_NSCollectionView")]
+        #[cfg(all(
+            feature = "AppKit_NSDragging",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView"
+        ))]
         #[optional]
         #[method(collectionView:updateDraggingItemsForDrag:)]
         unsafe fn collectionView_updateDraggingItemsForDrag(
@@ -1024,7 +1183,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionView",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSIndexPath",
             feature = "Foundation_NSSet"
         ))]
@@ -1038,7 +1198,8 @@ extern_protocol!(
         ) -> Id<NSSet<NSIndexPath>>;
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionView",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSIndexPath",
             feature = "Foundation_NSSet"
         ))]
@@ -1052,7 +1213,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionView",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSIndexPath",
             feature = "Foundation_NSSet"
         ))]
@@ -1065,7 +1227,8 @@ extern_protocol!(
         ) -> Id<NSSet<NSIndexPath>>;
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionView",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSIndexPath",
             feature = "Foundation_NSSet"
         ))]
@@ -1078,7 +1241,8 @@ extern_protocol!(
         ) -> Id<NSSet<NSIndexPath>>;
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionView",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSIndexPath",
             feature = "Foundation_NSSet"
         ))]
@@ -1091,7 +1255,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionView",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSIndexPath",
             feature = "Foundation_NSSet"
         ))]
@@ -1104,8 +1269,9 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionView",
-            feature = "AppKit_NSCollectionViewItem",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "AppKit_NSViewController",
             feature = "Foundation_NSIndexPath"
         ))]
         #[optional]
@@ -1118,7 +1284,7 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionView",
+            feature = "AppKit_NSResponder",
             feature = "AppKit_NSView",
             feature = "Foundation_NSIndexPath",
             feature = "Foundation_NSString"
@@ -1134,8 +1300,9 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionView",
-            feature = "AppKit_NSCollectionViewItem",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "AppKit_NSViewController",
             feature = "Foundation_NSIndexPath"
         ))]
         #[optional]
@@ -1148,7 +1315,7 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionView",
+            feature = "AppKit_NSResponder",
             feature = "AppKit_NSView",
             feature = "Foundation_NSIndexPath",
             feature = "Foundation_NSString"
@@ -1164,9 +1331,10 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionView",
             feature = "AppKit_NSCollectionViewLayout",
-            feature = "AppKit_NSCollectionViewTransitionLayout"
+            feature = "AppKit_NSCollectionViewTransitionLayout",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView"
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other collectionView:transitionLayoutForOldLayout:newLayout:)]
@@ -1215,7 +1383,10 @@ extern_category!(
         #[method_id(@__retain_semantics Other setWithCollectionViewIndexPaths:)]
         unsafe fn setWithCollectionViewIndexPaths(index_paths: &NSArray<NSIndexPath>) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSIndexPath")]
+        #[cfg(all(
+            feature = "Foundation_NSIndexPath",
+            feature = "Foundation_NSObjCRuntime"
+        ))]
         #[method(enumerateIndexPathsWithOptions:usingBlock:)]
         unsafe fn enumerateIndexPathsWithOptions_usingBlock(
             &self,
@@ -1230,9 +1401,9 @@ extern_category!(
 
 extern_methods!(
     /// NSDeprecated
-    #[cfg(feature = "AppKit_NSCollectionView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSCollectionView {
-        #[cfg(feature = "AppKit_NSCollectionViewItem")]
+        #[cfg(feature = "AppKit_NSViewController")]
         #[deprecated = "Use -[NSCollectionViewDataSource collectionView:itemForRepresentedObjectAtIndexPath:] instead"]
         #[method_id(@__retain_semantics New newItemForRepresentedObject:)]
         pub unsafe fn newItemForRepresentedObject(
@@ -1240,12 +1411,12 @@ extern_methods!(
             object: &AnyObject,
         ) -> Id<NSCollectionViewItem>;
 
-        #[cfg(feature = "AppKit_NSCollectionViewItem")]
+        #[cfg(feature = "AppKit_NSViewController")]
         #[deprecated = "Use -registerNib:forItemWithIdentifier: or -registerClass:forItemWithIdentifier: instead."]
         #[method_id(@__retain_semantics Other itemPrototype)]
         pub unsafe fn itemPrototype(&self) -> Option<Id<NSCollectionViewItem>>;
 
-        #[cfg(feature = "AppKit_NSCollectionViewItem")]
+        #[cfg(feature = "AppKit_NSViewController")]
         #[deprecated = "Use -registerNib:forItemWithIdentifier: or -registerClass:forItemWithIdentifier: instead."]
         #[method(setItemPrototype:)]
         pub unsafe fn setItemPrototype(&self, item_prototype: Option<&NSCollectionViewItem>);
@@ -1266,18 +1437,22 @@ extern_methods!(
         #[method(setMaxNumberOfColumns:)]
         pub unsafe fn setMaxNumberOfColumns(&self, max_number_of_columns: NSUInteger);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[deprecated = "Use NSCollectionViewGridLayout as the receiver's collectionViewLayout, setting its minimumItemSize instead"]
         #[method(minItemSize)]
         pub unsafe fn minItemSize(&self) -> NSSize;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[deprecated = "Use NSCollectionViewGridLayout as the receiver's collectionViewLayout, setting its minimumItemSize instead"]
         #[method(setMinItemSize:)]
         pub unsafe fn setMinItemSize(&self, min_item_size: NSSize);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[deprecated = "Use NSCollectionViewGridLayout as the receiver's collectionViewLayout, setting its maximumItemSize instead"]
         #[method(maxItemSize)]
         pub unsafe fn maxItemSize(&self) -> NSSize;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[deprecated = "Use NSCollectionViewGridLayout as the receiver's collectionViewLayout, setting its maximumItemSize instead"]
         #[method(setMaxItemSize:)]
         pub unsafe fn setMaxItemSize(&self, max_item_size: NSSize);

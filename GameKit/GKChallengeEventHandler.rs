@@ -65,22 +65,18 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameKit_GKChallengeEventHandler")]
     #[deprecated = "You should instead implement the GKChallengeListener protocol and register a listener with GKLocalPlayer."]
     pub struct GKChallengeEventHandler;
 
-    #[cfg(feature = "GameKit_GKChallengeEventHandler")]
     unsafe impl ClassType for GKChallengeEventHandler {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "GameKit_GKChallengeEventHandler")]
 unsafe impl NSObjectProtocol for GKChallengeEventHandler {}
 
 extern_methods!(
-    #[cfg(feature = "GameKit_GKChallengeEventHandler")]
     unsafe impl GKChallengeEventHandler {
         #[deprecated]
         #[method_id(@__retain_semantics Other challengeEventHandler)]
@@ -103,7 +99,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameKit_GKChallengeEventHandler")]
     unsafe impl GKChallengeEventHandler {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

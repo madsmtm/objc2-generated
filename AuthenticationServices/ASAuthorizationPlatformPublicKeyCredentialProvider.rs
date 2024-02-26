@@ -7,24 +7,20 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialProvider")]
     pub struct ASAuthorizationPlatformPublicKeyCredentialProvider;
 
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialProvider")]
     unsafe impl ClassType for ASAuthorizationPlatformPublicKeyCredentialProvider {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialProvider")]
+#[cfg(feature = "AuthenticationServices_ASAuthorizationProvider")]
 unsafe impl ASAuthorizationProvider for ASAuthorizationPlatformPublicKeyCredentialProvider {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialProvider")]
 unsafe impl NSObjectProtocol for ASAuthorizationPlatformPublicKeyCredentialProvider {}
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialProvider")]
     unsafe impl ASAuthorizationPlatformPublicKeyCredentialProvider {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithRelyingPartyIdentifier:)]
@@ -35,6 +31,7 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest",
+            feature = "AuthenticationServices_ASAuthorizationRequest",
             feature = "Foundation_NSData",
             feature = "Foundation_NSString"
         ))]
@@ -48,6 +45,7 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialAssertionRequest",
+            feature = "AuthenticationServices_ASAuthorizationRequest",
             feature = "Foundation_NSData"
         ))]
         #[method_id(@__retain_semantics Other createCredentialAssertionRequestWithChallenge:)]
@@ -69,11 +67,12 @@ extern_methods!(
 );
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialProvider")]
     unsafe impl ASAuthorizationPlatformPublicKeyCredentialProvider {}
 );
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationPlatformPublicKeyCredentialProvider")]
+#[cfg(
+    feature = "AuthenticationServices_ASAuthorizationWebBrowserPlatformPublicKeyCredentialProvider"
+)]
 unsafe impl ASAuthorizationWebBrowserPlatformPublicKeyCredentialProvider
     for ASAuthorizationPlatformPublicKeyCredentialProvider
 {

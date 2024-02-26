@@ -7,10 +7,18 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSPathComponentCell")]
+    #[cfg(all(
+        feature = "AppKit_NSActionCell",
+        feature = "AppKit_NSCell",
+        feature = "AppKit_NSTextFieldCell"
+    ))]
     pub struct NSPathComponentCell;
 
-    #[cfg(feature = "AppKit_NSPathComponentCell")]
+    #[cfg(all(
+        feature = "AppKit_NSActionCell",
+        feature = "AppKit_NSCell",
+        feature = "AppKit_NSTextFieldCell"
+    ))]
     unsafe impl ClassType for NSPathComponentCell {
         #[inherits(NSActionCell, NSCell, NSObject)]
         type Super = NSTextFieldCell;
@@ -18,26 +26,59 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSPathComponentCell")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSTextFieldCell"
+))]
 unsafe impl NSAccessibility for NSPathComponentCell {}
 
-#[cfg(feature = "AppKit_NSPathComponentCell")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSTextFieldCell"
+))]
 unsafe impl NSAccessibilityElementProtocol for NSPathComponentCell {}
 
-#[cfg(feature = "AppKit_NSPathComponentCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSTextFieldCell",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSPathComponentCell {}
 
-#[cfg(feature = "AppKit_NSPathComponentCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSTextFieldCell",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCopying for NSPathComponentCell {}
 
-#[cfg(feature = "AppKit_NSPathComponentCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSTextFieldCell"
+))]
 unsafe impl NSObjectProtocol for NSPathComponentCell {}
 
-#[cfg(feature = "AppKit_NSPathComponentCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSTextFieldCell",
+    feature = "AppKit_NSUserInterfaceItemIdentification"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSPathComponentCell {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSPathComponentCell")]
+    #[cfg(all(
+        feature = "AppKit_NSActionCell",
+        feature = "AppKit_NSCell",
+        feature = "AppKit_NSTextFieldCell"
+    ))]
     unsafe impl NSPathComponentCell {
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other image)]
@@ -59,7 +100,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSTextFieldCell`
-    #[cfg(feature = "AppKit_NSPathComponentCell")]
+    #[cfg(all(
+        feature = "AppKit_NSActionCell",
+        feature = "AppKit_NSCell",
+        feature = "AppKit_NSTextFieldCell"
+    ))]
     unsafe impl NSPathComponentCell {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initTextCell:)]
@@ -77,7 +122,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSCell`
-    #[cfg(feature = "AppKit_NSPathComponentCell")]
+    #[cfg(all(
+        feature = "AppKit_NSActionCell",
+        feature = "AppKit_NSCell",
+        feature = "AppKit_NSTextFieldCell"
+    ))]
     unsafe impl NSPathComponentCell {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -86,7 +135,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSPathComponentCell")]
+    #[cfg(all(
+        feature = "AppKit_NSActionCell",
+        feature = "AppKit_NSCell",
+        feature = "AppKit_NSTextFieldCell"
+    ))]
     unsafe impl NSPathComponentCell {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

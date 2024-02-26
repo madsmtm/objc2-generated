@@ -8,10 +8,10 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKAudiogramSample")]
+    #[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
     pub struct HKAudiogramSample;
 
-    #[cfg(feature = "HealthKit_HKAudiogramSample")]
+    #[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
     unsafe impl ClassType for HKAudiogramSample {
         #[inherits(HKObject, NSObject)]
         type Super = HKSample;
@@ -19,22 +19,27 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKAudiogramSample")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "HealthKit_HKObject",
+    feature = "HealthKit_HKSample"
+))]
 unsafe impl NSCoding for HKAudiogramSample {}
 
-#[cfg(feature = "HealthKit_HKAudiogramSample")]
+#[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
 unsafe impl NSObjectProtocol for HKAudiogramSample {}
 
-#[cfg(feature = "HealthKit_HKAudiogramSample")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "HealthKit_HKObject",
+    feature = "HealthKit_HKSample"
+))]
 unsafe impl NSSecureCoding for HKAudiogramSample {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKAudiogramSample")]
+    #[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
     unsafe impl HKAudiogramSample {
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "HealthKit_HKAudiogramSensitivityPoint"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other sensitivityPoints)]
         pub unsafe fn sensitivityPoints(&self) -> Id<NSArray<HKAudiogramSensitivityPoint>>;
 
@@ -42,8 +47,7 @@ extern_methods!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSDate",
             feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString",
-            feature = "HealthKit_HKAudiogramSensitivityPoint"
+            feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other audiogramSampleWithSensitivityPoints:startDate:endDate:metadata:)]
         pub unsafe fn audiogramSampleWithSensitivityPoints_startDate_endDate_metadata(
@@ -57,7 +61,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `HKObject`
-    #[cfg(feature = "HealthKit_HKAudiogramSample")]
+    #[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
     unsafe impl HKAudiogramSample {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -66,7 +70,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKAudiogramSample")]
+    #[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
     unsafe impl HKAudiogramSample {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -75,21 +79,17 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKAudiogramSensitivityPoint")]
     pub struct HKAudiogramSensitivityPoint;
 
-    #[cfg(feature = "HealthKit_HKAudiogramSensitivityPoint")]
     unsafe impl ClassType for HKAudiogramSensitivityPoint {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "HealthKit_HKAudiogramSensitivityPoint")]
 unsafe impl NSObjectProtocol for HKAudiogramSensitivityPoint {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKAudiogramSensitivityPoint")]
     unsafe impl HKAudiogramSensitivityPoint {
         #[cfg(feature = "HealthKit_HKQuantity")]
         #[method_id(@__retain_semantics Other frequency)]
@@ -118,7 +118,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKAudiogramSensitivityPoint")]
     unsafe impl HKAudiogramSensitivityPoint {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

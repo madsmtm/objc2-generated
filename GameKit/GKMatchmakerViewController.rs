@@ -21,10 +21,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameKit_GKMatchmakerViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     pub struct GKMatchmakerViewController;
 
-    #[cfg(feature = "GameKit_GKMatchmakerViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl ClassType for GKMatchmakerViewController {
         #[inherits(NSResponder, NSObject)]
         type Super = NSViewController;
@@ -32,26 +32,46 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "GameKit_GKMatchmakerViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController",
+    feature = "GameKit_GKDialogController"
+))]
 unsafe impl GKViewController for GKMatchmakerViewController {}
 
-#[cfg(feature = "GameKit_GKMatchmakerViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for GKMatchmakerViewController {}
 
-#[cfg(feature = "GameKit_GKMatchmakerViewController")]
+#[cfg(all(
+    feature = "AppKit_NSKeyValueBinding",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSEditor for GKMatchmakerViewController {}
 
-#[cfg(feature = "GameKit_GKMatchmakerViewController")]
+#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
 unsafe impl NSObjectProtocol for GKMatchmakerViewController {}
 
-#[cfg(feature = "GameKit_GKMatchmakerViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSStoryboardSegue",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSSeguePerforming for GKMatchmakerViewController {}
 
-#[cfg(feature = "GameKit_GKMatchmakerViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSUserInterfaceItemIdentification for GKMatchmakerViewController {}
 
 extern_methods!(
-    #[cfg(feature = "GameKit_GKMatchmakerViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl GKMatchmakerViewController {
         #[method_id(@__retain_semantics Other matchmakerDelegate)]
         pub unsafe fn matchmakerDelegate(
@@ -64,7 +84,7 @@ extern_methods!(
             matchmaker_delegate: Option<&ProtocolObject<dyn GKMatchmakerViewControllerDelegate>>,
         );
 
-        #[cfg(feature = "GameKit_GKMatchRequest")]
+        #[cfg(feature = "GameKit_GKMatchmaker")]
         #[method_id(@__retain_semantics Other matchRequest)]
         pub unsafe fn matchRequest(&self) -> Id<GKMatchRequest>;
 
@@ -86,14 +106,14 @@ extern_methods!(
         #[method(setCanStartWithMinimumPlayers:)]
         pub unsafe fn setCanStartWithMinimumPlayers(&self, can_start_with_minimum_players: bool);
 
-        #[cfg(feature = "GameKit_GKMatchRequest")]
+        #[cfg(feature = "GameKit_GKMatchmaker")]
         #[method_id(@__retain_semantics Init initWithMatchRequest:)]
         pub unsafe fn initWithMatchRequest(
             this: Allocated<Self>,
             request: &GKMatchRequest,
         ) -> Option<Id<Self>>;
 
-        #[cfg(feature = "GameKit_GKInvite")]
+        #[cfg(feature = "GameKit_GKMatchmaker")]
         #[method_id(@__retain_semantics Init initWithInvite:)]
         pub unsafe fn initWithInvite(this: Allocated<Self>, invite: &GKInvite) -> Option<Id<Self>>;
 
@@ -101,7 +121,7 @@ extern_methods!(
         #[method(addPlayersToMatch:)]
         pub unsafe fn addPlayersToMatch(&self, r#match: &GKMatch);
 
-        #[cfg(feature = "GameKit_GKPlayer")]
+        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
         #[method(setHostedPlayer:didConnect:)]
         pub unsafe fn setHostedPlayer_didConnect(&self, player: &GKPlayer, connected: bool);
 
@@ -122,9 +142,13 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSViewController`
-    #[cfg(feature = "GameKit_GKMatchmakerViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl GKMatchmakerViewController {
-        #[cfg(all(feature = "Foundation_NSBundle", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSNib",
+            feature = "Foundation_NSBundle",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -140,7 +164,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "GameKit_GKMatchmakerViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl GKMatchmakerViewController {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -149,7 +173,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameKit_GKMatchmakerViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl GKMatchmakerViewController {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -158,7 +182,7 @@ extern_methods!(
 
 extern_methods!(
     /// Obsoleted
-    #[cfg(feature = "GameKit_GKMatchmakerViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl GKMatchmakerViewController {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
@@ -169,7 +193,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait GKMatchmakerViewControllerDelegate: NSObjectProtocol {
-        #[cfg(feature = "GameKit_GKMatchmakerViewController")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
         #[method(matchmakerViewControllerWasCancelled:)]
         unsafe fn matchmakerViewControllerWasCancelled(
             &self,
@@ -177,8 +201,9 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "GameKit_GKMatchmakerViewController"
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSViewController",
+            feature = "Foundation_NSError"
         ))]
         #[method(matchmakerViewController:didFailWithError:)]
         unsafe fn matchmakerViewController_didFailWithError(
@@ -188,8 +213,9 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "GameKit_GKMatch",
-            feature = "GameKit_GKMatchmakerViewController"
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSViewController",
+            feature = "GameKit_GKMatch"
         ))]
         #[optional]
         #[method(matchmakerViewController:didFindMatch:)]
@@ -200,8 +226,10 @@ extern_protocol!(
         );
 
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSViewController",
             feature = "Foundation_NSArray",
-            feature = "GameKit_GKMatchmakerViewController",
+            feature = "GameKit_GKBasePlayer",
             feature = "GameKit_GKPlayer"
         ))]
         #[optional]
@@ -213,7 +241,9 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "GameKit_GKMatchmakerViewController",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSViewController",
+            feature = "GameKit_GKBasePlayer",
             feature = "GameKit_GKPlayer"
         ))]
         #[optional]
@@ -225,9 +255,12 @@ extern_protocol!(
         );
 
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSViewController",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString",
-            feature = "GameKit_GKMatchmakerViewController",
+            feature = "GameKit_GKBasePlayer",
+            feature = "GameKit_GKDefines",
             feature = "GameKit_GKPlayer"
         ))]
         #[optional]
@@ -240,9 +273,10 @@ extern_protocol!(
         );
 
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSViewController",
             feature = "Foundation_NSArray",
-            feature = "Foundation_NSString",
-            feature = "GameKit_GKMatchmakerViewController"
+            feature = "Foundation_NSString"
         ))]
         #[deprecated]
         #[optional]
@@ -254,8 +288,9 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "GameKit_GKMatchmakerViewController"
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSViewController",
+            feature = "Foundation_NSString"
         ))]
         #[deprecated]
         #[optional]

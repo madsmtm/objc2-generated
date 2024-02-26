@@ -6,21 +6,17 @@ use crate::QuartzCore::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "QuartzCore_CARemoteLayerServer")]
     pub struct CARemoteLayerServer;
 
-    #[cfg(feature = "QuartzCore_CARemoteLayerServer")]
     unsafe impl ClassType for CARemoteLayerServer {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "QuartzCore_CARemoteLayerServer")]
 unsafe impl NSObjectProtocol for CARemoteLayerServer {}
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CARemoteLayerServer")]
     unsafe impl CARemoteLayerServer {
         #[method_id(@__retain_semantics Other sharedServer)]
         pub unsafe fn sharedServer() -> Id<CARemoteLayerServer>;
@@ -29,7 +25,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "QuartzCore_CARemoteLayerServer")]
     unsafe impl CARemoteLayerServer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

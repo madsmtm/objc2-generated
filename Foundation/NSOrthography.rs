@@ -5,30 +5,26 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSOrthography")]
     pub struct NSOrthography;
 
-    #[cfg(feature = "Foundation_NSOrthography")]
     unsafe impl ClassType for NSOrthography {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSOrthography")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSOrthography {}
 
-#[cfg(feature = "Foundation_NSOrthography")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSOrthography {}
 
-#[cfg(feature = "Foundation_NSOrthography")]
 unsafe impl NSObjectProtocol for NSOrthography {}
 
-#[cfg(feature = "Foundation_NSOrthography")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSOrthography {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSOrthography")]
     unsafe impl NSOrthography {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other dominantScript)]
@@ -62,7 +58,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSOrthography")]
     unsafe impl NSOrthography {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -74,7 +69,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSOrthographyExtended
-    #[cfg(feature = "Foundation_NSOrthography")]
     unsafe impl NSOrthography {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other languagesForScript:)]
@@ -105,7 +99,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSOrthographyCreation
-    #[cfg(feature = "Foundation_NSOrthography")]
     unsafe impl NSOrthography {
         #[cfg(all(
             feature = "Foundation_NSArray",

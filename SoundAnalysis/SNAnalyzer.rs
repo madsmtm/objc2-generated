@@ -6,30 +6,26 @@ use crate::SoundAnalysis::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "SoundAnalysis_SNAudioStreamAnalyzer")]
     pub struct SNAudioStreamAnalyzer;
 
-    #[cfg(feature = "SoundAnalysis_SNAudioStreamAnalyzer")]
     unsafe impl ClassType for SNAudioStreamAnalyzer {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "SoundAnalysis_SNAudioStreamAnalyzer")]
 unsafe impl NSObjectProtocol for SNAudioStreamAnalyzer {}
 
 extern_methods!(
-    #[cfg(feature = "SoundAnalysis_SNAudioStreamAnalyzer")]
     unsafe impl SNAudioStreamAnalyzer {
-        #[cfg(feature = "AVFAudio_AVAudioFormat")]
-        #[method_id(@__retain_semantics Init initWithFormat:)]
-        pub unsafe fn initWithFormat(this: Allocated<Self>, format: &AVAudioFormat) -> Id<Self>;
-
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "SoundAnalysis_SNRequest",
+            feature = "SoundAnalysis_SNResult"
+        ))]
         #[method(addRequest:withObserver:error:_)]
         pub unsafe fn addRequest_withObserver_error(
             &self,
@@ -37,19 +33,12 @@ extern_methods!(
             observer: &ProtocolObject<dyn SNResultsObserving>,
         ) -> Result<(), Id<NSError>>;
 
+        #[cfg(feature = "SoundAnalysis_SNRequest")]
         #[method(removeRequest:)]
         pub unsafe fn removeRequest(&self, request: &ProtocolObject<dyn SNRequest>);
 
         #[method(removeAllRequests)]
         pub unsafe fn removeAllRequests(&self);
-
-        #[cfg(feature = "AVFAudio_AVAudioBuffer")]
-        #[method(analyzeAudioBuffer:atAudioFramePosition:)]
-        pub unsafe fn analyzeAudioBuffer_atAudioFramePosition(
-            &self,
-            audio_buffer: &AVAudioBuffer,
-            audio_frame_position: AVAudioFramePosition,
-        );
 
         #[method(completeAnalysis)]
         pub unsafe fn completeAnalysis(&self);
@@ -58,7 +47,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "SoundAnalysis_SNAudioStreamAnalyzer")]
     unsafe impl SNAudioStreamAnalyzer {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -67,21 +55,17 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "SoundAnalysis_SNAudioFileAnalyzer")]
     pub struct SNAudioFileAnalyzer;
 
-    #[cfg(feature = "SoundAnalysis_SNAudioFileAnalyzer")]
     unsafe impl ClassType for SNAudioFileAnalyzer {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "SoundAnalysis_SNAudioFileAnalyzer")]
 unsafe impl NSObjectProtocol for SNAudioFileAnalyzer {}
 
 extern_methods!(
-    #[cfg(feature = "SoundAnalysis_SNAudioFileAnalyzer")]
     unsafe impl SNAudioFileAnalyzer {
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Init initWithURL:error:_)]
@@ -93,7 +77,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "SoundAnalysis_SNRequest",
+            feature = "SoundAnalysis_SNResult"
+        ))]
         #[method(addRequest:withObserver:error:_)]
         pub unsafe fn addRequest_withObserver_error(
             &self,
@@ -101,6 +89,7 @@ extern_methods!(
             observer: &ProtocolObject<dyn SNResultsObserving>,
         ) -> Result<(), Id<NSError>>;
 
+        #[cfg(feature = "SoundAnalysis_SNRequest")]
         #[method(removeRequest:)]
         pub unsafe fn removeRequest(&self, request: &ProtocolObject<dyn SNRequest>);
 
@@ -120,7 +109,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "SoundAnalysis_SNAudioFileAnalyzer")]
     unsafe impl SNAudioFileAnalyzer {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

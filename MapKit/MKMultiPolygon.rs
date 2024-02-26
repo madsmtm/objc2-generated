@@ -9,10 +9,10 @@ use crate::MapKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKMultiPolygon")]
+    #[cfg(feature = "MapKit_MKShape")]
     pub struct MKMultiPolygon;
 
-    #[cfg(feature = "MapKit_MKMultiPolygon")]
+    #[cfg(feature = "MapKit_MKShape")]
     unsafe impl ClassType for MKMultiPolygon {
         #[inherits(NSObject)]
         type Super = MKShape;
@@ -20,26 +20,38 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MapKit_MKMultiPolygon")]
+#[cfg(all(feature = "MapKit_MKAnnotation", feature = "MapKit_MKShape"))]
 unsafe impl MKAnnotation for MKMultiPolygon {}
 
-#[cfg(feature = "MapKit_MKMultiPolygon")]
+#[cfg(all(
+    feature = "MapKit_MKAnnotation",
+    feature = "MapKit_MKOverlay",
+    feature = "MapKit_MKShape"
+))]
 unsafe impl MKOverlay for MKMultiPolygon {}
 
-#[cfg(feature = "MapKit_MKMultiPolygon")]
+#[cfg(feature = "MapKit_MKShape")]
 unsafe impl NSObjectProtocol for MKMultiPolygon {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKMultiPolygon")]
+    #[cfg(feature = "MapKit_MKShape")]
     unsafe impl MKMultiPolygon {
-        #[cfg(all(feature = "Foundation_NSArray", feature = "MapKit_MKPolygon"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "MapKit_MKMultiPoint",
+            feature = "MapKit_MKPolygon"
+        ))]
         #[method_id(@__retain_semantics Init initWithPolygons:)]
         pub unsafe fn initWithPolygons(
             this: Allocated<Self>,
             polygons: &NSArray<MKPolygon>,
         ) -> Id<Self>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "MapKit_MKPolygon"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "MapKit_MKMultiPoint",
+            feature = "MapKit_MKPolygon"
+        ))]
         #[method_id(@__retain_semantics Other polygons)]
         pub unsafe fn polygons(&self) -> Id<NSArray<MKPolygon>>;
     }
@@ -47,7 +59,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MapKit_MKMultiPolygon")]
+    #[cfg(feature = "MapKit_MKShape")]
     unsafe impl MKMultiPolygon {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

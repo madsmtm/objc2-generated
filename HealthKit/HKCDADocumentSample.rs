@@ -8,10 +8,18 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKCDADocumentSample")]
+    #[cfg(all(
+        feature = "HealthKit_HKDocumentSample",
+        feature = "HealthKit_HKObject",
+        feature = "HealthKit_HKSample"
+    ))]
     pub struct HKCDADocumentSample;
 
-    #[cfg(feature = "HealthKit_HKCDADocumentSample")]
+    #[cfg(all(
+        feature = "HealthKit_HKDocumentSample",
+        feature = "HealthKit_HKObject",
+        feature = "HealthKit_HKSample"
+    ))]
     unsafe impl ClassType for HKCDADocumentSample {
         #[inherits(HKSample, HKObject, NSObject)]
         type Super = HKDocumentSample;
@@ -19,19 +27,36 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKCDADocumentSample")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "HealthKit_HKDocumentSample",
+    feature = "HealthKit_HKObject",
+    feature = "HealthKit_HKSample"
+))]
 unsafe impl NSCoding for HKCDADocumentSample {}
 
-#[cfg(feature = "HealthKit_HKCDADocumentSample")]
+#[cfg(all(
+    feature = "HealthKit_HKDocumentSample",
+    feature = "HealthKit_HKObject",
+    feature = "HealthKit_HKSample"
+))]
 unsafe impl NSObjectProtocol for HKCDADocumentSample {}
 
-#[cfg(feature = "HealthKit_HKCDADocumentSample")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "HealthKit_HKDocumentSample",
+    feature = "HealthKit_HKObject",
+    feature = "HealthKit_HKSample"
+))]
 unsafe impl NSSecureCoding for HKCDADocumentSample {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKCDADocumentSample")]
+    #[cfg(all(
+        feature = "HealthKit_HKDocumentSample",
+        feature = "HealthKit_HKObject",
+        feature = "HealthKit_HKSample"
+    ))]
     unsafe impl HKCDADocumentSample {
-        #[cfg(feature = "HealthKit_HKCDADocument")]
         #[method_id(@__retain_semantics Other document)]
         pub unsafe fn document(&self) -> Option<Id<HKCDADocument>>;
 
@@ -54,7 +79,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `HKObject`
-    #[cfg(feature = "HealthKit_HKCDADocumentSample")]
+    #[cfg(all(
+        feature = "HealthKit_HKDocumentSample",
+        feature = "HealthKit_HKObject",
+        feature = "HealthKit_HKSample"
+    ))]
     unsafe impl HKCDADocumentSample {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -63,7 +92,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKCDADocumentSample")]
+    #[cfg(all(
+        feature = "HealthKit_HKDocumentSample",
+        feature = "HealthKit_HKObject",
+        feature = "HealthKit_HKSample"
+    ))]
     unsafe impl HKCDADocumentSample {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -72,21 +105,17 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKCDADocument")]
     pub struct HKCDADocument;
 
-    #[cfg(feature = "HealthKit_HKCDADocument")]
     unsafe impl ClassType for HKCDADocument {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "HealthKit_HKCDADocument")]
 unsafe impl NSObjectProtocol for HKCDADocument {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKCDADocument")]
     unsafe impl HKCDADocument {
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other documentData)]
@@ -112,7 +141,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKCDADocument")]
     unsafe impl HKCDADocument {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

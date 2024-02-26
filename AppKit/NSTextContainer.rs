@@ -7,31 +7,28 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTextContainer")]
     pub struct NSTextContainer;
 
-    #[cfg(feature = "AppKit_NSTextContainer")]
     unsafe impl ClassType for NSTextContainer {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSTextContainer")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSTextContainer {}
 
-#[cfg(feature = "AppKit_NSTextContainer")]
 unsafe impl NSObjectProtocol for NSTextContainer {}
 
-#[cfg(feature = "AppKit_NSTextContainer")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSTextContainer {}
 
-#[cfg(feature = "AppKit_NSTextContainer")]
+#[cfg(feature = "AppKit_NSLayoutManager")]
 unsafe impl NSTextLayoutOrientationProvider for NSTextContainer {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTextContainer")]
     unsafe impl NSTextContainer {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Init initWithSize:)]
         pub unsafe fn initWithSize(this: Allocated<Self>, size: NSSize) -> Id<Self>;
 
@@ -55,9 +52,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other textLayoutManager)]
         pub unsafe fn textLayoutManager(&self) -> Option<Id<NSTextLayoutManager>>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(size)]
         pub unsafe fn size(&self) -> NSSize;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setSize:)]
         pub unsafe fn setSize(&self, size: NSSize);
 
@@ -69,15 +68,19 @@ extern_methods!(
         #[method(setExclusionPaths:)]
         pub unsafe fn setExclusionPaths(&self, exclusion_paths: &NSArray<NSBezierPath>);
 
+        #[cfg(feature = "AppKit_NSParagraphStyle")]
         #[method(lineBreakMode)]
         pub unsafe fn lineBreakMode(&self) -> NSLineBreakMode;
 
+        #[cfg(feature = "AppKit_NSParagraphStyle")]
         #[method(setLineBreakMode:)]
         pub unsafe fn setLineBreakMode(&self, line_break_mode: NSLineBreakMode);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(lineFragmentPadding)]
         pub unsafe fn lineFragmentPadding(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setLineFragmentPadding:)]
         pub unsafe fn setLineFragmentPadding(&self, line_fragment_padding: CGFloat);
 
@@ -87,6 +90,7 @@ extern_methods!(
         #[method(setMaximumNumberOfLines:)]
         pub unsafe fn setMaximumNumberOfLines(&self, maximum_number_of_lines: NSUInteger);
 
+        #[cfg(all(feature = "AppKit_NSText", feature = "Foundation_NSGeometry"))]
         #[method(lineFragmentRectForProposedRect:atIndex:writingDirection:remainingRect:)]
         pub unsafe fn lineFragmentRectForProposedRect_atIndex_writingDirection_remainingRect(
             &self,
@@ -111,11 +115,21 @@ extern_methods!(
         #[method(setHeightTracksTextView:)]
         pub unsafe fn setHeightTracksTextView(&self, height_tracks_text_view: bool);
 
-        #[cfg(feature = "AppKit_NSTextView")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSText",
+            feature = "AppKit_NSTextView",
+            feature = "AppKit_NSView"
+        ))]
         #[method_id(@__retain_semantics Other textView)]
         pub unsafe fn textView(&self, mtm: MainThreadMarker) -> Option<Id<NSTextView>>;
 
-        #[cfg(feature = "AppKit_NSTextView")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSText",
+            feature = "AppKit_NSTextView",
+            feature = "AppKit_NSView"
+        ))]
         #[method(setTextView:)]
         pub unsafe fn setTextView(&self, text_view: Option<&NSTextView>);
     }
@@ -123,7 +137,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTextContainer")]
     unsafe impl NSTextContainer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -156,20 +169,23 @@ ns_enum!(
 
 extern_methods!(
     /// NSTextContainerDeprecated
-    #[cfg(feature = "AppKit_NSTextContainer")]
     unsafe impl NSTextContainer {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Init initWithContainerSize:)]
         pub unsafe fn initWithContainerSize(
             this: Allocated<Self>,
             a_container_size: NSSize,
         ) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(containerSize)]
         pub unsafe fn containerSize(&self) -> NSSize;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setContainerSize:)]
         pub unsafe fn setContainerSize(&self, container_size: NSSize);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(lineFragmentRectForProposedRect:sweepDirection:movementDirection:remainingRect:)]
         pub unsafe fn lineFragmentRectForProposedRect_sweepDirection_movementDirection_remainingRect(
             &self,
@@ -179,6 +195,7 @@ extern_methods!(
             remaining_rect: NSRectPointer,
         ) -> NSRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[deprecated]
         #[method(containsPoint:)]
         pub unsafe fn containsPoint(&self, point: NSPoint) -> bool;

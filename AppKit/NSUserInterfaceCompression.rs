@@ -7,27 +7,23 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
     pub struct NSUserInterfaceCompressionOptions;
 
-    #[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
     unsafe impl ClassType for NSUserInterfaceCompressionOptions {
         type Super = NSObject;
         type Mutability = Immutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSUserInterfaceCompressionOptions {}
 
-#[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSUserInterfaceCompressionOptions {}
 
-#[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
 unsafe impl NSObjectProtocol for NSUserInterfaceCompressionOptions {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
     unsafe impl NSUserInterfaceCompressionOptions {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -88,7 +84,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
     unsafe impl NSUserInterfaceCompressionOptions {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -97,27 +92,20 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSUserInterfaceCompression {
-        #[cfg(all(
-            feature = "AppKit_NSUserInterfaceCompressionOptions",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(compressWithPrioritizedCompressionOptions:)]
         unsafe fn compressWithPrioritizedCompressionOptions(
             &self,
             prioritized_options: &NSArray<NSUserInterfaceCompressionOptions>,
         );
 
-        #[cfg(all(
-            feature = "AppKit_NSUserInterfaceCompressionOptions",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSGeometry"))]
         #[method(minimumSizeWithPrioritizedCompressionOptions:)]
         unsafe fn minimumSizeWithPrioritizedCompressionOptions(
             &self,
             prioritized_options: &NSArray<NSUserInterfaceCompressionOptions>,
         ) -> NSSize;
 
-        #[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
         #[method_id(@__retain_semantics Other activeCompressionOptions)]
         unsafe fn activeCompressionOptions(&self) -> Id<NSUserInterfaceCompressionOptions>;
     }

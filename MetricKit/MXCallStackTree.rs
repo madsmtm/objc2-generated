@@ -6,27 +6,23 @@ use crate::MetricKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MetricKit_MXCallStackTree")]
     pub struct MXCallStackTree;
 
-    #[cfg(feature = "MetricKit_MXCallStackTree")]
     unsafe impl ClassType for MXCallStackTree {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MetricKit_MXCallStackTree")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for MXCallStackTree {}
 
-#[cfg(feature = "MetricKit_MXCallStackTree")]
 unsafe impl NSObjectProtocol for MXCallStackTree {}
 
-#[cfg(feature = "MetricKit_MXCallStackTree")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for MXCallStackTree {}
 
 extern_methods!(
-    #[cfg(feature = "MetricKit_MXCallStackTree")]
     unsafe impl MXCallStackTree {
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other JSONRepresentation)]
@@ -36,7 +32,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MetricKit_MXCallStackTree")]
     unsafe impl MXCallStackTree {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

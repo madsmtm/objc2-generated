@@ -7,15 +7,12 @@ use crate::StoreKit::*;
 
 extern_protocol!(
     pub unsafe trait SKOverlayDelegate: NSObjectProtocol {
-        #[cfg(all(feature = "Foundation_NSError", feature = "StoreKit_SKOverlay"))]
+        #[cfg(feature = "Foundation_NSError")]
         #[optional]
         #[method(storeOverlay:didFailToLoadWithError:)]
         unsafe fn storeOverlay_didFailToLoadWithError(&self, overlay: &SKOverlay, error: &NSError);
 
-        #[cfg(all(
-            feature = "StoreKit_SKOverlay",
-            feature = "StoreKit_SKOverlayTransitionContext"
-        ))]
+        #[cfg(feature = "StoreKit_SKOverlayTransitionContext")]
         #[optional]
         #[method(storeOverlay:willStartPresentation:)]
         unsafe fn storeOverlay_willStartPresentation(
@@ -24,10 +21,7 @@ extern_protocol!(
             transition_context: &SKOverlayTransitionContext,
         );
 
-        #[cfg(all(
-            feature = "StoreKit_SKOverlay",
-            feature = "StoreKit_SKOverlayTransitionContext"
-        ))]
+        #[cfg(feature = "StoreKit_SKOverlayTransitionContext")]
         #[optional]
         #[method(storeOverlay:didFinishPresentation:)]
         unsafe fn storeOverlay_didFinishPresentation(
@@ -36,10 +30,7 @@ extern_protocol!(
             transition_context: &SKOverlayTransitionContext,
         );
 
-        #[cfg(all(
-            feature = "StoreKit_SKOverlay",
-            feature = "StoreKit_SKOverlayTransitionContext"
-        ))]
+        #[cfg(feature = "StoreKit_SKOverlayTransitionContext")]
         #[optional]
         #[method(storeOverlay:willStartDismissal:)]
         unsafe fn storeOverlay_willStartDismissal(
@@ -48,10 +39,7 @@ extern_protocol!(
             transition_context: &SKOverlayTransitionContext,
         );
 
-        #[cfg(all(
-            feature = "StoreKit_SKOverlay",
-            feature = "StoreKit_SKOverlayTransitionContext"
-        ))]
+        #[cfg(feature = "StoreKit_SKOverlayTransitionContext")]
         #[optional]
         #[method(storeOverlay:didFinishDismissal:)]
         unsafe fn storeOverlay_didFinishDismissal(
@@ -66,21 +54,17 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "StoreKit_SKOverlay")]
     pub struct SKOverlay;
 
-    #[cfg(feature = "StoreKit_SKOverlay")]
     unsafe impl ClassType for SKOverlay {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "StoreKit_SKOverlay")]
 unsafe impl NSObjectProtocol for SKOverlay {}
 
 extern_methods!(
-    #[cfg(feature = "StoreKit_SKOverlay")]
     unsafe impl SKOverlay {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

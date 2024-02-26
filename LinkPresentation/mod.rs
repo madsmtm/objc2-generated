@@ -17,23 +17,37 @@
 #[link(name = "LinkPresentation", kind = "framework")]
 extern "C" {}
 
+#[cfg(feature = "LinkPresentation_LPError")]
 #[path = "LPError.rs"]
 mod __LPError;
+#[cfg(feature = "LinkPresentation_LPFoundation")]
 #[path = "LPFoundation.rs"]
 mod __LPFoundation;
+#[cfg(feature = "LinkPresentation_LPLinkMetadata")]
 #[path = "LPLinkMetadata.rs"]
 mod __LPLinkMetadata;
+#[cfg(feature = "LinkPresentation_LPLinkView")]
 #[path = "LPLinkView.rs"]
 mod __LPLinkView;
+#[cfg(feature = "LinkPresentation_LPMetadataProvider")]
 #[path = "LPMetadataProvider.rs"]
 mod __LPMetadataProvider;
 
+#[cfg(feature = "LinkPresentation_LPError")]
 pub use self::__LPError::LPErrorCode;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSError",
+    feature = "Foundation_NSString",
+    feature = "LinkPresentation_LPError"
+))]
 pub use self::__LPError::LPErrorDomain;
 #[cfg(feature = "LinkPresentation_LPLinkMetadata")]
 pub use self::__LPLinkMetadata::LPLinkMetadata;
-#[cfg(feature = "LinkPresentation_LPLinkView")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "LinkPresentation_LPLinkView"
+))]
 pub use self::__LPLinkView::LPLinkView;
 #[cfg(feature = "LinkPresentation_LPMetadataProvider")]
 pub use self::__LPMetadataProvider::LPMetadataProvider;

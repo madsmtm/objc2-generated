@@ -7,11 +7,21 @@ use crate::WebKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_DOMHTMLDocument")]
+    #[cfg(all(
+        feature = "WebKit_DOMDocument",
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     #[deprecated]
     pub struct DOMHTMLDocument;
 
-    #[cfg(feature = "WebKit_DOMHTMLDocument")]
+    #[cfg(all(
+        feature = "WebKit_DOMDocument",
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl ClassType for DOMHTMLDocument {
         #[inherits(DOMNode, DOMObject, WebScriptObject, NSObject)]
         type Super = DOMDocument;
@@ -19,17 +29,40 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "WebKit_DOMHTMLDocument")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "WebKit_DOMDocument",
+    feature = "WebKit_DOMEventTarget",
+    feature = "WebKit_DOMNode",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl DOMEventTarget for DOMHTMLDocument {}
 
-#[cfg(feature = "WebKit_DOMHTMLDocument")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "WebKit_DOMDocument",
+    feature = "WebKit_DOMNode",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSCopying for DOMHTMLDocument {}
 
-#[cfg(feature = "WebKit_DOMHTMLDocument")]
+#[cfg(all(
+    feature = "WebKit_DOMDocument",
+    feature = "WebKit_DOMNode",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSObjectProtocol for DOMHTMLDocument {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_DOMHTMLDocument")]
+    #[cfg(all(
+        feature = "WebKit_DOMDocument",
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMHTMLDocument {
         #[cfg(feature = "WebKit_DOMHTMLCollection")]
         #[method_id(@__retain_semantics Other embeds)]
@@ -140,7 +173,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
-    #[cfg(feature = "WebKit_DOMHTMLDocument")]
+    #[cfg(all(
+        feature = "WebKit_DOMDocument",
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMHTMLDocument {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
@@ -150,7 +188,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_DOMHTMLDocument")]
+    #[cfg(all(
+        feature = "WebKit_DOMDocument",
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMHTMLDocument {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

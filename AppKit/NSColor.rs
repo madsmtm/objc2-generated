@@ -5,6 +5,7 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "AppKit_NSApplication")]
 extern_static!(NSAppKitVersionNumberWithPatternColorLeakFix: NSAppKitVersion = 641.0);
 
 ns_enum!(
@@ -37,42 +38,36 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSColor")]
     pub struct NSColor;
 
-    #[cfg(feature = "AppKit_NSColor")]
     unsafe impl ClassType for NSColor {
         type Super = NSObject;
         type Mutability = Immutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSColor")]
 unsafe impl Send for NSColor {}
 
-#[cfg(feature = "AppKit_NSColor")]
 unsafe impl Sync for NSColor {}
 
-#[cfg(feature = "AppKit_NSColor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSColor {}
 
-#[cfg(feature = "AppKit_NSColor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSColor {}
 
-#[cfg(feature = "AppKit_NSColor")]
 unsafe impl NSObjectProtocol for NSColor {}
 
-#[cfg(feature = "AppKit_NSColor")]
+#[cfg(feature = "AppKit_NSPasteboard")]
 unsafe impl NSPasteboardReading for NSColor {}
 
-#[cfg(feature = "AppKit_NSColor")]
+#[cfg(feature = "AppKit_NSPasteboard")]
 unsafe impl NSPasteboardWriting for NSColor {}
 
-#[cfg(feature = "AppKit_NSColor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSColor {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSColor")]
     unsafe impl NSColor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -81,7 +76,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
 
-        #[cfg(feature = "AppKit_NSColorSpace")]
+        #[cfg(all(feature = "AppKit_NSColorSpace", feature = "Foundation_NSGeometry"))]
         #[method_id(@__retain_semantics Other colorWithColorSpace:components:count:)]
         pub unsafe fn colorWithColorSpace_components_count(
             space: &NSColorSpace,
@@ -89,6 +84,7 @@ extern_methods!(
             number_of_components: NSInteger,
         ) -> Id<NSColor>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Other colorWithSRGBRed:green:blue:alpha:)]
         pub unsafe fn colorWithSRGBRed_green_blue_alpha(
             red: CGFloat,
@@ -97,12 +93,14 @@ extern_methods!(
             alpha: CGFloat,
         ) -> Id<NSColor>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Other colorWithGenericGamma22White:alpha:)]
         pub unsafe fn colorWithGenericGamma22White_alpha(
             white: CGFloat,
             alpha: CGFloat,
         ) -> Id<NSColor>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Other colorWithDisplayP3Red:green:blue:alpha:)]
         pub unsafe fn colorWithDisplayP3Red_green_blue_alpha(
             red: CGFloat,
@@ -111,9 +109,11 @@ extern_methods!(
             alpha: CGFloat,
         ) -> Id<NSColor>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Other colorWithWhite:alpha:)]
         pub unsafe fn colorWithWhite_alpha(white: CGFloat, alpha: CGFloat) -> Id<NSColor>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Other colorWithRed:green:blue:alpha:)]
         pub unsafe fn colorWithRed_green_blue_alpha(
             red: CGFloat,
@@ -122,6 +122,7 @@ extern_methods!(
             alpha: CGFloat,
         ) -> Id<NSColor>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Other colorWithHue:saturation:brightness:alpha:)]
         pub unsafe fn colorWithHue_saturation_brightness_alpha(
             hue: CGFloat,
@@ -130,7 +131,7 @@ extern_methods!(
             alpha: CGFloat,
         ) -> Id<NSColor>;
 
-        #[cfg(feature = "AppKit_NSColorSpace")]
+        #[cfg(all(feature = "AppKit_NSColorSpace", feature = "Foundation_NSGeometry"))]
         #[method_id(@__retain_semantics Other colorWithColorSpace:hue:saturation:brightness:alpha:)]
         pub unsafe fn colorWithColorSpace_hue_saturation_brightness_alpha(
             space: &NSColorSpace,
@@ -140,34 +141,44 @@ extern_methods!(
             alpha: CGFloat,
         ) -> Id<NSColor>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "AppKit_NSColorList", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other colorWithCatalogName:colorName:)]
         pub unsafe fn colorWithCatalogName_colorName(
             list_name: &NSColorListName,
             color_name: &NSColorName,
         ) -> Option<Id<NSColor>>;
 
-        #[cfg(all(feature = "Foundation_NSBundle", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSColorList",
+            feature = "Foundation_NSBundle",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other colorNamed:bundle:)]
         pub unsafe fn colorNamed_bundle(
             name: &NSColorName,
             bundle: Option<&NSBundle>,
         ) -> Option<Id<NSColor>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "AppKit_NSColorList", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other colorNamed:)]
         pub unsafe fn colorNamed(name: &NSColorName) -> Option<Id<NSColor>>;
 
-        #[cfg(all(feature = "AppKit_NSAppearance", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSAppearance",
+            feature = "AppKit_NSColorList",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other colorWithName:dynamicProvider:)]
         pub unsafe fn colorWithName_dynamicProvider(
             color_name: Option<&NSColorName>,
             dynamic_provider: &Block<dyn Fn(NonNull<NSAppearance>) -> NonNull<NSColor>>,
         ) -> Id<NSColor>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Other colorWithDeviceWhite:alpha:)]
         pub unsafe fn colorWithDeviceWhite_alpha(white: CGFloat, alpha: CGFloat) -> Id<NSColor>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Other colorWithDeviceRed:green:blue:alpha:)]
         pub unsafe fn colorWithDeviceRed_green_blue_alpha(
             red: CGFloat,
@@ -176,6 +187,7 @@ extern_methods!(
             alpha: CGFloat,
         ) -> Id<NSColor>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Other colorWithDeviceHue:saturation:brightness:alpha:)]
         pub unsafe fn colorWithDeviceHue_saturation_brightness_alpha(
             hue: CGFloat,
@@ -184,6 +196,7 @@ extern_methods!(
             alpha: CGFloat,
         ) -> Id<NSColor>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Other colorWithDeviceCyan:magenta:yellow:black:alpha:)]
         pub unsafe fn colorWithDeviceCyan_magenta_yellow_black_alpha(
             cyan: CGFloat,
@@ -193,10 +206,12 @@ extern_methods!(
             alpha: CGFloat,
         ) -> Id<NSColor>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Other colorWithCalibratedWhite:alpha:)]
         pub unsafe fn colorWithCalibratedWhite_alpha(white: CGFloat, alpha: CGFloat)
             -> Id<NSColor>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Other colorWithCalibratedRed:green:blue:alpha:)]
         pub unsafe fn colorWithCalibratedRed_green_blue_alpha(
             red: CGFloat,
@@ -205,6 +220,7 @@ extern_methods!(
             alpha: CGFloat,
         ) -> Id<NSColor>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Other colorWithCalibratedHue:saturation:brightness:alpha:)]
         pub unsafe fn colorWithCalibratedHue_saturation_brightness_alpha(
             hue: CGFloat,
@@ -432,9 +448,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other controlAccentColor)]
         pub unsafe fn controlAccentColor() -> Id<NSColor>;
 
+        #[cfg(feature = "AppKit_NSCell")]
         #[method(currentControlTint)]
         pub unsafe fn currentControlTint() -> NSControlTint;
 
+        #[cfg(feature = "AppKit_NSCell")]
         #[deprecated = "NSControlTint does not describe the full range of available control accent colors. Use +[NSColor controlAccentColor] instead."]
         #[method_id(@__retain_semantics Other colorForControlTint:)]
         pub unsafe fn colorForControlTint(control_tint: NSControlTint) -> Id<NSColor>;
@@ -445,9 +463,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other shadowColor)]
         pub unsafe fn shadowColor() -> Id<NSColor>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Other highlightWithLevel:)]
         pub unsafe fn highlightWithLevel(&self, val: CGFloat) -> Option<Id<NSColor>>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Other shadowWithLevel:)]
         pub unsafe fn shadowWithLevel(&self, val: CGFloat) -> Option<Id<NSColor>>;
 
@@ -466,6 +486,7 @@ extern_methods!(
         #[method(setStroke)]
         pub unsafe fn setStroke(&self);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Other blendedColorWithFraction:ofColor:)]
         pub unsafe fn blendedColorWithFraction_ofColor(
             &self,
@@ -473,14 +494,15 @@ extern_methods!(
             color: &NSColor,
         ) -> Option<Id<NSColor>>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Other colorWithAlphaComponent:)]
         pub unsafe fn colorWithAlphaComponent(&self, alpha: CGFloat) -> Id<NSColor>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "AppKit_NSColorList", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other catalogNameComponent)]
         pub unsafe fn catalogNameComponent(&self) -> Id<NSColorListName>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "AppKit_NSColorList", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other colorNameComponent)]
         pub unsafe fn colorNameComponent(&self) -> Id<NSColorName>;
 
@@ -492,15 +514,19 @@ extern_methods!(
         #[method_id(@__retain_semantics Other localizedColorNameComponent)]
         pub unsafe fn localizedColorNameComponent(&self) -> Id<NSString>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(redComponent)]
         pub unsafe fn redComponent(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(greenComponent)]
         pub unsafe fn greenComponent(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(blueComponent)]
         pub unsafe fn blueComponent(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(getRed:green:blue:alpha:)]
         pub unsafe fn getRed_green_blue_alpha(
             &self,
@@ -510,15 +536,19 @@ extern_methods!(
             alpha: *mut CGFloat,
         );
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(hueComponent)]
         pub unsafe fn hueComponent(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(saturationComponent)]
         pub unsafe fn saturationComponent(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(brightnessComponent)]
         pub unsafe fn brightnessComponent(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(getHue:saturation:brightness:alpha:)]
         pub unsafe fn getHue_saturation_brightness_alpha(
             &self,
@@ -528,24 +558,31 @@ extern_methods!(
             alpha: *mut CGFloat,
         );
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(whiteComponent)]
         pub unsafe fn whiteComponent(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(getWhite:alpha:)]
         pub unsafe fn getWhite_alpha(&self, white: *mut CGFloat, alpha: *mut CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(cyanComponent)]
         pub unsafe fn cyanComponent(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(magentaComponent)]
         pub unsafe fn magentaComponent(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(yellowComponent)]
         pub unsafe fn yellowComponent(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(blackComponent)]
         pub unsafe fn blackComponent(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(getCyan:magenta:yellow:black:alpha:)]
         pub unsafe fn getCyan_magenta_yellow_black_alpha(
             &self,
@@ -563,6 +600,7 @@ extern_methods!(
         #[method(numberOfComponents)]
         pub unsafe fn numberOfComponents(&self) -> NSInteger;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(getComponents:)]
         pub unsafe fn getComponents(&self, components: NonNull<CGFloat>);
 
@@ -570,6 +608,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other patternImage)]
         pub unsafe fn patternImage(&self) -> Id<NSImage>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(alphaComponent)]
         pub unsafe fn alphaComponent(&self) -> CGFloat;
 
@@ -581,6 +620,7 @@ extern_methods!(
         #[method(writeToPasteboard:)]
         pub unsafe fn writeToPasteboard(&self, paste_board: &NSPasteboard);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(drawSwatchInRect:)]
         pub unsafe fn drawSwatchInRect(&self, rect: NSRect);
 
@@ -596,7 +636,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSColor")]
     unsafe impl NSColor {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -605,7 +644,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSDeprecated
-    #[cfg(feature = "AppKit_NSColor")]
     unsafe impl NSColor {
         #[deprecated = "Use a color that matches the semantics being used, such as `separatorColor`"]
         #[method_id(@__retain_semantics Other controlHighlightColor)]
@@ -660,12 +698,16 @@ extern_methods!(
         #[method_id(@__retain_semantics Other controlAlternatingRowBackgroundColors)]
         pub unsafe fn controlAlternatingRowBackgroundColors() -> Id<NSArray<NSColor>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "AppKit_NSGraphics", feature = "Foundation_NSString"))]
         #[deprecated = "Use -type and NSColorType instead"]
         #[method_id(@__retain_semantics Other colorSpaceName)]
         pub unsafe fn colorSpaceName(&self) -> Id<NSColorSpaceName>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSGraphics",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
+        ))]
         #[deprecated = "Use -colorUsingType: or -colorUsingColorSpace: instead"]
         #[method_id(@__retain_semantics Other colorUsingColorSpaceName:device:)]
         pub unsafe fn colorUsingColorSpaceName_device(
@@ -674,7 +716,7 @@ extern_methods!(
             device_description: Option<&NSDictionary<NSDeviceDescriptionKey, AnyObject>>,
         ) -> Option<Id<NSColor>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "AppKit_NSGraphics", feature = "Foundation_NSString"))]
         #[deprecated = "Use -colorUsingType: or -colorUsingColorSpace: instead"]
         #[method_id(@__retain_semantics Other colorUsingColorSpaceName:)]
         pub unsafe fn colorUsingColorSpaceName(
@@ -686,22 +728,8 @@ extern_methods!(
 
 extern_methods!(
     /// NSQuartzCoreAdditions
-    #[cfg(feature = "AppKit_NSColor")]
     unsafe impl NSColor {}
 );
 
-extern_category!(
-    /// Category "NSAppKitAdditions" on [`CIColor`].
-    #[doc(alias = "NSAppKitAdditions")]
-    pub unsafe trait CIColorNSAppKitAdditions {
-        #[cfg(feature = "AppKit_NSColor")]
-        #[method_id(@__retain_semantics Init initWithColor:)]
-        unsafe fn initWithColor(this: Allocated<Self>, color: &NSColor) -> Option<Id<Self>>;
-    }
-
-    #[cfg(feature = "CoreImage_CIColor")]
-    unsafe impl CIColorNSAppKitAdditions for CIColor {}
-);
-
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSSystemColorsDidChangeNotification: &'static NSNotificationName);

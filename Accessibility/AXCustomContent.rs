@@ -16,30 +16,26 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Accessibility_AXCustomContent")]
     pub struct AXCustomContent;
 
-    #[cfg(feature = "Accessibility_AXCustomContent")]
     unsafe impl ClassType for AXCustomContent {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Accessibility_AXCustomContent")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for AXCustomContent {}
 
-#[cfg(feature = "Accessibility_AXCustomContent")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for AXCustomContent {}
 
-#[cfg(feature = "Accessibility_AXCustomContent")]
 unsafe impl NSObjectProtocol for AXCustomContent {}
 
-#[cfg(feature = "Accessibility_AXCustomContent")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for AXCustomContent {}
 
 extern_methods!(
-    #[cfg(feature = "Accessibility_AXCustomContent")]
     unsafe impl AXCustomContent {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other customContentWithLabel:value:)]
@@ -82,43 +78,28 @@ extern_methods!(
     }
 );
 
-#[cfg(all(
-    feature = "Accessibility_AXCustomContent",
-    feature = "Foundation_NSArray"
-))]
+#[cfg(feature = "Foundation_NSArray")]
 pub type AXCustomContentReturnBlock = *mut Block<dyn Fn() -> *mut NSArray<AXCustomContent>>;
 
 extern_protocol!(
     pub unsafe trait AXCustomContentProvider: NSObjectProtocol {
-        #[cfg(all(
-            feature = "Accessibility_AXCustomContent",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other accessibilityCustomContent)]
         unsafe fn accessibilityCustomContent(&self) -> Id<NSArray<AXCustomContent>>;
 
-        #[cfg(all(
-            feature = "Accessibility_AXCustomContent",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(setAccessibilityCustomContent:)]
         unsafe fn setAccessibilityCustomContent(
             &self,
             accessibility_custom_content: Option<&NSArray<AXCustomContent>>,
         );
 
-        #[cfg(all(
-            feature = "Accessibility_AXCustomContent",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[optional]
         #[method(accessibilityCustomContentBlock)]
         unsafe fn accessibilityCustomContentBlock(&self) -> AXCustomContentReturnBlock;
 
-        #[cfg(all(
-            feature = "Accessibility_AXCustomContent",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[optional]
         #[method(setAccessibilityCustomContentBlock:)]
         unsafe fn setAccessibilityCustomContentBlock(

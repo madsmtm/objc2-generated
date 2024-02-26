@@ -9,21 +9,17 @@ use crate::MapKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKDirectionsResponse")]
     pub struct MKDirectionsResponse;
 
-    #[cfg(feature = "MapKit_MKDirectionsResponse")]
     unsafe impl ClassType for MKDirectionsResponse {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MapKit_MKDirectionsResponse")]
 unsafe impl NSObjectProtocol for MKDirectionsResponse {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKDirectionsResponse")]
     unsafe impl MKDirectionsResponse {
         #[cfg(feature = "MapKit_MKMapItem")]
         #[method_id(@__retain_semantics Other source)]
@@ -33,7 +29,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other destination)]
         pub unsafe fn destination(&self) -> Id<MKMapItem>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "MapKit_MKRoute"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other routes)]
         pub unsafe fn routes(&self) -> Id<NSArray<MKRoute>>;
     }
@@ -41,7 +37,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MapKit_MKDirectionsResponse")]
     unsafe impl MKDirectionsResponse {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -53,21 +48,17 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKRoute")]
     pub struct MKRoute;
 
-    #[cfg(feature = "MapKit_MKRoute")]
     unsafe impl ClassType for MKRoute {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MapKit_MKRoute")]
 unsafe impl NSObjectProtocol for MKRoute {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKRoute")]
     unsafe impl MKRoute {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
@@ -77,20 +68,27 @@ extern_methods!(
         #[method_id(@__retain_semantics Other advisoryNotices)]
         pub unsafe fn advisoryNotices(&self) -> Id<NSArray<NSString>>;
 
+        #[cfg(feature = "CoreLocation_CLLocation")]
         #[method(distance)]
         pub unsafe fn distance(&self) -> CLLocationDistance;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(expectedTravelTime)]
         pub unsafe fn expectedTravelTime(&self) -> NSTimeInterval;
 
+        #[cfg(feature = "MapKit_MKDirectionsTypes")]
         #[method(transportType)]
         pub unsafe fn transportType(&self) -> MKDirectionsTransportType;
 
-        #[cfg(feature = "MapKit_MKPolyline")]
+        #[cfg(all(
+            feature = "MapKit_MKMultiPoint",
+            feature = "MapKit_MKPolyline",
+            feature = "MapKit_MKShape"
+        ))]
         #[method_id(@__retain_semantics Other polyline)]
         pub unsafe fn polyline(&self) -> Id<MKPolyline>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "MapKit_MKRouteStep"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other steps)]
         pub unsafe fn steps(&self) -> Id<NSArray<MKRouteStep>>;
 
@@ -104,7 +102,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MapKit_MKRoute")]
     unsafe impl MKRoute {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -116,21 +113,17 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKRouteStep")]
     pub struct MKRouteStep;
 
-    #[cfg(feature = "MapKit_MKRouteStep")]
     unsafe impl ClassType for MKRouteStep {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MapKit_MKRouteStep")]
 unsafe impl NSObjectProtocol for MKRouteStep {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKRouteStep")]
     unsafe impl MKRouteStep {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other instructions)]
@@ -140,13 +133,19 @@ extern_methods!(
         #[method_id(@__retain_semantics Other notice)]
         pub unsafe fn notice(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "MapKit_MKPolyline")]
+        #[cfg(all(
+            feature = "MapKit_MKMultiPoint",
+            feature = "MapKit_MKPolyline",
+            feature = "MapKit_MKShape"
+        ))]
         #[method_id(@__retain_semantics Other polyline)]
         pub unsafe fn polyline(&self) -> Id<MKPolyline>;
 
+        #[cfg(feature = "CoreLocation_CLLocation")]
         #[method(distance)]
         pub unsafe fn distance(&self) -> CLLocationDistance;
 
+        #[cfg(feature = "MapKit_MKDirectionsTypes")]
         #[method(transportType)]
         pub unsafe fn transportType(&self) -> MKDirectionsTransportType;
     }
@@ -154,7 +153,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MapKit_MKRouteStep")]
     unsafe impl MKRouteStep {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -166,21 +164,17 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKETAResponse")]
     pub struct MKETAResponse;
 
-    #[cfg(feature = "MapKit_MKETAResponse")]
     unsafe impl ClassType for MKETAResponse {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MapKit_MKETAResponse")]
 unsafe impl NSObjectProtocol for MKETAResponse {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKETAResponse")]
     unsafe impl MKETAResponse {
         #[cfg(feature = "MapKit_MKMapItem")]
         #[method_id(@__retain_semantics Other source)]
@@ -190,9 +184,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other destination)]
         pub unsafe fn destination(&self) -> Id<MKMapItem>;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(expectedTravelTime)]
         pub unsafe fn expectedTravelTime(&self) -> NSTimeInterval;
 
+        #[cfg(feature = "CoreLocation_CLLocation")]
         #[method(distance)]
         pub unsafe fn distance(&self) -> CLLocationDistance;
 
@@ -204,6 +200,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other expectedDepartureDate)]
         pub unsafe fn expectedDepartureDate(&self) -> Id<NSDate>;
 
+        #[cfg(feature = "MapKit_MKDirectionsTypes")]
         #[method(transportType)]
         pub unsafe fn transportType(&self) -> MKDirectionsTransportType;
     }
@@ -211,7 +208,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MapKit_MKETAResponse")]
     unsafe impl MKETAResponse {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

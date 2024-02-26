@@ -21,10 +21,18 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSImageView")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     pub struct NSImageView;
 
-    #[cfg(feature = "AppKit_NSImageView")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl ClassType for NSImageView {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;
@@ -32,38 +40,91 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSImageView")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibility for NSImageView {}
 
-#[cfg(feature = "AppKit_NSImageView")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibilityElementProtocol for NSImageView {}
 
-#[cfg(feature = "AppKit_NSImageView")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibilityImage for NSImageView {}
 
-#[cfg(feature = "AppKit_NSImageView")]
+#[cfg(all(
+    feature = "AppKit_NSAnimation",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAnimatablePropertyContainer for NSImageView {}
 
-#[cfg(feature = "AppKit_NSImageView")]
+#[cfg(all(
+    feature = "AppKit_NSAppearance",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAppearanceCustomization for NSImageView {}
 
-#[cfg(feature = "AppKit_NSImageView")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSImageView {}
 
-#[cfg(feature = "AppKit_NSImageView")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSDragging",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSDraggingDestination for NSImageView {}
 
-#[cfg(feature = "AppKit_NSImageView")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSMenu",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSMenuItemValidation for NSImageView {}
 
-#[cfg(feature = "AppKit_NSImageView")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSObjectProtocol for NSImageView {}
 
-#[cfg(feature = "AppKit_NSImageView")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSImageView {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSImageView")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSImageView {
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other imageViewWithImage:)]
@@ -83,29 +144,35 @@ extern_methods!(
         #[method(setEditable:)]
         pub unsafe fn setEditable(&self, editable: bool);
 
+        #[cfg(feature = "AppKit_NSImageCell")]
         #[method(imageAlignment)]
         pub unsafe fn imageAlignment(&self) -> NSImageAlignment;
 
+        #[cfg(feature = "AppKit_NSImageCell")]
         #[method(setImageAlignment:)]
         pub unsafe fn setImageAlignment(&self, image_alignment: NSImageAlignment);
 
+        #[cfg(feature = "AppKit_NSCell")]
         #[method(imageScaling)]
         pub unsafe fn imageScaling(&self) -> NSImageScaling;
 
+        #[cfg(feature = "AppKit_NSCell")]
         #[method(setImageScaling:)]
         pub unsafe fn setImageScaling(&self, image_scaling: NSImageScaling);
 
+        #[cfg(feature = "AppKit_NSImageCell")]
         #[method(imageFrameStyle)]
         pub unsafe fn imageFrameStyle(&self) -> NSImageFrameStyle;
 
+        #[cfg(feature = "AppKit_NSImageCell")]
         #[method(setImageFrameStyle:)]
         pub unsafe fn setImageFrameStyle(&self, image_frame_style: NSImageFrameStyle);
 
-        #[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
+        #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other symbolConfiguration)]
         pub unsafe fn symbolConfiguration(&self) -> Option<Id<NSImageSymbolConfiguration>>;
 
-        #[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
+        #[cfg(feature = "AppKit_NSImage")]
         #[method(setSymbolConfiguration:)]
         pub unsafe fn setSymbolConfiguration(
             &self,
@@ -159,8 +226,13 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSControl`
-    #[cfg(feature = "AppKit_NSImageView")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSImageView {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
 
@@ -172,7 +244,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "AppKit_NSImageView")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSImageView {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -181,108 +257,13 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSImageView")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSImageView {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
-    }
-);
-
-extern_methods!(
-    /// NSSymbolEffect
-    #[cfg(feature = "AppKit_NSImageView")]
-    unsafe impl NSImageView {
-        #[cfg(feature = "Symbols_NSSymbolEffect")]
-        #[method(addSymbolEffect:)]
-        pub unsafe fn addSymbolEffect(&self, symbol_effect: &NSSymbolEffect);
-
-        #[cfg(all(
-            feature = "Symbols_NSSymbolEffect",
-            feature = "Symbols_NSSymbolEffectOptions"
-        ))]
-        #[method(addSymbolEffect:options:)]
-        pub unsafe fn addSymbolEffect_options(
-            &self,
-            symbol_effect: &NSSymbolEffect,
-            options: &NSSymbolEffectOptions,
-        );
-
-        #[cfg(all(
-            feature = "Symbols_NSSymbolEffect",
-            feature = "Symbols_NSSymbolEffectOptions"
-        ))]
-        #[method(addSymbolEffect:options:animated:)]
-        pub unsafe fn addSymbolEffect_options_animated(
-            &self,
-            symbol_effect: &NSSymbolEffect,
-            options: &NSSymbolEffectOptions,
-            animated: bool,
-        );
-
-        #[cfg(feature = "Symbols_NSSymbolEffect")]
-        #[method(removeSymbolEffectOfType:)]
-        pub unsafe fn removeSymbolEffectOfType(&self, symbol_effect: &NSSymbolEffect);
-
-        #[cfg(all(
-            feature = "Symbols_NSSymbolEffect",
-            feature = "Symbols_NSSymbolEffectOptions"
-        ))]
-        #[method(removeSymbolEffectOfType:options:)]
-        pub unsafe fn removeSymbolEffectOfType_options(
-            &self,
-            symbol_effect: &NSSymbolEffect,
-            options: &NSSymbolEffectOptions,
-        );
-
-        #[cfg(all(
-            feature = "Symbols_NSSymbolEffect",
-            feature = "Symbols_NSSymbolEffectOptions"
-        ))]
-        #[method(removeSymbolEffectOfType:options:animated:)]
-        pub unsafe fn removeSymbolEffectOfType_options_animated(
-            &self,
-            symbol_effect: &NSSymbolEffect,
-            options: &NSSymbolEffectOptions,
-            animated: bool,
-        );
-
-        #[method(removeAllSymbolEffects)]
-        pub unsafe fn removeAllSymbolEffects(&self);
-
-        #[cfg(feature = "Symbols_NSSymbolEffectOptions")]
-        #[method(removeAllSymbolEffectsWithOptions:)]
-        pub unsafe fn removeAllSymbolEffectsWithOptions(&self, options: &NSSymbolEffectOptions);
-
-        #[cfg(feature = "Symbols_NSSymbolEffectOptions")]
-        #[method(removeAllSymbolEffectsWithOptions:animated:)]
-        pub unsafe fn removeAllSymbolEffectsWithOptions_animated(
-            &self,
-            options: &NSSymbolEffectOptions,
-            animated: bool,
-        );
-
-        #[cfg(all(
-            feature = "AppKit_NSImage",
-            feature = "Symbols_NSSymbolContentTransition"
-        ))]
-        #[method(setSymbolImage:withContentTransition:)]
-        pub unsafe fn setSymbolImage_withContentTransition(
-            &self,
-            symbol_image: &NSImage,
-            transition: &NSSymbolContentTransition,
-        );
-
-        #[cfg(all(
-            feature = "AppKit_NSImage",
-            feature = "Symbols_NSSymbolContentTransition",
-            feature = "Symbols_NSSymbolEffectOptions"
-        ))]
-        #[method(setSymbolImage:withContentTransition:options:)]
-        pub unsafe fn setSymbolImage_withContentTransition_options(
-            &self,
-            symbol_image: &NSImage,
-            transition: &NSSymbolContentTransition,
-            options: &NSSymbolEffectOptions,
-        );
     }
 );

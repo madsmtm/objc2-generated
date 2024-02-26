@@ -34,21 +34,17 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKLocalSearchCompleter")]
     pub struct MKLocalSearchCompleter;
 
-    #[cfg(feature = "MapKit_MKLocalSearchCompleter")]
     unsafe impl ClassType for MKLocalSearchCompleter {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MapKit_MKLocalSearchCompleter")]
 unsafe impl NSObjectProtocol for MKLocalSearchCompleter {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKLocalSearchCompleter")]
     unsafe impl MKLocalSearchCompleter {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other queryFragment)]
@@ -58,9 +54,11 @@ extern_methods!(
         #[method(setQueryFragment:)]
         pub unsafe fn setQueryFragment(&self, query_fragment: &NSString);
 
+        #[cfg(all(feature = "CoreLocation_CLLocation", feature = "MapKit_MKGeometry"))]
         #[method(region)]
         pub unsafe fn region(&self) -> MKCoordinateRegion;
 
+        #[cfg(all(feature = "CoreLocation_CLLocation", feature = "MapKit_MKGeometry"))]
         #[method(setRegion:)]
         pub unsafe fn setRegion(&self, region: MKCoordinateRegion);
 
@@ -100,10 +98,7 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn MKLocalSearchCompleterDelegate>>,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "MapKit_MKLocalSearchCompletion"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other results)]
         pub unsafe fn results(&self) -> Id<NSArray<MKLocalSearchCompletion>>;
 
@@ -117,7 +112,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MapKit_MKLocalSearchCompleter")]
     unsafe impl MKLocalSearchCompleter {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -129,15 +123,11 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait MKLocalSearchCompleterDelegate: NSObjectProtocol {
-        #[cfg(feature = "MapKit_MKLocalSearchCompleter")]
         #[optional]
         #[method(completerDidUpdateResults:)]
         unsafe fn completerDidUpdateResults(&self, completer: &MKLocalSearchCompleter);
 
-        #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "MapKit_MKLocalSearchCompleter"
-        ))]
+        #[cfg(feature = "Foundation_NSError")]
         #[optional]
         #[method(completer:didFailWithError:)]
         unsafe fn completer_didFailWithError(
@@ -152,21 +142,17 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKLocalSearchCompletion")]
     pub struct MKLocalSearchCompletion;
 
-    #[cfg(feature = "MapKit_MKLocalSearchCompletion")]
     unsafe impl ClassType for MKLocalSearchCompletion {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MapKit_MKLocalSearchCompletion")]
 unsafe impl NSObjectProtocol for MKLocalSearchCompletion {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKLocalSearchCompletion")]
     unsafe impl MKLocalSearchCompletion {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
@@ -188,7 +174,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MapKit_MKLocalSearchCompletion")]
     unsafe impl MKLocalSearchCompletion {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -201,7 +186,7 @@ extern_methods!(
 extern_methods!(
     #[cfg(feature = "MapKit_MKLocalSearchRequest")]
     unsafe impl MKLocalSearchRequest {
-        #[cfg(feature = "MapKit_MKLocalSearchCompletion")]
+        #[cfg(feature = "MapKit_MKLocalSearchCompleter")]
         #[method_id(@__retain_semantics Init initWithCompletion:)]
         pub unsafe fn initWithCompletion(
             this: Allocated<Self>,

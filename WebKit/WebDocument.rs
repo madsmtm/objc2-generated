@@ -26,7 +26,7 @@ extern_protocol!(
         #[method(layout)]
         unsafe fn layout(&self);
 
-        #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
         #[deprecated]
         #[method(viewWillMoveToHostWindow:)]
         unsafe fn viewWillMoveToHostWindow(&self, host_window: Option<&NSWindow>);

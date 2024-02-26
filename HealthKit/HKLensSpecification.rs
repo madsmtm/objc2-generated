@@ -8,21 +8,17 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKLensSpecification")]
     pub struct HKLensSpecification;
 
-    #[cfg(feature = "HealthKit_HKLensSpecification")]
     unsafe impl ClassType for HKLensSpecification {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "HealthKit_HKLensSpecification")]
 unsafe impl NSObjectProtocol for HKLensSpecification {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKLensSpecification")]
     unsafe impl HKLensSpecification {
         #[cfg(feature = "HealthKit_HKQuantity")]
         #[method_id(@__retain_semantics Other sphere)]

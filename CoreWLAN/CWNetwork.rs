@@ -6,30 +6,26 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreWLAN_CWNetwork")]
     pub struct CWNetwork;
 
-    #[cfg(feature = "CoreWLAN_CWNetwork")]
     unsafe impl ClassType for CWNetwork {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreWLAN_CWNetwork")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CWNetwork {}
 
-#[cfg(feature = "CoreWLAN_CWNetwork")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for CWNetwork {}
 
-#[cfg(feature = "CoreWLAN_CWNetwork")]
 unsafe impl NSObjectProtocol for CWNetwork {}
 
-#[cfg(feature = "CoreWLAN_CWNetwork")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CWNetwork {}
 
 extern_methods!(
-    #[cfg(feature = "CoreWLAN_CWNetwork")]
     unsafe impl CWNetwork {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other ssid)]
@@ -70,9 +66,11 @@ extern_methods!(
         #[method(isEqualToNetwork:)]
         pub unsafe fn isEqualToNetwork(&self, network: &CWNetwork) -> bool;
 
+        #[cfg(feature = "CoreWLAN_CoreWLANTypes")]
         #[method(supportsSecurity:)]
         pub unsafe fn supportsSecurity(&self, security: CWSecurity) -> bool;
 
+        #[cfg(feature = "CoreWLAN_CoreWLANTypes")]
         #[method(supportsPHYMode:)]
         pub unsafe fn supportsPHYMode(&self, phy_mode: CWPHYMode) -> bool;
     }
@@ -80,7 +78,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreWLAN_CWNetwork")]
     unsafe impl CWNetwork {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

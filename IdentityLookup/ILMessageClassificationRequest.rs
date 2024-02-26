@@ -6,10 +6,10 @@ use crate::IdentityLookup::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "IdentityLookup_ILMessageClassificationRequest")]
+    #[cfg(feature = "IdentityLookup_ILClassificationRequest")]
     pub struct ILMessageClassificationRequest;
 
-    #[cfg(feature = "IdentityLookup_ILMessageClassificationRequest")]
+    #[cfg(feature = "IdentityLookup_ILClassificationRequest")]
     unsafe impl ClassType for ILMessageClassificationRequest {
         #[inherits(NSObject)]
         type Super = ILClassificationRequest;
@@ -17,20 +17,27 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "IdentityLookup_ILMessageClassificationRequest")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "IdentityLookup_ILClassificationRequest"
+))]
 unsafe impl NSCoding for ILMessageClassificationRequest {}
 
-#[cfg(feature = "IdentityLookup_ILMessageClassificationRequest")]
+#[cfg(feature = "IdentityLookup_ILClassificationRequest")]
 unsafe impl NSObjectProtocol for ILMessageClassificationRequest {}
 
-#[cfg(feature = "IdentityLookup_ILMessageClassificationRequest")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "IdentityLookup_ILClassificationRequest"
+))]
 unsafe impl NSSecureCoding for ILMessageClassificationRequest {}
 
 extern_methods!(
-    #[cfg(feature = "IdentityLookup_ILMessageClassificationRequest")]
+    #[cfg(feature = "IdentityLookup_ILClassificationRequest")]
     unsafe impl ILMessageClassificationRequest {
         #[cfg(all(
             feature = "Foundation_NSArray",
+            feature = "IdentityLookup_ILCommunication",
             feature = "IdentityLookup_ILMessageCommunication"
         ))]
         #[method_id(@__retain_semantics Other messageCommunications)]
@@ -43,7 +50,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "IdentityLookup_ILMessageClassificationRequest")]
+    #[cfg(feature = "IdentityLookup_ILClassificationRequest")]
     unsafe impl ILMessageClassificationRequest {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

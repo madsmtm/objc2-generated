@@ -19,24 +19,20 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSScriptWhoseTest")]
     pub struct NSScriptWhoseTest;
 
-    #[cfg(feature = "Foundation_NSScriptWhoseTest")]
     unsafe impl ClassType for NSScriptWhoseTest {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSScriptWhoseTest")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSScriptWhoseTest {}
 
-#[cfg(feature = "Foundation_NSScriptWhoseTest")]
 unsafe impl NSObjectProtocol for NSScriptWhoseTest {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSScriptWhoseTest")]
     unsafe impl NSScriptWhoseTest {
         #[method(isTrue)]
         pub unsafe fn isTrue(&self) -> bool;
@@ -52,7 +48,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSScriptWhoseTest")]
     unsafe impl NSScriptWhoseTest {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -61,10 +56,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSLogicalTest")]
     pub struct NSLogicalTest;
 
-    #[cfg(feature = "Foundation_NSLogicalTest")]
     unsafe impl ClassType for NSLogicalTest {
         #[inherits(NSObject)]
         type Super = NSScriptWhoseTest;
@@ -72,23 +65,21 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSLogicalTest")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSLogicalTest {}
 
-#[cfg(feature = "Foundation_NSLogicalTest")]
 unsafe impl NSObjectProtocol for NSLogicalTest {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSLogicalTest")]
     unsafe impl NSLogicalTest {
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSSpecifierTest"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Init initAndTestWithTests:)]
         pub unsafe fn initAndTestWithTests(
             this: Allocated<Self>,
             sub_tests: &NSArray<NSSpecifierTest>,
         ) -> Id<Self>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSSpecifierTest"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Init initOrTestWithTests:)]
         pub unsafe fn initOrTestWithTests(
             this: Allocated<Self>,
@@ -105,7 +96,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSScriptWhoseTest`
-    #[cfg(feature = "Foundation_NSLogicalTest")]
     unsafe impl NSLogicalTest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -118,7 +108,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSLogicalTest")]
     unsafe impl NSLogicalTest {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -127,10 +116,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSSpecifierTest")]
     pub struct NSSpecifierTest;
 
-    #[cfg(feature = "Foundation_NSSpecifierTest")]
     unsafe impl ClassType for NSSpecifierTest {
         #[inherits(NSObject)]
         type Super = NSScriptWhoseTest;
@@ -138,14 +125,12 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSSpecifierTest")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSSpecifierTest {}
 
-#[cfg(feature = "Foundation_NSSpecifierTest")]
 unsafe impl NSObjectProtocol for NSSpecifierTest {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSSpecifierTest")]
     unsafe impl NSSpecifierTest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -154,7 +139,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, in_coder: &NSCoder) -> Option<Id<Self>>;
 
-        #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
+        #[cfg(feature = "Foundation_NSScriptObjectSpecifiers")]
         #[method_id(@__retain_semantics Init initWithObjectSpecifier:comparisonOperator:testObject:)]
         pub unsafe fn initWithObjectSpecifier_comparisonOperator_testObject(
             this: Allocated<Self>,
@@ -167,7 +152,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSSpecifierTest")]
     unsafe impl NSSpecifierTest {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

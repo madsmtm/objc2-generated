@@ -12,27 +12,23 @@ extern_static!(MPMediaEntityPropertyPersistentID: &'static NSString);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MediaPlayer_MPMediaEntity")]
     pub struct MPMediaEntity;
 
-    #[cfg(feature = "MediaPlayer_MPMediaEntity")]
     unsafe impl ClassType for MPMediaEntity {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MediaPlayer_MPMediaEntity")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for MPMediaEntity {}
 
-#[cfg(feature = "MediaPlayer_MPMediaEntity")]
 unsafe impl NSObjectProtocol for MPMediaEntity {}
 
-#[cfg(feature = "MediaPlayer_MPMediaEntity")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for MPMediaEntity {}
 
 extern_methods!(
-    #[cfg(feature = "MediaPlayer_MPMediaEntity")]
     unsafe impl MPMediaEntity {
         #[cfg(feature = "Foundation_NSString")]
         #[method(canFilterByProperty:)]
@@ -60,7 +56,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MediaPlayer_MPMediaEntity")]
     unsafe impl MPMediaEntity {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

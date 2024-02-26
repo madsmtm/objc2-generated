@@ -15,6 +15,7 @@ extern_protocol!(
         #[method(doCommandBySelector:)]
         unsafe fn doCommandBySelector(&self, selector: Option<Sel>);
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[deprecated]
         #[method(setMarkedText:selectedRange:)]
         unsafe fn setMarkedText_selectedRange(
@@ -35,7 +36,10 @@ extern_protocol!(
         #[method(conversationIdentifier)]
         unsafe fn conversationIdentifier(&self) -> NSInteger;
 
-        #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(all(
+            feature = "Foundation_NSAttributedString",
+            feature = "Foundation_NSRange"
+        ))]
         #[deprecated]
         #[method_id(@__retain_semantics Other attributedSubstringFromRange:)]
         unsafe fn attributedSubstringFromRange(
@@ -43,18 +47,22 @@ extern_protocol!(
             range: NSRange,
         ) -> Option<Id<NSAttributedString>>;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[deprecated]
         #[method(markedRange)]
         unsafe fn markedRange(&self) -> NSRange;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[deprecated]
         #[method(selectedRange)]
         unsafe fn selectedRange(&self) -> NSRange;
 
+        #[cfg(all(feature = "Foundation_NSGeometry", feature = "Foundation_NSRange"))]
         #[deprecated]
         #[method(firstRectForCharacterRange:)]
         unsafe fn firstRectForCharacterRange(&self, range: NSRange) -> NSRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[deprecated]
         #[method(characterIndexForPoint:)]
         unsafe fn characterIndexForPoint(&self, point: NSPoint) -> NSUInteger;
@@ -70,25 +78,20 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSInputManager")]
     #[deprecated = "Use NSTextInputContext instead"]
     pub struct NSInputManager;
 
-    #[cfg(feature = "AppKit_NSInputManager")]
     unsafe impl ClassType for NSInputManager {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSInputManager")]
 unsafe impl NSObjectProtocol for NSInputManager {}
 
-#[cfg(feature = "AppKit_NSInputManager")]
 unsafe impl NSTextInput for NSInputManager {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSInputManager")]
     unsafe impl NSInputManager {
         #[deprecated]
         #[method_id(@__retain_semantics Other currentInputManager)]
@@ -120,6 +123,7 @@ extern_methods!(
         #[method(markedTextAbandoned:)]
         pub unsafe fn markedTextAbandoned(&self, cli: Option<&AnyObject>);
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[deprecated]
         #[method(markedTextSelectionChanged:client:)]
         pub unsafe fn markedTextSelectionChanged_client(
@@ -164,7 +168,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSInputManager")]
     unsafe impl NSInputManager {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

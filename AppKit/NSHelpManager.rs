@@ -16,21 +16,17 @@ pub type NSHelpManagerContextHelpKey = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSHelpManager")]
     pub struct NSHelpManager;
 
-    #[cfg(feature = "AppKit_NSHelpManager")]
     unsafe impl ClassType for NSHelpManager {
         type Super = NSObject;
         type Mutability = MainThreadOnly;
     }
 );
 
-#[cfg(feature = "AppKit_NSHelpManager")]
 unsafe impl NSObjectProtocol for NSHelpManager {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSHelpManager")]
     unsafe impl NSHelpManager {
         #[method_id(@__retain_semantics Other sharedHelpManager)]
         pub unsafe fn sharedHelpManager(mtm: MainThreadMarker) -> Id<NSHelpManager>;
@@ -62,6 +58,7 @@ extern_methods!(
             object: &AnyObject,
         ) -> Option<Id<NSAttributedString>>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(showContextHelpForObject:locationHint:)]
         pub unsafe fn showContextHelpForObject_locationHint(
             &self,
@@ -89,7 +86,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSHelpManager")]
     unsafe impl NSHelpManager {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -99,16 +95,17 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSContextHelpModeDidActivateNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSContextHelpModeDidDeactivateNotification: &'static NSNotificationName);
 
 extern_category!(
     /// Category on [`NSBundle`].
     pub unsafe trait NSBundleHelpExtension {
         #[cfg(all(
+            feature = "AppKit_NSHelpManager",
             feature = "Foundation_NSAttributedString",
             feature = "Foundation_NSString"
         ))]
@@ -125,7 +122,7 @@ extern_category!(
 
 extern_methods!(
     /// NSApplicationHelpExtension
-    #[cfg(feature = "AppKit_NSApplication")]
+    #[cfg(all(feature = "AppKit_NSApplication", feature = "AppKit_NSResponder"))]
     unsafe impl NSApplication {
         #[method(activateContextHelpMode:)]
         pub unsafe fn activateContextHelpMode(&self, sender: Option<&AnyObject>);

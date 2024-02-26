@@ -7,10 +7,10 @@ use crate::GameKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameKit_GKTurnBasedMatchmakerViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     pub struct GKTurnBasedMatchmakerViewController;
 
-    #[cfg(feature = "GameKit_GKTurnBasedMatchmakerViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl ClassType for GKTurnBasedMatchmakerViewController {
         #[inherits(NSResponder, NSObject)]
         type Super = NSViewController;
@@ -18,34 +18,58 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "GameKit_GKTurnBasedMatchmakerViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController",
+    feature = "GameKit_GKDialogController"
+))]
 unsafe impl GKViewController for GKTurnBasedMatchmakerViewController {}
 
-#[cfg(feature = "GameKit_GKTurnBasedMatchmakerViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for GKTurnBasedMatchmakerViewController {}
 
-#[cfg(feature = "GameKit_GKTurnBasedMatchmakerViewController")]
+#[cfg(all(
+    feature = "AppKit_NSKeyValueBinding",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSEditor for GKTurnBasedMatchmakerViewController {}
 
-#[cfg(feature = "GameKit_GKTurnBasedMatchmakerViewController")]
+#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
 unsafe impl NSObjectProtocol for GKTurnBasedMatchmakerViewController {}
 
-#[cfg(feature = "GameKit_GKTurnBasedMatchmakerViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSStoryboardSegue",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSSeguePerforming for GKTurnBasedMatchmakerViewController {}
 
-#[cfg(feature = "GameKit_GKTurnBasedMatchmakerViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSUserInterfaceItemIdentification for GKTurnBasedMatchmakerViewController {}
 
 extern_methods!(
-    #[cfg(feature = "GameKit_GKTurnBasedMatchmakerViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl GKTurnBasedMatchmakerViewController {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `NSViewController`
-    #[cfg(feature = "GameKit_GKTurnBasedMatchmakerViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl GKTurnBasedMatchmakerViewController {
-        #[cfg(all(feature = "Foundation_NSBundle", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSNib",
+            feature = "Foundation_NSBundle",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -61,7 +85,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "GameKit_GKTurnBasedMatchmakerViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl GKTurnBasedMatchmakerViewController {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -70,7 +94,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameKit_GKTurnBasedMatchmakerViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl GKTurnBasedMatchmakerViewController {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -78,7 +102,7 @@ extern_methods!(
 );
 
 extern_methods!(
-    #[cfg(feature = "GameKit_GKTurnBasedMatchmakerViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl GKTurnBasedMatchmakerViewController {
         #[method_id(@__retain_semantics Other turnBasedMatchmakerDelegate)]
         pub unsafe fn turnBasedMatchmakerDelegate(
@@ -99,13 +123,15 @@ extern_methods!(
         #[method(setShowExistingMatches:)]
         pub unsafe fn setShowExistingMatches(&self, show_existing_matches: bool);
 
+        #[cfg(feature = "GameKit_GKMatchmakerViewController")]
         #[method(matchmakingMode)]
         pub unsafe fn matchmakingMode(&self) -> GKMatchmakingMode;
 
+        #[cfg(feature = "GameKit_GKMatchmakerViewController")]
         #[method(setMatchmakingMode:)]
         pub unsafe fn setMatchmakingMode(&self, matchmaking_mode: GKMatchmakingMode);
 
-        #[cfg(feature = "GameKit_GKMatchRequest")]
+        #[cfg(feature = "GameKit_GKMatchmaker")]
         #[method_id(@__retain_semantics Init initWithMatchRequest:)]
         pub unsafe fn initWithMatchRequest(
             this: Allocated<Self>,
@@ -116,7 +142,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait GKTurnBasedMatchmakerViewControllerDelegate: NSObjectProtocol {
-        #[cfg(feature = "GameKit_GKTurnBasedMatchmakerViewController")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
         #[method(turnBasedMatchmakerViewControllerWasCancelled:)]
         unsafe fn turnBasedMatchmakerViewControllerWasCancelled(
             &self,
@@ -124,8 +150,9 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "GameKit_GKTurnBasedMatchmakerViewController"
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSViewController",
+            feature = "Foundation_NSError"
         ))]
         #[method(turnBasedMatchmakerViewController:didFailWithError:)]
         unsafe fn turnBasedMatchmakerViewController_didFailWithError(
@@ -135,8 +162,9 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "GameKit_GKTurnBasedMatch",
-            feature = "GameKit_GKTurnBasedMatchmakerViewController"
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSViewController",
+            feature = "GameKit_GKTurnBasedMatch"
         ))]
         #[deprecated]
         #[optional]
@@ -148,8 +176,9 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "GameKit_GKTurnBasedMatch",
-            feature = "GameKit_GKTurnBasedMatchmakerViewController"
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSViewController",
+            feature = "GameKit_GKTurnBasedMatch"
         ))]
         #[deprecated]
         #[optional]

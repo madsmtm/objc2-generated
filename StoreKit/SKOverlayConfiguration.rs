@@ -17,21 +17,17 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "StoreKit_SKOverlayConfiguration")]
     pub struct SKOverlayConfiguration;
 
-    #[cfg(feature = "StoreKit_SKOverlayConfiguration")]
     unsafe impl ClassType for SKOverlayConfiguration {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "StoreKit_SKOverlayConfiguration")]
 unsafe impl NSObjectProtocol for SKOverlayConfiguration {}
 
 extern_methods!(
-    #[cfg(feature = "StoreKit_SKOverlayConfiguration")]
     unsafe impl SKOverlayConfiguration {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -43,10 +39,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "StoreKit_SKOverlayAppConfiguration")]
     pub struct SKOverlayAppConfiguration;
 
-    #[cfg(feature = "StoreKit_SKOverlayAppConfiguration")]
     unsafe impl ClassType for SKOverlayAppConfiguration {
         #[inherits(NSObject)]
         type Super = SKOverlayConfiguration;
@@ -54,11 +48,9 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "StoreKit_SKOverlayAppConfiguration")]
 unsafe impl NSObjectProtocol for SKOverlayAppConfiguration {}
 
 extern_methods!(
-    #[cfg(feature = "StoreKit_SKOverlayAppConfiguration")]
     unsafe impl SKOverlayAppConfiguration {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -145,10 +137,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "StoreKit_SKOverlayAppClipConfiguration")]
     pub struct SKOverlayAppClipConfiguration;
 
-    #[cfg(feature = "StoreKit_SKOverlayAppClipConfiguration")]
     unsafe impl ClassType for SKOverlayAppClipConfiguration {
         #[inherits(NSObject)]
         type Super = SKOverlayConfiguration;
@@ -156,11 +146,9 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "StoreKit_SKOverlayAppClipConfiguration")]
 unsafe impl NSObjectProtocol for SKOverlayAppClipConfiguration {}
 
 extern_methods!(
-    #[cfg(feature = "StoreKit_SKOverlayAppClipConfiguration")]
     unsafe impl SKOverlayAppClipConfiguration {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

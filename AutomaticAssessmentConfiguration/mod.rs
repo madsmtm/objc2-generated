@@ -17,18 +17,25 @@
 #[link(name = "AutomaticAssessmentConfiguration", kind = "framework")]
 extern "C" {}
 
+#[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentApplication")]
 #[path = "AEAssessmentApplication.rs"]
 mod __AEAssessmentApplication;
+#[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentConfiguration")]
 #[path = "AEAssessmentConfiguration.rs"]
 mod __AEAssessmentConfiguration;
+#[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentParticipantConfiguration")]
 #[path = "AEAssessmentParticipantConfiguration.rs"]
 mod __AEAssessmentParticipantConfiguration;
+#[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentSession")]
 #[path = "AEAssessmentSession.rs"]
 mod __AEAssessmentSession;
+#[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentSessionDelegate")]
 #[path = "AEAssessmentSessionDelegate.rs"]
 mod __AEAssessmentSessionDelegate;
+#[cfg(feature = "AutomaticAssessmentConfiguration_AEErrors")]
 #[path = "AEErrors.rs"]
 mod __AEErrors;
+#[cfg(feature = "AutomaticAssessmentConfiguration_AEVisibility")]
 #[path = "AEVisibility.rs"]
 mod __AEVisibility;
 
@@ -36,12 +43,19 @@ mod __AEVisibility;
 pub use self::__AEAssessmentApplication::AEAssessmentApplication;
 #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentConfiguration")]
 pub use self::__AEAssessmentConfiguration::AEAssessmentConfiguration;
+#[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentConfiguration")]
 pub use self::__AEAssessmentConfiguration::AEAutocorrectMode;
 #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentParticipantConfiguration")]
 pub use self::__AEAssessmentParticipantConfiguration::AEAssessmentParticipantConfiguration;
 #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentSession")]
 pub use self::__AEAssessmentSession::AEAssessmentSession;
+#[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentSessionDelegate")]
 pub use self::__AEAssessmentSessionDelegate::AEAssessmentSessionDelegate;
+#[cfg(feature = "AutomaticAssessmentConfiguration_AEErrors")]
 pub use self::__AEErrors::AEAssessmentErrorCode;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "AutomaticAssessmentConfiguration_AEErrors",
+    feature = "Foundation_NSError",
+    feature = "Foundation_NSString"
+))]
 pub use self::__AEErrors::AEAssessmentErrorDomain;

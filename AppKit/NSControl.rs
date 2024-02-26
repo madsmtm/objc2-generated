@@ -7,10 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSControl")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     pub struct NSControl;
 
-    #[cfg(feature = "AppKit_NSControl")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl ClassType for NSControl {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
@@ -18,33 +18,62 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSControl")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibility for NSControl {}
 
-#[cfg(feature = "AppKit_NSControl")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibilityElementProtocol for NSControl {}
 
-#[cfg(feature = "AppKit_NSControl")]
+#[cfg(all(
+    feature = "AppKit_NSAnimation",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAnimatablePropertyContainer for NSControl {}
 
-#[cfg(feature = "AppKit_NSControl")]
+#[cfg(all(
+    feature = "AppKit_NSAppearance",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAppearanceCustomization for NSControl {}
 
-#[cfg(feature = "AppKit_NSControl")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSControl {}
 
-#[cfg(feature = "AppKit_NSControl")]
+#[cfg(all(
+    feature = "AppKit_NSDragging",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSDraggingDestination for NSControl {}
 
-#[cfg(feature = "AppKit_NSControl")]
+#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
 unsafe impl NSObjectProtocol for NSControl {}
 
-#[cfg(feature = "AppKit_NSControl")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSControl {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSControl")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSControl {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
 
@@ -100,9 +129,11 @@ extern_methods!(
         #[method(setHighlighted:)]
         pub unsafe fn setHighlighted(&self, highlighted: bool);
 
+        #[cfg(feature = "AppKit_NSCell")]
         #[method(controlSize)]
         pub unsafe fn controlSize(&self) -> NSControlSize;
 
+        #[cfg(feature = "AppKit_NSCell")]
         #[method(setControlSize:)]
         pub unsafe fn setControlSize(&self, control_size: NSControlSize);
 
@@ -160,12 +191,14 @@ extern_methods!(
         #[method(setDoubleValue:)]
         pub unsafe fn setDoubleValue(&self, double_value: c_double);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(sizeThatFits:)]
         pub unsafe fn sizeThatFits(&self, size: NSSize) -> NSSize;
 
         #[method(sizeToFit)]
         pub unsafe fn sizeToFit(&self);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(sendActionOn:)]
         pub unsafe fn sendActionOn(&self, mask: NSEventMask) -> NSInteger;
 
@@ -212,21 +245,27 @@ extern_methods!(
         #[method(setUsesSingleLineMode:)]
         pub unsafe fn setUsesSingleLineMode(&self, uses_single_line_mode: bool);
 
+        #[cfg(feature = "AppKit_NSParagraphStyle")]
         #[method(lineBreakMode)]
         pub unsafe fn lineBreakMode(&self) -> NSLineBreakMode;
 
+        #[cfg(feature = "AppKit_NSParagraphStyle")]
         #[method(setLineBreakMode:)]
         pub unsafe fn setLineBreakMode(&self, line_break_mode: NSLineBreakMode);
 
+        #[cfg(feature = "AppKit_NSText")]
         #[method(alignment)]
         pub unsafe fn alignment(&self) -> NSTextAlignment;
 
+        #[cfg(feature = "AppKit_NSText")]
         #[method(setAlignment:)]
         pub unsafe fn setAlignment(&self, alignment: NSTextAlignment);
 
+        #[cfg(feature = "AppKit_NSText")]
         #[method(baseWritingDirection)]
         pub unsafe fn baseWritingDirection(&self) -> NSWritingDirection;
 
+        #[cfg(feature = "AppKit_NSText")]
         #[method(setBaseWritingDirection:)]
         pub unsafe fn setBaseWritingDirection(&self, base_writing_direction: NSWritingDirection);
 
@@ -236,9 +275,11 @@ extern_methods!(
         #[method(setAllowsExpansionToolTips:)]
         pub unsafe fn setAllowsExpansionToolTips(&self, allows_expansion_tool_tips: bool);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(expansionFrameWithFrame:)]
         pub unsafe fn expansionFrameWithFrame(&self, content_frame: NSRect) -> NSRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(drawWithExpansionFrame:inView:)]
         pub unsafe fn drawWithExpansionFrame_inView(&self, content_frame: NSRect, view: &NSView);
     }
@@ -246,7 +287,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "AppKit_NSControl")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSControl {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -255,7 +296,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSControl")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSControl {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -264,7 +305,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSControlEditableTextMethods
-    #[cfg(feature = "AppKit_NSControl")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSControl {
         #[cfg(feature = "AppKit_NSText")]
         #[method_id(@__retain_semantics Other currentEditor)]
@@ -276,7 +317,11 @@ extern_methods!(
         #[method(validateEditing)]
         pub unsafe fn validateEditing(&self);
 
-        #[cfg(all(feature = "AppKit_NSEvent", feature = "AppKit_NSText"))]
+        #[cfg(all(
+            feature = "AppKit_NSEvent",
+            feature = "AppKit_NSText",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[method(editWithFrame:editor:delegate:event:)]
         pub unsafe fn editWithFrame_editor_delegate_event(
             &self,
@@ -286,7 +331,7 @@ extern_methods!(
             event: &NSEvent,
         );
 
-        #[cfg(feature = "AppKit_NSText")]
+        #[cfg(all(feature = "AppKit_NSText", feature = "Foundation_NSGeometry"))]
         #[method(selectWithFrame:editor:delegate:start:length:)]
         pub unsafe fn selectWithFrame_editor_delegate_start_length(
             &self,
@@ -322,7 +367,11 @@ extern_protocol!(
         #[method(controlTextDidChange:)]
         unsafe fn controlTextDidChange(&self, obj: &NSNotification);
 
-        #[cfg(all(feature = "AppKit_NSControl", feature = "AppKit_NSText"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSText",
+            feature = "AppKit_NSView"
+        ))]
         #[optional]
         #[method(control:textShouldBeginEditing:)]
         unsafe fn control_textShouldBeginEditing(
@@ -331,7 +380,11 @@ extern_protocol!(
             field_editor: &NSText,
         ) -> bool;
 
-        #[cfg(all(feature = "AppKit_NSControl", feature = "AppKit_NSText"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSText",
+            feature = "AppKit_NSView"
+        ))]
         #[optional]
         #[method(control:textShouldEndEditing:)]
         unsafe fn control_textShouldEndEditing(
@@ -340,7 +393,11 @@ extern_protocol!(
             field_editor: &NSText,
         ) -> bool;
 
-        #[cfg(all(feature = "AppKit_NSControl", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method(control:didFailToFormatString:errorDescription:)]
         unsafe fn control_didFailToFormatString_errorDescription(
@@ -350,7 +407,11 @@ extern_protocol!(
             error: Option<&NSString>,
         ) -> bool;
 
-        #[cfg(all(feature = "AppKit_NSControl", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method(control:didFailToValidatePartialString:errorDescription:)]
         unsafe fn control_didFailToValidatePartialString_errorDescription(
@@ -360,7 +421,7 @@ extern_protocol!(
             error: Option<&NSString>,
         );
 
-        #[cfg(feature = "AppKit_NSControl")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[optional]
         #[method(control:isValidObject:)]
         unsafe fn control_isValidObject(
@@ -369,7 +430,12 @@ extern_protocol!(
             obj: Option<&AnyObject>,
         ) -> bool;
 
-        #[cfg(all(feature = "AppKit_NSControl", feature = "AppKit_NSTextView"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSText",
+            feature = "AppKit_NSTextView",
+            feature = "AppKit_NSView"
+        ))]
         #[optional]
         #[method(control:textView:doCommandBySelector:)]
         unsafe fn control_textView_doCommandBySelector(
@@ -380,9 +446,12 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(
-            feature = "AppKit_NSControl",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSText",
             feature = "AppKit_NSTextView",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSArray",
+            feature = "Foundation_NSRange",
             feature = "Foundation_NSString"
         ))]
         #[optional]
@@ -400,18 +469,18 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSControlTextEditingDelegate {}
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSControlTextDidBeginEditingNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSControlTextDidEndEditingNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSControlTextDidChangeNotification: &'static NSNotificationName);
 
 extern_methods!(
     /// NSDeprecated
-    #[cfg(feature = "AppKit_NSControl")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSControl {
         #[deprecated]
         #[method(setFloatingPointFormat:left:right:)]

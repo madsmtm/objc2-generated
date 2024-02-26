@@ -9,7 +9,11 @@ pub const NSAttachmentCharacter: c_uint = 0xFFFC;
 
 extern_protocol!(
     pub unsafe trait NSTextAttachmentContainer: NSObjectProtocol {
-        #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSTextContainer"))]
+        #[cfg(all(
+            feature = "AppKit_NSImage",
+            feature = "AppKit_NSTextContainer",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[method_id(@__retain_semantics Other imageForBounds:textContainer:characterIndex:)]
         unsafe fn imageForBounds_textContainer_characterIndex(
             &self,
@@ -18,7 +22,7 @@ extern_protocol!(
             char_index: NSUInteger,
         ) -> Option<Id<NSImage>>;
 
-        #[cfg(feature = "AppKit_NSTextContainer")]
+        #[cfg(all(feature = "AppKit_NSTextContainer", feature = "Foundation_NSGeometry"))]
         #[method(attachmentBoundsForTextContainer:proposedLineFragment:glyphPosition:characterIndex:)]
         unsafe fn attachmentBoundsForTextContainer_proposedLineFragment_glyphPosition_characterIndex(
             &self,
@@ -37,7 +41,10 @@ extern_protocol!(
         #[cfg(all(
             feature = "AppKit_NSImage",
             feature = "AppKit_NSTextContainer",
+            feature = "AppKit_NSTextRange",
+            feature = "Foundation_NSAttributedString",
             feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSGeometry",
             feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other imageForBounds:attributes:location:textContainer:)]
@@ -51,7 +58,10 @@ extern_protocol!(
 
         #[cfg(all(
             feature = "AppKit_NSTextContainer",
+            feature = "AppKit_NSTextRange",
+            feature = "Foundation_NSAttributedString",
             feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSGeometry",
             feature = "Foundation_NSString"
         ))]
         #[method(attachmentBoundsForAttributes:location:textContainer:proposedLineFragment:position:)]
@@ -65,8 +75,9 @@ extern_protocol!(
         ) -> CGRect;
 
         #[cfg(all(
-            feature = "AppKit_NSTextAttachmentViewProvider",
+            feature = "AppKit_NSResponder",
             feature = "AppKit_NSTextContainer",
+            feature = "AppKit_NSTextRange",
             feature = "AppKit_NSView"
         ))]
         #[method_id(@__retain_semantics Other viewProviderForParentView:location:textContainer:)]
@@ -83,33 +94,27 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTextAttachment")]
     pub struct NSTextAttachment;
 
-    #[cfg(feature = "AppKit_NSTextAttachment")]
     unsafe impl ClassType for NSTextAttachment {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSTextAttachment")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSTextAttachment {}
 
-#[cfg(feature = "AppKit_NSTextAttachment")]
 unsafe impl NSObjectProtocol for NSTextAttachment {}
 
-#[cfg(feature = "AppKit_NSTextAttachment")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSTextAttachment {}
 
-#[cfg(feature = "AppKit_NSTextAttachment")]
 unsafe impl NSTextAttachmentContainer for NSTextAttachment {}
 
-#[cfg(feature = "AppKit_NSTextAttachment")]
 unsafe impl NSTextAttachmentLayout for NSTextAttachment {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTextAttachment")]
     unsafe impl NSTextAttachment {
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithData:ofType:)]
@@ -150,9 +155,11 @@ extern_methods!(
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(bounds)]
         pub unsafe fn bounds(&self) -> CGRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setBounds:)]
         pub unsafe fn setBounds(&self, bounds: CGRect);
 
@@ -164,20 +171,24 @@ extern_methods!(
         #[method(setFileWrapper:)]
         pub unsafe fn setFileWrapper(&self, file_wrapper: Option<&NSFileWrapper>);
 
+        #[cfg(feature = "AppKit_NSTextAttachmentCell")]
         #[method_id(@__retain_semantics Other attachmentCell)]
         pub unsafe fn attachmentCell(
             &self,
         ) -> Option<Id<ProtocolObject<dyn NSTextAttachmentCellProtocol>>>;
 
+        #[cfg(feature = "AppKit_NSTextAttachmentCell")]
         #[method(setAttachmentCell:)]
         pub unsafe fn setAttachmentCell(
             &self,
             attachment_cell: Option<&ProtocolObject<dyn NSTextAttachmentCellProtocol>>,
         );
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(lineLayoutPadding)]
         pub unsafe fn lineLayoutPadding(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setLineLayoutPadding:)]
         pub unsafe fn setLineLayoutPadding(&self, line_layout_padding: CGFloat);
 
@@ -207,7 +218,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTextAttachment")]
     unsafe impl NSTextAttachment {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -236,25 +246,22 @@ extern_category!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTextAttachmentViewProvider")]
     pub struct NSTextAttachmentViewProvider;
 
-    #[cfg(feature = "AppKit_NSTextAttachmentViewProvider")]
     unsafe impl ClassType for NSTextAttachmentViewProvider {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSTextAttachmentViewProvider")]
 unsafe impl NSObjectProtocol for NSTextAttachmentViewProvider {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTextAttachmentViewProvider")]
     unsafe impl NSTextAttachmentViewProvider {
         #[cfg(all(
-            feature = "AppKit_NSTextAttachment",
+            feature = "AppKit_NSResponder",
             feature = "AppKit_NSTextLayoutManager",
+            feature = "AppKit_NSTextRange",
             feature = "AppKit_NSView"
         ))]
         #[method_id(@__retain_semantics Init initWithTextAttachment:parentView:textLayoutManager:location:)]
@@ -272,7 +279,6 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSTextAttachment")]
         #[method_id(@__retain_semantics Other textAttachment)]
         pub unsafe fn textAttachment(&self) -> Option<Id<NSTextAttachment>>;
 
@@ -280,14 +286,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Other textLayoutManager)]
         pub unsafe fn textLayoutManager(&self) -> Option<Id<NSTextLayoutManager>>;
 
+        #[cfg(feature = "AppKit_NSTextRange")]
         #[method_id(@__retain_semantics Other location)]
         pub unsafe fn location(&self) -> Id<ProtocolObject<dyn NSTextLocation>>;
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[method_id(@__retain_semantics Other view)]
         pub unsafe fn view(&self, mtm: MainThreadMarker) -> Option<Id<NSView>>;
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[method(setView:)]
         pub unsafe fn setView(&self, view: Option<&NSView>);
 
@@ -305,7 +312,10 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSTextContainer",
+            feature = "AppKit_NSTextRange",
+            feature = "Foundation_NSAttributedString",
             feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSGeometry",
             feature = "Foundation_NSString"
         ))]
         #[method(attachmentBoundsForAttributes:location:textContainer:proposedLineFragment:position:)]
@@ -328,6 +338,6 @@ extern_category!(
         unsafe fn updateAttachmentsFromPath(&self, path: &NSString);
     }
 
-    #[cfg(feature = "Foundation_NSMutableAttributedString")]
+    #[cfg(feature = "Foundation_NSAttributedString")]
     unsafe impl NSMutableAttributedStringAttachmentConveniences for NSMutableAttributedString {}
 );

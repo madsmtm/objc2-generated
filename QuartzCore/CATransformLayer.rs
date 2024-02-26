@@ -6,10 +6,10 @@ use crate::QuartzCore::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "QuartzCore_CATransformLayer")]
+    #[cfg(feature = "QuartzCore_CALayer")]
     pub struct CATransformLayer;
 
-    #[cfg(feature = "QuartzCore_CATransformLayer")]
+    #[cfg(feature = "QuartzCore_CALayer")]
     unsafe impl ClassType for CATransformLayer {
         #[inherits(NSObject)]
         type Super = CALayer;
@@ -17,26 +17,26 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "QuartzCore_CATransformLayer")]
+#[cfg(all(feature = "QuartzCore_CALayer", feature = "QuartzCore_CAMediaTiming"))]
 unsafe impl CAMediaTiming for CATransformLayer {}
 
-#[cfg(feature = "QuartzCore_CATransformLayer")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "QuartzCore_CALayer"))]
 unsafe impl NSCoding for CATransformLayer {}
 
-#[cfg(feature = "QuartzCore_CATransformLayer")]
+#[cfg(feature = "QuartzCore_CALayer")]
 unsafe impl NSObjectProtocol for CATransformLayer {}
 
-#[cfg(feature = "QuartzCore_CATransformLayer")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "QuartzCore_CALayer"))]
 unsafe impl NSSecureCoding for CATransformLayer {}
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CATransformLayer")]
+    #[cfg(feature = "QuartzCore_CALayer")]
     unsafe impl CATransformLayer {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `CALayer`
-    #[cfg(feature = "QuartzCore_CATransformLayer")]
+    #[cfg(feature = "QuartzCore_CALayer")]
     unsafe impl CATransformLayer {
         #[method_id(@__retain_semantics Other layer)]
         pub unsafe fn layer() -> Id<Self>;
@@ -51,7 +51,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "QuartzCore_CATransformLayer")]
+    #[cfg(feature = "QuartzCore_CALayer")]
     unsafe impl CATransformLayer {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

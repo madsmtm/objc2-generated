@@ -7,7 +7,10 @@ use crate::Foundation::*;
 
 extern_methods!(
     /// Scripting
-    #[cfg(feature = "AppKit_NSTextStorage")]
+    #[cfg(all(
+        feature = "AppKit_NSTextStorage",
+        feature = "Foundation_NSAttributedString"
+    ))]
     unsafe impl NSTextStorage {
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other attributeRuns)]

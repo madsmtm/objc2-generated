@@ -9,10 +9,10 @@ use crate::MapKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKMultiPolyline")]
+    #[cfg(feature = "MapKit_MKShape")]
     pub struct MKMultiPolyline;
 
-    #[cfg(feature = "MapKit_MKMultiPolyline")]
+    #[cfg(feature = "MapKit_MKShape")]
     unsafe impl ClassType for MKMultiPolyline {
         #[inherits(NSObject)]
         type Super = MKShape;
@@ -20,26 +20,38 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MapKit_MKMultiPolyline")]
+#[cfg(all(feature = "MapKit_MKAnnotation", feature = "MapKit_MKShape"))]
 unsafe impl MKAnnotation for MKMultiPolyline {}
 
-#[cfg(feature = "MapKit_MKMultiPolyline")]
+#[cfg(all(
+    feature = "MapKit_MKAnnotation",
+    feature = "MapKit_MKOverlay",
+    feature = "MapKit_MKShape"
+))]
 unsafe impl MKOverlay for MKMultiPolyline {}
 
-#[cfg(feature = "MapKit_MKMultiPolyline")]
+#[cfg(feature = "MapKit_MKShape")]
 unsafe impl NSObjectProtocol for MKMultiPolyline {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKMultiPolyline")]
+    #[cfg(feature = "MapKit_MKShape")]
     unsafe impl MKMultiPolyline {
-        #[cfg(all(feature = "Foundation_NSArray", feature = "MapKit_MKPolyline"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "MapKit_MKMultiPoint",
+            feature = "MapKit_MKPolyline"
+        ))]
         #[method_id(@__retain_semantics Init initWithPolylines:)]
         pub unsafe fn initWithPolylines(
             this: Allocated<Self>,
             polylines: &NSArray<MKPolyline>,
         ) -> Id<Self>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "MapKit_MKPolyline"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "MapKit_MKMultiPoint",
+            feature = "MapKit_MKPolyline"
+        ))]
         #[method_id(@__retain_semantics Other polylines)]
         pub unsafe fn polylines(&self) -> Id<NSArray<MKPolyline>>;
     }
@@ -47,7 +59,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MapKit_MKMultiPolyline")]
+    #[cfg(feature = "MapKit_MKShape")]
     unsafe impl MKMultiPolyline {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

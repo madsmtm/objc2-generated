@@ -7,27 +7,23 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSPDFInfo")]
     pub struct NSPDFInfo;
 
-    #[cfg(feature = "AppKit_NSPDFInfo")]
     unsafe impl ClassType for NSPDFInfo {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSPDFInfo")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSPDFInfo {}
 
-#[cfg(feature = "AppKit_NSPDFInfo")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSPDFInfo {}
 
-#[cfg(feature = "AppKit_NSPDFInfo")]
 unsafe impl NSObjectProtocol for NSPDFInfo {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSPDFInfo")]
     unsafe impl NSPDFInfo {
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other URL)]
@@ -51,20 +47,25 @@ extern_methods!(
         #[method(setTagNames:)]
         pub unsafe fn setTagNames(&self, tag_names: &NSArray<NSString>);
 
+        #[cfg(feature = "AppKit_NSPrintInfo")]
         #[method(orientation)]
         pub unsafe fn orientation(&self) -> NSPaperOrientation;
 
+        #[cfg(feature = "AppKit_NSPrintInfo")]
         #[method(setOrientation:)]
         pub unsafe fn setOrientation(&self, orientation: NSPaperOrientation);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(paperSize)]
         pub unsafe fn paperSize(&self) -> NSSize;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setPaperSize:)]
         pub unsafe fn setPaperSize(&self, paper_size: NSSize);
 
         #[cfg(all(
-            feature = "Foundation_NSMutableDictionary",
+            feature = "AppKit_NSPrintInfo",
+            feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other attributes)]
@@ -76,7 +77,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSPDFInfo")]
     unsafe impl NSPDFInfo {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

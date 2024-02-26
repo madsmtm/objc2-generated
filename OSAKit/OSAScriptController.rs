@@ -16,10 +16,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "OSAKit_OSAScriptController")]
+    #[cfg(feature = "AppKit_NSController")]
     pub struct OSAScriptController;
 
-    #[cfg(feature = "OSAKit_OSAScriptController")]
+    #[cfg(feature = "AppKit_NSController")]
     unsafe impl ClassType for OSAScriptController {
         #[inherits(NSObject)]
         type Super = NSController;
@@ -27,34 +27,56 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "OSAKit_OSAScriptController")]
+#[cfg(all(feature = "AppKit_NSController", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for OSAScriptController {}
 
-#[cfg(feature = "OSAKit_OSAScriptController")]
+#[cfg(all(feature = "AppKit_NSController", feature = "AppKit_NSKeyValueBinding"))]
 unsafe impl NSEditor for OSAScriptController {}
 
-#[cfg(feature = "OSAKit_OSAScriptController")]
+#[cfg(all(feature = "AppKit_NSController", feature = "AppKit_NSKeyValueBinding"))]
 unsafe impl NSEditorRegistration for OSAScriptController {}
 
-#[cfg(feature = "OSAKit_OSAScriptController")]
+#[cfg(feature = "AppKit_NSController")]
 unsafe impl NSObjectProtocol for OSAScriptController {}
 
 extern_methods!(
-    #[cfg(feature = "OSAKit_OSAScriptController")]
+    #[cfg(feature = "AppKit_NSController")]
     unsafe impl OSAScriptController {
-        #[cfg(feature = "OSAKit_OSAScriptView")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSText",
+            feature = "AppKit_NSTextView",
+            feature = "AppKit_NSView",
+            feature = "OSAKit_OSAScriptView"
+        ))]
         #[method_id(@__retain_semantics Other scriptView)]
         pub unsafe fn scriptView(&self) -> Option<Id<OSAScriptView>>;
 
-        #[cfg(feature = "OSAKit_OSAScriptView")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSText",
+            feature = "AppKit_NSTextView",
+            feature = "AppKit_NSView",
+            feature = "OSAKit_OSAScriptView"
+        ))]
         #[method(setScriptView:)]
         pub unsafe fn setScriptView(&self, script_view: Option<&OSAScriptView>);
 
-        #[cfg(feature = "AppKit_NSTextView")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSText",
+            feature = "AppKit_NSTextView",
+            feature = "AppKit_NSView"
+        ))]
         #[method_id(@__retain_semantics Other resultView)]
         pub unsafe fn resultView(&self) -> Option<Id<NSTextView>>;
 
-        #[cfg(feature = "AppKit_NSTextView")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSText",
+            feature = "AppKit_NSTextView",
+            feature = "AppKit_NSView"
+        ))]
         #[method(setResultView:)]
         pub unsafe fn setResultView(&self, result_view: Option<&NSTextView>);
 
@@ -96,7 +118,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSController`
-    #[cfg(feature = "OSAKit_OSAScriptController")]
+    #[cfg(feature = "AppKit_NSController")]
     unsafe impl OSAScriptController {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -109,7 +131,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "OSAKit_OSAScriptController")]
+    #[cfg(feature = "AppKit_NSController")]
     unsafe impl OSAScriptController {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

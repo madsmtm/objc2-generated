@@ -73,26 +73,22 @@ ns_options!(
 #[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFileManagerUnmountDissentingProcessIdentifierErrorKey: &'static NSString);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSUbiquityIdentityDidChangeNotification: &'static NSNotificationName);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSFileManager")]
     pub struct NSFileManager;
 
-    #[cfg(feature = "Foundation_NSFileManager")]
     unsafe impl ClassType for NSFileManager {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSFileManager")]
 unsafe impl NSObjectProtocol for NSFileManager {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSFileManager")]
     unsafe impl NSFileManager {
         #[method_id(@__retain_semantics Other defaultManager)]
         pub unsafe fn defaultManager() -> Id<NSFileManager>;
@@ -132,7 +128,11 @@ extern_methods!(
             mask: NSDirectoryEnumerationOptions,
         ) -> Result<Id<NSArray<NSURL>>, Id<NSError>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURL"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSPathUtilities",
+            feature = "Foundation_NSURL"
+        ))]
         #[method_id(@__retain_semantics Other URLsForDirectory:inDomains:)]
         pub unsafe fn URLsForDirectory_inDomains(
             &self,
@@ -140,7 +140,11 @@ extern_methods!(
             domain_mask: NSSearchPathDomainMask,
         ) -> Id<NSArray<NSURL>>;
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSPathUtilities",
+            feature = "Foundation_NSURL"
+        ))]
         #[method_id(@__retain_semantics Other URLForDirectory:inDomain:appropriateForURL:create:error:_)]
         pub unsafe fn URLForDirectory_inDomain_appropriateForURL_create_error(
             &self,
@@ -159,7 +163,11 @@ extern_methods!(
             other_url: &NSURL,
         ) -> Result<(), Id<NSError>>;
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSPathUtilities",
+            feature = "Foundation_NSURL"
+        ))]
         #[method(getRelationship:ofDirectory:inDomain:toItemAtURL:error:_)]
         pub unsafe fn getRelationship_ofDirectory_inDomain_toItemAtURL_error(
             &self,
@@ -499,10 +507,7 @@ extern_methods!(
             path: &NSString,
         ) -> Option<Id<NSArray<NSString>>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSDirectoryEnumerator",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSEnumerator", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other enumeratorAtPath:)]
         pub unsafe fn enumeratorAtPath(
             &self,
@@ -511,7 +516,7 @@ extern_methods!(
 
         #[cfg(all(
             feature = "Foundation_NSArray",
-            feature = "Foundation_NSDirectoryEnumerator",
+            feature = "Foundation_NSEnumerator",
             feature = "Foundation_NSError",
             feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
@@ -617,13 +622,13 @@ extern_methods!(
             out_date: Option<&mut Option<Id<NSDate>>>,
         ) -> Result<Id<NSURL>, Id<NSError>>;
 
+        #[cfg(feature = "Foundation_NSObject")]
         #[method_id(@__retain_semantics Other ubiquityIdentityToken)]
         pub unsafe fn ubiquityIdentityToken(&self) -> Option<Id<TodoProtocols>>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
-            feature = "Foundation_NSFileProviderService",
             feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]
@@ -650,7 +655,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSFileManager")]
     unsafe impl NSFileManager {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -662,7 +666,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSUserInformation
-    #[cfg(feature = "Foundation_NSFileManager")]
     unsafe impl NSFileManager {
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other homeDirectoryForCurrentUser)]
@@ -680,7 +683,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSFileManagerDelegate: NSObjectProtocol {
-        #[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method(fileManager:shouldCopyItemAtPath:toPath:)]
         unsafe fn fileManager_shouldCopyItemAtPath_toPath(
@@ -690,7 +693,7 @@ extern_protocol!(
             dst_path: &NSString,
         ) -> bool;
 
-        #[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSURL"))]
+        #[cfg(feature = "Foundation_NSURL")]
         #[optional]
         #[method(fileManager:shouldCopyItemAtURL:toURL:)]
         unsafe fn fileManager_shouldCopyItemAtURL_toURL(
@@ -700,11 +703,7 @@ extern_protocol!(
             dst_url: &NSURL,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSFileManager",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[optional]
         #[method(fileManager:shouldProceedAfterError:copyingItemAtPath:toPath:)]
         unsafe fn fileManager_shouldProceedAfterError_copyingItemAtPath_toPath(
@@ -715,11 +714,7 @@ extern_protocol!(
             dst_path: &NSString,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSFileManager",
-            feature = "Foundation_NSURL"
-        ))]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[optional]
         #[method(fileManager:shouldProceedAfterError:copyingItemAtURL:toURL:)]
         unsafe fn fileManager_shouldProceedAfterError_copyingItemAtURL_toURL(
@@ -730,7 +725,7 @@ extern_protocol!(
             dst_url: &NSURL,
         ) -> bool;
 
-        #[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method(fileManager:shouldMoveItemAtPath:toPath:)]
         unsafe fn fileManager_shouldMoveItemAtPath_toPath(
@@ -740,7 +735,7 @@ extern_protocol!(
             dst_path: &NSString,
         ) -> bool;
 
-        #[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSURL"))]
+        #[cfg(feature = "Foundation_NSURL")]
         #[optional]
         #[method(fileManager:shouldMoveItemAtURL:toURL:)]
         unsafe fn fileManager_shouldMoveItemAtURL_toURL(
@@ -750,11 +745,7 @@ extern_protocol!(
             dst_url: &NSURL,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSFileManager",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[optional]
         #[method(fileManager:shouldProceedAfterError:movingItemAtPath:toPath:)]
         unsafe fn fileManager_shouldProceedAfterError_movingItemAtPath_toPath(
@@ -765,11 +756,7 @@ extern_protocol!(
             dst_path: &NSString,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSFileManager",
-            feature = "Foundation_NSURL"
-        ))]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[optional]
         #[method(fileManager:shouldProceedAfterError:movingItemAtURL:toURL:)]
         unsafe fn fileManager_shouldProceedAfterError_movingItemAtURL_toURL(
@@ -780,7 +767,7 @@ extern_protocol!(
             dst_url: &NSURL,
         ) -> bool;
 
-        #[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method(fileManager:shouldLinkItemAtPath:toPath:)]
         unsafe fn fileManager_shouldLinkItemAtPath_toPath(
@@ -790,7 +777,7 @@ extern_protocol!(
             dst_path: &NSString,
         ) -> bool;
 
-        #[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSURL"))]
+        #[cfg(feature = "Foundation_NSURL")]
         #[optional]
         #[method(fileManager:shouldLinkItemAtURL:toURL:)]
         unsafe fn fileManager_shouldLinkItemAtURL_toURL(
@@ -800,11 +787,7 @@ extern_protocol!(
             dst_url: &NSURL,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSFileManager",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[optional]
         #[method(fileManager:shouldProceedAfterError:linkingItemAtPath:toPath:)]
         unsafe fn fileManager_shouldProceedAfterError_linkingItemAtPath_toPath(
@@ -815,11 +798,7 @@ extern_protocol!(
             dst_path: &NSString,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSFileManager",
-            feature = "Foundation_NSURL"
-        ))]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[optional]
         #[method(fileManager:shouldProceedAfterError:linkingItemAtURL:toURL:)]
         unsafe fn fileManager_shouldProceedAfterError_linkingItemAtURL_toURL(
@@ -830,7 +809,7 @@ extern_protocol!(
             dst_url: &NSURL,
         ) -> bool;
 
-        #[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method(fileManager:shouldRemoveItemAtPath:)]
         unsafe fn fileManager_shouldRemoveItemAtPath(
@@ -839,7 +818,7 @@ extern_protocol!(
             path: &NSString,
         ) -> bool;
 
-        #[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSURL"))]
+        #[cfg(feature = "Foundation_NSURL")]
         #[optional]
         #[method(fileManager:shouldRemoveItemAtURL:)]
         unsafe fn fileManager_shouldRemoveItemAtURL(
@@ -848,11 +827,7 @@ extern_protocol!(
             url: &NSURL,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSFileManager",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[optional]
         #[method(fileManager:shouldProceedAfterError:removingItemAtPath:)]
         unsafe fn fileManager_shouldProceedAfterError_removingItemAtPath(
@@ -862,11 +837,7 @@ extern_protocol!(
             path: &NSString,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSFileManager",
-            feature = "Foundation_NSURL"
-        ))]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[optional]
         #[method(fileManager:shouldProceedAfterError:removingItemAtURL:)]
         unsafe fn fileManager_shouldProceedAfterError_removingItemAtURL(
@@ -882,14 +853,14 @@ extern_protocol!(
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSDirectoryEnumerator")]
+    #[cfg(feature = "Foundation_NSEnumerator")]
     pub struct NSDirectoryEnumerator<ObjectType: ?Sized = AnyObject> {
         __superclass: NSEnumerator<ObjectType>,
         _inner0: PhantomData<*mut ObjectType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
-    #[cfg(feature = "Foundation_NSDirectoryEnumerator")]
+    #[cfg(feature = "Foundation_NSEnumerator")]
     unsafe impl<ObjectType: ?Sized + Message> ClassType for NSDirectoryEnumerator<ObjectType> {
         #[inherits(NSObject)]
         type Super = NSEnumerator<ObjectType>;
@@ -905,14 +876,14 @@ __inner_extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSDirectoryEnumerator")]
+#[cfg(feature = "Foundation_NSEnumerator")]
 unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSDirectoryEnumerator<ObjectType> {}
 
-#[cfg(feature = "Foundation_NSDirectoryEnumerator")]
+#[cfg(feature = "Foundation_NSEnumerator")]
 unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSDirectoryEnumerator<ObjectType> {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSDirectoryEnumerator")]
+    #[cfg(feature = "Foundation_NSEnumerator")]
     unsafe impl<ObjectType: Message> NSDirectoryEnumerator<ObjectType> {
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other fileAttributes)]
@@ -942,7 +913,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSDirectoryEnumerator")]
+    #[cfg(feature = "Foundation_NSEnumerator")]
     unsafe impl<ObjectType: Message> NSDirectoryEnumerator<ObjectType> {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -954,21 +925,17 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSFileProviderService")]
     pub struct NSFileProviderService;
 
-    #[cfg(feature = "Foundation_NSFileProviderService")]
     unsafe impl ClassType for NSFileProviderService {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSFileProviderService")]
 unsafe impl NSObjectProtocol for NSFileProviderService {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSFileProviderService")]
     unsafe impl NSFileProviderService {
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSXPCConnection"))]
         #[method(getFileProviderConnectionWithCompletionHandler:)]
@@ -985,7 +952,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSFileProviderService")]
     unsafe impl NSFileProviderService {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -1154,11 +1120,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fileCreationDate)]
         pub unsafe fn fileCreationDate(&self) -> Option<Id<NSDate>>;
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method_id(@__retain_semantics Other fileOwnerAccountID)]
         pub unsafe fn fileOwnerAccountID(&self) -> Option<Id<NSNumber>>;
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method_id(@__retain_semantics Other fileGroupOwnerAccountID)]
         pub unsafe fn fileGroupOwnerAccountID(&self) -> Option<Id<NSNumber>>;
     }

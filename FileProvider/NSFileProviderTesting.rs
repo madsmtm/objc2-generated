@@ -79,13 +79,18 @@ extern_methods!(
     /// TestingModeInteractive
     #[cfg(feature = "FileProvider_NSFileProviderManager")]
     unsafe impl NSFileProviderManager {
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSError"))]
+        #[cfg(all(
+            feature = "FileProvider_NSFileProviderTesting",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSError"
+        ))]
         #[method_id(@__retain_semantics Other listAvailableTestingOperationsWithError:_)]
         pub unsafe fn listAvailableTestingOperationsWithError(
             &self,
         ) -> Result<Id<NSArray<ProtocolObject<dyn NSFileProviderTestingOperation>>>, Id<NSError>>;
 
         #[cfg(all(
+            feature = "FileProvider_NSFileProviderTesting",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError"
@@ -116,10 +121,14 @@ extern_protocol!(
         #[method(side)]
         unsafe fn side(&self) -> NSFileProviderTestingOperationSide;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "FileProvider_NSFileProviderItem",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other itemIdentifier)]
         unsafe fn itemIdentifier(&self) -> Id<NSFileProviderItemIdentifier>;
 
+        #[cfg(feature = "FileProvider_NSFileProviderItem")]
         #[method_id(@__retain_semantics Other item)]
         unsafe fn item(&self) -> Option<Id<NSFileProviderItem>>;
     }
@@ -132,7 +141,10 @@ extern_protocol!(
         #[method(side)]
         unsafe fn side(&self) -> NSFileProviderTestingOperationSide;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "FileProvider_NSFileProviderItem",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other itemIdentifier)]
         unsafe fn itemIdentifier(&self) -> Id<NSFileProviderItemIdentifier>;
     }
@@ -145,10 +157,11 @@ extern_protocol!(
         #[method(targetSide)]
         unsafe fn targetSide(&self) -> NSFileProviderTestingOperationSide;
 
+        #[cfg(feature = "FileProvider_NSFileProviderItem")]
         #[method_id(@__retain_semantics Other sourceItem)]
         unsafe fn sourceItem(&self) -> Id<NSFileProviderItem>;
 
-        #[cfg(feature = "FileProvider_NSFileProviderDomainVersion")]
+        #[cfg(feature = "FileProvider_NSFileProviderDomain")]
         #[method_id(@__retain_semantics Other domainVersion)]
         unsafe fn domainVersion(&self) -> Option<Id<NSFileProviderDomainVersion>>;
     }
@@ -163,21 +176,26 @@ extern_protocol!(
         #[method(targetSide)]
         unsafe fn targetSide(&self) -> NSFileProviderTestingOperationSide;
 
+        #[cfg(feature = "FileProvider_NSFileProviderItem")]
         #[method_id(@__retain_semantics Other sourceItem)]
         unsafe fn sourceItem(&self) -> Id<NSFileProviderItem>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "FileProvider_NSFileProviderItem",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other targetItemIdentifier)]
         unsafe fn targetItemIdentifier(&self) -> Id<NSFileProviderItemIdentifier>;
 
-        #[cfg(feature = "FileProvider_NSFileProviderItemVersion")]
+        #[cfg(feature = "FileProvider_NSFileProviderItem")]
         #[method_id(@__retain_semantics Other targetItemBaseVersion)]
         unsafe fn targetItemBaseVersion(&self) -> Id<NSFileProviderItemVersion>;
 
+        #[cfg(feature = "FileProvider_NSFileProviderItem")]
         #[method(changedFields)]
         unsafe fn changedFields(&self) -> NSFileProviderItemFields;
 
-        #[cfg(feature = "FileProvider_NSFileProviderDomainVersion")]
+        #[cfg(feature = "FileProvider_NSFileProviderDomain")]
         #[method_id(@__retain_semantics Other domainVersion)]
         unsafe fn domainVersion(&self) -> Option<Id<NSFileProviderDomainVersion>>;
     }
@@ -190,19 +208,25 @@ extern_protocol!(
         #[method(targetSide)]
         unsafe fn targetSide(&self) -> NSFileProviderTestingOperationSide;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "FileProvider_NSFileProviderItem",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other sourceItemIdentifier)]
         unsafe fn sourceItemIdentifier(&self) -> Id<NSFileProviderItemIdentifier>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "FileProvider_NSFileProviderItem",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other targetItemIdentifier)]
         unsafe fn targetItemIdentifier(&self) -> Id<NSFileProviderItemIdentifier>;
 
-        #[cfg(feature = "FileProvider_NSFileProviderItemVersion")]
+        #[cfg(feature = "FileProvider_NSFileProviderItem")]
         #[method_id(@__retain_semantics Other targetItemBaseVersion)]
         unsafe fn targetItemBaseVersion(&self) -> Id<NSFileProviderItemVersion>;
 
-        #[cfg(feature = "FileProvider_NSFileProviderDomainVersion")]
+        #[cfg(feature = "FileProvider_NSFileProviderDomain")]
         #[method_id(@__retain_semantics Other domainVersion)]
         unsafe fn domainVersion(&self) -> Option<Id<NSFileProviderDomainVersion>>;
     }
@@ -217,7 +241,10 @@ extern_protocol!(
         #[method(side)]
         unsafe fn side(&self) -> NSFileProviderTestingOperationSide;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "FileProvider_NSFileProviderItem",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other itemIdentifier)]
         unsafe fn itemIdentifier(&self) -> Id<NSFileProviderItemIdentifier>;
     }
@@ -232,7 +259,10 @@ extern_protocol!(
         #[method(side)]
         unsafe fn side(&self) -> NSFileProviderTestingOperationSide;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "FileProvider_NSFileProviderItem",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other itemIdentifier)]
         unsafe fn itemIdentifier(&self) -> Id<NSFileProviderItemIdentifier>;
     }
@@ -247,6 +277,7 @@ extern_protocol!(
         #[method(side)]
         unsafe fn side(&self) -> NSFileProviderTestingOperationSide;
 
+        #[cfg(feature = "FileProvider_NSFileProviderItem")]
         #[method_id(@__retain_semantics Other renamedItem)]
         unsafe fn renamedItem(&self) -> Id<NSFileProviderItem>;
     }

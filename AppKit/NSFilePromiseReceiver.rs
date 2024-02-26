@@ -7,24 +7,20 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSFilePromiseReceiver")]
     pub struct NSFilePromiseReceiver;
 
-    #[cfg(feature = "AppKit_NSFilePromiseReceiver")]
     unsafe impl ClassType for NSFilePromiseReceiver {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSFilePromiseReceiver")]
 unsafe impl NSObjectProtocol for NSFilePromiseReceiver {}
 
-#[cfg(feature = "AppKit_NSFilePromiseReceiver")]
+#[cfg(feature = "AppKit_NSPasteboard")]
 unsafe impl NSPasteboardReading for NSFilePromiseReceiver {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSFilePromiseReceiver")]
     unsafe impl NSFilePromiseReceiver {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other readableDraggedTypes)]
@@ -41,7 +37,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
-            feature = "Foundation_NSOperationQueue",
+            feature = "Foundation_NSOperation",
             feature = "Foundation_NSURL"
         ))]
         #[method(receivePromisedFilesAtDestination:options:operationQueue:reader:)]
@@ -57,7 +53,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSFilePromiseReceiver")]
     unsafe impl NSFilePromiseReceiver {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -7,11 +7,23 @@ use crate::WebKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_DOMHTMLFieldSetElement")]
+    #[cfg(all(
+        feature = "WebKit_DOMElement",
+        feature = "WebKit_DOMHTMLElement",
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     #[deprecated]
     pub struct DOMHTMLFieldSetElement;
 
-    #[cfg(feature = "WebKit_DOMHTMLFieldSetElement")]
+    #[cfg(all(
+        feature = "WebKit_DOMElement",
+        feature = "WebKit_DOMHTMLElement",
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl ClassType for DOMHTMLFieldSetElement {
         #[inherits(DOMElement, DOMNode, DOMObject, WebScriptObject, NSObject)]
         type Super = DOMHTMLElement;
@@ -19,17 +31,44 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "WebKit_DOMHTMLFieldSetElement")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "WebKit_DOMElement",
+    feature = "WebKit_DOMEventTarget",
+    feature = "WebKit_DOMHTMLElement",
+    feature = "WebKit_DOMNode",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl DOMEventTarget for DOMHTMLFieldSetElement {}
 
-#[cfg(feature = "WebKit_DOMHTMLFieldSetElement")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "WebKit_DOMElement",
+    feature = "WebKit_DOMHTMLElement",
+    feature = "WebKit_DOMNode",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSCopying for DOMHTMLFieldSetElement {}
 
-#[cfg(feature = "WebKit_DOMHTMLFieldSetElement")]
+#[cfg(all(
+    feature = "WebKit_DOMElement",
+    feature = "WebKit_DOMHTMLElement",
+    feature = "WebKit_DOMNode",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSObjectProtocol for DOMHTMLFieldSetElement {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_DOMHTMLFieldSetElement")]
+    #[cfg(all(
+        feature = "WebKit_DOMElement",
+        feature = "WebKit_DOMHTMLElement",
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMHTMLFieldSetElement {
         #[cfg(feature = "WebKit_DOMHTMLFormElement")]
         #[deprecated]
@@ -40,7 +79,13 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
-    #[cfg(feature = "WebKit_DOMHTMLFieldSetElement")]
+    #[cfg(all(
+        feature = "WebKit_DOMElement",
+        feature = "WebKit_DOMHTMLElement",
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMHTMLFieldSetElement {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
@@ -50,7 +95,13 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_DOMHTMLFieldSetElement")]
+    #[cfg(all(
+        feature = "WebKit_DOMElement",
+        feature = "WebKit_DOMHTMLElement",
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMHTMLFieldSetElement {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

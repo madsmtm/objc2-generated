@@ -28,10 +28,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Contacts_CNContactFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     pub struct CNContactFormatter;
 
-    #[cfg(feature = "Contacts_CNContactFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl ClassType for CNContactFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;
@@ -39,30 +39,33 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Contacts_CNContactFormatter")]
+#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for CNContactFormatter {}
 
-#[cfg(feature = "Contacts_CNContactFormatter")]
+#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
 unsafe impl NSCopying for CNContactFormatter {}
 
-#[cfg(feature = "Contacts_CNContactFormatter")]
+#[cfg(feature = "Foundation_NSFormatter")]
 unsafe impl NSObjectProtocol for CNContactFormatter {}
 
-#[cfg(feature = "Contacts_CNContactFormatter")]
+#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
 unsafe impl NSSecureCoding for CNContactFormatter {}
 
 extern_methods!(
-    #[cfg(feature = "Contacts_CNContactFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl CNContactFormatter {
+        #[cfg(all(feature = "Contacts_CNContact", feature = "Foundation_NSObject"))]
         #[method_id(@__retain_semantics Other descriptorForRequiredKeysForStyle:)]
         pub unsafe fn descriptorForRequiredKeysForStyle(
             style: CNContactFormatterStyle,
         ) -> Id<ProtocolObject<dyn CNKeyDescriptor>>;
 
+        #[cfg(all(feature = "Contacts_CNContact", feature = "Foundation_NSObject"))]
         #[method_id(@__retain_semantics Other descriptorForRequiredKeysForNameOrder)]
         pub unsafe fn descriptorForRequiredKeysForNameOrder(
         ) -> Id<ProtocolObject<dyn CNKeyDescriptor>>;
 
+        #[cfg(all(feature = "Contacts_CNContact", feature = "Foundation_NSObject"))]
         #[method_id(@__retain_semantics Other descriptorForRequiredKeysForDelimiter)]
         pub unsafe fn descriptorForRequiredKeysForDelimiter(
         ) -> Id<ProtocolObject<dyn CNKeyDescriptor>>;
@@ -120,7 +123,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Contacts_CNContactFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl CNContactFormatter {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

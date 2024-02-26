@@ -19,21 +19,17 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AuthenticationServices_ASPublicKeyCredentialClientData")]
     pub struct ASPublicKeyCredentialClientData;
 
-    #[cfg(feature = "AuthenticationServices_ASPublicKeyCredentialClientData")]
     unsafe impl ClassType for ASPublicKeyCredentialClientData {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASPublicKeyCredentialClientData")]
 unsafe impl NSObjectProtocol for ASPublicKeyCredentialClientData {}
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASPublicKeyCredentialClientData")]
     unsafe impl ASPublicKeyCredentialClientData {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

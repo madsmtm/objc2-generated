@@ -9,10 +9,10 @@ use crate::MapKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKPlacemark")]
+    #[cfg(feature = "CoreLocation_CLPlacemark")]
     pub struct MKPlacemark;
 
-    #[cfg(feature = "MapKit_MKPlacemark")]
+    #[cfg(feature = "CoreLocation_CLPlacemark")]
     unsafe impl ClassType for MKPlacemark {
         #[inherits(NSObject)]
         type Super = CLPlacemark;
@@ -20,31 +20,36 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MapKit_MKPlacemark")]
+#[cfg(all(feature = "CoreLocation_CLPlacemark", feature = "MapKit_MKAnnotation"))]
 unsafe impl MKAnnotation for MKPlacemark {}
 
-#[cfg(feature = "MapKit_MKPlacemark")]
+#[cfg(all(feature = "CoreLocation_CLPlacemark", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for MKPlacemark {}
 
-#[cfg(feature = "MapKit_MKPlacemark")]
+#[cfg(all(feature = "CoreLocation_CLPlacemark", feature = "Foundation_NSObject"))]
 unsafe impl NSCopying for MKPlacemark {}
 
-#[cfg(feature = "MapKit_MKPlacemark")]
+#[cfg(feature = "CoreLocation_CLPlacemark")]
 unsafe impl NSObjectProtocol for MKPlacemark {}
 
-#[cfg(feature = "MapKit_MKPlacemark")]
+#[cfg(all(feature = "CoreLocation_CLPlacemark", feature = "Foundation_NSObject"))]
 unsafe impl NSSecureCoding for MKPlacemark {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKPlacemark")]
+    #[cfg(feature = "CoreLocation_CLPlacemark")]
     unsafe impl MKPlacemark {
+        #[cfg(feature = "CoreLocation_CLLocation")]
         #[method_id(@__retain_semantics Init initWithCoordinate:)]
         pub unsafe fn initWithCoordinate(
             this: Allocated<Self>,
             coordinate: CLLocationCoordinate2D,
         ) -> Id<Self>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "CoreLocation_CLLocation",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithCoordinate:addressDictionary:)]
         pub unsafe fn initWithCoordinate_addressDictionary(
             this: Allocated<Self>,
@@ -52,7 +57,10 @@ extern_methods!(
             address_dictionary: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Contacts_CNPostalAddress")]
+        #[cfg(all(
+            feature = "Contacts_CNPostalAddress",
+            feature = "CoreLocation_CLLocation"
+        ))]
         #[method_id(@__retain_semantics Init initWithCoordinate:postalAddress:)]
         pub unsafe fn initWithCoordinate_postalAddress(
             this: Allocated<Self>,
@@ -68,7 +76,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CLPlacemark`
-    #[cfg(feature = "MapKit_MKPlacemark")]
+    #[cfg(feature = "CoreLocation_CLPlacemark")]
     unsafe impl MKPlacemark {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

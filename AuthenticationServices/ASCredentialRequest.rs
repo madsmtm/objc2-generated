@@ -16,15 +16,18 @@ ns_enum!(
 );
 
 extern_protocol!(
+    #[cfg(feature = "Foundation_NSObject")]
     pub unsafe trait ASCredentialRequest:
         NSCopying + NSObjectProtocol + NSSecureCoding
     {
         #[method(type)]
         unsafe fn r#type(&self) -> ASCredentialRequestType;
 
+        #[cfg(feature = "AuthenticationServices_ASCredentialIdentity")]
         #[method_id(@__retain_semantics Other credentialIdentity)]
         unsafe fn credentialIdentity(&self) -> Id<ProtocolObject<dyn ASCredentialIdentity>>;
     }
 
+    #[cfg(feature = "Foundation_NSObject")]
     unsafe impl ProtocolType for dyn ASCredentialRequest {}
 );

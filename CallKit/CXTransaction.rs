@@ -6,30 +6,26 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CallKit_CXTransaction")]
     pub struct CXTransaction;
 
-    #[cfg(feature = "CallKit_CXTransaction")]
     unsafe impl ClassType for CXTransaction {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CallKit_CXTransaction")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CXTransaction {}
 
-#[cfg(feature = "CallKit_CXTransaction")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for CXTransaction {}
 
-#[cfg(feature = "CallKit_CXTransaction")]
 unsafe impl NSObjectProtocol for CXTransaction {}
 
-#[cfg(feature = "CallKit_CXTransaction")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CXTransaction {}
 
 extern_methods!(
-    #[cfg(feature = "CallKit_CXTransaction")]
     unsafe impl CXTransaction {
         #[cfg(feature = "Foundation_NSUUID")]
         #[method_id(@__retain_semantics Other UUID)]
@@ -61,7 +57,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CallKit_CXTransaction")]
     unsafe impl CXTransaction {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

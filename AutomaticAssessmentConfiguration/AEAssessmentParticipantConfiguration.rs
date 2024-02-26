@@ -6,24 +6,20 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentParticipantConfiguration")]
     pub struct AEAssessmentParticipantConfiguration;
 
-    #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentParticipantConfiguration")]
     unsafe impl ClassType for AEAssessmentParticipantConfiguration {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentParticipantConfiguration")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for AEAssessmentParticipantConfiguration {}
 
-#[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentParticipantConfiguration")]
 unsafe impl NSObjectProtocol for AEAssessmentParticipantConfiguration {}
 
 extern_methods!(
-    #[cfg(feature = "AutomaticAssessmentConfiguration_AEAssessmentParticipantConfiguration")]
     unsafe impl AEAssessmentParticipantConfiguration {
         #[method(allowsNetworkAccess)]
         pub unsafe fn allowsNetworkAccess(&self) -> bool;

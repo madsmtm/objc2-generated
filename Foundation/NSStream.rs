@@ -50,21 +50,17 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSStream")]
     pub struct NSStream;
 
-    #[cfg(feature = "Foundation_NSStream")]
     unsafe impl ClassType for NSStream {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSStream")]
 unsafe impl NSObjectProtocol for NSStream {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSStream")]
     unsafe impl NSStream {
         #[method(open)]
         pub unsafe fn open(&self);
@@ -90,7 +86,11 @@ extern_methods!(
             key: &NSStreamPropertyKey,
         ) -> bool;
 
-        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSObjCRuntime",
+            feature = "Foundation_NSRunLoop",
+            feature = "Foundation_NSString"
+        ))]
         #[method(scheduleInRunLoop:forMode:)]
         pub unsafe fn scheduleInRunLoop_forMode(
             &self,
@@ -98,7 +98,11 @@ extern_methods!(
             mode: &NSRunLoopMode,
         );
 
-        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSObjCRuntime",
+            feature = "Foundation_NSRunLoop",
+            feature = "Foundation_NSString"
+        ))]
         #[method(removeFromRunLoop:forMode:)]
         pub unsafe fn removeFromRunLoop_forMode(
             &self,
@@ -117,7 +121,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSStream")]
     unsafe impl NSStream {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -129,10 +132,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSInputStream")]
     pub struct NSInputStream;
 
-    #[cfg(feature = "Foundation_NSInputStream")]
     unsafe impl ClassType for NSInputStream {
         #[inherits(NSObject)]
         type Super = NSStream;
@@ -140,11 +141,9 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSInputStream")]
 unsafe impl NSObjectProtocol for NSInputStream {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSInputStream")]
     unsafe impl NSInputStream {
         #[method(read:maxLength:)]
         pub unsafe fn read_maxLength(&self, buffer: NonNull<u8>, len: NSUInteger) -> NSInteger;
@@ -171,7 +170,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSInputStream")]
     unsafe impl NSInputStream {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -183,10 +181,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSOutputStream")]
     pub struct NSOutputStream;
 
-    #[cfg(feature = "Foundation_NSOutputStream")]
     unsafe impl ClassType for NSOutputStream {
         #[inherits(NSObject)]
         type Super = NSStream;
@@ -194,11 +190,9 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSOutputStream")]
 unsafe impl NSObjectProtocol for NSOutputStream {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSOutputStream")]
     unsafe impl NSOutputStream {
         #[method(write:maxLength:)]
         pub unsafe fn write_maxLength(&self, buffer: NonNull<u8>, len: NSUInteger) -> NSInteger;
@@ -228,7 +222,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSOutputStream")]
     unsafe impl NSOutputStream {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -240,13 +233,8 @@ extern_methods!(
 
 extern_methods!(
     /// NSSocketStreamCreationExtensions
-    #[cfg(feature = "Foundation_NSStream")]
     unsafe impl NSStream {
-        #[cfg(all(
-            feature = "Foundation_NSInputStream",
-            feature = "Foundation_NSOutputStream",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use nw_connection_t in Network framework instead"]
         #[method(getStreamsToHostWithName:port:inputStream:outputStream:)]
         pub unsafe fn getStreamsToHostWithName_port_inputStream_outputStream(
@@ -256,11 +244,7 @@ extern_methods!(
             output_stream: Option<&mut Option<Id<NSOutputStream>>>,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSHost",
-            feature = "Foundation_NSInputStream",
-            feature = "Foundation_NSOutputStream"
-        ))]
+        #[cfg(feature = "Foundation_NSHost")]
         #[deprecated = "Use nw_connection_t in Network framework instead"]
         #[method(getStreamsToHost:port:inputStream:outputStream:)]
         pub unsafe fn getStreamsToHost_port_inputStream_outputStream(
@@ -274,12 +258,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSStreamBoundPairCreationExtensions
-    #[cfg(feature = "Foundation_NSStream")]
     unsafe impl NSStream {
-        #[cfg(all(
-            feature = "Foundation_NSInputStream",
-            feature = "Foundation_NSOutputStream"
-        ))]
         #[method(getBoundStreamsWithBufferSize:inputStream:outputStream:)]
         pub unsafe fn getBoundStreamsWithBufferSize_inputStream_outputStream(
             buffer_size: NSUInteger,
@@ -291,7 +270,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSInputStreamExtensions
-    #[cfg(feature = "Foundation_NSInputStream")]
     unsafe impl NSInputStream {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithFileAtPath:)]
@@ -316,7 +294,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSOutputStreamExtensions
-    #[cfg(feature = "Foundation_NSOutputStream")]
     unsafe impl NSOutputStream {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initToFileAtPath:append:)]
@@ -353,7 +330,6 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSStreamDelegate: NSObjectProtocol {
-        #[cfg(feature = "Foundation_NSStream")]
         #[optional]
         #[method(stream:handleEvent:)]
         unsafe fn stream_handleEvent(&self, a_stream: &NSStream, event_code: NSStreamEvent);
@@ -425,10 +401,10 @@ extern_static!(NSStreamDataWrittenToMemoryStreamKey: &'static NSStreamPropertyKe
 #[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStreamFileCurrentOffsetKey: &'static NSStreamPropertyKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
 extern_static!(NSStreamSocketSSLErrorDomain: &'static NSErrorDomain);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
 extern_static!(NSStreamSOCKSErrorDomain: &'static NSErrorDomain);
 
 #[cfg(feature = "Foundation_NSString")]

@@ -24,32 +24,28 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKStatistics")]
     pub struct HKStatistics;
 
-    #[cfg(feature = "HealthKit_HKStatistics")]
     unsafe impl ClassType for HKStatistics {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "HealthKit_HKStatistics")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for HKStatistics {}
 
-#[cfg(feature = "HealthKit_HKStatistics")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for HKStatistics {}
 
-#[cfg(feature = "HealthKit_HKStatistics")]
 unsafe impl NSObjectProtocol for HKStatistics {}
 
-#[cfg(feature = "HealthKit_HKStatistics")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for HKStatistics {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKStatistics")]
     unsafe impl HKStatistics {
-        #[cfg(feature = "HealthKit_HKQuantityType")]
+        #[cfg(feature = "HealthKit_HKObjectType")]
         #[method_id(@__retain_semantics Other quantityType)]
         pub unsafe fn quantityType(&self) -> Id<HKQuantityType>;
 
@@ -134,7 +130,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKStatistics")]
     unsafe impl HKStatistics {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

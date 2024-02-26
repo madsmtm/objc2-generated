@@ -7,11 +7,11 @@ use crate::WebKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_DOMFileList")]
+    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
     #[deprecated]
     pub struct DOMFileList;
 
-    #[cfg(feature = "WebKit_DOMFileList")]
+    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
     unsafe impl ClassType for DOMFileList {
         #[inherits(WebScriptObject, NSObject)]
         type Super = DOMObject;
@@ -19,20 +19,24 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "WebKit_DOMFileList")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSCopying for DOMFileList {}
 
-#[cfg(feature = "WebKit_DOMFileList")]
+#[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
 unsafe impl NSObjectProtocol for DOMFileList {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_DOMFileList")]
+    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
     unsafe impl DOMFileList {
         #[deprecated]
         #[method(length)]
         pub unsafe fn length(&self) -> c_uint;
 
-        #[cfg(feature = "WebKit_DOMFile")]
+        #[cfg(all(feature = "WebKit_DOMBlob", feature = "WebKit_DOMFile"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other item:)]
         pub unsafe fn item(&self, index: c_uint) -> Option<Id<DOMFile>>;
@@ -41,7 +45,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
-    #[cfg(feature = "WebKit_DOMFileList")]
+    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
     unsafe impl DOMFileList {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
@@ -51,7 +55,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_DOMFileList")]
+    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
     unsafe impl DOMFileList {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

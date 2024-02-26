@@ -7,46 +7,50 @@ use crate::MetalFX::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MetalFX_MTLFXTemporalScalerDescriptor")]
     pub struct MTLFXTemporalScalerDescriptor;
 
-    #[cfg(feature = "MetalFX_MTLFXTemporalScalerDescriptor")]
     unsafe impl ClassType for MTLFXTemporalScalerDescriptor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MetalFX_MTLFXTemporalScalerDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLFXTemporalScalerDescriptor {}
 
-#[cfg(feature = "MetalFX_MTLFXTemporalScalerDescriptor")]
 unsafe impl NSObjectProtocol for MTLFXTemporalScalerDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "MetalFX_MTLFXTemporalScalerDescriptor")]
     unsafe impl MTLFXTemporalScalerDescriptor {
+        #[cfg(feature = "Metal_MTLPixelFormat")]
         #[method(colorTextureFormat)]
         pub unsafe fn colorTextureFormat(&self) -> MTLPixelFormat;
 
+        #[cfg(feature = "Metal_MTLPixelFormat")]
         #[method(setColorTextureFormat:)]
         pub unsafe fn setColorTextureFormat(&self, color_texture_format: MTLPixelFormat);
 
+        #[cfg(feature = "Metal_MTLPixelFormat")]
         #[method(depthTextureFormat)]
         pub unsafe fn depthTextureFormat(&self) -> MTLPixelFormat;
 
+        #[cfg(feature = "Metal_MTLPixelFormat")]
         #[method(setDepthTextureFormat:)]
         pub unsafe fn setDepthTextureFormat(&self, depth_texture_format: MTLPixelFormat);
 
+        #[cfg(feature = "Metal_MTLPixelFormat")]
         #[method(motionTextureFormat)]
         pub unsafe fn motionTextureFormat(&self) -> MTLPixelFormat;
 
+        #[cfg(feature = "Metal_MTLPixelFormat")]
         #[method(setMotionTextureFormat:)]
         pub unsafe fn setMotionTextureFormat(&self, motion_texture_format: MTLPixelFormat);
 
+        #[cfg(feature = "Metal_MTLPixelFormat")]
         #[method(outputTextureFormat)]
         pub unsafe fn outputTextureFormat(&self) -> MTLPixelFormat;
 
+        #[cfg(feature = "Metal_MTLPixelFormat")]
         #[method(setOutputTextureFormat:)]
         pub unsafe fn setOutputTextureFormat(&self, output_texture_format: MTLPixelFormat);
 
@@ -101,22 +105,26 @@ extern_methods!(
         #[method(setInputContentMaxScale:)]
         pub unsafe fn setInputContentMaxScale(&self, input_content_max_scale: c_float);
 
+        #[cfg(feature = "Metal_MTLDevice")]
         #[method_id(@__retain_semantics New newTemporalScalerWithDevice:)]
         pub unsafe fn newTemporalScalerWithDevice(
             &self,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Id<ProtocolObject<dyn MTLFXTemporalScaler>>>;
 
+        #[cfg(feature = "Metal_MTLDevice")]
         #[method(supportedInputContentMinScaleForDevice:)]
         pub unsafe fn supportedInputContentMinScaleForDevice(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> c_float;
 
+        #[cfg(feature = "Metal_MTLDevice")]
         #[method(supportedInputContentMaxScaleForDevice:)]
         pub unsafe fn supportedInputContentMaxScaleForDevice(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> c_float;
 
+        #[cfg(feature = "Metal_MTLDevice")]
         #[method(supportsDevice:)]
         pub unsafe fn supportsDevice(device: &ProtocolObject<dyn MTLDevice>) -> bool;
     }
@@ -124,7 +132,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MetalFX_MTLFXTemporalScalerDescriptor")]
     unsafe impl MTLFXTemporalScalerDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -136,15 +143,19 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait MTLFXTemporalScaler: NSObjectProtocol {
+        #[cfg(feature = "Metal_MTLTexture")]
         #[method(colorTextureUsage)]
         unsafe fn colorTextureUsage(&self) -> MTLTextureUsage;
 
+        #[cfg(feature = "Metal_MTLTexture")]
         #[method(depthTextureUsage)]
         unsafe fn depthTextureUsage(&self) -> MTLTextureUsage;
 
+        #[cfg(feature = "Metal_MTLTexture")]
         #[method(motionTextureUsage)]
         unsafe fn motionTextureUsage(&self) -> MTLTextureUsage;
 
+        #[cfg(feature = "Metal_MTLTexture")]
         #[method(outputTextureUsage)]
         unsafe fn outputTextureUsage(&self) -> MTLTextureUsage;
 
@@ -160,33 +171,43 @@ extern_protocol!(
         #[method(setInputContentHeight:)]
         unsafe fn setInputContentHeight(&self, input_content_height: NSUInteger);
 
+        #[cfg(all(feature = "Metal_MTLResource", feature = "Metal_MTLTexture"))]
         #[method_id(@__retain_semantics Other colorTexture)]
         unsafe fn colorTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
 
+        #[cfg(all(feature = "Metal_MTLResource", feature = "Metal_MTLTexture"))]
         #[method(setColorTexture:)]
         unsafe fn setColorTexture(&self, color_texture: Option<&ProtocolObject<dyn MTLTexture>>);
 
+        #[cfg(all(feature = "Metal_MTLResource", feature = "Metal_MTLTexture"))]
         #[method_id(@__retain_semantics Other depthTexture)]
         unsafe fn depthTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
 
+        #[cfg(all(feature = "Metal_MTLResource", feature = "Metal_MTLTexture"))]
         #[method(setDepthTexture:)]
         unsafe fn setDepthTexture(&self, depth_texture: Option<&ProtocolObject<dyn MTLTexture>>);
 
+        #[cfg(all(feature = "Metal_MTLResource", feature = "Metal_MTLTexture"))]
         #[method_id(@__retain_semantics Other motionTexture)]
         unsafe fn motionTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
 
+        #[cfg(all(feature = "Metal_MTLResource", feature = "Metal_MTLTexture"))]
         #[method(setMotionTexture:)]
         unsafe fn setMotionTexture(&self, motion_texture: Option<&ProtocolObject<dyn MTLTexture>>);
 
+        #[cfg(all(feature = "Metal_MTLResource", feature = "Metal_MTLTexture"))]
         #[method_id(@__retain_semantics Other outputTexture)]
         unsafe fn outputTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
 
+        #[cfg(all(feature = "Metal_MTLResource", feature = "Metal_MTLTexture"))]
         #[method(setOutputTexture:)]
         unsafe fn setOutputTexture(&self, output_texture: Option<&ProtocolObject<dyn MTLTexture>>);
 
+        #[cfg(all(feature = "Metal_MTLResource", feature = "Metal_MTLTexture"))]
         #[method_id(@__retain_semantics Other exposureTexture)]
         unsafe fn exposureTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
 
+        #[cfg(all(feature = "Metal_MTLResource", feature = "Metal_MTLTexture"))]
         #[method(setExposureTexture:)]
         unsafe fn setExposureTexture(
             &self,
@@ -235,15 +256,19 @@ extern_protocol!(
         #[method(setDepthReversed:)]
         unsafe fn setDepthReversed(&self, depth_reversed: bool);
 
+        #[cfg(feature = "Metal_MTLPixelFormat")]
         #[method(colorTextureFormat)]
         unsafe fn colorTextureFormat(&self) -> MTLPixelFormat;
 
+        #[cfg(feature = "Metal_MTLPixelFormat")]
         #[method(depthTextureFormat)]
         unsafe fn depthTextureFormat(&self) -> MTLPixelFormat;
 
+        #[cfg(feature = "Metal_MTLPixelFormat")]
         #[method(motionTextureFormat)]
         unsafe fn motionTextureFormat(&self) -> MTLPixelFormat;
 
+        #[cfg(feature = "Metal_MTLPixelFormat")]
         #[method(outputTextureFormat)]
         unsafe fn outputTextureFormat(&self) -> MTLPixelFormat;
 
@@ -265,12 +290,15 @@ extern_protocol!(
         #[method(inputContentMaxScale)]
         unsafe fn inputContentMaxScale(&self) -> c_float;
 
+        #[cfg(feature = "Metal_MTLFence")]
         #[method_id(@__retain_semantics Other fence)]
         unsafe fn fence(&self) -> Option<Id<ProtocolObject<dyn MTLFence>>>;
 
+        #[cfg(feature = "Metal_MTLFence")]
         #[method(setFence:)]
         unsafe fn setFence(&self, fence: Option<&ProtocolObject<dyn MTLFence>>);
 
+        #[cfg(feature = "Metal_MTLCommandBuffer")]
         #[method(encodeToCommandBuffer:)]
         unsafe fn encodeToCommandBuffer(
             &self,

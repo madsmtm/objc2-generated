@@ -23,7 +23,11 @@ ns_options!(
 
 extern_protocol!(
     pub unsafe trait GCPhysicalInputSource: NSObjectProtocol {
-        #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSSet",
+            feature = "Foundation_NSString",
+            feature = "GameController_GCInputNames"
+        ))]
         #[method_id(@__retain_semantics Other elementAliases)]
         unsafe fn elementAliases(&self) -> Id<NSSet<NSString>>;
 

@@ -9,21 +9,17 @@ use crate::MapKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "EventKit_EKObject")]
     pub struct EKObject;
 
-    #[cfg(feature = "EventKit_EKObject")]
     unsafe impl ClassType for EKObject {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "EventKit_EKObject")]
 unsafe impl NSObjectProtocol for EKObject {}
 
 extern_methods!(
-    #[cfg(feature = "EventKit_EKObject")]
     unsafe impl EKObject {
         #[method(hasChanges)]
         pub unsafe fn hasChanges(&self) -> bool;
@@ -44,7 +40,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "EventKit_EKObject")]
     unsafe impl EKObject {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -6,24 +6,20 @@ use crate::SoundAnalysis::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "SoundAnalysis_SNClassifySoundRequest")]
     pub struct SNClassifySoundRequest;
 
-    #[cfg(feature = "SoundAnalysis_SNClassifySoundRequest")]
     unsafe impl ClassType for SNClassifySoundRequest {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "SoundAnalysis_SNClassifySoundRequest")]
 unsafe impl NSObjectProtocol for SNClassifySoundRequest {}
 
-#[cfg(feature = "SoundAnalysis_SNClassifySoundRequest")]
+#[cfg(feature = "SoundAnalysis_SNRequest")]
 unsafe impl SNRequest for SNClassifySoundRequest {}
 
 extern_methods!(
-    #[cfg(feature = "SoundAnalysis_SNClassifySoundRequest")]
     unsafe impl SNClassifySoundRequest {
         #[method(overlapFactor)]
         pub unsafe fn overlapFactor(&self) -> c_double;
@@ -39,14 +35,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other knownClassifications)]
         pub unsafe fn knownClassifications(&self) -> Id<NSArray<NSString>>;
 
-        #[cfg(all(feature = "CoreML_MLModel", feature = "Foundation_NSError"))]
-        #[method_id(@__retain_semantics Init initWithMLModel:error:_)]
-        pub unsafe fn initWithMLModel_error(
-            this: Allocated<Self>,
-            ml_model: &MLModel,
-        ) -> Result<Id<Self>, Id<NSError>>;
-
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString",
+            feature = "SoundAnalysis_SNTypes"
+        ))]
         #[method_id(@__retain_semantics Init initWithClassifierIdentifier:error:_)]
         pub unsafe fn initWithClassifierIdentifier_error(
             this: Allocated<Self>,

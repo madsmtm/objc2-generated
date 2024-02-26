@@ -6,7 +6,11 @@ use crate::Foundation::*;
 
 extern_protocol!(
     pub unsafe trait CLSContextProvider {
-        #[cfg(all(feature = "ClassKit_CLSContext", feature = "Foundation_NSError"))]
+        #[cfg(all(
+            feature = "ClassKit_CLSContext",
+            feature = "ClassKit_CLSObject",
+            feature = "Foundation_NSError"
+        ))]
         #[method(updateDescendantsOfContext:completion:)]
         unsafe fn updateDescendantsOfContext_completion(
             &self,

@@ -41,7 +41,11 @@ pub const DOM_SHOW_NOTATION: c_uint = 0x00000800;
 extern_protocol!(
     #[deprecated]
     pub unsafe trait DOMNodeFilter: NSObjectProtocol {
-        #[cfg(feature = "WebKit_DOMNode")]
+        #[cfg(all(
+            feature = "WebKit_DOMNode",
+            feature = "WebKit_DOMObject",
+            feature = "WebKit_WebScriptObject"
+        ))]
         #[deprecated]
         #[method(acceptNode:)]
         unsafe fn acceptNode(&self, n: Option<&DOMNode>) -> c_short;

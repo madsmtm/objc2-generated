@@ -20,29 +20,27 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSStatusItem")]
     pub struct NSStatusItem;
 
-    #[cfg(feature = "AppKit_NSStatusItem")]
     unsafe impl ClassType for NSStatusItem {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSStatusItem")]
 unsafe impl NSObjectProtocol for NSStatusItem {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSStatusItem")]
     unsafe impl NSStatusItem {
         #[cfg(feature = "AppKit_NSStatusBar")]
         #[method_id(@__retain_semantics Other statusBar)]
         pub unsafe fn statusBar(&self) -> Option<Id<NSStatusBar>>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(length)]
         pub unsafe fn length(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setLength:)]
         pub unsafe fn setLength(&self, length: CGFloat);
 
@@ -54,7 +52,13 @@ extern_methods!(
         #[method(setMenu:)]
         pub unsafe fn setMenu(&self, menu: Option<&NSMenu>);
 
-        #[cfg(feature = "AppKit_NSStatusBarButton")]
+        #[cfg(all(
+            feature = "AppKit_NSButton",
+            feature = "AppKit_NSControl",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSStatusBarButton",
+            feature = "AppKit_NSView"
+        ))]
         #[method_id(@__retain_semantics Other button)]
         pub unsafe fn button(&self, mtm: MainThreadMarker) -> Option<Id<NSStatusBarButton>>;
 
@@ -82,7 +86,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSStatusItem")]
     unsafe impl NSStatusItem {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -94,7 +97,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSStatusItemDeprecated
-    #[cfg(feature = "AppKit_NSStatusItem")]
     unsafe impl NSStatusItem {
         #[deprecated = "Use the receiver's button.action instead"]
         #[method(action)]
@@ -186,20 +188,22 @@ extern_methods!(
         #[method(setToolTip:)]
         pub unsafe fn setToolTip(&self, tool_tip: Option<&NSString>);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[deprecated = "Use the receiver's button's -sendActionOn: instead"]
         #[method(sendActionOn:)]
         pub unsafe fn sendActionOn(&self, mask: NSEventMask) -> NSInteger;
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[deprecated = "Use the standard button property instead"]
         #[method_id(@__retain_semantics Other view)]
         pub unsafe fn view(&self, mtm: MainThreadMarker) -> Option<Id<NSView>>;
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[deprecated = "Use the standard button property instead"]
         #[method(setView:)]
         pub unsafe fn setView(&self, view: Option<&NSView>);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[deprecated = "Use the standard button instead which handles highlight drawing, making this method obsolete"]
         #[method(drawStatusBarBackgroundInRect:withHighlight:)]
         pub unsafe fn drawStatusBarBackgroundInRect_withHighlight(

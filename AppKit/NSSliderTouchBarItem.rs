@@ -5,20 +5,23 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSGeometry")]
 typed_extensible_enum!(
     pub type NSSliderAccessoryWidth = CGFloat;
 );
 
+#[cfg(feature = "Foundation_NSGeometry")]
 extern_static!(NSSliderAccessoryWidthDefault: NSSliderAccessoryWidth);
 
+#[cfg(feature = "Foundation_NSGeometry")]
 extern_static!(NSSliderAccessoryWidthWide: NSSliderAccessoryWidth);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSSliderTouchBarItem")]
+    #[cfg(feature = "AppKit_NSTouchBarItem")]
     pub struct NSSliderTouchBarItem;
 
-    #[cfg(feature = "AppKit_NSSliderTouchBarItem")]
+    #[cfg(feature = "AppKit_NSTouchBarItem")]
     unsafe impl ClassType for NSSliderTouchBarItem {
         #[inherits(NSObject)]
         type Super = NSTouchBarItem;
@@ -26,24 +29,38 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSSliderTouchBarItem")]
+#[cfg(all(feature = "AppKit_NSTouchBarItem", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for NSSliderTouchBarItem {}
 
-#[cfg(feature = "AppKit_NSSliderTouchBarItem")]
+#[cfg(feature = "AppKit_NSTouchBarItem")]
 unsafe impl NSObjectProtocol for NSSliderTouchBarItem {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSSliderTouchBarItem")]
+    #[cfg(feature = "AppKit_NSTouchBarItem")]
     unsafe impl NSSliderTouchBarItem {
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSUserInterfaceCompression",
+            feature = "AppKit_NSView"
+        ))]
         #[method_id(@__retain_semantics Other view)]
         pub unsafe fn view(&self) -> Id<NSView>;
 
-        #[cfg(feature = "AppKit_NSSlider")]
+        #[cfg(all(
+            feature = "AppKit_NSControl",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSSlider",
+            feature = "AppKit_NSView"
+        ))]
         #[method_id(@__retain_semantics Other slider)]
         pub unsafe fn slider(&self) -> Id<NSSlider>;
 
-        #[cfg(feature = "AppKit_NSSlider")]
+        #[cfg(all(
+            feature = "AppKit_NSControl",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSSlider",
+            feature = "AppKit_NSView"
+        ))]
         #[method(setSlider:)]
         pub unsafe fn setSlider(&self, slider: &NSSlider);
 
@@ -53,15 +70,19 @@ extern_methods!(
         #[method(setDoubleValue:)]
         pub unsafe fn setDoubleValue(&self, double_value: c_double);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(minimumSliderWidth)]
         pub unsafe fn minimumSliderWidth(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setMinimumSliderWidth:)]
         pub unsafe fn setMinimumSliderWidth(&self, minimum_slider_width: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(maximumSliderWidth)]
         pub unsafe fn maximumSliderWidth(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setMaximumSliderWidth:)]
         pub unsafe fn setMaximumSliderWidth(&self, maximum_slider_width: CGFloat);
 
@@ -95,9 +116,11 @@ extern_methods!(
             maximum_value_accessory: Option<&NSSliderAccessory>,
         );
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(valueAccessoryWidth)]
         pub unsafe fn valueAccessoryWidth(&self) -> NSSliderAccessoryWidth;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setValueAccessoryWidth:)]
         pub unsafe fn setValueAccessoryWidth(&self, value_accessory_width: NSSliderAccessoryWidth);
 
@@ -125,7 +148,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSTouchBarItem`
-    #[cfg(feature = "AppKit_NSSliderTouchBarItem")]
+    #[cfg(feature = "AppKit_NSTouchBarItem")]
     unsafe impl NSSliderTouchBarItem {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
@@ -145,7 +168,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSSliderTouchBarItem")]
+    #[cfg(feature = "AppKit_NSTouchBarItem")]
     unsafe impl NSSliderTouchBarItem {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

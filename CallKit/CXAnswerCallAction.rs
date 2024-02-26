@@ -6,10 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CallKit_CXAnswerCallAction")]
+    #[cfg(all(feature = "CallKit_CXAction", feature = "CallKit_CXCallAction"))]
     pub struct CXAnswerCallAction;
 
-    #[cfg(feature = "CallKit_CXAnswerCallAction")]
+    #[cfg(all(feature = "CallKit_CXAction", feature = "CallKit_CXCallAction"))]
     unsafe impl ClassType for CXAnswerCallAction {
         #[inherits(CXAction, NSObject)]
         type Super = CXCallAction;
@@ -17,20 +17,32 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CallKit_CXAnswerCallAction")]
+#[cfg(all(
+    feature = "CallKit_CXAction",
+    feature = "CallKit_CXCallAction",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for CXAnswerCallAction {}
 
-#[cfg(feature = "CallKit_CXAnswerCallAction")]
+#[cfg(all(
+    feature = "CallKit_CXAction",
+    feature = "CallKit_CXCallAction",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCopying for CXAnswerCallAction {}
 
-#[cfg(feature = "CallKit_CXAnswerCallAction")]
+#[cfg(all(feature = "CallKit_CXAction", feature = "CallKit_CXCallAction"))]
 unsafe impl NSObjectProtocol for CXAnswerCallAction {}
 
-#[cfg(feature = "CallKit_CXAnswerCallAction")]
+#[cfg(all(
+    feature = "CallKit_CXAction",
+    feature = "CallKit_CXCallAction",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSSecureCoding for CXAnswerCallAction {}
 
 extern_methods!(
-    #[cfg(feature = "CallKit_CXAnswerCallAction")]
+    #[cfg(all(feature = "CallKit_CXAction", feature = "CallKit_CXCallAction"))]
     unsafe impl CXAnswerCallAction {
         #[cfg(feature = "Foundation_NSDate")]
         #[method(fulfillWithDateConnected:)]
@@ -40,7 +52,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CXCallAction`
-    #[cfg(feature = "CallKit_CXAnswerCallAction")]
+    #[cfg(all(feature = "CallKit_CXAction", feature = "CallKit_CXCallAction"))]
     unsafe impl CXAnswerCallAction {
         #[cfg(feature = "Foundation_NSUUID")]
         #[method_id(@__retain_semantics Init initWithCallUUID:)]
@@ -58,7 +70,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CallKit_CXAnswerCallAction")]
+    #[cfg(all(feature = "CallKit_CXAction", feature = "CallKit_CXCallAction"))]
     unsafe impl CXAnswerCallAction {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -14,21 +14,17 @@ typed_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Photos_PHLivePhotoEditingContext")]
     pub struct PHLivePhotoEditingContext;
 
-    #[cfg(feature = "Photos_PHLivePhotoEditingContext")]
     unsafe impl ClassType for PHLivePhotoEditingContext {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Photos_PHLivePhotoEditingContext")]
 unsafe impl NSObjectProtocol for PHLivePhotoEditingContext {}
 
 extern_methods!(
-    #[cfg(feature = "Photos_PHLivePhotoEditingContext")]
     unsafe impl PHLivePhotoEditingContext {
         #[cfg(feature = "Photos_PHContentEditingInput")]
         #[method_id(@__retain_semantics Init initWithLivePhotoEditingInput:)]
@@ -40,10 +36,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "CoreImage_CIImage")]
-        #[method_id(@__retain_semantics Other fullSizeImage)]
-        pub unsafe fn fullSizeImage(&self) -> Id<CIImage>;
-
         #[method(audioVolume)]
         pub unsafe fn audioVolume(&self) -> c_float;
 
@@ -53,6 +45,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
+            feature = "Foundation_NSGeometry",
             feature = "Foundation_NSString",
             feature = "Photos_PHLivePhoto"
         ))]
@@ -85,7 +78,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Photos_PHLivePhotoEditingContext")]
     unsafe impl PHLivePhotoEditingContext {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -104,13 +96,10 @@ ns_enum!(
 
 extern_protocol!(
     pub unsafe trait PHLivePhotoFrame {
-        #[cfg(feature = "CoreImage_CIImage")]
-        #[method_id(@__retain_semantics Other image)]
-        unsafe fn image(&self) -> Id<CIImage>;
-
         #[method(type)]
         unsafe fn r#type(&self) -> PHLivePhotoFrameType;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(renderScale)]
         unsafe fn renderScale(&self) -> CGFloat;
     }

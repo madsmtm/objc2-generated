@@ -9,22 +9,19 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Photos_PHAssetResource")]
     pub struct PHAssetResource;
 
-    #[cfg(feature = "Photos_PHAssetResource")]
     unsafe impl ClassType for PHAssetResource {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Photos_PHAssetResource")]
 unsafe impl NSObjectProtocol for PHAssetResource {}
 
 extern_methods!(
-    #[cfg(feature = "Photos_PHAssetResource")]
     unsafe impl PHAssetResource {
+        #[cfg(feature = "Photos_PhotosTypes")]
         #[method(type)]
         pub unsafe fn r#type(&self) -> PHAssetResourceType;
 
@@ -46,7 +43,11 @@ extern_methods!(
         #[method(pixelHeight)]
         pub unsafe fn pixelHeight(&self) -> NSInteger;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Photos_PHAsset"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Photos_PHAsset",
+            feature = "Photos_PHObject"
+        ))]
         #[method_id(@__retain_semantics Other assetResourcesForAsset:)]
         pub unsafe fn assetResourcesForAsset(asset: &PHAsset) -> Id<NSArray<PHAssetResource>>;
 
@@ -60,7 +61,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Photos_PHAssetResource")]
     unsafe impl PHAssetResource {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

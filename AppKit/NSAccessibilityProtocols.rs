@@ -7,6 +7,7 @@ use crate::Foundation::*;
 
 extern_protocol!(
     pub unsafe trait NSAccessibilityElementProtocol: NSObjectProtocol {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(accessibilityFrame)]
         unsafe fn accessibilityFrame(&self) -> NSRect;
 
@@ -67,7 +68,7 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait NSAccessibilityRadioButton: NSAccessibilityButton {
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method_id(@__retain_semantics Other accessibilityValue)]
         unsafe fn accessibilityValue(&self) -> Option<Id<NSNumber>>;
     }
@@ -77,7 +78,7 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait NSAccessibilityCheckBox: NSAccessibilityButton {
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method_id(@__retain_semantics Other accessibilityValue)]
         unsafe fn accessibilityValue(&self) -> Option<Id<NSNumber>>;
     }
@@ -91,7 +92,10 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other accessibilityValue)]
         unsafe fn accessibilityValue(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(all(
+            feature = "Foundation_NSAttributedString",
+            feature = "Foundation_NSRange"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other accessibilityAttributedStringForRange:)]
         unsafe fn accessibilityAttributedStringForRange(
@@ -99,6 +103,7 @@ extern_protocol!(
             range: NSRange,
         ) -> Option<Id<NSAttributedString>>;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[optional]
         #[method(accessibilityVisibleCharacterRange)]
         unsafe fn accessibilityVisibleCharacterRange(&self) -> NSRange;
@@ -109,16 +114,18 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait NSAccessibilityNavigableStaticText: NSAccessibilityStaticText {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSRange", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other accessibilityStringForRange:)]
         unsafe fn accessibilityStringForRange(&self, range: NSRange) -> Option<Id<NSString>>;
 
         #[method(accessibilityLineForIndex:)]
         unsafe fn accessibilityLineForIndex(&self, index: NSInteger) -> NSInteger;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(accessibilityRangeForLine:)]
         unsafe fn accessibilityRangeForLine(&self, line_number: NSInteger) -> NSRange;
 
+        #[cfg(all(feature = "Foundation_NSGeometry", feature = "Foundation_NSRange"))]
         #[method(accessibilityFrameForRange:)]
         unsafe fn accessibilityFrameForRange(&self, range: NSRange) -> NSRect;
     }
@@ -128,7 +135,7 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait NSAccessibilityProgressIndicator: NSAccessibilityGroup {
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method_id(@__retain_semantics Other accessibilityValue)]
         unsafe fn accessibilityValue(&self) -> Option<Id<NSNumber>>;
     }
@@ -329,6 +336,7 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait NSAccessibilityLayoutItem: NSAccessibilityGroup {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[optional]
         #[method(setAccessibilityFrame:)]
         unsafe fn setAccessibilityFrame(&self, frame: NSRect);
@@ -339,12 +347,21 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait NSAccessibilityElementLoading: NSObjectProtocol {
+        #[cfg(all(
+            feature = "AppKit_NSAccessibilityConstants",
+            feature = "Foundation_NSObject"
+        ))]
         #[method_id(@__retain_semantics Other accessibilityElementWithToken:)]
         unsafe fn accessibilityElementWithToken(
             &self,
             token: &NSAccessibilityLoadingToken,
         ) -> Option<Id<ProtocolObject<dyn NSAccessibilityElementProtocol>>>;
 
+        #[cfg(all(
+            feature = "AppKit_NSAccessibilityConstants",
+            feature = "Foundation_NSObject",
+            feature = "Foundation_NSRange"
+        ))]
         #[optional]
         #[method(accessibilityRangeInTargetElementWithToken:)]
         unsafe fn accessibilityRangeInTargetElementWithToken(
@@ -364,9 +381,11 @@ extern_protocol!(
         #[method(setAccessibilityElement:)]
         unsafe fn setAccessibilityElement(&self, accessibility_element: bool);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(accessibilityFrame)]
         unsafe fn accessibilityFrame(&self) -> NSRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setAccessibilityFrame:)]
         unsafe fn setAccessibilityFrame(&self, accessibility_frame: NSRect);
 
@@ -376,9 +395,11 @@ extern_protocol!(
         #[method(setAccessibilityFocused:)]
         unsafe fn setAccessibilityFocused(&self, accessibility_focused: bool);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(accessibilityActivationPoint)]
         unsafe fn accessibilityActivationPoint(&self) -> NSPoint;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setAccessibilityActivationPoint:)]
         unsafe fn setAccessibilityActivationPoint(&self, accessibility_activation_point: NSPoint);
 
@@ -427,11 +448,17 @@ extern_protocol!(
             accessibility_visible_children: Option<&NSArray>,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "AppKit_NSAccessibilityConstants",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other accessibilitySubrole)]
         unsafe fn accessibilitySubrole(&self) -> Option<Id<NSAccessibilitySubrole>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "AppKit_NSAccessibilityConstants",
+            feature = "Foundation_NSString"
+        ))]
         #[method(setAccessibilitySubrole:)]
         unsafe fn setAccessibilitySubrole(
             &self,
@@ -466,9 +493,11 @@ extern_protocol!(
             accessibility_next_contents: Option<&NSArray>,
         );
 
+        #[cfg(feature = "AppKit_NSAccessibilityConstants")]
         #[method(accessibilityOrientation)]
         unsafe fn accessibilityOrientation(&self) -> NSAccessibilityOrientation;
 
+        #[cfg(feature = "AppKit_NSAccessibilityConstants")]
         #[method(setAccessibilityOrientation:)]
         unsafe fn setAccessibilityOrientation(
             &self,
@@ -512,11 +541,17 @@ extern_protocol!(
             accessibility_previous_contents: Option<&NSArray>,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "AppKit_NSAccessibilityConstants",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other accessibilityRole)]
         unsafe fn accessibilityRole(&self) -> Option<Id<NSAccessibilityRole>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "AppKit_NSAccessibilityConstants",
+            feature = "Foundation_NSString"
+        ))]
         #[method(setAccessibilityRole:)]
         unsafe fn setAccessibilityRole(&self, accessibility_role: Option<&NSAccessibilityRole>);
 
@@ -863,18 +898,22 @@ extern_protocol!(
         #[method(setAccessibilityOrderedByRow:)]
         unsafe fn setAccessibilityOrderedByRow(&self, accessibility_ordered_by_row: bool);
 
+        #[cfg(feature = "AppKit_NSAccessibilityConstants")]
         #[method(accessibilityHorizontalUnits)]
         unsafe fn accessibilityHorizontalUnits(&self) -> NSAccessibilityUnits;
 
+        #[cfg(feature = "AppKit_NSAccessibilityConstants")]
         #[method(setAccessibilityHorizontalUnits:)]
         unsafe fn setAccessibilityHorizontalUnits(
             &self,
             accessibility_horizontal_units: NSAccessibilityUnits,
         );
 
+        #[cfg(feature = "AppKit_NSAccessibilityConstants")]
         #[method(accessibilityVerticalUnits)]
         unsafe fn accessibilityVerticalUnits(&self) -> NSAccessibilityUnits;
 
+        #[cfg(feature = "AppKit_NSAccessibilityConstants")]
         #[method(setAccessibilityVerticalUnits:)]
         unsafe fn setAccessibilityVerticalUnits(
             &self,
@@ -903,15 +942,19 @@ extern_protocol!(
             accessibility_vertical_unit_description: Option<&NSString>,
         );
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(accessibilityLayoutPointForScreenPoint:)]
         unsafe fn accessibilityLayoutPointForScreenPoint(&self, point: NSPoint) -> NSPoint;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(accessibilityLayoutSizeForScreenSize:)]
         unsafe fn accessibilityLayoutSizeForScreenSize(&self, size: NSSize) -> NSSize;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(accessibilityScreenPointForLayoutPoint:)]
         unsafe fn accessibilityScreenPointForLayoutPoint(&self, point: NSPoint) -> NSPoint;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(accessibilityScreenSizeForLayoutSize:)]
         unsafe fn accessibilityScreenSizeForLayoutSize(&self, size: NSSize) -> NSSize;
 
@@ -1000,9 +1043,11 @@ extern_protocol!(
             accessibility_marker_group_ui_element: Option<&AnyObject>,
         );
 
+        #[cfg(feature = "AppKit_NSAccessibilityConstants")]
         #[method(accessibilityUnits)]
         unsafe fn accessibilityUnits(&self) -> NSAccessibilityUnits;
 
+        #[cfg(feature = "AppKit_NSAccessibilityConstants")]
         #[method(setAccessibilityUnits:)]
         unsafe fn setAccessibilityUnits(&self, accessibility_units: NSAccessibilityUnits);
 
@@ -1017,9 +1062,11 @@ extern_protocol!(
             accessibility_unit_description: Option<&NSString>,
         );
 
+        #[cfg(feature = "AppKit_NSAccessibilityConstants")]
         #[method(accessibilityRulerMarkerType)]
         unsafe fn accessibilityRulerMarkerType(&self) -> NSAccessibilityRulerMarkerType;
 
+        #[cfg(feature = "AppKit_NSAccessibilityConstants")]
         #[method(setAccessibilityRulerMarkerType:)]
         unsafe fn setAccessibilityRulerMarkerType(
             &self,
@@ -1055,11 +1102,11 @@ extern_protocol!(
             accessibility_vertical_scroll_bar: Option<&AnyObject>,
         );
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Other accessibilityAllowedValues)]
         unsafe fn accessibilityAllowedValues(&self) -> Option<Id<NSArray<NSNumber>>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method(setAccessibilityAllowedValues:)]
         unsafe fn setAccessibilityAllowedValues(
             &self,
@@ -1198,9 +1245,11 @@ extern_protocol!(
             accessibility_selected_columns: Option<&NSArray>,
         );
 
+        #[cfg(feature = "AppKit_NSAccessibilityConstants")]
         #[method(accessibilitySortDirection)]
         unsafe fn accessibilitySortDirection(&self) -> NSAccessibilitySortDirection;
 
+        #[cfg(feature = "AppKit_NSAccessibilityConstants")]
         #[method(setAccessibilitySortDirection:)]
         unsafe fn setAccessibilitySortDirection(
             &self,
@@ -1258,15 +1307,19 @@ extern_protocol!(
             row: NSInteger,
         ) -> Option<Id<AnyObject>>;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(accessibilityRowIndexRange)]
         unsafe fn accessibilityRowIndexRange(&self) -> NSRange;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(setAccessibilityRowIndexRange:)]
         unsafe fn setAccessibilityRowIndexRange(&self, accessibility_row_index_range: NSRange);
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(accessibilityColumnIndexRange)]
         unsafe fn accessibilityColumnIndexRange(&self) -> NSRange;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(setAccessibilityColumnIndexRange:)]
         unsafe fn setAccessibilityColumnIndexRange(
             &self,
@@ -1282,9 +1335,11 @@ extern_protocol!(
             accessibility_insertion_point_line_number: NSInteger,
         );
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(accessibilitySharedCharacterRange)]
         unsafe fn accessibilitySharedCharacterRange(&self) -> NSRange;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(setAccessibilitySharedCharacterRange:)]
         unsafe fn setAccessibilitySharedCharacterRange(
             &self,
@@ -1302,9 +1357,11 @@ extern_protocol!(
             accessibility_shared_text_ui_elements: Option<&NSArray>,
         );
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(accessibilityVisibleCharacterRange)]
         unsafe fn accessibilityVisibleCharacterRange(&self) -> NSRange;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(setAccessibilityVisibleCharacterRange:)]
         unsafe fn setAccessibilityVisibleCharacterRange(
             &self,
@@ -1331,9 +1388,11 @@ extern_protocol!(
             accessibility_selected_text: Option<&NSString>,
         );
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(accessibilitySelectedTextRange)]
         unsafe fn accessibilitySelectedTextRange(&self) -> NSRange;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(setAccessibilitySelectedTextRange:)]
         unsafe fn setAccessibilitySelectedTextRange(
             &self,
@@ -1351,33 +1410,41 @@ extern_protocol!(
             accessibility_selected_text_ranges: Option<&NSArray<NSValue>>,
         );
 
-        #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(all(
+            feature = "Foundation_NSAttributedString",
+            feature = "Foundation_NSRange"
+        ))]
         #[method_id(@__retain_semantics Other accessibilityAttributedStringForRange:)]
         unsafe fn accessibilityAttributedStringForRange(
             &self,
             range: NSRange,
         ) -> Option<Id<NSAttributedString>>;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(accessibilityRangeForLine:)]
         unsafe fn accessibilityRangeForLine(&self, line: NSInteger) -> NSRange;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSRange", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other accessibilityStringForRange:)]
         unsafe fn accessibilityStringForRange(&self, range: NSRange) -> Option<Id<NSString>>;
 
+        #[cfg(all(feature = "Foundation_NSGeometry", feature = "Foundation_NSRange"))]
         #[method(accessibilityRangeForPosition:)]
         unsafe fn accessibilityRangeForPosition(&self, point: NSPoint) -> NSRange;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(accessibilityRangeForIndex:)]
         unsafe fn accessibilityRangeForIndex(&self, index: NSInteger) -> NSRange;
 
+        #[cfg(all(feature = "Foundation_NSGeometry", feature = "Foundation_NSRange"))]
         #[method(accessibilityFrameForRange:)]
         unsafe fn accessibilityFrameForRange(&self, range: NSRange) -> NSRect;
 
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSRange"))]
         #[method_id(@__retain_semantics Other accessibilityRTFForRange:)]
         unsafe fn accessibilityRTFForRange(&self, range: NSRange) -> Option<Id<NSData>>;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(accessibilityStyleRangeForIndex:)]
         unsafe fn accessibilityStyleRangeForIndex(&self, index: NSInteger) -> NSRange;
 

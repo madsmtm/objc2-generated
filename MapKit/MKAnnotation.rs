@@ -9,6 +9,7 @@ use crate::MapKit::*;
 
 extern_protocol!(
     pub unsafe trait MKAnnotation: NSObjectProtocol {
+        #[cfg(feature = "CoreLocation_CLLocation")]
         #[method(coordinate)]
         unsafe fn coordinate(&self) -> CLLocationCoordinate2D;
 
@@ -22,6 +23,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other subtitle)]
         unsafe fn subtitle(&self) -> Option<Id<NSString>>;
 
+        #[cfg(feature = "CoreLocation_CLLocation")]
         #[optional]
         #[method(setCoordinate:)]
         unsafe fn setCoordinate(&self, new_coordinate: CLLocationCoordinate2D);

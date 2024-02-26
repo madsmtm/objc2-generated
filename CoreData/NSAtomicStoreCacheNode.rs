@@ -6,21 +6,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSAtomicStoreCacheNode")]
     pub struct NSAtomicStoreCacheNode;
 
-    #[cfg(feature = "CoreData_NSAtomicStoreCacheNode")]
     unsafe impl ClassType for NSAtomicStoreCacheNode {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreData_NSAtomicStoreCacheNode")]
 unsafe impl NSObjectProtocol for NSAtomicStoreCacheNode {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSAtomicStoreCacheNode")]
     unsafe impl NSAtomicStoreCacheNode {
         #[cfg(feature = "CoreData_NSManagedObjectID")]
         #[method_id(@__retain_semantics Init initWithObjectID:)]
@@ -31,17 +27,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other objectID)]
         pub unsafe fn objectID(&self) -> Id<NSManagedObjectID>;
 
-        #[cfg(all(
-            feature = "Foundation_NSMutableDictionary",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other propertyCache)]
         pub unsafe fn propertyCache(&self) -> Option<Id<NSMutableDictionary<NSString, AnyObject>>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSMutableDictionary",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setPropertyCache:)]
         pub unsafe fn setPropertyCache(
             &self,
@@ -60,7 +50,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSAtomicStoreCacheNode")]
     unsafe impl NSAtomicStoreCacheNode {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -31,7 +31,12 @@ ns_enum!(
 
 extern_protocol!(
     pub unsafe trait WKNavigationDelegate: NSObjectProtocol {
-        #[cfg(all(feature = "WebKit_WKNavigationAction", feature = "WebKit_WKWebView"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "WebKit_WKNavigationAction",
+            feature = "WebKit_WKWebView"
+        ))]
         #[optional]
         #[method(webView:decidePolicyForNavigationAction:decisionHandler:)]
         unsafe fn webView_decidePolicyForNavigationAction_decisionHandler(
@@ -42,6 +47,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "WebKit_WKNavigationAction",
             feature = "WebKit_WKWebView",
             feature = "WebKit_WKWebpagePreferences"
@@ -58,7 +65,12 @@ extern_protocol!(
             >,
         );
 
-        #[cfg(all(feature = "WebKit_WKNavigationResponse", feature = "WebKit_WKWebView"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "WebKit_WKNavigationResponse",
+            feature = "WebKit_WKWebView"
+        ))]
         #[optional]
         #[method(webView:decidePolicyForNavigationResponse:decisionHandler:)]
         unsafe fn webView_decidePolicyForNavigationResponse_decisionHandler(
@@ -68,7 +80,12 @@ extern_protocol!(
             decision_handler: &Block<dyn Fn(WKNavigationResponsePolicy)>,
         );
 
-        #[cfg(all(feature = "WebKit_WKNavigation", feature = "WebKit_WKWebView"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "WebKit_WKNavigation",
+            feature = "WebKit_WKWebView"
+        ))]
         #[optional]
         #[method(webView:didStartProvisionalNavigation:)]
         unsafe fn webView_didStartProvisionalNavigation(
@@ -77,7 +94,12 @@ extern_protocol!(
             navigation: Option<&WKNavigation>,
         );
 
-        #[cfg(all(feature = "WebKit_WKNavigation", feature = "WebKit_WKWebView"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "WebKit_WKNavigation",
+            feature = "WebKit_WKWebView"
+        ))]
         #[optional]
         #[method(webView:didReceiveServerRedirectForProvisionalNavigation:)]
         unsafe fn webView_didReceiveServerRedirectForProvisionalNavigation(
@@ -87,6 +109,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSError",
             feature = "WebKit_WKNavigation",
             feature = "WebKit_WKWebView"
@@ -100,7 +124,12 @@ extern_protocol!(
             error: &NSError,
         );
 
-        #[cfg(all(feature = "WebKit_WKNavigation", feature = "WebKit_WKWebView"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "WebKit_WKNavigation",
+            feature = "WebKit_WKWebView"
+        ))]
         #[optional]
         #[method(webView:didCommitNavigation:)]
         unsafe fn webView_didCommitNavigation(
@@ -109,7 +138,12 @@ extern_protocol!(
             navigation: Option<&WKNavigation>,
         );
 
-        #[cfg(all(feature = "WebKit_WKNavigation", feature = "WebKit_WKWebView"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "WebKit_WKNavigation",
+            feature = "WebKit_WKWebView"
+        ))]
         #[optional]
         #[method(webView:didFinishNavigation:)]
         unsafe fn webView_didFinishNavigation(
@@ -119,6 +153,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSError",
             feature = "WebKit_WKNavigation",
             feature = "WebKit_WKWebView"
@@ -133,8 +169,11 @@ extern_protocol!(
         );
 
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSURLAuthenticationChallenge",
             feature = "Foundation_NSURLCredential",
+            feature = "Foundation_NSURLSession",
             feature = "WebKit_WKWebView"
         ))]
         #[optional]
@@ -148,12 +187,18 @@ extern_protocol!(
             >,
         );
 
-        #[cfg(feature = "WebKit_WKWebView")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "WebKit_WKWebView"
+        ))]
         #[optional]
         #[method(webViewWebContentProcessDidTerminate:)]
         unsafe fn webViewWebContentProcessDidTerminate(&self, web_view: &WKWebView);
 
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSURLAuthenticationChallenge",
             feature = "WebKit_WKWebView"
         ))]
@@ -167,6 +212,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "WebKit_WKDownload",
             feature = "WebKit_WKNavigationAction",
             feature = "WebKit_WKWebView"
@@ -181,6 +228,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "WebKit_WKDownload",
             feature = "WebKit_WKNavigationResponse",
             feature = "WebKit_WKWebView"

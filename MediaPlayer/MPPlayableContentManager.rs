@@ -7,29 +7,27 @@ use crate::MediaPlayer::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MediaPlayer_MPPlayableContentManager")]
     #[deprecated = "Use CarPlay framework"]
     pub struct MPPlayableContentManager;
 
-    #[cfg(feature = "MediaPlayer_MPPlayableContentManager")]
     unsafe impl ClassType for MPPlayableContentManager {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MediaPlayer_MPPlayableContentManager")]
 unsafe impl NSObjectProtocol for MPPlayableContentManager {}
 
 extern_methods!(
-    #[cfg(feature = "MediaPlayer_MPPlayableContentManager")]
     unsafe impl MPPlayableContentManager {
+        #[cfg(feature = "MediaPlayer_MPPlayableContentDataSource")]
         #[deprecated = "Use CarPlay framework"]
         #[method_id(@__retain_semantics Other dataSource)]
         pub unsafe fn dataSource(
             &self,
         ) -> Option<Id<ProtocolObject<dyn MPPlayableContentDataSource>>>;
 
+        #[cfg(feature = "MediaPlayer_MPPlayableContentDataSource")]
         #[deprecated = "Use CarPlay framework"]
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(
@@ -37,10 +35,12 @@ extern_methods!(
             data_source: Option<&ProtocolObject<dyn MPPlayableContentDataSource>>,
         );
 
+        #[cfg(feature = "MediaPlayer_MPPlayableContentDelegate")]
         #[deprecated = "Use CarPlay framework"]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn MPPlayableContentDelegate>>>;
 
+        #[cfg(feature = "MediaPlayer_MPPlayableContentDelegate")]
         #[deprecated = "Use CarPlay framework"]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -83,7 +83,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MediaPlayer_MPPlayableContentManager")]
     unsafe impl MPPlayableContentManager {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

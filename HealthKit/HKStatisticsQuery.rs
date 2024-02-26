@@ -8,10 +8,10 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKStatisticsQuery")]
+    #[cfg(feature = "HealthKit_HKQuery")]
     pub struct HKStatisticsQuery;
 
-    #[cfg(feature = "HealthKit_HKStatisticsQuery")]
+    #[cfg(feature = "HealthKit_HKQuery")]
     unsafe impl ClassType for HKStatisticsQuery {
         #[inherits(NSObject)]
         type Super = HKQuery;
@@ -19,16 +19,16 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKStatisticsQuery")]
+#[cfg(feature = "HealthKit_HKQuery")]
 unsafe impl NSObjectProtocol for HKStatisticsQuery {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKStatisticsQuery")]
+    #[cfg(feature = "HealthKit_HKQuery")]
     unsafe impl HKStatisticsQuery {
         #[cfg(all(
             feature = "Foundation_NSError",
             feature = "Foundation_NSPredicate",
-            feature = "HealthKit_HKQuantityType",
+            feature = "HealthKit_HKObjectType",
             feature = "HealthKit_HKStatistics"
         ))]
         #[method_id(@__retain_semantics Init initWithQuantityType:quantitySamplePredicate:options:completionHandler:)]
@@ -44,7 +44,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `HKQuery`
-    #[cfg(feature = "HealthKit_HKStatisticsQuery")]
+    #[cfg(feature = "HealthKit_HKQuery")]
     unsafe impl HKStatisticsQuery {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -53,7 +53,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKStatisticsQuery")]
+    #[cfg(feature = "HealthKit_HKQuery")]
     unsafe impl HKStatisticsQuery {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

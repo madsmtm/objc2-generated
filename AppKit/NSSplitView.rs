@@ -22,10 +22,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSSplitView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     pub struct NSSplitView;
 
-    #[cfg(feature = "AppKit_NSSplitView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl ClassType for NSSplitView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
@@ -33,32 +33,60 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSSplitView")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibility for NSSplitView {}
 
-#[cfg(feature = "AppKit_NSSplitView")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibilityElementProtocol for NSSplitView {}
 
-#[cfg(feature = "AppKit_NSSplitView")]
+#[cfg(all(
+    feature = "AppKit_NSAnimation",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAnimatablePropertyContainer for NSSplitView {}
 
-#[cfg(feature = "AppKit_NSSplitView")]
+#[cfg(all(
+    feature = "AppKit_NSAppearance",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAppearanceCustomization for NSSplitView {}
 
-#[cfg(feature = "AppKit_NSSplitView")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSSplitView {}
 
-#[cfg(feature = "AppKit_NSSplitView")]
+#[cfg(all(
+    feature = "AppKit_NSDragging",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSDraggingDestination for NSSplitView {}
 
-#[cfg(feature = "AppKit_NSSplitView")]
+#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
 unsafe impl NSObjectProtocol for NSSplitView {}
 
-#[cfg(feature = "AppKit_NSSplitView")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSSplitView {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSSplitView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSSplitView {
         #[method(isVertical)]
         pub unsafe fn isVertical(&self) -> bool;
@@ -89,6 +117,7 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn NSSplitViewDelegate>>,
         );
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(drawDividerInRect:)]
         pub unsafe fn drawDividerInRect(&self, rect: NSRect);
 
@@ -96,6 +125,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other dividerColor)]
         pub unsafe fn dividerColor(&self) -> Id<NSColor>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(dividerThickness)]
         pub unsafe fn dividerThickness(&self) -> CGFloat;
 
@@ -105,18 +135,21 @@ extern_methods!(
         #[method(isSubviewCollapsed:)]
         pub unsafe fn isSubviewCollapsed(&self, subview: &NSView) -> bool;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(minPossiblePositionOfDividerAtIndex:)]
         pub unsafe fn minPossiblePositionOfDividerAtIndex(
             &self,
             divider_index: NSInteger,
         ) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(maxPossiblePositionOfDividerAtIndex:)]
         pub unsafe fn maxPossiblePositionOfDividerAtIndex(
             &self,
             divider_index: NSInteger,
         ) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setPosition:ofDividerAtIndex:)]
         pub unsafe fn setPosition_ofDividerAtIndex(
             &self,
@@ -124,12 +157,14 @@ extern_methods!(
             divider_index: NSInteger,
         );
 
+        #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method(holdingPriorityForSubviewAtIndex:)]
         pub unsafe fn holdingPriorityForSubviewAtIndex(
             &self,
             subview_index: NSInteger,
         ) -> NSLayoutPriority;
 
+        #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method(setHoldingPriority:forSubviewAtIndex:)]
         pub unsafe fn setHoldingPriority_forSubviewAtIndex(
             &self,
@@ -141,8 +176,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSView`
-    #[cfg(feature = "AppKit_NSSplitView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSSplitView {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
 
@@ -154,7 +190,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "AppKit_NSSplitView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSSplitView {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -163,7 +199,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSSplitView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSSplitView {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -172,7 +208,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSSplitViewArrangedSubviews
-    #[cfg(feature = "AppKit_NSSplitView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSSplitView {
         #[method(arrangesAllSubviews)]
         pub unsafe fn arrangesAllSubviews(&self) -> bool;
@@ -197,7 +233,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSSplitViewDelegate: NSObjectProtocol + IsMainThreadOnly {
-        #[cfg(all(feature = "AppKit_NSSplitView", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[optional]
         #[method(splitView:canCollapseSubview:)]
         unsafe fn splitView_canCollapseSubview(
@@ -206,7 +242,7 @@ extern_protocol!(
             subview: &NSView,
         ) -> bool;
 
-        #[cfg(all(feature = "AppKit_NSSplitView", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[deprecated = "NSSplitView no longer supports collapsing sections via double-click. This delegate method is never called."]
         #[optional]
         #[method(splitView:shouldCollapseSubview:forDoubleClickOnDividerAtIndex:)]
@@ -217,7 +253,11 @@ extern_protocol!(
             divider_index: NSInteger,
         ) -> bool;
 
-        #[cfg(feature = "AppKit_NSSplitView")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[optional]
         #[method(splitView:constrainMinCoordinate:ofSubviewAt:)]
         unsafe fn splitView_constrainMinCoordinate_ofSubviewAt(
@@ -227,7 +267,11 @@ extern_protocol!(
             divider_index: NSInteger,
         ) -> CGFloat;
 
-        #[cfg(feature = "AppKit_NSSplitView")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[optional]
         #[method(splitView:constrainMaxCoordinate:ofSubviewAt:)]
         unsafe fn splitView_constrainMaxCoordinate_ofSubviewAt(
@@ -237,7 +281,11 @@ extern_protocol!(
             divider_index: NSInteger,
         ) -> CGFloat;
 
-        #[cfg(feature = "AppKit_NSSplitView")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[optional]
         #[method(splitView:constrainSplitPosition:ofSubviewAt:)]
         unsafe fn splitView_constrainSplitPosition_ofSubviewAt(
@@ -247,7 +295,11 @@ extern_protocol!(
             divider_index: NSInteger,
         ) -> CGFloat;
 
-        #[cfg(feature = "AppKit_NSSplitView")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[optional]
         #[method(splitView:resizeSubviewsWithOldSize:)]
         unsafe fn splitView_resizeSubviewsWithOldSize(
@@ -256,7 +308,7 @@ extern_protocol!(
             old_size: NSSize,
         );
 
-        #[cfg(all(feature = "AppKit_NSSplitView", feature = "AppKit_NSView"))]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[optional]
         #[method(splitView:shouldAdjustSizeOfSubview:)]
         unsafe fn splitView_shouldAdjustSizeOfSubview(
@@ -265,7 +317,7 @@ extern_protocol!(
             view: &NSView,
         ) -> bool;
 
-        #[cfg(feature = "AppKit_NSSplitView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[optional]
         #[method(splitView:shouldHideDividerAtIndex:)]
         unsafe fn splitView_shouldHideDividerAtIndex(
@@ -274,7 +326,11 @@ extern_protocol!(
             divider_index: NSInteger,
         ) -> bool;
 
-        #[cfg(feature = "AppKit_NSSplitView")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[optional]
         #[method(splitView:effectiveRect:forDrawnRect:ofDividerAtIndex:)]
         unsafe fn splitView_effectiveRect_forDrawnRect_ofDividerAtIndex(
@@ -285,7 +341,11 @@ extern_protocol!(
             divider_index: NSInteger,
         ) -> NSRect;
 
-        #[cfg(feature = "AppKit_NSSplitView")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[optional]
         #[method(splitView:additionalEffectiveRectOfDividerAtIndex:)]
         unsafe fn splitView_additionalEffectiveRectOfDividerAtIndex(
@@ -308,15 +368,15 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSSplitViewDelegate {}
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSSplitViewWillResizeSubviewsNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSSplitViewDidResizeSubviewsNotification: &'static NSNotificationName);
 
 extern_methods!(
     /// NSDeprecated
-    #[cfg(feature = "AppKit_NSSplitView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSSplitView {
         #[deprecated]
         #[method(setIsPaneSplitter:)]

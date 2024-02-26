@@ -18,30 +18,26 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CallKit_CXHandle")]
     pub struct CXHandle;
 
-    #[cfg(feature = "CallKit_CXHandle")]
     unsafe impl ClassType for CXHandle {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CallKit_CXHandle")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CXHandle {}
 
-#[cfg(feature = "CallKit_CXHandle")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for CXHandle {}
 
-#[cfg(feature = "CallKit_CXHandle")]
 unsafe impl NSObjectProtocol for CXHandle {}
 
-#[cfg(feature = "CallKit_CXHandle")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CXHandle {}
 
 extern_methods!(
-    #[cfg(feature = "CallKit_CXHandle")]
     unsafe impl CXHandle {
         #[method(type)]
         pub unsafe fn r#type(&self) -> CXHandleType;
@@ -68,7 +64,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CallKit_CXHandle")]
     unsafe impl CXHandle {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

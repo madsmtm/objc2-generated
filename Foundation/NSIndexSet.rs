@@ -5,33 +5,29 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSIndexSet")]
     pub struct NSIndexSet;
 
-    #[cfg(feature = "Foundation_NSIndexSet")]
     unsafe impl ClassType for NSIndexSet {
         type Super = NSObject;
         type Mutability = ImmutableWithMutableSubclass<NSMutableIndexSet>;
     }
 );
 
-#[cfg(feature = "Foundation_NSIndexSet")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSIndexSet {}
 
-#[cfg(feature = "Foundation_NSIndexSet")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSIndexSet {}
 
-#[cfg(feature = "Foundation_NSIndexSet")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSMutableCopying for NSIndexSet {}
 
-#[cfg(feature = "Foundation_NSIndexSet")]
 unsafe impl NSObjectProtocol for NSIndexSet {}
 
-#[cfg(feature = "Foundation_NSIndexSet")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSIndexSet {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSIndexSet")]
     unsafe impl NSIndexSet {
         #[method_id(@__retain_semantics Other indexSet)]
         pub unsafe fn indexSet() -> Id<Self>;
@@ -39,9 +35,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other indexSetWithIndex:)]
         pub unsafe fn indexSetWithIndex(value: NSUInteger) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method_id(@__retain_semantics Other indexSetWithIndexesInRange:)]
         pub unsafe fn indexSetWithIndexesInRange(range: NSRange) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method_id(@__retain_semantics Init initWithIndexesInRange:)]
         pub unsafe fn initWithIndexesInRange(this: Allocated<Self>, range: NSRange) -> Id<Self>;
 
@@ -75,6 +73,7 @@ extern_methods!(
         #[method(indexLessThanOrEqualToIndex:)]
         pub unsafe fn indexLessThanOrEqualToIndex(&self, value: NSUInteger) -> NSUInteger;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(getIndexes:maxCount:inIndexRange:)]
         pub unsafe fn getIndexes_maxCount_inIndexRange(
             &self,
@@ -83,18 +82,21 @@ extern_methods!(
             range: NSRangePointer,
         ) -> NSUInteger;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(countOfIndexesInRange:)]
         pub unsafe fn countOfIndexesInRange(&self, range: NSRange) -> NSUInteger;
 
         #[method(containsIndex:)]
         pub unsafe fn containsIndex(&self, value: NSUInteger) -> bool;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(containsIndexesInRange:)]
         pub unsafe fn containsIndexesInRange(&self, range: NSRange) -> bool;
 
         #[method(containsIndexes:)]
         pub unsafe fn containsIndexes(&self, index_set: &NSIndexSet) -> bool;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(intersectsIndexesInRange:)]
         pub unsafe fn intersectsIndexesInRange(&self, range: NSRange) -> bool;
 
@@ -104,6 +106,7 @@ extern_methods!(
             block: &Block<dyn Fn(NSUInteger, NonNull<Bool>) + '_>,
         );
 
+        #[cfg(feature = "Foundation_NSObjCRuntime")]
         #[method(enumerateIndexesWithOptions:usingBlock:)]
         pub unsafe fn enumerateIndexesWithOptions_usingBlock(
             &self,
@@ -111,6 +114,7 @@ extern_methods!(
             block: &Block<dyn Fn(NSUInteger, NonNull<Bool>) + '_>,
         );
 
+        #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSRange"))]
         #[method(enumerateIndexesInRange:options:usingBlock:)]
         pub unsafe fn enumerateIndexesInRange_options_usingBlock(
             &self,
@@ -125,6 +129,7 @@ extern_methods!(
             predicate: &Block<dyn Fn(NSUInteger, NonNull<Bool>) -> Bool + '_>,
         ) -> NSUInteger;
 
+        #[cfg(feature = "Foundation_NSObjCRuntime")]
         #[method(indexWithOptions:passingTest:)]
         pub unsafe fn indexWithOptions_passingTest(
             &self,
@@ -132,6 +137,7 @@ extern_methods!(
             predicate: &Block<dyn Fn(NSUInteger, NonNull<Bool>) -> Bool + '_>,
         ) -> NSUInteger;
 
+        #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSRange"))]
         #[method(indexInRange:options:passingTest:)]
         pub unsafe fn indexInRange_options_passingTest(
             &self,
@@ -146,6 +152,7 @@ extern_methods!(
             predicate: &Block<dyn Fn(NSUInteger, NonNull<Bool>) -> Bool + '_>,
         ) -> Id<NSIndexSet>;
 
+        #[cfg(feature = "Foundation_NSObjCRuntime")]
         #[method_id(@__retain_semantics Other indexesWithOptions:passingTest:)]
         pub unsafe fn indexesWithOptions_passingTest(
             &self,
@@ -153,6 +160,7 @@ extern_methods!(
             predicate: &Block<dyn Fn(NSUInteger, NonNull<Bool>) -> Bool + '_>,
         ) -> Id<NSIndexSet>;
 
+        #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSRange"))]
         #[method_id(@__retain_semantics Other indexesInRange:options:passingTest:)]
         pub unsafe fn indexesInRange_options_passingTest(
             &self,
@@ -161,12 +169,14 @@ extern_methods!(
             predicate: &Block<dyn Fn(NSUInteger, NonNull<Bool>) -> Bool + '_>,
         ) -> Id<NSIndexSet>;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(enumerateRangesUsingBlock:)]
         pub unsafe fn enumerateRangesUsingBlock(
             &self,
             block: &Block<dyn Fn(NSRange, NonNull<Bool>) + '_>,
         );
 
+        #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSRange"))]
         #[method(enumerateRangesWithOptions:usingBlock:)]
         pub unsafe fn enumerateRangesWithOptions_usingBlock(
             &self,
@@ -174,6 +184,7 @@ extern_methods!(
             block: &Block<dyn Fn(NSRange, NonNull<Bool>) + '_>,
         );
 
+        #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSRange"))]
         #[method(enumerateRangesInRange:options:usingBlock:)]
         pub unsafe fn enumerateRangesInRange_options_usingBlock(
             &self,
@@ -186,7 +197,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSIndexSet")]
     unsafe impl NSIndexSet {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -198,10 +208,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSIndexSet")]
     pub struct NSMutableIndexSet;
 
-    #[cfg(feature = "Foundation_NSIndexSet")]
     unsafe impl ClassType for NSMutableIndexSet {
         #[inherits(NSObject)]
         type Super = NSIndexSet;
@@ -209,23 +217,21 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSMutableIndexSet")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSMutableIndexSet {}
 
-#[cfg(feature = "Foundation_NSMutableIndexSet")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSMutableIndexSet {}
 
-#[cfg(feature = "Foundation_NSMutableIndexSet")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSMutableCopying for NSMutableIndexSet {}
 
-#[cfg(feature = "Foundation_NSMutableIndexSet")]
 unsafe impl NSObjectProtocol for NSMutableIndexSet {}
 
-#[cfg(feature = "Foundation_NSMutableIndexSet")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSMutableIndexSet {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSMutableIndexSet")]
     unsafe impl NSMutableIndexSet {
         #[method(addIndexes:)]
         pub unsafe fn addIndexes(&mut self, index_set: &NSIndexSet);
@@ -242,9 +248,11 @@ extern_methods!(
         #[method(removeIndex:)]
         pub unsafe fn removeIndex(&mut self, value: NSUInteger);
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(addIndexesInRange:)]
         pub unsafe fn addIndexesInRange(&mut self, range: NSRange);
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(removeIndexesInRange:)]
         pub unsafe fn removeIndexesInRange(&mut self, range: NSRange);
 
@@ -259,7 +267,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSIndexSet`
-    #[cfg(feature = "Foundation_NSMutableIndexSet")]
     unsafe impl NSMutableIndexSet {
         #[method_id(@__retain_semantics Other indexSet)]
         pub unsafe fn indexSet() -> Id<Self>;
@@ -267,9 +274,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other indexSetWithIndex:)]
         pub unsafe fn indexSetWithIndex(value: NSUInteger) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method_id(@__retain_semantics Other indexSetWithIndexesInRange:)]
         pub unsafe fn indexSetWithIndexesInRange(range: NSRange) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method_id(@__retain_semantics Init initWithIndexesInRange:)]
         pub unsafe fn initWithIndexesInRange(this: Allocated<Self>, range: NSRange) -> Id<Self>;
 
@@ -283,7 +292,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSMutableIndexSet")]
     unsafe impl NSMutableIndexSet {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

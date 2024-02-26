@@ -19,21 +19,17 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_WKWebpagePreferences")]
     pub struct WKWebpagePreferences;
 
-    #[cfg(feature = "WebKit_WKWebpagePreferences")]
     unsafe impl ClassType for WKWebpagePreferences {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "WebKit_WKWebpagePreferences")]
 unsafe impl NSObjectProtocol for WKWebpagePreferences {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_WKWebpagePreferences")]
     unsafe impl WKWebpagePreferences {
         #[method(preferredContentMode)]
         pub unsafe fn preferredContentMode(&self) -> WKContentMode;
@@ -57,7 +53,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_WKWebpagePreferences")]
     unsafe impl WKWebpagePreferences {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

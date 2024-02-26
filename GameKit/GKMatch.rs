@@ -24,23 +24,23 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameKit_GKMatch")]
     pub struct GKMatch;
 
-    #[cfg(feature = "GameKit_GKMatch")]
     unsafe impl ClassType for GKMatch {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "GameKit_GKMatch")]
 unsafe impl NSObjectProtocol for GKMatch {}
 
 extern_methods!(
-    #[cfg(feature = "GameKit_GKMatch")]
     unsafe impl GKMatch {
-        #[cfg(all(feature = "Foundation_NSArray", feature = "GameKit_GKPlayer"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "GameKit_GKBasePlayer",
+            feature = "GameKit_GKPlayer"
+        ))]
         #[method_id(@__retain_semantics Other players)]
         pub unsafe fn players(&self) -> Id<NSArray<GKPlayer>>;
 
@@ -53,13 +53,19 @@ extern_methods!(
         #[method(expectedPlayerCount)]
         pub unsafe fn expectedPlayerCount(&self) -> NSUInteger;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString",
+            feature = "GameKit_GKDefines"
+        ))]
         #[method_id(@__retain_semantics Other properties)]
         pub unsafe fn properties(&self) -> Option<Id<GKMatchProperties>>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString",
+            feature = "GameKit_GKBasePlayer",
+            feature = "GameKit_GKDefines",
             feature = "GameKit_GKPlayer"
         ))]
         #[method_id(@__retain_semantics Other playerProperties)]
@@ -71,6 +77,7 @@ extern_methods!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSData",
             feature = "Foundation_NSError",
+            feature = "GameKit_GKBasePlayer",
             feature = "GameKit_GKPlayer"
         ))]
         #[method(sendData:toPlayers:dataMode:error:_)]
@@ -96,7 +103,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other voiceChatWithName:)]
         pub unsafe fn voiceChatWithName(&self, name: &NSString) -> Option<Id<GKVoiceChat>>;
 
-        #[cfg(feature = "GameKit_GKPlayer")]
+        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
         #[method(chooseBestHostingPlayerWithCompletionHandler:)]
         pub unsafe fn chooseBestHostingPlayerWithCompletionHandler(
             &self,
@@ -114,7 +121,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameKit_GKMatch")]
     unsafe impl GKMatch {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -128,7 +134,7 @@ extern_protocol!(
     pub unsafe trait GKMatchDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "Foundation_NSData",
-            feature = "GameKit_GKMatch",
+            feature = "GameKit_GKBasePlayer",
             feature = "GameKit_GKPlayer"
         ))]
         #[optional]
@@ -142,7 +148,7 @@ extern_protocol!(
 
         #[cfg(all(
             feature = "Foundation_NSData",
-            feature = "GameKit_GKMatch",
+            feature = "GameKit_GKBasePlayer",
             feature = "GameKit_GKPlayer"
         ))]
         #[optional]
@@ -155,7 +161,7 @@ extern_protocol!(
             player: &GKPlayer,
         );
 
-        #[cfg(all(feature = "GameKit_GKMatch", feature = "GameKit_GKPlayer"))]
+        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
         #[optional]
         #[method(match:player:didChangeConnectionState:)]
         unsafe fn match_player_didChangeConnectionState(
@@ -165,12 +171,12 @@ extern_protocol!(
             state: GKPlayerConnectionState,
         );
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "GameKit_GKMatch"))]
+        #[cfg(feature = "Foundation_NSError")]
         #[optional]
         #[method(match:didFailWithError:)]
         unsafe fn match_didFailWithError(&self, r#match: &GKMatch, error: Option<&NSError>);
 
-        #[cfg(all(feature = "GameKit_GKMatch", feature = "GameKit_GKPlayer"))]
+        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
         #[optional]
         #[method(match:shouldReinviteDisconnectedPlayer:)]
         unsafe fn match_shouldReinviteDisconnectedPlayer(
@@ -179,11 +185,7 @@ extern_protocol!(
             player: &GKPlayer,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "Foundation_NSData",
-            feature = "Foundation_NSString",
-            feature = "GameKit_GKMatch"
-        ))]
+        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSString"))]
         #[deprecated]
         #[optional]
         #[method(match:didReceiveData:fromPlayer:)]
@@ -194,7 +196,7 @@ extern_protocol!(
             player_id: &NSString,
         );
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "GameKit_GKMatch"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[optional]
         #[method(match:player:didChangeState:)]
@@ -205,7 +207,7 @@ extern_protocol!(
             state: GKPlayerConnectionState,
         );
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "GameKit_GKMatch"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
         #[optional]
         #[method(match:shouldReinvitePlayer:)]
@@ -221,7 +223,6 @@ extern_protocol!(
 
 extern_methods!(
     /// Obsoleted
-    #[cfg(feature = "GameKit_GKMatch")]
     unsafe impl GKMatch {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]

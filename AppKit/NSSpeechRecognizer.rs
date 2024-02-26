@@ -7,21 +7,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSSpeechRecognizer")]
     pub struct NSSpeechRecognizer;
 
-    #[cfg(feature = "AppKit_NSSpeechRecognizer")]
     unsafe impl ClassType for NSSpeechRecognizer {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSSpeechRecognizer")]
 unsafe impl NSObjectProtocol for NSSpeechRecognizer {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSSpeechRecognizer")]
     unsafe impl NSSpeechRecognizer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Option<Id<Self>>;
@@ -76,7 +72,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSSpeechRecognizer")]
     unsafe impl NSSpeechRecognizer {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -87,7 +82,7 @@ extern_protocol!(
     pub unsafe trait NSSpeechRecognizerDelegate:
         NSObjectProtocol + IsMainThreadOnly
     {
-        #[cfg(all(feature = "AppKit_NSSpeechRecognizer", feature = "Foundation_NSString"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method(speechRecognizer:didRecognizeCommand:)]
         unsafe fn speechRecognizer_didRecognizeCommand(

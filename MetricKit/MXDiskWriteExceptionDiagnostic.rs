@@ -6,10 +6,10 @@ use crate::MetricKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MetricKit_MXDiskWriteExceptionDiagnostic")]
+    #[cfg(feature = "MetricKit_MXDiagnostic")]
     pub struct MXDiskWriteExceptionDiagnostic;
 
-    #[cfg(feature = "MetricKit_MXDiskWriteExceptionDiagnostic")]
+    #[cfg(feature = "MetricKit_MXDiagnostic")]
     unsafe impl ClassType for MXDiskWriteExceptionDiagnostic {
         #[inherits(NSObject)]
         type Super = MXDiagnostic;
@@ -17,26 +17,23 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MetricKit_MXDiskWriteExceptionDiagnostic")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "MetricKit_MXDiagnostic"))]
 unsafe impl NSCoding for MXDiskWriteExceptionDiagnostic {}
 
-#[cfg(feature = "MetricKit_MXDiskWriteExceptionDiagnostic")]
+#[cfg(feature = "MetricKit_MXDiagnostic")]
 unsafe impl NSObjectProtocol for MXDiskWriteExceptionDiagnostic {}
 
-#[cfg(feature = "MetricKit_MXDiskWriteExceptionDiagnostic")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "MetricKit_MXDiagnostic"))]
 unsafe impl NSSecureCoding for MXDiskWriteExceptionDiagnostic {}
 
 extern_methods!(
-    #[cfg(feature = "MetricKit_MXDiskWriteExceptionDiagnostic")]
+    #[cfg(feature = "MetricKit_MXDiagnostic")]
     unsafe impl MXDiskWriteExceptionDiagnostic {
         #[cfg(feature = "MetricKit_MXCallStackTree")]
         #[method_id(@__retain_semantics Other callStackTree)]
         pub unsafe fn callStackTree(&self) -> Id<MXCallStackTree>;
 
-        #[cfg(all(
-            feature = "Foundation_NSMeasurement",
-            feature = "Foundation_NSUnitInformationStorage"
-        ))]
+        #[cfg(all(feature = "Foundation_NSMeasurement", feature = "Foundation_NSUnit"))]
         #[method_id(@__retain_semantics Other totalWritesCaused)]
         pub unsafe fn totalWritesCaused(&self) -> Id<NSMeasurement<NSUnitInformationStorage>>;
     }
@@ -44,7 +41,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MetricKit_MXDiskWriteExceptionDiagnostic")]
+    #[cfg(feature = "MetricKit_MXDiagnostic")]
     unsafe impl MXDiskWriteExceptionDiagnostic {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -7,10 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSSegmentedCell")]
+    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
     pub struct NSSegmentedCell;
 
-    #[cfg(feature = "AppKit_NSSegmentedCell")]
+    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
     unsafe impl ClassType for NSSegmentedCell {
         #[inherits(NSCell, NSObject)]
         type Super = NSActionCell;
@@ -18,26 +18,46 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSSegmentedCell")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell"
+))]
 unsafe impl NSAccessibility for NSSegmentedCell {}
 
-#[cfg(feature = "AppKit_NSSegmentedCell")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell"
+))]
 unsafe impl NSAccessibilityElementProtocol for NSSegmentedCell {}
 
-#[cfg(feature = "AppKit_NSSegmentedCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSSegmentedCell {}
 
-#[cfg(feature = "AppKit_NSSegmentedCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCopying for NSSegmentedCell {}
 
-#[cfg(feature = "AppKit_NSSegmentedCell")]
+#[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
 unsafe impl NSObjectProtocol for NSSegmentedCell {}
 
-#[cfg(feature = "AppKit_NSSegmentedCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSUserInterfaceItemIdentification"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSSegmentedCell {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSSegmentedCell")]
+    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
     unsafe impl NSSegmentedCell {
         #[method(segmentCount)]
         pub unsafe fn segmentCount(&self) -> NSInteger;
@@ -60,15 +80,19 @@ extern_methods!(
         #[method(makePreviousSegmentKey)]
         pub unsafe fn makePreviousSegmentKey(&self);
 
+        #[cfg(feature = "AppKit_NSSegmentedControl")]
         #[method(trackingMode)]
         pub unsafe fn trackingMode(&self) -> NSSegmentSwitchTracking;
 
+        #[cfg(feature = "AppKit_NSSegmentedControl")]
         #[method(setTrackingMode:)]
         pub unsafe fn setTrackingMode(&self, tracking_mode: NSSegmentSwitchTracking);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setWidth:forSegment:)]
         pub unsafe fn setWidth_forSegment(&self, width: CGFloat, segment: NSInteger);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(widthForSegment:)]
         pub unsafe fn widthForSegment(&self, segment: NSInteger) -> CGFloat;
 
@@ -132,13 +156,19 @@ extern_methods!(
         #[method(tagForSegment:)]
         pub unsafe fn tagForSegment(&self, segment: NSInteger) -> NSInteger;
 
+        #[cfg(feature = "AppKit_NSSegmentedControl")]
         #[method(segmentStyle)]
         pub unsafe fn segmentStyle(&self) -> NSSegmentStyle;
 
+        #[cfg(feature = "AppKit_NSSegmentedControl")]
         #[method(setSegmentStyle:)]
         pub unsafe fn setSegmentStyle(&self, segment_style: NSSegmentStyle);
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[method(drawSegment:inFrame:withView:)]
         pub unsafe fn drawSegment_inFrame_withView(
             &self,
@@ -151,7 +181,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSCell`
-    #[cfg(feature = "AppKit_NSSegmentedCell")]
+    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
     unsafe impl NSSegmentedCell {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -172,7 +202,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSSegmentedCell")]
+    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
     unsafe impl NSSegmentedCell {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -181,7 +211,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSSegmentBackgroundStyle
-    #[cfg(feature = "AppKit_NSSegmentedCell")]
+    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
     unsafe impl NSSegmentedCell {
         #[method(interiorBackgroundStyleForSegment:)]
         pub unsafe fn interiorBackgroundStyleForSegment(

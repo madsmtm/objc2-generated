@@ -26,27 +26,23 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSImageRep")]
     pub struct NSImageRep;
 
-    #[cfg(feature = "AppKit_NSImageRep")]
     unsafe impl ClassType for NSImageRep {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSImageRep")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSImageRep {}
 
-#[cfg(feature = "AppKit_NSImageRep")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSImageRep {}
 
-#[cfg(feature = "AppKit_NSImageRep")]
 unsafe impl NSObjectProtocol for NSImageRep {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSImageRep")]
     unsafe impl NSImageRep {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -58,13 +54,20 @@ extern_methods!(
         #[method(draw)]
         pub unsafe fn draw(&self) -> bool;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(drawAtPoint:)]
         pub unsafe fn drawAtPoint(&self, point: NSPoint) -> bool;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(drawInRect:)]
         pub unsafe fn drawInRect(&self, rect: NSRect) -> bool;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSGraphics",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSGeometry",
+            feature = "Foundation_NSString"
+        ))]
         #[method(drawInRect:fromRect:operation:fraction:respectFlipped:hints:)]
         pub unsafe fn drawInRect_fromRect_operation_fraction_respectFlipped_hints(
             &self,
@@ -76,9 +79,11 @@ extern_methods!(
             hints: Option<&NSDictionary<NSImageHintKey, AnyObject>>,
         ) -> bool;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(size)]
         pub unsafe fn size(&self) -> NSSize;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setSize:)]
         pub unsafe fn setSize(&self, size: NSSize);
 
@@ -94,11 +99,11 @@ extern_methods!(
         #[method(setOpaque:)]
         pub unsafe fn setOpaque(&self, opaque: bool);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "AppKit_NSGraphics", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other colorSpaceName)]
         pub unsafe fn colorSpaceName(&self) -> Id<NSColorSpaceName>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "AppKit_NSGraphics", feature = "Foundation_NSString"))]
         #[method(setColorSpaceName:)]
         pub unsafe fn setColorSpaceName(&self, color_space_name: &NSColorSpaceName);
 
@@ -141,7 +146,7 @@ extern_methods!(
         #[method(imageRepClassForFileType:)]
         pub unsafe fn imageRepClassForFileType(r#type: &NSString) -> Option<&'static AnyClass>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "AppKit_NSPasteboard", feature = "Foundation_NSString"))]
         #[deprecated = "Use +imageRepClassForType: instead"]
         #[method(imageRepClassForPasteboardType:)]
         pub unsafe fn imageRepClassForPasteboardType(
@@ -165,7 +170,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other imageUnfilteredFileTypes)]
         pub unsafe fn imageUnfilteredFileTypes() -> Id<NSArray<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSPasteboard",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[deprecated = "Use +imageUnfilteredTypes instead"]
         #[method_id(@__retain_semantics Other imageUnfilteredPasteboardTypes)]
         pub unsafe fn imageUnfilteredPasteboardTypes() -> Id<NSArray<NSPasteboardType>>;
@@ -175,7 +184,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other imageFileTypes)]
         pub unsafe fn imageFileTypes() -> Id<NSArray<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSPasteboard",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[deprecated = "Use +imageTypes instead"]
         #[method_id(@__retain_semantics Other imagePasteboardTypes)]
         pub unsafe fn imagePasteboardTypes() -> Id<NSArray<NSPasteboardType>>;
@@ -224,12 +237,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSImageRep")]
     unsafe impl NSImageRep {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSImageRepRegistryDidChangeNotification: &'static NSNotificationName);

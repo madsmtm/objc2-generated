@@ -112,8 +112,12 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    #[cfg(feature = "AppKit_NSTextInputClient")]
     pub unsafe trait NSTextCheckingClient: NSTextInputClient + NSTextInputTraits {
-        #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(all(
+            feature = "Foundation_NSAttributedString",
+            feature = "Foundation_NSRange"
+        ))]
         #[method_id(@__retain_semantics Other annotatedSubstringForProposedRange:actualRange:)]
         unsafe fn annotatedSubstringForProposedRange_actualRange(
             &self,
@@ -121,7 +125,12 @@ extern_protocol!(
             actual_range: NSRangePointer,
         ) -> Option<Id<NSAttributedString>>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSAttributedString",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSRange",
+            feature = "Foundation_NSString"
+        ))]
         #[method(setAnnotations:range:)]
         unsafe fn setAnnotations_range(
             &self,
@@ -129,7 +138,12 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSAttributedString",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSRange",
+            feature = "Foundation_NSString"
+        ))]
         #[method(addAnnotations:range:)]
         unsafe fn addAnnotations_range(
             &self,
@@ -137,7 +151,11 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "Foundation_NSAttributedString",
+            feature = "Foundation_NSRange",
+            feature = "Foundation_NSString"
+        ))]
         #[method(removeAnnotation:range:)]
         unsafe fn removeAnnotation_range(
             &self,
@@ -145,7 +163,10 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(feature = "Foundation_NSAttributedString")]
+        #[cfg(all(
+            feature = "Foundation_NSAttributedString",
+            feature = "Foundation_NSRange"
+        ))]
         #[method(replaceCharactersInRange:withAnnotatedString:)]
         unsafe fn replaceCharactersInRange_withAnnotatedString(
             &self,
@@ -153,10 +174,16 @@ extern_protocol!(
             annotated_string: &NSAttributedString,
         );
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(selectAndShowRange:)]
         unsafe fn selectAndShowRange(&self, range: NSRange);
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry",
+            feature = "Foundation_NSRange"
+        ))]
         #[method_id(@__retain_semantics Other viewForRange:firstRect:actualRange:)]
         unsafe fn viewForRange_firstRect_actualRange(
             &self,
@@ -166,7 +193,10 @@ extern_protocol!(
             mtm: MainThreadMarker,
         ) -> Option<Id<NSView>>;
 
-        #[cfg(feature = "AppKit_NSCandidateListTouchBarItem")]
+        #[cfg(all(
+            feature = "AppKit_NSCandidateListTouchBarItem",
+            feature = "AppKit_NSTouchBarItem"
+        ))]
         #[method_id(@__retain_semantics Other candidateListTouchBarItem)]
         unsafe fn candidateListTouchBarItem(
             &self,
@@ -174,5 +204,6 @@ extern_protocol!(
         ) -> Option<Id<NSCandidateListTouchBarItem>>;
     }
 
+    #[cfg(feature = "AppKit_NSTextInputClient")]
     unsafe impl ProtocolType for dyn NSTextCheckingClient {}
 );

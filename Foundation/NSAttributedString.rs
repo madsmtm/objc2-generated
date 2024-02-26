@@ -18,39 +18,39 @@ extern_static!(NSInflectionConceptsKey: &'static NSAttributedStringFormattingCon
 
 extern_class!(
     #[derive(PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSAttributedString")]
     pub struct NSAttributedString;
 
-    #[cfg(feature = "Foundation_NSAttributedString")]
     unsafe impl ClassType for NSAttributedString {
         type Super = NSObject;
         type Mutability = ImmutableWithMutableSubclass<NSMutableAttributedString>;
     }
 );
 
-#[cfg(feature = "Foundation_NSAttributedString")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSAttributedString {}
 
-#[cfg(feature = "Foundation_NSAttributedString")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSAttributedString {}
 
-#[cfg(feature = "Foundation_NSAttributedString")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSMutableCopying for NSAttributedString {}
 
-#[cfg(feature = "Foundation_NSAttributedString")]
 unsafe impl NSObjectProtocol for NSAttributedString {}
 
-#[cfg(feature = "Foundation_NSAttributedString")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSAttributedString {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSAttributedString")]
     unsafe impl NSAttributedString {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other string)]
         pub fn string(&self) -> Id<NSString>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSRange",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other attributesAtIndex:effectiveRange:)]
         pub unsafe fn attributesAtIndex_effectiveRange(
             &self,
@@ -62,7 +62,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSAttributedString")]
     unsafe impl NSAttributedString {
         #[method_id(@__retain_semantics Init init)]
         pub fn init(this: Allocated<Self>) -> Id<Self>;
@@ -72,7 +71,6 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSAttributedString")]
 impl DefaultId for NSAttributedString {
     #[inline]
     fn default_id() -> Id<Self> {
@@ -90,12 +88,11 @@ ns_options!(
 
 extern_methods!(
     /// NSExtendedAttributedString
-    #[cfg(feature = "Foundation_NSAttributedString")]
     unsafe impl NSAttributedString {
         #[method(length)]
         pub fn length(&self) -> NSUInteger;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSRange", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other attribute:atIndex:effectiveRange:)]
         pub unsafe fn attribute_atIndex_effectiveRange(
             &self,
@@ -104,11 +101,16 @@ extern_methods!(
             range: NSRangePointer,
         ) -> Option<Id<AnyObject>>;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method_id(@__retain_semantics Other attributedSubstringFromRange:)]
         pub unsafe fn attributedSubstringFromRange(&self, range: NSRange)
             -> Id<NSAttributedString>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSRange",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other attributesAtIndex:longestEffectiveRange:inRange:)]
         pub unsafe fn attributesAtIndex_longestEffectiveRange_inRange(
             &self,
@@ -117,7 +119,7 @@ extern_methods!(
             range_limit: NSRange,
         ) -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSRange", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other attribute:atIndex:longestEffectiveRange:inRange:)]
         pub unsafe fn attribute_atIndex_longestEffectiveRange_inRange(
             &self,
@@ -148,7 +150,11 @@ extern_methods!(
             attr_str: &NSAttributedString,
         ) -> Id<Self>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSRange",
+            feature = "Foundation_NSString"
+        ))]
         #[method(enumerateAttributesInRange:options:usingBlock:)]
         pub unsafe fn enumerateAttributesInRange_options_usingBlock(
             &self,
@@ -163,7 +169,7 @@ extern_methods!(
             >,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSRange", feature = "Foundation_NSString"))]
         #[method(enumerateAttribute:inRange:options:usingBlock:)]
         pub unsafe fn enumerateAttribute_inRange_options_usingBlock(
             &self,
@@ -179,7 +185,6 @@ extern_methods!(
     /// Methods declared on superclass `NSAttributedString`
     ///
     /// NSExtendedAttributedString
-    #[cfg(feature = "Foundation_NSMutableAttributedString")]
     unsafe impl NSMutableAttributedString {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithString:)]
@@ -203,10 +208,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSAttributedString")]
     pub struct NSMutableAttributedString;
 
-    #[cfg(feature = "Foundation_NSAttributedString")]
     unsafe impl ClassType for NSMutableAttributedString {
         #[inherits(NSObject)]
         type Super = NSAttributedString;
@@ -214,25 +217,23 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSMutableAttributedString")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSMutableAttributedString {}
 
-#[cfg(feature = "Foundation_NSMutableAttributedString")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSMutableAttributedString {}
 
-#[cfg(feature = "Foundation_NSMutableAttributedString")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSMutableCopying for NSMutableAttributedString {}
 
-#[cfg(feature = "Foundation_NSMutableAttributedString")]
 unsafe impl NSObjectProtocol for NSMutableAttributedString {}
 
-#[cfg(feature = "Foundation_NSMutableAttributedString")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSMutableAttributedString {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSMutableAttributedString")]
     unsafe impl NSMutableAttributedString {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSRange", feature = "Foundation_NSString"))]
         #[method(replaceCharactersInRange:withString:)]
         pub unsafe fn replaceCharactersInRange_withString(
             &mut self,
@@ -240,7 +241,11 @@ extern_methods!(
             str: &NSString,
         );
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSRange",
+            feature = "Foundation_NSString"
+        ))]
         #[method(setAttributes:range:)]
         pub unsafe fn setAttributes_range(
             &mut self,
@@ -252,7 +257,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSMutableAttributedString")]
     unsafe impl NSMutableAttributedString {
         #[method_id(@__retain_semantics Init init)]
         pub fn init(this: Allocated<Self>) -> Id<Self>;
@@ -262,7 +266,6 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSMutableAttributedString")]
 impl DefaultId for NSMutableAttributedString {
     #[inline]
     fn default_id() -> Id<Self> {
@@ -272,13 +275,12 @@ impl DefaultId for NSMutableAttributedString {
 
 extern_methods!(
     /// NSExtendedMutableAttributedString
-    #[cfg(feature = "Foundation_NSMutableAttributedString")]
     unsafe impl NSMutableAttributedString {
-        #[cfg(feature = "Foundation_NSMutableString")]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other mutableString)]
         pub unsafe fn mutableString(&self) -> Id<NSMutableString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSRange", feature = "Foundation_NSString"))]
         #[method(addAttribute:value:range:)]
         pub unsafe fn addAttribute_value_range(
             &mut self,
@@ -287,7 +289,11 @@ extern_methods!(
             range: NSRange,
         );
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSRange",
+            feature = "Foundation_NSString"
+        ))]
         #[method(addAttributes:range:)]
         pub unsafe fn addAttributes_range(
             &mut self,
@@ -295,7 +301,7 @@ extern_methods!(
             range: NSRange,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSRange", feature = "Foundation_NSString"))]
         #[method(removeAttribute:range:)]
         pub unsafe fn removeAttribute_range(
             &mut self,
@@ -303,6 +309,7 @@ extern_methods!(
             range: NSRange,
         );
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(replaceCharactersInRange:withAttributedString:)]
         pub unsafe fn replaceCharactersInRange_withAttributedString(
             &mut self,
@@ -320,6 +327,7 @@ extern_methods!(
         #[method(appendAttributedString:)]
         pub unsafe fn appendAttributedString(&mut self, attr_string: &NSAttributedString);
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(deleteCharactersInRange:)]
         pub unsafe fn deleteCharactersInRange(&mut self, range: NSRange);
 
@@ -393,30 +401,26 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSAttributedStringMarkdownSourcePosition")]
     pub struct NSAttributedStringMarkdownSourcePosition;
 
-    #[cfg(feature = "Foundation_NSAttributedStringMarkdownSourcePosition")]
     unsafe impl ClassType for NSAttributedStringMarkdownSourcePosition {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSAttributedStringMarkdownSourcePosition")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSAttributedStringMarkdownSourcePosition {}
 
-#[cfg(feature = "Foundation_NSAttributedStringMarkdownSourcePosition")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSAttributedStringMarkdownSourcePosition {}
 
-#[cfg(feature = "Foundation_NSAttributedStringMarkdownSourcePosition")]
 unsafe impl NSObjectProtocol for NSAttributedStringMarkdownSourcePosition {}
 
-#[cfg(feature = "Foundation_NSAttributedStringMarkdownSourcePosition")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSAttributedStringMarkdownSourcePosition {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSAttributedStringMarkdownSourcePosition")]
     unsafe impl NSAttributedStringMarkdownSourcePosition {
         #[method(startLine)]
         pub unsafe fn startLine(&self) -> NSInteger;
@@ -439,7 +443,7 @@ extern_methods!(
             end_column: NSInteger,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSRange", feature = "Foundation_NSString"))]
         #[method(rangeInString:)]
         pub unsafe fn rangeInString(&self, string: &NSString) -> NSRange;
     }
@@ -447,7 +451,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSAttributedStringMarkdownSourcePosition")]
     unsafe impl NSAttributedStringMarkdownSourcePosition {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -459,24 +462,20 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSAttributedStringMarkdownParsingOptions")]
     pub struct NSAttributedStringMarkdownParsingOptions;
 
-    #[cfg(feature = "Foundation_NSAttributedStringMarkdownParsingOptions")]
     unsafe impl ClassType for NSAttributedStringMarkdownParsingOptions {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSAttributedStringMarkdownParsingOptions")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSAttributedStringMarkdownParsingOptions {}
 
-#[cfg(feature = "Foundation_NSAttributedStringMarkdownParsingOptions")]
 unsafe impl NSObjectProtocol for NSAttributedStringMarkdownParsingOptions {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSAttributedStringMarkdownParsingOptions")]
     unsafe impl NSAttributedStringMarkdownParsingOptions {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -526,7 +525,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSAttributedStringMarkdownParsingOptions")]
     unsafe impl NSAttributedStringMarkdownParsingOptions {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -535,13 +533,8 @@ extern_methods!(
 
 extern_methods!(
     /// NSAttributedStringCreateFromMarkdown
-    #[cfg(feature = "Foundation_NSAttributedString")]
     unsafe impl NSAttributedString {
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringMarkdownParsingOptions",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSURL"
-        ))]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Init initWithContentsOfMarkdownFileAtURL:options:baseURL:error:_)]
         pub unsafe fn initWithContentsOfMarkdownFileAtURL_options_baseURL_error(
             this: Allocated<Self>,
@@ -551,7 +544,6 @@ extern_methods!(
         ) -> Result<Id<Self>, Id<NSError>>;
 
         #[cfg(all(
-            feature = "Foundation_NSAttributedStringMarkdownParsingOptions",
             feature = "Foundation_NSData",
             feature = "Foundation_NSError",
             feature = "Foundation_NSURL"
@@ -565,7 +557,6 @@ extern_methods!(
         ) -> Result<Id<Self>, Id<NSError>>;
 
         #[cfg(all(
-            feature = "Foundation_NSAttributedStringMarkdownParsingOptions",
             feature = "Foundation_NSError",
             feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
@@ -584,13 +575,8 @@ extern_methods!(
     /// Methods declared on superclass `NSAttributedString`
     ///
     /// NSAttributedStringCreateFromMarkdown
-    #[cfg(feature = "Foundation_NSMutableAttributedString")]
     unsafe impl NSMutableAttributedString {
-        #[cfg(all(
-            feature = "Foundation_NSAttributedStringMarkdownParsingOptions",
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSURL"
-        ))]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Init initWithContentsOfMarkdownFileAtURL:options:baseURL:error:_)]
         pub unsafe fn initWithContentsOfMarkdownFileAtURL_options_baseURL_error(
             this: Allocated<Self>,
@@ -600,7 +586,6 @@ extern_methods!(
         ) -> Result<Id<Self>, Id<NSError>>;
 
         #[cfg(all(
-            feature = "Foundation_NSAttributedStringMarkdownParsingOptions",
             feature = "Foundation_NSData",
             feature = "Foundation_NSError",
             feature = "Foundation_NSURL"
@@ -614,7 +599,6 @@ extern_methods!(
         ) -> Result<Id<Self>, Id<NSError>>;
 
         #[cfg(all(
-            feature = "Foundation_NSAttributedStringMarkdownParsingOptions",
             feature = "Foundation_NSError",
             feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
@@ -639,13 +623,11 @@ ns_options!(
 
 extern_methods!(
     /// NSAttributedStringFormatting
-    #[cfg(feature = "Foundation_NSAttributedString")]
     unsafe impl NSAttributedString {}
 );
 
 extern_methods!(
     /// NSMutableAttributedStringFormatting
-    #[cfg(feature = "Foundation_NSMutableAttributedString")]
     unsafe impl NSMutableAttributedString {}
 );
 
@@ -654,7 +636,6 @@ extern_static!(NSReplacementIndexAttributeName: &'static NSAttributedStringKey);
 
 extern_methods!(
     /// NSMorphology
-    #[cfg(feature = "Foundation_NSAttributedString")]
     unsafe impl NSAttributedString {
         #[method_id(@__retain_semantics Other attributedStringByInflectingString)]
         pub unsafe fn attributedStringByInflectingString(&self) -> Id<NSAttributedString>;
@@ -726,30 +707,26 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSPresentationIntent")]
     pub struct NSPresentationIntent;
 
-    #[cfg(feature = "Foundation_NSPresentationIntent")]
     unsafe impl ClassType for NSPresentationIntent {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSPresentationIntent")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSPresentationIntent {}
 
-#[cfg(feature = "Foundation_NSPresentationIntent")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSPresentationIntent {}
 
-#[cfg(feature = "Foundation_NSPresentationIntent")]
 unsafe impl NSObjectProtocol for NSPresentationIntent {}
 
-#[cfg(feature = "Foundation_NSPresentationIntent")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSPresentationIntent {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSPresentationIntent")]
     unsafe impl NSPresentationIntent {
         #[method(intentKind)]
         pub unsafe fn intentKind(&self) -> NSPresentationIntentKind;
@@ -812,7 +789,7 @@ extern_methods!(
             parent: Option<&NSPresentationIntent>,
         ) -> Id<NSPresentationIntent>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Other tableIntentWithIdentity:columnCount:alignments:nestedInsideIntent:)]
         pub unsafe fn tableIntentWithIdentity_columnCount_alignments_nestedInsideIntent(
             identity: NSInteger,
@@ -847,7 +824,7 @@ extern_methods!(
         #[method(ordinal)]
         pub unsafe fn ordinal(&self) -> NSInteger;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Other columnAlignments)]
         pub unsafe fn columnAlignments(&self) -> Option<Id<NSArray<NSNumber>>>;
 
@@ -878,7 +855,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSPresentationIntent")]
     unsafe impl NSPresentationIntent {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

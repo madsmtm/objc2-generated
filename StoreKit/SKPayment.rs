@@ -7,27 +7,23 @@ use crate::StoreKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "StoreKit_SKPayment")]
     pub struct SKPayment;
 
-    #[cfg(feature = "StoreKit_SKPayment")]
     unsafe impl ClassType for SKPayment {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "StoreKit_SKPayment")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for SKPayment {}
 
-#[cfg(feature = "StoreKit_SKPayment")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSMutableCopying for SKPayment {}
 
-#[cfg(feature = "StoreKit_SKPayment")]
 unsafe impl NSObjectProtocol for SKPayment {}
 
 extern_methods!(
-    #[cfg(feature = "StoreKit_SKPayment")]
     unsafe impl SKPayment {
         #[cfg(feature = "StoreKit_SKProduct")]
         #[method_id(@__retain_semantics Other paymentWithProduct:)]
@@ -64,7 +60,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "StoreKit_SKPayment")]
     unsafe impl SKPayment {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -76,10 +71,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "StoreKit_SKMutablePayment")]
     pub struct SKMutablePayment;
 
-    #[cfg(feature = "StoreKit_SKMutablePayment")]
     unsafe impl ClassType for SKMutablePayment {
         #[inherits(NSObject)]
         type Super = SKPayment;
@@ -87,17 +80,15 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "StoreKit_SKMutablePayment")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for SKMutablePayment {}
 
-#[cfg(feature = "StoreKit_SKMutablePayment")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSMutableCopying for SKMutablePayment {}
 
-#[cfg(feature = "StoreKit_SKMutablePayment")]
 unsafe impl NSObjectProtocol for SKMutablePayment {}
 
 extern_methods!(
-    #[cfg(feature = "StoreKit_SKMutablePayment")]
     unsafe impl SKMutablePayment {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other applicationUsername)]
@@ -147,7 +138,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `SKPayment`
-    #[cfg(feature = "StoreKit_SKMutablePayment")]
     unsafe impl SKMutablePayment {
         #[cfg(feature = "StoreKit_SKProduct")]
         #[method_id(@__retain_semantics Other paymentWithProduct:)]
@@ -157,7 +147,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "StoreKit_SKMutablePayment")]
     unsafe impl SKMutablePayment {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

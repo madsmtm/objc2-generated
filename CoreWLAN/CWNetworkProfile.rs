@@ -6,33 +6,29 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreWLAN_CWNetworkProfile")]
     pub struct CWNetworkProfile;
 
-    #[cfg(feature = "CoreWLAN_CWNetworkProfile")]
     unsafe impl ClassType for CWNetworkProfile {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreWLAN_CWNetworkProfile")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CWNetworkProfile {}
 
-#[cfg(feature = "CoreWLAN_CWNetworkProfile")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for CWNetworkProfile {}
 
-#[cfg(feature = "CoreWLAN_CWNetworkProfile")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSMutableCopying for CWNetworkProfile {}
 
-#[cfg(feature = "CoreWLAN_CWNetworkProfile")]
 unsafe impl NSObjectProtocol for CWNetworkProfile {}
 
-#[cfg(feature = "CoreWLAN_CWNetworkProfile")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CWNetworkProfile {}
 
 extern_methods!(
-    #[cfg(feature = "CoreWLAN_CWNetworkProfile")]
     unsafe impl CWNetworkProfile {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other ssid)]
@@ -42,6 +38,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other ssidData)]
         pub unsafe fn ssidData(&self) -> Option<Id<NSData>>;
 
+        #[cfg(feature = "CoreWLAN_CoreWLANTypes")]
         #[method(security)]
         pub unsafe fn security(&self) -> CWSecurity;
 
@@ -69,7 +66,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreWLAN_CWNetworkProfile")]
     unsafe impl CWNetworkProfile {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -78,10 +74,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreWLAN_CWMutableNetworkProfile")]
     pub struct CWMutableNetworkProfile;
 
-    #[cfg(feature = "CoreWLAN_CWMutableNetworkProfile")]
     unsafe impl ClassType for CWMutableNetworkProfile {
         #[inherits(NSObject)]
         type Super = CWNetworkProfile;
@@ -89,23 +83,21 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CoreWLAN_CWMutableNetworkProfile")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CWMutableNetworkProfile {}
 
-#[cfg(feature = "CoreWLAN_CWMutableNetworkProfile")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for CWMutableNetworkProfile {}
 
-#[cfg(feature = "CoreWLAN_CWMutableNetworkProfile")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSMutableCopying for CWMutableNetworkProfile {}
 
-#[cfg(feature = "CoreWLAN_CWMutableNetworkProfile")]
 unsafe impl NSObjectProtocol for CWMutableNetworkProfile {}
 
-#[cfg(feature = "CoreWLAN_CWMutableNetworkProfile")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CWMutableNetworkProfile {}
 
 extern_methods!(
-    #[cfg(feature = "CoreWLAN_CWMutableNetworkProfile")]
     unsafe impl CWMutableNetworkProfile {
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other ssidData)]
@@ -115,9 +107,11 @@ extern_methods!(
         #[method(setSsidData:)]
         pub unsafe fn setSsidData(&self, ssid_data: Option<&NSData>);
 
+        #[cfg(feature = "CoreWLAN_CoreWLANTypes")]
         #[method(security)]
         pub unsafe fn security(&self) -> CWSecurity;
 
+        #[cfg(feature = "CoreWLAN_CoreWLANTypes")]
         #[method(setSecurity:)]
         pub unsafe fn setSecurity(&self, security: CWSecurity);
     }
@@ -125,7 +119,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CWNetworkProfile`
-    #[cfg(feature = "CoreWLAN_CWMutableNetworkProfile")]
     unsafe impl CWMutableNetworkProfile {
         #[method_id(@__retain_semantics Other networkProfile)]
         pub unsafe fn networkProfile() -> Id<Self>;
@@ -148,7 +141,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreWLAN_CWMutableNetworkProfile")]
     unsafe impl CWMutableNetworkProfile {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

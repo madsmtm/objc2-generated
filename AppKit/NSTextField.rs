@@ -7,10 +7,18 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTextField")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     pub struct NSTextField;
 
-    #[cfg(feature = "AppKit_NSTextField")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl ClassType for NSTextField {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;
@@ -18,44 +26,107 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSTextField")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibility for NSTextField {}
 
-#[cfg(feature = "AppKit_NSTextField")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibilityElementProtocol for NSTextField {}
 
-#[cfg(feature = "AppKit_NSTextField")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibilityNavigableStaticText for NSTextField {}
 
-#[cfg(feature = "AppKit_NSTextField")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibilityStaticText for NSTextField {}
 
-#[cfg(feature = "AppKit_NSTextField")]
+#[cfg(all(
+    feature = "AppKit_NSAnimation",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAnimatablePropertyContainer for NSTextField {}
 
-#[cfg(feature = "AppKit_NSTextField")]
+#[cfg(all(
+    feature = "AppKit_NSAppearance",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAppearanceCustomization for NSTextField {}
 
-#[cfg(feature = "AppKit_NSTextField")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSTextField {}
 
-#[cfg(feature = "AppKit_NSTextField")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSDragging",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSDraggingDestination for NSTextField {}
 
-#[cfg(feature = "AppKit_NSTextField")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSObjectProtocol for NSTextField {}
 
-#[cfg(feature = "AppKit_NSTextField")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSTextContent",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSTextContent for NSTextField {}
 
-#[cfg(feature = "AppKit_NSTextField")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSTextField {}
 
-#[cfg(feature = "AppKit_NSTextField")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceValidation",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSUserInterfaceValidations for NSTextField {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTextField")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSTextField {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other placeholderString)]
@@ -157,15 +228,19 @@ extern_methods!(
         #[method(acceptsFirstResponder)]
         pub unsafe fn acceptsFirstResponder(&self) -> bool;
 
+        #[cfg(feature = "AppKit_NSTextFieldCell")]
         #[method(bezelStyle)]
         pub unsafe fn bezelStyle(&self) -> NSTextFieldBezelStyle;
 
+        #[cfg(feature = "AppKit_NSTextFieldCell")]
         #[method(setBezelStyle:)]
         pub unsafe fn setBezelStyle(&self, bezel_style: NSTextFieldBezelStyle);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(preferredMaxLayoutWidth)]
         pub unsafe fn preferredMaxLayoutWidth(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setPreferredMaxLayoutWidth:)]
         pub unsafe fn setPreferredMaxLayoutWidth(&self, preferred_max_layout_width: CGFloat);
 
@@ -184,9 +259,11 @@ extern_methods!(
             allows_default_tightening_for_truncation: bool,
         );
 
+        #[cfg(feature = "AppKit_NSParagraphStyle")]
         #[method(lineBreakStrategy)]
         pub unsafe fn lineBreakStrategy(&self) -> NSLineBreakStrategy;
 
+        #[cfg(feature = "AppKit_NSParagraphStyle")]
         #[method(setLineBreakStrategy:)]
         pub unsafe fn setLineBreakStrategy(&self, line_break_strategy: NSLineBreakStrategy);
     }
@@ -194,8 +271,13 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSControl`
-    #[cfg(feature = "AppKit_NSTextField")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSTextField {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
 
@@ -207,7 +289,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "AppKit_NSTextField")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSTextField {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -216,7 +302,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTextField")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSTextField {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -225,7 +315,11 @@ extern_methods!(
 
 extern_methods!(
     /// NSTouchBar
-    #[cfg(feature = "AppKit_NSTextField")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSTextField {
         #[method(isAutomaticTextCompletionEnabled)]
         pub unsafe fn isAutomaticTextCompletionEnabled(&self) -> bool;
@@ -249,7 +343,11 @@ extern_methods!(
 
 extern_methods!(
     /// NSTextFieldConvenience
-    #[cfg(feature = "AppKit_NSTextField")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSTextField {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other labelWithString:)]
@@ -280,7 +378,11 @@ extern_methods!(
 
 extern_methods!(
     /// NSTextFieldAttributedStringMethods
-    #[cfg(feature = "AppKit_NSTextField")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSTextField {
         #[method(allowsEditingTextAttributes)]
         pub unsafe fn allowsEditingTextAttributes(&self) -> bool;
@@ -297,13 +399,17 @@ extern_methods!(
 );
 
 extern_protocol!(
+    #[cfg(feature = "AppKit_NSControl")]
     pub unsafe trait NSTextFieldDelegate:
         NSControlTextEditingDelegate + IsMainThreadOnly
     {
         #[cfg(all(
-            feature = "AppKit_NSTextField",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSText",
             feature = "AppKit_NSTextView",
-            feature = "Foundation_NSArray"
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSRange"
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other textField:textView:candidatesForSelectedRange:)]
@@ -315,9 +421,12 @@ extern_protocol!(
         ) -> Option<Id<NSArray>>;
 
         #[cfg(all(
-            feature = "AppKit_NSTextField",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSText",
             feature = "AppKit_NSTextView",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSArray",
+            feature = "Foundation_NSRange",
             feature = "Foundation_NSTextCheckingResult"
         ))]
         #[optional]
@@ -330,7 +439,12 @@ extern_protocol!(
             selected_range: NSRange,
         ) -> Id<NSArray<NSTextCheckingResult>>;
 
-        #[cfg(all(feature = "AppKit_NSTextField", feature = "AppKit_NSTextView"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSText",
+            feature = "AppKit_NSTextView",
+            feature = "AppKit_NSView"
+        ))]
         #[optional]
         #[method(textField:textView:shouldSelectCandidateAtIndex:)]
         unsafe fn textField_textView_shouldSelectCandidateAtIndex(
@@ -341,12 +455,17 @@ extern_protocol!(
         ) -> bool;
     }
 
+    #[cfg(feature = "AppKit_NSControl")]
     unsafe impl ProtocolType for dyn NSTextFieldDelegate {}
 );
 
 extern_methods!(
     /// NSDeprecated
-    #[cfg(feature = "AppKit_NSTextField")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSTextField {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use `-setTitle:` instead"]

@@ -7,36 +7,30 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreLocation_CLCondition")]
     pub struct CLCondition;
 
-    #[cfg(feature = "CoreLocation_CLCondition")]
     unsafe impl ClassType for CLCondition {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreLocation_CLCondition")]
 unsafe impl Send for CLCondition {}
 
-#[cfg(feature = "CoreLocation_CLCondition")]
 unsafe impl Sync for CLCondition {}
 
-#[cfg(feature = "CoreLocation_CLCondition")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CLCondition {}
 
-#[cfg(feature = "CoreLocation_CLCondition")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for CLCondition {}
 
-#[cfg(feature = "CoreLocation_CLCondition")]
 unsafe impl NSObjectProtocol for CLCondition {}
 
-#[cfg(feature = "CoreLocation_CLCondition")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CLCondition {}
 
 extern_methods!(
-    #[cfg(feature = "CoreLocation_CLCondition")]
     unsafe impl CLCondition {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -7,24 +7,22 @@ use crate::WebKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_WebFrame")]
     #[deprecated]
     pub struct WebFrame;
 
-    #[cfg(feature = "WebKit_WebFrame")]
     unsafe impl ClassType for WebFrame {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "WebKit_WebFrame")]
 unsafe impl NSObjectProtocol for WebFrame {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_WebFrame")]
     unsafe impl WebFrame {
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSString",
             feature = "WebKit_WebFrameView",
             feature = "WebKit_WebView"
@@ -43,22 +41,41 @@ extern_methods!(
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Id<NSString>;
 
-        #[cfg(feature = "WebKit_WebView")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "WebKit_WebView"
+        ))]
         #[deprecated]
         #[method_id(@__retain_semantics Other webView)]
         pub unsafe fn webView(&self, mtm: MainThreadMarker) -> Option<Id<WebView>>;
 
-        #[cfg(feature = "WebKit_WebFrameView")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "WebKit_WebFrameView"
+        ))]
         #[deprecated]
         #[method_id(@__retain_semantics Other frameView)]
         pub unsafe fn frameView(&self, mtm: MainThreadMarker) -> Option<Id<WebFrameView>>;
 
-        #[cfg(feature = "WebKit_DOMDocument")]
+        #[cfg(all(
+            feature = "WebKit_DOMDocument",
+            feature = "WebKit_DOMNode",
+            feature = "WebKit_DOMObject",
+            feature = "WebKit_WebScriptObject"
+        ))]
         #[deprecated]
         #[method_id(@__retain_semantics Other DOMDocument)]
         pub unsafe fn DOMDocument(&self) -> Option<Id<DOMDocument>>;
 
-        #[cfg(feature = "WebKit_DOMHTMLElement")]
+        #[cfg(all(
+            feature = "WebKit_DOMElement",
+            feature = "WebKit_DOMHTMLElement",
+            feature = "WebKit_DOMNode",
+            feature = "WebKit_DOMObject",
+            feature = "WebKit_WebScriptObject"
+        ))]
         #[deprecated]
         #[method_id(@__retain_semantics Other frameElement)]
         pub unsafe fn frameElement(&self) -> Option<Id<DOMHTMLElement>>;
@@ -148,7 +165,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_WebFrame")]
     unsafe impl WebFrame {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

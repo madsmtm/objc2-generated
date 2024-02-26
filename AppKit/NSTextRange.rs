@@ -7,6 +7,7 @@ use crate::Foundation::*;
 
 extern_protocol!(
     pub unsafe trait NSTextLocation: NSObjectProtocol {
+        #[cfg(feature = "Foundation_NSObjCRuntime")]
         #[method(compare:)]
         unsafe fn compare(
             &self,
@@ -19,21 +20,17 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTextRange")]
     pub struct NSTextRange;
 
-    #[cfg(feature = "AppKit_NSTextRange")]
     unsafe impl ClassType for NSTextRange {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSTextRange")]
 unsafe impl NSObjectProtocol for NSTextRange {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTextRange")]
     unsafe impl NSTextRange {
         #[method_id(@__retain_semantics Init initWithLocation:endLocation:)]
         pub unsafe fn initWithLocation_endLocation(

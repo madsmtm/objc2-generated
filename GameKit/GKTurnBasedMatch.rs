@@ -67,23 +67,19 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameKit_GKTurnBasedParticipant")]
     pub struct GKTurnBasedParticipant;
 
-    #[cfg(feature = "GameKit_GKTurnBasedParticipant")]
     unsafe impl ClassType for GKTurnBasedParticipant {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "GameKit_GKTurnBasedParticipant")]
 unsafe impl NSObjectProtocol for GKTurnBasedParticipant {}
 
 extern_methods!(
-    #[cfg(feature = "GameKit_GKTurnBasedParticipant")]
     unsafe impl GKTurnBasedParticipant {
-        #[cfg(feature = "GameKit_GKPlayer")]
+        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
         #[method_id(@__retain_semantics Other player)]
         pub unsafe fn player(&self) -> Option<Id<GKPlayer>>;
 
@@ -108,7 +104,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameKit_GKTurnBasedParticipant")]
     unsafe impl GKTurnBasedParticipant {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -120,7 +115,6 @@ extern_methods!(
 
 extern_methods!(
     /// Obsoleted
-    #[cfg(feature = "GameKit_GKTurnBasedParticipant")]
     unsafe impl GKTurnBasedParticipant {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
@@ -131,7 +125,11 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait GKTurnBasedEventListener {
-        #[cfg(all(feature = "Foundation_NSArray", feature = "GameKit_GKPlayer"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "GameKit_GKBasePlayer",
+            feature = "GameKit_GKPlayer"
+        ))]
         #[optional]
         #[method(player:didRequestMatchWithOtherPlayers:)]
         unsafe fn player_didRequestMatchWithOtherPlayers(
@@ -140,7 +138,7 @@ extern_protocol!(
             players_to_invite: &NSArray<GKPlayer>,
         );
 
-        #[cfg(all(feature = "GameKit_GKPlayer", feature = "GameKit_GKTurnBasedMatch"))]
+        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
         #[optional]
         #[method(player:receivedTurnEventForMatch:didBecomeActive:)]
         unsafe fn player_receivedTurnEventForMatch_didBecomeActive(
@@ -150,16 +148,12 @@ extern_protocol!(
             did_become_active: bool,
         );
 
-        #[cfg(all(feature = "GameKit_GKPlayer", feature = "GameKit_GKTurnBasedMatch"))]
+        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
         #[optional]
         #[method(player:matchEnded:)]
         unsafe fn player_matchEnded(&self, player: &GKPlayer, r#match: &GKTurnBasedMatch);
 
-        #[cfg(all(
-            feature = "GameKit_GKPlayer",
-            feature = "GameKit_GKTurnBasedExchange",
-            feature = "GameKit_GKTurnBasedMatch"
-        ))]
+        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
         #[optional]
         #[method(player:receivedExchangeRequest:forMatch:)]
         unsafe fn player_receivedExchangeRequest_forMatch(
@@ -169,11 +163,7 @@ extern_protocol!(
             r#match: &GKTurnBasedMatch,
         );
 
-        #[cfg(all(
-            feature = "GameKit_GKPlayer",
-            feature = "GameKit_GKTurnBasedExchange",
-            feature = "GameKit_GKTurnBasedMatch"
-        ))]
+        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
         #[optional]
         #[method(player:receivedExchangeCancellation:forMatch:)]
         unsafe fn player_receivedExchangeCancellation_forMatch(
@@ -185,10 +175,8 @@ extern_protocol!(
 
         #[cfg(all(
             feature = "Foundation_NSArray",
-            feature = "GameKit_GKPlayer",
-            feature = "GameKit_GKTurnBasedExchange",
-            feature = "GameKit_GKTurnBasedExchangeReply",
-            feature = "GameKit_GKTurnBasedMatch"
+            feature = "GameKit_GKBasePlayer",
+            feature = "GameKit_GKPlayer"
         ))]
         #[optional]
         #[method(player:receivedExchangeReplies:forCompletedExchange:forMatch:)]
@@ -200,7 +188,7 @@ extern_protocol!(
             r#match: &GKTurnBasedMatch,
         );
 
-        #[cfg(all(feature = "GameKit_GKPlayer", feature = "GameKit_GKTurnBasedMatch"))]
+        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
         #[optional]
         #[method(player:wantsToQuitMatch:)]
         unsafe fn player_wantsToQuitMatch(&self, player: &GKPlayer, r#match: &GKTurnBasedMatch);
@@ -208,6 +196,7 @@ extern_protocol!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSString",
+            feature = "GameKit_GKBasePlayer",
             feature = "GameKit_GKPlayer"
         ))]
         #[deprecated]
@@ -223,27 +212,25 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn GKTurnBasedEventListener {}
 );
 
+#[cfg(feature = "Foundation_NSDate")]
 extern_static!(GKTurnTimeoutDefault: NSTimeInterval);
 
+#[cfg(feature = "Foundation_NSDate")]
 extern_static!(GKTurnTimeoutNone: NSTimeInterval);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameKit_GKTurnBasedMatch")]
     pub struct GKTurnBasedMatch;
 
-    #[cfg(feature = "GameKit_GKTurnBasedMatch")]
     unsafe impl ClassType for GKTurnBasedMatch {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "GameKit_GKTurnBasedMatch")]
 unsafe impl NSObjectProtocol for GKTurnBasedMatch {}
 
 extern_methods!(
-    #[cfg(feature = "GameKit_GKTurnBasedMatch")]
     unsafe impl GKTurnBasedMatch {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other matchID)]
@@ -253,17 +240,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Other creationDate)]
         pub unsafe fn creationDate(&self) -> Option<Id<NSDate>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "GameKit_GKTurnBasedParticipant"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other participants)]
         pub unsafe fn participants(&self) -> Option<Id<NSArray<GKTurnBasedParticipant>>>;
 
         #[method(status)]
         pub unsafe fn status(&self) -> GKTurnBasedMatchStatus;
 
-        #[cfg(feature = "GameKit_GKTurnBasedParticipant")]
         #[method_id(@__retain_semantics Other currentParticipant)]
         pub unsafe fn currentParticipant(&self) -> Option<Id<GKTurnBasedParticipant>>;
 
@@ -290,24 +273,15 @@ extern_methods!(
         #[method(matchDataMaximumSize)]
         pub unsafe fn matchDataMaximumSize(&self) -> NSUInteger;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "GameKit_GKTurnBasedExchange"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other exchanges)]
         pub unsafe fn exchanges(&self) -> Option<Id<NSArray<GKTurnBasedExchange>>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "GameKit_GKTurnBasedExchange"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other activeExchanges)]
         pub unsafe fn activeExchanges(&self) -> Option<Id<NSArray<GKTurnBasedExchange>>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "GameKit_GKTurnBasedExchange"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other completedExchanges)]
         pub unsafe fn completedExchanges(&self) -> Option<Id<NSArray<GKTurnBasedExchange>>>;
 
@@ -317,7 +291,7 @@ extern_methods!(
         #[method(exchangeMaxInitiatedExchangesPerPlayer)]
         pub unsafe fn exchangeMaxInitiatedExchangesPerPlayer(&self) -> NSUInteger;
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "GameKit_GKMatchRequest"))]
+        #[cfg(all(feature = "Foundation_NSError", feature = "GameKit_GKMatchmaker"))]
         #[method(findMatchForRequest:withCompletionHandler:)]
         pub unsafe fn findMatchForRequest_withCompletionHandler(
             request: &GKMatchRequest,
@@ -377,8 +351,8 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSData",
-            feature = "Foundation_NSError",
-            feature = "GameKit_GKTurnBasedParticipant"
+            feature = "Foundation_NSDate",
+            feature = "Foundation_NSError"
         ))]
         #[method(endTurnWithNextParticipants:turnTimeout:matchData:completionHandler:)]
         pub unsafe fn endTurnWithNextParticipants_turnTimeout_matchData_completionHandler(
@@ -392,8 +366,8 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSData",
-            feature = "Foundation_NSError",
-            feature = "GameKit_GKTurnBasedParticipant"
+            feature = "Foundation_NSDate",
+            feature = "Foundation_NSError"
         ))]
         #[method(participantQuitInTurnWithOutcome:nextParticipants:turnTimeout:matchData:completionHandler:)]
         pub unsafe fn participantQuitInTurnWithOutcome_nextParticipants_turnTimeout_matchData_completionHandler(
@@ -464,8 +438,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSData",
-            feature = "Foundation_NSError",
-            feature = "GameKit_GKTurnBasedExchange"
+            feature = "Foundation_NSError"
         ))]
         #[method(saveMergedMatchData:withResolvedExchanges:completionHandler:)]
         pub unsafe fn saveMergedMatchData_withResolvedExchanges_completionHandler(
@@ -478,10 +451,9 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSData",
+            feature = "Foundation_NSDate",
             feature = "Foundation_NSError",
-            feature = "Foundation_NSString",
-            feature = "GameKit_GKTurnBasedExchange",
-            feature = "GameKit_GKTurnBasedParticipant"
+            feature = "Foundation_NSString"
         ))]
         #[method(sendExchangeToParticipants:data:localizableMessageKey:arguments:timeout:completionHandler:)]
         pub unsafe fn sendExchangeToParticipants_data_localizableMessageKey_arguments_timeout_completionHandler(
@@ -497,8 +469,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSError",
-            feature = "Foundation_NSString",
-            feature = "GameKit_GKTurnBasedParticipant"
+            feature = "Foundation_NSString"
         ))]
         #[method(sendReminderToParticipants:localizableMessageKey:arguments:completionHandler:)]
         pub unsafe fn sendReminderToParticipants_localizableMessageKey_arguments_completionHandler(
@@ -509,11 +480,7 @@ extern_methods!(
             completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSData",
-            feature = "Foundation_NSError",
-            feature = "GameKit_GKTurnBasedParticipant"
-        ))]
+        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[deprecated]
         #[method(endTurnWithNextParticipant:matchData:completionHandler:)]
         pub unsafe fn endTurnWithNextParticipant_matchData_completionHandler(
@@ -523,11 +490,7 @@ extern_methods!(
             completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSData",
-            feature = "Foundation_NSError",
-            feature = "GameKit_GKTurnBasedParticipant"
-        ))]
+        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[deprecated]
         #[method(participantQuitInTurnWithOutcome:nextParticipant:matchData:completionHandler:)]
         pub unsafe fn participantQuitInTurnWithOutcome_nextParticipant_matchData_completionHandler(
@@ -542,7 +505,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameKit_GKTurnBasedMatch")]
     unsafe impl GKTurnBasedMatch {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -568,40 +530,34 @@ ns_enum!(
     }
 );
 
+#[cfg(feature = "Foundation_NSDate")]
 extern_static!(GKExchangeTimeoutDefault: NSTimeInterval);
 
+#[cfg(feature = "Foundation_NSDate")]
 extern_static!(GKExchangeTimeoutNone: NSTimeInterval);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameKit_GKTurnBasedExchange")]
     pub struct GKTurnBasedExchange;
 
-    #[cfg(feature = "GameKit_GKTurnBasedExchange")]
     unsafe impl ClassType for GKTurnBasedExchange {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "GameKit_GKTurnBasedExchange")]
 unsafe impl NSObjectProtocol for GKTurnBasedExchange {}
 
 extern_methods!(
-    #[cfg(feature = "GameKit_GKTurnBasedExchange")]
     unsafe impl GKTurnBasedExchange {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other exchangeID)]
         pub unsafe fn exchangeID(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "GameKit_GKTurnBasedParticipant")]
         #[method_id(@__retain_semantics Other sender)]
         pub unsafe fn sender(&self) -> Option<Id<GKTurnBasedParticipant>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "GameKit_GKTurnBasedParticipant"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other recipients)]
         pub unsafe fn recipients(&self) -> Option<Id<NSArray<GKTurnBasedParticipant>>>;
 
@@ -628,10 +584,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other completionDate)]
         pub unsafe fn completionDate(&self) -> Option<Id<NSDate>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "GameKit_GKTurnBasedExchangeReply"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other replies)]
         pub unsafe fn replies(&self) -> Option<Id<NSArray<GKTurnBasedExchangeReply>>>;
 
@@ -667,7 +620,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameKit_GKTurnBasedExchange")]
     unsafe impl GKTurnBasedExchange {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -679,23 +631,18 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameKit_GKTurnBasedExchangeReply")]
     pub struct GKTurnBasedExchangeReply;
 
-    #[cfg(feature = "GameKit_GKTurnBasedExchangeReply")]
     unsafe impl ClassType for GKTurnBasedExchangeReply {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "GameKit_GKTurnBasedExchangeReply")]
 unsafe impl NSObjectProtocol for GKTurnBasedExchangeReply {}
 
 extern_methods!(
-    #[cfg(feature = "GameKit_GKTurnBasedExchangeReply")]
     unsafe impl GKTurnBasedExchangeReply {
-        #[cfg(feature = "GameKit_GKTurnBasedParticipant")]
         #[method_id(@__retain_semantics Other recipient)]
         pub unsafe fn recipient(&self) -> Option<Id<GKTurnBasedParticipant>>;
 
@@ -715,7 +662,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameKit_GKTurnBasedExchangeReply")]
     unsafe impl GKTurnBasedExchangeReply {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -733,7 +679,6 @@ extern_protocol!(
         #[method(handleInviteFromGameCenter:)]
         unsafe fn handleInviteFromGameCenter(&self, players_to_invite: &NSArray<NSString>);
 
-        #[cfg(feature = "GameKit_GKTurnBasedMatch")]
         #[deprecated]
         #[method(handleTurnEventForMatch:didBecomeActive:)]
         unsafe fn handleTurnEventForMatch_didBecomeActive(
@@ -742,13 +687,11 @@ extern_protocol!(
             did_become_active: bool,
         );
 
-        #[cfg(feature = "GameKit_GKTurnBasedMatch")]
         #[deprecated]
         #[optional]
         #[method(handleTurnEventForMatch:)]
         unsafe fn handleTurnEventForMatch(&self, r#match: &GKTurnBasedMatch);
 
-        #[cfg(feature = "GameKit_GKTurnBasedMatch")]
         #[deprecated]
         #[optional]
         #[method(handleMatchEnded:)]
@@ -760,22 +703,18 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameKit_GKTurnBasedEventHandler")]
     #[deprecated]
     pub struct GKTurnBasedEventHandler;
 
-    #[cfg(feature = "GameKit_GKTurnBasedEventHandler")]
     unsafe impl ClassType for GKTurnBasedEventHandler {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "GameKit_GKTurnBasedEventHandler")]
 unsafe impl NSObjectProtocol for GKTurnBasedEventHandler {}
 
 extern_methods!(
-    #[cfg(feature = "GameKit_GKTurnBasedEventHandler")]
     unsafe impl GKTurnBasedEventHandler {
         #[deprecated]
         #[method_id(@__retain_semantics Other sharedTurnBasedEventHandler)]
@@ -793,7 +732,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameKit_GKTurnBasedEventHandler")]
     unsafe impl GKTurnBasedEventHandler {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

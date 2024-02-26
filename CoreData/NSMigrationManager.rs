@@ -6,21 +6,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSMigrationManager")]
     pub struct NSMigrationManager;
 
-    #[cfg(feature = "CoreData_NSMigrationManager")]
     unsafe impl ClassType for NSMigrationManager {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreData_NSMigrationManager")]
 unsafe impl NSObjectProtocol for NSMigrationManager {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSMigrationManager")]
     unsafe impl NSMigrationManager {
         #[cfg(feature = "CoreData_NSManagedObjectModel")]
         #[method_id(@__retain_semantics Init initWithSourceModel:destinationModel:)]
@@ -160,7 +156,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSMigrationManager")]
     unsafe impl NSMigrationManager {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

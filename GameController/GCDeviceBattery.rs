@@ -21,21 +21,17 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameController_GCDeviceBattery")]
     pub struct GCDeviceBattery;
 
-    #[cfg(feature = "GameController_GCDeviceBattery")]
     unsafe impl ClassType for GCDeviceBattery {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "GameController_GCDeviceBattery")]
 unsafe impl NSObjectProtocol for GCDeviceBattery {}
 
 extern_methods!(
-    #[cfg(feature = "GameController_GCDeviceBattery")]
     unsafe impl GCDeviceBattery {
         #[method(batteryLevel)]
         pub unsafe fn batteryLevel(&self) -> c_float;
@@ -50,7 +46,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameController_GCDeviceBattery")]
     unsafe impl GCDeviceBattery {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

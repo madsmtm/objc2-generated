@@ -7,30 +7,26 @@ use crate::LinkPresentation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "LinkPresentation_LPLinkMetadata")]
     pub struct LPLinkMetadata;
 
-    #[cfg(feature = "LinkPresentation_LPLinkMetadata")]
     unsafe impl ClassType for LPLinkMetadata {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "LinkPresentation_LPLinkMetadata")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for LPLinkMetadata {}
 
-#[cfg(feature = "LinkPresentation_LPLinkMetadata")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for LPLinkMetadata {}
 
-#[cfg(feature = "LinkPresentation_LPLinkMetadata")]
 unsafe impl NSObjectProtocol for LPLinkMetadata {}
 
-#[cfg(feature = "LinkPresentation_LPLinkMetadata")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for LPLinkMetadata {}
 
 extern_methods!(
-    #[cfg(feature = "LinkPresentation_LPLinkMetadata")]
     unsafe impl LPLinkMetadata {
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other originalURL)]
@@ -92,7 +88,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "LinkPresentation_LPLinkMetadata")]
     unsafe impl LPLinkMetadata {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

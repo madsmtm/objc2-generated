@@ -33,27 +33,23 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTextSelection")]
     pub struct NSTextSelection;
 
-    #[cfg(feature = "AppKit_NSTextSelection")]
     unsafe impl ClassType for NSTextSelection {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSTextSelection")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSTextSelection {}
 
-#[cfg(feature = "AppKit_NSTextSelection")]
 unsafe impl NSObjectProtocol for NSTextSelection {}
 
-#[cfg(feature = "AppKit_NSTextSelection")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSTextSelection {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTextSelection")]
     unsafe impl NSTextSelection {
         #[cfg(all(feature = "AppKit_NSTextRange", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Init initWithRanges:affinity:granularity:)]
@@ -77,6 +73,7 @@ extern_methods!(
             granularity: NSTextSelectionGranularity,
         ) -> Id<Self>;
 
+        #[cfg(feature = "AppKit_NSTextRange")]
         #[method_id(@__retain_semantics Init initWithLocation:affinity:)]
         pub unsafe fn initWithLocation_affinity(
             this: Allocated<Self>,
@@ -100,9 +97,11 @@ extern_methods!(
         #[method(isTransient)]
         pub unsafe fn isTransient(&self) -> bool;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(anchorPositionOffset)]
         pub unsafe fn anchorPositionOffset(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setAnchorPositionOffset:)]
         pub unsafe fn setAnchorPositionOffset(&self, anchor_position_offset: CGFloat);
 
@@ -112,23 +111,33 @@ extern_methods!(
         #[method(setLogical:)]
         pub unsafe fn setLogical(&self, logical: bool);
 
+        #[cfg(feature = "AppKit_NSTextRange")]
         #[method_id(@__retain_semantics Other secondarySelectionLocation)]
         pub unsafe fn secondarySelectionLocation(
             &self,
         ) -> Option<Id<ProtocolObject<dyn NSTextLocation>>>;
 
+        #[cfg(feature = "AppKit_NSTextRange")]
         #[method(setSecondarySelectionLocation:)]
         pub unsafe fn setSecondarySelectionLocation(
             &self,
             secondary_selection_location: Option<&ProtocolObject<dyn NSTextLocation>>,
         );
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSAttributedString",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other typingAttributes)]
         pub unsafe fn typingAttributes(&self)
             -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSAttributedString",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
+        ))]
         #[method(setTypingAttributes:)]
         pub unsafe fn setTypingAttributes(
             &self,
@@ -146,7 +155,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTextSelection")]
     unsafe impl NSTextSelection {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

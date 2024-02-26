@@ -16,11 +16,21 @@ pub const DOM_KEY_LOCATION_NUMPAD: c_uint = 0x03;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_DOMKeyboardEvent")]
+    #[cfg(all(
+        feature = "WebKit_DOMEvent",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_DOMUIEvent",
+        feature = "WebKit_WebScriptObject"
+    ))]
     #[deprecated]
     pub struct DOMKeyboardEvent;
 
-    #[cfg(feature = "WebKit_DOMKeyboardEvent")]
+    #[cfg(all(
+        feature = "WebKit_DOMEvent",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_DOMUIEvent",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl ClassType for DOMKeyboardEvent {
         #[inherits(DOMEvent, DOMObject, WebScriptObject, NSObject)]
         type Super = DOMUIEvent;
@@ -28,14 +38,30 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "WebKit_DOMKeyboardEvent")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "WebKit_DOMEvent",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_DOMUIEvent",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSCopying for DOMKeyboardEvent {}
 
-#[cfg(feature = "WebKit_DOMKeyboardEvent")]
+#[cfg(all(
+    feature = "WebKit_DOMEvent",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_DOMUIEvent",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSObjectProtocol for DOMKeyboardEvent {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_DOMKeyboardEvent")]
+    #[cfg(all(
+        feature = "WebKit_DOMEvent",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_DOMUIEvent",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMKeyboardEvent {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
@@ -153,7 +179,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
-    #[cfg(feature = "WebKit_DOMKeyboardEvent")]
+    #[cfg(all(
+        feature = "WebKit_DOMEvent",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_DOMUIEvent",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMKeyboardEvent {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
@@ -163,7 +194,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_DOMKeyboardEvent")]
+    #[cfg(all(
+        feature = "WebKit_DOMEvent",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_DOMUIEvent",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMKeyboardEvent {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

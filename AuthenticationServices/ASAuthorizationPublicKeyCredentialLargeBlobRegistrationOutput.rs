@@ -7,29 +7,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(
-        feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput"
-    )]
     pub struct ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput;
 
-    #[cfg(
-        feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput"
-    )]
     unsafe impl ClassType for ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(
-    feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput"
-)]
 unsafe impl NSObjectProtocol for ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput {}
 
 extern_methods!(
-    #[cfg(
-        feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput"
-    )]
     unsafe impl ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput {
         #[method(isSupported)]
         pub unsafe fn isSupported(&self) -> bool;
@@ -38,9 +26,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(
-        feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput"
-    )]
     unsafe impl ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -8,21 +8,17 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKSeriesBuilder")]
     pub struct HKSeriesBuilder;
 
-    #[cfg(feature = "HealthKit_HKSeriesBuilder")]
     unsafe impl ClassType for HKSeriesBuilder {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "HealthKit_HKSeriesBuilder")]
 unsafe impl NSObjectProtocol for HKSeriesBuilder {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKSeriesBuilder")]
     unsafe impl HKSeriesBuilder {
         #[method(discard)]
         pub unsafe fn discard(&self);
@@ -34,7 +30,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKSeriesBuilder")]
     unsafe impl HKSeriesBuilder {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

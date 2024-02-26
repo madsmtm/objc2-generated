@@ -7,10 +7,18 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSPathControl")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     pub struct NSPathControl;
 
-    #[cfg(feature = "AppKit_NSPathControl")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl ClassType for NSPathControl {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;
@@ -18,32 +26,75 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSPathControl")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibility for NSPathControl {}
 
-#[cfg(feature = "AppKit_NSPathControl")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibilityElementProtocol for NSPathControl {}
 
-#[cfg(feature = "AppKit_NSPathControl")]
+#[cfg(all(
+    feature = "AppKit_NSAnimation",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAnimatablePropertyContainer for NSPathControl {}
 
-#[cfg(feature = "AppKit_NSPathControl")]
+#[cfg(all(
+    feature = "AppKit_NSAppearance",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAppearanceCustomization for NSPathControl {}
 
-#[cfg(feature = "AppKit_NSPathControl")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSPathControl {}
 
-#[cfg(feature = "AppKit_NSPathControl")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSDragging",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSDraggingDestination for NSPathControl {}
 
-#[cfg(feature = "AppKit_NSPathControl")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSObjectProtocol for NSPathControl {}
 
-#[cfg(feature = "AppKit_NSPathControl")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSPathControl {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSPathControl")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSPathControl {
         #[method(isEditable)]
         pub unsafe fn isEditable(&self) -> bool;
@@ -92,9 +143,11 @@ extern_methods!(
         #[method(setDoubleAction:)]
         pub unsafe fn setDoubleAction(&self, double_action: Option<Sel>);
 
+        #[cfg(feature = "AppKit_NSPathCell")]
         #[method(pathStyle)]
         pub unsafe fn pathStyle(&self) -> NSPathStyle;
 
+        #[cfg(feature = "AppKit_NSPathCell")]
         #[method(setPathStyle:)]
         pub unsafe fn setPathStyle(&self, path_style: NSPathStyle);
 
@@ -127,6 +180,7 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn NSPathControlDelegate>>,
         );
 
+        #[cfg(feature = "AppKit_NSDragging")]
         #[method(setDraggingSourceOperationMask:forLocal:)]
         pub unsafe fn setDraggingSourceOperationMask_forLocal(
             &self,
@@ -146,8 +200,13 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSControl`
-    #[cfg(feature = "AppKit_NSPathControl")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSPathControl {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
 
@@ -159,7 +218,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "AppKit_NSPathControl")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSPathControl {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -168,7 +231,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSPathControl")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSPathControl {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -178,9 +245,11 @@ extern_methods!(
 extern_protocol!(
     pub unsafe trait NSPathControlDelegate: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(all(
+            feature = "AppKit_NSControl",
             feature = "AppKit_NSPasteboard",
-            feature = "AppKit_NSPathControl",
-            feature = "AppKit_NSPathControlItem"
+            feature = "AppKit_NSPathControlItem",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView"
         ))]
         #[optional]
         #[method(pathControl:shouldDragItem:withPasteboard:)]
@@ -192,9 +261,14 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(
+            feature = "AppKit_NSActionCell",
+            feature = "AppKit_NSCell",
+            feature = "AppKit_NSControl",
             feature = "AppKit_NSPasteboard",
             feature = "AppKit_NSPathComponentCell",
-            feature = "AppKit_NSPathControl"
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSTextFieldCell",
+            feature = "AppKit_NSView"
         ))]
         #[optional]
         #[method(pathControl:shouldDragPathComponentCell:withPasteboard:)]
@@ -205,7 +279,12 @@ extern_protocol!(
             pasteboard: &NSPasteboard,
         ) -> bool;
 
-        #[cfg(feature = "AppKit_NSPathControl")]
+        #[cfg(all(
+            feature = "AppKit_NSControl",
+            feature = "AppKit_NSDragging",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView"
+        ))]
         #[optional]
         #[method(pathControl:validateDrop:)]
         unsafe fn pathControl_validateDrop(
@@ -214,7 +293,12 @@ extern_protocol!(
             info: &ProtocolObject<dyn NSDraggingInfo>,
         ) -> NSDragOperation;
 
-        #[cfg(feature = "AppKit_NSPathControl")]
+        #[cfg(all(
+            feature = "AppKit_NSControl",
+            feature = "AppKit_NSDragging",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView"
+        ))]
         #[optional]
         #[method(pathControl:acceptDrop:)]
         unsafe fn pathControl_acceptDrop(
@@ -223,7 +307,15 @@ extern_protocol!(
             info: &ProtocolObject<dyn NSDraggingInfo>,
         ) -> bool;
 
-        #[cfg(all(feature = "AppKit_NSOpenPanel", feature = "AppKit_NSPathControl"))]
+        #[cfg(all(
+            feature = "AppKit_NSControl",
+            feature = "AppKit_NSOpenPanel",
+            feature = "AppKit_NSPanel",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSSavePanel",
+            feature = "AppKit_NSView",
+            feature = "AppKit_NSWindow"
+        ))]
         #[optional]
         #[method(pathControl:willDisplayOpenPanel:)]
         unsafe fn pathControl_willDisplayOpenPanel(
@@ -232,7 +324,12 @@ extern_protocol!(
             open_panel: &NSOpenPanel,
         );
 
-        #[cfg(all(feature = "AppKit_NSMenu", feature = "AppKit_NSPathControl"))]
+        #[cfg(all(
+            feature = "AppKit_NSControl",
+            feature = "AppKit_NSMenu",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView"
+        ))]
         #[optional]
         #[method(pathControl:willPopUpMenu:)]
         unsafe fn pathControl_willPopUpMenu(&self, path_control: &NSPathControl, menu: &NSMenu);
@@ -243,19 +340,40 @@ extern_protocol!(
 
 extern_methods!(
     /// NSDeprecated
-    #[cfg(feature = "AppKit_NSPathControl")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSPathControl {
-        #[cfg(feature = "AppKit_NSPathComponentCell")]
+        #[cfg(all(
+            feature = "AppKit_NSActionCell",
+            feature = "AppKit_NSCell",
+            feature = "AppKit_NSPathComponentCell",
+            feature = "AppKit_NSTextFieldCell"
+        ))]
         #[deprecated = "Use the clickedPathItem property instead"]
         #[method_id(@__retain_semantics Other clickedPathComponentCell)]
         pub unsafe fn clickedPathComponentCell(&self) -> Option<Id<NSPathComponentCell>>;
 
-        #[cfg(all(feature = "AppKit_NSPathComponentCell", feature = "Foundation_NSArray"))]
+        #[cfg(all(
+            feature = "AppKit_NSActionCell",
+            feature = "AppKit_NSCell",
+            feature = "AppKit_NSPathComponentCell",
+            feature = "AppKit_NSTextFieldCell",
+            feature = "Foundation_NSArray"
+        ))]
         #[deprecated = "Use the pathItems property instead"]
         #[method_id(@__retain_semantics Other pathComponentCells)]
         pub unsafe fn pathComponentCells(&self) -> Id<NSArray<NSPathComponentCell>>;
 
-        #[cfg(all(feature = "AppKit_NSPathComponentCell", feature = "Foundation_NSArray"))]
+        #[cfg(all(
+            feature = "AppKit_NSActionCell",
+            feature = "AppKit_NSCell",
+            feature = "AppKit_NSPathComponentCell",
+            feature = "AppKit_NSTextFieldCell",
+            feature = "Foundation_NSArray"
+        ))]
         #[deprecated = "Use the pathItems property instead"]
         #[method(setPathComponentCells:)]
         pub unsafe fn setPathComponentCells(&self, cells: &NSArray<NSPathComponentCell>);

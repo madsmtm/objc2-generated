@@ -25,26 +25,22 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSNotificationQueue")]
     pub struct NSNotificationQueue;
 
-    #[cfg(feature = "Foundation_NSNotificationQueue")]
     unsafe impl ClassType for NSNotificationQueue {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSNotificationQueue")]
 unsafe impl NSObjectProtocol for NSNotificationQueue {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSNotificationQueue")]
     unsafe impl NSNotificationQueue {
         #[method_id(@__retain_semantics Other defaultQueue)]
         pub unsafe fn defaultQueue() -> Id<NSNotificationQueue>;
 
-        #[cfg(feature = "Foundation_NSNotificationCenter")]
+        #[cfg(feature = "Foundation_NSNotification")]
         #[method_id(@__retain_semantics Init initWithNotificationCenter:)]
         pub unsafe fn initWithNotificationCenter(
             this: Allocated<Self>,
@@ -62,6 +58,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSNotification",
+            feature = "Foundation_NSObjCRuntime",
             feature = "Foundation_NSString"
         ))]
         #[method(enqueueNotification:postingStyle:coalesceMask:forModes:)]
@@ -85,7 +82,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSNotificationQueue")]
     unsafe impl NSNotificationQueue {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

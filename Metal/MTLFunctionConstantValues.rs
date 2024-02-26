@@ -6,25 +6,22 @@ use crate::Metal::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLFunctionConstantValues")]
     pub struct MTLFunctionConstantValues;
 
-    #[cfg(feature = "Metal_MTLFunctionConstantValues")]
     unsafe impl ClassType for MTLFunctionConstantValues {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLFunctionConstantValues")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLFunctionConstantValues {}
 
-#[cfg(feature = "Metal_MTLFunctionConstantValues")]
 unsafe impl NSObjectProtocol for MTLFunctionConstantValues {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLFunctionConstantValues")]
     unsafe impl MTLFunctionConstantValues {
+        #[cfg(feature = "Metal_MTLArgument")]
         #[method(setConstantValue:type:atIndex:)]
         pub unsafe fn setConstantValue_type_atIndex(
             &self,
@@ -33,6 +30,7 @@ extern_methods!(
             index: NSUInteger,
         );
 
+        #[cfg(all(feature = "Foundation_NSRange", feature = "Metal_MTLArgument"))]
         #[method(setConstantValues:type:withRange:)]
         pub unsafe fn setConstantValues_type_withRange(
             &self,
@@ -41,7 +39,7 @@ extern_methods!(
             range: NSRange,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSString", feature = "Metal_MTLArgument"))]
         #[method(setConstantValue:type:withName:)]
         pub unsafe fn setConstantValue_type_withName(
             &self,
@@ -57,7 +55,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLFunctionConstantValues")]
     unsafe impl MTLFunctionConstantValues {
         #[method_id(@__retain_semantics Init init)]
         pub fn init(this: Allocated<Self>) -> Id<Self>;
@@ -67,7 +64,6 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Metal_MTLFunctionConstantValues")]
 impl DefaultId for MTLFunctionConstantValues {
     #[inline]
     fn default_id() -> Id<Self> {

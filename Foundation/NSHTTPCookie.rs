@@ -63,27 +63,21 @@ extern_static!(NSHTTPCookieSameSiteStrict: &'static NSHTTPCookieStringPolicy);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSHTTPCookie")]
     pub struct NSHTTPCookie;
 
-    #[cfg(feature = "Foundation_NSHTTPCookie")]
     unsafe impl ClassType for NSHTTPCookie {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSHTTPCookie")]
 unsafe impl Send for NSHTTPCookie {}
 
-#[cfg(feature = "Foundation_NSHTTPCookie")]
 unsafe impl Sync for NSHTTPCookie {}
 
-#[cfg(feature = "Foundation_NSHTTPCookie")]
 unsafe impl NSObjectProtocol for NSHTTPCookie {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSHTTPCookie")]
     unsafe impl NSHTTPCookie {
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithProperties:)]
@@ -166,7 +160,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other commentURL)]
         pub unsafe fn commentURL(&self) -> Option<Id<NSURL>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Other portList)]
         pub unsafe fn portList(&self) -> Option<Id<NSArray<NSNumber>>>;
 
@@ -178,7 +172,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSHTTPCookie")]
     unsafe impl NSHTTPCookie {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

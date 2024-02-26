@@ -7,10 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSPanGestureRecognizer")]
+    #[cfg(feature = "AppKit_NSGestureRecognizer")]
     pub struct NSPanGestureRecognizer;
 
-    #[cfg(feature = "AppKit_NSPanGestureRecognizer")]
+    #[cfg(feature = "AppKit_NSGestureRecognizer")]
     unsafe impl ClassType for NSPanGestureRecognizer {
         #[inherits(NSObject)]
         type Super = NSGestureRecognizer;
@@ -18,14 +18,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSPanGestureRecognizer")]
+#[cfg(all(
+    feature = "AppKit_NSGestureRecognizer",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSPanGestureRecognizer {}
 
-#[cfg(feature = "AppKit_NSPanGestureRecognizer")]
+#[cfg(feature = "AppKit_NSGestureRecognizer")]
 unsafe impl NSObjectProtocol for NSPanGestureRecognizer {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSPanGestureRecognizer")]
+    #[cfg(feature = "AppKit_NSGestureRecognizer")]
     unsafe impl NSPanGestureRecognizer {
         #[method(buttonMask)]
         pub unsafe fn buttonMask(&self) -> NSUInteger;
@@ -33,15 +36,27 @@ extern_methods!(
         #[method(setButtonMask:)]
         pub unsafe fn setButtonMask(&self, button_mask: NSUInteger);
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[method(translationInView:)]
         pub unsafe fn translationInView(&self, view: Option<&NSView>) -> NSPoint;
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[method(setTranslation:inView:)]
         pub unsafe fn setTranslation_inView(&self, translation: NSPoint, view: Option<&NSView>);
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[method(velocityInView:)]
         pub unsafe fn velocityInView(&self, view: Option<&NSView>) -> NSPoint;
 
@@ -55,7 +70,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSGestureRecognizer`
-    #[cfg(feature = "AppKit_NSPanGestureRecognizer")]
+    #[cfg(feature = "AppKit_NSGestureRecognizer")]
     unsafe impl NSPanGestureRecognizer {
         #[method_id(@__retain_semantics Init initWithTarget:action:)]
         pub unsafe fn initWithTarget_action(
@@ -72,7 +87,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSPanGestureRecognizer")]
+    #[cfg(feature = "AppKit_NSGestureRecognizer")]
     unsafe impl NSPanGestureRecognizer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

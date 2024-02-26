@@ -9,21 +9,17 @@ use crate::MapKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKLookAroundSceneRequest")]
     pub struct MKLookAroundSceneRequest;
 
-    #[cfg(feature = "MapKit_MKLookAroundSceneRequest")]
     unsafe impl ClassType for MKLookAroundSceneRequest {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MapKit_MKLookAroundSceneRequest")]
 unsafe impl NSObjectProtocol for MKLookAroundSceneRequest {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKLookAroundSceneRequest")]
     unsafe impl MKLookAroundSceneRequest {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -31,6 +27,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
+        #[cfg(feature = "CoreLocation_CLLocation")]
         #[method_id(@__retain_semantics Init initWithCoordinate:)]
         pub unsafe fn initWithCoordinate(
             this: Allocated<Self>,
@@ -41,6 +38,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithMapItem:)]
         pub unsafe fn initWithMapItem(this: Allocated<Self>, map_item: &MKMapItem) -> Id<Self>;
 
+        #[cfg(feature = "CoreLocation_CLLocation")]
         #[method(coordinate)]
         pub unsafe fn coordinate(&self) -> CLLocationCoordinate2D;
 

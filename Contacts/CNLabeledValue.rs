@@ -6,14 +6,12 @@ use crate::Foundation::*;
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Contacts_CNLabeledValue")]
     pub struct CNLabeledValue<ValueType: ?Sized = AnyObject> {
         __superclass: NSObject,
         _inner0: PhantomData<*mut ValueType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
-    #[cfg(feature = "Contacts_CNLabeledValue")]
     unsafe impl<ValueType: ?Sized + Message> ClassType for CNLabeledValue<ValueType> {
         type Super = NSObject;
         type Mutability = InteriorMutable;
@@ -28,20 +26,18 @@ __inner_extern_class!(
     }
 );
 
-#[cfg(feature = "Contacts_CNLabeledValue")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl<ValueType: ?Sized + NSCoding> NSCoding for CNLabeledValue<ValueType> {}
 
-#[cfg(feature = "Contacts_CNLabeledValue")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl<ValueType: ?Sized + IsIdCloneable> NSCopying for CNLabeledValue<ValueType> {}
 
-#[cfg(feature = "Contacts_CNLabeledValue")]
 unsafe impl<ValueType: ?Sized> NSObjectProtocol for CNLabeledValue<ValueType> {}
 
-#[cfg(feature = "Contacts_CNLabeledValue")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl<ValueType: ?Sized + NSSecureCoding> NSSecureCoding for CNLabeledValue<ValueType> {}
 
 extern_methods!(
-    #[cfg(feature = "Contacts_CNLabeledValue")]
     unsafe impl<ValueType: Message> CNLabeledValue<ValueType> {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
@@ -92,7 +88,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Contacts_CNLabeledValue")]
     unsafe impl<ValueType: Message> CNLabeledValue<ValueType> {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -7,30 +7,26 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKQueryCursor")]
     pub struct CKQueryCursor;
 
-    #[cfg(feature = "CloudKit_CKQueryCursor")]
     unsafe impl ClassType for CKQueryCursor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CloudKit_CKQueryCursor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CKQueryCursor {}
 
-#[cfg(feature = "CloudKit_CKQueryCursor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for CKQueryCursor {}
 
-#[cfg(feature = "CloudKit_CKQueryCursor")]
 unsafe impl NSObjectProtocol for CKQueryCursor {}
 
-#[cfg(feature = "CloudKit_CKQueryCursor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CKQueryCursor {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKQueryCursor")]
     unsafe impl CKQueryCursor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -44,10 +40,18 @@ extern_static!(CKQueryOperationMaximumResults: NSUInteger);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKQueryOperation")]
+    #[cfg(all(
+        feature = "CloudKit_CKDatabaseOperation",
+        feature = "CloudKit_CKOperation",
+        feature = "Foundation_NSOperation"
+    ))]
     pub struct CKQueryOperation;
 
-    #[cfg(feature = "CloudKit_CKQueryOperation")]
+    #[cfg(all(
+        feature = "CloudKit_CKDatabaseOperation",
+        feature = "CloudKit_CKOperation",
+        feature = "Foundation_NSOperation"
+    ))]
     unsafe impl ClassType for CKQueryOperation {
         #[inherits(CKOperation, NSOperation, NSObject)]
         type Super = CKDatabaseOperation;
@@ -55,11 +59,19 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CloudKit_CKQueryOperation")]
+#[cfg(all(
+    feature = "CloudKit_CKDatabaseOperation",
+    feature = "CloudKit_CKOperation",
+    feature = "Foundation_NSOperation"
+))]
 unsafe impl NSObjectProtocol for CKQueryOperation {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKQueryOperation")]
+    #[cfg(all(
+        feature = "CloudKit_CKDatabaseOperation",
+        feature = "CloudKit_CKOperation",
+        feature = "Foundation_NSOperation"
+    ))]
     unsafe impl CKQueryOperation {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -68,7 +80,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithQuery:)]
         pub unsafe fn initWithQuery(this: Allocated<Self>, query: &CKQuery) -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKQueryCursor")]
         #[method_id(@__retain_semantics Init initWithCursor:)]
         pub unsafe fn initWithCursor(this: Allocated<Self>, cursor: &CKQueryCursor) -> Id<Self>;
 
@@ -80,11 +91,9 @@ extern_methods!(
         #[method(setQuery:)]
         pub unsafe fn setQuery(&self, query: Option<&CKQuery>);
 
-        #[cfg(feature = "CloudKit_CKQueryCursor")]
         #[method_id(@__retain_semantics Other cursor)]
         pub unsafe fn cursor(&self) -> Option<Id<CKQueryCursor>>;
 
-        #[cfg(feature = "CloudKit_CKQueryCursor")]
         #[method(setCursor:)]
         pub unsafe fn setCursor(&self, cursor: Option<&CKQueryCursor>);
 
@@ -102,11 +111,19 @@ extern_methods!(
         #[method(setResultsLimit:)]
         pub unsafe fn setResultsLimit(&self, results_limit: NSUInteger);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "CloudKit_CKRecord",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other desiredKeys)]
         pub unsafe fn desiredKeys(&self) -> Option<Id<NSArray<CKRecordFieldKey>>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "CloudKit_CKRecord",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[method(setDesiredKeys:)]
         pub unsafe fn setDesiredKeys(&self, desired_keys: Option<&NSArray<CKRecordFieldKey>>);
 
@@ -146,13 +163,13 @@ extern_methods!(
             >,
         );
 
-        #[cfg(all(feature = "CloudKit_CKQueryCursor", feature = "Foundation_NSError"))]
+        #[cfg(feature = "Foundation_NSError")]
         #[method(queryCompletionBlock)]
         pub unsafe fn queryCompletionBlock(
             &self,
         ) -> *mut Block<dyn Fn(*mut CKQueryCursor, *mut NSError)>;
 
-        #[cfg(all(feature = "CloudKit_CKQueryCursor", feature = "Foundation_NSError"))]
+        #[cfg(feature = "Foundation_NSError")]
         #[method(setQueryCompletionBlock:)]
         pub unsafe fn setQueryCompletionBlock(
             &self,
@@ -163,7 +180,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CloudKit_CKQueryOperation")]
+    #[cfg(all(
+        feature = "CloudKit_CKDatabaseOperation",
+        feature = "CloudKit_CKOperation",
+        feature = "Foundation_NSOperation"
+    ))]
     unsafe impl CKQueryOperation {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -5,6 +5,7 @@ use crate::Foundation::*;
 use crate::Metal::*;
 
 extern_protocol!(
+    #[cfg(feature = "Metal_MTLResource")]
     pub unsafe trait MTLBuffer: MTLResource {
         #[method(length)]
         fn length(&self) -> NSUInteger;
@@ -12,10 +13,11 @@ extern_protocol!(
         #[method(contents)]
         fn contents(&self) -> NonNull<c_void>;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(didModifyRange:)]
         fn didModifyRange(&self, range: NSRange);
 
-        #[cfg(feature = "Metal_MTLTextureDescriptor")]
+        #[cfg(feature = "Metal_MTLTexture")]
         #[method_id(@__retain_semantics New newTextureWithDescriptor:offset:bytesPerRow:)]
         fn newTextureWithDescriptor_offset_bytesPerRow(
             &self,
@@ -24,7 +26,7 @@ extern_protocol!(
             bytes_per_row: NSUInteger,
         ) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSRange", feature = "Foundation_NSString"))]
         #[method(addDebugMarker:range:)]
         fn addDebugMarker_range(&self, marker: &NSString, range: NSRange);
 
@@ -34,6 +36,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other remoteStorageBuffer)]
         fn remoteStorageBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
+        #[cfg(feature = "Metal_MTLDevice")]
         #[method_id(@__retain_semantics New newRemoteBufferViewForDevice:)]
         fn newRemoteBufferViewForDevice(
             &self,
@@ -44,5 +47,6 @@ extern_protocol!(
         fn gpuAddress(&self) -> u64;
     }
 
+    #[cfg(feature = "Metal_MTLResource")]
     unsafe impl ProtocolType for dyn MTLBuffer {}
 );

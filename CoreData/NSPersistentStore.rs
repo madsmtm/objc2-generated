@@ -6,21 +6,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSPersistentStore")]
     pub struct NSPersistentStore;
 
-    #[cfg(feature = "CoreData_NSPersistentStore")]
     unsafe impl ClassType for NSPersistentStore {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreData_NSPersistentStore")]
 unsafe impl NSObjectProtocol for NSPersistentStore {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSPersistentStore")]
     unsafe impl NSPersistentStore {
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -139,7 +135,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSPersistentStore")]
     unsafe impl NSPersistentStore {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

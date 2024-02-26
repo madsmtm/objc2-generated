@@ -7,27 +7,23 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreLocation_CLMonitoringRecord")]
     pub struct CLMonitoringRecord;
 
-    #[cfg(feature = "CoreLocation_CLMonitoringRecord")]
     unsafe impl ClassType for CLMonitoringRecord {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreLocation_CLMonitoringRecord")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CLMonitoringRecord {}
 
-#[cfg(feature = "CoreLocation_CLMonitoringRecord")]
 unsafe impl NSObjectProtocol for CLMonitoringRecord {}
 
-#[cfg(feature = "CoreLocation_CLMonitoringRecord")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CLMonitoringRecord {}
 
 extern_methods!(
-    #[cfg(feature = "CoreLocation_CLMonitoringRecord")]
     unsafe impl CLMonitoringRecord {
         #[cfg(feature = "CoreLocation_CLCondition")]
         #[method_id(@__retain_semantics Other condition)]

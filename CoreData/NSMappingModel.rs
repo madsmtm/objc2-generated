@@ -6,21 +6,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSMappingModel")]
     pub struct NSMappingModel;
 
-    #[cfg(feature = "CoreData_NSMappingModel")]
     unsafe impl ClassType for NSMappingModel {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreData_NSMappingModel")]
 unsafe impl NSObjectProtocol for NSMappingModel {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSMappingModel")]
     unsafe impl NSMappingModel {
         #[cfg(all(
             feature = "CoreData_NSManagedObjectModel",
@@ -71,7 +67,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSMappingModel")]
     unsafe impl NSMappingModel {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

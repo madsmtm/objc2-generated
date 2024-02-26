@@ -7,11 +7,11 @@ use crate::GameKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameKit_GKFriendRequestComposeViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     #[deprecated]
     pub struct GKFriendRequestComposeViewController;
 
-    #[cfg(feature = "GameKit_GKFriendRequestComposeViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl ClassType for GKFriendRequestComposeViewController {
         #[inherits(NSResponder, NSObject)]
         type Super = NSViewController;
@@ -19,34 +19,58 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "GameKit_GKFriendRequestComposeViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController",
+    feature = "GameKit_GKDialogController"
+))]
 unsafe impl GKViewController for GKFriendRequestComposeViewController {}
 
-#[cfg(feature = "GameKit_GKFriendRequestComposeViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for GKFriendRequestComposeViewController {}
 
-#[cfg(feature = "GameKit_GKFriendRequestComposeViewController")]
+#[cfg(all(
+    feature = "AppKit_NSKeyValueBinding",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSEditor for GKFriendRequestComposeViewController {}
 
-#[cfg(feature = "GameKit_GKFriendRequestComposeViewController")]
+#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
 unsafe impl NSObjectProtocol for GKFriendRequestComposeViewController {}
 
-#[cfg(feature = "GameKit_GKFriendRequestComposeViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSStoryboardSegue",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSSeguePerforming for GKFriendRequestComposeViewController {}
 
-#[cfg(feature = "GameKit_GKFriendRequestComposeViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSUserInterfaceItemIdentification for GKFriendRequestComposeViewController {}
 
 extern_methods!(
-    #[cfg(feature = "GameKit_GKFriendRequestComposeViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl GKFriendRequestComposeViewController {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `NSViewController`
-    #[cfg(feature = "GameKit_GKFriendRequestComposeViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl GKFriendRequestComposeViewController {
-        #[cfg(all(feature = "Foundation_NSBundle", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSNib",
+            feature = "Foundation_NSBundle",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -62,7 +86,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "GameKit_GKFriendRequestComposeViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl GKFriendRequestComposeViewController {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -71,7 +95,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameKit_GKFriendRequestComposeViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl GKFriendRequestComposeViewController {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -79,7 +103,7 @@ extern_methods!(
 );
 
 extern_methods!(
-    #[cfg(feature = "GameKit_GKFriendRequestComposeViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl GKFriendRequestComposeViewController {
         #[deprecated]
         #[method(maxNumberOfRecipients)]
@@ -90,7 +114,11 @@ extern_methods!(
         #[method(setMessage:)]
         pub unsafe fn setMessage(&self, message: Option<&NSString>);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "GameKit_GKPlayer"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "GameKit_GKBasePlayer",
+            feature = "GameKit_GKPlayer"
+        ))]
         #[method(addRecipientPlayers:)]
         pub unsafe fn addRecipientPlayers(&self, players: &NSArray<GKPlayer>);
 
@@ -124,7 +152,7 @@ extern_methods!(
 extern_protocol!(
     #[deprecated]
     pub unsafe trait GKFriendRequestComposeViewControllerDelegate {
-        #[cfg(feature = "GameKit_GKFriendRequestComposeViewController")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
         #[deprecated]
         #[method(friendRequestComposeViewControllerDidFinish:)]
         unsafe fn friendRequestComposeViewControllerDidFinish(

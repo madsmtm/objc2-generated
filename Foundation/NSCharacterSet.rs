@@ -7,33 +7,29 @@ pub const NSOpenStepUnicodeReservedBase: c_uint = 0xF400;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSCharacterSet")]
     pub struct NSCharacterSet;
 
-    #[cfg(feature = "Foundation_NSCharacterSet")]
     unsafe impl ClassType for NSCharacterSet {
         type Super = NSObject;
         type Mutability = ImmutableWithMutableSubclass<NSMutableCharacterSet>;
     }
 );
 
-#[cfg(feature = "Foundation_NSCharacterSet")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSCharacterSet {}
 
-#[cfg(feature = "Foundation_NSCharacterSet")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSCharacterSet {}
 
-#[cfg(feature = "Foundation_NSCharacterSet")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSMutableCopying for NSCharacterSet {}
 
-#[cfg(feature = "Foundation_NSCharacterSet")]
 unsafe impl NSObjectProtocol for NSCharacterSet {}
 
-#[cfg(feature = "Foundation_NSCharacterSet")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSCharacterSet {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSCharacterSet")]
     unsafe impl NSCharacterSet {
         #[method_id(@__retain_semantics Other controlCharacterSet)]
         pub unsafe fn controlCharacterSet() -> Id<NSCharacterSet>;
@@ -80,6 +76,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other newlineCharacterSet)]
         pub unsafe fn newlineCharacterSet() -> Id<NSCharacterSet>;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method_id(@__retain_semantics Other characterSetWithRange:)]
         pub unsafe fn characterSetWithRange(a_range: NSRange) -> Id<NSCharacterSet>;
 
@@ -102,6 +99,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSString")]
         #[method(characterIsMember:)]
         pub unsafe fn characterIsMember(&self, a_character: unichar) -> bool;
 
@@ -125,7 +123,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSCharacterSet")]
     unsafe impl NSCharacterSet {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -137,10 +134,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSCharacterSet")]
     pub struct NSMutableCharacterSet;
 
-    #[cfg(feature = "Foundation_NSCharacterSet")]
     unsafe impl ClassType for NSMutableCharacterSet {
         #[inherits(NSObject)]
         type Super = NSCharacterSet;
@@ -148,27 +143,27 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSMutableCharacterSet")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSMutableCharacterSet {}
 
-#[cfg(feature = "Foundation_NSMutableCharacterSet")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSMutableCharacterSet {}
 
-#[cfg(feature = "Foundation_NSMutableCharacterSet")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSMutableCopying for NSMutableCharacterSet {}
 
-#[cfg(feature = "Foundation_NSMutableCharacterSet")]
 unsafe impl NSObjectProtocol for NSMutableCharacterSet {}
 
-#[cfg(feature = "Foundation_NSMutableCharacterSet")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSMutableCharacterSet {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSMutableCharacterSet")]
     unsafe impl NSMutableCharacterSet {
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(addCharactersInRange:)]
         pub unsafe fn addCharactersInRange(&mut self, a_range: NSRange);
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(removeCharactersInRange:)]
         pub unsafe fn removeCharactersInRange(&mut self, a_range: NSRange);
 
@@ -234,6 +229,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other newlineCharacterSet)]
         pub unsafe fn newlineCharacterSet() -> Id<NSMutableCharacterSet>;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method_id(@__retain_semantics Other characterSetWithRange:)]
         pub unsafe fn characterSetWithRange(a_range: NSRange) -> Id<NSMutableCharacterSet>;
 
@@ -259,7 +255,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSCharacterSet`
-    #[cfg(feature = "Foundation_NSMutableCharacterSet")]
     unsafe impl NSMutableCharacterSet {
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
@@ -269,7 +264,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSMutableCharacterSet")]
     unsafe impl NSMutableCharacterSet {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -15,10 +15,18 @@ extern_static!(NSSearchFieldNoRecentsMenuItemTag: NSInteger = 1003);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSSearchFieldCell")]
+    #[cfg(all(
+        feature = "AppKit_NSActionCell",
+        feature = "AppKit_NSCell",
+        feature = "AppKit_NSTextFieldCell"
+    ))]
     pub struct NSSearchFieldCell;
 
-    #[cfg(feature = "AppKit_NSSearchFieldCell")]
+    #[cfg(all(
+        feature = "AppKit_NSActionCell",
+        feature = "AppKit_NSCell",
+        feature = "AppKit_NSTextFieldCell"
+    ))]
     unsafe impl ClassType for NSSearchFieldCell {
         #[inherits(NSActionCell, NSCell, NSObject)]
         type Super = NSTextFieldCell;
@@ -26,26 +34,59 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSSearchFieldCell")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSTextFieldCell"
+))]
 unsafe impl NSAccessibility for NSSearchFieldCell {}
 
-#[cfg(feature = "AppKit_NSSearchFieldCell")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSTextFieldCell"
+))]
 unsafe impl NSAccessibilityElementProtocol for NSSearchFieldCell {}
 
-#[cfg(feature = "AppKit_NSSearchFieldCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSTextFieldCell",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSSearchFieldCell {}
 
-#[cfg(feature = "AppKit_NSSearchFieldCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSTextFieldCell",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCopying for NSSearchFieldCell {}
 
-#[cfg(feature = "AppKit_NSSearchFieldCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSTextFieldCell"
+))]
 unsafe impl NSObjectProtocol for NSSearchFieldCell {}
 
-#[cfg(feature = "AppKit_NSSearchFieldCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSTextFieldCell",
+    feature = "AppKit_NSUserInterfaceItemIdentification"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSSearchFieldCell {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSSearchFieldCell")]
+    #[cfg(all(
+        feature = "AppKit_NSActionCell",
+        feature = "AppKit_NSCell",
+        feature = "AppKit_NSTextFieldCell"
+    ))]
     unsafe impl NSSearchFieldCell {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initTextCell:)]
@@ -81,12 +122,15 @@ extern_methods!(
         #[method(resetCancelButtonCell)]
         pub unsafe fn resetCancelButtonCell(&self);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(searchTextRectForBounds:)]
         pub unsafe fn searchTextRectForBounds(&self, rect: NSRect) -> NSRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(searchButtonRectForBounds:)]
         pub unsafe fn searchButtonRectForBounds(&self, rect: NSRect) -> NSRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(cancelButtonRectForBounds:)]
         pub unsafe fn cancelButtonRectForBounds(&self, rect: NSRect) -> NSRect;
 
@@ -118,11 +162,11 @@ extern_methods!(
         #[method(setRecentSearches:)]
         pub unsafe fn setRecentSearches(&self, recent_searches: Option<&NSArray<NSString>>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "AppKit_NSSearchField", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other recentsAutosaveName)]
         pub unsafe fn recentsAutosaveName(&self) -> Option<Id<NSSearchFieldRecentsAutosaveName>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "AppKit_NSSearchField", feature = "Foundation_NSString"))]
         #[method(setRecentsAutosaveName:)]
         pub unsafe fn setRecentsAutosaveName(
             &self,
@@ -139,7 +183,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSCell`
-    #[cfg(feature = "AppKit_NSSearchFieldCell")]
+    #[cfg(all(
+        feature = "AppKit_NSActionCell",
+        feature = "AppKit_NSCell",
+        feature = "AppKit_NSTextFieldCell"
+    ))]
     unsafe impl NSSearchFieldCell {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -148,7 +196,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSSearchFieldCell")]
+    #[cfg(all(
+        feature = "AppKit_NSActionCell",
+        feature = "AppKit_NSCell",
+        feature = "AppKit_NSTextFieldCell"
+    ))]
     unsafe impl NSSearchFieldCell {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

@@ -29,63 +29,62 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MediaPlayer_MPMediaQuery")]
     pub struct MPMediaQuery;
 
-    #[cfg(feature = "MediaPlayer_MPMediaQuery")]
     unsafe impl ClassType for MPMediaQuery {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MediaPlayer_MPMediaQuery")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for MPMediaQuery {}
 
-#[cfg(feature = "MediaPlayer_MPMediaQuery")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MPMediaQuery {}
 
-#[cfg(feature = "MediaPlayer_MPMediaQuery")]
 unsafe impl NSObjectProtocol for MPMediaQuery {}
 
-#[cfg(feature = "MediaPlayer_MPMediaQuery")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for MPMediaQuery {}
 
 extern_methods!(
-    #[cfg(feature = "MediaPlayer_MPMediaQuery")]
     unsafe impl MPMediaQuery {
-        #[cfg(all(feature = "Foundation_NSSet", feature = "MediaPlayer_MPMediaPredicate"))]
+        #[cfg(feature = "Foundation_NSSet")]
         #[method_id(@__retain_semantics Init initWithFilterPredicates:)]
         pub unsafe fn initWithFilterPredicates(
             this: Allocated<Self>,
             filter_predicates: Option<&NSSet<MPMediaPredicate>>,
         ) -> Id<Self>;
 
-        #[cfg(all(feature = "Foundation_NSSet", feature = "MediaPlayer_MPMediaPredicate"))]
+        #[cfg(feature = "Foundation_NSSet")]
         #[method_id(@__retain_semantics Other filterPredicates)]
         pub unsafe fn filterPredicates(&self) -> Option<Id<NSSet<MPMediaPredicate>>>;
 
-        #[cfg(all(feature = "Foundation_NSSet", feature = "MediaPlayer_MPMediaPredicate"))]
+        #[cfg(feature = "Foundation_NSSet")]
         #[method(setFilterPredicates:)]
         pub unsafe fn setFilterPredicates(
             &self,
             filter_predicates: Option<&NSSet<MPMediaPredicate>>,
         );
 
-        #[cfg(feature = "MediaPlayer_MPMediaPredicate")]
         #[method(addFilterPredicate:)]
         pub unsafe fn addFilterPredicate(&self, predicate: &MPMediaPredicate);
 
-        #[cfg(feature = "MediaPlayer_MPMediaPredicate")]
         #[method(removeFilterPredicate:)]
         pub unsafe fn removeFilterPredicate(&self, predicate: &MPMediaPredicate);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "MediaPlayer_MPMediaItem"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "MediaPlayer_MPMediaEntity",
+            feature = "MediaPlayer_MPMediaItem"
+        ))]
         #[method_id(@__retain_semantics Other items)]
         pub unsafe fn items(&self) -> Option<Id<NSArray<MPMediaItem>>>;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
+            feature = "MediaPlayer_MPMediaEntity",
             feature = "MediaPlayer_MPMediaItemCollection"
         ))]
         #[method_id(@__retain_semantics Other collections)]
@@ -142,7 +141,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MediaPlayer_MPMediaQuery")]
     unsafe impl MPMediaQuery {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -154,33 +152,28 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MediaPlayer_MPMediaPredicate")]
     pub struct MPMediaPredicate;
 
-    #[cfg(feature = "MediaPlayer_MPMediaPredicate")]
     unsafe impl ClassType for MPMediaPredicate {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MediaPlayer_MPMediaPredicate")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for MPMediaPredicate {}
 
-#[cfg(feature = "MediaPlayer_MPMediaPredicate")]
 unsafe impl NSObjectProtocol for MPMediaPredicate {}
 
-#[cfg(feature = "MediaPlayer_MPMediaPredicate")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for MPMediaPredicate {}
 
 extern_methods!(
-    #[cfg(feature = "MediaPlayer_MPMediaPredicate")]
     unsafe impl MPMediaPredicate {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MediaPlayer_MPMediaPredicate")]
     unsafe impl MPMediaPredicate {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -202,10 +195,8 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MediaPlayer_MPMediaPropertyPredicate")]
     pub struct MPMediaPropertyPredicate;
 
-    #[cfg(feature = "MediaPlayer_MPMediaPropertyPredicate")]
     unsafe impl ClassType for MPMediaPropertyPredicate {
         #[inherits(NSObject)]
         type Super = MPMediaPredicate;
@@ -213,17 +204,15 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MediaPlayer_MPMediaPropertyPredicate")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for MPMediaPropertyPredicate {}
 
-#[cfg(feature = "MediaPlayer_MPMediaPropertyPredicate")]
 unsafe impl NSObjectProtocol for MPMediaPropertyPredicate {}
 
-#[cfg(feature = "MediaPlayer_MPMediaPropertyPredicate")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for MPMediaPropertyPredicate {}
 
 extern_methods!(
-    #[cfg(feature = "MediaPlayer_MPMediaPropertyPredicate")]
     unsafe impl MPMediaPropertyPredicate {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other predicateWithValue:forProperty:)]
@@ -254,7 +243,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MediaPlayer_MPMediaPropertyPredicate")]
     unsafe impl MPMediaPropertyPredicate {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -266,15 +254,18 @@ extern_methods!(
 
 extern_methods!(
     /// MPMediaQueryAdditions
-    #[cfg(feature = "MediaPlayer_MPMediaItem")]
+    #[cfg(all(
+        feature = "MediaPlayer_MPMediaEntity",
+        feature = "MediaPlayer_MPMediaItem"
+    ))]
     unsafe impl MPMediaItem {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSString", feature = "MediaPlayer_MPMediaQuery"))]
         #[method_id(@__retain_semantics Other persistentIDPropertyForGroupingType:)]
         pub unsafe fn persistentIDPropertyForGroupingType(
             grouping_type: MPMediaGrouping,
         ) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSString", feature = "MediaPlayer_MPMediaQuery"))]
         #[method_id(@__retain_semantics Other titlePropertyForGroupingType:)]
         pub unsafe fn titlePropertyForGroupingType(grouping_type: MPMediaGrouping) -> Id<NSString>;
     }

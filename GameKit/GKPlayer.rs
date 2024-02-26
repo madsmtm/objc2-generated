@@ -10,10 +10,10 @@ extern_static!(GKPlayerIDNoLongerAvailable: &'static NSString);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameKit_GKPlayer")]
+    #[cfg(feature = "GameKit_GKBasePlayer")]
     pub struct GKPlayer;
 
-    #[cfg(feature = "GameKit_GKPlayer")]
+    #[cfg(feature = "GameKit_GKBasePlayer")]
     unsafe impl ClassType for GKPlayer {
         #[inherits(NSObject)]
         type Super = GKBasePlayer;
@@ -21,11 +21,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "GameKit_GKPlayer")]
+#[cfg(feature = "GameKit_GKBasePlayer")]
 unsafe impl NSObjectProtocol for GKPlayer {}
 
 extern_methods!(
-    #[cfg(feature = "GameKit_GKPlayer")]
+    #[cfg(feature = "GameKit_GKBasePlayer")]
     unsafe impl GKPlayer {
         #[method(scopedIDsArePersistent)]
         pub unsafe fn scopedIDsArePersistent(&self) -> bool;
@@ -61,7 +61,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameKit_GKPlayer")]
+    #[cfg(feature = "GameKit_GKBasePlayer")]
     unsafe impl GKPlayer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -83,7 +83,7 @@ ns_enum!(
 
 extern_methods!(
     /// UI
-    #[cfg(feature = "GameKit_GKPlayer")]
+    #[cfg(feature = "GameKit_GKBasePlayer")]
     unsafe impl GKPlayer {
         #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSError"))]
         #[method(loadPhotoForSize:withCompletionHandler:)]
@@ -95,12 +95,12 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(GKPlayerDidChangeNotificationName: &'static NSNotificationName);
 
 extern_methods!(
     /// Deprecated
-    #[cfg(feature = "GameKit_GKPlayer")]
+    #[cfg(feature = "GameKit_GKBasePlayer")]
     unsafe impl GKPlayer {
         #[deprecated]
         #[method(isFriend)]

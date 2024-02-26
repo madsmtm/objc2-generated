@@ -35,21 +35,17 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MediaPlayer_MPNowPlayingInfoCenter")]
     pub struct MPNowPlayingInfoCenter;
 
-    #[cfg(feature = "MediaPlayer_MPNowPlayingInfoCenter")]
     unsafe impl ClassType for MPNowPlayingInfoCenter {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MediaPlayer_MPNowPlayingInfoCenter")]
 unsafe impl NSObjectProtocol for MPNowPlayingInfoCenter {}
 
 extern_methods!(
-    #[cfg(feature = "MediaPlayer_MPNowPlayingInfoCenter")]
     unsafe impl MPNowPlayingInfoCenter {
         #[method_id(@__retain_semantics Other defaultCenter)]
         pub unsafe fn defaultCenter() -> Id<MPNowPlayingInfoCenter>;

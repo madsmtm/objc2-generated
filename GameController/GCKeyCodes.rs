@@ -5,270 +5,404 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::GameController::*;
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeyA: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeyB: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeyC: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeyD: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeyE: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeyF: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeyG: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeyH: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeyI: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeyJ: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeyK: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeyL: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeyM: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeyN: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeyO: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeyP: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeyQ: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeyR: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeyS: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeyT: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeyU: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeyV: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeyW: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeyX: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeyY: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeyZ: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeOne: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeTwo: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeThree: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeFour: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeFive: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeSix: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeSeven: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeEight: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeNine: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeZero: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeReturnOrEnter: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeEscape: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeDeleteOrBackspace: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeTab: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeSpacebar: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeHyphen: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeEqualSign: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeOpenBracket: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeCloseBracket: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeBackslash: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeNonUSPound: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeSemicolon: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeQuote: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeGraveAccentAndTilde: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeComma: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodePeriod: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeSlash: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeCapsLock: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeF1: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeF2: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeF3: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeF4: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeF5: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeF6: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeF7: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeF8: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeF9: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeF10: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeF11: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeF12: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeF13: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeF14: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeF15: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeF16: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeF17: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeF18: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeF19: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeF20: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodePrintScreen: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeScrollLock: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodePause: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeInsert: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeHome: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodePageUp: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeDeleteForward: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeEnd: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodePageDown: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeRightArrow: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeLeftArrow: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeDownArrow: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeUpArrow: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeypadNumLock: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeypadSlash: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeypadAsterisk: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeypadHyphen: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeypadPlus: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeypadEnter: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeypad1: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeypad2: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeypad3: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeypad4: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeypad5: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeypad6: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeypad7: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeypad8: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeypad9: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeypad0: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeypadPeriod: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeKeypadEqualSign: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeNonUSBackslash: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeApplication: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodePower: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeInternational1: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeInternational2: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeInternational3: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeInternational4: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeInternational5: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeInternational6: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeInternational7: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeInternational8: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeInternational9: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeLANG1: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeLANG2: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeLANG3: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeLANG4: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeLANG5: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeLANG6: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeLANG7: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeLANG8: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeLANG9: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeLeftControl: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeLeftShift: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeLeftAlt: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeLeftGUI: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeRightControl: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeRightShift: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeRightAlt: GCKeyCode);
 
+#[cfg(feature = "CoreFoundation_CFBase")]
 extern_static!(GCKeyCodeRightGUI: GCKeyCode);

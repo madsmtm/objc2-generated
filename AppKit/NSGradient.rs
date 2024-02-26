@@ -15,36 +15,30 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSGradient")]
     pub struct NSGradient;
 
-    #[cfg(feature = "AppKit_NSGradient")]
     unsafe impl ClassType for NSGradient {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSGradient")]
 unsafe impl Send for NSGradient {}
 
-#[cfg(feature = "AppKit_NSGradient")]
 unsafe impl Sync for NSGradient {}
 
-#[cfg(feature = "AppKit_NSGradient")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSGradient {}
 
-#[cfg(feature = "AppKit_NSGradient")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSGradient {}
 
-#[cfg(feature = "AppKit_NSGradient")]
 unsafe impl NSObjectProtocol for NSGradient {}
 
-#[cfg(feature = "AppKit_NSGradient")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSGradient {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSGradient")]
     unsafe impl NSGradient {
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Init initWithStartingColor:endingColor:)]
@@ -64,7 +58,8 @@ extern_methods!(
         #[cfg(all(
             feature = "AppKit_NSColor",
             feature = "AppKit_NSColorSpace",
-            feature = "Foundation_NSArray"
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSGeometry"
         ))]
         #[method_id(@__retain_semantics Init initWithColors:atLocations:colorSpace:)]
         pub unsafe fn initWithColors_atLocations_colorSpace(
@@ -78,6 +73,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(drawFromPoint:toPoint:options:)]
         pub unsafe fn drawFromPoint_toPoint_options(
             &self,
@@ -86,13 +82,15 @@ extern_methods!(
             options: NSGradientDrawingOptions,
         );
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(drawInRect:angle:)]
         pub unsafe fn drawInRect_angle(&self, rect: NSRect, angle: CGFloat);
 
-        #[cfg(feature = "AppKit_NSBezierPath")]
+        #[cfg(all(feature = "AppKit_NSBezierPath", feature = "Foundation_NSGeometry"))]
         #[method(drawInBezierPath:angle:)]
         pub unsafe fn drawInBezierPath_angle(&self, path: &NSBezierPath, angle: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(drawFromCenter:radius:toCenter:radius:options:)]
         pub unsafe fn drawFromCenter_radius_toCenter_radius_options(
             &self,
@@ -103,6 +101,7 @@ extern_methods!(
             options: NSGradientDrawingOptions,
         );
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(drawInRect:relativeCenterPosition:)]
         pub unsafe fn drawInRect_relativeCenterPosition(
             &self,
@@ -110,7 +109,7 @@ extern_methods!(
             relative_center_position: NSPoint,
         );
 
-        #[cfg(feature = "AppKit_NSBezierPath")]
+        #[cfg(all(feature = "AppKit_NSBezierPath", feature = "Foundation_NSGeometry"))]
         #[method(drawInBezierPath:relativeCenterPosition:)]
         pub unsafe fn drawInBezierPath_relativeCenterPosition(
             &self,
@@ -125,7 +124,7 @@ extern_methods!(
         #[method(numberOfColorStops)]
         pub unsafe fn numberOfColorStops(&self) -> NSInteger;
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(all(feature = "AppKit_NSColor", feature = "Foundation_NSGeometry"))]
         #[method(getColor:location:atIndex:)]
         pub unsafe fn getColor_location_atIndex(
             &self,
@@ -134,7 +133,7 @@ extern_methods!(
             index: NSInteger,
         );
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(all(feature = "AppKit_NSColor", feature = "Foundation_NSGeometry"))]
         #[method_id(@__retain_semantics Other interpolatedColorAtLocation:)]
         pub unsafe fn interpolatedColorAtLocation(&self, location: CGFloat) -> Id<NSColor>;
     }
@@ -142,7 +141,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSGradient")]
     unsafe impl NSGradient {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

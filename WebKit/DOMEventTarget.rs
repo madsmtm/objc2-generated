@@ -6,9 +6,10 @@ use crate::Foundation::*;
 use crate::WebKit::*;
 
 extern_protocol!(
+    #[cfg(feature = "Foundation_NSObject")]
     #[deprecated]
     pub unsafe trait DOMEventTarget: NSCopying + NSObjectProtocol {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMEventListener"))]
         #[method(addEventListener:listener:useCapture:)]
         unsafe fn addEventListener_listener_useCapture(
             &self,
@@ -17,7 +18,7 @@ extern_protocol!(
             use_capture: bool,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMEventListener"))]
         #[method(removeEventListener:listener:useCapture:)]
         unsafe fn removeEventListener_listener_useCapture(
             &self,
@@ -26,12 +27,16 @@ extern_protocol!(
             use_capture: bool,
         );
 
-        #[cfg(feature = "WebKit_DOMEvent")]
+        #[cfg(all(
+            feature = "WebKit_DOMEvent",
+            feature = "WebKit_DOMObject",
+            feature = "WebKit_WebScriptObject"
+        ))]
         #[deprecated]
         #[method(dispatchEvent:)]
         unsafe fn dispatchEvent(&self, event: Option<&DOMEvent>) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMEventListener"))]
         #[deprecated]
         #[method(addEventListener:::)]
         unsafe fn addEventListener(
@@ -41,7 +46,7 @@ extern_protocol!(
             use_capture: bool,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMEventListener"))]
         #[deprecated]
         #[method(removeEventListener:::)]
         unsafe fn removeEventListener(
@@ -52,5 +57,6 @@ extern_protocol!(
         );
     }
 
+    #[cfg(feature = "Foundation_NSObject")]
     unsafe impl ProtocolType for dyn DOMEventTarget {}
 );

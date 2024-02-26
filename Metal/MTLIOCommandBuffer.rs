@@ -26,6 +26,7 @@ extern_protocol!(
         #[method(addCompletedHandler:)]
         unsafe fn addCompletedHandler(&self, block: MTLIOCommandBufferHandler);
 
+        #[cfg(feature = "Metal_MTLIOCommandQueue")]
         #[method(loadBytes:size:sourceHandle:sourceHandleOffset:)]
         unsafe fn loadBytes_size_sourceHandle_sourceHandleOffset(
             &self,
@@ -35,6 +36,11 @@ extern_protocol!(
             source_handle_offset: NSUInteger,
         );
 
+        #[cfg(all(
+            feature = "Metal_MTLBuffer",
+            feature = "Metal_MTLIOCommandQueue",
+            feature = "Metal_MTLResource"
+        ))]
         #[method(loadBuffer:offset:size:sourceHandle:sourceHandleOffset:)]
         unsafe fn loadBuffer_offset_size_sourceHandle_sourceHandleOffset(
             &self,
@@ -45,6 +51,12 @@ extern_protocol!(
             source_handle_offset: NSUInteger,
         );
 
+        #[cfg(all(
+            feature = "Metal_MTLIOCommandQueue",
+            feature = "Metal_MTLResource",
+            feature = "Metal_MTLTexture",
+            feature = "Metal_MTLTypes"
+        ))]
         #[method(loadTexture:slice:level:size:sourceBytesPerRow:sourceBytesPerImage:destinationOrigin:sourceHandle:sourceHandleOffset:)]
         unsafe fn loadTexture_slice_level_size_sourceBytesPerRow_sourceBytesPerImage_destinationOrigin_sourceHandle_sourceHandleOffset(
             &self,
@@ -59,6 +71,7 @@ extern_protocol!(
             source_handle_offset: NSUInteger,
         );
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method(copyStatusToBuffer:offset:)]
         unsafe fn copyStatusToBuffer_offset(
             &self,
@@ -88,9 +101,11 @@ extern_protocol!(
         #[method(enqueue)]
         unsafe fn enqueue(&self);
 
+        #[cfg(feature = "Metal_MTLEvent")]
         #[method(waitForEvent:value:)]
         unsafe fn waitForEvent_value(&self, event: &ProtocolObject<dyn MTLSharedEvent>, value: u64);
 
+        #[cfg(feature = "Metal_MTLEvent")]
         #[method(signalEvent:value:)]
         unsafe fn signalEvent_value(&self, event: &ProtocolObject<dyn MTLSharedEvent>, value: u64);
 

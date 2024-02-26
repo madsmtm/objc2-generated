@@ -6,10 +6,10 @@ use crate::MetricKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MetricKit_MXCellularConditionMetric")]
+    #[cfg(feature = "MetricKit_MXMetric")]
     pub struct MXCellularConditionMetric;
 
-    #[cfg(feature = "MetricKit_MXCellularConditionMetric")]
+    #[cfg(feature = "MetricKit_MXMetric")]
     unsafe impl ClassType for MXCellularConditionMetric {
         #[inherits(NSObject)]
         type Super = MXMetric;
@@ -17,21 +17,22 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MetricKit_MXCellularConditionMetric")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "MetricKit_MXMetric"))]
 unsafe impl NSCoding for MXCellularConditionMetric {}
 
-#[cfg(feature = "MetricKit_MXCellularConditionMetric")]
+#[cfg(feature = "MetricKit_MXMetric")]
 unsafe impl NSObjectProtocol for MXCellularConditionMetric {}
 
-#[cfg(feature = "MetricKit_MXCellularConditionMetric")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "MetricKit_MXMetric"))]
 unsafe impl NSSecureCoding for MXCellularConditionMetric {}
 
 extern_methods!(
-    #[cfg(feature = "MetricKit_MXCellularConditionMetric")]
+    #[cfg(feature = "MetricKit_MXMetric")]
     unsafe impl MXCellularConditionMetric {
         #[cfg(all(
+            feature = "Foundation_NSUnit",
             feature = "MetricKit_MXHistogram",
-            feature = "MetricKit_MXUnitSignalBars"
+            feature = "MetricKit_MXUnit"
         ))]
         #[method_id(@__retain_semantics Other histogrammedCellularConditionTime)]
         pub unsafe fn histogrammedCellularConditionTime(&self)
@@ -41,7 +42,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MetricKit_MXCellularConditionMetric")]
+    #[cfg(feature = "MetricKit_MXMetric")]
     unsafe impl MXCellularConditionMetric {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

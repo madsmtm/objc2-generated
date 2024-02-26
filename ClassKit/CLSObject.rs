@@ -6,27 +6,23 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "ClassKit_CLSObject")]
     pub struct CLSObject;
 
-    #[cfg(feature = "ClassKit_CLSObject")]
     unsafe impl ClassType for CLSObject {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "ClassKit_CLSObject")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CLSObject {}
 
-#[cfg(feature = "ClassKit_CLSObject")]
 unsafe impl NSObjectProtocol for CLSObject {}
 
-#[cfg(feature = "ClassKit_CLSObject")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CLSObject {}
 
 extern_methods!(
-    #[cfg(feature = "ClassKit_CLSObject")]
     unsafe impl CLSObject {
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other dateCreated)]

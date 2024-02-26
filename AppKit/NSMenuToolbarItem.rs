@@ -7,10 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSMenuToolbarItem")]
+    #[cfg(feature = "AppKit_NSToolbarItem")]
     pub struct NSMenuToolbarItem;
 
-    #[cfg(feature = "AppKit_NSMenuToolbarItem")]
+    #[cfg(feature = "AppKit_NSToolbarItem")]
     unsafe impl ClassType for NSMenuToolbarItem {
         #[inherits(NSObject)]
         type Super = NSToolbarItem;
@@ -18,14 +18,14 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSMenuToolbarItem")]
+#[cfg(all(feature = "AppKit_NSToolbarItem", feature = "Foundation_NSObject"))]
 unsafe impl NSCopying for NSMenuToolbarItem {}
 
-#[cfg(feature = "AppKit_NSMenuToolbarItem")]
+#[cfg(feature = "AppKit_NSToolbarItem")]
 unsafe impl NSObjectProtocol for NSMenuToolbarItem {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSMenuToolbarItem")]
+    #[cfg(feature = "AppKit_NSToolbarItem")]
     unsafe impl NSMenuToolbarItem {
         #[cfg(feature = "AppKit_NSMenu")]
         #[method_id(@__retain_semantics Other menu)]
@@ -45,9 +45,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSToolbarItem`
-    #[cfg(feature = "AppKit_NSMenuToolbarItem")]
+    #[cfg(feature = "AppKit_NSToolbarItem")]
     unsafe impl NSMenuToolbarItem {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
         pub unsafe fn initWithItemIdentifier(
             this: Allocated<Self>,
@@ -58,7 +58,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSMenuToolbarItem")]
+    #[cfg(feature = "AppKit_NSToolbarItem")]
     unsafe impl NSMenuToolbarItem {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -5,36 +5,30 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSDateInterval")]
     pub struct NSDateInterval;
 
-    #[cfg(feature = "Foundation_NSDateInterval")]
     unsafe impl ClassType for NSDateInterval {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSDateInterval")]
 unsafe impl Send for NSDateInterval {}
 
-#[cfg(feature = "Foundation_NSDateInterval")]
 unsafe impl Sync for NSDateInterval {}
 
-#[cfg(feature = "Foundation_NSDateInterval")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSDateInterval {}
 
-#[cfg(feature = "Foundation_NSDateInterval")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSDateInterval {}
 
-#[cfg(feature = "Foundation_NSDateInterval")]
 unsafe impl NSObjectProtocol for NSDateInterval {}
 
-#[cfg(feature = "Foundation_NSDateInterval")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSDateInterval {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSDateInterval")]
     unsafe impl NSDateInterval {
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other startDate)]
@@ -44,6 +38,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other endDate)]
         pub unsafe fn endDate(&self) -> Id<NSDate>;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(duration)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
@@ -70,6 +65,7 @@ extern_methods!(
             end_date: &NSDate,
         ) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSObjCRuntime")]
         #[method(compare:)]
         pub unsafe fn compare(&self, date_interval: &NSDateInterval) -> NSComparisonResult;
 
@@ -93,7 +89,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSDateInterval")]
     unsafe impl NSDateInterval {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

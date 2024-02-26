@@ -9,10 +9,10 @@ use crate::MapKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "EventKit_EKAlarm")]
+    #[cfg(feature = "EventKit_EKObject")]
     pub struct EKAlarm;
 
-    #[cfg(feature = "EventKit_EKAlarm")]
+    #[cfg(feature = "EventKit_EKObject")]
     unsafe impl ClassType for EKAlarm {
         #[inherits(NSObject)]
         type Super = EKObject;
@@ -20,25 +20,28 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "EventKit_EKAlarm")]
+#[cfg(all(feature = "EventKit_EKObject", feature = "Foundation_NSObject"))]
 unsafe impl NSCopying for EKAlarm {}
 
-#[cfg(feature = "EventKit_EKAlarm")]
+#[cfg(feature = "EventKit_EKObject")]
 unsafe impl NSObjectProtocol for EKAlarm {}
 
 extern_methods!(
-    #[cfg(feature = "EventKit_EKAlarm")]
+    #[cfg(feature = "EventKit_EKObject")]
     unsafe impl EKAlarm {
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other alarmWithAbsoluteDate:)]
         pub unsafe fn alarmWithAbsoluteDate(date: &NSDate) -> Id<EKAlarm>;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other alarmWithRelativeOffset:)]
         pub unsafe fn alarmWithRelativeOffset(offset: NSTimeInterval) -> Id<EKAlarm>;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(relativeOffset)]
         pub unsafe fn relativeOffset(&self) -> NSTimeInterval;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(setRelativeOffset:)]
         pub unsafe fn setRelativeOffset(&self, relative_offset: NSTimeInterval);
 
@@ -61,12 +64,15 @@ extern_methods!(
             structured_location: Option<&EKStructuredLocation>,
         );
 
+        #[cfg(feature = "EventKit_EKTypes")]
         #[method(proximity)]
         pub unsafe fn proximity(&self) -> EKAlarmProximity;
 
+        #[cfg(feature = "EventKit_EKTypes")]
         #[method(setProximity:)]
         pub unsafe fn setProximity(&self, proximity: EKAlarmProximity);
 
+        #[cfg(feature = "EventKit_EKTypes")]
         #[method(type)]
         pub unsafe fn r#type(&self) -> EKAlarmType;
 
@@ -100,7 +106,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "EventKit_EKAlarm")]
+    #[cfg(feature = "EventKit_EKObject")]
     unsafe impl EKAlarm {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

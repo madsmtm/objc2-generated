@@ -9,37 +9,35 @@ use crate::MapKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKMapCameraBoundary")]
     pub struct MKMapCameraBoundary;
 
-    #[cfg(feature = "MapKit_MKMapCameraBoundary")]
     unsafe impl ClassType for MKMapCameraBoundary {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MapKit_MKMapCameraBoundary")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for MKMapCameraBoundary {}
 
-#[cfg(feature = "MapKit_MKMapCameraBoundary")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MKMapCameraBoundary {}
 
-#[cfg(feature = "MapKit_MKMapCameraBoundary")]
 unsafe impl NSObjectProtocol for MKMapCameraBoundary {}
 
-#[cfg(feature = "MapKit_MKMapCameraBoundary")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for MKMapCameraBoundary {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKMapCameraBoundary")]
     unsafe impl MKMapCameraBoundary {
+        #[cfg(feature = "MapKit_MKGeometry")]
         #[method_id(@__retain_semantics Init initWithMapRect:)]
         pub unsafe fn initWithMapRect(
             this: Allocated<Self>,
             map_rect: MKMapRect,
         ) -> Option<Id<Self>>;
 
+        #[cfg(all(feature = "CoreLocation_CLLocation", feature = "MapKit_MKGeometry"))]
         #[method_id(@__retain_semantics Init initWithCoordinateRegion:)]
         pub unsafe fn initWithCoordinateRegion(
             this: Allocated<Self>,
@@ -50,9 +48,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
 
+        #[cfg(feature = "MapKit_MKGeometry")]
         #[method(mapRect)]
         pub unsafe fn mapRect(&self) -> MKMapRect;
 
+        #[cfg(all(feature = "CoreLocation_CLLocation", feature = "MapKit_MKGeometry"))]
         #[method(region)]
         pub unsafe fn region(&self) -> MKCoordinateRegion;
     }
@@ -60,7 +60,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MapKit_MKMapCameraBoundary")]
     unsafe impl MKMapCameraBoundary {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

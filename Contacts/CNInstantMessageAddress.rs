@@ -6,30 +6,26 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Contacts_CNInstantMessageAddress")]
     pub struct CNInstantMessageAddress;
 
-    #[cfg(feature = "Contacts_CNInstantMessageAddress")]
     unsafe impl ClassType for CNInstantMessageAddress {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Contacts_CNInstantMessageAddress")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CNInstantMessageAddress {}
 
-#[cfg(feature = "Contacts_CNInstantMessageAddress")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for CNInstantMessageAddress {}
 
-#[cfg(feature = "Contacts_CNInstantMessageAddress")]
 unsafe impl NSObjectProtocol for CNInstantMessageAddress {}
 
-#[cfg(feature = "Contacts_CNInstantMessageAddress")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CNInstantMessageAddress {}
 
 extern_methods!(
-    #[cfg(feature = "Contacts_CNInstantMessageAddress")]
     unsafe impl CNInstantMessageAddress {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other username)]
@@ -59,7 +55,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Contacts_CNInstantMessageAddress")]
     unsafe impl CNInstantMessageAddress {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

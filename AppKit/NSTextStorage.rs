@@ -15,10 +15,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTextStorage")]
+    #[cfg(feature = "Foundation_NSAttributedString")]
     pub struct NSTextStorage;
 
-    #[cfg(feature = "AppKit_NSTextStorage")]
+    #[cfg(feature = "Foundation_NSAttributedString")]
     unsafe impl ClassType for NSTextStorage {
         #[inherits(NSAttributedString, NSObject)]
         type Super = NSMutableAttributedString;
@@ -26,17 +26,23 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSTextStorage")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSTextStorage {}
 
-#[cfg(feature = "AppKit_NSTextStorage")]
+#[cfg(feature = "Foundation_NSAttributedString")]
 unsafe impl NSObjectProtocol for NSTextStorage {}
 
-#[cfg(feature = "AppKit_NSTextStorage")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSSecureCoding for NSTextStorage {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTextStorage")]
+    #[cfg(feature = "Foundation_NSAttributedString")]
     unsafe impl NSTextStorage {
         #[cfg(all(feature = "AppKit_NSLayoutManager", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other layoutManagers)]
@@ -53,6 +59,7 @@ extern_methods!(
         #[method(editedMask)]
         pub unsafe fn editedMask(&self) -> NSTextStorageEditActions;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(editedRange)]
         pub unsafe fn editedRange(&self) -> NSRange;
 
@@ -68,6 +75,7 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn NSTextStorageDelegate>>,
         );
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(edited:range:changeInLength:)]
         pub unsafe fn edited_range_changeInLength(
             &mut self,
@@ -82,9 +90,11 @@ extern_methods!(
         #[method(fixesAttributesLazily)]
         pub unsafe fn fixesAttributesLazily(&self) -> bool;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(invalidateAttributesInRange:)]
         pub unsafe fn invalidateAttributesInRange(&mut self, range: NSRange);
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(ensureAttributesAreFixedInRange:)]
         pub unsafe fn ensureAttributesAreFixedInRange(&mut self, range: NSRange);
 
@@ -103,7 +113,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTextStorage")]
+    #[cfg(feature = "Foundation_NSAttributedString")]
     unsafe impl NSTextStorage {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -115,7 +125,10 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSTextStorageDelegate: NSObjectProtocol {
-        #[cfg(feature = "AppKit_NSTextStorage")]
+        #[cfg(all(
+            feature = "Foundation_NSAttributedString",
+            feature = "Foundation_NSRange"
+        ))]
         #[optional]
         #[method(textStorage:willProcessEditing:range:changeInLength:)]
         unsafe fn textStorage_willProcessEditing_range_changeInLength(
@@ -126,7 +139,10 @@ extern_protocol!(
             delta: NSInteger,
         );
 
-        #[cfg(feature = "AppKit_NSTextStorage")]
+        #[cfg(all(
+            feature = "Foundation_NSAttributedString",
+            feature = "Foundation_NSRange"
+        ))]
         #[optional]
         #[method(textStorage:didProcessEditing:range:changeInLength:)]
         unsafe fn textStorage_didProcessEditing_range_changeInLength(
@@ -141,23 +157,26 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSTextStorageDelegate {}
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSTextStorageWillProcessEditingNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSTextStorageDidProcessEditingNotification: &'static NSNotificationName);
 
 extern_protocol!(
     pub unsafe trait NSTextStorageObserving: NSObjectProtocol {
-        #[cfg(feature = "AppKit_NSTextStorage")]
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other textStorage)]
         unsafe fn textStorage(&self) -> Option<Id<NSTextStorage>>;
 
-        #[cfg(feature = "AppKit_NSTextStorage")]
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(setTextStorage:)]
         unsafe fn setTextStorage(&self, text_storage: Option<&NSTextStorage>);
 
-        #[cfg(feature = "AppKit_NSTextStorage")]
+        #[cfg(all(
+            feature = "Foundation_NSAttributedString",
+            feature = "Foundation_NSRange"
+        ))]
         #[method(processEditingForTextStorage:edited:range:changeInLength:invalidatedRange:)]
         unsafe fn processEditingForTextStorage_edited_range_changeInLength_invalidatedRange(
             &self,
@@ -168,7 +187,7 @@ extern_protocol!(
             invalidated_char_range: NSRange,
         );
 
-        #[cfg(feature = "AppKit_NSTextStorage")]
+        #[cfg(feature = "Foundation_NSAttributedString")]
         #[method(performEditingTransactionForTextStorage:usingBlock:)]
         unsafe fn performEditingTransactionForTextStorage_usingBlock(
             &self,

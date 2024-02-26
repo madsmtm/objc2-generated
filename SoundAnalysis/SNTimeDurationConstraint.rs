@@ -16,21 +16,17 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "SoundAnalysis_SNTimeDurationConstraint")]
     pub struct SNTimeDurationConstraint;
 
-    #[cfg(feature = "SoundAnalysis_SNTimeDurationConstraint")]
     unsafe impl ClassType for SNTimeDurationConstraint {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "SoundAnalysis_SNTimeDurationConstraint")]
 unsafe impl NSObjectProtocol for SNTimeDurationConstraint {}
 
 extern_methods!(
-    #[cfg(feature = "SoundAnalysis_SNTimeDurationConstraint")]
     unsafe impl SNTimeDurationConstraint {
         #[method(type)]
         pub unsafe fn r#type(&self) -> SNTimeDurationConstraintType;

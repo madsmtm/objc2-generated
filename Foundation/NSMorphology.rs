@@ -163,30 +163,26 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSMorphology")]
     pub struct NSMorphology;
 
-    #[cfg(feature = "Foundation_NSMorphology")]
     unsafe impl ClassType for NSMorphology {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSMorphology")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSMorphology {}
 
-#[cfg(feature = "Foundation_NSMorphology")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSMorphology {}
 
-#[cfg(feature = "Foundation_NSMorphology")]
 unsafe impl NSObjectProtocol for NSMorphology {}
 
-#[cfg(feature = "Foundation_NSMorphology")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSMorphology {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSMorphology")]
     unsafe impl NSMorphology {
         #[method(grammaticalGender)]
         pub unsafe fn grammaticalGender(&self) -> NSGrammaticalGender;
@@ -240,7 +236,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSMorphology")]
     unsafe impl NSMorphology {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -252,30 +247,26 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSMorphologyPronoun")]
     pub struct NSMorphologyPronoun;
 
-    #[cfg(feature = "Foundation_NSMorphologyPronoun")]
     unsafe impl ClassType for NSMorphologyPronoun {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSMorphologyPronoun")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSMorphologyPronoun {}
 
-#[cfg(feature = "Foundation_NSMorphologyPronoun")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSMorphologyPronoun {}
 
-#[cfg(feature = "Foundation_NSMorphologyPronoun")]
 unsafe impl NSObjectProtocol for NSMorphologyPronoun {}
 
-#[cfg(feature = "Foundation_NSMorphologyPronoun")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSMorphologyPronoun {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSMorphologyPronoun")]
     unsafe impl NSMorphologyPronoun {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -283,7 +274,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(all(feature = "Foundation_NSMorphology", feature = "Foundation_NSString"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithPronoun:morphology:dependentMorphology:)]
         pub unsafe fn initWithPronoun_morphology_dependentMorphology(
             this: Allocated<Self>,
@@ -296,11 +287,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Other pronoun)]
         pub unsafe fn pronoun(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSMorphology")]
         #[method_id(@__retain_semantics Other morphology)]
         pub unsafe fn morphology(&self) -> Id<NSMorphology>;
 
-        #[cfg(feature = "Foundation_NSMorphology")]
         #[method_id(@__retain_semantics Other dependentMorphology)]
         pub unsafe fn dependentMorphology(&self) -> Option<Id<NSMorphology>>;
     }
@@ -308,12 +297,8 @@ extern_methods!(
 
 extern_methods!(
     /// NSCustomPronouns
-    #[cfg(feature = "Foundation_NSMorphology")]
     unsafe impl NSMorphology {
-        #[cfg(all(
-            feature = "Foundation_NSMorphologyCustomPronoun",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use NSTermOfAddress instead"]
         #[method_id(@__retain_semantics Other customPronounForLanguage:)]
         pub unsafe fn customPronounForLanguage(
@@ -321,11 +306,7 @@ extern_methods!(
             language: &NSString,
         ) -> Option<Id<NSMorphologyCustomPronoun>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSMorphologyCustomPronoun",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[deprecated = "Use NSTermOfAddress instead"]
         #[method(setCustomPronoun:forLanguage:error:_)]
         pub unsafe fn setCustomPronoun_forLanguage_error(
@@ -338,31 +319,27 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSMorphologyCustomPronoun")]
     #[deprecated = "Use NSTermOfAddress instead"]
     pub struct NSMorphologyCustomPronoun;
 
-    #[cfg(feature = "Foundation_NSMorphologyCustomPronoun")]
     unsafe impl ClassType for NSMorphologyCustomPronoun {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSMorphologyCustomPronoun")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSMorphologyCustomPronoun {}
 
-#[cfg(feature = "Foundation_NSMorphologyCustomPronoun")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSMorphologyCustomPronoun {}
 
-#[cfg(feature = "Foundation_NSMorphologyCustomPronoun")]
 unsafe impl NSObjectProtocol for NSMorphologyCustomPronoun {}
 
-#[cfg(feature = "Foundation_NSMorphologyCustomPronoun")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSMorphologyCustomPronoun {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSMorphologyCustomPronoun")]
     unsafe impl NSMorphologyCustomPronoun {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use NSTermOfAddress instead"]
@@ -431,7 +408,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSMorphologyCustomPronoun")]
     unsafe impl NSMorphologyCustomPronoun {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -443,7 +419,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSMorphologyUserSettings
-    #[cfg(feature = "Foundation_NSMorphology")]
     unsafe impl NSMorphology {
         #[method(isUnspecified)]
         pub unsafe fn isUnspecified(&self) -> bool;

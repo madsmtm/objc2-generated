@@ -6,29 +6,25 @@ use crate::IdentityLookup::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "IdentityLookup_ILNetworkResponse")]
     pub struct ILNetworkResponse;
 
-    #[cfg(feature = "IdentityLookup_ILNetworkResponse")]
     unsafe impl ClassType for ILNetworkResponse {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "IdentityLookup_ILNetworkResponse")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for ILNetworkResponse {}
 
-#[cfg(feature = "IdentityLookup_ILNetworkResponse")]
 unsafe impl NSObjectProtocol for ILNetworkResponse {}
 
-#[cfg(feature = "IdentityLookup_ILNetworkResponse")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for ILNetworkResponse {}
 
 extern_methods!(
-    #[cfg(feature = "IdentityLookup_ILNetworkResponse")]
     unsafe impl ILNetworkResponse {
-        #[cfg(feature = "Foundation_NSHTTPURLResponse")]
+        #[cfg(feature = "Foundation_NSURLResponse")]
         #[method_id(@__retain_semantics Other urlResponse)]
         pub unsafe fn urlResponse(&self) -> Id<NSHTTPURLResponse>;
 
@@ -43,7 +39,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "IdentityLookup_ILNetworkResponse")]
     unsafe impl ILNetworkResponse {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

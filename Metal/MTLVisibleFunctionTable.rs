@@ -6,24 +6,20 @@ use crate::Metal::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLVisibleFunctionTableDescriptor")]
     pub struct MTLVisibleFunctionTableDescriptor;
 
-    #[cfg(feature = "Metal_MTLVisibleFunctionTableDescriptor")]
     unsafe impl ClassType for MTLVisibleFunctionTableDescriptor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLVisibleFunctionTableDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLVisibleFunctionTableDescriptor {}
 
-#[cfg(feature = "Metal_MTLVisibleFunctionTableDescriptor")]
 unsafe impl NSObjectProtocol for MTLVisibleFunctionTableDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLVisibleFunctionTableDescriptor")]
     unsafe impl MTLVisibleFunctionTableDescriptor {
         #[method_id(@__retain_semantics Other visibleFunctionTableDescriptor)]
         pub unsafe fn visibleFunctionTableDescriptor() -> Id<MTLVisibleFunctionTableDescriptor>;
@@ -38,7 +34,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLVisibleFunctionTableDescriptor")]
     unsafe impl MTLVisibleFunctionTableDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -49,10 +44,13 @@ extern_methods!(
 );
 
 extern_protocol!(
+    #[cfg(feature = "Metal_MTLResource")]
     pub unsafe trait MTLVisibleFunctionTable: MTLResource {
+        #[cfg(feature = "Metal_MTLTypes")]
         #[method(gpuResourceID)]
         unsafe fn gpuResourceID(&self) -> MTLResourceID;
 
+        #[cfg(feature = "Metal_MTLFunctionHandle")]
         #[method(setFunction:atIndex:)]
         unsafe fn setFunction_atIndex(
             &self,
@@ -60,6 +58,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
+        #[cfg(all(feature = "Foundation_NSRange", feature = "Metal_MTLFunctionHandle"))]
         #[method(setFunctions:withRange:)]
         unsafe fn setFunctions_withRange(
             &self,
@@ -68,5 +67,6 @@ extern_protocol!(
         );
     }
 
+    #[cfg(feature = "Metal_MTLResource")]
     unsafe impl ProtocolType for dyn MTLVisibleFunctionTable {}
 );

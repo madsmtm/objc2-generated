@@ -7,14 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(
-        feature = "AuthenticationServices_ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest"
-    )]
+    #[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationRequest")]
     pub struct ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest;
 
-    #[cfg(
-        feature = "AuthenticationServices_ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest"
-    )]
+    #[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationRequest")]
     unsafe impl ClassType
         for ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest
     {
@@ -24,18 +20,14 @@ extern_class!(
     }
 );
 
-#[cfg(
-    feature = "AuthenticationServices_ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest"
-)]
+#[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationRequest")]
 unsafe impl NSObjectProtocol
     for ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest
 {
 }
 
 extern_methods!(
-    #[cfg(
-        feature = "AuthenticationServices_ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest"
-    )]
+    #[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationRequest")]
     unsafe impl ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest {
         #[cfg(all(
             feature = "AuthenticationServices_ASCredentialServiceIdentifier",
@@ -66,9 +58,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(
-        feature = "AuthenticationServices_ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest"
-    )]
+    #[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationRequest")]
     unsafe impl ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

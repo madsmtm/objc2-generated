@@ -5,11 +5,11 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSCalendarDate")]
+    #[cfg(feature = "Foundation_NSDate")]
     #[deprecated = "Use NSCalendar and NSDateComponents and NSDateFormatter instead"]
     pub struct NSCalendarDate;
 
-    #[cfg(feature = "Foundation_NSCalendarDate")]
+    #[cfg(feature = "Foundation_NSDate")]
     unsafe impl ClassType for NSCalendarDate {
         #[inherits(NSObject)]
         type Super = NSDate;
@@ -17,20 +17,20 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSCalendarDate")]
+#[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for NSCalendarDate {}
 
-#[cfg(feature = "Foundation_NSCalendarDate")]
+#[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSObject"))]
 unsafe impl NSCopying for NSCalendarDate {}
 
-#[cfg(feature = "Foundation_NSCalendarDate")]
+#[cfg(feature = "Foundation_NSDate")]
 unsafe impl NSObjectProtocol for NSCalendarDate {}
 
-#[cfg(feature = "Foundation_NSCalendarDate")]
+#[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSObject"))]
 unsafe impl NSSecureCoding for NSCalendarDate {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSCalendarDate")]
+    #[cfg(feature = "Foundation_NSDate")]
     unsafe impl NSCalendarDate {
         #[deprecated = "Use NSCalendar instead"]
         #[method_id(@__retain_semantics Other calendarDate)]
@@ -219,7 +219,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSDate`
-    #[cfg(feature = "Foundation_NSCalendarDate")]
+    #[cfg(feature = "Foundation_NSDate")]
     unsafe impl NSCalendarDate {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -238,7 +238,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSCalendarDate")]
+    #[cfg(feature = "Foundation_NSDate")]
     unsafe impl NSCalendarDate {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

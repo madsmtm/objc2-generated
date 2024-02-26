@@ -10,8 +10,8 @@ extern_methods!(
     unsafe impl CNContact {}
 );
 
-#[cfg(feature = "Contacts_CNContact")]
+#[cfg(all(feature = "Contacts_CNContact", feature = "Foundation_NSItemProvider"))]
 unsafe impl NSItemProviderReading for CNContact {}
 
-#[cfg(feature = "Contacts_CNContact")]
+#[cfg(all(feature = "Contacts_CNContact", feature = "Foundation_NSItemProvider"))]
 unsafe impl NSItemProviderWriting for CNContact {}

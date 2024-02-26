@@ -7,11 +7,17 @@ use crate::GameController::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameController_GCGamepadSnapshot")]
+    #[cfg(all(
+        feature = "GameController_GCGamepad",
+        feature = "GameController_GCPhysicalInputProfile"
+    ))]
     #[deprecated = "GCGamepad has been deprecated, use GCExtendedGamepad instead"]
     pub struct GCGamepadSnapshot;
 
-    #[cfg(feature = "GameController_GCGamepadSnapshot")]
+    #[cfg(all(
+        feature = "GameController_GCGamepad",
+        feature = "GameController_GCPhysicalInputProfile"
+    ))]
     unsafe impl ClassType for GCGamepadSnapshot {
         #[inherits(GCPhysicalInputProfile, NSObject)]
         type Super = GCGamepad;
@@ -19,11 +25,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "GameController_GCGamepadSnapshot")]
+#[cfg(all(
+    feature = "GameController_GCGamepad",
+    feature = "GameController_GCPhysicalInputProfile"
+))]
 unsafe impl NSObjectProtocol for GCGamepadSnapshot {}
 
 extern_methods!(
-    #[cfg(feature = "GameController_GCGamepadSnapshot")]
+    #[cfg(all(
+        feature = "GameController_GCGamepad",
+        feature = "GameController_GCPhysicalInputProfile"
+    ))]
     unsafe impl GCGamepadSnapshot {
         #[cfg(feature = "Foundation_NSData")]
         #[deprecated = "GCGamepad has been deprecated, use GCExtendedGamepad instead"]
@@ -53,7 +65,10 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameController_GCGamepadSnapshot")]
+    #[cfg(all(
+        feature = "GameController_GCGamepad",
+        feature = "GameController_GCPhysicalInputProfile"
+    ))]
     unsafe impl GCGamepadSnapshot {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

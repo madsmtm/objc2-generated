@@ -6,10 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Contacts_CNChangeHistoryFetchRequest")]
+    #[cfg(feature = "Contacts_CNFetchRequest")]
     pub struct CNChangeHistoryFetchRequest;
 
-    #[cfg(feature = "Contacts_CNChangeHistoryFetchRequest")]
+    #[cfg(feature = "Contacts_CNFetchRequest")]
     unsafe impl ClassType for CNChangeHistoryFetchRequest {
         #[inherits(NSObject)]
         type Super = CNFetchRequest;
@@ -17,17 +17,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Contacts_CNChangeHistoryFetchRequest")]
+#[cfg(all(feature = "Contacts_CNFetchRequest", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for CNChangeHistoryFetchRequest {}
 
-#[cfg(feature = "Contacts_CNChangeHistoryFetchRequest")]
+#[cfg(feature = "Contacts_CNFetchRequest")]
 unsafe impl NSObjectProtocol for CNChangeHistoryFetchRequest {}
 
-#[cfg(feature = "Contacts_CNChangeHistoryFetchRequest")]
+#[cfg(all(feature = "Contacts_CNFetchRequest", feature = "Foundation_NSObject"))]
 unsafe impl NSSecureCoding for CNChangeHistoryFetchRequest {}
 
 extern_methods!(
-    #[cfg(feature = "Contacts_CNChangeHistoryFetchRequest")]
+    #[cfg(feature = "Contacts_CNFetchRequest")]
     unsafe impl CNChangeHistoryFetchRequest {
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other startingToken)]
@@ -37,13 +37,21 @@ extern_methods!(
         #[method(setStartingToken:)]
         pub unsafe fn setStartingToken(&self, starting_token: Option<&NSData>);
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(
+            feature = "Contacts_CNContact",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSObject"
+        ))]
         #[method_id(@__retain_semantics Other additionalContactKeyDescriptors)]
         pub unsafe fn additionalContactKeyDescriptors(
             &self,
         ) -> Option<Id<NSArray<ProtocolObject<dyn CNKeyDescriptor>>>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(
+            feature = "Contacts_CNContact",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSObject"
+        ))]
         #[method(setAdditionalContactKeyDescriptors:)]
         pub unsafe fn setAdditionalContactKeyDescriptors(
             &self,
@@ -85,7 +93,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Contacts_CNChangeHistoryFetchRequest")]
+    #[cfg(feature = "Contacts_CNFetchRequest")]
     unsafe impl CNChangeHistoryFetchRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

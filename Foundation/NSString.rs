@@ -56,33 +56,29 @@ ns_options!(
 
 extern_class!(
     #[derive(PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSString")]
     pub struct NSString;
 
-    #[cfg(feature = "Foundation_NSString")]
     unsafe impl ClassType for NSString {
         type Super = NSObject;
         type Mutability = ImmutableWithMutableSubclass<NSMutableString>;
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSString {}
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSString {}
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSMutableCopying for NSString {}
 
-#[cfg(feature = "Foundation_NSString")]
 unsafe impl NSObjectProtocol for NSString {}
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSString {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSString")]
     unsafe impl NSString {
         #[method(length)]
         pub fn length(&self) -> NSUInteger;
@@ -101,14 +97,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSString")]
     unsafe impl NSString {
         #[method_id(@__retain_semantics New new)]
         pub fn new() -> Id<Self>;
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
 impl DefaultId for NSString {
     #[inline]
     fn default_id() -> Id<Self> {
@@ -132,62 +126,44 @@ ns_options!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
 typed_extensible_enum!(
     pub type NSStringTransform = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringTransformLatinToKatakana: &'static NSStringTransform);
 
-#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringTransformLatinToHiragana: &'static NSStringTransform);
 
-#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringTransformLatinToHangul: &'static NSStringTransform);
 
-#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringTransformLatinToArabic: &'static NSStringTransform);
 
-#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringTransformLatinToHebrew: &'static NSStringTransform);
 
-#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringTransformLatinToThai: &'static NSStringTransform);
 
-#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringTransformLatinToCyrillic: &'static NSStringTransform);
 
-#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringTransformLatinToGreek: &'static NSStringTransform);
 
-#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringTransformToLatin: &'static NSStringTransform);
 
-#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringTransformMandarinToLatin: &'static NSStringTransform);
 
-#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringTransformHiraganaToKatakana: &'static NSStringTransform);
 
-#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringTransformFullwidthToHalfwidth: &'static NSStringTransform);
 
-#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringTransformToXMLHex: &'static NSStringTransform);
 
-#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringTransformToUnicodeName: &'static NSStringTransform);
 
-#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringTransformStripCombiningMarks: &'static NSStringTransform);
 
-#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringTransformStripDiacritics: &'static NSStringTransform);
 
 extern_methods!(
     /// NSStringExtensionMethods
-    #[cfg(feature = "Foundation_NSString")]
     unsafe impl NSString {
         #[method_id(@__retain_semantics Other substringFromIndex:)]
         pub unsafe fn substringFromIndex(&self, from: NSUInteger) -> Id<NSString>;
@@ -195,15 +171,19 @@ extern_methods!(
         #[method_id(@__retain_semantics Other substringToIndex:)]
         pub unsafe fn substringToIndex(&self, to: NSUInteger) -> Id<NSString>;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method_id(@__retain_semantics Other substringWithRange:)]
         pub unsafe fn substringWithRange(&self, range: NSRange) -> Id<NSString>;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(getCharacters:range:)]
         pub unsafe fn getCharacters_range(&self, buffer: NonNull<unichar>, range: NSRange);
 
+        #[cfg(feature = "Foundation_NSObjCRuntime")]
         #[method(compare:)]
         pub fn compare(&self, string: &NSString) -> NSComparisonResult;
 
+        #[cfg(feature = "Foundation_NSObjCRuntime")]
         #[method(compare:options:)]
         pub unsafe fn compare_options(
             &self,
@@ -211,6 +191,7 @@ extern_methods!(
             mask: NSStringCompareOptions,
         ) -> NSComparisonResult;
 
+        #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSRange"))]
         #[method(compare:options:range:)]
         pub unsafe fn compare_options_range(
             &self,
@@ -219,6 +200,7 @@ extern_methods!(
             range_of_receiver_to_compare: NSRange,
         ) -> NSComparisonResult;
 
+        #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSRange"))]
         #[method(compare:options:range:locale:)]
         pub unsafe fn compare_options_range_locale(
             &self,
@@ -228,18 +210,22 @@ extern_methods!(
             locale: Option<&AnyObject>,
         ) -> NSComparisonResult;
 
+        #[cfg(feature = "Foundation_NSObjCRuntime")]
         #[method(caseInsensitiveCompare:)]
         pub unsafe fn caseInsensitiveCompare(&self, string: &NSString) -> NSComparisonResult;
 
+        #[cfg(feature = "Foundation_NSObjCRuntime")]
         #[method(localizedCompare:)]
         pub unsafe fn localizedCompare(&self, string: &NSString) -> NSComparisonResult;
 
+        #[cfg(feature = "Foundation_NSObjCRuntime")]
         #[method(localizedCaseInsensitiveCompare:)]
         pub unsafe fn localizedCaseInsensitiveCompare(
             &self,
             string: &NSString,
         ) -> NSComparisonResult;
 
+        #[cfg(feature = "Foundation_NSObjCRuntime")]
         #[method(localizedStandardCompare:)]
         pub unsafe fn localizedStandardCompare(&self, string: &NSString) -> NSComparisonResult;
 
@@ -268,12 +254,15 @@ extern_methods!(
         #[method(localizedStandardContainsString:)]
         pub unsafe fn localizedStandardContainsString(&self, str: &NSString) -> bool;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(localizedStandardRangeOfString:)]
         pub unsafe fn localizedStandardRangeOfString(&self, str: &NSString) -> NSRange;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(rangeOfString:)]
         pub unsafe fn rangeOfString(&self, search_string: &NSString) -> NSRange;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(rangeOfString:options:)]
         pub unsafe fn rangeOfString_options(
             &self,
@@ -281,6 +270,7 @@ extern_methods!(
             mask: NSStringCompareOptions,
         ) -> NSRange;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(rangeOfString:options:range:)]
         pub unsafe fn rangeOfString_options_range(
             &self,
@@ -289,7 +279,7 @@ extern_methods!(
             range_of_receiver_to_search: NSRange,
         ) -> NSRange;
 
-        #[cfg(feature = "Foundation_NSLocale")]
+        #[cfg(all(feature = "Foundation_NSLocale", feature = "Foundation_NSRange"))]
         #[method(rangeOfString:options:range:locale:)]
         pub unsafe fn rangeOfString_options_range_locale(
             &self,
@@ -299,11 +289,11 @@ extern_methods!(
             locale: Option<&NSLocale>,
         ) -> NSRange;
 
-        #[cfg(feature = "Foundation_NSCharacterSet")]
+        #[cfg(all(feature = "Foundation_NSCharacterSet", feature = "Foundation_NSRange"))]
         #[method(rangeOfCharacterFromSet:)]
         pub unsafe fn rangeOfCharacterFromSet(&self, search_set: &NSCharacterSet) -> NSRange;
 
-        #[cfg(feature = "Foundation_NSCharacterSet")]
+        #[cfg(all(feature = "Foundation_NSCharacterSet", feature = "Foundation_NSRange"))]
         #[method(rangeOfCharacterFromSet:options:)]
         pub unsafe fn rangeOfCharacterFromSet_options(
             &self,
@@ -311,7 +301,7 @@ extern_methods!(
             mask: NSStringCompareOptions,
         ) -> NSRange;
 
-        #[cfg(feature = "Foundation_NSCharacterSet")]
+        #[cfg(all(feature = "Foundation_NSCharacterSet", feature = "Foundation_NSRange"))]
         #[method(rangeOfCharacterFromSet:options:range:)]
         pub unsafe fn rangeOfCharacterFromSet_options_range(
             &self,
@@ -320,9 +310,11 @@ extern_methods!(
             range_of_receiver_to_search: NSRange,
         ) -> NSRange;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(rangeOfComposedCharacterSequenceAtIndex:)]
         pub unsafe fn rangeOfComposedCharacterSequenceAtIndex(&self, index: NSUInteger) -> NSRange;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(rangeOfComposedCharacterSequencesForRange:)]
         pub unsafe fn rangeOfComposedCharacterSequencesForRange(&self, range: NSRange) -> NSRange;
 
@@ -378,6 +370,7 @@ extern_methods!(
         pub unsafe fn capitalizedStringWithLocale(&self, locale: Option<&NSLocale>)
             -> Id<NSString>;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(getLineStart:end:contentsEnd:forRange:)]
         pub unsafe fn getLineStart_end_contentsEnd_forRange(
             &self,
@@ -387,9 +380,11 @@ extern_methods!(
             range: NSRange,
         );
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(lineRangeForRange:)]
         pub unsafe fn lineRangeForRange(&self, range: NSRange) -> NSRange;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(getParagraphStart:end:contentsEnd:forRange:)]
         pub unsafe fn getParagraphStart_end_contentsEnd_forRange(
             &self,
@@ -399,9 +394,11 @@ extern_methods!(
             range: NSRange,
         );
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(paragraphRangeForRange:)]
         pub unsafe fn paragraphRangeForRange(&self, range: NSRange) -> NSRange;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(enumerateSubstringsInRange:options:usingBlock:)]
         pub unsafe fn enumerateSubstringsInRange_options_usingBlock(
             &self,
@@ -451,6 +448,7 @@ extern_methods!(
             encoding: NSStringEncoding,
         ) -> bool;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(getBytes:maxLength:usedLength:encoding:options:range:remainingRange:)]
         pub unsafe fn getBytes_maxLength_usedLength_encoding_options_range_remainingRange(
             &self,
@@ -525,6 +523,7 @@ extern_methods!(
             locale: Option<&NSLocale>,
         ) -> Id<NSString>;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method_id(@__retain_semantics Other stringByReplacingOccurrencesOfString:withString:options:range:)]
         pub unsafe fn stringByReplacingOccurrencesOfString_withString_options_range(
             &self,
@@ -541,6 +540,7 @@ extern_methods!(
             replacement: &NSString,
         ) -> Id<NSString>;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method_id(@__retain_semantics Other stringByReplacingCharactersInRange:withString:)]
         pub unsafe fn stringByReplacingCharactersInRange_withString(
             &self,
@@ -741,7 +741,6 @@ extern_methods!(
     /// Methods declared on superclass `NSString`
     ///
     /// NSStringExtensionMethods
-    #[cfg(feature = "Foundation_NSMutableString")]
     unsafe impl NSMutableString {
         #[method_id(@__retain_semantics Init initWithCharactersNoCopy:length:freeWhenDone:)]
         pub unsafe fn initWithCharactersNoCopy_length_freeWhenDone(
@@ -901,35 +900,26 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
 typed_enum!(
     pub type NSStringEncodingDetectionOptionsKey = NSString;
 );
 
-#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringEncodingDetectionSuggestedEncodingsKey: &'static NSStringEncodingDetectionOptionsKey);
 
-#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringEncodingDetectionDisallowedEncodingsKey: &'static NSStringEncodingDetectionOptionsKey);
 
-#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringEncodingDetectionUseOnlySuggestedEncodingsKey: &'static NSStringEncodingDetectionOptionsKey);
 
-#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringEncodingDetectionAllowLossyKey: &'static NSStringEncodingDetectionOptionsKey);
 
-#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringEncodingDetectionFromWindowsKey: &'static NSStringEncodingDetectionOptionsKey);
 
-#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringEncodingDetectionLossySubstitutionKey: &'static NSStringEncodingDetectionOptionsKey);
 
-#[cfg(feature = "Foundation_NSString")]
 extern_static!(NSStringEncodingDetectionLikelyLanguageKey: &'static NSStringEncodingDetectionOptionsKey);
 
 extern_methods!(
     /// NSStringEncodingDetection
-    #[cfg(feature = "Foundation_NSString")]
     unsafe impl NSString {
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSDictionary"))]
         #[method(stringEncodingForData:encodingOptions:convertedString:usedLossyConversion:)]
@@ -944,22 +934,19 @@ extern_methods!(
 
 extern_methods!(
     /// NSItemProvider
-    #[cfg(feature = "Foundation_NSString")]
     unsafe impl NSString {}
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "Foundation_NSItemProvider")]
 unsafe impl NSItemProviderReading for NSString {}
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "Foundation_NSItemProvider")]
 unsafe impl NSItemProviderWriting for NSString {}
 
 extern_class!(
     #[derive(PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSString")]
     pub struct NSMutableString;
 
-    #[cfg(feature = "Foundation_NSString")]
     unsafe impl ClassType for NSMutableString {
         #[inherits(NSObject)]
         type Super = NSString;
@@ -967,24 +954,23 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSMutableString")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSMutableString {}
 
-#[cfg(feature = "Foundation_NSMutableString")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSMutableString {}
 
-#[cfg(feature = "Foundation_NSMutableString")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSMutableCopying for NSMutableString {}
 
-#[cfg(feature = "Foundation_NSMutableString")]
 unsafe impl NSObjectProtocol for NSMutableString {}
 
-#[cfg(feature = "Foundation_NSMutableString")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSMutableString {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSMutableString")]
     unsafe impl NSMutableString {
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(replaceCharactersInRange:withString:)]
         pub unsafe fn replaceCharactersInRange_withString(
             &mut self,
@@ -996,7 +982,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSString`
-    #[cfg(feature = "Foundation_NSMutableString")]
     unsafe impl NSMutableString {
         #[method_id(@__retain_semantics Init init)]
         pub fn init(this: Allocated<Self>) -> Id<Self>;
@@ -1009,14 +994,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSMutableString")]
     unsafe impl NSMutableString {
         #[method_id(@__retain_semantics New new)]
         pub fn new() -> Id<Self>;
     }
 );
 
-#[cfg(feature = "Foundation_NSMutableString")]
 impl DefaultId for NSMutableString {
     #[inline]
     fn default_id() -> Id<Self> {
@@ -1026,11 +1009,11 @@ impl DefaultId for NSMutableString {
 
 extern_methods!(
     /// NSMutableStringExtensionMethods
-    #[cfg(feature = "Foundation_NSMutableString")]
     unsafe impl NSMutableString {
         #[method(insertString:atIndex:)]
         pub unsafe fn insertString_atIndex(&mut self, a_string: &NSString, loc: NSUInteger);
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(deleteCharactersInRange:)]
         pub unsafe fn deleteCharactersInRange(&mut self, range: NSRange);
 
@@ -1040,6 +1023,7 @@ extern_methods!(
         #[method(setString:)]
         pub fn setString(&mut self, a_string: &NSString);
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(replaceOccurrencesOfString:withString:options:range:)]
         pub unsafe fn replaceOccurrencesOfString_withString_options_range(
             &mut self,
@@ -1049,6 +1033,7 @@ extern_methods!(
             search_range: NSRange,
         ) -> NSUInteger;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(applyTransform:reverse:range:updatedRange:)]
         pub unsafe fn applyTransform_reverse_range_updatedRange(
             &mut self,
@@ -1067,15 +1052,14 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "Foundation_NSObjCRuntime")]
 extern_static!(NSCharacterConversionException: &'static NSExceptionName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(feature = "Foundation_NSObjCRuntime")]
 extern_static!(NSParseErrorException: &'static NSExceptionName);
 
 extern_methods!(
     /// NSExtendedStringPropertyListParsing
-    #[cfg(feature = "Foundation_NSString")]
     unsafe impl NSString {
         #[method_id(@__retain_semantics Other propertyList)]
         pub unsafe fn propertyList(&self) -> Id<AnyObject>;
@@ -1088,7 +1072,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSStringDeprecated
-    #[cfg(feature = "Foundation_NSString")]
     unsafe impl NSString {
         #[deprecated = "Use -cStringUsingEncoding: instead"]
         #[method(cString)]
@@ -1110,6 +1093,7 @@ extern_methods!(
         #[method(getCString:maxLength:)]
         pub unsafe fn getCString_maxLength(&self, bytes: NonNull<c_char>, max_length: NSUInteger);
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[deprecated = "Use -getCString:maxLength:encoding: instead"]
         #[method(getCString:maxLength:range:remainingRange:)]
         pub unsafe fn getCString_maxLength_range_remainingRange(
@@ -1199,7 +1183,6 @@ extern_methods!(
     /// Methods declared on superclass `NSString`
     ///
     /// NSStringDeprecated
-    #[cfg(feature = "Foundation_NSMutableString")]
     unsafe impl NSMutableString {
         #[deprecated = "Use -initWithContentsOfFile:encoding:error: instead"]
         #[method_id(@__retain_semantics Init initWithContentsOfFile:)]
@@ -1242,10 +1225,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSSimpleCString")]
     pub struct NSSimpleCString;
 
-    #[cfg(feature = "Foundation_NSSimpleCString")]
     unsafe impl ClassType for NSSimpleCString {
         #[inherits(NSObject)]
         type Super = NSString;
@@ -1253,23 +1234,20 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSSimpleCString")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSSimpleCString {}
 
-#[cfg(feature = "Foundation_NSSimpleCString")]
 unsafe impl NSObjectProtocol for NSSimpleCString {}
 
-#[cfg(feature = "Foundation_NSSimpleCString")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSSimpleCString {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSSimpleCString")]
     unsafe impl NSSimpleCString {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `NSString`
-    #[cfg(feature = "Foundation_NSSimpleCString")]
     unsafe impl NSSimpleCString {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -1282,7 +1260,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSSimpleCString")]
     unsafe impl NSSimpleCString {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -1291,10 +1268,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSConstantString")]
     pub struct NSConstantString;
 
-    #[cfg(feature = "Foundation_NSConstantString")]
     unsafe impl ClassType for NSConstantString {
         #[inherits(NSString, NSObject)]
         type Super = NSSimpleCString;
@@ -1302,23 +1277,20 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSConstantString")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSConstantString {}
 
-#[cfg(feature = "Foundation_NSConstantString")]
 unsafe impl NSObjectProtocol for NSConstantString {}
 
-#[cfg(feature = "Foundation_NSConstantString")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSConstantString {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSConstantString")]
     unsafe impl NSConstantString {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `NSString`
-    #[cfg(feature = "Foundation_NSConstantString")]
     unsafe impl NSConstantString {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -1331,7 +1303,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSConstantString")]
     unsafe impl NSConstantString {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

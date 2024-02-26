@@ -6,30 +6,26 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSEntityDescription")]
     pub struct NSEntityDescription;
 
-    #[cfg(feature = "CoreData_NSEntityDescription")]
     unsafe impl ClassType for NSEntityDescription {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreData_NSEntityDescription")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSEntityDescription {}
 
-#[cfg(feature = "CoreData_NSEntityDescription")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSEntityDescription {}
 
-#[cfg(feature = "CoreData_NSEntityDescription")]
+#[cfg(feature = "Foundation_NSEnumerator")]
 unsafe impl NSFastEnumeration for NSEntityDescription {}
 
-#[cfg(feature = "CoreData_NSEntityDescription")]
 unsafe impl NSObjectProtocol for NSEntityDescription {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSEntityDescription")]
     unsafe impl NSEntityDescription {
         #[cfg(all(
             feature = "CoreData_NSManagedObjectContext",
@@ -128,6 +124,7 @@ extern_methods!(
 
         #[cfg(all(
             feature = "CoreData_NSAttributeDescription",
+            feature = "CoreData_NSPropertyDescription",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString"
         ))]
@@ -136,6 +133,7 @@ extern_methods!(
             -> Id<NSDictionary<NSString, NSAttributeDescription>>;
 
         #[cfg(all(
+            feature = "CoreData_NSPropertyDescription",
             feature = "CoreData_NSRelationshipDescription",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString"
@@ -146,6 +144,7 @@ extern_methods!(
         ) -> Id<NSDictionary<NSString, NSRelationshipDescription>>;
 
         #[cfg(all(
+            feature = "CoreData_NSPropertyDescription",
             feature = "CoreData_NSRelationshipDescription",
             feature = "Foundation_NSArray"
         ))]
@@ -228,7 +227,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSEntityDescription")]
     unsafe impl NSEntityDescription {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

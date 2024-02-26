@@ -6,18 +6,21 @@ use crate::Foundation::*;
 use crate::GameController::*;
 
 #[cfg(all(
+    feature = "CoreFoundation_CFBase",
     feature = "GameController_GCControllerButtonInput",
-    feature = "GameController_GCKeyboardInput"
+    feature = "GameController_GCControllerElement",
+    feature = "GameController_GCKeyCodes",
+    feature = "GameController_GCPhysicalInputProfile"
 ))]
 pub type GCKeyboardValueChangedHandler =
     *mut Block<dyn Fn(NonNull<GCKeyboardInput>, NonNull<GCControllerButtonInput>, GCKeyCode, Bool)>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameController_GCKeyboardInput")]
+    #[cfg(feature = "GameController_GCPhysicalInputProfile")]
     pub struct GCKeyboardInput;
 
-    #[cfg(feature = "GameController_GCKeyboardInput")]
+    #[cfg(feature = "GameController_GCPhysicalInputProfile")]
     unsafe impl ClassType for GCKeyboardInput {
         #[inherits(NSObject)]
         type Super = GCPhysicalInputProfile;
@@ -25,17 +28,27 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "GameController_GCKeyboardInput")]
+#[cfg(feature = "GameController_GCPhysicalInputProfile")]
 unsafe impl NSObjectProtocol for GCKeyboardInput {}
 
 extern_methods!(
-    #[cfg(feature = "GameController_GCKeyboardInput")]
+    #[cfg(feature = "GameController_GCPhysicalInputProfile")]
     unsafe impl GCKeyboardInput {
-        #[cfg(feature = "GameController_GCControllerButtonInput")]
+        #[cfg(all(
+            feature = "CoreFoundation_CFBase",
+            feature = "GameController_GCControllerButtonInput",
+            feature = "GameController_GCControllerElement",
+            feature = "GameController_GCKeyCodes"
+        ))]
         #[method(keyChangedHandler)]
         pub unsafe fn keyChangedHandler(&self) -> GCKeyboardValueChangedHandler;
 
-        #[cfg(feature = "GameController_GCControllerButtonInput")]
+        #[cfg(all(
+            feature = "CoreFoundation_CFBase",
+            feature = "GameController_GCControllerButtonInput",
+            feature = "GameController_GCControllerElement",
+            feature = "GameController_GCKeyCodes"
+        ))]
         #[method(setKeyChangedHandler:)]
         pub unsafe fn setKeyChangedHandler(
             &self,
@@ -45,7 +58,12 @@ extern_methods!(
         #[method(isAnyKeyPressed)]
         pub unsafe fn isAnyKeyPressed(&self) -> bool;
 
-        #[cfg(feature = "GameController_GCControllerButtonInput")]
+        #[cfg(all(
+            feature = "CoreFoundation_CFBase",
+            feature = "GameController_GCControllerButtonInput",
+            feature = "GameController_GCControllerElement",
+            feature = "GameController_GCKeyCodes"
+        ))]
         #[method_id(@__retain_semantics Other buttonForKeyCode:)]
         pub unsafe fn buttonForKeyCode(
             &self,
@@ -56,7 +74,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameController_GCKeyboardInput")]
+    #[cfg(feature = "GameController_GCPhysicalInputProfile")]
     unsafe impl GCKeyboardInput {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

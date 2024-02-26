@@ -5,7 +5,7 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "AppKit_NSPasteboard", feature = "Foundation_NSString"))]
 extern_static!(NSSoundPboardType: &'static NSPasteboardType);
 
 #[cfg(feature = "Foundation_NSString")]
@@ -16,36 +16,32 @@ pub type NSSoundPlaybackDeviceIdentifier = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSSound")]
     pub struct NSSound;
 
-    #[cfg(feature = "AppKit_NSSound")]
     unsafe impl ClassType for NSSound {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSSound")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSSound {}
 
-#[cfg(feature = "AppKit_NSSound")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSSound {}
 
-#[cfg(feature = "AppKit_NSSound")]
 unsafe impl NSObjectProtocol for NSSound {}
 
-#[cfg(feature = "AppKit_NSSound")]
+#[cfg(feature = "AppKit_NSPasteboard")]
 unsafe impl NSPasteboardReading for NSSound {}
 
-#[cfg(feature = "AppKit_NSSound")]
+#[cfg(feature = "AppKit_NSPasteboard")]
 unsafe impl NSPasteboardWriting for NSSound {}
 
-#[cfg(feature = "AppKit_NSSound")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSSound {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSSound")]
     unsafe impl NSSound {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other soundNamed:)]
@@ -122,6 +118,7 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSSoundDelegate>>);
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(duration)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
@@ -131,9 +128,11 @@ extern_methods!(
         #[method(setVolume:)]
         pub unsafe fn setVolume(&self, volume: c_float);
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(currentTime)]
         pub unsafe fn currentTime(&self) -> NSTimeInterval;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(setCurrentTime:)]
         pub unsafe fn setCurrentTime(&self, current_time: NSTimeInterval);
 
@@ -170,7 +169,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSSound")]
     unsafe impl NSSound {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -182,7 +180,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSDeprecated
-    #[cfg(feature = "AppKit_NSSound")]
     unsafe impl NSSound {
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated]
@@ -198,7 +195,6 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSSoundDelegate: NSObjectProtocol + IsMainThreadOnly {
-        #[cfg(feature = "AppKit_NSSound")]
         #[optional]
         #[method(sound:didFinishPlaying:)]
         unsafe fn sound_didFinishPlaying(&self, sound: &NSSound, flag: bool);
@@ -210,7 +206,7 @@ extern_protocol!(
 extern_category!(
     /// Category on [`NSBundle`].
     pub unsafe trait NSBundleSoundExtensions {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "AppKit_NSSound", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other pathForSoundResource:)]
         unsafe fn pathForSoundResource(&self, name: &NSSoundName) -> Option<Id<NSString>>;
     }

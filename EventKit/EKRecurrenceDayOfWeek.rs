@@ -9,40 +9,39 @@ use crate::MapKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "EventKit_EKRecurrenceDayOfWeek")]
     pub struct EKRecurrenceDayOfWeek;
 
-    #[cfg(feature = "EventKit_EKRecurrenceDayOfWeek")]
     unsafe impl ClassType for EKRecurrenceDayOfWeek {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "EventKit_EKRecurrenceDayOfWeek")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for EKRecurrenceDayOfWeek {}
 
-#[cfg(feature = "EventKit_EKRecurrenceDayOfWeek")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for EKRecurrenceDayOfWeek {}
 
-#[cfg(feature = "EventKit_EKRecurrenceDayOfWeek")]
 unsafe impl NSObjectProtocol for EKRecurrenceDayOfWeek {}
 
-#[cfg(feature = "EventKit_EKRecurrenceDayOfWeek")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for EKRecurrenceDayOfWeek {}
 
 extern_methods!(
-    #[cfg(feature = "EventKit_EKRecurrenceDayOfWeek")]
     unsafe impl EKRecurrenceDayOfWeek {
+        #[cfg(feature = "EventKit_EKTypes")]
         #[method_id(@__retain_semantics Other dayOfWeek:)]
         pub unsafe fn dayOfWeek(day_of_the_week: EKWeekday) -> Id<Self>;
 
+        #[cfg(feature = "EventKit_EKTypes")]
         #[method_id(@__retain_semantics Other dayOfWeek:weekNumber:)]
         pub unsafe fn dayOfWeek_weekNumber(
             day_of_the_week: EKWeekday,
             week_number: NSInteger,
         ) -> Id<Self>;
 
+        #[cfg(feature = "EventKit_EKTypes")]
         #[method_id(@__retain_semantics Init initWithDayOfTheWeek:weekNumber:)]
         pub unsafe fn initWithDayOfTheWeek_weekNumber(
             this: Allocated<Self>,
@@ -50,6 +49,7 @@ extern_methods!(
             week_number: NSInteger,
         ) -> Id<Self>;
 
+        #[cfg(feature = "EventKit_EKTypes")]
         #[method(dayOfTheWeek)]
         pub unsafe fn dayOfTheWeek(&self) -> EKWeekday;
 
@@ -60,7 +60,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "EventKit_EKRecurrenceDayOfWeek")]
     unsafe impl EKRecurrenceDayOfWeek {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

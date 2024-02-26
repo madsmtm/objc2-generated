@@ -21,27 +21,23 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MediaPlayer_MPMediaLibrary")]
     pub struct MPMediaLibrary;
 
-    #[cfg(feature = "MediaPlayer_MPMediaLibrary")]
     unsafe impl ClassType for MPMediaLibrary {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MediaPlayer_MPMediaLibrary")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for MPMediaLibrary {}
 
-#[cfg(feature = "MediaPlayer_MPMediaLibrary")]
 unsafe impl NSObjectProtocol for MPMediaLibrary {}
 
-#[cfg(feature = "MediaPlayer_MPMediaLibrary")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for MPMediaLibrary {}
 
 extern_methods!(
-    #[cfg(feature = "MediaPlayer_MPMediaLibrary")]
     unsafe impl MPMediaLibrary {
         #[method_id(@__retain_semantics Other defaultMediaLibrary)]
         pub unsafe fn defaultMediaLibrary() -> Id<MPMediaLibrary>;
@@ -82,8 +78,9 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSError",
             feature = "Foundation_NSUUID",
-            feature = "MediaPlayer_MPMediaPlaylist",
-            feature = "MediaPlayer_MPMediaPlaylistCreationMetadata"
+            feature = "MediaPlayer_MPMediaEntity",
+            feature = "MediaPlayer_MPMediaItemCollection",
+            feature = "MediaPlayer_MPMediaPlaylist"
         ))]
         #[method(getPlaylistWithUUID:creationMetadata:completionHandler:)]
         pub unsafe fn getPlaylistWithUUID_creationMetadata_completionHandler(
@@ -97,7 +94,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MediaPlayer_MPMediaLibrary")]
     unsafe impl MPMediaLibrary {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

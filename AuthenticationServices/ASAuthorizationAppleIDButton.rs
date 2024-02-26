@@ -31,35 +31,83 @@ ns_enum!(
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDButton")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibility for ASAuthorizationAppleIDButton {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDButton")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibilityButton for ASAuthorizationAppleIDButton {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDButton")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibilityElementProtocol for ASAuthorizationAppleIDButton {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDButton")]
+#[cfg(all(
+    feature = "AppKit_NSAnimation",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAnimatablePropertyContainer for ASAuthorizationAppleIDButton {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDButton")]
+#[cfg(all(
+    feature = "AppKit_NSAppearance",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAppearanceCustomization for ASAuthorizationAppleIDButton {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDButton")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for ASAuthorizationAppleIDButton {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDButton")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSDragging",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSDraggingDestination for ASAuthorizationAppleIDButton {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDButton")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSObjectProtocol for ASAuthorizationAppleIDButton {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDButton")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSUserInterfaceItemIdentification for ASAuthorizationAppleIDButton {}
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDButton")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl ASAuthorizationAppleIDButton {
         #[method_id(@__retain_semantics Other buttonWithType:style:)]
         pub unsafe fn buttonWithType_style(
@@ -75,9 +123,11 @@ extern_methods!(
             style: ASAuthorizationAppleIDButtonStyle,
         ) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(cornerRadius)]
         pub unsafe fn cornerRadius(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setCornerRadius:)]
         pub unsafe fn setCornerRadius(&self, corner_radius: CGFloat);
     }
@@ -85,8 +135,13 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSControl`
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDButton")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl ASAuthorizationAppleIDButton {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
 
@@ -98,7 +153,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDButton")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl ASAuthorizationAppleIDButton {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -107,7 +166,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDButton")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl ASAuthorizationAppleIDButton {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

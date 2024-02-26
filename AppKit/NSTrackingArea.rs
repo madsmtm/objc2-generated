@@ -23,29 +23,25 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTrackingArea")]
     pub struct NSTrackingArea;
 
-    #[cfg(feature = "AppKit_NSTrackingArea")]
     unsafe impl ClassType for NSTrackingArea {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSTrackingArea")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSTrackingArea {}
 
-#[cfg(feature = "AppKit_NSTrackingArea")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSTrackingArea {}
 
-#[cfg(feature = "AppKit_NSTrackingArea")]
 unsafe impl NSObjectProtocol for NSTrackingArea {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTrackingArea")]
     unsafe impl NSTrackingArea {
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSGeometry"))]
         #[method_id(@__retain_semantics Init initWithRect:options:owner:userInfo:)]
         pub unsafe fn initWithRect_options_owner_userInfo(
             this: Allocated<Self>,
@@ -55,6 +51,7 @@ extern_methods!(
             user_info: Option<&NSDictionary<AnyObject, AnyObject>>,
         ) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(rect)]
         pub unsafe fn rect(&self) -> NSRect;
 
@@ -72,7 +69,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTrackingArea")]
     unsafe impl NSTrackingArea {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

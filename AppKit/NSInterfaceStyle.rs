@@ -29,10 +29,12 @@ extern_methods!(
     /// NSInterfaceStyle
     #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSResponder {
+        #[cfg(feature = "AppKit_NSInterfaceStyle")]
         #[deprecated]
         #[method(interfaceStyle)]
         pub unsafe fn interfaceStyle(&self) -> NSInterfaceStyle;
 
+        #[cfg(feature = "AppKit_NSInterfaceStyle")]
         #[deprecated]
         #[method(setInterfaceStyle:)]
         pub unsafe fn setInterfaceStyle(&self, interface_style: NSInterfaceStyle);

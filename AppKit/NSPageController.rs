@@ -22,10 +22,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSPageController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     pub struct NSPageController;
 
-    #[cfg(feature = "AppKit_NSPageController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl ClassType for NSPageController {
         #[inherits(NSResponder, NSObject)]
         type Super = NSViewController;
@@ -33,26 +33,46 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSPageController")]
+#[cfg(all(
+    feature = "AppKit_NSAnimation",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSAnimatablePropertyContainer for NSPageController {}
 
-#[cfg(feature = "AppKit_NSPageController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSPageController {}
 
-#[cfg(feature = "AppKit_NSPageController")]
+#[cfg(all(
+    feature = "AppKit_NSKeyValueBinding",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSEditor for NSPageController {}
 
-#[cfg(feature = "AppKit_NSPageController")]
+#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
 unsafe impl NSObjectProtocol for NSPageController {}
 
-#[cfg(feature = "AppKit_NSPageController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSStoryboardSegue",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSSeguePerforming for NSPageController {}
 
-#[cfg(feature = "AppKit_NSPageController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSPageController {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSPageController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl NSPageController {
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSPageControllerDelegate>>>;
@@ -105,9 +125,13 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSViewController`
-    #[cfg(feature = "AppKit_NSPageController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl NSPageController {
-        #[cfg(all(feature = "Foundation_NSBundle", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSNib",
+            feature = "Foundation_NSBundle",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -123,7 +147,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "AppKit_NSPageController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl NSPageController {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -132,7 +156,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSPageController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl NSPageController {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -141,7 +165,11 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSPageControllerDelegate: NSObjectProtocol + IsMainThreadOnly {
-        #[cfg(all(feature = "AppKit_NSPageController", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSViewController",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other pageController:identifierForObject:)]
         unsafe fn pageController_identifierForObject(
@@ -151,7 +179,7 @@ extern_protocol!(
         ) -> Id<NSPageControllerObjectIdentifier>;
 
         #[cfg(all(
-            feature = "AppKit_NSPageController",
+            feature = "AppKit_NSResponder",
             feature = "AppKit_NSViewController",
             feature = "Foundation_NSString"
         ))]
@@ -163,7 +191,11 @@ extern_protocol!(
             identifier: &NSPageControllerObjectIdentifier,
         ) -> Id<NSViewController>;
 
-        #[cfg(feature = "AppKit_NSPageController")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSViewController",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[optional]
         #[method(pageController:frameForObject:)]
         unsafe fn pageController_frameForObject(
@@ -172,10 +204,7 @@ extern_protocol!(
             object: Option<&AnyObject>,
         ) -> NSRect;
 
-        #[cfg(all(
-            feature = "AppKit_NSPageController",
-            feature = "AppKit_NSViewController"
-        ))]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
         #[optional]
         #[method(pageController:prepareViewController:withObject:)]
         unsafe fn pageController_prepareViewController_withObject(
@@ -185,7 +214,7 @@ extern_protocol!(
             object: Option<&AnyObject>,
         );
 
-        #[cfg(feature = "AppKit_NSPageController")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
         #[optional]
         #[method(pageController:didTransitionToObject:)]
         unsafe fn pageController_didTransitionToObject(
@@ -194,12 +223,12 @@ extern_protocol!(
             object: &AnyObject,
         );
 
-        #[cfg(feature = "AppKit_NSPageController")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
         #[optional]
         #[method(pageControllerWillStartLiveTransition:)]
         unsafe fn pageControllerWillStartLiveTransition(&self, page_controller: &NSPageController);
 
-        #[cfg(feature = "AppKit_NSPageController")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
         #[optional]
         #[method(pageControllerDidEndLiveTransition:)]
         unsafe fn pageControllerDidEndLiveTransition(&self, page_controller: &NSPageController);

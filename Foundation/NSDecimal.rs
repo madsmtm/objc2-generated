@@ -39,6 +39,7 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSObjCRuntime")]
     pub unsafe fn NSDecimalCompare(
         left_operand: NonNull<NSDecimal>,
         right_operand: NonNull<NSDecimal>,

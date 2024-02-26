@@ -7,28 +7,26 @@ use crate::GameController::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameController_GCGearShifterElement")]
     pub struct GCGearShifterElement;
 
-    #[cfg(feature = "GameController_GCGearShifterElement")]
     unsafe impl ClassType for GCGearShifterElement {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "GameController_GCGearShifterElement")]
+#[cfg(feature = "GameController_GCPhysicalInputElement")]
 unsafe impl GCPhysicalInputElement for GCGearShifterElement {}
 
-#[cfg(feature = "GameController_GCGearShifterElement")]
 unsafe impl NSObjectProtocol for GCGearShifterElement {}
 
 extern_methods!(
-    #[cfg(feature = "GameController_GCGearShifterElement")]
     unsafe impl GCGearShifterElement {
+        #[cfg(feature = "GameController_GCSwitchPositionInput")]
         #[method_id(@__retain_semantics Other patternInput)]
         pub unsafe fn patternInput(&self) -> Option<Id<ProtocolObject<dyn GCSwitchPositionInput>>>;
 
+        #[cfg(feature = "GameController_GCRelativeInput")]
         #[method_id(@__retain_semantics Other sequentialInput)]
         pub unsafe fn sequentialInput(&self) -> Option<Id<ProtocolObject<dyn GCRelativeInput>>>;
     }
@@ -36,7 +34,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameController_GCGearShifterElement")]
     unsafe impl GCGearShifterElement {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

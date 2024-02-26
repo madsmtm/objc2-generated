@@ -506,36 +506,30 @@ pub type NSURLBookmarkFileCreationOptions = NSUInteger;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSURL")]
     pub struct NSURL;
 
-    #[cfg(feature = "Foundation_NSURL")]
     unsafe impl ClassType for NSURL {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSURL")]
 unsafe impl Send for NSURL {}
 
-#[cfg(feature = "Foundation_NSURL")]
 unsafe impl Sync for NSURL {}
 
-#[cfg(feature = "Foundation_NSURL")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSURL {}
 
-#[cfg(feature = "Foundation_NSURL")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSURL {}
 
-#[cfg(feature = "Foundation_NSURL")]
 unsafe impl NSObjectProtocol for NSURL {}
 
-#[cfg(feature = "Foundation_NSURL")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSURL {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSURL")]
     unsafe impl NSURL {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use NSURLComponents instead, which lets you create a valid URL with any valid combination of URL components and subcomponents (not just scheme, host and path), and lets you set components and subcomponents with either percent-encoded or un-percent-encoded strings."]
@@ -715,7 +709,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other host)]
         pub unsafe fn host(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method_id(@__retain_semantics Other port)]
         pub unsafe fn port(&self) -> Option<Id<NSNumber>>;
 
@@ -906,7 +900,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSURL")]
     unsafe impl NSURL {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -918,7 +911,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSPromisedItems
-    #[cfg(feature = "Foundation_NSURL")]
     unsafe impl NSURL {
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
         #[method(getPromisedItemResourceValue:forKey:error:_)]
@@ -948,48 +940,41 @@ extern_methods!(
 
 extern_methods!(
     /// NSItemProvider
-    #[cfg(feature = "Foundation_NSURL")]
     unsafe impl NSURL {}
 );
 
-#[cfg(feature = "Foundation_NSURL")]
+#[cfg(feature = "Foundation_NSItemProvider")]
 unsafe impl NSItemProviderReading for NSURL {}
 
-#[cfg(feature = "Foundation_NSURL")]
+#[cfg(feature = "Foundation_NSItemProvider")]
 unsafe impl NSItemProviderWriting for NSURL {}
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSURLQueryItem")]
     pub struct NSURLQueryItem;
 
-    #[cfg(feature = "Foundation_NSURLQueryItem")]
     unsafe impl ClassType for NSURLQueryItem {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSURLQueryItem")]
 unsafe impl Send for NSURLQueryItem {}
 
-#[cfg(feature = "Foundation_NSURLQueryItem")]
 unsafe impl Sync for NSURLQueryItem {}
 
-#[cfg(feature = "Foundation_NSURLQueryItem")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSURLQueryItem {}
 
-#[cfg(feature = "Foundation_NSURLQueryItem")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSURLQueryItem {}
 
-#[cfg(feature = "Foundation_NSURLQueryItem")]
 unsafe impl NSObjectProtocol for NSURLQueryItem {}
 
-#[cfg(feature = "Foundation_NSURLQueryItem")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSURLQueryItem {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSURLQueryItem")]
     unsafe impl NSURLQueryItem {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithName:value:)]
@@ -1018,7 +1003,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSURLQueryItem")]
     unsafe impl NSURLQueryItem {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -1030,29 +1014,24 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSURLComponents")]
     pub struct NSURLComponents;
 
-    #[cfg(feature = "Foundation_NSURLComponents")]
     unsafe impl ClassType for NSURLComponents {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSURLComponents")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSURLComponents {}
 
-#[cfg(feature = "Foundation_NSURLComponents")]
 unsafe impl NSObjectProtocol for NSURLComponents {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSURLComponents")]
     unsafe impl NSURLComponents {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Init initWithURL:resolvingAgainstBaseURL:)]
         pub unsafe fn initWithURL_resolvingAgainstBaseURL(
             this: Allocated<Self>,
@@ -1060,7 +1039,6 @@ extern_methods!(
             resolve: bool,
         ) -> Option<Id<Self>>;
 
-        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other componentsWithURL:resolvingAgainstBaseURL:)]
         pub unsafe fn componentsWithURL_resolvingAgainstBaseURL(
             url: &NSURL,
@@ -1093,11 +1071,9 @@ extern_methods!(
             encoding_invalid_characters: bool,
         ) -> Option<Id<Self>>;
 
-        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other URL)]
         pub unsafe fn URL(&self) -> Option<Id<NSURL>>;
 
-        #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other URLRelativeToURL:)]
         pub unsafe fn URLRelativeToURL(&self, base_url: Option<&NSURL>) -> Option<Id<NSURL>>;
 
@@ -1137,11 +1113,11 @@ extern_methods!(
         #[method(setHost:)]
         pub unsafe fn setHost(&self, host: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method_id(@__retain_semantics Other port)]
         pub unsafe fn port(&self) -> Option<Id<NSNumber>>;
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method(setPort:)]
         pub unsafe fn setPort(&self, port: Option<&NSNumber>);
 
@@ -1227,43 +1203,51 @@ extern_methods!(
         #[method(setEncodedHost:)]
         pub unsafe fn setEncodedHost(&self, encoded_host: Option<&NSString>);
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(rangeOfScheme)]
         pub unsafe fn rangeOfScheme(&self) -> NSRange;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(rangeOfUser)]
         pub unsafe fn rangeOfUser(&self) -> NSRange;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(rangeOfPassword)]
         pub unsafe fn rangeOfPassword(&self) -> NSRange;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(rangeOfHost)]
         pub unsafe fn rangeOfHost(&self) -> NSRange;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(rangeOfPort)]
         pub unsafe fn rangeOfPort(&self) -> NSRange;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(rangeOfPath)]
         pub unsafe fn rangeOfPath(&self) -> NSRange;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(rangeOfQuery)]
         pub unsafe fn rangeOfQuery(&self) -> NSRange;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(rangeOfFragment)]
         pub unsafe fn rangeOfFragment(&self) -> NSRange;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURLQueryItem"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other queryItems)]
         pub unsafe fn queryItems(&self) -> Option<Id<NSArray<NSURLQueryItem>>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURLQueryItem"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(setQueryItems:)]
         pub unsafe fn setQueryItems(&self, query_items: Option<&NSArray<NSURLQueryItem>>);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURLQueryItem"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other percentEncodedQueryItems)]
         pub unsafe fn percentEncodedQueryItems(&self) -> Option<Id<NSArray<NSURLQueryItem>>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURLQueryItem"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(setPercentEncodedQueryItems:)]
         pub unsafe fn setPercentEncodedQueryItems(
             &self,
@@ -1274,7 +1258,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSURLComponents")]
     unsafe impl NSURLComponents {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -1337,7 +1320,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSURLPathUtilities
-    #[cfg(feature = "Foundation_NSURL")]
     unsafe impl NSURL {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other fileURLWithPathComponents:)]
@@ -1399,30 +1381,26 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSFileSecurity")]
     pub struct NSFileSecurity;
 
-    #[cfg(feature = "Foundation_NSFileSecurity")]
     unsafe impl ClassType for NSFileSecurity {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSFileSecurity")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSFileSecurity {}
 
-#[cfg(feature = "Foundation_NSFileSecurity")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSFileSecurity {}
 
-#[cfg(feature = "Foundation_NSFileSecurity")]
 unsafe impl NSObjectProtocol for NSFileSecurity {}
 
-#[cfg(feature = "Foundation_NSFileSecurity")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSFileSecurity {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSFileSecurity")]
     unsafe impl NSFileSecurity {
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
@@ -1432,7 +1410,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSFileSecurity")]
     unsafe impl NSFileSecurity {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -1444,7 +1421,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSURLLoading
-    #[cfg(feature = "Foundation_NSURL")]
     unsafe impl NSURL {
         #[cfg(feature = "Foundation_NSData")]
         #[deprecated = "Use NSURLConnection instead"]

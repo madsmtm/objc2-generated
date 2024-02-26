@@ -7,30 +7,30 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationSingleSignOnProvider")]
     pub struct ASAuthorizationSingleSignOnProvider;
 
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationSingleSignOnProvider")]
     unsafe impl ClassType for ASAuthorizationSingleSignOnProvider {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationSingleSignOnProvider")]
+#[cfg(feature = "AuthenticationServices_ASAuthorizationProvider")]
 unsafe impl ASAuthorizationProvider for ASAuthorizationSingleSignOnProvider {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationSingleSignOnProvider")]
 unsafe impl NSObjectProtocol for ASAuthorizationSingleSignOnProvider {}
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationSingleSignOnProvider")]
     unsafe impl ASAuthorizationSingleSignOnProvider {
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other authorizationProviderWithIdentityProviderURL:)]
         pub unsafe fn authorizationProviderWithIdentityProviderURL(url: &NSURL) -> Id<Self>;
 
-        #[cfg(feature = "AuthenticationServices_ASAuthorizationSingleSignOnRequest")]
+        #[cfg(all(
+            feature = "AuthenticationServices_ASAuthorizationOpenIDRequest",
+            feature = "AuthenticationServices_ASAuthorizationRequest",
+            feature = "AuthenticationServices_ASAuthorizationSingleSignOnRequest"
+        ))]
         #[method_id(@__retain_semantics Other createRequest)]
         pub unsafe fn createRequest(&self) -> Id<ASAuthorizationSingleSignOnRequest>;
 

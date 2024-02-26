@@ -20,6 +20,7 @@ ns_enum!(
     }
 );
 
+#[cfg(feature = "Foundation_NSDate")]
 extern_static!(LATouchIDAuthenticationMaximumAllowableReuseDuration: NSTimeInterval);
 
 ns_enum!(
@@ -68,21 +69,17 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "LocalAuthentication_LAContext")]
     pub struct LAContext;
 
-    #[cfg(feature = "LocalAuthentication_LAContext")]
     unsafe impl ClassType for LAContext {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "LocalAuthentication_LAContext")]
 unsafe impl NSObjectProtocol for LAContext {}
 
 extern_methods!(
-    #[cfg(feature = "LocalAuthentication_LAContext")]
     unsafe impl LAContext {
         #[cfg(feature = "Foundation_NSError")]
         #[method(canEvaluatePolicy:error:_)]
@@ -119,12 +116,12 @@ extern_methods!(
         #[method(setLocalizedFallbackTitle:)]
         pub unsafe fn setLocalizedFallbackTitle(&self, localized_fallback_title: Option<&NSString>);
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[deprecated = "No longer supported"]
         #[method_id(@__retain_semantics Other maxBiometryFailures)]
         pub unsafe fn maxBiometryFailures(&self) -> Option<Id<NSNumber>>;
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[deprecated = "No longer supported"]
         #[method(setMaxBiometryFailures:)]
         pub unsafe fn setMaxBiometryFailures(&self, max_biometry_failures: Option<&NSNumber>);
@@ -141,9 +138,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other evaluatedPolicyDomainState)]
         pub unsafe fn evaluatedPolicyDomainState(&self) -> Option<Id<NSData>>;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(touchIDAuthenticationAllowableReuseDuration)]
         pub unsafe fn touchIDAuthenticationAllowableReuseDuration(&self) -> NSTimeInterval;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(setTouchIDAuthenticationAllowableReuseDuration:)]
         pub unsafe fn setTouchIDAuthenticationAllowableReuseDuration(
             &self,
@@ -171,7 +170,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "LocalAuthentication_LAContext")]
     unsafe impl LAContext {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

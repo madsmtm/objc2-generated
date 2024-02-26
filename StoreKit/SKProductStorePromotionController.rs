@@ -19,21 +19,17 @@ ns_closed_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "StoreKit_SKProductStorePromotionController")]
     pub struct SKProductStorePromotionController;
 
-    #[cfg(feature = "StoreKit_SKProductStorePromotionController")]
     unsafe impl ClassType for SKProductStorePromotionController {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "StoreKit_SKProductStorePromotionController")]
 unsafe impl NSObjectProtocol for SKProductStorePromotionController {}
 
 extern_methods!(
-    #[cfg(feature = "StoreKit_SKProductStorePromotionController")]
     unsafe impl SKProductStorePromotionController {
         #[method_id(@__retain_semantics Other defaultController)]
         pub unsafe fn defaultController() -> Id<Self>;
@@ -84,7 +80,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "StoreKit_SKProductStorePromotionController")]
     unsafe impl SKProductStorePromotionController {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

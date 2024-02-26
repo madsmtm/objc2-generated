@@ -7,11 +7,11 @@ use crate::WebKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_DOMHTMLOptionsCollection")]
+    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
     #[deprecated]
     pub struct DOMHTMLOptionsCollection;
 
-    #[cfg(feature = "WebKit_DOMHTMLOptionsCollection")]
+    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
     unsafe impl ClassType for DOMHTMLOptionsCollection {
         #[inherits(WebScriptObject, NSObject)]
         type Super = DOMObject;
@@ -19,14 +19,18 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "WebKit_DOMHTMLOptionsCollection")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSCopying for DOMHTMLOptionsCollection {}
 
-#[cfg(feature = "WebKit_DOMHTMLOptionsCollection")]
+#[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
 unsafe impl NSObjectProtocol for DOMHTMLOptionsCollection {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_DOMHTMLOptionsCollection")]
+    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
     unsafe impl DOMHTMLOptionsCollection {
         #[method(selectedIndex)]
         pub unsafe fn selectedIndex(&self) -> c_int;
@@ -47,7 +51,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Other namedItem:)]
         pub unsafe fn namedItem(&self, name: Option<&NSString>) -> Option<Id<DOMNode>>;
 
-        #[cfg(feature = "WebKit_DOMHTMLOptionElement")]
+        #[cfg(all(
+            feature = "WebKit_DOMElement",
+            feature = "WebKit_DOMHTMLElement",
+            feature = "WebKit_DOMHTMLOptionElement",
+            feature = "WebKit_DOMNode"
+        ))]
         #[method(add:index:)]
         pub unsafe fn add_index(&self, option: Option<&DOMHTMLOptionElement>, index: c_uint);
 
@@ -63,7 +72,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
-    #[cfg(feature = "WebKit_DOMHTMLOptionsCollection")]
+    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
     unsafe impl DOMHTMLOptionsCollection {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
@@ -73,7 +82,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_DOMHTMLOptionsCollection")]
+    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
     unsafe impl DOMHTMLOptionsCollection {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

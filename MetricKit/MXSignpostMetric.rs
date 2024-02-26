@@ -6,53 +6,37 @@ use crate::MetricKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MetricKit_MXSignpostIntervalData")]
     pub struct MXSignpostIntervalData;
 
-    #[cfg(feature = "MetricKit_MXSignpostIntervalData")]
     unsafe impl ClassType for MXSignpostIntervalData {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MetricKit_MXSignpostIntervalData")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for MXSignpostIntervalData {}
 
-#[cfg(feature = "MetricKit_MXSignpostIntervalData")]
 unsafe impl NSObjectProtocol for MXSignpostIntervalData {}
 
-#[cfg(feature = "MetricKit_MXSignpostIntervalData")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for MXSignpostIntervalData {}
 
 extern_methods!(
-    #[cfg(feature = "MetricKit_MXSignpostIntervalData")]
     unsafe impl MXSignpostIntervalData {
-        #[cfg(all(
-            feature = "Foundation_NSUnitDuration",
-            feature = "MetricKit_MXHistogram"
-        ))]
+        #[cfg(all(feature = "Foundation_NSUnit", feature = "MetricKit_MXHistogram"))]
         #[method_id(@__retain_semantics Other histogrammedSignpostDuration)]
         pub unsafe fn histogrammedSignpostDuration(&self) -> Id<MXHistogram<NSUnitDuration>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSMeasurement",
-            feature = "Foundation_NSUnitDuration"
-        ))]
+        #[cfg(all(feature = "Foundation_NSMeasurement", feature = "Foundation_NSUnit"))]
         #[method_id(@__retain_semantics Other cumulativeCPUTime)]
         pub unsafe fn cumulativeCPUTime(&self) -> Option<Id<NSMeasurement<NSUnitDuration>>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSUnitInformationStorage",
-            feature = "MetricKit_MXAverage"
-        ))]
+        #[cfg(all(feature = "Foundation_NSUnit", feature = "MetricKit_MXAverage"))]
         #[method_id(@__retain_semantics Other averageMemory)]
         pub unsafe fn averageMemory(&self) -> Option<Id<MXAverage<NSUnitInformationStorage>>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSMeasurement",
-            feature = "Foundation_NSUnitInformationStorage"
-        ))]
+        #[cfg(all(feature = "Foundation_NSMeasurement", feature = "Foundation_NSUnit"))]
         #[method_id(@__retain_semantics Other cumulativeLogicalWrites)]
         pub unsafe fn cumulativeLogicalWrites(
             &self,
@@ -66,7 +50,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MetricKit_MXSignpostIntervalData")]
     unsafe impl MXSignpostIntervalData {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -78,10 +61,10 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MetricKit_MXSignpostMetric")]
+    #[cfg(feature = "MetricKit_MXMetric")]
     pub struct MXSignpostMetric;
 
-    #[cfg(feature = "MetricKit_MXSignpostMetric")]
+    #[cfg(feature = "MetricKit_MXMetric")]
     unsafe impl ClassType for MXSignpostMetric {
         #[inherits(NSObject)]
         type Super = MXMetric;
@@ -89,17 +72,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MetricKit_MXSignpostMetric")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "MetricKit_MXMetric"))]
 unsafe impl NSCoding for MXSignpostMetric {}
 
-#[cfg(feature = "MetricKit_MXSignpostMetric")]
+#[cfg(feature = "MetricKit_MXMetric")]
 unsafe impl NSObjectProtocol for MXSignpostMetric {}
 
-#[cfg(feature = "MetricKit_MXSignpostMetric")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "MetricKit_MXMetric"))]
 unsafe impl NSSecureCoding for MXSignpostMetric {}
 
 extern_methods!(
-    #[cfg(feature = "MetricKit_MXSignpostMetric")]
+    #[cfg(feature = "MetricKit_MXMetric")]
     unsafe impl MXSignpostMetric {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other signpostName)]
@@ -109,7 +92,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other signpostCategory)]
         pub unsafe fn signpostCategory(&self) -> Id<NSString>;
 
-        #[cfg(feature = "MetricKit_MXSignpostIntervalData")]
         #[method_id(@__retain_semantics Other signpostIntervalData)]
         pub unsafe fn signpostIntervalData(&self) -> Option<Id<MXSignpostIntervalData>>;
 
@@ -120,7 +102,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MetricKit_MXSignpostMetric")]
+    #[cfg(feature = "MetricKit_MXMetric")]
     unsafe impl MXSignpostMetric {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -7,37 +7,35 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialParameters")]
     pub struct ASAuthorizationPublicKeyCredentialParameters;
 
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialParameters")]
     unsafe impl ClassType for ASAuthorizationPublicKeyCredentialParameters {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialParameters")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for ASAuthorizationPublicKeyCredentialParameters {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialParameters")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for ASAuthorizationPublicKeyCredentialParameters {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialParameters")]
 unsafe impl NSObjectProtocol for ASAuthorizationPublicKeyCredentialParameters {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialParameters")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for ASAuthorizationPublicKeyCredentialParameters {}
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialParameters")]
     unsafe impl ASAuthorizationPublicKeyCredentialParameters {
+        #[cfg(feature = "AuthenticationServices_ASCOSEConstants")]
         #[method_id(@__retain_semantics Init initWithAlgorithm:)]
         pub unsafe fn initWithAlgorithm(
             this: Allocated<Self>,
             algorithm: ASCOSEAlgorithmIdentifier,
         ) -> Id<Self>;
 
+        #[cfg(feature = "AuthenticationServices_ASCOSEConstants")]
         #[method(algorithm)]
         pub unsafe fn algorithm(&self) -> ASCOSEAlgorithmIdentifier;
 

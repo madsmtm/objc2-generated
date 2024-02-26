@@ -49,24 +49,20 @@ pub type PHAssetImageProgressHandler =
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Photos_PHImageRequestOptions")]
     pub struct PHImageRequestOptions;
 
-    #[cfg(feature = "Photos_PHImageRequestOptions")]
     unsafe impl ClassType for PHImageRequestOptions {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Photos_PHImageRequestOptions")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for PHImageRequestOptions {}
 
-#[cfg(feature = "Photos_PHImageRequestOptions")]
 unsafe impl NSObjectProtocol for PHImageRequestOptions {}
 
 extern_methods!(
-    #[cfg(feature = "Photos_PHImageRequestOptions")]
     unsafe impl PHImageRequestOptions {
         #[method(version)]
         pub unsafe fn version(&self) -> PHImageRequestOptionsVersion;
@@ -86,9 +82,11 @@ extern_methods!(
         #[method(setResizeMode:)]
         pub unsafe fn setResizeMode(&self, resize_mode: PHImageRequestOptionsResizeMode);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(normalizedCropRect)]
         pub unsafe fn normalizedCropRect(&self) -> CGRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setNormalizedCropRect:)]
         pub unsafe fn setNormalizedCropRect(&self, normalized_crop_rect: CGRect);
 
@@ -122,7 +120,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Photos_PHImageRequestOptions")]
     unsafe impl PHImageRequestOptions {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -134,24 +131,20 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Photos_PHLivePhotoRequestOptions")]
     pub struct PHLivePhotoRequestOptions;
 
-    #[cfg(feature = "Photos_PHLivePhotoRequestOptions")]
     unsafe impl ClassType for PHLivePhotoRequestOptions {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Photos_PHLivePhotoRequestOptions")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for PHLivePhotoRequestOptions {}
 
-#[cfg(feature = "Photos_PHLivePhotoRequestOptions")]
 unsafe impl NSObjectProtocol for PHLivePhotoRequestOptions {}
 
 extern_methods!(
-    #[cfg(feature = "Photos_PHLivePhotoRequestOptions")]
     unsafe impl PHLivePhotoRequestOptions {
         #[method(version)]
         pub unsafe fn version(&self) -> PHImageRequestOptionsVersion;
@@ -183,7 +176,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Photos_PHLivePhotoRequestOptions")]
     unsafe impl PHLivePhotoRequestOptions {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -223,24 +215,20 @@ pub type PHAssetVideoProgressHandler =
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Photos_PHVideoRequestOptions")]
     pub struct PHVideoRequestOptions;
 
-    #[cfg(feature = "Photos_PHVideoRequestOptions")]
     unsafe impl ClassType for PHVideoRequestOptions {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Photos_PHVideoRequestOptions")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for PHVideoRequestOptions {}
 
-#[cfg(feature = "Photos_PHVideoRequestOptions")]
 unsafe impl NSObjectProtocol for PHVideoRequestOptions {}
 
 extern_methods!(
-    #[cfg(feature = "Photos_PHVideoRequestOptions")]
     unsafe impl PHVideoRequestOptions {
         #[method(isNetworkAccessAllowed)]
         pub unsafe fn isNetworkAccessAllowed(&self) -> bool;
@@ -272,7 +260,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Photos_PHVideoRequestOptions")]
     unsafe impl PHVideoRequestOptions {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -286,6 +273,7 @@ pub type PHImageRequestID = i32;
 
 extern_static!(PHInvalidImageRequestID: PHImageRequestID = 0);
 
+#[cfg(feature = "Foundation_NSGeometry")]
 extern_static!(PHImageManagerMaximumSize: CGSize);
 
 #[cfg(feature = "Foundation_NSString")]
@@ -305,21 +293,17 @@ extern_static!(PHImageErrorKey: &'static NSString);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Photos_PHImageManager")]
     pub struct PHImageManager;
 
-    #[cfg(feature = "Photos_PHImageManager")]
     unsafe impl ClassType for PHImageManager {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Photos_PHImageManager")]
 unsafe impl NSObjectProtocol for PHImageManager {}
 
 extern_methods!(
-    #[cfg(feature = "Photos_PHImageManager")]
     unsafe impl PHImageManager {
         #[method_id(@__retain_semantics Other defaultManager)]
         pub unsafe fn defaultManager() -> Id<PHImageManager>;
@@ -327,8 +311,10 @@ extern_methods!(
         #[cfg(all(
             feature = "AppKit_NSImage",
             feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSGeometry",
             feature = "Photos_PHAsset",
-            feature = "Photos_PHImageRequestOptions"
+            feature = "Photos_PHObject",
+            feature = "Photos_PhotosTypes"
         ))]
         #[method(requestImageForAsset:targetSize:contentMode:options:resultHandler:)]
         pub unsafe fn requestImageForAsset_targetSize_contentMode_options_resultHandler(
@@ -345,9 +331,11 @@ extern_methods!(
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSGeometry",
             feature = "Photos_PHAsset",
             feature = "Photos_PHLivePhoto",
-            feature = "Photos_PHLivePhotoRequestOptions"
+            feature = "Photos_PHObject",
+            feature = "Photos_PhotosTypes"
         ))]
         #[method(requestLivePhotoForAsset:targetSize:contentMode:options:resultHandler:)]
         pub unsafe fn requestLivePhotoForAsset_targetSize_contentMode_options_resultHandler(
@@ -358,57 +346,11 @@ extern_methods!(
             options: Option<&PHLivePhotoRequestOptions>,
             result_handler: &Block<dyn Fn(*mut PHLivePhoto, *mut NSDictionary)>,
         ) -> PHImageRequestID;
-
-        #[cfg(all(
-            feature = "AVFoundation_AVPlayerItem",
-            feature = "Foundation_NSDictionary",
-            feature = "Photos_PHAsset",
-            feature = "Photos_PHVideoRequestOptions"
-        ))]
-        #[method(requestPlayerItemForVideo:options:resultHandler:)]
-        pub unsafe fn requestPlayerItemForVideo_options_resultHandler(
-            &self,
-            asset: &PHAsset,
-            options: Option<&PHVideoRequestOptions>,
-            result_handler: &Block<dyn Fn(*mut AVPlayerItem, *mut NSDictionary)>,
-        ) -> PHImageRequestID;
-
-        #[cfg(all(
-            feature = "AVFoundation_AVAssetExportSession",
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString",
-            feature = "Photos_PHAsset",
-            feature = "Photos_PHVideoRequestOptions"
-        ))]
-        #[method(requestExportSessionForVideo:options:exportPreset:resultHandler:)]
-        pub unsafe fn requestExportSessionForVideo_options_exportPreset_resultHandler(
-            &self,
-            asset: &PHAsset,
-            options: Option<&PHVideoRequestOptions>,
-            export_preset: &NSString,
-            result_handler: &Block<dyn Fn(*mut AVAssetExportSession, *mut NSDictionary)>,
-        ) -> PHImageRequestID;
-
-        #[cfg(all(
-            feature = "AVFoundation_AVAsset",
-            feature = "AVFoundation_AVAudioMix",
-            feature = "Foundation_NSDictionary",
-            feature = "Photos_PHAsset",
-            feature = "Photos_PHVideoRequestOptions"
-        ))]
-        #[method(requestAVAssetForVideo:options:resultHandler:)]
-        pub unsafe fn requestAVAssetForVideo_options_resultHandler(
-            &self,
-            asset: &PHAsset,
-            options: Option<&PHVideoRequestOptions>,
-            result_handler: &Block<dyn Fn(*mut AVAsset, *mut AVAudioMix, *mut NSDictionary)>,
-        ) -> PHImageRequestID;
     }
 );
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Photos_PHImageManager")]
     unsafe impl PHImageManager {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -420,10 +362,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Photos_PHCachingImageManager")]
     pub struct PHCachingImageManager;
 
-    #[cfg(feature = "Photos_PHCachingImageManager")]
     unsafe impl ClassType for PHCachingImageManager {
         #[inherits(NSObject)]
         type Super = PHImageManager;
@@ -431,11 +371,9 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Photos_PHCachingImageManager")]
 unsafe impl NSObjectProtocol for PHCachingImageManager {}
 
 extern_methods!(
-    #[cfg(feature = "Photos_PHCachingImageManager")]
     unsafe impl PHCachingImageManager {
         #[method(allowsCachingHighQualityImages)]
         pub unsafe fn allowsCachingHighQualityImages(&self) -> bool;
@@ -448,8 +386,10 @@ extern_methods!(
 
         #[cfg(all(
             feature = "Foundation_NSArray",
+            feature = "Foundation_NSGeometry",
             feature = "Photos_PHAsset",
-            feature = "Photos_PHImageRequestOptions"
+            feature = "Photos_PHObject",
+            feature = "Photos_PhotosTypes"
         ))]
         #[method(startCachingImagesForAssets:targetSize:contentMode:options:)]
         pub unsafe fn startCachingImagesForAssets_targetSize_contentMode_options(
@@ -462,8 +402,10 @@ extern_methods!(
 
         #[cfg(all(
             feature = "Foundation_NSArray",
+            feature = "Foundation_NSGeometry",
             feature = "Photos_PHAsset",
-            feature = "Photos_PHImageRequestOptions"
+            feature = "Photos_PHObject",
+            feature = "Photos_PhotosTypes"
         ))]
         #[method(stopCachingImagesForAssets:targetSize:contentMode:options:)]
         pub unsafe fn stopCachingImagesForAssets_targetSize_contentMode_options(
@@ -481,7 +423,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Photos_PHCachingImageManager")]
     unsafe impl PHCachingImageManager {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

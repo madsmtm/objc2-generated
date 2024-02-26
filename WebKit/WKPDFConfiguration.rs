@@ -7,28 +7,26 @@ use crate::WebKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_WKPDFConfiguration")]
     pub struct WKPDFConfiguration;
 
-    #[cfg(feature = "WebKit_WKPDFConfiguration")]
     unsafe impl ClassType for WKPDFConfiguration {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "WebKit_WKPDFConfiguration")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for WKPDFConfiguration {}
 
-#[cfg(feature = "WebKit_WKPDFConfiguration")]
 unsafe impl NSObjectProtocol for WKPDFConfiguration {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_WKPDFConfiguration")]
     unsafe impl WKPDFConfiguration {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(rect)]
         pub unsafe fn rect(&self) -> CGRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setRect:)]
         pub unsafe fn setRect(&self, rect: CGRect);
 
@@ -42,7 +40,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_WKPDFConfiguration")]
     unsafe impl WKPDFConfiguration {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

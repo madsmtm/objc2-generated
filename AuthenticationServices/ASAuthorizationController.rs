@@ -7,10 +7,7 @@ use crate::Foundation::*;
 
 extern_protocol!(
     pub unsafe trait ASAuthorizationControllerDelegate: NSObjectProtocol {
-        #[cfg(all(
-            feature = "AuthenticationServices_ASAuthorization",
-            feature = "AuthenticationServices_ASAuthorizationController"
-        ))]
+        #[cfg(feature = "AuthenticationServices_ASAuthorization")]
         #[optional]
         #[method(authorizationController:didCompleteWithAuthorization:)]
         unsafe fn authorizationController_didCompleteWithAuthorization(
@@ -19,10 +16,7 @@ extern_protocol!(
             authorization: &ASAuthorization,
         );
 
-        #[cfg(all(
-            feature = "AuthenticationServices_ASAuthorizationController",
-            feature = "Foundation_NSError"
-        ))]
+        #[cfg(feature = "Foundation_NSError")]
         #[optional]
         #[method(authorizationController:didCompleteWithError:)]
         unsafe fn authorizationController_didCompleteWithError(
@@ -32,7 +26,7 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "AuthenticationServices_ASAuthorizationController",
+            feature = "AuthenticationServices_ASAuthorizationCustomMethod",
             feature = "Foundation_NSString"
         ))]
         #[optional]
@@ -52,8 +46,9 @@ extern_protocol!(
         NSObjectProtocol
     {
         #[cfg(all(
+            feature = "AppKit_NSResponder",
             feature = "AppKit_NSWindow",
-            feature = "AuthenticationServices_ASAuthorizationController"
+            feature = "AuthenticationServices_ASFoundation"
         ))]
         #[method_id(@__retain_semantics Other presentationAnchorForAuthorizationController:)]
         unsafe fn presentationAnchorForAuthorizationController(
@@ -75,21 +70,17 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationController")]
     pub struct ASAuthorizationController;
 
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationController")]
     unsafe impl ClassType for ASAuthorizationController {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationController")]
 unsafe impl NSObjectProtocol for ASAuthorizationController {}
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationController")]
     unsafe impl ASAuthorizationController {
         #[cfg(all(
             feature = "AuthenticationServices_ASAuthorizationRequest",
@@ -122,12 +113,20 @@ extern_methods!(
             >,
         );
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AuthenticationServices_ASAuthorizationCustomMethod",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other customAuthorizationMethods)]
         pub unsafe fn customAuthorizationMethods(&self)
             -> Id<NSArray<ASAuthorizationCustomMethod>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AuthenticationServices_ASAuthorizationCustomMethod",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[method(setCustomAuthorizationMethods:)]
         pub unsafe fn setCustomAuthorizationMethods(
             &self,

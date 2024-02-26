@@ -15,21 +15,17 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSXMLParser")]
     pub struct NSXMLParser;
 
-    #[cfg(feature = "Foundation_NSXMLParser")]
     unsafe impl ClassType for NSXMLParser {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSXMLParser")]
 unsafe impl NSObjectProtocol for NSXMLParser {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSXMLParser")]
     unsafe impl NSXMLParser {
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
@@ -40,7 +36,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithData:)]
         pub unsafe fn initWithData(this: Allocated<Self>, data: &NSData) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSInputStream")]
+        #[cfg(feature = "Foundation_NSStream")]
         #[method_id(@__retain_semantics Init initWithStream:)]
         pub unsafe fn initWithStream(this: Allocated<Self>, stream: &NSInputStream) -> Id<Self>;
 
@@ -113,7 +109,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSXMLParser")]
     unsafe impl NSXMLParser {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -125,7 +120,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSXMLParserLocatorAdditions
-    #[cfg(feature = "Foundation_NSXMLParser")]
     unsafe impl NSXMLParser {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other publicID)]
@@ -145,17 +139,15 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSXMLParserDelegate: NSObjectProtocol {
-        #[cfg(feature = "Foundation_NSXMLParser")]
         #[optional]
         #[method(parserDidStartDocument:)]
         unsafe fn parserDidStartDocument(&self, parser: &NSXMLParser);
 
-        #[cfg(feature = "Foundation_NSXMLParser")]
         #[optional]
         #[method(parserDidEndDocument:)]
         unsafe fn parserDidEndDocument(&self, parser: &NSXMLParser);
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSXMLParser"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method(parser:foundNotationDeclarationWithName:publicID:systemID:)]
         unsafe fn parser_foundNotationDeclarationWithName_publicID_systemID(
@@ -166,7 +158,7 @@ extern_protocol!(
             system_id: Option<&NSString>,
         );
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSXMLParser"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method(parser:foundUnparsedEntityDeclarationWithName:publicID:systemID:notationName:)]
         unsafe fn parser_foundUnparsedEntityDeclarationWithName_publicID_systemID_notationName(
@@ -178,7 +170,7 @@ extern_protocol!(
             notation_name: Option<&NSString>,
         );
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSXMLParser"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method(parser:foundAttributeDeclarationWithName:forElement:type:defaultValue:)]
         unsafe fn parser_foundAttributeDeclarationWithName_forElement_type_defaultValue(
@@ -190,7 +182,7 @@ extern_protocol!(
             default_value: Option<&NSString>,
         );
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSXMLParser"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method(parser:foundElementDeclarationWithName:model:)]
         unsafe fn parser_foundElementDeclarationWithName_model(
@@ -200,7 +192,7 @@ extern_protocol!(
             model: &NSString,
         );
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSXMLParser"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method(parser:foundInternalEntityDeclarationWithName:value:)]
         unsafe fn parser_foundInternalEntityDeclarationWithName_value(
@@ -210,7 +202,7 @@ extern_protocol!(
             value: Option<&NSString>,
         );
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSXMLParser"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method(parser:foundExternalEntityDeclarationWithName:publicID:systemID:)]
         unsafe fn parser_foundExternalEntityDeclarationWithName_publicID_systemID(
@@ -221,11 +213,7 @@ extern_protocol!(
             system_id: Option<&NSString>,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSXMLParser"
-        ))]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[optional]
         #[method(parser:didStartElement:namespaceURI:qualifiedName:attributes:)]
         unsafe fn parser_didStartElement_namespaceURI_qualifiedName_attributes(
@@ -237,7 +225,7 @@ extern_protocol!(
             attribute_dict: &NSDictionary<NSString, NSString>,
         );
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSXMLParser"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method(parser:didEndElement:namespaceURI:qualifiedName:)]
         unsafe fn parser_didEndElement_namespaceURI_qualifiedName(
@@ -248,7 +236,7 @@ extern_protocol!(
             q_name: Option<&NSString>,
         );
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSXMLParser"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method(parser:didStartMappingPrefix:toURI:)]
         unsafe fn parser_didStartMappingPrefix_toURI(
@@ -258,17 +246,17 @@ extern_protocol!(
             namespace_uri: &NSString,
         );
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSXMLParser"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method(parser:didEndMappingPrefix:)]
         unsafe fn parser_didEndMappingPrefix(&self, parser: &NSXMLParser, prefix: &NSString);
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSXMLParser"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method(parser:foundCharacters:)]
         unsafe fn parser_foundCharacters(&self, parser: &NSXMLParser, string: &NSString);
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSXMLParser"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method(parser:foundIgnorableWhitespace:)]
         unsafe fn parser_foundIgnorableWhitespace(
@@ -277,7 +265,7 @@ extern_protocol!(
             whitespace_string: &NSString,
         );
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSXMLParser"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method(parser:foundProcessingInstructionWithTarget:data:)]
         unsafe fn parser_foundProcessingInstructionWithTarget_data(
@@ -287,21 +275,17 @@ extern_protocol!(
             data: Option<&NSString>,
         );
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSXMLParser"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method(parser:foundComment:)]
         unsafe fn parser_foundComment(&self, parser: &NSXMLParser, comment: &NSString);
 
-        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSXMLParser"))]
+        #[cfg(feature = "Foundation_NSData")]
         #[optional]
         #[method(parser:foundCDATA:)]
         unsafe fn parser_foundCDATA(&self, parser: &NSXMLParser, cdata_block: &NSData);
 
-        #[cfg(all(
-            feature = "Foundation_NSData",
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSXMLParser"
-        ))]
+        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSString"))]
         #[optional]
         #[method_id(@__retain_semantics Other parser:resolveExternalEntityName:systemID:)]
         unsafe fn parser_resolveExternalEntityName_systemID(
@@ -311,12 +295,12 @@ extern_protocol!(
             system_id: Option<&NSString>,
         ) -> Option<Id<NSData>>;
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSXMLParser"))]
+        #[cfg(feature = "Foundation_NSError")]
         #[optional]
         #[method(parser:parseErrorOccurred:)]
         unsafe fn parser_parseErrorOccurred(&self, parser: &NSXMLParser, parse_error: &NSError);
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSXMLParser"))]
+        #[cfg(feature = "Foundation_NSError")]
         #[optional]
         #[method(parser:validationErrorOccurred:)]
         unsafe fn parser_validationErrorOccurred(
@@ -329,7 +313,7 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSXMLParserDelegate {}
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
 extern_static!(NSXMLParserErrorDomain: &'static NSErrorDomain);
 
 ns_enum!(

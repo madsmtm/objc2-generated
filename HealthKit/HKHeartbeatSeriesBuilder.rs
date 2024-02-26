@@ -8,10 +8,10 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKHeartbeatSeriesBuilder")]
+    #[cfg(feature = "HealthKit_HKSeriesBuilder")]
     pub struct HKHeartbeatSeriesBuilder;
 
-    #[cfg(feature = "HealthKit_HKHeartbeatSeriesBuilder")]
+    #[cfg(feature = "HealthKit_HKSeriesBuilder")]
     unsafe impl ClassType for HKHeartbeatSeriesBuilder {
         #[inherits(NSObject)]
         type Super = HKSeriesBuilder;
@@ -19,11 +19,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKHeartbeatSeriesBuilder")]
+#[cfg(feature = "HealthKit_HKSeriesBuilder")]
 unsafe impl NSObjectProtocol for HKHeartbeatSeriesBuilder {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKHeartbeatSeriesBuilder")]
+    #[cfg(feature = "HealthKit_HKSeriesBuilder")]
     unsafe impl HKHeartbeatSeriesBuilder {
         #[method(maximumCount)]
         pub unsafe fn maximumCount() -> NSUInteger;
@@ -41,7 +41,7 @@ extern_methods!(
             start_date: &NSDate,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSError")]
+        #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSError"))]
         #[method(addHeartbeatWithTimeIntervalSinceSeriesStartDate:precededByGap:completion:)]
         pub unsafe fn addHeartbeatWithTimeIntervalSinceSeriesStartDate_precededByGap_completion(
             &self,
@@ -64,7 +64,10 @@ extern_methods!(
 
         #[cfg(all(
             feature = "Foundation_NSError",
-            feature = "HealthKit_HKHeartbeatSeriesSample"
+            feature = "HealthKit_HKHeartbeatSeriesSample",
+            feature = "HealthKit_HKObject",
+            feature = "HealthKit_HKSample",
+            feature = "HealthKit_HKSeriesSample"
         ))]
         #[method(finishSeriesWithCompletion:)]
         pub unsafe fn finishSeriesWithCompletion(
@@ -76,7 +79,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `HKSeriesBuilder`
-    #[cfg(feature = "HealthKit_HKHeartbeatSeriesBuilder")]
+    #[cfg(feature = "HealthKit_HKSeriesBuilder")]
     unsafe impl HKHeartbeatSeriesBuilder {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -85,7 +88,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKHeartbeatSeriesBuilder")]
+    #[cfg(feature = "HealthKit_HKSeriesBuilder")]
     unsafe impl HKHeartbeatSeriesBuilder {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

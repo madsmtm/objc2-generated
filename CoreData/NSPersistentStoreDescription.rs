@@ -6,24 +6,20 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSPersistentStoreDescription")]
     pub struct NSPersistentStoreDescription;
 
-    #[cfg(feature = "CoreData_NSPersistentStoreDescription")]
     unsafe impl ClassType for NSPersistentStoreDescription {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreData_NSPersistentStoreDescription")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSPersistentStoreDescription {}
 
-#[cfg(feature = "CoreData_NSPersistentStoreDescription")]
 unsafe impl NSObjectProtocol for NSPersistentStoreDescription {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSPersistentStoreDescription")]
     unsafe impl NSPersistentStoreDescription {
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other persistentStoreDescriptionWithURL:)]
@@ -67,9 +63,11 @@ extern_methods!(
         #[method(setReadOnly:)]
         pub unsafe fn setReadOnly(&self, read_only: bool);
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(timeout)]
         pub unsafe fn timeout(&self) -> NSTimeInterval;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(setTimeout:)]
         pub unsafe fn setTimeout(&self, timeout: NSTimeInterval);
 
@@ -113,7 +111,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSPersistentStoreDescription")]
     unsafe impl NSPersistentStoreDescription {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -125,7 +122,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSPersistentCloudKitContainerAdditions
-    #[cfg(feature = "CoreData_NSPersistentStoreDescription")]
     unsafe impl NSPersistentStoreDescription {
         #[cfg(feature = "CoreData_NSPersistentCloudKitContainerOptions")]
         #[method_id(@__retain_semantics Other cloudKitContainerOptions)]

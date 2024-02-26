@@ -12,21 +12,17 @@ pub type MKMapSnapshotCompletionHandler = *mut Block<dyn Fn(*mut MKMapSnapshot, 
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKMapSnapshotter")]
     pub struct MKMapSnapshotter;
 
-    #[cfg(feature = "MapKit_MKMapSnapshotter")]
     unsafe impl ClassType for MKMapSnapshotter {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MapKit_MKMapSnapshotter")]
 unsafe impl NSObjectProtocol for MKMapSnapshotter {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKMapSnapshotter")]
     unsafe impl MKMapSnapshotter {
         #[cfg(feature = "MapKit_MKMapSnapshotOptions")]
         #[method_id(@__retain_semantics Init initWithOptions:)]
@@ -52,7 +48,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MapKit_MKMapSnapshotter")]
     unsafe impl MKMapSnapshotter {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

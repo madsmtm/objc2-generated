@@ -9,24 +9,20 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Photos_PHFetchOptions")]
     pub struct PHFetchOptions;
 
-    #[cfg(feature = "Photos_PHFetchOptions")]
     unsafe impl ClassType for PHFetchOptions {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Photos_PHFetchOptions")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for PHFetchOptions {}
 
-#[cfg(feature = "Photos_PHFetchOptions")]
 unsafe impl NSObjectProtocol for PHFetchOptions {}
 
 extern_methods!(
-    #[cfg(feature = "Photos_PHFetchOptions")]
     unsafe impl PHFetchOptions {
         #[cfg(feature = "Foundation_NSPredicate")]
         #[method_id(@__retain_semantics Other predicate)]
@@ -65,9 +61,11 @@ extern_methods!(
         #[method(setIncludeAllBurstAssets:)]
         pub unsafe fn setIncludeAllBurstAssets(&self, include_all_burst_assets: bool);
 
+        #[cfg(feature = "Photos_PhotosTypes")]
         #[method(includeAssetSourceTypes)]
         pub unsafe fn includeAssetSourceTypes(&self) -> PHAssetSourceType;
 
+        #[cfg(feature = "Photos_PhotosTypes")]
         #[method(setIncludeAssetSourceTypes:)]
         pub unsafe fn setIncludeAssetSourceTypes(
             &self,
@@ -93,7 +91,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Photos_PHFetchOptions")]
     unsafe impl PHFetchOptions {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

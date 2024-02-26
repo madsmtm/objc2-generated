@@ -19,10 +19,16 @@ extern_static!(GCInputDirectionalCenterButton: &'static NSString);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameController_GCDirectionalGamepad")]
+    #[cfg(all(
+        feature = "GameController_GCMicroGamepad",
+        feature = "GameController_GCPhysicalInputProfile"
+    ))]
     pub struct GCDirectionalGamepad;
 
-    #[cfg(feature = "GameController_GCDirectionalGamepad")]
+    #[cfg(all(
+        feature = "GameController_GCMicroGamepad",
+        feature = "GameController_GCPhysicalInputProfile"
+    ))]
     unsafe impl ClassType for GCDirectionalGamepad {
         #[inherits(GCPhysicalInputProfile, NSObject)]
         type Super = GCMicroGamepad;
@@ -30,17 +36,26 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "GameController_GCDirectionalGamepad")]
+#[cfg(all(
+    feature = "GameController_GCMicroGamepad",
+    feature = "GameController_GCPhysicalInputProfile"
+))]
 unsafe impl NSObjectProtocol for GCDirectionalGamepad {}
 
 extern_methods!(
-    #[cfg(feature = "GameController_GCDirectionalGamepad")]
+    #[cfg(all(
+        feature = "GameController_GCMicroGamepad",
+        feature = "GameController_GCPhysicalInputProfile"
+    ))]
     unsafe impl GCDirectionalGamepad {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameController_GCDirectionalGamepad")]
+    #[cfg(all(
+        feature = "GameController_GCMicroGamepad",
+        feature = "GameController_GCPhysicalInputProfile"
+    ))]
     unsafe impl GCDirectionalGamepad {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

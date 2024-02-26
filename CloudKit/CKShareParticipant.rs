@@ -68,30 +68,26 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKShareParticipant")]
     pub struct CKShareParticipant;
 
-    #[cfg(feature = "CloudKit_CKShareParticipant")]
     unsafe impl ClassType for CKShareParticipant {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CloudKit_CKShareParticipant")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CKShareParticipant {}
 
-#[cfg(feature = "CloudKit_CKShareParticipant")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for CKShareParticipant {}
 
-#[cfg(feature = "CloudKit_CKShareParticipant")]
 unsafe impl NSObjectProtocol for CKShareParticipant {}
 
-#[cfg(feature = "CloudKit_CKShareParticipant")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CKShareParticipant {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKShareParticipant")]
     unsafe impl CKShareParticipant {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

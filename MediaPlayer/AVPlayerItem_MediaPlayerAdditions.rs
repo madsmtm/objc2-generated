@@ -4,23 +4,3 @@ use crate::common::*;
 use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::MediaPlayer::*;
-
-extern_category!(
-    /// Category "MPAdditions" on [`AVPlayerItem`].
-    #[doc(alias = "MPAdditions")]
-    pub unsafe trait AVPlayerItemMPAdditions {
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
-        #[method_id(@__retain_semantics Other nowPlayingInfo)]
-        unsafe fn nowPlayingInfo(&self) -> Option<Id<NSDictionary<NSString, AnyObject>>>;
-
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
-        #[method(setNowPlayingInfo:)]
-        unsafe fn setNowPlayingInfo(
-            &self,
-            now_playing_info: Option<&NSDictionary<NSString, AnyObject>>,
-        );
-    }
-
-    #[cfg(feature = "AVFoundation_AVPlayerItem")]
-    unsafe impl AVPlayerItemMPAdditions for AVPlayerItem {}
-);

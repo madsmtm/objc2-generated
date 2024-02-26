@@ -9,6 +9,7 @@ extern_protocol!(
         #[cfg(all(
             feature = "BackgroundAssets_BAAppExtensionInfo",
             feature = "BackgroundAssets_BADownload",
+            feature = "BackgroundAssets_BATypes",
             feature = "Foundation_NSSet",
             feature = "Foundation_NSURL"
         ))]
@@ -24,7 +25,8 @@ extern_protocol!(
         #[cfg(all(
             feature = "BackgroundAssets_BADownload",
             feature = "Foundation_NSURLAuthenticationChallenge",
-            feature = "Foundation_NSURLCredential"
+            feature = "Foundation_NSURLCredential",
+            feature = "Foundation_NSURLSession"
         ))]
         #[optional]
         #[method(backgroundDownload:didReceiveChallenge:completionHandler:)]

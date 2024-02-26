@@ -17,107 +17,160 @@
 #[link(name = "UserNotifications", kind = "framework")]
 extern "C" {}
 
+#[cfg(feature = "UserNotifications_NSString_UserNotifications")]
 #[path = "NSString_UserNotifications.rs"]
 mod __NSString_UserNotifications;
+#[cfg(feature = "UserNotifications_UNError")]
 #[path = "UNError.rs"]
 mod __UNError;
+#[cfg(feature = "UserNotifications_UNNotification")]
 #[path = "UNNotification.rs"]
 mod __UNNotification;
+#[cfg(feature = "UserNotifications_UNNotificationAction")]
 #[path = "UNNotificationAction.rs"]
 mod __UNNotificationAction;
+#[cfg(feature = "UserNotifications_UNNotificationActionIcon")]
 #[path = "UNNotificationActionIcon.rs"]
 mod __UNNotificationActionIcon;
+#[cfg(feature = "UserNotifications_UNNotificationAttachment")]
 #[path = "UNNotificationAttachment.rs"]
 mod __UNNotificationAttachment;
+#[cfg(feature = "UserNotifications_UNNotificationCategory")]
 #[path = "UNNotificationCategory.rs"]
 mod __UNNotificationCategory;
+#[cfg(feature = "UserNotifications_UNNotificationContent")]
 #[path = "UNNotificationContent.rs"]
 mod __UNNotificationContent;
+#[cfg(feature = "UserNotifications_UNNotificationRequest")]
 #[path = "UNNotificationRequest.rs"]
 mod __UNNotificationRequest;
+#[cfg(feature = "UserNotifications_UNNotificationResponse")]
 #[path = "UNNotificationResponse.rs"]
 mod __UNNotificationResponse;
+#[cfg(feature = "UserNotifications_UNNotificationServiceExtension")]
 #[path = "UNNotificationServiceExtension.rs"]
 mod __UNNotificationServiceExtension;
+#[cfg(feature = "UserNotifications_UNNotificationSettings")]
 #[path = "UNNotificationSettings.rs"]
 mod __UNNotificationSettings;
+#[cfg(feature = "UserNotifications_UNNotificationSound")]
 #[path = "UNNotificationSound.rs"]
 mod __UNNotificationSound;
+#[cfg(feature = "UserNotifications_UNNotificationTrigger")]
 #[path = "UNNotificationTrigger.rs"]
 mod __UNNotificationTrigger;
+#[cfg(feature = "UserNotifications_UNUserNotificationCenter")]
 #[path = "UNUserNotificationCenter.rs"]
 mod __UNUserNotificationCenter;
 
+#[cfg(feature = "UserNotifications_NSString_UserNotifications")]
 pub use self::__NSString_UserNotifications::NSStringUNUserNotificationCenterSupport;
+#[cfg(feature = "UserNotifications_UNError")]
 pub use self::__UNError::UNErrorCode;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "UserNotifications_UNError"))]
 pub use self::__UNError::UNErrorDomain;
 #[cfg(feature = "UserNotifications_UNNotification")]
 pub use self::__UNNotification::UNNotification;
 #[cfg(feature = "UserNotifications_UNNotificationAction")]
 pub use self::__UNNotificationAction::UNNotificationAction;
+#[cfg(feature = "UserNotifications_UNNotificationAction")]
 pub use self::__UNNotificationAction::UNNotificationActionOptionNone;
+#[cfg(feature = "UserNotifications_UNNotificationAction")]
 pub use self::__UNNotificationAction::UNNotificationActionOptions;
-#[cfg(feature = "UserNotifications_UNTextInputNotificationAction")]
+#[cfg(feature = "UserNotifications_UNNotificationAction")]
 pub use self::__UNNotificationAction::UNTextInputNotificationAction;
 #[cfg(feature = "UserNotifications_UNNotificationActionIcon")]
 pub use self::__UNNotificationActionIcon::UNNotificationActionIcon;
 #[cfg(feature = "UserNotifications_UNNotificationAttachment")]
 pub use self::__UNNotificationAttachment::UNNotificationAttachment;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSString",
+    feature = "UserNotifications_UNNotificationAttachment"
+))]
 pub use self::__UNNotificationAttachment::UNNotificationAttachmentOptionsThumbnailClippingRectKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSString",
+    feature = "UserNotifications_UNNotificationAttachment"
+))]
 pub use self::__UNNotificationAttachment::UNNotificationAttachmentOptionsThumbnailHiddenKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSString",
+    feature = "UserNotifications_UNNotificationAttachment"
+))]
 pub use self::__UNNotificationAttachment::UNNotificationAttachmentOptionsThumbnailTimeKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSString",
+    feature = "UserNotifications_UNNotificationAttachment"
+))]
 pub use self::__UNNotificationAttachment::UNNotificationAttachmentOptionsTypeHintKey;
 #[cfg(feature = "UserNotifications_UNNotificationCategory")]
 pub use self::__UNNotificationCategory::UNNotificationCategory;
+#[cfg(feature = "UserNotifications_UNNotificationCategory")]
 pub use self::__UNNotificationCategory::UNNotificationCategoryOptionNone;
+#[cfg(feature = "UserNotifications_UNNotificationCategory")]
 pub use self::__UNNotificationCategory::UNNotificationCategoryOptions;
-#[cfg(feature = "UserNotifications_UNMutableNotificationContent")]
+#[cfg(feature = "UserNotifications_UNNotificationContent")]
 pub use self::__UNNotificationContent::UNMutableNotificationContent;
 #[cfg(feature = "UserNotifications_UNNotificationContent")]
 pub use self::__UNNotificationContent::UNNotificationContent;
+#[cfg(feature = "UserNotifications_UNNotificationContent")]
 pub use self::__UNNotificationContent::UNNotificationContentProviding;
+#[cfg(feature = "UserNotifications_UNNotificationContent")]
 pub use self::__UNNotificationContent::UNNotificationInterruptionLevel;
 #[cfg(feature = "UserNotifications_UNNotificationRequest")]
 pub use self::__UNNotificationRequest::UNNotificationRequest;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSString",
+    feature = "UserNotifications_UNNotificationResponse"
+))]
 pub use self::__UNNotificationResponse::UNNotificationDefaultActionIdentifier;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSString",
+    feature = "UserNotifications_UNNotificationResponse"
+))]
 pub use self::__UNNotificationResponse::UNNotificationDismissActionIdentifier;
 #[cfg(feature = "UserNotifications_UNNotificationResponse")]
 pub use self::__UNNotificationResponse::UNNotificationResponse;
-#[cfg(feature = "UserNotifications_UNTextInputNotificationResponse")]
+#[cfg(feature = "UserNotifications_UNNotificationResponse")]
 pub use self::__UNNotificationResponse::UNTextInputNotificationResponse;
 #[cfg(feature = "UserNotifications_UNNotificationServiceExtension")]
 pub use self::__UNNotificationServiceExtension::UNNotificationServiceExtension;
+#[cfg(feature = "UserNotifications_UNNotificationSettings")]
 pub use self::__UNNotificationSettings::UNAlertStyle;
+#[cfg(feature = "UserNotifications_UNNotificationSettings")]
 pub use self::__UNNotificationSettings::UNAuthorizationStatus;
+#[cfg(feature = "UserNotifications_UNNotificationSettings")]
 pub use self::__UNNotificationSettings::UNNotificationSetting;
 #[cfg(feature = "UserNotifications_UNNotificationSettings")]
 pub use self::__UNNotificationSettings::UNNotificationSettings;
+#[cfg(feature = "UserNotifications_UNNotificationSettings")]
 pub use self::__UNNotificationSettings::UNShowPreviewsSetting;
 #[cfg(feature = "UserNotifications_UNNotificationSound")]
 pub use self::__UNNotificationSound::UNNotificationSound;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSString",
+    feature = "UserNotifications_UNNotificationSound"
+))]
 pub use self::__UNNotificationSound::UNNotificationSoundName;
-#[cfg(feature = "UserNotifications_UNCalendarNotificationTrigger")]
+#[cfg(feature = "UserNotifications_UNNotificationTrigger")]
 pub use self::__UNNotificationTrigger::UNCalendarNotificationTrigger;
-#[cfg(feature = "UserNotifications_UNLocationNotificationTrigger")]
+#[cfg(feature = "UserNotifications_UNNotificationTrigger")]
 pub use self::__UNNotificationTrigger::UNLocationNotificationTrigger;
 #[cfg(feature = "UserNotifications_UNNotificationTrigger")]
 pub use self::__UNNotificationTrigger::UNNotificationTrigger;
-#[cfg(feature = "UserNotifications_UNPushNotificationTrigger")]
+#[cfg(feature = "UserNotifications_UNNotificationTrigger")]
 pub use self::__UNNotificationTrigger::UNPushNotificationTrigger;
-#[cfg(feature = "UserNotifications_UNTimeIntervalNotificationTrigger")]
+#[cfg(feature = "UserNotifications_UNNotificationTrigger")]
 pub use self::__UNNotificationTrigger::UNTimeIntervalNotificationTrigger;
+#[cfg(feature = "UserNotifications_UNUserNotificationCenter")]
 pub use self::__UNUserNotificationCenter::UNAuthorizationOptionNone;
+#[cfg(feature = "UserNotifications_UNUserNotificationCenter")]
 pub use self::__UNUserNotificationCenter::UNAuthorizationOptions;
+#[cfg(feature = "UserNotifications_UNUserNotificationCenter")]
 pub use self::__UNUserNotificationCenter::UNNotificationPresentationOptionNone;
+#[cfg(feature = "UserNotifications_UNUserNotificationCenter")]
 pub use self::__UNUserNotificationCenter::UNNotificationPresentationOptions;
 #[cfg(feature = "UserNotifications_UNUserNotificationCenter")]
 pub use self::__UNUserNotificationCenter::UNUserNotificationCenter;
+#[cfg(feature = "UserNotifications_UNUserNotificationCenter")]
 pub use self::__UNUserNotificationCenter::UNUserNotificationCenterDelegate;

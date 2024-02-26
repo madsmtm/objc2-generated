@@ -76,24 +76,20 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "OSAKit_OSAScript")]
     pub struct OSAScript;
 
-    #[cfg(feature = "OSAKit_OSAScript")]
     unsafe impl ClassType for OSAScript {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "OSAKit_OSAScript")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for OSAScript {}
 
-#[cfg(feature = "OSAKit_OSAScript")]
 unsafe impl NSObjectProtocol for OSAScript {}
 
 extern_methods!(
-    #[cfg(feature = "OSAKit_OSAScript")]
     unsafe impl OSAScript {
         #[cfg(all(
             feature = "Foundation_NSAppleEventDescriptor",
@@ -353,7 +349,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "OSAKit_OSAScript")]
     unsafe impl OSAScript {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

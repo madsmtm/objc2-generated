@@ -20,30 +20,26 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Contacts_CNContainer")]
     pub struct CNContainer;
 
-    #[cfg(feature = "Contacts_CNContainer")]
     unsafe impl ClassType for CNContainer {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Contacts_CNContainer")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CNContainer {}
 
-#[cfg(feature = "Contacts_CNContainer")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for CNContainer {}
 
-#[cfg(feature = "Contacts_CNContainer")]
 unsafe impl NSObjectProtocol for CNContainer {}
 
-#[cfg(feature = "Contacts_CNContainer")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CNContainer {}
 
 extern_methods!(
-    #[cfg(feature = "Contacts_CNContainer")]
     unsafe impl CNContainer {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
@@ -60,7 +56,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Contacts_CNContainer")]
     unsafe impl CNContainer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

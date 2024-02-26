@@ -17,7 +17,6 @@ ns_enum!(
 
 extern_protocol!(
     pub unsafe trait WKHTTPCookieStoreObserver: NSObjectProtocol {
-        #[cfg(feature = "WebKit_WKHTTPCookieStore")]
         #[optional]
         #[method(cookiesDidChangeInCookieStore:)]
         unsafe fn cookiesDidChangeInCookieStore(&self, cookie_store: &WKHTTPCookieStore);
@@ -28,21 +27,17 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_WKHTTPCookieStore")]
     pub struct WKHTTPCookieStore;
 
-    #[cfg(feature = "WebKit_WKHTTPCookieStore")]
     unsafe impl ClassType for WKHTTPCookieStore {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "WebKit_WKHTTPCookieStore")]
 unsafe impl NSObjectProtocol for WKHTTPCookieStore {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_WKHTTPCookieStore")]
     unsafe impl WKHTTPCookieStore {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -93,7 +88,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_WKHTTPCookieStore")]
     unsafe impl WKHTTPCookieStore {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -5,36 +5,30 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSUUID")]
     pub struct NSUUID;
 
-    #[cfg(feature = "Foundation_NSUUID")]
     unsafe impl ClassType for NSUUID {
         type Super = NSObject;
         type Mutability = Immutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSUUID")]
 unsafe impl Send for NSUUID {}
 
-#[cfg(feature = "Foundation_NSUUID")]
 unsafe impl Sync for NSUUID {}
 
-#[cfg(feature = "Foundation_NSUUID")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSUUID {}
 
-#[cfg(feature = "Foundation_NSUUID")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSUUID {}
 
-#[cfg(feature = "Foundation_NSUUID")]
 unsafe impl NSObjectProtocol for NSUUID {}
 
-#[cfg(feature = "Foundation_NSUUID")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSUUID {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSUUID")]
     unsafe impl NSUUID {
         #[method_id(@__retain_semantics Other UUID)]
         pub fn UUID() -> Id<Self>;
@@ -46,6 +40,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithUUIDString:)]
         pub fn initWithUUIDString(this: Allocated<Self>, string: &NSString) -> Option<Id<Self>>;
 
+        #[cfg(feature = "Foundation_NSObjCRuntime")]
         #[method(compare:)]
         pub unsafe fn compare(&self, other_uuid: &NSUUID) -> NSComparisonResult;
 
@@ -57,14 +52,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSUUID")]
     unsafe impl NSUUID {
         #[method_id(@__retain_semantics New new)]
         pub fn new() -> Id<Self>;
     }
 );
 
-#[cfg(feature = "Foundation_NSUUID")]
 impl DefaultId for NSUUID {
     #[inline]
     fn default_id() -> Id<Self> {

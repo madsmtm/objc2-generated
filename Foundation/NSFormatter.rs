@@ -35,27 +35,23 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSFormatter")]
     pub struct NSFormatter;
 
-    #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl ClassType for NSFormatter {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSFormatter")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSFormatter {}
 
-#[cfg(feature = "Foundation_NSFormatter")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSFormatter {}
 
-#[cfg(feature = "Foundation_NSFormatter")]
 unsafe impl NSObjectProtocol for NSFormatter {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl NSFormatter {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other stringForObjectValue:)]
@@ -95,7 +91,7 @@ extern_methods!(
             error: Option<&mut Option<Id<NSString>>>,
         ) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSRange", feature = "Foundation_NSString"))]
         #[method(isPartialStringValid:proposedSelectedRange:originalString:originalSelectedRange:errorDescription:)]
         pub unsafe fn isPartialStringValid_proposedSelectedRange_originalString_originalSelectedRange_errorDescription(
             &self,
@@ -110,7 +106,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl NSFormatter {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

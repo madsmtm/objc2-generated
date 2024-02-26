@@ -20,21 +20,17 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "ServiceManagement_SMAppService")]
     pub struct SMAppService;
 
-    #[cfg(feature = "ServiceManagement_SMAppService")]
     unsafe impl ClassType for SMAppService {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "ServiceManagement_SMAppService")]
 unsafe impl NSObjectProtocol for SMAppService {}
 
 extern_methods!(
-    #[cfg(feature = "ServiceManagement_SMAppService")]
     unsafe impl SMAppService {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other loginItemServiceWithIdentifier:)]
@@ -77,7 +73,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "ServiceManagement_SMAppService")]
     unsafe impl SMAppService {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

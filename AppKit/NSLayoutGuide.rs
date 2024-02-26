@@ -7,84 +7,87 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSLayoutGuide")]
     pub struct NSLayoutGuide;
 
-    #[cfg(feature = "AppKit_NSLayoutGuide")]
     unsafe impl ClassType for NSLayoutGuide {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSLayoutGuide")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSLayoutGuide {}
 
-#[cfg(feature = "AppKit_NSLayoutGuide")]
 unsafe impl NSObjectProtocol for NSLayoutGuide {}
 
-#[cfg(feature = "AppKit_NSLayoutGuide")]
+#[cfg(feature = "AppKit_NSUserInterfaceItemIdentification")]
 unsafe impl NSUserInterfaceItemIdentification for NSLayoutGuide {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSLayoutGuide")]
     unsafe impl NSLayoutGuide {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(frame)]
         pub unsafe fn frame(&self) -> NSRect;
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[method_id(@__retain_semantics Other owningView)]
         pub unsafe fn owningView(&self, mtm: MainThreadMarker) -> Option<Id<NSView>>;
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[method(setOwningView:)]
         pub unsafe fn setOwningView(&self, owning_view: Option<&NSView>);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "AppKit_NSUserInterfaceItemIdentification",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Id<NSUserInterfaceItemIdentifier>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "AppKit_NSUserInterfaceItemIdentification",
+            feature = "Foundation_NSString"
+        ))]
         #[method(setIdentifier:)]
         pub unsafe fn setIdentifier(&self, identifier: &NSUserInterfaceItemIdentifier);
 
-        #[cfg(feature = "AppKit_NSLayoutXAxisAnchor")]
+        #[cfg(feature = "AppKit_NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other leadingAnchor)]
         pub unsafe fn leadingAnchor(&self) -> Id<NSLayoutXAxisAnchor>;
 
-        #[cfg(feature = "AppKit_NSLayoutXAxisAnchor")]
+        #[cfg(feature = "AppKit_NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other trailingAnchor)]
         pub unsafe fn trailingAnchor(&self) -> Id<NSLayoutXAxisAnchor>;
 
-        #[cfg(feature = "AppKit_NSLayoutXAxisAnchor")]
+        #[cfg(feature = "AppKit_NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other leftAnchor)]
         pub unsafe fn leftAnchor(&self) -> Id<NSLayoutXAxisAnchor>;
 
-        #[cfg(feature = "AppKit_NSLayoutXAxisAnchor")]
+        #[cfg(feature = "AppKit_NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other rightAnchor)]
         pub unsafe fn rightAnchor(&self) -> Id<NSLayoutXAxisAnchor>;
 
-        #[cfg(feature = "AppKit_NSLayoutYAxisAnchor")]
+        #[cfg(feature = "AppKit_NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other topAnchor)]
         pub unsafe fn topAnchor(&self) -> Id<NSLayoutYAxisAnchor>;
 
-        #[cfg(feature = "AppKit_NSLayoutYAxisAnchor")]
+        #[cfg(feature = "AppKit_NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other bottomAnchor)]
         pub unsafe fn bottomAnchor(&self) -> Id<NSLayoutYAxisAnchor>;
 
-        #[cfg(feature = "AppKit_NSLayoutDimension")]
+        #[cfg(feature = "AppKit_NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other widthAnchor)]
         pub unsafe fn widthAnchor(&self) -> Id<NSLayoutDimension>;
 
-        #[cfg(feature = "AppKit_NSLayoutDimension")]
+        #[cfg(feature = "AppKit_NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other heightAnchor)]
         pub unsafe fn heightAnchor(&self) -> Id<NSLayoutDimension>;
 
-        #[cfg(feature = "AppKit_NSLayoutXAxisAnchor")]
+        #[cfg(feature = "AppKit_NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other centerXAnchor)]
         pub unsafe fn centerXAnchor(&self) -> Id<NSLayoutXAxisAnchor>;
 
-        #[cfg(feature = "AppKit_NSLayoutYAxisAnchor")]
+        #[cfg(feature = "AppKit_NSLayoutAnchor")]
         #[method_id(@__retain_semantics Other centerYAnchor)]
         pub unsafe fn centerYAnchor(&self) -> Id<NSLayoutYAxisAnchor>;
 
@@ -102,7 +105,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSLayoutGuide")]
     unsafe impl NSLayoutGuide {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -114,7 +116,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSLayoutGuideSupport
-    #[cfg(feature = "AppKit_NSView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSView {
         #[cfg(feature = "AppKit_NSLayoutGuide")]
         #[method(addLayoutGuide:)]

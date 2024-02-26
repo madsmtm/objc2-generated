@@ -7,21 +7,17 @@ use crate::GameController::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameController_GCDeviceLight")]
     pub struct GCDeviceLight;
 
-    #[cfg(feature = "GameController_GCDeviceLight")]
     unsafe impl ClassType for GCDeviceLight {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "GameController_GCDeviceLight")]
 unsafe impl NSObjectProtocol for GCDeviceLight {}
 
 extern_methods!(
-    #[cfg(feature = "GameController_GCDeviceLight")]
     unsafe impl GCDeviceLight {
         #[cfg(feature = "GameController_GCColor")]
         #[method_id(@__retain_semantics Other color)]
@@ -38,7 +34,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameController_GCDeviceLight")]
     unsafe impl GCDeviceLight {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

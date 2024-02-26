@@ -9,43 +9,46 @@ use crate::MapKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKOverlayRenderer")]
     pub struct MKOverlayRenderer;
 
-    #[cfg(feature = "MapKit_MKOverlayRenderer")]
     unsafe impl ClassType for MKOverlayRenderer {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MapKit_MKOverlayRenderer")]
 unsafe impl NSObjectProtocol for MKOverlayRenderer {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKOverlayRenderer")]
     unsafe impl MKOverlayRenderer {
+        #[cfg(all(feature = "MapKit_MKAnnotation", feature = "MapKit_MKOverlay"))]
         #[method_id(@__retain_semantics Init initWithOverlay:)]
         pub unsafe fn initWithOverlay(
             this: Allocated<Self>,
             overlay: &ProtocolObject<dyn MKOverlay>,
         ) -> Id<Self>;
 
+        #[cfg(all(feature = "MapKit_MKAnnotation", feature = "MapKit_MKOverlay"))]
         #[method_id(@__retain_semantics Other overlay)]
         pub unsafe fn overlay(&self) -> Id<ProtocolObject<dyn MKOverlay>>;
 
+        #[cfg(all(feature = "Foundation_NSGeometry", feature = "MapKit_MKGeometry"))]
         #[method(pointForMapPoint:)]
         pub unsafe fn pointForMapPoint(&self, map_point: MKMapPoint) -> CGPoint;
 
+        #[cfg(all(feature = "Foundation_NSGeometry", feature = "MapKit_MKGeometry"))]
         #[method(mapPointForPoint:)]
         pub unsafe fn mapPointForPoint(&self, point: CGPoint) -> MKMapPoint;
 
+        #[cfg(all(feature = "Foundation_NSGeometry", feature = "MapKit_MKGeometry"))]
         #[method(rectForMapRect:)]
         pub unsafe fn rectForMapRect(&self, map_rect: MKMapRect) -> CGRect;
 
+        #[cfg(all(feature = "Foundation_NSGeometry", feature = "MapKit_MKGeometry"))]
         #[method(mapRectForRect:)]
         pub unsafe fn mapRectForRect(&self, rect: CGRect) -> MKMapRect;
 
+        #[cfg(all(feature = "Foundation_NSGeometry", feature = "MapKit_MKGeometry"))]
         #[method(canDrawMapRect:zoomScale:)]
         pub unsafe fn canDrawMapRect_zoomScale(
             &self,
@@ -56,9 +59,11 @@ extern_methods!(
         #[method(setNeedsDisplay)]
         pub unsafe fn setNeedsDisplay(&self);
 
+        #[cfg(feature = "MapKit_MKGeometry")]
         #[method(setNeedsDisplayInMapRect:)]
         pub unsafe fn setNeedsDisplayInMapRect(&self, map_rect: MKMapRect);
 
+        #[cfg(all(feature = "Foundation_NSGeometry", feature = "MapKit_MKGeometry"))]
         #[method(setNeedsDisplayInMapRect:zoomScale:)]
         pub unsafe fn setNeedsDisplayInMapRect_zoomScale(
             &self,
@@ -66,12 +71,15 @@ extern_methods!(
             zoom_scale: MKZoomScale,
         );
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(alpha)]
         pub unsafe fn alpha(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setAlpha:)]
         pub unsafe fn setAlpha(&self, alpha: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(contentScaleFactor)]
         pub unsafe fn contentScaleFactor(&self) -> CGFloat;
     }
@@ -79,7 +87,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MapKit_MKOverlayRenderer")]
     unsafe impl MKOverlayRenderer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -90,5 +97,6 @@ extern_methods!(
 );
 
 extern_fn!(
+    #[cfg(all(feature = "Foundation_NSGeometry", feature = "MapKit_MKGeometry"))]
     pub unsafe fn MKRoadWidthAtZoomScale(zoom_scale: MKZoomScale) -> CGFloat;
 );

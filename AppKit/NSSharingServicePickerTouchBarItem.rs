@@ -7,10 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSSharingServicePickerTouchBarItem")]
+    #[cfg(feature = "AppKit_NSTouchBarItem")]
     pub struct NSSharingServicePickerTouchBarItem;
 
-    #[cfg(feature = "AppKit_NSSharingServicePickerTouchBarItem")]
+    #[cfg(feature = "AppKit_NSTouchBarItem")]
     unsafe impl ClassType for NSSharingServicePickerTouchBarItem {
         #[inherits(NSObject)]
         type Super = NSTouchBarItem;
@@ -18,20 +18,22 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSSharingServicePickerTouchBarItem")]
+#[cfg(all(feature = "AppKit_NSTouchBarItem", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for NSSharingServicePickerTouchBarItem {}
 
-#[cfg(feature = "AppKit_NSSharingServicePickerTouchBarItem")]
+#[cfg(feature = "AppKit_NSTouchBarItem")]
 unsafe impl NSObjectProtocol for NSSharingServicePickerTouchBarItem {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSSharingServicePickerTouchBarItem")]
+    #[cfg(feature = "AppKit_NSTouchBarItem")]
     unsafe impl NSSharingServicePickerTouchBarItem {
+        #[cfg(feature = "AppKit_NSSharingService")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Id<ProtocolObject<dyn NSSharingServicePickerTouchBarItemDelegate>>>;
 
+        #[cfg(feature = "AppKit_NSSharingService")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -64,7 +66,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSTouchBarItem`
-    #[cfg(feature = "AppKit_NSSharingServicePickerTouchBarItem")]
+    #[cfg(feature = "AppKit_NSTouchBarItem")]
     unsafe impl NSSharingServicePickerTouchBarItem {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
@@ -84,7 +86,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSSharingServicePickerTouchBarItem")]
+    #[cfg(feature = "AppKit_NSTouchBarItem")]
     unsafe impl NSSharingServicePickerTouchBarItem {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -92,13 +94,11 @@ extern_methods!(
 );
 
 extern_protocol!(
+    #[cfg(feature = "AppKit_NSSharingService")]
     pub unsafe trait NSSharingServicePickerTouchBarItemDelegate:
         NSSharingServicePickerDelegate + IsMainThreadOnly
     {
-        #[cfg(all(
-            feature = "AppKit_NSSharingServicePickerTouchBarItem",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(all(feature = "AppKit_NSTouchBarItem", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other itemsForSharingServicePickerTouchBarItem:)]
         unsafe fn itemsForSharingServicePickerTouchBarItem(
             &self,
@@ -106,5 +106,6 @@ extern_protocol!(
         ) -> Id<NSArray>;
     }
 
+    #[cfg(feature = "AppKit_NSSharingService")]
     unsafe impl ProtocolType for dyn NSSharingServicePickerTouchBarItemDelegate {}
 );

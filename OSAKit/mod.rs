@@ -17,65 +17,82 @@
 #[link(name = "OSAKit", kind = "framework")]
 extern "C" {}
 
+#[cfg(feature = "OSAKit_OSALanguage")]
 #[path = "OSALanguage.rs"]
 mod __OSALanguage;
+#[cfg(feature = "OSAKit_OSALanguageInstance")]
 #[path = "OSALanguageInstance.rs"]
 mod __OSALanguageInstance;
+#[cfg(feature = "OSAKit_OSAScript")]
 #[path = "OSAScript.rs"]
 mod __OSAScript;
+#[cfg(feature = "OSAKit_OSAScriptController")]
 #[path = "OSAScriptController.rs"]
 mod __OSAScriptController;
+#[cfg(feature = "OSAKit_OSAScriptView")]
 #[path = "OSAScriptView.rs"]
 mod __OSAScriptView;
 
 #[cfg(feature = "OSAKit_OSALanguage")]
 pub use self::__OSALanguage::OSALanguage;
+#[cfg(feature = "OSAKit_OSALanguage")]
 pub use self::__OSALanguage::OSALanguageFeatures;
 #[cfg(feature = "OSAKit_OSALanguageInstance")]
 pub use self::__OSALanguageInstance::OSALanguageInstance;
 #[cfg(feature = "OSAKit_OSAScript")]
 pub use self::__OSAScript::OSAScript;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "OSAKit_OSAScript"))]
 pub use self::__OSAScript::OSAScriptErrorAppAddressKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "OSAKit_OSAScript"))]
 pub use self::__OSAScript::OSAScriptErrorAppName;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "OSAKit_OSAScript"))]
 pub use self::__OSAScript::OSAScriptErrorAppNameKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "OSAKit_OSAScript"))]
 pub use self::__OSAScript::OSAScriptErrorBriefMessage;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "OSAKit_OSAScript"))]
 pub use self::__OSAScript::OSAScriptErrorBriefMessageKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "OSAKit_OSAScript"))]
 pub use self::__OSAScript::OSAScriptErrorExpectedTypeKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "OSAKit_OSAScript"))]
 pub use self::__OSAScript::OSAScriptErrorMessage;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "OSAKit_OSAScript"))]
 pub use self::__OSAScript::OSAScriptErrorMessageKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "OSAKit_OSAScript"))]
 pub use self::__OSAScript::OSAScriptErrorNumber;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "OSAKit_OSAScript"))]
 pub use self::__OSAScript::OSAScriptErrorNumberKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "OSAKit_OSAScript"))]
 pub use self::__OSAScript::OSAScriptErrorOffendingObjectKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "OSAKit_OSAScript"))]
 pub use self::__OSAScript::OSAScriptErrorPartialResultKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "OSAKit_OSAScript"))]
 pub use self::__OSAScript::OSAScriptErrorRange;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "OSAKit_OSAScript"))]
 pub use self::__OSAScript::OSAScriptErrorRangeKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "OSAKit_OSAScript"))]
 pub use self::__OSAScript::OSAStorageApplicationBundleType;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "OSAKit_OSAScript"))]
 pub use self::__OSAScript::OSAStorageApplicationType;
+#[cfg(feature = "OSAKit_OSAScript")]
 pub use self::__OSAScript::OSAStorageOptions;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "OSAKit_OSAScript"))]
 pub use self::__OSAScript::OSAStorageScriptBundleType;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "OSAKit_OSAScript"))]
 pub use self::__OSAScript::OSAStorageScriptType;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "OSAKit_OSAScript"))]
 pub use self::__OSAScript::OSAStorageTextType;
-#[cfg(feature = "OSAKit_OSAScriptController")]
+#[cfg(all(
+    feature = "AppKit_NSController",
+    feature = "OSAKit_OSAScriptController"
+))]
 pub use self::__OSAScriptController::OSAScriptController;
+#[cfg(feature = "OSAKit_OSAScriptController")]
 pub use self::__OSAScriptController::OSAScriptState;
-#[cfg(feature = "OSAKit_OSAScriptView")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSText",
+    feature = "AppKit_NSTextView",
+    feature = "AppKit_NSView",
+    feature = "OSAKit_OSAScriptView"
+))]
 pub use self::__OSAScriptView::OSAScriptView;

@@ -5,24 +5,20 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSScriptCommandDescription")]
     pub struct NSScriptCommandDescription;
 
-    #[cfg(feature = "Foundation_NSScriptCommandDescription")]
     unsafe impl ClassType for NSScriptCommandDescription {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSScriptCommandDescription")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSScriptCommandDescription {}
 
-#[cfg(feature = "Foundation_NSScriptCommandDescription")]
 unsafe impl NSObjectProtocol for NSScriptCommandDescription {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSScriptCommandDescription")]
     unsafe impl NSScriptCommandDescription {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -91,7 +87,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other createCommandInstance)]
         pub unsafe fn createCommandInstance(&self) -> Id<NSScriptCommand>;
 
-        #[cfg(feature = "Foundation_NSScriptCommand")]
+        #[cfg(all(feature = "Foundation_NSScriptCommand", feature = "Foundation_NSZone"))]
         #[method_id(@__retain_semantics Other createCommandInstanceWithZone:)]
         pub unsafe fn createCommandInstanceWithZone(
             &self,
@@ -102,7 +98,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSScriptCommandDescription")]
     unsafe impl NSScriptCommandDescription {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

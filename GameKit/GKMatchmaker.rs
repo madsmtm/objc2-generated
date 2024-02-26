@@ -45,21 +45,17 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameKit_GKMatchRequest")]
     pub struct GKMatchRequest;
 
-    #[cfg(feature = "GameKit_GKMatchRequest")]
     unsafe impl ClassType for GKMatchRequest {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "GameKit_GKMatchRequest")]
 unsafe impl NSObjectProtocol for GKMatchRequest {}
 
 extern_methods!(
-    #[cfg(feature = "GameKit_GKMatchRequest")]
     unsafe impl GKMatchRequest {
         #[method(minPlayers)]
         pub unsafe fn minPlayers(&self) -> NSUInteger;
@@ -85,11 +81,19 @@ extern_methods!(
         #[method(setPlayerAttributes:)]
         pub unsafe fn setPlayerAttributes(&self, player_attributes: u32);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "GameKit_GKPlayer"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "GameKit_GKBasePlayer",
+            feature = "GameKit_GKPlayer"
+        ))]
         #[method_id(@__retain_semantics Other recipients)]
         pub unsafe fn recipients(&self) -> Option<Id<NSArray<GKPlayer>>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "GameKit_GKPlayer"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "GameKit_GKBasePlayer",
+            feature = "GameKit_GKPlayer"
+        ))]
         #[method(setRecipients:)]
         pub unsafe fn setRecipients(&self, recipients: Option<&NSArray<GKPlayer>>);
 
@@ -115,13 +119,13 @@ extern_methods!(
         #[method(setRestrictToAutomatch:)]
         pub unsafe fn setRestrictToAutomatch(&self, restrict_to_automatch: bool);
 
-        #[cfg(feature = "GameKit_GKPlayer")]
+        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
         #[method(recipientResponseHandler)]
         pub unsafe fn recipientResponseHandler(
             &self,
         ) -> *mut Block<dyn Fn(NonNull<GKPlayer>, GKInviteRecipientResponse)>;
 
-        #[cfg(feature = "GameKit_GKPlayer")]
+        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
         #[method(setRecipientResponseHandler:)]
         pub unsafe fn setRecipientResponseHandler(
             &self,
@@ -166,17 +170,27 @@ extern_methods!(
         #[method(setQueueName:)]
         pub unsafe fn setQueueName(&self, queue_name: Option<&NSString>);
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString",
+            feature = "GameKit_GKDefines"
+        ))]
         #[method_id(@__retain_semantics Other properties)]
         pub unsafe fn properties(&self) -> Option<Id<GKMatchProperties>>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString",
+            feature = "GameKit_GKDefines"
+        ))]
         #[method(setProperties:)]
         pub unsafe fn setProperties(&self, properties: Option<&GKMatchProperties>);
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString",
+            feature = "GameKit_GKBasePlayer",
+            feature = "GameKit_GKDefines",
             feature = "GameKit_GKPlayer"
         ))]
         #[method_id(@__retain_semantics Other recipientProperties)]
@@ -187,6 +201,8 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString",
+            feature = "GameKit_GKBasePlayer",
+            feature = "GameKit_GKDefines",
             feature = "GameKit_GKPlayer"
         ))]
         #[method(setRecipientProperties:)]
@@ -199,7 +215,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameKit_GKMatchRequest")]
     unsafe impl GKMatchRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -211,23 +226,19 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameKit_GKInvite")]
     pub struct GKInvite;
 
-    #[cfg(feature = "GameKit_GKInvite")]
     unsafe impl ClassType for GKInvite {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "GameKit_GKInvite")]
 unsafe impl NSObjectProtocol for GKInvite {}
 
 extern_methods!(
-    #[cfg(feature = "GameKit_GKInvite")]
     unsafe impl GKInvite {
-        #[cfg(feature = "GameKit_GKPlayer")]
+        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
         #[method_id(@__retain_semantics Other sender)]
         pub unsafe fn sender(&self) -> Id<GKPlayer>;
 
@@ -249,7 +260,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameKit_GKInvite")]
     unsafe impl GKInvite {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -261,12 +271,16 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait GKInviteEventListener {
-        #[cfg(all(feature = "GameKit_GKInvite", feature = "GameKit_GKPlayer"))]
+        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
         #[optional]
         #[method(player:didAcceptInvite:)]
         unsafe fn player_didAcceptInvite(&self, player: &GKPlayer, invite: &GKInvite);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "GameKit_GKPlayer"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "GameKit_GKBasePlayer",
+            feature = "GameKit_GKPlayer"
+        ))]
         #[optional]
         #[method(player:didRequestMatchWithRecipients:)]
         unsafe fn player_didRequestMatchWithRecipients(
@@ -278,6 +292,7 @@ extern_protocol!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSString",
+            feature = "GameKit_GKBasePlayer",
             feature = "GameKit_GKPlayer"
         ))]
         #[deprecated]
@@ -295,33 +310,39 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameKit_GKMatchedPlayers")]
     pub struct GKMatchedPlayers;
 
-    #[cfg(feature = "GameKit_GKMatchedPlayers")]
     unsafe impl ClassType for GKMatchedPlayers {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "GameKit_GKMatchedPlayers")]
 unsafe impl NSObjectProtocol for GKMatchedPlayers {}
 
 extern_methods!(
-    #[cfg(feature = "GameKit_GKMatchedPlayers")]
     unsafe impl GKMatchedPlayers {
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString",
+            feature = "GameKit_GKDefines"
+        ))]
         #[method_id(@__retain_semantics Other properties)]
         pub unsafe fn properties(&self) -> Option<Id<GKMatchProperties>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "GameKit_GKPlayer"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "GameKit_GKBasePlayer",
+            feature = "GameKit_GKPlayer"
+        ))]
         #[method_id(@__retain_semantics Other players)]
         pub unsafe fn players(&self) -> Id<NSArray<GKPlayer>>;
 
         #[cfg(all(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString",
+            feature = "GameKit_GKBasePlayer",
+            feature = "GameKit_GKDefines",
             feature = "GameKit_GKPlayer"
         ))]
         #[method_id(@__retain_semantics Other playerProperties)]
@@ -333,7 +354,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameKit_GKMatchedPlayers")]
     unsafe impl GKMatchedPlayers {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -345,30 +365,22 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameKit_GKMatchmaker")]
     pub struct GKMatchmaker;
 
-    #[cfg(feature = "GameKit_GKMatchmaker")]
     unsafe impl ClassType for GKMatchmaker {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "GameKit_GKMatchmaker")]
 unsafe impl NSObjectProtocol for GKMatchmaker {}
 
 extern_methods!(
-    #[cfg(feature = "GameKit_GKMatchmaker")]
     unsafe impl GKMatchmaker {
         #[method_id(@__retain_semantics Other sharedMatchmaker)]
         pub unsafe fn sharedMatchmaker() -> Id<GKMatchmaker>;
 
-        #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "GameKit_GKInvite",
-            feature = "GameKit_GKMatch"
-        ))]
+        #[cfg(all(feature = "Foundation_NSError", feature = "GameKit_GKMatch"))]
         #[method(matchForInvite:completionHandler:)]
         pub unsafe fn matchForInvite_completionHandler(
             &self,
@@ -376,11 +388,7 @@ extern_methods!(
             completion_handler: Option<&Block<dyn Fn(*mut GKMatch, *mut NSError)>>,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "GameKit_GKMatch",
-            feature = "GameKit_GKMatchRequest"
-        ))]
+        #[cfg(all(feature = "Foundation_NSError", feature = "GameKit_GKMatch"))]
         #[method(findMatchForRequest:withCompletionHandler:)]
         pub unsafe fn findMatchForRequest_withCompletionHandler(
             &self,
@@ -391,7 +399,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSError",
-            feature = "GameKit_GKMatchRequest",
+            feature = "GameKit_GKBasePlayer",
             feature = "GameKit_GKPlayer"
         ))]
         #[method(findPlayersForHostedRequest:withCompletionHandler:)]
@@ -401,11 +409,7 @@ extern_methods!(
             completion_handler: Option<&Block<dyn Fn(*mut NSArray<GKPlayer>, *mut NSError)>>,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "GameKit_GKMatchRequest",
-            feature = "GameKit_GKMatchedPlayers"
-        ))]
+        #[cfg(feature = "Foundation_NSError")]
         #[method(findMatchedPlayers:withCompletionHandler:)]
         pub unsafe fn findMatchedPlayers_withCompletionHandler(
             &self,
@@ -413,11 +417,7 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut GKMatchedPlayers, *mut NSError)>,
         );
 
-        #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "GameKit_GKMatch",
-            feature = "GameKit_GKMatchRequest"
-        ))]
+        #[cfg(all(feature = "Foundation_NSError", feature = "GameKit_GKMatch"))]
         #[method(addPlayersToMatch:matchRequest:completionHandler:)]
         pub unsafe fn addPlayersToMatch_matchRequest_completionHandler(
             &self,
@@ -429,7 +429,7 @@ extern_methods!(
         #[method(cancel)]
         pub unsafe fn cancel(&self);
 
-        #[cfg(feature = "GameKit_GKPlayer")]
+        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
         #[method(cancelPendingInviteToPlayer:)]
         pub unsafe fn cancelPendingInviteToPlayer(&self, player: &GKPlayer);
 
@@ -460,7 +460,7 @@ extern_methods!(
             completion_handler: Option<&Block<dyn Fn(NSInteger, *mut NSError)>>,
         );
 
-        #[cfg(feature = "GameKit_GKPlayer")]
+        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
         #[method(startBrowsingForNearbyPlayersWithHandler:)]
         pub unsafe fn startBrowsingForNearbyPlayersWithHandler(
             &self,
@@ -470,7 +470,7 @@ extern_methods!(
         #[method(stopBrowsingForNearbyPlayers)]
         pub unsafe fn stopBrowsingForNearbyPlayers(&self);
 
-        #[cfg(feature = "GameKit_GKPlayer")]
+        #[cfg(all(feature = "GameKit_GKBasePlayer", feature = "GameKit_GKPlayer"))]
         #[method(startGroupActivityWithPlayerHandler:)]
         pub unsafe fn startGroupActivityWithPlayerHandler(
             &self,
@@ -484,7 +484,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameKit_GKMatchmaker")]
     unsafe impl GKMatchmaker {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -496,14 +495,13 @@ extern_methods!(
 
 extern_methods!(
     /// GKDeprecated
-    #[cfg(feature = "GameKit_GKMatchmaker")]
     unsafe impl GKMatchmaker {
-        #[cfg(all(feature = "Foundation_NSArray", feature = "GameKit_GKInvite"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[deprecated = "Use registerListener on GKLocalPlayer to register an object that implements the GKInviteEventListener instead."]
         #[method(inviteHandler)]
         pub unsafe fn inviteHandler(&self) -> *mut Block<dyn Fn(NonNull<GKInvite>, *mut NSArray)>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "GameKit_GKInvite"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[deprecated = "Use registerListener on GKLocalPlayer to register an object that implements the GKInviteEventListener instead."]
         #[method(setInviteHandler:)]
         pub unsafe fn setInviteHandler(
@@ -515,7 +513,6 @@ extern_methods!(
 
 extern_methods!(
     /// Obsoleted
-    #[cfg(feature = "GameKit_GKMatchmaker")]
     unsafe impl GKMatchmaker {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
@@ -533,8 +530,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSError",
-            feature = "Foundation_NSString",
-            feature = "GameKit_GKMatchRequest"
+            feature = "Foundation_NSString"
         ))]
         #[deprecated]
         #[method(findPlayersForHostedMatchRequest:withCompletionHandler:)]

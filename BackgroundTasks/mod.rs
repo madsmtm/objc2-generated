@@ -17,33 +17,42 @@
 #[link(name = "BackgroundTasks", kind = "framework")]
 extern "C" {}
 
+#[cfg(feature = "BackgroundTasks_BGDefines")]
 #[path = "BGDefines.rs"]
 mod __BGDefines;
+#[cfg(feature = "BackgroundTasks_BGTask")]
 #[path = "BGTask.rs"]
 mod __BGTask;
+#[cfg(feature = "BackgroundTasks_BGTaskRequest")]
 #[path = "BGTaskRequest.rs"]
 mod __BGTaskRequest;
+#[cfg(feature = "BackgroundTasks_BGTaskScheduler")]
 #[path = "BGTaskScheduler.rs"]
 mod __BGTaskScheduler;
 
-#[cfg(feature = "BackgroundTasks_BGAppRefreshTask")]
+#[cfg(feature = "BackgroundTasks_BGTask")]
 pub use self::__BGTask::BGAppRefreshTask;
-#[cfg(feature = "BackgroundTasks_BGHealthResearchTask")]
+#[cfg(feature = "BackgroundTasks_BGTask")]
 pub use self::__BGTask::BGHealthResearchTask;
-#[cfg(feature = "BackgroundTasks_BGProcessingTask")]
+#[cfg(feature = "BackgroundTasks_BGTask")]
 pub use self::__BGTask::BGProcessingTask;
 #[cfg(feature = "BackgroundTasks_BGTask")]
 pub use self::__BGTask::BGTask;
-#[cfg(feature = "BackgroundTasks_BGAppRefreshTaskRequest")]
+#[cfg(feature = "BackgroundTasks_BGTaskRequest")]
 pub use self::__BGTaskRequest::BGAppRefreshTaskRequest;
-#[cfg(feature = "BackgroundTasks_BGHealthResearchTaskRequest")]
+#[cfg(feature = "BackgroundTasks_BGTaskRequest")]
 pub use self::__BGTaskRequest::BGHealthResearchTaskRequest;
-#[cfg(feature = "BackgroundTasks_BGProcessingTaskRequest")]
+#[cfg(feature = "BackgroundTasks_BGTaskRequest")]
 pub use self::__BGTaskRequest::BGProcessingTaskRequest;
 #[cfg(feature = "BackgroundTasks_BGTaskRequest")]
 pub use self::__BGTaskRequest::BGTaskRequest;
 #[cfg(feature = "BackgroundTasks_BGTaskScheduler")]
 pub use self::__BGTaskScheduler::BGTaskScheduler;
+#[cfg(feature = "BackgroundTasks_BGTaskScheduler")]
 pub use self::__BGTaskScheduler::BGTaskSchedulerErrorCode;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "BackgroundTasks_BGTaskScheduler",
+    feature = "Foundation_NSError",
+    feature = "Foundation_NSString"
+))]
 pub use self::__BGTaskScheduler::BGTaskSchedulerErrorDomain;

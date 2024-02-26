@@ -7,11 +7,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreLocation_CLBeaconIdentityConstraint")]
+    #[cfg(all(
+        feature = "CoreLocation_CLBeaconIdentityCondition",
+        feature = "CoreLocation_CLCondition"
+    ))]
     #[deprecated]
     pub struct CLBeaconIdentityConstraint;
 
-    #[cfg(feature = "CoreLocation_CLBeaconIdentityConstraint")]
+    #[cfg(all(
+        feature = "CoreLocation_CLBeaconIdentityCondition",
+        feature = "CoreLocation_CLCondition"
+    ))]
     unsafe impl ClassType for CLBeaconIdentityConstraint {
         #[inherits(CLCondition, NSObject)]
         type Super = CLBeaconIdentityCondition;
@@ -19,26 +25,47 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CoreLocation_CLBeaconIdentityConstraint")]
+#[cfg(all(
+    feature = "CoreLocation_CLBeaconIdentityCondition",
+    feature = "CoreLocation_CLCondition",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for CLBeaconIdentityConstraint {}
 
-#[cfg(feature = "CoreLocation_CLBeaconIdentityConstraint")]
+#[cfg(all(
+    feature = "CoreLocation_CLBeaconIdentityCondition",
+    feature = "CoreLocation_CLCondition",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCopying for CLBeaconIdentityConstraint {}
 
-#[cfg(feature = "CoreLocation_CLBeaconIdentityConstraint")]
+#[cfg(all(
+    feature = "CoreLocation_CLBeaconIdentityCondition",
+    feature = "CoreLocation_CLCondition"
+))]
 unsafe impl NSObjectProtocol for CLBeaconIdentityConstraint {}
 
-#[cfg(feature = "CoreLocation_CLBeaconIdentityConstraint")]
+#[cfg(all(
+    feature = "CoreLocation_CLBeaconIdentityCondition",
+    feature = "CoreLocation_CLCondition",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSSecureCoding for CLBeaconIdentityConstraint {}
 
 extern_methods!(
-    #[cfg(feature = "CoreLocation_CLBeaconIdentityConstraint")]
+    #[cfg(all(
+        feature = "CoreLocation_CLBeaconIdentityCondition",
+        feature = "CoreLocation_CLCondition"
+    ))]
     unsafe impl CLBeaconIdentityConstraint {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `CLBeaconIdentityCondition`
-    #[cfg(feature = "CoreLocation_CLBeaconIdentityConstraint")]
+    #[cfg(all(
+        feature = "CoreLocation_CLBeaconIdentityCondition",
+        feature = "CoreLocation_CLCondition"
+    ))]
     unsafe impl CLBeaconIdentityConstraint {
         #[cfg(feature = "Foundation_NSUUID")]
         #[method_id(@__retain_semantics Init initWithUUID:)]
@@ -65,7 +92,10 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CLCondition`
-    #[cfg(feature = "CoreLocation_CLBeaconIdentityConstraint")]
+    #[cfg(all(
+        feature = "CoreLocation_CLBeaconIdentityCondition",
+        feature = "CoreLocation_CLCondition"
+    ))]
     unsafe impl CLBeaconIdentityConstraint {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -7,10 +7,20 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSOpenPanel")]
+    #[cfg(all(
+        feature = "AppKit_NSPanel",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSSavePanel",
+        feature = "AppKit_NSWindow"
+    ))]
     pub struct NSOpenPanel;
 
-    #[cfg(feature = "AppKit_NSOpenPanel")]
+    #[cfg(all(
+        feature = "AppKit_NSPanel",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSSavePanel",
+        feature = "AppKit_NSWindow"
+    ))]
     unsafe impl ClassType for NSOpenPanel {
         #[inherits(NSPanel, NSWindow, NSResponder, NSObject)]
         type Super = NSSavePanel;
@@ -18,35 +28,93 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSOpenPanel")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSPanel",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSSavePanel",
+    feature = "AppKit_NSWindow"
+))]
 unsafe impl NSAccessibility for NSOpenPanel {}
 
-#[cfg(feature = "AppKit_NSOpenPanel")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSPanel",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSSavePanel",
+    feature = "AppKit_NSWindow"
+))]
 unsafe impl NSAccessibilityElementProtocol for NSOpenPanel {}
 
-#[cfg(feature = "AppKit_NSOpenPanel")]
+#[cfg(all(
+    feature = "AppKit_NSAnimation",
+    feature = "AppKit_NSPanel",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSSavePanel",
+    feature = "AppKit_NSWindow"
+))]
 unsafe impl NSAnimatablePropertyContainer for NSOpenPanel {}
 
-#[cfg(feature = "AppKit_NSOpenPanel")]
+#[cfg(all(
+    feature = "AppKit_NSAppearance",
+    feature = "AppKit_NSPanel",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSSavePanel",
+    feature = "AppKit_NSWindow"
+))]
 unsafe impl NSAppearanceCustomization for NSOpenPanel {}
 
-#[cfg(feature = "AppKit_NSOpenPanel")]
+#[cfg(all(
+    feature = "AppKit_NSPanel",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSSavePanel",
+    feature = "AppKit_NSWindow",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSOpenPanel {}
 
-#[cfg(feature = "AppKit_NSOpenPanel")]
+#[cfg(all(
+    feature = "AppKit_NSMenu",
+    feature = "AppKit_NSPanel",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSSavePanel",
+    feature = "AppKit_NSWindow"
+))]
 unsafe impl NSMenuItemValidation for NSOpenPanel {}
 
-#[cfg(feature = "AppKit_NSOpenPanel")]
+#[cfg(all(
+    feature = "AppKit_NSPanel",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSSavePanel",
+    feature = "AppKit_NSWindow"
+))]
 unsafe impl NSObjectProtocol for NSOpenPanel {}
 
-#[cfg(feature = "AppKit_NSOpenPanel")]
+#[cfg(all(
+    feature = "AppKit_NSPanel",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSSavePanel",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSWindow"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSOpenPanel {}
 
-#[cfg(feature = "AppKit_NSOpenPanel")]
+#[cfg(all(
+    feature = "AppKit_NSPanel",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSSavePanel",
+    feature = "AppKit_NSUserInterfaceValidation",
+    feature = "AppKit_NSWindow"
+))]
 unsafe impl NSUserInterfaceValidations for NSOpenPanel {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSOpenPanel")]
+    #[cfg(all(
+        feature = "AppKit_NSPanel",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSSavePanel",
+        feature = "AppKit_NSWindow"
+    ))]
     unsafe impl NSOpenPanel {
         #[method_id(@__retain_semantics Other openPanel)]
         pub unsafe fn openPanel(mtm: MainThreadMarker) -> Id<NSOpenPanel>;
@@ -107,8 +175,14 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSWindow`
-    #[cfg(feature = "AppKit_NSOpenPanel")]
+    #[cfg(all(
+        feature = "AppKit_NSPanel",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSSavePanel",
+        feature = "AppKit_NSWindow"
+    ))]
     unsafe impl NSOpenPanel {
+        #[cfg(all(feature = "AppKit_NSGraphics", feature = "Foundation_NSGeometry"))]
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer(
             this: Allocated<Self>,
@@ -118,7 +192,11 @@ extern_methods!(
             flag: bool,
         ) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSScreen")]
+        #[cfg(all(
+            feature = "AppKit_NSGraphics",
+            feature = "AppKit_NSScreen",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:screen:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer_screen(
             this: Allocated<Self>,
@@ -143,7 +221,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "AppKit_NSOpenPanel")]
+    #[cfg(all(
+        feature = "AppKit_NSPanel",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSSavePanel",
+        feature = "AppKit_NSWindow"
+    ))]
     unsafe impl NSOpenPanel {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -152,7 +235,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSOpenPanel")]
+    #[cfg(all(
+        feature = "AppKit_NSPanel",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSSavePanel",
+        feature = "AppKit_NSWindow"
+    ))]
     unsafe impl NSOpenPanel {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -161,7 +249,12 @@ extern_methods!(
 
 extern_methods!(
     /// NSDeprecated
-    #[cfg(feature = "AppKit_NSOpenPanel")]
+    #[cfg(all(
+        feature = "AppKit_NSPanel",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSSavePanel",
+        feature = "AppKit_NSWindow"
+    ))]
     unsafe impl NSOpenPanel {
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated]

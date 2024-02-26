@@ -36,10 +36,10 @@ extern_static!(HKVerifiableClinicalRecordCredentialTypeRecovery: &'static HKVeri
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKVerifiableClinicalRecord")]
+    #[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
     pub struct HKVerifiableClinicalRecord;
 
-    #[cfg(feature = "HealthKit_HKVerifiableClinicalRecord")]
+    #[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
     unsafe impl ClassType for HKVerifiableClinicalRecord {
         #[inherits(HKObject, NSObject)]
         type Super = HKSample;
@@ -47,17 +47,25 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKVerifiableClinicalRecord")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "HealthKit_HKObject",
+    feature = "HealthKit_HKSample"
+))]
 unsafe impl NSCoding for HKVerifiableClinicalRecord {}
 
-#[cfg(feature = "HealthKit_HKVerifiableClinicalRecord")]
+#[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
 unsafe impl NSObjectProtocol for HKVerifiableClinicalRecord {}
 
-#[cfg(feature = "HealthKit_HKVerifiableClinicalRecord")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "HealthKit_HKObject",
+    feature = "HealthKit_HKSample"
+))]
 unsafe impl NSSecureCoding for HKVerifiableClinicalRecord {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKVerifiableClinicalRecord")]
+    #[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
     unsafe impl HKVerifiableClinicalRecord {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other recordTypes)]

@@ -7,36 +7,30 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKRecordID")]
     pub struct CKRecordID;
 
-    #[cfg(feature = "CloudKit_CKRecordID")]
     unsafe impl ClassType for CKRecordID {
         type Super = NSObject;
         type Mutability = Immutable;
     }
 );
 
-#[cfg(feature = "CloudKit_CKRecordID")]
 unsafe impl Send for CKRecordID {}
 
-#[cfg(feature = "CloudKit_CKRecordID")]
 unsafe impl Sync for CKRecordID {}
 
-#[cfg(feature = "CloudKit_CKRecordID")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CKRecordID {}
 
-#[cfg(feature = "CloudKit_CKRecordID")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for CKRecordID {}
 
-#[cfg(feature = "CloudKit_CKRecordID")]
 unsafe impl NSObjectProtocol for CKRecordID {}
 
-#[cfg(feature = "CloudKit_CKRecordID")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CKRecordID {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKRecordID")]
     unsafe impl CKRecordID {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

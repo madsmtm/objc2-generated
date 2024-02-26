@@ -5,82 +5,160 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSFontAttributeName: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSParagraphStyleAttributeName: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSForegroundColorAttributeName: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSBackgroundColorAttributeName: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSLigatureAttributeName: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSKernAttributeName: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSTrackingAttributeName: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSStrikethroughStyleAttributeName: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSUnderlineStyleAttributeName: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSStrokeColorAttributeName: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSStrokeWidthAttributeName: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSShadowAttributeName: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSTextEffectAttributeName: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSAttachmentAttributeName: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSLinkAttributeName: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSBaselineOffsetAttributeName: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSUnderlineColorAttributeName: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSStrikethroughColorAttributeName: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSWritingDirectionAttributeName: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSCursorAttributeName: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSToolTipAttributeName: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSMarkedClauseSegmentAttributeName: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSTextAlternativesAttributeName: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSSpellingStateAttributeName: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSSuperscriptAttributeName: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSGlyphInfoAttributeName: &'static NSAttributedStringKey);
 
 ns_options!(
@@ -138,20 +216,24 @@ ns_enum!(
 extern_category!(
     /// Category on [`NSMutableAttributedString`].
     pub unsafe trait NSAttributedStringAttributeFixing {
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(fixAttributesInRange:)]
         unsafe fn fixAttributesInRange(&self, range: NSRange);
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(fixFontAttributeInRange:)]
         unsafe fn fixFontAttributeInRange(&self, range: NSRange);
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(fixParagraphStyleAttributeInRange:)]
         unsafe fn fixParagraphStyleAttributeInRange(&self, range: NSRange);
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(fixAttachmentAttributeInRange:)]
         unsafe fn fixAttachmentAttributeInRange(&self, range: NSRange);
     }
 
-    #[cfg(feature = "Foundation_NSMutableAttributedString")]
+    #[cfg(feature = "Foundation_NSAttributedString")]
     unsafe impl NSAttributedStringAttributeFixing for NSMutableAttributedString {}
 );
 
@@ -373,6 +455,7 @@ extern_category!(
     /// Category on [`NSAttributedString`].
     pub unsafe trait NSAttributedStringDocumentFormats {
         #[cfg(all(
+            feature = "AppKit_NSAttributedString",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
             feature = "Foundation_NSString",
@@ -389,6 +472,7 @@ extern_category!(
         ) -> Result<Id<Self>, Id<NSError>>;
 
         #[cfg(all(
+            feature = "AppKit_NSAttributedString",
             feature = "Foundation_NSData",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
@@ -405,9 +489,11 @@ extern_category!(
         ) -> Result<Id<Self>, Id<NSError>>;
 
         #[cfg(all(
+            feature = "AppKit_NSAttributedString",
             feature = "Foundation_NSData",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
+            feature = "Foundation_NSRange",
             feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other dataFromRange:documentAttributes:error:_)]
@@ -418,9 +504,11 @@ extern_category!(
         ) -> Result<Id<NSData>, Id<NSError>>;
 
         #[cfg(all(
+            feature = "AppKit_NSAttributedString",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
             feature = "Foundation_NSFileWrapper",
+            feature = "Foundation_NSRange",
             feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other fileWrapperFromRange:documentAttributes:error:_)]
@@ -431,6 +519,7 @@ extern_category!(
         ) -> Result<Id<NSFileWrapper>, Id<NSError>>;
 
         #[cfg(all(
+            feature = "AppKit_NSAttributedString",
             feature = "Foundation_NSData",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString"
@@ -445,6 +534,7 @@ extern_category!(
         ) -> Option<Id<Self>>;
 
         #[cfg(all(
+            feature = "AppKit_NSAttributedString",
             feature = "Foundation_NSData",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString"
@@ -459,6 +549,7 @@ extern_category!(
         ) -> Option<Id<Self>>;
 
         #[cfg(all(
+            feature = "AppKit_NSAttributedString",
             feature = "Foundation_NSData",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString"
@@ -473,6 +564,7 @@ extern_category!(
         ) -> Option<Id<Self>>;
 
         #[cfg(all(
+            feature = "AppKit_NSAttributedString",
             feature = "Foundation_NSData",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString",
@@ -489,6 +581,7 @@ extern_category!(
         ) -> Option<Id<Self>>;
 
         #[cfg(all(
+            feature = "AppKit_NSAttributedString",
             feature = "Foundation_NSData",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString"
@@ -503,6 +596,7 @@ extern_category!(
         ) -> Option<Id<Self>>;
 
         #[cfg(all(
+            feature = "AppKit_NSAttributedString",
             feature = "Foundation_NSData",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString"
@@ -518,6 +612,7 @@ extern_category!(
         ) -> Option<Id<Self>>;
 
         #[cfg(all(
+            feature = "AppKit_NSAttributedString",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSFileWrapper",
             feature = "Foundation_NSString"
@@ -532,8 +627,10 @@ extern_category!(
         ) -> Option<Id<Self>>;
 
         #[cfg(all(
+            feature = "AppKit_NSAttributedString",
             feature = "Foundation_NSData",
             feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSRange",
             feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other RTFFromRange:documentAttributes:)]
@@ -544,8 +641,10 @@ extern_category!(
         ) -> Option<Id<NSData>>;
 
         #[cfg(all(
+            feature = "AppKit_NSAttributedString",
             feature = "Foundation_NSData",
             feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSRange",
             feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other RTFDFromRange:documentAttributes:)]
@@ -556,8 +655,10 @@ extern_category!(
         ) -> Option<Id<NSData>>;
 
         #[cfg(all(
+            feature = "AppKit_NSAttributedString",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSFileWrapper",
+            feature = "Foundation_NSRange",
             feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other RTFDFileWrapperFromRange:documentAttributes:)]
@@ -568,8 +669,10 @@ extern_category!(
         ) -> Option<Id<NSFileWrapper>>;
 
         #[cfg(all(
+            feature = "AppKit_NSAttributedString",
             feature = "Foundation_NSData",
             feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSRange",
             feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other docFormatFromRange:documentAttributes:)]
@@ -588,6 +691,7 @@ extern_category!(
     /// Category on [`NSMutableAttributedString`].
     pub unsafe trait NSMutableAttributedStringDocumentFormats {
         #[cfg(all(
+            feature = "AppKit_NSAttributedString",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
             feature = "Foundation_NSString",
@@ -604,6 +708,7 @@ extern_category!(
         ) -> Result<(), Id<NSError>>;
 
         #[cfg(all(
+            feature = "AppKit_NSAttributedString",
             feature = "Foundation_NSData",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
@@ -620,30 +725,42 @@ extern_category!(
         ) -> Result<(), Id<NSError>>;
     }
 
-    #[cfg(feature = "Foundation_NSMutableAttributedString")]
+    #[cfg(feature = "Foundation_NSAttributedString")]
     unsafe impl NSMutableAttributedStringDocumentFormats for NSMutableAttributedString {}
 );
 
 extern_category!(
     /// Category on [`NSAttributedString`].
     pub unsafe trait NSAttributedStringKitAdditions {
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSAttributedString",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSRange",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other fontAttributesInRange:)]
         unsafe fn fontAttributesInRange(
             &self,
             range: NSRange,
         ) -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSAttributedString",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSRange",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other rulerAttributesInRange:)]
         unsafe fn rulerAttributesInRange(
             &self,
             range: NSRange,
         ) -> Id<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(containsAttachmentsInRange:)]
         unsafe fn containsAttachmentsInRange(&self, range: NSRange) -> bool;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(lineBreakBeforeIndex:withinRange:)]
         unsafe fn lineBreakBeforeIndex_withinRange(
             &self,
@@ -651,6 +768,7 @@ extern_category!(
             a_range: NSRange,
         ) -> NSUInteger;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(lineBreakByHyphenatingBeforeIndex:withinRange:)]
         unsafe fn lineBreakByHyphenatingBeforeIndex_withinRange(
             &self,
@@ -658,6 +776,7 @@ extern_category!(
             a_range: NSRange,
         ) -> NSUInteger;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(doubleClickAtIndex:)]
         unsafe fn doubleClickAtIndex(&self, location: NSUInteger) -> NSRange;
 
@@ -668,7 +787,7 @@ extern_category!(
             is_forward: bool,
         ) -> NSUInteger;
 
-        #[cfg(feature = "AppKit_NSTextBlock")]
+        #[cfg(all(feature = "AppKit_NSTextTable", feature = "Foundation_NSRange"))]
         #[method(rangeOfTextBlock:atIndex:)]
         unsafe fn rangeOfTextBlock_atIndex(
             &self,
@@ -676,7 +795,7 @@ extern_category!(
             location: NSUInteger,
         ) -> NSRange;
 
-        #[cfg(feature = "AppKit_NSTextTable")]
+        #[cfg(all(feature = "AppKit_NSTextTable", feature = "Foundation_NSRange"))]
         #[method(rangeOfTextTable:atIndex:)]
         unsafe fn rangeOfTextTable_atIndex(
             &self,
@@ -684,7 +803,7 @@ extern_category!(
             location: NSUInteger,
         ) -> NSRange;
 
-        #[cfg(feature = "AppKit_NSTextList")]
+        #[cfg(all(feature = "AppKit_NSTextList", feature = "Foundation_NSRange"))]
         #[method(rangeOfTextList:atIndex:)]
         unsafe fn rangeOfTextList_atIndex(
             &self,
@@ -721,30 +840,42 @@ extern_category!(
     unsafe impl NSAttributedStringPasteboardAdditions for NSAttributedString {}
 );
 
-#[cfg(feature = "Foundation_NSAttributedString")]
+#[cfg(all(
+    feature = "AppKit_NSPasteboard",
+    feature = "Foundation_NSAttributedString"
+))]
 unsafe impl NSPasteboardReading for NSAttributedString {}
 
-#[cfg(feature = "Foundation_NSAttributedString")]
+#[cfg(all(
+    feature = "AppKit_NSPasteboard",
+    feature = "Foundation_NSAttributedString"
+))]
 unsafe impl NSPasteboardWriting for NSAttributedString {}
 
 extern_category!(
     /// Category on [`NSMutableAttributedString`].
     pub unsafe trait NSMutableAttributedStringKitAdditions {
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(superscriptRange:)]
         unsafe fn superscriptRange(&self, range: NSRange);
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(subscriptRange:)]
         unsafe fn subscriptRange(&self, range: NSRange);
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(unscriptRange:)]
         unsafe fn unscriptRange(&self, range: NSRange);
 
+        #[cfg(all(feature = "AppKit_NSFontManager", feature = "Foundation_NSRange"))]
         #[method(applyFontTraits:range:)]
         unsafe fn applyFontTraits_range(&self, trait_mask: NSFontTraitMask, range: NSRange);
 
+        #[cfg(all(feature = "AppKit_NSText", feature = "Foundation_NSRange"))]
         #[method(setAlignment:range:)]
         unsafe fn setAlignment_range(&self, alignment: NSTextAlignment, range: NSRange);
 
+        #[cfg(all(feature = "AppKit_NSText", feature = "Foundation_NSRange"))]
         #[method(setBaseWritingDirection:range:)]
         unsafe fn setBaseWritingDirection_range(
             &self,
@@ -753,7 +884,7 @@ extern_category!(
         );
     }
 
-    #[cfg(feature = "Foundation_NSMutableAttributedString")]
+    #[cfg(feature = "Foundation_NSAttributedString")]
     unsafe impl NSMutableAttributedStringKitAdditions for NSMutableAttributedString {}
 );
 
@@ -769,19 +900,34 @@ extern_static!(NSUnderlinePatternDashDotDot: NSUnderlineStyle = NSUnderlineStyle
 
 extern_static!(NSUnderlineByWord: NSUnderlineStyle = NSUnderlineStyle(NSUnderlineStyle::ByWord.0));
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSCharacterShapeAttributeName: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSUsesScreenFontsDocumentAttribute: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSObliquenessAttributeName: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSExpansionAttributeName: &'static NSAttributedStringKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSAttributedString",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSVerticalGlyphFormAttributeName: &'static NSAttributedStringKey);
 
 #[deprecated = "Use NSUnderlineStyleNone instead"]
@@ -838,7 +984,7 @@ extern_category!(
             dict: Option<&mut Option<Id<NSDictionary>>>,
         ) -> Option<Id<Self>>;
 
-        #[cfg(feature = "Foundation_NSURL")]
+        #[cfg(all(feature = "Foundation_NSRange", feature = "Foundation_NSURL"))]
         #[deprecated = "Use NSDataDetector instead"]
         #[method_id(@__retain_semantics Other URLAtIndex:effectiveRange:)]
         unsafe fn URLAtIndex_effectiveRange(

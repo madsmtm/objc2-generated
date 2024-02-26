@@ -102,6 +102,7 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait IMKMouseHandling {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(mouseDownOnCharacterIndex:coordinate:withModifier:continueTracking:client:)]
         unsafe fn mouseDownOnCharacterIndex_coordinate_withModifier_continueTracking_client(
             &self,
@@ -112,6 +113,7 @@ extern_protocol!(
             sender: Option<&AnyObject>,
         ) -> bool;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(mouseUpOnCharacterIndex:coordinate:withModifier:client:)]
         unsafe fn mouseUpOnCharacterIndex_coordinate_withModifier_client(
             &self,
@@ -121,6 +123,7 @@ extern_protocol!(
             sender: Option<&AnyObject>,
         ) -> bool;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(mouseMovedOnCharacterIndex:coordinate:withModifier:client:)]
         unsafe fn mouseMovedOnCharacterIndex_coordinate_withModifier_client(
             &self,
@@ -136,27 +139,21 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "InputMethodKit_IMKInputController")]
     pub struct IMKInputController;
 
-    #[cfg(feature = "InputMethodKit_IMKInputController")]
     unsafe impl ClassType for IMKInputController {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "InputMethodKit_IMKInputController")]
 unsafe impl IMKMouseHandling for IMKInputController {}
 
-#[cfg(feature = "InputMethodKit_IMKInputController")]
 unsafe impl IMKStateSetting for IMKInputController {}
 
-#[cfg(feature = "InputMethodKit_IMKInputController")]
 unsafe impl NSObjectProtocol for IMKInputController {}
 
 extern_methods!(
-    #[cfg(feature = "InputMethodKit_IMKInputController")]
     unsafe impl IMKInputController {
         #[cfg(feature = "InputMethodKit_IMKServer")]
         #[method_id(@__retain_semantics Init initWithServer:delegate:client:)]
@@ -173,20 +170,22 @@ extern_methods!(
         #[method(cancelComposition)]
         pub unsafe fn cancelComposition(&self);
 
-        #[cfg(feature = "Foundation_NSMutableDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSRange"))]
         #[method_id(@__retain_semantics Other compositionAttributesAtRange:)]
         pub unsafe fn compositionAttributesAtRange(
             &self,
             range: NSRange,
         ) -> Option<Id<NSMutableDictionary>>;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(selectionRange)]
         pub unsafe fn selectionRange(&self) -> NSRange;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(replacementRange)]
         pub unsafe fn replacementRange(&self) -> NSRange;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSRange"))]
         #[method_id(@__retain_semantics Other markForStyle:atRange:)]
         pub unsafe fn markForStyle_atRange(
             &self,
@@ -219,9 +218,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other server)]
         pub unsafe fn server(&self) -> Option<Id<IMKServer>>;
 
-        #[method_id(@__retain_semantics Other client)]
-        pub unsafe fn client(&self) -> Option<Id<TodoProtocols>>;
-
         #[method(inputControllerWillClose)]
         pub unsafe fn inputControllerWillClose(&self);
 
@@ -248,7 +244,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "InputMethodKit_IMKInputController")]
     unsafe impl IMKInputController {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

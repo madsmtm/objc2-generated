@@ -6,21 +6,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSStagedMigrationManager")]
     pub struct NSStagedMigrationManager;
 
-    #[cfg(feature = "CoreData_NSStagedMigrationManager")]
     unsafe impl ClassType for NSStagedMigrationManager {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreData_NSStagedMigrationManager")]
 unsafe impl NSObjectProtocol for NSStagedMigrationManager {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSStagedMigrationManager")]
     unsafe impl NSStagedMigrationManager {
         #[cfg(all(feature = "CoreData_NSMigrationStage", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other stages)]
@@ -44,7 +40,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSStagedMigrationManager")]
     unsafe impl NSStagedMigrationManager {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

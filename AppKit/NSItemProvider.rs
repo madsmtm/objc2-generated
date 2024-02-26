@@ -9,12 +9,15 @@ extern_category!(
     /// Category "NSItemSourceInfo" on [`NSItemProvider`].
     #[doc(alias = "NSItemSourceInfo")]
     pub unsafe trait NSItemProviderNSItemSourceInfo {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(sourceFrame)]
         unsafe fn sourceFrame(&self) -> NSRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(containerFrame)]
         unsafe fn containerFrame(&self) -> NSRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(preferredPresentationSize)]
         unsafe fn preferredPresentationSize(&self) -> NSSize;
     }

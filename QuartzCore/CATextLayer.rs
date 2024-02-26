@@ -16,10 +16,10 @@ typed_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "QuartzCore_CATextLayer")]
+    #[cfg(feature = "QuartzCore_CALayer")]
     pub struct CATextLayer;
 
-    #[cfg(feature = "QuartzCore_CATextLayer")]
+    #[cfg(feature = "QuartzCore_CALayer")]
     unsafe impl ClassType for CATextLayer {
         #[inherits(NSObject)]
         type Super = CALayer;
@@ -27,20 +27,20 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "QuartzCore_CATextLayer")]
+#[cfg(all(feature = "QuartzCore_CALayer", feature = "QuartzCore_CAMediaTiming"))]
 unsafe impl CAMediaTiming for CATextLayer {}
 
-#[cfg(feature = "QuartzCore_CATextLayer")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "QuartzCore_CALayer"))]
 unsafe impl NSCoding for CATextLayer {}
 
-#[cfg(feature = "QuartzCore_CATextLayer")]
+#[cfg(feature = "QuartzCore_CALayer")]
 unsafe impl NSObjectProtocol for CATextLayer {}
 
-#[cfg(feature = "QuartzCore_CATextLayer")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "QuartzCore_CALayer"))]
 unsafe impl NSSecureCoding for CATextLayer {}
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CATextLayer")]
+    #[cfg(feature = "QuartzCore_CALayer")]
     unsafe impl CATextLayer {
         #[method_id(@__retain_semantics Other string)]
         pub unsafe fn string(&self) -> Option<Id<AnyObject>>;
@@ -48,9 +48,11 @@ extern_methods!(
         #[method(setString:)]
         pub unsafe fn setString(&self, string: Option<&AnyObject>);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(fontSize)]
         pub unsafe fn fontSize(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setFontSize:)]
         pub unsafe fn setFontSize(&self, font_size: CGFloat);
 
@@ -89,7 +91,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CALayer`
-    #[cfg(feature = "QuartzCore_CATextLayer")]
+    #[cfg(feature = "QuartzCore_CALayer")]
     unsafe impl CATextLayer {
         #[method_id(@__retain_semantics Other layer)]
         pub unsafe fn layer() -> Id<Self>;
@@ -104,7 +106,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "QuartzCore_CATextLayer")]
+    #[cfg(feature = "QuartzCore_CALayer")]
     unsafe impl CATextLayer {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

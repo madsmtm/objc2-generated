@@ -7,10 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationExtensionContext")]
+    #[cfg(feature = "Foundation_NSExtensionContext")]
     pub struct ASAccountAuthenticationModificationExtensionContext;
 
-    #[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationExtensionContext")]
+    #[cfg(feature = "Foundation_NSExtensionContext")]
     unsafe impl ClassType for ASAccountAuthenticationModificationExtensionContext {
         #[inherits(NSObject)]
         type Super = NSExtensionContext;
@@ -18,11 +18,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationExtensionContext")]
+#[cfg(feature = "Foundation_NSExtensionContext")]
 unsafe impl NSObjectProtocol for ASAccountAuthenticationModificationExtensionContext {}
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationExtensionContext")]
+    #[cfg(feature = "Foundation_NSExtensionContext")]
     unsafe impl ASAccountAuthenticationModificationExtensionContext {
         #[cfg(all(
             feature = "AuthenticationServices_ASAuthorizationAppleIDCredential",
@@ -63,7 +63,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationExtensionContext")]
+    #[cfg(feature = "Foundation_NSExtensionContext")]
     unsafe impl ASAccountAuthenticationModificationExtensionContext {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

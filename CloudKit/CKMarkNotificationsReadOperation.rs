@@ -7,11 +7,11 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKMarkNotificationsReadOperation")]
+    #[cfg(all(feature = "CloudKit_CKOperation", feature = "Foundation_NSOperation"))]
     #[deprecated = "Instead of iterating notifications, consider using CKDatabaseSubscription, CKFetchDatabaseChangesOperation, and CKFetchRecordZoneChangesOperation as appropriate"]
     pub struct CKMarkNotificationsReadOperation;
 
-    #[cfg(feature = "CloudKit_CKMarkNotificationsReadOperation")]
+    #[cfg(all(feature = "CloudKit_CKOperation", feature = "Foundation_NSOperation"))]
     unsafe impl ClassType for CKMarkNotificationsReadOperation {
         #[inherits(NSOperation, NSObject)]
         type Super = CKOperation;
@@ -19,17 +19,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CloudKit_CKMarkNotificationsReadOperation")]
+#[cfg(all(feature = "CloudKit_CKOperation", feature = "Foundation_NSOperation"))]
 unsafe impl NSObjectProtocol for CKMarkNotificationsReadOperation {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKMarkNotificationsReadOperation")]
+    #[cfg(all(feature = "CloudKit_CKOperation", feature = "Foundation_NSOperation"))]
     unsafe impl CKMarkNotificationsReadOperation {
         #[deprecated = "Instead of iterating notifications, consider using CKDatabaseSubscription, CKFetchDatabaseChangesOperation, and CKFetchRecordZoneChangesOperation as appropriate"]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(all(feature = "CloudKit_CKNotificationID", feature = "Foundation_NSArray"))]
+        #[cfg(all(feature = "CloudKit_CKNotification", feature = "Foundation_NSArray"))]
         #[deprecated = "Instead of iterating notifications, consider using CKDatabaseSubscription, CKFetchDatabaseChangesOperation, and CKFetchRecordZoneChangesOperation as appropriate"]
         #[method_id(@__retain_semantics Init initWithNotificationIDsToMarkRead:)]
         pub unsafe fn initWithNotificationIDsToMarkRead(
@@ -37,12 +37,12 @@ extern_methods!(
             notification_i_ds: &NSArray<CKNotificationID>,
         ) -> Id<Self>;
 
-        #[cfg(all(feature = "CloudKit_CKNotificationID", feature = "Foundation_NSArray"))]
+        #[cfg(all(feature = "CloudKit_CKNotification", feature = "Foundation_NSArray"))]
         #[deprecated = "Instead of iterating notifications, consider using CKDatabaseSubscription, CKFetchDatabaseChangesOperation, and CKFetchRecordZoneChangesOperation as appropriate"]
         #[method_id(@__retain_semantics Other notificationIDs)]
         pub unsafe fn notificationIDs(&self) -> Option<Id<NSArray<CKNotificationID>>>;
 
-        #[cfg(all(feature = "CloudKit_CKNotificationID", feature = "Foundation_NSArray"))]
+        #[cfg(all(feature = "CloudKit_CKNotification", feature = "Foundation_NSArray"))]
         #[deprecated = "Instead of iterating notifications, consider using CKDatabaseSubscription, CKFetchDatabaseChangesOperation, and CKFetchRecordZoneChangesOperation as appropriate"]
         #[method(setNotificationIDs:)]
         pub unsafe fn setNotificationIDs(
@@ -51,7 +51,7 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "CloudKit_CKNotificationID",
+            feature = "CloudKit_CKNotification",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSError"
         ))]
@@ -62,7 +62,7 @@ extern_methods!(
         ) -> *mut Block<dyn Fn(*mut NSArray<CKNotificationID>, *mut NSError)>;
 
         #[cfg(all(
-            feature = "CloudKit_CKNotificationID",
+            feature = "CloudKit_CKNotification",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSError"
         ))]
@@ -79,7 +79,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CloudKit_CKMarkNotificationsReadOperation")]
+    #[cfg(all(feature = "CloudKit_CKOperation", feature = "Foundation_NSOperation"))]
     unsafe impl CKMarkNotificationsReadOperation {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

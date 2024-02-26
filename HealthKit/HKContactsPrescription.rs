@@ -8,10 +8,18 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKContactsPrescription")]
+    #[cfg(all(
+        feature = "HealthKit_HKObject",
+        feature = "HealthKit_HKSample",
+        feature = "HealthKit_HKVisionPrescription"
+    ))]
     pub struct HKContactsPrescription;
 
-    #[cfg(feature = "HealthKit_HKContactsPrescription")]
+    #[cfg(all(
+        feature = "HealthKit_HKObject",
+        feature = "HealthKit_HKSample",
+        feature = "HealthKit_HKVisionPrescription"
+    ))]
     unsafe impl ClassType for HKContactsPrescription {
         #[inherits(HKSample, HKObject, NSObject)]
         type Super = HKVisionPrescription;
@@ -19,26 +27,55 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKContactsPrescription")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "HealthKit_HKObject",
+    feature = "HealthKit_HKSample",
+    feature = "HealthKit_HKVisionPrescription"
+))]
 unsafe impl NSCoding for HKContactsPrescription {}
 
-#[cfg(feature = "HealthKit_HKContactsPrescription")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "HealthKit_HKObject",
+    feature = "HealthKit_HKSample",
+    feature = "HealthKit_HKVisionPrescription"
+))]
 unsafe impl NSCopying for HKContactsPrescription {}
 
-#[cfg(feature = "HealthKit_HKContactsPrescription")]
+#[cfg(all(
+    feature = "HealthKit_HKObject",
+    feature = "HealthKit_HKSample",
+    feature = "HealthKit_HKVisionPrescription"
+))]
 unsafe impl NSObjectProtocol for HKContactsPrescription {}
 
-#[cfg(feature = "HealthKit_HKContactsPrescription")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "HealthKit_HKObject",
+    feature = "HealthKit_HKSample",
+    feature = "HealthKit_HKVisionPrescription"
+))]
 unsafe impl NSSecureCoding for HKContactsPrescription {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKContactsPrescription")]
+    #[cfg(all(
+        feature = "HealthKit_HKObject",
+        feature = "HealthKit_HKSample",
+        feature = "HealthKit_HKVisionPrescription"
+    ))]
     unsafe impl HKContactsPrescription {
-        #[cfg(feature = "HealthKit_HKContactsLensSpecification")]
+        #[cfg(all(
+            feature = "HealthKit_HKContactsLensSpecification",
+            feature = "HealthKit_HKLensSpecification"
+        ))]
         #[method_id(@__retain_semantics Other rightEye)]
         pub unsafe fn rightEye(&self) -> Option<Id<HKContactsLensSpecification>>;
 
-        #[cfg(feature = "HealthKit_HKContactsLensSpecification")]
+        #[cfg(all(
+            feature = "HealthKit_HKContactsLensSpecification",
+            feature = "HealthKit_HKLensSpecification"
+        ))]
         #[method_id(@__retain_semantics Other leftEye)]
         pub unsafe fn leftEye(&self) -> Option<Id<HKContactsLensSpecification>>;
 
@@ -51,7 +88,8 @@ extern_methods!(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString",
             feature = "HealthKit_HKContactsLensSpecification",
-            feature = "HealthKit_HKDevice"
+            feature = "HealthKit_HKDevice",
+            feature = "HealthKit_HKLensSpecification"
         ))]
         #[method_id(@__retain_semantics Other prescriptionWithRightEyeSpecification:leftEyeSpecification:brand:dateIssued:expirationDate:device:metadata:)]
         pub unsafe fn prescriptionWithRightEyeSpecification_leftEyeSpecification_brand_dateIssued_expirationDate_device_metadata(

@@ -53,27 +53,23 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MailKit_MEMessageAction")]
     pub struct MEMessageAction;
 
-    #[cfg(feature = "MailKit_MEMessageAction")]
     unsafe impl ClassType for MEMessageAction {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MailKit_MEMessageAction")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for MEMessageAction {}
 
-#[cfg(feature = "MailKit_MEMessageAction")]
 unsafe impl NSObjectProtocol for MEMessageAction {}
 
-#[cfg(feature = "MailKit_MEMessageAction")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for MEMessageAction {}
 
 extern_methods!(
-    #[cfg(feature = "MailKit_MEMessageAction")]
     unsafe impl MEMessageAction {
         #[method_id(@__retain_semantics Other moveToTrashAction)]
         pub unsafe fn moveToTrashAction() -> Id<MEMessageAction>;

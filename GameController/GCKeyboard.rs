@@ -13,26 +13,25 @@ extern_static!(GCKeyboardDidDisconnectNotification: &'static NSString);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameController_GCKeyboard")]
     pub struct GCKeyboard;
 
-    #[cfg(feature = "GameController_GCKeyboard")]
     unsafe impl ClassType for GCKeyboard {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "GameController_GCKeyboard")]
+#[cfg(feature = "GameController_GCDevice")]
 unsafe impl GCDevice for GCKeyboard {}
 
-#[cfg(feature = "GameController_GCKeyboard")]
 unsafe impl NSObjectProtocol for GCKeyboard {}
 
 extern_methods!(
-    #[cfg(feature = "GameController_GCKeyboard")]
     unsafe impl GCKeyboard {
-        #[cfg(feature = "GameController_GCKeyboardInput")]
+        #[cfg(all(
+            feature = "GameController_GCKeyboardInput",
+            feature = "GameController_GCPhysicalInputProfile"
+        ))]
         #[method_id(@__retain_semantics Other keyboardInput)]
         pub unsafe fn keyboardInput(&self) -> Option<Id<GCKeyboardInput>>;
 
@@ -43,7 +42,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameController_GCKeyboard")]
     unsafe impl GCKeyboard {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -8,14 +8,11 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_protocol!(
     pub unsafe trait NSFileProviderServiceSource {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSFileManager", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other serviceName)]
         unsafe fn serviceName(&self) -> Id<NSFileProviderServiceName>;
 
-        #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSXPCListenerEndpoint"
-        ))]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSXPCConnection"))]
         #[method_id(@__retain_semantics Other makeListenerEndpointAndReturnError:_)]
         unsafe fn makeListenerEndpointAndReturnError(
             &self,
@@ -34,6 +31,8 @@ extern_methods!(
     #[cfg(feature = "FileProvider_NSFileProviderExtension")]
     unsafe impl NSFileProviderExtension {
         #[cfg(all(
+            feature = "FileProvider_NSFileProviderItem",
+            feature = "FileProvider_NSFileProviderService",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSError",
             feature = "Foundation_NSString"
@@ -51,8 +50,9 @@ extern_methods!(
     #[cfg(feature = "FileProvider_NSFileProviderManager")]
     unsafe impl NSFileProviderManager {
         #[cfg(all(
+            feature = "FileProvider_NSFileProviderItem",
             feature = "Foundation_NSError",
-            feature = "Foundation_NSFileProviderService",
+            feature = "Foundation_NSFileManager",
             feature = "Foundation_NSString"
         ))]
         #[method(getServiceWithName:itemIdentifier:completionHandler:)]

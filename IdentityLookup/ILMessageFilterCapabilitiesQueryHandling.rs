@@ -7,6 +7,7 @@ use crate::IdentityLookup::*;
 extern_protocol!(
     pub unsafe trait ILMessageFilterCapabilitiesQueryHandling: NSObjectProtocol {
         #[cfg(all(
+            feature = "Foundation_NSExtensionContext",
             feature = "IdentityLookup_ILMessageFilterCapabilitiesQueryRequest",
             feature = "IdentityLookup_ILMessageFilterCapabilitiesQueryResponse",
             feature = "IdentityLookup_ILMessageFilterExtensionContext"

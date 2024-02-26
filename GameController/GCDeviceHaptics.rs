@@ -38,21 +38,17 @@ extern_static!(GCHapticDurationInfinite: c_float);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameController_GCDeviceHaptics")]
     pub struct GCDeviceHaptics;
 
-    #[cfg(feature = "GameController_GCDeviceHaptics")]
     unsafe impl ClassType for GCDeviceHaptics {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "GameController_GCDeviceHaptics")]
 unsafe impl NSObjectProtocol for GCDeviceHaptics {}
 
 extern_methods!(
-    #[cfg(feature = "GameController_GCDeviceHaptics")]
     unsafe impl GCDeviceHaptics {
         #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other supportedLocalities)]
@@ -60,22 +56,11 @@ extern_methods!(
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
-
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "GameController_CHHapticEngine"
-        ))]
-        #[method_id(@__retain_semantics Other createEngineWithLocality:)]
-        pub unsafe fn createEngineWithLocality(
-            &self,
-            locality: &GCHapticsLocality,
-        ) -> Option<Id<CHHapticEngine>>;
     }
 );
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameController_GCDeviceHaptics")]
     unsafe impl GCDeviceHaptics {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

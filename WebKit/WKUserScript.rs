@@ -17,24 +17,20 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_WKUserScript")]
     pub struct WKUserScript;
 
-    #[cfg(feature = "WebKit_WKUserScript")]
     unsafe impl ClassType for WKUserScript {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "WebKit_WKUserScript")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for WKUserScript {}
 
-#[cfg(feature = "WebKit_WKUserScript")]
 unsafe impl NSObjectProtocol for WKUserScript {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_WKUserScript")]
     unsafe impl WKUserScript {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other source)]
@@ -69,7 +65,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_WKUserScript")]
     unsafe impl WKUserScript {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

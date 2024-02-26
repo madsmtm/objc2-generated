@@ -16,6 +16,7 @@ extern_methods!(
     #[cfg(feature = "FileProvider_NSFileProviderExtension")]
     unsafe impl NSFileProviderExtension {
         #[cfg(all(
+            feature = "FileProvider_NSFileProviderItem",
             feature = "Foundation_NSError",
             feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
@@ -28,7 +29,11 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut NSFileProviderItem, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "FileProvider_NSFileProviderItem",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
+        ))]
         #[method(createDirectoryWithName:inParentItemIdentifier:completionHandler:)]
         pub unsafe fn createDirectoryWithName_inParentItemIdentifier_completionHandler(
             &self,
@@ -37,7 +42,11 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut NSFileProviderItem, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "FileProvider_NSFileProviderItem",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
+        ))]
         #[method(renameItemWithIdentifier:toName:completionHandler:)]
         pub unsafe fn renameItemWithIdentifier_toName_completionHandler(
             &self,
@@ -46,7 +55,11 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut NSFileProviderItem, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "FileProvider_NSFileProviderItem",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
+        ))]
         #[method(reparentItemWithIdentifier:toParentItemWithIdentifier:newName:completionHandler:)]
         pub unsafe fn reparentItemWithIdentifier_toParentItemWithIdentifier_newName_completionHandler(
             &self,
@@ -56,7 +69,11 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut NSFileProviderItem, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "FileProvider_NSFileProviderItem",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
+        ))]
         #[method(trashItemWithIdentifier:completionHandler:)]
         pub unsafe fn trashItemWithIdentifier_completionHandler(
             &self,
@@ -64,7 +81,11 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut NSFileProviderItem, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "FileProvider_NSFileProviderItem",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
+        ))]
         #[method(untrashItemWithIdentifier:toParentItemIdentifier:completionHandler:)]
         pub unsafe fn untrashItemWithIdentifier_toParentItemIdentifier_completionHandler(
             &self,
@@ -73,7 +94,11 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut NSFileProviderItem, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "FileProvider_NSFileProviderItem",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
+        ))]
         #[method(deleteItemWithIdentifier:completionHandler:)]
         pub unsafe fn deleteItemWithIdentifier_completionHandler(
             &self,
@@ -82,6 +107,7 @@ extern_methods!(
         );
 
         #[cfg(all(
+            feature = "FileProvider_NSFileProviderItem",
             feature = "Foundation_NSDate",
             feature = "Foundation_NSError",
             feature = "Foundation_NSString"
@@ -95,6 +121,7 @@ extern_methods!(
         );
 
         #[cfg(all(
+            feature = "FileProvider_NSFileProviderItem",
             feature = "Foundation_NSData",
             feature = "Foundation_NSError",
             feature = "Foundation_NSString"
@@ -108,9 +135,10 @@ extern_methods!(
         );
 
         #[cfg(all(
+            feature = "FileProvider_NSFileProviderItem",
             feature = "Foundation_NSError",
-            feature = "Foundation_NSNumber",
-            feature = "Foundation_NSString"
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSValue"
         ))]
         #[method(setFavoriteRank:forItemIdentifier:completionHandler:)]
         pub unsafe fn setFavoriteRank_forItemIdentifier_completionHandler(

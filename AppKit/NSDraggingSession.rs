@@ -7,25 +7,23 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSDraggingSession")]
     pub struct NSDraggingSession;
 
-    #[cfg(feature = "AppKit_NSDraggingSession")]
     unsafe impl ClassType for NSDraggingSession {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSDraggingSession")]
 unsafe impl NSObjectProtocol for NSDraggingSession {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSDraggingSession")]
     unsafe impl NSDraggingSession {
+        #[cfg(feature = "AppKit_NSDragging")]
         #[method(draggingFormation)]
         pub unsafe fn draggingFormation(&self) -> NSDraggingFormation;
 
+        #[cfg(feature = "AppKit_NSDragging")]
         #[method(setDraggingFormation:)]
         pub unsafe fn setDraggingFormation(&self, dragging_formation: NSDraggingFormation);
 
@@ -51,11 +49,15 @@ extern_methods!(
         #[method(draggingSequenceNumber)]
         pub unsafe fn draggingSequenceNumber(&self) -> NSInteger;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(draggingLocation)]
         pub unsafe fn draggingLocation(&self) -> NSPoint;
 
         #[cfg(all(
+            feature = "AppKit_NSDragging",
             feature = "AppKit_NSDraggingItem",
+            feature = "AppKit_NSPasteboard",
+            feature = "AppKit_NSResponder",
             feature = "AppKit_NSView",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSDictionary",
@@ -75,7 +77,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSDraggingSession")]
     unsafe impl NSDraggingSession {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

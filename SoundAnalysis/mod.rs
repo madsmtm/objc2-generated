@@ -17,45 +17,59 @@
 #[link(name = "SoundAnalysis", kind = "framework")]
 extern "C" {}
 
+#[cfg(feature = "SoundAnalysis_SNAnalyzer")]
 #[path = "SNAnalyzer.rs"]
 mod __SNAnalyzer;
+#[cfg(feature = "SoundAnalysis_SNClassificationResult")]
 #[path = "SNClassificationResult.rs"]
 mod __SNClassificationResult;
+#[cfg(feature = "SoundAnalysis_SNClassifySoundRequest")]
 #[path = "SNClassifySoundRequest.rs"]
 mod __SNClassifySoundRequest;
+#[cfg(feature = "SoundAnalysis_SNDefines")]
 #[path = "SNDefines.rs"]
 mod __SNDefines;
+#[cfg(feature = "SoundAnalysis_SNError")]
 #[path = "SNError.rs"]
 mod __SNError;
+#[cfg(feature = "SoundAnalysis_SNRequest")]
 #[path = "SNRequest.rs"]
 mod __SNRequest;
+#[cfg(feature = "SoundAnalysis_SNResult")]
 #[path = "SNResult.rs"]
 mod __SNResult;
+#[cfg(feature = "SoundAnalysis_SNTimeDurationConstraint")]
 #[path = "SNTimeDurationConstraint.rs"]
 mod __SNTimeDurationConstraint;
+#[cfg(feature = "SoundAnalysis_SNTypes")]
 #[path = "SNTypes.rs"]
 mod __SNTypes;
 
-#[cfg(feature = "SoundAnalysis_SNAudioFileAnalyzer")]
+#[cfg(feature = "SoundAnalysis_SNAnalyzer")]
 pub use self::__SNAnalyzer::SNAudioFileAnalyzer;
-#[cfg(feature = "SoundAnalysis_SNAudioStreamAnalyzer")]
+#[cfg(feature = "SoundAnalysis_SNAnalyzer")]
 pub use self::__SNAnalyzer::SNAudioStreamAnalyzer;
-#[cfg(feature = "SoundAnalysis_SNClassification")]
+#[cfg(feature = "SoundAnalysis_SNClassificationResult")]
 pub use self::__SNClassificationResult::SNClassification;
 #[cfg(feature = "SoundAnalysis_SNClassificationResult")]
 pub use self::__SNClassificationResult::SNClassificationResult;
 #[cfg(feature = "SoundAnalysis_SNClassifySoundRequest")]
 pub use self::__SNClassifySoundRequest::SNClassifySoundRequest;
+#[cfg(feature = "SoundAnalysis_SNError")]
 pub use self::__SNError::SNErrorCode;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "SoundAnalysis_SNError"))]
 pub use self::__SNError::SNErrorDomain;
+#[cfg(feature = "SoundAnalysis_SNRequest")]
 pub use self::__SNRequest::SNRequest;
+#[cfg(feature = "SoundAnalysis_SNResult")]
 pub use self::__SNResult::SNResult;
+#[cfg(feature = "SoundAnalysis_SNResult")]
 pub use self::__SNResult::SNResultsObserving;
 #[cfg(feature = "SoundAnalysis_SNTimeDurationConstraint")]
 pub use self::__SNTimeDurationConstraint::SNTimeDurationConstraint;
+#[cfg(feature = "SoundAnalysis_SNTimeDurationConstraint")]
 pub use self::__SNTimeDurationConstraint::SNTimeDurationConstraintType;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "SoundAnalysis_SNTypes"))]
 pub use self::__SNTypes::SNClassifierIdentifier;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "SoundAnalysis_SNTypes"))]
 pub use self::__SNTypes::SNClassifierIdentifierVersion1;

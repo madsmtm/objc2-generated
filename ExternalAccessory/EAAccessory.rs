@@ -8,21 +8,17 @@ pub const EAConnectionIDNone: c_uint = 0;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "ExternalAccessory_EAAccessory")]
     pub struct EAAccessory;
 
-    #[cfg(feature = "ExternalAccessory_EAAccessory")]
     unsafe impl ClassType for EAAccessory {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "ExternalAccessory_EAAccessory")]
 unsafe impl NSObjectProtocol for EAAccessory {}
 
 extern_methods!(
-    #[cfg(feature = "ExternalAccessory_EAAccessory")]
     unsafe impl EAAccessory {
         #[method(isConnected)]
         pub unsafe fn isConnected(&self) -> bool;
@@ -76,7 +72,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "ExternalAccessory_EAAccessory")]
     unsafe impl EAAccessory {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -88,7 +83,6 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait EAAccessoryDelegate: NSObjectProtocol {
-        #[cfg(feature = "ExternalAccessory_EAAccessory")]
         #[optional]
         #[method(accessoryDidDisconnect:)]
         unsafe fn accessoryDidDisconnect(&self, accessory: &EAAccessory);

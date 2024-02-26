@@ -6,30 +6,26 @@ use crate::Speech::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Speech_SFSpeechRecognitionResult")]
     pub struct SFSpeechRecognitionResult;
 
-    #[cfg(feature = "Speech_SFSpeechRecognitionResult")]
     unsafe impl ClassType for SFSpeechRecognitionResult {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Speech_SFSpeechRecognitionResult")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for SFSpeechRecognitionResult {}
 
-#[cfg(feature = "Speech_SFSpeechRecognitionResult")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for SFSpeechRecognitionResult {}
 
-#[cfg(feature = "Speech_SFSpeechRecognitionResult")]
 unsafe impl NSObjectProtocol for SFSpeechRecognitionResult {}
 
-#[cfg(feature = "Speech_SFSpeechRecognitionResult")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for SFSpeechRecognitionResult {}
 
 extern_methods!(
-    #[cfg(feature = "Speech_SFSpeechRecognitionResult")]
     unsafe impl SFSpeechRecognitionResult {
         #[cfg(feature = "Speech_SFTranscription")]
         #[method_id(@__retain_semantics Other bestTranscription)]
@@ -50,7 +46,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Speech_SFSpeechRecognitionResult")]
     unsafe impl SFSpeechRecognitionResult {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -57,10 +57,18 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSRuleEditor")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     pub struct NSRuleEditor;
 
-    #[cfg(feature = "AppKit_NSRuleEditor")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl ClassType for NSRuleEditor {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;
@@ -68,32 +76,75 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSRuleEditor")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibility for NSRuleEditor {}
 
-#[cfg(feature = "AppKit_NSRuleEditor")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibilityElementProtocol for NSRuleEditor {}
 
-#[cfg(feature = "AppKit_NSRuleEditor")]
+#[cfg(all(
+    feature = "AppKit_NSAnimation",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAnimatablePropertyContainer for NSRuleEditor {}
 
-#[cfg(feature = "AppKit_NSRuleEditor")]
+#[cfg(all(
+    feature = "AppKit_NSAppearance",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAppearanceCustomization for NSRuleEditor {}
 
-#[cfg(feature = "AppKit_NSRuleEditor")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSRuleEditor {}
 
-#[cfg(feature = "AppKit_NSRuleEditor")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSDragging",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSDraggingDestination for NSRuleEditor {}
 
-#[cfg(feature = "AppKit_NSRuleEditor")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSObjectProtocol for NSRuleEditor {}
 
-#[cfg(feature = "AppKit_NSRuleEditor")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSRuleEditor {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSRuleEditor")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSRuleEditor {
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSRuleEditorDelegate>>>;
@@ -135,9 +186,11 @@ extern_methods!(
         #[method(setNestingMode:)]
         pub unsafe fn setNestingMode(&self, nesting_mode: NSRuleEditorNestingMode);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(rowHeight)]
         pub unsafe fn rowHeight(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setRowHeight:)]
         pub unsafe fn setRowHeight(&self, row_height: CGFloat);
 
@@ -274,8 +327,13 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSControl`
-    #[cfg(feature = "AppKit_NSRuleEditor")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSRuleEditor {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
 
@@ -287,7 +345,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "AppKit_NSRuleEditor")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSRuleEditor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -296,7 +358,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSRuleEditor")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSRuleEditor {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -305,7 +371,11 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSRuleEditorDelegate: NSObjectProtocol + IsMainThreadOnly {
-        #[cfg(feature = "AppKit_NSRuleEditor")]
+        #[cfg(all(
+            feature = "AppKit_NSControl",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView"
+        ))]
         #[method(ruleEditor:numberOfChildrenForCriterion:withRowType:)]
         unsafe fn ruleEditor_numberOfChildrenForCriterion_withRowType(
             &self,
@@ -314,7 +384,11 @@ extern_protocol!(
             row_type: NSRuleEditorRowType,
         ) -> NSInteger;
 
-        #[cfg(feature = "AppKit_NSRuleEditor")]
+        #[cfg(all(
+            feature = "AppKit_NSControl",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView"
+        ))]
         #[method_id(@__retain_semantics Other ruleEditor:child:forCriterion:withRowType:)]
         unsafe fn ruleEditor_child_forCriterion_withRowType(
             &self,
@@ -324,7 +398,11 @@ extern_protocol!(
             row_type: NSRuleEditorRowType,
         ) -> Id<AnyObject>;
 
-        #[cfg(feature = "AppKit_NSRuleEditor")]
+        #[cfg(all(
+            feature = "AppKit_NSControl",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView"
+        ))]
         #[method_id(@__retain_semantics Other ruleEditor:displayValueForCriterion:inRow:)]
         unsafe fn ruleEditor_displayValueForCriterion_inRow(
             &self,
@@ -334,7 +412,9 @@ extern_protocol!(
         ) -> Id<AnyObject>;
 
         #[cfg(all(
-            feature = "AppKit_NSRuleEditor",
+            feature = "AppKit_NSControl",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString"
         ))]
@@ -357,5 +437,5 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSRuleEditorDelegate {}
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSRuleEditorRowsDidChangeNotification: &'static NSNotificationName);

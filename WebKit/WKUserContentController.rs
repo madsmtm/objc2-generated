@@ -7,27 +7,23 @@ use crate::WebKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_WKUserContentController")]
     pub struct WKUserContentController;
 
-    #[cfg(feature = "WebKit_WKUserContentController")]
     unsafe impl ClassType for WKUserContentController {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "WebKit_WKUserContentController")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for WKUserContentController {}
 
-#[cfg(feature = "WebKit_WKUserContentController")]
 unsafe impl NSObjectProtocol for WKUserContentController {}
 
-#[cfg(feature = "WebKit_WKUserContentController")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for WKUserContentController {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_WKUserContentController")]
     unsafe impl WKUserContentController {
         #[cfg(all(feature = "Foundation_NSArray", feature = "WebKit_WKUserScript"))]
         #[method_id(@__retain_semantics Other userScripts)]
@@ -40,7 +36,11 @@ extern_methods!(
         #[method(removeAllUserScripts)]
         pub unsafe fn removeAllUserScripts(&self);
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_WKContentWorld"))]
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "WebKit_WKContentWorld",
+            feature = "WebKit_WKScriptMessageHandler"
+        ))]
         #[method(addScriptMessageHandler:contentWorld:name:)]
         pub unsafe fn addScriptMessageHandler_contentWorld_name(
             &self,
@@ -49,7 +49,11 @@ extern_methods!(
             name: &NSString,
         );
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_WKContentWorld"))]
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "WebKit_WKContentWorld",
+            feature = "WebKit_WKScriptMessageHandlerWithReply"
+        ))]
         #[method(addScriptMessageHandlerWithReply:contentWorld:name:)]
         pub unsafe fn addScriptMessageHandlerWithReply_contentWorld_name(
             &self,
@@ -58,7 +62,10 @@ extern_methods!(
             name: &NSString,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "WebKit_WKScriptMessageHandler"
+        ))]
         #[method(addScriptMessageHandler:name:)]
         pub unsafe fn addScriptMessageHandler_name(
             &self,
@@ -103,7 +110,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_WKUserContentController")]
     unsafe impl WKUserContentController {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

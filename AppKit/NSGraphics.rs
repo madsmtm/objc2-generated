@@ -269,12 +269,16 @@ extern_fn!(
     pub unsafe fn NSAvailableWindowDepths() -> NonNull<NSWindowDepth>;
 );
 
+#[cfg(feature = "Foundation_NSGeometry")]
 extern_static!(NSWhite: CGFloat);
 
+#[cfg(feature = "Foundation_NSGeometry")]
 extern_static!(NSLightGray: CGFloat);
 
+#[cfg(feature = "Foundation_NSGeometry")]
 extern_static!(NSDarkGray: CGFloat);
 
+#[cfg(feature = "Foundation_NSGeometry")]
 extern_static!(NSBlack: CGFloat);
 
 ns_enum!(
@@ -311,14 +315,17 @@ extern_static!(NSDeviceIsPrinter: &'static NSDeviceDescriptionKey);
 extern_static!(NSDeviceSize: &'static NSDeviceDescriptionKey);
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSGeometry")]
     pub unsafe fn NSRectFill(rect: NSRect);
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSGeometry")]
     pub unsafe fn NSRectFillList(rects: NonNull<NSRect>, count: NSInteger);
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSGeometry")]
     pub unsafe fn NSRectFillListWithGrays(
         rects: NonNull<NSRect>,
         grays: NonNull<CGFloat>,
@@ -327,7 +334,7 @@ extern_fn!(
 );
 
 extern_fn!(
-    #[cfg(feature = "AppKit_NSColor")]
+    #[cfg(all(feature = "AppKit_NSColor", feature = "Foundation_NSGeometry"))]
     pub unsafe fn NSRectFillListWithColors(
         rects: NonNull<NSRect>,
         colors: NonNull<NonNull<NSColor>>,
@@ -336,10 +343,12 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSGeometry")]
     pub unsafe fn NSRectFillUsingOperation(rect: NSRect, op: NSCompositingOperation);
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSGeometry")]
     pub unsafe fn NSRectFillListUsingOperation(
         rects: NonNull<NSRect>,
         count: NSInteger,
@@ -348,7 +357,7 @@ extern_fn!(
 );
 
 extern_fn!(
-    #[cfg(feature = "AppKit_NSColor")]
+    #[cfg(all(feature = "AppKit_NSColor", feature = "Foundation_NSGeometry"))]
     pub unsafe fn NSRectFillListWithColorsUsingOperation(
         rects: NonNull<NSRect>,
         colors: NonNull<NonNull<NSColor>>,
@@ -358,14 +367,17 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSGeometry")]
     pub unsafe fn NSFrameRect(rect: NSRect);
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSGeometry")]
     pub unsafe fn NSFrameRectWithWidth(rect: NSRect, frame_width: CGFloat);
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSGeometry")]
     pub unsafe fn NSFrameRectWithWidthUsingOperation(
         rect: NSRect,
         frame_width: CGFloat,
@@ -374,14 +386,17 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSGeometry")]
     pub unsafe fn NSRectClip(rect: NSRect);
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSGeometry")]
     pub unsafe fn NSRectClipList(rects: NonNull<NSRect>, count: NSInteger);
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSGeometry")]
     pub unsafe fn NSDrawTiledRects(
         bounds_rect: NSRect,
         clip_rect: NSRect,
@@ -392,32 +407,38 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSGeometry")]
     pub unsafe fn NSDrawGrayBezel(rect: NSRect, clip_rect: NSRect);
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSGeometry")]
     pub unsafe fn NSDrawGroove(rect: NSRect, clip_rect: NSRect);
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSGeometry")]
     pub unsafe fn NSDrawWhiteBezel(rect: NSRect, clip_rect: NSRect);
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSGeometry")]
     pub unsafe fn NSDrawButton(rect: NSRect, clip_rect: NSRect);
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSGeometry")]
     pub unsafe fn NSEraseRect(rect: NSRect);
 );
 
 extern_fn!(
-    #[cfg(feature = "AppKit_NSColor")]
+    #[cfg(all(feature = "AppKit_NSColor", feature = "Foundation_NSGeometry"))]
     #[deprecated = "Use -[NSBitmapImageRep colorAtX:y:] to interrogate pixel values.  If necessary, use -[NSView cacheDisplayInRect:toBitmapImageRep:] to snapshot a view hierarchy into an NSBitmapImageRep."]
     pub unsafe fn NSReadPixel(passed_point: NSPoint) -> *mut NSColor;
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSGeometry")]
     #[deprecated]
     pub unsafe fn NSHighlightRect(rect: NSRect);
 );
@@ -438,7 +459,7 @@ extern_fn!(
 );
 
 extern_fn!(
-    #[cfg(feature = "AppKit_NSColor")]
+    #[cfg(all(feature = "AppKit_NSColor", feature = "Foundation_NSGeometry"))]
     pub unsafe fn NSDrawColorTiledRects(
         bounds_rect: NSRect,
         clip_rect: NSRect,
@@ -449,18 +470,22 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSGeometry")]
     pub unsafe fn NSDrawDarkBezel(rect: NSRect, clip_rect: NSRect);
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSGeometry")]
     pub unsafe fn NSDrawLightBezel(rect: NSRect, clip_rect: NSRect);
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSGeometry")]
     pub unsafe fn NSDottedFrameRect(rect: NSRect);
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSGeometry")]
     pub unsafe fn NSDrawWindowBackground(rect: NSRect);
 );
 
@@ -490,6 +515,7 @@ ns_enum!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSGeometry")]
     #[deprecated = "Use +[NSCursor disappearingItemCursor] instead"]
     pub unsafe fn NSShowAnimationEffect(
         animation_effect: NSAnimationEffect,
@@ -526,6 +552,7 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(feature = "Foundation_NSGeometry")]
     #[deprecated]
     pub unsafe fn NSCopyBits(src_g_state: NSInteger, src_rect: NSRect, dest_point: NSPoint);
 );

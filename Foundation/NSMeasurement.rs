@@ -5,14 +5,12 @@ use crate::Foundation::*;
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSMeasurement")]
     pub struct NSMeasurement<UnitType: ?Sized = AnyObject> {
         __superclass: NSObject,
         _inner0: PhantomData<*mut UnitType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
-    #[cfg(feature = "Foundation_NSMeasurement")]
     unsafe impl<UnitType: ?Sized + Message> ClassType for NSMeasurement<UnitType> {
         type Super = NSObject;
         type Mutability = InteriorMutable;
@@ -27,20 +25,18 @@ __inner_extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSMeasurement")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl<UnitType: ?Sized + NSCoding> NSCoding for NSMeasurement<UnitType> {}
 
-#[cfg(feature = "Foundation_NSMeasurement")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl<UnitType: ?Sized + IsIdCloneable> NSCopying for NSMeasurement<UnitType> {}
 
-#[cfg(feature = "Foundation_NSMeasurement")]
 unsafe impl<UnitType: ?Sized> NSObjectProtocol for NSMeasurement<UnitType> {}
 
-#[cfg(feature = "Foundation_NSMeasurement")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl<UnitType: ?Sized + NSSecureCoding> NSSecureCoding for NSMeasurement<UnitType> {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSMeasurement")]
     unsafe impl<UnitType: Message> NSMeasurement<UnitType> {
         #[method_id(@__retain_semantics Other unit)]
         pub unsafe fn unit(&self) -> Id<UnitType>;
@@ -82,7 +78,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSMeasurement")]
     unsafe impl<UnitType: Message> NSMeasurement<UnitType> {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

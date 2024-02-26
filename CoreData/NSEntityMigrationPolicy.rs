@@ -24,21 +24,17 @@ extern_static!(NSMigrationEntityPolicyKey: &'static NSString);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSEntityMigrationPolicy")]
     pub struct NSEntityMigrationPolicy;
 
-    #[cfg(feature = "CoreData_NSEntityMigrationPolicy")]
     unsafe impl ClassType for NSEntityMigrationPolicy {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreData_NSEntityMigrationPolicy")]
 unsafe impl NSObjectProtocol for NSEntityMigrationPolicy {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSEntityMigrationPolicy")]
     unsafe impl NSEntityMigrationPolicy {
         #[cfg(all(
             feature = "CoreData_NSEntityMapping",
@@ -132,7 +128,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSEntityMigrationPolicy")]
     unsafe impl NSEntityMigrationPolicy {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -7,21 +7,17 @@ use crate::OSAKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "OSAKit_OSALanguageInstance")]
     pub struct OSALanguageInstance;
 
-    #[cfg(feature = "OSAKit_OSALanguageInstance")]
     unsafe impl ClassType for OSALanguageInstance {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "OSAKit_OSALanguageInstance")]
 unsafe impl NSObjectProtocol for OSALanguageInstance {}
 
 extern_methods!(
-    #[cfg(feature = "OSAKit_OSALanguageInstance")]
     unsafe impl OSALanguageInstance {
         #[cfg(feature = "OSAKit_OSALanguage")]
         #[method_id(@__retain_semantics Other languageInstanceWithLanguage:)]
@@ -57,7 +53,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "OSAKit_OSALanguageInstance")]
     unsafe impl OSALanguageInstance {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

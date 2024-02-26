@@ -16,30 +16,26 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSPDFPanel")]
     pub struct NSPDFPanel;
 
-    #[cfg(feature = "AppKit_NSPDFPanel")]
     unsafe impl ClassType for NSPDFPanel {
         type Super = NSObject;
         type Mutability = MainThreadOnly;
     }
 );
 
-#[cfg(feature = "AppKit_NSPDFPanel")]
 unsafe impl NSObjectProtocol for NSPDFPanel {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSPDFPanel")]
     unsafe impl NSPDFPanel {
         #[method_id(@__retain_semantics Other panel)]
         pub unsafe fn panel(mtm: MainThreadMarker) -> Id<NSPDFPanel>;
 
-        #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
         #[method_id(@__retain_semantics Other accessoryController)]
         pub unsafe fn accessoryController(&self) -> Option<Id<NSViewController>>;
 
-        #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
         #[method(setAccessoryController:)]
         pub unsafe fn setAccessoryController(
             &self,
@@ -60,7 +56,11 @@ extern_methods!(
         #[method(setDefaultFileName:)]
         pub unsafe fn setDefaultFileName(&self, default_file_name: &NSString);
 
-        #[cfg(all(feature = "AppKit_NSPDFInfo", feature = "AppKit_NSWindow"))]
+        #[cfg(all(
+            feature = "AppKit_NSPDFInfo",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSWindow"
+        ))]
         #[method(beginSheetWithPDFInfo:modalForWindow:completionHandler:)]
         pub unsafe fn beginSheetWithPDFInfo_modalForWindow_completionHandler(
             &self,
@@ -73,7 +73,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSPDFPanel")]
     unsafe impl NSPDFPanel {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

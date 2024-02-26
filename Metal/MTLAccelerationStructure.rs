@@ -31,24 +31,20 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLAccelerationStructureDescriptor")]
     pub struct MTLAccelerationStructureDescriptor;
 
-    #[cfg(feature = "Metal_MTLAccelerationStructureDescriptor")]
     unsafe impl ClassType for MTLAccelerationStructureDescriptor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLAccelerationStructureDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLAccelerationStructureDescriptor {}
 
-#[cfg(feature = "Metal_MTLAccelerationStructureDescriptor")]
 unsafe impl NSObjectProtocol for MTLAccelerationStructureDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLAccelerationStructureDescriptor")]
     unsafe impl MTLAccelerationStructureDescriptor {
         #[method(usage)]
         pub unsafe fn usage(&self) -> MTLAccelerationStructureUsage;
@@ -60,7 +56,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLAccelerationStructureDescriptor")]
     unsafe impl MTLAccelerationStructureDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -72,24 +67,20 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLAccelerationStructureGeometryDescriptor")]
     pub struct MTLAccelerationStructureGeometryDescriptor;
 
-    #[cfg(feature = "Metal_MTLAccelerationStructureGeometryDescriptor")]
     unsafe impl ClassType for MTLAccelerationStructureGeometryDescriptor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLAccelerationStructureGeometryDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLAccelerationStructureGeometryDescriptor {}
 
-#[cfg(feature = "Metal_MTLAccelerationStructureGeometryDescriptor")]
 unsafe impl NSObjectProtocol for MTLAccelerationStructureGeometryDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLAccelerationStructureGeometryDescriptor")]
     unsafe impl MTLAccelerationStructureGeometryDescriptor {
         #[method(intersectionFunctionTableOffset)]
         pub unsafe fn intersectionFunctionTableOffset(&self) -> NSUInteger;
@@ -123,9 +114,11 @@ extern_methods!(
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: Option<&NSString>);
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method_id(@__retain_semantics Other primitiveDataBuffer)]
         pub unsafe fn primitiveDataBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method(setPrimitiveDataBuffer:)]
         pub fn setPrimitiveDataBuffer(
             &self,
@@ -154,7 +147,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLAccelerationStructureGeometryDescriptor")]
     unsafe impl MTLAccelerationStructureGeometryDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -176,10 +168,8 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLPrimitiveAccelerationStructureDescriptor")]
     pub struct MTLPrimitiveAccelerationStructureDescriptor;
 
-    #[cfg(feature = "Metal_MTLPrimitiveAccelerationStructureDescriptor")]
     unsafe impl ClassType for MTLPrimitiveAccelerationStructureDescriptor {
         #[inherits(NSObject)]
         type Super = MTLAccelerationStructureDescriptor;
@@ -187,28 +177,20 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Metal_MTLPrimitiveAccelerationStructureDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLPrimitiveAccelerationStructureDescriptor {}
 
-#[cfg(feature = "Metal_MTLPrimitiveAccelerationStructureDescriptor")]
 unsafe impl NSObjectProtocol for MTLPrimitiveAccelerationStructureDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLPrimitiveAccelerationStructureDescriptor")]
     unsafe impl MTLPrimitiveAccelerationStructureDescriptor {
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Metal_MTLAccelerationStructureGeometryDescriptor"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other geometryDescriptors)]
         pub unsafe fn geometryDescriptors(
             &self,
         ) -> Option<Id<NSArray<MTLAccelerationStructureGeometryDescriptor>>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Metal_MTLAccelerationStructureGeometryDescriptor"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(setGeometryDescriptors:)]
         pub fn setGeometryDescriptors(
             &self,
@@ -255,7 +237,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLPrimitiveAccelerationStructureDescriptor")]
     unsafe impl MTLPrimitiveAccelerationStructureDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -267,10 +248,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLAccelerationStructureTriangleGeometryDescriptor")]
     pub struct MTLAccelerationStructureTriangleGeometryDescriptor;
 
-    #[cfg(feature = "Metal_MTLAccelerationStructureTriangleGeometryDescriptor")]
     unsafe impl ClassType for MTLAccelerationStructureTriangleGeometryDescriptor {
         #[inherits(NSObject)]
         type Super = MTLAccelerationStructureGeometryDescriptor;
@@ -278,18 +257,18 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Metal_MTLAccelerationStructureTriangleGeometryDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLAccelerationStructureTriangleGeometryDescriptor {}
 
-#[cfg(feature = "Metal_MTLAccelerationStructureTriangleGeometryDescriptor")]
 unsafe impl NSObjectProtocol for MTLAccelerationStructureTriangleGeometryDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLAccelerationStructureTriangleGeometryDescriptor")]
     unsafe impl MTLAccelerationStructureTriangleGeometryDescriptor {
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method_id(@__retain_semantics Other vertexBuffer)]
         pub unsafe fn vertexBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method(setVertexBuffer:)]
         pub fn setVertexBuffer(&self, vertex_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
 
@@ -299,9 +278,11 @@ extern_methods!(
         #[method(setVertexBufferOffset:)]
         pub unsafe fn setVertexBufferOffset(&self, vertex_buffer_offset: NSUInteger);
 
+        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
         #[method(vertexFormat)]
         pub unsafe fn vertexFormat(&self) -> MTLAttributeFormat;
 
+        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
         #[method(setVertexFormat:)]
         pub unsafe fn setVertexFormat(&self, vertex_format: MTLAttributeFormat);
 
@@ -311,9 +292,11 @@ extern_methods!(
         #[method(setVertexStride:)]
         pub fn setVertexStride(&self, vertex_stride: NSUInteger);
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method_id(@__retain_semantics Other indexBuffer)]
         pub unsafe fn indexBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method(setIndexBuffer:)]
         pub fn setIndexBuffer(&self, index_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
 
@@ -323,9 +306,11 @@ extern_methods!(
         #[method(setIndexBufferOffset:)]
         pub unsafe fn setIndexBufferOffset(&self, index_buffer_offset: NSUInteger);
 
+        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
         #[method(indexType)]
         pub unsafe fn indexType(&self) -> MTLIndexType;
 
+        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
         #[method(setIndexType:)]
         pub unsafe fn setIndexType(&self, index_type: MTLIndexType);
 
@@ -335,11 +320,13 @@ extern_methods!(
         #[method(setTriangleCount:)]
         pub fn setTriangleCount(&self, triangle_count: NSUInteger);
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method_id(@__retain_semantics Other transformationMatrixBuffer)]
         pub unsafe fn transformationMatrixBuffer(
             &self,
         ) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method(setTransformationMatrixBuffer:)]
         pub unsafe fn setTransformationMatrixBuffer(
             &self,
@@ -362,7 +349,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLAccelerationStructureTriangleGeometryDescriptor")]
     unsafe impl MTLAccelerationStructureTriangleGeometryDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -374,10 +360,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLAccelerationStructureBoundingBoxGeometryDescriptor")]
     pub struct MTLAccelerationStructureBoundingBoxGeometryDescriptor;
 
-    #[cfg(feature = "Metal_MTLAccelerationStructureBoundingBoxGeometryDescriptor")]
     unsafe impl ClassType for MTLAccelerationStructureBoundingBoxGeometryDescriptor {
         #[inherits(NSObject)]
         type Super = MTLAccelerationStructureGeometryDescriptor;
@@ -385,18 +369,18 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Metal_MTLAccelerationStructureBoundingBoxGeometryDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLAccelerationStructureBoundingBoxGeometryDescriptor {}
 
-#[cfg(feature = "Metal_MTLAccelerationStructureBoundingBoxGeometryDescriptor")]
 unsafe impl NSObjectProtocol for MTLAccelerationStructureBoundingBoxGeometryDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLAccelerationStructureBoundingBoxGeometryDescriptor")]
     unsafe impl MTLAccelerationStructureBoundingBoxGeometryDescriptor {
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method_id(@__retain_semantics Other boundingBoxBuffer)]
         pub unsafe fn boundingBoxBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method(setBoundingBoxBuffer:)]
         pub fn setBoundingBoxBuffer(
             &self,
@@ -428,7 +412,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLAccelerationStructureBoundingBoxGeometryDescriptor")]
     unsafe impl MTLAccelerationStructureBoundingBoxGeometryDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -440,25 +423,23 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLMotionKeyframeData")]
     pub struct MTLMotionKeyframeData;
 
-    #[cfg(feature = "Metal_MTLMotionKeyframeData")]
     unsafe impl ClassType for MTLMotionKeyframeData {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLMotionKeyframeData")]
 unsafe impl NSObjectProtocol for MTLMotionKeyframeData {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLMotionKeyframeData")]
     unsafe impl MTLMotionKeyframeData {
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method_id(@__retain_semantics Other buffer)]
         pub unsafe fn buffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method(setBuffer:)]
         pub unsafe fn setBuffer(&self, buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
 
@@ -475,7 +456,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLMotionKeyframeData")]
     unsafe impl MTLMotionKeyframeData {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -487,10 +467,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLAccelerationStructureMotionTriangleGeometryDescriptor")]
     pub struct MTLAccelerationStructureMotionTriangleGeometryDescriptor;
 
-    #[cfg(feature = "Metal_MTLAccelerationStructureMotionTriangleGeometryDescriptor")]
     unsafe impl ClassType for MTLAccelerationStructureMotionTriangleGeometryDescriptor {
         #[inherits(NSObject)]
         type Super = MTLAccelerationStructureGeometryDescriptor;
@@ -498,32 +476,26 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Metal_MTLAccelerationStructureMotionTriangleGeometryDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLAccelerationStructureMotionTriangleGeometryDescriptor {}
 
-#[cfg(feature = "Metal_MTLAccelerationStructureMotionTriangleGeometryDescriptor")]
 unsafe impl NSObjectProtocol for MTLAccelerationStructureMotionTriangleGeometryDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLAccelerationStructureMotionTriangleGeometryDescriptor")]
     unsafe impl MTLAccelerationStructureMotionTriangleGeometryDescriptor {
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Metal_MTLMotionKeyframeData"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other vertexBuffers)]
         pub unsafe fn vertexBuffers(&self) -> Id<NSArray<MTLMotionKeyframeData>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Metal_MTLMotionKeyframeData"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(setVertexBuffers:)]
         pub unsafe fn setVertexBuffers(&self, vertex_buffers: &NSArray<MTLMotionKeyframeData>);
 
+        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
         #[method(vertexFormat)]
         pub unsafe fn vertexFormat(&self) -> MTLAttributeFormat;
 
+        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
         #[method(setVertexFormat:)]
         pub unsafe fn setVertexFormat(&self, vertex_format: MTLAttributeFormat);
 
@@ -533,9 +505,11 @@ extern_methods!(
         #[method(setVertexStride:)]
         pub unsafe fn setVertexStride(&self, vertex_stride: NSUInteger);
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method_id(@__retain_semantics Other indexBuffer)]
         pub unsafe fn indexBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method(setIndexBuffer:)]
         pub unsafe fn setIndexBuffer(&self, index_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
 
@@ -545,9 +519,11 @@ extern_methods!(
         #[method(setIndexBufferOffset:)]
         pub unsafe fn setIndexBufferOffset(&self, index_buffer_offset: NSUInteger);
 
+        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
         #[method(indexType)]
         pub unsafe fn indexType(&self) -> MTLIndexType;
 
+        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
         #[method(setIndexType:)]
         pub unsafe fn setIndexType(&self, index_type: MTLIndexType);
 
@@ -557,11 +533,13 @@ extern_methods!(
         #[method(setTriangleCount:)]
         pub unsafe fn setTriangleCount(&self, triangle_count: NSUInteger);
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method_id(@__retain_semantics Other transformationMatrixBuffer)]
         pub unsafe fn transformationMatrixBuffer(
             &self,
         ) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method(setTransformationMatrixBuffer:)]
         pub unsafe fn setTransformationMatrixBuffer(
             &self,
@@ -584,7 +562,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLAccelerationStructureMotionTriangleGeometryDescriptor")]
     unsafe impl MTLAccelerationStructureMotionTriangleGeometryDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -596,10 +573,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor")]
     pub struct MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor;
 
-    #[cfg(feature = "Metal_MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor")]
     unsafe impl ClassType for MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor {
         #[inherits(NSObject)]
         type Super = MTLAccelerationStructureGeometryDescriptor;
@@ -607,26 +582,18 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Metal_MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor {}
 
-#[cfg(feature = "Metal_MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor")]
 unsafe impl NSObjectProtocol for MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor")]
     unsafe impl MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor {
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Metal_MTLMotionKeyframeData"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other boundingBoxBuffers)]
         pub unsafe fn boundingBoxBuffers(&self) -> Id<NSArray<MTLMotionKeyframeData>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Metal_MTLMotionKeyframeData"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(setBoundingBoxBuffers:)]
         pub unsafe fn setBoundingBoxBuffers(
             &self,
@@ -652,7 +619,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor")]
     unsafe impl MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -700,10 +666,8 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLAccelerationStructureCurveGeometryDescriptor")]
     pub struct MTLAccelerationStructureCurveGeometryDescriptor;
 
-    #[cfg(feature = "Metal_MTLAccelerationStructureCurveGeometryDescriptor")]
     unsafe impl ClassType for MTLAccelerationStructureCurveGeometryDescriptor {
         #[inherits(NSObject)]
         type Super = MTLAccelerationStructureGeometryDescriptor;
@@ -711,18 +675,18 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Metal_MTLAccelerationStructureCurveGeometryDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLAccelerationStructureCurveGeometryDescriptor {}
 
-#[cfg(feature = "Metal_MTLAccelerationStructureCurveGeometryDescriptor")]
 unsafe impl NSObjectProtocol for MTLAccelerationStructureCurveGeometryDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLAccelerationStructureCurveGeometryDescriptor")]
     unsafe impl MTLAccelerationStructureCurveGeometryDescriptor {
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method_id(@__retain_semantics Other controlPointBuffer)]
         pub unsafe fn controlPointBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method(setControlPointBuffer:)]
         pub unsafe fn setControlPointBuffer(
             &self,
@@ -747,15 +711,19 @@ extern_methods!(
         #[method(setControlPointStride:)]
         pub unsafe fn setControlPointStride(&self, control_point_stride: NSUInteger);
 
+        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
         #[method(controlPointFormat)]
         pub unsafe fn controlPointFormat(&self) -> MTLAttributeFormat;
 
+        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
         #[method(setControlPointFormat:)]
         pub unsafe fn setControlPointFormat(&self, control_point_format: MTLAttributeFormat);
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method_id(@__retain_semantics Other radiusBuffer)]
         pub unsafe fn radiusBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method(setRadiusBuffer:)]
         pub unsafe fn setRadiusBuffer(&self, radius_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
 
@@ -765,9 +733,11 @@ extern_methods!(
         #[method(setRadiusBufferOffset:)]
         pub unsafe fn setRadiusBufferOffset(&self, radius_buffer_offset: NSUInteger);
 
+        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
         #[method(radiusFormat)]
         pub unsafe fn radiusFormat(&self) -> MTLAttributeFormat;
 
+        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
         #[method(setRadiusFormat:)]
         pub unsafe fn setRadiusFormat(&self, radius_format: MTLAttributeFormat);
 
@@ -777,9 +747,11 @@ extern_methods!(
         #[method(setRadiusStride:)]
         pub unsafe fn setRadiusStride(&self, radius_stride: NSUInteger);
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method_id(@__retain_semantics Other indexBuffer)]
         pub unsafe fn indexBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method(setIndexBuffer:)]
         pub unsafe fn setIndexBuffer(&self, index_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
 
@@ -789,9 +761,11 @@ extern_methods!(
         #[method(setIndexBufferOffset:)]
         pub unsafe fn setIndexBufferOffset(&self, index_buffer_offset: NSUInteger);
 
+        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
         #[method(indexType)]
         pub unsafe fn indexType(&self) -> MTLIndexType;
 
+        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
         #[method(setIndexType:)]
         pub unsafe fn setIndexType(&self, index_type: MTLIndexType);
 
@@ -832,7 +806,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLAccelerationStructureCurveGeometryDescriptor")]
     unsafe impl MTLAccelerationStructureCurveGeometryDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -844,10 +817,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLAccelerationStructureMotionCurveGeometryDescriptor")]
     pub struct MTLAccelerationStructureMotionCurveGeometryDescriptor;
 
-    #[cfg(feature = "Metal_MTLAccelerationStructureMotionCurveGeometryDescriptor")]
     unsafe impl ClassType for MTLAccelerationStructureMotionCurveGeometryDescriptor {
         #[inherits(NSObject)]
         type Super = MTLAccelerationStructureGeometryDescriptor;
@@ -855,26 +826,18 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Metal_MTLAccelerationStructureMotionCurveGeometryDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLAccelerationStructureMotionCurveGeometryDescriptor {}
 
-#[cfg(feature = "Metal_MTLAccelerationStructureMotionCurveGeometryDescriptor")]
 unsafe impl NSObjectProtocol for MTLAccelerationStructureMotionCurveGeometryDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLAccelerationStructureMotionCurveGeometryDescriptor")]
     unsafe impl MTLAccelerationStructureMotionCurveGeometryDescriptor {
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Metal_MTLMotionKeyframeData"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other controlPointBuffers)]
         pub unsafe fn controlPointBuffers(&self) -> Id<NSArray<MTLMotionKeyframeData>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Metal_MTLMotionKeyframeData"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(setControlPointBuffers:)]
         pub unsafe fn setControlPointBuffers(
             &self,
@@ -893,29 +856,27 @@ extern_methods!(
         #[method(setControlPointStride:)]
         pub unsafe fn setControlPointStride(&self, control_point_stride: NSUInteger);
 
+        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
         #[method(controlPointFormat)]
         pub unsafe fn controlPointFormat(&self) -> MTLAttributeFormat;
 
+        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
         #[method(setControlPointFormat:)]
         pub unsafe fn setControlPointFormat(&self, control_point_format: MTLAttributeFormat);
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Metal_MTLMotionKeyframeData"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other radiusBuffers)]
         pub unsafe fn radiusBuffers(&self) -> Id<NSArray<MTLMotionKeyframeData>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSArray",
-            feature = "Metal_MTLMotionKeyframeData"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(setRadiusBuffers:)]
         pub unsafe fn setRadiusBuffers(&self, radius_buffers: &NSArray<MTLMotionKeyframeData>);
 
+        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
         #[method(radiusFormat)]
         pub unsafe fn radiusFormat(&self) -> MTLAttributeFormat;
 
+        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
         #[method(setRadiusFormat:)]
         pub unsafe fn setRadiusFormat(&self, radius_format: MTLAttributeFormat);
 
@@ -925,9 +886,11 @@ extern_methods!(
         #[method(setRadiusStride:)]
         pub unsafe fn setRadiusStride(&self, radius_stride: NSUInteger);
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method_id(@__retain_semantics Other indexBuffer)]
         pub unsafe fn indexBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method(setIndexBuffer:)]
         pub unsafe fn setIndexBuffer(&self, index_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
 
@@ -937,9 +900,11 @@ extern_methods!(
         #[method(setIndexBufferOffset:)]
         pub unsafe fn setIndexBufferOffset(&self, index_buffer_offset: NSUInteger);
 
+        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
         #[method(indexType)]
         pub unsafe fn indexType(&self) -> MTLIndexType;
 
+        #[cfg(feature = "Metal_MTLStageInputOutputDescriptor")]
         #[method(setIndexType:)]
         pub unsafe fn setIndexType(&self, index_type: MTLIndexType);
 
@@ -980,7 +945,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLAccelerationStructureMotionCurveGeometryDescriptor")]
     unsafe impl MTLAccelerationStructureMotionCurveGeometryDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -992,6 +956,7 @@ extern_methods!(
 
 extern_struct!(
     #[encoding_name("?")]
+    #[cfg(feature = "Metal_MTLAccelerationStructureTypes")]
     pub struct MTLAccelerationStructureInstanceDescriptor {
         pub transformationMatrix: MTLPackedFloat4x3,
         pub options: MTLAccelerationStructureInstanceOptions,
@@ -1003,6 +968,7 @@ extern_struct!(
 
 extern_struct!(
     #[encoding_name("?")]
+    #[cfg(feature = "Metal_MTLAccelerationStructureTypes")]
     pub struct MTLAccelerationStructureUserIDInstanceDescriptor {
         pub transformationMatrix: MTLPackedFloat4x3,
         pub options: MTLAccelerationStructureInstanceOptions,
@@ -1048,6 +1014,10 @@ extern_struct!(
 
 extern_struct!(
     #[encoding_name("?")]
+    #[cfg(all(
+        feature = "Metal_MTLAccelerationStructureTypes",
+        feature = "Metal_MTLTypes"
+    ))]
     pub struct MTLIndirectAccelerationStructureInstanceDescriptor {
         pub transformationMatrix: MTLPackedFloat4x3,
         pub options: MTLAccelerationStructureInstanceOptions,
@@ -1060,6 +1030,7 @@ extern_struct!(
 
 extern_struct!(
     #[encoding_name("?")]
+    #[cfg(feature = "Metal_MTLTypes")]
     pub struct MTLIndirectAccelerationStructureMotionInstanceDescriptor {
         pub options: MTLAccelerationStructureInstanceOptions,
         pub mask: u32,
@@ -1077,10 +1048,8 @@ extern_struct!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLInstanceAccelerationStructureDescriptor")]
     pub struct MTLInstanceAccelerationStructureDescriptor;
 
-    #[cfg(feature = "Metal_MTLInstanceAccelerationStructureDescriptor")]
     unsafe impl ClassType for MTLInstanceAccelerationStructureDescriptor {
         #[inherits(NSObject)]
         type Super = MTLAccelerationStructureDescriptor;
@@ -1088,18 +1057,18 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Metal_MTLInstanceAccelerationStructureDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLInstanceAccelerationStructureDescriptor {}
 
-#[cfg(feature = "Metal_MTLInstanceAccelerationStructureDescriptor")]
 unsafe impl NSObjectProtocol for MTLInstanceAccelerationStructureDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLInstanceAccelerationStructureDescriptor")]
     unsafe impl MTLInstanceAccelerationStructureDescriptor {
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method_id(@__retain_semantics Other instanceDescriptorBuffer)]
         pub unsafe fn instanceDescriptorBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method(setInstanceDescriptorBuffer:)]
         pub fn setInstanceDescriptorBuffer(
             &self,
@@ -1127,13 +1096,13 @@ extern_methods!(
         #[method(setInstanceCount:)]
         pub fn setInstanceCount(&self, instance_count: NSUInteger);
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLResource"))]
         #[method_id(@__retain_semantics Other instancedAccelerationStructures)]
         pub unsafe fn instancedAccelerationStructures(
             &self,
         ) -> Option<Id<NSArray<ProtocolObject<dyn MTLAccelerationStructure>>>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLResource"))]
         #[method(setInstancedAccelerationStructures:)]
         pub fn setInstancedAccelerationStructures(
             &self,
@@ -1153,9 +1122,11 @@ extern_methods!(
             instance_descriptor_type: MTLAccelerationStructureInstanceDescriptorType,
         );
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method_id(@__retain_semantics Other motionTransformBuffer)]
         pub unsafe fn motionTransformBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method(setMotionTransformBuffer:)]
         pub unsafe fn setMotionTransformBuffer(
             &self,
@@ -1184,7 +1155,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLInstanceAccelerationStructureDescriptor")]
     unsafe impl MTLInstanceAccelerationStructureDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -1196,10 +1166,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLIndirectInstanceAccelerationStructureDescriptor")]
     pub struct MTLIndirectInstanceAccelerationStructureDescriptor;
 
-    #[cfg(feature = "Metal_MTLIndirectInstanceAccelerationStructureDescriptor")]
     unsafe impl ClassType for MTLIndirectInstanceAccelerationStructureDescriptor {
         #[inherits(NSObject)]
         type Super = MTLAccelerationStructureDescriptor;
@@ -1207,18 +1175,18 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Metal_MTLIndirectInstanceAccelerationStructureDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLIndirectInstanceAccelerationStructureDescriptor {}
 
-#[cfg(feature = "Metal_MTLIndirectInstanceAccelerationStructureDescriptor")]
 unsafe impl NSObjectProtocol for MTLIndirectInstanceAccelerationStructureDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLIndirectInstanceAccelerationStructureDescriptor")]
     unsafe impl MTLIndirectInstanceAccelerationStructureDescriptor {
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method_id(@__retain_semantics Other instanceDescriptorBuffer)]
         pub unsafe fn instanceDescriptorBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method(setInstanceDescriptorBuffer:)]
         pub unsafe fn setInstanceDescriptorBuffer(
             &self,
@@ -1246,9 +1214,11 @@ extern_methods!(
         #[method(setMaxInstanceCount:)]
         pub unsafe fn setMaxInstanceCount(&self, max_instance_count: NSUInteger);
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method_id(@__retain_semantics Other instanceCountBuffer)]
         pub unsafe fn instanceCountBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method(setInstanceCountBuffer:)]
         pub unsafe fn setInstanceCountBuffer(
             &self,
@@ -1272,9 +1242,11 @@ extern_methods!(
             instance_descriptor_type: MTLAccelerationStructureInstanceDescriptorType,
         );
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method_id(@__retain_semantics Other motionTransformBuffer)]
         pub unsafe fn motionTransformBuffer(&self) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method(setMotionTransformBuffer:)]
         pub unsafe fn setMotionTransformBuffer(
             &self,
@@ -1296,11 +1268,13 @@ extern_methods!(
         #[method(setMaxMotionTransformCount:)]
         pub unsafe fn setMaxMotionTransformCount(&self, max_motion_transform_count: NSUInteger);
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method_id(@__retain_semantics Other motionTransformCountBuffer)]
         pub unsafe fn motionTransformCountBuffer(
             &self,
         ) -> Option<Id<ProtocolObject<dyn MTLBuffer>>>;
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method(setMotionTransformCountBuffer:)]
         pub unsafe fn setMotionTransformCountBuffer(
             &self,
@@ -1323,7 +1297,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLIndirectInstanceAccelerationStructureDescriptor")]
     unsafe impl MTLIndirectInstanceAccelerationStructureDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -1334,13 +1307,16 @@ extern_methods!(
 );
 
 extern_protocol!(
+    #[cfg(feature = "Metal_MTLResource")]
     pub unsafe trait MTLAccelerationStructure: MTLResource {
         #[method(size)]
         unsafe fn size(&self) -> NSUInteger;
 
+        #[cfg(feature = "Metal_MTLTypes")]
         #[method(gpuResourceID)]
         unsafe fn gpuResourceID(&self) -> MTLResourceID;
     }
 
+    #[cfg(feature = "Metal_MTLResource")]
     unsafe impl ProtocolType for dyn MTLAccelerationStructure {}
 );

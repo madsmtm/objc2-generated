@@ -3,7 +3,7 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
 extern_static!(NSUndefinedKeyException: &'static NSExceptionName);
 
 #[cfg(feature = "Foundation_NSString")]
@@ -67,18 +67,15 @@ extern_category!(
             in_key: &NSString,
         ) -> Result<(), Id<NSError>>;
 
-        #[cfg(all(feature = "Foundation_NSMutableArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other mutableArrayValueForKey:)]
         unsafe fn mutableArrayValueForKey(&self, key: &NSString) -> Id<NSMutableArray>;
 
-        #[cfg(all(
-            feature = "Foundation_NSMutableOrderedSet",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSOrderedSet", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other mutableOrderedSetValueForKey:)]
         unsafe fn mutableOrderedSetValueForKey(&self, key: &NSString) -> Id<NSMutableOrderedSet>;
 
-        #[cfg(all(feature = "Foundation_NSMutableSet", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other mutableSetValueForKey:)]
         unsafe fn mutableSetValueForKey(&self, key: &NSString) -> Id<NSMutableSet>;
 
@@ -98,21 +95,18 @@ extern_category!(
             in_key_path: &NSString,
         ) -> Result<(), Id<NSError>>;
 
-        #[cfg(all(feature = "Foundation_NSMutableArray", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other mutableArrayValueForKeyPath:)]
         unsafe fn mutableArrayValueForKeyPath(&self, key_path: &NSString) -> Id<NSMutableArray>;
 
-        #[cfg(all(
-            feature = "Foundation_NSMutableOrderedSet",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSOrderedSet", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other mutableOrderedSetValueForKeyPath:)]
         unsafe fn mutableOrderedSetValueForKeyPath(
             &self,
             key_path: &NSString,
         ) -> Id<NSMutableOrderedSet>;
 
-        #[cfg(all(feature = "Foundation_NSMutableSet", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other mutableSetValueForKeyPath:)]
         unsafe fn mutableSetValueForKeyPath(&self, key_path: &NSString) -> Id<NSMutableSet>;
 
@@ -176,7 +170,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSKeyValueCoding
-    #[cfg(feature = "Foundation_NSMutableDictionary")]
+    #[cfg(feature = "Foundation_NSDictionary")]
     unsafe impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
         #[cfg(feature = "Foundation_NSString")]
         #[method(setValue:forKey:)]

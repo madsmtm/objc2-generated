@@ -7,10 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKLocationSortDescriptor")]
+    #[cfg(feature = "Foundation_NSSortDescriptor")]
     pub struct CKLocationSortDescriptor;
 
-    #[cfg(feature = "CloudKit_CKLocationSortDescriptor")]
+    #[cfg(feature = "Foundation_NSSortDescriptor")]
     unsafe impl ClassType for CKLocationSortDescriptor {
         #[inherits(NSObject)]
         type Super = NSSortDescriptor;
@@ -18,20 +18,29 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CloudKit_CKLocationSortDescriptor")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "Foundation_NSSortDescriptor"
+))]
 unsafe impl NSCoding for CKLocationSortDescriptor {}
 
-#[cfg(feature = "CloudKit_CKLocationSortDescriptor")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "Foundation_NSSortDescriptor"
+))]
 unsafe impl NSCopying for CKLocationSortDescriptor {}
 
-#[cfg(feature = "CloudKit_CKLocationSortDescriptor")]
+#[cfg(feature = "Foundation_NSSortDescriptor")]
 unsafe impl NSObjectProtocol for CKLocationSortDescriptor {}
 
-#[cfg(feature = "CloudKit_CKLocationSortDescriptor")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "Foundation_NSSortDescriptor"
+))]
 unsafe impl NSSecureCoding for CKLocationSortDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKLocationSortDescriptor")]
+    #[cfg(feature = "Foundation_NSSortDescriptor")]
     unsafe impl CKLocationSortDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -59,7 +68,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSSortDescriptor`
-    #[cfg(feature = "CloudKit_CKLocationSortDescriptor")]
+    #[cfg(feature = "Foundation_NSSortDescriptor")]
     unsafe impl CKLocationSortDescriptor {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other sortDescriptorWithKey:ascending:)]
@@ -93,7 +102,7 @@ extern_methods!(
             selector: Option<Sel>,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other sortDescriptorWithKey:ascending:comparator:)]
         pub unsafe fn sortDescriptorWithKey_ascending_comparator(
             key: Option<&NSString>,
@@ -101,7 +110,7 @@ extern_methods!(
             cmptr: NSComparator,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithKey:ascending:comparator:)]
         pub unsafe fn initWithKey_ascending_comparator(
             this: Allocated<Self>,

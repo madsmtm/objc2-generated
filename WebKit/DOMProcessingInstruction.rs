@@ -7,11 +7,21 @@ use crate::WebKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_DOMProcessingInstruction")]
+    #[cfg(all(
+        feature = "WebKit_DOMCharacterData",
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     #[deprecated]
     pub struct DOMProcessingInstruction;
 
-    #[cfg(feature = "WebKit_DOMProcessingInstruction")]
+    #[cfg(all(
+        feature = "WebKit_DOMCharacterData",
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl ClassType for DOMProcessingInstruction {
         #[inherits(DOMNode, DOMObject, WebScriptObject, NSObject)]
         type Super = DOMCharacterData;
@@ -19,17 +29,40 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "WebKit_DOMProcessingInstruction")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "WebKit_DOMCharacterData",
+    feature = "WebKit_DOMEventTarget",
+    feature = "WebKit_DOMNode",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl DOMEventTarget for DOMProcessingInstruction {}
 
-#[cfg(feature = "WebKit_DOMProcessingInstruction")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "WebKit_DOMCharacterData",
+    feature = "WebKit_DOMNode",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSCopying for DOMProcessingInstruction {}
 
-#[cfg(feature = "WebKit_DOMProcessingInstruction")]
+#[cfg(all(
+    feature = "WebKit_DOMCharacterData",
+    feature = "WebKit_DOMNode",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSObjectProtocol for DOMProcessingInstruction {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_DOMProcessingInstruction")]
+    #[cfg(all(
+        feature = "WebKit_DOMCharacterData",
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMProcessingInstruction {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
@@ -44,7 +77,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
-    #[cfg(feature = "WebKit_DOMProcessingInstruction")]
+    #[cfg(all(
+        feature = "WebKit_DOMCharacterData",
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMProcessingInstruction {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
@@ -54,7 +92,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_DOMProcessingInstruction")]
+    #[cfg(all(
+        feature = "WebKit_DOMCharacterData",
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMProcessingInstruction {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

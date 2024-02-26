@@ -68,9 +68,9 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "CoreLocation_CLBeacon",
             feature = "CoreLocation_CLBeaconRegion",
             feature = "CoreLocation_CLLocationManager",
+            feature = "CoreLocation_CLRegion",
             feature = "Foundation_NSArray"
         ))]
         #[deprecated]
@@ -86,6 +86,7 @@ extern_protocol!(
         #[cfg(all(
             feature = "CoreLocation_CLBeaconRegion",
             feature = "CoreLocation_CLLocationManager",
+            feature = "CoreLocation_CLRegion",
             feature = "Foundation_NSError"
         ))]
         #[deprecated]
@@ -99,8 +100,10 @@ extern_protocol!(
         );
 
         #[cfg(all(
-            feature = "CoreLocation_CLBeacon",
+            feature = "CoreLocation_CLBeaconIdentityCondition",
             feature = "CoreLocation_CLBeaconIdentityConstraint",
+            feature = "CoreLocation_CLBeaconRegion",
+            feature = "CoreLocation_CLCondition",
             feature = "CoreLocation_CLLocationManager",
             feature = "Foundation_NSArray"
         ))]
@@ -114,7 +117,9 @@ extern_protocol!(
         );
 
         #[cfg(all(
+            feature = "CoreLocation_CLBeaconIdentityCondition",
             feature = "CoreLocation_CLBeaconIdentityConstraint",
+            feature = "CoreLocation_CLCondition",
             feature = "CoreLocation_CLLocationManager",
             feature = "Foundation_NSError"
         ))]

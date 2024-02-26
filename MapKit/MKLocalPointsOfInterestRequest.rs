@@ -7,32 +7,30 @@ use crate::CoreLocation::*;
 use crate::Foundation::*;
 use crate::MapKit::*;
 
+#[cfg(feature = "CoreLocation_CLLocation")]
 extern_static!(MKPointsOfInterestRequestMaxRadius: CLLocationDistance);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKLocalPointsOfInterestRequest")]
     pub struct MKLocalPointsOfInterestRequest;
 
-    #[cfg(feature = "MapKit_MKLocalPointsOfInterestRequest")]
     unsafe impl ClassType for MKLocalPointsOfInterestRequest {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MapKit_MKLocalPointsOfInterestRequest")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MKLocalPointsOfInterestRequest {}
 
-#[cfg(feature = "MapKit_MKLocalPointsOfInterestRequest")]
 unsafe impl NSObjectProtocol for MKLocalPointsOfInterestRequest {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKLocalPointsOfInterestRequest")]
     unsafe impl MKLocalPointsOfInterestRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
+        #[cfg(feature = "CoreLocation_CLLocation")]
         #[method_id(@__retain_semantics Init initWithCenterCoordinate:radius:)]
         pub unsafe fn initWithCenterCoordinate_radius(
             this: Allocated<Self>,
@@ -40,18 +38,22 @@ extern_methods!(
             radius: CLLocationDistance,
         ) -> Id<Self>;
 
+        #[cfg(all(feature = "CoreLocation_CLLocation", feature = "MapKit_MKGeometry"))]
         #[method_id(@__retain_semantics Init initWithCoordinateRegion:)]
         pub unsafe fn initWithCoordinateRegion(
             this: Allocated<Self>,
             region: MKCoordinateRegion,
         ) -> Id<Self>;
 
+        #[cfg(feature = "CoreLocation_CLLocation")]
         #[method(coordinate)]
         pub unsafe fn coordinate(&self) -> CLLocationCoordinate2D;
 
+        #[cfg(feature = "CoreLocation_CLLocation")]
         #[method(radius)]
         pub unsafe fn radius(&self) -> CLLocationDistance;
 
+        #[cfg(all(feature = "CoreLocation_CLLocation", feature = "MapKit_MKGeometry"))]
         #[method(region)]
         pub unsafe fn region(&self) -> MKCoordinateRegion;
 
@@ -70,7 +72,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MapKit_MKLocalPointsOfInterestRequest")]
     unsafe impl MKLocalPointsOfInterestRequest {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

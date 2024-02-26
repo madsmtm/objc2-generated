@@ -15,21 +15,17 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "ExternalAccessory_EAWiFiUnconfiguredAccessory")]
     pub struct EAWiFiUnconfiguredAccessory;
 
-    #[cfg(feature = "ExternalAccessory_EAWiFiUnconfiguredAccessory")]
     unsafe impl ClassType for EAWiFiUnconfiguredAccessory {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "ExternalAccessory_EAWiFiUnconfiguredAccessory")]
 unsafe impl NSObjectProtocol for EAWiFiUnconfiguredAccessory {}
 
 extern_methods!(
-    #[cfg(feature = "ExternalAccessory_EAWiFiUnconfiguredAccessory")]
     unsafe impl EAWiFiUnconfiguredAccessory {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
@@ -58,7 +54,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "ExternalAccessory_EAWiFiUnconfiguredAccessory")]
     unsafe impl EAWiFiUnconfiguredAccessory {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

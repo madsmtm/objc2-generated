@@ -6,10 +6,10 @@ use crate::QuartzCore::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "QuartzCore_CATiledLayer")]
+    #[cfg(feature = "QuartzCore_CALayer")]
     pub struct CATiledLayer;
 
-    #[cfg(feature = "QuartzCore_CATiledLayer")]
+    #[cfg(feature = "QuartzCore_CALayer")]
     unsafe impl ClassType for CATiledLayer {
         #[inherits(NSObject)]
         type Super = CALayer;
@@ -17,20 +17,20 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "QuartzCore_CATiledLayer")]
+#[cfg(all(feature = "QuartzCore_CALayer", feature = "QuartzCore_CAMediaTiming"))]
 unsafe impl CAMediaTiming for CATiledLayer {}
 
-#[cfg(feature = "QuartzCore_CATiledLayer")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "QuartzCore_CALayer"))]
 unsafe impl NSCoding for CATiledLayer {}
 
-#[cfg(feature = "QuartzCore_CATiledLayer")]
+#[cfg(feature = "QuartzCore_CALayer")]
 unsafe impl NSObjectProtocol for CATiledLayer {}
 
-#[cfg(feature = "QuartzCore_CATiledLayer")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "QuartzCore_CALayer"))]
 unsafe impl NSSecureCoding for CATiledLayer {}
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CATiledLayer")]
+    #[cfg(feature = "QuartzCore_CALayer")]
     unsafe impl CATiledLayer {
         #[method(fadeDuration)]
         pub unsafe fn fadeDuration() -> CFTimeInterval;
@@ -47,9 +47,11 @@ extern_methods!(
         #[method(setLevelsOfDetailBias:)]
         pub unsafe fn setLevelsOfDetailBias(&self, levels_of_detail_bias: usize);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(tileSize)]
         pub unsafe fn tileSize(&self) -> CGSize;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setTileSize:)]
         pub unsafe fn setTileSize(&self, tile_size: CGSize);
     }
@@ -57,7 +59,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CALayer`
-    #[cfg(feature = "QuartzCore_CATiledLayer")]
+    #[cfg(feature = "QuartzCore_CALayer")]
     unsafe impl CATiledLayer {
         #[method_id(@__retain_semantics Other layer)]
         pub unsafe fn layer() -> Id<Self>;
@@ -72,7 +74,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "QuartzCore_CATiledLayer")]
+    #[cfg(feature = "QuartzCore_CALayer")]
     unsafe impl CATiledLayer {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -17,123 +17,156 @@
 #[link(name = "QuartzCore", kind = "framework")]
 extern "C" {}
 
+#[cfg(feature = "QuartzCore_CAAnimation")]
 #[path = "CAAnimation.rs"]
 mod __CAAnimation;
+#[cfg(feature = "QuartzCore_CABase")]
 #[path = "CABase.rs"]
 mod __CABase;
+#[cfg(feature = "QuartzCore_CAConstraintLayoutManager")]
 #[path = "CAConstraintLayoutManager.rs"]
 mod __CAConstraintLayoutManager;
+#[cfg(feature = "QuartzCore_CADisplayLink")]
 #[path = "CADisplayLink.rs"]
 mod __CADisplayLink;
+#[cfg(feature = "QuartzCore_CAEDRMetadata")]
 #[path = "CAEDRMetadata.rs"]
 mod __CAEDRMetadata;
+#[cfg(feature = "QuartzCore_CAEmitterCell")]
 #[path = "CAEmitterCell.rs"]
 mod __CAEmitterCell;
+#[cfg(feature = "QuartzCore_CAEmitterLayer")]
 #[path = "CAEmitterLayer.rs"]
 mod __CAEmitterLayer;
+#[cfg(feature = "QuartzCore_CAFrameRateRange")]
 #[path = "CAFrameRateRange.rs"]
 mod __CAFrameRateRange;
+#[cfg(feature = "QuartzCore_CAGradientLayer")]
 #[path = "CAGradientLayer.rs"]
 mod __CAGradientLayer;
+#[cfg(feature = "QuartzCore_CALayer")]
 #[path = "CALayer.rs"]
 mod __CALayer;
+#[cfg(feature = "QuartzCore_CAMediaTiming")]
 #[path = "CAMediaTiming.rs"]
 mod __CAMediaTiming;
+#[cfg(feature = "QuartzCore_CAMediaTimingFunction")]
 #[path = "CAMediaTimingFunction.rs"]
 mod __CAMediaTimingFunction;
+#[cfg(feature = "QuartzCore_CAMetalDisplayLink")]
 #[path = "CAMetalDisplayLink.rs"]
 mod __CAMetalDisplayLink;
+#[cfg(feature = "QuartzCore_CAMetalLayer")]
 #[path = "CAMetalLayer.rs"]
 mod __CAMetalLayer;
+#[cfg(feature = "QuartzCore_CAOpenGLLayer")]
 #[path = "CAOpenGLLayer.rs"]
 mod __CAOpenGLLayer;
+#[cfg(feature = "QuartzCore_CARemoteLayerClient")]
 #[path = "CARemoteLayerClient.rs"]
 mod __CARemoteLayerClient;
+#[cfg(feature = "QuartzCore_CARemoteLayerServer")]
 #[path = "CARemoteLayerServer.rs"]
 mod __CARemoteLayerServer;
+#[cfg(feature = "QuartzCore_CARenderer")]
 #[path = "CARenderer.rs"]
 mod __CARenderer;
+#[cfg(feature = "QuartzCore_CAReplicatorLayer")]
 #[path = "CAReplicatorLayer.rs"]
 mod __CAReplicatorLayer;
+#[cfg(feature = "QuartzCore_CAScrollLayer")]
 #[path = "CAScrollLayer.rs"]
 mod __CAScrollLayer;
+#[cfg(feature = "QuartzCore_CAShapeLayer")]
 #[path = "CAShapeLayer.rs"]
 mod __CAShapeLayer;
+#[cfg(feature = "QuartzCore_CATextLayer")]
 #[path = "CATextLayer.rs"]
 mod __CATextLayer;
+#[cfg(feature = "QuartzCore_CATiledLayer")]
 #[path = "CATiledLayer.rs"]
 mod __CATiledLayer;
+#[cfg(feature = "QuartzCore_CATransaction")]
 #[path = "CATransaction.rs"]
 mod __CATransaction;
+#[cfg(feature = "QuartzCore_CATransform3D")]
 #[path = "CATransform3D.rs"]
 mod __CATransform3D;
+#[cfg(feature = "QuartzCore_CATransformLayer")]
 #[path = "CATransformLayer.rs"]
 mod __CATransformLayer;
+#[cfg(feature = "QuartzCore_CAValueFunction")]
 #[path = "CAValueFunction.rs"]
 mod __CAValueFunction;
+#[cfg(feature = "QuartzCore_CoreAnimation")]
 #[path = "CoreAnimation.rs"]
 mod __CoreAnimation;
+#[cfg(feature = "QuartzCore_CoreImage")]
 #[path = "CoreImage.rs"]
 mod __CoreImage;
+#[cfg(feature = "QuartzCore_CoreVideo")]
 #[path = "CoreVideo.rs"]
 mod __CoreVideo;
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAAnimation"))]
 pub use self::__CAAnimation::kCAAnimationCubic;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAAnimation"))]
 pub use self::__CAAnimation::kCAAnimationCubicPaced;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAAnimation"))]
 pub use self::__CAAnimation::kCAAnimationDiscrete;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAAnimation"))]
 pub use self::__CAAnimation::kCAAnimationLinear;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAAnimation"))]
 pub use self::__CAAnimation::kCAAnimationPaced;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAAnimation"))]
 pub use self::__CAAnimation::kCAAnimationRotateAuto;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAAnimation"))]
 pub use self::__CAAnimation::kCAAnimationRotateAutoReverse;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAAnimation"))]
 pub use self::__CAAnimation::kCATransitionFade;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAAnimation"))]
 pub use self::__CAAnimation::kCATransitionFromBottom;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAAnimation"))]
 pub use self::__CAAnimation::kCATransitionFromLeft;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAAnimation"))]
 pub use self::__CAAnimation::kCATransitionFromRight;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAAnimation"))]
 pub use self::__CAAnimation::kCATransitionFromTop;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAAnimation"))]
 pub use self::__CAAnimation::kCATransitionMoveIn;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAAnimation"))]
 pub use self::__CAAnimation::kCATransitionPush;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAAnimation"))]
 pub use self::__CAAnimation::kCATransitionReveal;
 #[cfg(feature = "QuartzCore_CAAnimation")]
 pub use self::__CAAnimation::CAAnimation;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAAnimation"))]
 pub use self::__CAAnimation::CAAnimationCalculationMode;
+#[cfg(feature = "QuartzCore_CAAnimation")]
 pub use self::__CAAnimation::CAAnimationDelegate;
-#[cfg(feature = "QuartzCore_CAAnimationGroup")]
+#[cfg(feature = "QuartzCore_CAAnimation")]
 pub use self::__CAAnimation::CAAnimationGroup;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAAnimation"))]
 pub use self::__CAAnimation::CAAnimationRotationMode;
-#[cfg(feature = "QuartzCore_CABasicAnimation")]
+#[cfg(feature = "QuartzCore_CAAnimation")]
 pub use self::__CAAnimation::CABasicAnimation;
-#[cfg(feature = "QuartzCore_CAKeyframeAnimation")]
+#[cfg(feature = "QuartzCore_CAAnimation")]
 pub use self::__CAAnimation::CAKeyframeAnimation;
-#[cfg(feature = "QuartzCore_CAPropertyAnimation")]
+#[cfg(feature = "QuartzCore_CAAnimation")]
 pub use self::__CAAnimation::CAPropertyAnimation;
-#[cfg(feature = "QuartzCore_CASpringAnimation")]
+#[cfg(feature = "QuartzCore_CAAnimation")]
 pub use self::__CAAnimation::CASpringAnimation;
-#[cfg(feature = "QuartzCore_CATransition")]
+#[cfg(feature = "QuartzCore_CAAnimation")]
 pub use self::__CAAnimation::CATransition;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAAnimation"))]
 pub use self::__CAAnimation::CATransitionSubtype;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAAnimation"))]
 pub use self::__CAAnimation::CATransitionType;
+#[cfg(feature = "QuartzCore_CABase")]
 pub use self::__CABase::CACurrentMediaTime;
-#[cfg(feature = "QuartzCore_CAConstraint")]
+#[cfg(feature = "QuartzCore_CAConstraintLayoutManager")]
 pub use self::__CAConstraintLayoutManager::CAConstraint;
+#[cfg(feature = "QuartzCore_CAConstraintLayoutManager")]
 pub use self::__CAConstraintLayoutManager::CAConstraintAttribute;
 #[cfg(feature = "QuartzCore_CAConstraintLayoutManager")]
 pub use self::__CAConstraintLayoutManager::CAConstraintLayoutManager;
@@ -143,273 +176,410 @@ pub use self::__CADisplayLink::CADisplayLink;
 pub use self::__CAEDRMetadata::CAEDRMetadata;
 #[cfg(feature = "QuartzCore_CAEmitterCell")]
 pub use self::__CAEmitterCell::CAEmitterCell;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAEmitterLayer"))]
 pub use self::__CAEmitterLayer::kCAEmitterLayerAdditive;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAEmitterLayer"))]
 pub use self::__CAEmitterLayer::kCAEmitterLayerBackToFront;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAEmitterLayer"))]
 pub use self::__CAEmitterLayer::kCAEmitterLayerCircle;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAEmitterLayer"))]
 pub use self::__CAEmitterLayer::kCAEmitterLayerCuboid;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAEmitterLayer"))]
 pub use self::__CAEmitterLayer::kCAEmitterLayerLine;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAEmitterLayer"))]
 pub use self::__CAEmitterLayer::kCAEmitterLayerOldestFirst;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAEmitterLayer"))]
 pub use self::__CAEmitterLayer::kCAEmitterLayerOldestLast;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAEmitterLayer"))]
 pub use self::__CAEmitterLayer::kCAEmitterLayerOutline;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAEmitterLayer"))]
 pub use self::__CAEmitterLayer::kCAEmitterLayerPoint;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAEmitterLayer"))]
 pub use self::__CAEmitterLayer::kCAEmitterLayerPoints;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAEmitterLayer"))]
 pub use self::__CAEmitterLayer::kCAEmitterLayerRectangle;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAEmitterLayer"))]
 pub use self::__CAEmitterLayer::kCAEmitterLayerSphere;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAEmitterLayer"))]
 pub use self::__CAEmitterLayer::kCAEmitterLayerSurface;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAEmitterLayer"))]
 pub use self::__CAEmitterLayer::kCAEmitterLayerUnordered;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAEmitterLayer"))]
 pub use self::__CAEmitterLayer::kCAEmitterLayerVolume;
-#[cfg(feature = "QuartzCore_CAEmitterLayer")]
+#[cfg(all(feature = "QuartzCore_CAEmitterLayer", feature = "QuartzCore_CALayer"))]
 pub use self::__CAEmitterLayer::CAEmitterLayer;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAEmitterLayer"))]
 pub use self::__CAEmitterLayer::CAEmitterLayerEmitterMode;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAEmitterLayer"))]
 pub use self::__CAEmitterLayer::CAEmitterLayerEmitterShape;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAEmitterLayer"))]
 pub use self::__CAEmitterLayer::CAEmitterLayerRenderMode;
+#[cfg(feature = "QuartzCore_CAFrameRateRange")]
 pub use self::__CAFrameRateRange::CAFrameRateRange;
+#[cfg(feature = "QuartzCore_CAFrameRateRange")]
 pub use self::__CAFrameRateRange::CAFrameRateRangeDefault;
+#[cfg(feature = "QuartzCore_CAFrameRateRange")]
 pub use self::__CAFrameRateRange::CAFrameRateRangeIsEqualToRange;
+#[cfg(feature = "QuartzCore_CAFrameRateRange")]
 pub use self::__CAFrameRateRange::CAFrameRateRangeMake;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSString",
+    feature = "QuartzCore_CAGradientLayer"
+))]
 pub use self::__CAGradientLayer::kCAGradientLayerAxial;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSString",
+    feature = "QuartzCore_CAGradientLayer"
+))]
 pub use self::__CAGradientLayer::kCAGradientLayerConic;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSString",
+    feature = "QuartzCore_CAGradientLayer"
+))]
 pub use self::__CAGradientLayer::kCAGradientLayerRadial;
-#[cfg(feature = "QuartzCore_CAGradientLayer")]
+#[cfg(all(feature = "QuartzCore_CAGradientLayer", feature = "QuartzCore_CALayer"))]
 pub use self::__CAGradientLayer::CAGradientLayer;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSString",
+    feature = "QuartzCore_CAGradientLayer"
+))]
 pub use self::__CAGradientLayer::CAGradientLayerType;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CALayer"))]
 pub use self::__CALayer::kCAContentsFormatGray8Uint;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CALayer"))]
 pub use self::__CALayer::kCAContentsFormatRGBA16Float;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CALayer"))]
 pub use self::__CALayer::kCAContentsFormatRGBA8Uint;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CALayer"))]
 pub use self::__CALayer::kCACornerCurveCircular;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CALayer"))]
 pub use self::__CALayer::kCACornerCurveContinuous;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CALayer"))]
 pub use self::__CALayer::kCAFilterLinear;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CALayer"))]
 pub use self::__CALayer::kCAFilterNearest;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CALayer"))]
 pub use self::__CALayer::kCAFilterTrilinear;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CALayer"))]
 pub use self::__CALayer::kCAGravityBottom;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CALayer"))]
 pub use self::__CALayer::kCAGravityBottomLeft;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CALayer"))]
 pub use self::__CALayer::kCAGravityBottomRight;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CALayer"))]
 pub use self::__CALayer::kCAGravityCenter;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CALayer"))]
 pub use self::__CALayer::kCAGravityLeft;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CALayer"))]
 pub use self::__CALayer::kCAGravityResize;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CALayer"))]
 pub use self::__CALayer::kCAGravityResizeAspect;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CALayer"))]
 pub use self::__CALayer::kCAGravityResizeAspectFill;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CALayer"))]
 pub use self::__CALayer::kCAGravityRight;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CALayer"))]
 pub use self::__CALayer::kCAGravityTop;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CALayer"))]
 pub use self::__CALayer::kCAGravityTopLeft;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CALayer"))]
 pub use self::__CALayer::kCAGravityTopRight;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CALayer"))]
 pub use self::__CALayer::kCAOnOrderIn;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CALayer"))]
 pub use self::__CALayer::kCAOnOrderOut;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CALayer"))]
 pub use self::__CALayer::kCATransition;
+#[cfg(feature = "QuartzCore_CALayer")]
 pub use self::__CALayer::CAAction;
+#[cfg(feature = "QuartzCore_CALayer")]
 pub use self::__CALayer::CAAutoresizingMask;
+#[cfg(feature = "QuartzCore_CALayer")]
 pub use self::__CALayer::CACornerMask;
+#[cfg(feature = "QuartzCore_CALayer")]
 pub use self::__CALayer::CAEdgeAntialiasingMask;
 #[cfg(feature = "QuartzCore_CALayer")]
 pub use self::__CALayer::CALayer;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CALayer"))]
 pub use self::__CALayer::CALayerContentsFilter;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CALayer"))]
 pub use self::__CALayer::CALayerContentsFormat;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CALayer"))]
 pub use self::__CALayer::CALayerContentsGravity;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CALayer"))]
 pub use self::__CALayer::CALayerCornerCurve;
+#[cfg(feature = "QuartzCore_CALayer")]
 pub use self::__CALayer::CALayerDelegate;
+#[cfg(feature = "QuartzCore_CALayer")]
 pub use self::__CALayer::CALayoutManager;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAMediaTiming"))]
 pub use self::__CAMediaTiming::kCAFillModeBackwards;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAMediaTiming"))]
 pub use self::__CAMediaTiming::kCAFillModeBoth;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAMediaTiming"))]
 pub use self::__CAMediaTiming::kCAFillModeForwards;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAMediaTiming"))]
 pub use self::__CAMediaTiming::kCAFillModeRemoved;
+#[cfg(feature = "QuartzCore_CAMediaTiming")]
 pub use self::__CAMediaTiming::CAMediaTiming;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAMediaTiming"))]
 pub use self::__CAMediaTiming::CAMediaTimingFillMode;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSString",
+    feature = "QuartzCore_CAMediaTimingFunction"
+))]
 pub use self::__CAMediaTimingFunction::kCAMediaTimingFunctionDefault;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSString",
+    feature = "QuartzCore_CAMediaTimingFunction"
+))]
 pub use self::__CAMediaTimingFunction::kCAMediaTimingFunctionEaseIn;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSString",
+    feature = "QuartzCore_CAMediaTimingFunction"
+))]
 pub use self::__CAMediaTimingFunction::kCAMediaTimingFunctionEaseInEaseOut;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSString",
+    feature = "QuartzCore_CAMediaTimingFunction"
+))]
 pub use self::__CAMediaTimingFunction::kCAMediaTimingFunctionEaseOut;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSString",
+    feature = "QuartzCore_CAMediaTimingFunction"
+))]
 pub use self::__CAMediaTimingFunction::kCAMediaTimingFunctionLinear;
 #[cfg(feature = "QuartzCore_CAMediaTimingFunction")]
 pub use self::__CAMediaTimingFunction::CAMediaTimingFunction;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSString",
+    feature = "QuartzCore_CAMediaTimingFunction"
+))]
 pub use self::__CAMediaTimingFunction::CAMediaTimingFunctionName;
 #[cfg(feature = "QuartzCore_CAMetalDisplayLink")]
 pub use self::__CAMetalDisplayLink::CAMetalDisplayLink;
+#[cfg(feature = "QuartzCore_CAMetalDisplayLink")]
 pub use self::__CAMetalDisplayLink::CAMetalDisplayLinkDelegate;
-#[cfg(feature = "QuartzCore_CAMetalDisplayLinkUpdate")]
+#[cfg(feature = "QuartzCore_CAMetalDisplayLink")]
 pub use self::__CAMetalDisplayLink::CAMetalDisplayLinkUpdate;
 #[cfg(feature = "QuartzCore_CARemoteLayerClient")]
 pub use self::__CARemoteLayerClient::CARemoteLayerClient;
 #[cfg(feature = "QuartzCore_CARemoteLayerServer")]
 pub use self::__CARemoteLayerServer::CARemoteLayerServer;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CARenderer"))]
 pub use self::__CARenderer::kCARendererColorSpace;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CARenderer"))]
 pub use self::__CARenderer::kCARendererMetalCommandQueue;
 #[cfg(feature = "QuartzCore_CARenderer")]
 pub use self::__CARenderer::CARenderer;
-#[cfg(feature = "QuartzCore_CAReplicatorLayer")]
+#[cfg(all(
+    feature = "QuartzCore_CALayer",
+    feature = "QuartzCore_CAReplicatorLayer"
+))]
 pub use self::__CAReplicatorLayer::CAReplicatorLayer;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAScrollLayer"))]
 pub use self::__CAScrollLayer::kCAScrollBoth;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAScrollLayer"))]
 pub use self::__CAScrollLayer::kCAScrollHorizontally;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAScrollLayer"))]
 pub use self::__CAScrollLayer::kCAScrollNone;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAScrollLayer"))]
 pub use self::__CAScrollLayer::kCAScrollVertically;
-#[cfg(feature = "QuartzCore_CAScrollLayer")]
+#[cfg(all(feature = "QuartzCore_CALayer", feature = "QuartzCore_CAScrollLayer"))]
 pub use self::__CAScrollLayer::CAScrollLayer;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAScrollLayer"))]
 pub use self::__CAScrollLayer::CAScrollLayerScrollMode;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAShapeLayer"))]
 pub use self::__CAShapeLayer::kCAFillRuleEvenOdd;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAShapeLayer"))]
 pub use self::__CAShapeLayer::kCAFillRuleNonZero;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAShapeLayer"))]
 pub use self::__CAShapeLayer::kCALineCapButt;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAShapeLayer"))]
 pub use self::__CAShapeLayer::kCALineCapRound;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAShapeLayer"))]
 pub use self::__CAShapeLayer::kCALineCapSquare;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAShapeLayer"))]
 pub use self::__CAShapeLayer::kCALineJoinBevel;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAShapeLayer"))]
 pub use self::__CAShapeLayer::kCALineJoinMiter;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAShapeLayer"))]
 pub use self::__CAShapeLayer::kCALineJoinRound;
-#[cfg(feature = "QuartzCore_CAShapeLayer")]
+#[cfg(all(feature = "QuartzCore_CALayer", feature = "QuartzCore_CAShapeLayer"))]
 pub use self::__CAShapeLayer::CAShapeLayer;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAShapeLayer"))]
 pub use self::__CAShapeLayer::CAShapeLayerFillRule;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAShapeLayer"))]
 pub use self::__CAShapeLayer::CAShapeLayerLineCap;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CAShapeLayer"))]
 pub use self::__CAShapeLayer::CAShapeLayerLineJoin;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CATextLayer"))]
 pub use self::__CATextLayer::kCAAlignmentCenter;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CATextLayer"))]
 pub use self::__CATextLayer::kCAAlignmentJustified;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CATextLayer"))]
 pub use self::__CATextLayer::kCAAlignmentLeft;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CATextLayer"))]
 pub use self::__CATextLayer::kCAAlignmentNatural;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CATextLayer"))]
 pub use self::__CATextLayer::kCAAlignmentRight;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CATextLayer"))]
 pub use self::__CATextLayer::kCATruncationEnd;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CATextLayer"))]
 pub use self::__CATextLayer::kCATruncationMiddle;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CATextLayer"))]
 pub use self::__CATextLayer::kCATruncationNone;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CATextLayer"))]
 pub use self::__CATextLayer::kCATruncationStart;
-#[cfg(feature = "QuartzCore_CATextLayer")]
+#[cfg(all(feature = "QuartzCore_CALayer", feature = "QuartzCore_CATextLayer"))]
 pub use self::__CATextLayer::CATextLayer;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CATextLayer"))]
 pub use self::__CATextLayer::CATextLayerAlignmentMode;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CATextLayer"))]
 pub use self::__CATextLayer::CATextLayerTruncationMode;
-#[cfg(feature = "QuartzCore_CATiledLayer")]
+#[cfg(all(feature = "QuartzCore_CALayer", feature = "QuartzCore_CATiledLayer"))]
 pub use self::__CATiledLayer::CATiledLayer;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CATransaction"))]
 pub use self::__CATransaction::kCATransactionAnimationDuration;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CATransaction"))]
 pub use self::__CATransaction::kCATransactionAnimationTimingFunction;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CATransaction"))]
 pub use self::__CATransaction::kCATransactionCompletionBlock;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "QuartzCore_CATransaction"))]
 pub use self::__CATransaction::kCATransactionDisableActions;
 #[cfg(feature = "QuartzCore_CATransaction")]
 pub use self::__CATransaction::CATransaction;
+#[cfg(all(
+    feature = "Foundation_NSGeometry",
+    feature = "QuartzCore_CATransform3D"
+))]
 pub use self::__CATransform3D::CATransform3D;
+#[cfg(all(
+    feature = "Foundation_NSGeometry",
+    feature = "QuartzCore_CATransform3D"
+))]
 pub use self::__CATransform3D::CATransform3DConcat;
+#[cfg(all(
+    feature = "Foundation_NSGeometry",
+    feature = "QuartzCore_CATransform3D"
+))]
 pub use self::__CATransform3D::CATransform3DEqualToTransform;
+#[cfg(all(
+    feature = "Foundation_NSGeometry",
+    feature = "QuartzCore_CATransform3D"
+))]
 pub use self::__CATransform3D::CATransform3DIdentity;
+#[cfg(all(
+    feature = "Foundation_NSGeometry",
+    feature = "QuartzCore_CATransform3D"
+))]
 pub use self::__CATransform3D::CATransform3DInvert;
+#[cfg(all(
+    feature = "Foundation_NSGeometry",
+    feature = "QuartzCore_CATransform3D"
+))]
 pub use self::__CATransform3D::CATransform3DIsAffine;
+#[cfg(all(
+    feature = "Foundation_NSGeometry",
+    feature = "QuartzCore_CATransform3D"
+))]
 pub use self::__CATransform3D::CATransform3DIsIdentity;
+#[cfg(all(
+    feature = "Foundation_NSGeometry",
+    feature = "QuartzCore_CATransform3D"
+))]
 pub use self::__CATransform3D::CATransform3DMakeRotation;
+#[cfg(all(
+    feature = "Foundation_NSGeometry",
+    feature = "QuartzCore_CATransform3D"
+))]
 pub use self::__CATransform3D::CATransform3DMakeScale;
+#[cfg(all(
+    feature = "Foundation_NSGeometry",
+    feature = "QuartzCore_CATransform3D"
+))]
 pub use self::__CATransform3D::CATransform3DMakeTranslation;
+#[cfg(all(
+    feature = "Foundation_NSGeometry",
+    feature = "QuartzCore_CATransform3D"
+))]
 pub use self::__CATransform3D::CATransform3DRotate;
+#[cfg(all(
+    feature = "Foundation_NSGeometry",
+    feature = "QuartzCore_CATransform3D"
+))]
 pub use self::__CATransform3D::CATransform3DScale;
+#[cfg(all(
+    feature = "Foundation_NSGeometry",
+    feature = "QuartzCore_CATransform3D"
+))]
 pub use self::__CATransform3D::CATransform3DTranslate;
+#[cfg(feature = "QuartzCore_CATransform3D")]
 pub use self::__CATransform3D::NSValueCATransform3DAdditions;
-#[cfg(feature = "QuartzCore_CATransformLayer")]
+#[cfg(all(
+    feature = "QuartzCore_CALayer",
+    feature = "QuartzCore_CATransformLayer"
+))]
 pub use self::__CATransformLayer::CATransformLayer;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSString",
+    feature = "QuartzCore_CAValueFunction"
+))]
 pub use self::__CAValueFunction::kCAValueFunctionRotateX;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSString",
+    feature = "QuartzCore_CAValueFunction"
+))]
 pub use self::__CAValueFunction::kCAValueFunctionRotateY;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSString",
+    feature = "QuartzCore_CAValueFunction"
+))]
 pub use self::__CAValueFunction::kCAValueFunctionRotateZ;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSString",
+    feature = "QuartzCore_CAValueFunction"
+))]
 pub use self::__CAValueFunction::kCAValueFunctionScale;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSString",
+    feature = "QuartzCore_CAValueFunction"
+))]
 pub use self::__CAValueFunction::kCAValueFunctionScaleX;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSString",
+    feature = "QuartzCore_CAValueFunction"
+))]
 pub use self::__CAValueFunction::kCAValueFunctionScaleY;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSString",
+    feature = "QuartzCore_CAValueFunction"
+))]
 pub use self::__CAValueFunction::kCAValueFunctionScaleZ;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSString",
+    feature = "QuartzCore_CAValueFunction"
+))]
 pub use self::__CAValueFunction::kCAValueFunctionTranslate;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSString",
+    feature = "QuartzCore_CAValueFunction"
+))]
 pub use self::__CAValueFunction::kCAValueFunctionTranslateX;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSString",
+    feature = "QuartzCore_CAValueFunction"
+))]
 pub use self::__CAValueFunction::kCAValueFunctionTranslateY;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSString",
+    feature = "QuartzCore_CAValueFunction"
+))]
 pub use self::__CAValueFunction::kCAValueFunctionTranslateZ;
 #[cfg(feature = "QuartzCore_CAValueFunction")]
 pub use self::__CAValueFunction::CAValueFunction;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSString",
+    feature = "QuartzCore_CAValueFunction"
+))]
 pub use self::__CAValueFunction::CAValueFunctionName;

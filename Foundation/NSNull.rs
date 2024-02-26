@@ -5,36 +5,30 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSNull")]
     pub struct NSNull;
 
-    #[cfg(feature = "Foundation_NSNull")]
     unsafe impl ClassType for NSNull {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSNull")]
 unsafe impl Send for NSNull {}
 
-#[cfg(feature = "Foundation_NSNull")]
 unsafe impl Sync for NSNull {}
 
-#[cfg(feature = "Foundation_NSNull")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSNull {}
 
-#[cfg(feature = "Foundation_NSNull")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSNull {}
 
-#[cfg(feature = "Foundation_NSNull")]
 unsafe impl NSObjectProtocol for NSNull {}
 
-#[cfg(feature = "Foundation_NSNull")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSNull {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSNull")]
     unsafe impl NSNull {
         #[method_id(@__retain_semantics Other null)]
         pub unsafe fn null() -> Id<NSNull>;
@@ -43,7 +37,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSNull")]
     unsafe impl NSNull {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

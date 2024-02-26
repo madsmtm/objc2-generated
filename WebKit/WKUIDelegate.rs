@@ -44,6 +44,8 @@ ns_enum!(
 extern_protocol!(
     pub unsafe trait WKUIDelegate: NSObjectProtocol {
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "WebKit_WKNavigationAction",
             feature = "WebKit_WKWebView",
             feature = "WebKit_WKWebViewConfiguration",
@@ -59,12 +61,18 @@ extern_protocol!(
             window_features: &WKWindowFeatures,
         ) -> Option<Id<WKWebView>>;
 
-        #[cfg(feature = "WebKit_WKWebView")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "WebKit_WKWebView"
+        ))]
         #[optional]
         #[method(webViewDidClose:)]
         unsafe fn webViewDidClose(&self, web_view: &WKWebView);
 
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSString",
             feature = "WebKit_WKFrameInfo",
             feature = "WebKit_WKWebView"
@@ -80,6 +88,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSString",
             feature = "WebKit_WKFrameInfo",
             feature = "WebKit_WKWebView"
@@ -95,6 +105,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSString",
             feature = "WebKit_WKFrameInfo",
             feature = "WebKit_WKWebView"
@@ -111,6 +123,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "WebKit_WKFrameInfo",
             feature = "WebKit_WKSecurityOrigin",
             feature = "WebKit_WKWebView"
@@ -127,6 +141,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "WebKit_WKFrameInfo",
             feature = "WebKit_WKSecurityOrigin",
             feature = "WebKit_WKWebView"
@@ -142,6 +158,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSURL",
             feature = "WebKit_WKFrameInfo",

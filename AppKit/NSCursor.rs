@@ -7,27 +7,23 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSCursor")]
     pub struct NSCursor;
 
-    #[cfg(feature = "AppKit_NSCursor")]
     unsafe impl ClassType for NSCursor {
         type Super = NSObject;
         type Mutability = Immutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSCursor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSCursor {}
 
-#[cfg(feature = "AppKit_NSCursor")]
 unsafe impl NSObjectProtocol for NSCursor {}
 
-#[cfg(feature = "AppKit_NSCursor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSCursor {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSCursor")]
     unsafe impl NSCursor {
         #[method_id(@__retain_semantics Other currentCursor)]
         pub unsafe fn currentCursor() -> Id<NSCursor>;
@@ -89,7 +85,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other IBeamCursorForVerticalLayout)]
         pub fn IBeamCursorForVerticalLayout() -> Id<NSCursor>;
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSGeometry"))]
         #[method_id(@__retain_semantics Init initWithImage:hotSpot:)]
         pub fn initWithImage_hotSpot(
             this: Allocated<Self>,
@@ -117,6 +113,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Id<NSImage>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(hotSpot)]
         pub unsafe fn hotSpot(&self) -> NSPoint;
 
@@ -133,7 +130,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSCursor")]
     unsafe impl NSCursor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -143,13 +139,17 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "AppKit_NSApplication")]
 extern_static!(NSAppKitVersionNumberWithCursorSizeSupport: NSAppKitVersion = 682.0);
 
 extern_methods!(
     /// NSDeprecated
-    #[cfg(feature = "AppKit_NSCursor")]
     unsafe impl NSCursor {
-        #[cfg(all(feature = "AppKit_NSColor", feature = "AppKit_NSImage"))]
+        #[cfg(all(
+            feature = "AppKit_NSColor",
+            feature = "AppKit_NSImage",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[deprecated = "Color hints are ignored. Use -initWithImage:hotSpot: instead"]
         #[method_id(@__retain_semantics Init initWithImage:foregroundColorHint:backgroundColorHint:hotSpot:)]
         pub unsafe fn initWithImage_foregroundColorHint_backgroundColorHint_hotSpot(

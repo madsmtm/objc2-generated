@@ -17,95 +17,93 @@
 #[link(name = "MetalKit", kind = "framework")]
 extern "C" {}
 
+#[cfg(feature = "MetalKit_MTKDefines")]
 #[path = "MTKDefines.rs"]
 mod __MTKDefines;
+#[cfg(feature = "MetalKit_MTKModel")]
 #[path = "MTKModel.rs"]
 mod __MTKModel;
+#[cfg(feature = "MetalKit_MTKTextureLoader")]
 #[path = "MTKTextureLoader.rs"]
 mod __MTKTextureLoader;
+#[cfg(feature = "MetalKit_MTKView")]
 #[path = "MTKView.rs"]
 mod __MTKView;
 
-#[cfg(feature = "MetalKit_MTKMesh")]
+#[cfg(feature = "MetalKit_MTKModel")]
 pub use self::__MTKModel::MTKMesh;
-#[cfg(feature = "MetalKit_MTKMeshBuffer")]
+#[cfg(feature = "MetalKit_MTKModel")]
 pub use self::__MTKModel::MTKMeshBuffer;
-#[cfg(feature = "MetalKit_MTKMeshBufferAllocator")]
+#[cfg(feature = "MetalKit_MTKModel")]
 pub use self::__MTKModel::MTKMeshBufferAllocator;
-#[cfg(all(
-    feature = "Metal_MTLVertexDescriptor",
-    feature = "ModelIO_MDLVertexDescriptor"
-))]
-pub use self::__MTKModel::MTKMetalVertexDescriptorFromModelIO;
-#[cfg(all(
-    feature = "Foundation_NSError",
-    feature = "Metal_MTLVertexDescriptor",
-    feature = "ModelIO_MDLVertexDescriptor"
-))]
-pub use self::__MTKModel::MTKMetalVertexDescriptorFromModelIOWithError;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "MetalKit_MTKModel"))]
 pub use self::__MTKModel::MTKModelError;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "MetalKit_MTKModel"))]
 pub use self::__MTKModel::MTKModelErrorDomain;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "MetalKit_MTKModel"))]
 pub use self::__MTKModel::MTKModelErrorKey;
-#[cfg(all(
-    feature = "Metal_MTLVertexDescriptor",
-    feature = "ModelIO_MDLVertexDescriptor"
-))]
-pub use self::__MTKModel::MTKModelIOVertexDescriptorFromMetal;
-#[cfg(all(
-    feature = "Foundation_NSError",
-    feature = "Metal_MTLVertexDescriptor",
-    feature = "ModelIO_MDLVertexDescriptor"
-))]
-pub use self::__MTKModel::MTKModelIOVertexDescriptorFromMetalWithError;
-#[cfg(feature = "MetalKit_MTKSubmesh")]
+#[cfg(feature = "MetalKit_MTKModel")]
 pub use self::__MTKModel::MTKSubmesh;
 #[cfg(feature = "MetalKit_MTKTextureLoader")]
 pub use self::__MTKTextureLoader::MTKTextureLoader;
-#[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSError"))]
+#[cfg(all(
+    feature = "Foundation_NSArray",
+    feature = "Foundation_NSError",
+    feature = "MetalKit_MTKTextureLoader",
+    feature = "Metal_MTLResource",
+    feature = "Metal_MTLTexture"
+))]
 pub use self::__MTKTextureLoader::MTKTextureLoaderArrayCallback;
-#[cfg(feature = "Foundation_NSError")]
+#[cfg(all(
+    feature = "Foundation_NSError",
+    feature = "MetalKit_MTKTextureLoader",
+    feature = "Metal_MTLResource",
+    feature = "Metal_MTLTexture"
+))]
 pub use self::__MTKTextureLoader::MTKTextureLoaderCallback;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "MetalKit_MTKTextureLoader"))]
 pub use self::__MTKTextureLoader::MTKTextureLoaderCubeLayout;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "MetalKit_MTKTextureLoader"))]
 pub use self::__MTKTextureLoader::MTKTextureLoaderCubeLayoutVertical;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "MetalKit_MTKTextureLoader"))]
 pub use self::__MTKTextureLoader::MTKTextureLoaderError;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "MetalKit_MTKTextureLoader"))]
 pub use self::__MTKTextureLoader::MTKTextureLoaderErrorDomain;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "MetalKit_MTKTextureLoader"))]
 pub use self::__MTKTextureLoader::MTKTextureLoaderErrorKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "MetalKit_MTKTextureLoader"))]
 pub use self::__MTKTextureLoader::MTKTextureLoaderOption;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "MetalKit_MTKTextureLoader"))]
 pub use self::__MTKTextureLoader::MTKTextureLoaderOptionAllocateMipmaps;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "MetalKit_MTKTextureLoader"))]
 pub use self::__MTKTextureLoader::MTKTextureLoaderOptionCubeLayout;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "MetalKit_MTKTextureLoader"))]
 pub use self::__MTKTextureLoader::MTKTextureLoaderOptionGenerateMipmaps;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "MetalKit_MTKTextureLoader"))]
 pub use self::__MTKTextureLoader::MTKTextureLoaderOptionLoadAsArray;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "MetalKit_MTKTextureLoader"))]
 pub use self::__MTKTextureLoader::MTKTextureLoaderOptionOrigin;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "MetalKit_MTKTextureLoader"))]
 pub use self::__MTKTextureLoader::MTKTextureLoaderOptionSRGB;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "MetalKit_MTKTextureLoader"))]
 pub use self::__MTKTextureLoader::MTKTextureLoaderOptionTextureCPUCacheMode;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "MetalKit_MTKTextureLoader"))]
 pub use self::__MTKTextureLoader::MTKTextureLoaderOptionTextureStorageMode;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "MetalKit_MTKTextureLoader"))]
 pub use self::__MTKTextureLoader::MTKTextureLoaderOptionTextureUsage;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "MetalKit_MTKTextureLoader"))]
 pub use self::__MTKTextureLoader::MTKTextureLoaderOrigin;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "MetalKit_MTKTextureLoader"))]
 pub use self::__MTKTextureLoader::MTKTextureLoaderOriginBottomLeft;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "MetalKit_MTKTextureLoader"))]
 pub use self::__MTKTextureLoader::MTKTextureLoaderOriginFlippedVertically;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSString", feature = "MetalKit_MTKTextureLoader"))]
 pub use self::__MTKTextureLoader::MTKTextureLoaderOriginTopLeft;
-#[cfg(feature = "MetalKit_MTKView")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "MetalKit_MTKView"
+))]
 pub use self::__MTKView::MTKView;
+#[cfg(feature = "MetalKit_MTKView")]
 pub use self::__MTKView::MTKViewDelegate;

@@ -5,34 +5,31 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSPointerArray")]
     pub struct NSPointerArray;
 
-    #[cfg(feature = "Foundation_NSPointerArray")]
     unsafe impl ClassType for NSPointerArray {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSPointerArray")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSPointerArray {}
 
-#[cfg(feature = "Foundation_NSPointerArray")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSPointerArray {}
 
-#[cfg(feature = "Foundation_NSPointerArray")]
+#[cfg(feature = "Foundation_NSEnumerator")]
 unsafe impl NSFastEnumeration for NSPointerArray {}
 
-#[cfg(feature = "Foundation_NSPointerArray")]
 unsafe impl NSObjectProtocol for NSPointerArray {}
 
-#[cfg(feature = "Foundation_NSPointerArray")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSPointerArray {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSPointerArray")]
     unsafe impl NSPointerArray {
+        #[cfg(feature = "Foundation_NSPointerFunctions")]
         #[method_id(@__retain_semantics Init initWithOptions:)]
         pub unsafe fn initWithOptions(
             this: Allocated<Self>,
@@ -46,6 +43,7 @@ extern_methods!(
             functions: &NSPointerFunctions,
         ) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSPointerFunctions")]
         #[method_id(@__retain_semantics Other pointerArrayWithOptions:)]
         pub unsafe fn pointerArrayWithOptions(
             options: NSPointerFunctionsOptions,
@@ -93,7 +91,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSPointerArray")]
     unsafe impl NSPointerArray {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -105,7 +102,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSPointerArrayConveniences
-    #[cfg(feature = "Foundation_NSPointerArray")]
     unsafe impl NSPointerArray {
         #[deprecated = "GC no longer supported"]
         #[method_id(@__retain_semantics Other pointerArrayWithStrongObjects)]

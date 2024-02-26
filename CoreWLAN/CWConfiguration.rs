@@ -6,33 +6,29 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreWLAN_CWConfiguration")]
     pub struct CWConfiguration;
 
-    #[cfg(feature = "CoreWLAN_CWConfiguration")]
     unsafe impl ClassType for CWConfiguration {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreWLAN_CWConfiguration")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CWConfiguration {}
 
-#[cfg(feature = "CoreWLAN_CWConfiguration")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for CWConfiguration {}
 
-#[cfg(feature = "CoreWLAN_CWConfiguration")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSMutableCopying for CWConfiguration {}
 
-#[cfg(feature = "CoreWLAN_CWConfiguration")]
 unsafe impl NSObjectProtocol for CWConfiguration {}
 
-#[cfg(feature = "CoreWLAN_CWConfiguration")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CWConfiguration {}
 
 extern_methods!(
-    #[cfg(feature = "CoreWLAN_CWConfiguration")]
     unsafe impl CWConfiguration {
         #[cfg(all(
             feature = "CoreWLAN_CWNetworkProfile",
@@ -75,7 +71,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreWLAN_CWConfiguration")]
     unsafe impl CWConfiguration {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -84,10 +79,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreWLAN_CWMutableConfiguration")]
     pub struct CWMutableConfiguration;
 
-    #[cfg(feature = "CoreWLAN_CWMutableConfiguration")]
     unsafe impl ClassType for CWMutableConfiguration {
         #[inherits(NSObject)]
         type Super = CWConfiguration;
@@ -95,23 +88,21 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CoreWLAN_CWMutableConfiguration")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CWMutableConfiguration {}
 
-#[cfg(feature = "CoreWLAN_CWMutableConfiguration")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for CWMutableConfiguration {}
 
-#[cfg(feature = "CoreWLAN_CWMutableConfiguration")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSMutableCopying for CWMutableConfiguration {}
 
-#[cfg(feature = "CoreWLAN_CWMutableConfiguration")]
 unsafe impl NSObjectProtocol for CWMutableConfiguration {}
 
-#[cfg(feature = "CoreWLAN_CWMutableConfiguration")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CWMutableConfiguration {}
 
 extern_methods!(
-    #[cfg(feature = "CoreWLAN_CWMutableConfiguration")]
     unsafe impl CWMutableConfiguration {
         #[cfg(all(
             feature = "CoreWLAN_CWNetworkProfile",
@@ -163,7 +154,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CWConfiguration`
-    #[cfg(feature = "CoreWLAN_CWMutableConfiguration")]
     unsafe impl CWMutableConfiguration {
         #[method_id(@__retain_semantics Other configuration)]
         pub unsafe fn configuration() -> Id<Self>;
@@ -184,7 +174,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreWLAN_CWMutableConfiguration")]
     unsafe impl CWMutableConfiguration {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

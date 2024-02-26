@@ -8,6 +8,7 @@ extern_static!(MTLAttributeStrideStatic: NSUInteger = NSUIntegerMax as _);
 
 extern_protocol!(
     pub unsafe trait MTLArgumentEncoder: NSObjectProtocol {
+        #[cfg(feature = "Metal_MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
         unsafe fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
 
@@ -25,6 +26,7 @@ extern_protocol!(
         #[method(alignment)]
         fn alignment(&self) -> NSUInteger;
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method(setArgumentBuffer:offset:)]
         unsafe fn setArgumentBuffer_offset(
             &self,
@@ -32,6 +34,7 @@ extern_protocol!(
             offset: NSUInteger,
         );
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method(setArgumentBuffer:startOffset:arrayElement:)]
         unsafe fn setArgumentBuffer_startOffset_arrayElement(
             &self,
@@ -40,6 +43,7 @@ extern_protocol!(
             array_element: NSUInteger,
         );
 
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method(setBuffer:offset:atIndex:)]
         unsafe fn setBuffer_offset_atIndex(
             &self,
@@ -48,6 +52,11 @@ extern_protocol!(
             index: NSUInteger,
         );
 
+        #[cfg(all(
+            feature = "Foundation_NSRange",
+            feature = "Metal_MTLBuffer",
+            feature = "Metal_MTLResource"
+        ))]
         #[method(setBuffers:offsets:withRange:)]
         unsafe fn setBuffers_offsets_withRange(
             &self,
@@ -56,6 +65,7 @@ extern_protocol!(
             range: NSRange,
         );
 
+        #[cfg(all(feature = "Metal_MTLResource", feature = "Metal_MTLTexture"))]
         #[method(setTexture:atIndex:)]
         unsafe fn setTexture_atIndex(
             &self,
@@ -63,6 +73,11 @@ extern_protocol!(
             index: NSUInteger,
         );
 
+        #[cfg(all(
+            feature = "Foundation_NSRange",
+            feature = "Metal_MTLResource",
+            feature = "Metal_MTLTexture"
+        ))]
         #[method(setTextures:withRange:)]
         unsafe fn setTextures_withRange(
             &self,
@@ -70,6 +85,7 @@ extern_protocol!(
             range: NSRange,
         );
 
+        #[cfg(feature = "Metal_MTLSampler")]
         #[method(setSamplerState:atIndex:)]
         unsafe fn setSamplerState_atIndex(
             &self,
@@ -77,6 +93,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
+        #[cfg(all(feature = "Foundation_NSRange", feature = "Metal_MTLSampler"))]
         #[method(setSamplerStates:withRange:)]
         unsafe fn setSamplerStates_withRange(
             &self,
@@ -87,6 +104,7 @@ extern_protocol!(
         #[method(constantDataAtIndex:)]
         unsafe fn constantDataAtIndex(&self, index: NSUInteger) -> NonNull<c_void>;
 
+        #[cfg(feature = "Metal_MTLRenderPipeline")]
         #[method(setRenderPipelineState:atIndex:)]
         unsafe fn setRenderPipelineState_atIndex(
             &self,
@@ -94,6 +112,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
+        #[cfg(all(feature = "Foundation_NSRange", feature = "Metal_MTLRenderPipeline"))]
         #[method(setRenderPipelineStates:withRange:)]
         unsafe fn setRenderPipelineStates_withRange(
             &self,
@@ -101,6 +120,7 @@ extern_protocol!(
             range: NSRange,
         );
 
+        #[cfg(feature = "Metal_MTLComputePipeline")]
         #[method(setComputePipelineState:atIndex:)]
         unsafe fn setComputePipelineState_atIndex(
             &self,
@@ -108,6 +128,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
+        #[cfg(all(feature = "Foundation_NSRange", feature = "Metal_MTLComputePipeline"))]
         #[method(setComputePipelineStates:withRange:)]
         unsafe fn setComputePipelineStates_withRange(
             &self,
@@ -115,6 +136,10 @@ extern_protocol!(
             range: NSRange,
         );
 
+        #[cfg(all(
+            feature = "Metal_MTLIndirectCommandBuffer",
+            feature = "Metal_MTLResource"
+        ))]
         #[method(setIndirectCommandBuffer:atIndex:)]
         unsafe fn setIndirectCommandBuffer_atIndex(
             &self,
@@ -122,6 +147,11 @@ extern_protocol!(
             index: NSUInteger,
         );
 
+        #[cfg(all(
+            feature = "Foundation_NSRange",
+            feature = "Metal_MTLIndirectCommandBuffer",
+            feature = "Metal_MTLResource"
+        ))]
         #[method(setIndirectCommandBuffers:withRange:)]
         unsafe fn setIndirectCommandBuffers_withRange(
             &self,
@@ -129,6 +159,10 @@ extern_protocol!(
             range: NSRange,
         );
 
+        #[cfg(all(
+            feature = "Metal_MTLAccelerationStructure",
+            feature = "Metal_MTLResource"
+        ))]
         #[method(setAccelerationStructure:atIndex:)]
         unsafe fn setAccelerationStructure_atIndex(
             &self,
@@ -142,6 +176,10 @@ extern_protocol!(
             index: NSUInteger,
         ) -> Option<Id<ProtocolObject<dyn MTLArgumentEncoder>>>;
 
+        #[cfg(all(
+            feature = "Metal_MTLResource",
+            feature = "Metal_MTLVisibleFunctionTable"
+        ))]
         #[method(setVisibleFunctionTable:atIndex:)]
         unsafe fn setVisibleFunctionTable_atIndex(
             &self,
@@ -149,6 +187,11 @@ extern_protocol!(
             index: NSUInteger,
         );
 
+        #[cfg(all(
+            feature = "Foundation_NSRange",
+            feature = "Metal_MTLResource",
+            feature = "Metal_MTLVisibleFunctionTable"
+        ))]
         #[method(setVisibleFunctionTables:withRange:)]
         unsafe fn setVisibleFunctionTables_withRange(
             &self,
@@ -156,6 +199,10 @@ extern_protocol!(
             range: NSRange,
         );
 
+        #[cfg(all(
+            feature = "Metal_MTLIntersectionFunctionTable",
+            feature = "Metal_MTLResource"
+        ))]
         #[method(setIntersectionFunctionTable:atIndex:)]
         unsafe fn setIntersectionFunctionTable_atIndex(
             &self,
@@ -163,6 +210,11 @@ extern_protocol!(
             index: NSUInteger,
         );
 
+        #[cfg(all(
+            feature = "Foundation_NSRange",
+            feature = "Metal_MTLIntersectionFunctionTable",
+            feature = "Metal_MTLResource"
+        ))]
         #[method(setIntersectionFunctionTables:withRange:)]
         unsafe fn setIntersectionFunctionTables_withRange(
             &self,

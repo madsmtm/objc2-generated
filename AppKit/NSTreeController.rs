@@ -7,10 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTreeController")]
+    #[cfg(all(feature = "AppKit_NSController", feature = "AppKit_NSObjectController"))]
     pub struct NSTreeController;
 
-    #[cfg(feature = "AppKit_NSTreeController")]
+    #[cfg(all(feature = "AppKit_NSController", feature = "AppKit_NSObjectController"))]
     unsafe impl ClassType for NSTreeController {
         #[inherits(NSController, NSObject)]
         type Super = NSObjectController;
@@ -18,20 +18,32 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSTreeController")]
+#[cfg(all(
+    feature = "AppKit_NSController",
+    feature = "AppKit_NSObjectController",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSTreeController {}
 
-#[cfg(feature = "AppKit_NSTreeController")]
+#[cfg(all(
+    feature = "AppKit_NSController",
+    feature = "AppKit_NSKeyValueBinding",
+    feature = "AppKit_NSObjectController"
+))]
 unsafe impl NSEditor for NSTreeController {}
 
-#[cfg(feature = "AppKit_NSTreeController")]
+#[cfg(all(
+    feature = "AppKit_NSController",
+    feature = "AppKit_NSKeyValueBinding",
+    feature = "AppKit_NSObjectController"
+))]
 unsafe impl NSEditorRegistration for NSTreeController {}
 
-#[cfg(feature = "AppKit_NSTreeController")]
+#[cfg(all(feature = "AppKit_NSController", feature = "AppKit_NSObjectController"))]
 unsafe impl NSObjectProtocol for NSTreeController {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTreeController")]
+    #[cfg(all(feature = "AppKit_NSController", feature = "AppKit_NSObjectController"))]
     unsafe impl NSTreeController {
         #[method(rearrangeObjects)]
         pub unsafe fn rearrangeObjects(&self);
@@ -226,7 +238,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObjectController`
-    #[cfg(feature = "AppKit_NSTreeController")]
+    #[cfg(all(feature = "AppKit_NSController", feature = "AppKit_NSObjectController"))]
     unsafe impl NSTreeController {
         #[method_id(@__retain_semantics Init initWithContent:)]
         pub unsafe fn initWithContent(
@@ -242,7 +254,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSController`
-    #[cfg(feature = "AppKit_NSTreeController")]
+    #[cfg(all(feature = "AppKit_NSController", feature = "AppKit_NSObjectController"))]
     unsafe impl NSTreeController {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -251,7 +263,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTreeController")]
+    #[cfg(all(feature = "AppKit_NSController", feature = "AppKit_NSObjectController"))]
     unsafe impl NSTreeController {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

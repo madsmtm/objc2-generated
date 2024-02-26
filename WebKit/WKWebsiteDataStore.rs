@@ -7,27 +7,23 @@ use crate::WebKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_WKWebsiteDataStore")]
     pub struct WKWebsiteDataStore;
 
-    #[cfg(feature = "WebKit_WKWebsiteDataStore")]
     unsafe impl ClassType for WKWebsiteDataStore {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "WebKit_WKWebsiteDataStore")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for WKWebsiteDataStore {}
 
-#[cfg(feature = "WebKit_WKWebsiteDataStore")]
 unsafe impl NSObjectProtocol for WKWebsiteDataStore {}
 
-#[cfg(feature = "WebKit_WKWebsiteDataStore")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for WKWebsiteDataStore {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_WKWebsiteDataStore")]
     unsafe impl WKWebsiteDataStore {
         #[method_id(@__retain_semantics Other defaultDataStore)]
         pub unsafe fn defaultDataStore() -> Id<WKWebsiteDataStore>;
@@ -117,7 +113,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_WKWebsiteDataStore")]
     unsafe impl WKWebsiteDataStore {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new_class() -> Id<Self>;

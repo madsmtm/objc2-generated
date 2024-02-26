@@ -5,30 +5,26 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSIndexPath")]
     pub struct NSIndexPath;
 
-    #[cfg(feature = "Foundation_NSIndexPath")]
     unsafe impl ClassType for NSIndexPath {
         type Super = NSObject;
         type Mutability = Immutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSIndexPath")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSIndexPath {}
 
-#[cfg(feature = "Foundation_NSIndexPath")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSIndexPath {}
 
-#[cfg(feature = "Foundation_NSIndexPath")]
 unsafe impl NSObjectProtocol for NSIndexPath {}
 
-#[cfg(feature = "Foundation_NSIndexPath")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSIndexPath {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSIndexPath")]
     unsafe impl NSIndexPath {
         #[method_id(@__retain_semantics Other indexPathWithIndex:)]
         pub unsafe fn indexPathWithIndex(index: NSUInteger) -> Id<Self>;
@@ -61,6 +57,7 @@ extern_methods!(
         #[method(length)]
         pub unsafe fn length(&self) -> NSUInteger;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(getIndexes:range:)]
         pub unsafe fn getIndexes_range(
             &self,
@@ -68,6 +65,7 @@ extern_methods!(
             position_range: NSRange,
         );
 
+        #[cfg(feature = "Foundation_NSObjCRuntime")]
         #[method(compare:)]
         pub unsafe fn compare(&self, other_object: &NSIndexPath) -> NSComparisonResult;
     }
@@ -75,7 +73,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSIndexPath")]
     unsafe impl NSIndexPath {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -87,7 +84,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSDeprecated
-    #[cfg(feature = "Foundation_NSIndexPath")]
     unsafe impl NSIndexPath {
         #[deprecated]
         #[method(getIndexes:)]

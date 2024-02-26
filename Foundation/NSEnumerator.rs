@@ -17,14 +17,11 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSFastEnumeration {}
 );
 
-#[cfg(feature = "Foundation_NSEnumerator")]
 unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSEnumerator<ObjectType> {}
 
-#[cfg(feature = "Foundation_NSEnumerator")]
 unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSEnumerator<ObjectType> {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSEnumerator")]
     unsafe impl<ObjectType: Message> NSEnumerator<ObjectType> {
         #[method_id(@__retain_semantics Other nextObject)]
         pub fn nextObject(&mut self) -> Option<Id<ObjectType>>;
@@ -33,7 +30,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSEnumerator")]
     unsafe impl<ObjectType: Message> NSEnumerator<ObjectType> {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -45,7 +41,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSExtendedEnumerator
-    #[cfg(feature = "Foundation_NSEnumerator")]
     unsafe impl<ObjectType: Message> NSEnumerator<ObjectType> {
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other allObjects)]

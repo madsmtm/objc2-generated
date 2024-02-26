@@ -39,21 +39,17 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameKit_GKLeaderboard")]
     pub struct GKLeaderboard;
 
-    #[cfg(feature = "GameKit_GKLeaderboard")]
     unsafe impl ClassType for GKLeaderboard {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "GameKit_GKLeaderboard")]
 unsafe impl NSObjectProtocol for GKLeaderboard {}
 
 extern_methods!(
-    #[cfg(feature = "GameKit_GKLeaderboard")]
     unsafe impl GKLeaderboard {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
@@ -78,6 +74,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other nextStartDate)]
         pub unsafe fn nextStartDate(&self) -> Option<Id<NSDate>>;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(duration)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
@@ -103,6 +100,7 @@ extern_methods!(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSError",
             feature = "Foundation_NSString",
+            feature = "GameKit_GKBasePlayer",
             feature = "GameKit_GKPlayer"
         ))]
         #[method(submitScore:context:player:leaderboardIDs:completionHandler:)]
@@ -114,7 +112,11 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut NSError)>,
         );
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "GameKit_GKPlayer"))]
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "GameKit_GKBasePlayer",
+            feature = "GameKit_GKPlayer"
+        ))]
         #[method(submitScore:context:player:completionHandler:)]
         pub unsafe fn submitScore_context_player_completionHandler(
             &self,
@@ -127,6 +129,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSError",
+            feature = "Foundation_NSRange",
             feature = "GameKit_GKLeaderboardEntry"
         ))]
         #[method(loadEntriesForPlayerScope:timeScope:range:completionHandler:)]
@@ -148,6 +151,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSError",
+            feature = "GameKit_GKBasePlayer",
             feature = "GameKit_GKLeaderboardEntry",
             feature = "GameKit_GKPlayer"
         ))]
@@ -165,7 +169,6 @@ extern_methods!(
 
 extern_methods!(
     /// Deprecated
-    #[cfg(feature = "GameKit_GKLeaderboard")]
     unsafe impl GKLeaderboard {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
@@ -232,10 +235,12 @@ extern_methods!(
         #[method(setIdentifier:)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&NSString>);
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[deprecated]
         #[method(range)]
         pub unsafe fn range(&self) -> NSRange;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[deprecated]
         #[method(setRange:)]
         pub unsafe fn setRange(&self, range: NSRange);
@@ -258,7 +263,11 @@ extern_methods!(
         #[method(isLoading)]
         pub unsafe fn isLoading(&self) -> bool;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "GameKit_GKPlayer"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "GameKit_GKBasePlayer",
+            feature = "GameKit_GKPlayer"
+        ))]
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithPlayers:)]
         pub unsafe fn initWithPlayers(
@@ -289,7 +298,6 @@ extern_methods!(
 
 extern_methods!(
     /// UI
-    #[cfg(feature = "GameKit_GKLeaderboard")]
     unsafe impl GKLeaderboard {
         #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSError"))]
         #[method(loadImageWithCompletionHandler:)]

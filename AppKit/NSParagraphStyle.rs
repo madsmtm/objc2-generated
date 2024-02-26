@@ -41,37 +41,38 @@ extern_static!(NSTabColumnTerminatorsAttributeName: &'static NSTextTabOptionKey)
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTextTab")]
     pub struct NSTextTab;
 
-    #[cfg(feature = "AppKit_NSTextTab")]
     unsafe impl ClassType for NSTextTab {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSTextTab")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSTextTab {}
 
-#[cfg(feature = "AppKit_NSTextTab")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSTextTab {}
 
-#[cfg(feature = "AppKit_NSTextTab")]
 unsafe impl NSObjectProtocol for NSTextTab {}
 
-#[cfg(feature = "AppKit_NSTextTab")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSTextTab {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTextTab")]
     unsafe impl NSTextTab {
         #[cfg(all(feature = "Foundation_NSCharacterSet", feature = "Foundation_NSLocale"))]
         #[method_id(@__retain_semantics Other columnTerminatorsForLocale:)]
         pub unsafe fn columnTerminatorsForLocale(a_locale: Option<&NSLocale>)
             -> Id<NSCharacterSet>;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSText",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSGeometry",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithTextAlignment:location:options:)]
         pub unsafe fn initWithTextAlignment_location_options(
             this: Allocated<Self>,
@@ -80,9 +81,11 @@ extern_methods!(
             options: &NSDictionary<NSTextTabOptionKey, AnyObject>,
         ) -> Id<Self>;
 
+        #[cfg(feature = "AppKit_NSText")]
         #[method(alignment)]
         pub unsafe fn alignment(&self) -> NSTextAlignment;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(location)]
         pub unsafe fn location(&self) -> CGFloat;
 
@@ -94,7 +97,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTextTab")]
     unsafe impl NSTextTab {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -106,76 +108,83 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSParagraphStyle")]
     pub struct NSParagraphStyle;
 
-    #[cfg(feature = "AppKit_NSParagraphStyle")]
     unsafe impl ClassType for NSParagraphStyle {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSParagraphStyle")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSParagraphStyle {}
 
-#[cfg(feature = "AppKit_NSParagraphStyle")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSParagraphStyle {}
 
-#[cfg(feature = "AppKit_NSParagraphStyle")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSMutableCopying for NSParagraphStyle {}
 
-#[cfg(feature = "AppKit_NSParagraphStyle")]
 unsafe impl NSObjectProtocol for NSParagraphStyle {}
 
-#[cfg(feature = "AppKit_NSParagraphStyle")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSParagraphStyle {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSParagraphStyle")]
     unsafe impl NSParagraphStyle {
         #[method_id(@__retain_semantics Other defaultParagraphStyle)]
         pub unsafe fn defaultParagraphStyle() -> Id<NSParagraphStyle>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "AppKit_NSText", feature = "Foundation_NSString"))]
         #[method(defaultWritingDirectionForLanguage:)]
         pub unsafe fn defaultWritingDirectionForLanguage(
             language_name: Option<&NSString>,
         ) -> NSWritingDirection;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(lineSpacing)]
         pub unsafe fn lineSpacing(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(paragraphSpacing)]
         pub unsafe fn paragraphSpacing(&self) -> CGFloat;
 
+        #[cfg(feature = "AppKit_NSText")]
         #[method(alignment)]
         pub unsafe fn alignment(&self) -> NSTextAlignment;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(headIndent)]
         pub unsafe fn headIndent(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(tailIndent)]
         pub unsafe fn tailIndent(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(firstLineHeadIndent)]
         pub unsafe fn firstLineHeadIndent(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(minimumLineHeight)]
         pub unsafe fn minimumLineHeight(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(maximumLineHeight)]
         pub unsafe fn maximumLineHeight(&self) -> CGFloat;
 
         #[method(lineBreakMode)]
         pub unsafe fn lineBreakMode(&self) -> NSLineBreakMode;
 
+        #[cfg(feature = "AppKit_NSText")]
         #[method(baseWritingDirection)]
         pub unsafe fn baseWritingDirection(&self) -> NSWritingDirection;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(lineHeightMultiple)]
         pub unsafe fn lineHeightMultiple(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(paragraphSpacingBefore)]
         pub unsafe fn paragraphSpacingBefore(&self) -> CGFloat;
 
@@ -185,10 +194,11 @@ extern_methods!(
         #[method(usesDefaultHyphenation)]
         pub unsafe fn usesDefaultHyphenation(&self) -> bool;
 
-        #[cfg(all(feature = "AppKit_NSTextTab", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other tabStops)]
         pub unsafe fn tabStops(&self) -> Id<NSArray<NSTextTab>>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(defaultTabInterval)]
         pub unsafe fn defaultTabInterval(&self) -> CGFloat;
 
@@ -198,7 +208,7 @@ extern_methods!(
         #[method(tighteningFactorForTruncation)]
         pub unsafe fn tighteningFactorForTruncation(&self) -> c_float;
 
-        #[cfg(all(feature = "AppKit_NSTextBlock", feature = "Foundation_NSArray"))]
+        #[cfg(all(feature = "AppKit_NSTextTable", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other textBlocks)]
         pub unsafe fn textBlocks(&self) -> Id<NSArray<NSTextBlock>>;
 
@@ -216,7 +226,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSParagraphStyle")]
     unsafe impl NSParagraphStyle {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -228,10 +237,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSMutableParagraphStyle")]
     pub struct NSMutableParagraphStyle;
 
-    #[cfg(feature = "AppKit_NSMutableParagraphStyle")]
     unsafe impl ClassType for NSMutableParagraphStyle {
         #[inherits(NSObject)]
         type Super = NSParagraphStyle;
@@ -239,57 +246,67 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSMutableParagraphStyle")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSMutableParagraphStyle {}
 
-#[cfg(feature = "AppKit_NSMutableParagraphStyle")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSMutableParagraphStyle {}
 
-#[cfg(feature = "AppKit_NSMutableParagraphStyle")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSMutableCopying for NSMutableParagraphStyle {}
 
-#[cfg(feature = "AppKit_NSMutableParagraphStyle")]
 unsafe impl NSObjectProtocol for NSMutableParagraphStyle {}
 
-#[cfg(feature = "AppKit_NSMutableParagraphStyle")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSMutableParagraphStyle {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSMutableParagraphStyle")]
     unsafe impl NSMutableParagraphStyle {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(lineSpacing)]
         pub unsafe fn lineSpacing(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setLineSpacing:)]
         pub unsafe fn setLineSpacing(&self, line_spacing: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(paragraphSpacing)]
         pub unsafe fn paragraphSpacing(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setParagraphSpacing:)]
         pub unsafe fn setParagraphSpacing(&self, paragraph_spacing: CGFloat);
 
+        #[cfg(feature = "AppKit_NSText")]
         #[method(alignment)]
         pub unsafe fn alignment(&self) -> NSTextAlignment;
 
+        #[cfg(feature = "AppKit_NSText")]
         #[method(setAlignment:)]
         pub unsafe fn setAlignment(&self, alignment: NSTextAlignment);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(firstLineHeadIndent)]
         pub unsafe fn firstLineHeadIndent(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setFirstLineHeadIndent:)]
         pub unsafe fn setFirstLineHeadIndent(&self, first_line_head_indent: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(headIndent)]
         pub unsafe fn headIndent(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setHeadIndent:)]
         pub unsafe fn setHeadIndent(&self, head_indent: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(tailIndent)]
         pub unsafe fn tailIndent(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setTailIndent:)]
         pub unsafe fn setTailIndent(&self, tail_indent: CGFloat);
 
@@ -299,33 +316,43 @@ extern_methods!(
         #[method(setLineBreakMode:)]
         pub unsafe fn setLineBreakMode(&self, line_break_mode: NSLineBreakMode);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(minimumLineHeight)]
         pub unsafe fn minimumLineHeight(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setMinimumLineHeight:)]
         pub unsafe fn setMinimumLineHeight(&self, minimum_line_height: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(maximumLineHeight)]
         pub unsafe fn maximumLineHeight(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setMaximumLineHeight:)]
         pub unsafe fn setMaximumLineHeight(&self, maximum_line_height: CGFloat);
 
+        #[cfg(feature = "AppKit_NSText")]
         #[method(baseWritingDirection)]
         pub unsafe fn baseWritingDirection(&self) -> NSWritingDirection;
 
+        #[cfg(feature = "AppKit_NSText")]
         #[method(setBaseWritingDirection:)]
         pub unsafe fn setBaseWritingDirection(&self, base_writing_direction: NSWritingDirection);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(lineHeightMultiple)]
         pub unsafe fn lineHeightMultiple(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setLineHeightMultiple:)]
         pub unsafe fn setLineHeightMultiple(&self, line_height_multiple: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(paragraphSpacingBefore)]
         pub unsafe fn paragraphSpacingBefore(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setParagraphSpacingBefore:)]
         pub unsafe fn setParagraphSpacingBefore(&self, paragraph_spacing_before: CGFloat);
 
@@ -341,17 +368,19 @@ extern_methods!(
         #[method(setUsesDefaultHyphenation:)]
         pub unsafe fn setUsesDefaultHyphenation(&self, uses_default_hyphenation: bool);
 
-        #[cfg(all(feature = "AppKit_NSTextTab", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other tabStops)]
         pub unsafe fn tabStops(&self) -> Id<NSArray<NSTextTab>>;
 
-        #[cfg(all(feature = "AppKit_NSTextTab", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(setTabStops:)]
         pub unsafe fn setTabStops(&self, tab_stops: Option<&NSArray<NSTextTab>>);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(defaultTabInterval)]
         pub unsafe fn defaultTabInterval(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setDefaultTabInterval:)]
         pub unsafe fn setDefaultTabInterval(&self, default_tab_interval: CGFloat);
 
@@ -364,11 +393,9 @@ extern_methods!(
             allows_default_tightening_for_truncation: bool,
         );
 
-        #[cfg(feature = "AppKit_NSTextTab")]
         #[method(addTabStop:)]
         pub unsafe fn addTabStop(&self, an_object: &NSTextTab);
 
-        #[cfg(feature = "AppKit_NSTextTab")]
         #[method(removeTabStop:)]
         pub unsafe fn removeTabStop(&self, an_object: &NSTextTab);
 
@@ -384,11 +411,11 @@ extern_methods!(
             tightening_factor_for_truncation: c_float,
         );
 
-        #[cfg(all(feature = "AppKit_NSTextBlock", feature = "Foundation_NSArray"))]
+        #[cfg(all(feature = "AppKit_NSTextTable", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other textBlocks)]
         pub unsafe fn textBlocks(&self) -> Id<NSArray<NSTextBlock>>;
 
-        #[cfg(all(feature = "AppKit_NSTextBlock", feature = "Foundation_NSArray"))]
+        #[cfg(all(feature = "AppKit_NSTextTable", feature = "Foundation_NSArray"))]
         #[method(setTextBlocks:)]
         pub unsafe fn setTextBlocks(&self, text_blocks: &NSArray<NSTextBlock>);
 
@@ -416,7 +443,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSMutableParagraphStyle")]
     unsafe impl NSMutableParagraphStyle {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -438,8 +464,8 @@ ns_enum!(
 
 extern_methods!(
     /// NSTextTabDeprecated
-    #[cfg(feature = "AppKit_NSTextTab")]
     unsafe impl NSTextTab {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Init initWithType:location:)]
         pub unsafe fn initWithType_location(
             this: Allocated<Self>,

@@ -40,6 +40,8 @@ ns_options!(
 extern_protocol!(
     pub unsafe trait NSFileProviderEnumerating: NSObjectProtocol {
         #[cfg(all(
+            feature = "FileProvider_NSFileProviderEnumerating",
+            feature = "FileProvider_NSFileProviderItem",
             feature = "FileProvider_NSFileProviderRequest",
             feature = "Foundation_NSError",
             feature = "Foundation_NSString"
@@ -67,6 +69,7 @@ extern_protocol!(
         unsafe fn invalidate(&self);
 
         #[cfg(all(
+            feature = "FileProvider_NSFileProviderItem",
             feature = "FileProvider_NSFileProviderRequest",
             feature = "Foundation_NSError",
             feature = "Foundation_NSProgress",
@@ -81,7 +84,7 @@ extern_protocol!(
         ) -> Id<NSProgress>;
 
         #[cfg(all(
-            feature = "FileProvider_NSFileProviderItemVersion",
+            feature = "FileProvider_NSFileProviderItem",
             feature = "FileProvider_NSFileProviderRequest",
             feature = "Foundation_NSError",
             feature = "Foundation_NSProgress",
@@ -98,6 +101,7 @@ extern_protocol!(
         ) -> Id<NSProgress>;
 
         #[cfg(all(
+            feature = "FileProvider_NSFileProviderItem",
             feature = "FileProvider_NSFileProviderRequest",
             feature = "Foundation_NSError",
             feature = "Foundation_NSProgress",
@@ -117,7 +121,8 @@ extern_protocol!(
         ) -> Id<NSProgress>;
 
         #[cfg(all(
-            feature = "FileProvider_NSFileProviderItemVersion",
+            feature = "FileProvider_NSFileProviderItem",
+            feature = "FileProvider_NSFileProviderModifyItemOptions",
             feature = "FileProvider_NSFileProviderRequest",
             feature = "Foundation_NSError",
             feature = "Foundation_NSProgress",
@@ -138,7 +143,7 @@ extern_protocol!(
         ) -> Id<NSProgress>;
 
         #[cfg(all(
-            feature = "FileProvider_NSFileProviderItemVersion",
+            feature = "FileProvider_NSFileProviderItem",
             feature = "FileProvider_NSFileProviderRequest",
             feature = "Foundation_NSError",
             feature = "Foundation_NSProgress",
@@ -179,7 +184,7 @@ extern_protocol!(
 extern_protocol!(
     pub unsafe trait NSFileProviderIncrementalContentFetching: NSObjectProtocol {
         #[cfg(all(
-            feature = "FileProvider_NSFileProviderItemVersion",
+            feature = "FileProvider_NSFileProviderItem",
             feature = "FileProvider_NSFileProviderRequest",
             feature = "Foundation_NSError",
             feature = "Foundation_NSProgress",
@@ -204,6 +209,8 @@ extern_protocol!(
 extern_protocol!(
     pub unsafe trait NSFileProviderServicing: NSObjectProtocol {
         #[cfg(all(
+            feature = "FileProvider_NSFileProviderItem",
+            feature = "FileProvider_NSFileProviderService",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSError",
             feature = "Foundation_NSProgress",
@@ -225,9 +232,11 @@ extern_protocol!(
 extern_protocol!(
     pub unsafe trait NSFileProviderThumbnailing: NSObjectProtocol {
         #[cfg(all(
+            feature = "FileProvider_NSFileProviderItem",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSData",
             feature = "Foundation_NSError",
+            feature = "Foundation_NSGeometry",
             feature = "Foundation_NSProgress",
             feature = "Foundation_NSString"
         ))]
@@ -249,6 +258,8 @@ extern_protocol!(
 extern_protocol!(
     pub unsafe trait NSFileProviderCustomAction: NSObjectProtocol {
         #[cfg(all(
+            feature = "FileProvider_NSFileProviderActions",
+            feature = "FileProvider_NSFileProviderItem",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSError",
             feature = "Foundation_NSProgress",
@@ -289,7 +300,7 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait NSFileProviderDomainState: NSObjectProtocol {
-        #[cfg(feature = "FileProvider_NSFileProviderDomainVersion")]
+        #[cfg(feature = "FileProvider_NSFileProviderDomain")]
         #[method_id(@__retain_semantics Other domainVersion)]
         unsafe fn domainVersion(&self) -> Id<NSFileProviderDomainVersion>;
 
@@ -304,10 +315,11 @@ extern_protocol!(
 extern_protocol!(
     pub unsafe trait NSFileProviderPartialContentFetching: NSObjectProtocol {
         #[cfg(all(
-            feature = "FileProvider_NSFileProviderItemVersion",
+            feature = "FileProvider_NSFileProviderItem",
             feature = "FileProvider_NSFileProviderRequest",
             feature = "Foundation_NSError",
             feature = "Foundation_NSProgress",
+            feature = "Foundation_NSRange",
             feature = "Foundation_NSString",
             feature = "Foundation_NSURL"
         ))]

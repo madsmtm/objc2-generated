@@ -7,36 +7,30 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKServerChangeToken")]
     pub struct CKServerChangeToken;
 
-    #[cfg(feature = "CloudKit_CKServerChangeToken")]
     unsafe impl ClassType for CKServerChangeToken {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CloudKit_CKServerChangeToken")]
 unsafe impl Send for CKServerChangeToken {}
 
-#[cfg(feature = "CloudKit_CKServerChangeToken")]
 unsafe impl Sync for CKServerChangeToken {}
 
-#[cfg(feature = "CloudKit_CKServerChangeToken")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CKServerChangeToken {}
 
-#[cfg(feature = "CloudKit_CKServerChangeToken")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for CKServerChangeToken {}
 
-#[cfg(feature = "CloudKit_CKServerChangeToken")]
 unsafe impl NSObjectProtocol for CKServerChangeToken {}
 
-#[cfg(feature = "CloudKit_CKServerChangeToken")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CKServerChangeToken {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKServerChangeToken")]
     unsafe impl CKServerChangeToken {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

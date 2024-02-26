@@ -7,11 +7,19 @@ use crate::WebKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_DOMDocumentFragment")]
+    #[cfg(all(
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     #[deprecated]
     pub struct DOMDocumentFragment;
 
-    #[cfg(feature = "WebKit_DOMDocumentFragment")]
+    #[cfg(all(
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl ClassType for DOMDocumentFragment {
         #[inherits(DOMObject, WebScriptObject, NSObject)]
         type Super = DOMNode;
@@ -19,23 +27,46 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "WebKit_DOMDocumentFragment")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "WebKit_DOMEventTarget",
+    feature = "WebKit_DOMNode",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl DOMEventTarget for DOMDocumentFragment {}
 
-#[cfg(feature = "WebKit_DOMDocumentFragment")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "WebKit_DOMNode",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSCopying for DOMDocumentFragment {}
 
-#[cfg(feature = "WebKit_DOMDocumentFragment")]
+#[cfg(all(
+    feature = "WebKit_DOMNode",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSObjectProtocol for DOMDocumentFragment {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_DOMDocumentFragment")]
+    #[cfg(all(
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMDocumentFragment {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
-    #[cfg(feature = "WebKit_DOMDocumentFragment")]
+    #[cfg(all(
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMDocumentFragment {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
@@ -45,7 +76,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_DOMDocumentFragment")]
+    #[cfg(all(
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMDocumentFragment {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

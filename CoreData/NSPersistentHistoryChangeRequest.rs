@@ -6,10 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSPersistentHistoryChangeRequest")]
+    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
     pub struct NSPersistentHistoryChangeRequest;
 
-    #[cfg(feature = "CoreData_NSPersistentHistoryChangeRequest")]
+    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
     unsafe impl ClassType for NSPersistentHistoryChangeRequest {
         #[inherits(NSObject)]
         type Super = NSPersistentStoreRequest;
@@ -17,14 +17,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CoreData_NSPersistentHistoryChangeRequest")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreRequest",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCopying for NSPersistentHistoryChangeRequest {}
 
-#[cfg(feature = "CoreData_NSPersistentHistoryChangeRequest")]
+#[cfg(feature = "CoreData_NSPersistentStoreRequest")]
 unsafe impl NSObjectProtocol for NSPersistentHistoryChangeRequest {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSPersistentHistoryChangeRequest")]
+    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
     unsafe impl NSPersistentHistoryChangeRequest {
         #[cfg(feature = "Foundation_NSDate")]
         #[method_id(@__retain_semantics Other fetchHistoryAfterDate:)]
@@ -60,9 +63,11 @@ extern_methods!(
             transaction: Option<&NSPersistentHistoryTransaction>,
         ) -> Id<Self>;
 
+        #[cfg(feature = "CoreData_NSPersistentStoreResult")]
         #[method(resultType)]
         pub unsafe fn resultType(&self) -> NSPersistentHistoryResultType;
 
+        #[cfg(feature = "CoreData_NSPersistentStoreResult")]
         #[method(setResultType:)]
         pub unsafe fn setResultType(&self, result_type: NSPersistentHistoryResultType);
 
@@ -82,7 +87,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSPersistentHistoryChangeRequest")]
+    #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
     unsafe impl NSPersistentHistoryChangeRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

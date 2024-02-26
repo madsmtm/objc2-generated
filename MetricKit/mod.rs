@@ -17,102 +17,160 @@
 #[link(name = "MetricKit", kind = "framework")]
 extern "C" {}
 
+#[cfg(feature = "MetricKit_MXAnimationMetric")]
 #[path = "MXAnimationMetric.rs"]
 mod __MXAnimationMetric;
+#[cfg(feature = "MetricKit_MXAppExitMetric")]
 #[path = "MXAppExitMetric.rs"]
 mod __MXAppExitMetric;
+#[cfg(feature = "MetricKit_MXAppLaunchDiagnostic")]
 #[path = "MXAppLaunchDiagnostic.rs"]
 mod __MXAppLaunchDiagnostic;
+#[cfg(feature = "MetricKit_MXAppLaunchMetric")]
 #[path = "MXAppLaunchMetric.rs"]
 mod __MXAppLaunchMetric;
+#[cfg(feature = "MetricKit_MXAppResponsivenessMetric")]
 #[path = "MXAppResponsivenessMetric.rs"]
 mod __MXAppResponsivenessMetric;
+#[cfg(feature = "MetricKit_MXAppRunTimeMetric")]
 #[path = "MXAppRunTimeMetric.rs"]
 mod __MXAppRunTimeMetric;
+#[cfg(feature = "MetricKit_MXAverage")]
 #[path = "MXAverage.rs"]
 mod __MXAverage;
+#[cfg(feature = "MetricKit_MXCPUExceptionDiagnostic")]
 #[path = "MXCPUExceptionDiagnostic.rs"]
 mod __MXCPUExceptionDiagnostic;
+#[cfg(feature = "MetricKit_MXCPUMetric")]
 #[path = "MXCPUMetric.rs"]
 mod __MXCPUMetric;
+#[cfg(feature = "MetricKit_MXCallStackTree")]
 #[path = "MXCallStackTree.rs"]
 mod __MXCallStackTree;
+#[cfg(feature = "MetricKit_MXCellularConditionMetric")]
 #[path = "MXCellularConditionMetric.rs"]
 mod __MXCellularConditionMetric;
+#[cfg(feature = "MetricKit_MXCrashDiagnostic")]
 #[path = "MXCrashDiagnostic.rs"]
 mod __MXCrashDiagnostic;
+#[cfg(feature = "MetricKit_MXCrashDiagnosticObjectiveCExceptionReason")]
 #[path = "MXCrashDiagnosticObjectiveCExceptionReason.rs"]
 mod __MXCrashDiagnosticObjectiveCExceptionReason;
+#[cfg(feature = "MetricKit_MXDiagnostic")]
 #[path = "MXDiagnostic.rs"]
 mod __MXDiagnostic;
+#[cfg(feature = "MetricKit_MXDiagnosticPayload")]
 #[path = "MXDiagnosticPayload.rs"]
 mod __MXDiagnosticPayload;
+#[cfg(feature = "MetricKit_MXDiskIOMetric")]
 #[path = "MXDiskIOMetric.rs"]
 mod __MXDiskIOMetric;
+#[cfg(feature = "MetricKit_MXDiskWriteExceptionDiagnostic")]
 #[path = "MXDiskWriteExceptionDiagnostic.rs"]
 mod __MXDiskWriteExceptionDiagnostic;
+#[cfg(feature = "MetricKit_MXDisplayMetric")]
 #[path = "MXDisplayMetric.rs"]
 mod __MXDisplayMetric;
+#[cfg(feature = "MetricKit_MXError")]
 #[path = "MXError.rs"]
 mod __MXError;
+#[cfg(feature = "MetricKit_MXGPUMetric")]
 #[path = "MXGPUMetric.rs"]
 mod __MXGPUMetric;
+#[cfg(feature = "MetricKit_MXHangDiagnostic")]
 #[path = "MXHangDiagnostic.rs"]
 mod __MXHangDiagnostic;
+#[cfg(feature = "MetricKit_MXHistogram")]
 #[path = "MXHistogram.rs"]
 mod __MXHistogram;
+#[cfg(feature = "MetricKit_MXLocationActivityMetric")]
 #[path = "MXLocationActivityMetric.rs"]
 mod __MXLocationActivityMetric;
+#[cfg(feature = "MetricKit_MXMemoryMetric")]
 #[path = "MXMemoryMetric.rs"]
 mod __MXMemoryMetric;
+#[cfg(feature = "MetricKit_MXMetaData")]
 #[path = "MXMetaData.rs"]
 mod __MXMetaData;
+#[cfg(feature = "MetricKit_MXMetric")]
 #[path = "MXMetric.rs"]
 mod __MXMetric;
+#[cfg(feature = "MetricKit_MXMetricManager")]
 #[path = "MXMetricManager.rs"]
 mod __MXMetricManager;
+#[cfg(feature = "MetricKit_MXMetricPayload")]
 #[path = "MXMetricPayload.rs"]
 mod __MXMetricPayload;
+#[cfg(feature = "MetricKit_MXNetworkTransferMetric")]
 #[path = "MXNetworkTransferMetric.rs"]
 mod __MXNetworkTransferMetric;
+#[cfg(feature = "MetricKit_MXSignpost")]
 #[path = "MXSignpost.rs"]
 mod __MXSignpost;
+#[cfg(feature = "MetricKit_MXSignpostMetric")]
 #[path = "MXSignpostMetric.rs"]
 mod __MXSignpostMetric;
+#[cfg(feature = "MetricKit_MXSignpostRecord")]
 #[path = "MXSignpostRecord.rs"]
 mod __MXSignpostRecord;
+#[cfg(feature = "MetricKit_MXSignpost_Private")]
 #[path = "MXSignpost_Private.rs"]
 mod __MXSignpost_Private;
+#[cfg(feature = "MetricKit_MXUnit")]
 #[path = "MXUnit.rs"]
 mod __MXUnit;
 
-#[cfg(feature = "MetricKit_MXAnimationMetric")]
+#[cfg(all(
+    feature = "MetricKit_MXAnimationMetric",
+    feature = "MetricKit_MXMetric"
+))]
 pub use self::__MXAnimationMetric::MXAnimationMetric;
-#[cfg(feature = "MetricKit_MXAppExitMetric")]
+#[cfg(all(feature = "MetricKit_MXAppExitMetric", feature = "MetricKit_MXMetric"))]
 pub use self::__MXAppExitMetric::MXAppExitMetric;
-#[cfg(feature = "MetricKit_MXBackgroundExitData")]
+#[cfg(feature = "MetricKit_MXAppExitMetric")]
 pub use self::__MXAppExitMetric::MXBackgroundExitData;
-#[cfg(feature = "MetricKit_MXForegroundExitData")]
+#[cfg(feature = "MetricKit_MXAppExitMetric")]
 pub use self::__MXAppExitMetric::MXForegroundExitData;
-#[cfg(feature = "MetricKit_MXAppLaunchDiagnostic")]
+#[cfg(all(
+    feature = "MetricKit_MXAppLaunchDiagnostic",
+    feature = "MetricKit_MXDiagnostic"
+))]
 pub use self::__MXAppLaunchDiagnostic::MXAppLaunchDiagnostic;
-#[cfg(feature = "MetricKit_MXAppLaunchMetric")]
+#[cfg(all(
+    feature = "MetricKit_MXAppLaunchMetric",
+    feature = "MetricKit_MXMetric"
+))]
 pub use self::__MXAppLaunchMetric::MXAppLaunchMetric;
-#[cfg(feature = "MetricKit_MXAppResponsivenessMetric")]
+#[cfg(all(
+    feature = "MetricKit_MXAppResponsivenessMetric",
+    feature = "MetricKit_MXMetric"
+))]
 pub use self::__MXAppResponsivenessMetric::MXAppResponsivenessMetric;
-#[cfg(feature = "MetricKit_MXAppRunTimeMetric")]
+#[cfg(all(
+    feature = "MetricKit_MXAppRunTimeMetric",
+    feature = "MetricKit_MXMetric"
+))]
 pub use self::__MXAppRunTimeMetric::MXAppRunTimeMetric;
 #[cfg(feature = "MetricKit_MXAverage")]
 pub use self::__MXAverage::MXAverage;
-#[cfg(feature = "MetricKit_MXCPUExceptionDiagnostic")]
+#[cfg(all(
+    feature = "MetricKit_MXCPUExceptionDiagnostic",
+    feature = "MetricKit_MXDiagnostic"
+))]
 pub use self::__MXCPUExceptionDiagnostic::MXCPUExceptionDiagnostic;
-#[cfg(feature = "MetricKit_MXCPUMetric")]
+#[cfg(all(feature = "MetricKit_MXCPUMetric", feature = "MetricKit_MXMetric"))]
 pub use self::__MXCPUMetric::MXCPUMetric;
 #[cfg(feature = "MetricKit_MXCallStackTree")]
 pub use self::__MXCallStackTree::MXCallStackTree;
-#[cfg(feature = "MetricKit_MXCellularConditionMetric")]
+#[cfg(all(
+    feature = "MetricKit_MXCellularConditionMetric",
+    feature = "MetricKit_MXMetric"
+))]
 pub use self::__MXCellularConditionMetric::MXCellularConditionMetric;
-#[cfg(feature = "MetricKit_MXCrashDiagnostic")]
+#[cfg(all(
+    feature = "MetricKit_MXCrashDiagnostic",
+    feature = "MetricKit_MXDiagnostic"
+))]
 pub use self::__MXCrashDiagnostic::MXCrashDiagnostic;
 #[cfg(feature = "MetricKit_MXCrashDiagnosticObjectiveCExceptionReason")]
 pub use self::__MXCrashDiagnosticObjectiveCExceptionReason::MXCrashDiagnosticObjectiveCExceptionReason;
@@ -120,26 +178,40 @@ pub use self::__MXCrashDiagnosticObjectiveCExceptionReason::MXCrashDiagnosticObj
 pub use self::__MXDiagnostic::MXDiagnostic;
 #[cfg(feature = "MetricKit_MXDiagnosticPayload")]
 pub use self::__MXDiagnosticPayload::MXDiagnosticPayload;
-#[cfg(feature = "MetricKit_MXDiskIOMetric")]
+#[cfg(all(feature = "MetricKit_MXDiskIOMetric", feature = "MetricKit_MXMetric"))]
 pub use self::__MXDiskIOMetric::MXDiskIOMetric;
-#[cfg(feature = "MetricKit_MXDiskWriteExceptionDiagnostic")]
+#[cfg(all(
+    feature = "MetricKit_MXDiagnostic",
+    feature = "MetricKit_MXDiskWriteExceptionDiagnostic"
+))]
 pub use self::__MXDiskWriteExceptionDiagnostic::MXDiskWriteExceptionDiagnostic;
-#[cfg(feature = "MetricKit_MXDisplayMetric")]
+#[cfg(all(feature = "MetricKit_MXDisplayMetric", feature = "MetricKit_MXMetric"))]
 pub use self::__MXDisplayMetric::MXDisplayMetric;
+#[cfg(feature = "MetricKit_MXError")]
 pub use self::__MXError::MXErrorCode;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "Foundation_NSError",
+    feature = "Foundation_NSString",
+    feature = "MetricKit_MXError"
+))]
 pub use self::__MXError::MXErrorDomain;
-#[cfg(feature = "MetricKit_MXGPUMetric")]
+#[cfg(all(feature = "MetricKit_MXGPUMetric", feature = "MetricKit_MXMetric"))]
 pub use self::__MXGPUMetric::MXGPUMetric;
-#[cfg(feature = "MetricKit_MXHangDiagnostic")]
+#[cfg(all(
+    feature = "MetricKit_MXDiagnostic",
+    feature = "MetricKit_MXHangDiagnostic"
+))]
 pub use self::__MXHangDiagnostic::MXHangDiagnostic;
 #[cfg(feature = "MetricKit_MXHistogram")]
 pub use self::__MXHistogram::MXHistogram;
-#[cfg(feature = "MetricKit_MXHistogramBucket")]
+#[cfg(feature = "MetricKit_MXHistogram")]
 pub use self::__MXHistogram::MXHistogramBucket;
-#[cfg(feature = "MetricKit_MXLocationActivityMetric")]
+#[cfg(all(
+    feature = "MetricKit_MXLocationActivityMetric",
+    feature = "MetricKit_MXMetric"
+))]
 pub use self::__MXLocationActivityMetric::MXLocationActivityMetric;
-#[cfg(feature = "MetricKit_MXMemoryMetric")]
+#[cfg(all(feature = "MetricKit_MXMemoryMetric", feature = "MetricKit_MXMetric"))]
 pub use self::__MXMemoryMetric::MXMemoryMetric;
 #[cfg(feature = "MetricKit_MXMetaData")]
 pub use self::__MXMetaData::MXMetaData;
@@ -147,19 +219,24 @@ pub use self::__MXMetaData::MXMetaData;
 pub use self::__MXMetric::MXMetric;
 #[cfg(feature = "MetricKit_MXMetricManager")]
 pub use self::__MXMetricManager::MXMetricManager;
+#[cfg(feature = "MetricKit_MXMetricManager")]
 pub use self::__MXMetricManager::MXMetricManagerSubscriber;
 #[cfg(feature = "MetricKit_MXMetricPayload")]
 pub use self::__MXMetricPayload::MXMetricPayload;
-#[cfg(feature = "MetricKit_MXNetworkTransferMetric")]
+#[cfg(all(
+    feature = "MetricKit_MXMetric",
+    feature = "MetricKit_MXNetworkTransferMetric"
+))]
 pub use self::__MXNetworkTransferMetric::MXNetworkTransferMetric;
-#[cfg(feature = "MetricKit_MXSignpostIntervalData")]
-pub use self::__MXSignpostMetric::MXSignpostIntervalData;
 #[cfg(feature = "MetricKit_MXSignpostMetric")]
+pub use self::__MXSignpostMetric::MXSignpostIntervalData;
+#[cfg(all(feature = "MetricKit_MXMetric", feature = "MetricKit_MXSignpostMetric"))]
 pub use self::__MXSignpostMetric::MXSignpostMetric;
 #[cfg(feature = "MetricKit_MXSignpostRecord")]
 pub use self::__MXSignpostRecord::MXSignpostRecord;
+#[cfg(feature = "MetricKit_MXSignpost_Private")]
 pub(crate) use self::__MXSignpost_Private::_MXSignpostMetricsSnapshot;
-#[cfg(feature = "MetricKit_MXUnitAveragePixelLuminance")]
+#[cfg(all(feature = "Foundation_NSUnit", feature = "MetricKit_MXUnit"))]
 pub use self::__MXUnit::MXUnitAveragePixelLuminance;
-#[cfg(feature = "MetricKit_MXUnitSignalBars")]
+#[cfg(all(feature = "Foundation_NSUnit", feature = "MetricKit_MXUnit"))]
 pub use self::__MXUnit::MXUnitSignalBars;

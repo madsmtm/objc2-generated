@@ -4,7 +4,7 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::IdentityLookup::*;
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
 extern_static!(ILMessageFilterErrorDomain: &'static NSErrorDomain);
 
 ns_error_enum!(

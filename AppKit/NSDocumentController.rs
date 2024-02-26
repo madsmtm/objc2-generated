@@ -7,30 +7,26 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSDocumentController")]
     pub struct NSDocumentController;
 
-    #[cfg(feature = "AppKit_NSDocumentController")]
     unsafe impl ClassType for NSDocumentController {
         type Super = NSObject;
         type Mutability = MainThreadOnly;
     }
 );
 
-#[cfg(feature = "AppKit_NSDocumentController")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSDocumentController {}
 
-#[cfg(feature = "AppKit_NSDocumentController")]
+#[cfg(feature = "AppKit_NSMenu")]
 unsafe impl NSMenuItemValidation for NSDocumentController {}
 
-#[cfg(feature = "AppKit_NSDocumentController")]
 unsafe impl NSObjectProtocol for NSDocumentController {}
 
-#[cfg(feature = "AppKit_NSDocumentController")]
+#[cfg(feature = "AppKit_NSUserInterfaceValidation")]
 unsafe impl NSUserInterfaceValidations for NSDocumentController {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSDocumentController")]
     unsafe impl NSDocumentController {
         #[method_id(@__retain_semantics Other sharedDocumentController)]
         pub unsafe fn sharedDocumentController(mtm: MainThreadMarker) -> Id<NSDocumentController>;
@@ -58,7 +54,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other documentForURL:)]
         pub unsafe fn documentForURL(&self, url: &NSURL) -> Option<Id<NSDocument>>;
 
-        #[cfg(all(feature = "AppKit_NSDocument", feature = "AppKit_NSWindow"))]
+        #[cfg(all(
+            feature = "AppKit_NSDocument",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSWindow"
+        ))]
         #[method_id(@__retain_semantics Other documentForWindow:)]
         pub unsafe fn documentForWindow(&self, window: &NSWindow) -> Option<Id<NSDocument>>;
 
@@ -100,6 +100,10 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSOpenPanel",
+            feature = "AppKit_NSPanel",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSSavePanel",
+            feature = "AppKit_NSWindow",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSString"
         ))]
@@ -119,6 +123,10 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSOpenPanel",
+            feature = "AppKit_NSPanel",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSSavePanel",
+            feature = "AppKit_NSWindow",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSString"
         ))]
@@ -184,9 +192,11 @@ extern_methods!(
             type_name: &NSString,
         ) -> Result<Id<NSDocument>, Id<NSError>>;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(autosavingDelay)]
         pub unsafe fn autosavingDelay(&self) -> NSTimeInterval;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(setAutosavingDelay:)]
         pub unsafe fn setAutosavingDelay(&self, autosaving_delay: NSTimeInterval);
 
@@ -236,7 +246,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other standardShareMenuItem)]
         pub unsafe fn standardShareMenuItem(&self) -> Id<NSMenuItem>;
 
-        #[cfg(all(feature = "AppKit_NSWindow", feature = "Foundation_NSError"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSWindow",
+            feature = "Foundation_NSError"
+        ))]
         #[method(presentError:modalForWindow:delegate:didPresentSelector:contextInfo:)]
         pub unsafe fn presentError_modalForWindow_delegate_didPresentSelector_contextInfo(
             &self,
@@ -303,6 +317,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other displayNameForType:)]
         pub unsafe fn displayNameForType(&self, type_name: &NSString) -> Option<Id<NSString>>;
 
+        #[cfg(feature = "AppKit_NSUserInterfaceValidation")]
         #[method(validateUserInterfaceItem:)]
         pub unsafe fn validateUserInterfaceItem(
             &self,
@@ -313,7 +328,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSDocumentController")]
     unsafe impl NSDocumentController {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -322,7 +336,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSDeprecated
-    #[cfg(feature = "AppKit_NSDocumentController")]
     unsafe impl NSDocumentController {
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[deprecated = "Use -openDocumentWithContentsOfURL:display:completionHandler: instead"]

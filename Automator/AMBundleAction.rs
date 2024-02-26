@@ -8,10 +8,10 @@ use crate::OSAKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Automator_AMBundleAction")]
+    #[cfg(feature = "Automator_AMAction")]
     pub struct AMBundleAction;
 
-    #[cfg(feature = "Automator_AMBundleAction")]
+    #[cfg(feature = "Automator_AMAction")]
     unsafe impl ClassType for AMBundleAction {
         #[inherits(NSObject)]
         type Super = AMAction;
@@ -19,20 +19,20 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Automator_AMBundleAction")]
+#[cfg(all(feature = "Automator_AMAction", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for AMBundleAction {}
 
-#[cfg(feature = "Automator_AMBundleAction")]
+#[cfg(all(feature = "Automator_AMAction", feature = "Foundation_NSObject"))]
 unsafe impl NSCopying for AMBundleAction {}
 
-#[cfg(feature = "Automator_AMBundleAction")]
+#[cfg(feature = "Automator_AMAction")]
 unsafe impl NSObjectProtocol for AMBundleAction {}
 
-#[cfg(feature = "Automator_AMBundleAction")]
+#[cfg(all(feature = "Automator_AMAction", feature = "Foundation_NSObject"))]
 unsafe impl NSSecureCoding for AMBundleAction {}
 
 extern_methods!(
-    #[cfg(feature = "Automator_AMBundleAction")]
+    #[cfg(feature = "Automator_AMAction")]
     unsafe impl AMBundleAction {
         #[method(awakeFromBundle)]
         pub unsafe fn awakeFromBundle(&self);
@@ -40,7 +40,7 @@ extern_methods!(
         #[method(hasView)]
         pub unsafe fn hasView(&self) -> bool;
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[method_id(@__retain_semantics Other view)]
         pub unsafe fn view(&self, mtm: MainThreadMarker) -> Option<Id<NSView>>;
 
@@ -48,17 +48,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other bundle)]
         pub unsafe fn bundle(&self) -> Id<NSBundle>;
 
-        #[cfg(all(
-            feature = "Foundation_NSMutableDictionary",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other parameters)]
         pub unsafe fn parameters(&self) -> Option<Id<NSMutableDictionary<NSString, AnyObject>>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSMutableDictionary",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(setParameters:)]
         pub unsafe fn setParameters(
             &self,
@@ -69,7 +63,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `AMAction`
-    #[cfg(feature = "Automator_AMBundleAction")]
+    #[cfg(feature = "Automator_AMAction")]
     unsafe impl AMBundleAction {
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithDefinition:fromArchive:)]
@@ -90,7 +84,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Automator_AMBundleAction")]
+    #[cfg(feature = "Automator_AMAction")]
     unsafe impl AMBundleAction {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

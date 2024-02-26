@@ -6,21 +6,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "DeviceCheck_DCAppAttestService")]
     pub struct DCAppAttestService;
 
-    #[cfg(feature = "DeviceCheck_DCAppAttestService")]
     unsafe impl ClassType for DCAppAttestService {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "DeviceCheck_DCAppAttestService")]
 unsafe impl NSObjectProtocol for DCAppAttestService {}
 
 extern_methods!(
-    #[cfg(feature = "DeviceCheck_DCAppAttestService")]
     unsafe impl DCAppAttestService {
         #[method_id(@__retain_semantics Other sharedService)]
         pub unsafe fn sharedService() -> Id<DCAppAttestService>;
@@ -65,7 +61,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "DeviceCheck_DCAppAttestService")]
     unsafe impl DCAppAttestService {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

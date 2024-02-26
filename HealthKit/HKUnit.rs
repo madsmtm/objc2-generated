@@ -8,30 +8,26 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKUnit")]
     pub struct HKUnit;
 
-    #[cfg(feature = "HealthKit_HKUnit")]
     unsafe impl ClassType for HKUnit {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "HealthKit_HKUnit")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for HKUnit {}
 
-#[cfg(feature = "HealthKit_HKUnit")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for HKUnit {}
 
-#[cfg(feature = "HealthKit_HKUnit")]
 unsafe impl NSObjectProtocol for HKUnit {}
 
-#[cfg(feature = "HealthKit_HKUnit")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for HKUnit {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKUnit")]
     unsafe impl HKUnit {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other unitString)]
@@ -44,27 +40,33 @@ extern_methods!(
         #[method_id(@__retain_semantics Other unitFromString:)]
         pub unsafe fn unitFromString(string: &NSString) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSMassFormatter")]
         #[method_id(@__retain_semantics Other unitFromMassFormatterUnit:)]
         pub unsafe fn unitFromMassFormatterUnit(
             mass_formatter_unit: NSMassFormatterUnit,
         ) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSMassFormatter")]
         #[method(massFormatterUnitFromUnit:)]
         pub unsafe fn massFormatterUnitFromUnit(unit: &HKUnit) -> NSMassFormatterUnit;
 
+        #[cfg(feature = "Foundation_NSLengthFormatter")]
         #[method_id(@__retain_semantics Other unitFromLengthFormatterUnit:)]
         pub unsafe fn unitFromLengthFormatterUnit(
             length_formatter_unit: NSLengthFormatterUnit,
         ) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSLengthFormatter")]
         #[method(lengthFormatterUnitFromUnit:)]
         pub unsafe fn lengthFormatterUnitFromUnit(unit: &HKUnit) -> NSLengthFormatterUnit;
 
+        #[cfg(feature = "Foundation_NSEnergyFormatter")]
         #[method_id(@__retain_semantics Other unitFromEnergyFormatterUnit:)]
         pub unsafe fn unitFromEnergyFormatterUnit(
             energy_formatter_unit: NSEnergyFormatterUnit,
         ) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSEnergyFormatter")]
         #[method(energyFormatterUnitFromUnit:)]
         pub unsafe fn energyFormatterUnitFromUnit(unit: &HKUnit) -> NSEnergyFormatterUnit;
 
@@ -75,7 +77,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKUnit")]
     unsafe impl HKUnit {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -118,7 +119,6 @@ ns_enum!(
 
 extern_methods!(
     /// Mass
-    #[cfg(feature = "HealthKit_HKUnit")]
     unsafe impl HKUnit {
         #[method_id(@__retain_semantics Other gramUnitWithMetricPrefix:)]
         pub unsafe fn gramUnitWithMetricPrefix(prefix: HKMetricPrefix) -> Id<Self>;
@@ -148,7 +148,6 @@ extern_methods!(
 
 extern_methods!(
     /// Length
-    #[cfg(feature = "HealthKit_HKUnit")]
     unsafe impl HKUnit {
         #[method_id(@__retain_semantics Other meterUnitWithMetricPrefix:)]
         pub unsafe fn meterUnitWithMetricPrefix(prefix: HKMetricPrefix) -> Id<Self>;
@@ -172,7 +171,6 @@ extern_methods!(
 
 extern_methods!(
     /// Volume
-    #[cfg(feature = "HealthKit_HKUnit")]
     unsafe impl HKUnit {
         #[method_id(@__retain_semantics Other literUnitWithMetricPrefix:)]
         pub unsafe fn literUnitWithMetricPrefix(prefix: HKMetricPrefix) -> Id<Self>;
@@ -202,7 +200,6 @@ extern_methods!(
 
 extern_methods!(
     /// Pressure
-    #[cfg(feature = "HealthKit_HKUnit")]
     unsafe impl HKUnit {
         #[method_id(@__retain_semantics Other pascalUnitWithMetricPrefix:)]
         pub unsafe fn pascalUnitWithMetricPrefix(prefix: HKMetricPrefix) -> Id<Self>;
@@ -229,7 +226,6 @@ extern_methods!(
 
 extern_methods!(
     /// Time
-    #[cfg(feature = "HealthKit_HKUnit")]
     unsafe impl HKUnit {
         #[method_id(@__retain_semantics Other secondUnitWithMetricPrefix:)]
         pub unsafe fn secondUnitWithMetricPrefix(prefix: HKMetricPrefix) -> Id<Self>;
@@ -250,7 +246,6 @@ extern_methods!(
 
 extern_methods!(
     /// Energy
-    #[cfg(feature = "HealthKit_HKUnit")]
     unsafe impl HKUnit {
         #[method_id(@__retain_semantics Other jouleUnitWithMetricPrefix:)]
         pub unsafe fn jouleUnitWithMetricPrefix(prefix: HKMetricPrefix) -> Id<Self>;
@@ -275,7 +270,6 @@ extern_methods!(
 
 extern_methods!(
     /// Temperature
-    #[cfg(feature = "HealthKit_HKUnit")]
     unsafe impl HKUnit {
         #[method_id(@__retain_semantics Other degreeCelsiusUnit)]
         pub unsafe fn degreeCelsiusUnit() -> Id<Self>;
@@ -290,7 +284,6 @@ extern_methods!(
 
 extern_methods!(
     /// Conductance
-    #[cfg(feature = "HealthKit_HKUnit")]
     unsafe impl HKUnit {
         #[method_id(@__retain_semantics Other siemenUnitWithMetricPrefix:)]
         pub unsafe fn siemenUnitWithMetricPrefix(prefix: HKMetricPrefix) -> Id<Self>;
@@ -302,7 +295,6 @@ extern_methods!(
 
 extern_methods!(
     /// Pharmacology
-    #[cfg(feature = "HealthKit_HKUnit")]
     unsafe impl HKUnit {
         #[method_id(@__retain_semantics Other internationalUnit)]
         pub unsafe fn internationalUnit() -> Id<Self>;
@@ -311,7 +303,6 @@ extern_methods!(
 
 extern_methods!(
     /// Scalar
-    #[cfg(feature = "HealthKit_HKUnit")]
     unsafe impl HKUnit {
         #[method_id(@__retain_semantics Other countUnit)]
         pub unsafe fn countUnit() -> Id<Self>;
@@ -323,7 +314,6 @@ extern_methods!(
 
 extern_methods!(
     /// HearingSensitivity
-    #[cfg(feature = "HealthKit_HKUnit")]
     unsafe impl HKUnit {
         #[method_id(@__retain_semantics Other decibelHearingLevelUnit)]
         pub unsafe fn decibelHearingLevelUnit() -> Id<Self>;
@@ -332,7 +322,6 @@ extern_methods!(
 
 extern_methods!(
     /// Math
-    #[cfg(feature = "HealthKit_HKUnit")]
     unsafe impl HKUnit {
         #[method_id(@__retain_semantics Other unitMultipliedByUnit:)]
         pub unsafe fn unitMultipliedByUnit(&self, unit: &HKUnit) -> Id<HKUnit>;
@@ -350,7 +339,6 @@ extern_methods!(
 
 extern_methods!(
     /// Frequency
-    #[cfg(feature = "HealthKit_HKUnit")]
     unsafe impl HKUnit {
         #[method_id(@__retain_semantics Other hertzUnitWithMetricPrefix:)]
         pub unsafe fn hertzUnitWithMetricPrefix(prefix: HKMetricPrefix) -> Id<Self>;
@@ -362,7 +350,6 @@ extern_methods!(
 
 extern_methods!(
     /// ElectricPotentialDifference
-    #[cfg(feature = "HealthKit_HKUnit")]
     unsafe impl HKUnit {
         #[method_id(@__retain_semantics Other voltUnitWithMetricPrefix:)]
         pub unsafe fn voltUnitWithMetricPrefix(prefix: HKMetricPrefix) -> Id<Self>;
@@ -374,7 +361,6 @@ extern_methods!(
 
 extern_methods!(
     /// Power
-    #[cfg(feature = "HealthKit_HKUnit")]
     unsafe impl HKUnit {
         #[method_id(@__retain_semantics Other wattUnitWithMetricPrefix:)]
         pub unsafe fn wattUnitWithMetricPrefix(prefix: HKMetricPrefix) -> Id<Self>;
@@ -386,7 +372,6 @@ extern_methods!(
 
 extern_methods!(
     /// OpticalPower
-    #[cfg(feature = "HealthKit_HKUnit")]
     unsafe impl HKUnit {
         #[method_id(@__retain_semantics Other diopterUnit)]
         pub unsafe fn diopterUnit() -> Id<Self>;
@@ -398,7 +383,6 @@ extern_methods!(
 
 extern_methods!(
     /// Angle
-    #[cfg(feature = "HealthKit_HKUnit")]
     unsafe impl HKUnit {
         #[method_id(@__retain_semantics Other radianAngleUnitWithMetricPrefix:)]
         pub unsafe fn radianAngleUnitWithMetricPrefix(prefix: HKMetricPrefix) -> Id<Self>;
@@ -413,7 +397,6 @@ extern_methods!(
 
 extern_methods!(
     /// Illuminance
-    #[cfg(feature = "HealthKit_HKUnit")]
     unsafe impl HKUnit {
         #[method_id(@__retain_semantics Other luxUnitWithMetricPrefix:)]
         pub unsafe fn luxUnitWithMetricPrefix(prefix: HKMetricPrefix) -> Id<Self>;

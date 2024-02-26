@@ -9,27 +9,39 @@ use crate::Foundation::*;
 pub type NSSearchFieldRecentsAutosaveName = NSString;
 
 extern_protocol!(
+    #[cfg(all(feature = "AppKit_NSControl", feature = "AppKit_NSTextField"))]
     pub unsafe trait NSSearchFieldDelegate: NSTextFieldDelegate + IsMainThreadOnly {
-        #[cfg(feature = "AppKit_NSSearchField")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[optional]
         #[method(searchFieldDidStartSearching:)]
         unsafe fn searchFieldDidStartSearching(&self, sender: &NSSearchField);
 
-        #[cfg(feature = "AppKit_NSSearchField")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[optional]
         #[method(searchFieldDidEndSearching:)]
         unsafe fn searchFieldDidEndSearching(&self, sender: &NSSearchField);
     }
 
+    #[cfg(all(feature = "AppKit_NSControl", feature = "AppKit_NSTextField"))]
     unsafe impl ProtocolType for dyn NSSearchFieldDelegate {}
 );
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSSearchField")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSTextField",
+        feature = "AppKit_NSView"
+    ))]
     pub struct NSSearchField;
 
-    #[cfg(feature = "AppKit_NSSearchField")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSTextField",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl ClassType for NSSearchField {
         #[inherits(NSControl, NSView, NSResponder, NSObject)]
         type Super = NSTextField;
@@ -37,51 +49,130 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSSearchField")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSTextField",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibility for NSSearchField {}
 
-#[cfg(feature = "AppKit_NSSearchField")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSTextField",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibilityElementProtocol for NSSearchField {}
 
-#[cfg(feature = "AppKit_NSSearchField")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSTextField",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibilityNavigableStaticText for NSSearchField {}
 
-#[cfg(feature = "AppKit_NSSearchField")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSTextField",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibilityStaticText for NSSearchField {}
 
-#[cfg(feature = "AppKit_NSSearchField")]
+#[cfg(all(
+    feature = "AppKit_NSAnimation",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSTextField",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAnimatablePropertyContainer for NSSearchField {}
 
-#[cfg(feature = "AppKit_NSSearchField")]
+#[cfg(all(
+    feature = "AppKit_NSAppearance",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSTextField",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAppearanceCustomization for NSSearchField {}
 
-#[cfg(feature = "AppKit_NSSearchField")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSTextField",
+    feature = "AppKit_NSView",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSSearchField {}
 
-#[cfg(feature = "AppKit_NSSearchField")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSDragging",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSTextField",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSDraggingDestination for NSSearchField {}
 
-#[cfg(feature = "AppKit_NSSearchField")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSTextField",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSObjectProtocol for NSSearchField {}
 
-#[cfg(feature = "AppKit_NSSearchField")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSTextContent",
+    feature = "AppKit_NSTextField",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSTextContent for NSSearchField {}
 
-#[cfg(feature = "AppKit_NSSearchField")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSTextField",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSSearchField {}
 
-#[cfg(feature = "AppKit_NSSearchField")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSTextField",
+    feature = "AppKit_NSUserInterfaceValidation",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSUserInterfaceValidations for NSSearchField {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSSearchField")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSTextField",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSSearchField {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(searchTextBounds)]
         pub unsafe fn searchTextBounds(&self) -> NSRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(searchButtonBounds)]
         pub unsafe fn searchButtonBounds(&self) -> NSRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(cancelButtonBounds)]
         pub unsafe fn cancelButtonBounds(&self) -> NSRect;
 
@@ -143,8 +234,14 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSControl`
-    #[cfg(feature = "AppKit_NSSearchField")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSTextField",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSSearchField {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
 
@@ -156,7 +253,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "AppKit_NSSearchField")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSTextField",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSSearchField {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -165,7 +267,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSSearchField")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSTextField",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSSearchField {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -174,16 +281,24 @@ extern_methods!(
 
 extern_methods!(
     /// NSSearchField_Deprecated
-    #[cfg(feature = "AppKit_NSSearchField")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSTextField",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSSearchField {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[deprecated]
         #[method(rectForSearchTextWhenCentered:)]
         pub unsafe fn rectForSearchTextWhenCentered(&self, is_centered: bool) -> NSRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[deprecated]
         #[method(rectForSearchButtonWhenCentered:)]
         pub unsafe fn rectForSearchButtonWhenCentered(&self, is_centered: bool) -> NSRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[deprecated]
         #[method(rectForCancelButtonWhenCentered:)]
         pub unsafe fn rectForCancelButtonWhenCentered(&self, is_centered: bool) -> NSRect;

@@ -7,24 +7,20 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSResponder")]
     pub struct NSResponder;
 
-    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl ClassType for NSResponder {
         type Super = NSObject;
         type Mutability = MainThreadOnly;
     }
 );
 
-#[cfg(feature = "AppKit_NSResponder")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSResponder {}
 
-#[cfg(feature = "AppKit_NSResponder")]
 unsafe impl NSObjectProtocol for NSResponder {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSResponder {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -46,7 +42,7 @@ extern_methods!(
         #[method(performKeyEquivalent:)]
         pub unsafe fn performKeyEquivalent(&self, event: &NSEvent) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "AppKit_NSPasteboard", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other validRequestorForSendType:returnType:)]
         pub unsafe fn validRequestorForSendType_returnType(
             &self,
@@ -220,12 +216,14 @@ extern_methods!(
         #[method(shouldBeTreatedAsInkEvent:)]
         pub unsafe fn shouldBeTreatedAsInkEvent(&self, event: &NSEvent) -> bool;
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(wantsScrollEventsForSwipeTrackingOnAxis:)]
         pub unsafe fn wantsScrollEventsForSwipeTrackingOnAxis(
             &self,
             axis: NSEventGestureAxis,
         ) -> bool;
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(wantsForwardedScrollEventsForAxis:)]
         pub unsafe fn wantsForwardedScrollEventsForAxis(&self, axis: NSEventGestureAxis) -> bool;
 
@@ -240,7 +238,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSResponder {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -637,16 +634,13 @@ extern_protocol!(
 
 extern_methods!(
     /// NSStandardKeyBindingMethods
-    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSResponder {}
 );
 
-#[cfg(feature = "AppKit_NSResponder")]
 unsafe impl NSStandardKeyBindingResponding for NSResponder {}
 
 extern_methods!(
     /// NSUndoSupport
-    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSResponder {
         #[cfg(feature = "Foundation_NSUndoManager")]
         #[method_id(@__retain_semantics Other undoManager)]
@@ -656,7 +650,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSControlEditingSupport
-    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSResponder {
         #[cfg(feature = "AppKit_NSEvent")]
         #[method(validateProposedFirstResponder:forEvent:)]
@@ -670,7 +663,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSErrorPresentation
-    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSResponder {
         #[cfg(all(feature = "AppKit_NSWindow", feature = "Foundation_NSError"))]
         #[method(presentError:modalForWindow:delegate:didPresentSelector:contextInfo:)]
@@ -695,7 +687,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSTextFinderSupport
-    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSResponder {
         #[method(performTextFinderAction:)]
         pub unsafe fn performTextFinderAction(&self, sender: Option<&AnyObject>);
@@ -704,7 +695,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSWindowTabbing
-    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSResponder {
         #[method(newWindowForTab:)]
         pub unsafe fn newWindowForTab(&self, sender: Option<&AnyObject>);
@@ -713,7 +703,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSDeprecated
-    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSResponder {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "This has always returned NO and had no effect on macOS"]

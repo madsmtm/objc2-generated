@@ -7,21 +7,17 @@ use crate::LinkPresentation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "LinkPresentation_LPMetadataProvider")]
     pub struct LPMetadataProvider;
 
-    #[cfg(feature = "LinkPresentation_LPMetadataProvider")]
     unsafe impl ClassType for LPMetadataProvider {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "LinkPresentation_LPMetadataProvider")]
 unsafe impl NSObjectProtocol for LPMetadataProvider {}
 
 extern_methods!(
-    #[cfg(feature = "LinkPresentation_LPMetadataProvider")]
     unsafe impl LPMetadataProvider {
         #[cfg(all(
             feature = "Foundation_NSError",
@@ -56,9 +52,11 @@ extern_methods!(
         #[method(setShouldFetchSubresources:)]
         pub unsafe fn setShouldFetchSubresources(&self, should_fetch_subresources: bool);
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(timeout)]
         pub unsafe fn timeout(&self) -> NSTimeInterval;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(setTimeout:)]
         pub unsafe fn setTimeout(&self, timeout: NSTimeInterval);
     }
@@ -66,7 +64,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "LinkPresentation_LPMetadataProvider")]
     unsafe impl LPMetadataProvider {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

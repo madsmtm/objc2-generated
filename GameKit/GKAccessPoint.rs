@@ -21,21 +21,17 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameKit_GKAccessPoint")]
     pub struct GKAccessPoint;
 
-    #[cfg(feature = "GameKit_GKAccessPoint")]
     unsafe impl ClassType for GKAccessPoint {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "GameKit_GKAccessPoint")]
 unsafe impl NSObjectProtocol for GKAccessPoint {}
 
 extern_methods!(
-    #[cfg(feature = "GameKit_GKAccessPoint")]
     unsafe impl GKAccessPoint {
         #[method_id(@__retain_semantics Other shared)]
         pub unsafe fn shared() -> Id<GKAccessPoint>;
@@ -70,20 +66,22 @@ extern_methods!(
         #[method(setLocation:)]
         pub unsafe fn setLocation(&self, location: GKAccessPointLocation);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(frameInScreenCoordinates)]
         pub unsafe fn frameInScreenCoordinates(&self) -> NSRect;
 
-        #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
         #[method_id(@__retain_semantics Other parentWindow)]
         pub unsafe fn parentWindow(&self, mtm: MainThreadMarker) -> Option<Id<NSWindow>>;
 
-        #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
         #[method(setParentWindow:)]
         pub unsafe fn setParentWindow(&self, parent_window: Option<&NSWindow>);
 
         #[method(triggerAccessPointWithHandler:)]
         pub unsafe fn triggerAccessPointWithHandler(&self, handler: &Block<dyn Fn()>);
 
+        #[cfg(feature = "GameKit_GKGameCenterViewController")]
         #[method(triggerAccessPointWithState:handler:)]
         pub unsafe fn triggerAccessPointWithState_handler(
             &self,
@@ -95,7 +93,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameKit_GKAccessPoint")]
     unsafe impl GKAccessPoint {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

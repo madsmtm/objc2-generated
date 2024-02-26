@@ -9,10 +9,10 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Photos_PHAsset")]
+    #[cfg(feature = "Photos_PHObject")]
     pub struct PHAsset;
 
-    #[cfg(feature = "Photos_PHAsset")]
+    #[cfg(feature = "Photos_PHObject")]
     unsafe impl ClassType for PHAsset {
         #[inherits(NSObject)]
         type Super = PHObject;
@@ -20,27 +20,30 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Photos_PHAsset")]
+#[cfg(feature = "Photos_PHObject")]
 unsafe impl Send for PHAsset {}
 
-#[cfg(feature = "Photos_PHAsset")]
+#[cfg(feature = "Photos_PHObject")]
 unsafe impl Sync for PHAsset {}
 
-#[cfg(feature = "Photos_PHAsset")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "Photos_PHObject"))]
 unsafe impl NSCopying for PHAsset {}
 
-#[cfg(feature = "Photos_PHAsset")]
+#[cfg(feature = "Photos_PHObject")]
 unsafe impl NSObjectProtocol for PHAsset {}
 
 extern_methods!(
-    #[cfg(feature = "Photos_PHAsset")]
+    #[cfg(feature = "Photos_PHObject")]
     unsafe impl PHAsset {
+        #[cfg(feature = "Photos_PhotosTypes")]
         #[method(playbackStyle)]
         pub unsafe fn playbackStyle(&self) -> PHAssetPlaybackStyle;
 
+        #[cfg(feature = "Photos_PhotosTypes")]
         #[method(mediaType)]
         pub unsafe fn mediaType(&self) -> PHAssetMediaType;
 
+        #[cfg(feature = "Photos_PhotosTypes")]
         #[method(mediaSubtypes)]
         pub unsafe fn mediaSubtypes(&self) -> PHAssetMediaSubtype;
 
@@ -62,6 +65,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other location)]
         pub unsafe fn location(&self) -> Option<Id<CLLocation>>;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(duration)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
@@ -79,12 +83,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other burstIdentifier)]
         pub unsafe fn burstIdentifier(&self) -> Option<Id<NSString>>;
 
+        #[cfg(feature = "Photos_PhotosTypes")]
         #[method(burstSelectionTypes)]
         pub unsafe fn burstSelectionTypes(&self) -> PHAssetBurstSelectionType;
 
         #[method(representsBurst)]
         pub unsafe fn representsBurst(&self) -> bool;
 
+        #[cfg(feature = "Photos_PhotosTypes")]
         #[method(sourceType)]
         pub unsafe fn sourceType(&self) -> PHAssetSourceType;
 
@@ -95,11 +101,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Other adjustmentFormatIdentifier)]
         pub unsafe fn adjustmentFormatIdentifier(&self) -> Option<Id<NSString>>;
 
+        #[cfg(feature = "Photos_PhotosTypes")]
         #[method(canPerformEditOperation:)]
         pub unsafe fn canPerformEditOperation(&self, edit_operation: PHAssetEditOperation) -> bool;
 
         #[cfg(all(
-            feature = "Photos_PHAssetCollection",
+            feature = "Photos_PHCollection",
             feature = "Photos_PHFetchOptions",
             feature = "Photos_PHFetchResult"
         ))]
@@ -122,7 +129,7 @@ extern_methods!(
         ) -> Id<PHFetchResult<PHAsset>>;
 
         #[cfg(all(
-            feature = "Photos_PHAssetCollection",
+            feature = "Photos_PHCollection",
             feature = "Photos_PHFetchOptions",
             feature = "Photos_PHFetchResult"
         ))]
@@ -149,7 +156,11 @@ extern_methods!(
             options: Option<&PHFetchOptions>,
         ) -> Id<PHFetchResult<PHAsset>>;
 
-        #[cfg(all(feature = "Photos_PHFetchOptions", feature = "Photos_PHFetchResult"))]
+        #[cfg(all(
+            feature = "Photos_PHFetchOptions",
+            feature = "Photos_PHFetchResult",
+            feature = "Photos_PhotosTypes"
+        ))]
         #[method_id(@__retain_semantics Other fetchAssetsWithMediaType:options:)]
         pub unsafe fn fetchAssetsWithMediaType_options(
             media_type: PHAssetMediaType,
@@ -173,7 +184,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Photos_PHAsset")]
+    #[cfg(feature = "Photos_PHObject")]
     unsafe impl PHAsset {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

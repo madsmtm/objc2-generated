@@ -6,21 +6,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSManagedObjectModelReference")]
     pub struct NSManagedObjectModelReference;
 
-    #[cfg(feature = "CoreData_NSManagedObjectModelReference")]
     unsafe impl ClassType for NSManagedObjectModelReference {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreData_NSManagedObjectModelReference")]
 unsafe impl NSObjectProtocol for NSManagedObjectModelReference {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSManagedObjectModelReference")]
     unsafe impl NSManagedObjectModelReference {
         #[cfg(feature = "CoreData_NSManagedObjectModel")]
         #[method_id(@__retain_semantics Other resolvedModel)]
@@ -78,7 +74,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSManagedObjectModelReference")]
     unsafe impl NSManagedObjectModelReference {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -7,22 +7,18 @@ use crate::MediaPlayer::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MediaPlayer_MPPlayableContentManagerContext")]
     #[deprecated = "Use CarPlay framework"]
     pub struct MPPlayableContentManagerContext;
 
-    #[cfg(feature = "MediaPlayer_MPPlayableContentManagerContext")]
     unsafe impl ClassType for MPPlayableContentManagerContext {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MediaPlayer_MPPlayableContentManagerContext")]
 unsafe impl NSObjectProtocol for MPPlayableContentManagerContext {}
 
 extern_methods!(
-    #[cfg(feature = "MediaPlayer_MPPlayableContentManagerContext")]
     unsafe impl MPPlayableContentManagerContext {
         #[deprecated = "Use CarPlay framework"]
         #[method(enforcedContentItemsCount)]
@@ -48,7 +44,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MediaPlayer_MPPlayableContentManagerContext")]
     unsafe impl MPPlayableContentManagerContext {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

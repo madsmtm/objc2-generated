@@ -22,9 +22,11 @@ extern_protocol!(
         #[method(stop)]
         unsafe fn stop(&self);
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(currentPlaybackTime)]
         unsafe fn currentPlaybackTime(&self) -> NSTimeInterval;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(setCurrentPlaybackTime:)]
         unsafe fn setCurrentPlaybackTime(&self, current_playback_time: NSTimeInterval);
 

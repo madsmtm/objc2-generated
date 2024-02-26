@@ -56,10 +56,12 @@ typed_extensible_enum!(
     pub type NSFontDescriptorFeatureKey = NSString;
 );
 
+#[cfg(feature = "Foundation_NSGeometry")]
 typed_extensible_enum!(
     pub type NSFontWeight = CGFloat;
 );
 
+#[cfg(feature = "Foundation_NSGeometry")]
 typed_extensible_enum!(
     pub type NSFontWidth = CGFloat;
 );
@@ -81,35 +83,32 @@ typed_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSFontDescriptor")]
     pub struct NSFontDescriptor;
 
-    #[cfg(feature = "AppKit_NSFontDescriptor")]
     unsafe impl ClassType for NSFontDescriptor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSFontDescriptor {}
 
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSFontDescriptor {}
 
-#[cfg(feature = "AppKit_NSFontDescriptor")]
 unsafe impl NSObjectProtocol for NSFontDescriptor {}
 
-#[cfg(feature = "AppKit_NSFontDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSFontDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSFontDescriptor")]
     unsafe impl NSFontDescriptor {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other postscriptName)]
         pub unsafe fn postscriptName(&self) -> Option<Id<NSString>>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(pointSize)]
         pub unsafe fn pointSize(&self) -> CGFloat;
 
@@ -142,7 +141,7 @@ extern_methods!(
             attributes: Option<&NSDictionary<NSFontDescriptorAttributeName, AnyObject>>,
         ) -> Id<NSFontDescriptor>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSGeometry", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other fontDescriptorWithName:size:)]
         pub unsafe fn fontDescriptorWithName_size(
             font_name: &NSString,
@@ -197,6 +196,7 @@ extern_methods!(
             symbolic_traits: NSFontDescriptorSymbolicTraits,
         ) -> Id<NSFontDescriptor>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Other fontDescriptorWithSize:)]
         pub unsafe fn fontDescriptorWithSize(
             &self,
@@ -232,7 +232,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSFontDescriptor")]
     unsafe impl NSFontDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -311,30 +310,43 @@ extern_static!(NSFontFeatureTypeIdentifierKey: &'static NSFontDescriptorFeatureK
 #[cfg(feature = "Foundation_NSString")]
 extern_static!(NSFontFeatureSelectorIdentifierKey: &'static NSFontDescriptorFeatureKey);
 
+#[cfg(feature = "Foundation_NSGeometry")]
 extern_static!(NSFontWeightUltraLight: NSFontWeight);
 
+#[cfg(feature = "Foundation_NSGeometry")]
 extern_static!(NSFontWeightThin: NSFontWeight);
 
+#[cfg(feature = "Foundation_NSGeometry")]
 extern_static!(NSFontWeightLight: NSFontWeight);
 
+#[cfg(feature = "Foundation_NSGeometry")]
 extern_static!(NSFontWeightRegular: NSFontWeight);
 
+#[cfg(feature = "Foundation_NSGeometry")]
 extern_static!(NSFontWeightMedium: NSFontWeight);
 
+#[cfg(feature = "Foundation_NSGeometry")]
 extern_static!(NSFontWeightSemibold: NSFontWeight);
 
+#[cfg(feature = "Foundation_NSGeometry")]
 extern_static!(NSFontWeightBold: NSFontWeight);
 
+#[cfg(feature = "Foundation_NSGeometry")]
 extern_static!(NSFontWeightHeavy: NSFontWeight);
 
+#[cfg(feature = "Foundation_NSGeometry")]
 extern_static!(NSFontWeightBlack: NSFontWeight);
 
+#[cfg(feature = "Foundation_NSGeometry")]
 extern_static!(NSFontWidthCompressed: NSFontWidth);
 
+#[cfg(feature = "Foundation_NSGeometry")]
 extern_static!(NSFontWidthCondensed: NSFontWidth);
 
+#[cfg(feature = "Foundation_NSGeometry")]
 extern_static!(NSFontWidthStandard: NSFontWidth);
 
+#[cfg(feature = "Foundation_NSGeometry")]
 extern_static!(NSFontWidthExpanded: NSFontWidth);
 
 #[cfg(feature = "Foundation_NSString")]
@@ -411,7 +423,6 @@ extern_static!(NSFontColorAttribute: &'static NSString);
 
 extern_methods!(
     /// NSFontDescriptor_TextStyles
-    #[cfg(feature = "AppKit_NSFontDescriptor")]
     unsafe impl NSFontDescriptor {
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other preferredFontDescriptorForTextStyle:options:)]

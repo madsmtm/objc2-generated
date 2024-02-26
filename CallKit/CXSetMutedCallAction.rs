@@ -6,10 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CallKit_CXSetMutedCallAction")]
+    #[cfg(all(feature = "CallKit_CXAction", feature = "CallKit_CXCallAction"))]
     pub struct CXSetMutedCallAction;
 
-    #[cfg(feature = "CallKit_CXSetMutedCallAction")]
+    #[cfg(all(feature = "CallKit_CXAction", feature = "CallKit_CXCallAction"))]
     unsafe impl ClassType for CXSetMutedCallAction {
         #[inherits(CXAction, NSObject)]
         type Super = CXCallAction;
@@ -17,20 +17,32 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CallKit_CXSetMutedCallAction")]
+#[cfg(all(
+    feature = "CallKit_CXAction",
+    feature = "CallKit_CXCallAction",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for CXSetMutedCallAction {}
 
-#[cfg(feature = "CallKit_CXSetMutedCallAction")]
+#[cfg(all(
+    feature = "CallKit_CXAction",
+    feature = "CallKit_CXCallAction",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCopying for CXSetMutedCallAction {}
 
-#[cfg(feature = "CallKit_CXSetMutedCallAction")]
+#[cfg(all(feature = "CallKit_CXAction", feature = "CallKit_CXCallAction"))]
 unsafe impl NSObjectProtocol for CXSetMutedCallAction {}
 
-#[cfg(feature = "CallKit_CXSetMutedCallAction")]
+#[cfg(all(
+    feature = "CallKit_CXAction",
+    feature = "CallKit_CXCallAction",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSSecureCoding for CXSetMutedCallAction {}
 
 extern_methods!(
-    #[cfg(feature = "CallKit_CXSetMutedCallAction")]
+    #[cfg(all(feature = "CallKit_CXAction", feature = "CallKit_CXCallAction"))]
     unsafe impl CXSetMutedCallAction {
         #[cfg(feature = "Foundation_NSUUID")]
         #[method_id(@__retain_semantics Init initWithCallUUID:muted:)]
@@ -59,7 +71,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CXCallAction`
-    #[cfg(feature = "CallKit_CXSetMutedCallAction")]
+    #[cfg(all(feature = "CallKit_CXAction", feature = "CallKit_CXCallAction"))]
     unsafe impl CXSetMutedCallAction {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -68,7 +80,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CallKit_CXSetMutedCallAction")]
+    #[cfg(all(feature = "CallKit_CXAction", feature = "CallKit_CXCallAction"))]
     unsafe impl CXSetMutedCallAction {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

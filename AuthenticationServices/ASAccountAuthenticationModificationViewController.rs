@@ -5,30 +5,47 @@ use crate::AppKit::*;
 use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
-#[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for ASAccountAuthenticationModificationViewController {}
 
-#[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationViewController")]
+#[cfg(all(
+    feature = "AppKit_NSKeyValueBinding",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSEditor for ASAccountAuthenticationModificationViewController {}
 
-#[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationViewController")]
+#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
 unsafe impl NSObjectProtocol for ASAccountAuthenticationModificationViewController {}
 
-#[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSStoryboardSegue",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSSeguePerforming for ASAccountAuthenticationModificationViewController {}
 
-#[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSUserInterfaceItemIdentification
     for ASAccountAuthenticationModificationViewController
 {
 }
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl ASAccountAuthenticationModificationViewController {
-        #[cfg(
-            feature = "AuthenticationServices_ASAccountAuthenticationModificationExtensionContext"
-        )]
+        #[cfg(all(
+            feature = "AuthenticationServices_ASAccountAuthenticationModificationExtensionContext",
+            feature = "Foundation_NSExtensionContext"
+        ))]
         #[method_id(@__retain_semantics Other extensionContext)]
         pub unsafe fn extensionContext(
             &self,
@@ -97,9 +114,13 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSViewController`
-    #[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl ASAccountAuthenticationModificationViewController {
-        #[cfg(all(feature = "Foundation_NSBundle", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSNib",
+            feature = "Foundation_NSBundle",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -115,7 +136,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl ASAccountAuthenticationModificationViewController {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -124,7 +145,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AuthenticationServices_ASAccountAuthenticationModificationViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl ASAccountAuthenticationModificationViewController {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

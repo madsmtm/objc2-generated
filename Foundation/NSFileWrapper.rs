@@ -21,27 +21,23 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSFileWrapper")]
     pub struct NSFileWrapper;
 
-    #[cfg(feature = "Foundation_NSFileWrapper")]
     unsafe impl ClassType for NSFileWrapper {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSFileWrapper")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSFileWrapper {}
 
-#[cfg(feature = "Foundation_NSFileWrapper")]
 unsafe impl NSObjectProtocol for NSFileWrapper {}
 
-#[cfg(feature = "Foundation_NSFileWrapper")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSFileWrapper {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSFileWrapper")]
     unsafe impl NSFileWrapper {
         #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Init initWithURL:options:error:_)]
@@ -176,7 +172,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSFileWrapper")]
     unsafe impl NSFileWrapper {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -188,7 +183,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSDeprecated
-    #[cfg(feature = "Foundation_NSFileWrapper")]
     unsafe impl NSFileWrapper {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use -initWithURL:options:error: instead."]

@@ -13,24 +13,20 @@ extern_static!(GCRacingWheelDidDisconnectNotification: &'static NSString);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameController_GCRacingWheel")]
     pub struct GCRacingWheel;
 
-    #[cfg(feature = "GameController_GCRacingWheel")]
     unsafe impl ClassType for GCRacingWheel {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "GameController_GCRacingWheel")]
+#[cfg(feature = "GameController_GCDevice")]
 unsafe impl GCDevice for GCRacingWheel {}
 
-#[cfg(feature = "GameController_GCRacingWheel")]
 unsafe impl NSObjectProtocol for GCRacingWheel {}
 
 extern_methods!(
-    #[cfg(feature = "GameController_GCRacingWheel")]
     unsafe impl GCRacingWheel {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -63,7 +59,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameController_GCRacingWheel")]
     unsafe impl GCRacingWheel {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

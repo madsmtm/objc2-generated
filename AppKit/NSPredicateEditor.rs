@@ -7,10 +7,20 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSPredicateEditor")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSRuleEditor",
+        feature = "AppKit_NSView"
+    ))]
     pub struct NSPredicateEditor;
 
-    #[cfg(feature = "AppKit_NSPredicateEditor")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSRuleEditor",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl ClassType for NSPredicateEditor {
         #[inherits(NSControl, NSView, NSResponder, NSObject)]
         type Super = NSRuleEditor;
@@ -18,32 +28,84 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSPredicateEditor")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSRuleEditor",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibility for NSPredicateEditor {}
 
-#[cfg(feature = "AppKit_NSPredicateEditor")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSRuleEditor",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibilityElementProtocol for NSPredicateEditor {}
 
-#[cfg(feature = "AppKit_NSPredicateEditor")]
+#[cfg(all(
+    feature = "AppKit_NSAnimation",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSRuleEditor",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAnimatablePropertyContainer for NSPredicateEditor {}
 
-#[cfg(feature = "AppKit_NSPredicateEditor")]
+#[cfg(all(
+    feature = "AppKit_NSAppearance",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSRuleEditor",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAppearanceCustomization for NSPredicateEditor {}
 
-#[cfg(feature = "AppKit_NSPredicateEditor")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSRuleEditor",
+    feature = "AppKit_NSView",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSPredicateEditor {}
 
-#[cfg(feature = "AppKit_NSPredicateEditor")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSDragging",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSRuleEditor",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSDraggingDestination for NSPredicateEditor {}
 
-#[cfg(feature = "AppKit_NSPredicateEditor")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSRuleEditor",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSObjectProtocol for NSPredicateEditor {}
 
-#[cfg(feature = "AppKit_NSPredicateEditor")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSRuleEditor",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSPredicateEditor {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSPredicateEditor")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSRuleEditor",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSPredicateEditor {
         #[cfg(all(
             feature = "AppKit_NSPredicateEditorRowTemplate",
@@ -63,8 +125,14 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSControl`
-    #[cfg(feature = "AppKit_NSPredicateEditor")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSRuleEditor",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSPredicateEditor {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
 
@@ -76,7 +144,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "AppKit_NSPredicateEditor")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSRuleEditor",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSPredicateEditor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -85,7 +158,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSPredicateEditor")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSRuleEditor",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSPredicateEditor {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

@@ -7,7 +7,7 @@ extern_category!(
     /// Category "NSScripting" on [`NSObject`].
     #[doc(alias = "NSScripting")]
     pub unsafe trait NSObjectNSScripting {
-        #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
+        #[cfg(feature = "Foundation_NSScriptObjectSpecifiers")]
         #[method_id(@__retain_semantics Other scriptingValueForSpecifier:)]
         unsafe fn scriptingValueForSpecifier(
             &self,

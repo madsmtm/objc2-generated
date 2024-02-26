@@ -7,10 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTableHeaderView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     pub struct NSTableHeaderView;
 
-    #[cfg(feature = "AppKit_NSTableHeaderView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl ClassType for NSTableHeaderView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
@@ -18,56 +18,87 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSTableHeaderView")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibility for NSTableHeaderView {}
 
-#[cfg(feature = "AppKit_NSTableHeaderView")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibilityElementProtocol for NSTableHeaderView {}
 
-#[cfg(feature = "AppKit_NSTableHeaderView")]
+#[cfg(all(
+    feature = "AppKit_NSAnimation",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAnimatablePropertyContainer for NSTableHeaderView {}
 
-#[cfg(feature = "AppKit_NSTableHeaderView")]
+#[cfg(all(
+    feature = "AppKit_NSAppearance",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAppearanceCustomization for NSTableHeaderView {}
 
-#[cfg(feature = "AppKit_NSTableHeaderView")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSTableHeaderView {}
 
-#[cfg(feature = "AppKit_NSTableHeaderView")]
+#[cfg(all(
+    feature = "AppKit_NSDragging",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSDraggingDestination for NSTableHeaderView {}
 
-#[cfg(feature = "AppKit_NSTableHeaderView")]
+#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
 unsafe impl NSObjectProtocol for NSTableHeaderView {}
 
-#[cfg(feature = "AppKit_NSTableHeaderView")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSTableHeaderView {}
 
-#[cfg(feature = "AppKit_NSTableHeaderView")]
+#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
 unsafe impl NSViewToolTipOwner for NSTableHeaderView {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTableHeaderView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSTableHeaderView {
-        #[cfg(feature = "AppKit_NSTableView")]
+        #[cfg(all(feature = "AppKit_NSControl", feature = "AppKit_NSTableView"))]
         #[method_id(@__retain_semantics Other tableView)]
         pub unsafe fn tableView(&self) -> Option<Id<NSTableView>>;
 
-        #[cfg(feature = "AppKit_NSTableView")]
+        #[cfg(all(feature = "AppKit_NSControl", feature = "AppKit_NSTableView"))]
         #[method(setTableView:)]
         pub unsafe fn setTableView(&self, table_view: Option<&NSTableView>);
 
         #[method(draggedColumn)]
         pub unsafe fn draggedColumn(&self) -> NSInteger;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(draggedDistance)]
         pub unsafe fn draggedDistance(&self) -> CGFloat;
 
         #[method(resizedColumn)]
         pub unsafe fn resizedColumn(&self) -> NSInteger;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(headerRectOfColumn:)]
         pub unsafe fn headerRectOfColumn(&self, column: NSInteger) -> NSRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(columnAtPoint:)]
         pub unsafe fn columnAtPoint(&self, point: NSPoint) -> NSInteger;
     }
@@ -75,8 +106,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSView`
-    #[cfg(feature = "AppKit_NSTableHeaderView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSTableHeaderView {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
 
@@ -88,7 +120,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "AppKit_NSTableHeaderView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSTableHeaderView {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -97,7 +129,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTableHeaderView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSTableHeaderView {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

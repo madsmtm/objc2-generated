@@ -7,21 +7,17 @@ use crate::MediaPlayer::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MediaPlayer_MPContentItem")]
     pub struct MPContentItem;
 
-    #[cfg(feature = "MediaPlayer_MPContentItem")]
     unsafe impl ClassType for MPContentItem {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MediaPlayer_MPContentItem")]
 unsafe impl NSObjectProtocol for MPContentItem {}
 
 extern_methods!(
-    #[cfg(feature = "MediaPlayer_MPContentItem")]
     unsafe impl MPContentItem {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
@@ -47,11 +43,11 @@ extern_methods!(
         #[method(setSubtitle:)]
         pub unsafe fn setSubtitle(&self, subtitle: Option<&NSString>);
 
-        #[cfg(feature = "MediaPlayer_MPMediaItemArtwork")]
+        #[cfg(feature = "MediaPlayer_MPMediaItem")]
         #[method_id(@__retain_semantics Other artwork)]
         pub unsafe fn artwork(&self) -> Option<Id<MPMediaItemArtwork>>;
 
-        #[cfg(feature = "MediaPlayer_MPMediaItemArtwork")]
+        #[cfg(feature = "MediaPlayer_MPMediaItem")]
         #[method(setArtwork:)]
         pub unsafe fn setArtwork(&self, artwork: Option<&MPMediaItemArtwork>);
 
@@ -89,7 +85,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MediaPlayer_MPContentItem")]
     unsafe impl MPContentItem {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

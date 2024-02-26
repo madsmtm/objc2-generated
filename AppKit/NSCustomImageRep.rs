@@ -7,10 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSCustomImageRep")]
+    #[cfg(feature = "AppKit_NSImageRep")]
     pub struct NSCustomImageRep;
 
-    #[cfg(feature = "AppKit_NSCustomImageRep")]
+    #[cfg(feature = "AppKit_NSImageRep")]
     unsafe impl ClassType for NSCustomImageRep {
         #[inherits(NSObject)]
         type Super = NSImageRep;
@@ -18,18 +18,19 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSCustomImageRep")]
+#[cfg(all(feature = "AppKit_NSImageRep", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for NSCustomImageRep {}
 
-#[cfg(feature = "AppKit_NSCustomImageRep")]
+#[cfg(all(feature = "AppKit_NSImageRep", feature = "Foundation_NSObject"))]
 unsafe impl NSCopying for NSCustomImageRep {}
 
-#[cfg(feature = "AppKit_NSCustomImageRep")]
+#[cfg(feature = "AppKit_NSImageRep")]
 unsafe impl NSObjectProtocol for NSCustomImageRep {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSCustomImageRep")]
+    #[cfg(feature = "AppKit_NSImageRep")]
     unsafe impl NSCustomImageRep {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Init initWithSize:flipped:drawingHandler:)]
         pub unsafe fn initWithSize_flipped_drawingHandler(
             this: Allocated<Self>,
@@ -38,6 +39,7 @@ extern_methods!(
             drawing_handler: &Block<dyn Fn(NSRect) -> Bool>,
         ) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(drawingHandler)]
         pub unsafe fn drawingHandler(&self) -> *mut Block<dyn Fn(NSRect) -> Bool>;
 
@@ -58,7 +60,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSImageRep`
-    #[cfg(feature = "AppKit_NSCustomImageRep")]
+    #[cfg(feature = "AppKit_NSImageRep")]
     unsafe impl NSCustomImageRep {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -71,7 +73,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSCustomImageRep")]
+    #[cfg(feature = "AppKit_NSImageRep")]
     unsafe impl NSCustomImageRep {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -9,27 +9,21 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Photos_PHPersistentChange")]
     pub struct PHPersistentChange;
 
-    #[cfg(feature = "Photos_PHPersistentChange")]
     unsafe impl ClassType for PHPersistentChange {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Photos_PHPersistentChange")]
 unsafe impl Send for PHPersistentChange {}
 
-#[cfg(feature = "Photos_PHPersistentChange")]
 unsafe impl Sync for PHPersistentChange {}
 
-#[cfg(feature = "Photos_PHPersistentChange")]
 unsafe impl NSObjectProtocol for PHPersistentChange {}
 
 extern_methods!(
-    #[cfg(feature = "Photos_PHPersistentChange")]
     unsafe impl PHPersistentChange {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -43,7 +37,8 @@ extern_methods!(
 
         #[cfg(all(
             feature = "Foundation_NSError",
-            feature = "Photos_PHPersistentObjectChangeDetails"
+            feature = "Photos_PHPersistentObjectChangeDetails",
+            feature = "Photos_PhotosTypes"
         ))]
         #[method_id(@__retain_semantics Other changeDetailsForObjectType:error:_)]
         pub unsafe fn changeDetailsForObjectType_error(

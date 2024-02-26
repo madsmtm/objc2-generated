@@ -9,10 +9,10 @@ use crate::MapKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKMultiPoint")]
+    #[cfg(feature = "MapKit_MKShape")]
     pub struct MKMultiPoint;
 
-    #[cfg(feature = "MapKit_MKMultiPoint")]
+    #[cfg(feature = "MapKit_MKShape")]
     unsafe impl ClassType for MKMultiPoint {
         #[inherits(NSObject)]
         type Super = MKShape;
@@ -20,21 +20,23 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MapKit_MKMultiPoint")]
+#[cfg(all(feature = "MapKit_MKAnnotation", feature = "MapKit_MKShape"))]
 unsafe impl MKAnnotation for MKMultiPoint {}
 
-#[cfg(feature = "MapKit_MKMultiPoint")]
+#[cfg(feature = "MapKit_MKShape")]
 unsafe impl NSObjectProtocol for MKMultiPoint {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKMultiPoint")]
+    #[cfg(feature = "MapKit_MKShape")]
     unsafe impl MKMultiPoint {
+        #[cfg(feature = "MapKit_MKGeometry")]
         #[method(points)]
         pub unsafe fn points(&self) -> NonNull<MKMapPoint>;
 
         #[method(pointCount)]
         pub unsafe fn pointCount(&self) -> NSUInteger;
 
+        #[cfg(all(feature = "CoreLocation_CLLocation", feature = "Foundation_NSRange"))]
         #[method(getCoordinates:range:)]
         pub unsafe fn getCoordinates_range(
             &self,
@@ -42,13 +44,14 @@ extern_methods!(
             range: NSRange,
         );
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(locationAtPointIndex:)]
         pub unsafe fn locationAtPointIndex(&self, index: NSUInteger) -> CGFloat;
 
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSIndexSet",
-            feature = "Foundation_NSNumber"
+            feature = "Foundation_NSValue"
         ))]
         #[method_id(@__retain_semantics Other locationsAtPointIndexes:)]
         pub unsafe fn locationsAtPointIndexes(&self, indexes: &NSIndexSet)
@@ -58,7 +61,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MapKit_MKMultiPoint")]
+    #[cfg(feature = "MapKit_MKShape")]
     unsafe impl MKMultiPoint {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

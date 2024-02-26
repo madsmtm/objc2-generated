@@ -7,10 +7,18 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSButton")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     pub struct NSButton;
 
-    #[cfg(feature = "AppKit_NSButton")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl ClassType for NSButton {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;
@@ -18,41 +26,99 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSButton")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibility for NSButton {}
 
-#[cfg(feature = "AppKit_NSButton")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibilityButton for NSButton {}
 
-#[cfg(feature = "AppKit_NSButton")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibilityElementProtocol for NSButton {}
 
-#[cfg(feature = "AppKit_NSButton")]
+#[cfg(all(
+    feature = "AppKit_NSAnimation",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAnimatablePropertyContainer for NSButton {}
 
-#[cfg(feature = "AppKit_NSButton")]
+#[cfg(all(
+    feature = "AppKit_NSAppearance",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAppearanceCustomization for NSButton {}
 
-#[cfg(feature = "AppKit_NSButton")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSButton {}
 
-#[cfg(feature = "AppKit_NSButton")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSDragging",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSDraggingDestination for NSButton {}
 
-#[cfg(feature = "AppKit_NSButton")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSObjectProtocol for NSButton {}
 
-#[cfg(feature = "AppKit_NSButton")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceCompression",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSUserInterfaceCompression for NSButton {}
 
-#[cfg(feature = "AppKit_NSButton")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSButton {}
 
-#[cfg(feature = "AppKit_NSButton")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceValidation",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSUserInterfaceValidations for NSButton {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSButton")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSButton {
         #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other buttonWithTitle:image:target:action:)]
@@ -100,6 +166,7 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Id<Self>;
 
+        #[cfg(feature = "AppKit_NSButtonCell")]
         #[method(setButtonType:)]
         pub unsafe fn setButtonType(&self, r#type: NSButtonType);
 
@@ -174,9 +241,11 @@ extern_methods!(
             interval: NonNull<c_float>,
         );
 
+        #[cfg(feature = "AppKit_NSButtonCell")]
         #[method(bezelStyle)]
         pub unsafe fn bezelStyle(&self) -> NSBezelStyle;
 
+        #[cfg(feature = "AppKit_NSButtonCell")]
         #[method(setBezelStyle:)]
         pub unsafe fn setBezelStyle(&self, bezel_style: NSBezelStyle);
 
@@ -233,15 +302,19 @@ extern_methods!(
         #[method(setAlternateImage:)]
         pub unsafe fn setAlternateImage(&self, alternate_image: Option<&NSImage>);
 
+        #[cfg(feature = "AppKit_NSCell")]
         #[method(imagePosition)]
         pub unsafe fn imagePosition(&self) -> NSCellImagePosition;
 
+        #[cfg(feature = "AppKit_NSCell")]
         #[method(setImagePosition:)]
         pub unsafe fn setImagePosition(&self, image_position: NSCellImagePosition);
 
+        #[cfg(feature = "AppKit_NSCell")]
         #[method(imageScaling)]
         pub unsafe fn imageScaling(&self) -> NSImageScaling;
 
+        #[cfg(feature = "AppKit_NSCell")]
         #[method(setImageScaling:)]
         pub unsafe fn setImageScaling(&self, image_scaling: NSImageScaling);
 
@@ -251,20 +324,22 @@ extern_methods!(
         #[method(setImageHugsTitle:)]
         pub unsafe fn setImageHugsTitle(&self, image_hugs_title: bool);
 
-        #[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
+        #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other symbolConfiguration)]
         pub unsafe fn symbolConfiguration(&self) -> Option<Id<NSImageSymbolConfiguration>>;
 
-        #[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
+        #[cfg(feature = "AppKit_NSImage")]
         #[method(setSymbolConfiguration:)]
         pub unsafe fn setSymbolConfiguration(
             &self,
             symbol_configuration: Option<&NSImageSymbolConfiguration>,
         );
 
+        #[cfg(feature = "AppKit_NSCell")]
         #[method(state)]
         pub unsafe fn state(&self) -> NSControlStateValue;
 
+        #[cfg(feature = "AppKit_NSCell")]
         #[method(setState:)]
         pub unsafe fn setState(&self, state: NSControlStateValue);
 
@@ -288,9 +363,11 @@ extern_methods!(
         #[method(setKeyEquivalent:)]
         pub unsafe fn setKeyEquivalent(&self, key_equivalent: &NSString);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(keyEquivalentModifierMask)]
         pub unsafe fn keyEquivalentModifierMask(&self) -> NSEventModifierFlags;
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(setKeyEquivalentModifierMask:)]
         pub unsafe fn setKeyEquivalentModifierMask(
             &self,
@@ -302,7 +379,7 @@ extern_methods!(
         pub unsafe fn performKeyEquivalent(&self, key: &NSEvent) -> bool;
 
         #[cfg(all(
-            feature = "AppKit_NSUserInterfaceCompressionOptions",
+            feature = "AppKit_NSUserInterfaceCompression",
             feature = "Foundation_NSArray"
         ))]
         #[method(compressWithPrioritizedCompressionOptions:)]
@@ -312,8 +389,9 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "AppKit_NSUserInterfaceCompressionOptions",
-            feature = "Foundation_NSArray"
+            feature = "AppKit_NSUserInterfaceCompression",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSGeometry"
         ))]
         #[method(minimumSizeWithPrioritizedCompressionOptions:)]
         pub unsafe fn minimumSizeWithPrioritizedCompressionOptions(
@@ -321,7 +399,7 @@ extern_methods!(
             prioritized_options: &NSArray<NSUserInterfaceCompressionOptions>,
         ) -> NSSize;
 
-        #[cfg(feature = "AppKit_NSUserInterfaceCompressionOptions")]
+        #[cfg(feature = "AppKit_NSUserInterfaceCompression")]
         #[method_id(@__retain_semantics Other activeCompressionOptions)]
         pub unsafe fn activeCompressionOptions(&self) -> Id<NSUserInterfaceCompressionOptions>;
     }
@@ -329,8 +407,13 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSControl`
-    #[cfg(feature = "AppKit_NSButton")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSButton {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
 
@@ -342,7 +425,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "AppKit_NSButton")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSButton {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -351,7 +438,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSButton")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSButton {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -360,7 +451,11 @@ extern_methods!(
 
 extern_methods!(
     /// NSButtonDeprecated
-    #[cfg(feature = "AppKit_NSButton")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSButton {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Mnemonics are not used on macOS. Set the title property directly instead."]

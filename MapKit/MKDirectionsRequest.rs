@@ -19,21 +19,17 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKDirectionsRequest")]
     pub struct MKDirectionsRequest;
 
-    #[cfg(feature = "MapKit_MKDirectionsRequest")]
     unsafe impl ClassType for MKDirectionsRequest {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MapKit_MKDirectionsRequest")]
 unsafe impl NSObjectProtocol for MKDirectionsRequest {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKDirectionsRequest")]
     unsafe impl MKDirectionsRequest {
         #[cfg(feature = "MapKit_MKMapItem")]
         #[method_id(@__retain_semantics Other source)]
@@ -55,7 +51,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MapKit_MKDirectionsRequest")]
     unsafe impl MKDirectionsRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -67,11 +62,12 @@ extern_methods!(
 
 extern_methods!(
     /// MKRequestOptions
-    #[cfg(feature = "MapKit_MKDirectionsRequest")]
     unsafe impl MKDirectionsRequest {
+        #[cfg(feature = "MapKit_MKDirectionsTypes")]
         #[method(transportType)]
         pub unsafe fn transportType(&self) -> MKDirectionsTransportType;
 
+        #[cfg(feature = "MapKit_MKDirectionsTypes")]
         #[method(setTransportType:)]
         pub unsafe fn setTransportType(&self, transport_type: MKDirectionsTransportType);
 
@@ -113,7 +109,6 @@ extern_methods!(
 
 extern_methods!(
     /// MKDirectionsURL
-    #[cfg(feature = "MapKit_MKDirectionsRequest")]
     unsafe impl MKDirectionsRequest {
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:)]

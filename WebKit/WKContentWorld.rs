@@ -7,21 +7,17 @@ use crate::WebKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_WKContentWorld")]
     pub struct WKContentWorld;
 
-    #[cfg(feature = "WebKit_WKContentWorld")]
     unsafe impl ClassType for WKContentWorld {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "WebKit_WKContentWorld")]
 unsafe impl NSObjectProtocol for WKContentWorld {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_WKContentWorld")]
     unsafe impl WKContentWorld {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

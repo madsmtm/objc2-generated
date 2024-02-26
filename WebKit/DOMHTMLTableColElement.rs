@@ -7,11 +7,23 @@ use crate::WebKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_DOMHTMLTableColElement")]
+    #[cfg(all(
+        feature = "WebKit_DOMElement",
+        feature = "WebKit_DOMHTMLElement",
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     #[deprecated]
     pub struct DOMHTMLTableColElement;
 
-    #[cfg(feature = "WebKit_DOMHTMLTableColElement")]
+    #[cfg(all(
+        feature = "WebKit_DOMElement",
+        feature = "WebKit_DOMHTMLElement",
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl ClassType for DOMHTMLTableColElement {
         #[inherits(DOMElement, DOMNode, DOMObject, WebScriptObject, NSObject)]
         type Super = DOMHTMLElement;
@@ -19,17 +31,44 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "WebKit_DOMHTMLTableColElement")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "WebKit_DOMElement",
+    feature = "WebKit_DOMEventTarget",
+    feature = "WebKit_DOMHTMLElement",
+    feature = "WebKit_DOMNode",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl DOMEventTarget for DOMHTMLTableColElement {}
 
-#[cfg(feature = "WebKit_DOMHTMLTableColElement")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "WebKit_DOMElement",
+    feature = "WebKit_DOMHTMLElement",
+    feature = "WebKit_DOMNode",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSCopying for DOMHTMLTableColElement {}
 
-#[cfg(feature = "WebKit_DOMHTMLTableColElement")]
+#[cfg(all(
+    feature = "WebKit_DOMElement",
+    feature = "WebKit_DOMHTMLElement",
+    feature = "WebKit_DOMNode",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSObjectProtocol for DOMHTMLTableColElement {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_DOMHTMLTableColElement")]
+    #[cfg(all(
+        feature = "WebKit_DOMElement",
+        feature = "WebKit_DOMHTMLElement",
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMHTMLTableColElement {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
@@ -93,7 +132,13 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
-    #[cfg(feature = "WebKit_DOMHTMLTableColElement")]
+    #[cfg(all(
+        feature = "WebKit_DOMElement",
+        feature = "WebKit_DOMHTMLElement",
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMHTMLTableColElement {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
@@ -103,7 +148,13 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_DOMHTMLTableColElement")]
+    #[cfg(all(
+        feature = "WebKit_DOMElement",
+        feature = "WebKit_DOMHTMLElement",
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMHTMLTableColElement {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

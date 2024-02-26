@@ -27,21 +27,17 @@ pub type NSPropertyListWriteOptions = NSUInteger;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSPropertyListSerialization")]
     pub struct NSPropertyListSerialization;
 
-    #[cfg(feature = "Foundation_NSPropertyListSerialization")]
     unsafe impl ClassType for NSPropertyListSerialization {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSPropertyListSerialization")]
 unsafe impl NSObjectProtocol for NSPropertyListSerialization {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSPropertyListSerialization")]
     unsafe impl NSPropertyListSerialization {
         #[method(propertyList:isValidForFormat:)]
         pub unsafe fn propertyList_isValidForFormat(
@@ -65,7 +61,7 @@ extern_methods!(
             format: *mut NSPropertyListFormat,
         ) -> Result<Id<AnyObject>, Id<NSError>>;
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSInputStream"))]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSStream"))]
         #[method_id(@__retain_semantics Other propertyListWithStream:options:format:error:_)]
         pub unsafe fn propertyListWithStream_options_format_error(
             stream: &NSInputStream,
@@ -77,7 +73,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSPropertyListSerialization")]
     unsafe impl NSPropertyListSerialization {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

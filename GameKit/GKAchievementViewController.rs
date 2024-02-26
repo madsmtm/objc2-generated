@@ -7,11 +7,19 @@ use crate::GameKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameKit_GKAchievementViewController")]
+    #[cfg(all(
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSViewController",
+        feature = "GameKit_GKGameCenterViewController"
+    ))]
     #[deprecated]
     pub struct GKAchievementViewController;
 
-    #[cfg(feature = "GameKit_GKAchievementViewController")]
+    #[cfg(all(
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSViewController",
+        feature = "GameKit_GKGameCenterViewController"
+    ))]
     unsafe impl ClassType for GKAchievementViewController {
         #[inherits(NSViewController, NSResponder, NSObject)]
         type Super = GKGameCenterViewController;
@@ -19,26 +27,59 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "GameKit_GKAchievementViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController",
+    feature = "GameKit_GKDialogController",
+    feature = "GameKit_GKGameCenterViewController"
+))]
 unsafe impl GKViewController for GKAchievementViewController {}
 
-#[cfg(feature = "GameKit_GKAchievementViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController",
+    feature = "Foundation_NSObject",
+    feature = "GameKit_GKGameCenterViewController"
+))]
 unsafe impl NSCoding for GKAchievementViewController {}
 
-#[cfg(feature = "GameKit_GKAchievementViewController")]
+#[cfg(all(
+    feature = "AppKit_NSKeyValueBinding",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController",
+    feature = "GameKit_GKGameCenterViewController"
+))]
 unsafe impl NSEditor for GKAchievementViewController {}
 
-#[cfg(feature = "GameKit_GKAchievementViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController",
+    feature = "GameKit_GKGameCenterViewController"
+))]
 unsafe impl NSObjectProtocol for GKAchievementViewController {}
 
-#[cfg(feature = "GameKit_GKAchievementViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSStoryboardSegue",
+    feature = "AppKit_NSViewController",
+    feature = "GameKit_GKGameCenterViewController"
+))]
 unsafe impl NSSeguePerforming for GKAchievementViewController {}
 
-#[cfg(feature = "GameKit_GKAchievementViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSViewController",
+    feature = "GameKit_GKGameCenterViewController"
+))]
 unsafe impl NSUserInterfaceItemIdentification for GKAchievementViewController {}
 
 extern_methods!(
-    #[cfg(feature = "GameKit_GKAchievementViewController")]
+    #[cfg(all(
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSViewController",
+        feature = "GameKit_GKGameCenterViewController"
+    ))]
     unsafe impl GKAchievementViewController {
         #[deprecated]
         #[method_id(@__retain_semantics Other achievementDelegate)]
@@ -57,9 +98,17 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSViewController`
-    #[cfg(feature = "GameKit_GKAchievementViewController")]
+    #[cfg(all(
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSViewController",
+        feature = "GameKit_GKGameCenterViewController"
+    ))]
     unsafe impl GKAchievementViewController {
-        #[cfg(all(feature = "Foundation_NSBundle", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSNib",
+            feature = "Foundation_NSBundle",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -75,7 +124,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "GameKit_GKAchievementViewController")]
+    #[cfg(all(
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSViewController",
+        feature = "GameKit_GKGameCenterViewController"
+    ))]
     unsafe impl GKAchievementViewController {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -84,7 +137,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameKit_GKAchievementViewController")]
+    #[cfg(all(
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSViewController",
+        feature = "GameKit_GKGameCenterViewController"
+    ))]
     unsafe impl GKAchievementViewController {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -94,7 +151,11 @@ extern_methods!(
 extern_protocol!(
     #[deprecated]
     pub unsafe trait GKAchievementViewControllerDelegate: NSObjectProtocol {
-        #[cfg(feature = "GameKit_GKAchievementViewController")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSViewController",
+            feature = "GameKit_GKGameCenterViewController"
+        ))]
         #[deprecated]
         #[method(achievementViewControllerDidFinish:)]
         unsafe fn achievementViewControllerDidFinish(

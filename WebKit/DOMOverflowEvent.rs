@@ -14,11 +14,19 @@ pub const DOM_BOTH: c_uint = 2;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_DOMOverflowEvent")]
+    #[cfg(all(
+        feature = "WebKit_DOMEvent",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     #[deprecated]
     pub struct DOMOverflowEvent;
 
-    #[cfg(feature = "WebKit_DOMOverflowEvent")]
+    #[cfg(all(
+        feature = "WebKit_DOMEvent",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl ClassType for DOMOverflowEvent {
         #[inherits(DOMObject, WebScriptObject, NSObject)]
         type Super = DOMEvent;
@@ -26,14 +34,27 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "WebKit_DOMOverflowEvent")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "WebKit_DOMEvent",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSCopying for DOMOverflowEvent {}
 
-#[cfg(feature = "WebKit_DOMOverflowEvent")]
+#[cfg(all(
+    feature = "WebKit_DOMEvent",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSObjectProtocol for DOMOverflowEvent {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_DOMOverflowEvent")]
+    #[cfg(all(
+        feature = "WebKit_DOMEvent",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMOverflowEvent {
         #[deprecated]
         #[method(orient)]
@@ -60,7 +81,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
-    #[cfg(feature = "WebKit_DOMOverflowEvent")]
+    #[cfg(all(
+        feature = "WebKit_DOMEvent",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMOverflowEvent {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
@@ -70,7 +95,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_DOMOverflowEvent")]
+    #[cfg(all(
+        feature = "WebKit_DOMEvent",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMOverflowEvent {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

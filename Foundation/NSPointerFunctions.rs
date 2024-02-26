@@ -25,24 +25,20 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSPointerFunctions")]
     pub struct NSPointerFunctions;
 
-    #[cfg(feature = "Foundation_NSPointerFunctions")]
     unsafe impl ClassType for NSPointerFunctions {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSPointerFunctions")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSPointerFunctions {}
 
-#[cfg(feature = "Foundation_NSPointerFunctions")]
 unsafe impl NSObjectProtocol for NSPointerFunctions {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSPointerFunctions")]
     unsafe impl NSPointerFunctions {
         #[method_id(@__retain_semantics Init initWithOptions:)]
         pub unsafe fn initWithOptions(
@@ -190,7 +186,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSPointerFunctions")]
     unsafe impl NSPointerFunctions {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -9,10 +9,10 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Photos_PHCollectionListChangeRequest")]
+    #[cfg(feature = "Photos_PHChangeRequest")]
     pub struct PHCollectionListChangeRequest;
 
-    #[cfg(feature = "Photos_PHCollectionListChangeRequest")]
+    #[cfg(feature = "Photos_PHChangeRequest")]
     unsafe impl ClassType for PHCollectionListChangeRequest {
         #[inherits(NSObject)]
         type Super = PHChangeRequest;
@@ -20,26 +20,27 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Photos_PHCollectionListChangeRequest")]
+#[cfg(feature = "Photos_PHChangeRequest")]
 unsafe impl NSObjectProtocol for PHCollectionListChangeRequest {}
 
 extern_methods!(
-    #[cfg(feature = "Photos_PHCollectionListChangeRequest")]
+    #[cfg(feature = "Photos_PHChangeRequest")]
     unsafe impl PHCollectionListChangeRequest {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other creationRequestForCollectionListWithTitle:)]
         pub unsafe fn creationRequestForCollectionListWithTitle(title: &NSString) -> Id<Self>;
 
-        #[cfg(feature = "Photos_PHObjectPlaceholder")]
+        #[cfg(feature = "Photos_PHObject")]
         #[method_id(@__retain_semantics Other placeholderForCreatedCollectionList)]
         pub unsafe fn placeholderForCreatedCollectionList(&self) -> Id<PHObjectPlaceholder>;
 
+        #[cfg(feature = "Foundation_NSEnumerator")]
         #[method(deleteCollectionLists:)]
         pub unsafe fn deleteCollectionLists(
             collection_lists: &ProtocolObject<dyn NSFastEnumeration>,
         );
 
-        #[cfg(feature = "Photos_PHCollectionList")]
+        #[cfg(all(feature = "Photos_PHCollection", feature = "Photos_PHObject"))]
         #[method_id(@__retain_semantics Other changeRequestForCollectionList:)]
         pub unsafe fn changeRequestForCollectionList(
             collection_list: &PHCollectionList,
@@ -47,8 +48,8 @@ extern_methods!(
 
         #[cfg(all(
             feature = "Photos_PHCollection",
-            feature = "Photos_PHCollectionList",
-            feature = "Photos_PHFetchResult"
+            feature = "Photos_PHFetchResult",
+            feature = "Photos_PHObject"
         ))]
         #[method_id(@__retain_semantics Other changeRequestForCollectionList:childCollections:)]
         pub unsafe fn changeRequestForCollectionList_childCollections(
@@ -56,7 +57,11 @@ extern_methods!(
             child_collections: &PHFetchResult<PHCollection>,
         ) -> Option<Id<Self>>;
 
-        #[cfg(all(feature = "Photos_PHCollection", feature = "Photos_PHFetchResult"))]
+        #[cfg(all(
+            feature = "Photos_PHCollection",
+            feature = "Photos_PHFetchResult",
+            feature = "Photos_PHObject"
+        ))]
         #[method_id(@__retain_semantics Other changeRequestForTopLevelCollectionListUserCollections:)]
         pub unsafe fn changeRequestForTopLevelCollectionListUserCollections(
             child_collections: &PHFetchResult<PHCollection>,
@@ -70,13 +75,14 @@ extern_methods!(
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
+        #[cfg(feature = "Foundation_NSEnumerator")]
         #[method(addChildCollections:)]
         pub unsafe fn addChildCollections(
             &self,
             collections: &ProtocolObject<dyn NSFastEnumeration>,
         );
 
-        #[cfg(feature = "Foundation_NSIndexSet")]
+        #[cfg(all(feature = "Foundation_NSEnumerator", feature = "Foundation_NSIndexSet"))]
         #[method(insertChildCollections:atIndexes:)]
         pub unsafe fn insertChildCollections_atIndexes(
             &self,
@@ -84,6 +90,7 @@ extern_methods!(
             indexes: &NSIndexSet,
         );
 
+        #[cfg(feature = "Foundation_NSEnumerator")]
         #[method(removeChildCollections:)]
         pub unsafe fn removeChildCollections(
             &self,
@@ -94,7 +101,7 @@ extern_methods!(
         #[method(removeChildCollectionsAtIndexes:)]
         pub unsafe fn removeChildCollectionsAtIndexes(&self, indexes: &NSIndexSet);
 
-        #[cfg(feature = "Foundation_NSIndexSet")]
+        #[cfg(all(feature = "Foundation_NSEnumerator", feature = "Foundation_NSIndexSet"))]
         #[method(replaceChildCollectionsAtIndexes:withChildCollections:)]
         pub unsafe fn replaceChildCollectionsAtIndexes_withChildCollections(
             &self,
@@ -114,7 +121,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Photos_PHCollectionListChangeRequest")]
+    #[cfg(feature = "Photos_PHChangeRequest")]
     unsafe impl PHCollectionListChangeRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

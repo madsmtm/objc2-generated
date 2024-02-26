@@ -23,21 +23,17 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreLocation_CLUpdate")]
     pub struct CLUpdate;
 
-    #[cfg(feature = "CoreLocation_CLUpdate")]
     unsafe impl ClassType for CLUpdate {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreLocation_CLUpdate")]
 unsafe impl NSObjectProtocol for CLUpdate {}
 
 extern_methods!(
-    #[cfg(feature = "CoreLocation_CLUpdate")]
     unsafe impl CLUpdate {
         #[method(isStationary)]
         pub unsafe fn isStationary(&self) -> bool;
@@ -50,7 +46,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreLocation_CLUpdate")]
     unsafe impl CLUpdate {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -62,21 +57,17 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreLocation_CLLocationUpdater")]
     pub struct CLLocationUpdater;
 
-    #[cfg(feature = "CoreLocation_CLLocationUpdater")]
     unsafe impl ClassType for CLLocationUpdater {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreLocation_CLLocationUpdater")]
 unsafe impl NSObjectProtocol for CLLocationUpdater {}
 
 extern_methods!(
-    #[cfg(feature = "CoreLocation_CLLocationUpdater")]
     unsafe impl CLLocationUpdater {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

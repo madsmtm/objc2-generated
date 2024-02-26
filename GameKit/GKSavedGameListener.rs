@@ -7,13 +7,18 @@ use crate::GameKit::*;
 
 extern_protocol!(
     pub unsafe trait GKSavedGameListener: NSObjectProtocol {
-        #[cfg(all(feature = "GameKit_GKPlayer", feature = "GameKit_GKSavedGame"))]
+        #[cfg(all(
+            feature = "GameKit_GKBasePlayer",
+            feature = "GameKit_GKPlayer",
+            feature = "GameKit_GKSavedGame"
+        ))]
         #[optional]
         #[method(player:didModifySavedGame:)]
         unsafe fn player_didModifySavedGame(&self, player: &GKPlayer, saved_game: &GKSavedGame);
 
         #[cfg(all(
             feature = "Foundation_NSArray",
+            feature = "GameKit_GKBasePlayer",
             feature = "GameKit_GKPlayer",
             feature = "GameKit_GKSavedGame"
         ))]

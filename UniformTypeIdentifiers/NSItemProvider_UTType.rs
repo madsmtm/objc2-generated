@@ -9,6 +9,7 @@ extern_category!(
     #[doc(alias = "UTType")]
     pub unsafe trait NSItemProviderUTType {
         #[cfg(all(
+            feature = "Foundation_NSItemProvider",
             feature = "Foundation_NSURL",
             feature = "UniformTypeIdentifiers_UTType"
         ))]
@@ -25,6 +26,7 @@ extern_category!(
         #[cfg(all(
             feature = "Foundation_NSData",
             feature = "Foundation_NSError",
+            feature = "Foundation_NSItemProvider",
             feature = "Foundation_NSProgress",
             feature = "UniformTypeIdentifiers_UTType"
         ))]
@@ -40,6 +42,7 @@ extern_category!(
 
         #[cfg(all(
             feature = "Foundation_NSError",
+            feature = "Foundation_NSItemProvider",
             feature = "Foundation_NSProgress",
             feature = "Foundation_NSURL",
             feature = "UniformTypeIdentifiers_UTType"

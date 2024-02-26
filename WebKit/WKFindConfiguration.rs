@@ -7,24 +7,20 @@ use crate::WebKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_WKFindConfiguration")]
     pub struct WKFindConfiguration;
 
-    #[cfg(feature = "WebKit_WKFindConfiguration")]
     unsafe impl ClassType for WKFindConfiguration {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "WebKit_WKFindConfiguration")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for WKFindConfiguration {}
 
-#[cfg(feature = "WebKit_WKFindConfiguration")]
 unsafe impl NSObjectProtocol for WKFindConfiguration {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_WKFindConfiguration")]
     unsafe impl WKFindConfiguration {
         #[method(backwards)]
         pub unsafe fn backwards(&self) -> bool;
@@ -48,7 +44,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_WKFindConfiguration")]
     unsafe impl WKFindConfiguration {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

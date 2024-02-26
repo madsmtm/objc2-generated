@@ -9,6 +9,7 @@ use crate::MapKit::*;
 
 extern_struct!(
     #[encoding_name("?")]
+    #[cfg(feature = "CoreLocation_CLLocation")]
     pub struct MKCoordinateSpan {
         pub latitudeDelta: CLLocationDegrees,
         pub longitudeDelta: CLLocationDegrees,
@@ -17,6 +18,7 @@ extern_struct!(
 
 extern_struct!(
     #[encoding_name("?")]
+    #[cfg(feature = "CoreLocation_CLLocation")]
     pub struct MKCoordinateRegion {
         pub center: CLLocationCoordinate2D,
         pub span: MKCoordinateSpan,
@@ -42,6 +44,7 @@ inline_fn!(
 );
 
 extern_fn!(
+    #[cfg(feature = "CoreLocation_CLLocation")]
     pub unsafe fn MKCoordinateRegionMakeWithDistance(
         center_coordinate: CLLocationCoordinate2D,
         latitudinal_meters: CLLocationDistance,
@@ -73,6 +76,7 @@ extern_struct!(
     }
 );
 
+#[cfg(feature = "Foundation_NSGeometry")]
 pub type MKZoomScale = CGFloat;
 
 extern_static!(MKMapSizeWorld: MKMapSize);
@@ -80,22 +84,27 @@ extern_static!(MKMapSizeWorld: MKMapSize);
 extern_static!(MKMapRectWorld: MKMapRect);
 
 extern_fn!(
+    #[cfg(feature = "CoreLocation_CLLocation")]
     pub unsafe fn MKMapPointForCoordinate(coordinate: CLLocationCoordinate2D) -> MKMapPoint;
 );
 
 extern_fn!(
+    #[cfg(feature = "CoreLocation_CLLocation")]
     pub unsafe fn MKCoordinateForMapPoint(map_point: MKMapPoint) -> CLLocationCoordinate2D;
 );
 
 extern_fn!(
+    #[cfg(feature = "CoreLocation_CLLocation")]
     pub unsafe fn MKMetersPerMapPointAtLatitude(latitude: CLLocationDegrees) -> CLLocationDistance;
 );
 
 extern_fn!(
+    #[cfg(feature = "CoreLocation_CLLocation")]
     pub unsafe fn MKMapPointsPerMeterAtLatitude(latitude: CLLocationDegrees) -> c_double;
 );
 
 extern_fn!(
+    #[cfg(feature = "CoreLocation_CLLocation")]
     pub unsafe fn MKMetersBetweenMapPoints(a: MKMapPoint, b: MKMapPoint) -> CLLocationDistance;
 );
 
@@ -249,6 +258,7 @@ extern_fn!(
 );
 
 extern_fn!(
+    #[cfg(feature = "CoreLocation_CLLocation")]
     pub unsafe fn MKCoordinateRegionForMapRect(rect: MKMapRect) -> MKCoordinateRegion;
 );
 
@@ -263,17 +273,23 @@ extern_fn!(
 extern_category!(
     /// Category on [`NSValue`].
     pub unsafe trait NSValueMapKitGeometryExtensions {
-        #[cfg(feature = "Foundation_NSValue")]
+        #[cfg(all(feature = "CoreLocation_CLLocation", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Other valueWithMKCoordinate:)]
         unsafe fn valueWithMKCoordinate(coordinate: CLLocationCoordinate2D) -> Id<NSValue>;
 
-        #[cfg(feature = "Foundation_NSValue")]
+        #[cfg(all(
+            feature = "CoreLocation_CLLocation",
+            feature = "Foundation_NSValue",
+            feature = "MapKit_MKGeometry"
+        ))]
         #[method_id(@__retain_semantics Other valueWithMKCoordinateSpan:)]
         unsafe fn valueWithMKCoordinateSpan(span: MKCoordinateSpan) -> Id<NSValue>;
 
+        #[cfg(feature = "CoreLocation_CLLocation")]
         #[method(MKCoordinateValue)]
         unsafe fn MKCoordinateValue(&self) -> CLLocationCoordinate2D;
 
+        #[cfg(all(feature = "CoreLocation_CLLocation", feature = "MapKit_MKGeometry"))]
         #[method(MKCoordinateSpanValue)]
         unsafe fn MKCoordinateSpanValue(&self) -> MKCoordinateSpan;
     }

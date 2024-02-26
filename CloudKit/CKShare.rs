@@ -5,27 +5,27 @@ use crate::CloudKit::*;
 use crate::CoreLocation::*;
 use crate::Foundation::*;
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "CloudKit_CKRecord", feature = "Foundation_NSString"))]
 extern_static!(CKRecordTypeShare: &'static CKRecordType);
 
 #[cfg(feature = "Foundation_NSString")]
 extern_static!(CKRecordNameZoneWideShare: &'static NSString);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "CloudKit_CKRecord", feature = "Foundation_NSString"))]
 extern_static!(CKShareTitleKey: &'static CKRecordFieldKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "CloudKit_CKRecord", feature = "Foundation_NSString"))]
 extern_static!(CKShareThumbnailImageDataKey: &'static CKRecordFieldKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "CloudKit_CKRecord", feature = "Foundation_NSString"))]
 extern_static!(CKShareTypeKey: &'static CKRecordFieldKey);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKShare")]
+    #[cfg(feature = "CloudKit_CKRecord")]
     pub struct CKShare;
 
-    #[cfg(feature = "CloudKit_CKShare")]
+    #[cfg(feature = "CloudKit_CKRecord")]
     unsafe impl ClassType for CKShare {
         #[inherits(NSObject)]
         type Super = CKRecord;
@@ -33,20 +33,20 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CloudKit_CKShare")]
+#[cfg(all(feature = "CloudKit_CKRecord", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for CKShare {}
 
-#[cfg(feature = "CloudKit_CKShare")]
+#[cfg(all(feature = "CloudKit_CKRecord", feature = "Foundation_NSObject"))]
 unsafe impl NSCopying for CKShare {}
 
-#[cfg(feature = "CloudKit_CKShare")]
+#[cfg(feature = "CloudKit_CKRecord")]
 unsafe impl NSObjectProtocol for CKShare {}
 
-#[cfg(feature = "CloudKit_CKShare")]
+#[cfg(all(feature = "CloudKit_CKRecord", feature = "Foundation_NSObject"))]
 unsafe impl NSSecureCoding for CKShare {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKShare")]
+    #[cfg(feature = "CloudKit_CKRecord")]
     unsafe impl CKShare {
         #[method_id(@__retain_semantics Init initWithRootRecord:)]
         pub unsafe fn initWithRootRecord(this: Allocated<Self>, root_record: &CKRecord)
@@ -71,9 +71,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Id<Self>;
 
+        #[cfg(feature = "CloudKit_CKShareParticipant")]
         #[method(publicPermission)]
         pub unsafe fn publicPermission(&self) -> CKShareParticipantPermission;
 
+        #[cfg(feature = "CloudKit_CKShareParticipant")]
         #[method(setPublicPermission:)]
         pub unsafe fn setPublicPermission(&self, public_permission: CKShareParticipantPermission);
 

@@ -6,10 +6,10 @@ use crate::MetricKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MetricKit_MXHangDiagnostic")]
+    #[cfg(feature = "MetricKit_MXDiagnostic")]
     pub struct MXHangDiagnostic;
 
-    #[cfg(feature = "MetricKit_MXHangDiagnostic")]
+    #[cfg(feature = "MetricKit_MXDiagnostic")]
     unsafe impl ClassType for MXHangDiagnostic {
         #[inherits(NSObject)]
         type Super = MXDiagnostic;
@@ -17,26 +17,23 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MetricKit_MXHangDiagnostic")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "MetricKit_MXDiagnostic"))]
 unsafe impl NSCoding for MXHangDiagnostic {}
 
-#[cfg(feature = "MetricKit_MXHangDiagnostic")]
+#[cfg(feature = "MetricKit_MXDiagnostic")]
 unsafe impl NSObjectProtocol for MXHangDiagnostic {}
 
-#[cfg(feature = "MetricKit_MXHangDiagnostic")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "MetricKit_MXDiagnostic"))]
 unsafe impl NSSecureCoding for MXHangDiagnostic {}
 
 extern_methods!(
-    #[cfg(feature = "MetricKit_MXHangDiagnostic")]
+    #[cfg(feature = "MetricKit_MXDiagnostic")]
     unsafe impl MXHangDiagnostic {
         #[cfg(feature = "MetricKit_MXCallStackTree")]
         #[method_id(@__retain_semantics Other callStackTree)]
         pub unsafe fn callStackTree(&self) -> Id<MXCallStackTree>;
 
-        #[cfg(all(
-            feature = "Foundation_NSMeasurement",
-            feature = "Foundation_NSUnitDuration"
-        ))]
+        #[cfg(all(feature = "Foundation_NSMeasurement", feature = "Foundation_NSUnit"))]
         #[method_id(@__retain_semantics Other hangDuration)]
         pub unsafe fn hangDuration(&self) -> Id<NSMeasurement<NSUnitDuration>>;
     }
@@ -44,7 +41,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MetricKit_MXHangDiagnostic")]
+    #[cfg(feature = "MetricKit_MXDiagnostic")]
     unsafe impl MXHangDiagnostic {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

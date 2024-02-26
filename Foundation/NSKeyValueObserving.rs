@@ -61,7 +61,11 @@ extern_category!(
     /// Category "NSKeyValueObserving" on [`NSObject`].
     #[doc(alias = "NSKeyValueObserving")]
     pub unsafe trait NSObjectNSKeyValueObserving {
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSKeyValueObserving",
+            feature = "Foundation_NSString"
+        ))]
         #[method(observeValueForKeyPath:ofObject:change:context:)]
         unsafe fn observeValueForKeyPath_ofObject_change_context(
             &self,
@@ -79,7 +83,10 @@ extern_category!(
     /// Category "NSKeyValueObserverRegistration" on [`NSObject`].
     #[doc(alias = "NSKeyValueObserverRegistration")]
     pub unsafe trait NSObjectNSKeyValueObserverRegistration {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "Foundation_NSKeyValueObserving",
+            feature = "Foundation_NSString"
+        ))]
         #[method(addObserver:forKeyPath:options:context:)]
         unsafe fn addObserver_forKeyPath_options_context(
             &self,
@@ -110,7 +117,11 @@ extern_methods!(
     /// NSKeyValueObserverRegistration
     #[cfg(feature = "Foundation_NSArray")]
     unsafe impl<ObjectType: Message> NSArray<ObjectType> {
-        #[cfg(all(feature = "Foundation_NSIndexSet", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSIndexSet",
+            feature = "Foundation_NSKeyValueObserving",
+            feature = "Foundation_NSString"
+        ))]
         #[method(addObserver:toObjectsAtIndexes:forKeyPath:options:context:)]
         pub unsafe fn addObserver_toObjectsAtIndexes_forKeyPath_options_context(
             &self,
@@ -140,7 +151,10 @@ extern_methods!(
             key_path: &NSString,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "Foundation_NSKeyValueObserving",
+            feature = "Foundation_NSString"
+        ))]
         #[method(addObserver:forKeyPath:options:context:)]
         pub unsafe fn addObserver_forKeyPath_options_context(
             &self,
@@ -169,7 +183,10 @@ extern_methods!(
     /// NSKeyValueObserverRegistration
     #[cfg(feature = "Foundation_NSOrderedSet")]
     unsafe impl<ObjectType: Message> NSOrderedSet<ObjectType> {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "Foundation_NSKeyValueObserving",
+            feature = "Foundation_NSString"
+        ))]
         #[method(addObserver:forKeyPath:options:context:)]
         pub unsafe fn addObserver_forKeyPath_options_context(
             &self,
@@ -198,7 +215,10 @@ extern_methods!(
     /// NSKeyValueObserverRegistration
     #[cfg(feature = "Foundation_NSSet")]
     unsafe impl<ObjectType: Message> NSSet<ObjectType> {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "Foundation_NSKeyValueObserving",
+            feature = "Foundation_NSString"
+        ))]
         #[method(addObserver:forKeyPath:options:context:)]
         pub unsafe fn addObserver_forKeyPath_options_context(
             &self,
@@ -235,7 +255,11 @@ extern_category!(
         #[method(didChangeValueForKey:)]
         unsafe fn didChangeValueForKey(&self, key: &NSString);
 
-        #[cfg(all(feature = "Foundation_NSIndexSet", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSIndexSet",
+            feature = "Foundation_NSKeyValueObserving",
+            feature = "Foundation_NSString"
+        ))]
         #[method(willChange:valuesAtIndexes:forKey:)]
         unsafe fn willChange_valuesAtIndexes_forKey(
             &self,
@@ -244,7 +268,11 @@ extern_category!(
             key: &NSString,
         );
 
-        #[cfg(all(feature = "Foundation_NSIndexSet", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSIndexSet",
+            feature = "Foundation_NSKeyValueObserving",
+            feature = "Foundation_NSString"
+        ))]
         #[method(didChange:valuesAtIndexes:forKey:)]
         unsafe fn didChange_valuesAtIndexes_forKey(
             &self,
@@ -253,7 +281,11 @@ extern_category!(
             key: &NSString,
         );
 
-        #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSKeyValueObserving",
+            feature = "Foundation_NSSet",
+            feature = "Foundation_NSString"
+        ))]
         #[method(willChangeValueForKey:withSetMutation:usingObjects:)]
         unsafe fn willChangeValueForKey_withSetMutation_usingObjects(
             &self,
@@ -262,7 +294,11 @@ extern_category!(
             objects: &NSSet,
         );
 
-        #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSKeyValueObserving",
+            feature = "Foundation_NSSet",
+            feature = "Foundation_NSString"
+        ))]
         #[method(didChangeValueForKey:withSetMutation:usingObjects:)]
         unsafe fn didChangeValueForKey_withSetMutation_usingObjects(
             &self,

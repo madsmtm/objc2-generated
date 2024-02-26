@@ -46,24 +46,20 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSFontManager")]
     pub struct NSFontManager;
 
-    #[cfg(feature = "AppKit_NSFontManager")]
     unsafe impl ClassType for NSFontManager {
         type Super = NSObject;
         type Mutability = MainThreadOnly;
     }
 );
 
-#[cfg(feature = "AppKit_NSFontManager")]
+#[cfg(feature = "AppKit_NSMenu")]
 unsafe impl NSMenuItemValidation for NSFontManager {}
 
-#[cfg(feature = "AppKit_NSFontManager")]
 unsafe impl NSObjectProtocol for NSFontManager {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSFontManager")]
     unsafe impl NSFontManager {
         #[method(setFontPanelFactory:)]
         pub unsafe fn setFontPanelFactory(factory_id: Option<&AnyClass>, mtm: MainThreadMarker);
@@ -93,11 +89,20 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fontMenu:)]
         pub unsafe fn fontMenu(&self, create: bool) -> Option<Id<NSMenu>>;
 
-        #[cfg(feature = "AppKit_NSFontPanel")]
+        #[cfg(all(
+            feature = "AppKit_NSFontPanel",
+            feature = "AppKit_NSPanel",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSWindow"
+        ))]
         #[method_id(@__retain_semantics Other fontPanel:)]
         pub unsafe fn fontPanel(&self, create: bool) -> Option<Id<NSFontPanel>>;
 
-        #[cfg(all(feature = "AppKit_NSFont", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSFont",
+            feature = "Foundation_NSGeometry",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other fontWithFamily:traits:weight:size:)]
         pub unsafe fn fontWithFamily_traits_weight_size(
             &self,
@@ -134,7 +139,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other convertFont:)]
         pub unsafe fn convertFont(&self, font_obj: &NSFont) -> Id<NSFont>;
 
-        #[cfg(feature = "AppKit_NSFont")]
+        #[cfg(all(feature = "AppKit_NSFont", feature = "Foundation_NSGeometry"))]
         #[method_id(@__retain_semantics Other convertFont:toSize:)]
         pub unsafe fn convertFont_toSize(&self, font_obj: &NSFont, size: CGFloat) -> Id<NSFont>;
 
@@ -289,7 +294,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSFontManager")]
     unsafe impl NSFontManager {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -301,7 +305,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSFontManagerMenuActionMethods
-    #[cfg(feature = "AppKit_NSFontManager")]
     unsafe impl NSFontManager {
         #[cfg(feature = "Foundation_NSString")]
         #[method(fontNamed:hasTraits:)]

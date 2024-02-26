@@ -5,33 +5,27 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSFileHandle")]
     pub struct NSFileHandle;
 
-    #[cfg(feature = "Foundation_NSFileHandle")]
     unsafe impl ClassType for NSFileHandle {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSFileHandle")]
 unsafe impl Send for NSFileHandle {}
 
-#[cfg(feature = "Foundation_NSFileHandle")]
 unsafe impl Sync for NSFileHandle {}
 
-#[cfg(feature = "Foundation_NSFileHandle")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSFileHandle {}
 
-#[cfg(feature = "Foundation_NSFileHandle")]
 unsafe impl NSObjectProtocol for NSFileHandle {}
 
-#[cfg(feature = "Foundation_NSFileHandle")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSFileHandle {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSFileHandle")]
     unsafe impl NSFileHandle {
         #[cfg(feature = "Foundation_NSData")]
         #[method_id(@__retain_semantics Other availableData)]
@@ -98,7 +92,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSFileHandle")]
     unsafe impl NSFileHandle {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -110,7 +103,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSFileHandleCreation
-    #[cfg(feature = "Foundation_NSFileHandle")]
     unsafe impl NSFileHandle {
         #[method_id(@__retain_semantics Other fileHandleWithStandardInput)]
         pub unsafe fn fileHandleWithStandardInput() -> Id<NSFileHandle>;
@@ -153,19 +145,19 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
 extern_static!(NSFileHandleOperationException: &'static NSExceptionName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSFileHandleReadCompletionNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSFileHandleReadToEndOfFileCompletionNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSFileHandleConnectionAcceptedNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSFileHandleDataAvailableNotification: &'static NSNotificationName);
 
 #[cfg(feature = "Foundation_NSString")]
@@ -179,9 +171,12 @@ extern_static!(NSFileHandleNotificationMonitorModes: &'static NSString);
 
 extern_methods!(
     /// NSFileHandleAsynchronousAccess
-    #[cfg(feature = "Foundation_NSFileHandle")]
     unsafe impl NSFileHandle {
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSObjCRuntime",
+            feature = "Foundation_NSString"
+        ))]
         #[method(readInBackgroundAndNotifyForModes:)]
         pub unsafe fn readInBackgroundAndNotifyForModes(
             &self,
@@ -191,7 +186,11 @@ extern_methods!(
         #[method(readInBackgroundAndNotify)]
         pub unsafe fn readInBackgroundAndNotify(&self);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSObjCRuntime",
+            feature = "Foundation_NSString"
+        ))]
         #[method(readToEndOfFileInBackgroundAndNotifyForModes:)]
         pub unsafe fn readToEndOfFileInBackgroundAndNotifyForModes(
             &self,
@@ -201,7 +200,11 @@ extern_methods!(
         #[method(readToEndOfFileInBackgroundAndNotify)]
         pub unsafe fn readToEndOfFileInBackgroundAndNotify(&self);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSObjCRuntime",
+            feature = "Foundation_NSString"
+        ))]
         #[method(acceptConnectionInBackgroundAndNotifyForModes:)]
         pub unsafe fn acceptConnectionInBackgroundAndNotifyForModes(
             &self,
@@ -211,7 +214,11 @@ extern_methods!(
         #[method(acceptConnectionInBackgroundAndNotify)]
         pub unsafe fn acceptConnectionInBackgroundAndNotify(&self);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSObjCRuntime",
+            feature = "Foundation_NSString"
+        ))]
         #[method(waitForDataInBackgroundAndNotifyForModes:)]
         pub unsafe fn waitForDataInBackgroundAndNotifyForModes(
             &self,
@@ -243,7 +250,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSFileHandlePlatformSpecific
-    #[cfg(feature = "Foundation_NSFileHandle")]
     unsafe impl NSFileHandle {
         #[method_id(@__retain_semantics Init initWithFileDescriptor:)]
         pub unsafe fn initWithFileDescriptor(this: Allocated<Self>, fd: c_int) -> Id<Self>;
@@ -254,7 +260,6 @@ extern_methods!(
 );
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSFileHandle")]
     unsafe impl NSFileHandle {
         #[cfg(feature = "Foundation_NSData")]
         #[deprecated]
@@ -299,33 +304,25 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSPipe")]
     pub struct NSPipe;
 
-    #[cfg(feature = "Foundation_NSPipe")]
     unsafe impl ClassType for NSPipe {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSPipe")]
 unsafe impl Send for NSPipe {}
 
-#[cfg(feature = "Foundation_NSPipe")]
 unsafe impl Sync for NSPipe {}
 
-#[cfg(feature = "Foundation_NSPipe")]
 unsafe impl NSObjectProtocol for NSPipe {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSPipe")]
     unsafe impl NSPipe {
-        #[cfg(feature = "Foundation_NSFileHandle")]
         #[method_id(@__retain_semantics Other fileHandleForReading)]
         pub unsafe fn fileHandleForReading(&self) -> Id<NSFileHandle>;
 
-        #[cfg(feature = "Foundation_NSFileHandle")]
         #[method_id(@__retain_semantics Other fileHandleForWriting)]
         pub unsafe fn fileHandleForWriting(&self) -> Id<NSFileHandle>;
 
@@ -336,7 +333,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSPipe")]
     unsafe impl NSPipe {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

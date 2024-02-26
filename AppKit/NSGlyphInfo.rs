@@ -7,30 +7,26 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSGlyphInfo")]
     pub struct NSGlyphInfo;
 
-    #[cfg(feature = "AppKit_NSGlyphInfo")]
     unsafe impl ClassType for NSGlyphInfo {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSGlyphInfo")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSGlyphInfo {}
 
-#[cfg(feature = "AppKit_NSGlyphInfo")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSGlyphInfo {}
 
-#[cfg(feature = "AppKit_NSGlyphInfo")]
 unsafe impl NSObjectProtocol for NSGlyphInfo {}
 
-#[cfg(feature = "AppKit_NSGlyphInfo")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSGlyphInfo {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSGlyphInfo")]
     unsafe impl NSGlyphInfo {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other baseString)]
@@ -40,7 +36,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSGlyphInfo")]
     unsafe impl NSGlyphInfo {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -64,7 +59,6 @@ ns_enum!(
 
 extern_methods!(
     /// NSGlyphInfo_Deprecated
-    #[cfg(feature = "AppKit_NSGlyphInfo")]
     unsafe impl NSGlyphInfo {
         #[cfg(all(feature = "AppKit_NSFont", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other glyphInfoWithGlyphName:forFont:baseString:)]

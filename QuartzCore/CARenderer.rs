@@ -6,21 +6,17 @@ use crate::QuartzCore::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "QuartzCore_CARenderer")]
     pub struct CARenderer;
 
-    #[cfg(feature = "QuartzCore_CARenderer")]
     unsafe impl ClassType for CARenderer {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "QuartzCore_CARenderer")]
 unsafe impl NSObjectProtocol for CARenderer {}
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CARenderer")]
     unsafe impl CARenderer {
         #[cfg(feature = "Foundation_NSDictionary")]
         #[deprecated = "+rendererWithMTLTexture"]
@@ -38,15 +34,19 @@ extern_methods!(
         #[method(setLayer:)]
         pub fn setLayer(&self, layer: Option<&CALayer>);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(bounds)]
         pub fn bounds(&self) -> CGRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setBounds:)]
         pub fn setBounds(&self, bounds: CGRect);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(updateBounds)]
         pub fn updateBounds(&self) -> CGRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(addUpdateRect:)]
         pub fn addUpdateRect(&self, r: CGRect);
 
@@ -63,7 +63,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "QuartzCore_CARenderer")]
     unsafe impl CARenderer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

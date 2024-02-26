@@ -28,10 +28,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSAttributeDescription")]
+    #[cfg(feature = "CoreData_NSPropertyDescription")]
     pub struct NSAttributeDescription;
 
-    #[cfg(feature = "CoreData_NSAttributeDescription")]
+    #[cfg(feature = "CoreData_NSPropertyDescription")]
     unsafe impl ClassType for NSAttributeDescription {
         #[inherits(NSObject)]
         type Super = NSPropertyDescription;
@@ -39,17 +39,23 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CoreData_NSAttributeDescription")]
+#[cfg(all(
+    feature = "CoreData_NSPropertyDescription",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSAttributeDescription {}
 
-#[cfg(feature = "CoreData_NSAttributeDescription")]
+#[cfg(all(
+    feature = "CoreData_NSPropertyDescription",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCopying for NSAttributeDescription {}
 
-#[cfg(feature = "CoreData_NSAttributeDescription")]
+#[cfg(feature = "CoreData_NSPropertyDescription")]
 unsafe impl NSObjectProtocol for NSAttributeDescription {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSAttributeDescription")]
+    #[cfg(feature = "CoreData_NSPropertyDescription")]
     unsafe impl NSAttributeDescription {
         #[method(attributeType)]
         pub unsafe fn attributeType(&self) -> NSAttributeType;
@@ -114,7 +120,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSAttributeDescription")]
+    #[cfg(feature = "CoreData_NSPropertyDescription")]
     unsafe impl NSAttributeDescription {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

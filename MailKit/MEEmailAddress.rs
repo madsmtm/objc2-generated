@@ -7,30 +7,26 @@ use crate::MailKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MailKit_MEEmailAddress")]
     pub struct MEEmailAddress;
 
-    #[cfg(feature = "MailKit_MEEmailAddress")]
     unsafe impl ClassType for MEEmailAddress {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MailKit_MEEmailAddress")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for MEEmailAddress {}
 
-#[cfg(feature = "MailKit_MEEmailAddress")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MEEmailAddress {}
 
-#[cfg(feature = "MailKit_MEEmailAddress")]
 unsafe impl NSObjectProtocol for MEEmailAddress {}
 
-#[cfg(feature = "MailKit_MEEmailAddress")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for MEEmailAddress {}
 
 extern_methods!(
-    #[cfg(feature = "MailKit_MEEmailAddress")]
     unsafe impl MEEmailAddress {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other rawString)]

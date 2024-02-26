@@ -32,21 +32,17 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "ExternalAccessory_EAWiFiUnconfiguredAccessoryBrowser")]
     pub struct EAWiFiUnconfiguredAccessoryBrowser;
 
-    #[cfg(feature = "ExternalAccessory_EAWiFiUnconfiguredAccessoryBrowser")]
     unsafe impl ClassType for EAWiFiUnconfiguredAccessoryBrowser {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "ExternalAccessory_EAWiFiUnconfiguredAccessoryBrowser")]
 unsafe impl NSObjectProtocol for EAWiFiUnconfiguredAccessoryBrowser {}
 
 extern_methods!(
-    #[cfg(feature = "ExternalAccessory_EAWiFiUnconfiguredAccessoryBrowser")]
     unsafe impl EAWiFiUnconfiguredAccessoryBrowser {
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
@@ -75,23 +71,11 @@ extern_methods!(
 
         #[method(stopSearchingForUnconfiguredAccessories)]
         pub unsafe fn stopSearchingForUnconfiguredAccessories(&self);
-
-        #[cfg(all(
-            feature = "ExternalAccessory_EAWiFiUnconfiguredAccessory",
-            feature = "ExternalAccessory_UIViewController"
-        ))]
-        #[method(configureAccessory:withConfigurationUIOnViewController:)]
-        pub unsafe fn configureAccessory_withConfigurationUIOnViewController(
-            &self,
-            accessory: &EAWiFiUnconfiguredAccessory,
-            view_controller: &UIViewController,
-        );
     }
 );
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "ExternalAccessory_EAWiFiUnconfiguredAccessoryBrowser")]
     unsafe impl EAWiFiUnconfiguredAccessoryBrowser {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -103,7 +87,6 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait EAWiFiUnconfiguredAccessoryBrowserDelegate: NSObjectProtocol {
-        #[cfg(feature = "ExternalAccessory_EAWiFiUnconfiguredAccessoryBrowser")]
         #[method(accessoryBrowser:didUpdateState:)]
         unsafe fn accessoryBrowser_didUpdateState(
             &self,
@@ -113,7 +96,6 @@ extern_protocol!(
 
         #[cfg(all(
             feature = "ExternalAccessory_EAWiFiUnconfiguredAccessory",
-            feature = "ExternalAccessory_EAWiFiUnconfiguredAccessoryBrowser",
             feature = "Foundation_NSSet"
         ))]
         #[method(accessoryBrowser:didFindUnconfiguredAccessories:)]
@@ -125,7 +107,6 @@ extern_protocol!(
 
         #[cfg(all(
             feature = "ExternalAccessory_EAWiFiUnconfiguredAccessory",
-            feature = "ExternalAccessory_EAWiFiUnconfiguredAccessoryBrowser",
             feature = "Foundation_NSSet"
         ))]
         #[method(accessoryBrowser:didRemoveUnconfiguredAccessories:)]
@@ -135,10 +116,7 @@ extern_protocol!(
             accessories: &NSSet<EAWiFiUnconfiguredAccessory>,
         );
 
-        #[cfg(all(
-            feature = "ExternalAccessory_EAWiFiUnconfiguredAccessory",
-            feature = "ExternalAccessory_EAWiFiUnconfiguredAccessoryBrowser"
-        ))]
+        #[cfg(feature = "ExternalAccessory_EAWiFiUnconfiguredAccessory")]
         #[method(accessoryBrowser:didFinishConfiguringAccessory:withStatus:)]
         unsafe fn accessoryBrowser_didFinishConfiguringAccessory_withStatus(
             &self,

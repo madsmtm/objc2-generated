@@ -7,11 +7,19 @@ use crate::WebKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_DOMCSSCharsetRule")]
+    #[cfg(all(
+        feature = "WebKit_DOMCSSRule",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     #[deprecated]
     pub struct DOMCSSCharsetRule;
 
-    #[cfg(feature = "WebKit_DOMCSSCharsetRule")]
+    #[cfg(all(
+        feature = "WebKit_DOMCSSRule",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl ClassType for DOMCSSCharsetRule {
         #[inherits(DOMObject, WebScriptObject, NSObject)]
         type Super = DOMCSSRule;
@@ -19,14 +27,27 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "WebKit_DOMCSSCharsetRule")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "WebKit_DOMCSSRule",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSCopying for DOMCSSCharsetRule {}
 
-#[cfg(feature = "WebKit_DOMCSSCharsetRule")]
+#[cfg(all(
+    feature = "WebKit_DOMCSSRule",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSObjectProtocol for DOMCSSCharsetRule {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_DOMCSSCharsetRule")]
+    #[cfg(all(
+        feature = "WebKit_DOMCSSRule",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMCSSCharsetRule {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
@@ -37,7 +58,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
-    #[cfg(feature = "WebKit_DOMCSSCharsetRule")]
+    #[cfg(all(
+        feature = "WebKit_DOMCSSRule",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMCSSCharsetRule {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
@@ -47,7 +72,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_DOMCSSCharsetRule")]
+    #[cfg(all(
+        feature = "WebKit_DOMCSSRule",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMCSSCharsetRule {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

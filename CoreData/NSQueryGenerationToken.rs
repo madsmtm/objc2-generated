@@ -6,30 +6,26 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSQueryGenerationToken")]
     pub struct NSQueryGenerationToken;
 
-    #[cfg(feature = "CoreData_NSQueryGenerationToken")]
     unsafe impl ClassType for NSQueryGenerationToken {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreData_NSQueryGenerationToken")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSQueryGenerationToken {}
 
-#[cfg(feature = "CoreData_NSQueryGenerationToken")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSQueryGenerationToken {}
 
-#[cfg(feature = "CoreData_NSQueryGenerationToken")]
 unsafe impl NSObjectProtocol for NSQueryGenerationToken {}
 
-#[cfg(feature = "CoreData_NSQueryGenerationToken")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSQueryGenerationToken {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSQueryGenerationToken")]
     unsafe impl NSQueryGenerationToken {
         #[method_id(@__retain_semantics Other currentQueryGenerationToken)]
         pub unsafe fn currentQueryGenerationToken() -> Id<NSQueryGenerationToken>;
@@ -38,7 +34,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSQueryGenerationToken")]
     unsafe impl NSQueryGenerationToken {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

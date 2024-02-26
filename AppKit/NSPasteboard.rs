@@ -98,21 +98,17 @@ extern_static!(NSPasteboardURLReadingContentsConformToTypesKey: &'static NSPaste
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSPasteboard")]
     pub struct NSPasteboard;
 
-    #[cfg(feature = "AppKit_NSPasteboard")]
     unsafe impl ClassType for NSPasteboard {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSPasteboard")]
 unsafe impl NSObjectProtocol for NSPasteboard {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSPasteboard")]
     unsafe impl NSPasteboard {
         #[method_id(@__retain_semantics Other generalPasteboard)]
         pub unsafe fn generalPasteboard() -> Id<NSPasteboard>;
@@ -256,7 +252,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSPasteboard")]
     unsafe impl NSPasteboard {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -268,7 +263,6 @@ extern_methods!(
 
 extern_methods!(
     /// FilterServices
-    #[cfg(feature = "AppKit_NSPasteboard")]
     unsafe impl NSPasteboard {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other typesFilterableTo:)]
@@ -295,7 +289,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSPasteboardTypeOwner: NSObjectProtocol {
-        #[cfg(all(feature = "AppKit_NSPasteboard", feature = "Foundation_NSString"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method(pasteboard:provideDataForType:)]
         unsafe fn pasteboard_provideDataForType(
             &self,
@@ -303,7 +297,6 @@ extern_protocol!(
             r#type: &NSPasteboardType,
         );
 
-        #[cfg(feature = "AppKit_NSPasteboard")]
         #[optional]
         #[method(pasteboardChangedOwner:)]
         unsafe fn pasteboardChangedOwner(&self, sender: &NSPasteboard);
@@ -321,18 +314,14 @@ ns_options!(
 
 extern_protocol!(
     pub unsafe trait NSPasteboardWriting: NSObjectProtocol {
-        #[cfg(all(
-            feature = "AppKit_NSPasteboard",
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other writableTypesForPasteboard:)]
         unsafe fn writableTypesForPasteboard(
             &self,
             pasteboard: &NSPasteboard,
         ) -> Id<NSArray<NSPasteboardType>>;
 
-        #[cfg(all(feature = "AppKit_NSPasteboard", feature = "Foundation_NSString"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method(writingOptionsForType:pasteboard:)]
         unsafe fn writingOptionsForType_pasteboard(
@@ -364,17 +353,13 @@ ns_options!(
 
 extern_protocol!(
     pub unsafe trait NSPasteboardReading: NSObjectProtocol {
-        #[cfg(all(
-            feature = "AppKit_NSPasteboard",
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other readableTypesForPasteboard:)]
         unsafe fn readableTypesForPasteboard(
             pasteboard: &NSPasteboard,
         ) -> Id<NSArray<NSPasteboardType>>;
 
-        #[cfg(all(feature = "AppKit_NSPasteboard", feature = "Foundation_NSString"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method(readingOptionsForType:pasteboard:)]
         unsafe fn readingOptionsForType_pasteboard(
@@ -426,7 +411,6 @@ unsafe impl NSPasteboardWriting for NSString {}
 
 extern_methods!(
     /// NSFileContents
-    #[cfg(feature = "AppKit_NSPasteboard")]
     unsafe impl NSPasteboard {
         #[cfg(feature = "Foundation_NSString")]
         #[method(writeFileContents:)]

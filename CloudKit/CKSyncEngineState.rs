@@ -7,27 +7,21 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKSyncEngineState")]
     pub struct CKSyncEngineState;
 
-    #[cfg(feature = "CloudKit_CKSyncEngineState")]
     unsafe impl ClassType for CKSyncEngineState {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CloudKit_CKSyncEngineState")]
 unsafe impl Send for CKSyncEngineState {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineState")]
 unsafe impl Sync for CKSyncEngineState {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineState")]
 unsafe impl NSObjectProtocol for CKSyncEngineState {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKSyncEngineState")]
     unsafe impl CKSyncEngineState {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -35,19 +29,13 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
-        #[cfg(all(
-            feature = "CloudKit_CKSyncEnginePendingRecordZoneChange",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other pendingRecordZoneChanges)]
         pub unsafe fn pendingRecordZoneChanges(
             &self,
         ) -> Id<NSArray<CKSyncEnginePendingRecordZoneChange>>;
 
-        #[cfg(all(
-            feature = "CloudKit_CKSyncEnginePendingDatabaseChange",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other pendingDatabaseChanges)]
         pub unsafe fn pendingDatabaseChanges(
             &self,
@@ -63,40 +51,28 @@ extern_methods!(
         #[method_id(@__retain_semantics Other zoneIDsWithUnfetchedServerChanges)]
         pub unsafe fn zoneIDsWithUnfetchedServerChanges(&self) -> Id<NSArray<CKRecordZoneID>>;
 
-        #[cfg(all(
-            feature = "CloudKit_CKSyncEnginePendingRecordZoneChange",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(addPendingRecordZoneChanges:)]
         pub unsafe fn addPendingRecordZoneChanges(
             &self,
             changes: &NSArray<CKSyncEnginePendingRecordZoneChange>,
         );
 
-        #[cfg(all(
-            feature = "CloudKit_CKSyncEnginePendingRecordZoneChange",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(removePendingRecordZoneChanges:)]
         pub unsafe fn removePendingRecordZoneChanges(
             &self,
             changes: &NSArray<CKSyncEnginePendingRecordZoneChange>,
         );
 
-        #[cfg(all(
-            feature = "CloudKit_CKSyncEnginePendingDatabaseChange",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(addPendingDatabaseChanges:)]
         pub unsafe fn addPendingDatabaseChanges(
             &self,
             changes: &NSArray<CKSyncEnginePendingDatabaseChange>,
         );
 
-        #[cfg(all(
-            feature = "CloudKit_CKSyncEnginePendingDatabaseChange",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(removePendingDatabaseChanges:)]
         pub unsafe fn removePendingDatabaseChanges(
             &self,
@@ -107,33 +83,27 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKSyncEngineStateSerialization")]
     pub struct CKSyncEngineStateSerialization;
 
-    #[cfg(feature = "CloudKit_CKSyncEngineStateSerialization")]
     unsafe impl ClassType for CKSyncEngineStateSerialization {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CloudKit_CKSyncEngineStateSerialization")]
 unsafe impl Send for CKSyncEngineStateSerialization {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineStateSerialization")]
 unsafe impl Sync for CKSyncEngineStateSerialization {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineStateSerialization")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CKSyncEngineStateSerialization {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineStateSerialization")]
 unsafe impl NSObjectProtocol for CKSyncEngineStateSerialization {}
 
-#[cfg(feature = "CloudKit_CKSyncEngineStateSerialization")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CKSyncEngineStateSerialization {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKSyncEngineStateSerialization")]
     unsafe impl CKSyncEngineStateSerialization {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -155,27 +125,21 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKSyncEnginePendingRecordZoneChange")]
     pub struct CKSyncEnginePendingRecordZoneChange;
 
-    #[cfg(feature = "CloudKit_CKSyncEnginePendingRecordZoneChange")]
     unsafe impl ClassType for CKSyncEnginePendingRecordZoneChange {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CloudKit_CKSyncEnginePendingRecordZoneChange")]
 unsafe impl Send for CKSyncEnginePendingRecordZoneChange {}
 
-#[cfg(feature = "CloudKit_CKSyncEnginePendingRecordZoneChange")]
 unsafe impl Sync for CKSyncEnginePendingRecordZoneChange {}
 
-#[cfg(feature = "CloudKit_CKSyncEnginePendingRecordZoneChange")]
 unsafe impl NSObjectProtocol for CKSyncEnginePendingRecordZoneChange {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKSyncEnginePendingRecordZoneChange")]
     unsafe impl CKSyncEnginePendingRecordZoneChange {
         #[cfg(feature = "CloudKit_CKRecordID")]
         #[method_id(@__retain_semantics Init initWithRecordID:type:)]
@@ -212,27 +176,21 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKSyncEnginePendingDatabaseChange")]
     pub struct CKSyncEnginePendingDatabaseChange;
 
-    #[cfg(feature = "CloudKit_CKSyncEnginePendingDatabaseChange")]
     unsafe impl ClassType for CKSyncEnginePendingDatabaseChange {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CloudKit_CKSyncEnginePendingDatabaseChange")]
 unsafe impl Send for CKSyncEnginePendingDatabaseChange {}
 
-#[cfg(feature = "CloudKit_CKSyncEnginePendingDatabaseChange")]
 unsafe impl Sync for CKSyncEnginePendingDatabaseChange {}
 
-#[cfg(feature = "CloudKit_CKSyncEnginePendingDatabaseChange")]
 unsafe impl NSObjectProtocol for CKSyncEnginePendingDatabaseChange {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKSyncEnginePendingDatabaseChange")]
     unsafe impl CKSyncEnginePendingDatabaseChange {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -251,10 +209,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKSyncEnginePendingZoneSave")]
     pub struct CKSyncEnginePendingZoneSave;
 
-    #[cfg(feature = "CloudKit_CKSyncEnginePendingZoneSave")]
     unsafe impl ClassType for CKSyncEnginePendingZoneSave {
         #[inherits(NSObject)]
         type Super = CKSyncEnginePendingDatabaseChange;
@@ -262,17 +218,13 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CloudKit_CKSyncEnginePendingZoneSave")]
 unsafe impl Send for CKSyncEnginePendingZoneSave {}
 
-#[cfg(feature = "CloudKit_CKSyncEnginePendingZoneSave")]
 unsafe impl Sync for CKSyncEnginePendingZoneSave {}
 
-#[cfg(feature = "CloudKit_CKSyncEnginePendingZoneSave")]
 unsafe impl NSObjectProtocol for CKSyncEnginePendingZoneSave {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKSyncEnginePendingZoneSave")]
     unsafe impl CKSyncEnginePendingZoneSave {
         #[cfg(feature = "CloudKit_CKRecordZone")]
         #[method_id(@__retain_semantics Init initWithZone:)]
@@ -286,7 +238,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CKSyncEnginePendingDatabaseChange`
-    #[cfg(feature = "CloudKit_CKSyncEnginePendingZoneSave")]
     unsafe impl CKSyncEnginePendingZoneSave {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -298,10 +249,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKSyncEnginePendingZoneDelete")]
     pub struct CKSyncEnginePendingZoneDelete;
 
-    #[cfg(feature = "CloudKit_CKSyncEnginePendingZoneDelete")]
     unsafe impl ClassType for CKSyncEnginePendingZoneDelete {
         #[inherits(NSObject)]
         type Super = CKSyncEnginePendingDatabaseChange;
@@ -309,17 +258,13 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CloudKit_CKSyncEnginePendingZoneDelete")]
 unsafe impl Send for CKSyncEnginePendingZoneDelete {}
 
-#[cfg(feature = "CloudKit_CKSyncEnginePendingZoneDelete")]
 unsafe impl Sync for CKSyncEnginePendingZoneDelete {}
 
-#[cfg(feature = "CloudKit_CKSyncEnginePendingZoneDelete")]
 unsafe impl NSObjectProtocol for CKSyncEnginePendingZoneDelete {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKSyncEnginePendingZoneDelete")]
     unsafe impl CKSyncEnginePendingZoneDelete {
         #[cfg(feature = "CloudKit_CKRecordZoneID")]
         #[method_id(@__retain_semantics Init initWithZoneID:)]
@@ -329,7 +274,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CKSyncEnginePendingDatabaseChange`
-    #[cfg(feature = "CloudKit_CKSyncEnginePendingZoneDelete")]
     unsafe impl CKSyncEnginePendingZoneDelete {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

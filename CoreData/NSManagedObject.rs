@@ -18,21 +18,17 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSManagedObject")]
     pub struct NSManagedObject;
 
-    #[cfg(feature = "CoreData_NSManagedObject")]
     unsafe impl ClassType for NSManagedObject {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreData_NSManagedObject")]
 unsafe impl NSObjectProtocol for NSManagedObject {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSManagedObject")]
     unsafe impl NSManagedObject {
         #[method(contextShouldIgnoreUnmodeledPropertyChanges)]
         pub unsafe fn contextShouldIgnoreUnmodeledPropertyChanges() -> bool;
@@ -41,7 +37,10 @@ extern_methods!(
         #[method_id(@__retain_semantics Other entity)]
         pub unsafe fn entity_class() -> Id<NSEntityDescription>;
 
-        #[cfg(feature = "CoreData_NSFetchRequest")]
+        #[cfg(all(
+            feature = "CoreData_NSFetchRequest",
+            feature = "CoreData_NSPersistentStoreRequest"
+        ))]
         #[method_id(@__retain_semantics Other fetchRequest)]
         pub unsafe fn fetchRequest() -> Id<NSFetchRequest>;
 
@@ -127,7 +126,11 @@ extern_methods!(
         #[method(didChangeValueForKey:)]
         pub unsafe fn didChangeValueForKey(&self, key: &NSString);
 
-        #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSKeyValueObserving",
+            feature = "Foundation_NSSet",
+            feature = "Foundation_NSString"
+        ))]
         #[method(willChangeValueForKey:withSetMutation:usingObjects:)]
         pub unsafe fn willChangeValueForKey_withSetMutation_usingObjects(
             &self,
@@ -136,7 +139,11 @@ extern_methods!(
             in_objects: &NSSet,
         );
 
-        #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSKeyValueObserving",
+            feature = "Foundation_NSSet",
+            feature = "Foundation_NSString"
+        ))]
         #[method(didChangeValueForKey:withSetMutation:usingObjects:)]
         pub unsafe fn didChangeValueForKey_withSetMutation_usingObjects(
             &self,
@@ -234,7 +241,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSManagedObject")]
     unsafe impl NSManagedObject {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

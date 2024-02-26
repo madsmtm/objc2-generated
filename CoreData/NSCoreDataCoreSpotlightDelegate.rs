@@ -4,26 +4,22 @@ use crate::common::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSCoreDataCoreSpotlightDelegateIndexDidUpdateNotification: &'static NSNotificationName);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSCoreDataCoreSpotlightDelegate")]
     pub struct NSCoreDataCoreSpotlightDelegate;
 
-    #[cfg(feature = "CoreData_NSCoreDataCoreSpotlightDelegate")]
     unsafe impl ClassType for NSCoreDataCoreSpotlightDelegate {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreData_NSCoreDataCoreSpotlightDelegate")]
 unsafe impl NSObjectProtocol for NSCoreDataCoreSpotlightDelegate {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSCoreDataCoreSpotlightDelegate")]
     unsafe impl NSCoreDataCoreSpotlightDelegate {
         #[method(isIndexingEnabled)]
         pub unsafe fn isIndexingEnabled(&self) -> bool;
@@ -79,7 +75,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSCoreDataCoreSpotlightDelegate")]
     unsafe impl NSCoreDataCoreSpotlightDelegate {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

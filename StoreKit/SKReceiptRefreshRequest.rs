@@ -7,10 +7,10 @@ use crate::StoreKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "StoreKit_SKReceiptRefreshRequest")]
+    #[cfg(feature = "StoreKit_SKRequest")]
     pub struct SKReceiptRefreshRequest;
 
-    #[cfg(feature = "StoreKit_SKReceiptRefreshRequest")]
+    #[cfg(feature = "StoreKit_SKRequest")]
     unsafe impl ClassType for SKReceiptRefreshRequest {
         #[inherits(NSObject)]
         type Super = SKRequest;
@@ -18,11 +18,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "StoreKit_SKReceiptRefreshRequest")]
+#[cfg(feature = "StoreKit_SKRequest")]
 unsafe impl NSObjectProtocol for SKReceiptRefreshRequest {}
 
 extern_methods!(
-    #[cfg(feature = "StoreKit_SKReceiptRefreshRequest")]
+    #[cfg(feature = "StoreKit_SKRequest")]
     unsafe impl SKReceiptRefreshRequest {
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithReceiptProperties:)]
@@ -39,7 +39,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "StoreKit_SKReceiptRefreshRequest")]
+    #[cfg(feature = "StoreKit_SKRequest")]
     unsafe impl SKReceiptRefreshRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

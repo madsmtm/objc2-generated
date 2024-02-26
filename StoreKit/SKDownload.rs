@@ -30,26 +30,23 @@ ns_closed_enum!(
     }
 );
 
+#[cfg(feature = "Foundation_NSDate")]
 extern_static!(SKDownloadTimeRemainingUnknown: NSTimeInterval);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "StoreKit_SKDownload")]
     #[deprecated = "Hosted content is no longer supported"]
     pub struct SKDownload;
 
-    #[cfg(feature = "StoreKit_SKDownload")]
     unsafe impl ClassType for SKDownload {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "StoreKit_SKDownload")]
 unsafe impl NSObjectProtocol for SKDownload {}
 
 extern_methods!(
-    #[cfg(feature = "StoreKit_SKDownload")]
     unsafe impl SKDownload {
         #[deprecated = "Hosted content is no longer supported"]
         #[method(state)]
@@ -59,7 +56,7 @@ extern_methods!(
         #[method(downloadState)]
         pub unsafe fn downloadState(&self) -> SKDownloadState;
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[deprecated]
         #[method_id(@__retain_semantics Other contentLength)]
         pub unsafe fn contentLength(&self) -> Id<NSNumber>;
@@ -92,6 +89,7 @@ extern_methods!(
         #[method(progress)]
         pub unsafe fn progress(&self) -> c_float;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[deprecated = "Hosted content is no longer supported"]
         #[method(timeRemaining)]
         pub unsafe fn timeRemaining(&self) -> NSTimeInterval;
@@ -115,7 +113,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "StoreKit_SKDownload")]
     unsafe impl SKDownload {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

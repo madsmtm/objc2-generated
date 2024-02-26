@@ -8,19 +8,31 @@ use crate::GameKit::*;
 extern_protocol!(
     #[deprecated]
     pub unsafe trait GKGameSessionEventListener: NSObjectProtocol {
-        #[cfg(all(feature = "GameKit_GKCloudPlayer", feature = "GameKit_GKGameSession"))]
+        #[cfg(all(
+            feature = "GameKit_GKBasePlayer",
+            feature = "GameKit_GKCloudPlayer",
+            feature = "GameKit_GKGameSession"
+        ))]
         #[deprecated]
         #[optional]
         #[method(session:didAddPlayer:)]
         unsafe fn session_didAddPlayer(&self, session: &GKGameSession, player: &GKCloudPlayer);
 
-        #[cfg(all(feature = "GameKit_GKCloudPlayer", feature = "GameKit_GKGameSession"))]
+        #[cfg(all(
+            feature = "GameKit_GKBasePlayer",
+            feature = "GameKit_GKCloudPlayer",
+            feature = "GameKit_GKGameSession"
+        ))]
         #[deprecated]
         #[optional]
         #[method(session:didRemovePlayer:)]
         unsafe fn session_didRemovePlayer(&self, session: &GKGameSession, player: &GKCloudPlayer);
 
-        #[cfg(all(feature = "GameKit_GKCloudPlayer", feature = "GameKit_GKGameSession"))]
+        #[cfg(all(
+            feature = "GameKit_GKBasePlayer",
+            feature = "GameKit_GKCloudPlayer",
+            feature = "GameKit_GKGameSession"
+        ))]
         #[deprecated]
         #[optional]
         #[method(session:player:didChangeConnectionState:)]
@@ -33,6 +45,7 @@ extern_protocol!(
 
         #[cfg(all(
             feature = "Foundation_NSData",
+            feature = "GameKit_GKBasePlayer",
             feature = "GameKit_GKCloudPlayer",
             feature = "GameKit_GKGameSession"
         ))]
@@ -48,6 +61,7 @@ extern_protocol!(
 
         #[cfg(all(
             feature = "Foundation_NSData",
+            feature = "GameKit_GKBasePlayer",
             feature = "GameKit_GKCloudPlayer",
             feature = "GameKit_GKGameSession"
         ))]
@@ -64,6 +78,7 @@ extern_protocol!(
         #[cfg(all(
             feature = "Foundation_NSData",
             feature = "Foundation_NSString",
+            feature = "GameKit_GKBasePlayer",
             feature = "GameKit_GKCloudPlayer",
             feature = "GameKit_GKGameSession"
         ))]
@@ -86,10 +101,12 @@ extern_methods!(
     /// GKGameSessionEventListener
     #[cfg(feature = "GameKit_GKGameSession")]
     unsafe impl GKGameSession {
+        #[cfg(feature = "GameKit_GKGameSessionEventListener")]
         #[deprecated]
         #[method(addEventListener:)]
         pub unsafe fn addEventListener(listener: &NSObject);
 
+        #[cfg(feature = "GameKit_GKGameSessionEventListener")]
         #[deprecated = "-[GKLocalPlayer unregisterListener:] or -[GKLocalPlayer unregisterAllListeners:]"]
         #[method(removeEventListener:)]
         pub unsafe fn removeEventListener(listener: &NSObject);

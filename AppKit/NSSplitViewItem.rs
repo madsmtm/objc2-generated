@@ -33,59 +33,56 @@ ns_enum!(
     }
 );
 
+#[cfg(feature = "Foundation_NSGeometry")]
 extern_static!(NSSplitViewItemUnspecifiedDimension: CGFloat);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSSplitViewItem")]
     pub struct NSSplitViewItem;
 
-    #[cfg(feature = "AppKit_NSSplitViewItem")]
     unsafe impl ClassType for NSSplitViewItem {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSSplitViewItem")]
+#[cfg(feature = "AppKit_NSAnimation")]
 unsafe impl NSAnimatablePropertyContainer for NSSplitViewItem {}
 
-#[cfg(feature = "AppKit_NSSplitViewItem")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSSplitViewItem {}
 
-#[cfg(feature = "AppKit_NSSplitViewItem")]
 unsafe impl NSObjectProtocol for NSSplitViewItem {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSSplitViewItem")]
     unsafe impl NSSplitViewItem {
-        #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
         #[method_id(@__retain_semantics Other splitViewItemWithViewController:)]
         pub unsafe fn splitViewItemWithViewController(
             view_controller: &NSViewController,
         ) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
         #[method_id(@__retain_semantics Other sidebarWithViewController:)]
         pub unsafe fn sidebarWithViewController(view_controller: &NSViewController) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
         #[method_id(@__retain_semantics Other contentListWithViewController:)]
         pub unsafe fn contentListWithViewController(view_controller: &NSViewController)
             -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
         #[method_id(@__retain_semantics Other inspectorWithViewController:)]
         pub unsafe fn inspectorWithViewController(view_controller: &NSViewController) -> Id<Self>;
 
         #[method(behavior)]
         pub unsafe fn behavior(&self) -> NSSplitViewItemBehavior;
 
-        #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
         #[method_id(@__retain_semantics Other viewController)]
         pub unsafe fn viewController(&self, mtm: MainThreadMarker) -> Id<NSViewController>;
 
-        #[cfg(feature = "AppKit_NSViewController")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
         #[method(setViewController:)]
         pub unsafe fn setViewController(&self, view_controller: &NSViewController);
 
@@ -110,33 +107,43 @@ extern_methods!(
             collapse_behavior: NSSplitViewItemCollapseBehavior,
         );
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(minimumThickness)]
         pub unsafe fn minimumThickness(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setMinimumThickness:)]
         pub unsafe fn setMinimumThickness(&self, minimum_thickness: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(maximumThickness)]
         pub unsafe fn maximumThickness(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setMaximumThickness:)]
         pub unsafe fn setMaximumThickness(&self, maximum_thickness: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(preferredThicknessFraction)]
         pub unsafe fn preferredThicknessFraction(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setPreferredThicknessFraction:)]
         pub unsafe fn setPreferredThicknessFraction(&self, preferred_thickness_fraction: CGFloat);
 
+        #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method(holdingPriority)]
         pub unsafe fn holdingPriority(&self) -> NSLayoutPriority;
 
+        #[cfg(feature = "AppKit_NSLayoutConstraint")]
         #[method(setHoldingPriority:)]
         pub unsafe fn setHoldingPriority(&self, holding_priority: NSLayoutPriority);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(automaticMaximumThickness)]
         pub unsafe fn automaticMaximumThickness(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setAutomaticMaximumThickness:)]
         pub unsafe fn setAutomaticMaximumThickness(&self, automatic_maximum_thickness: CGFloat);
 
@@ -158,9 +165,11 @@ extern_methods!(
         #[method(setAllowsFullHeightLayout:)]
         pub unsafe fn setAllowsFullHeightLayout(&self, allows_full_height_layout: bool);
 
+        #[cfg(feature = "AppKit_NSWindow")]
         #[method(titlebarSeparatorStyle)]
         pub unsafe fn titlebarSeparatorStyle(&self) -> NSTitlebarSeparatorStyle;
 
+        #[cfg(feature = "AppKit_NSWindow")]
         #[method(setTitlebarSeparatorStyle:)]
         pub unsafe fn setTitlebarSeparatorStyle(
             &self,
@@ -171,7 +180,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSSplitViewItem")]
     unsafe impl NSSplitViewItem {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

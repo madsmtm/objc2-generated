@@ -42,10 +42,16 @@ extern_static!(MPMediaPlaylistPropertyAuthorDisplayName: &'static NSString);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MediaPlayer_MPMediaPlaylist")]
+    #[cfg(all(
+        feature = "MediaPlayer_MPMediaEntity",
+        feature = "MediaPlayer_MPMediaItemCollection"
+    ))]
     pub struct MPMediaPlaylist;
 
-    #[cfg(feature = "MediaPlayer_MPMediaPlaylist")]
+    #[cfg(all(
+        feature = "MediaPlayer_MPMediaEntity",
+        feature = "MediaPlayer_MPMediaItemCollection"
+    ))]
     unsafe impl ClassType for MPMediaPlaylist {
         #[inherits(MPMediaEntity, NSObject)]
         type Super = MPMediaItemCollection;
@@ -53,17 +59,31 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MediaPlayer_MPMediaPlaylist")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "MediaPlayer_MPMediaEntity",
+    feature = "MediaPlayer_MPMediaItemCollection"
+))]
 unsafe impl NSCoding for MPMediaPlaylist {}
 
-#[cfg(feature = "MediaPlayer_MPMediaPlaylist")]
+#[cfg(all(
+    feature = "MediaPlayer_MPMediaEntity",
+    feature = "MediaPlayer_MPMediaItemCollection"
+))]
 unsafe impl NSObjectProtocol for MPMediaPlaylist {}
 
-#[cfg(feature = "MediaPlayer_MPMediaPlaylist")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "MediaPlayer_MPMediaEntity",
+    feature = "MediaPlayer_MPMediaItemCollection"
+))]
 unsafe impl NSSecureCoding for MPMediaPlaylist {}
 
 extern_methods!(
-    #[cfg(feature = "MediaPlayer_MPMediaPlaylist")]
+    #[cfg(all(
+        feature = "MediaPlayer_MPMediaEntity",
+        feature = "MediaPlayer_MPMediaItemCollection"
+    ))]
     unsafe impl MPMediaPlaylist {
         #[method(persistentID)]
         pub unsafe fn persistentID(&self) -> MPMediaEntityPersistentID;
@@ -115,7 +135,10 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPMediaItemCollection`
-    #[cfg(feature = "MediaPlayer_MPMediaPlaylist")]
+    #[cfg(all(
+        feature = "MediaPlayer_MPMediaEntity",
+        feature = "MediaPlayer_MPMediaItemCollection"
+    ))]
     unsafe impl MPMediaPlaylist {
         #[cfg(all(feature = "Foundation_NSArray", feature = "MediaPlayer_MPMediaItem"))]
         #[method_id(@__retain_semantics Init initWithItems:)]
@@ -128,7 +151,10 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MediaPlayer_MPMediaPlaylist")]
+    #[cfg(all(
+        feature = "MediaPlayer_MPMediaEntity",
+        feature = "MediaPlayer_MPMediaItemCollection"
+    ))]
     unsafe impl MPMediaPlaylist {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -140,21 +166,17 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MediaPlayer_MPMediaPlaylistCreationMetadata")]
     pub struct MPMediaPlaylistCreationMetadata;
 
-    #[cfg(feature = "MediaPlayer_MPMediaPlaylistCreationMetadata")]
     unsafe impl ClassType for MPMediaPlaylistCreationMetadata {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MediaPlayer_MPMediaPlaylistCreationMetadata")]
 unsafe impl NSObjectProtocol for MPMediaPlaylistCreationMetadata {}
 
 extern_methods!(
-    #[cfg(feature = "MediaPlayer_MPMediaPlaylistCreationMetadata")]
     unsafe impl MPMediaPlaylistCreationMetadata {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

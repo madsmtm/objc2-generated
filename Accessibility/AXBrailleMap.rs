@@ -6,37 +6,36 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Accessibility_AXBrailleMap")]
     pub struct AXBrailleMap;
 
-    #[cfg(feature = "Accessibility_AXBrailleMap")]
     unsafe impl ClassType for AXBrailleMap {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Accessibility_AXBrailleMap")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for AXBrailleMap {}
 
-#[cfg(feature = "Accessibility_AXBrailleMap")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for AXBrailleMap {}
 
-#[cfg(feature = "Accessibility_AXBrailleMap")]
 unsafe impl NSObjectProtocol for AXBrailleMap {}
 
-#[cfg(feature = "Accessibility_AXBrailleMap")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for AXBrailleMap {}
 
 extern_methods!(
-    #[cfg(feature = "Accessibility_AXBrailleMap")]
     unsafe impl AXBrailleMap {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(dimensions)]
         pub unsafe fn dimensions(&self) -> CGSize;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setHeight:atPoint:)]
         pub unsafe fn setHeight_atPoint(&self, status: c_float, point: CGPoint);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(heightAtPoint:)]
         pub unsafe fn heightAtPoint(&self, point: CGPoint) -> c_float;
 
@@ -50,10 +49,12 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait AXBrailleMapRenderer: NSObjectProtocol {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[optional]
         #[method(accessibilityBrailleMapRenderRegion)]
         unsafe fn accessibilityBrailleMapRenderRegion(&self) -> CGRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[optional]
         #[method(setAccessibilityBrailleMapRenderRegion:)]
         unsafe fn setAccessibilityBrailleMapRenderRegion(
@@ -61,14 +62,12 @@ extern_protocol!(
             accessibility_braille_map_render_region: CGRect,
         );
 
-        #[cfg(feature = "Accessibility_AXBrailleMap")]
         #[optional]
         #[method(accessibilityBrailleMapRenderer)]
         unsafe fn accessibilityBrailleMapRenderer(
             &self,
         ) -> NonNull<Block<dyn Fn(NonNull<AXBrailleMap>)>>;
 
-        #[cfg(feature = "Accessibility_AXBrailleMap")]
         #[optional]
         #[method(setAccessibilityBrailleMapRenderer:)]
         unsafe fn setAccessibilityBrailleMapRenderer(

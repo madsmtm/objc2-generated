@@ -9,21 +9,17 @@ use crate::MapKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKLookAroundSnapshotOptions")]
     pub struct MKLookAroundSnapshotOptions;
 
-    #[cfg(feature = "MapKit_MKLookAroundSnapshotOptions")]
     unsafe impl ClassType for MKLookAroundSnapshotOptions {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MapKit_MKLookAroundSnapshotOptions")]
 unsafe impl NSObjectProtocol for MKLookAroundSnapshotOptions {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKLookAroundSnapshotOptions")]
     unsafe impl MKLookAroundSnapshotOptions {
         #[cfg(feature = "MapKit_MKPointOfInterestFilter")]
         #[method_id(@__retain_semantics Other pointOfInterestFilter)]
@@ -36,9 +32,11 @@ extern_methods!(
             point_of_interest_filter: Option<&MKPointOfInterestFilter>,
         );
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(size)]
         pub unsafe fn size(&self) -> CGSize;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setSize:)]
         pub unsafe fn setSize(&self, size: CGSize);
     }
@@ -46,7 +44,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MapKit_MKLookAroundSnapshotOptions")]
     unsafe impl MKLookAroundSnapshotOptions {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

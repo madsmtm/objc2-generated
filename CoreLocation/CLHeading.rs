@@ -7,41 +7,41 @@ use crate::Foundation::*;
 
 pub type CLHeadingComponentValue = c_double;
 
+#[cfg(feature = "CoreLocation_CLLocation")]
 extern_static!(kCLHeadingFilterNone: CLLocationDegrees);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreLocation_CLHeading")]
     pub struct CLHeading;
 
-    #[cfg(feature = "CoreLocation_CLHeading")]
     unsafe impl ClassType for CLHeading {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreLocation_CLHeading")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CLHeading {}
 
-#[cfg(feature = "CoreLocation_CLHeading")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for CLHeading {}
 
-#[cfg(feature = "CoreLocation_CLHeading")]
 unsafe impl NSObjectProtocol for CLHeading {}
 
-#[cfg(feature = "CoreLocation_CLHeading")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CLHeading {}
 
 extern_methods!(
-    #[cfg(feature = "CoreLocation_CLHeading")]
     unsafe impl CLHeading {
+        #[cfg(feature = "CoreLocation_CLLocation")]
         #[method(magneticHeading)]
         pub unsafe fn magneticHeading(&self) -> CLLocationDirection;
 
+        #[cfg(feature = "CoreLocation_CLLocation")]
         #[method(trueHeading)]
         pub unsafe fn trueHeading(&self) -> CLLocationDirection;
 
+        #[cfg(feature = "CoreLocation_CLLocation")]
         #[method(headingAccuracy)]
         pub unsafe fn headingAccuracy(&self) -> CLLocationDirection;
 
@@ -62,7 +62,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreLocation_CLHeading")]
     unsafe impl CLHeading {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

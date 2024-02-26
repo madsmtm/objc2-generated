@@ -8,32 +8,28 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKQueryDescriptor")]
     pub struct HKQueryDescriptor;
 
-    #[cfg(feature = "HealthKit_HKQueryDescriptor")]
     unsafe impl ClassType for HKQueryDescriptor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "HealthKit_HKQueryDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for HKQueryDescriptor {}
 
-#[cfg(feature = "HealthKit_HKQueryDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for HKQueryDescriptor {}
 
-#[cfg(feature = "HealthKit_HKQueryDescriptor")]
 unsafe impl NSObjectProtocol for HKQueryDescriptor {}
 
-#[cfg(feature = "HealthKit_HKQueryDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for HKQueryDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKQueryDescriptor")]
     unsafe impl HKQueryDescriptor {
-        #[cfg(feature = "HealthKit_HKSampleType")]
+        #[cfg(feature = "HealthKit_HKObjectType")]
         #[method_id(@__retain_semantics Other sampleType)]
         pub unsafe fn sampleType(&self) -> Id<HKSampleType>;
 
@@ -47,7 +43,7 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
-        #[cfg(all(feature = "Foundation_NSPredicate", feature = "HealthKit_HKSampleType"))]
+        #[cfg(all(feature = "Foundation_NSPredicate", feature = "HealthKit_HKObjectType"))]
         #[method_id(@__retain_semantics Init initWithSampleType:predicate:)]
         pub unsafe fn initWithSampleType_predicate(
             this: Allocated<Self>,

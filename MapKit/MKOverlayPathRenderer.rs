@@ -9,10 +9,10 @@ use crate::MapKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKOverlayPathRenderer")]
+    #[cfg(feature = "MapKit_MKOverlayRenderer")]
     pub struct MKOverlayPathRenderer;
 
-    #[cfg(feature = "MapKit_MKOverlayPathRenderer")]
+    #[cfg(feature = "MapKit_MKOverlayRenderer")]
     unsafe impl ClassType for MKOverlayPathRenderer {
         #[inherits(NSObject)]
         type Super = MKOverlayRenderer;
@@ -20,11 +20,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MapKit_MKOverlayPathRenderer")]
+#[cfg(feature = "MapKit_MKOverlayRenderer")]
 unsafe impl NSObjectProtocol for MKOverlayPathRenderer {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKOverlayPathRenderer")]
+    #[cfg(feature = "MapKit_MKOverlayRenderer")]
     unsafe impl MKOverlayPathRenderer {
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other fillColor)]
@@ -42,29 +42,35 @@ extern_methods!(
         #[method(setStrokeColor:)]
         pub unsafe fn setStrokeColor(&self, stroke_color: Option<&NSColor>);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(lineWidth)]
         pub unsafe fn lineWidth(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setLineWidth:)]
         pub unsafe fn setLineWidth(&self, line_width: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(miterLimit)]
         pub unsafe fn miterLimit(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setMiterLimit:)]
         pub unsafe fn setMiterLimit(&self, miter_limit: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(lineDashPhase)]
         pub unsafe fn lineDashPhase(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setLineDashPhase:)]
         pub unsafe fn setLineDashPhase(&self, line_dash_phase: CGFloat);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Other lineDashPattern)]
         pub unsafe fn lineDashPattern(&self) -> Option<Id<NSArray<NSNumber>>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method(setLineDashPattern:)]
         pub unsafe fn setLineDashPattern(&self, line_dash_pattern: Option<&NSArray<NSNumber>>);
 
@@ -84,8 +90,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MKOverlayRenderer`
-    #[cfg(feature = "MapKit_MKOverlayPathRenderer")]
+    #[cfg(feature = "MapKit_MKOverlayRenderer")]
     unsafe impl MKOverlayPathRenderer {
+        #[cfg(all(feature = "MapKit_MKAnnotation", feature = "MapKit_MKOverlay"))]
         #[method_id(@__retain_semantics Init initWithOverlay:)]
         pub unsafe fn initWithOverlay(
             this: Allocated<Self>,
@@ -96,7 +103,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MapKit_MKOverlayPathRenderer")]
+    #[cfg(feature = "MapKit_MKOverlayRenderer")]
     unsafe impl MKOverlayPathRenderer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

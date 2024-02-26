@@ -13,10 +13,10 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameKit_GKDialogController")]
+    #[cfg(feature = "AppKit_NSResponder")]
     pub struct GKDialogController;
 
-    #[cfg(feature = "GameKit_GKDialogController")]
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl ClassType for GKDialogController {
         #[inherits(NSObject)]
         type Super = NSResponder;
@@ -24,14 +24,14 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "GameKit_GKDialogController")]
+#[cfg(all(feature = "AppKit_NSResponder", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for GKDialogController {}
 
-#[cfg(feature = "GameKit_GKDialogController")]
+#[cfg(feature = "AppKit_NSResponder")]
 unsafe impl NSObjectProtocol for GKDialogController {}
 
 extern_methods!(
-    #[cfg(feature = "GameKit_GKDialogController")]
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl GKDialogController {
         #[cfg(feature = "AppKit_NSWindow")]
         #[method_id(@__retain_semantics Other parentWindow)]
@@ -52,7 +52,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "GameKit_GKDialogController")]
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl GKDialogController {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -65,7 +65,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameKit_GKDialogController")]
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl GKDialogController {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -74,7 +74,7 @@ extern_methods!(
 
 extern_methods!(
     /// SharedDialogController
-    #[cfg(feature = "GameKit_GKDialogController")]
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl GKDialogController {
         #[method_id(@__retain_semantics Other sharedDialogController)]
         pub unsafe fn sharedDialogController(mtm: MainThreadMarker) -> Id<GKDialogController>;

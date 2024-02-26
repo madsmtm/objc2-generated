@@ -21,22 +21,18 @@ extern_static!(BCParameterNameBody: &'static BCParameterName);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "BusinessChat_BCChatAction")]
     #[deprecated]
     pub struct BCChatAction;
 
-    #[cfg(feature = "BusinessChat_BCChatAction")]
     unsafe impl ClassType for BCChatAction {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "BusinessChat_BCChatAction")]
 unsafe impl NSObjectProtocol for BCChatAction {}
 
 extern_methods!(
-    #[cfg(feature = "BusinessChat_BCChatAction")]
     unsafe impl BCChatAction {
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[deprecated]
@@ -50,7 +46,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "BusinessChat_BCChatAction")]
     unsafe impl BCChatAction {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

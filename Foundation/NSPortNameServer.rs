@@ -5,22 +5,18 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSPortNameServer")]
     #[deprecated = "Use NSXPCConnection instead"]
     pub struct NSPortNameServer;
 
-    #[cfg(feature = "Foundation_NSPortNameServer")]
     unsafe impl ClassType for NSPortNameServer {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSPortNameServer")]
 unsafe impl NSObjectProtocol for NSPortNameServer {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSPortNameServer")]
     unsafe impl NSPortNameServer {
         #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Other systemDefaultPortNameServer)]
@@ -54,7 +50,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSPortNameServer")]
     unsafe impl NSPortNameServer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -66,11 +61,9 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSMachBootstrapServer")]
     #[deprecated = "Use NSXPCConnection instead"]
     pub struct NSMachBootstrapServer;
 
-    #[cfg(feature = "Foundation_NSMachBootstrapServer")]
     unsafe impl ClassType for NSMachBootstrapServer {
         #[inherits(NSObject)]
         type Super = NSPortNameServer;
@@ -78,11 +71,9 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSMachBootstrapServer")]
 unsafe impl NSObjectProtocol for NSMachBootstrapServer {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSMachBootstrapServer")]
     unsafe impl NSMachBootstrapServer {
         #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Other sharedInstance)]
@@ -115,7 +106,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSMachBootstrapServer")]
     unsafe impl NSMachBootstrapServer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -127,11 +117,9 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSMessagePortNameServer")]
     #[deprecated = "Use NSXPCConnection instead"]
     pub struct NSMessagePortNameServer;
 
-    #[cfg(feature = "Foundation_NSMessagePortNameServer")]
     unsafe impl ClassType for NSMessagePortNameServer {
         #[inherits(NSObject)]
         type Super = NSPortNameServer;
@@ -139,11 +127,9 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSMessagePortNameServer")]
 unsafe impl NSObjectProtocol for NSMessagePortNameServer {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSMessagePortNameServer")]
     unsafe impl NSMessagePortNameServer {
         #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Other sharedInstance)]
@@ -167,7 +153,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSMessagePortNameServer")]
     unsafe impl NSMessagePortNameServer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -179,11 +164,9 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSSocketPortNameServer")]
     #[deprecated = "Use NSXPCConnection instead"]
     pub struct NSSocketPortNameServer;
 
-    #[cfg(feature = "Foundation_NSSocketPortNameServer")]
     unsafe impl ClassType for NSSocketPortNameServer {
         #[inherits(NSObject)]
         type Super = NSPortNameServer;
@@ -191,11 +174,9 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSSocketPortNameServer")]
 unsafe impl NSObjectProtocol for NSSocketPortNameServer {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSSocketPortNameServer")]
     unsafe impl NSSocketPortNameServer {
         #[deprecated = "Use NSXPCConnection instead"]
         #[method_id(@__retain_semantics Other sharedInstance)]
@@ -257,7 +238,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSSocketPortNameServer")]
     unsafe impl NSSocketPortNameServer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

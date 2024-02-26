@@ -11,27 +11,23 @@ typed_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "QuartzCore_CAValueFunction")]
     pub struct CAValueFunction;
 
-    #[cfg(feature = "QuartzCore_CAValueFunction")]
     unsafe impl ClassType for CAValueFunction {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "QuartzCore_CAValueFunction")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CAValueFunction {}
 
-#[cfg(feature = "QuartzCore_CAValueFunction")]
 unsafe impl NSObjectProtocol for CAValueFunction {}
 
-#[cfg(feature = "QuartzCore_CAValueFunction")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CAValueFunction {}
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CAValueFunction")]
     unsafe impl CAValueFunction {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other functionWithName:)]
@@ -45,7 +41,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "QuartzCore_CAValueFunction")]
     unsafe impl CAValueFunction {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

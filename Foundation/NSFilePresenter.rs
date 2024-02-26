@@ -9,7 +9,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other presentedItemURL)]
         unsafe fn presentedItemURL(&self) -> Option<Id<NSURL>>;
 
-        #[cfg(feature = "Foundation_NSOperationQueue")]
+        #[cfg(feature = "Foundation_NSOperation")]
         #[method_id(@__retain_semantics Other presentedItemOperationQueue)]
         unsafe fn presentedItemOperationQueue(&self) -> Id<NSOperationQueue>;
 
@@ -57,7 +57,11 @@ extern_protocol!(
         #[method(presentedItemDidChange)]
         unsafe fn presentedItemDidChange(&self);
 
-        #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSSet",
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSURL"
+        ))]
         #[optional]
         #[method(presentedItemDidChangeUbiquityAttributes:)]
         unsafe fn presentedItemDidChangeUbiquityAttributes(
@@ -65,7 +69,11 @@ extern_protocol!(
             attributes: &NSSet<NSURLResourceKey>,
         );
 
-        #[cfg(all(feature = "Foundation_NSSet", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSSet",
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSURL"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other observedPresentedItemUbiquityAttributes)]
         unsafe fn observedPresentedItemUbiquityAttributes(&self) -> Id<NSSet<NSURLResourceKey>>;

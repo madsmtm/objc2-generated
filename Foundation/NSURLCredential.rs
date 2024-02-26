@@ -19,36 +19,30 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSURLCredential")]
     pub struct NSURLCredential;
 
-    #[cfg(feature = "Foundation_NSURLCredential")]
     unsafe impl ClassType for NSURLCredential {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSURLCredential")]
 unsafe impl Send for NSURLCredential {}
 
-#[cfg(feature = "Foundation_NSURLCredential")]
 unsafe impl Sync for NSURLCredential {}
 
-#[cfg(feature = "Foundation_NSURLCredential")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSURLCredential {}
 
-#[cfg(feature = "Foundation_NSURLCredential")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSURLCredential {}
 
-#[cfg(feature = "Foundation_NSURLCredential")]
 unsafe impl NSObjectProtocol for NSURLCredential {}
 
-#[cfg(feature = "Foundation_NSURLCredential")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSURLCredential {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSURLCredential")]
     unsafe impl NSURLCredential {
         #[method(persistence)]
         pub unsafe fn persistence(&self) -> NSURLCredentialPersistence;
@@ -57,7 +51,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSURLCredential")]
     unsafe impl NSURLCredential {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -69,7 +62,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSInternetPassword
-    #[cfg(feature = "Foundation_NSURLCredential")]
     unsafe impl NSURLCredential {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithUser:password:persistence:)]
@@ -103,7 +95,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSClientCertificate
-    #[cfg(feature = "Foundation_NSURLCredential")]
     unsafe impl NSURLCredential {
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other certificates)]
@@ -113,6 +104,5 @@ extern_methods!(
 
 extern_methods!(
     /// NSServerTrust
-    #[cfg(feature = "Foundation_NSURLCredential")]
     unsafe impl NSURLCredential {}
 );

@@ -7,30 +7,26 @@ use crate::UserNotifications::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "UserNotifications_UNNotificationActionIcon")]
     pub struct UNNotificationActionIcon;
 
-    #[cfg(feature = "UserNotifications_UNNotificationActionIcon")]
     unsafe impl ClassType for UNNotificationActionIcon {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "UserNotifications_UNNotificationActionIcon")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for UNNotificationActionIcon {}
 
-#[cfg(feature = "UserNotifications_UNNotificationActionIcon")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for UNNotificationActionIcon {}
 
-#[cfg(feature = "UserNotifications_UNNotificationActionIcon")]
 unsafe impl NSObjectProtocol for UNNotificationActionIcon {}
 
-#[cfg(feature = "UserNotifications_UNNotificationActionIcon")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for UNNotificationActionIcon {}
 
 extern_methods!(
-    #[cfg(feature = "UserNotifications_UNNotificationActionIcon")]
     unsafe impl UNNotificationActionIcon {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other iconWithTemplateImageName:)]
@@ -47,7 +43,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UserNotifications_UNNotificationActionIcon")]
     unsafe impl UNNotificationActionIcon {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

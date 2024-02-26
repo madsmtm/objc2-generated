@@ -5,21 +5,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSMethodSignature")]
     pub struct NSMethodSignature;
 
-    #[cfg(feature = "Foundation_NSMethodSignature")]
     unsafe impl ClassType for NSMethodSignature {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSMethodSignature")]
 unsafe impl NSObjectProtocol for NSMethodSignature {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSMethodSignature")]
     unsafe impl NSMethodSignature {
         #[method_id(@__retain_semantics Other signatureWithObjCTypes:)]
         pub unsafe fn signatureWithObjCTypes(
@@ -48,7 +44,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSMethodSignature")]
     unsafe impl NSMethodSignature {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

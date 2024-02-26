@@ -8,10 +8,10 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKCorrelation")]
+    #[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
     pub struct HKCorrelation;
 
-    #[cfg(feature = "HealthKit_HKCorrelation")]
+    #[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
     unsafe impl ClassType for HKCorrelation {
         #[inherits(HKObject, NSObject)]
         type Super = HKSample;
@@ -19,19 +19,27 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKCorrelation")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "HealthKit_HKObject",
+    feature = "HealthKit_HKSample"
+))]
 unsafe impl NSCoding for HKCorrelation {}
 
-#[cfg(feature = "HealthKit_HKCorrelation")]
+#[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
 unsafe impl NSObjectProtocol for HKCorrelation {}
 
-#[cfg(feature = "HealthKit_HKCorrelation")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "HealthKit_HKObject",
+    feature = "HealthKit_HKSample"
+))]
 unsafe impl NSSecureCoding for HKCorrelation {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKCorrelation")]
+    #[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
     unsafe impl HKCorrelation {
-        #[cfg(feature = "HealthKit_HKCorrelationType")]
+        #[cfg(feature = "HealthKit_HKObjectType")]
         #[method_id(@__retain_semantics Other correlationType)]
         pub unsafe fn correlationType(&self) -> Id<HKCorrelationType>;
 
@@ -42,7 +50,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSDate",
             feature = "Foundation_NSSet",
-            feature = "HealthKit_HKCorrelationType"
+            feature = "HealthKit_HKObjectType"
         ))]
         #[method_id(@__retain_semantics Other correlationWithType:startDate:endDate:objects:)]
         pub unsafe fn correlationWithType_startDate_endDate_objects(
@@ -57,7 +65,7 @@ extern_methods!(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSSet",
             feature = "Foundation_NSString",
-            feature = "HealthKit_HKCorrelationType"
+            feature = "HealthKit_HKObjectType"
         ))]
         #[method_id(@__retain_semantics Other correlationWithType:startDate:endDate:objects:metadata:)]
         pub unsafe fn correlationWithType_startDate_endDate_objects_metadata(
@@ -73,8 +81,8 @@ extern_methods!(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSSet",
             feature = "Foundation_NSString",
-            feature = "HealthKit_HKCorrelationType",
-            feature = "HealthKit_HKDevice"
+            feature = "HealthKit_HKDevice",
+            feature = "HealthKit_HKObjectType"
         ))]
         #[method_id(@__retain_semantics Other correlationWithType:startDate:endDate:objects:device:metadata:)]
         pub unsafe fn correlationWithType_startDate_endDate_objects_device_metadata(
@@ -94,7 +102,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `HKObject`
-    #[cfg(feature = "HealthKit_HKCorrelation")]
+    #[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
     unsafe impl HKCorrelation {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -103,7 +111,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKCorrelation")]
+    #[cfg(all(feature = "HealthKit_HKObject", feature = "HealthKit_HKSample"))]
     unsafe impl HKCorrelation {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

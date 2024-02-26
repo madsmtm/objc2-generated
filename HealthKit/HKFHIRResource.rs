@@ -49,30 +49,26 @@ extern_static!(HKFHIRResourceTypeProcedure: &'static HKFHIRResourceType);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKFHIRResource")]
     pub struct HKFHIRResource;
 
-    #[cfg(feature = "HealthKit_HKFHIRResource")]
     unsafe impl ClassType for HKFHIRResource {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "HealthKit_HKFHIRResource")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for HKFHIRResource {}
 
-#[cfg(feature = "HealthKit_HKFHIRResource")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for HKFHIRResource {}
 
-#[cfg(feature = "HealthKit_HKFHIRResource")]
 unsafe impl NSObjectProtocol for HKFHIRResource {}
 
-#[cfg(feature = "HealthKit_HKFHIRResource")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for HKFHIRResource {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKFHIRResource")]
     unsafe impl HKFHIRResource {
         #[cfg(feature = "HealthKit_HKFHIRVersion")]
         #[method_id(@__retain_semantics Other FHIRVersion)]
@@ -101,7 +97,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKFHIRResource")]
     unsafe impl HKFHIRResource {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

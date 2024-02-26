@@ -7,30 +7,26 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKQuery")]
     pub struct CKQuery;
 
-    #[cfg(feature = "CloudKit_CKQuery")]
     unsafe impl ClassType for CKQuery {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CloudKit_CKQuery")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CKQuery {}
 
-#[cfg(feature = "CloudKit_CKQuery")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for CKQuery {}
 
-#[cfg(feature = "CloudKit_CKQuery")]
 unsafe impl NSObjectProtocol for CKQuery {}
 
-#[cfg(feature = "CloudKit_CKQuery")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CKQuery {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKQuery")]
     unsafe impl CKQuery {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -42,7 +38,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Id<Self>;
 
-        #[cfg(all(feature = "Foundation_NSPredicate", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "CloudKit_CKRecord",
+            feature = "Foundation_NSPredicate",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithRecordType:predicate:)]
         pub unsafe fn initWithRecordType_predicate(
             this: Allocated<Self>,
@@ -50,7 +50,7 @@ extern_methods!(
             predicate: &NSPredicate,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "CloudKit_CKRecord", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other recordType)]
         pub unsafe fn recordType(&self) -> Id<CKRecordType>;
 

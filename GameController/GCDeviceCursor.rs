@@ -7,10 +7,16 @@ use crate::GameController::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameController_GCDeviceCursor")]
+    #[cfg(all(
+        feature = "GameController_GCControllerDirectionPad",
+        feature = "GameController_GCControllerElement"
+    ))]
     pub struct GCDeviceCursor;
 
-    #[cfg(feature = "GameController_GCDeviceCursor")]
+    #[cfg(all(
+        feature = "GameController_GCControllerDirectionPad",
+        feature = "GameController_GCControllerElement"
+    ))]
     unsafe impl ClassType for GCDeviceCursor {
         #[inherits(GCControllerElement, NSObject)]
         type Super = GCControllerDirectionPad;
@@ -18,17 +24,26 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "GameController_GCDeviceCursor")]
+#[cfg(all(
+    feature = "GameController_GCControllerDirectionPad",
+    feature = "GameController_GCControllerElement"
+))]
 unsafe impl NSObjectProtocol for GCDeviceCursor {}
 
 extern_methods!(
-    #[cfg(feature = "GameController_GCDeviceCursor")]
+    #[cfg(all(
+        feature = "GameController_GCControllerDirectionPad",
+        feature = "GameController_GCControllerElement"
+    ))]
     unsafe impl GCDeviceCursor {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameController_GCDeviceCursor")]
+    #[cfg(all(
+        feature = "GameController_GCControllerDirectionPad",
+        feature = "GameController_GCControllerElement"
+    ))]
     unsafe impl GCDeviceCursor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -6,10 +6,10 @@ use crate::IdentityLookup::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "IdentityLookup_ILMessageFilterExtensionContext")]
+    #[cfg(feature = "Foundation_NSExtensionContext")]
     pub struct ILMessageFilterExtensionContext;
 
-    #[cfg(feature = "IdentityLookup_ILMessageFilterExtensionContext")]
+    #[cfg(feature = "Foundation_NSExtensionContext")]
     unsafe impl ClassType for ILMessageFilterExtensionContext {
         #[inherits(NSObject)]
         type Super = NSExtensionContext;
@@ -17,11 +17,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "IdentityLookup_ILMessageFilterExtensionContext")]
+#[cfg(feature = "Foundation_NSExtensionContext")]
 unsafe impl NSObjectProtocol for ILMessageFilterExtensionContext {}
 
 extern_methods!(
-    #[cfg(feature = "IdentityLookup_ILMessageFilterExtensionContext")]
+    #[cfg(feature = "Foundation_NSExtensionContext")]
     unsafe impl ILMessageFilterExtensionContext {
         #[cfg(all(
             feature = "Foundation_NSError",
@@ -37,7 +37,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "IdentityLookup_ILMessageFilterExtensionContext")]
+    #[cfg(feature = "Foundation_NSExtensionContext")]
     unsafe impl ILMessageFilterExtensionContext {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -21,7 +21,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other documentRange)]
         unsafe fn documentRange(&self) -> Id<NSTextRange>;
 
-        #[cfg(feature = "AppKit_NSTextElement")]
+        #[cfg(all(feature = "AppKit_NSTextElement", feature = "AppKit_NSTextRange"))]
         #[method_id(@__retain_semantics Other enumerateTextElementsFromLocation:options:usingBlock:)]
         unsafe fn enumerateTextElementsFromLocation_options_usingBlock(
             &self,
@@ -49,6 +49,7 @@ extern_protocol!(
             completion_handler: Option<&Block<dyn Fn(*mut NSError)>>,
         );
 
+        #[cfg(feature = "AppKit_NSTextRange")]
         #[optional]
         #[method_id(@__retain_semantics Other locationFromLocation:withOffset:)]
         unsafe fn locationFromLocation_withOffset(
@@ -57,6 +58,7 @@ extern_protocol!(
             offset: NSInteger,
         ) -> Option<Id<ProtocolObject<dyn NSTextLocation>>>;
 
+        #[cfg(feature = "AppKit_NSTextRange")]
         #[optional]
         #[method(offsetFromLocation:toLocation:)]
         unsafe fn offsetFromLocation_toLocation(
@@ -80,30 +82,25 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTextContentManager")]
     pub struct NSTextContentManager;
 
-    #[cfg(feature = "AppKit_NSTextContentManager")]
     unsafe impl ClassType for NSTextContentManager {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSTextContentManager")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSTextContentManager {}
 
-#[cfg(feature = "AppKit_NSTextContentManager")]
 unsafe impl NSObjectProtocol for NSTextContentManager {}
 
-#[cfg(feature = "AppKit_NSTextContentManager")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSTextContentManager {}
 
-#[cfg(feature = "AppKit_NSTextContentManager")]
 unsafe impl NSTextElementProvider for NSTextContentManager {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTextContentManager")]
     unsafe impl NSTextContentManager {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -203,7 +200,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTextContentManager")]
     unsafe impl NSTextContentManager {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -212,10 +208,7 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSTextContentManagerDelegate: NSObjectProtocol {
-        #[cfg(all(
-            feature = "AppKit_NSTextContentManager",
-            feature = "AppKit_NSTextElement"
-        ))]
+        #[cfg(all(feature = "AppKit_NSTextElement", feature = "AppKit_NSTextRange"))]
         #[optional]
         #[method_id(@__retain_semantics Other textContentManager:textElementAtLocation:)]
         unsafe fn textContentManager_textElementAtLocation(
@@ -224,10 +217,7 @@ extern_protocol!(
             location: &ProtocolObject<dyn NSTextLocation>,
         ) -> Option<Id<NSTextElement>>;
 
-        #[cfg(all(
-            feature = "AppKit_NSTextContentManager",
-            feature = "AppKit_NSTextElement"
-        ))]
+        #[cfg(feature = "AppKit_NSTextElement")]
         #[optional]
         #[method(textContentManager:shouldEnumerateTextElement:options:)]
         unsafe fn textContentManager_shouldEnumerateTextElement_options(
@@ -243,10 +233,7 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait NSTextContentStorageDelegate: NSTextContentManagerDelegate {
-        #[cfg(all(
-            feature = "AppKit_NSTextContentStorage",
-            feature = "AppKit_NSTextParagraph"
-        ))]
+        #[cfg(all(feature = "AppKit_NSTextElement", feature = "Foundation_NSRange"))]
         #[optional]
         #[method_id(@__retain_semantics Other textContentStorage:textParagraphWithRange:)]
         unsafe fn textContentStorage_textParagraphWithRange(
@@ -261,10 +248,8 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTextContentStorage")]
     pub struct NSTextContentStorage;
 
-    #[cfg(feature = "AppKit_NSTextContentStorage")]
     unsafe impl ClassType for NSTextContentStorage {
         #[inherits(NSObject)]
         type Super = NSTextContentManager;
@@ -272,23 +257,20 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSTextContentStorage")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSTextContentStorage {}
 
-#[cfg(feature = "AppKit_NSTextContentStorage")]
 unsafe impl NSObjectProtocol for NSTextContentStorage {}
 
-#[cfg(feature = "AppKit_NSTextContentStorage")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSTextContentStorage {}
 
-#[cfg(feature = "AppKit_NSTextContentStorage")]
 unsafe impl NSTextElementProvider for NSTextContentStorage {}
 
-#[cfg(feature = "AppKit_NSTextContentStorage")]
+#[cfg(feature = "AppKit_NSTextStorage")]
 unsafe impl NSTextStorageObserving for NSTextContentStorage {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTextContentStorage")]
     unsafe impl NSTextContentStorage {
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
@@ -329,6 +311,7 @@ extern_methods!(
             attributed_string: &NSAttributedString,
         ) -> Option<Id<NSTextElement>>;
 
+        #[cfg(feature = "AppKit_NSTextRange")]
         #[method_id(@__retain_semantics Other locationFromLocation:withOffset:)]
         pub unsafe fn locationFromLocation_withOffset(
             &self,
@@ -336,6 +319,7 @@ extern_methods!(
             offset: NSInteger,
         ) -> Option<Id<ProtocolObject<dyn NSTextLocation>>>;
 
+        #[cfg(feature = "AppKit_NSTextRange")]
         #[method(offsetFromLocation:toLocation:)]
         pub unsafe fn offsetFromLocation_toLocation(
             &self,
@@ -355,7 +339,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSTextContentManager`
-    #[cfg(feature = "AppKit_NSTextContentStorage")]
     unsafe impl NSTextContentStorage {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -368,12 +351,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTextContentStorage")]
     unsafe impl NSTextContentStorage {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSTextContentStorageUnsupportedAttributeAddedNotification: &'static NSNotificationName);

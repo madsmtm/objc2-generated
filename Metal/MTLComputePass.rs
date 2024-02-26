@@ -6,29 +6,27 @@ use crate::Metal::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLComputePassSampleBufferAttachmentDescriptor")]
     pub struct MTLComputePassSampleBufferAttachmentDescriptor;
 
-    #[cfg(feature = "Metal_MTLComputePassSampleBufferAttachmentDescriptor")]
     unsafe impl ClassType for MTLComputePassSampleBufferAttachmentDescriptor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLComputePassSampleBufferAttachmentDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLComputePassSampleBufferAttachmentDescriptor {}
 
-#[cfg(feature = "Metal_MTLComputePassSampleBufferAttachmentDescriptor")]
 unsafe impl NSObjectProtocol for MTLComputePassSampleBufferAttachmentDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLComputePassSampleBufferAttachmentDescriptor")]
     unsafe impl MTLComputePassSampleBufferAttachmentDescriptor {
+        #[cfg(feature = "Metal_MTLCounters")]
         #[method_id(@__retain_semantics Other sampleBuffer)]
         pub unsafe fn sampleBuffer(&self)
             -> Option<Id<ProtocolObject<dyn MTLCounterSampleBuffer>>>;
 
+        #[cfg(feature = "Metal_MTLCounters")]
         #[method(setSampleBuffer:)]
         pub unsafe fn setSampleBuffer(
             &self,
@@ -54,7 +52,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLComputePassSampleBufferAttachmentDescriptor")]
     unsafe impl MTLComputePassSampleBufferAttachmentDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -66,30 +63,24 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLComputePassSampleBufferAttachmentDescriptorArray")]
     pub struct MTLComputePassSampleBufferAttachmentDescriptorArray;
 
-    #[cfg(feature = "Metal_MTLComputePassSampleBufferAttachmentDescriptorArray")]
     unsafe impl ClassType for MTLComputePassSampleBufferAttachmentDescriptorArray {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLComputePassSampleBufferAttachmentDescriptorArray")]
 unsafe impl NSObjectProtocol for MTLComputePassSampleBufferAttachmentDescriptorArray {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLComputePassSampleBufferAttachmentDescriptorArray")]
     unsafe impl MTLComputePassSampleBufferAttachmentDescriptorArray {
-        #[cfg(feature = "Metal_MTLComputePassSampleBufferAttachmentDescriptor")]
         #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             attachment_index: NSUInteger,
         ) -> Id<MTLComputePassSampleBufferAttachmentDescriptor>;
 
-        #[cfg(feature = "Metal_MTLComputePassSampleBufferAttachmentDescriptor")]
         #[method(setObject:atIndexedSubscript:)]
         pub unsafe fn setObject_atIndexedSubscript(
             &self,
@@ -101,7 +92,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLComputePassSampleBufferAttachmentDescriptorArray")]
     unsafe impl MTLComputePassSampleBufferAttachmentDescriptorArray {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -113,35 +103,32 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLComputePassDescriptor")]
     pub struct MTLComputePassDescriptor;
 
-    #[cfg(feature = "Metal_MTLComputePassDescriptor")]
     unsafe impl ClassType for MTLComputePassDescriptor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLComputePassDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLComputePassDescriptor {}
 
-#[cfg(feature = "Metal_MTLComputePassDescriptor")]
 unsafe impl NSObjectProtocol for MTLComputePassDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLComputePassDescriptor")]
     unsafe impl MTLComputePassDescriptor {
         #[method_id(@__retain_semantics Other computePassDescriptor)]
         pub unsafe fn computePassDescriptor() -> Id<MTLComputePassDescriptor>;
 
+        #[cfg(feature = "Metal_MTLCommandBuffer")]
         #[method(dispatchType)]
         pub unsafe fn dispatchType(&self) -> MTLDispatchType;
 
+        #[cfg(feature = "Metal_MTLCommandBuffer")]
         #[method(setDispatchType:)]
         pub unsafe fn setDispatchType(&self, dispatch_type: MTLDispatchType);
 
-        #[cfg(feature = "Metal_MTLComputePassSampleBufferAttachmentDescriptorArray")]
         #[method_id(@__retain_semantics Other sampleBufferAttachments)]
         pub unsafe fn sampleBufferAttachments(
             &self,
@@ -151,7 +138,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLComputePassDescriptor")]
     unsafe impl MTLComputePassDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -21,27 +21,21 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSOperation")]
     pub struct NSOperation;
 
-    #[cfg(feature = "Foundation_NSOperation")]
     unsafe impl ClassType for NSOperation {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSOperation")]
 unsafe impl Send for NSOperation {}
 
-#[cfg(feature = "Foundation_NSOperation")]
 unsafe impl Sync for NSOperation {}
 
-#[cfg(feature = "Foundation_NSOperation")]
 unsafe impl NSObjectProtocol for NSOperation {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSOperation")]
     unsafe impl NSOperation {
         #[method(start)]
         pub unsafe fn start(&self);
@@ -103,9 +97,11 @@ extern_methods!(
         #[method(setThreadPriority:)]
         pub unsafe fn setThreadPriority(&self, thread_priority: c_double);
 
+        #[cfg(feature = "Foundation_NSObjCRuntime")]
         #[method(qualityOfService)]
         pub unsafe fn qualityOfService(&self) -> NSQualityOfService;
 
+        #[cfg(feature = "Foundation_NSObjCRuntime")]
         #[method(setQualityOfService:)]
         pub unsafe fn setQualityOfService(&self, quality_of_service: NSQualityOfService);
 
@@ -121,7 +117,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSOperation")]
     unsafe impl NSOperation {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -133,10 +128,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSBlockOperation")]
     pub struct NSBlockOperation;
 
-    #[cfg(feature = "Foundation_NSBlockOperation")]
     unsafe impl ClassType for NSBlockOperation {
         #[inherits(NSObject)]
         type Super = NSOperation;
@@ -144,17 +137,13 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSBlockOperation")]
 unsafe impl Send for NSBlockOperation {}
 
-#[cfg(feature = "Foundation_NSBlockOperation")]
 unsafe impl Sync for NSBlockOperation {}
 
-#[cfg(feature = "Foundation_NSBlockOperation")]
 unsafe impl NSObjectProtocol for NSBlockOperation {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSBlockOperation")]
     unsafe impl NSBlockOperation {
         #[method_id(@__retain_semantics Other blockOperationWithBlock:)]
         pub unsafe fn blockOperationWithBlock(block: &Block<dyn Fn()>) -> Id<Self>;
@@ -166,7 +155,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSBlockOperation")]
     unsafe impl NSBlockOperation {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -178,10 +166,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSInvocationOperation")]
     pub struct NSInvocationOperation;
 
-    #[cfg(feature = "Foundation_NSInvocationOperation")]
     unsafe impl ClassType for NSInvocationOperation {
         #[inherits(NSObject)]
         type Super = NSOperation;
@@ -189,11 +175,9 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSInvocationOperation")]
 unsafe impl NSObjectProtocol for NSInvocationOperation {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSInvocationOperation")]
     unsafe impl NSInvocationOperation {
         #[method_id(@__retain_semantics Init initWithTarget:selector:object:)]
         pub unsafe fn initWithTarget_selector_object(
@@ -218,7 +202,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSInvocationOperation")]
     unsafe impl NSInvocationOperation {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -228,50 +211,43 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
 extern_static!(NSInvocationOperationVoidResultException: &'static NSExceptionName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSObjCRuntime", feature = "Foundation_NSString"))]
 extern_static!(NSInvocationOperationCancelledException: &'static NSExceptionName);
 
 extern_static!(NSOperationQueueDefaultMaxConcurrentOperationCount: NSInteger = -1);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSOperationQueue")]
     pub struct NSOperationQueue;
 
-    #[cfg(feature = "Foundation_NSOperationQueue")]
     unsafe impl ClassType for NSOperationQueue {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSOperationQueue")]
 unsafe impl Send for NSOperationQueue {}
 
-#[cfg(feature = "Foundation_NSOperationQueue")]
 unsafe impl Sync for NSOperationQueue {}
 
-#[cfg(feature = "Foundation_NSOperationQueue")]
 unsafe impl NSObjectProtocol for NSOperationQueue {}
 
-#[cfg(feature = "Foundation_NSOperationQueue")]
+#[cfg(feature = "Foundation_NSProgress")]
 unsafe impl NSProgressReporting for NSOperationQueue {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSOperationQueue")]
     unsafe impl NSOperationQueue {
         #[cfg(feature = "Foundation_NSProgress")]
         #[method_id(@__retain_semantics Other progress)]
         pub unsafe fn progress(&self) -> Id<NSProgress>;
 
-        #[cfg(feature = "Foundation_NSOperation")]
         #[method(addOperation:)]
         pub unsafe fn addOperation(&self, op: &NSOperation);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSOperation"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(addOperations:waitUntilFinished:)]
         pub unsafe fn addOperations_waitUntilFinished(
             &self,
@@ -308,9 +284,11 @@ extern_methods!(
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
+        #[cfg(feature = "Foundation_NSObjCRuntime")]
         #[method(qualityOfService)]
         pub unsafe fn qualityOfService(&self) -> NSQualityOfService;
 
+        #[cfg(feature = "Foundation_NSObjCRuntime")]
         #[method(setQualityOfService:)]
         pub unsafe fn setQualityOfService(&self, quality_of_service: NSQualityOfService);
 
@@ -330,7 +308,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSOperationQueue")]
     unsafe impl NSOperationQueue {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -342,9 +319,8 @@ extern_methods!(
 
 extern_methods!(
     /// NSDeprecated
-    #[cfg(feature = "Foundation_NSOperationQueue")]
     unsafe impl NSOperationQueue {
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSOperation"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[deprecated = "access to operations is inherently a race condition, it should not be used. For barrier style behaviors please use addBarrierBlock: instead"]
         #[method_id(@__retain_semantics Other operations)]
         pub unsafe fn operations(&self) -> Id<NSArray<NSOperation>>;

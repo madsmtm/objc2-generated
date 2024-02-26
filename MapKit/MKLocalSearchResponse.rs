@@ -9,26 +9,23 @@ use crate::MapKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKLocalSearchResponse")]
     pub struct MKLocalSearchResponse;
 
-    #[cfg(feature = "MapKit_MKLocalSearchResponse")]
     unsafe impl ClassType for MKLocalSearchResponse {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MapKit_MKLocalSearchResponse")]
 unsafe impl NSObjectProtocol for MKLocalSearchResponse {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKLocalSearchResponse")]
     unsafe impl MKLocalSearchResponse {
         #[cfg(all(feature = "Foundation_NSArray", feature = "MapKit_MKMapItem"))]
         #[method_id(@__retain_semantics Other mapItems)]
         pub unsafe fn mapItems(&self) -> Id<NSArray<MKMapItem>>;
 
+        #[cfg(all(feature = "CoreLocation_CLLocation", feature = "MapKit_MKGeometry"))]
         #[method(boundingRegion)]
         pub unsafe fn boundingRegion(&self) -> MKCoordinateRegion;
     }
@@ -36,7 +33,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MapKit_MKLocalSearchResponse")]
     unsafe impl MKLocalSearchResponse {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

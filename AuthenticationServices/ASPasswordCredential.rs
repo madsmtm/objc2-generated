@@ -7,33 +7,32 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AuthenticationServices_ASPasswordCredential")]
     pub struct ASPasswordCredential;
 
-    #[cfg(feature = "AuthenticationServices_ASPasswordCredential")]
     unsafe impl ClassType for ASPasswordCredential {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASPasswordCredential")]
+#[cfg(all(
+    feature = "AuthenticationServices_ASAuthorizationCredential",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl ASAuthorizationCredential for ASPasswordCredential {}
 
-#[cfg(feature = "AuthenticationServices_ASPasswordCredential")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for ASPasswordCredential {}
 
-#[cfg(feature = "AuthenticationServices_ASPasswordCredential")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for ASPasswordCredential {}
 
-#[cfg(feature = "AuthenticationServices_ASPasswordCredential")]
 unsafe impl NSObjectProtocol for ASPasswordCredential {}
 
-#[cfg(feature = "AuthenticationServices_ASPasswordCredential")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for ASPasswordCredential {}
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASPasswordCredential")]
     unsafe impl ASPasswordCredential {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithUser:password:)]
@@ -60,7 +59,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AuthenticationServices_ASPasswordCredential")]
     unsafe impl ASPasswordCredential {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

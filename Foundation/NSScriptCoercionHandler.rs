@@ -5,21 +5,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSScriptCoercionHandler")]
     pub struct NSScriptCoercionHandler;
 
-    #[cfg(feature = "Foundation_NSScriptCoercionHandler")]
     unsafe impl ClassType for NSScriptCoercionHandler {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSScriptCoercionHandler")]
 unsafe impl NSObjectProtocol for NSScriptCoercionHandler {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSScriptCoercionHandler")]
     unsafe impl NSScriptCoercionHandler {
         #[method_id(@__retain_semantics Other sharedCoercionHandler)]
         pub unsafe fn sharedCoercionHandler() -> Id<NSScriptCoercionHandler>;
@@ -44,7 +40,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSScriptCoercionHandler")]
     unsafe impl NSScriptCoercionHandler {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

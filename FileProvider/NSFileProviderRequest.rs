@@ -8,21 +8,17 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "FileProvider_NSFileProviderRequest")]
     pub struct NSFileProviderRequest;
 
-    #[cfg(feature = "FileProvider_NSFileProviderRequest")]
     unsafe impl ClassType for NSFileProviderRequest {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "FileProvider_NSFileProviderRequest")]
 unsafe impl NSObjectProtocol for NSFileProviderRequest {}
 
 extern_methods!(
-    #[cfg(feature = "FileProvider_NSFileProviderRequest")]
     unsafe impl NSFileProviderRequest {
         #[method(isSystemRequest)]
         pub unsafe fn isSystemRequest(&self) -> bool;
@@ -34,7 +30,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other requestingExecutable)]
         pub unsafe fn requestingExecutable(&self) -> Option<Id<NSURL>>;
 
-        #[cfg(feature = "FileProvider_NSFileProviderDomainVersion")]
+        #[cfg(feature = "FileProvider_NSFileProviderDomain")]
         #[method_id(@__retain_semantics Other domainVersion)]
         pub unsafe fn domainVersion(&self) -> Option<Id<NSFileProviderDomainVersion>>;
     }
@@ -42,7 +38,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "FileProvider_NSFileProviderRequest")]
     unsafe impl NSFileProviderRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

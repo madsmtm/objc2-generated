@@ -7,10 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSPressGestureRecognizer")]
+    #[cfg(feature = "AppKit_NSGestureRecognizer")]
     pub struct NSPressGestureRecognizer;
 
-    #[cfg(feature = "AppKit_NSPressGestureRecognizer")]
+    #[cfg(feature = "AppKit_NSGestureRecognizer")]
     unsafe impl ClassType for NSPressGestureRecognizer {
         #[inherits(NSObject)]
         type Super = NSGestureRecognizer;
@@ -18,14 +18,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSPressGestureRecognizer")]
+#[cfg(all(
+    feature = "AppKit_NSGestureRecognizer",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSPressGestureRecognizer {}
 
-#[cfg(feature = "AppKit_NSPressGestureRecognizer")]
+#[cfg(feature = "AppKit_NSGestureRecognizer")]
 unsafe impl NSObjectProtocol for NSPressGestureRecognizer {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSPressGestureRecognizer")]
+    #[cfg(feature = "AppKit_NSGestureRecognizer")]
     unsafe impl NSPressGestureRecognizer {
         #[method(buttonMask)]
         pub unsafe fn buttonMask(&self) -> NSUInteger;
@@ -33,15 +36,19 @@ extern_methods!(
         #[method(setButtonMask:)]
         pub unsafe fn setButtonMask(&self, button_mask: NSUInteger);
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(minimumPressDuration)]
         pub unsafe fn minimumPressDuration(&self) -> NSTimeInterval;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(setMinimumPressDuration:)]
         pub unsafe fn setMinimumPressDuration(&self, minimum_press_duration: NSTimeInterval);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(allowableMovement)]
         pub unsafe fn allowableMovement(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setAllowableMovement:)]
         pub unsafe fn setAllowableMovement(&self, allowable_movement: CGFloat);
 
@@ -55,7 +62,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSGestureRecognizer`
-    #[cfg(feature = "AppKit_NSPressGestureRecognizer")]
+    #[cfg(feature = "AppKit_NSGestureRecognizer")]
     unsafe impl NSPressGestureRecognizer {
         #[method_id(@__retain_semantics Init initWithTarget:action:)]
         pub unsafe fn initWithTarget_action(
@@ -72,7 +79,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSPressGestureRecognizer")]
+    #[cfg(feature = "AppKit_NSGestureRecognizer")]
     unsafe impl NSPressGestureRecognizer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

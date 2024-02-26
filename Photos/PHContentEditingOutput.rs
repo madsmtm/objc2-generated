@@ -9,21 +9,17 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Photos_PHContentEditingOutput")]
     pub struct PHContentEditingOutput;
 
-    #[cfg(feature = "Photos_PHContentEditingOutput")]
     unsafe impl ClassType for PHContentEditingOutput {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Photos_PHContentEditingOutput")]
 unsafe impl NSObjectProtocol for PHContentEditingOutput {}
 
 extern_methods!(
-    #[cfg(feature = "Photos_PHContentEditingOutput")]
     unsafe impl PHContentEditingOutput {
         #[cfg(feature = "Photos_PHContentEditingInput")]
         #[method_id(@__retain_semantics Init initWithContentEditingInput:)]
@@ -70,7 +66,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Photos_PHContentEditingOutput")]
     unsafe impl PHContentEditingOutput {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

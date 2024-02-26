@@ -9,10 +9,10 @@ use crate::MapKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKCompassButton")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     pub struct MKCompassButton;
 
-    #[cfg(feature = "MapKit_MKCompassButton")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl ClassType for MKCompassButton {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
@@ -20,32 +20,60 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MapKit_MKCompassButton")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibility for MKCompassButton {}
 
-#[cfg(feature = "MapKit_MKCompassButton")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibilityElementProtocol for MKCompassButton {}
 
-#[cfg(feature = "MapKit_MKCompassButton")]
+#[cfg(all(
+    feature = "AppKit_NSAnimation",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAnimatablePropertyContainer for MKCompassButton {}
 
-#[cfg(feature = "MapKit_MKCompassButton")]
+#[cfg(all(
+    feature = "AppKit_NSAppearance",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAppearanceCustomization for MKCompassButton {}
 
-#[cfg(feature = "MapKit_MKCompassButton")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for MKCompassButton {}
 
-#[cfg(feature = "MapKit_MKCompassButton")]
+#[cfg(all(
+    feature = "AppKit_NSDragging",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSDraggingDestination for MKCompassButton {}
 
-#[cfg(feature = "MapKit_MKCompassButton")]
+#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
 unsafe impl NSObjectProtocol for MKCompassButton {}
 
-#[cfg(feature = "MapKit_MKCompassButton")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSUserInterfaceItemIdentification for MKCompassButton {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKCompassButton")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl MKCompassButton {
         #[cfg(feature = "MapKit_MKMapView")]
         #[method_id(@__retain_semantics Other compassButtonWithMapView:)]
@@ -62,9 +90,11 @@ extern_methods!(
         #[method(setMapView:)]
         pub unsafe fn setMapView(&self, map_view: Option<&MKMapView>);
 
+        #[cfg(feature = "MapKit_MKTypes")]
         #[method(compassVisibility)]
         pub unsafe fn compassVisibility(&self) -> MKFeatureVisibility;
 
+        #[cfg(feature = "MapKit_MKTypes")]
         #[method(setCompassVisibility:)]
         pub unsafe fn setCompassVisibility(&self, compass_visibility: MKFeatureVisibility);
     }
@@ -72,8 +102,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSView`
-    #[cfg(feature = "MapKit_MKCompassButton")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl MKCompassButton {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
 
@@ -85,7 +116,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "MapKit_MKCompassButton")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl MKCompassButton {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -94,7 +125,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MapKit_MKCompassButton")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl MKCompassButton {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

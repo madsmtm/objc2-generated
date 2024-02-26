@@ -62,6 +62,7 @@ ns_enum!(
 ns_options!(
     #[underlying(NSUInteger)]
     pub enum NSDraggingItemEnumerationOptions {
+        #[cfg(feature = "Foundation_NSObjCRuntime")]
         NSDraggingItemEnumerationConcurrent = NSEnumerationOptions::NSEnumerationConcurrent.0,
         NSDraggingItemEnumerationClearNonenumeratedImages = 1 << 16,
     }
@@ -81,16 +82,18 @@ ns_enum!(
 
 extern_protocol!(
     pub unsafe trait NSDraggingInfo: NSObjectProtocol + IsMainThreadOnly {
-        #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
         #[method_id(@__retain_semantics Other draggingDestinationWindow)]
         unsafe fn draggingDestinationWindow(&self) -> Option<Id<NSWindow>>;
 
         #[method(draggingSourceOperationMask)]
         unsafe fn draggingSourceOperationMask(&self) -> NSDragOperation;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(draggingLocation)]
         unsafe fn draggingLocation(&self) -> NSPoint;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(draggedImageLocation)]
         unsafe fn draggedImageLocation(&self) -> NSPoint;
 
@@ -109,6 +112,7 @@ extern_protocol!(
         #[method(draggingSequenceNumber)]
         unsafe fn draggingSequenceNumber(&self) -> NSInteger;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(slideDraggedImageTo:)]
         unsafe fn slideDraggedImageTo(&self, screen_point: NSPoint);
 
@@ -144,6 +148,8 @@ extern_protocol!(
 
         #[cfg(all(
             feature = "AppKit_NSDraggingItem",
+            feature = "AppKit_NSPasteboard",
+            feature = "AppKit_NSResponder",
             feature = "AppKit_NSView",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSDictionary",
@@ -233,7 +239,10 @@ extern_protocol!(
             context: NSDraggingContext,
         ) -> NSDragOperation;
 
-        #[cfg(feature = "AppKit_NSDraggingSession")]
+        #[cfg(all(
+            feature = "AppKit_NSDraggingSession",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[optional]
         #[method(draggingSession:willBeginAtPoint:)]
         unsafe fn draggingSession_willBeginAtPoint(
@@ -242,7 +251,10 @@ extern_protocol!(
             screen_point: NSPoint,
         );
 
-        #[cfg(feature = "AppKit_NSDraggingSession")]
+        #[cfg(all(
+            feature = "AppKit_NSDraggingSession",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[optional]
         #[method(draggingSession:movedToPoint:)]
         unsafe fn draggingSession_movedToPoint(
@@ -251,7 +263,10 @@ extern_protocol!(
             screen_point: NSPoint,
         );
 
-        #[cfg(feature = "AppKit_NSDraggingSession")]
+        #[cfg(all(
+            feature = "AppKit_NSDraggingSession",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[optional]
         #[method(draggingSession:endedAtPoint:operation:)]
         unsafe fn draggingSession_endedAtPoint_operation(

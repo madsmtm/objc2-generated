@@ -6,39 +6,33 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "BackgroundAssets_BAAppExtensionInfo")]
     pub struct BAAppExtensionInfo;
 
-    #[cfg(feature = "BackgroundAssets_BAAppExtensionInfo")]
     unsafe impl ClassType for BAAppExtensionInfo {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "BackgroundAssets_BAAppExtensionInfo")]
 unsafe impl Send for BAAppExtensionInfo {}
 
-#[cfg(feature = "BackgroundAssets_BAAppExtensionInfo")]
 unsafe impl Sync for BAAppExtensionInfo {}
 
-#[cfg(feature = "BackgroundAssets_BAAppExtensionInfo")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for BAAppExtensionInfo {}
 
-#[cfg(feature = "BackgroundAssets_BAAppExtensionInfo")]
 unsafe impl NSObjectProtocol for BAAppExtensionInfo {}
 
-#[cfg(feature = "BackgroundAssets_BAAppExtensionInfo")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for BAAppExtensionInfo {}
 
 extern_methods!(
-    #[cfg(feature = "BackgroundAssets_BAAppExtensionInfo")]
     unsafe impl BAAppExtensionInfo {
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method_id(@__retain_semantics Other restrictedDownloadSizeRemaining)]
         pub unsafe fn restrictedDownloadSizeRemaining(&self) -> Option<Id<NSNumber>>;
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method_id(@__retain_semantics Other restrictedEssentialDownloadSizeRemaining)]
         pub unsafe fn restrictedEssentialDownloadSizeRemaining(&self) -> Option<Id<NSNumber>>;
 

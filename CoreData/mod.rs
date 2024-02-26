@@ -17,295 +17,536 @@
 #[cfg_attr(feature = "apple", link(name = "CoreData", kind = "framework"))]
 extern "C" {}
 
+#[cfg(feature = "CoreData_CoreDataDefines")]
 #[path = "CoreDataDefines.rs"]
 mod __CoreDataDefines;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 #[path = "CoreDataErrors.rs"]
 mod __CoreDataErrors;
+#[cfg(feature = "CoreData_NSAtomicStore")]
 #[path = "NSAtomicStore.rs"]
 mod __NSAtomicStore;
+#[cfg(feature = "CoreData_NSAtomicStoreCacheNode")]
 #[path = "NSAtomicStoreCacheNode.rs"]
 mod __NSAtomicStoreCacheNode;
+#[cfg(feature = "CoreData_NSAttributeDescription")]
 #[path = "NSAttributeDescription.rs"]
 mod __NSAttributeDescription;
+#[cfg(feature = "CoreData_NSBatchDeleteRequest")]
 #[path = "NSBatchDeleteRequest.rs"]
 mod __NSBatchDeleteRequest;
+#[cfg(feature = "CoreData_NSBatchInsertRequest")]
 #[path = "NSBatchInsertRequest.rs"]
 mod __NSBatchInsertRequest;
+#[cfg(feature = "CoreData_NSBatchUpdateRequest")]
 #[path = "NSBatchUpdateRequest.rs"]
 mod __NSBatchUpdateRequest;
+#[cfg(feature = "CoreData_NSCompositeAttributeDescription")]
 #[path = "NSCompositeAttributeDescription.rs"]
 mod __NSCompositeAttributeDescription;
+#[cfg(feature = "CoreData_NSCoreDataCoreSpotlightDelegate")]
 #[path = "NSCoreDataCoreSpotlightDelegate.rs"]
 mod __NSCoreDataCoreSpotlightDelegate;
+#[cfg(feature = "CoreData_NSCustomMigrationStage")]
 #[path = "NSCustomMigrationStage.rs"]
 mod __NSCustomMigrationStage;
+#[cfg(feature = "CoreData_NSDerivedAttributeDescription")]
 #[path = "NSDerivedAttributeDescription.rs"]
 mod __NSDerivedAttributeDescription;
+#[cfg(feature = "CoreData_NSEntityDescription")]
 #[path = "NSEntityDescription.rs"]
 mod __NSEntityDescription;
+#[cfg(feature = "CoreData_NSEntityMapping")]
 #[path = "NSEntityMapping.rs"]
 mod __NSEntityMapping;
+#[cfg(feature = "CoreData_NSEntityMigrationPolicy")]
 #[path = "NSEntityMigrationPolicy.rs"]
 mod __NSEntityMigrationPolicy;
+#[cfg(feature = "CoreData_NSExpressionDescription")]
 #[path = "NSExpressionDescription.rs"]
 mod __NSExpressionDescription;
+#[cfg(feature = "CoreData_NSFetchIndexDescription")]
 #[path = "NSFetchIndexDescription.rs"]
 mod __NSFetchIndexDescription;
+#[cfg(feature = "CoreData_NSFetchIndexElementDescription")]
 #[path = "NSFetchIndexElementDescription.rs"]
 mod __NSFetchIndexElementDescription;
+#[cfg(feature = "CoreData_NSFetchRequest")]
 #[path = "NSFetchRequest.rs"]
 mod __NSFetchRequest;
+#[cfg(feature = "CoreData_NSFetchRequestExpression")]
 #[path = "NSFetchRequestExpression.rs"]
 mod __NSFetchRequestExpression;
+#[cfg(feature = "CoreData_NSFetchedPropertyDescription")]
 #[path = "NSFetchedPropertyDescription.rs"]
 mod __NSFetchedPropertyDescription;
+#[cfg(feature = "CoreData_NSFetchedResultsController")]
 #[path = "NSFetchedResultsController.rs"]
 mod __NSFetchedResultsController;
+#[cfg(feature = "CoreData_NSIncrementalStore")]
 #[path = "NSIncrementalStore.rs"]
 mod __NSIncrementalStore;
+#[cfg(feature = "CoreData_NSIncrementalStoreNode")]
 #[path = "NSIncrementalStoreNode.rs"]
 mod __NSIncrementalStoreNode;
+#[cfg(feature = "CoreData_NSLightweightMigrationStage")]
 #[path = "NSLightweightMigrationStage.rs"]
 mod __NSLightweightMigrationStage;
+#[cfg(feature = "CoreData_NSManagedObject")]
 #[path = "NSManagedObject.rs"]
 mod __NSManagedObject;
+#[cfg(feature = "CoreData_NSManagedObjectContext")]
 #[path = "NSManagedObjectContext.rs"]
 mod __NSManagedObjectContext;
+#[cfg(feature = "CoreData_NSManagedObjectID")]
 #[path = "NSManagedObjectID.rs"]
 mod __NSManagedObjectID;
+#[cfg(feature = "CoreData_NSManagedObjectModel")]
 #[path = "NSManagedObjectModel.rs"]
 mod __NSManagedObjectModel;
+#[cfg(feature = "CoreData_NSManagedObjectModelReference")]
 #[path = "NSManagedObjectModelReference.rs"]
 mod __NSManagedObjectModelReference;
+#[cfg(feature = "CoreData_NSMappingModel")]
 #[path = "NSMappingModel.rs"]
 mod __NSMappingModel;
+#[cfg(feature = "CoreData_NSMergePolicy")]
 #[path = "NSMergePolicy.rs"]
 mod __NSMergePolicy;
+#[cfg(feature = "CoreData_NSMigrationManager")]
 #[path = "NSMigrationManager.rs"]
 mod __NSMigrationManager;
+#[cfg(feature = "CoreData_NSMigrationStage")]
 #[path = "NSMigrationStage.rs"]
 mod __NSMigrationStage;
+#[cfg(feature = "CoreData_NSPersistentCloudKitContainer")]
 #[path = "NSPersistentCloudKitContainer.rs"]
 mod __NSPersistentCloudKitContainer;
+#[cfg(feature = "CoreData_NSPersistentCloudKitContainerEvent")]
 #[path = "NSPersistentCloudKitContainerEvent.rs"]
 mod __NSPersistentCloudKitContainerEvent;
+#[cfg(feature = "CoreData_NSPersistentCloudKitContainerEventRequest")]
 #[path = "NSPersistentCloudKitContainerEventRequest.rs"]
 mod __NSPersistentCloudKitContainerEventRequest;
+#[cfg(feature = "CoreData_NSPersistentCloudKitContainerOptions")]
 #[path = "NSPersistentCloudKitContainerOptions.rs"]
 mod __NSPersistentCloudKitContainerOptions;
+#[cfg(feature = "CoreData_NSPersistentContainer")]
 #[path = "NSPersistentContainer.rs"]
 mod __NSPersistentContainer;
+#[cfg(feature = "CoreData_NSPersistentHistoryChange")]
 #[path = "NSPersistentHistoryChange.rs"]
 mod __NSPersistentHistoryChange;
+#[cfg(feature = "CoreData_NSPersistentHistoryChangeRequest")]
 #[path = "NSPersistentHistoryChangeRequest.rs"]
 mod __NSPersistentHistoryChangeRequest;
+#[cfg(feature = "CoreData_NSPersistentHistoryToken")]
 #[path = "NSPersistentHistoryToken.rs"]
 mod __NSPersistentHistoryToken;
+#[cfg(feature = "CoreData_NSPersistentHistoryTransaction")]
 #[path = "NSPersistentHistoryTransaction.rs"]
 mod __NSPersistentHistoryTransaction;
+#[cfg(feature = "CoreData_NSPersistentStore")]
 #[path = "NSPersistentStore.rs"]
 mod __NSPersistentStore;
+#[cfg(feature = "CoreData_NSPersistentStoreCoordinator")]
 #[path = "NSPersistentStoreCoordinator.rs"]
 mod __NSPersistentStoreCoordinator;
+#[cfg(feature = "CoreData_NSPersistentStoreDescription")]
 #[path = "NSPersistentStoreDescription.rs"]
 mod __NSPersistentStoreDescription;
+#[cfg(feature = "CoreData_NSPersistentStoreRequest")]
 #[path = "NSPersistentStoreRequest.rs"]
 mod __NSPersistentStoreRequest;
+#[cfg(feature = "CoreData_NSPersistentStoreResult")]
 #[path = "NSPersistentStoreResult.rs"]
 mod __NSPersistentStoreResult;
+#[cfg(feature = "CoreData_NSPropertyDescription")]
 #[path = "NSPropertyDescription.rs"]
 mod __NSPropertyDescription;
+#[cfg(feature = "CoreData_NSPropertyMapping")]
 #[path = "NSPropertyMapping.rs"]
 mod __NSPropertyMapping;
+#[cfg(feature = "CoreData_NSQueryGenerationToken")]
 #[path = "NSQueryGenerationToken.rs"]
 mod __NSQueryGenerationToken;
+#[cfg(feature = "CoreData_NSRelationshipDescription")]
 #[path = "NSRelationshipDescription.rs"]
 mod __NSRelationshipDescription;
+#[cfg(feature = "CoreData_NSSaveChangesRequest")]
 #[path = "NSSaveChangesRequest.rs"]
 mod __NSSaveChangesRequest;
+#[cfg(feature = "CoreData_NSStagedMigrationManager")]
 #[path = "NSStagedMigrationManager.rs"]
 mod __NSStagedMigrationManager;
 
+#[cfg(feature = "CoreData_CoreDataDefines")]
 pub use self::__CoreDataDefines::NSCoreDataVersionNumber;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "CoreData_CoreDataErrors", feature = "Foundation_NSString"))]
 pub use self::__CoreDataErrors::NSAffectedObjectsErrorKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "CoreData_CoreDataErrors", feature = "Foundation_NSString"))]
 pub use self::__CoreDataErrors::NSAffectedStoresErrorKey;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSCoreDataError;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "CoreData_CoreDataErrors", feature = "Foundation_NSString"))]
 pub use self::__CoreDataErrors::NSDetailedErrorsKey;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSEntityMigrationPolicyError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSExternalRecordImportError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSInferredMappingModelError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSManagedObjectConstraintMergeError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSManagedObjectConstraintValidationError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSManagedObjectContextLockingError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSManagedObjectExternalRelationshipError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSManagedObjectMergeError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSManagedObjectModelReferenceNotFoundError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSManagedObjectReferentialIntegrityError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSManagedObjectValidationError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSMigrationCancelledError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSMigrationConstraintViolationError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSMigrationError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSMigrationManagerDestinationStoreError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSMigrationManagerSourceStoreError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSMigrationMissingMappingModelError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSMigrationMissingSourceModelError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSPersistentHistoryTokenExpiredError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSPersistentStoreCoordinatorLockingError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSPersistentStoreIncompatibleSchemaError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSPersistentStoreIncompatibleVersionHashError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSPersistentStoreIncompleteSaveError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSPersistentStoreInvalidTypeError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSPersistentStoreOpenError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSPersistentStoreOperationError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSPersistentStoreSaveConflictsError;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "CoreData_CoreDataErrors", feature = "Foundation_NSString"))]
 pub use self::__CoreDataErrors::NSPersistentStoreSaveConflictsErrorKey;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSPersistentStoreSaveError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSPersistentStoreTimeoutError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSPersistentStoreTypeMismatchError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSPersistentStoreUnsupportedRequestTypeError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSSQLiteError;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "CoreData_CoreDataErrors", feature = "Foundation_NSString"))]
 pub use self::__CoreDataErrors::NSSQLiteErrorDomain;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSStagedMigrationBackwardMigrationError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSStagedMigrationFrameworkVersionMismatchError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSValidationDateTooLateError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSValidationDateTooSoonError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSValidationInvalidDateError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSValidationInvalidURIError;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "CoreData_CoreDataErrors", feature = "Foundation_NSString"))]
 pub use self::__CoreDataErrors::NSValidationKeyErrorKey;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSValidationMissingMandatoryPropertyError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSValidationMultipleErrorsError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSValidationNumberTooLargeError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSValidationNumberTooSmallError;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "CoreData_CoreDataErrors", feature = "Foundation_NSString"))]
 pub use self::__CoreDataErrors::NSValidationObjectErrorKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "CoreData_CoreDataErrors", feature = "Foundation_NSString"))]
 pub use self::__CoreDataErrors::NSValidationPredicateErrorKey;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSValidationRelationshipDeniedDeleteError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSValidationRelationshipExceedsMaximumCountError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSValidationRelationshipLacksMinimumCountError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSValidationStringPatternMatchingError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSValidationStringTooLongError;
+#[cfg(feature = "CoreData_CoreDataErrors")]
 pub use self::__CoreDataErrors::NSValidationStringTooShortError;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "CoreData_CoreDataErrors", feature = "Foundation_NSString"))]
 pub use self::__CoreDataErrors::NSValidationValueErrorKey;
-#[cfg(feature = "CoreData_NSAtomicStore")]
+#[cfg(all(
+    feature = "CoreData_NSAtomicStore",
+    feature = "CoreData_NSPersistentStore"
+))]
 pub use self::__NSAtomicStore::NSAtomicStore;
 #[cfg(feature = "CoreData_NSAtomicStoreCacheNode")]
 pub use self::__NSAtomicStoreCacheNode::NSAtomicStoreCacheNode;
-#[cfg(feature = "CoreData_NSAttributeDescription")]
+#[cfg(all(
+    feature = "CoreData_NSAttributeDescription",
+    feature = "CoreData_NSPropertyDescription"
+))]
 pub use self::__NSAttributeDescription::NSAttributeDescription;
+#[cfg(feature = "CoreData_NSAttributeDescription")]
 pub use self::__NSAttributeDescription::NSAttributeType;
-#[cfg(feature = "CoreData_NSBatchDeleteRequest")]
+#[cfg(all(
+    feature = "CoreData_NSBatchDeleteRequest",
+    feature = "CoreData_NSPersistentStoreRequest"
+))]
 pub use self::__NSBatchDeleteRequest::NSBatchDeleteRequest;
-#[cfg(feature = "CoreData_NSBatchInsertRequest")]
+#[cfg(all(
+    feature = "CoreData_NSBatchInsertRequest",
+    feature = "CoreData_NSPersistentStoreRequest"
+))]
 pub use self::__NSBatchInsertRequest::NSBatchInsertRequest;
-#[cfg(feature = "CoreData_NSBatchUpdateRequest")]
+#[cfg(all(
+    feature = "CoreData_NSBatchUpdateRequest",
+    feature = "CoreData_NSPersistentStoreRequest"
+))]
 pub use self::__NSBatchUpdateRequest::NSBatchUpdateRequest;
-#[cfg(feature = "CoreData_NSCompositeAttributeDescription")]
+#[cfg(all(
+    feature = "CoreData_NSAttributeDescription",
+    feature = "CoreData_NSCompositeAttributeDescription",
+    feature = "CoreData_NSPropertyDescription"
+))]
 pub use self::__NSCompositeAttributeDescription::NSCompositeAttributeDescription;
 #[cfg(feature = "CoreData_NSCoreDataCoreSpotlightDelegate")]
 pub use self::__NSCoreDataCoreSpotlightDelegate::NSCoreDataCoreSpotlightDelegate;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSCoreDataCoreSpotlightDelegate",
+    feature = "Foundation_NSNotification",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSCoreDataCoreSpotlightDelegate::NSCoreDataCoreSpotlightDelegateIndexDidUpdateNotification;
-#[cfg(feature = "CoreData_NSCustomMigrationStage")]
+#[cfg(all(
+    feature = "CoreData_NSCustomMigrationStage",
+    feature = "CoreData_NSMigrationStage"
+))]
 pub use self::__NSCustomMigrationStage::NSCustomMigrationStage;
-#[cfg(feature = "CoreData_NSDerivedAttributeDescription")]
+#[cfg(all(
+    feature = "CoreData_NSAttributeDescription",
+    feature = "CoreData_NSDerivedAttributeDescription",
+    feature = "CoreData_NSPropertyDescription"
+))]
 pub use self::__NSDerivedAttributeDescription::NSDerivedAttributeDescription;
 #[cfg(feature = "CoreData_NSEntityDescription")]
 pub use self::__NSEntityDescription::NSEntityDescription;
 #[cfg(feature = "CoreData_NSEntityMapping")]
 pub use self::__NSEntityMapping::NSEntityMapping;
+#[cfg(feature = "CoreData_NSEntityMapping")]
 pub use self::__NSEntityMapping::NSEntityMappingType;
 #[cfg(feature = "CoreData_NSEntityMigrationPolicy")]
 pub use self::__NSEntityMigrationPolicy::NSEntityMigrationPolicy;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSEntityMigrationPolicy",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSEntityMigrationPolicy::NSMigrationDestinationObjectKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSEntityMigrationPolicy",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSEntityMigrationPolicy::NSMigrationEntityMappingKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSEntityMigrationPolicy",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSEntityMigrationPolicy::NSMigrationEntityPolicyKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSEntityMigrationPolicy",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSEntityMigrationPolicy::NSMigrationManagerKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSEntityMigrationPolicy",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSEntityMigrationPolicy::NSMigrationPropertyMappingKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSEntityMigrationPolicy",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSEntityMigrationPolicy::NSMigrationSourceObjectKey;
-#[cfg(feature = "CoreData_NSExpressionDescription")]
+#[cfg(all(
+    feature = "CoreData_NSExpressionDescription",
+    feature = "CoreData_NSPropertyDescription"
+))]
 pub use self::__NSExpressionDescription::NSExpressionDescription;
 #[cfg(feature = "CoreData_NSFetchIndexDescription")]
 pub use self::__NSFetchIndexDescription::NSFetchIndexDescription;
 #[cfg(feature = "CoreData_NSFetchIndexElementDescription")]
 pub use self::__NSFetchIndexElementDescription::NSFetchIndexElementDescription;
+#[cfg(feature = "CoreData_NSFetchIndexElementDescription")]
 pub use self::__NSFetchIndexElementDescription::NSFetchIndexElementType;
-#[cfg(feature = "CoreData_NSAsynchronousFetchRequest")]
+#[cfg(all(
+    feature = "CoreData_NSFetchRequest",
+    feature = "CoreData_NSPersistentStoreRequest"
+))]
 pub use self::__NSFetchRequest::NSAsynchronousFetchRequest;
-#[cfg(feature = "CoreData_NSFetchRequest")]
+#[cfg(all(
+    feature = "CoreData_NSFetchRequest",
+    feature = "CoreData_NSPersistentStoreRequest"
+))]
 pub use self::__NSFetchRequest::NSFetchRequest;
+#[cfg(feature = "CoreData_NSFetchRequest")]
 pub use self::__NSFetchRequest::NSFetchRequestResult;
+#[cfg(feature = "CoreData_NSFetchRequest")]
 pub use self::__NSFetchRequest::NSFetchRequestResultType;
-#[cfg(feature = "CoreData_NSAsynchronousFetchResult")]
+#[cfg(all(
+    feature = "CoreData_NSFetchRequest",
+    feature = "CoreData_NSPersistentStoreResult"
+))]
 pub use self::__NSFetchRequest::NSPersistentStoreAsynchronousFetchResultCompletionBlock;
-#[cfg(feature = "CoreData_NSFetchRequestExpression")]
+#[cfg(all(
+    feature = "CoreData_NSFetchRequestExpression",
+    feature = "Foundation_NSExpression"
+))]
 pub use self::__NSFetchRequestExpression::NSFetchRequestExpression;
+#[cfg(all(
+    feature = "CoreData_NSFetchRequestExpression",
+    feature = "Foundation_NSExpression"
+))]
 pub use self::__NSFetchRequestExpression::NSFetchRequestExpressionType;
-#[cfg(feature = "CoreData_NSFetchedPropertyDescription")]
+#[cfg(all(
+    feature = "CoreData_NSFetchedPropertyDescription",
+    feature = "CoreData_NSPropertyDescription"
+))]
 pub use self::__NSFetchedPropertyDescription::NSFetchedPropertyDescription;
+#[cfg(feature = "CoreData_NSFetchedResultsController")]
 pub use self::__NSFetchedResultsController::NSFetchedResultsChangeType;
 #[cfg(feature = "CoreData_NSFetchedResultsController")]
 pub use self::__NSFetchedResultsController::NSFetchedResultsController;
+#[cfg(feature = "CoreData_NSFetchedResultsController")]
 pub use self::__NSFetchedResultsController::NSFetchedResultsControllerDelegate;
+#[cfg(feature = "CoreData_NSFetchedResultsController")]
 pub use self::__NSFetchedResultsController::NSFetchedResultsSectionInfo;
-#[cfg(feature = "CoreData_NSIncrementalStore")]
+#[cfg(all(
+    feature = "CoreData_NSIncrementalStore",
+    feature = "CoreData_NSPersistentStore"
+))]
 pub use self::__NSIncrementalStore::NSIncrementalStore;
 #[cfg(feature = "CoreData_NSIncrementalStoreNode")]
 pub use self::__NSIncrementalStoreNode::NSIncrementalStoreNode;
-#[cfg(feature = "CoreData_NSLightweightMigrationStage")]
+#[cfg(all(
+    feature = "CoreData_NSLightweightMigrationStage",
+    feature = "CoreData_NSMigrationStage"
+))]
 pub use self::__NSLightweightMigrationStage::NSLightweightMigrationStage;
 #[cfg(feature = "CoreData_NSManagedObject")]
 pub use self::__NSManagedObject::NSManagedObject;
+#[cfg(feature = "CoreData_NSManagedObject")]
 pub use self::__NSManagedObject::NSSnapshotEventType;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSManagedObjectContext",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSManagedObjectContext::NSDeletedObjectIDsKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSManagedObjectContext",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSManagedObjectContext::NSDeletedObjectsKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSManagedObjectContext",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSManagedObjectContext::NSInsertedObjectIDsKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSManagedObjectContext",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSManagedObjectContext::NSInsertedObjectsKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSManagedObjectContext",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSManagedObjectContext::NSInvalidatedAllObjectsKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSManagedObjectContext",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSManagedObjectContext::NSInvalidatedObjectIDsKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSManagedObjectContext",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSManagedObjectContext::NSInvalidatedObjectsKey;
 #[cfg(feature = "CoreData_NSManagedObjectContext")]
 pub use self::__NSManagedObjectContext::NSManagedObjectContext;
+#[cfg(feature = "CoreData_NSManagedObjectContext")]
 pub use self::__NSManagedObjectContext::NSManagedObjectContextConcurrencyType;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSManagedObjectContext",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSManagedObjectContext::NSManagedObjectContextDidMergeChangesObjectIDsNotification;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSManagedObjectContext",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSManagedObjectContext::NSManagedObjectContextDidSaveNotification;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSManagedObjectContext",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSManagedObjectContext::NSManagedObjectContextDidSaveObjectIDsNotification;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSManagedObjectContext",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSManagedObjectContext::NSManagedObjectContextObjectsDidChangeNotification;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSManagedObjectContext",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSManagedObjectContext::NSManagedObjectContextQueryGenerationKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSManagedObjectContext",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSManagedObjectContext::NSManagedObjectContextWillSaveNotification;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSManagedObjectContext",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSManagedObjectContext::NSRefreshedObjectIDsKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSManagedObjectContext",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSManagedObjectContext::NSRefreshedObjectsKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSManagedObjectContext",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSManagedObjectContext::NSUpdatedObjectIDsKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSManagedObjectContext",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSManagedObjectContext::NSUpdatedObjectsKey;
 #[cfg(feature = "CoreData_NSManagedObjectID")]
 pub use self::__NSManagedObjectID::NSManagedObjectID;
@@ -315,28 +556,44 @@ pub use self::__NSManagedObjectModel::NSManagedObjectModel;
 pub use self::__NSManagedObjectModelReference::NSManagedObjectModelReference;
 #[cfg(feature = "CoreData_NSMappingModel")]
 pub use self::__NSMappingModel::NSMappingModel;
-#[cfg(feature = "CoreData_NSConstraintConflict")]
+#[cfg(feature = "CoreData_NSMergePolicy")]
 pub use self::__NSMergePolicy::NSConstraintConflict;
-#[cfg(feature = "CoreData_NSMergeConflict")]
+#[cfg(feature = "CoreData_NSMergePolicy")]
 pub use self::__NSMergePolicy::NSMergeConflict;
 #[cfg(feature = "CoreData_NSMergePolicy")]
 pub use self::__NSMergePolicy::NSMergePolicy;
+#[cfg(feature = "CoreData_NSMergePolicy")]
 pub use self::__NSMergePolicy::NSMergePolicyType;
 #[cfg(feature = "CoreData_NSMigrationManager")]
 pub use self::__NSMigrationManager::NSMigrationManager;
 #[cfg(feature = "CoreData_NSMigrationStage")]
 pub use self::__NSMigrationStage::NSMigrationStage;
-#[cfg(feature = "CoreData_NSPersistentCloudKitContainer")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentCloudKitContainer",
+    feature = "CoreData_NSPersistentContainer"
+))]
 pub use self::__NSPersistentCloudKitContainer::NSPersistentCloudKitContainer;
+#[cfg(feature = "CoreData_NSPersistentCloudKitContainer")]
 pub use self::__NSPersistentCloudKitContainer::NSPersistentCloudKitContainerSchemaInitializationOptions;
 #[cfg(feature = "CoreData_NSPersistentCloudKitContainerEvent")]
 pub use self::__NSPersistentCloudKitContainerEvent::NSPersistentCloudKitContainerEvent;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentCloudKitContainerEvent",
+    feature = "Foundation_NSNotification",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentCloudKitContainerEvent::NSPersistentCloudKitContainerEventChangedNotification;
+#[cfg(feature = "CoreData_NSPersistentCloudKitContainerEvent")]
 pub use self::__NSPersistentCloudKitContainerEvent::NSPersistentCloudKitContainerEventType;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentCloudKitContainerEvent",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentCloudKitContainerEvent::NSPersistentCloudKitContainerEventUserInfoKey;
-#[cfg(feature = "CoreData_NSPersistentCloudKitContainerEventRequest")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentCloudKitContainerEventRequest",
+    feature = "CoreData_NSPersistentStoreRequest"
+))]
 pub use self::__NSPersistentCloudKitContainerEventRequest::NSPersistentCloudKitContainerEventRequest;
 #[cfg(feature = "CoreData_NSPersistentCloudKitContainerOptions")]
 pub use self::__NSPersistentCloudKitContainerOptions::NSPersistentCloudKitContainerOptions;
@@ -344,8 +601,12 @@ pub use self::__NSPersistentCloudKitContainerOptions::NSPersistentCloudKitContai
 pub use self::__NSPersistentContainer::NSPersistentContainer;
 #[cfg(feature = "CoreData_NSPersistentHistoryChange")]
 pub use self::__NSPersistentHistoryChange::NSPersistentHistoryChange;
+#[cfg(feature = "CoreData_NSPersistentHistoryChange")]
 pub use self::__NSPersistentHistoryChange::NSPersistentHistoryChangeType;
-#[cfg(feature = "CoreData_NSPersistentHistoryChangeRequest")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentHistoryChangeRequest",
+    feature = "CoreData_NSPersistentStoreRequest"
+))]
 pub use self::__NSPersistentHistoryChangeRequest::NSPersistentHistoryChangeRequest;
 #[cfg(feature = "CoreData_NSPersistentHistoryToken")]
 pub use self::__NSPersistentHistoryToken::NSPersistentHistoryToken;
@@ -353,142 +614,314 @@ pub use self::__NSPersistentHistoryToken::NSPersistentHistoryToken;
 pub use self::__NSPersistentHistoryTransaction::NSPersistentHistoryTransaction;
 #[cfg(feature = "CoreData_NSPersistentStore")]
 pub use self::__NSPersistentStore::NSPersistentStore;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSAddedPersistentStoresKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSBinaryExternalRecordType;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSBinaryStoreInsecureDecodingCompatibilityOption;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSBinaryStoreSecureDecodingClasses;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSBinaryStoreType;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSCoreDataCoreSpotlightExporter;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSEntityNameInPathKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSExternalRecordExtensionOption;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSExternalRecordsDirectoryOption;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSExternalRecordsFileFormatOption;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSIgnorePersistentStoreVersioningOption;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSInMemoryStoreType;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSInferMappingModelAutomaticallyOption;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSMigratePersistentStoresAutomaticallyOption;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSModelPathKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSObjectURIKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSPersistentHistoryTokenKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSPersistentHistoryTrackingKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreConnectionPoolMaxSizeKey;
 #[cfg(feature = "CoreData_NSPersistentStoreCoordinator")]
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreCoordinator;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreCoordinatorStoresDidChangeNotification;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreCoordinatorStoresWillChangeNotification;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreCoordinatorWillRemoveStoreNotification;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreDeferredLightweightMigrationOptionKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreDidImportUbiquitousContentChangesNotification;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreFileProtectionKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreForceDestroyOption;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreOSCompatibility;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreRebuildFromUbiquitousContentOption;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreRemoteChangeNotification;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreRemoteChangeNotificationPostOptionKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreRemoveUbiquitousMetadataOption;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreStagedMigrationManagerOptionKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreTimeoutOption;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreURLKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreUbiquitousContainerIdentifierKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreUbiquitousContentNameKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreUbiquitousContentURLKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreUbiquitousPeerTokenOption;
+#[cfg(feature = "CoreData_NSPersistentStoreCoordinator")]
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreUbiquitousTransitionType;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSPersistentStoreUbiquitousTransitionTypeKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSReadOnlyPersistentStoreOption;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSRemovedPersistentStoresKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSSQLiteAnalyzeOption;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSSQLiteManualVacuumOption;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSSQLitePragmasOption;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSSQLiteStoreType;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSStoreModelVersionHashesKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSStoreModelVersionIdentifiersKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSStorePathKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSStoreTypeKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSStoreUUIDInPathKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSStoreUUIDKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSUUIDChangedPersistentStoresKey;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSValidateXMLStoreOption;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSXMLExternalRecordType;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreCoordinator",
+    feature = "Foundation_NSString"
+))]
 pub use self::__NSPersistentStoreCoordinator::NSXMLStoreType;
 #[cfg(feature = "CoreData_NSPersistentStoreDescription")]
 pub use self::__NSPersistentStoreDescription::NSPersistentStoreDescription;
 #[cfg(feature = "CoreData_NSPersistentStoreRequest")]
 pub use self::__NSPersistentStoreRequest::NSPersistentStoreRequest;
+#[cfg(feature = "CoreData_NSPersistentStoreRequest")]
 pub use self::__NSPersistentStoreRequest::NSPersistentStoreRequestType;
-#[cfg(feature = "CoreData_NSAsynchronousFetchResult")]
+#[cfg(feature = "CoreData_NSPersistentStoreResult")]
 pub use self::__NSPersistentStoreResult::NSAsynchronousFetchResult;
+#[cfg(feature = "CoreData_NSPersistentStoreResult")]
 pub use self::__NSPersistentStoreResult::NSBatchDeleteRequestResultType;
-#[cfg(feature = "CoreData_NSBatchDeleteResult")]
+#[cfg(feature = "CoreData_NSPersistentStoreResult")]
 pub use self::__NSPersistentStoreResult::NSBatchDeleteResult;
+#[cfg(feature = "CoreData_NSPersistentStoreResult")]
 pub use self::__NSPersistentStoreResult::NSBatchInsertRequestResultType;
-#[cfg(feature = "CoreData_NSBatchInsertResult")]
+#[cfg(feature = "CoreData_NSPersistentStoreResult")]
 pub use self::__NSPersistentStoreResult::NSBatchInsertResult;
+#[cfg(feature = "CoreData_NSPersistentStoreResult")]
 pub use self::__NSPersistentStoreResult::NSBatchUpdateRequestResultType;
-#[cfg(feature = "CoreData_NSBatchUpdateResult")]
+#[cfg(feature = "CoreData_NSPersistentStoreResult")]
 pub use self::__NSPersistentStoreResult::NSBatchUpdateResult;
-#[cfg(feature = "CoreData_NSPersistentCloudKitContainerEventResult")]
+#[cfg(feature = "CoreData_NSPersistentStoreResult")]
 pub use self::__NSPersistentStoreResult::NSPersistentCloudKitContainerEventResult;
+#[cfg(feature = "CoreData_NSPersistentStoreResult")]
 pub use self::__NSPersistentStoreResult::NSPersistentCloudKitContainerEventResultType;
-#[cfg(feature = "CoreData_NSPersistentHistoryResult")]
+#[cfg(feature = "CoreData_NSPersistentStoreResult")]
 pub use self::__NSPersistentStoreResult::NSPersistentHistoryResult;
+#[cfg(feature = "CoreData_NSPersistentStoreResult")]
 pub use self::__NSPersistentStoreResult::NSPersistentHistoryResultType;
-#[cfg(feature = "CoreData_NSPersistentStoreAsynchronousResult")]
+#[cfg(feature = "CoreData_NSPersistentStoreResult")]
 pub use self::__NSPersistentStoreResult::NSPersistentStoreAsynchronousResult;
 #[cfg(feature = "CoreData_NSPersistentStoreResult")]
 pub use self::__NSPersistentStoreResult::NSPersistentStoreResult;
@@ -498,10 +931,17 @@ pub use self::__NSPropertyDescription::NSPropertyDescription;
 pub use self::__NSPropertyMapping::NSPropertyMapping;
 #[cfg(feature = "CoreData_NSQueryGenerationToken")]
 pub use self::__NSQueryGenerationToken::NSQueryGenerationToken;
-pub use self::__NSRelationshipDescription::NSDeleteRule;
 #[cfg(feature = "CoreData_NSRelationshipDescription")]
+pub use self::__NSRelationshipDescription::NSDeleteRule;
+#[cfg(all(
+    feature = "CoreData_NSPropertyDescription",
+    feature = "CoreData_NSRelationshipDescription"
+))]
 pub use self::__NSRelationshipDescription::NSRelationshipDescription;
-#[cfg(feature = "CoreData_NSSaveChangesRequest")]
+#[cfg(all(
+    feature = "CoreData_NSPersistentStoreRequest",
+    feature = "CoreData_NSSaveChangesRequest"
+))]
 pub use self::__NSSaveChangesRequest::NSSaveChangesRequest;
 #[cfg(feature = "CoreData_NSStagedMigrationManager")]
 pub use self::__NSStagedMigrationManager::NSStagedMigrationManager;

@@ -6,25 +6,23 @@ use crate::Speech::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Speech_SFSpeechRecognitionRequest")]
     pub struct SFSpeechRecognitionRequest;
 
-    #[cfg(feature = "Speech_SFSpeechRecognitionRequest")]
     unsafe impl ClassType for SFSpeechRecognitionRequest {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Speech_SFSpeechRecognitionRequest")]
 unsafe impl NSObjectProtocol for SFSpeechRecognitionRequest {}
 
 extern_methods!(
-    #[cfg(feature = "Speech_SFSpeechRecognitionRequest")]
     unsafe impl SFSpeechRecognitionRequest {
+        #[cfg(feature = "Speech_SFSpeechRecognitionTaskHint")]
         #[method(taskHint)]
         pub unsafe fn taskHint(&self) -> SFSpeechRecognitionTaskHint;
 
+        #[cfg(feature = "Speech_SFSpeechRecognitionTaskHint")]
         #[method(setTaskHint:)]
         pub unsafe fn setTaskHint(&self, task_hint: SFSpeechRecognitionTaskHint);
 
@@ -64,13 +62,13 @@ extern_methods!(
         #[method(setAddsPunctuation:)]
         pub unsafe fn setAddsPunctuation(&self, adds_punctuation: bool);
 
-        #[cfg(feature = "Speech_SFSpeechLanguageModelConfiguration")]
+        #[cfg(feature = "Speech_SFSpeechLanguageModel")]
         #[method_id(@__retain_semantics Other customizedLanguageModel)]
         pub unsafe fn customizedLanguageModel(
             &self,
         ) -> Option<Id<SFSpeechLanguageModelConfiguration>>;
 
-        #[cfg(feature = "Speech_SFSpeechLanguageModelConfiguration")]
+        #[cfg(feature = "Speech_SFSpeechLanguageModel")]
         #[method(setCustomizedLanguageModel:)]
         pub unsafe fn setCustomizedLanguageModel(
             &self,
@@ -81,7 +79,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Speech_SFSpeechRecognitionRequest")]
     unsafe impl SFSpeechRecognitionRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -93,10 +90,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Speech_SFSpeechURLRecognitionRequest")]
     pub struct SFSpeechURLRecognitionRequest;
 
-    #[cfg(feature = "Speech_SFSpeechURLRecognitionRequest")]
     unsafe impl ClassType for SFSpeechURLRecognitionRequest {
         #[inherits(NSObject)]
         type Super = SFSpeechRecognitionRequest;
@@ -104,11 +99,9 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Speech_SFSpeechURLRecognitionRequest")]
 unsafe impl NSObjectProtocol for SFSpeechURLRecognitionRequest {}
 
 extern_methods!(
-    #[cfg(feature = "Speech_SFSpeechURLRecognitionRequest")]
     unsafe impl SFSpeechURLRecognitionRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -125,7 +118,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Speech_SFSpeechURLRecognitionRequest")]
     unsafe impl SFSpeechURLRecognitionRequest {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -134,10 +126,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Speech_SFSpeechAudioBufferRecognitionRequest")]
     pub struct SFSpeechAudioBufferRecognitionRequest;
 
-    #[cfg(feature = "Speech_SFSpeechAudioBufferRecognitionRequest")]
     unsafe impl ClassType for SFSpeechAudioBufferRecognitionRequest {
         #[inherits(NSObject)]
         type Super = SFSpeechRecognitionRequest;
@@ -145,20 +135,10 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Speech_SFSpeechAudioBufferRecognitionRequest")]
 unsafe impl NSObjectProtocol for SFSpeechAudioBufferRecognitionRequest {}
 
 extern_methods!(
-    #[cfg(feature = "Speech_SFSpeechAudioBufferRecognitionRequest")]
     unsafe impl SFSpeechAudioBufferRecognitionRequest {
-        #[cfg(feature = "AVFAudio_AVAudioFormat")]
-        #[method_id(@__retain_semantics Other nativeAudioFormat)]
-        pub unsafe fn nativeAudioFormat(&self) -> Id<AVAudioFormat>;
-
-        #[cfg(feature = "AVFAudio_AVAudioPCMBuffer")]
-        #[method(appendAudioPCMBuffer:)]
-        pub unsafe fn appendAudioPCMBuffer(&self, audio_pcm_buffer: &AVAudioPCMBuffer);
-
         #[method(endAudio)]
         pub unsafe fn endAudio(&self);
     }
@@ -166,7 +146,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Speech_SFSpeechAudioBufferRecognitionRequest")]
     unsafe impl SFSpeechAudioBufferRecognitionRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

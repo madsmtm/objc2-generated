@@ -17,30 +17,23 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSLock")]
     pub struct NSLock;
 
-    #[cfg(feature = "Foundation_NSLock")]
     unsafe impl ClassType for NSLock {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSLock")]
 unsafe impl Send for NSLock {}
 
-#[cfg(feature = "Foundation_NSLock")]
 unsafe impl Sync for NSLock {}
 
-#[cfg(feature = "Foundation_NSLock")]
 unsafe impl NSLocking for NSLock {}
 
-#[cfg(feature = "Foundation_NSLock")]
 unsafe impl NSObjectProtocol for NSLock {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSLock")]
     unsafe impl NSLock {
         #[method(tryLock)]
         pub unsafe fn tryLock(&self) -> bool;
@@ -61,7 +54,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSLock")]
     unsafe impl NSLock {
         #[method_id(@__retain_semantics Init init)]
         pub fn init(this: Allocated<Self>) -> Id<Self>;
@@ -71,7 +63,6 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSLock")]
 impl DefaultId for NSLock {
     #[inline]
     fn default_id() -> Id<Self> {
@@ -81,30 +72,23 @@ impl DefaultId for NSLock {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSConditionLock")]
     pub struct NSConditionLock;
 
-    #[cfg(feature = "Foundation_NSConditionLock")]
     unsafe impl ClassType for NSConditionLock {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSConditionLock")]
 unsafe impl Send for NSConditionLock {}
 
-#[cfg(feature = "Foundation_NSConditionLock")]
 unsafe impl Sync for NSConditionLock {}
 
-#[cfg(feature = "Foundation_NSConditionLock")]
 unsafe impl NSLocking for NSConditionLock {}
 
-#[cfg(feature = "Foundation_NSConditionLock")]
 unsafe impl NSObjectProtocol for NSConditionLock {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSConditionLock")]
     unsafe impl NSConditionLock {
         #[method_id(@__retain_semantics Init initWithCondition:)]
         pub unsafe fn initWithCondition(this: Allocated<Self>, condition: NSInteger) -> Id<Self>;
@@ -148,7 +132,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSConditionLock")]
     unsafe impl NSConditionLock {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -160,30 +143,23 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSRecursiveLock")]
     pub struct NSRecursiveLock;
 
-    #[cfg(feature = "Foundation_NSRecursiveLock")]
     unsafe impl ClassType for NSRecursiveLock {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSRecursiveLock")]
 unsafe impl Send for NSRecursiveLock {}
 
-#[cfg(feature = "Foundation_NSRecursiveLock")]
 unsafe impl Sync for NSRecursiveLock {}
 
-#[cfg(feature = "Foundation_NSRecursiveLock")]
 unsafe impl NSLocking for NSRecursiveLock {}
 
-#[cfg(feature = "Foundation_NSRecursiveLock")]
 unsafe impl NSObjectProtocol for NSRecursiveLock {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSRecursiveLock")]
     unsafe impl NSRecursiveLock {
         #[method(tryLock)]
         pub unsafe fn tryLock(&self) -> bool;
@@ -204,7 +180,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSRecursiveLock")]
     unsafe impl NSRecursiveLock {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -216,30 +191,23 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSCondition")]
     pub struct NSCondition;
 
-    #[cfg(feature = "Foundation_NSCondition")]
     unsafe impl ClassType for NSCondition {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSCondition")]
 unsafe impl Send for NSCondition {}
 
-#[cfg(feature = "Foundation_NSCondition")]
 unsafe impl Sync for NSCondition {}
 
-#[cfg(feature = "Foundation_NSCondition")]
 unsafe impl NSLocking for NSCondition {}
 
-#[cfg(feature = "Foundation_NSCondition")]
 unsafe impl NSObjectProtocol for NSCondition {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSCondition")]
     unsafe impl NSCondition {
         #[method(wait)]
         pub unsafe fn wait(&self);
@@ -266,7 +234,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSCondition")]
     unsafe impl NSCondition {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

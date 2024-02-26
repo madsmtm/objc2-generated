@@ -21,10 +21,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSLevelIndicatorCell")]
+    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
     pub struct NSLevelIndicatorCell;
 
-    #[cfg(feature = "AppKit_NSLevelIndicatorCell")]
+    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
     unsafe impl ClassType for NSLevelIndicatorCell {
         #[inherits(NSCell, NSObject)]
         type Super = NSActionCell;
@@ -32,26 +32,46 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSLevelIndicatorCell")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell"
+))]
 unsafe impl NSAccessibility for NSLevelIndicatorCell {}
 
-#[cfg(feature = "AppKit_NSLevelIndicatorCell")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell"
+))]
 unsafe impl NSAccessibilityElementProtocol for NSLevelIndicatorCell {}
 
-#[cfg(feature = "AppKit_NSLevelIndicatorCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSLevelIndicatorCell {}
 
-#[cfg(feature = "AppKit_NSLevelIndicatorCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCopying for NSLevelIndicatorCell {}
 
-#[cfg(feature = "AppKit_NSLevelIndicatorCell")]
+#[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
 unsafe impl NSObjectProtocol for NSLevelIndicatorCell {}
 
-#[cfg(feature = "AppKit_NSLevelIndicatorCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSUserInterfaceItemIdentification"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSLevelIndicatorCell {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSLevelIndicatorCell")]
+    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
     unsafe impl NSLevelIndicatorCell {
         #[method_id(@__retain_semantics Init initWithLevelIndicatorStyle:)]
         pub unsafe fn initWithLevelIndicatorStyle(
@@ -89,9 +109,11 @@ extern_methods!(
         #[method(setCriticalValue:)]
         pub unsafe fn setCriticalValue(&self, critical_value: c_double);
 
+        #[cfg(feature = "AppKit_NSSliderCell")]
         #[method(tickMarkPosition)]
         pub unsafe fn tickMarkPosition(&self) -> NSTickMarkPosition;
 
+        #[cfg(feature = "AppKit_NSSliderCell")]
         #[method(setTickMarkPosition:)]
         pub unsafe fn setTickMarkPosition(&self, tick_mark_position: NSTickMarkPosition);
 
@@ -107,6 +129,7 @@ extern_methods!(
         #[method(setNumberOfMajorTickMarks:)]
         pub unsafe fn setNumberOfMajorTickMarks(&self, number_of_major_tick_marks: NSInteger);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(rectOfTickMarkAtIndex:)]
         pub unsafe fn rectOfTickMarkAtIndex(&self, index: NSInteger) -> NSRect;
 
@@ -117,7 +140,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSCell`
-    #[cfg(feature = "AppKit_NSLevelIndicatorCell")]
+    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
     unsafe impl NSLevelIndicatorCell {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -138,7 +161,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSLevelIndicatorCell")]
+    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
     unsafe impl NSLevelIndicatorCell {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

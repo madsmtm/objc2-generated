@@ -7,11 +7,23 @@ use crate::WebKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_DOMHTMLLabelElement")]
+    #[cfg(all(
+        feature = "WebKit_DOMElement",
+        feature = "WebKit_DOMHTMLElement",
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     #[deprecated]
     pub struct DOMHTMLLabelElement;
 
-    #[cfg(feature = "WebKit_DOMHTMLLabelElement")]
+    #[cfg(all(
+        feature = "WebKit_DOMElement",
+        feature = "WebKit_DOMHTMLElement",
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl ClassType for DOMHTMLLabelElement {
         #[inherits(DOMElement, DOMNode, DOMObject, WebScriptObject, NSObject)]
         type Super = DOMHTMLElement;
@@ -19,17 +31,44 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "WebKit_DOMHTMLLabelElement")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "WebKit_DOMElement",
+    feature = "WebKit_DOMEventTarget",
+    feature = "WebKit_DOMHTMLElement",
+    feature = "WebKit_DOMNode",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl DOMEventTarget for DOMHTMLLabelElement {}
 
-#[cfg(feature = "WebKit_DOMHTMLLabelElement")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "WebKit_DOMElement",
+    feature = "WebKit_DOMHTMLElement",
+    feature = "WebKit_DOMNode",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSCopying for DOMHTMLLabelElement {}
 
-#[cfg(feature = "WebKit_DOMHTMLLabelElement")]
+#[cfg(all(
+    feature = "WebKit_DOMElement",
+    feature = "WebKit_DOMHTMLElement",
+    feature = "WebKit_DOMNode",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSObjectProtocol for DOMHTMLLabelElement {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_DOMHTMLLabelElement")]
+    #[cfg(all(
+        feature = "WebKit_DOMElement",
+        feature = "WebKit_DOMHTMLElement",
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMHTMLLabelElement {
         #[cfg(feature = "WebKit_DOMHTMLFormElement")]
         #[deprecated]
@@ -60,7 +99,13 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
-    #[cfg(feature = "WebKit_DOMHTMLLabelElement")]
+    #[cfg(all(
+        feature = "WebKit_DOMElement",
+        feature = "WebKit_DOMHTMLElement",
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMHTMLLabelElement {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
@@ -70,7 +115,13 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_DOMHTMLLabelElement")]
+    #[cfg(all(
+        feature = "WebKit_DOMElement",
+        feature = "WebKit_DOMHTMLElement",
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMHTMLLabelElement {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -6,21 +6,17 @@ use crate::QuartzCore::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "QuartzCore_CATransaction")]
     pub struct CATransaction;
 
-    #[cfg(feature = "QuartzCore_CATransaction")]
     unsafe impl ClassType for CATransaction {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "QuartzCore_CATransaction")]
 unsafe impl NSObjectProtocol for CATransaction {}
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CATransaction")]
     unsafe impl CATransaction {
         #[method(begin)]
         pub fn begin();
@@ -75,7 +71,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "QuartzCore_CATransaction")]
     unsafe impl CATransaction {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

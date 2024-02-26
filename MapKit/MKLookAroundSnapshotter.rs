@@ -9,21 +9,17 @@ use crate::MapKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKLookAroundSnapshotter")]
     pub struct MKLookAroundSnapshotter;
 
-    #[cfg(feature = "MapKit_MKLookAroundSnapshotter")]
     unsafe impl ClassType for MKLookAroundSnapshotter {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MapKit_MKLookAroundSnapshotter")]
 unsafe impl NSObjectProtocol for MKLookAroundSnapshotter {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKLookAroundSnapshotter")]
     unsafe impl MKLookAroundSnapshotter {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

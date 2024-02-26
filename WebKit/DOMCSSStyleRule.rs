@@ -7,11 +7,19 @@ use crate::WebKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_DOMCSSStyleRule")]
+    #[cfg(all(
+        feature = "WebKit_DOMCSSRule",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     #[deprecated]
     pub struct DOMCSSStyleRule;
 
-    #[cfg(feature = "WebKit_DOMCSSStyleRule")]
+    #[cfg(all(
+        feature = "WebKit_DOMCSSRule",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl ClassType for DOMCSSStyleRule {
         #[inherits(DOMObject, WebScriptObject, NSObject)]
         type Super = DOMCSSRule;
@@ -19,14 +27,27 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "WebKit_DOMCSSStyleRule")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "WebKit_DOMCSSRule",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSCopying for DOMCSSStyleRule {}
 
-#[cfg(feature = "WebKit_DOMCSSStyleRule")]
+#[cfg(all(
+    feature = "WebKit_DOMCSSRule",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSObjectProtocol for DOMCSSStyleRule {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_DOMCSSStyleRule")]
+    #[cfg(all(
+        feature = "WebKit_DOMCSSRule",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMCSSStyleRule {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
@@ -47,7 +68,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
-    #[cfg(feature = "WebKit_DOMCSSStyleRule")]
+    #[cfg(all(
+        feature = "WebKit_DOMCSSRule",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMCSSStyleRule {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
@@ -57,7 +82,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_DOMCSSStyleRule")]
+    #[cfg(all(
+        feature = "WebKit_DOMCSSRule",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMCSSStyleRule {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

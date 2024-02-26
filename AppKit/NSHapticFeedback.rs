@@ -44,21 +44,17 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSHapticFeedbackManager")]
     pub struct NSHapticFeedbackManager;
 
-    #[cfg(feature = "AppKit_NSHapticFeedbackManager")]
     unsafe impl ClassType for NSHapticFeedbackManager {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSHapticFeedbackManager")]
 unsafe impl NSObjectProtocol for NSHapticFeedbackManager {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSHapticFeedbackManager")]
     unsafe impl NSHapticFeedbackManager {
         #[method_id(@__retain_semantics Other defaultPerformer)]
         pub unsafe fn defaultPerformer() -> Id<ProtocolObject<dyn NSHapticFeedbackPerformer>>;
@@ -67,7 +63,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSHapticFeedbackManager")]
     unsafe impl NSHapticFeedbackManager {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

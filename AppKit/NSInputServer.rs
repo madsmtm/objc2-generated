@@ -23,6 +23,7 @@ extern_protocol!(
         #[method(markedTextAbandoned:)]
         unsafe fn markedTextAbandoned(&self, sender: Option<&AnyObject>);
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[deprecated]
         #[method(markedTextSelectionChanged:client:)]
         unsafe fn markedTextSelectionChanged_client(
@@ -89,6 +90,7 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait NSInputServerMouseTracker {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[deprecated]
         #[method(mouseDownOnCharacterIndex:atCoordinate:withModifier:client:)]
         unsafe fn mouseDownOnCharacterIndex_atCoordinate_withModifier_client(
@@ -99,6 +101,7 @@ extern_protocol!(
             sender: Option<&AnyObject>,
         ) -> bool;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[deprecated]
         #[method(mouseDraggedOnCharacterIndex:atCoordinate:withModifier:client:)]
         unsafe fn mouseDraggedOnCharacterIndex_atCoordinate_withModifier_client(
@@ -109,6 +112,7 @@ extern_protocol!(
             sender: Option<&AnyObject>,
         ) -> bool;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[deprecated]
         #[method(mouseUpOnCharacterIndex:atCoordinate:withModifier:client:)]
         unsafe fn mouseUpOnCharacterIndex_atCoordinate_withModifier_client(
@@ -125,28 +129,22 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSInputServer")]
     #[deprecated]
     pub struct NSInputServer;
 
-    #[cfg(feature = "AppKit_NSInputServer")]
     unsafe impl ClassType for NSInputServer {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSInputServer")]
 unsafe impl NSInputServerMouseTracker for NSInputServer {}
 
-#[cfg(feature = "AppKit_NSInputServer")]
 unsafe impl NSInputServiceProvider for NSInputServer {}
 
-#[cfg(feature = "AppKit_NSInputServer")]
 unsafe impl NSObjectProtocol for NSInputServer {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSInputServer")]
     unsafe impl NSInputServer {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
@@ -161,7 +159,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSInputServer")]
     unsafe impl NSInputServer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

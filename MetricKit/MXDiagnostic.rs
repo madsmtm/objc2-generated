@@ -6,27 +6,23 @@ use crate::MetricKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MetricKit_MXDiagnostic")]
     pub struct MXDiagnostic;
 
-    #[cfg(feature = "MetricKit_MXDiagnostic")]
     unsafe impl ClassType for MXDiagnostic {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MetricKit_MXDiagnostic")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for MXDiagnostic {}
 
-#[cfg(feature = "MetricKit_MXDiagnostic")]
 unsafe impl NSObjectProtocol for MXDiagnostic {}
 
-#[cfg(feature = "MetricKit_MXDiagnostic")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for MXDiagnostic {}
 
 extern_methods!(
-    #[cfg(feature = "MetricKit_MXDiagnostic")]
     unsafe impl MXDiagnostic {
         #[cfg(feature = "MetricKit_MXMetaData")]
         #[method_id(@__retain_semantics Other metaData)]
@@ -52,7 +48,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MetricKit_MXDiagnostic")]
     unsafe impl MXDiagnostic {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

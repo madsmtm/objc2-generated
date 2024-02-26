@@ -6,14 +6,12 @@ use crate::Foundation::*;
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSFetchedResultsController")]
     pub struct NSFetchedResultsController<ResultType: ?Sized = AnyObject> {
         __superclass: NSObject,
         _inner0: PhantomData<*mut ResultType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
-    #[cfg(feature = "CoreData_NSFetchedResultsController")]
     unsafe impl<ResultType: ?Sized + Message> ClassType for NSFetchedResultsController<ResultType> {
         type Super = NSObject;
         type Mutability = InteriorMutable;
@@ -28,15 +26,14 @@ __inner_extern_class!(
     }
 );
 
-#[cfg(feature = "CoreData_NSFetchedResultsController")]
 unsafe impl<ResultType: ?Sized> NSObjectProtocol for NSFetchedResultsController<ResultType> {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSFetchedResultsController")]
     unsafe impl<ResultType: Message> NSFetchedResultsController<ResultType> {
         #[cfg(all(
             feature = "CoreData_NSFetchRequest",
             feature = "CoreData_NSManagedObjectContext",
+            feature = "CoreData_NSPersistentStoreRequest",
             feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Init initWithFetchRequest:managedObjectContext:sectionNameKeyPath:cacheName:)]
@@ -52,7 +49,10 @@ extern_methods!(
         #[method(performFetch:_)]
         pub unsafe fn performFetch(&self) -> Result<(), Id<NSError>>;
 
-        #[cfg(feature = "CoreData_NSFetchRequest")]
+        #[cfg(all(
+            feature = "CoreData_NSFetchRequest",
+            feature = "CoreData_NSPersistentStoreRequest"
+        ))]
         #[method_id(@__retain_semantics Other fetchRequest)]
         pub unsafe fn fetchRequest(&self) -> Id<NSFetchRequest<ResultType>>;
 
@@ -124,7 +124,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSFetchedResultsController")]
     unsafe impl<ResultType: Message> NSFetchedResultsController<ResultType> {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -168,7 +167,6 @@ ns_enum!(
 extern_protocol!(
     pub unsafe trait NSFetchedResultsControllerDelegate: NSObjectProtocol {
         #[cfg(all(
-            feature = "CoreData_NSFetchedResultsController",
             feature = "CoreData_NSManagedObjectID",
             feature = "Foundation_NSOrderedCollectionDifference"
         ))]
@@ -180,10 +178,7 @@ extern_protocol!(
             diff: &NSOrderedCollectionDifference<NSManagedObjectID>,
         );
 
-        #[cfg(all(
-            feature = "CoreData_NSFetchedResultsController",
-            feature = "Foundation_NSIndexPath"
-        ))]
+        #[cfg(feature = "Foundation_NSIndexPath")]
         #[optional]
         #[method(controller:didChangeObject:atIndexPath:forChangeType:newIndexPath:)]
         unsafe fn controller_didChangeObject_atIndexPath_forChangeType_newIndexPath(
@@ -195,7 +190,6 @@ extern_protocol!(
             new_index_path: Option<&NSIndexPath>,
         );
 
-        #[cfg(feature = "CoreData_NSFetchedResultsController")]
         #[optional]
         #[method(controller:didChangeSection:atIndex:forChangeType:)]
         unsafe fn controller_didChangeSection_atIndex_forChangeType(
@@ -206,20 +200,15 @@ extern_protocol!(
             r#type: NSFetchedResultsChangeType,
         );
 
-        #[cfg(feature = "CoreData_NSFetchedResultsController")]
         #[optional]
         #[method(controllerWillChangeContent:)]
         unsafe fn controllerWillChangeContent(&self, controller: &NSFetchedResultsController);
 
-        #[cfg(feature = "CoreData_NSFetchedResultsController")]
         #[optional]
         #[method(controllerDidChangeContent:)]
         unsafe fn controllerDidChangeContent(&self, controller: &NSFetchedResultsController);
 
-        #[cfg(all(
-            feature = "CoreData_NSFetchedResultsController",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(feature = "Foundation_NSString")]
         #[optional]
         #[method_id(@__retain_semantics Other controller:sectionIndexTitleForSectionName:)]
         unsafe fn controller_sectionIndexTitleForSectionName(

@@ -5,21 +5,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSUnitConverter")]
     pub struct NSUnitConverter;
 
-    #[cfg(feature = "Foundation_NSUnitConverter")]
     unsafe impl ClassType for NSUnitConverter {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSUnitConverter")]
 unsafe impl NSObjectProtocol for NSUnitConverter {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSUnitConverter")]
     unsafe impl NSUnitConverter {
         #[method(baseUnitValueFromValue:)]
         pub unsafe fn baseUnitValueFromValue(&self, value: c_double) -> c_double;
@@ -31,7 +27,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSUnitConverter")]
     unsafe impl NSUnitConverter {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -43,10 +38,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSUnitConverterLinear")]
     pub struct NSUnitConverterLinear;
 
-    #[cfg(feature = "Foundation_NSUnitConverterLinear")]
     unsafe impl ClassType for NSUnitConverterLinear {
         #[inherits(NSObject)]
         type Super = NSUnitConverter;
@@ -54,17 +47,15 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSUnitConverterLinear")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSUnitConverterLinear {}
 
-#[cfg(feature = "Foundation_NSUnitConverterLinear")]
 unsafe impl NSObjectProtocol for NSUnitConverterLinear {}
 
-#[cfg(feature = "Foundation_NSUnitConverterLinear")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSUnitConverterLinear {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSUnitConverterLinear")]
     unsafe impl NSUnitConverterLinear {
         #[method(coefficient)]
         pub unsafe fn coefficient(&self) -> c_double;
@@ -87,7 +78,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSUnitConverterLinear")]
     unsafe impl NSUnitConverterLinear {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -99,30 +89,26 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSUnit")]
     pub struct NSUnit;
 
-    #[cfg(feature = "Foundation_NSUnit")]
     unsafe impl ClassType for NSUnit {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSUnit")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSUnit {}
 
-#[cfg(feature = "Foundation_NSUnit")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSUnit {}
 
-#[cfg(feature = "Foundation_NSUnit")]
 unsafe impl NSObjectProtocol for NSUnit {}
 
-#[cfg(feature = "Foundation_NSUnit")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSUnit {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSUnit")]
     unsafe impl NSUnit {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other symbol)]
@@ -142,10 +128,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSDimension")]
     pub struct NSDimension;
 
-    #[cfg(feature = "Foundation_NSDimension")]
     unsafe impl ClassType for NSDimension {
         #[inherits(NSObject)]
         type Super = NSUnit;
@@ -153,29 +137,23 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSDimension")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSDimension {}
 
-#[cfg(feature = "Foundation_NSDimension")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSDimension {}
 
-#[cfg(feature = "Foundation_NSDimension")]
 unsafe impl NSObjectProtocol for NSDimension {}
 
-#[cfg(feature = "Foundation_NSDimension")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSDimension {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSDimension")]
     unsafe impl NSDimension {
-        #[cfg(feature = "Foundation_NSUnitConverter")]
         #[method_id(@__retain_semantics Other converter)]
         pub unsafe fn converter(&self) -> Id<NSUnitConverter>;
 
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -190,7 +168,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSDimension")]
     unsafe impl NSDimension {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -206,10 +183,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSUnitAcceleration")]
     pub struct NSUnitAcceleration;
 
-    #[cfg(feature = "Foundation_NSUnitAcceleration")]
     unsafe impl ClassType for NSUnitAcceleration {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -217,26 +192,22 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSUnitAcceleration")]
 unsafe impl Send for NSUnitAcceleration {}
 
-#[cfg(feature = "Foundation_NSUnitAcceleration")]
 unsafe impl Sync for NSUnitAcceleration {}
 
-#[cfg(feature = "Foundation_NSUnitAcceleration")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSUnitAcceleration {}
 
-#[cfg(feature = "Foundation_NSUnitAcceleration")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSUnitAcceleration {}
 
-#[cfg(feature = "Foundation_NSUnitAcceleration")]
 unsafe impl NSObjectProtocol for NSUnitAcceleration {}
 
-#[cfg(feature = "Foundation_NSUnitAcceleration")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSUnitAcceleration {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSUnitAcceleration")]
     unsafe impl NSUnitAcceleration {
         #[method_id(@__retain_semantics Other metersPerSecondSquared)]
         pub unsafe fn metersPerSecondSquared() -> Id<NSUnitAcceleration>;
@@ -248,12 +219,8 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitAcceleration")]
     unsafe impl NSUnitAcceleration {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -268,7 +235,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitAcceleration")]
     unsafe impl NSUnitAcceleration {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -284,10 +250,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSUnitAngle")]
     pub struct NSUnitAngle;
 
-    #[cfg(feature = "Foundation_NSUnitAngle")]
     unsafe impl ClassType for NSUnitAngle {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -295,26 +259,22 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSUnitAngle")]
 unsafe impl Send for NSUnitAngle {}
 
-#[cfg(feature = "Foundation_NSUnitAngle")]
 unsafe impl Sync for NSUnitAngle {}
 
-#[cfg(feature = "Foundation_NSUnitAngle")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSUnitAngle {}
 
-#[cfg(feature = "Foundation_NSUnitAngle")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSUnitAngle {}
 
-#[cfg(feature = "Foundation_NSUnitAngle")]
 unsafe impl NSObjectProtocol for NSUnitAngle {}
 
-#[cfg(feature = "Foundation_NSUnitAngle")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSUnitAngle {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSUnitAngle")]
     unsafe impl NSUnitAngle {
         #[method_id(@__retain_semantics Other degrees)]
         pub unsafe fn degrees() -> Id<NSUnitAngle>;
@@ -338,12 +298,8 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitAngle")]
     unsafe impl NSUnitAngle {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -358,7 +314,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitAngle")]
     unsafe impl NSUnitAngle {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -374,10 +329,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSUnitArea")]
     pub struct NSUnitArea;
 
-    #[cfg(feature = "Foundation_NSUnitArea")]
     unsafe impl ClassType for NSUnitArea {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -385,26 +338,22 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSUnitArea")]
 unsafe impl Send for NSUnitArea {}
 
-#[cfg(feature = "Foundation_NSUnitArea")]
 unsafe impl Sync for NSUnitArea {}
 
-#[cfg(feature = "Foundation_NSUnitArea")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSUnitArea {}
 
-#[cfg(feature = "Foundation_NSUnitArea")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSUnitArea {}
 
-#[cfg(feature = "Foundation_NSUnitArea")]
 unsafe impl NSObjectProtocol for NSUnitArea {}
 
-#[cfg(feature = "Foundation_NSUnitArea")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSUnitArea {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSUnitArea")]
     unsafe impl NSUnitArea {
         #[method_id(@__retain_semantics Other squareMegameters)]
         pub unsafe fn squareMegameters() -> Id<NSUnitArea>;
@@ -452,12 +401,8 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitArea")]
     unsafe impl NSUnitArea {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -472,7 +417,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitArea")]
     unsafe impl NSUnitArea {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -488,10 +432,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSUnitConcentrationMass")]
     pub struct NSUnitConcentrationMass;
 
-    #[cfg(feature = "Foundation_NSUnitConcentrationMass")]
     unsafe impl ClassType for NSUnitConcentrationMass {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -499,26 +441,22 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSUnitConcentrationMass")]
 unsafe impl Send for NSUnitConcentrationMass {}
 
-#[cfg(feature = "Foundation_NSUnitConcentrationMass")]
 unsafe impl Sync for NSUnitConcentrationMass {}
 
-#[cfg(feature = "Foundation_NSUnitConcentrationMass")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSUnitConcentrationMass {}
 
-#[cfg(feature = "Foundation_NSUnitConcentrationMass")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSUnitConcentrationMass {}
 
-#[cfg(feature = "Foundation_NSUnitConcentrationMass")]
 unsafe impl NSObjectProtocol for NSUnitConcentrationMass {}
 
-#[cfg(feature = "Foundation_NSUnitConcentrationMass")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSUnitConcentrationMass {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSUnitConcentrationMass")]
     unsafe impl NSUnitConcentrationMass {
         #[method_id(@__retain_semantics Other gramsPerLiter)]
         pub unsafe fn gramsPerLiter() -> Id<NSUnitConcentrationMass>;
@@ -535,12 +473,8 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitConcentrationMass")]
     unsafe impl NSUnitConcentrationMass {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -555,7 +489,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitConcentrationMass")]
     unsafe impl NSUnitConcentrationMass {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -571,10 +504,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSUnitDispersion")]
     pub struct NSUnitDispersion;
 
-    #[cfg(feature = "Foundation_NSUnitDispersion")]
     unsafe impl ClassType for NSUnitDispersion {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -582,26 +513,22 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSUnitDispersion")]
 unsafe impl Send for NSUnitDispersion {}
 
-#[cfg(feature = "Foundation_NSUnitDispersion")]
 unsafe impl Sync for NSUnitDispersion {}
 
-#[cfg(feature = "Foundation_NSUnitDispersion")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSUnitDispersion {}
 
-#[cfg(feature = "Foundation_NSUnitDispersion")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSUnitDispersion {}
 
-#[cfg(feature = "Foundation_NSUnitDispersion")]
 unsafe impl NSObjectProtocol for NSUnitDispersion {}
 
-#[cfg(feature = "Foundation_NSUnitDispersion")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSUnitDispersion {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSUnitDispersion")]
     unsafe impl NSUnitDispersion {
         #[method_id(@__retain_semantics Other partsPerMillion)]
         pub unsafe fn partsPerMillion() -> Id<NSUnitDispersion>;
@@ -610,12 +537,8 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitDispersion")]
     unsafe impl NSUnitDispersion {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -630,7 +553,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitDispersion")]
     unsafe impl NSUnitDispersion {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -646,10 +568,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSUnitDuration")]
     pub struct NSUnitDuration;
 
-    #[cfg(feature = "Foundation_NSUnitDuration")]
     unsafe impl ClassType for NSUnitDuration {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -657,26 +577,22 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSUnitDuration")]
 unsafe impl Send for NSUnitDuration {}
 
-#[cfg(feature = "Foundation_NSUnitDuration")]
 unsafe impl Sync for NSUnitDuration {}
 
-#[cfg(feature = "Foundation_NSUnitDuration")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSUnitDuration {}
 
-#[cfg(feature = "Foundation_NSUnitDuration")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSUnitDuration {}
 
-#[cfg(feature = "Foundation_NSUnitDuration")]
 unsafe impl NSObjectProtocol for NSUnitDuration {}
 
-#[cfg(feature = "Foundation_NSUnitDuration")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSUnitDuration {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSUnitDuration")]
     unsafe impl NSUnitDuration {
         #[method_id(@__retain_semantics Other hours)]
         pub unsafe fn hours() -> Id<NSUnitDuration>;
@@ -703,12 +619,8 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitDuration")]
     unsafe impl NSUnitDuration {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -723,7 +635,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitDuration")]
     unsafe impl NSUnitDuration {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -739,10 +650,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSUnitElectricCharge")]
     pub struct NSUnitElectricCharge;
 
-    #[cfg(feature = "Foundation_NSUnitElectricCharge")]
     unsafe impl ClassType for NSUnitElectricCharge {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -750,26 +659,22 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSUnitElectricCharge")]
 unsafe impl Send for NSUnitElectricCharge {}
 
-#[cfg(feature = "Foundation_NSUnitElectricCharge")]
 unsafe impl Sync for NSUnitElectricCharge {}
 
-#[cfg(feature = "Foundation_NSUnitElectricCharge")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSUnitElectricCharge {}
 
-#[cfg(feature = "Foundation_NSUnitElectricCharge")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSUnitElectricCharge {}
 
-#[cfg(feature = "Foundation_NSUnitElectricCharge")]
 unsafe impl NSObjectProtocol for NSUnitElectricCharge {}
 
-#[cfg(feature = "Foundation_NSUnitElectricCharge")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSUnitElectricCharge {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSUnitElectricCharge")]
     unsafe impl NSUnitElectricCharge {
         #[method_id(@__retain_semantics Other coulombs)]
         pub unsafe fn coulombs() -> Id<NSUnitElectricCharge>;
@@ -793,12 +698,8 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitElectricCharge")]
     unsafe impl NSUnitElectricCharge {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -813,7 +714,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitElectricCharge")]
     unsafe impl NSUnitElectricCharge {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -829,10 +729,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSUnitElectricCurrent")]
     pub struct NSUnitElectricCurrent;
 
-    #[cfg(feature = "Foundation_NSUnitElectricCurrent")]
     unsafe impl ClassType for NSUnitElectricCurrent {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -840,26 +738,22 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSUnitElectricCurrent")]
 unsafe impl Send for NSUnitElectricCurrent {}
 
-#[cfg(feature = "Foundation_NSUnitElectricCurrent")]
 unsafe impl Sync for NSUnitElectricCurrent {}
 
-#[cfg(feature = "Foundation_NSUnitElectricCurrent")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSUnitElectricCurrent {}
 
-#[cfg(feature = "Foundation_NSUnitElectricCurrent")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSUnitElectricCurrent {}
 
-#[cfg(feature = "Foundation_NSUnitElectricCurrent")]
 unsafe impl NSObjectProtocol for NSUnitElectricCurrent {}
 
-#[cfg(feature = "Foundation_NSUnitElectricCurrent")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSUnitElectricCurrent {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSUnitElectricCurrent")]
     unsafe impl NSUnitElectricCurrent {
         #[method_id(@__retain_semantics Other megaamperes)]
         pub unsafe fn megaamperes() -> Id<NSUnitElectricCurrent>;
@@ -880,12 +774,8 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitElectricCurrent")]
     unsafe impl NSUnitElectricCurrent {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -900,7 +790,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitElectricCurrent")]
     unsafe impl NSUnitElectricCurrent {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -916,10 +805,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSUnitElectricPotentialDifference")]
     pub struct NSUnitElectricPotentialDifference;
 
-    #[cfg(feature = "Foundation_NSUnitElectricPotentialDifference")]
     unsafe impl ClassType for NSUnitElectricPotentialDifference {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -927,26 +814,22 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSUnitElectricPotentialDifference")]
 unsafe impl Send for NSUnitElectricPotentialDifference {}
 
-#[cfg(feature = "Foundation_NSUnitElectricPotentialDifference")]
 unsafe impl Sync for NSUnitElectricPotentialDifference {}
 
-#[cfg(feature = "Foundation_NSUnitElectricPotentialDifference")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSUnitElectricPotentialDifference {}
 
-#[cfg(feature = "Foundation_NSUnitElectricPotentialDifference")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSUnitElectricPotentialDifference {}
 
-#[cfg(feature = "Foundation_NSUnitElectricPotentialDifference")]
 unsafe impl NSObjectProtocol for NSUnitElectricPotentialDifference {}
 
-#[cfg(feature = "Foundation_NSUnitElectricPotentialDifference")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSUnitElectricPotentialDifference {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSUnitElectricPotentialDifference")]
     unsafe impl NSUnitElectricPotentialDifference {
         #[method_id(@__retain_semantics Other megavolts)]
         pub unsafe fn megavolts() -> Id<NSUnitElectricPotentialDifference>;
@@ -967,12 +850,8 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitElectricPotentialDifference")]
     unsafe impl NSUnitElectricPotentialDifference {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -987,7 +866,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitElectricPotentialDifference")]
     unsafe impl NSUnitElectricPotentialDifference {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -1003,10 +881,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSUnitElectricResistance")]
     pub struct NSUnitElectricResistance;
 
-    #[cfg(feature = "Foundation_NSUnitElectricResistance")]
     unsafe impl ClassType for NSUnitElectricResistance {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -1014,26 +890,22 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSUnitElectricResistance")]
 unsafe impl Send for NSUnitElectricResistance {}
 
-#[cfg(feature = "Foundation_NSUnitElectricResistance")]
 unsafe impl Sync for NSUnitElectricResistance {}
 
-#[cfg(feature = "Foundation_NSUnitElectricResistance")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSUnitElectricResistance {}
 
-#[cfg(feature = "Foundation_NSUnitElectricResistance")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSUnitElectricResistance {}
 
-#[cfg(feature = "Foundation_NSUnitElectricResistance")]
 unsafe impl NSObjectProtocol for NSUnitElectricResistance {}
 
-#[cfg(feature = "Foundation_NSUnitElectricResistance")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSUnitElectricResistance {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSUnitElectricResistance")]
     unsafe impl NSUnitElectricResistance {
         #[method_id(@__retain_semantics Other megaohms)]
         pub unsafe fn megaohms() -> Id<NSUnitElectricResistance>;
@@ -1054,12 +926,8 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitElectricResistance")]
     unsafe impl NSUnitElectricResistance {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -1074,7 +942,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitElectricResistance")]
     unsafe impl NSUnitElectricResistance {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -1090,10 +957,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSUnitEnergy")]
     pub struct NSUnitEnergy;
 
-    #[cfg(feature = "Foundation_NSUnitEnergy")]
     unsafe impl ClassType for NSUnitEnergy {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -1101,26 +966,22 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSUnitEnergy")]
 unsafe impl Send for NSUnitEnergy {}
 
-#[cfg(feature = "Foundation_NSUnitEnergy")]
 unsafe impl Sync for NSUnitEnergy {}
 
-#[cfg(feature = "Foundation_NSUnitEnergy")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSUnitEnergy {}
 
-#[cfg(feature = "Foundation_NSUnitEnergy")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSUnitEnergy {}
 
-#[cfg(feature = "Foundation_NSUnitEnergy")]
 unsafe impl NSObjectProtocol for NSUnitEnergy {}
 
-#[cfg(feature = "Foundation_NSUnitEnergy")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSUnitEnergy {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSUnitEnergy")]
     unsafe impl NSUnitEnergy {
         #[method_id(@__retain_semantics Other kilojoules)]
         pub unsafe fn kilojoules() -> Id<NSUnitEnergy>;
@@ -1141,12 +1002,8 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitEnergy")]
     unsafe impl NSUnitEnergy {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -1161,7 +1018,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitEnergy")]
     unsafe impl NSUnitEnergy {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -1177,10 +1033,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSUnitFrequency")]
     pub struct NSUnitFrequency;
 
-    #[cfg(feature = "Foundation_NSUnitFrequency")]
     unsafe impl ClassType for NSUnitFrequency {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -1188,26 +1042,22 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSUnitFrequency")]
 unsafe impl Send for NSUnitFrequency {}
 
-#[cfg(feature = "Foundation_NSUnitFrequency")]
 unsafe impl Sync for NSUnitFrequency {}
 
-#[cfg(feature = "Foundation_NSUnitFrequency")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSUnitFrequency {}
 
-#[cfg(feature = "Foundation_NSUnitFrequency")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSUnitFrequency {}
 
-#[cfg(feature = "Foundation_NSUnitFrequency")]
 unsafe impl NSObjectProtocol for NSUnitFrequency {}
 
-#[cfg(feature = "Foundation_NSUnitFrequency")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSUnitFrequency {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSUnitFrequency")]
     unsafe impl NSUnitFrequency {
         #[method_id(@__retain_semantics Other terahertz)]
         pub unsafe fn terahertz() -> Id<NSUnitFrequency>;
@@ -1240,12 +1090,8 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitFrequency")]
     unsafe impl NSUnitFrequency {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -1260,7 +1106,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitFrequency")]
     unsafe impl NSUnitFrequency {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -1276,10 +1121,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSUnitFuelEfficiency")]
     pub struct NSUnitFuelEfficiency;
 
-    #[cfg(feature = "Foundation_NSUnitFuelEfficiency")]
     unsafe impl ClassType for NSUnitFuelEfficiency {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -1287,26 +1130,22 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSUnitFuelEfficiency")]
 unsafe impl Send for NSUnitFuelEfficiency {}
 
-#[cfg(feature = "Foundation_NSUnitFuelEfficiency")]
 unsafe impl Sync for NSUnitFuelEfficiency {}
 
-#[cfg(feature = "Foundation_NSUnitFuelEfficiency")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSUnitFuelEfficiency {}
 
-#[cfg(feature = "Foundation_NSUnitFuelEfficiency")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSUnitFuelEfficiency {}
 
-#[cfg(feature = "Foundation_NSUnitFuelEfficiency")]
 unsafe impl NSObjectProtocol for NSUnitFuelEfficiency {}
 
-#[cfg(feature = "Foundation_NSUnitFuelEfficiency")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSUnitFuelEfficiency {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSUnitFuelEfficiency")]
     unsafe impl NSUnitFuelEfficiency {
         #[method_id(@__retain_semantics Other litersPer100Kilometers)]
         pub unsafe fn litersPer100Kilometers() -> Id<NSUnitFuelEfficiency>;
@@ -1321,12 +1160,8 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitFuelEfficiency")]
     unsafe impl NSUnitFuelEfficiency {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -1341,7 +1176,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitFuelEfficiency")]
     unsafe impl NSUnitFuelEfficiency {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -1357,10 +1191,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSUnitInformationStorage")]
     pub struct NSUnitInformationStorage;
 
-    #[cfg(feature = "Foundation_NSUnitInformationStorage")]
     unsafe impl ClassType for NSUnitInformationStorage {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -1368,26 +1200,22 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSUnitInformationStorage")]
 unsafe impl Send for NSUnitInformationStorage {}
 
-#[cfg(feature = "Foundation_NSUnitInformationStorage")]
 unsafe impl Sync for NSUnitInformationStorage {}
 
-#[cfg(feature = "Foundation_NSUnitInformationStorage")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSUnitInformationStorage {}
 
-#[cfg(feature = "Foundation_NSUnitInformationStorage")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSUnitInformationStorage {}
 
-#[cfg(feature = "Foundation_NSUnitInformationStorage")]
 unsafe impl NSObjectProtocol for NSUnitInformationStorage {}
 
-#[cfg(feature = "Foundation_NSUnitInformationStorage")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSUnitInformationStorage {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSUnitInformationStorage")]
     unsafe impl NSUnitInformationStorage {
         #[method_id(@__retain_semantics Other bytes)]
         pub unsafe fn bytes() -> Id<NSUnitInformationStorage>;
@@ -1498,12 +1326,8 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitInformationStorage")]
     unsafe impl NSUnitInformationStorage {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -1518,7 +1342,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitInformationStorage")]
     unsafe impl NSUnitInformationStorage {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -1534,10 +1357,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSUnitLength")]
     pub struct NSUnitLength;
 
-    #[cfg(feature = "Foundation_NSUnitLength")]
     unsafe impl ClassType for NSUnitLength {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -1545,26 +1366,22 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSUnitLength")]
 unsafe impl Send for NSUnitLength {}
 
-#[cfg(feature = "Foundation_NSUnitLength")]
 unsafe impl Sync for NSUnitLength {}
 
-#[cfg(feature = "Foundation_NSUnitLength")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSUnitLength {}
 
-#[cfg(feature = "Foundation_NSUnitLength")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSUnitLength {}
 
-#[cfg(feature = "Foundation_NSUnitLength")]
 unsafe impl NSObjectProtocol for NSUnitLength {}
 
-#[cfg(feature = "Foundation_NSUnitLength")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSUnitLength {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSUnitLength")]
     unsafe impl NSUnitLength {
         #[method_id(@__retain_semantics Other megameters)]
         pub unsafe fn megameters() -> Id<NSUnitLength>;
@@ -1636,12 +1453,8 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitLength")]
     unsafe impl NSUnitLength {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -1656,7 +1469,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitLength")]
     unsafe impl NSUnitLength {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -1672,10 +1484,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSUnitIlluminance")]
     pub struct NSUnitIlluminance;
 
-    #[cfg(feature = "Foundation_NSUnitIlluminance")]
     unsafe impl ClassType for NSUnitIlluminance {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -1683,26 +1493,22 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSUnitIlluminance")]
 unsafe impl Send for NSUnitIlluminance {}
 
-#[cfg(feature = "Foundation_NSUnitIlluminance")]
 unsafe impl Sync for NSUnitIlluminance {}
 
-#[cfg(feature = "Foundation_NSUnitIlluminance")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSUnitIlluminance {}
 
-#[cfg(feature = "Foundation_NSUnitIlluminance")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSUnitIlluminance {}
 
-#[cfg(feature = "Foundation_NSUnitIlluminance")]
 unsafe impl NSObjectProtocol for NSUnitIlluminance {}
 
-#[cfg(feature = "Foundation_NSUnitIlluminance")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSUnitIlluminance {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSUnitIlluminance")]
     unsafe impl NSUnitIlluminance {
         #[method_id(@__retain_semantics Other lux)]
         pub unsafe fn lux() -> Id<NSUnitIlluminance>;
@@ -1711,12 +1517,8 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitIlluminance")]
     unsafe impl NSUnitIlluminance {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -1731,7 +1533,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitIlluminance")]
     unsafe impl NSUnitIlluminance {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -1747,10 +1548,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSUnitMass")]
     pub struct NSUnitMass;
 
-    #[cfg(feature = "Foundation_NSUnitMass")]
     unsafe impl ClassType for NSUnitMass {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -1758,26 +1557,22 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSUnitMass")]
 unsafe impl Send for NSUnitMass {}
 
-#[cfg(feature = "Foundation_NSUnitMass")]
 unsafe impl Sync for NSUnitMass {}
 
-#[cfg(feature = "Foundation_NSUnitMass")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSUnitMass {}
 
-#[cfg(feature = "Foundation_NSUnitMass")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSUnitMass {}
 
-#[cfg(feature = "Foundation_NSUnitMass")]
 unsafe impl NSObjectProtocol for NSUnitMass {}
 
-#[cfg(feature = "Foundation_NSUnitMass")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSUnitMass {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSUnitMass")]
     unsafe impl NSUnitMass {
         #[method_id(@__retain_semantics Other kilograms)]
         pub unsafe fn kilograms() -> Id<NSUnitMass>;
@@ -1831,12 +1626,8 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitMass")]
     unsafe impl NSUnitMass {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -1851,7 +1642,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitMass")]
     unsafe impl NSUnitMass {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -1867,10 +1657,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSUnitPower")]
     pub struct NSUnitPower;
 
-    #[cfg(feature = "Foundation_NSUnitPower")]
     unsafe impl ClassType for NSUnitPower {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -1878,26 +1666,22 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSUnitPower")]
 unsafe impl Send for NSUnitPower {}
 
-#[cfg(feature = "Foundation_NSUnitPower")]
 unsafe impl Sync for NSUnitPower {}
 
-#[cfg(feature = "Foundation_NSUnitPower")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSUnitPower {}
 
-#[cfg(feature = "Foundation_NSUnitPower")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSUnitPower {}
 
-#[cfg(feature = "Foundation_NSUnitPower")]
 unsafe impl NSObjectProtocol for NSUnitPower {}
 
-#[cfg(feature = "Foundation_NSUnitPower")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSUnitPower {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSUnitPower")]
     unsafe impl NSUnitPower {
         #[method_id(@__retain_semantics Other terawatts)]
         pub unsafe fn terawatts() -> Id<NSUnitPower>;
@@ -1936,12 +1720,8 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitPower")]
     unsafe impl NSUnitPower {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -1956,7 +1736,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitPower")]
     unsafe impl NSUnitPower {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -1972,10 +1751,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSUnitPressure")]
     pub struct NSUnitPressure;
 
-    #[cfg(feature = "Foundation_NSUnitPressure")]
     unsafe impl ClassType for NSUnitPressure {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -1983,26 +1760,22 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSUnitPressure")]
 unsafe impl Send for NSUnitPressure {}
 
-#[cfg(feature = "Foundation_NSUnitPressure")]
 unsafe impl Sync for NSUnitPressure {}
 
-#[cfg(feature = "Foundation_NSUnitPressure")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSUnitPressure {}
 
-#[cfg(feature = "Foundation_NSUnitPressure")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSUnitPressure {}
 
-#[cfg(feature = "Foundation_NSUnitPressure")]
 unsafe impl NSObjectProtocol for NSUnitPressure {}
 
-#[cfg(feature = "Foundation_NSUnitPressure")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSUnitPressure {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSUnitPressure")]
     unsafe impl NSUnitPressure {
         #[method_id(@__retain_semantics Other newtonsPerMetersSquared)]
         pub unsafe fn newtonsPerMetersSquared() -> Id<NSUnitPressure>;
@@ -2038,12 +1811,8 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitPressure")]
     unsafe impl NSUnitPressure {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -2058,7 +1827,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitPressure")]
     unsafe impl NSUnitPressure {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -2074,10 +1842,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSUnitSpeed")]
     pub struct NSUnitSpeed;
 
-    #[cfg(feature = "Foundation_NSUnitSpeed")]
     unsafe impl ClassType for NSUnitSpeed {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -2085,26 +1851,22 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSUnitSpeed")]
 unsafe impl Send for NSUnitSpeed {}
 
-#[cfg(feature = "Foundation_NSUnitSpeed")]
 unsafe impl Sync for NSUnitSpeed {}
 
-#[cfg(feature = "Foundation_NSUnitSpeed")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSUnitSpeed {}
 
-#[cfg(feature = "Foundation_NSUnitSpeed")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSUnitSpeed {}
 
-#[cfg(feature = "Foundation_NSUnitSpeed")]
 unsafe impl NSObjectProtocol for NSUnitSpeed {}
 
-#[cfg(feature = "Foundation_NSUnitSpeed")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSUnitSpeed {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSUnitSpeed")]
     unsafe impl NSUnitSpeed {
         #[method_id(@__retain_semantics Other metersPerSecond)]
         pub unsafe fn metersPerSecond() -> Id<NSUnitSpeed>;
@@ -2122,12 +1884,8 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitSpeed")]
     unsafe impl NSUnitSpeed {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -2142,7 +1900,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitSpeed")]
     unsafe impl NSUnitSpeed {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -2158,10 +1915,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSUnitTemperature")]
     pub struct NSUnitTemperature;
 
-    #[cfg(feature = "Foundation_NSUnitTemperature")]
     unsafe impl ClassType for NSUnitTemperature {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -2169,26 +1924,22 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSUnitTemperature")]
 unsafe impl Send for NSUnitTemperature {}
 
-#[cfg(feature = "Foundation_NSUnitTemperature")]
 unsafe impl Sync for NSUnitTemperature {}
 
-#[cfg(feature = "Foundation_NSUnitTemperature")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSUnitTemperature {}
 
-#[cfg(feature = "Foundation_NSUnitTemperature")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSUnitTemperature {}
 
-#[cfg(feature = "Foundation_NSUnitTemperature")]
 unsafe impl NSObjectProtocol for NSUnitTemperature {}
 
-#[cfg(feature = "Foundation_NSUnitTemperature")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSUnitTemperature {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSUnitTemperature")]
     unsafe impl NSUnitTemperature {
         #[method_id(@__retain_semantics Other kelvin)]
         pub unsafe fn kelvin() -> Id<NSUnitTemperature>;
@@ -2203,12 +1954,8 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitTemperature")]
     unsafe impl NSUnitTemperature {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -2223,7 +1970,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitTemperature")]
     unsafe impl NSUnitTemperature {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -2239,10 +1985,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSUnitVolume")]
     pub struct NSUnitVolume;
 
-    #[cfg(feature = "Foundation_NSUnitVolume")]
     unsafe impl ClassType for NSUnitVolume {
         #[inherits(NSUnit, NSObject)]
         type Super = NSDimension;
@@ -2250,26 +1994,22 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSUnitVolume")]
 unsafe impl Send for NSUnitVolume {}
 
-#[cfg(feature = "Foundation_NSUnitVolume")]
 unsafe impl Sync for NSUnitVolume {}
 
-#[cfg(feature = "Foundation_NSUnitVolume")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSUnitVolume {}
 
-#[cfg(feature = "Foundation_NSUnitVolume")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSUnitVolume {}
 
-#[cfg(feature = "Foundation_NSUnitVolume")]
 unsafe impl NSObjectProtocol for NSUnitVolume {}
 
-#[cfg(feature = "Foundation_NSUnitVolume")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSUnitVolume {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSUnitVolume")]
     unsafe impl NSUnitVolume {
         #[method_id(@__retain_semantics Other megaliters)]
         pub unsafe fn megaliters() -> Id<NSUnitVolume>;
@@ -2368,12 +2108,8 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSDimension`
-    #[cfg(feature = "Foundation_NSUnitVolume")]
     unsafe impl NSUnitVolume {
-        #[cfg(all(
-            feature = "Foundation_NSString",
-            feature = "Foundation_NSUnitConverter"
-        ))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -2388,7 +2124,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
-    #[cfg(feature = "Foundation_NSUnitVolume")]
     unsafe impl NSUnitVolume {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -5,10 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSScriptClassDescription")]
+    #[cfg(feature = "Foundation_NSClassDescription")]
     pub struct NSScriptClassDescription;
 
-    #[cfg(feature = "Foundation_NSScriptClassDescription")]
+    #[cfg(feature = "Foundation_NSClassDescription")]
     unsafe impl ClassType for NSScriptClassDescription {
         #[inherits(NSObject)]
         type Super = NSClassDescription;
@@ -16,11 +16,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSScriptClassDescription")]
+#[cfg(feature = "Foundation_NSClassDescription")]
 unsafe impl NSObjectProtocol for NSScriptClassDescription {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSScriptClassDescription")]
+    #[cfg(feature = "Foundation_NSClassDescription")]
     unsafe impl NSScriptClassDescription {
         #[method_id(@__retain_semantics Other classDescriptionForClass:)]
         pub unsafe fn classDescriptionForClass(
@@ -124,7 +124,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSScriptClassDescription")]
+    #[cfg(feature = "Foundation_NSClassDescription")]
     unsafe impl NSScriptClassDescription {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -136,7 +136,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSDeprecated
-    #[cfg(feature = "Foundation_NSScriptClassDescription")]
+    #[cfg(feature = "Foundation_NSClassDescription")]
     unsafe impl NSScriptClassDescription {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]

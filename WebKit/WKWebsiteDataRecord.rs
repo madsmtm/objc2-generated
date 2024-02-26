@@ -49,21 +49,17 @@ extern_static!(WKWebsiteDataTypeHashSalt: &'static NSString);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_WKWebsiteDataRecord")]
     pub struct WKWebsiteDataRecord;
 
-    #[cfg(feature = "WebKit_WKWebsiteDataRecord")]
     unsafe impl ClassType for WKWebsiteDataRecord {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "WebKit_WKWebsiteDataRecord")]
 unsafe impl NSObjectProtocol for WKWebsiteDataRecord {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_WKWebsiteDataRecord")]
     unsafe impl WKWebsiteDataRecord {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other displayName)]
@@ -77,7 +73,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_WKWebsiteDataRecord")]
     unsafe impl WKWebsiteDataRecord {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

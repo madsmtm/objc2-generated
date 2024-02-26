@@ -6,10 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "ClassKit_CLSQuantityItem")]
+    #[cfg(all(feature = "ClassKit_CLSActivityItem", feature = "ClassKit_CLSObject"))]
     pub struct CLSQuantityItem;
 
-    #[cfg(feature = "ClassKit_CLSQuantityItem")]
+    #[cfg(all(feature = "ClassKit_CLSActivityItem", feature = "ClassKit_CLSObject"))]
     unsafe impl ClassType for CLSQuantityItem {
         #[inherits(CLSObject, NSObject)]
         type Super = CLSActivityItem;
@@ -17,17 +17,25 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "ClassKit_CLSQuantityItem")]
+#[cfg(all(
+    feature = "ClassKit_CLSActivityItem",
+    feature = "ClassKit_CLSObject",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for CLSQuantityItem {}
 
-#[cfg(feature = "ClassKit_CLSQuantityItem")]
+#[cfg(all(feature = "ClassKit_CLSActivityItem", feature = "ClassKit_CLSObject"))]
 unsafe impl NSObjectProtocol for CLSQuantityItem {}
 
-#[cfg(feature = "ClassKit_CLSQuantityItem")]
+#[cfg(all(
+    feature = "ClassKit_CLSActivityItem",
+    feature = "ClassKit_CLSObject",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSSecureCoding for CLSQuantityItem {}
 
 extern_methods!(
-    #[cfg(feature = "ClassKit_CLSQuantityItem")]
+    #[cfg(all(feature = "ClassKit_CLSActivityItem", feature = "ClassKit_CLSObject"))]
     unsafe impl CLSQuantityItem {
         #[method(quantity)]
         pub unsafe fn quantity(&self) -> c_double;
@@ -47,7 +55,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CLSActivityItem`
-    #[cfg(feature = "ClassKit_CLSQuantityItem")]
+    #[cfg(all(feature = "ClassKit_CLSActivityItem", feature = "ClassKit_CLSObject"))]
     unsafe impl CLSQuantityItem {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

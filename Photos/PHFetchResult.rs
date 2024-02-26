@@ -9,14 +9,12 @@ use crate::UniformTypeIdentifiers::*;
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Photos_PHFetchResult")]
     pub struct PHFetchResult<ObjectType: ?Sized = AnyObject> {
         __superclass: NSObject,
         _inner0: PhantomData<*mut ObjectType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
-    #[cfg(feature = "Photos_PHFetchResult")]
     unsafe impl<ObjectType: ?Sized + Message> ClassType for PHFetchResult<ObjectType> {
         type Super = NSObject;
         type Mutability = InteriorMutable;
@@ -31,17 +29,15 @@ __inner_extern_class!(
     }
 );
 
-#[cfg(feature = "Photos_PHFetchResult")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl<ObjectType: ?Sized + IsIdCloneable> NSCopying for PHFetchResult<ObjectType> {}
 
-#[cfg(feature = "Photos_PHFetchResult")]
+#[cfg(feature = "Foundation_NSEnumerator")]
 unsafe impl<ObjectType: ?Sized> NSFastEnumeration for PHFetchResult<ObjectType> {}
 
-#[cfg(feature = "Photos_PHFetchResult")]
 unsafe impl<ObjectType: ?Sized> NSObjectProtocol for PHFetchResult<ObjectType> {}
 
 extern_methods!(
-    #[cfg(feature = "Photos_PHFetchResult")]
     unsafe impl<ObjectType: Message> PHFetchResult<ObjectType> {
         #[method(count)]
         pub unsafe fn count(&self) -> NSUInteger;
@@ -58,6 +54,7 @@ extern_methods!(
         #[method(indexOfObject:)]
         pub unsafe fn indexOfObject(&self, an_object: &ObjectType) -> NSUInteger;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(indexOfObject:inRange:)]
         pub unsafe fn indexOfObject_inRange(
             &self,
@@ -81,6 +78,7 @@ extern_methods!(
             block: &Block<dyn Fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>)>,
         );
 
+        #[cfg(feature = "Foundation_NSObjCRuntime")]
         #[method(enumerateObjectsWithOptions:usingBlock:)]
         pub unsafe fn enumerateObjectsWithOptions_usingBlock(
             &self,
@@ -88,7 +86,10 @@ extern_methods!(
             block: &Block<dyn Fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>)>,
         );
 
-        #[cfg(feature = "Foundation_NSIndexSet")]
+        #[cfg(all(
+            feature = "Foundation_NSIndexSet",
+            feature = "Foundation_NSObjCRuntime"
+        ))]
         #[method(enumerateObjectsAtIndexes:options:usingBlock:)]
         pub unsafe fn enumerateObjectsAtIndexes_options_usingBlock(
             &self,
@@ -97,6 +98,7 @@ extern_methods!(
             block: &Block<dyn Fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>)>,
         );
 
+        #[cfg(feature = "Photos_PhotosTypes")]
         #[method(countOfAssetsWithMediaType:)]
         pub unsafe fn countOfAssetsWithMediaType(&self, media_type: PHAssetMediaType)
             -> NSUInteger;
@@ -105,7 +107,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Photos_PHFetchResult")]
     unsafe impl<ObjectType: Message> PHFetchResult<ObjectType> {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

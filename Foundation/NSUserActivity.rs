@@ -8,21 +8,17 @@ pub type NSUserActivityPersistentIdentifier = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSUserActivity")]
     pub struct NSUserActivity;
 
-    #[cfg(feature = "Foundation_NSUserActivity")]
     unsafe impl ClassType for NSUserActivity {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSUserActivity")]
 unsafe impl NSObjectProtocol for NSUserActivity {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSUserActivity")]
     unsafe impl NSUserActivity {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithActivityType:)]
@@ -143,11 +139,7 @@ extern_methods!(
         #[method(invalidate)]
         pub unsafe fn invalidate(&self);
 
-        #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "Foundation_NSInputStream",
-            feature = "Foundation_NSOutputStream"
-        ))]
+        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSStream"))]
         #[method(getContinuationStreamsWithCompletionHandler:)]
         pub unsafe fn getContinuationStreamsWithCompletionHandler(
             &self,
@@ -206,7 +198,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSUserActivity")]
     unsafe impl NSUserActivity {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -218,21 +209,15 @@ extern_static!(NSUserActivityTypeBrowsingWeb: &'static NSString);
 
 extern_protocol!(
     pub unsafe trait NSUserActivityDelegate: NSObjectProtocol {
-        #[cfg(feature = "Foundation_NSUserActivity")]
         #[optional]
         #[method(userActivityWillSave:)]
         unsafe fn userActivityWillSave(&self, user_activity: &NSUserActivity);
 
-        #[cfg(feature = "Foundation_NSUserActivity")]
         #[optional]
         #[method(userActivityWasContinued:)]
         unsafe fn userActivityWasContinued(&self, user_activity: &NSUserActivity);
 
-        #[cfg(all(
-            feature = "Foundation_NSInputStream",
-            feature = "Foundation_NSOutputStream",
-            feature = "Foundation_NSUserActivity"
-        ))]
+        #[cfg(feature = "Foundation_NSStream")]
         #[optional]
         #[method(userActivity:didReceiveInputStream:outputStream:)]
         unsafe fn userActivity_didReceiveInputStream_outputStream(

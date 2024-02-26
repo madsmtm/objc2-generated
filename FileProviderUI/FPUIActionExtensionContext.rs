@@ -26,10 +26,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "FileProviderUI_FPUIActionExtensionContext")]
+    #[cfg(feature = "Foundation_NSExtensionContext")]
     pub struct FPUIActionExtensionContext;
 
-    #[cfg(feature = "FileProviderUI_FPUIActionExtensionContext")]
+    #[cfg(feature = "Foundation_NSExtensionContext")]
     unsafe impl ClassType for FPUIActionExtensionContext {
         #[inherits(NSObject)]
         type Super = NSExtensionContext;
@@ -37,13 +37,16 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "FileProviderUI_FPUIActionExtensionContext")]
+#[cfg(feature = "Foundation_NSExtensionContext")]
 unsafe impl NSObjectProtocol for FPUIActionExtensionContext {}
 
 extern_methods!(
-    #[cfg(feature = "FileProviderUI_FPUIActionExtensionContext")]
+    #[cfg(feature = "Foundation_NSExtensionContext")]
     unsafe impl FPUIActionExtensionContext {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "FileProvider_NSFileProviderDomain",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other domainIdentifier)]
         pub unsafe fn domainIdentifier(&self) -> Option<Id<NSFileProviderDomainIdentifier>>;
 
@@ -66,7 +69,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "FileProviderUI_FPUIActionExtensionContext")]
+    #[cfg(feature = "Foundation_NSExtensionContext")]
     unsafe impl FPUIActionExtensionContext {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

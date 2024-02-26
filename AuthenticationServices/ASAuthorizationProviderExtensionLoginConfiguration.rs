@@ -7,21 +7,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionKerberosMapping")]
     pub struct ASAuthorizationProviderExtensionKerberosMapping;
 
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionKerberosMapping")]
     unsafe impl ClassType for ASAuthorizationProviderExtensionKerberosMapping {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionKerberosMapping")]
 unsafe impl NSObjectProtocol for ASAuthorizationProviderExtensionKerberosMapping {}
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionKerberosMapping")]
     unsafe impl ASAuthorizationProviderExtensionKerberosMapping {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other ticketKeyPath)]
@@ -86,7 +82,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionKerberosMapping")]
     unsafe impl ASAuthorizationProviderExtensionKerberosMapping {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -110,21 +105,17 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionLoginConfiguration")]
     pub struct ASAuthorizationProviderExtensionLoginConfiguration;
 
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionLoginConfiguration")]
     unsafe impl ClassType for ASAuthorizationProviderExtensionLoginConfiguration {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionLoginConfiguration")]
 unsafe impl NSObjectProtocol for ASAuthorizationProviderExtensionLoginConfiguration {}
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationProviderExtensionLoginConfiguration")]
     unsafe impl ASAuthorizationProviderExtensionLoginConfiguration {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -252,11 +243,11 @@ extern_methods!(
         #[method(setServerNonceClaimName:)]
         pub unsafe fn setServerNonceClaimName(&self, server_nonce_claim_name: &NSString);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURLQueryItem"))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other customNonceRequestValues)]
         pub unsafe fn customNonceRequestValues(&self) -> Id<NSArray<NSURLQueryItem>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURLQueryItem"))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURL"))]
         #[method(setCustomNonceRequestValues:)]
         pub unsafe fn setCustomNonceRequestValues(
             &self,
@@ -335,11 +326,11 @@ extern_methods!(
             custom_request_jwt_parameter_name: Option<&NSString>,
         );
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURLQueryItem"))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other customLoginRequestValues)]
         pub unsafe fn customLoginRequestValues(&self) -> Id<NSArray<NSURLQueryItem>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURLQueryItem"))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURL"))]
         #[method(setCustomLoginRequestValues:)]
         pub unsafe fn setCustomLoginRequestValues(
             &self,
@@ -398,19 +389,13 @@ extern_methods!(
             group_response_claim_name: Option<&NSString>,
         );
 
-        #[cfg(all(
-            feature = "AuthenticationServices_ASAuthorizationProviderExtensionKerberosMapping",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other kerberosTicketMappings)]
         pub unsafe fn kerberosTicketMappings(
             &self,
         ) -> Id<NSArray<ASAuthorizationProviderExtensionKerberosMapping>>;
 
-        #[cfg(all(
-            feature = "AuthenticationServices_ASAuthorizationProviderExtensionKerberosMapping",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(setKerberosTicketMappings:)]
         pub unsafe fn setKerberosTicketMappings(
             &self,
@@ -425,11 +410,11 @@ extern_methods!(
         #[method(setRefreshEndpointURL:)]
         pub unsafe fn setRefreshEndpointURL(&self, refresh_endpoint_url: Option<&NSURL>);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURLQueryItem"))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other customRefreshRequestValues)]
         pub unsafe fn customRefreshRequestValues(&self) -> Id<NSArray<NSURLQueryItem>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURLQueryItem"))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURL"))]
         #[method(setCustomRefreshRequestValues:)]
         pub unsafe fn setCustomRefreshRequestValues(
             &self,
@@ -513,13 +498,13 @@ extern_methods!(
         #[method(setFederationPredicate:)]
         pub unsafe fn setFederationPredicate(&self, federation_predicate: Option<&NSString>);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURLQueryItem"))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other customFederationUserPreauthenticationRequestValues)]
         pub unsafe fn customFederationUserPreauthenticationRequestValues(
             &self,
         ) -> Id<NSArray<NSURLQueryItem>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURLQueryItem"))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURL"))]
         #[method(setCustomFederationUserPreauthenticationRequestValues:)]
         pub unsafe fn setCustomFederationUserPreauthenticationRequestValues(
             &self,
@@ -545,11 +530,11 @@ extern_methods!(
         #[method(setKeyEndpointURL:)]
         pub unsafe fn setKeyEndpointURL(&self, key_endpoint_url: Option<&NSURL>);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURLQueryItem"))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other customKeyExchangeRequestValues)]
         pub unsafe fn customKeyExchangeRequestValues(&self) -> Id<NSArray<NSURLQueryItem>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURLQueryItem"))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURL"))]
         #[method(setCustomKeyExchangeRequestValues:)]
         pub unsafe fn setCustomKeyExchangeRequestValues(
             &self,
@@ -578,11 +563,11 @@ extern_methods!(
             claims: &NSDictionary<NSString, AnyObject>,
         ) -> Result<(), Id<NSError>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURLQueryItem"))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other customKeyRequestValues)]
         pub unsafe fn customKeyRequestValues(&self) -> Id<NSArray<NSURLQueryItem>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURLQueryItem"))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSURL"))]
         #[method(setCustomKeyRequestValues:)]
         pub unsafe fn setCustomKeyRequestValues(
             &self,

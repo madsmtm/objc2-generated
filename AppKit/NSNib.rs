@@ -10,24 +10,20 @@ pub type NSNibName = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSNib")]
     pub struct NSNib;
 
-    #[cfg(feature = "AppKit_NSNib")]
     unsafe impl ClassType for NSNib {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSNib")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSNib {}
 
-#[cfg(feature = "AppKit_NSNib")]
 unsafe impl NSObjectProtocol for NSNib {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSNib")]
     unsafe impl NSNib {
         #[cfg(all(feature = "Foundation_NSBundle", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithNibNamed:bundle:)]
@@ -49,7 +45,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSNib")]
     unsafe impl NSNib {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -61,7 +56,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSDeprecated
-    #[cfg(feature = "AppKit_NSNib")]
     unsafe impl NSNib {
         #[cfg(feature = "Foundation_NSURL")]
         #[deprecated]

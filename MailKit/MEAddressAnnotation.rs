@@ -7,27 +7,23 @@ use crate::MailKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MailKit_MEAddressAnnotation")]
     pub struct MEAddressAnnotation;
 
-    #[cfg(feature = "MailKit_MEAddressAnnotation")]
     unsafe impl ClassType for MEAddressAnnotation {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MailKit_MEAddressAnnotation")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for MEAddressAnnotation {}
 
-#[cfg(feature = "MailKit_MEAddressAnnotation")]
 unsafe impl NSObjectProtocol for MEAddressAnnotation {}
 
-#[cfg(feature = "MailKit_MEAddressAnnotation")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for MEAddressAnnotation {}
 
 extern_methods!(
-    #[cfg(feature = "MailKit_MEAddressAnnotation")]
     unsafe impl MEAddressAnnotation {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

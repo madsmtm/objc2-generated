@@ -17,21 +17,17 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSMergeConflict")]
     pub struct NSMergeConflict;
 
-    #[cfg(feature = "CoreData_NSMergeConflict")]
     unsafe impl ClassType for NSMergeConflict {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreData_NSMergeConflict")]
 unsafe impl NSObjectProtocol for NSMergeConflict {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSMergeConflict")]
     unsafe impl NSMergeConflict {
         #[cfg(feature = "CoreData_NSManagedObject")]
         #[method_id(@__retain_semantics Other sourceObject)]
@@ -77,7 +73,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSMergeConflict")]
     unsafe impl NSMergeConflict {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -86,21 +81,17 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSConstraintConflict")]
     pub struct NSConstraintConflict;
 
-    #[cfg(feature = "CoreData_NSConstraintConflict")]
     unsafe impl ClassType for NSConstraintConflict {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreData_NSConstraintConflict")]
 unsafe impl NSObjectProtocol for NSConstraintConflict {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSConstraintConflict")]
     unsafe impl NSConstraintConflict {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other constraint)]
@@ -146,7 +137,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSConstraintConflict")]
     unsafe impl NSConstraintConflict {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -158,21 +148,17 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSMergePolicy")]
     pub struct NSMergePolicy;
 
-    #[cfg(feature = "CoreData_NSMergePolicy")]
     unsafe impl ClassType for NSMergePolicy {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreData_NSMergePolicy")]
 unsafe impl NSObjectProtocol for NSMergePolicy {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSMergePolicy")]
     unsafe impl NSMergePolicy {
         #[method_id(@__retain_semantics Other errorMergePolicy)]
         pub unsafe fn errorMergePolicy() -> Id<NSMergePolicy>;
@@ -202,22 +188,14 @@ extern_methods!(
         #[method(resolveConflicts:error:_)]
         pub unsafe fn resolveConflicts_error(&self, list: &NSArray) -> Result<(), Id<NSError>>;
 
-        #[cfg(all(
-            feature = "CoreData_NSMergeConflict",
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSError"
-        ))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSError"))]
         #[method(resolveOptimisticLockingVersionConflicts:error:_)]
         pub unsafe fn resolveOptimisticLockingVersionConflicts_error(
             &self,
             list: &NSArray<NSMergeConflict>,
         ) -> Result<(), Id<NSError>>;
 
-        #[cfg(all(
-            feature = "CoreData_NSConstraintConflict",
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSError"
-        ))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSError"))]
         #[method(resolveConstraintConflicts:error:_)]
         pub unsafe fn resolveConstraintConflicts_error(
             &self,
@@ -228,7 +206,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSMergePolicy")]
     unsafe impl NSMergePolicy {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

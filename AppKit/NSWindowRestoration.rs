@@ -8,6 +8,8 @@ use crate::Foundation::*;
 extern_protocol!(
     pub unsafe trait NSWindowRestoration: NSObjectProtocol + IsMainThreadOnly {
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSUserInterfaceItemIdentification",
             feature = "AppKit_NSWindow",
             feature = "Foundation_NSCoder",
             feature = "Foundation_NSError",
@@ -36,9 +38,10 @@ unsafe impl NSWindowRestoration for NSDocumentController {}
 
 extern_methods!(
     /// NSWindowRestoration
-    #[cfg(feature = "AppKit_NSApplication")]
+    #[cfg(all(feature = "AppKit_NSApplication", feature = "AppKit_NSResponder"))]
     unsafe impl NSApplication {
         #[cfg(all(
+            feature = "AppKit_NSUserInterfaceItemIdentification",
             feature = "AppKit_NSWindow",
             feature = "Foundation_NSCoder",
             feature = "Foundation_NSError",
@@ -54,12 +57,12 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSApplicationDidFinishRestoringWindowsNotification: &'static NSNotificationName);
 
 extern_methods!(
     /// NSUserInterfaceRestoration
-    #[cfg(feature = "AppKit_NSWindow")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
     unsafe impl NSWindow {
         #[method(isRestorable)]
         pub unsafe fn isRestorable(&self) -> bool;
@@ -67,9 +70,11 @@ extern_methods!(
         #[method(setRestorable:)]
         pub unsafe fn setRestorable(&self, restorable: bool);
 
+        #[cfg(feature = "AppKit_NSWindowRestoration")]
         #[method(restorationClass)]
         pub unsafe fn restorationClass(&self) -> Option<&'static AnyClass>;
 
+        #[cfg(feature = "AppKit_NSWindowRestoration")]
         #[method(setRestorationClass:)]
         pub unsafe fn setRestorationClass(&self, restoration_class: Option<&AnyClass>);
 
@@ -89,10 +94,7 @@ extern_methods!(
         #[method(encodeRestorableStateWithCoder:)]
         pub unsafe fn encodeRestorableStateWithCoder(&self, coder: &NSCoder);
 
-        #[cfg(all(
-            feature = "Foundation_NSCoder",
-            feature = "Foundation_NSOperationQueue"
-        ))]
+        #[cfg(all(feature = "Foundation_NSCoder", feature = "Foundation_NSOperation"))]
         #[method(encodeRestorableStateWithCoder:backgroundQueue:)]
         pub unsafe fn encodeRestorableStateWithCoder_backgroundQueue(
             &self,
@@ -122,7 +124,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSRestorableStateExtension
-    #[cfg(feature = "AppKit_NSApplication")]
+    #[cfg(all(feature = "AppKit_NSApplication", feature = "AppKit_NSResponder"))]
     unsafe impl NSApplication {
         #[method(extendStateRestoration)]
         pub unsafe fn extendStateRestoration(&self);
@@ -137,6 +139,8 @@ extern_methods!(
     #[cfg(feature = "AppKit_NSDocument")]
     unsafe impl NSDocument {
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSUserInterfaceItemIdentification",
             feature = "AppKit_NSWindow",
             feature = "Foundation_NSCoder",
             feature = "Foundation_NSError",
@@ -154,10 +158,7 @@ extern_methods!(
         #[method(encodeRestorableStateWithCoder:)]
         pub unsafe fn encodeRestorableStateWithCoder(&self, coder: &NSCoder);
 
-        #[cfg(all(
-            feature = "Foundation_NSCoder",
-            feature = "Foundation_NSOperationQueue"
-        ))]
+        #[cfg(all(feature = "Foundation_NSCoder", feature = "Foundation_NSOperation"))]
         #[method(encodeRestorableStateWithCoder:backgroundQueue:)]
         pub unsafe fn encodeRestorableStateWithCoder_backgroundQueue(
             &self,

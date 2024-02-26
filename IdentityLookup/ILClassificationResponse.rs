@@ -6,28 +6,25 @@ use crate::IdentityLookup::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "IdentityLookup_ILClassificationResponse")]
     pub struct ILClassificationResponse;
 
-    #[cfg(feature = "IdentityLookup_ILClassificationResponse")]
     unsafe impl ClassType for ILClassificationResponse {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "IdentityLookup_ILClassificationResponse")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for ILClassificationResponse {}
 
-#[cfg(feature = "IdentityLookup_ILClassificationResponse")]
 unsafe impl NSObjectProtocol for ILClassificationResponse {}
 
-#[cfg(feature = "IdentityLookup_ILClassificationResponse")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for ILClassificationResponse {}
 
 extern_methods!(
-    #[cfg(feature = "IdentityLookup_ILClassificationResponse")]
     unsafe impl ILClassificationResponse {
+        #[cfg(feature = "IdentityLookup_ILClassificationActions")]
         #[method(action)]
         pub unsafe fn action(&self) -> ILClassificationAction;
 
@@ -47,6 +44,7 @@ extern_methods!(
         #[method(setUserInfo:)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary<NSString, AnyObject>>);
 
+        #[cfg(feature = "IdentityLookup_ILClassificationActions")]
         #[method_id(@__retain_semantics Init initWithClassificationAction:)]
         pub unsafe fn initWithClassificationAction(
             this: Allocated<Self>,
@@ -60,7 +58,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "IdentityLookup_ILClassificationResponse")]
     unsafe impl ILClassificationResponse {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

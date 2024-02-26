@@ -12,6 +12,7 @@ typed_extensible_enum!(
 );
 
 extern_protocol!(
+    #[cfg(feature = "FileProvider_NSFileProviderItem")]
     pub unsafe trait NSFileProviderItemDecorating: NSFileProviderItemProtocol {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other decorations)]
@@ -19,5 +20,6 @@ extern_protocol!(
             -> Option<Id<NSArray<NSFileProviderItemDecorationIdentifier>>>;
     }
 
+    #[cfg(feature = "FileProvider_NSFileProviderItem")]
     unsafe impl ProtocolType for dyn NSFileProviderItemDecorating {}
 );

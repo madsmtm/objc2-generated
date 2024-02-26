@@ -8,36 +8,32 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKVerifiableClinicalRecordSubject")]
     pub struct HKVerifiableClinicalRecordSubject;
 
-    #[cfg(feature = "HealthKit_HKVerifiableClinicalRecordSubject")]
     unsafe impl ClassType for HKVerifiableClinicalRecordSubject {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "HealthKit_HKVerifiableClinicalRecordSubject")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for HKVerifiableClinicalRecordSubject {}
 
-#[cfg(feature = "HealthKit_HKVerifiableClinicalRecordSubject")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for HKVerifiableClinicalRecordSubject {}
 
-#[cfg(feature = "HealthKit_HKVerifiableClinicalRecordSubject")]
 unsafe impl NSObjectProtocol for HKVerifiableClinicalRecordSubject {}
 
-#[cfg(feature = "HealthKit_HKVerifiableClinicalRecordSubject")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for HKVerifiableClinicalRecordSubject {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKVerifiableClinicalRecordSubject")]
     unsafe impl HKVerifiableClinicalRecordSubject {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other fullName)]
         pub unsafe fn fullName(&self) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSDateComponents")]
+        #[cfg(feature = "Foundation_NSCalendar")]
         #[method_id(@__retain_semantics Other dateOfBirthComponents)]
         pub unsafe fn dateOfBirthComponents(&self) -> Option<Id<NSDateComponents>>;
 

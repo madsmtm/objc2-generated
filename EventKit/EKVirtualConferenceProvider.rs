@@ -9,27 +9,23 @@ use crate::MapKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "EventKit_EKVirtualConferenceProvider")]
     pub struct EKVirtualConferenceProvider;
 
-    #[cfg(feature = "EventKit_EKVirtualConferenceProvider")]
     unsafe impl ClassType for EKVirtualConferenceProvider {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "EventKit_EKVirtualConferenceProvider")]
+#[cfg(feature = "Foundation_NSExtensionRequestHandling")]
 unsafe impl NSExtensionRequestHandling for EKVirtualConferenceProvider {}
 
-#[cfg(feature = "EventKit_EKVirtualConferenceProvider")]
 unsafe impl NSObjectProtocol for EKVirtualConferenceProvider {}
 
 extern_methods!(
-    #[cfg(feature = "EventKit_EKVirtualConferenceProvider")]
     unsafe impl EKVirtualConferenceProvider {
         #[cfg(all(
-            feature = "EventKit_EKVirtualConferenceRoomTypeDescriptor",
+            feature = "EventKit_EKVirtualConferenceDescriptor",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSError"
         ))]
@@ -57,7 +53,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "EventKit_EKVirtualConferenceProvider")]
     unsafe impl EKVirtualConferenceProvider {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -26,27 +26,23 @@ typed_extensible_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSPrinter")]
     pub struct NSPrinter;
 
-    #[cfg(feature = "AppKit_NSPrinter")]
     unsafe impl ClassType for NSPrinter {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSPrinter")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSPrinter {}
 
-#[cfg(feature = "AppKit_NSPrinter")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSPrinter {}
 
-#[cfg(feature = "AppKit_NSPrinter")]
 unsafe impl NSObjectProtocol for NSPrinter {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSPrinter")]
     unsafe impl NSPrinter {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other printerNames)]
@@ -75,11 +71,15 @@ extern_methods!(
         #[method(languageLevel)]
         pub unsafe fn languageLevel(&self) -> NSInteger;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSGeometry", feature = "Foundation_NSString"))]
         #[method(pageSizeForPaper:)]
         pub unsafe fn pageSizeForPaper(&self, paper_name: &NSPrinterPaperName) -> NSSize;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSGraphics",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other deviceDescription)]
         pub unsafe fn deviceDescription(
             &self,
@@ -89,7 +89,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSPrinter")]
     unsafe impl NSPrinter {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -101,7 +100,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSDeprecated
-    #[cfg(feature = "AppKit_NSPrinter")]
     unsafe impl NSPrinter {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated]
@@ -136,13 +134,13 @@ extern_methods!(
         #[method(intForKey:inTable:)]
         pub unsafe fn intForKey_inTable(&self, key: Option<&NSString>, table: &NSString) -> c_int;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSGeometry", feature = "Foundation_NSString"))]
         #[deprecated]
         #[method(rectForKey:inTable:)]
         pub unsafe fn rectForKey_inTable(&self, key: Option<&NSString>, table: &NSString)
             -> NSRect;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSGeometry", feature = "Foundation_NSString"))]
         #[deprecated]
         #[method(sizeForKey:inTable:)]
         pub unsafe fn sizeForKey_inTable(&self, key: Option<&NSString>, table: &NSString)
@@ -166,7 +164,7 @@ extern_methods!(
             table: &NSString,
         ) -> Option<Id<NSArray>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSGeometry", feature = "Foundation_NSString"))]
         #[deprecated]
         #[method(imageRectForPaper:)]
         pub unsafe fn imageRectForPaper(&self, paper_name: Option<&NSString>) -> NSRect;

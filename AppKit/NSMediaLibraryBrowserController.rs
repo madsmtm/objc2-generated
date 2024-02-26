@@ -19,21 +19,17 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSMediaLibraryBrowserController")]
     pub struct NSMediaLibraryBrowserController;
 
-    #[cfg(feature = "AppKit_NSMediaLibraryBrowserController")]
     unsafe impl ClassType for NSMediaLibraryBrowserController {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSMediaLibraryBrowserController")]
 unsafe impl NSObjectProtocol for NSMediaLibraryBrowserController {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSMediaLibraryBrowserController")]
     unsafe impl NSMediaLibraryBrowserController {
         #[method_id(@__retain_semantics Other sharedMediaLibraryBrowserController)]
         pub unsafe fn sharedMediaLibraryBrowserController() -> Id<NSMediaLibraryBrowserController>;
@@ -44,9 +40,11 @@ extern_methods!(
         #[method(setVisible:)]
         pub unsafe fn setVisible(&self, visible: bool);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(frame)]
         pub unsafe fn frame(&self) -> NSRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setFrame:)]
         pub unsafe fn setFrame(&self, frame: NSRect);
 
@@ -63,7 +61,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSMediaLibraryBrowserController")]
     unsafe impl NSMediaLibraryBrowserController {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -7,10 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSWindowController")]
+    #[cfg(feature = "AppKit_NSResponder")]
     pub struct NSWindowController;
 
-    #[cfg(feature = "AppKit_NSWindowController")]
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl ClassType for NSWindowController {
         #[inherits(NSObject)]
         type Super = NSResponder;
@@ -18,17 +18,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSWindowController")]
+#[cfg(all(feature = "AppKit_NSResponder", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for NSWindowController {}
 
-#[cfg(feature = "AppKit_NSWindowController")]
+#[cfg(feature = "AppKit_NSResponder")]
 unsafe impl NSObjectProtocol for NSWindowController {}
 
-#[cfg(feature = "AppKit_NSWindowController")]
+#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSStoryboardSegue"))]
 unsafe impl NSSeguePerforming for NSWindowController {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSWindowController")]
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSWindowController {
         #[cfg(feature = "AppKit_NSWindow")]
         #[method_id(@__retain_semantics Init initWithWindow:)]
@@ -38,14 +38,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "AppKit_NSNib", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithWindowNibName:)]
         pub unsafe fn initWithWindowNibName(
             this: Allocated<Self>,
             window_nib_name: &NSNibName,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "AppKit_NSNib", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithWindowNibName:owner:)]
         pub unsafe fn initWithWindowNibName_owner(
             this: Allocated<Self>,
@@ -61,7 +61,7 @@ extern_methods!(
             owner: &AnyObject,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "AppKit_NSNib", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other windowNibName)]
         pub unsafe fn windowNibName(&self) -> Option<Id<NSNibName>>;
 
@@ -72,11 +72,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other owner)]
         pub unsafe fn owner(&self) -> Option<Id<AnyObject>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "AppKit_NSWindow", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other windowFrameAutosaveName)]
         pub unsafe fn windowFrameAutosaveName(&self) -> Id<NSWindowFrameAutosaveName>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "AppKit_NSWindow", feature = "Foundation_NSString"))]
         #[method(setWindowFrameAutosaveName:)]
         pub unsafe fn setWindowFrameAutosaveName(
             &self,
@@ -89,13 +89,19 @@ extern_methods!(
         #[method(setShouldCascadeWindows:)]
         pub unsafe fn setShouldCascadeWindows(&self, should_cascade_windows: bool);
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(
+            feature = "AppKit_NSPreviewRepresentingActivityItem",
+            feature = "Foundation_NSArray"
+        ))]
         #[method_id(@__retain_semantics Other previewRepresentableActivityItems)]
         pub unsafe fn previewRepresentableActivityItems(
             &self,
         ) -> Option<Id<NSArray<ProtocolObject<dyn NSPreviewRepresentableActivityItem>>>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(
+            feature = "AppKit_NSPreviewRepresentingActivityItem",
+            feature = "Foundation_NSArray"
+        ))]
         #[method(setPreviewRepresentableActivityItems:)]
         pub unsafe fn setPreviewRepresentableActivityItems(
             &self,
@@ -170,7 +176,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "AppKit_NSWindowController")]
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSWindowController {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -179,7 +185,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSWindowController")]
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSWindowController {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -188,7 +194,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSWindowControllerStoryboardingMethods
-    #[cfg(feature = "AppKit_NSWindowController")]
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSWindowController {
         #[cfg(feature = "AppKit_NSStoryboard")]
         #[method_id(@__retain_semantics Other storyboard)]
@@ -198,7 +204,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSWindowControllerDismissing
-    #[cfg(feature = "AppKit_NSWindowController")]
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl NSWindowController {
         #[method(dismissController:)]
         pub unsafe fn dismissController(&self, sender: Option<&AnyObject>);

@@ -6,10 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "ClassKit_CLSScoreItem")]
+    #[cfg(all(feature = "ClassKit_CLSActivityItem", feature = "ClassKit_CLSObject"))]
     pub struct CLSScoreItem;
 
-    #[cfg(feature = "ClassKit_CLSScoreItem")]
+    #[cfg(all(feature = "ClassKit_CLSActivityItem", feature = "ClassKit_CLSObject"))]
     unsafe impl ClassType for CLSScoreItem {
         #[inherits(CLSObject, NSObject)]
         type Super = CLSActivityItem;
@@ -17,17 +17,25 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "ClassKit_CLSScoreItem")]
+#[cfg(all(
+    feature = "ClassKit_CLSActivityItem",
+    feature = "ClassKit_CLSObject",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for CLSScoreItem {}
 
-#[cfg(feature = "ClassKit_CLSScoreItem")]
+#[cfg(all(feature = "ClassKit_CLSActivityItem", feature = "ClassKit_CLSObject"))]
 unsafe impl NSObjectProtocol for CLSScoreItem {}
 
-#[cfg(feature = "ClassKit_CLSScoreItem")]
+#[cfg(all(
+    feature = "ClassKit_CLSActivityItem",
+    feature = "ClassKit_CLSObject",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSSecureCoding for CLSScoreItem {}
 
 extern_methods!(
-    #[cfg(feature = "ClassKit_CLSScoreItem")]
+    #[cfg(all(feature = "ClassKit_CLSActivityItem", feature = "ClassKit_CLSObject"))]
     unsafe impl CLSScoreItem {
         #[method(score)]
         pub unsafe fn score(&self) -> c_double;
@@ -55,7 +63,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CLSActivityItem`
-    #[cfg(feature = "ClassKit_CLSScoreItem")]
+    #[cfg(all(feature = "ClassKit_CLSActivityItem", feature = "ClassKit_CLSObject"))]
     unsafe impl CLSScoreItem {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

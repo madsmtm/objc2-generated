@@ -24,7 +24,14 @@ ns_enum!(
 extern_protocol!(
     #[deprecated]
     pub unsafe trait WebEditingDelegate: NSObjectProtocol {
-        #[cfg(all(feature = "WebKit_DOMRange", feature = "WebKit_WebView"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "WebKit_DOMObject",
+            feature = "WebKit_DOMRange",
+            feature = "WebKit_WebScriptObject",
+            feature = "WebKit_WebView"
+        ))]
         #[deprecated]
         #[optional]
         #[method(webView:shouldBeginEditingInDOMRange:)]
@@ -34,7 +41,14 @@ extern_protocol!(
             range: Option<&DOMRange>,
         ) -> bool;
 
-        #[cfg(all(feature = "WebKit_DOMRange", feature = "WebKit_WebView"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "WebKit_DOMObject",
+            feature = "WebKit_DOMRange",
+            feature = "WebKit_WebScriptObject",
+            feature = "WebKit_WebView"
+        ))]
         #[deprecated]
         #[optional]
         #[method(webView:shouldEndEditingInDOMRange:)]
@@ -45,8 +59,12 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "WebKit_DOMNode",
+            feature = "WebKit_DOMObject",
             feature = "WebKit_DOMRange",
+            feature = "WebKit_WebScriptObject",
             feature = "WebKit_WebView"
         ))]
         #[deprecated]
@@ -61,8 +79,12 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSString",
+            feature = "WebKit_DOMObject",
             feature = "WebKit_DOMRange",
+            feature = "WebKit_WebScriptObject",
             feature = "WebKit_WebView"
         ))]
         #[deprecated]
@@ -76,7 +98,14 @@ extern_protocol!(
             action: WebViewInsertAction,
         ) -> bool;
 
-        #[cfg(all(feature = "WebKit_DOMRange", feature = "WebKit_WebView"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "WebKit_DOMObject",
+            feature = "WebKit_DOMRange",
+            feature = "WebKit_WebScriptObject",
+            feature = "WebKit_WebView"
+        ))]
         #[deprecated]
         #[optional]
         #[method(webView:shouldDeleteDOMRange:)]
@@ -86,7 +115,15 @@ extern_protocol!(
             range: Option<&DOMRange>,
         ) -> bool;
 
-        #[cfg(all(feature = "WebKit_DOMRange", feature = "WebKit_WebView"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSTextView",
+            feature = "AppKit_NSView",
+            feature = "WebKit_DOMObject",
+            feature = "WebKit_DOMRange",
+            feature = "WebKit_WebScriptObject",
+            feature = "WebKit_WebView"
+        ))]
         #[deprecated]
         #[optional]
         #[method(webView:shouldChangeSelectedDOMRange:toDOMRange:affinity:stillSelecting:)]
@@ -100,8 +137,12 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "WebKit_DOMCSSStyleDeclaration",
+            feature = "WebKit_DOMObject",
             feature = "WebKit_DOMRange",
+            feature = "WebKit_WebScriptObject",
             feature = "WebKit_WebView"
         ))]
         #[deprecated]
@@ -114,7 +155,14 @@ extern_protocol!(
             range: Option<&DOMRange>,
         ) -> bool;
 
-        #[cfg(all(feature = "WebKit_DOMCSSStyleDeclaration", feature = "WebKit_WebView"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "WebKit_DOMCSSStyleDeclaration",
+            feature = "WebKit_DOMObject",
+            feature = "WebKit_WebScriptObject",
+            feature = "WebKit_WebView"
+        ))]
         #[deprecated]
         #[optional]
         #[method(webView:shouldChangeTypingStyle:toStyle:)]
@@ -125,7 +173,11 @@ extern_protocol!(
             proposed_style: Option<&DOMCSSStyleDeclaration>,
         ) -> bool;
 
-        #[cfg(feature = "WebKit_WebView")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "WebKit_WebView"
+        ))]
         #[deprecated]
         #[optional]
         #[method(webView:doCommandBySelector:)]
@@ -165,7 +217,12 @@ extern_protocol!(
         #[method(webViewDidChangeSelection:)]
         unsafe fn webViewDidChangeSelection(&self, notification: Option<&NSNotification>);
 
-        #[cfg(all(feature = "Foundation_NSUndoManager", feature = "WebKit_WebView"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSUndoManager",
+            feature = "WebKit_WebView"
+        ))]
         #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other undoManagerForWebView:)]

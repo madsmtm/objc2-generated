@@ -6,10 +6,10 @@ use crate::MetricKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MetricKit_MXLocationActivityMetric")]
+    #[cfg(feature = "MetricKit_MXMetric")]
     pub struct MXLocationActivityMetric;
 
-    #[cfg(feature = "MetricKit_MXLocationActivityMetric")]
+    #[cfg(feature = "MetricKit_MXMetric")]
     unsafe impl ClassType for MXLocationActivityMetric {
         #[inherits(NSObject)]
         type Super = MXMetric;
@@ -17,63 +17,45 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MetricKit_MXLocationActivityMetric")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "MetricKit_MXMetric"))]
 unsafe impl NSCoding for MXLocationActivityMetric {}
 
-#[cfg(feature = "MetricKit_MXLocationActivityMetric")]
+#[cfg(feature = "MetricKit_MXMetric")]
 unsafe impl NSObjectProtocol for MXLocationActivityMetric {}
 
-#[cfg(feature = "MetricKit_MXLocationActivityMetric")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "MetricKit_MXMetric"))]
 unsafe impl NSSecureCoding for MXLocationActivityMetric {}
 
 extern_methods!(
-    #[cfg(feature = "MetricKit_MXLocationActivityMetric")]
+    #[cfg(feature = "MetricKit_MXMetric")]
     unsafe impl MXLocationActivityMetric {
-        #[cfg(all(
-            feature = "Foundation_NSMeasurement",
-            feature = "Foundation_NSUnitDuration"
-        ))]
+        #[cfg(all(feature = "Foundation_NSMeasurement", feature = "Foundation_NSUnit"))]
         #[method_id(@__retain_semantics Other cumulativeBestAccuracyTime)]
         pub unsafe fn cumulativeBestAccuracyTime(&self) -> Id<NSMeasurement<NSUnitDuration>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSMeasurement",
-            feature = "Foundation_NSUnitDuration"
-        ))]
+        #[cfg(all(feature = "Foundation_NSMeasurement", feature = "Foundation_NSUnit"))]
         #[method_id(@__retain_semantics Other cumulativeBestAccuracyForNavigationTime)]
         pub unsafe fn cumulativeBestAccuracyForNavigationTime(
             &self,
         ) -> Id<NSMeasurement<NSUnitDuration>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSMeasurement",
-            feature = "Foundation_NSUnitDuration"
-        ))]
+        #[cfg(all(feature = "Foundation_NSMeasurement", feature = "Foundation_NSUnit"))]
         #[method_id(@__retain_semantics Other cumulativeNearestTenMetersAccuracyTime)]
         pub unsafe fn cumulativeNearestTenMetersAccuracyTime(
             &self,
         ) -> Id<NSMeasurement<NSUnitDuration>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSMeasurement",
-            feature = "Foundation_NSUnitDuration"
-        ))]
+        #[cfg(all(feature = "Foundation_NSMeasurement", feature = "Foundation_NSUnit"))]
         #[method_id(@__retain_semantics Other cumulativeHundredMetersAccuracyTime)]
         pub unsafe fn cumulativeHundredMetersAccuracyTime(
             &self,
         ) -> Id<NSMeasurement<NSUnitDuration>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSMeasurement",
-            feature = "Foundation_NSUnitDuration"
-        ))]
+        #[cfg(all(feature = "Foundation_NSMeasurement", feature = "Foundation_NSUnit"))]
         #[method_id(@__retain_semantics Other cumulativeKilometerAccuracyTime)]
         pub unsafe fn cumulativeKilometerAccuracyTime(&self) -> Id<NSMeasurement<NSUnitDuration>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSMeasurement",
-            feature = "Foundation_NSUnitDuration"
-        ))]
+        #[cfg(all(feature = "Foundation_NSMeasurement", feature = "Foundation_NSUnit"))]
         #[method_id(@__retain_semantics Other cumulativeThreeKilometersAccuracyTime)]
         pub unsafe fn cumulativeThreeKilometersAccuracyTime(
             &self,
@@ -83,7 +65,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MetricKit_MXLocationActivityMetric")]
+    #[cfg(feature = "MetricKit_MXMetric")]
     unsafe impl MXLocationActivityMetric {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

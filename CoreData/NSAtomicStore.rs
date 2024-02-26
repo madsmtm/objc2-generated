@@ -6,10 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSAtomicStore")]
+    #[cfg(feature = "CoreData_NSPersistentStore")]
     pub struct NSAtomicStore;
 
-    #[cfg(feature = "CoreData_NSAtomicStore")]
+    #[cfg(feature = "CoreData_NSPersistentStore")]
     unsafe impl ClassType for NSAtomicStore {
         #[inherits(NSObject)]
         type Super = NSPersistentStore;
@@ -17,11 +17,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CoreData_NSAtomicStore")]
+#[cfg(feature = "CoreData_NSPersistentStore")]
 unsafe impl NSObjectProtocol for NSAtomicStore {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSAtomicStore")]
+    #[cfg(feature = "CoreData_NSPersistentStore")]
     unsafe impl NSAtomicStore {
         #[cfg(all(
             feature = "CoreData_NSPersistentStoreCoordinator",
@@ -127,7 +127,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSPersistentStore`
-    #[cfg(feature = "CoreData_NSAtomicStore")]
+    #[cfg(feature = "CoreData_NSPersistentStore")]
     unsafe impl NSAtomicStore {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -136,7 +136,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSAtomicStore")]
+    #[cfg(feature = "CoreData_NSPersistentStore")]
     unsafe impl NSAtomicStore {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -26,10 +26,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSDateFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     pub struct NSDateFormatter;
 
-    #[cfg(feature = "Foundation_NSDateFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl ClassType for NSDateFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;
@@ -37,23 +37,23 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSDateFormatter")]
+#[cfg(feature = "Foundation_NSFormatter")]
 unsafe impl Send for NSDateFormatter {}
 
-#[cfg(feature = "Foundation_NSDateFormatter")]
+#[cfg(feature = "Foundation_NSFormatter")]
 unsafe impl Sync for NSDateFormatter {}
 
-#[cfg(feature = "Foundation_NSDateFormatter")]
+#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for NSDateFormatter {}
 
-#[cfg(feature = "Foundation_NSDateFormatter")]
+#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
 unsafe impl NSCopying for NSDateFormatter {}
 
-#[cfg(feature = "Foundation_NSDateFormatter")]
+#[cfg(feature = "Foundation_NSFormatter")]
 unsafe impl NSObjectProtocol for NSDateFormatter {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSDateFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl NSDateFormatter {
         #[method(formattingContext)]
         pub unsafe fn formattingContext(&self) -> NSFormattingContext;
@@ -61,7 +61,11 @@ extern_methods!(
         #[method(setFormattingContext:)]
         pub unsafe fn setFormattingContext(&self, formatting_context: NSFormattingContext);
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSRange",
+            feature = "Foundation_NSString"
+        ))]
         #[method(getObjectValue:forString:range:error:_)]
         pub unsafe fn getObjectValue_forString_range_error(
             &self,
@@ -398,7 +402,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSDateFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl NSDateFormatter {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -410,7 +414,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSDateFormatterCompatibility
-    #[cfg(feature = "Foundation_NSDateFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl NSDateFormatter {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Create an NSDateFormatter with `init` and set the dateFormat property instead."]

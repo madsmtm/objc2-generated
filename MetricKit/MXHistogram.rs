@@ -6,14 +6,12 @@ use crate::MetricKit::*;
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MetricKit_MXHistogramBucket")]
     pub struct MXHistogramBucket<UnitType: ?Sized = AnyObject> {
         __superclass: NSObject,
         _inner0: PhantomData<*mut UnitType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
-    #[cfg(feature = "MetricKit_MXHistogramBucket")]
     unsafe impl<UnitType: ?Sized + Message> ClassType for MXHistogramBucket<UnitType> {
         type Super = NSObject;
         type Mutability = InteriorMutable;
@@ -28,17 +26,15 @@ __inner_extern_class!(
     }
 );
 
-#[cfg(feature = "MetricKit_MXHistogramBucket")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl<UnitType: ?Sized + NSCoding> NSCoding for MXHistogramBucket<UnitType> {}
 
-#[cfg(feature = "MetricKit_MXHistogramBucket")]
 unsafe impl<UnitType: ?Sized> NSObjectProtocol for MXHistogramBucket<UnitType> {}
 
-#[cfg(feature = "MetricKit_MXHistogramBucket")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl<UnitType: ?Sized + NSSecureCoding> NSSecureCoding for MXHistogramBucket<UnitType> {}
 
 extern_methods!(
-    #[cfg(feature = "MetricKit_MXHistogramBucket")]
     unsafe impl<UnitType: Message> MXHistogramBucket<UnitType> {
         #[cfg(feature = "Foundation_NSMeasurement")]
         #[method_id(@__retain_semantics Other bucketStart)]
@@ -55,7 +51,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MetricKit_MXHistogramBucket")]
     unsafe impl<UnitType: Message> MXHistogramBucket<UnitType> {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -67,14 +62,12 @@ extern_methods!(
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MetricKit_MXHistogram")]
     pub struct MXHistogram<UnitType: ?Sized = AnyObject> {
         __superclass: NSObject,
         _inner0: PhantomData<*mut UnitType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
-    #[cfg(feature = "MetricKit_MXHistogram")]
     unsafe impl<UnitType: ?Sized + Message> ClassType for MXHistogram<UnitType> {
         type Super = NSObject;
         type Mutability = InteriorMutable;
@@ -89,25 +82,20 @@ __inner_extern_class!(
     }
 );
 
-#[cfg(feature = "MetricKit_MXHistogram")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl<UnitType: ?Sized + NSCoding> NSCoding for MXHistogram<UnitType> {}
 
-#[cfg(feature = "MetricKit_MXHistogram")]
 unsafe impl<UnitType: ?Sized> NSObjectProtocol for MXHistogram<UnitType> {}
 
-#[cfg(feature = "MetricKit_MXHistogram")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl<UnitType: ?Sized + NSSecureCoding> NSSecureCoding for MXHistogram<UnitType> {}
 
 extern_methods!(
-    #[cfg(feature = "MetricKit_MXHistogram")]
     unsafe impl<UnitType: Message> MXHistogram<UnitType> {
         #[method(totalBucketCount)]
         pub unsafe fn totalBucketCount(&self) -> NSUInteger;
 
-        #[cfg(all(
-            feature = "Foundation_NSEnumerator",
-            feature = "MetricKit_MXHistogramBucket"
-        ))]
+        #[cfg(feature = "Foundation_NSEnumerator")]
         #[method_id(@__retain_semantics Other bucketEnumerator)]
         pub unsafe fn bucketEnumerator(&self) -> Id<NSEnumerator<MXHistogramBucket<UnitType>>>;
     }
@@ -115,7 +103,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MetricKit_MXHistogram")]
     unsafe impl<UnitType: Message> MXHistogram<UnitType> {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

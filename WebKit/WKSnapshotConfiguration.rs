@@ -7,36 +7,34 @@ use crate::WebKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_WKSnapshotConfiguration")]
     pub struct WKSnapshotConfiguration;
 
-    #[cfg(feature = "WebKit_WKSnapshotConfiguration")]
     unsafe impl ClassType for WKSnapshotConfiguration {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "WebKit_WKSnapshotConfiguration")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for WKSnapshotConfiguration {}
 
-#[cfg(feature = "WebKit_WKSnapshotConfiguration")]
 unsafe impl NSObjectProtocol for WKSnapshotConfiguration {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_WKSnapshotConfiguration")]
     unsafe impl WKSnapshotConfiguration {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(rect)]
         pub unsafe fn rect(&self) -> CGRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setRect:)]
         pub unsafe fn setRect(&self, rect: CGRect);
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method_id(@__retain_semantics Other snapshotWidth)]
         pub unsafe fn snapshotWidth(&self) -> Option<Id<NSNumber>>;
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method(setSnapshotWidth:)]
         pub unsafe fn setSnapshotWidth(&self, snapshot_width: Option<&NSNumber>);
 
@@ -50,7 +48,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_WKSnapshotConfiguration")]
     unsafe impl WKSnapshotConfiguration {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

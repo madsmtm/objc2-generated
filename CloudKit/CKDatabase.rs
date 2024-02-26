@@ -19,27 +19,21 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKDatabase")]
     pub struct CKDatabase;
 
-    #[cfg(feature = "CloudKit_CKDatabase")]
     unsafe impl ClassType for CKDatabase {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CloudKit_CKDatabase")]
 unsafe impl Send for CKDatabase {}
 
-#[cfg(feature = "CloudKit_CKDatabase")]
 unsafe impl Sync for CKDatabase {}
 
-#[cfg(feature = "CloudKit_CKDatabase")]
 unsafe impl NSObjectProtocol for CKDatabase {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKDatabase")]
     unsafe impl CKDatabase {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -47,7 +41,11 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
-        #[cfg(feature = "CloudKit_CKDatabaseOperation")]
+        #[cfg(all(
+            feature = "CloudKit_CKDatabaseOperation",
+            feature = "CloudKit_CKOperation",
+            feature = "Foundation_NSOperation"
+        ))]
         #[method(addOperation:)]
         pub unsafe fn addOperation(&self, operation: &CKDatabaseOperation);
 
@@ -58,7 +56,6 @@ extern_methods!(
 
 extern_methods!(
     /// ConvenienceMethods
-    #[cfg(feature = "CloudKit_CKDatabase")]
     unsafe impl CKDatabase {
         #[cfg(all(
             feature = "CloudKit_CKRecord",
@@ -173,7 +170,11 @@ extern_methods!(
             completion_handler: &Block<dyn Fn(*mut CKSubscription, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "CloudKit_CKSubscription",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSString"
+        ))]
         #[method(deleteSubscriptionWithID:completionHandler:)]
         pub unsafe fn deleteSubscriptionWithID_completionHandler(
             &self,

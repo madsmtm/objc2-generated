@@ -14,11 +14,23 @@ pub const DOM_DOM_DELTA_PAGE: c_uint = 0x02;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_DOMWheelEvent")]
+    #[cfg(all(
+        feature = "WebKit_DOMEvent",
+        feature = "WebKit_DOMMouseEvent",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_DOMUIEvent",
+        feature = "WebKit_WebScriptObject"
+    ))]
     #[deprecated]
     pub struct DOMWheelEvent;
 
-    #[cfg(feature = "WebKit_DOMWheelEvent")]
+    #[cfg(all(
+        feature = "WebKit_DOMEvent",
+        feature = "WebKit_DOMMouseEvent",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_DOMUIEvent",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl ClassType for DOMWheelEvent {
         #[inherits(DOMUIEvent, DOMEvent, DOMObject, WebScriptObject, NSObject)]
         type Super = DOMMouseEvent;
@@ -26,14 +38,33 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "WebKit_DOMWheelEvent")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "WebKit_DOMEvent",
+    feature = "WebKit_DOMMouseEvent",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_DOMUIEvent",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSCopying for DOMWheelEvent {}
 
-#[cfg(feature = "WebKit_DOMWheelEvent")]
+#[cfg(all(
+    feature = "WebKit_DOMEvent",
+    feature = "WebKit_DOMMouseEvent",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_DOMUIEvent",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSObjectProtocol for DOMWheelEvent {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_DOMWheelEvent")]
+    #[cfg(all(
+        feature = "WebKit_DOMEvent",
+        feature = "WebKit_DOMMouseEvent",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_DOMUIEvent",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMWheelEvent {
         #[method(wheelDeltaX)]
         pub unsafe fn wheelDeltaX(&self) -> c_int;
@@ -70,7 +101,13 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
-    #[cfg(feature = "WebKit_DOMWheelEvent")]
+    #[cfg(all(
+        feature = "WebKit_DOMEvent",
+        feature = "WebKit_DOMMouseEvent",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_DOMUIEvent",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMWheelEvent {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
@@ -80,7 +117,13 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_DOMWheelEvent")]
+    #[cfg(all(
+        feature = "WebKit_DOMEvent",
+        feature = "WebKit_DOMMouseEvent",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_DOMUIEvent",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMWheelEvent {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

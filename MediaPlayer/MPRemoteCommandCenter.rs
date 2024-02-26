@@ -7,21 +7,17 @@ use crate::MediaPlayer::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MediaPlayer_MPRemoteCommandCenter")]
     pub struct MPRemoteCommandCenter;
 
-    #[cfg(feature = "MediaPlayer_MPRemoteCommandCenter")]
     unsafe impl ClassType for MPRemoteCommandCenter {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MediaPlayer_MPRemoteCommandCenter")]
 unsafe impl NSObjectProtocol for MPRemoteCommandCenter {}
 
 extern_methods!(
-    #[cfg(feature = "MediaPlayer_MPRemoteCommandCenter")]
     unsafe impl MPRemoteCommandCenter {
         #[cfg(feature = "MediaPlayer_MPRemoteCommand")]
         #[method_id(@__retain_semantics Other pauseCommand)]
@@ -47,15 +43,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Other disableLanguageOptionCommand)]
         pub unsafe fn disableLanguageOptionCommand(&self) -> Id<MPRemoteCommand>;
 
-        #[cfg(feature = "MediaPlayer_MPChangePlaybackRateCommand")]
+        #[cfg(feature = "MediaPlayer_MPRemoteCommand")]
         #[method_id(@__retain_semantics Other changePlaybackRateCommand)]
         pub unsafe fn changePlaybackRateCommand(&self) -> Id<MPChangePlaybackRateCommand>;
 
-        #[cfg(feature = "MediaPlayer_MPChangeRepeatModeCommand")]
+        #[cfg(feature = "MediaPlayer_MPRemoteCommand")]
         #[method_id(@__retain_semantics Other changeRepeatModeCommand)]
         pub unsafe fn changeRepeatModeCommand(&self) -> Id<MPChangeRepeatModeCommand>;
 
-        #[cfg(feature = "MediaPlayer_MPChangeShuffleModeCommand")]
+        #[cfg(feature = "MediaPlayer_MPRemoteCommand")]
         #[method_id(@__retain_semantics Other changeShuffleModeCommand)]
         pub unsafe fn changeShuffleModeCommand(&self) -> Id<MPChangeShuffleModeCommand>;
 
@@ -67,11 +63,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other previousTrackCommand)]
         pub unsafe fn previousTrackCommand(&self) -> Id<MPRemoteCommand>;
 
-        #[cfg(feature = "MediaPlayer_MPSkipIntervalCommand")]
+        #[cfg(feature = "MediaPlayer_MPRemoteCommand")]
         #[method_id(@__retain_semantics Other skipForwardCommand)]
         pub unsafe fn skipForwardCommand(&self) -> Id<MPSkipIntervalCommand>;
 
-        #[cfg(feature = "MediaPlayer_MPSkipIntervalCommand")]
+        #[cfg(feature = "MediaPlayer_MPRemoteCommand")]
         #[method_id(@__retain_semantics Other skipBackwardCommand)]
         pub unsafe fn skipBackwardCommand(&self) -> Id<MPSkipIntervalCommand>;
 
@@ -83,23 +79,23 @@ extern_methods!(
         #[method_id(@__retain_semantics Other seekBackwardCommand)]
         pub unsafe fn seekBackwardCommand(&self) -> Id<MPRemoteCommand>;
 
-        #[cfg(feature = "MediaPlayer_MPChangePlaybackPositionCommand")]
+        #[cfg(feature = "MediaPlayer_MPRemoteCommand")]
         #[method_id(@__retain_semantics Other changePlaybackPositionCommand)]
         pub unsafe fn changePlaybackPositionCommand(&self) -> Id<MPChangePlaybackPositionCommand>;
 
-        #[cfg(feature = "MediaPlayer_MPRatingCommand")]
+        #[cfg(feature = "MediaPlayer_MPRemoteCommand")]
         #[method_id(@__retain_semantics Other ratingCommand)]
         pub unsafe fn ratingCommand(&self) -> Id<MPRatingCommand>;
 
-        #[cfg(feature = "MediaPlayer_MPFeedbackCommand")]
+        #[cfg(feature = "MediaPlayer_MPRemoteCommand")]
         #[method_id(@__retain_semantics Other likeCommand)]
         pub unsafe fn likeCommand(&self) -> Id<MPFeedbackCommand>;
 
-        #[cfg(feature = "MediaPlayer_MPFeedbackCommand")]
+        #[cfg(feature = "MediaPlayer_MPRemoteCommand")]
         #[method_id(@__retain_semantics Other dislikeCommand)]
         pub unsafe fn dislikeCommand(&self) -> Id<MPFeedbackCommand>;
 
-        #[cfg(feature = "MediaPlayer_MPFeedbackCommand")]
+        #[cfg(feature = "MediaPlayer_MPRemoteCommand")]
         #[method_id(@__retain_semantics Other bookmarkCommand)]
         pub unsafe fn bookmarkCommand(&self) -> Id<MPFeedbackCommand>;
 

@@ -6,11 +6,9 @@ use crate::Foundation::*;
 
 extern_protocol!(
     pub unsafe trait AXChart: NSObjectProtocol {
-        #[cfg(feature = "Accessibility_AXChartDescriptor")]
         #[method_id(@__retain_semantics Other accessibilityChartDescriptor)]
         unsafe fn accessibilityChartDescriptor(&self) -> Option<Id<AXChartDescriptor>>;
 
-        #[cfg(feature = "Accessibility_AXChartDescriptor")]
         #[method(setAccessibilityChartDescriptor:)]
         unsafe fn setAccessibilityChartDescriptor(
             &self,
@@ -22,6 +20,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    #[cfg(feature = "Foundation_NSObject")]
     pub unsafe trait AXDataAxisDescriptor: NSCopying {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
@@ -40,6 +39,7 @@ extern_protocol!(
         unsafe fn setAttributedTitle(&self, attributed_title: &NSAttributedString);
     }
 
+    #[cfg(feature = "Foundation_NSObject")]
     unsafe impl ProtocolType for dyn AXDataAxisDescriptor {}
 );
 
@@ -54,27 +54,23 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Accessibility_AXNumericDataAxisDescriptor")]
     pub struct AXNumericDataAxisDescriptor;
 
-    #[cfg(feature = "Accessibility_AXNumericDataAxisDescriptor")]
     unsafe impl ClassType for AXNumericDataAxisDescriptor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Accessibility_AXNumericDataAxisDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl AXDataAxisDescriptor for AXNumericDataAxisDescriptor {}
 
-#[cfg(feature = "Accessibility_AXNumericDataAxisDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for AXNumericDataAxisDescriptor {}
 
-#[cfg(feature = "Accessibility_AXNumericDataAxisDescriptor")]
 unsafe impl NSObjectProtocol for AXNumericDataAxisDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Accessibility_AXNumericDataAxisDescriptor")]
     unsafe impl AXNumericDataAxisDescriptor {
         #[method(scaleType)]
         pub unsafe fn scaleType(&self) -> AXNumericDataAxisDescriptorScale;
@@ -107,18 +103,18 @@ extern_methods!(
             value_description_provider: &Block<dyn Fn(c_double) -> NonNull<NSString>>,
         );
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Other gridlinePositions)]
         pub unsafe fn gridlinePositions(&self) -> Id<NSArray<NSNumber>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method(setGridlinePositions:)]
         pub unsafe fn setGridlinePositions(&self, gridline_positions: &NSArray<NSNumber>);
 
         #[cfg(all(
             feature = "Foundation_NSArray",
-            feature = "Foundation_NSNumber",
-            feature = "Foundation_NSString"
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSValue"
         ))]
         #[method_id(@__retain_semantics Init initWithTitle:lowerBound:upperBound:gridlinePositions:valueDescriptionProvider:)]
         pub unsafe fn initWithTitle_lowerBound_upperBound_gridlinePositions_valueDescriptionProvider(
@@ -133,8 +129,8 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSAttributedString",
-            feature = "Foundation_NSNumber",
-            feature = "Foundation_NSString"
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSValue"
         ))]
         #[method_id(@__retain_semantics Init initWithAttributedTitle:lowerBound:upperBound:gridlinePositions:valueDescriptionProvider:)]
         pub unsafe fn initWithAttributedTitle_lowerBound_upperBound_gridlinePositions_valueDescriptionProvider(
@@ -156,27 +152,23 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Accessibility_AXCategoricalDataAxisDescriptor")]
     pub struct AXCategoricalDataAxisDescriptor;
 
-    #[cfg(feature = "Accessibility_AXCategoricalDataAxisDescriptor")]
     unsafe impl ClassType for AXCategoricalDataAxisDescriptor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Accessibility_AXCategoricalDataAxisDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl AXDataAxisDescriptor for AXCategoricalDataAxisDescriptor {}
 
-#[cfg(feature = "Accessibility_AXCategoricalDataAxisDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for AXCategoricalDataAxisDescriptor {}
 
-#[cfg(feature = "Accessibility_AXCategoricalDataAxisDescriptor")]
 unsafe impl NSObjectProtocol for AXCategoricalDataAxisDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Accessibility_AXCategoricalDataAxisDescriptor")]
     unsafe impl AXCategoricalDataAxisDescriptor {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other categoryOrder)]
@@ -216,24 +208,20 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Accessibility_AXDataPointValue")]
     pub struct AXDataPointValue;
 
-    #[cfg(feature = "Accessibility_AXDataPointValue")]
     unsafe impl ClassType for AXDataPointValue {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Accessibility_AXDataPointValue")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for AXDataPointValue {}
 
-#[cfg(feature = "Accessibility_AXDataPointValue")]
 unsafe impl NSObjectProtocol for AXDataPointValue {}
 
 extern_methods!(
-    #[cfg(feature = "Accessibility_AXDataPointValue")]
     unsafe impl AXDataPointValue {
         #[method(number)]
         pub unsafe fn number(&self) -> c_double;
@@ -266,52 +254,38 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Accessibility_AXDataPoint")]
     pub struct AXDataPoint;
 
-    #[cfg(feature = "Accessibility_AXDataPoint")]
     unsafe impl ClassType for AXDataPoint {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Accessibility_AXDataPoint")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for AXDataPoint {}
 
-#[cfg(feature = "Accessibility_AXDataPoint")]
 unsafe impl NSObjectProtocol for AXDataPoint {}
 
 extern_methods!(
-    #[cfg(feature = "Accessibility_AXDataPoint")]
     unsafe impl AXDataPoint {
-        #[cfg(feature = "Accessibility_AXDataPointValue")]
         #[method_id(@__retain_semantics Other xValue)]
         pub unsafe fn xValue(&self) -> Id<AXDataPointValue>;
 
-        #[cfg(feature = "Accessibility_AXDataPointValue")]
         #[method(setXValue:)]
         pub unsafe fn setXValue(&self, x_value: &AXDataPointValue);
 
-        #[cfg(feature = "Accessibility_AXDataPointValue")]
         #[method_id(@__retain_semantics Other yValue)]
         pub unsafe fn yValue(&self) -> Option<Id<AXDataPointValue>>;
 
-        #[cfg(feature = "Accessibility_AXDataPointValue")]
         #[method(setYValue:)]
         pub unsafe fn setYValue(&self, y_value: Option<&AXDataPointValue>);
 
-        #[cfg(all(
-            feature = "Accessibility_AXDataPointValue",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other additionalValues)]
         pub unsafe fn additionalValues(&self) -> Id<NSArray<AXDataPointValue>>;
 
-        #[cfg(all(
-            feature = "Accessibility_AXDataPointValue",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(setAdditionalValues:)]
         pub unsafe fn setAdditionalValues(&self, additional_values: &NSArray<AXDataPointValue>);
 
@@ -331,7 +305,6 @@ extern_methods!(
         #[method(setAttributedLabel:)]
         pub unsafe fn setAttributedLabel(&self, attributed_label: Option<&NSAttributedString>);
 
-        #[cfg(feature = "Accessibility_AXDataPointValue")]
         #[method_id(@__retain_semantics Init initWithX:y:)]
         pub unsafe fn initWithX_y(
             this: Allocated<Self>,
@@ -339,10 +312,7 @@ extern_methods!(
             y_value: Option<&AXDataPointValue>,
         ) -> Id<Self>;
 
-        #[cfg(all(
-            feature = "Accessibility_AXDataPointValue",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Init initWithX:y:additionalValues:)]
         pub unsafe fn initWithX_y_additionalValues(
             this: Allocated<Self>,
@@ -351,11 +321,7 @@ extern_methods!(
             additional_values: Option<&NSArray<AXDataPointValue>>,
         ) -> Id<Self>;
 
-        #[cfg(all(
-            feature = "Accessibility_AXDataPointValue",
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithX:y:additionalValues:label:)]
         pub unsafe fn initWithX_y_additionalValues_label(
             this: Allocated<Self>,
@@ -375,24 +341,20 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Accessibility_AXDataSeriesDescriptor")]
     pub struct AXDataSeriesDescriptor;
 
-    #[cfg(feature = "Accessibility_AXDataSeriesDescriptor")]
     unsafe impl ClassType for AXDataSeriesDescriptor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Accessibility_AXDataSeriesDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for AXDataSeriesDescriptor {}
 
-#[cfg(feature = "Accessibility_AXDataSeriesDescriptor")]
 unsafe impl NSObjectProtocol for AXDataSeriesDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Accessibility_AXDataSeriesDescriptor")]
     unsafe impl AXDataSeriesDescriptor {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
@@ -416,19 +378,15 @@ extern_methods!(
         #[method(setIsContinuous:)]
         pub unsafe fn setIsContinuous(&self, is_continuous: bool);
 
-        #[cfg(all(feature = "Accessibility_AXDataPoint", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other dataPoints)]
         pub unsafe fn dataPoints(&self) -> Id<NSArray<AXDataPoint>>;
 
-        #[cfg(all(feature = "Accessibility_AXDataPoint", feature = "Foundation_NSArray"))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(setDataPoints:)]
         pub unsafe fn setDataPoints(&self, data_points: &NSArray<AXDataPoint>);
 
-        #[cfg(all(
-            feature = "Accessibility_AXDataPoint",
-            feature = "Foundation_NSArray",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithName:isContinuous:dataPoints:)]
         pub unsafe fn initWithName_isContinuous_dataPoints(
             this: Allocated<Self>,
@@ -438,7 +396,6 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(all(
-            feature = "Accessibility_AXDataPoint",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSAttributedString"
         ))]
@@ -472,24 +429,20 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Accessibility_AXChartDescriptor")]
     pub struct AXChartDescriptor;
 
-    #[cfg(feature = "Accessibility_AXChartDescriptor")]
     unsafe impl ClassType for AXChartDescriptor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Accessibility_AXChartDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for AXChartDescriptor {}
 
-#[cfg(feature = "Accessibility_AXChartDescriptor")]
 unsafe impl NSObjectProtocol for AXChartDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Accessibility_AXChartDescriptor")]
     unsafe impl AXChartDescriptor {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
@@ -524,47 +477,43 @@ extern_methods!(
             content_direction: AXChartDescriptorContentDirection,
         );
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(contentFrame)]
         pub unsafe fn contentFrame(&self) -> CGRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setContentFrame:)]
         pub unsafe fn setContentFrame(&self, content_frame: CGRect);
 
-        #[cfg(all(
-            feature = "Accessibility_AXDataSeriesDescriptor",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other series)]
         pub unsafe fn series(&self) -> Id<NSArray<AXDataSeriesDescriptor>>;
 
-        #[cfg(all(
-            feature = "Accessibility_AXDataSeriesDescriptor",
-            feature = "Foundation_NSArray"
-        ))]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method(setSeries:)]
         pub unsafe fn setSeries(&self, series: &NSArray<AXDataSeriesDescriptor>);
 
+        #[cfg(feature = "Foundation_NSObject")]
         #[method_id(@__retain_semantics Other xAxis)]
         pub unsafe fn xAxis(&self) -> Id<ProtocolObject<dyn AXDataAxisDescriptor>>;
 
+        #[cfg(feature = "Foundation_NSObject")]
         #[method(setXAxis:)]
         pub unsafe fn setXAxis(&self, x_axis: &ProtocolObject<dyn AXDataAxisDescriptor>);
 
-        #[cfg(feature = "Accessibility_AXNumericDataAxisDescriptor")]
         #[method_id(@__retain_semantics Other yAxis)]
         pub unsafe fn yAxis(&self) -> Option<Id<AXNumericDataAxisDescriptor>>;
 
-        #[cfg(feature = "Accessibility_AXNumericDataAxisDescriptor")]
         #[method(setYAxis:)]
         pub unsafe fn setYAxis(&self, y_axis: Option<&AXNumericDataAxisDescriptor>);
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSObject"))]
         #[method_id(@__retain_semantics Other additionalAxes)]
         pub unsafe fn additionalAxes(
             &self,
         ) -> Option<Id<NSArray<ProtocolObject<dyn AXDataAxisDescriptor>>>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSObject"))]
         #[method(setAdditionalAxes:)]
         pub unsafe fn setAdditionalAxes(
             &self,
@@ -572,9 +521,8 @@ extern_methods!(
         );
 
         #[cfg(all(
-            feature = "Accessibility_AXDataSeriesDescriptor",
-            feature = "Accessibility_AXNumericDataAxisDescriptor",
             feature = "Foundation_NSArray",
+            feature = "Foundation_NSObject",
             feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Init initWithTitle:summary:xAxisDescriptor:yAxisDescriptor:series:)]
@@ -588,10 +536,9 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(all(
-            feature = "Accessibility_AXDataSeriesDescriptor",
-            feature = "Accessibility_AXNumericDataAxisDescriptor",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSAttributedString",
+            feature = "Foundation_NSObject",
             feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Init initWithAttributedTitle:summary:xAxisDescriptor:yAxisDescriptor:series:)]
@@ -605,9 +552,8 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(all(
-            feature = "Accessibility_AXDataSeriesDescriptor",
-            feature = "Accessibility_AXNumericDataAxisDescriptor",
             feature = "Foundation_NSArray",
+            feature = "Foundation_NSObject",
             feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Init initWithTitle:summary:xAxisDescriptor:yAxisDescriptor:additionalAxes:series:)]
@@ -622,10 +568,9 @@ extern_methods!(
         ) -> Id<Self>;
 
         #[cfg(all(
-            feature = "Accessibility_AXDataSeriesDescriptor",
-            feature = "Accessibility_AXNumericDataAxisDescriptor",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSAttributedString",
+            feature = "Foundation_NSObject",
             feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Init initWithAttributedTitle:summary:xAxisDescriptor:yAxisDescriptor:additionalAxes:series:)]
@@ -649,21 +594,17 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Accessibility_AXLiveAudioGraph")]
     pub struct AXLiveAudioGraph;
 
-    #[cfg(feature = "Accessibility_AXLiveAudioGraph")]
     unsafe impl ClassType for AXLiveAudioGraph {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Accessibility_AXLiveAudioGraph")]
 unsafe impl NSObjectProtocol for AXLiveAudioGraph {}
 
 extern_methods!(
-    #[cfg(feature = "Accessibility_AXLiveAudioGraph")]
     unsafe impl AXLiveAudioGraph {
         #[method(start)]
         pub unsafe fn start();
@@ -678,7 +619,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Accessibility_AXLiveAudioGraph")]
     unsafe impl AXLiveAudioGraph {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

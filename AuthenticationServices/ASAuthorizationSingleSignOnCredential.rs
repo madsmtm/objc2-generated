@@ -7,33 +7,32 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationSingleSignOnCredential")]
     pub struct ASAuthorizationSingleSignOnCredential;
 
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationSingleSignOnCredential")]
     unsafe impl ClassType for ASAuthorizationSingleSignOnCredential {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationSingleSignOnCredential")]
+#[cfg(all(
+    feature = "AuthenticationServices_ASAuthorizationCredential",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl ASAuthorizationCredential for ASAuthorizationSingleSignOnCredential {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationSingleSignOnCredential")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for ASAuthorizationSingleSignOnCredential {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationSingleSignOnCredential")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for ASAuthorizationSingleSignOnCredential {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationSingleSignOnCredential")]
 unsafe impl NSObjectProtocol for ASAuthorizationSingleSignOnCredential {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationSingleSignOnCredential")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for ASAuthorizationSingleSignOnCredential {}
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationSingleSignOnCredential")]
     unsafe impl ASAuthorizationSingleSignOnCredential {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other state)]
@@ -47,11 +46,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Other identityToken)]
         pub unsafe fn identityToken(&self) -> Option<Id<NSData>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AuthenticationServices_ASAuthorization",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other authorizedScopes)]
         pub unsafe fn authorizedScopes(&self) -> Id<NSArray<ASAuthorizationScope>>;
 
-        #[cfg(feature = "Foundation_NSHTTPURLResponse")]
+        #[cfg(feature = "Foundation_NSURLResponse")]
         #[method_id(@__retain_semantics Other authenticatedResponse)]
         pub unsafe fn authenticatedResponse(&self) -> Option<Id<NSHTTPURLResponse>>;
 

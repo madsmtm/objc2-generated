@@ -5,10 +5,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSXMLDTD")]
+    #[cfg(feature = "Foundation_NSXMLNode")]
     pub struct NSXMLDTD;
 
-    #[cfg(feature = "Foundation_NSXMLDTD")]
+    #[cfg(feature = "Foundation_NSXMLNode")]
     unsafe impl ClassType for NSXMLDTD {
         #[inherits(NSObject)]
         type Super = NSXMLNode;
@@ -16,18 +16,19 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSXMLDTD")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "Foundation_NSXMLNode"))]
 unsafe impl NSCopying for NSXMLDTD {}
 
-#[cfg(feature = "Foundation_NSXMLDTD")]
+#[cfg(feature = "Foundation_NSXMLNode")]
 unsafe impl NSObjectProtocol for NSXMLDTD {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSXMLDTD")]
+    #[cfg(feature = "Foundation_NSXMLNode")]
     unsafe impl NSXMLDTD {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSXMLNodeOptions")]
         #[method_id(@__retain_semantics Init initWithKind:options:)]
         pub unsafe fn initWithKind_options(
             this: Allocated<Self>,
@@ -35,7 +36,11 @@ extern_methods!(
             options: NSXMLNodeOptions,
         ) -> Id<Self>;
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSURL"))]
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSURL",
+            feature = "Foundation_NSXMLNodeOptions"
+        ))]
         #[method_id(@__retain_semantics Init initWithContentsOfURL:options:error:_)]
         pub unsafe fn initWithContentsOfURL_options_error(
             this: Allocated<Self>,
@@ -43,7 +48,11 @@ extern_methods!(
             mask: NSXMLNodeOptions,
         ) -> Result<Id<Self>, Id<NSError>>;
 
-        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
+        #[cfg(all(
+            feature = "Foundation_NSData",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSXMLNodeOptions"
+        ))]
         #[method_id(@__retain_semantics Init initWithData:options:error:_)]
         pub unsafe fn initWithData_options_error(
             this: Allocated<Self>,
@@ -125,7 +134,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSXMLNode`
-    #[cfg(feature = "Foundation_NSXMLDTD")]
+    #[cfg(feature = "Foundation_NSXMLNode")]
     unsafe impl NSXMLDTD {
         #[method_id(@__retain_semantics Init initWithKind:)]
         pub unsafe fn initWithKind(this: Allocated<Self>, kind: NSXMLNodeKind) -> Id<Self>;
@@ -134,7 +143,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSXMLDTD")]
+    #[cfg(feature = "Foundation_NSXMLNode")]
     unsafe impl NSXMLDTD {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

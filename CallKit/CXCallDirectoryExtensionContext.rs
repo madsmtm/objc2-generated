@@ -7,8 +7,8 @@ use crate::Foundation::*;
 extern_protocol!(
     pub unsafe trait CXCallDirectoryExtensionContextDelegate: NSObjectProtocol {
         #[cfg(all(
-            feature = "CallKit_CXCallDirectoryExtensionContext",
-            feature = "Foundation_NSError"
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSExtensionContext"
         ))]
         #[method(requestFailedForExtensionContext:withError:)]
         unsafe fn requestFailedForExtensionContext_withError(
@@ -23,10 +23,10 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CallKit_CXCallDirectoryExtensionContext")]
+    #[cfg(feature = "Foundation_NSExtensionContext")]
     pub struct CXCallDirectoryExtensionContext;
 
-    #[cfg(feature = "CallKit_CXCallDirectoryExtensionContext")]
+    #[cfg(feature = "Foundation_NSExtensionContext")]
     unsafe impl ClassType for CXCallDirectoryExtensionContext {
         #[inherits(NSObject)]
         type Super = NSExtensionContext;
@@ -34,11 +34,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CallKit_CXCallDirectoryExtensionContext")]
+#[cfg(feature = "Foundation_NSExtensionContext")]
 unsafe impl NSObjectProtocol for CXCallDirectoryExtensionContext {}
 
 extern_methods!(
-    #[cfg(feature = "CallKit_CXCallDirectoryExtensionContext")]
+    #[cfg(feature = "Foundation_NSExtensionContext")]
     unsafe impl CXCallDirectoryExtensionContext {
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
@@ -54,12 +54,14 @@ extern_methods!(
         #[method(isIncremental)]
         pub unsafe fn isIncremental(&self) -> bool;
 
+        #[cfg(feature = "CallKit_CXCallDirectory")]
         #[method(addBlockingEntryWithNextSequentialPhoneNumber:)]
         pub unsafe fn addBlockingEntryWithNextSequentialPhoneNumber(
             &self,
             phone_number: CXCallDirectoryPhoneNumber,
         );
 
+        #[cfg(feature = "CallKit_CXCallDirectory")]
         #[method(removeBlockingEntryWithPhoneNumber:)]
         pub unsafe fn removeBlockingEntryWithPhoneNumber(
             &self,
@@ -69,7 +71,7 @@ extern_methods!(
         #[method(removeAllBlockingEntries)]
         pub unsafe fn removeAllBlockingEntries(&self);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "CallKit_CXCallDirectory", feature = "Foundation_NSString"))]
         #[method(addIdentificationEntryWithNextSequentialPhoneNumber:label:)]
         pub unsafe fn addIdentificationEntryWithNextSequentialPhoneNumber_label(
             &self,
@@ -77,6 +79,7 @@ extern_methods!(
             label: &NSString,
         );
 
+        #[cfg(feature = "CallKit_CXCallDirectory")]
         #[method(removeIdentificationEntryWithPhoneNumber:)]
         pub unsafe fn removeIdentificationEntryWithPhoneNumber(
             &self,
@@ -104,7 +107,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CallKit_CXCallDirectoryExtensionContext")]
+    #[cfg(feature = "Foundation_NSExtensionContext")]
     unsafe impl CXCallDirectoryExtensionContext {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

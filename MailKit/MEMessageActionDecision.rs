@@ -7,27 +7,23 @@ use crate::MailKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MailKit_MEMessageActionDecision")]
     pub struct MEMessageActionDecision;
 
-    #[cfg(feature = "MailKit_MEMessageActionDecision")]
     unsafe impl ClassType for MEMessageActionDecision {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MailKit_MEMessageActionDecision")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for MEMessageActionDecision {}
 
-#[cfg(feature = "MailKit_MEMessageActionDecision")]
 unsafe impl NSObjectProtocol for MEMessageActionDecision {}
 
-#[cfg(feature = "MailKit_MEMessageActionDecision")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for MEMessageActionDecision {}
 
 extern_methods!(
-    #[cfg(feature = "MailKit_MEMessageActionDecision")]
     unsafe impl MEMessageActionDecision {
         #[method_id(@__retain_semantics Other invokeAgainWithBody)]
         pub unsafe fn invokeAgainWithBody() -> Id<MEMessageActionDecision>;

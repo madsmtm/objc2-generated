@@ -6,10 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Contacts_CNContactFetchRequest")]
+    #[cfg(feature = "Contacts_CNFetchRequest")]
     pub struct CNContactFetchRequest;
 
-    #[cfg(feature = "Contacts_CNContactFetchRequest")]
+    #[cfg(feature = "Contacts_CNFetchRequest")]
     unsafe impl ClassType for CNContactFetchRequest {
         #[inherits(NSObject)]
         type Super = CNFetchRequest;
@@ -17,17 +17,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Contacts_CNContactFetchRequest")]
+#[cfg(all(feature = "Contacts_CNFetchRequest", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for CNContactFetchRequest {}
 
-#[cfg(feature = "Contacts_CNContactFetchRequest")]
+#[cfg(feature = "Contacts_CNFetchRequest")]
 unsafe impl NSObjectProtocol for CNContactFetchRequest {}
 
-#[cfg(feature = "Contacts_CNContactFetchRequest")]
+#[cfg(all(feature = "Contacts_CNFetchRequest", feature = "Foundation_NSObject"))]
 unsafe impl NSSecureCoding for CNContactFetchRequest {}
 
 extern_methods!(
-    #[cfg(feature = "Contacts_CNContactFetchRequest")]
+    #[cfg(feature = "Contacts_CNFetchRequest")]
     unsafe impl CNContactFetchRequest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -35,7 +35,11 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(
+            feature = "Contacts_CNContact",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSObject"
+        ))]
         #[method_id(@__retain_semantics Init initWithKeysToFetch:)]
         pub unsafe fn initWithKeysToFetch(
             this: Allocated<Self>,
@@ -50,11 +54,19 @@ extern_methods!(
         #[method(setPredicate:)]
         pub unsafe fn setPredicate(&self, predicate: Option<&NSPredicate>);
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(
+            feature = "Contacts_CNContact",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSObject"
+        ))]
         #[method_id(@__retain_semantics Other keysToFetch)]
         pub unsafe fn keysToFetch(&self) -> Id<NSArray<ProtocolObject<dyn CNKeyDescriptor>>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(
+            feature = "Contacts_CNContact",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSObject"
+        ))]
         #[method(setKeysToFetch:)]
         pub unsafe fn setKeysToFetch(
             &self,
@@ -73,9 +85,11 @@ extern_methods!(
         #[method(setUnifyResults:)]
         pub unsafe fn setUnifyResults(&self, unify_results: bool);
 
+        #[cfg(feature = "Contacts_CNContact")]
         #[method(sortOrder)]
         pub unsafe fn sortOrder(&self) -> CNContactSortOrder;
 
+        #[cfg(feature = "Contacts_CNContact")]
         #[method(setSortOrder:)]
         pub unsafe fn setSortOrder(&self, sort_order: CNContactSortOrder);
     }

@@ -54,10 +54,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSNumberFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     pub struct NSNumberFormatter;
 
-    #[cfg(feature = "Foundation_NSNumberFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl ClassType for NSNumberFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;
@@ -65,23 +65,23 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSNumberFormatter")]
+#[cfg(feature = "Foundation_NSFormatter")]
 unsafe impl Send for NSNumberFormatter {}
 
-#[cfg(feature = "Foundation_NSNumberFormatter")]
+#[cfg(feature = "Foundation_NSFormatter")]
 unsafe impl Sync for NSNumberFormatter {}
 
-#[cfg(feature = "Foundation_NSNumberFormatter")]
+#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for NSNumberFormatter {}
 
-#[cfg(feature = "Foundation_NSNumberFormatter")]
+#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
 unsafe impl NSCopying for NSNumberFormatter {}
 
-#[cfg(feature = "Foundation_NSNumberFormatter")]
+#[cfg(feature = "Foundation_NSFormatter")]
 unsafe impl NSObjectProtocol for NSNumberFormatter {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSNumberFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl NSNumberFormatter {
         #[method(formattingContext)]
         pub unsafe fn formattingContext(&self) -> NSFormattingContext;
@@ -89,7 +89,11 @@ extern_methods!(
         #[method(setFormattingContext:)]
         pub unsafe fn setFormattingContext(&self, formatting_context: NSFormattingContext);
 
-        #[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSRange",
+            feature = "Foundation_NSString"
+        ))]
         #[method(getObjectValue:forString:range:error:_)]
         pub unsafe fn getObjectValue_forString_range_error(
             &self,
@@ -98,15 +102,15 @@ extern_methods!(
             rangep: *mut NSRange,
         ) -> Result<(), Id<NSError>>;
 
-        #[cfg(all(feature = "Foundation_NSNumber", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Other stringFromNumber:)]
         pub unsafe fn stringFromNumber(&self, number: &NSNumber) -> Option<Id<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSNumber", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Other numberFromString:)]
         pub unsafe fn numberFromString(&self, string: &NSString) -> Option<Id<NSNumber>>;
 
-        #[cfg(all(feature = "Foundation_NSNumber", feature = "Foundation_NSString"))]
+        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Other localizedStringFromNumber:numberStyle:)]
         pub unsafe fn localizedStringFromNumber_numberStyle(
             num: &NSNumber,
@@ -445,11 +449,11 @@ extern_methods!(
         #[method(setSecondaryGroupingSize:)]
         pub unsafe fn setSecondaryGroupingSize(&self, secondary_grouping_size: NSUInteger);
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method_id(@__retain_semantics Other multiplier)]
         pub unsafe fn multiplier(&self) -> Option<Id<NSNumber>>;
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method(setMultiplier:)]
         pub unsafe fn setMultiplier(&self, multiplier: Option<&NSNumber>);
 
@@ -479,11 +483,11 @@ extern_methods!(
         #[method(setRoundingMode:)]
         pub unsafe fn setRoundingMode(&self, rounding_mode: NSNumberFormatterRoundingMode);
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method_id(@__retain_semantics Other roundingIncrement)]
         pub unsafe fn roundingIncrement(&self) -> Id<NSNumber>;
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method(setRoundingIncrement:)]
         pub unsafe fn setRoundingIncrement(&self, rounding_increment: Option<&NSNumber>);
 
@@ -511,19 +515,19 @@ extern_methods!(
         #[method(setMaximumFractionDigits:)]
         pub unsafe fn setMaximumFractionDigits(&self, maximum_fraction_digits: NSUInteger);
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method_id(@__retain_semantics Other minimum)]
         pub unsafe fn minimum(&self) -> Option<Id<NSNumber>>;
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method(setMinimum:)]
         pub unsafe fn setMinimum(&self, minimum: Option<&NSNumber>);
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method_id(@__retain_semantics Other maximum)]
         pub unsafe fn maximum(&self) -> Option<Id<NSNumber>>;
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method(setMaximum:)]
         pub unsafe fn setMaximum(&self, maximum: Option<&NSNumber>);
 
@@ -575,7 +579,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSNumberFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl NSNumberFormatter {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -587,7 +591,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSNumberFormatterCompatibility
-    #[cfg(feature = "Foundation_NSNumberFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl NSNumberFormatter {
         #[method(hasThousandSeparators)]
         pub unsafe fn hasThousandSeparators(&self) -> bool;
@@ -650,11 +654,11 @@ extern_methods!(
             attributed_string_for_not_a_number: &NSAttributedString,
         );
 
-        #[cfg(feature = "Foundation_NSDecimalNumberHandler")]
+        #[cfg(feature = "Foundation_NSDecimalNumber")]
         #[method_id(@__retain_semantics Other roundingBehavior)]
         pub unsafe fn roundingBehavior(&self) -> Id<NSDecimalNumberHandler>;
 
-        #[cfg(feature = "Foundation_NSDecimalNumberHandler")]
+        #[cfg(feature = "Foundation_NSDecimalNumber")]
         #[method(setRoundingBehavior:)]
         pub unsafe fn setRoundingBehavior(&self, rounding_behavior: &NSDecimalNumberHandler);
     }

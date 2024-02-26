@@ -6,37 +6,35 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreWLAN_CWChannel")]
     pub struct CWChannel;
 
-    #[cfg(feature = "CoreWLAN_CWChannel")]
     unsafe impl ClassType for CWChannel {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreWLAN_CWChannel")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CWChannel {}
 
-#[cfg(feature = "CoreWLAN_CWChannel")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for CWChannel {}
 
-#[cfg(feature = "CoreWLAN_CWChannel")]
 unsafe impl NSObjectProtocol for CWChannel {}
 
-#[cfg(feature = "CoreWLAN_CWChannel")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CWChannel {}
 
 extern_methods!(
-    #[cfg(feature = "CoreWLAN_CWChannel")]
     unsafe impl CWChannel {
         #[method(channelNumber)]
         pub unsafe fn channelNumber(&self) -> NSInteger;
 
+        #[cfg(feature = "CoreWLAN_CoreWLANTypes")]
         #[method(channelWidth)]
         pub unsafe fn channelWidth(&self) -> CWChannelWidth;
 
+        #[cfg(feature = "CoreWLAN_CoreWLANTypes")]
         #[method(channelBand)]
         pub unsafe fn channelBand(&self) -> CWChannelBand;
 
@@ -47,7 +45,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreWLAN_CWChannel")]
     unsafe impl CWChannel {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

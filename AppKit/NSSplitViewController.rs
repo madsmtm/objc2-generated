@@ -5,14 +5,15 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "Foundation_NSGeometry")]
 extern_static!(NSSplitViewControllerAutomaticDimension: CGFloat);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSSplitViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     pub struct NSSplitViewController;
 
-    #[cfg(feature = "AppKit_NSSplitViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl ClassType for NSSplitViewController {
         #[inherits(NSResponder, NSObject)]
         type Super = NSViewController;
@@ -20,35 +21,59 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSSplitViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSSplitViewController {}
 
-#[cfg(feature = "AppKit_NSSplitViewController")]
+#[cfg(all(
+    feature = "AppKit_NSKeyValueBinding",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSEditor for NSSplitViewController {}
 
-#[cfg(feature = "AppKit_NSSplitViewController")]
+#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
 unsafe impl NSObjectProtocol for NSSplitViewController {}
 
-#[cfg(feature = "AppKit_NSSplitViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSStoryboardSegue",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSSeguePerforming for NSSplitViewController {}
 
-#[cfg(feature = "AppKit_NSSplitViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSSplitView",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSSplitViewDelegate for NSSplitViewController {}
 
-#[cfg(feature = "AppKit_NSSplitViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSSplitViewController {}
 
-#[cfg(feature = "AppKit_NSSplitViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceValidation",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSUserInterfaceValidations for NSSplitViewController {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSSplitViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl NSSplitViewController {
-        #[cfg(feature = "AppKit_NSSplitView")]
+        #[cfg(all(feature = "AppKit_NSSplitView", feature = "AppKit_NSView"))]
         #[method_id(@__retain_semantics Other splitView)]
         pub unsafe fn splitView(&self) -> Id<NSSplitView>;
 
-        #[cfg(feature = "AppKit_NSSplitView")]
+        #[cfg(all(feature = "AppKit_NSSplitView", feature = "AppKit_NSView"))]
         #[method(setSplitView:)]
         pub unsafe fn setSplitView(&self, split_view: &NSSplitView);
 
@@ -83,15 +108,18 @@ extern_methods!(
             view_controller: &NSViewController,
         ) -> Option<Id<NSSplitViewItem>>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(minimumThicknessForInlineSidebars)]
         pub unsafe fn minimumThicknessForInlineSidebars(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setMinimumThicknessForInlineSidebars:)]
         pub unsafe fn setMinimumThicknessForInlineSidebars(
             &self,
             minimum_thickness_for_inline_sidebars: CGFloat,
         );
 
+        #[cfg(feature = "AppKit_NSUserInterfaceValidation")]
         #[method(validateUserInterfaceItem:)]
         pub unsafe fn validateUserInterfaceItem(
             &self,
@@ -119,7 +147,7 @@ extern_methods!(
             divider_index: NSInteger,
         ) -> bool;
 
-        #[cfg(feature = "AppKit_NSSplitView")]
+        #[cfg(all(feature = "AppKit_NSSplitView", feature = "AppKit_NSView"))]
         #[method(splitView:shouldHideDividerAtIndex:)]
         pub unsafe fn splitView_shouldHideDividerAtIndex(
             &self,
@@ -127,7 +155,11 @@ extern_methods!(
             divider_index: NSInteger,
         ) -> bool;
 
-        #[cfg(feature = "AppKit_NSSplitView")]
+        #[cfg(all(
+            feature = "AppKit_NSSplitView",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[method(splitView:effectiveRect:forDrawnRect:ofDividerAtIndex:)]
         pub unsafe fn splitView_effectiveRect_forDrawnRect_ofDividerAtIndex(
             &self,
@@ -137,7 +169,11 @@ extern_methods!(
             divider_index: NSInteger,
         ) -> NSRect;
 
-        #[cfg(feature = "AppKit_NSSplitView")]
+        #[cfg(all(
+            feature = "AppKit_NSSplitView",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[method(splitView:additionalEffectiveRectOfDividerAtIndex:)]
         pub unsafe fn splitView_additionalEffectiveRectOfDividerAtIndex(
             &self,
@@ -149,9 +185,13 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSViewController`
-    #[cfg(feature = "AppKit_NSSplitViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl NSSplitViewController {
-        #[cfg(all(feature = "Foundation_NSBundle", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSNib",
+            feature = "Foundation_NSBundle",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -167,7 +207,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "AppKit_NSSplitViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl NSSplitViewController {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -176,7 +216,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSSplitViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl NSSplitViewController {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -185,7 +225,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSSplitViewControllerToggleSidebarAction
-    #[cfg(feature = "AppKit_NSSplitViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl NSSplitViewController {
         #[method(toggleSidebar:)]
         pub unsafe fn toggleSidebar(&self, sender: Option<&AnyObject>);

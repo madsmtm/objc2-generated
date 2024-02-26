@@ -7,30 +7,26 @@ use crate::UserNotifications::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "UserNotifications_UNNotificationAttachment")]
     pub struct UNNotificationAttachment;
 
-    #[cfg(feature = "UserNotifications_UNNotificationAttachment")]
     unsafe impl ClassType for UNNotificationAttachment {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "UserNotifications_UNNotificationAttachment")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for UNNotificationAttachment {}
 
-#[cfg(feature = "UserNotifications_UNNotificationAttachment")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for UNNotificationAttachment {}
 
-#[cfg(feature = "UserNotifications_UNNotificationAttachment")]
 unsafe impl NSObjectProtocol for UNNotificationAttachment {}
 
-#[cfg(feature = "UserNotifications_UNNotificationAttachment")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for UNNotificationAttachment {}
 
 extern_methods!(
-    #[cfg(feature = "UserNotifications_UNNotificationAttachment")]
     unsafe impl UNNotificationAttachment {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
@@ -64,7 +60,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UserNotifications_UNNotificationAttachment")]
     unsafe impl UNNotificationAttachment {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

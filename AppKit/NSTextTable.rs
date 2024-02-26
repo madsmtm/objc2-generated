@@ -54,34 +54,31 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTextBlock")]
     pub struct NSTextBlock;
 
-    #[cfg(feature = "AppKit_NSTextBlock")]
     unsafe impl ClassType for NSTextBlock {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSTextBlock")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSTextBlock {}
 
-#[cfg(feature = "AppKit_NSTextBlock")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSTextBlock {}
 
-#[cfg(feature = "AppKit_NSTextBlock")]
 unsafe impl NSObjectProtocol for NSTextBlock {}
 
-#[cfg(feature = "AppKit_NSTextBlock")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSTextBlock {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTextBlock")]
     unsafe impl NSTextBlock {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setValue:type:forDimension:)]
         pub unsafe fn setValue_type_forDimension(
             &self,
@@ -90,6 +87,7 @@ extern_methods!(
             dimension: NSTextBlockDimension,
         );
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(valueForDimension:)]
         pub unsafe fn valueForDimension(&self, dimension: NSTextBlockDimension) -> CGFloat;
 
@@ -99,15 +97,18 @@ extern_methods!(
             dimension: NSTextBlockDimension,
         ) -> NSTextBlockValueType;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setContentWidth:type:)]
         pub unsafe fn setContentWidth_type(&self, val: CGFloat, r#type: NSTextBlockValueType);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(contentWidth)]
         pub unsafe fn contentWidth(&self) -> CGFloat;
 
         #[method(contentWidthValueType)]
         pub unsafe fn contentWidthValueType(&self) -> NSTextBlockValueType;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setWidth:type:forLayer:edge:)]
         pub unsafe fn setWidth_type_forLayer_edge(
             &self,
@@ -117,6 +118,7 @@ extern_methods!(
             edge: NSRectEdge,
         );
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setWidth:type:forLayer:)]
         pub unsafe fn setWidth_type_forLayer(
             &self,
@@ -125,6 +127,7 @@ extern_methods!(
             layer: NSTextBlockLayer,
         );
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(widthForLayer:edge:)]
         pub unsafe fn widthForLayer_edge(
             &self,
@@ -132,6 +135,7 @@ extern_methods!(
             edge: NSRectEdge,
         ) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(widthValueTypeForLayer:edge:)]
         pub unsafe fn widthValueTypeForLayer_edge(
             &self,
@@ -153,7 +157,7 @@ extern_methods!(
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSColor>);
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(all(feature = "AppKit_NSColor", feature = "Foundation_NSGeometry"))]
         #[method(setBorderColor:forEdge:)]
         pub unsafe fn setBorderColor_forEdge(&self, color: Option<&NSColor>, edge: NSRectEdge);
 
@@ -161,11 +165,15 @@ extern_methods!(
         #[method(setBorderColor:)]
         pub unsafe fn setBorderColor(&self, color: Option<&NSColor>);
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(all(feature = "AppKit_NSColor", feature = "Foundation_NSGeometry"))]
         #[method_id(@__retain_semantics Other borderColorForEdge:)]
         pub unsafe fn borderColorForEdge(&self, edge: NSRectEdge) -> Option<Id<NSColor>>;
 
-        #[cfg(feature = "AppKit_NSTextContainer")]
+        #[cfg(all(
+            feature = "AppKit_NSTextContainer",
+            feature = "Foundation_NSGeometry",
+            feature = "Foundation_NSRange"
+        ))]
         #[method(rectForLayoutAtPoint:inRect:textContainer:characterRange:)]
         pub unsafe fn rectForLayoutAtPoint_inRect_textContainer_characterRange(
             &self,
@@ -175,7 +183,11 @@ extern_methods!(
             char_range: NSRange,
         ) -> NSRect;
 
-        #[cfg(feature = "AppKit_NSTextContainer")]
+        #[cfg(all(
+            feature = "AppKit_NSTextContainer",
+            feature = "Foundation_NSGeometry",
+            feature = "Foundation_NSRange"
+        ))]
         #[method(boundsRectForContentRect:inRect:textContainer:characterRange:)]
         pub unsafe fn boundsRectForContentRect_inRect_textContainer_characterRange(
             &self,
@@ -185,7 +197,13 @@ extern_methods!(
             char_range: NSRange,
         ) -> NSRect;
 
-        #[cfg(all(feature = "AppKit_NSLayoutManager", feature = "AppKit_NSView"))]
+        #[cfg(all(
+            feature = "AppKit_NSLayoutManager",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry",
+            feature = "Foundation_NSRange"
+        ))]
         #[method(drawBackgroundWithFrame:inView:characterRange:layoutManager:)]
         pub unsafe fn drawBackgroundWithFrame_inView_characterRange_layoutManager(
             &self,
@@ -199,7 +217,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTextBlock")]
     unsafe impl NSTextBlock {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -208,10 +225,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTextTableBlock")]
     pub struct NSTextTableBlock;
 
-    #[cfg(feature = "AppKit_NSTextTableBlock")]
     unsafe impl ClassType for NSTextTableBlock {
         #[inherits(NSObject)]
         type Super = NSTextBlock;
@@ -219,22 +234,19 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSTextTableBlock")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSTextTableBlock {}
 
-#[cfg(feature = "AppKit_NSTextTableBlock")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSTextTableBlock {}
 
-#[cfg(feature = "AppKit_NSTextTableBlock")]
 unsafe impl NSObjectProtocol for NSTextTableBlock {}
 
-#[cfg(feature = "AppKit_NSTextTableBlock")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSTextTableBlock {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTextTableBlock")]
     unsafe impl NSTextTableBlock {
-        #[cfg(feature = "AppKit_NSTextTable")]
         #[method_id(@__retain_semantics Init initWithTable:startingRow:rowSpan:startingColumn:columnSpan:)]
         pub unsafe fn initWithTable_startingRow_rowSpan_startingColumn_columnSpan(
             this: Allocated<Self>,
@@ -245,7 +257,6 @@ extern_methods!(
             col_span: NSInteger,
         ) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSTextTable")]
         #[method_id(@__retain_semantics Other table)]
         pub unsafe fn table(&self) -> Id<NSTextTable>;
 
@@ -265,7 +276,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSTextBlock`
-    #[cfg(feature = "AppKit_NSTextTableBlock")]
     unsafe impl NSTextTableBlock {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -274,7 +284,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTextTableBlock")]
     unsafe impl NSTextTableBlock {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -283,10 +292,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTextTable")]
     pub struct NSTextTable;
 
-    #[cfg(feature = "AppKit_NSTextTable")]
     unsafe impl ClassType for NSTextTable {
         #[inherits(NSObject)]
         type Super = NSTextBlock;
@@ -294,20 +301,18 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSTextTable")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSTextTable {}
 
-#[cfg(feature = "AppKit_NSTextTable")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSTextTable {}
 
-#[cfg(feature = "AppKit_NSTextTable")]
 unsafe impl NSObjectProtocol for NSTextTable {}
 
-#[cfg(feature = "AppKit_NSTextTable")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSTextTable {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTextTable")]
     unsafe impl NSTextTable {
         #[method(numberOfColumns)]
         pub unsafe fn numberOfColumns(&self) -> NSUInteger;
@@ -335,7 +340,8 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSTextContainer",
-            feature = "AppKit_NSTextTableBlock"
+            feature = "Foundation_NSGeometry",
+            feature = "Foundation_NSRange"
         ))]
         #[method(rectForBlock:layoutAtPoint:inRect:textContainer:characterRange:)]
         pub unsafe fn rectForBlock_layoutAtPoint_inRect_textContainer_characterRange(
@@ -349,7 +355,8 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSTextContainer",
-            feature = "AppKit_NSTextTableBlock"
+            feature = "Foundation_NSGeometry",
+            feature = "Foundation_NSRange"
         ))]
         #[method(boundsRectForBlock:contentRect:inRect:textContainer:characterRange:)]
         pub unsafe fn boundsRectForBlock_contentRect_inRect_textContainer_characterRange(
@@ -363,8 +370,10 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSLayoutManager",
-            feature = "AppKit_NSTextTableBlock",
-            feature = "AppKit_NSView"
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry",
+            feature = "Foundation_NSRange"
         ))]
         #[method(drawBackgroundForBlock:withFrame:inView:characterRange:layoutManager:)]
         pub unsafe fn drawBackgroundForBlock_withFrame_inView_characterRange_layoutManager(
@@ -380,7 +389,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSTextBlock`
-    #[cfg(feature = "AppKit_NSTextTable")]
     unsafe impl NSTextTable {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -389,7 +397,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTextTable")]
     unsafe impl NSTextTable {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

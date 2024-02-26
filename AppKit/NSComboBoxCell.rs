@@ -7,10 +7,18 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSComboBoxCell")]
+    #[cfg(all(
+        feature = "AppKit_NSActionCell",
+        feature = "AppKit_NSCell",
+        feature = "AppKit_NSTextFieldCell"
+    ))]
     pub struct NSComboBoxCell;
 
-    #[cfg(feature = "AppKit_NSComboBoxCell")]
+    #[cfg(all(
+        feature = "AppKit_NSActionCell",
+        feature = "AppKit_NSCell",
+        feature = "AppKit_NSTextFieldCell"
+    ))]
     unsafe impl ClassType for NSComboBoxCell {
         #[inherits(NSActionCell, NSCell, NSObject)]
         type Super = NSTextFieldCell;
@@ -18,26 +26,59 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSComboBoxCell")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSTextFieldCell"
+))]
 unsafe impl NSAccessibility for NSComboBoxCell {}
 
-#[cfg(feature = "AppKit_NSComboBoxCell")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSTextFieldCell"
+))]
 unsafe impl NSAccessibilityElementProtocol for NSComboBoxCell {}
 
-#[cfg(feature = "AppKit_NSComboBoxCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSTextFieldCell",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSComboBoxCell {}
 
-#[cfg(feature = "AppKit_NSComboBoxCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSTextFieldCell",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCopying for NSComboBoxCell {}
 
-#[cfg(feature = "AppKit_NSComboBoxCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSTextFieldCell"
+))]
 unsafe impl NSObjectProtocol for NSComboBoxCell {}
 
-#[cfg(feature = "AppKit_NSComboBoxCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSTextFieldCell",
+    feature = "AppKit_NSUserInterfaceItemIdentification"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSComboBoxCell {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSComboBoxCell")]
+    #[cfg(all(
+        feature = "AppKit_NSActionCell",
+        feature = "AppKit_NSCell",
+        feature = "AppKit_NSTextFieldCell"
+    ))]
     unsafe impl NSComboBoxCell {
         #[method(hasVerticalScroller)]
         pub unsafe fn hasVerticalScroller(&self) -> bool;
@@ -45,15 +86,19 @@ extern_methods!(
         #[method(setHasVerticalScroller:)]
         pub unsafe fn setHasVerticalScroller(&self, has_vertical_scroller: bool);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(intercellSpacing)]
         pub unsafe fn intercellSpacing(&self) -> NSSize;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setIntercellSpacing:)]
         pub unsafe fn setIntercellSpacing(&self, intercell_spacing: NSSize);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(itemHeight)]
         pub unsafe fn itemHeight(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setItemHeight:)]
         pub unsafe fn setItemHeight(&self, item_height: CGFloat);
 
@@ -162,7 +207,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSTextFieldCell`
-    #[cfg(feature = "AppKit_NSComboBoxCell")]
+    #[cfg(all(
+        feature = "AppKit_NSActionCell",
+        feature = "AppKit_NSCell",
+        feature = "AppKit_NSTextFieldCell"
+    ))]
     unsafe impl NSComboBoxCell {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initTextCell:)]
@@ -180,7 +229,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSCell`
-    #[cfg(feature = "AppKit_NSComboBoxCell")]
+    #[cfg(all(
+        feature = "AppKit_NSActionCell",
+        feature = "AppKit_NSCell",
+        feature = "AppKit_NSTextFieldCell"
+    ))]
     unsafe impl NSComboBoxCell {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -189,7 +242,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSComboBoxCell")]
+    #[cfg(all(
+        feature = "AppKit_NSActionCell",
+        feature = "AppKit_NSCell",
+        feature = "AppKit_NSTextFieldCell"
+    ))]
     unsafe impl NSComboBoxCell {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -198,12 +255,20 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSComboBoxCellDataSource: NSObjectProtocol {
-        #[cfg(feature = "AppKit_NSComboBoxCell")]
+        #[cfg(all(
+            feature = "AppKit_NSActionCell",
+            feature = "AppKit_NSCell",
+            feature = "AppKit_NSTextFieldCell"
+        ))]
         #[optional]
         #[method(numberOfItemsInComboBoxCell:)]
         unsafe fn numberOfItemsInComboBoxCell(&self, combo_box_cell: &NSComboBoxCell) -> NSInteger;
 
-        #[cfg(feature = "AppKit_NSComboBoxCell")]
+        #[cfg(all(
+            feature = "AppKit_NSActionCell",
+            feature = "AppKit_NSCell",
+            feature = "AppKit_NSTextFieldCell"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other comboBoxCell:objectValueForItemAtIndex:)]
         unsafe fn comboBoxCell_objectValueForItemAtIndex(
@@ -212,7 +277,12 @@ extern_protocol!(
             index: NSInteger,
         ) -> Id<AnyObject>;
 
-        #[cfg(all(feature = "AppKit_NSComboBoxCell", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSActionCell",
+            feature = "AppKit_NSCell",
+            feature = "AppKit_NSTextFieldCell",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method(comboBoxCell:indexOfItemWithStringValue:)]
         unsafe fn comboBoxCell_indexOfItemWithStringValue(
@@ -221,7 +291,12 @@ extern_protocol!(
             string: &NSString,
         ) -> NSUInteger;
 
-        #[cfg(all(feature = "AppKit_NSComboBoxCell", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSActionCell",
+            feature = "AppKit_NSCell",
+            feature = "AppKit_NSTextFieldCell",
+            feature = "Foundation_NSString"
+        ))]
         #[optional]
         #[method_id(@__retain_semantics Other comboBoxCell:completedString:)]
         unsafe fn comboBoxCell_completedString(

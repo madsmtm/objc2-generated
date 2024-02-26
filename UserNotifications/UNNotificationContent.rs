@@ -27,33 +27,29 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "UserNotifications_UNNotificationContent")]
     pub struct UNNotificationContent;
 
-    #[cfg(feature = "UserNotifications_UNNotificationContent")]
     unsafe impl ClassType for UNNotificationContent {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "UserNotifications_UNNotificationContent")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for UNNotificationContent {}
 
-#[cfg(feature = "UserNotifications_UNNotificationContent")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for UNNotificationContent {}
 
-#[cfg(feature = "UserNotifications_UNNotificationContent")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSMutableCopying for UNNotificationContent {}
 
-#[cfg(feature = "UserNotifications_UNNotificationContent")]
 unsafe impl NSObjectProtocol for UNNotificationContent {}
 
-#[cfg(feature = "UserNotifications_UNNotificationContent")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for UNNotificationContent {}
 
 extern_methods!(
-    #[cfg(feature = "UserNotifications_UNNotificationContent")]
     unsafe impl UNNotificationContent {
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -62,7 +58,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other attachments)]
         pub unsafe fn attachments(&self) -> Id<NSArray<UNNotificationAttachment>>;
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method_id(@__retain_semantics Other badge)]
         pub unsafe fn badge(&self) -> Option<Id<NSNumber>>;
 
@@ -132,7 +128,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UserNotifications_UNNotificationContent")]
     unsafe impl UNNotificationContent {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -144,10 +139,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "UserNotifications_UNMutableNotificationContent")]
     pub struct UNMutableNotificationContent;
 
-    #[cfg(feature = "UserNotifications_UNMutableNotificationContent")]
     unsafe impl ClassType for UNMutableNotificationContent {
         #[inherits(NSObject)]
         type Super = UNNotificationContent;
@@ -155,23 +148,21 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "UserNotifications_UNMutableNotificationContent")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for UNMutableNotificationContent {}
 
-#[cfg(feature = "UserNotifications_UNMutableNotificationContent")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for UNMutableNotificationContent {}
 
-#[cfg(feature = "UserNotifications_UNMutableNotificationContent")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSMutableCopying for UNMutableNotificationContent {}
 
-#[cfg(feature = "UserNotifications_UNMutableNotificationContent")]
 unsafe impl NSObjectProtocol for UNMutableNotificationContent {}
 
-#[cfg(feature = "UserNotifications_UNMutableNotificationContent")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for UNMutableNotificationContent {}
 
 extern_methods!(
-    #[cfg(feature = "UserNotifications_UNMutableNotificationContent")]
     unsafe impl UNMutableNotificationContent {
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -187,11 +178,11 @@ extern_methods!(
         #[method(setAttachments:)]
         pub unsafe fn setAttachments(&self, attachments: &NSArray<UNNotificationAttachment>);
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method_id(@__retain_semantics Other badge)]
         pub unsafe fn badge(&self) -> Option<Id<NSNumber>>;
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method(setBadge:)]
         pub unsafe fn setBadge(&self, badge: Option<&NSNumber>);
 
@@ -315,7 +306,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UserNotifications_UNMutableNotificationContent")]
     unsafe impl UNMutableNotificationContent {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

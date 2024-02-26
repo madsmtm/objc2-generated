@@ -29,10 +29,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSRelativeDateTimeFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     pub struct NSRelativeDateTimeFormatter;
 
-    #[cfg(feature = "Foundation_NSRelativeDateTimeFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl ClassType for NSRelativeDateTimeFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;
@@ -40,17 +40,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSRelativeDateTimeFormatter")]
+#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for NSRelativeDateTimeFormatter {}
 
-#[cfg(feature = "Foundation_NSRelativeDateTimeFormatter")]
+#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
 unsafe impl NSCopying for NSRelativeDateTimeFormatter {}
 
-#[cfg(feature = "Foundation_NSRelativeDateTimeFormatter")]
+#[cfg(feature = "Foundation_NSFormatter")]
 unsafe impl NSObjectProtocol for NSRelativeDateTimeFormatter {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSRelativeDateTimeFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl NSRelativeDateTimeFormatter {
         #[method(dateTimeStyle)]
         pub unsafe fn dateTimeStyle(&self) -> NSRelativeDateTimeFormatterStyle;
@@ -86,17 +86,14 @@ extern_methods!(
         #[method(setLocale:)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
-        #[cfg(all(
-            feature = "Foundation_NSDateComponents",
-            feature = "Foundation_NSString"
-        ))]
+        #[cfg(all(feature = "Foundation_NSCalendar", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other localizedStringFromDateComponents:)]
         pub unsafe fn localizedStringFromDateComponents(
             &self,
             date_components: &NSDateComponents,
         ) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other localizedStringFromTimeInterval:)]
         pub unsafe fn localizedStringFromTimeInterval(
             &self,
@@ -119,7 +116,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSRelativeDateTimeFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl NSRelativeDateTimeFormatter {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -6,30 +6,26 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Contacts_CNContactRelation")]
     pub struct CNContactRelation;
 
-    #[cfg(feature = "Contacts_CNContactRelation")]
     unsafe impl ClassType for CNContactRelation {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Contacts_CNContactRelation")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CNContactRelation {}
 
-#[cfg(feature = "Contacts_CNContactRelation")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for CNContactRelation {}
 
-#[cfg(feature = "Contacts_CNContactRelation")]
 unsafe impl NSObjectProtocol for CNContactRelation {}
 
-#[cfg(feature = "Contacts_CNContactRelation")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CNContactRelation {}
 
 extern_methods!(
-    #[cfg(feature = "Contacts_CNContactRelation")]
     unsafe impl CNContactRelation {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other contactRelationWithName:)]
@@ -47,7 +43,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Contacts_CNContactRelation")]
     unsafe impl CNContactRelation {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

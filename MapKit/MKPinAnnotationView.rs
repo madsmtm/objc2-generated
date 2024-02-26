@@ -25,11 +25,19 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKPinAnnotationView")]
+    #[cfg(all(
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView",
+        feature = "MapKit_MKAnnotationView"
+    ))]
     #[deprecated]
     pub struct MKPinAnnotationView;
 
-    #[cfg(feature = "MapKit_MKPinAnnotationView")]
+    #[cfg(all(
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView",
+        feature = "MapKit_MKAnnotationView"
+    ))]
     unsafe impl ClassType for MKPinAnnotationView {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = MKAnnotationView;
@@ -37,32 +45,75 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MapKit_MKPinAnnotationView")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "MapKit_MKAnnotationView"
+))]
 unsafe impl NSAccessibility for MKPinAnnotationView {}
 
-#[cfg(feature = "MapKit_MKPinAnnotationView")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "MapKit_MKAnnotationView"
+))]
 unsafe impl NSAccessibilityElementProtocol for MKPinAnnotationView {}
 
-#[cfg(feature = "MapKit_MKPinAnnotationView")]
+#[cfg(all(
+    feature = "AppKit_NSAnimation",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "MapKit_MKAnnotationView"
+))]
 unsafe impl NSAnimatablePropertyContainer for MKPinAnnotationView {}
 
-#[cfg(feature = "MapKit_MKPinAnnotationView")]
+#[cfg(all(
+    feature = "AppKit_NSAppearance",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "MapKit_MKAnnotationView"
+))]
 unsafe impl NSAppearanceCustomization for MKPinAnnotationView {}
 
-#[cfg(feature = "MapKit_MKPinAnnotationView")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "Foundation_NSObject",
+    feature = "MapKit_MKAnnotationView"
+))]
 unsafe impl NSCoding for MKPinAnnotationView {}
 
-#[cfg(feature = "MapKit_MKPinAnnotationView")]
+#[cfg(all(
+    feature = "AppKit_NSDragging",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "MapKit_MKAnnotationView"
+))]
 unsafe impl NSDraggingDestination for MKPinAnnotationView {}
 
-#[cfg(feature = "MapKit_MKPinAnnotationView")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "MapKit_MKAnnotationView"
+))]
 unsafe impl NSObjectProtocol for MKPinAnnotationView {}
 
-#[cfg(feature = "MapKit_MKPinAnnotationView")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSView",
+    feature = "MapKit_MKAnnotationView"
+))]
 unsafe impl NSUserInterfaceItemIdentification for MKPinAnnotationView {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKPinAnnotationView")]
+    #[cfg(all(
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView",
+        feature = "MapKit_MKAnnotationView"
+    ))]
     unsafe impl MKPinAnnotationView {
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Other redPinColor)]
@@ -104,9 +155,13 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MKAnnotationView`
-    #[cfg(feature = "MapKit_MKPinAnnotationView")]
+    #[cfg(all(
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView",
+        feature = "MapKit_MKAnnotationView"
+    ))]
     unsafe impl MKPinAnnotationView {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSString", feature = "MapKit_MKAnnotation"))]
         #[method_id(@__retain_semantics Init initWithAnnotation:reuseIdentifier:)]
         pub unsafe fn initWithAnnotation_reuseIdentifier(
             this: Allocated<Self>,
@@ -123,8 +178,13 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSView`
-    #[cfg(feature = "MapKit_MKPinAnnotationView")]
+    #[cfg(all(
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView",
+        feature = "MapKit_MKAnnotationView"
+    ))]
     unsafe impl MKPinAnnotationView {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
     }
@@ -132,7 +192,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "MapKit_MKPinAnnotationView")]
+    #[cfg(all(
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView",
+        feature = "MapKit_MKAnnotationView"
+    ))]
     unsafe impl MKPinAnnotationView {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -141,7 +205,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MapKit_MKPinAnnotationView")]
+    #[cfg(all(
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView",
+        feature = "MapKit_MKAnnotationView"
+    ))]
     unsafe impl MKPinAnnotationView {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

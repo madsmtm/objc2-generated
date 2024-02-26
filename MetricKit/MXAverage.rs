@@ -6,14 +6,12 @@ use crate::MetricKit::*;
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MetricKit_MXAverage")]
     pub struct MXAverage<UnitType: ?Sized = AnyObject> {
         __superclass: NSObject,
         _inner0: PhantomData<*mut UnitType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
-    #[cfg(feature = "MetricKit_MXAverage")]
     unsafe impl<UnitType: ?Sized + Message> ClassType for MXAverage<UnitType> {
         type Super = NSObject;
         type Mutability = InteriorMutable;
@@ -28,17 +26,15 @@ __inner_extern_class!(
     }
 );
 
-#[cfg(feature = "MetricKit_MXAverage")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl<UnitType: ?Sized + NSCoding> NSCoding for MXAverage<UnitType> {}
 
-#[cfg(feature = "MetricKit_MXAverage")]
 unsafe impl<UnitType: ?Sized> NSObjectProtocol for MXAverage<UnitType> {}
 
-#[cfg(feature = "MetricKit_MXAverage")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl<UnitType: ?Sized + NSSecureCoding> NSSecureCoding for MXAverage<UnitType> {}
 
 extern_methods!(
-    #[cfg(feature = "MetricKit_MXAverage")]
     unsafe impl<UnitType: Message> MXAverage<UnitType> {
         #[cfg(feature = "Foundation_NSMeasurement")]
         #[method_id(@__retain_semantics Other averageMeasurement)]
@@ -54,7 +50,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MetricKit_MXAverage")]
     unsafe impl<UnitType: Message> MXAverage<UnitType> {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

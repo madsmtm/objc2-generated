@@ -7,21 +7,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSAnimationContext")]
     pub struct NSAnimationContext;
 
-    #[cfg(feature = "AppKit_NSAnimationContext")]
     unsafe impl ClassType for NSAnimationContext {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSAnimationContext")]
 unsafe impl NSObjectProtocol for NSAnimationContext {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSAnimationContext")]
     unsafe impl NSAnimationContext {
         #[method(runAnimationGroup:completionHandler:)]
         pub unsafe fn runAnimationGroup_completionHandler(
@@ -41,9 +37,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other currentContext)]
         pub unsafe fn currentContext() -> Id<NSAnimationContext>;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(duration)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(setDuration:)]
         pub unsafe fn setDuration(&self, duration: NSTimeInterval);
 
@@ -63,7 +61,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSAnimationContext")]
     unsafe impl NSAnimationContext {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

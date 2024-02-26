@@ -7,21 +7,17 @@ use crate::StoreKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "StoreKit_SKArcadeService")]
     pub struct SKArcadeService;
 
-    #[cfg(feature = "StoreKit_SKArcadeService")]
     unsafe impl ClassType for SKArcadeService {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "StoreKit_SKArcadeService")]
 unsafe impl NSObjectProtocol for SKArcadeService {}
 
 extern_methods!(
-    #[cfg(feature = "StoreKit_SKArcadeService")]
     unsafe impl SKArcadeService {
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method(registerArcadeAppWithRandomFromLib:randomFromLibLength:resultHandler:)]
@@ -45,7 +41,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "StoreKit_SKArcadeService")]
     unsafe impl SKArcadeService {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

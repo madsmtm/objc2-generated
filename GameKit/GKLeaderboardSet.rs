@@ -7,27 +7,23 @@ use crate::GameKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameKit_GKLeaderboardSet")]
     pub struct GKLeaderboardSet;
 
-    #[cfg(feature = "GameKit_GKLeaderboardSet")]
     unsafe impl ClassType for GKLeaderboardSet {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "GameKit_GKLeaderboardSet")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for GKLeaderboardSet {}
 
-#[cfg(feature = "GameKit_GKLeaderboardSet")]
 unsafe impl NSObjectProtocol for GKLeaderboardSet {}
 
-#[cfg(feature = "GameKit_GKLeaderboardSet")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for GKLeaderboardSet {}
 
 extern_methods!(
-    #[cfg(feature = "GameKit_GKLeaderboardSet")]
     unsafe impl GKLeaderboardSet {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other title)]
@@ -68,7 +64,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameKit_GKLeaderboardSet")]
     unsafe impl GKLeaderboardSet {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -80,7 +75,6 @@ extern_methods!(
 
 extern_methods!(
     /// Deprecated
-    #[cfg(feature = "GameKit_GKLeaderboardSet")]
     unsafe impl GKLeaderboardSet {
         #[cfg(all(
             feature = "Foundation_NSArray",
@@ -98,7 +92,6 @@ extern_methods!(
 
 extern_methods!(
     /// UI
-    #[cfg(feature = "GameKit_GKLeaderboardSet")]
     unsafe impl GKLeaderboardSet {
         #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSError"))]
         #[method(loadImageWithCompletionHandler:)]

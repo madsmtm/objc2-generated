@@ -8,36 +8,30 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKObjectType")]
     pub struct HKObjectType;
 
-    #[cfg(feature = "HealthKit_HKObjectType")]
     unsafe impl ClassType for HKObjectType {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "HealthKit_HKObjectType")]
 unsafe impl Send for HKObjectType {}
 
-#[cfg(feature = "HealthKit_HKObjectType")]
 unsafe impl Sync for HKObjectType {}
 
-#[cfg(feature = "HealthKit_HKObjectType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for HKObjectType {}
 
-#[cfg(feature = "HealthKit_HKObjectType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for HKObjectType {}
 
-#[cfg(feature = "HealthKit_HKObjectType")]
 unsafe impl NSObjectProtocol for HKObjectType {}
 
-#[cfg(feature = "HealthKit_HKObjectType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for HKObjectType {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKObjectType")]
     unsafe impl HKObjectType {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]
@@ -46,13 +40,19 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "HealthKit_HKQuantityType"))]
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "HealthKit_HKTypeIdentifiers"
+        ))]
         #[method_id(@__retain_semantics Other quantityTypeForIdentifier:)]
         pub unsafe fn quantityTypeForIdentifier(
             identifier: &HKQuantityTypeIdentifier,
         ) -> Option<Id<HKQuantityType>>;
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "HealthKit_HKCategoryType"))]
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "HealthKit_HKTypeIdentifiers"
+        ))]
         #[method_id(@__retain_semantics Other categoryTypeForIdentifier:)]
         pub unsafe fn categoryTypeForIdentifier(
             identifier: &HKCategoryTypeIdentifier,
@@ -60,7 +60,7 @@ extern_methods!(
 
         #[cfg(all(
             feature = "Foundation_NSString",
-            feature = "HealthKit_HKCharacteristicType"
+            feature = "HealthKit_HKTypeIdentifiers"
         ))]
         #[method_id(@__retain_semantics Other characteristicTypeForIdentifier:)]
         pub unsafe fn characteristicTypeForIdentifier(
@@ -69,40 +69,38 @@ extern_methods!(
 
         #[cfg(all(
             feature = "Foundation_NSString",
-            feature = "HealthKit_HKCorrelationType"
+            feature = "HealthKit_HKTypeIdentifiers"
         ))]
         #[method_id(@__retain_semantics Other correlationTypeForIdentifier:)]
         pub unsafe fn correlationTypeForIdentifier(
             identifier: &HKCorrelationTypeIdentifier,
         ) -> Option<Id<HKCorrelationType>>;
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "HealthKit_HKDocumentType"))]
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "HealthKit_HKTypeIdentifiers"
+        ))]
         #[method_id(@__retain_semantics Other documentTypeForIdentifier:)]
         pub unsafe fn documentTypeForIdentifier(
             identifier: &HKDocumentTypeIdentifier,
         ) -> Option<Id<HKDocumentType>>;
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "HealthKit_HKSeriesType"))]
+        #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other seriesTypeForIdentifier:)]
         pub unsafe fn seriesTypeForIdentifier(identifier: &NSString) -> Option<Id<HKSeriesType>>;
 
-        #[cfg(feature = "HealthKit_HKWorkoutType")]
         #[method_id(@__retain_semantics Other workoutType)]
         pub unsafe fn workoutType() -> Id<HKWorkoutType>;
 
-        #[cfg(feature = "HealthKit_HKActivitySummaryType")]
         #[method_id(@__retain_semantics Other activitySummaryType)]
         pub unsafe fn activitySummaryType() -> Id<HKActivitySummaryType>;
 
-        #[cfg(feature = "HealthKit_HKAudiogramSampleType")]
         #[method_id(@__retain_semantics Other audiogramSampleType)]
         pub unsafe fn audiogramSampleType() -> Id<HKAudiogramSampleType>;
 
-        #[cfg(feature = "HealthKit_HKElectrocardiogramType")]
         #[method_id(@__retain_semantics Other electrocardiogramType)]
         pub unsafe fn electrocardiogramType() -> Id<HKElectrocardiogramType>;
 
-        #[cfg(feature = "HealthKit_HKPrescriptionType")]
         #[method_id(@__retain_semantics Other visionPrescriptionType)]
         pub unsafe fn visionPrescriptionType() -> Id<HKPrescriptionType>;
 
@@ -113,7 +111,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKObjectType")]
     unsafe impl HKObjectType {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -122,10 +119,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKCharacteristicType")]
     pub struct HKCharacteristicType;
 
-    #[cfg(feature = "HealthKit_HKCharacteristicType")]
     unsafe impl ClassType for HKCharacteristicType {
         #[inherits(NSObject)]
         type Super = HKObjectType;
@@ -133,32 +128,27 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKCharacteristicType")]
 unsafe impl Send for HKCharacteristicType {}
 
-#[cfg(feature = "HealthKit_HKCharacteristicType")]
 unsafe impl Sync for HKCharacteristicType {}
 
-#[cfg(feature = "HealthKit_HKCharacteristicType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for HKCharacteristicType {}
 
-#[cfg(feature = "HealthKit_HKCharacteristicType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for HKCharacteristicType {}
 
-#[cfg(feature = "HealthKit_HKCharacteristicType")]
 unsafe impl NSObjectProtocol for HKCharacteristicType {}
 
-#[cfg(feature = "HealthKit_HKCharacteristicType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for HKCharacteristicType {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKCharacteristicType")]
     unsafe impl HKCharacteristicType {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `HKObjectType`
-    #[cfg(feature = "HealthKit_HKCharacteristicType")]
     unsafe impl HKCharacteristicType {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -167,7 +157,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKCharacteristicType")]
     unsafe impl HKCharacteristicType {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -176,10 +165,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKSampleType")]
     pub struct HKSampleType;
 
-    #[cfg(feature = "HealthKit_HKSampleType")]
     unsafe impl ClassType for HKSampleType {
         #[inherits(NSObject)]
         type Super = HKObjectType;
@@ -187,36 +174,34 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKSampleType")]
 unsafe impl Send for HKSampleType {}
 
-#[cfg(feature = "HealthKit_HKSampleType")]
 unsafe impl Sync for HKSampleType {}
 
-#[cfg(feature = "HealthKit_HKSampleType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for HKSampleType {}
 
-#[cfg(feature = "HealthKit_HKSampleType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for HKSampleType {}
 
-#[cfg(feature = "HealthKit_HKSampleType")]
 unsafe impl NSObjectProtocol for HKSampleType {}
 
-#[cfg(feature = "HealthKit_HKSampleType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for HKSampleType {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKSampleType")]
     unsafe impl HKSampleType {
         #[method(isMaximumDurationRestricted)]
         pub unsafe fn isMaximumDurationRestricted(&self) -> bool;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(maximumAllowedDuration)]
         pub unsafe fn maximumAllowedDuration(&self) -> NSTimeInterval;
 
         #[method(isMinimumDurationRestricted)]
         pub unsafe fn isMinimumDurationRestricted(&self) -> bool;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(minimumAllowedDuration)]
         pub unsafe fn minimumAllowedDuration(&self) -> NSTimeInterval;
 
@@ -227,7 +212,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `HKObjectType`
-    #[cfg(feature = "HealthKit_HKSampleType")]
     unsafe impl HKSampleType {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -236,7 +220,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKSampleType")]
     unsafe impl HKSampleType {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -245,10 +228,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKCategoryType")]
     pub struct HKCategoryType;
 
-    #[cfg(feature = "HealthKit_HKCategoryType")]
     unsafe impl ClassType for HKCategoryType {
         #[inherits(HKObjectType, NSObject)]
         type Super = HKSampleType;
@@ -256,32 +237,27 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKCategoryType")]
 unsafe impl Send for HKCategoryType {}
 
-#[cfg(feature = "HealthKit_HKCategoryType")]
 unsafe impl Sync for HKCategoryType {}
 
-#[cfg(feature = "HealthKit_HKCategoryType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for HKCategoryType {}
 
-#[cfg(feature = "HealthKit_HKCategoryType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for HKCategoryType {}
 
-#[cfg(feature = "HealthKit_HKCategoryType")]
 unsafe impl NSObjectProtocol for HKCategoryType {}
 
-#[cfg(feature = "HealthKit_HKCategoryType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for HKCategoryType {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKCategoryType")]
     unsafe impl HKCategoryType {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `HKObjectType`
-    #[cfg(feature = "HealthKit_HKCategoryType")]
     unsafe impl HKCategoryType {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -290,7 +266,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKCategoryType")]
     unsafe impl HKCategoryType {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -299,10 +274,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKCorrelationType")]
     pub struct HKCorrelationType;
 
-    #[cfg(feature = "HealthKit_HKCorrelationType")]
     unsafe impl ClassType for HKCorrelationType {
         #[inherits(HKObjectType, NSObject)]
         type Super = HKSampleType;
@@ -310,32 +283,27 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKCorrelationType")]
 unsafe impl Send for HKCorrelationType {}
 
-#[cfg(feature = "HealthKit_HKCorrelationType")]
 unsafe impl Sync for HKCorrelationType {}
 
-#[cfg(feature = "HealthKit_HKCorrelationType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for HKCorrelationType {}
 
-#[cfg(feature = "HealthKit_HKCorrelationType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for HKCorrelationType {}
 
-#[cfg(feature = "HealthKit_HKCorrelationType")]
 unsafe impl NSObjectProtocol for HKCorrelationType {}
 
-#[cfg(feature = "HealthKit_HKCorrelationType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for HKCorrelationType {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKCorrelationType")]
     unsafe impl HKCorrelationType {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `HKObjectType`
-    #[cfg(feature = "HealthKit_HKCorrelationType")]
     unsafe impl HKCorrelationType {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -344,7 +312,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKCorrelationType")]
     unsafe impl HKCorrelationType {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -353,10 +320,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKDocumentType")]
     pub struct HKDocumentType;
 
-    #[cfg(feature = "HealthKit_HKDocumentType")]
     unsafe impl ClassType for HKDocumentType {
         #[inherits(HKObjectType, NSObject)]
         type Super = HKSampleType;
@@ -364,32 +329,27 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKDocumentType")]
 unsafe impl Send for HKDocumentType {}
 
-#[cfg(feature = "HealthKit_HKDocumentType")]
 unsafe impl Sync for HKDocumentType {}
 
-#[cfg(feature = "HealthKit_HKDocumentType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for HKDocumentType {}
 
-#[cfg(feature = "HealthKit_HKDocumentType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for HKDocumentType {}
 
-#[cfg(feature = "HealthKit_HKDocumentType")]
 unsafe impl NSObjectProtocol for HKDocumentType {}
 
-#[cfg(feature = "HealthKit_HKDocumentType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for HKDocumentType {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKDocumentType")]
     unsafe impl HKDocumentType {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `HKObjectType`
-    #[cfg(feature = "HealthKit_HKDocumentType")]
     unsafe impl HKDocumentType {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -398,7 +358,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKDocumentType")]
     unsafe impl HKDocumentType {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -407,10 +366,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKQuantityType")]
     pub struct HKQuantityType;
 
-    #[cfg(feature = "HealthKit_HKQuantityType")]
     unsafe impl ClassType for HKQuantityType {
         #[inherits(HKObjectType, NSObject)]
         type Super = HKSampleType;
@@ -418,27 +375,24 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKQuantityType")]
 unsafe impl Send for HKQuantityType {}
 
-#[cfg(feature = "HealthKit_HKQuantityType")]
 unsafe impl Sync for HKQuantityType {}
 
-#[cfg(feature = "HealthKit_HKQuantityType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for HKQuantityType {}
 
-#[cfg(feature = "HealthKit_HKQuantityType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for HKQuantityType {}
 
-#[cfg(feature = "HealthKit_HKQuantityType")]
 unsafe impl NSObjectProtocol for HKQuantityType {}
 
-#[cfg(feature = "HealthKit_HKQuantityType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for HKQuantityType {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKQuantityType")]
     unsafe impl HKQuantityType {
+        #[cfg(feature = "HealthKit_HKQuantityAggregationStyle")]
         #[method(aggregationStyle)]
         pub unsafe fn aggregationStyle(&self) -> HKQuantityAggregationStyle;
 
@@ -450,7 +404,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `HKObjectType`
-    #[cfg(feature = "HealthKit_HKQuantityType")]
     unsafe impl HKQuantityType {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -459,7 +412,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKQuantityType")]
     unsafe impl HKQuantityType {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -468,10 +420,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKWorkoutType")]
     pub struct HKWorkoutType;
 
-    #[cfg(feature = "HealthKit_HKWorkoutType")]
     unsafe impl ClassType for HKWorkoutType {
         #[inherits(HKObjectType, NSObject)]
         type Super = HKSampleType;
@@ -479,32 +429,27 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKWorkoutType")]
 unsafe impl Send for HKWorkoutType {}
 
-#[cfg(feature = "HealthKit_HKWorkoutType")]
 unsafe impl Sync for HKWorkoutType {}
 
-#[cfg(feature = "HealthKit_HKWorkoutType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for HKWorkoutType {}
 
-#[cfg(feature = "HealthKit_HKWorkoutType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for HKWorkoutType {}
 
-#[cfg(feature = "HealthKit_HKWorkoutType")]
 unsafe impl NSObjectProtocol for HKWorkoutType {}
 
-#[cfg(feature = "HealthKit_HKWorkoutType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for HKWorkoutType {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKWorkoutType")]
     unsafe impl HKWorkoutType {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `HKObjectType`
-    #[cfg(feature = "HealthKit_HKWorkoutType")]
     unsafe impl HKWorkoutType {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -513,7 +458,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKWorkoutType")]
     unsafe impl HKWorkoutType {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -522,10 +466,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKSeriesType")]
     pub struct HKSeriesType;
 
-    #[cfg(feature = "HealthKit_HKSeriesType")]
     unsafe impl ClassType for HKSeriesType {
         #[inherits(HKObjectType, NSObject)]
         type Super = HKSampleType;
@@ -533,26 +475,22 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKSeriesType")]
 unsafe impl Send for HKSeriesType {}
 
-#[cfg(feature = "HealthKit_HKSeriesType")]
 unsafe impl Sync for HKSeriesType {}
 
-#[cfg(feature = "HealthKit_HKSeriesType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for HKSeriesType {}
 
-#[cfg(feature = "HealthKit_HKSeriesType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for HKSeriesType {}
 
-#[cfg(feature = "HealthKit_HKSeriesType")]
 unsafe impl NSObjectProtocol for HKSeriesType {}
 
-#[cfg(feature = "HealthKit_HKSeriesType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for HKSeriesType {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKSeriesType")]
     unsafe impl HKSeriesType {
         #[method_id(@__retain_semantics Other workoutRouteType)]
         pub unsafe fn workoutRouteType() -> Id<Self>;
@@ -564,7 +502,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `HKObjectType`
-    #[cfg(feature = "HealthKit_HKSeriesType")]
     unsafe impl HKSeriesType {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -573,7 +510,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKSeriesType")]
     unsafe impl HKSeriesType {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -582,10 +518,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKActivitySummaryType")]
     pub struct HKActivitySummaryType;
 
-    #[cfg(feature = "HealthKit_HKActivitySummaryType")]
     unsafe impl ClassType for HKActivitySummaryType {
         #[inherits(NSObject)]
         type Super = HKObjectType;
@@ -593,32 +527,27 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKActivitySummaryType")]
 unsafe impl Send for HKActivitySummaryType {}
 
-#[cfg(feature = "HealthKit_HKActivitySummaryType")]
 unsafe impl Sync for HKActivitySummaryType {}
 
-#[cfg(feature = "HealthKit_HKActivitySummaryType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for HKActivitySummaryType {}
 
-#[cfg(feature = "HealthKit_HKActivitySummaryType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for HKActivitySummaryType {}
 
-#[cfg(feature = "HealthKit_HKActivitySummaryType")]
 unsafe impl NSObjectProtocol for HKActivitySummaryType {}
 
-#[cfg(feature = "HealthKit_HKActivitySummaryType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for HKActivitySummaryType {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKActivitySummaryType")]
     unsafe impl HKActivitySummaryType {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `HKObjectType`
-    #[cfg(feature = "HealthKit_HKActivitySummaryType")]
     unsafe impl HKActivitySummaryType {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -627,7 +556,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKActivitySummaryType")]
     unsafe impl HKActivitySummaryType {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -636,10 +564,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKAudiogramSampleType")]
     pub struct HKAudiogramSampleType;
 
-    #[cfg(feature = "HealthKit_HKAudiogramSampleType")]
     unsafe impl ClassType for HKAudiogramSampleType {
         #[inherits(HKObjectType, NSObject)]
         type Super = HKSampleType;
@@ -647,32 +573,27 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKAudiogramSampleType")]
 unsafe impl Send for HKAudiogramSampleType {}
 
-#[cfg(feature = "HealthKit_HKAudiogramSampleType")]
 unsafe impl Sync for HKAudiogramSampleType {}
 
-#[cfg(feature = "HealthKit_HKAudiogramSampleType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for HKAudiogramSampleType {}
 
-#[cfg(feature = "HealthKit_HKAudiogramSampleType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for HKAudiogramSampleType {}
 
-#[cfg(feature = "HealthKit_HKAudiogramSampleType")]
 unsafe impl NSObjectProtocol for HKAudiogramSampleType {}
 
-#[cfg(feature = "HealthKit_HKAudiogramSampleType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for HKAudiogramSampleType {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKAudiogramSampleType")]
     unsafe impl HKAudiogramSampleType {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `HKObjectType`
-    #[cfg(feature = "HealthKit_HKAudiogramSampleType")]
     unsafe impl HKAudiogramSampleType {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -681,7 +602,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKAudiogramSampleType")]
     unsafe impl HKAudiogramSampleType {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -690,10 +610,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKElectrocardiogramType")]
     pub struct HKElectrocardiogramType;
 
-    #[cfg(feature = "HealthKit_HKElectrocardiogramType")]
     unsafe impl ClassType for HKElectrocardiogramType {
         #[inherits(HKObjectType, NSObject)]
         type Super = HKSampleType;
@@ -701,32 +619,27 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKElectrocardiogramType")]
 unsafe impl Send for HKElectrocardiogramType {}
 
-#[cfg(feature = "HealthKit_HKElectrocardiogramType")]
 unsafe impl Sync for HKElectrocardiogramType {}
 
-#[cfg(feature = "HealthKit_HKElectrocardiogramType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for HKElectrocardiogramType {}
 
-#[cfg(feature = "HealthKit_HKElectrocardiogramType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for HKElectrocardiogramType {}
 
-#[cfg(feature = "HealthKit_HKElectrocardiogramType")]
 unsafe impl NSObjectProtocol for HKElectrocardiogramType {}
 
-#[cfg(feature = "HealthKit_HKElectrocardiogramType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for HKElectrocardiogramType {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKElectrocardiogramType")]
     unsafe impl HKElectrocardiogramType {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `HKObjectType`
-    #[cfg(feature = "HealthKit_HKElectrocardiogramType")]
     unsafe impl HKElectrocardiogramType {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -735,7 +648,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKElectrocardiogramType")]
     unsafe impl HKElectrocardiogramType {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -744,10 +656,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKPrescriptionType")]
     pub struct HKPrescriptionType;
 
-    #[cfg(feature = "HealthKit_HKPrescriptionType")]
     unsafe impl ClassType for HKPrescriptionType {
         #[inherits(HKObjectType, NSObject)]
         type Super = HKSampleType;
@@ -755,32 +665,27 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKPrescriptionType")]
 unsafe impl Send for HKPrescriptionType {}
 
-#[cfg(feature = "HealthKit_HKPrescriptionType")]
 unsafe impl Sync for HKPrescriptionType {}
 
-#[cfg(feature = "HealthKit_HKPrescriptionType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for HKPrescriptionType {}
 
-#[cfg(feature = "HealthKit_HKPrescriptionType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for HKPrescriptionType {}
 
-#[cfg(feature = "HealthKit_HKPrescriptionType")]
 unsafe impl NSObjectProtocol for HKPrescriptionType {}
 
-#[cfg(feature = "HealthKit_HKPrescriptionType")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for HKPrescriptionType {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKPrescriptionType")]
     unsafe impl HKPrescriptionType {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `HKObjectType`
-    #[cfg(feature = "HealthKit_HKPrescriptionType")]
     unsafe impl HKPrescriptionType {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -789,7 +694,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKPrescriptionType")]
     unsafe impl HKPrescriptionType {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -11,10 +11,10 @@ typed_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "QuartzCore_CAGradientLayer")]
+    #[cfg(feature = "QuartzCore_CALayer")]
     pub struct CAGradientLayer;
 
-    #[cfg(feature = "QuartzCore_CAGradientLayer")]
+    #[cfg(feature = "QuartzCore_CALayer")]
     unsafe impl ClassType for CAGradientLayer {
         #[inherits(NSObject)]
         type Super = CALayer;
@@ -22,20 +22,20 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "QuartzCore_CAGradientLayer")]
+#[cfg(all(feature = "QuartzCore_CALayer", feature = "QuartzCore_CAMediaTiming"))]
 unsafe impl CAMediaTiming for CAGradientLayer {}
 
-#[cfg(feature = "QuartzCore_CAGradientLayer")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "QuartzCore_CALayer"))]
 unsafe impl NSCoding for CAGradientLayer {}
 
-#[cfg(feature = "QuartzCore_CAGradientLayer")]
+#[cfg(feature = "QuartzCore_CALayer")]
 unsafe impl NSObjectProtocol for CAGradientLayer {}
 
-#[cfg(feature = "QuartzCore_CAGradientLayer")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "QuartzCore_CALayer"))]
 unsafe impl NSSecureCoding for CAGradientLayer {}
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CAGradientLayer")]
+    #[cfg(feature = "QuartzCore_CALayer")]
     unsafe impl CAGradientLayer {
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other colors)]
@@ -45,23 +45,27 @@ extern_methods!(
         #[method(setColors:)]
         pub unsafe fn setColors(&self, colors: Option<&NSArray>);
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Other locations)]
         pub unsafe fn locations(&self) -> Option<Id<NSArray<NSNumber>>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method(setLocations:)]
         pub unsafe fn setLocations(&self, locations: Option<&NSArray<NSNumber>>);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(startPoint)]
         pub unsafe fn startPoint(&self) -> CGPoint;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setStartPoint:)]
         pub unsafe fn setStartPoint(&self, start_point: CGPoint);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(endPoint)]
         pub unsafe fn endPoint(&self) -> CGPoint;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setEndPoint:)]
         pub unsafe fn setEndPoint(&self, end_point: CGPoint);
 
@@ -77,7 +81,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CALayer`
-    #[cfg(feature = "QuartzCore_CAGradientLayer")]
+    #[cfg(feature = "QuartzCore_CALayer")]
     unsafe impl CAGradientLayer {
         #[method_id(@__retain_semantics Other layer)]
         pub unsafe fn layer() -> Id<Self>;
@@ -92,7 +96,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "QuartzCore_CAGradientLayer")]
+    #[cfg(feature = "QuartzCore_CALayer")]
     unsafe impl CAGradientLayer {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

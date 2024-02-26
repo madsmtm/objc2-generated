@@ -24,10 +24,10 @@ extern_static!(ASAuthorizationOperationLogout: &'static ASAuthorizationOpenIDOpe
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationOpenIDRequest")]
+    #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
     pub struct ASAuthorizationOpenIDRequest;
 
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationOpenIDRequest")]
+    #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
     unsafe impl ClassType for ASAuthorizationOpenIDRequest {
         #[inherits(NSObject)]
         type Super = ASAuthorizationRequest;
@@ -35,26 +35,43 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationOpenIDRequest")]
+#[cfg(all(
+    feature = "AuthenticationServices_ASAuthorizationRequest",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for ASAuthorizationOpenIDRequest {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationOpenIDRequest")]
+#[cfg(all(
+    feature = "AuthenticationServices_ASAuthorizationRequest",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCopying for ASAuthorizationOpenIDRequest {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationOpenIDRequest")]
+#[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
 unsafe impl NSObjectProtocol for ASAuthorizationOpenIDRequest {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationOpenIDRequest")]
+#[cfg(all(
+    feature = "AuthenticationServices_ASAuthorizationRequest",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSSecureCoding for ASAuthorizationOpenIDRequest {}
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationOpenIDRequest")]
+    #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
     unsafe impl ASAuthorizationOpenIDRequest {
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AuthenticationServices_ASAuthorization",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other requestedScopes)]
         pub unsafe fn requestedScopes(&self) -> Option<Id<NSArray<ASAuthorizationScope>>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AuthenticationServices_ASAuthorization",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[method(setRequestedScopes:)]
         pub unsafe fn setRequestedScopes(
             &self,
@@ -92,7 +109,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `ASAuthorizationRequest`
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationOpenIDRequest")]
+    #[cfg(feature = "AuthenticationServices_ASAuthorizationRequest")]
     unsafe impl ASAuthorizationOpenIDRequest {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

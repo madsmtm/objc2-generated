@@ -15,31 +15,31 @@ ns_enum!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(ASAuthorizationAppleIDProviderCredentialRevokedNotification: &'static NSNotificationName);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDProvider")]
     pub struct ASAuthorizationAppleIDProvider;
 
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDProvider")]
     unsafe impl ClassType for ASAuthorizationAppleIDProvider {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDProvider")]
+#[cfg(feature = "AuthenticationServices_ASAuthorizationProvider")]
 unsafe impl ASAuthorizationProvider for ASAuthorizationAppleIDProvider {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDProvider")]
 unsafe impl NSObjectProtocol for ASAuthorizationAppleIDProvider {}
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDProvider")]
     unsafe impl ASAuthorizationAppleIDProvider {
-        #[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDRequest")]
+        #[cfg(all(
+            feature = "AuthenticationServices_ASAuthorizationAppleIDRequest",
+            feature = "AuthenticationServices_ASAuthorizationOpenIDRequest",
+            feature = "AuthenticationServices_ASAuthorizationRequest"
+        ))]
         #[method_id(@__retain_semantics Other createRequest)]
         pub unsafe fn createRequest(&self) -> Id<ASAuthorizationAppleIDRequest>;
 
@@ -55,7 +55,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDProvider")]
     unsafe impl ASAuthorizationAppleIDProvider {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -5,21 +5,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSAutoreleasePool")]
     pub struct NSAutoreleasePool;
 
-    #[cfg(feature = "Foundation_NSAutoreleasePool")]
     unsafe impl ClassType for NSAutoreleasePool {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSAutoreleasePool")]
 unsafe impl NSObjectProtocol for NSAutoreleasePool {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSAutoreleasePool")]
     unsafe impl NSAutoreleasePool {
         #[method(addObject:)]
         pub unsafe fn addObject_class(an_object: &AnyObject);
@@ -34,7 +30,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSAutoreleasePool")]
     unsafe impl NSAutoreleasePool {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

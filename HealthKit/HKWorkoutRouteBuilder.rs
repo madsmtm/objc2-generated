@@ -8,10 +8,10 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKWorkoutRouteBuilder")]
+    #[cfg(feature = "HealthKit_HKSeriesBuilder")]
     pub struct HKWorkoutRouteBuilder;
 
-    #[cfg(feature = "HealthKit_HKWorkoutRouteBuilder")]
+    #[cfg(feature = "HealthKit_HKSeriesBuilder")]
     unsafe impl ClassType for HKWorkoutRouteBuilder {
         #[inherits(NSObject)]
         type Super = HKSeriesBuilder;
@@ -19,11 +19,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKWorkoutRouteBuilder")]
+#[cfg(feature = "HealthKit_HKSeriesBuilder")]
 unsafe impl NSObjectProtocol for HKWorkoutRouteBuilder {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKWorkoutRouteBuilder")]
+    #[cfg(feature = "HealthKit_HKSeriesBuilder")]
     unsafe impl HKWorkoutRouteBuilder {
         #[cfg(all(feature = "HealthKit_HKDevice", feature = "HealthKit_HKHealthStore"))]
         #[method_id(@__retain_semantics Init initWithHealthStore:device:)]
@@ -61,6 +61,9 @@ extern_methods!(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
             feature = "Foundation_NSString",
+            feature = "HealthKit_HKObject",
+            feature = "HealthKit_HKSample",
+            feature = "HealthKit_HKSeriesSample",
             feature = "HealthKit_HKWorkout",
             feature = "HealthKit_HKWorkoutRoute"
         ))]
@@ -76,7 +79,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `HKSeriesBuilder`
-    #[cfg(feature = "HealthKit_HKWorkoutRouteBuilder")]
+    #[cfg(feature = "HealthKit_HKSeriesBuilder")]
     unsafe impl HKWorkoutRouteBuilder {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -85,7 +88,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKWorkoutRouteBuilder")]
+    #[cfg(feature = "HealthKit_HKSeriesBuilder")]
     unsafe impl HKWorkoutRouteBuilder {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -146,28 +146,26 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLRenderPipelineColorAttachmentDescriptor")]
     pub struct MTLRenderPipelineColorAttachmentDescriptor;
 
-    #[cfg(feature = "Metal_MTLRenderPipelineColorAttachmentDescriptor")]
     unsafe impl ClassType for MTLRenderPipelineColorAttachmentDescriptor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLRenderPipelineColorAttachmentDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLRenderPipelineColorAttachmentDescriptor {}
 
-#[cfg(feature = "Metal_MTLRenderPipelineColorAttachmentDescriptor")]
 unsafe impl NSObjectProtocol for MTLRenderPipelineColorAttachmentDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLRenderPipelineColorAttachmentDescriptor")]
     unsafe impl MTLRenderPipelineColorAttachmentDescriptor {
+        #[cfg(feature = "Metal_MTLPixelFormat")]
         #[method(pixelFormat)]
         pub fn pixelFormat(&self) -> MTLPixelFormat;
 
+        #[cfg(feature = "Metal_MTLPixelFormat")]
         #[method(setPixelFormat:)]
         pub fn setPixelFormat(&self, pixel_format: MTLPixelFormat);
 
@@ -226,7 +224,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLRenderPipelineColorAttachmentDescriptor")]
     unsafe impl MTLRenderPipelineColorAttachmentDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -238,39 +235,35 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLRenderPipelineReflection")]
     pub struct MTLRenderPipelineReflection;
 
-    #[cfg(feature = "Metal_MTLRenderPipelineReflection")]
     unsafe impl ClassType for MTLRenderPipelineReflection {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLRenderPipelineReflection")]
 unsafe impl NSObjectProtocol for MTLRenderPipelineReflection {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLRenderPipelineReflection")]
     unsafe impl MTLRenderPipelineReflection {
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLArgument"))]
         #[method_id(@__retain_semantics Other vertexBindings)]
         pub unsafe fn vertexBindings(&self) -> Id<NSArray<ProtocolObject<dyn MTLBinding>>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLArgument"))]
         #[method_id(@__retain_semantics Other fragmentBindings)]
         pub unsafe fn fragmentBindings(&self) -> Id<NSArray<ProtocolObject<dyn MTLBinding>>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLArgument"))]
         #[method_id(@__retain_semantics Other tileBindings)]
         pub unsafe fn tileBindings(&self) -> Id<NSArray<ProtocolObject<dyn MTLBinding>>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLArgument"))]
         #[method_id(@__retain_semantics Other objectBindings)]
         pub unsafe fn objectBindings(&self) -> Id<NSArray<ProtocolObject<dyn MTLBinding>>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLArgument"))]
         #[method_id(@__retain_semantics Other meshBindings)]
         pub unsafe fn meshBindings(&self) -> Id<NSArray<ProtocolObject<dyn MTLBinding>>>;
 
@@ -293,7 +286,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLRenderPipelineReflection")]
     unsafe impl MTLRenderPipelineReflection {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -305,24 +297,20 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLRenderPipelineDescriptor")]
     pub struct MTLRenderPipelineDescriptor;
 
-    #[cfg(feature = "Metal_MTLRenderPipelineDescriptor")]
     unsafe impl ClassType for MTLRenderPipelineDescriptor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLRenderPipelineDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLRenderPipelineDescriptor {}
 
-#[cfg(feature = "Metal_MTLRenderPipelineDescriptor")]
 unsafe impl NSObjectProtocol for MTLRenderPipelineDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLRenderPipelineDescriptor")]
     unsafe impl MTLRenderPipelineDescriptor {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
@@ -332,15 +320,19 @@ extern_methods!(
         #[method(setLabel:)]
         pub fn setLabel(&self, label: Option<&NSString>);
 
+        #[cfg(feature = "Metal_MTLLibrary")]
         #[method_id(@__retain_semantics Other vertexFunction)]
         pub fn vertexFunction(&self) -> Option<Id<ProtocolObject<dyn MTLFunction>>>;
 
+        #[cfg(feature = "Metal_MTLLibrary")]
         #[method(setVertexFunction:)]
         pub fn setVertexFunction(&self, vertex_function: Option<&ProtocolObject<dyn MTLFunction>>);
 
+        #[cfg(feature = "Metal_MTLLibrary")]
         #[method_id(@__retain_semantics Other fragmentFunction)]
         pub fn fragmentFunction(&self) -> Option<Id<ProtocolObject<dyn MTLFunction>>>;
 
+        #[cfg(feature = "Metal_MTLLibrary")]
         #[method(setFragmentFunction:)]
         pub fn setFragmentFunction(
             &self,
@@ -396,19 +388,22 @@ extern_methods!(
             max_vertex_amplification_count: NSUInteger,
         );
 
-        #[cfg(feature = "Metal_MTLRenderPipelineColorAttachmentDescriptorArray")]
         #[method_id(@__retain_semantics Other colorAttachments)]
         pub fn colorAttachments(&self) -> Id<MTLRenderPipelineColorAttachmentDescriptorArray>;
 
+        #[cfg(feature = "Metal_MTLPixelFormat")]
         #[method(depthAttachmentPixelFormat)]
         pub fn depthAttachmentPixelFormat(&self) -> MTLPixelFormat;
 
+        #[cfg(feature = "Metal_MTLPixelFormat")]
         #[method(setDepthAttachmentPixelFormat:)]
         pub fn setDepthAttachmentPixelFormat(&self, depth_attachment_pixel_format: MTLPixelFormat);
 
+        #[cfg(feature = "Metal_MTLPixelFormat")]
         #[method(stencilAttachmentPixelFormat)]
         pub fn stencilAttachmentPixelFormat(&self) -> MTLPixelFormat;
 
+        #[cfg(feature = "Metal_MTLPixelFormat")]
         #[method(setStencilAttachmentPixelFormat:)]
         pub fn setStencilAttachmentPixelFormat(
             &self,
@@ -472,20 +467,22 @@ extern_methods!(
             tessellation_factor_step_function: MTLTessellationFactorStepFunction,
         );
 
+        #[cfg(feature = "Metal_MTLRenderCommandEncoder")]
         #[method(tessellationOutputWindingOrder)]
         pub fn tessellationOutputWindingOrder(&self) -> MTLWinding;
 
+        #[cfg(feature = "Metal_MTLRenderCommandEncoder")]
         #[method(setTessellationOutputWindingOrder:)]
         pub fn setTessellationOutputWindingOrder(
             &self,
             tessellation_output_winding_order: MTLWinding,
         );
 
-        #[cfg(feature = "Metal_MTLPipelineBufferDescriptorArray")]
+        #[cfg(feature = "Metal_MTLPipeline")]
         #[method_id(@__retain_semantics Other vertexBuffers)]
         pub fn vertexBuffers(&self) -> Id<MTLPipelineBufferDescriptorArray>;
 
-        #[cfg(feature = "Metal_MTLPipelineBufferDescriptorArray")]
+        #[cfg(feature = "Metal_MTLPipeline")]
         #[method_id(@__retain_semantics Other fragmentBuffers)]
         pub fn fragmentBuffers(&self) -> Id<MTLPipelineBufferDescriptorArray>;
 
@@ -495,37 +492,37 @@ extern_methods!(
         #[method(setSupportIndirectCommandBuffers:)]
         pub fn setSupportIndirectCommandBuffers(&self, support_indirect_command_buffers: bool);
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLBinaryArchive"))]
         #[method_id(@__retain_semantics Other binaryArchives)]
         pub fn binaryArchives(&self) -> Option<Id<NSArray<ProtocolObject<dyn MTLBinaryArchive>>>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLBinaryArchive"))]
         #[method(setBinaryArchives:)]
         pub fn setBinaryArchives(
             &self,
             binary_archives: Option<&NSArray<ProtocolObject<dyn MTLBinaryArchive>>>,
         );
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLDynamicLibrary"))]
         #[method_id(@__retain_semantics Other vertexPreloadedLibraries)]
         pub fn vertexPreloadedLibraries(
             &self,
         ) -> Id<NSArray<ProtocolObject<dyn MTLDynamicLibrary>>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLDynamicLibrary"))]
         #[method(setVertexPreloadedLibraries:)]
         pub fn setVertexPreloadedLibraries(
             &self,
             vertex_preloaded_libraries: &NSArray<ProtocolObject<dyn MTLDynamicLibrary>>,
         );
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLDynamicLibrary"))]
         #[method_id(@__retain_semantics Other fragmentPreloadedLibraries)]
         pub fn fragmentPreloadedLibraries(
             &self,
         ) -> Id<NSArray<ProtocolObject<dyn MTLDynamicLibrary>>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLDynamicLibrary"))]
         #[method(setFragmentPreloadedLibraries:)]
         pub fn setFragmentPreloadedLibraries(
             &self,
@@ -591,7 +588,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLRenderPipelineDescriptor")]
     unsafe impl MTLRenderPipelineDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub fn init(this: Allocated<Self>) -> Id<Self>;
@@ -601,7 +597,6 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Metal_MTLRenderPipelineDescriptor")]
 impl DefaultId for MTLRenderPipelineDescriptor {
     #[inline]
     fn default_id() -> Id<Self> {
@@ -611,58 +606,54 @@ impl DefaultId for MTLRenderPipelineDescriptor {
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLRenderPipelineFunctionsDescriptor")]
     pub struct MTLRenderPipelineFunctionsDescriptor;
 
-    #[cfg(feature = "Metal_MTLRenderPipelineFunctionsDescriptor")]
     unsafe impl ClassType for MTLRenderPipelineFunctionsDescriptor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLRenderPipelineFunctionsDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLRenderPipelineFunctionsDescriptor {}
 
-#[cfg(feature = "Metal_MTLRenderPipelineFunctionsDescriptor")]
 unsafe impl NSObjectProtocol for MTLRenderPipelineFunctionsDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLRenderPipelineFunctionsDescriptor")]
     unsafe impl MTLRenderPipelineFunctionsDescriptor {
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLLibrary"))]
         #[method_id(@__retain_semantics Other vertexAdditionalBinaryFunctions)]
         pub unsafe fn vertexAdditionalBinaryFunctions(
             &self,
         ) -> Option<Id<NSArray<ProtocolObject<dyn MTLFunction>>>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLLibrary"))]
         #[method(setVertexAdditionalBinaryFunctions:)]
         pub unsafe fn setVertexAdditionalBinaryFunctions(
             &self,
             vertex_additional_binary_functions: Option<&NSArray<ProtocolObject<dyn MTLFunction>>>,
         );
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLLibrary"))]
         #[method_id(@__retain_semantics Other fragmentAdditionalBinaryFunctions)]
         pub unsafe fn fragmentAdditionalBinaryFunctions(
             &self,
         ) -> Option<Id<NSArray<ProtocolObject<dyn MTLFunction>>>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLLibrary"))]
         #[method(setFragmentAdditionalBinaryFunctions:)]
         pub unsafe fn setFragmentAdditionalBinaryFunctions(
             &self,
             fragment_additional_binary_functions: Option<&NSArray<ProtocolObject<dyn MTLFunction>>>,
         );
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLLibrary"))]
         #[method_id(@__retain_semantics Other tileAdditionalBinaryFunctions)]
         pub unsafe fn tileAdditionalBinaryFunctions(
             &self,
         ) -> Option<Id<NSArray<ProtocolObject<dyn MTLFunction>>>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLLibrary"))]
         #[method(setTileAdditionalBinaryFunctions:)]
         pub unsafe fn setTileAdditionalBinaryFunctions(
             &self,
@@ -673,7 +664,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLRenderPipelineFunctionsDescriptor")]
     unsafe impl MTLRenderPipelineFunctionsDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -689,6 +679,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other label)]
         unsafe fn label(&self) -> Option<Id<NSString>>;
 
+        #[cfg(feature = "Metal_MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
         unsafe fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
 
@@ -701,6 +692,7 @@ extern_protocol!(
         #[method(imageblockSampleLength)]
         unsafe fn imageblockSampleLength(&self) -> NSUInteger;
 
+        #[cfg(feature = "Metal_MTLTypes")]
         #[method(imageblockMemoryLengthForDimensions:)]
         unsafe fn imageblockMemoryLengthForDimensions(
             &self,
@@ -725,9 +717,15 @@ extern_protocol!(
         #[method(maxTotalThreadgroupsPerMeshGrid)]
         unsafe fn maxTotalThreadgroupsPerMeshGrid(&self) -> NSUInteger;
 
+        #[cfg(feature = "Metal_MTLTypes")]
         #[method(gpuResourceID)]
         unsafe fn gpuResourceID(&self) -> MTLResourceID;
 
+        #[cfg(all(
+            feature = "Metal_MTLFunctionHandle",
+            feature = "Metal_MTLLibrary",
+            feature = "Metal_MTLRenderCommandEncoder"
+        ))]
         #[method_id(@__retain_semantics Other functionHandleWithFunction:stage:)]
         unsafe fn functionHandleWithFunction_stage(
             &self,
@@ -735,7 +733,11 @@ extern_protocol!(
             stage: MTLRenderStages,
         ) -> Option<Id<ProtocolObject<dyn MTLFunctionHandle>>>;
 
-        #[cfg(feature = "Metal_MTLVisibleFunctionTableDescriptor")]
+        #[cfg(all(
+            feature = "Metal_MTLRenderCommandEncoder",
+            feature = "Metal_MTLResource",
+            feature = "Metal_MTLVisibleFunctionTable"
+        ))]
         #[method_id(@__retain_semantics New newVisibleFunctionTableWithDescriptor:stage:)]
         unsafe fn newVisibleFunctionTableWithDescriptor_stage(
             &self,
@@ -743,7 +745,11 @@ extern_protocol!(
             stage: MTLRenderStages,
         ) -> Option<Id<ProtocolObject<dyn MTLVisibleFunctionTable>>>;
 
-        #[cfg(feature = "Metal_MTLIntersectionFunctionTableDescriptor")]
+        #[cfg(all(
+            feature = "Metal_MTLIntersectionFunctionTable",
+            feature = "Metal_MTLRenderCommandEncoder",
+            feature = "Metal_MTLResource"
+        ))]
         #[method_id(@__retain_semantics New newIntersectionFunctionTableWithDescriptor:stage:)]
         unsafe fn newIntersectionFunctionTableWithDescriptor_stage(
             &self,
@@ -751,10 +757,7 @@ extern_protocol!(
             stage: MTLRenderStages,
         ) -> Option<Id<ProtocolObject<dyn MTLIntersectionFunctionTable>>>;
 
-        #[cfg(all(
-            feature = "Foundation_NSError",
-            feature = "Metal_MTLRenderPipelineFunctionsDescriptor"
-        ))]
+        #[cfg(feature = "Foundation_NSError")]
         #[method_id(@__retain_semantics New newRenderPipelineStateWithAdditionalBinaryFunctions:error:_)]
         unsafe fn newRenderPipelineStateWithAdditionalBinaryFunctions_error(
             &self,
@@ -767,30 +770,24 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLRenderPipelineColorAttachmentDescriptorArray")]
     pub struct MTLRenderPipelineColorAttachmentDescriptorArray;
 
-    #[cfg(feature = "Metal_MTLRenderPipelineColorAttachmentDescriptorArray")]
     unsafe impl ClassType for MTLRenderPipelineColorAttachmentDescriptorArray {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLRenderPipelineColorAttachmentDescriptorArray")]
 unsafe impl NSObjectProtocol for MTLRenderPipelineColorAttachmentDescriptorArray {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLRenderPipelineColorAttachmentDescriptorArray")]
     unsafe impl MTLRenderPipelineColorAttachmentDescriptorArray {
-        #[cfg(feature = "Metal_MTLRenderPipelineColorAttachmentDescriptor")]
         #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             attachment_index: NSUInteger,
         ) -> Id<MTLRenderPipelineColorAttachmentDescriptor>;
 
-        #[cfg(feature = "Metal_MTLRenderPipelineColorAttachmentDescriptor")]
         #[method(setObject:atIndexedSubscript:)]
         pub unsafe fn setObject_atIndexedSubscript(
             &self,
@@ -802,7 +799,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLRenderPipelineColorAttachmentDescriptorArray")]
     unsafe impl MTLRenderPipelineColorAttachmentDescriptorArray {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -814,28 +810,26 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLTileRenderPipelineColorAttachmentDescriptor")]
     pub struct MTLTileRenderPipelineColorAttachmentDescriptor;
 
-    #[cfg(feature = "Metal_MTLTileRenderPipelineColorAttachmentDescriptor")]
     unsafe impl ClassType for MTLTileRenderPipelineColorAttachmentDescriptor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLTileRenderPipelineColorAttachmentDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLTileRenderPipelineColorAttachmentDescriptor {}
 
-#[cfg(feature = "Metal_MTLTileRenderPipelineColorAttachmentDescriptor")]
 unsafe impl NSObjectProtocol for MTLTileRenderPipelineColorAttachmentDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLTileRenderPipelineColorAttachmentDescriptor")]
     unsafe impl MTLTileRenderPipelineColorAttachmentDescriptor {
+        #[cfg(feature = "Metal_MTLPixelFormat")]
         #[method(pixelFormat)]
         pub unsafe fn pixelFormat(&self) -> MTLPixelFormat;
 
+        #[cfg(feature = "Metal_MTLPixelFormat")]
         #[method(setPixelFormat:)]
         pub unsafe fn setPixelFormat(&self, pixel_format: MTLPixelFormat);
     }
@@ -843,7 +837,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLTileRenderPipelineColorAttachmentDescriptor")]
     unsafe impl MTLTileRenderPipelineColorAttachmentDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -855,30 +848,24 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLTileRenderPipelineColorAttachmentDescriptorArray")]
     pub struct MTLTileRenderPipelineColorAttachmentDescriptorArray;
 
-    #[cfg(feature = "Metal_MTLTileRenderPipelineColorAttachmentDescriptorArray")]
     unsafe impl ClassType for MTLTileRenderPipelineColorAttachmentDescriptorArray {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLTileRenderPipelineColorAttachmentDescriptorArray")]
 unsafe impl NSObjectProtocol for MTLTileRenderPipelineColorAttachmentDescriptorArray {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLTileRenderPipelineColorAttachmentDescriptorArray")]
     unsafe impl MTLTileRenderPipelineColorAttachmentDescriptorArray {
-        #[cfg(feature = "Metal_MTLTileRenderPipelineColorAttachmentDescriptor")]
         #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             attachment_index: NSUInteger,
         ) -> Id<MTLTileRenderPipelineColorAttachmentDescriptor>;
 
-        #[cfg(feature = "Metal_MTLTileRenderPipelineColorAttachmentDescriptor")]
         #[method(setObject:atIndexedSubscript:)]
         pub unsafe fn setObject_atIndexedSubscript(
             &self,
@@ -890,7 +877,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLTileRenderPipelineColorAttachmentDescriptorArray")]
     unsafe impl MTLTileRenderPipelineColorAttachmentDescriptorArray {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -902,24 +888,20 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLTileRenderPipelineDescriptor")]
     pub struct MTLTileRenderPipelineDescriptor;
 
-    #[cfg(feature = "Metal_MTLTileRenderPipelineDescriptor")]
     unsafe impl ClassType for MTLTileRenderPipelineDescriptor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLTileRenderPipelineDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLTileRenderPipelineDescriptor {}
 
-#[cfg(feature = "Metal_MTLTileRenderPipelineDescriptor")]
 unsafe impl NSObjectProtocol for MTLTileRenderPipelineDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLTileRenderPipelineDescriptor")]
     unsafe impl MTLTileRenderPipelineDescriptor {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
@@ -929,9 +911,11 @@ extern_methods!(
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: Option<&NSString>);
 
+        #[cfg(feature = "Metal_MTLLibrary")]
         #[method_id(@__retain_semantics Other tileFunction)]
         pub unsafe fn tileFunction(&self) -> Id<ProtocolObject<dyn MTLFunction>>;
 
+        #[cfg(feature = "Metal_MTLLibrary")]
         #[method(setTileFunction:)]
         pub unsafe fn setTileFunction(&self, tile_function: &ProtocolObject<dyn MTLFunction>);
 
@@ -941,7 +925,6 @@ extern_methods!(
         #[method(setRasterSampleCount:)]
         pub unsafe fn setRasterSampleCount(&self, raster_sample_count: NSUInteger);
 
-        #[cfg(feature = "Metal_MTLTileRenderPipelineColorAttachmentDescriptorArray")]
         #[method_id(@__retain_semantics Other colorAttachments)]
         pub unsafe fn colorAttachments(
             &self,
@@ -956,7 +939,7 @@ extern_methods!(
             threadgroup_size_matches_tile_size: bool,
         );
 
-        #[cfg(feature = "Metal_MTLPipelineBufferDescriptorArray")]
+        #[cfg(feature = "Metal_MTLPipeline")]
         #[method_id(@__retain_semantics Other tileBuffers)]
         pub unsafe fn tileBuffers(&self) -> Id<MTLPipelineBufferDescriptorArray>;
 
@@ -969,26 +952,26 @@ extern_methods!(
             max_total_threads_per_threadgroup: NSUInteger,
         );
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLBinaryArchive"))]
         #[method_id(@__retain_semantics Other binaryArchives)]
         pub unsafe fn binaryArchives(
             &self,
         ) -> Option<Id<NSArray<ProtocolObject<dyn MTLBinaryArchive>>>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLBinaryArchive"))]
         #[method(setBinaryArchives:)]
         pub unsafe fn setBinaryArchives(
             &self,
             binary_archives: Option<&NSArray<ProtocolObject<dyn MTLBinaryArchive>>>,
         );
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLDynamicLibrary"))]
         #[method_id(@__retain_semantics Other preloadedLibraries)]
         pub unsafe fn preloadedLibraries(
             &self,
         ) -> Id<NSArray<ProtocolObject<dyn MTLDynamicLibrary>>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLDynamicLibrary"))]
         #[method(setPreloadedLibraries:)]
         pub unsafe fn setPreloadedLibraries(
             &self,
@@ -1022,7 +1005,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLTileRenderPipelineDescriptor")]
     unsafe impl MTLTileRenderPipelineDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -1034,24 +1016,20 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLMeshRenderPipelineDescriptor")]
     pub struct MTLMeshRenderPipelineDescriptor;
 
-    #[cfg(feature = "Metal_MTLMeshRenderPipelineDescriptor")]
     unsafe impl ClassType for MTLMeshRenderPipelineDescriptor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLMeshRenderPipelineDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLMeshRenderPipelineDescriptor {}
 
-#[cfg(feature = "Metal_MTLMeshRenderPipelineDescriptor")]
 unsafe impl NSObjectProtocol for MTLMeshRenderPipelineDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLMeshRenderPipelineDescriptor")]
     unsafe impl MTLMeshRenderPipelineDescriptor {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other label)]
@@ -1061,27 +1039,33 @@ extern_methods!(
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: Option<&NSString>);
 
+        #[cfg(feature = "Metal_MTLLibrary")]
         #[method_id(@__retain_semantics Other objectFunction)]
         pub unsafe fn objectFunction(&self) -> Option<Id<ProtocolObject<dyn MTLFunction>>>;
 
+        #[cfg(feature = "Metal_MTLLibrary")]
         #[method(setObjectFunction:)]
         pub unsafe fn setObjectFunction(
             &self,
             object_function: Option<&ProtocolObject<dyn MTLFunction>>,
         );
 
+        #[cfg(feature = "Metal_MTLLibrary")]
         #[method_id(@__retain_semantics Other meshFunction)]
         pub unsafe fn meshFunction(&self) -> Option<Id<ProtocolObject<dyn MTLFunction>>>;
 
+        #[cfg(feature = "Metal_MTLLibrary")]
         #[method(setMeshFunction:)]
         pub unsafe fn setMeshFunction(
             &self,
             mesh_function: Option<&ProtocolObject<dyn MTLFunction>>,
         );
 
+        #[cfg(feature = "Metal_MTLLibrary")]
         #[method_id(@__retain_semantics Other fragmentFunction)]
         pub unsafe fn fragmentFunction(&self) -> Option<Id<ProtocolObject<dyn MTLFunction>>>;
 
+        #[cfg(feature = "Metal_MTLLibrary")]
         #[method(setFragmentFunction:)]
         pub unsafe fn setFragmentFunction(
             &self,
@@ -1139,15 +1123,15 @@ extern_methods!(
             max_total_threadgroups_per_mesh_grid: NSUInteger,
         );
 
-        #[cfg(feature = "Metal_MTLPipelineBufferDescriptorArray")]
+        #[cfg(feature = "Metal_MTLPipeline")]
         #[method_id(@__retain_semantics Other objectBuffers)]
         pub unsafe fn objectBuffers(&self) -> Id<MTLPipelineBufferDescriptorArray>;
 
-        #[cfg(feature = "Metal_MTLPipelineBufferDescriptorArray")]
+        #[cfg(feature = "Metal_MTLPipeline")]
         #[method_id(@__retain_semantics Other meshBuffers)]
         pub unsafe fn meshBuffers(&self) -> Id<MTLPipelineBufferDescriptorArray>;
 
-        #[cfg(feature = "Metal_MTLPipelineBufferDescriptorArray")]
+        #[cfg(feature = "Metal_MTLPipeline")]
         #[method_id(@__retain_semantics Other fragmentBuffers)]
         pub unsafe fn fragmentBuffers(&self) -> Id<MTLPipelineBufferDescriptorArray>;
 
@@ -1184,24 +1168,27 @@ extern_methods!(
             max_vertex_amplification_count: NSUInteger,
         );
 
-        #[cfg(feature = "Metal_MTLRenderPipelineColorAttachmentDescriptorArray")]
         #[method_id(@__retain_semantics Other colorAttachments)]
         pub unsafe fn colorAttachments(
             &self,
         ) -> Id<MTLRenderPipelineColorAttachmentDescriptorArray>;
 
+        #[cfg(feature = "Metal_MTLPixelFormat")]
         #[method(depthAttachmentPixelFormat)]
         pub unsafe fn depthAttachmentPixelFormat(&self) -> MTLPixelFormat;
 
+        #[cfg(feature = "Metal_MTLPixelFormat")]
         #[method(setDepthAttachmentPixelFormat:)]
         pub unsafe fn setDepthAttachmentPixelFormat(
             &self,
             depth_attachment_pixel_format: MTLPixelFormat,
         );
 
+        #[cfg(feature = "Metal_MTLPixelFormat")]
         #[method(stencilAttachmentPixelFormat)]
         pub unsafe fn stencilAttachmentPixelFormat(&self) -> MTLPixelFormat;
 
+        #[cfg(feature = "Metal_MTLPixelFormat")]
         #[method(setStencilAttachmentPixelFormat:)]
         pub unsafe fn setStencilAttachmentPixelFormat(
             &self,
@@ -1257,7 +1244,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLMeshRenderPipelineDescriptor")]
     unsafe impl MTLMeshRenderPipelineDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

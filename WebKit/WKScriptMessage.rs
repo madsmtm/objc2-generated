@@ -7,26 +7,26 @@ use crate::WebKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_WKScriptMessage")]
     pub struct WKScriptMessage;
 
-    #[cfg(feature = "WebKit_WKScriptMessage")]
     unsafe impl ClassType for WKScriptMessage {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "WebKit_WKScriptMessage")]
 unsafe impl NSObjectProtocol for WKScriptMessage {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_WKScriptMessage")]
     unsafe impl WKScriptMessage {
         #[method_id(@__retain_semantics Other body)]
         pub unsafe fn body(&self) -> Id<AnyObject>;
 
-        #[cfg(feature = "WebKit_WKWebView")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "WebKit_WKWebView"
+        ))]
         #[method_id(@__retain_semantics Other webView)]
         pub unsafe fn webView(&self, mtm: MainThreadMarker) -> Option<Id<WKWebView>>;
 
@@ -46,7 +46,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_WKScriptMessage")]
     unsafe impl WKScriptMessage {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

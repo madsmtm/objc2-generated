@@ -7,10 +7,18 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSDatePicker")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     pub struct NSDatePicker;
 
-    #[cfg(feature = "AppKit_NSDatePicker")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl ClassType for NSDatePicker {
         #[inherits(NSView, NSResponder, NSObject)]
         type Super = NSControl;
@@ -18,36 +26,81 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSDatePicker")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibility for NSDatePicker {}
 
-#[cfg(feature = "AppKit_NSDatePicker")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibilityElementProtocol for NSDatePicker {}
 
-#[cfg(feature = "AppKit_NSDatePicker")]
+#[cfg(all(
+    feature = "AppKit_NSAnimation",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAnimatablePropertyContainer for NSDatePicker {}
 
-#[cfg(feature = "AppKit_NSDatePicker")]
+#[cfg(all(
+    feature = "AppKit_NSAppearance",
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAppearanceCustomization for NSDatePicker {}
 
-#[cfg(feature = "AppKit_NSDatePicker")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSDatePicker {}
 
-#[cfg(feature = "AppKit_NSDatePicker")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSDragging",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSDraggingDestination for NSDatePicker {}
 
-#[cfg(feature = "AppKit_NSDatePicker")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSObjectProtocol for NSDatePicker {}
 
-#[cfg(feature = "AppKit_NSDatePicker")]
+#[cfg(all(
+    feature = "AppKit_NSControl",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSDatePicker {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSDatePicker")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSDatePicker {
+        #[cfg(feature = "AppKit_NSDatePickerCell")]
         #[method(datePickerStyle)]
         pub unsafe fn datePickerStyle(&self) -> NSDatePickerStyle;
 
+        #[cfg(feature = "AppKit_NSDatePickerCell")]
         #[method(setDatePickerStyle:)]
         pub unsafe fn setDatePickerStyle(&self, date_picker_style: NSDatePickerStyle);
 
@@ -85,15 +138,19 @@ extern_methods!(
         #[method(setTextColor:)]
         pub unsafe fn setTextColor(&self, text_color: &NSColor);
 
+        #[cfg(feature = "AppKit_NSDatePickerCell")]
         #[method(datePickerMode)]
         pub unsafe fn datePickerMode(&self) -> NSDatePickerMode;
 
+        #[cfg(feature = "AppKit_NSDatePickerCell")]
         #[method(setDatePickerMode:)]
         pub unsafe fn setDatePickerMode(&self, date_picker_mode: NSDatePickerMode);
 
+        #[cfg(feature = "AppKit_NSDatePickerCell")]
         #[method(datePickerElements)]
         pub unsafe fn datePickerElements(&self) -> NSDatePickerElementFlags;
 
+        #[cfg(feature = "AppKit_NSDatePickerCell")]
         #[method(setDatePickerElements:)]
         pub unsafe fn setDatePickerElements(&self, date_picker_elements: NSDatePickerElementFlags);
 
@@ -129,9 +186,11 @@ extern_methods!(
         #[method(setDateValue:)]
         pub unsafe fn setDateValue(&self, date_value: &NSDate);
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(timeInterval)]
         pub unsafe fn timeInterval(&self) -> NSTimeInterval;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(setTimeInterval:)]
         pub unsafe fn setTimeInterval(&self, time_interval: NSTimeInterval);
 
@@ -157,9 +216,11 @@ extern_methods!(
         #[method(setPresentsCalendarOverlay:)]
         pub unsafe fn setPresentsCalendarOverlay(&self, presents_calendar_overlay: bool);
 
+        #[cfg(feature = "AppKit_NSDatePickerCell")]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Id<ProtocolObject<dyn NSDatePickerCellDelegate>>>;
 
+        #[cfg(feature = "AppKit_NSDatePickerCell")]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -170,8 +231,13 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSControl`
-    #[cfg(feature = "AppKit_NSDatePicker")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSDatePicker {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
 
@@ -183,7 +249,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "AppKit_NSDatePicker")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSDatePicker {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -192,7 +262,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSDatePicker")]
+    #[cfg(all(
+        feature = "AppKit_NSControl",
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl NSDatePicker {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

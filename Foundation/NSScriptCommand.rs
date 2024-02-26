@@ -17,24 +17,20 @@ pub const NSCannotCreateScriptCommandError: NSInteger = 10;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSScriptCommand")]
     pub struct NSScriptCommand;
 
-    #[cfg(feature = "Foundation_NSScriptCommand")]
     unsafe impl ClassType for NSScriptCommand {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSScriptCommand")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSScriptCommand {}
 
-#[cfg(feature = "Foundation_NSScriptCommand")]
 unsafe impl NSObjectProtocol for NSScriptCommand {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSScriptCommand")]
     unsafe impl NSScriptCommand {
         #[cfg(feature = "Foundation_NSScriptCommandDescription")]
         #[method_id(@__retain_semantics Init initWithCommandDescription:)]
@@ -57,11 +53,11 @@ extern_methods!(
         #[method(setDirectParameter:)]
         pub unsafe fn setDirectParameter(&self, direct_parameter: Option<&AnyObject>);
 
-        #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
+        #[cfg(feature = "Foundation_NSScriptObjectSpecifiers")]
         #[method_id(@__retain_semantics Other receiversSpecifier)]
         pub unsafe fn receiversSpecifier(&self) -> Option<Id<NSScriptObjectSpecifier>>;
 
-        #[cfg(feature = "Foundation_NSScriptObjectSpecifier")]
+        #[cfg(feature = "Foundation_NSScriptObjectSpecifiers")]
         #[method(setReceiversSpecifier:)]
         pub unsafe fn setReceiversSpecifier(
             &self,
@@ -149,7 +145,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSScriptCommand")]
     unsafe impl NSScriptCommand {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -36,11 +36,11 @@ pub const DOM_WEBKIT_KEYFRAME_RULE: c_uint = 8;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_DOMCSSRule")]
+    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
     #[deprecated]
     pub struct DOMCSSRule;
 
-    #[cfg(feature = "WebKit_DOMCSSRule")]
+    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
     unsafe impl ClassType for DOMCSSRule {
         #[inherits(WebScriptObject, NSObject)]
         type Super = DOMObject;
@@ -48,14 +48,18 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "WebKit_DOMCSSRule")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSCopying for DOMCSSRule {}
 
-#[cfg(feature = "WebKit_DOMCSSRule")]
+#[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
 unsafe impl NSObjectProtocol for DOMCSSRule {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_DOMCSSRule")]
+    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
     unsafe impl DOMCSSRule {
         #[deprecated]
         #[method(type)]
@@ -71,7 +75,7 @@ extern_methods!(
         #[method(setCssText:)]
         pub unsafe fn setCssText(&self, css_text: Option<&NSString>);
 
-        #[cfg(feature = "WebKit_DOMCSSStyleSheet")]
+        #[cfg(all(feature = "WebKit_DOMCSSStyleSheet", feature = "WebKit_DOMStyleSheet"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other parentStyleSheet)]
         pub unsafe fn parentStyleSheet(&self) -> Option<Id<DOMCSSStyleSheet>>;
@@ -84,7 +88,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
-    #[cfg(feature = "WebKit_DOMCSSRule")]
+    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
     unsafe impl DOMCSSRule {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
@@ -94,7 +98,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_DOMCSSRule")]
+    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
     unsafe impl DOMCSSRule {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

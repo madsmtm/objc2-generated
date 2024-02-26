@@ -6,30 +6,26 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSManagedObjectModel")]
     pub struct NSManagedObjectModel;
 
-    #[cfg(feature = "CoreData_NSManagedObjectModel")]
     unsafe impl ClassType for NSManagedObjectModel {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreData_NSManagedObjectModel")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSManagedObjectModel {}
 
-#[cfg(feature = "CoreData_NSManagedObjectModel")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSManagedObjectModel {}
 
-#[cfg(feature = "CoreData_NSManagedObjectModel")]
+#[cfg(feature = "Foundation_NSEnumerator")]
 unsafe impl NSFastEnumeration for NSManagedObjectModel {}
 
-#[cfg(feature = "CoreData_NSManagedObjectModel")]
 unsafe impl NSObjectProtocol for NSManagedObjectModel {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSManagedObjectModel")]
     unsafe impl NSManagedObjectModel {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSBundle"))]
         #[method_id(@__retain_semantics Other mergedModelFromBundles:)]
@@ -100,7 +96,11 @@ extern_methods!(
             configuration: &NSString,
         );
 
-        #[cfg(all(feature = "CoreData_NSFetchRequest", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "CoreData_NSFetchRequest",
+            feature = "CoreData_NSPersistentStoreRequest",
+            feature = "Foundation_NSString"
+        ))]
         #[method(setFetchRequestTemplate:forName:)]
         pub unsafe fn setFetchRequestTemplate_forName(
             &self,
@@ -108,7 +108,11 @@ extern_methods!(
             name: &NSString,
         );
 
-        #[cfg(all(feature = "CoreData_NSFetchRequest", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "CoreData_NSFetchRequest",
+            feature = "CoreData_NSPersistentStoreRequest",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other fetchRequestTemplateForName:)]
         pub unsafe fn fetchRequestTemplateForName(
             &self,
@@ -117,6 +121,7 @@ extern_methods!(
 
         #[cfg(all(
             feature = "CoreData_NSFetchRequest",
+            feature = "CoreData_NSPersistentStoreRequest",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString"
         ))]
@@ -164,6 +169,7 @@ extern_methods!(
 
         #[cfg(all(
             feature = "CoreData_NSFetchRequest",
+            feature = "CoreData_NSPersistentStoreRequest",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString"
         ))]
@@ -215,7 +221,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSManagedObjectModel")]
     unsafe impl NSManagedObjectModel {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

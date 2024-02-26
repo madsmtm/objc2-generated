@@ -8,30 +8,26 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKFHIRVersion")]
     pub struct HKFHIRVersion;
 
-    #[cfg(feature = "HealthKit_HKFHIRVersion")]
     unsafe impl ClassType for HKFHIRVersion {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "HealthKit_HKFHIRVersion")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for HKFHIRVersion {}
 
-#[cfg(feature = "HealthKit_HKFHIRVersion")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for HKFHIRVersion {}
 
-#[cfg(feature = "HealthKit_HKFHIRVersion")]
 unsafe impl NSObjectProtocol for HKFHIRVersion {}
 
-#[cfg(feature = "HealthKit_HKFHIRVersion")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for HKFHIRVersion {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKFHIRVersion")]
     unsafe impl HKFHIRVersion {
         #[method(majorVersion)]
         pub unsafe fn majorVersion(&self) -> NSInteger;
@@ -42,7 +38,7 @@ extern_methods!(
         #[method(patchVersion)]
         pub unsafe fn patchVersion(&self) -> NSInteger;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSString", feature = "HealthKit_HKFHIRRelease"))]
         #[method_id(@__retain_semantics Other FHIRRelease)]
         pub unsafe fn FHIRRelease(&self) -> Id<HKFHIRRelease>;
 
@@ -69,7 +65,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKFHIRVersion")]
     unsafe impl HKFHIRVersion {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

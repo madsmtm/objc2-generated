@@ -7,21 +7,17 @@ use crate::UserNotifications::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "UserNotifications_UNNotificationServiceExtension")]
     pub struct UNNotificationServiceExtension;
 
-    #[cfg(feature = "UserNotifications_UNNotificationServiceExtension")]
     unsafe impl ClassType for UNNotificationServiceExtension {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "UserNotifications_UNNotificationServiceExtension")]
 unsafe impl NSObjectProtocol for UNNotificationServiceExtension {}
 
 extern_methods!(
-    #[cfg(feature = "UserNotifications_UNNotificationServiceExtension")]
     unsafe impl UNNotificationServiceExtension {
         #[cfg(all(
             feature = "UserNotifications_UNNotificationContent",
@@ -41,7 +37,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UserNotifications_UNNotificationServiceExtension")]
     unsafe impl UNNotificationServiceExtension {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

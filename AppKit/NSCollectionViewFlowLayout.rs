@@ -15,18 +15,18 @@ ns_enum!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "AppKit_NSCollectionView", feature = "Foundation_NSString"))]
 extern_static!(NSCollectionElementKindSectionHeader: &'static NSCollectionViewSupplementaryElementKind);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "AppKit_NSCollectionView", feature = "Foundation_NSString"))]
 extern_static!(NSCollectionElementKindSectionFooter: &'static NSCollectionViewSupplementaryElementKind);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSCollectionViewFlowLayoutInvalidationContext")]
+    #[cfg(feature = "AppKit_NSCollectionViewLayout")]
     pub struct NSCollectionViewFlowLayoutInvalidationContext;
 
-    #[cfg(feature = "AppKit_NSCollectionViewFlowLayoutInvalidationContext")]
+    #[cfg(feature = "AppKit_NSCollectionViewLayout")]
     unsafe impl ClassType for NSCollectionViewFlowLayoutInvalidationContext {
         #[inherits(NSObject)]
         type Super = NSCollectionViewLayoutInvalidationContext;
@@ -34,11 +34,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSCollectionViewFlowLayoutInvalidationContext")]
+#[cfg(feature = "AppKit_NSCollectionViewLayout")]
 unsafe impl NSObjectProtocol for NSCollectionViewFlowLayoutInvalidationContext {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSCollectionViewFlowLayoutInvalidationContext")]
+    #[cfg(feature = "AppKit_NSCollectionViewLayout")]
     unsafe impl NSCollectionViewFlowLayoutInvalidationContext {
         #[method(invalidateFlowLayoutDelegateMetrics)]
         pub unsafe fn invalidateFlowLayoutDelegateMetrics(&self) -> bool;
@@ -62,7 +62,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSCollectionViewFlowLayoutInvalidationContext")]
+    #[cfg(feature = "AppKit_NSCollectionViewLayout")]
     unsafe impl NSCollectionViewFlowLayoutInvalidationContext {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -73,12 +73,15 @@ extern_methods!(
 );
 
 extern_protocol!(
+    #[cfg(feature = "AppKit_NSCollectionView")]
     pub unsafe trait NSCollectionViewDelegateFlowLayout:
         NSCollectionViewDelegate + IsMainThreadOnly
     {
         #[cfg(all(
-            feature = "AppKit_NSCollectionView",
             feature = "AppKit_NSCollectionViewLayout",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry",
             feature = "Foundation_NSIndexPath"
         ))]
         #[optional]
@@ -91,8 +94,10 @@ extern_protocol!(
         ) -> NSSize;
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionView",
-            feature = "AppKit_NSCollectionViewLayout"
+            feature = "AppKit_NSCollectionViewLayout",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry"
         ))]
         #[optional]
         #[method(collectionView:layout:insetForSectionAtIndex:)]
@@ -104,8 +109,10 @@ extern_protocol!(
         ) -> NSEdgeInsets;
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionView",
-            feature = "AppKit_NSCollectionViewLayout"
+            feature = "AppKit_NSCollectionViewLayout",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry"
         ))]
         #[optional]
         #[method(collectionView:layout:minimumLineSpacingForSectionAtIndex:)]
@@ -117,8 +124,10 @@ extern_protocol!(
         ) -> CGFloat;
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionView",
-            feature = "AppKit_NSCollectionViewLayout"
+            feature = "AppKit_NSCollectionViewLayout",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry"
         ))]
         #[optional]
         #[method(collectionView:layout:minimumInteritemSpacingForSectionAtIndex:)]
@@ -130,8 +139,10 @@ extern_protocol!(
         ) -> CGFloat;
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionView",
-            feature = "AppKit_NSCollectionViewLayout"
+            feature = "AppKit_NSCollectionViewLayout",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry"
         ))]
         #[optional]
         #[method(collectionView:layout:referenceSizeForHeaderInSection:)]
@@ -143,8 +154,10 @@ extern_protocol!(
         ) -> NSSize;
 
         #[cfg(all(
-            feature = "AppKit_NSCollectionView",
-            feature = "AppKit_NSCollectionViewLayout"
+            feature = "AppKit_NSCollectionViewLayout",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry"
         ))]
         #[optional]
         #[method(collectionView:layout:referenceSizeForFooterInSection:)]
@@ -156,15 +169,16 @@ extern_protocol!(
         ) -> NSSize;
     }
 
+    #[cfg(feature = "AppKit_NSCollectionView")]
     unsafe impl ProtocolType for dyn NSCollectionViewDelegateFlowLayout {}
 );
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSCollectionViewFlowLayout")]
+    #[cfg(feature = "AppKit_NSCollectionViewLayout")]
     pub struct NSCollectionViewFlowLayout;
 
-    #[cfg(feature = "AppKit_NSCollectionViewFlowLayout")]
+    #[cfg(feature = "AppKit_NSCollectionViewLayout")]
     unsafe impl ClassType for NSCollectionViewFlowLayout {
         #[inherits(NSObject)]
         type Super = NSCollectionViewLayout;
@@ -172,36 +186,47 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSCollectionViewFlowLayout")]
+#[cfg(all(
+    feature = "AppKit_NSCollectionViewLayout",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSCollectionViewFlowLayout {}
 
-#[cfg(feature = "AppKit_NSCollectionViewFlowLayout")]
+#[cfg(feature = "AppKit_NSCollectionViewLayout")]
 unsafe impl NSObjectProtocol for NSCollectionViewFlowLayout {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSCollectionViewFlowLayout")]
+    #[cfg(feature = "AppKit_NSCollectionViewLayout")]
     unsafe impl NSCollectionViewFlowLayout {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(minimumLineSpacing)]
         pub unsafe fn minimumLineSpacing(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setMinimumLineSpacing:)]
         pub unsafe fn setMinimumLineSpacing(&self, minimum_line_spacing: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(minimumInteritemSpacing)]
         pub unsafe fn minimumInteritemSpacing(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setMinimumInteritemSpacing:)]
         pub unsafe fn setMinimumInteritemSpacing(&self, minimum_interitem_spacing: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(itemSize)]
         pub unsafe fn itemSize(&self) -> NSSize;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setItemSize:)]
         pub unsafe fn setItemSize(&self, item_size: NSSize);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(estimatedItemSize)]
         pub unsafe fn estimatedItemSize(&self) -> NSSize;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setEstimatedItemSize:)]
         pub unsafe fn setEstimatedItemSize(&self, estimated_item_size: NSSize);
 
@@ -211,21 +236,27 @@ extern_methods!(
         #[method(setScrollDirection:)]
         pub unsafe fn setScrollDirection(&self, scroll_direction: NSCollectionViewScrollDirection);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(headerReferenceSize)]
         pub unsafe fn headerReferenceSize(&self) -> NSSize;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setHeaderReferenceSize:)]
         pub unsafe fn setHeaderReferenceSize(&self, header_reference_size: NSSize);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(footerReferenceSize)]
         pub unsafe fn footerReferenceSize(&self) -> NSSize;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setFooterReferenceSize:)]
         pub unsafe fn setFooterReferenceSize(&self, footer_reference_size: NSSize);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(sectionInset)]
         pub unsafe fn sectionInset(&self) -> NSEdgeInsets;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setSectionInset:)]
         pub unsafe fn setSectionInset(&self, section_inset: NSEdgeInsets);
 
@@ -260,7 +291,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSCollectionViewFlowLayout")]
+    #[cfg(feature = "AppKit_NSCollectionViewLayout")]
     unsafe impl NSCollectionViewFlowLayout {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -68,11 +68,19 @@ pub const DOM_CSS_VMAX: c_uint = 29;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+    #[cfg(all(
+        feature = "WebKit_DOMCSSValue",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     #[deprecated]
     pub struct DOMCSSPrimitiveValue;
 
-    #[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+    #[cfg(all(
+        feature = "WebKit_DOMCSSValue",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl ClassType for DOMCSSPrimitiveValue {
         #[inherits(DOMObject, WebScriptObject, NSObject)]
         type Super = DOMCSSValue;
@@ -80,14 +88,27 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "WebKit_DOMCSSValue",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSCopying for DOMCSSPrimitiveValue {}
 
-#[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+#[cfg(all(
+    feature = "WebKit_DOMCSSValue",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSObjectProtocol for DOMCSSPrimitiveValue {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+    #[cfg(all(
+        feature = "WebKit_DOMCSSValue",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMCSSPrimitiveValue {
         #[deprecated]
         #[method(primitiveType)]
@@ -132,7 +153,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
-    #[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+    #[cfg(all(
+        feature = "WebKit_DOMCSSValue",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMCSSPrimitiveValue {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
@@ -142,7 +167,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+    #[cfg(all(
+        feature = "WebKit_DOMCSSValue",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMCSSPrimitiveValue {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -151,7 +180,11 @@ extern_methods!(
 
 extern_methods!(
     /// DOMCSSPrimitiveValueDeprecated
-    #[cfg(feature = "WebKit_DOMCSSPrimitiveValue")]
+    #[cfg(all(
+        feature = "WebKit_DOMCSSValue",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMCSSPrimitiveValue {
         #[deprecated]
         #[method(setFloatValue::)]

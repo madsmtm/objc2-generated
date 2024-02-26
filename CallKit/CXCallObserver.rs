@@ -6,7 +6,7 @@ use crate::Foundation::*;
 
 extern_protocol!(
     pub unsafe trait CXCallObserverDelegate: NSObjectProtocol {
-        #[cfg(all(feature = "CallKit_CXCall", feature = "CallKit_CXCallObserver"))]
+        #[cfg(feature = "CallKit_CXCall")]
         #[method(callObserver:callChanged:)]
         unsafe fn callObserver_callChanged(&self, call_observer: &CXCallObserver, call: &CXCall);
     }
@@ -16,21 +16,17 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CallKit_CXCallObserver")]
     pub struct CXCallObserver;
 
-    #[cfg(feature = "CallKit_CXCallObserver")]
     unsafe impl ClassType for CXCallObserver {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CallKit_CXCallObserver")]
 unsafe impl NSObjectProtocol for CXCallObserver {}
 
 extern_methods!(
-    #[cfg(feature = "CallKit_CXCallObserver")]
     unsafe impl CXCallObserver {
         #[cfg(all(feature = "CallKit_CXCall", feature = "Foundation_NSArray"))]
         #[method_id(@__retain_semantics Other calls)]
@@ -40,7 +36,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CallKit_CXCallObserver")]
     unsafe impl CXCallObserver {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

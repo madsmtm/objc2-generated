@@ -6,21 +6,17 @@ use crate::QuartzCore::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "QuartzCore_CARemoteLayerClient")]
     pub struct CARemoteLayerClient;
 
-    #[cfg(feature = "QuartzCore_CARemoteLayerClient")]
     unsafe impl ClassType for CARemoteLayerClient {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "QuartzCore_CARemoteLayerClient")]
 unsafe impl NSObjectProtocol for CARemoteLayerClient {}
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CARemoteLayerClient")]
     unsafe impl CARemoteLayerClient {
         #[method(invalidate)]
         pub unsafe fn invalidate(&self);
@@ -40,7 +36,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "QuartzCore_CARemoteLayerClient")]
     unsafe impl CARemoteLayerClient {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

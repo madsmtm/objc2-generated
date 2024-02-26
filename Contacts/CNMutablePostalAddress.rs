@@ -6,10 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Contacts_CNMutablePostalAddress")]
+    #[cfg(feature = "Contacts_CNPostalAddress")]
     pub struct CNMutablePostalAddress;
 
-    #[cfg(feature = "Contacts_CNMutablePostalAddress")]
+    #[cfg(feature = "Contacts_CNPostalAddress")]
     unsafe impl ClassType for CNMutablePostalAddress {
         #[inherits(NSObject)]
         type Super = CNPostalAddress;
@@ -17,23 +17,23 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Contacts_CNMutablePostalAddress")]
+#[cfg(all(feature = "Contacts_CNPostalAddress", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for CNMutablePostalAddress {}
 
-#[cfg(feature = "Contacts_CNMutablePostalAddress")]
+#[cfg(all(feature = "Contacts_CNPostalAddress", feature = "Foundation_NSObject"))]
 unsafe impl NSCopying for CNMutablePostalAddress {}
 
-#[cfg(feature = "Contacts_CNMutablePostalAddress")]
+#[cfg(all(feature = "Contacts_CNPostalAddress", feature = "Foundation_NSObject"))]
 unsafe impl NSMutableCopying for CNMutablePostalAddress {}
 
-#[cfg(feature = "Contacts_CNMutablePostalAddress")]
+#[cfg(feature = "Contacts_CNPostalAddress")]
 unsafe impl NSObjectProtocol for CNMutablePostalAddress {}
 
-#[cfg(feature = "Contacts_CNMutablePostalAddress")]
+#[cfg(all(feature = "Contacts_CNPostalAddress", feature = "Foundation_NSObject"))]
 unsafe impl NSSecureCoding for CNMutablePostalAddress {}
 
 extern_methods!(
-    #[cfg(feature = "Contacts_CNMutablePostalAddress")]
+    #[cfg(feature = "Contacts_CNPostalAddress")]
     unsafe impl CNMutablePostalAddress {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other street)]
@@ -103,7 +103,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Contacts_CNMutablePostalAddress")]
+    #[cfg(feature = "Contacts_CNPostalAddress")]
     unsafe impl CNMutablePostalAddress {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

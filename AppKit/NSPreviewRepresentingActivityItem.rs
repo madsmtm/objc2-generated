@@ -31,24 +31,19 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSPreviewRepresentingActivityItem")]
     pub struct NSPreviewRepresentingActivityItem;
 
-    #[cfg(feature = "AppKit_NSPreviewRepresentingActivityItem")]
     unsafe impl ClassType for NSPreviewRepresentingActivityItem {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSPreviewRepresentingActivityItem")]
 unsafe impl NSObjectProtocol for NSPreviewRepresentingActivityItem {}
 
-#[cfg(feature = "AppKit_NSPreviewRepresentingActivityItem")]
 unsafe impl NSPreviewRepresentableActivityItem for NSPreviewRepresentingActivityItem {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSPreviewRepresentingActivityItem")]
     unsafe impl NSPreviewRepresentingActivityItem {
         #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithItem:title:image:icon:)]

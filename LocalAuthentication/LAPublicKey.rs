@@ -6,21 +6,17 @@ use crate::LocalAuthentication::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "LocalAuthentication_LAPublicKey")]
     pub struct LAPublicKey;
 
-    #[cfg(feature = "LocalAuthentication_LAPublicKey")]
     unsafe impl ClassType for LAPublicKey {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "LocalAuthentication_LAPublicKey")]
 unsafe impl NSObjectProtocol for LAPublicKey {}
 
 extern_methods!(
-    #[cfg(feature = "LocalAuthentication_LAPublicKey")]
     unsafe impl LAPublicKey {
         #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSError"))]
         #[method(exportBytesWithCompletion:)]

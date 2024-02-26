@@ -7,21 +7,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreLocation_CLBackgroundActivitySession")]
     pub struct CLBackgroundActivitySession;
 
-    #[cfg(feature = "CoreLocation_CLBackgroundActivitySession")]
     unsafe impl ClassType for CLBackgroundActivitySession {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreLocation_CLBackgroundActivitySession")]
 unsafe impl NSObjectProtocol for CLBackgroundActivitySession {}
 
 extern_methods!(
-    #[cfg(feature = "CoreLocation_CLBackgroundActivitySession")]
     unsafe impl CLBackgroundActivitySession {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

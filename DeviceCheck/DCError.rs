@@ -4,7 +4,7 @@ use crate::common::*;
 use crate::DeviceCheck::*;
 use crate::Foundation::*;
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
 extern_static!(DCErrorDomain: &'static NSErrorDomain);
 
 ns_error_enum!(

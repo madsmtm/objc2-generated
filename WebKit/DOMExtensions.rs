@@ -7,8 +7,13 @@ use crate::WebKit::*;
 
 extern_methods!(
     /// DOMNodeExtensions
-    #[cfg(feature = "WebKit_DOMNode")]
+    #[cfg(all(
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMNode {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(boundingBox)]
         pub unsafe fn boundingBox(&self) -> NSRect;
 
@@ -20,7 +25,12 @@ extern_methods!(
 
 extern_methods!(
     /// DOMElementAppKitExtensions
-    #[cfg(feature = "WebKit_DOMElement")]
+    #[cfg(all(
+        feature = "WebKit_DOMElement",
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMElement {
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other image)]
@@ -30,7 +40,13 @@ extern_methods!(
 
 extern_methods!(
     /// DOMHTMLDocumentExtensions
-    #[cfg(feature = "WebKit_DOMHTMLDocument")]
+    #[cfg(all(
+        feature = "WebKit_DOMDocument",
+        feature = "WebKit_DOMHTMLDocument",
+        feature = "WebKit_DOMNode",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMHTMLDocument {
         #[cfg(all(
             feature = "Foundation_NSString",

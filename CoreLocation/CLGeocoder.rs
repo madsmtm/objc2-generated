@@ -14,21 +14,17 @@ pub type CLGeocodeCompletionHandler = *mut Block<dyn Fn(*mut NSArray<CLPlacemark
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreLocation_CLGeocoder")]
     pub struct CLGeocoder;
 
-    #[cfg(feature = "CoreLocation_CLGeocoder")]
     unsafe impl ClassType for CLGeocoder {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreLocation_CLGeocoder")]
 unsafe impl NSObjectProtocol for CLGeocoder {}
 
 extern_methods!(
-    #[cfg(feature = "CoreLocation_CLGeocoder")]
     unsafe impl CLGeocoder {
         #[method(isGeocoding)]
         pub unsafe fn isGeocoding(&self) -> bool;
@@ -127,7 +123,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreLocation_CLGeocoder")]
     unsafe impl CLGeocoder {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -139,7 +134,6 @@ extern_methods!(
 
 extern_methods!(
     /// ContactsAdditions
-    #[cfg(feature = "CoreLocation_CLGeocoder")]
     unsafe impl CLGeocoder {
         #[cfg(all(
             feature = "Contacts_CNPostalAddress",

@@ -6,10 +6,10 @@ use crate::MetricKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MetricKit_MXDiskIOMetric")]
+    #[cfg(feature = "MetricKit_MXMetric")]
     pub struct MXDiskIOMetric;
 
-    #[cfg(feature = "MetricKit_MXDiskIOMetric")]
+    #[cfg(feature = "MetricKit_MXMetric")]
     unsafe impl ClassType for MXDiskIOMetric {
         #[inherits(NSObject)]
         type Super = MXMetric;
@@ -17,22 +17,19 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MetricKit_MXDiskIOMetric")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "MetricKit_MXMetric"))]
 unsafe impl NSCoding for MXDiskIOMetric {}
 
-#[cfg(feature = "MetricKit_MXDiskIOMetric")]
+#[cfg(feature = "MetricKit_MXMetric")]
 unsafe impl NSObjectProtocol for MXDiskIOMetric {}
 
-#[cfg(feature = "MetricKit_MXDiskIOMetric")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "MetricKit_MXMetric"))]
 unsafe impl NSSecureCoding for MXDiskIOMetric {}
 
 extern_methods!(
-    #[cfg(feature = "MetricKit_MXDiskIOMetric")]
+    #[cfg(feature = "MetricKit_MXMetric")]
     unsafe impl MXDiskIOMetric {
-        #[cfg(all(
-            feature = "Foundation_NSMeasurement",
-            feature = "Foundation_NSUnitInformationStorage"
-        ))]
+        #[cfg(all(feature = "Foundation_NSMeasurement", feature = "Foundation_NSUnit"))]
         #[method_id(@__retain_semantics Other cumulativeLogicalWrites)]
         pub unsafe fn cumulativeLogicalWrites(&self)
             -> Id<NSMeasurement<NSUnitInformationStorage>>;
@@ -41,7 +38,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MetricKit_MXDiskIOMetric")]
+    #[cfg(feature = "MetricKit_MXMetric")]
     unsafe impl MXDiskIOMetric {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

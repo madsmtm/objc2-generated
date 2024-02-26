@@ -7,36 +7,31 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKNotificationID")]
     pub struct CKNotificationID;
 
-    #[cfg(feature = "CloudKit_CKNotificationID")]
     unsafe impl ClassType for CKNotificationID {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CloudKit_CKNotificationID")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CKNotificationID {}
 
-#[cfg(feature = "CloudKit_CKNotificationID")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for CKNotificationID {}
 
-#[cfg(feature = "CloudKit_CKNotificationID")]
 unsafe impl NSObjectProtocol for CKNotificationID {}
 
-#[cfg(feature = "CloudKit_CKNotificationID")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CKNotificationID {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKNotificationID")]
     unsafe impl CKNotificationID {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CloudKit_CKNotificationID")]
     unsafe impl CKNotificationID {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -62,27 +57,21 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKNotification")]
     pub struct CKNotification;
 
-    #[cfg(feature = "CloudKit_CKNotification")]
     unsafe impl ClassType for CKNotification {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CloudKit_CKNotification")]
 unsafe impl Send for CKNotification {}
 
-#[cfg(feature = "CloudKit_CKNotification")]
 unsafe impl Sync for CKNotification {}
 
-#[cfg(feature = "CloudKit_CKNotification")]
 unsafe impl NSObjectProtocol for CKNotification {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKNotification")]
     unsafe impl CKNotification {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -99,7 +88,6 @@ extern_methods!(
         #[method(notificationType)]
         pub unsafe fn notificationType(&self) -> CKNotificationType;
 
-        #[cfg(feature = "CloudKit_CKNotificationID")]
         #[method_id(@__retain_semantics Other notificationID)]
         pub unsafe fn notificationID(&self) -> Option<Id<CKNotificationID>>;
 
@@ -114,7 +102,7 @@ extern_methods!(
         #[method(isPruned)]
         pub unsafe fn isPruned(&self) -> bool;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "CloudKit_CKSubscription", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other subscriptionID)]
         pub unsafe fn subscriptionID(&self) -> Option<Id<CKSubscriptionID>>;
     }
@@ -122,7 +110,6 @@ extern_methods!(
 
 extern_methods!(
     /// DeprecatedAPSProperties
-    #[cfg(feature = "CloudKit_CKNotification")]
     unsafe impl CKNotification {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Interact with UI elements of a CloudKit-server-generated push message via UserNotifications.framework"]
@@ -173,7 +160,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other alertLaunchImage)]
         pub unsafe fn alertLaunchImage(&self) -> Option<Id<NSString>>;
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[deprecated = "Interact with UI elements of a CloudKit-server-generated push message via UserNotifications.framework"]
         #[method_id(@__retain_semantics Other badge)]
         pub unsafe fn badge(&self) -> Option<Id<NSNumber>>;
@@ -203,10 +190,8 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKQueryNotification")]
     pub struct CKQueryNotification;
 
-    #[cfg(feature = "CloudKit_CKQueryNotification")]
     unsafe impl ClassType for CKQueryNotification {
         #[inherits(NSObject)]
         type Super = CKNotification;
@@ -214,17 +199,13 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CloudKit_CKQueryNotification")]
 unsafe impl Send for CKQueryNotification {}
 
-#[cfg(feature = "CloudKit_CKQueryNotification")]
 unsafe impl Sync for CKQueryNotification {}
 
-#[cfg(feature = "CloudKit_CKQueryNotification")]
 unsafe impl NSObjectProtocol for CKQueryNotification {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKQueryNotification")]
     unsafe impl CKQueryNotification {
         #[method(queryNotificationReason)]
         pub unsafe fn queryNotificationReason(&self) -> CKQueryNotificationReason;
@@ -237,6 +218,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other recordID)]
         pub unsafe fn recordID(&self) -> Option<Id<CKRecordID>>;
 
+        #[cfg(feature = "CloudKit_CKDatabase")]
         #[method(databaseScope)]
         pub unsafe fn databaseScope(&self) -> CKDatabaseScope;
     }
@@ -244,7 +226,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CKNotification`
-    #[cfg(feature = "CloudKit_CKQueryNotification")]
     unsafe impl CKQueryNotification {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -262,10 +243,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKRecordZoneNotification")]
     pub struct CKRecordZoneNotification;
 
-    #[cfg(feature = "CloudKit_CKRecordZoneNotification")]
     unsafe impl ClassType for CKRecordZoneNotification {
         #[inherits(NSObject)]
         type Super = CKNotification;
@@ -273,22 +252,19 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CloudKit_CKRecordZoneNotification")]
 unsafe impl Send for CKRecordZoneNotification {}
 
-#[cfg(feature = "CloudKit_CKRecordZoneNotification")]
 unsafe impl Sync for CKRecordZoneNotification {}
 
-#[cfg(feature = "CloudKit_CKRecordZoneNotification")]
 unsafe impl NSObjectProtocol for CKRecordZoneNotification {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKRecordZoneNotification")]
     unsafe impl CKRecordZoneNotification {
         #[cfg(feature = "CloudKit_CKRecordZoneID")]
         #[method_id(@__retain_semantics Other recordZoneID)]
         pub unsafe fn recordZoneID(&self) -> Option<Id<CKRecordZoneID>>;
 
+        #[cfg(feature = "CloudKit_CKDatabase")]
         #[method(databaseScope)]
         pub unsafe fn databaseScope(&self) -> CKDatabaseScope;
     }
@@ -296,7 +272,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CKNotification`
-    #[cfg(feature = "CloudKit_CKRecordZoneNotification")]
     unsafe impl CKRecordZoneNotification {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -314,10 +289,8 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKDatabaseNotification")]
     pub struct CKDatabaseNotification;
 
-    #[cfg(feature = "CloudKit_CKDatabaseNotification")]
     unsafe impl ClassType for CKDatabaseNotification {
         #[inherits(NSObject)]
         type Super = CKNotification;
@@ -325,18 +298,15 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CloudKit_CKDatabaseNotification")]
 unsafe impl Send for CKDatabaseNotification {}
 
-#[cfg(feature = "CloudKit_CKDatabaseNotification")]
 unsafe impl Sync for CKDatabaseNotification {}
 
-#[cfg(feature = "CloudKit_CKDatabaseNotification")]
 unsafe impl NSObjectProtocol for CKDatabaseNotification {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKDatabaseNotification")]
     unsafe impl CKDatabaseNotification {
+        #[cfg(feature = "CloudKit_CKDatabase")]
         #[method(databaseScope)]
         pub unsafe fn databaseScope(&self) -> CKDatabaseScope;
     }
@@ -344,7 +314,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `CKNotification`
-    #[cfg(feature = "CloudKit_CKDatabaseNotification")]
     unsafe impl CKDatabaseNotification {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

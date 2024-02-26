@@ -6,27 +6,23 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSFetchIndexDescription")]
     pub struct NSFetchIndexDescription;
 
-    #[cfg(feature = "CoreData_NSFetchIndexDescription")]
     unsafe impl ClassType for NSFetchIndexDescription {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreData_NSFetchIndexDescription")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSFetchIndexDescription {}
 
-#[cfg(feature = "CoreData_NSFetchIndexDescription")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSFetchIndexDescription {}
 
-#[cfg(feature = "CoreData_NSFetchIndexDescription")]
 unsafe impl NSObjectProtocol for NSFetchIndexDescription {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSFetchIndexDescription")]
     unsafe impl NSFetchIndexDescription {
         #[cfg(all(
             feature = "CoreData_NSFetchIndexElementDescription",
@@ -81,7 +77,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSFetchIndexDescription")]
     unsafe impl NSFetchIndexDescription {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

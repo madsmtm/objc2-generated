@@ -7,11 +7,11 @@ use crate::WebKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_DOMTreeWalker")]
+    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
     #[deprecated]
     pub struct DOMTreeWalker;
 
-    #[cfg(feature = "WebKit_DOMTreeWalker")]
+    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
     unsafe impl ClassType for DOMTreeWalker {
         #[inherits(WebScriptObject, NSObject)]
         type Super = DOMObject;
@@ -19,14 +19,18 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "WebKit_DOMTreeWalker")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSCopying for DOMTreeWalker {}
 
-#[cfg(feature = "WebKit_DOMTreeWalker")]
+#[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
 unsafe impl NSObjectProtocol for DOMTreeWalker {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_DOMTreeWalker")]
+    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
     unsafe impl DOMTreeWalker {
         #[cfg(feature = "WebKit_DOMNode")]
         #[deprecated]
@@ -37,6 +41,7 @@ extern_methods!(
         #[method(whatToShow)]
         pub unsafe fn whatToShow(&self) -> c_uint;
 
+        #[cfg(feature = "WebKit_DOMNodeFilter")]
         #[deprecated]
         #[method_id(@__retain_semantics Other filter)]
         pub unsafe fn filter(&self) -> Option<Id<ProtocolObject<dyn DOMNodeFilter>>>;
@@ -94,7 +99,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
-    #[cfg(feature = "WebKit_DOMTreeWalker")]
+    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
     unsafe impl DOMTreeWalker {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
@@ -104,7 +109,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_DOMTreeWalker")]
+    #[cfg(all(feature = "WebKit_DOMObject", feature = "WebKit_WebScriptObject"))]
     unsafe impl DOMTreeWalker {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

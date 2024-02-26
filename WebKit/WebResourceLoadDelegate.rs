@@ -9,6 +9,8 @@ extern_protocol!(
     #[deprecated]
     pub unsafe trait WebResourceLoadDelegate: NSObjectProtocol {
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSURLRequest",
             feature = "WebKit_WebDataSource",
             feature = "WebKit_WebView"
@@ -24,6 +26,8 @@ extern_protocol!(
         ) -> Option<Id<AnyObject>>;
 
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSURLRequest",
             feature = "Foundation_NSURLResponse",
             feature = "WebKit_WebDataSource",
@@ -42,6 +46,8 @@ extern_protocol!(
         ) -> Option<Id<NSURLRequest>>;
 
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSURLAuthenticationChallenge",
             feature = "WebKit_WebDataSource",
             feature = "WebKit_WebView"
@@ -58,6 +64,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSURLAuthenticationChallenge",
             feature = "WebKit_WebDataSource",
             feature = "WebKit_WebView"
@@ -74,6 +82,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSURLResponse",
             feature = "WebKit_WebDataSource",
             feature = "WebKit_WebView"
@@ -89,7 +99,12 @@ extern_protocol!(
             data_source: Option<&WebDataSource>,
         );
 
-        #[cfg(all(feature = "WebKit_WebDataSource", feature = "WebKit_WebView"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "WebKit_WebDataSource",
+            feature = "WebKit_WebView"
+        ))]
         #[deprecated]
         #[optional]
         #[method(webView:resource:didReceiveContentLength:fromDataSource:)]
@@ -101,7 +116,12 @@ extern_protocol!(
             data_source: Option<&WebDataSource>,
         );
 
-        #[cfg(all(feature = "WebKit_WebDataSource", feature = "WebKit_WebView"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "WebKit_WebDataSource",
+            feature = "WebKit_WebView"
+        ))]
         #[deprecated]
         #[optional]
         #[method(webView:resource:didFinishLoadingFromDataSource:)]
@@ -113,6 +133,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSError",
             feature = "WebKit_WebDataSource",
             feature = "WebKit_WebView"
@@ -129,6 +151,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
             feature = "Foundation_NSError",
             feature = "WebKit_WebDataSource",
             feature = "WebKit_WebView"

@@ -5,21 +5,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSUbiquitousKeyValueStore")]
     pub struct NSUbiquitousKeyValueStore;
 
-    #[cfg(feature = "Foundation_NSUbiquitousKeyValueStore")]
     unsafe impl ClassType for NSUbiquitousKeyValueStore {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSUbiquitousKeyValueStore")]
 unsafe impl NSObjectProtocol for NSUbiquitousKeyValueStore {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSUbiquitousKeyValueStore")]
     unsafe impl NSUbiquitousKeyValueStore {
         #[method_id(@__retain_semantics Other defaultStore)]
         pub unsafe fn defaultStore() -> Id<NSUbiquitousKeyValueStore>;
@@ -110,7 +106,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSUbiquitousKeyValueStore")]
     unsafe impl NSUbiquitousKeyValueStore {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -120,7 +115,7 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSUbiquitousKeyValueStoreDidChangeExternallyNotification: &'static NSNotificationName);
 
 #[cfg(feature = "Foundation_NSString")]

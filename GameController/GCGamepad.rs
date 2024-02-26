@@ -7,18 +7,18 @@ use crate::GameController::*;
 
 #[cfg(all(
     feature = "GameController_GCControllerElement",
-    feature = "GameController_GCGamepad"
+    feature = "GameController_GCPhysicalInputProfile"
 ))]
 pub type GCGamepadValueChangedHandler =
     *mut Block<dyn Fn(NonNull<GCGamepad>, NonNull<GCControllerElement>)>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameController_GCGamepad")]
+    #[cfg(feature = "GameController_GCPhysicalInputProfile")]
     #[deprecated]
     pub struct GCGamepad;
 
-    #[cfg(feature = "GameController_GCGamepad")]
+    #[cfg(feature = "GameController_GCPhysicalInputProfile")]
     unsafe impl ClassType for GCGamepad {
         #[inherits(NSObject)]
         type Super = GCPhysicalInputProfile;
@@ -26,11 +26,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "GameController_GCGamepad")]
+#[cfg(feature = "GameController_GCPhysicalInputProfile")]
 unsafe impl NSObjectProtocol for GCGamepad {}
 
 extern_methods!(
-    #[cfg(feature = "GameController_GCGamepad")]
+    #[cfg(feature = "GameController_GCPhysicalInputProfile")]
     unsafe impl GCGamepad {
         #[cfg(feature = "GameController_GCController")]
         #[deprecated]
@@ -55,37 +55,58 @@ extern_methods!(
         #[method_id(@__retain_semantics Other saveSnapshot)]
         pub unsafe fn saveSnapshot(&self) -> Id<GCGamepadSnapshot>;
 
-        #[cfg(feature = "GameController_GCControllerDirectionPad")]
+        #[cfg(all(
+            feature = "GameController_GCControllerDirectionPad",
+            feature = "GameController_GCControllerElement"
+        ))]
         #[deprecated]
         #[method_id(@__retain_semantics Other dpad)]
         pub unsafe fn dpad(&self) -> Id<GCControllerDirectionPad>;
 
-        #[cfg(feature = "GameController_GCControllerButtonInput")]
+        #[cfg(all(
+            feature = "GameController_GCControllerButtonInput",
+            feature = "GameController_GCControllerElement"
+        ))]
         #[deprecated]
         #[method_id(@__retain_semantics Other buttonA)]
         pub unsafe fn buttonA(&self) -> Id<GCControllerButtonInput>;
 
-        #[cfg(feature = "GameController_GCControllerButtonInput")]
+        #[cfg(all(
+            feature = "GameController_GCControllerButtonInput",
+            feature = "GameController_GCControllerElement"
+        ))]
         #[deprecated]
         #[method_id(@__retain_semantics Other buttonB)]
         pub unsafe fn buttonB(&self) -> Id<GCControllerButtonInput>;
 
-        #[cfg(feature = "GameController_GCControllerButtonInput")]
+        #[cfg(all(
+            feature = "GameController_GCControllerButtonInput",
+            feature = "GameController_GCControllerElement"
+        ))]
         #[deprecated]
         #[method_id(@__retain_semantics Other buttonX)]
         pub unsafe fn buttonX(&self) -> Id<GCControllerButtonInput>;
 
-        #[cfg(feature = "GameController_GCControllerButtonInput")]
+        #[cfg(all(
+            feature = "GameController_GCControllerButtonInput",
+            feature = "GameController_GCControllerElement"
+        ))]
         #[deprecated]
         #[method_id(@__retain_semantics Other buttonY)]
         pub unsafe fn buttonY(&self) -> Id<GCControllerButtonInput>;
 
-        #[cfg(feature = "GameController_GCControllerButtonInput")]
+        #[cfg(all(
+            feature = "GameController_GCControllerButtonInput",
+            feature = "GameController_GCControllerElement"
+        ))]
         #[deprecated]
         #[method_id(@__retain_semantics Other leftShoulder)]
         pub unsafe fn leftShoulder(&self) -> Id<GCControllerButtonInput>;
 
-        #[cfg(feature = "GameController_GCControllerButtonInput")]
+        #[cfg(all(
+            feature = "GameController_GCControllerButtonInput",
+            feature = "GameController_GCControllerElement"
+        ))]
         #[deprecated]
         #[method_id(@__retain_semantics Other rightShoulder)]
         pub unsafe fn rightShoulder(&self) -> Id<GCControllerButtonInput>;
@@ -94,7 +115,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameController_GCGamepad")]
+    #[cfg(feature = "GameController_GCPhysicalInputProfile")]
     unsafe impl GCGamepad {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

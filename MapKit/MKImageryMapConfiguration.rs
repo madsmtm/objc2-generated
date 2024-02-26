@@ -9,10 +9,10 @@ use crate::MapKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKImageryMapConfiguration")]
+    #[cfg(feature = "MapKit_MKMapConfiguration")]
     pub struct MKImageryMapConfiguration;
 
-    #[cfg(feature = "MapKit_MKImageryMapConfiguration")]
+    #[cfg(feature = "MapKit_MKMapConfiguration")]
     unsafe impl ClassType for MKImageryMapConfiguration {
         #[inherits(NSObject)]
         type Super = MKMapConfiguration;
@@ -20,20 +20,20 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MapKit_MKImageryMapConfiguration")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "MapKit_MKMapConfiguration"))]
 unsafe impl NSCoding for MKImageryMapConfiguration {}
 
-#[cfg(feature = "MapKit_MKImageryMapConfiguration")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "MapKit_MKMapConfiguration"))]
 unsafe impl NSCopying for MKImageryMapConfiguration {}
 
-#[cfg(feature = "MapKit_MKImageryMapConfiguration")]
+#[cfg(feature = "MapKit_MKMapConfiguration")]
 unsafe impl NSObjectProtocol for MKImageryMapConfiguration {}
 
-#[cfg(feature = "MapKit_MKImageryMapConfiguration")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "MapKit_MKMapConfiguration"))]
 unsafe impl NSSecureCoding for MKImageryMapConfiguration {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKImageryMapConfiguration")]
+    #[cfg(feature = "MapKit_MKMapConfiguration")]
     unsafe impl MKImageryMapConfiguration {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -48,7 +48,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MKMapConfiguration`
-    #[cfg(feature = "MapKit_MKImageryMapConfiguration")]
+    #[cfg(feature = "MapKit_MKMapConfiguration")]
     unsafe impl MKImageryMapConfiguration {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

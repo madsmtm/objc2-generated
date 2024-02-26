@@ -9,39 +9,30 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Photos_PHChange")]
     pub struct PHChange;
 
-    #[cfg(feature = "Photos_PHChange")]
     unsafe impl ClassType for PHChange {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Photos_PHChange")]
 unsafe impl Send for PHChange {}
 
-#[cfg(feature = "Photos_PHChange")]
 unsafe impl Sync for PHChange {}
 
-#[cfg(feature = "Photos_PHChange")]
 unsafe impl NSObjectProtocol for PHChange {}
 
 extern_methods!(
-    #[cfg(feature = "Photos_PHChange")]
     unsafe impl PHChange {
-        #[cfg(all(feature = "Photos_PHObject", feature = "Photos_PHObjectChangeDetails"))]
+        #[cfg(feature = "Photos_PHObject")]
         #[method_id(@__retain_semantics Other changeDetailsForObject:)]
         pub unsafe fn changeDetailsForObject(
             &self,
             object: &PHObject,
         ) -> Option<Id<PHObjectChangeDetails>>;
 
-        #[cfg(all(
-            feature = "Photos_PHFetchResult",
-            feature = "Photos_PHFetchResultChangeDetails"
-        ))]
+        #[cfg(feature = "Photos_PHFetchResult")]
         #[method_id(@__retain_semantics Other changeDetailsForFetchResult:)]
         pub unsafe fn changeDetailsForFetchResult(
             &self,
@@ -52,7 +43,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Photos_PHChange")]
     unsafe impl PHChange {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -64,14 +54,12 @@ extern_methods!(
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Photos_PHObjectChangeDetails")]
     pub struct PHObjectChangeDetails<ObjectType: ?Sized = AnyObject> {
         __superclass: NSObject,
         _inner0: PhantomData<*mut ObjectType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
-    #[cfg(feature = "Photos_PHObjectChangeDetails")]
     unsafe impl<ObjectType: ?Sized + Message> ClassType for PHObjectChangeDetails<ObjectType> {
         type Super = NSObject;
         type Mutability = InteriorMutable;
@@ -86,11 +74,9 @@ __inner_extern_class!(
     }
 );
 
-#[cfg(feature = "Photos_PHObjectChangeDetails")]
 unsafe impl<ObjectType: ?Sized> NSObjectProtocol for PHObjectChangeDetails<ObjectType> {}
 
 extern_methods!(
-    #[cfg(feature = "Photos_PHObjectChangeDetails")]
     unsafe impl<ObjectType: Message> PHObjectChangeDetails<ObjectType> {
         #[method_id(@__retain_semantics Other objectBeforeChanges)]
         pub unsafe fn objectBeforeChanges(&self) -> Id<ObjectType>;
@@ -108,7 +94,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Photos_PHObjectChangeDetails")]
     unsafe impl<ObjectType: Message> PHObjectChangeDetails<ObjectType> {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -120,14 +105,12 @@ extern_methods!(
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Photos_PHFetchResultChangeDetails")]
     pub struct PHFetchResultChangeDetails<ObjectType: ?Sized = AnyObject> {
         __superclass: NSObject,
         _inner0: PhantomData<*mut ObjectType>,
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
-    #[cfg(feature = "Photos_PHFetchResultChangeDetails")]
     unsafe impl<ObjectType: ?Sized + Message> ClassType for PHFetchResultChangeDetails<ObjectType> {
         type Super = NSObject;
         type Mutability = InteriorMutable;
@@ -142,11 +125,9 @@ __inner_extern_class!(
     }
 );
 
-#[cfg(feature = "Photos_PHFetchResultChangeDetails")]
 unsafe impl<ObjectType: ?Sized> NSObjectProtocol for PHFetchResultChangeDetails<ObjectType> {}
 
 extern_methods!(
-    #[cfg(feature = "Photos_PHFetchResultChangeDetails")]
     unsafe impl<ObjectType: Message> PHFetchResultChangeDetails<ObjectType> {
         #[cfg(feature = "Photos_PHFetchResult")]
         #[method_id(@__retain_semantics Other fetchResultBeforeChanges)]
@@ -204,7 +185,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Photos_PHFetchResultChangeDetails")]
     unsafe impl<ObjectType: Message> PHFetchResultChangeDetails<ObjectType> {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

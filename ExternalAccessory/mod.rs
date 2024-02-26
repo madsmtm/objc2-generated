@@ -17,45 +17,76 @@
 #[link(name = "ExternalAccessory", kind = "framework")]
 extern "C" {}
 
+#[cfg(feature = "ExternalAccessory_EAAccessory")]
 #[path = "EAAccessory.rs"]
 mod __EAAccessory;
+#[cfg(feature = "ExternalAccessory_EAAccessoryManager")]
 #[path = "EAAccessoryManager.rs"]
 mod __EAAccessoryManager;
+#[cfg(feature = "ExternalAccessory_EASession")]
 #[path = "EASession.rs"]
 mod __EASession;
+#[cfg(feature = "ExternalAccessory_EAWiFiUnconfiguredAccessory")]
 #[path = "EAWiFiUnconfiguredAccessory.rs"]
 mod __EAWiFiUnconfiguredAccessory;
+#[cfg(feature = "ExternalAccessory_EAWiFiUnconfiguredAccessoryBrowser")]
 #[path = "EAWiFiUnconfiguredAccessoryBrowser.rs"]
 mod __EAWiFiUnconfiguredAccessoryBrowser;
+#[cfg(feature = "ExternalAccessory_ExternalAccessoryDefines")]
 #[path = "ExternalAccessoryDefines.rs"]
 mod __ExternalAccessoryDefines;
 
 #[cfg(feature = "ExternalAccessory_EAAccessory")]
 pub use self::__EAAccessory::EAAccessory;
+#[cfg(feature = "ExternalAccessory_EAAccessory")]
 pub use self::__EAAccessory::EAAccessoryDelegate;
+#[cfg(feature = "ExternalAccessory_EAAccessory")]
 pub use self::__EAAccessory::EAConnectionIDNone;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "ExternalAccessory_EAAccessoryManager",
+    feature = "Foundation_NSString"
+))]
 pub use self::__EAAccessoryManager::EAAccessoryDidConnectNotification;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "ExternalAccessory_EAAccessoryManager",
+    feature = "Foundation_NSString"
+))]
 pub use self::__EAAccessoryManager::EAAccessoryDidDisconnectNotification;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "ExternalAccessory_EAAccessoryManager",
+    feature = "Foundation_NSString"
+))]
 pub use self::__EAAccessoryManager::EAAccessoryKey;
 #[cfg(feature = "ExternalAccessory_EAAccessoryManager")]
 pub use self::__EAAccessoryManager::EAAccessoryManager;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "ExternalAccessory_EAAccessoryManager",
+    feature = "Foundation_NSString"
+))]
 pub use self::__EAAccessoryManager::EAAccessorySelectedKey;
-#[cfg(feature = "Foundation_NSError")]
+#[cfg(all(
+    feature = "ExternalAccessory_EAAccessoryManager",
+    feature = "Foundation_NSError"
+))]
 pub use self::__EAAccessoryManager::EABluetoothAccessoryPickerCompletion;
+#[cfg(feature = "ExternalAccessory_EAAccessoryManager")]
 pub use self::__EAAccessoryManager::EABluetoothAccessoryPickerErrorCode;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "ExternalAccessory_EAAccessoryManager",
+    feature = "Foundation_NSString"
+))]
 pub use self::__EAAccessoryManager::EABluetoothAccessoryPickerErrorDomain;
 #[cfg(feature = "ExternalAccessory_EASession")]
 pub use self::__EASession::EASession;
 #[cfg(feature = "ExternalAccessory_EAWiFiUnconfiguredAccessory")]
 pub use self::__EAWiFiUnconfiguredAccessory::EAWiFiUnconfiguredAccessory;
+#[cfg(feature = "ExternalAccessory_EAWiFiUnconfiguredAccessory")]
 pub use self::__EAWiFiUnconfiguredAccessory::EAWiFiUnconfiguredAccessoryProperties;
 #[cfg(feature = "ExternalAccessory_EAWiFiUnconfiguredAccessoryBrowser")]
 pub use self::__EAWiFiUnconfiguredAccessoryBrowser::EAWiFiUnconfiguredAccessoryBrowser;
+#[cfg(feature = "ExternalAccessory_EAWiFiUnconfiguredAccessoryBrowser")]
 pub use self::__EAWiFiUnconfiguredAccessoryBrowser::EAWiFiUnconfiguredAccessoryBrowserDelegate;
+#[cfg(feature = "ExternalAccessory_EAWiFiUnconfiguredAccessoryBrowser")]
 pub use self::__EAWiFiUnconfiguredAccessoryBrowser::EAWiFiUnconfiguredAccessoryBrowserState;
+#[cfg(feature = "ExternalAccessory_EAWiFiUnconfiguredAccessoryBrowser")]
 pub use self::__EAWiFiUnconfiguredAccessoryBrowser::EAWiFiUnconfiguredAccessoryConfigurationStatus;

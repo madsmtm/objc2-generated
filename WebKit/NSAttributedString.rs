@@ -5,10 +5,11 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::WebKit::*;
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "AppKit_NSAttributedString", feature = "Foundation_NSString"))]
 extern_static!(NSReadAccessURLDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey);
 
 #[cfg(all(
+    feature = "AppKit_NSAttributedString",
     feature = "Foundation_NSAttributedString",
     feature = "Foundation_NSDictionary",
     feature = "Foundation_NSError",
@@ -26,11 +27,13 @@ extern_category!(
     /// Category on [`NSAttributedString`].
     pub unsafe trait NSAttributedStringWebKitAdditions {
         #[cfg(all(
+            feature = "AppKit_NSAttributedString",
             feature = "Foundation_NSAttributedString",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
             feature = "Foundation_NSString",
-            feature = "Foundation_NSURLRequest"
+            feature = "Foundation_NSURLRequest",
+            feature = "WebKit_NSAttributedString"
         ))]
         #[method(loadFromHTMLWithRequest:options:completionHandler:)]
         unsafe fn loadFromHTMLWithRequest_options_completionHandler(
@@ -40,11 +43,13 @@ extern_category!(
         );
 
         #[cfg(all(
+            feature = "AppKit_NSAttributedString",
             feature = "Foundation_NSAttributedString",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
             feature = "Foundation_NSString",
-            feature = "Foundation_NSURL"
+            feature = "Foundation_NSURL",
+            feature = "WebKit_NSAttributedString"
         ))]
         #[method(loadFromHTMLWithFileURL:options:completionHandler:)]
         unsafe fn loadFromHTMLWithFileURL_options_completionHandler(
@@ -54,10 +59,12 @@ extern_category!(
         );
 
         #[cfg(all(
+            feature = "AppKit_NSAttributedString",
             feature = "Foundation_NSAttributedString",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
-            feature = "Foundation_NSString"
+            feature = "Foundation_NSString",
+            feature = "WebKit_NSAttributedString"
         ))]
         #[method(loadFromHTMLWithString:options:completionHandler:)]
         unsafe fn loadFromHTMLWithString_options_completionHandler(
@@ -67,11 +74,13 @@ extern_category!(
         );
 
         #[cfg(all(
+            feature = "AppKit_NSAttributedString",
             feature = "Foundation_NSAttributedString",
             feature = "Foundation_NSData",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
-            feature = "Foundation_NSString"
+            feature = "Foundation_NSString",
+            feature = "WebKit_NSAttributedString"
         ))]
         #[method(loadFromHTMLWithData:options:completionHandler:)]
         unsafe fn loadFromHTMLWithData_options_completionHandler(

@@ -7,21 +7,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTreeNode")]
     pub struct NSTreeNode;
 
-    #[cfg(feature = "AppKit_NSTreeNode")]
     unsafe impl ClassType for NSTreeNode {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSTreeNode")]
 unsafe impl NSObjectProtocol for NSTreeNode {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTreeNode")]
     unsafe impl NSTreeNode {
         #[method_id(@__retain_semantics Other treeNodeWithRepresentedObject:)]
         pub unsafe fn treeNodeWithRepresentedObject(model_object: Option<&AnyObject>) -> Id<Self>;
@@ -46,7 +42,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other childNodes)]
         pub unsafe fn childNodes(&self) -> Option<Id<NSArray<NSTreeNode>>>;
 
-        #[cfg(feature = "Foundation_NSMutableArray")]
+        #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Other mutableChildNodes)]
         pub unsafe fn mutableChildNodes(&self) -> Id<NSMutableArray<NSTreeNode>>;
 
@@ -75,7 +71,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTreeNode")]
     unsafe impl NSTreeNode {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

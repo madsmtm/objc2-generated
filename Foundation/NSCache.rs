@@ -5,7 +5,6 @@ use crate::Foundation::*;
 
 __inner_extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSCache")]
     pub struct NSCache<KeyType: ?Sized = AnyObject, ObjectType: ?Sized = AnyObject> {
         __superclass: NSObject,
         _inner0: PhantomData<*mut KeyType>,
@@ -13,7 +12,6 @@ __inner_extern_class!(
         notunwindsafe: PhantomData<&'static mut ()>,
     }
 
-    #[cfg(feature = "Foundation_NSCache")]
     unsafe impl<KeyType: ?Sized + Message, ObjectType: ?Sized + Message> ClassType
         for NSCache<KeyType, ObjectType>
     {
@@ -30,11 +28,9 @@ __inner_extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSCache")]
 unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSObjectProtocol for NSCache<KeyType, ObjectType> {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSCache")]
     unsafe impl<KeyType: Message, ObjectType: Message> NSCache<KeyType, ObjectType> {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other name)]
@@ -90,7 +86,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSCache")]
     unsafe impl<KeyType: Message, ObjectType: Message> NSCache<KeyType, ObjectType> {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -102,7 +97,6 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSCacheDelegate: NSObjectProtocol {
-        #[cfg(feature = "Foundation_NSCache")]
         #[optional]
         #[method(cache:willEvictObject:)]
         unsafe fn cache_willEvictObject(&self, cache: &NSCache, obj: &AnyObject);

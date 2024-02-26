@@ -7,7 +7,11 @@ use crate::WebKit::*;
 
 extern_methods!(
     /// DOMCSS2Properties
-    #[cfg(feature = "WebKit_DOMCSSStyleDeclaration")]
+    #[cfg(all(
+        feature = "WebKit_DOMCSSStyleDeclaration",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMCSSStyleDeclaration {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other azimuth)]

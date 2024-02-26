@@ -26,7 +26,7 @@ ns_enum!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
 extern_static!(MTLIOErrorDomain: &'static NSErrorDomain);
 
 ns_error_enum!(
@@ -44,9 +44,11 @@ extern_protocol!(
         #[method(enqueueBarrier)]
         unsafe fn enqueueBarrier(&self);
 
+        #[cfg(feature = "Metal_MTLIOCommandBuffer")]
         #[method_id(@__retain_semantics Other commandBuffer)]
         unsafe fn commandBuffer(&self) -> Id<ProtocolObject<dyn MTLIOCommandBuffer>>;
 
+        #[cfg(feature = "Metal_MTLIOCommandBuffer")]
         #[method_id(@__retain_semantics Other commandBufferWithUnretainedReferences)]
         unsafe fn commandBufferWithUnretainedReferences(
             &self,
@@ -66,6 +68,7 @@ extern_protocol!(
 
 extern_protocol!(
     pub unsafe trait MTLIOScratchBuffer: NSObjectProtocol {
+        #[cfg(all(feature = "Metal_MTLBuffer", feature = "Metal_MTLResource"))]
         #[method_id(@__retain_semantics Other buffer)]
         unsafe fn buffer(&self) -> Id<ProtocolObject<dyn MTLBuffer>>;
     }
@@ -87,24 +90,20 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLIOCommandQueueDescriptor")]
     pub struct MTLIOCommandQueueDescriptor;
 
-    #[cfg(feature = "Metal_MTLIOCommandQueueDescriptor")]
     unsafe impl ClassType for MTLIOCommandQueueDescriptor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLIOCommandQueueDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLIOCommandQueueDescriptor {}
 
-#[cfg(feature = "Metal_MTLIOCommandQueueDescriptor")]
 unsafe impl NSObjectProtocol for MTLIOCommandQueueDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLIOCommandQueueDescriptor")]
     unsafe impl MTLIOCommandQueueDescriptor {
         #[method(maxCommandBufferCount)]
         pub unsafe fn maxCommandBufferCount(&self) -> NSUInteger;
@@ -145,7 +144,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLIOCommandQueueDescriptor")]
     unsafe impl MTLIOCommandQueueDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -19,26 +19,25 @@ extern_static!(GCMouseDidStopBeingCurrentNotification: &'static NSString);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameController_GCMouse")]
     pub struct GCMouse;
 
-    #[cfg(feature = "GameController_GCMouse")]
     unsafe impl ClassType for GCMouse {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "GameController_GCMouse")]
+#[cfg(feature = "GameController_GCDevice")]
 unsafe impl GCDevice for GCMouse {}
 
-#[cfg(feature = "GameController_GCMouse")]
 unsafe impl NSObjectProtocol for GCMouse {}
 
 extern_methods!(
-    #[cfg(feature = "GameController_GCMouse")]
     unsafe impl GCMouse {
-        #[cfg(feature = "GameController_GCMouseInput")]
+        #[cfg(all(
+            feature = "GameController_GCMouseInput",
+            feature = "GameController_GCPhysicalInputProfile"
+        ))]
         #[method_id(@__retain_semantics Other mouseInput)]
         pub unsafe fn mouseInput(&self) -> Option<Id<GCMouseInput>>;
 
@@ -53,7 +52,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameController_GCMouse")]
     unsafe impl GCMouse {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

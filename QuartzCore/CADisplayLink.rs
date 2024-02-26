@@ -6,21 +6,17 @@ use crate::QuartzCore::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "QuartzCore_CADisplayLink")]
     pub struct CADisplayLink;
 
-    #[cfg(feature = "QuartzCore_CADisplayLink")]
     unsafe impl ClassType for CADisplayLink {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "QuartzCore_CADisplayLink")]
 unsafe impl NSObjectProtocol for CADisplayLink {}
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CADisplayLink")]
     unsafe impl CADisplayLink {
         #[method_id(@__retain_semantics Other displayLinkWithTarget:selector:)]
         pub unsafe fn displayLinkWithTarget_selector(
@@ -28,11 +24,19 @@ extern_methods!(
             sel: Sel,
         ) -> Id<CADisplayLink>;
 
-        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSObjCRuntime",
+            feature = "Foundation_NSRunLoop",
+            feature = "Foundation_NSString"
+        ))]
         #[method(addToRunLoop:forMode:)]
         pub unsafe fn addToRunLoop_forMode(&self, runloop: &NSRunLoop, mode: &NSRunLoopMode);
 
-        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSObjCRuntime",
+            feature = "Foundation_NSRunLoop",
+            feature = "Foundation_NSString"
+        ))]
         #[method(removeFromRunLoop:forMode:)]
         pub unsafe fn removeFromRunLoop_forMode(&self, runloop: &NSRunLoop, mode: &NSRunLoopMode);
 
@@ -70,9 +74,11 @@ extern_methods!(
         #[method(setPreferredFramesPerSecond:)]
         pub unsafe fn setPreferredFramesPerSecond(&self, preferred_frames_per_second: NSInteger);
 
+        #[cfg(feature = "QuartzCore_CAFrameRateRange")]
         #[method(preferredFrameRateRange)]
         pub unsafe fn preferredFrameRateRange(&self) -> CAFrameRateRange;
 
+        #[cfg(feature = "QuartzCore_CAFrameRateRange")]
         #[method(setPreferredFrameRateRange:)]
         pub unsafe fn setPreferredFrameRateRange(
             &self,
@@ -83,7 +89,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "QuartzCore_CADisplayLink")]
     unsafe impl CADisplayLink {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

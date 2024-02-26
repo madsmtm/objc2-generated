@@ -6,30 +6,24 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSManagedObjectID")]
     pub struct NSManagedObjectID;
 
-    #[cfg(feature = "CoreData_NSManagedObjectID")]
     unsafe impl ClassType for NSManagedObjectID {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreData_NSManagedObjectID")]
 unsafe impl Send for NSManagedObjectID {}
 
-#[cfg(feature = "CoreData_NSManagedObjectID")]
 unsafe impl Sync for NSManagedObjectID {}
 
-#[cfg(feature = "CoreData_NSManagedObjectID")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSManagedObjectID {}
 
-#[cfg(feature = "CoreData_NSManagedObjectID")]
 unsafe impl NSObjectProtocol for NSManagedObjectID {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSManagedObjectID")]
     unsafe impl NSManagedObjectID {
         #[cfg(feature = "CoreData_NSEntityDescription")]
         #[method_id(@__retain_semantics Other entity)]
@@ -50,7 +44,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSManagedObjectID")]
     unsafe impl NSManagedObjectID {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

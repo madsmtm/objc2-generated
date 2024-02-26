@@ -7,39 +7,35 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSMenuItem")]
     pub struct NSMenuItem;
 
-    #[cfg(feature = "AppKit_NSMenuItem")]
     unsafe impl ClassType for NSMenuItem {
         type Super = NSObject;
         type Mutability = MainThreadOnly;
     }
 );
 
-#[cfg(feature = "AppKit_NSMenuItem")]
+#[cfg(feature = "AppKit_NSAccessibilityProtocols")]
 unsafe impl NSAccessibility for NSMenuItem {}
 
-#[cfg(feature = "AppKit_NSMenuItem")]
+#[cfg(feature = "AppKit_NSAccessibilityProtocols")]
 unsafe impl NSAccessibilityElementProtocol for NSMenuItem {}
 
-#[cfg(feature = "AppKit_NSMenuItem")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSMenuItem {}
 
-#[cfg(feature = "AppKit_NSMenuItem")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSMenuItem {}
 
-#[cfg(feature = "AppKit_NSMenuItem")]
 unsafe impl NSObjectProtocol for NSMenuItem {}
 
-#[cfg(feature = "AppKit_NSMenuItem")]
+#[cfg(feature = "AppKit_NSUserInterfaceItemIdentification")]
 unsafe impl NSUserInterfaceItemIdentification for NSMenuItem {}
 
-#[cfg(feature = "AppKit_NSMenuItem")]
+#[cfg(feature = "AppKit_NSUserInterfaceValidation")]
 unsafe impl NSValidatedUserInterfaceItem for NSMenuItem {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSMenuItem")]
     unsafe impl NSMenuItem {
         #[method(usesUserKeyEquivalents)]
         pub unsafe fn usesUserKeyEquivalents(mtm: MainThreadMarker) -> bool;
@@ -122,9 +118,11 @@ extern_methods!(
         #[method(setKeyEquivalent:)]
         pub unsafe fn setKeyEquivalent(&self, key_equivalent: &NSString);
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(keyEquivalentModifierMask)]
         pub unsafe fn keyEquivalentModifierMask(&self) -> NSEventModifierFlags;
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(setKeyEquivalentModifierMask:)]
         pub fn setKeyEquivalentModifierMask(
             &self,
@@ -170,9 +168,11 @@ extern_methods!(
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
+        #[cfg(feature = "AppKit_NSCell")]
         #[method(state)]
         pub unsafe fn state(&self) -> NSControlStateValue;
 
+        #[cfg(feature = "AppKit_NSCell")]
         #[method(setState:)]
         pub unsafe fn setState(&self, state: NSControlStateValue);
 
@@ -242,11 +242,11 @@ extern_methods!(
         #[method(setRepresentedObject:)]
         pub unsafe fn setRepresentedObject(&self, represented_object: Option<&AnyObject>);
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[method_id(@__retain_semantics Other view)]
         pub unsafe fn view(&self) -> Option<Id<NSView>>;
 
-        #[cfg(feature = "AppKit_NSView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[method(setView:)]
         pub unsafe fn setView(&self, view: Option<&NSView>);
 
@@ -282,7 +282,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSMenuItem")]
     unsafe impl NSMenuItem {
         #[method_id(@__retain_semantics Init init)]
         pub fn init(this: Allocated<Self>) -> Id<Self>;
@@ -294,7 +293,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSViewEnclosingMenuItem
-    #[cfg(feature = "AppKit_NSView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSView {
         #[cfg(feature = "AppKit_NSMenuItem")]
         #[method_id(@__retain_semantics Other enclosingMenuItem)]
@@ -302,12 +301,14 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "Foundation_NSString"
+))]
 extern_static!(NSMenuItemImportFromDeviceIdentifier: &'static NSUserInterfaceItemIdentifier);
 
 extern_methods!(
     /// NSDeprecated
-    #[cfg(feature = "AppKit_NSMenuItem")]
     unsafe impl NSMenuItem {
         #[deprecated]
         #[method(setMnemonicLocation:)]

@@ -10,25 +10,22 @@ pub type NSTextInputSourceIdentifier = NSString;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTextInputContext")]
     pub struct NSTextInputContext;
 
-    #[cfg(feature = "AppKit_NSTextInputContext")]
     unsafe impl ClassType for NSTextInputContext {
         type Super = NSObject;
         type Mutability = MainThreadOnly;
     }
 );
 
-#[cfg(feature = "AppKit_NSTextInputContext")]
 unsafe impl NSObjectProtocol for NSTextInputContext {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTextInputContext")]
     unsafe impl NSTextInputContext {
         #[method_id(@__retain_semantics Other currentInputContext)]
         pub unsafe fn currentInputContext(mtm: MainThreadMarker) -> Option<Id<NSTextInputContext>>;
 
+        #[cfg(feature = "AppKit_NSTextInputClient")]
         #[method_id(@__retain_semantics Init initWithClient:)]
         pub unsafe fn initWithClient(
             this: Allocated<Self>,
@@ -38,6 +35,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
+        #[cfg(feature = "AppKit_NSTextInputClient")]
         #[method_id(@__retain_semantics Other client)]
         pub unsafe fn client(&self) -> Id<ProtocolObject<dyn NSTextInputClient>>;
 
@@ -108,12 +106,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTextInputContext")]
     unsafe impl NSTextInputContext {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSTextInputContextKeyboardSelectionDidChangeNotification: &'static NSNotificationName);

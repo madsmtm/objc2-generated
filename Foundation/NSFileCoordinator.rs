@@ -26,27 +26,21 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSFileAccessIntent")]
     pub struct NSFileAccessIntent;
 
-    #[cfg(feature = "Foundation_NSFileAccessIntent")]
     unsafe impl ClassType for NSFileAccessIntent {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSFileAccessIntent")]
 unsafe impl Send for NSFileAccessIntent {}
 
-#[cfg(feature = "Foundation_NSFileAccessIntent")]
 unsafe impl Sync for NSFileAccessIntent {}
 
-#[cfg(feature = "Foundation_NSFileAccessIntent")]
 unsafe impl NSObjectProtocol for NSFileAccessIntent {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSFileAccessIntent")]
     unsafe impl NSFileAccessIntent {
         #[cfg(feature = "Foundation_NSURL")]
         #[method_id(@__retain_semantics Other readingIntentWithURL:options:)]
@@ -70,7 +64,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSFileAccessIntent")]
     unsafe impl NSFileAccessIntent {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -82,32 +75,31 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSFileCoordinator")]
     pub struct NSFileCoordinator;
 
-    #[cfg(feature = "Foundation_NSFileCoordinator")]
     unsafe impl ClassType for NSFileCoordinator {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSFileCoordinator")]
 unsafe impl NSObjectProtocol for NSFileCoordinator {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSFileCoordinator")]
     unsafe impl NSFileCoordinator {
+        #[cfg(feature = "Foundation_NSFilePresenter")]
         #[method(addFilePresenter:)]
         pub unsafe fn addFilePresenter(file_presenter: &ProtocolObject<dyn NSFilePresenter>);
 
+        #[cfg(feature = "Foundation_NSFilePresenter")]
         #[method(removeFilePresenter:)]
         pub unsafe fn removeFilePresenter(file_presenter: &ProtocolObject<dyn NSFilePresenter>);
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSFilePresenter"))]
         #[method_id(@__retain_semantics Other filePresenters)]
         pub unsafe fn filePresenters() -> Id<NSArray<ProtocolObject<dyn NSFilePresenter>>>;
 
+        #[cfg(feature = "Foundation_NSFilePresenter")]
         #[method_id(@__retain_semantics Init initWithFilePresenter:)]
         pub unsafe fn initWithFilePresenter(
             this: Allocated<Self>,
@@ -125,8 +117,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSError",
-            feature = "Foundation_NSFileAccessIntent",
-            feature = "Foundation_NSOperationQueue"
+            feature = "Foundation_NSOperation"
         ))]
         #[method(coordinateAccessWithIntents:queue:byAccessor:)]
         pub unsafe fn coordinateAccessWithIntents_queue_byAccessor(
@@ -223,7 +214,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSFileCoordinator")]
     unsafe impl NSFileCoordinator {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

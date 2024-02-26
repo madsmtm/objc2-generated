@@ -70,30 +70,26 @@ extern_static!(NSTextListMarkerDecimal: &'static NSTextListMarkerFormat);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTextList")]
     pub struct NSTextList;
 
-    #[cfg(feature = "AppKit_NSTextList")]
     unsafe impl ClassType for NSTextList {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSTextList")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSTextList {}
 
-#[cfg(feature = "AppKit_NSTextList")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSTextList {}
 
-#[cfg(feature = "AppKit_NSTextList")]
 unsafe impl NSObjectProtocol for NSTextList {}
 
-#[cfg(feature = "AppKit_NSTextList")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSTextList {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTextList")]
     unsafe impl NSTextList {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithMarkerFormat:options:startingItemNumber:)]
@@ -140,7 +136,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTextList")]
     unsafe impl NSTextList {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

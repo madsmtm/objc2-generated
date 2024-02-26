@@ -36,21 +36,17 @@ pub const NSHangOnOtherExceptionMask: c_uint = 1 << 4;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "ExceptionHandling_NSExceptionHandler")]
     pub struct NSExceptionHandler;
 
-    #[cfg(feature = "ExceptionHandling_NSExceptionHandler")]
     unsafe impl ClassType for NSExceptionHandler {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "ExceptionHandling_NSExceptionHandler")]
 unsafe impl NSObjectProtocol for NSExceptionHandler {}
 
 extern_methods!(
-    #[cfg(feature = "ExceptionHandling_NSExceptionHandler")]
     unsafe impl NSExceptionHandler {
         #[method_id(@__retain_semantics Other defaultExceptionHandler)]
         pub unsafe fn defaultExceptionHandler() -> Option<Id<NSExceptionHandler>>;
@@ -77,7 +73,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "ExceptionHandling_NSExceptionHandler")]
     unsafe impl NSExceptionHandler {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

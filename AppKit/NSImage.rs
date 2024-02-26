@@ -8,13 +8,13 @@ use crate::Foundation::*;
 #[cfg(feature = "Foundation_NSString")]
 pub type NSImageName = NSString;
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "AppKit_NSImageRep", feature = "Foundation_NSString"))]
 extern_static!(NSImageHintCTM: &'static NSImageHintKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "AppKit_NSImageRep", feature = "Foundation_NSString"))]
 extern_static!(NSImageHintInterpolation: &'static NSImageHintKey);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "AppKit_NSImageRep", feature = "Foundation_NSString"))]
 extern_static!(NSImageHintUserInterfaceLayoutDirection: &'static NSImageHintKey);
 
 ns_enum!(
@@ -45,21 +45,17 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSImage")]
     pub struct NSImage;
 
-    #[cfg(feature = "AppKit_NSImage")]
     unsafe impl ClassType for NSImage {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSImage")]
 unsafe impl NSObjectProtocol for NSImage {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSImage")]
     unsafe impl NSImage {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other imageNamed:)]
@@ -95,6 +91,7 @@ extern_methods!(
             value: c_double,
         ) -> Option<Id<Self>>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Init initWithSize:)]
         pub unsafe fn initWithSize(this: Allocated<Self>, size: NSSize) -> Id<Self>;
 
@@ -143,6 +140,7 @@ extern_methods!(
             data: &NSData,
         ) -> Option<Id<Self>>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Other imageWithSize:flipped:drawingHandler:)]
         pub unsafe fn imageWithSize_flipped_drawingHandler(
             size: NSSize,
@@ -150,9 +148,11 @@ extern_methods!(
             drawing_handler: &Block<dyn Fn(NSRect) -> Bool>,
         ) -> Id<Self>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(size)]
         pub unsafe fn size(&self) -> NSSize;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setSize:)]
         pub unsafe fn setSize(&self, size: NSSize);
 
@@ -199,6 +199,7 @@ extern_methods!(
             matches_only_on_best_fitting_axis: bool,
         );
 
+        #[cfg(all(feature = "AppKit_NSGraphics", feature = "Foundation_NSGeometry"))]
         #[method(drawAtPoint:fromRect:operation:fraction:)]
         pub unsafe fn drawAtPoint_fromRect_operation_fraction(
             &self,
@@ -208,6 +209,7 @@ extern_methods!(
             delta: CGFloat,
         );
 
+        #[cfg(all(feature = "AppKit_NSGraphics", feature = "Foundation_NSGeometry"))]
         #[method(drawInRect:fromRect:operation:fraction:)]
         pub unsafe fn drawInRect_fromRect_operation_fraction(
             &self,
@@ -217,7 +219,13 @@ extern_methods!(
             delta: CGFloat,
         );
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSGraphics",
+            feature = "AppKit_NSImageRep",
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSGeometry",
+            feature = "Foundation_NSString"
+        ))]
         #[method(drawInRect:fromRect:operation:fraction:respectFlipped:hints:)]
         pub unsafe fn drawInRect_fromRect_operation_fraction_respectFlipped_hints(
             &self,
@@ -229,7 +237,7 @@ extern_methods!(
             hints: Option<&NSDictionary<NSImageHintKey, AnyObject>>,
         );
 
-        #[cfg(feature = "AppKit_NSImageRep")]
+        #[cfg(all(feature = "AppKit_NSImageRep", feature = "Foundation_NSGeometry"))]
         #[method(drawRepresentation:inRect:)]
         pub unsafe fn drawRepresentation_inRect(
             &self,
@@ -237,6 +245,7 @@ extern_methods!(
             rect: NSRect,
         ) -> bool;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(drawInRect:)]
         pub unsafe fn drawInRect(&self, rect: NSRect);
 
@@ -247,7 +256,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other TIFFRepresentation)]
         pub unsafe fn TIFFRepresentation(&self) -> Option<Id<NSData>>;
 
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(all(feature = "AppKit_NSBitmapImageRep", feature = "Foundation_NSData"))]
         #[method_id(@__retain_semantics Other TIFFRepresentationUsingCompression:factor:)]
         pub unsafe fn TIFFRepresentationUsingCompression_factor(
             &self,
@@ -298,9 +307,11 @@ extern_methods!(
         #[method(setCacheMode:)]
         pub unsafe fn setCacheMode(&self, cache_mode: NSImageCacheMode);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(alignmentRect)]
         pub unsafe fn alignmentRect(&self) -> NSRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setAlignmentRect:)]
         pub unsafe fn setAlignmentRect(&self, alignment_rect: NSRect);
 
@@ -325,6 +336,7 @@ extern_methods!(
             feature = "AppKit_NSGraphicsContext",
             feature = "AppKit_NSImageRep",
             feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSGeometry",
             feature = "Foundation_NSString"
         ))]
         #[method_id(@__retain_semantics Other bestRepresentationForRect:context:hints:)]
@@ -337,7 +349,9 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSGraphicsContext",
+            feature = "AppKit_NSImageRep",
             feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSGeometry",
             feature = "Foundation_NSString"
         ))]
         #[method(hitTestRect:withImageDestinationRect:context:hints:flipped:)]
@@ -350,21 +364,25 @@ extern_methods!(
             flipped: bool,
         ) -> bool;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(recommendedLayerContentsScale:)]
         pub unsafe fn recommendedLayerContentsScale(
             &self,
             preferred_contents_scale: CGFloat,
         ) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Other layerContentsForContentsScale:)]
         pub unsafe fn layerContentsForContentsScale(
             &self,
             layer_contents_scale: CGFloat,
         ) -> Id<AnyObject>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(capInsets)]
         pub unsafe fn capInsets(&self) -> NSEdgeInsets;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setCapInsets:)]
         pub unsafe fn setCapInsets(&self, cap_insets: NSEdgeInsets);
 
@@ -374,14 +392,12 @@ extern_methods!(
         #[method(setResizingMode:)]
         pub unsafe fn setResizingMode(&self, resizing_mode: NSImageResizingMode);
 
-        #[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
         #[method_id(@__retain_semantics Other imageWithSymbolConfiguration:)]
         pub unsafe fn imageWithSymbolConfiguration(
             &self,
             configuration: &NSImageSymbolConfiguration,
         ) -> Option<Id<NSImage>>;
 
-        #[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
         #[method_id(@__retain_semantics Other symbolConfiguration)]
         pub unsafe fn symbolConfiguration(&self) -> Id<NSImageSymbolConfiguration>;
 
@@ -397,7 +413,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSImage")]
     unsafe impl NSImage {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -408,36 +423,34 @@ extern_methods!(
 );
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSImage")]
     unsafe impl NSImage {}
 );
 
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSImage {}
 
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "AppKit_NSPasteboard")]
 unsafe impl NSPasteboardReading for NSImage {}
 
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "AppKit_NSPasteboard")]
 unsafe impl NSPasteboardWriting for NSImage {}
 
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSImage {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSImage")]
     unsafe impl NSImage {}
 );
 
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "Foundation_NSItemProvider")]
 unsafe impl NSItemProviderReading for NSImage {}
 
-#[cfg(feature = "AppKit_NSImage")]
+#[cfg(feature = "Foundation_NSItemProvider")]
 unsafe impl NSItemProviderWriting for NSImage {}
 
 extern_protocol!(
     pub unsafe trait NSImageDelegate: NSObjectProtocol {
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[optional]
         #[method_id(@__retain_semantics Other imageDidNotDraw:inRect:)]
         unsafe fn imageDidNotDraw_inRect(
@@ -446,19 +459,19 @@ extern_protocol!(
             rect: NSRect,
         ) -> Option<Id<NSImage>>;
 
-        #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSImageRep"))]
+        #[cfg(feature = "AppKit_NSImageRep")]
         #[deprecated = "This method is no longer called on 10.4 or later."]
         #[optional]
         #[method(image:willLoadRepresentation:)]
         unsafe fn image_willLoadRepresentation(&self, image: &NSImage, rep: &NSImageRep);
 
-        #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSImageRep"))]
+        #[cfg(feature = "AppKit_NSImageRep")]
         #[deprecated = "This method is no longer called on 10.4 or later."]
         #[optional]
         #[method(image:didLoadRepresentationHeader:)]
         unsafe fn image_didLoadRepresentationHeader(&self, image: &NSImage, rep: &NSImageRep);
 
-        #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSImageRep"))]
+        #[cfg(feature = "AppKit_NSImageRep")]
         #[deprecated = "This method is no longer called on 10.4 or later."]
         #[optional]
         #[method(image:didLoadPartOfRepresentation:withValidRows:)]
@@ -469,7 +482,7 @@ extern_protocol!(
             rows: NSInteger,
         );
 
-        #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSImageRep"))]
+        #[cfg(feature = "AppKit_NSImageRep")]
         #[deprecated = "This method is no longer called on 10.4 or later."]
         #[optional]
         #[method(image:didLoadRepresentation:withStatus:)]
@@ -491,11 +504,15 @@ extern_category!(
         #[method_id(@__retain_semantics Other imageForResource:)]
         unsafe fn imageForResource(&self, name: &NSImageName) -> Option<Id<NSImage>>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other pathForImageResource:)]
         unsafe fn pathForImageResource(&self, name: &NSImageName) -> Option<Id<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSString", feature = "Foundation_NSURL"))]
+        #[cfg(all(
+            feature = "AppKit_NSImage",
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSURL"
+        ))]
         #[method_id(@__retain_semantics Other URLForImageResource:)]
         unsafe fn URLForImageResource(&self, name: &NSImageName) -> Option<Id<NSURL>>;
     }
@@ -506,14 +523,17 @@ extern_category!(
 
 extern_methods!(
     /// Deprecated
-    #[cfg(feature = "AppKit_NSImage")]
     unsafe impl NSImage {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[deprecated = "Use +imageUnfilteredTypes instead"]
         #[method_id(@__retain_semantics Other imageUnfilteredFileTypes)]
         pub unsafe fn imageUnfilteredFileTypes() -> Id<NSArray<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSPasteboard",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[deprecated = "Use +imageUnfilteredTypes instead"]
         #[method_id(@__retain_semantics Other imageUnfilteredPasteboardTypes)]
         pub unsafe fn imageUnfilteredPasteboardTypes() -> Id<NSArray<NSPasteboardType>>;
@@ -523,7 +543,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other imageFileTypes)]
         pub unsafe fn imageFileTypes() -> Id<NSArray<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSPasteboard",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[deprecated = "Use +imageTypes instead"]
         #[method_id(@__retain_semantics Other imagePasteboardTypes)]
         pub unsafe fn imagePasteboardTypes() -> Id<NSArray<NSPasteboardType>>;
@@ -588,10 +612,12 @@ extern_methods!(
         #[method(cacheDepthMatchesImageDepth)]
         pub unsafe fn cacheDepthMatchesImageDepth(&self) -> bool;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[deprecated = "Use -drawAtPoint:... or -drawInRect:... methods instead"]
         #[method(dissolveToPoint:fraction:)]
         pub unsafe fn dissolveToPoint_fraction(&self, point: NSPoint, fraction: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[deprecated = "Use -drawAtPoint:... or -drawInRect:... methods instead"]
         #[method(dissolveToPoint:fromRect:fraction:)]
         pub unsafe fn dissolveToPoint_fromRect_fraction(
@@ -601,6 +627,7 @@ extern_methods!(
             fraction: CGFloat,
         );
 
+        #[cfg(all(feature = "AppKit_NSGraphics", feature = "Foundation_NSGeometry"))]
         #[deprecated = "Use -drawAtPoint:... or -drawInRect:... methods instead"]
         #[method(compositeToPoint:operation:)]
         pub unsafe fn compositeToPoint_operation(
@@ -609,6 +636,7 @@ extern_methods!(
             operation: NSCompositingOperation,
         );
 
+        #[cfg(all(feature = "AppKit_NSGraphics", feature = "Foundation_NSGeometry"))]
         #[deprecated = "Use -drawAtPoint:... or -drawInRect:... methods instead"]
         #[method(compositeToPoint:fromRect:operation:)]
         pub unsafe fn compositeToPoint_fromRect_operation(
@@ -618,6 +646,7 @@ extern_methods!(
             operation: NSCompositingOperation,
         );
 
+        #[cfg(all(feature = "AppKit_NSGraphics", feature = "Foundation_NSGeometry"))]
         #[deprecated = "Use -drawAtPoint:... or -drawInRect:... methods instead"]
         #[method(compositeToPoint:operation:fraction:)]
         pub unsafe fn compositeToPoint_operation_fraction(
@@ -627,6 +656,7 @@ extern_methods!(
             fraction: CGFloat,
         );
 
+        #[cfg(all(feature = "AppKit_NSGraphics", feature = "Foundation_NSGeometry"))]
         #[deprecated = "Use -drawAtPoint:... or -drawInRect:... methods instead"]
         #[method(compositeToPoint:fromRect:operation:fraction:)]
         pub unsafe fn compositeToPoint_fromRect_operation_fraction(
@@ -1079,31 +1109,28 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
     pub struct NSImageSymbolConfiguration;
 
-    #[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
     unsafe impl ClassType for NSImageSymbolConfiguration {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSImageSymbolConfiguration {}
 
-#[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSImageSymbolConfiguration {}
 
-#[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
 unsafe impl NSObjectProtocol for NSImageSymbolConfiguration {}
 
-#[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSImageSymbolConfiguration {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
     unsafe impl NSImageSymbolConfiguration {
+        #[cfg(all(feature = "AppKit_NSFontDescriptor", feature = "Foundation_NSGeometry"))]
         #[method_id(@__retain_semantics Other configurationWithPointSize:weight:scale:)]
         pub unsafe fn configurationWithPointSize_weight_scale(
             point_size: CGFloat,
@@ -1111,20 +1138,21 @@ extern_methods!(
             scale: NSImageSymbolScale,
         ) -> Id<Self>;
 
+        #[cfg(all(feature = "AppKit_NSFontDescriptor", feature = "Foundation_NSGeometry"))]
         #[method_id(@__retain_semantics Other configurationWithPointSize:weight:)]
         pub unsafe fn configurationWithPointSize_weight(
             point_size: CGFloat,
             weight: NSFontWeight,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "AppKit_NSFontDescriptor", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other configurationWithTextStyle:scale:)]
         pub unsafe fn configurationWithTextStyle_scale(
             style: &NSFontTextStyle,
             scale: NSImageSymbolScale,
         ) -> Id<Self>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "AppKit_NSFontDescriptor", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other configurationWithTextStyle:)]
         pub unsafe fn configurationWithTextStyle(style: &NSFontTextStyle) -> Id<Self>;
 
@@ -1159,7 +1187,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSImageSymbolConfiguration")]
     unsafe impl NSImageSymbolConfiguration {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

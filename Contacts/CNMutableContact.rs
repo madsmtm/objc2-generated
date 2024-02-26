@@ -6,10 +6,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Contacts_CNMutableContact")]
+    #[cfg(feature = "Contacts_CNContact")]
     pub struct CNMutableContact;
 
-    #[cfg(feature = "Contacts_CNMutableContact")]
+    #[cfg(feature = "Contacts_CNContact")]
     unsafe impl ClassType for CNMutableContact {
         #[inherits(NSObject)]
         type Super = CNContact;
@@ -17,23 +17,23 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Contacts_CNMutableContact")]
+#[cfg(all(feature = "Contacts_CNContact", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for CNMutableContact {}
 
-#[cfg(feature = "Contacts_CNMutableContact")]
+#[cfg(all(feature = "Contacts_CNContact", feature = "Foundation_NSObject"))]
 unsafe impl NSCopying for CNMutableContact {}
 
-#[cfg(feature = "Contacts_CNMutableContact")]
+#[cfg(all(feature = "Contacts_CNContact", feature = "Foundation_NSObject"))]
 unsafe impl NSMutableCopying for CNMutableContact {}
 
-#[cfg(feature = "Contacts_CNMutableContact")]
+#[cfg(feature = "Contacts_CNContact")]
 unsafe impl NSObjectProtocol for CNMutableContact {}
 
-#[cfg(feature = "Contacts_CNMutableContact")]
+#[cfg(all(feature = "Contacts_CNContact", feature = "Foundation_NSObject"))]
 unsafe impl NSSecureCoding for CNMutableContact {}
 
 extern_methods!(
-    #[cfg(feature = "Contacts_CNMutableContact")]
+    #[cfg(feature = "Contacts_CNContact")]
     unsafe impl CNMutableContact {
         #[method(contactType)]
         pub unsafe fn contactType(&self) -> CNContactType;
@@ -298,19 +298,19 @@ extern_methods!(
             instant_message_addresses: &NSArray<CNLabeledValue<CNInstantMessageAddress>>,
         );
 
-        #[cfg(feature = "Foundation_NSDateComponents")]
+        #[cfg(feature = "Foundation_NSCalendar")]
         #[method_id(@__retain_semantics Other birthday)]
         pub unsafe fn birthday(&self) -> Option<Id<NSDateComponents>>;
 
-        #[cfg(feature = "Foundation_NSDateComponents")]
+        #[cfg(feature = "Foundation_NSCalendar")]
         #[method(setBirthday:)]
         pub unsafe fn setBirthday(&self, birthday: Option<&NSDateComponents>);
 
-        #[cfg(feature = "Foundation_NSDateComponents")]
+        #[cfg(feature = "Foundation_NSCalendar")]
         #[method_id(@__retain_semantics Other nonGregorianBirthday)]
         pub unsafe fn nonGregorianBirthday(&self) -> Option<Id<NSDateComponents>>;
 
-        #[cfg(feature = "Foundation_NSDateComponents")]
+        #[cfg(feature = "Foundation_NSCalendar")]
         #[method(setNonGregorianBirthday:)]
         pub unsafe fn setNonGregorianBirthday(
             &self,
@@ -320,7 +320,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Contacts_CNLabeledValue",
             feature = "Foundation_NSArray",
-            feature = "Foundation_NSDateComponents"
+            feature = "Foundation_NSCalendar"
         ))]
         #[method_id(@__retain_semantics Other dates)]
         pub unsafe fn dates(&self) -> Id<NSArray<CNLabeledValue<NSDateComponents>>>;
@@ -328,7 +328,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Contacts_CNLabeledValue",
             feature = "Foundation_NSArray",
-            feature = "Foundation_NSDateComponents"
+            feature = "Foundation_NSCalendar"
         ))]
         #[method(setDates:)]
         pub unsafe fn setDates(&self, dates: &NSArray<CNLabeledValue<NSDateComponents>>);
@@ -337,7 +337,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Contacts_CNMutableContact")]
+    #[cfg(feature = "Contacts_CNContact")]
     unsafe impl CNMutableContact {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

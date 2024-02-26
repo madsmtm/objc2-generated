@@ -17,27 +17,21 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSHTTPCookieStorage")]
     pub struct NSHTTPCookieStorage;
 
-    #[cfg(feature = "Foundation_NSHTTPCookieStorage")]
     unsafe impl ClassType for NSHTTPCookieStorage {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSHTTPCookieStorage")]
 unsafe impl Send for NSHTTPCookieStorage {}
 
-#[cfg(feature = "Foundation_NSHTTPCookieStorage")]
 unsafe impl Sync for NSHTTPCookieStorage {}
 
-#[cfg(feature = "Foundation_NSHTTPCookieStorage")]
 unsafe impl NSObjectProtocol for NSHTTPCookieStorage {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSHTTPCookieStorage")]
     unsafe impl NSHTTPCookieStorage {
         #[method_id(@__retain_semantics Other sharedHTTPCookieStorage)]
         pub unsafe fn sharedHTTPCookieStorage() -> Id<NSHTTPCookieStorage>;
@@ -106,7 +100,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSHTTPCookieStorage")]
     unsafe impl NSHTTPCookieStorage {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -118,12 +111,11 @@ extern_methods!(
 
 extern_methods!(
     /// NSURLSessionTaskAdditions
-    #[cfg(feature = "Foundation_NSHTTPCookieStorage")]
     unsafe impl NSHTTPCookieStorage {
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSHTTPCookie",
-            feature = "Foundation_NSURLSessionTask"
+            feature = "Foundation_NSURLSession"
         ))]
         #[method(storeCookies:forTask:)]
         pub unsafe fn storeCookies_forTask(
@@ -135,7 +127,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSHTTPCookie",
-            feature = "Foundation_NSURLSessionTask"
+            feature = "Foundation_NSURLSession"
         ))]
         #[method(getCookiesForTask:completionHandler:)]
         pub unsafe fn getCookiesForTask_completionHandler(
@@ -146,8 +138,8 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSHTTPCookieManagerAcceptPolicyChangedNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSHTTPCookieManagerCookiesChangedNotification: &'static NSNotificationName);

@@ -88,34 +88,34 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSItemProviderReading {}
 );
 
-#[cfg(feature = "Foundation_NSError")]
+#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSObject"))]
 pub type NSItemProviderCompletionHandler =
     *mut Block<dyn Fn(*mut ProtocolObject<dyn NSSecureCoding>, *mut NSError)>;
 
-#[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSError"))]
+#[cfg(all(
+    feature = "Foundation_NSDictionary",
+    feature = "Foundation_NSError",
+    feature = "Foundation_NSObject"
+))]
 pub type NSItemProviderLoadHandler =
     *mut Block<dyn Fn(NSItemProviderCompletionHandler, *const AnyClass, *mut NSDictionary)>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSItemProvider")]
     pub struct NSItemProvider;
 
-    #[cfg(feature = "Foundation_NSItemProvider")]
     unsafe impl ClassType for NSItemProvider {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSItemProvider")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSItemProvider {}
 
-#[cfg(feature = "Foundation_NSItemProvider")]
 unsafe impl NSObjectProtocol for NSItemProvider {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSItemProvider")]
     unsafe impl NSItemProvider {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -236,7 +236,7 @@ extern_methods!(
             visibility: NSItemProviderRepresentationVisibility,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSObject", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithItem:typeIdentifier:)]
         pub unsafe fn initWithItem_typeIdentifier(
             this: Allocated<Self>,
@@ -254,6 +254,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
+            feature = "Foundation_NSObject",
             feature = "Foundation_NSString"
         ))]
         #[method(registerItemForTypeIdentifier:loadHandler:)]
@@ -266,6 +267,7 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
+            feature = "Foundation_NSObject",
             feature = "Foundation_NSString"
         ))]
         #[method(loadItemForTypeIdentifier:options:completionHandler:)]
@@ -280,7 +282,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSItemProvider")]
     unsafe impl NSItemProvider {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -292,20 +293,31 @@ extern_static!(NSItemProviderPreferredImageSizeKey: &'static NSString);
 
 extern_methods!(
     /// NSPreviewSupport
-    #[cfg(feature = "Foundation_NSItemProvider")]
     unsafe impl NSItemProvider {
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSError"))]
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSObject"
+        ))]
         #[method(previewImageHandler)]
         pub unsafe fn previewImageHandler(&self) -> NSItemProviderLoadHandler;
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSError"))]
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSObject"
+        ))]
         #[method(setPreviewImageHandler:)]
         pub unsafe fn setPreviewImageHandler(
             &self,
             preview_image_handler: NSItemProviderLoadHandler,
         );
 
-        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSError"))]
+        #[cfg(all(
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSError",
+            feature = "Foundation_NSObject"
+        ))]
         #[method(loadPreviewImageWithOptions:completionHandler:)]
         pub unsafe fn loadPreviewImageWithOptions_completionHandler(
             &self,

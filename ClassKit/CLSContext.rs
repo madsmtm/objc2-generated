@@ -77,10 +77,10 @@ extern_static!(CLSContextTopicHealthAndFitness: &'static CLSContextTopic);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "ClassKit_CLSContext")]
+    #[cfg(feature = "ClassKit_CLSObject")]
     pub struct CLSContext;
 
-    #[cfg(feature = "ClassKit_CLSContext")]
+    #[cfg(feature = "ClassKit_CLSObject")]
     unsafe impl ClassType for CLSContext {
         #[inherits(NSObject)]
         type Super = CLSObject;
@@ -88,17 +88,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "ClassKit_CLSContext")]
+#[cfg(all(feature = "ClassKit_CLSObject", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for CLSContext {}
 
-#[cfg(feature = "ClassKit_CLSContext")]
+#[cfg(feature = "ClassKit_CLSObject")]
 unsafe impl NSObjectProtocol for CLSContext {}
 
-#[cfg(feature = "ClassKit_CLSContext")]
+#[cfg(all(feature = "ClassKit_CLSObject", feature = "Foundation_NSObject"))]
 unsafe impl NSSecureCoding for CLSContext {}
 
 extern_methods!(
-    #[cfg(feature = "ClassKit_CLSContext")]
+    #[cfg(feature = "ClassKit_CLSObject")]
     unsafe impl CLSContext {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -161,15 +161,19 @@ extern_methods!(
         #[method(setAssignable:)]
         pub unsafe fn setAssignable(&self, assignable: bool);
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(suggestedAge)]
         pub unsafe fn suggestedAge(&self) -> NSRange;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(setSuggestedAge:)]
         pub unsafe fn setSuggestedAge(&self, suggested_age: NSRange);
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(suggestedCompletionTime)]
         pub unsafe fn suggestedCompletionTime(&self) -> NSRange;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(setSuggestedCompletionTime:)]
         pub unsafe fn setSuggestedCompletionTime(&self, suggested_completion_time: NSRange);
 
@@ -228,7 +232,7 @@ extern_methods!(
 
 extern_methods!(
     /// Hierarchy
-    #[cfg(feature = "ClassKit_CLSContext")]
+    #[cfg(feature = "ClassKit_CLSObject")]
     unsafe impl CLSContext {
         #[method_id(@__retain_semantics Other parent)]
         pub unsafe fn parent(&self) -> Option<Id<CLSContext>>;

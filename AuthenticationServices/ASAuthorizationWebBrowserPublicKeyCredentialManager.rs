@@ -25,27 +25,21 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationWebBrowserPublicKeyCredentialManager")]
     pub struct ASAuthorizationWebBrowserPublicKeyCredentialManager;
 
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationWebBrowserPublicKeyCredentialManager")]
     unsafe impl ClassType for ASAuthorizationWebBrowserPublicKeyCredentialManager {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationWebBrowserPublicKeyCredentialManager")]
 unsafe impl Send for ASAuthorizationWebBrowserPublicKeyCredentialManager {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationWebBrowserPublicKeyCredentialManager")]
 unsafe impl Sync for ASAuthorizationWebBrowserPublicKeyCredentialManager {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationWebBrowserPublicKeyCredentialManager")]
 unsafe impl NSObjectProtocol for ASAuthorizationWebBrowserPublicKeyCredentialManager {}
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationWebBrowserPublicKeyCredentialManager")]
     unsafe impl ASAuthorizationWebBrowserPublicKeyCredentialManager {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -81,7 +75,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationWebBrowserPublicKeyCredentialManager")]
     unsafe impl ASAuthorizationWebBrowserPublicKeyCredentialManager {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -6,41 +6,37 @@ use crate::Metal::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLLinkedFunctions")]
     pub struct MTLLinkedFunctions;
 
-    #[cfg(feature = "Metal_MTLLinkedFunctions")]
     unsafe impl ClassType for MTLLinkedFunctions {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLLinkedFunctions")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLLinkedFunctions {}
 
-#[cfg(feature = "Metal_MTLLinkedFunctions")]
 unsafe impl NSObjectProtocol for MTLLinkedFunctions {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLLinkedFunctions")]
     unsafe impl MTLLinkedFunctions {
         #[method_id(@__retain_semantics Other linkedFunctions)]
         pub fn linkedFunctions() -> Id<MTLLinkedFunctions>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLLibrary"))]
         #[method_id(@__retain_semantics Other functions)]
         pub fn functions(&self) -> Option<Id<NSArray<ProtocolObject<dyn MTLFunction>>>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLLibrary"))]
         #[method(setFunctions:)]
         pub fn setFunctions(&self, functions: Option<&NSArray<ProtocolObject<dyn MTLFunction>>>);
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLLibrary"))]
         #[method_id(@__retain_semantics Other binaryFunctions)]
         pub fn binaryFunctions(&self) -> Option<Id<NSArray<ProtocolObject<dyn MTLFunction>>>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLLibrary"))]
         #[method(setBinaryFunctions:)]
         pub fn setBinaryFunctions(
             &self,
@@ -50,7 +46,8 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString"
+            feature = "Foundation_NSString",
+            feature = "Metal_MTLLibrary"
         ))]
         #[method_id(@__retain_semantics Other groups)]
         pub fn groups(
@@ -60,7 +57,8 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSArray",
             feature = "Foundation_NSDictionary",
-            feature = "Foundation_NSString"
+            feature = "Foundation_NSString",
+            feature = "Metal_MTLLibrary"
         ))]
         #[method(setGroups:)]
         pub fn setGroups(
@@ -68,11 +66,11 @@ extern_methods!(
             groups: Option<&NSDictionary<NSString, NSArray<ProtocolObject<dyn MTLFunction>>>>,
         );
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLLibrary"))]
         #[method_id(@__retain_semantics Other privateFunctions)]
         pub fn privateFunctions(&self) -> Option<Id<NSArray<ProtocolObject<dyn MTLFunction>>>>;
 
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Metal_MTLLibrary"))]
         #[method(setPrivateFunctions:)]
         pub fn setPrivateFunctions(
             &self,
@@ -83,7 +81,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLLinkedFunctions")]
     unsafe impl MTLLinkedFunctions {
         #[method_id(@__retain_semantics Init init)]
         pub fn init(this: Allocated<Self>) -> Id<Self>;
@@ -93,7 +90,6 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Metal_MTLLinkedFunctions")]
 impl DefaultId for MTLLinkedFunctions {
     #[inline]
     fn default_id() -> Id<Self> {

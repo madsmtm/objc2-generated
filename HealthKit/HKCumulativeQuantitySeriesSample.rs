@@ -8,11 +8,21 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKCumulativeQuantitySeriesSample")]
+    #[cfg(all(
+        feature = "HealthKit_HKCumulativeQuantitySample",
+        feature = "HealthKit_HKObject",
+        feature = "HealthKit_HKQuantitySample",
+        feature = "HealthKit_HKSample"
+    ))]
     #[deprecated]
     pub struct HKCumulativeQuantitySeriesSample;
 
-    #[cfg(feature = "HealthKit_HKCumulativeQuantitySeriesSample")]
+    #[cfg(all(
+        feature = "HealthKit_HKCumulativeQuantitySample",
+        feature = "HealthKit_HKObject",
+        feature = "HealthKit_HKQuantitySample",
+        feature = "HealthKit_HKSample"
+    ))]
     unsafe impl ClassType for HKCumulativeQuantitySeriesSample {
         #[inherits(HKQuantitySample, HKSample, HKObject, NSObject)]
         type Super = HKCumulativeQuantitySample;
@@ -20,17 +30,39 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKCumulativeQuantitySeriesSample")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "HealthKit_HKCumulativeQuantitySample",
+    feature = "HealthKit_HKObject",
+    feature = "HealthKit_HKQuantitySample",
+    feature = "HealthKit_HKSample"
+))]
 unsafe impl NSCoding for HKCumulativeQuantitySeriesSample {}
 
-#[cfg(feature = "HealthKit_HKCumulativeQuantitySeriesSample")]
+#[cfg(all(
+    feature = "HealthKit_HKCumulativeQuantitySample",
+    feature = "HealthKit_HKObject",
+    feature = "HealthKit_HKQuantitySample",
+    feature = "HealthKit_HKSample"
+))]
 unsafe impl NSObjectProtocol for HKCumulativeQuantitySeriesSample {}
 
-#[cfg(feature = "HealthKit_HKCumulativeQuantitySeriesSample")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "HealthKit_HKCumulativeQuantitySample",
+    feature = "HealthKit_HKObject",
+    feature = "HealthKit_HKQuantitySample",
+    feature = "HealthKit_HKSample"
+))]
 unsafe impl NSSecureCoding for HKCumulativeQuantitySeriesSample {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKCumulativeQuantitySeriesSample")]
+    #[cfg(all(
+        feature = "HealthKit_HKCumulativeQuantitySample",
+        feature = "HealthKit_HKObject",
+        feature = "HealthKit_HKQuantitySample",
+        feature = "HealthKit_HKSample"
+    ))]
     unsafe impl HKCumulativeQuantitySeriesSample {
         #[cfg(feature = "HealthKit_HKQuantity")]
         #[deprecated]
@@ -41,12 +73,17 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `HKQuantitySample`
-    #[cfg(feature = "HealthKit_HKCumulativeQuantitySeriesSample")]
+    #[cfg(all(
+        feature = "HealthKit_HKCumulativeQuantitySample",
+        feature = "HealthKit_HKObject",
+        feature = "HealthKit_HKQuantitySample",
+        feature = "HealthKit_HKSample"
+    ))]
     unsafe impl HKCumulativeQuantitySeriesSample {
         #[cfg(all(
             feature = "Foundation_NSDate",
-            feature = "HealthKit_HKQuantity",
-            feature = "HealthKit_HKQuantityType"
+            feature = "HealthKit_HKObjectType",
+            feature = "HealthKit_HKQuantity"
         ))]
         #[method_id(@__retain_semantics Other quantitySampleWithType:quantity:startDate:endDate:)]
         pub unsafe fn quantitySampleWithType_quantity_startDate_endDate(
@@ -60,8 +97,8 @@ extern_methods!(
             feature = "Foundation_NSDate",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString",
-            feature = "HealthKit_HKQuantity",
-            feature = "HealthKit_HKQuantityType"
+            feature = "HealthKit_HKObjectType",
+            feature = "HealthKit_HKQuantity"
         ))]
         #[method_id(@__retain_semantics Other quantitySampleWithType:quantity:startDate:endDate:metadata:)]
         pub unsafe fn quantitySampleWithType_quantity_startDate_endDate_metadata(
@@ -77,8 +114,8 @@ extern_methods!(
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSString",
             feature = "HealthKit_HKDevice",
-            feature = "HealthKit_HKQuantity",
-            feature = "HealthKit_HKQuantityType"
+            feature = "HealthKit_HKObjectType",
+            feature = "HealthKit_HKQuantity"
         ))]
         #[method_id(@__retain_semantics Other quantitySampleWithType:quantity:startDate:endDate:device:metadata:)]
         pub unsafe fn quantitySampleWithType_quantity_startDate_endDate_device_metadata(
@@ -94,7 +131,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `HKObject`
-    #[cfg(feature = "HealthKit_HKCumulativeQuantitySeriesSample")]
+    #[cfg(all(
+        feature = "HealthKit_HKCumulativeQuantitySample",
+        feature = "HealthKit_HKObject",
+        feature = "HealthKit_HKQuantitySample",
+        feature = "HealthKit_HKSample"
+    ))]
     unsafe impl HKCumulativeQuantitySeriesSample {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -103,7 +145,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKCumulativeQuantitySeriesSample")]
+    #[cfg(all(
+        feature = "HealthKit_HKCumulativeQuantitySample",
+        feature = "HealthKit_HKObject",
+        feature = "HealthKit_HKQuantitySample",
+        feature = "HealthKit_HKSample"
+    ))]
     unsafe impl HKCumulativeQuantitySeriesSample {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

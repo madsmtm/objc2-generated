@@ -7,25 +7,21 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSMovie")]
     #[deprecated]
     pub struct NSMovie;
 
-    #[cfg(feature = "AppKit_NSMovie")]
     unsafe impl ClassType for NSMovie {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSMovie")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSMovie {}
 
-#[cfg(feature = "AppKit_NSMovie")]
 unsafe impl NSObjectProtocol for NSMovie {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSMovie")]
     unsafe impl NSMovie {
         #[cfg(feature = "Foundation_NSCoder")]
         #[method_id(@__retain_semantics Init initWithCoder:)]
@@ -39,7 +35,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSMovie")]
     unsafe impl NSMovie {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

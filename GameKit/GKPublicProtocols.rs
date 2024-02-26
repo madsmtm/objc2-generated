@@ -8,7 +8,11 @@ use crate::GameKit::*;
 extern_protocol!(
     #[deprecated]
     pub unsafe trait GKSessionDelegate: NSObjectProtocol {
-        #[cfg(all(feature = "Foundation_NSString", feature = "GameKit_GKSession"))]
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "GameKit_GKPublicConstants",
+            feature = "GameKit_GKSession"
+        ))]
         #[deprecated]
         #[optional]
         #[method(session:peer:didChangeState:)]

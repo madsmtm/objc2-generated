@@ -62,36 +62,30 @@ extern_static!(NSFilePathErrorKey: &'static NSErrorUserInfoKey);
 
 extern_class!(
     #[derive(PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSError")]
     pub struct NSError;
 
-    #[cfg(feature = "Foundation_NSError")]
     unsafe impl ClassType for NSError {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSError")]
 unsafe impl Send for NSError {}
 
-#[cfg(feature = "Foundation_NSError")]
 unsafe impl Sync for NSError {}
 
-#[cfg(feature = "Foundation_NSError")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSError {}
 
-#[cfg(feature = "Foundation_NSError")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSError {}
 
-#[cfg(feature = "Foundation_NSError")]
 unsafe impl NSObjectProtocol for NSError {}
 
-#[cfg(feature = "Foundation_NSError")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSError {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSError")]
     unsafe impl NSError {
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithDomain:code:userInfo:)]
@@ -167,7 +161,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSError")]
     unsafe impl NSError {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

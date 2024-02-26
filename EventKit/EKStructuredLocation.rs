@@ -9,10 +9,10 @@ use crate::MapKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "EventKit_EKStructuredLocation")]
+    #[cfg(feature = "EventKit_EKObject")]
     pub struct EKStructuredLocation;
 
-    #[cfg(feature = "EventKit_EKStructuredLocation")]
+    #[cfg(feature = "EventKit_EKObject")]
     unsafe impl ClassType for EKStructuredLocation {
         #[inherits(NSObject)]
         type Super = EKObject;
@@ -20,14 +20,14 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "EventKit_EKStructuredLocation")]
+#[cfg(all(feature = "EventKit_EKObject", feature = "Foundation_NSObject"))]
 unsafe impl NSCopying for EKStructuredLocation {}
 
-#[cfg(feature = "EventKit_EKStructuredLocation")]
+#[cfg(feature = "EventKit_EKObject")]
 unsafe impl NSObjectProtocol for EKStructuredLocation {}
 
 extern_methods!(
-    #[cfg(feature = "EventKit_EKStructuredLocation")]
+    #[cfg(feature = "EventKit_EKObject")]
     unsafe impl EKStructuredLocation {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other locationWithTitle:)]
@@ -63,7 +63,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "EventKit_EKStructuredLocation")]
+    #[cfg(feature = "EventKit_EKObject")]
     unsafe impl EKStructuredLocation {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

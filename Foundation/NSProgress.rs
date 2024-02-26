@@ -20,33 +20,26 @@ typed_extensible_enum!(
 
 pub type NSProgressUnpublishingHandler = *mut Block<dyn Fn()>;
 
-#[cfg(feature = "Foundation_NSProgress")]
 pub type NSProgressPublishingHandler =
     *mut Block<dyn Fn(NonNull<NSProgress>) -> NSProgressUnpublishingHandler>;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSProgress")]
     pub struct NSProgress;
 
-    #[cfg(feature = "Foundation_NSProgress")]
     unsafe impl ClassType for NSProgress {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSProgress")]
 unsafe impl Send for NSProgress {}
 
-#[cfg(feature = "Foundation_NSProgress")]
 unsafe impl Sync for NSProgress {}
 
-#[cfg(feature = "Foundation_NSProgress")]
 unsafe impl NSObjectProtocol for NSProgress {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSProgress")]
     unsafe impl NSProgress {
         #[method_id(@__retain_semantics Other currentProgress)]
         pub unsafe fn currentProgress() -> Option<Id<NSProgress>>;
@@ -193,19 +186,19 @@ extern_methods!(
         #[method(setKind:)]
         pub unsafe fn setKind(&self, kind: Option<&NSProgressKind>);
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method_id(@__retain_semantics Other estimatedTimeRemaining)]
         pub unsafe fn estimatedTimeRemaining(&self) -> Option<Id<NSNumber>>;
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method(setEstimatedTimeRemaining:)]
         pub unsafe fn setEstimatedTimeRemaining(&self, estimated_time_remaining: Option<&NSNumber>);
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method_id(@__retain_semantics Other throughput)]
         pub unsafe fn throughput(&self) -> Option<Id<NSNumber>>;
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method(setThroughput:)]
         pub unsafe fn setThroughput(&self, throughput: Option<&NSNumber>);
 
@@ -228,19 +221,19 @@ extern_methods!(
         #[method(setFileURL:)]
         pub unsafe fn setFileURL(&self, file_url: Option<&NSURL>);
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method_id(@__retain_semantics Other fileTotalCount)]
         pub unsafe fn fileTotalCount(&self) -> Option<Id<NSNumber>>;
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method(setFileTotalCount:)]
         pub unsafe fn setFileTotalCount(&self, file_total_count: Option<&NSNumber>);
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method_id(@__retain_semantics Other fileCompletedCount)]
         pub unsafe fn fileCompletedCount(&self) -> Option<Id<NSNumber>>;
 
-        #[cfg(feature = "Foundation_NSNumber")]
+        #[cfg(feature = "Foundation_NSValue")]
         #[method(setFileCompletedCount:)]
         pub unsafe fn setFileCompletedCount(&self, file_completed_count: Option<&NSNumber>);
 
@@ -267,7 +260,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSProgress")]
     unsafe impl NSProgress {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -279,7 +271,6 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSProgressReporting: NSObjectProtocol {
-        #[cfg(feature = "Foundation_NSProgress")]
         #[method_id(@__retain_semantics Other progress)]
         unsafe fn progress(&self) -> Id<NSProgress>;
     }

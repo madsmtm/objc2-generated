@@ -62,10 +62,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKAnnotationView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     pub struct MKAnnotationView;
 
-    #[cfg(feature = "MapKit_MKAnnotationView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl ClassType for MKAnnotationView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
@@ -73,34 +73,62 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MapKit_MKAnnotationView")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibility for MKAnnotationView {}
 
-#[cfg(feature = "MapKit_MKAnnotationView")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibilityElementProtocol for MKAnnotationView {}
 
-#[cfg(feature = "MapKit_MKAnnotationView")]
+#[cfg(all(
+    feature = "AppKit_NSAnimation",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAnimatablePropertyContainer for MKAnnotationView {}
 
-#[cfg(feature = "MapKit_MKAnnotationView")]
+#[cfg(all(
+    feature = "AppKit_NSAppearance",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAppearanceCustomization for MKAnnotationView {}
 
-#[cfg(feature = "MapKit_MKAnnotationView")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for MKAnnotationView {}
 
-#[cfg(feature = "MapKit_MKAnnotationView")]
+#[cfg(all(
+    feature = "AppKit_NSDragging",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSDraggingDestination for MKAnnotationView {}
 
-#[cfg(feature = "MapKit_MKAnnotationView")]
+#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
 unsafe impl NSObjectProtocol for MKAnnotationView {}
 
-#[cfg(feature = "MapKit_MKAnnotationView")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSUserInterfaceItemIdentification for MKAnnotationView {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKAnnotationView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl MKAnnotationView {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSString", feature = "MapKit_MKAnnotation"))]
         #[method_id(@__retain_semantics Init initWithAnnotation:reuseIdentifier:)]
         pub unsafe fn initWithAnnotation_reuseIdentifier(
             this: Allocated<Self>,
@@ -123,9 +151,11 @@ extern_methods!(
         #[method(prepareForDisplay)]
         pub unsafe fn prepareForDisplay(&self);
 
+        #[cfg(feature = "MapKit_MKAnnotation")]
         #[method_id(@__retain_semantics Other annotation)]
         pub unsafe fn annotation(&self) -> Option<Id<ProtocolObject<dyn MKAnnotation>>>;
 
+        #[cfg(feature = "MapKit_MKAnnotation")]
         #[method(setAnnotation:)]
         pub unsafe fn setAnnotation(&self, annotation: Option<&ProtocolObject<dyn MKAnnotation>>);
 
@@ -137,27 +167,35 @@ extern_methods!(
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(centerOffset)]
         pub unsafe fn centerOffset(&self) -> CGPoint;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setCenterOffset:)]
         pub unsafe fn setCenterOffset(&self, center_offset: CGPoint);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(calloutOffset)]
         pub unsafe fn calloutOffset(&self) -> CGPoint;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setCalloutOffset:)]
         pub unsafe fn setCalloutOffset(&self, callout_offset: CGPoint);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(leftCalloutOffset)]
         pub unsafe fn leftCalloutOffset(&self) -> CGPoint;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setLeftCalloutOffset:)]
         pub unsafe fn setLeftCalloutOffset(&self, left_callout_offset: CGPoint);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(rightCalloutOffset)]
         pub unsafe fn rightCalloutOffset(&self) -> CGPoint;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setRightCalloutOffset:)]
         pub unsafe fn setRightCalloutOffset(&self, right_callout_offset: CGPoint);
 
@@ -273,8 +311,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSView`
-    #[cfg(feature = "MapKit_MKAnnotationView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl MKAnnotationView {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
     }
@@ -282,7 +321,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "MapKit_MKAnnotationView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl MKAnnotationView {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -291,7 +330,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MapKit_MKAnnotationView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl MKAnnotationView {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

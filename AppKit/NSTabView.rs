@@ -5,6 +5,7 @@ use crate::AppKit::*;
 use crate::CoreData::*;
 use crate::Foundation::*;
 
+#[cfg(feature = "AppKit_NSApplication")]
 extern_static!(NSAppKitVersionNumberWithDirectionalTabs: NSAppKitVersion = 631.0);
 
 ns_enum!(
@@ -50,10 +51,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTabView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     pub struct NSTabView;
 
-    #[cfg(feature = "AppKit_NSTabView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl ClassType for NSTabView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
@@ -61,32 +62,60 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSTabView")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibility for NSTabView {}
 
-#[cfg(feature = "AppKit_NSTabView")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibilityElementProtocol for NSTabView {}
 
-#[cfg(feature = "AppKit_NSTabView")]
+#[cfg(all(
+    feature = "AppKit_NSAnimation",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAnimatablePropertyContainer for NSTabView {}
 
-#[cfg(feature = "AppKit_NSTabView")]
+#[cfg(all(
+    feature = "AppKit_NSAppearance",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAppearanceCustomization for NSTabView {}
 
-#[cfg(feature = "AppKit_NSTabView")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSTabView {}
 
-#[cfg(feature = "AppKit_NSTabView")]
+#[cfg(all(
+    feature = "AppKit_NSDragging",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSDraggingDestination for NSTabView {}
 
-#[cfg(feature = "AppKit_NSTabView")]
+#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
 unsafe impl NSObjectProtocol for NSTabView {}
 
-#[cfg(feature = "AppKit_NSTabView")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSTabView {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTabView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSTabView {
         #[cfg(feature = "AppKit_NSTabViewItem")]
         #[method(selectTabViewItem:)]
@@ -157,6 +186,7 @@ extern_methods!(
         #[method(setAllowsTruncatedLabels:)]
         pub unsafe fn setAllowsTruncatedLabels(&self, allows_truncated_labels: bool);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(minimumSize)]
         pub unsafe fn minimumSize(&self) -> NSSize;
 
@@ -166,9 +196,11 @@ extern_methods!(
         #[method(setDrawsBackground:)]
         pub unsafe fn setDrawsBackground(&self, draws_background: bool);
 
+        #[cfg(feature = "AppKit_NSCell")]
         #[method(controlSize)]
         pub unsafe fn controlSize(&self) -> NSControlSize;
 
+        #[cfg(feature = "AppKit_NSCell")]
         #[method(setControlSize:)]
         pub unsafe fn setControlSize(&self, control_size: NSControlSize);
 
@@ -194,10 +226,11 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSTabViewDelegate>>);
 
-        #[cfg(feature = "AppKit_NSTabViewItem")]
+        #[cfg(all(feature = "AppKit_NSTabViewItem", feature = "Foundation_NSGeometry"))]
         #[method_id(@__retain_semantics Other tabViewItemAtPoint:)]
         pub unsafe fn tabViewItemAtPoint(&self, point: NSPoint) -> Option<Id<NSTabViewItem>>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(contentRect)]
         pub unsafe fn contentRect(&self) -> NSRect;
 
@@ -215,10 +248,12 @@ extern_methods!(
         #[method(indexOfTabViewItemWithIdentifier:)]
         pub unsafe fn indexOfTabViewItemWithIdentifier(&self, identifier: &AnyObject) -> NSInteger;
 
+        #[cfg(feature = "AppKit_NSCell")]
         #[deprecated = "The controlTint property is not respected on 10.14 and later."]
         #[method(controlTint)]
         pub unsafe fn controlTint(&self) -> NSControlTint;
 
+        #[cfg(feature = "AppKit_NSCell")]
         #[deprecated = "The controlTint property is not respected on 10.14 and later."]
         #[method(setControlTint:)]
         pub unsafe fn setControlTint(&self, control_tint: NSControlTint);
@@ -227,8 +262,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSView`
-    #[cfg(feature = "AppKit_NSTabView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSTabView {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
 
@@ -240,7 +276,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "AppKit_NSTabView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSTabView {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -249,7 +285,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTabView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSTabView {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -258,7 +294,11 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSTabViewDelegate: NSObjectProtocol + IsMainThreadOnly {
-        #[cfg(all(feature = "AppKit_NSTabView", feature = "AppKit_NSTabViewItem"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSTabViewItem",
+            feature = "AppKit_NSView"
+        ))]
         #[optional]
         #[method(tabView:shouldSelectTabViewItem:)]
         unsafe fn tabView_shouldSelectTabViewItem(
@@ -267,7 +307,11 @@ extern_protocol!(
             tab_view_item: Option<&NSTabViewItem>,
         ) -> bool;
 
-        #[cfg(all(feature = "AppKit_NSTabView", feature = "AppKit_NSTabViewItem"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSTabViewItem",
+            feature = "AppKit_NSView"
+        ))]
         #[optional]
         #[method(tabView:willSelectTabViewItem:)]
         unsafe fn tabView_willSelectTabViewItem(
@@ -276,7 +320,11 @@ extern_protocol!(
             tab_view_item: Option<&NSTabViewItem>,
         );
 
-        #[cfg(all(feature = "AppKit_NSTabView", feature = "AppKit_NSTabViewItem"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSTabViewItem",
+            feature = "AppKit_NSView"
+        ))]
         #[optional]
         #[method(tabView:didSelectTabViewItem:)]
         unsafe fn tabView_didSelectTabViewItem(
@@ -285,7 +333,7 @@ extern_protocol!(
             tab_view_item: Option<&NSTabViewItem>,
         );
 
-        #[cfg(feature = "AppKit_NSTabView")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[optional]
         #[method(tabViewDidChangeNumberOfTabViewItems:)]
         unsafe fn tabViewDidChangeNumberOfTabViewItems(&self, tab_view: &NSTabView);

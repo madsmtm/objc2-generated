@@ -7,10 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSTrackingSeparatorToolbarItem")]
+    #[cfg(feature = "AppKit_NSToolbarItem")]
     pub struct NSTrackingSeparatorToolbarItem;
 
-    #[cfg(feature = "AppKit_NSTrackingSeparatorToolbarItem")]
+    #[cfg(feature = "AppKit_NSToolbarItem")]
     unsafe impl ClassType for NSTrackingSeparatorToolbarItem {
         #[inherits(NSObject)]
         type Super = NSToolbarItem;
@@ -18,16 +18,22 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSTrackingSeparatorToolbarItem")]
+#[cfg(all(feature = "AppKit_NSToolbarItem", feature = "Foundation_NSObject"))]
 unsafe impl NSCopying for NSTrackingSeparatorToolbarItem {}
 
-#[cfg(feature = "AppKit_NSTrackingSeparatorToolbarItem")]
+#[cfg(feature = "AppKit_NSToolbarItem")]
 unsafe impl NSObjectProtocol for NSTrackingSeparatorToolbarItem {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSTrackingSeparatorToolbarItem")]
+    #[cfg(feature = "AppKit_NSToolbarItem")]
     unsafe impl NSTrackingSeparatorToolbarItem {
-        #[cfg(all(feature = "AppKit_NSSplitView", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSSplitView",
+            feature = "AppKit_NSToolbar",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other trackingSeparatorToolbarItemWithIdentifier:splitView:dividerIndex:)]
         pub unsafe fn trackingSeparatorToolbarItemWithIdentifier_splitView_dividerIndex(
             identifier: &NSToolbarItemIdentifier,
@@ -35,11 +41,19 @@ extern_methods!(
             divider_index: NSInteger,
         ) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSSplitView")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSSplitView",
+            feature = "AppKit_NSView"
+        ))]
         #[method_id(@__retain_semantics Other splitView)]
         pub unsafe fn splitView(&self) -> Id<NSSplitView>;
 
-        #[cfg(feature = "AppKit_NSSplitView")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSSplitView",
+            feature = "AppKit_NSView"
+        ))]
         #[method(setSplitView:)]
         pub unsafe fn setSplitView(&self, split_view: &NSSplitView);
 
@@ -53,9 +67,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSToolbarItem`
-    #[cfg(feature = "AppKit_NSTrackingSeparatorToolbarItem")]
+    #[cfg(feature = "AppKit_NSToolbarItem")]
     unsafe impl NSTrackingSeparatorToolbarItem {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "AppKit_NSToolbar", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
         pub unsafe fn initWithItemIdentifier(
             this: Allocated<Self>,
@@ -66,7 +80,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSTrackingSeparatorToolbarItem")]
+    #[cfg(feature = "AppKit_NSToolbarItem")]
     unsafe impl NSTrackingSeparatorToolbarItem {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

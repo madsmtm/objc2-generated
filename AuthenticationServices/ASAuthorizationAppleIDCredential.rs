@@ -19,33 +19,32 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDCredential")]
     pub struct ASAuthorizationAppleIDCredential;
 
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDCredential")]
     unsafe impl ClassType for ASAuthorizationAppleIDCredential {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDCredential")]
+#[cfg(all(
+    feature = "AuthenticationServices_ASAuthorizationCredential",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl ASAuthorizationCredential for ASAuthorizationAppleIDCredential {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDCredential")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for ASAuthorizationAppleIDCredential {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDCredential")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for ASAuthorizationAppleIDCredential {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDCredential")]
 unsafe impl NSObjectProtocol for ASAuthorizationAppleIDCredential {}
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDCredential")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for ASAuthorizationAppleIDCredential {}
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationAppleIDCredential")]
     unsafe impl ASAuthorizationAppleIDCredential {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other user)]
@@ -55,7 +54,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other state)]
         pub unsafe fn state(&self) -> Option<Id<NSString>>;
 
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AuthenticationServices_ASAuthorization",
+            feature = "Foundation_NSArray",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other authorizedScopes)]
         pub unsafe fn authorizedScopes(&self) -> Id<NSArray<ASAuthorizationScope>>;
 

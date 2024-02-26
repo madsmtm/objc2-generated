@@ -7,10 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSObjectController")]
+    #[cfg(feature = "AppKit_NSController")]
     pub struct NSObjectController;
 
-    #[cfg(feature = "AppKit_NSObjectController")]
+    #[cfg(feature = "AppKit_NSController")]
     unsafe impl ClassType for NSObjectController {
         #[inherits(NSObject)]
         type Super = NSController;
@@ -18,20 +18,20 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSObjectController")]
+#[cfg(all(feature = "AppKit_NSController", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for NSObjectController {}
 
-#[cfg(feature = "AppKit_NSObjectController")]
+#[cfg(all(feature = "AppKit_NSController", feature = "AppKit_NSKeyValueBinding"))]
 unsafe impl NSEditor for NSObjectController {}
 
-#[cfg(feature = "AppKit_NSObjectController")]
+#[cfg(all(feature = "AppKit_NSController", feature = "AppKit_NSKeyValueBinding"))]
 unsafe impl NSEditorRegistration for NSObjectController {}
 
-#[cfg(feature = "AppKit_NSObjectController")]
+#[cfg(feature = "AppKit_NSController")]
 unsafe impl NSObjectProtocol for NSObjectController {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSObjectController")]
+    #[cfg(feature = "AppKit_NSController")]
     unsafe impl NSObjectController {
         #[method_id(@__retain_semantics Init initWithContent:)]
         pub unsafe fn initWithContent(
@@ -98,6 +98,7 @@ extern_methods!(
         #[method(canRemove)]
         pub unsafe fn canRemove(&self) -> bool;
 
+        #[cfg(feature = "AppKit_NSUserInterfaceValidation")]
         #[method(validateUserInterfaceItem:)]
         pub unsafe fn validateUserInterfaceItem(
             &self,
@@ -108,7 +109,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSController`
-    #[cfg(feature = "AppKit_NSObjectController")]
+    #[cfg(feature = "AppKit_NSController")]
     unsafe impl NSObjectController {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -117,7 +118,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSObjectController")]
+    #[cfg(feature = "AppKit_NSController")]
     unsafe impl NSObjectController {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -126,7 +127,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSManagedController
-    #[cfg(feature = "AppKit_NSObjectController")]
+    #[cfg(feature = "AppKit_NSController")]
     unsafe impl NSObjectController {
         #[cfg(feature = "CoreData_NSManagedObjectContext")]
         #[method_id(@__retain_semantics Other managedObjectContext)]
@@ -155,7 +156,11 @@ extern_methods!(
         #[method(setFetchPredicate:)]
         pub unsafe fn setFetchPredicate(&self, fetch_predicate: Option<&NSPredicate>);
 
-        #[cfg(all(feature = "CoreData_NSFetchRequest", feature = "Foundation_NSError"))]
+        #[cfg(all(
+            feature = "CoreData_NSFetchRequest",
+            feature = "CoreData_NSPersistentStoreRequest",
+            feature = "Foundation_NSError"
+        ))]
         #[method(fetchWithRequest:merge:error:_)]
         pub unsafe fn fetchWithRequest_merge_error(
             &self,
@@ -172,7 +177,10 @@ extern_methods!(
         #[method(setUsesLazyFetching:)]
         pub unsafe fn setUsesLazyFetching(&self, uses_lazy_fetching: bool);
 
-        #[cfg(feature = "CoreData_NSFetchRequest")]
+        #[cfg(all(
+            feature = "CoreData_NSFetchRequest",
+            feature = "CoreData_NSPersistentStoreRequest"
+        ))]
         #[method_id(@__retain_semantics Other defaultFetchRequest)]
         pub unsafe fn defaultFetchRequest(&self) -> Id<NSFetchRequest>;
     }

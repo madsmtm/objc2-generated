@@ -19,21 +19,17 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameController_GCControllerElement")]
     pub struct GCControllerElement;
 
-    #[cfg(feature = "GameController_GCControllerElement")]
     unsafe impl ClassType for GCControllerElement {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "GameController_GCControllerElement")]
 unsafe impl NSObjectProtocol for GCControllerElement {}
 
 extern_methods!(
-    #[cfg(feature = "GameController_GCControllerElement")]
     unsafe impl GCControllerElement {
         #[method_id(@__retain_semantics Other collection)]
         pub unsafe fn collection(&self) -> Option<Id<GCControllerElement>>;
@@ -93,7 +89,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameController_GCControllerElement")]
     unsafe impl GCControllerElement {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

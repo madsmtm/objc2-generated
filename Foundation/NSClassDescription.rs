@@ -5,21 +5,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSClassDescription")]
     pub struct NSClassDescription;
 
-    #[cfg(feature = "Foundation_NSClassDescription")]
     unsafe impl ClassType for NSClassDescription {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSClassDescription")]
 unsafe impl NSObjectProtocol for NSClassDescription {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSClassDescription")]
     unsafe impl NSClassDescription {
         #[method(registerClassDescription:forClass:)]
         pub unsafe fn registerClassDescription_forClass(
@@ -58,7 +54,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSClassDescription")]
     unsafe impl NSClassDescription {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -99,5 +94,5 @@ extern_category!(
     unsafe impl NSObjectNSClassDescriptionPrimitives for NSObject {}
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSClassDescriptionNeededForClassNotification: &'static NSNotificationName);

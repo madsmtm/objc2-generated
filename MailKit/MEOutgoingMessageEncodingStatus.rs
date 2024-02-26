@@ -7,27 +7,23 @@ use crate::MailKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MailKit_MEOutgoingMessageEncodingStatus")]
     pub struct MEOutgoingMessageEncodingStatus;
 
-    #[cfg(feature = "MailKit_MEOutgoingMessageEncodingStatus")]
     unsafe impl ClassType for MEOutgoingMessageEncodingStatus {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MailKit_MEOutgoingMessageEncodingStatus")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for MEOutgoingMessageEncodingStatus {}
 
-#[cfg(feature = "MailKit_MEOutgoingMessageEncodingStatus")]
 unsafe impl NSObjectProtocol for MEOutgoingMessageEncodingStatus {}
 
-#[cfg(feature = "MailKit_MEOutgoingMessageEncodingStatus")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for MEOutgoingMessageEncodingStatus {}
 
 extern_methods!(
-    #[cfg(feature = "MailKit_MEOutgoingMessageEncodingStatus")]
     unsafe impl MEOutgoingMessageEncodingStatus {
         #[method(canSign)]
         pub unsafe fn canSign(&self) -> bool;

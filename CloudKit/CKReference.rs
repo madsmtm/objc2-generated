@@ -17,36 +17,30 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKReference")]
     pub struct CKReference;
 
-    #[cfg(feature = "CloudKit_CKReference")]
     unsafe impl ClassType for CKReference {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CloudKit_CKReference")]
 unsafe impl Send for CKReference {}
 
-#[cfg(feature = "CloudKit_CKReference")]
 unsafe impl Sync for CKReference {}
 
-#[cfg(feature = "CloudKit_CKReference")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CKReference {}
 
-#[cfg(feature = "CloudKit_CKReference")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for CKReference {}
 
-#[cfg(feature = "CloudKit_CKReference")]
 unsafe impl NSObjectProtocol for CKReference {}
 
-#[cfg(feature = "CloudKit_CKReference")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CKReference {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKReference")]
     unsafe impl CKReference {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

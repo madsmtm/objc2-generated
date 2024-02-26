@@ -13,8 +13,13 @@ ns_options!(
 );
 
 extern_protocol!(
+    #[cfg(feature = "Metal_MTLCommandEncoder")]
     pub unsafe trait MTLAccelerationStructureCommandEncoder: MTLCommandEncoder {
-        #[cfg(feature = "Metal_MTLAccelerationStructureDescriptor")]
+        #[cfg(all(
+            feature = "Metal_MTLAccelerationStructure",
+            feature = "Metal_MTLBuffer",
+            feature = "Metal_MTLResource"
+        ))]
         #[method(buildAccelerationStructure:descriptor:scratchBuffer:scratchBufferOffset:)]
         fn buildAccelerationStructure_descriptor_scratchBuffer_scratchBufferOffset(
             &self,
@@ -24,7 +29,11 @@ extern_protocol!(
             scratch_buffer_offset: NSUInteger,
         );
 
-        #[cfg(feature = "Metal_MTLAccelerationStructureDescriptor")]
+        #[cfg(all(
+            feature = "Metal_MTLAccelerationStructure",
+            feature = "Metal_MTLBuffer",
+            feature = "Metal_MTLResource"
+        ))]
         #[method(refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:)]
         unsafe fn refitAccelerationStructure_descriptor_destination_scratchBuffer_scratchBufferOffset(
             &self,
@@ -37,7 +46,11 @@ extern_protocol!(
             scratch_buffer_offset: NSUInteger,
         );
 
-        #[cfg(feature = "Metal_MTLAccelerationStructureDescriptor")]
+        #[cfg(all(
+            feature = "Metal_MTLAccelerationStructure",
+            feature = "Metal_MTLBuffer",
+            feature = "Metal_MTLResource"
+        ))]
         #[method(refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:options:)]
         unsafe fn refitAccelerationStructure_descriptor_destination_scratchBuffer_scratchBufferOffset_options(
             &self,
@@ -51,6 +64,10 @@ extern_protocol!(
             options: MTLAccelerationStructureRefitOptions,
         );
 
+        #[cfg(all(
+            feature = "Metal_MTLAccelerationStructure",
+            feature = "Metal_MTLResource"
+        ))]
         #[method(copyAccelerationStructure:toAccelerationStructure:)]
         unsafe fn copyAccelerationStructure_toAccelerationStructure(
             &self,
@@ -58,6 +75,11 @@ extern_protocol!(
             destination_acceleration_structure: &ProtocolObject<dyn MTLAccelerationStructure>,
         );
 
+        #[cfg(all(
+            feature = "Metal_MTLAccelerationStructure",
+            feature = "Metal_MTLBuffer",
+            feature = "Metal_MTLResource"
+        ))]
         #[method(writeCompactedAccelerationStructureSize:toBuffer:offset:)]
         fn writeCompactedAccelerationStructureSize_toBuffer_offset(
             &self,
@@ -66,6 +88,12 @@ extern_protocol!(
             offset: NSUInteger,
         );
 
+        #[cfg(all(
+            feature = "Metal_MTLAccelerationStructure",
+            feature = "Metal_MTLArgument",
+            feature = "Metal_MTLBuffer",
+            feature = "Metal_MTLResource"
+        ))]
         #[method(writeCompactedAccelerationStructureSize:toBuffer:offset:sizeDataType:)]
         unsafe fn writeCompactedAccelerationStructureSize_toBuffer_offset_sizeDataType(
             &self,
@@ -75,6 +103,10 @@ extern_protocol!(
             size_data_type: MTLDataType,
         );
 
+        #[cfg(all(
+            feature = "Metal_MTLAccelerationStructure",
+            feature = "Metal_MTLResource"
+        ))]
         #[method(copyAndCompactAccelerationStructure:toAccelerationStructure:)]
         fn copyAndCompactAccelerationStructure_toAccelerationStructure(
             &self,
@@ -82,12 +114,15 @@ extern_protocol!(
             destination_acceleration_structure: &ProtocolObject<dyn MTLAccelerationStructure>,
         );
 
+        #[cfg(feature = "Metal_MTLFence")]
         #[method(updateFence:)]
         unsafe fn updateFence(&self, fence: &ProtocolObject<dyn MTLFence>);
 
+        #[cfg(feature = "Metal_MTLFence")]
         #[method(waitForFence:)]
         unsafe fn waitForFence(&self, fence: &ProtocolObject<dyn MTLFence>);
 
+        #[cfg(feature = "Metal_MTLResource")]
         #[method(useResource:usage:)]
         unsafe fn useResource_usage(
             &self,
@@ -95,6 +130,7 @@ extern_protocol!(
             usage: MTLResourceUsage,
         );
 
+        #[cfg(feature = "Metal_MTLResource")]
         #[method(useResources:count:usage:)]
         unsafe fn useResources_count_usage(
             &self,
@@ -103,9 +139,11 @@ extern_protocol!(
             usage: MTLResourceUsage,
         );
 
+        #[cfg(feature = "Metal_MTLHeap")]
         #[method(useHeap:)]
         unsafe fn useHeap(&self, heap: &ProtocolObject<dyn MTLHeap>);
 
+        #[cfg(feature = "Metal_MTLHeap")]
         #[method(useHeaps:count:)]
         unsafe fn useHeaps_count(
             &self,
@@ -113,6 +151,7 @@ extern_protocol!(
             count: NSUInteger,
         );
 
+        #[cfg(feature = "Metal_MTLCounters")]
         #[method(sampleCountersInBuffer:atSampleIndex:withBarrier:)]
         unsafe fn sampleCountersInBuffer_atSampleIndex_withBarrier(
             &self,
@@ -122,34 +161,33 @@ extern_protocol!(
         );
     }
 
+    #[cfg(feature = "Metal_MTLCommandEncoder")]
     unsafe impl ProtocolType for dyn MTLAccelerationStructureCommandEncoder {}
 );
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLAccelerationStructurePassSampleBufferAttachmentDescriptor")]
     pub struct MTLAccelerationStructurePassSampleBufferAttachmentDescriptor;
 
-    #[cfg(feature = "Metal_MTLAccelerationStructurePassSampleBufferAttachmentDescriptor")]
     unsafe impl ClassType for MTLAccelerationStructurePassSampleBufferAttachmentDescriptor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLAccelerationStructurePassSampleBufferAttachmentDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLAccelerationStructurePassSampleBufferAttachmentDescriptor {}
 
-#[cfg(feature = "Metal_MTLAccelerationStructurePassSampleBufferAttachmentDescriptor")]
 unsafe impl NSObjectProtocol for MTLAccelerationStructurePassSampleBufferAttachmentDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLAccelerationStructurePassSampleBufferAttachmentDescriptor")]
     unsafe impl MTLAccelerationStructurePassSampleBufferAttachmentDescriptor {
+        #[cfg(feature = "Metal_MTLCounters")]
         #[method_id(@__retain_semantics Other sampleBuffer)]
         pub unsafe fn sampleBuffer(&self)
             -> Option<Id<ProtocolObject<dyn MTLCounterSampleBuffer>>>;
 
+        #[cfg(feature = "Metal_MTLCounters")]
         #[method(setSampleBuffer:)]
         pub unsafe fn setSampleBuffer(
             &self,
@@ -175,7 +213,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLAccelerationStructurePassSampleBufferAttachmentDescriptor")]
     unsafe impl MTLAccelerationStructurePassSampleBufferAttachmentDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -187,30 +224,24 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray")]
     pub struct MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray;
 
-    #[cfg(feature = "Metal_MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray")]
     unsafe impl ClassType for MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray")]
 unsafe impl NSObjectProtocol for MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray")]
     unsafe impl MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray {
-        #[cfg(feature = "Metal_MTLAccelerationStructurePassSampleBufferAttachmentDescriptor")]
         #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             attachment_index: NSUInteger,
         ) -> Id<MTLAccelerationStructurePassSampleBufferAttachmentDescriptor>;
 
-        #[cfg(feature = "Metal_MTLAccelerationStructurePassSampleBufferAttachmentDescriptor")]
         #[method(setObject:atIndexedSubscript:)]
         pub unsafe fn setObject_atIndexedSubscript(
             &self,
@@ -222,7 +253,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray")]
     unsafe impl MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -234,30 +264,25 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLAccelerationStructurePassDescriptor")]
     pub struct MTLAccelerationStructurePassDescriptor;
 
-    #[cfg(feature = "Metal_MTLAccelerationStructurePassDescriptor")]
     unsafe impl ClassType for MTLAccelerationStructurePassDescriptor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLAccelerationStructurePassDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLAccelerationStructurePassDescriptor {}
 
-#[cfg(feature = "Metal_MTLAccelerationStructurePassDescriptor")]
 unsafe impl NSObjectProtocol for MTLAccelerationStructurePassDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLAccelerationStructurePassDescriptor")]
     unsafe impl MTLAccelerationStructurePassDescriptor {
         #[method_id(@__retain_semantics Other accelerationStructurePassDescriptor)]
         pub unsafe fn accelerationStructurePassDescriptor(
         ) -> Id<MTLAccelerationStructurePassDescriptor>;
 
-        #[cfg(feature = "Metal_MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray")]
         #[method_id(@__retain_semantics Other sampleBufferAttachments)]
         pub unsafe fn sampleBufferAttachments(
             &self,
@@ -267,7 +292,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLAccelerationStructurePassDescriptor")]
     unsafe impl MTLAccelerationStructurePassDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

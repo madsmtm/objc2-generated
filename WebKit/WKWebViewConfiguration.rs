@@ -27,30 +27,26 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_WKWebViewConfiguration")]
     pub struct WKWebViewConfiguration;
 
-    #[cfg(feature = "WebKit_WKWebViewConfiguration")]
     unsafe impl ClassType for WKWebViewConfiguration {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "WebKit_WKWebViewConfiguration")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for WKWebViewConfiguration {}
 
-#[cfg(feature = "WebKit_WKWebViewConfiguration")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for WKWebViewConfiguration {}
 
-#[cfg(feature = "WebKit_WKWebViewConfiguration")]
 unsafe impl NSObjectProtocol for WKWebViewConfiguration {}
 
-#[cfg(feature = "WebKit_WKWebViewConfiguration")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for WKWebViewConfiguration {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_WKWebViewConfiguration")]
     unsafe impl WKWebViewConfiguration {
         #[cfg(feature = "WebKit_WKProcessPool")]
         #[method_id(@__retain_semantics Other processPool)]
@@ -166,7 +162,7 @@ extern_methods!(
             user_interface_direction_policy: WKUserInterfaceDirectionPolicy,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_WKURLSchemeHandler"))]
         #[method(setURLSchemeHandler:forURLScheme:)]
         pub unsafe fn setURLSchemeHandler_forURLScheme(
             &self,
@@ -174,7 +170,7 @@ extern_methods!(
             url_scheme: &NSString,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_WKURLSchemeHandler"))]
         #[method_id(@__retain_semantics Other urlSchemeHandlerForURLScheme:)]
         pub unsafe fn urlSchemeHandlerForURLScheme(
             &self,
@@ -185,7 +181,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_WKWebViewConfiguration")]
     unsafe impl WKWebViewConfiguration {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

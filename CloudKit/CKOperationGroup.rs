@@ -29,27 +29,23 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CloudKit_CKOperationGroup")]
     pub struct CKOperationGroup;
 
-    #[cfg(feature = "CloudKit_CKOperationGroup")]
     unsafe impl ClassType for CKOperationGroup {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CloudKit_CKOperationGroup")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CKOperationGroup {}
 
-#[cfg(feature = "CloudKit_CKOperationGroup")]
 unsafe impl NSObjectProtocol for CKOperationGroup {}
 
-#[cfg(feature = "CloudKit_CKOperationGroup")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CKOperationGroup {}
 
 extern_methods!(
-    #[cfg(feature = "CloudKit_CKOperationGroup")]
     unsafe impl CKOperationGroup {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -62,11 +58,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other operationGroupID)]
         pub unsafe fn operationGroupID(&self) -> Id<NSString>;
 
-        #[cfg(feature = "CloudKit_CKOperationConfiguration")]
+        #[cfg(feature = "CloudKit_CKOperation")]
         #[method_id(@__retain_semantics Other defaultConfiguration)]
         pub unsafe fn defaultConfiguration(&self) -> Id<CKOperationConfiguration>;
 
-        #[cfg(feature = "CloudKit_CKOperationConfiguration")]
+        #[cfg(feature = "CloudKit_CKOperation")]
         #[method(setDefaultConfiguration:)]
         pub unsafe fn setDefaultConfiguration(
             &self,
@@ -106,7 +102,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CloudKit_CKOperationGroup")]
     unsafe impl CKOperationGroup {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

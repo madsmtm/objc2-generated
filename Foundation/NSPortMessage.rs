@@ -5,21 +5,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSPortMessage")]
     pub struct NSPortMessage;
 
-    #[cfg(feature = "Foundation_NSPortMessage")]
     unsafe impl ClassType for NSPortMessage {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSPortMessage")]
 unsafe impl NSObjectProtocol for NSPortMessage {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSPortMessage")]
     unsafe impl NSPortMessage {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSPort"))]
         #[method_id(@__retain_semantics Init initWithSendPort:receivePort:components:)]
@@ -56,7 +52,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSPortMessage")]
     unsafe impl NSPortMessage {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

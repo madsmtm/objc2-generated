@@ -16,10 +16,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreData_NSRelationshipDescription")]
+    #[cfg(feature = "CoreData_NSPropertyDescription")]
     pub struct NSRelationshipDescription;
 
-    #[cfg(feature = "CoreData_NSRelationshipDescription")]
+    #[cfg(feature = "CoreData_NSPropertyDescription")]
     unsafe impl ClassType for NSRelationshipDescription {
         #[inherits(NSObject)]
         type Super = NSPropertyDescription;
@@ -27,17 +27,23 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "CoreData_NSRelationshipDescription")]
+#[cfg(all(
+    feature = "CoreData_NSPropertyDescription",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSRelationshipDescription {}
 
-#[cfg(feature = "CoreData_NSRelationshipDescription")]
+#[cfg(all(
+    feature = "CoreData_NSPropertyDescription",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCopying for NSRelationshipDescription {}
 
-#[cfg(feature = "CoreData_NSRelationshipDescription")]
+#[cfg(feature = "CoreData_NSPropertyDescription")]
 unsafe impl NSObjectProtocol for NSRelationshipDescription {}
 
 extern_methods!(
-    #[cfg(feature = "CoreData_NSRelationshipDescription")]
+    #[cfg(feature = "CoreData_NSPropertyDescription")]
     unsafe impl NSRelationshipDescription {
         #[cfg(feature = "CoreData_NSEntityDescription")]
         #[method_id(@__retain_semantics Other destinationEntity)]
@@ -91,7 +97,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CoreData_NSRelationshipDescription")]
+    #[cfg(feature = "CoreData_NSPropertyDescription")]
     unsafe impl NSRelationshipDescription {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

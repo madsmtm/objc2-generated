@@ -13,31 +13,28 @@ typed_extensible_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "FileProvider_NSFileProviderDomainVersion")]
     pub struct NSFileProviderDomainVersion;
 
-    #[cfg(feature = "FileProvider_NSFileProviderDomainVersion")]
     unsafe impl ClassType for NSFileProviderDomainVersion {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "FileProvider_NSFileProviderDomainVersion")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSFileProviderDomainVersion {}
 
-#[cfg(feature = "FileProvider_NSFileProviderDomainVersion")]
 unsafe impl NSObjectProtocol for NSFileProviderDomainVersion {}
 
-#[cfg(feature = "FileProvider_NSFileProviderDomainVersion")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSFileProviderDomainVersion {}
 
 extern_methods!(
-    #[cfg(feature = "FileProvider_NSFileProviderDomainVersion")]
     unsafe impl NSFileProviderDomainVersion {
         #[method_id(@__retain_semantics Other next)]
         pub unsafe fn next(&self) -> Id<NSFileProviderDomainVersion>;
 
+        #[cfg(feature = "Foundation_NSObjCRuntime")]
         #[method(compare:)]
         pub unsafe fn compare(
             &self,
@@ -48,7 +45,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "FileProvider_NSFileProviderDomainVersion")]
     unsafe impl NSFileProviderDomainVersion {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -68,21 +64,17 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "FileProvider_NSFileProviderDomain")]
     pub struct NSFileProviderDomain;
 
-    #[cfg(feature = "FileProvider_NSFileProviderDomain")]
     unsafe impl ClassType for NSFileProviderDomain {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "FileProvider_NSFileProviderDomain")]
 unsafe impl NSObjectProtocol for NSFileProviderDomain {}
 
 extern_methods!(
-    #[cfg(feature = "FileProvider_NSFileProviderDomain")]
     unsafe impl NSFileProviderDomain {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithIdentifier:displayName:pathRelativeToDocumentStorage:)]
@@ -148,7 +140,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "FileProvider_NSFileProviderDomain")]
     unsafe impl NSFileProviderDomain {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -168,5 +159,5 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSFileProviderDomainDidChange: &'static NSNotificationName);

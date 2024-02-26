@@ -28,10 +28,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSPersonNameComponentsFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     pub struct NSPersonNameComponentsFormatter;
 
-    #[cfg(feature = "Foundation_NSPersonNameComponentsFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl ClassType for NSPersonNameComponentsFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;
@@ -39,23 +39,23 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSPersonNameComponentsFormatter")]
+#[cfg(feature = "Foundation_NSFormatter")]
 unsafe impl Send for NSPersonNameComponentsFormatter {}
 
-#[cfg(feature = "Foundation_NSPersonNameComponentsFormatter")]
+#[cfg(feature = "Foundation_NSFormatter")]
 unsafe impl Sync for NSPersonNameComponentsFormatter {}
 
-#[cfg(feature = "Foundation_NSPersonNameComponentsFormatter")]
+#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for NSPersonNameComponentsFormatter {}
 
-#[cfg(feature = "Foundation_NSPersonNameComponentsFormatter")]
+#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
 unsafe impl NSCopying for NSPersonNameComponentsFormatter {}
 
-#[cfg(feature = "Foundation_NSPersonNameComponentsFormatter")]
+#[cfg(feature = "Foundation_NSFormatter")]
 unsafe impl NSObjectProtocol for NSPersonNameComponentsFormatter {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSPersonNameComponentsFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl NSPersonNameComponentsFormatter {
         #[method(style)]
         pub unsafe fn style(&self) -> NSPersonNameComponentsFormatterStyle;
@@ -131,7 +131,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSPersonNameComponentsFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl NSPersonNameComponentsFormatter {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

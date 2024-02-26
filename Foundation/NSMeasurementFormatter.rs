@@ -17,10 +17,10 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSMeasurementFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     pub struct NSMeasurementFormatter;
 
-    #[cfg(feature = "Foundation_NSMeasurementFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl ClassType for NSMeasurementFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;
@@ -28,20 +28,20 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSMeasurementFormatter")]
+#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for NSMeasurementFormatter {}
 
-#[cfg(feature = "Foundation_NSMeasurementFormatter")]
+#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
 unsafe impl NSCopying for NSMeasurementFormatter {}
 
-#[cfg(feature = "Foundation_NSMeasurementFormatter")]
+#[cfg(feature = "Foundation_NSFormatter")]
 unsafe impl NSObjectProtocol for NSMeasurementFormatter {}
 
-#[cfg(feature = "Foundation_NSMeasurementFormatter")]
+#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
 unsafe impl NSSecureCoding for NSMeasurementFormatter {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSMeasurementFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl NSMeasurementFormatter {
         #[method(unitOptions)]
         pub unsafe fn unitOptions(&self) -> NSMeasurementFormatterUnitOptions;
@@ -83,7 +83,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSMeasurementFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl NSMeasurementFormatter {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

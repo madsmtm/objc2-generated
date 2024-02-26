@@ -3,43 +3,37 @@
 use crate::common::*;
 use crate::Foundation::*;
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSSystemClockDidChangeNotification: &'static NSNotificationName);
 
 pub type NSTimeInterval = c_double;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSDate")]
     pub struct NSDate;
 
-    #[cfg(feature = "Foundation_NSDate")]
     unsafe impl ClassType for NSDate {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSDate")]
 unsafe impl Send for NSDate {}
 
-#[cfg(feature = "Foundation_NSDate")]
 unsafe impl Sync for NSDate {}
 
-#[cfg(feature = "Foundation_NSDate")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSDate {}
 
-#[cfg(feature = "Foundation_NSDate")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSDate {}
 
-#[cfg(feature = "Foundation_NSDate")]
 unsafe impl NSObjectProtocol for NSDate {}
 
-#[cfg(feature = "Foundation_NSDate")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSDate {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSDate")]
     unsafe impl NSDate {
         #[method(timeIntervalSinceReferenceDate)]
         pub unsafe fn timeIntervalSinceReferenceDate(&self) -> NSTimeInterval;
@@ -61,7 +55,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSDate")]
     unsafe impl NSDate {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -70,7 +63,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSExtendedDate
-    #[cfg(feature = "Foundation_NSDate")]
     unsafe impl NSDate {
         #[method(timeIntervalSinceDate:)]
         pub unsafe fn timeIntervalSinceDate(&self, another_date: &NSDate) -> NSTimeInterval;
@@ -94,6 +86,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other laterDate:)]
         pub unsafe fn laterDate(&self, another_date: &NSDate) -> Id<NSDate>;
 
+        #[cfg(feature = "Foundation_NSObjCRuntime")]
         #[method(compare:)]
         pub unsafe fn compare(&self, other: &NSDate) -> NSComparisonResult;
 
@@ -115,7 +108,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSDateCreation
-    #[cfg(feature = "Foundation_NSDate")]
     unsafe impl NSDate {
         #[method_id(@__retain_semantics Other date)]
         pub unsafe fn date() -> Id<Self>;

@@ -9,10 +9,18 @@ use crate::MapKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKGradientPolylineRenderer")]
+    #[cfg(all(
+        feature = "MapKit_MKOverlayPathRenderer",
+        feature = "MapKit_MKOverlayRenderer",
+        feature = "MapKit_MKPolylineRenderer"
+    ))]
     pub struct MKGradientPolylineRenderer;
 
-    #[cfg(feature = "MapKit_MKGradientPolylineRenderer")]
+    #[cfg(all(
+        feature = "MapKit_MKOverlayPathRenderer",
+        feature = "MapKit_MKOverlayRenderer",
+        feature = "MapKit_MKPolylineRenderer"
+    ))]
     unsafe impl ClassType for MKGradientPolylineRenderer {
         #[inherits(MKOverlayPathRenderer, MKOverlayRenderer, NSObject)]
         type Super = MKPolylineRenderer;
@@ -20,13 +28,21 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MapKit_MKGradientPolylineRenderer")]
+#[cfg(all(
+    feature = "MapKit_MKOverlayPathRenderer",
+    feature = "MapKit_MKOverlayRenderer",
+    feature = "MapKit_MKPolylineRenderer"
+))]
 unsafe impl NSObjectProtocol for MKGradientPolylineRenderer {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKGradientPolylineRenderer")]
+    #[cfg(all(
+        feature = "MapKit_MKOverlayPathRenderer",
+        feature = "MapKit_MKOverlayRenderer",
+        feature = "MapKit_MKPolylineRenderer"
+    ))]
     unsafe impl MKGradientPolylineRenderer {
-        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSNumber"))]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSValue"))]
         #[method_id(@__retain_semantics Other locations)]
         pub unsafe fn locations(&self) -> Id<NSArray<NSNumber>>;
 
@@ -37,7 +53,7 @@ extern_methods!(
         #[cfg(all(
             feature = "AppKit_NSColor",
             feature = "Foundation_NSArray",
-            feature = "Foundation_NSNumber"
+            feature = "Foundation_NSValue"
         ))]
         #[method(setColors:atLocations:)]
         pub unsafe fn setColors_atLocations(
@@ -50,9 +66,17 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MKPolylineRenderer`
-    #[cfg(feature = "MapKit_MKGradientPolylineRenderer")]
+    #[cfg(all(
+        feature = "MapKit_MKOverlayPathRenderer",
+        feature = "MapKit_MKOverlayRenderer",
+        feature = "MapKit_MKPolylineRenderer"
+    ))]
     unsafe impl MKGradientPolylineRenderer {
-        #[cfg(feature = "MapKit_MKPolyline")]
+        #[cfg(all(
+            feature = "MapKit_MKMultiPoint",
+            feature = "MapKit_MKPolyline",
+            feature = "MapKit_MKShape"
+        ))]
         #[method_id(@__retain_semantics Init initWithPolyline:)]
         pub unsafe fn initWithPolyline(this: Allocated<Self>, polyline: &MKPolyline) -> Id<Self>;
     }
@@ -60,8 +84,13 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MKOverlayRenderer`
-    #[cfg(feature = "MapKit_MKGradientPolylineRenderer")]
+    #[cfg(all(
+        feature = "MapKit_MKOverlayPathRenderer",
+        feature = "MapKit_MKOverlayRenderer",
+        feature = "MapKit_MKPolylineRenderer"
+    ))]
     unsafe impl MKGradientPolylineRenderer {
+        #[cfg(all(feature = "MapKit_MKAnnotation", feature = "MapKit_MKOverlay"))]
         #[method_id(@__retain_semantics Init initWithOverlay:)]
         pub unsafe fn initWithOverlay(
             this: Allocated<Self>,
@@ -72,7 +101,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MapKit_MKGradientPolylineRenderer")]
+    #[cfg(all(
+        feature = "MapKit_MKOverlayPathRenderer",
+        feature = "MapKit_MKOverlayRenderer",
+        feature = "MapKit_MKPolylineRenderer"
+    ))]
     unsafe impl MKGradientPolylineRenderer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -6,40 +6,39 @@ use crate::Speech::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Speech_SFSpeechRecognitionMetadata")]
     pub struct SFSpeechRecognitionMetadata;
 
-    #[cfg(feature = "Speech_SFSpeechRecognitionMetadata")]
     unsafe impl ClassType for SFSpeechRecognitionMetadata {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Speech_SFSpeechRecognitionMetadata")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for SFSpeechRecognitionMetadata {}
 
-#[cfg(feature = "Speech_SFSpeechRecognitionMetadata")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for SFSpeechRecognitionMetadata {}
 
-#[cfg(feature = "Speech_SFSpeechRecognitionMetadata")]
 unsafe impl NSObjectProtocol for SFSpeechRecognitionMetadata {}
 
-#[cfg(feature = "Speech_SFSpeechRecognitionMetadata")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for SFSpeechRecognitionMetadata {}
 
 extern_methods!(
-    #[cfg(feature = "Speech_SFSpeechRecognitionMetadata")]
     unsafe impl SFSpeechRecognitionMetadata {
         #[method(speakingRate)]
         pub unsafe fn speakingRate(&self) -> c_double;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(averagePauseDuration)]
         pub unsafe fn averagePauseDuration(&self) -> NSTimeInterval;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(speechStartTimestamp)]
         pub unsafe fn speechStartTimestamp(&self) -> NSTimeInterval;
 
+        #[cfg(feature = "Foundation_NSDate")]
         #[method(speechDuration)]
         pub unsafe fn speechDuration(&self) -> NSTimeInterval;
 
@@ -51,7 +50,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Speech_SFSpeechRecognitionMetadata")]
     unsafe impl SFSpeechRecognitionMetadata {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

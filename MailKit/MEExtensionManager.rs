@@ -7,21 +7,17 @@ use crate::MailKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MailKit_MEExtensionManager")]
     pub struct MEExtensionManager;
 
-    #[cfg(feature = "MailKit_MEExtensionManager")]
     unsafe impl ClassType for MEExtensionManager {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MailKit_MEExtensionManager")]
 unsafe impl NSObjectProtocol for MEExtensionManager {}
 
 extern_methods!(
-    #[cfg(feature = "MailKit_MEExtensionManager")]
     unsafe impl MEExtensionManager {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

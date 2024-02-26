@@ -17,11 +17,17 @@
 #[link(name = "AdServices", kind = "framework")]
 extern "C" {}
 
+#[cfg(feature = "AdServices_AAAttribution")]
 #[path = "AAAttribution.rs"]
 mod __AAAttribution;
 
 #[cfg(feature = "AdServices_AAAttribution")]
 pub use self::__AAAttribution::AAAttribution;
+#[cfg(feature = "AdServices_AAAttribution")]
 pub use self::__AAAttribution::AAAttributionErrorCode;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "AdServices_AAAttribution",
+    feature = "Foundation_NSError",
+    feature = "Foundation_NSString"
+))]
 pub use self::__AAAttribution::AAAttributionErrorDomain;

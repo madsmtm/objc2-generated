@@ -18,21 +18,17 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CallKit_CXCallDirectoryManager")]
     pub struct CXCallDirectoryManager;
 
-    #[cfg(feature = "CallKit_CXCallDirectoryManager")]
     unsafe impl ClassType for CXCallDirectoryManager {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CallKit_CXCallDirectoryManager")]
 unsafe impl NSObjectProtocol for CXCallDirectoryManager {}
 
 extern_methods!(
-    #[cfg(feature = "CallKit_CXCallDirectoryManager")]
     unsafe impl CXCallDirectoryManager {
         #[method_id(@__retain_semantics Other sharedInstance)]
         pub unsafe fn sharedInstance() -> Id<CXCallDirectoryManager>;
@@ -64,7 +60,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CallKit_CXCallDirectoryManager")]
     unsafe impl CXCallDirectoryManager {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -26,10 +26,10 @@ pub type IMKCandidatesLocationHint = NSUInteger;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "InputMethodKit_IMKCandidates")]
+    #[cfg(feature = "AppKit_NSResponder")]
     pub struct IMKCandidates;
 
-    #[cfg(feature = "InputMethodKit_IMKCandidates")]
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl ClassType for IMKCandidates {
         #[inherits(NSObject)]
         type Super = NSResponder;
@@ -37,14 +37,14 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "InputMethodKit_IMKCandidates")]
+#[cfg(all(feature = "AppKit_NSResponder", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for IMKCandidates {}
 
-#[cfg(feature = "InputMethodKit_IMKCandidates")]
+#[cfg(feature = "AppKit_NSResponder")]
 unsafe impl NSObjectProtocol for IMKCandidates {}
 
 extern_methods!(
-    #[cfg(feature = "InputMethodKit_IMKCandidates")]
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl IMKCandidates {
         #[cfg(feature = "InputMethodKit_IMKServer")]
         #[method_id(@__retain_semantics Init initWithServer:panelType:)]
@@ -93,6 +93,7 @@ extern_methods!(
             delegate: Option<&AnyObject>,
         );
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(candidateFrame)]
         pub unsafe fn candidateFrame(&self) -> NSRect;
 
@@ -121,6 +122,7 @@ extern_methods!(
         #[method(selectedCandidate)]
         pub unsafe fn selectedCandidate(&self) -> NSInteger;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setCandidateFrameTopLeft:)]
         pub unsafe fn setCandidateFrameTopLeft(&self, point: NSPoint);
 
@@ -181,7 +183,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "InputMethodKit_IMKCandidates")]
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl IMKCandidates {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -194,7 +196,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "InputMethodKit_IMKCandidates")]
+    #[cfg(feature = "AppKit_NSResponder")]
     unsafe impl IMKCandidates {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

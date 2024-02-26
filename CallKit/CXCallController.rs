@@ -6,21 +6,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CallKit_CXCallController")]
     pub struct CXCallController;
 
-    #[cfg(feature = "CallKit_CXCallController")]
     unsafe impl ClassType for CXCallController {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CallKit_CXCallController")]
 unsafe impl NSObjectProtocol for CXCallController {}
 
 extern_methods!(
-    #[cfg(feature = "CallKit_CXCallController")]
     unsafe impl CXCallController {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -61,7 +57,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CallKit_CXCallController")]
     unsafe impl CXCallController {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -7,10 +7,10 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSMagnificationGestureRecognizer")]
+    #[cfg(feature = "AppKit_NSGestureRecognizer")]
     pub struct NSMagnificationGestureRecognizer;
 
-    #[cfg(feature = "AppKit_NSMagnificationGestureRecognizer")]
+    #[cfg(feature = "AppKit_NSGestureRecognizer")]
     unsafe impl ClassType for NSMagnificationGestureRecognizer {
         #[inherits(NSObject)]
         type Super = NSGestureRecognizer;
@@ -18,18 +18,23 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSMagnificationGestureRecognizer")]
+#[cfg(all(
+    feature = "AppKit_NSGestureRecognizer",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSMagnificationGestureRecognizer {}
 
-#[cfg(feature = "AppKit_NSMagnificationGestureRecognizer")]
+#[cfg(feature = "AppKit_NSGestureRecognizer")]
 unsafe impl NSObjectProtocol for NSMagnificationGestureRecognizer {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSMagnificationGestureRecognizer")]
+    #[cfg(feature = "AppKit_NSGestureRecognizer")]
     unsafe impl NSMagnificationGestureRecognizer {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(magnification)]
         pub unsafe fn magnification(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setMagnification:)]
         pub unsafe fn setMagnification(&self, magnification: CGFloat);
     }
@@ -37,7 +42,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSGestureRecognizer`
-    #[cfg(feature = "AppKit_NSMagnificationGestureRecognizer")]
+    #[cfg(feature = "AppKit_NSGestureRecognizer")]
     unsafe impl NSMagnificationGestureRecognizer {
         #[method_id(@__retain_semantics Init initWithTarget:action:)]
         pub unsafe fn initWithTarget_action(
@@ -54,7 +59,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSMagnificationGestureRecognizer")]
+    #[cfg(feature = "AppKit_NSGestureRecognizer")]
     unsafe impl NSMagnificationGestureRecognizer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

@@ -7,27 +7,27 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSWindowTabGroup")]
     pub struct NSWindowTabGroup;
 
-    #[cfg(feature = "AppKit_NSWindowTabGroup")]
     unsafe impl ClassType for NSWindowTabGroup {
         type Super = NSObject;
         type Mutability = MainThreadOnly;
     }
 );
 
-#[cfg(feature = "AppKit_NSWindowTabGroup")]
 unsafe impl NSObjectProtocol for NSWindowTabGroup {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSWindowTabGroup")]
     unsafe impl NSWindowTabGroup {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "AppKit_NSWindow", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Id<NSWindowTabbingIdentifier>;
 
-        #[cfg(all(feature = "AppKit_NSWindow", feature = "Foundation_NSArray"))]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSWindow",
+            feature = "Foundation_NSArray"
+        ))]
         #[method_id(@__retain_semantics Other windows)]
         pub fn windows(&self) -> Id<NSArray<NSWindow>>;
 
@@ -40,23 +40,23 @@ extern_methods!(
         #[method(isTabBarVisible)]
         pub unsafe fn isTabBarVisible(&self) -> bool;
 
-        #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
         #[method_id(@__retain_semantics Other selectedWindow)]
         pub unsafe fn selectedWindow(&self) -> Option<Id<NSWindow>>;
 
-        #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
         #[method(setSelectedWindow:)]
         pub fn setSelectedWindow(&self, selected_window: Option<&NSWindow>);
 
-        #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
         #[method(addWindow:)]
         pub unsafe fn addWindow(&self, window: &NSWindow);
 
-        #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
         #[method(insertWindow:atIndex:)]
         pub unsafe fn insertWindow_atIndex(&self, window: &NSWindow, index: NSInteger);
 
-        #[cfg(feature = "AppKit_NSWindow")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSWindow"))]
         #[method(removeWindow:)]
         pub unsafe fn removeWindow(&self, window: &NSWindow);
     }
@@ -64,7 +64,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSWindowTabGroup")]
     unsafe impl NSWindowTabGroup {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

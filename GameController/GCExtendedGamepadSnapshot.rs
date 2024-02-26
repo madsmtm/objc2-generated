@@ -7,11 +7,17 @@ use crate::GameController::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameController_GCExtendedGamepadSnapshot")]
+    #[cfg(all(
+        feature = "GameController_GCExtendedGamepad",
+        feature = "GameController_GCPhysicalInputProfile"
+    ))]
     #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
     pub struct GCExtendedGamepadSnapshot;
 
-    #[cfg(feature = "GameController_GCExtendedGamepadSnapshot")]
+    #[cfg(all(
+        feature = "GameController_GCExtendedGamepad",
+        feature = "GameController_GCPhysicalInputProfile"
+    ))]
     unsafe impl ClassType for GCExtendedGamepadSnapshot {
         #[inherits(GCPhysicalInputProfile, NSObject)]
         type Super = GCExtendedGamepad;
@@ -19,11 +25,17 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "GameController_GCExtendedGamepadSnapshot")]
+#[cfg(all(
+    feature = "GameController_GCExtendedGamepad",
+    feature = "GameController_GCPhysicalInputProfile"
+))]
 unsafe impl NSObjectProtocol for GCExtendedGamepadSnapshot {}
 
 extern_methods!(
-    #[cfg(feature = "GameController_GCExtendedGamepadSnapshot")]
+    #[cfg(all(
+        feature = "GameController_GCExtendedGamepad",
+        feature = "GameController_GCPhysicalInputProfile"
+    ))]
     unsafe impl GCExtendedGamepadSnapshot {
         #[cfg(feature = "Foundation_NSData")]
         #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
@@ -53,7 +65,10 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameController_GCExtendedGamepadSnapshot")]
+    #[cfg(all(
+        feature = "GameController_GCExtendedGamepad",
+        feature = "GameController_GCPhysicalInputProfile"
+    ))]
     unsafe impl GCExtendedGamepadSnapshot {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

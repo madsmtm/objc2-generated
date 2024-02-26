@@ -25,21 +25,17 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_WKNavigationAction")]
     pub struct WKNavigationAction;
 
-    #[cfg(feature = "WebKit_WKNavigationAction")]
     unsafe impl ClassType for WKNavigationAction {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "WebKit_WKNavigationAction")]
 unsafe impl NSObjectProtocol for WKNavigationAction {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_WKNavigationAction")]
     unsafe impl WKNavigationAction {
         #[cfg(feature = "WebKit_WKFrameInfo")]
         #[method_id(@__retain_semantics Other targetFrame)]
@@ -55,6 +51,7 @@ extern_methods!(
         #[method(shouldPerformDownload)]
         pub unsafe fn shouldPerformDownload(&self) -> bool;
 
+        #[cfg(feature = "AppKit_NSEvent")]
         #[method(modifierFlags)]
         pub unsafe fn modifierFlags(&self) -> NSEventModifierFlags;
 
@@ -65,7 +62,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_WKNavigationAction")]
     unsafe impl WKNavigationAction {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

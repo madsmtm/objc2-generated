@@ -8,10 +8,10 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKContactsLensSpecification")]
+    #[cfg(feature = "HealthKit_HKLensSpecification")]
     pub struct HKContactsLensSpecification;
 
-    #[cfg(feature = "HealthKit_HKContactsLensSpecification")]
+    #[cfg(feature = "HealthKit_HKLensSpecification")]
     unsafe impl ClassType for HKContactsLensSpecification {
         #[inherits(NSObject)]
         type Super = HKLensSpecification;
@@ -19,20 +19,29 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKContactsLensSpecification")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "HealthKit_HKLensSpecification"
+))]
 unsafe impl NSCoding for HKContactsLensSpecification {}
 
-#[cfg(feature = "HealthKit_HKContactsLensSpecification")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "HealthKit_HKLensSpecification"
+))]
 unsafe impl NSCopying for HKContactsLensSpecification {}
 
-#[cfg(feature = "HealthKit_HKContactsLensSpecification")]
+#[cfg(feature = "HealthKit_HKLensSpecification")]
 unsafe impl NSObjectProtocol for HKContactsLensSpecification {}
 
-#[cfg(feature = "HealthKit_HKContactsLensSpecification")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "HealthKit_HKLensSpecification"
+))]
 unsafe impl NSSecureCoding for HKContactsLensSpecification {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKContactsLensSpecification")]
+    #[cfg(feature = "HealthKit_HKLensSpecification")]
     unsafe impl HKContactsLensSpecification {
         #[cfg(feature = "HealthKit_HKQuantity")]
         #[method_id(@__retain_semantics Other baseCurve)]

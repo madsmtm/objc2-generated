@@ -7,10 +7,20 @@ use crate::OSAKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "OSAKit_OSAScriptView")]
+    #[cfg(all(
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSText",
+        feature = "AppKit_NSTextView",
+        feature = "AppKit_NSView"
+    ))]
     pub struct OSAScriptView;
 
-    #[cfg(feature = "OSAKit_OSAScriptView")]
+    #[cfg(all(
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSText",
+        feature = "AppKit_NSTextView",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl ClassType for OSAScriptView {
         #[inherits(NSText, NSView, NSResponder, NSObject)]
         type Super = NSTextView;
@@ -18,71 +28,200 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "OSAKit_OSAScriptView")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSText",
+    feature = "AppKit_NSTextView",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibility for OSAScriptView {}
 
-#[cfg(feature = "OSAKit_OSAScriptView")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSText",
+    feature = "AppKit_NSTextView",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibilityElementProtocol for OSAScriptView {}
 
-#[cfg(feature = "OSAKit_OSAScriptView")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSText",
+    feature = "AppKit_NSTextView",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibilityNavigableStaticText for OSAScriptView {}
 
-#[cfg(feature = "OSAKit_OSAScriptView")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSText",
+    feature = "AppKit_NSTextView",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibilityStaticText for OSAScriptView {}
 
-#[cfg(feature = "OSAKit_OSAScriptView")]
+#[cfg(all(
+    feature = "AppKit_NSAnimation",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSText",
+    feature = "AppKit_NSTextView",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAnimatablePropertyContainer for OSAScriptView {}
 
-#[cfg(feature = "OSAKit_OSAScriptView")]
+#[cfg(all(
+    feature = "AppKit_NSAppearance",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSText",
+    feature = "AppKit_NSTextView",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAppearanceCustomization for OSAScriptView {}
 
-#[cfg(feature = "OSAKit_OSAScriptView")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSSpellProtocol",
+    feature = "AppKit_NSText",
+    feature = "AppKit_NSTextView",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSChangeSpelling for OSAScriptView {}
 
-#[cfg(feature = "OSAKit_OSAScriptView")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSText",
+    feature = "AppKit_NSTextView",
+    feature = "AppKit_NSView",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for OSAScriptView {}
 
-#[cfg(feature = "OSAKit_OSAScriptView")]
+#[cfg(all(
+    feature = "AppKit_NSColorPanel",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSText",
+    feature = "AppKit_NSTextView",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSColorChanging for OSAScriptView {}
 
-#[cfg(feature = "OSAKit_OSAScriptView")]
+#[cfg(all(
+    feature = "AppKit_NSDragging",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSText",
+    feature = "AppKit_NSTextView",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSDraggingDestination for OSAScriptView {}
 
-#[cfg(feature = "OSAKit_OSAScriptView")]
+#[cfg(all(
+    feature = "AppKit_NSDragging",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSText",
+    feature = "AppKit_NSTextView",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSDraggingSource for OSAScriptView {}
 
-#[cfg(feature = "OSAKit_OSAScriptView")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSSpellProtocol",
+    feature = "AppKit_NSText",
+    feature = "AppKit_NSTextView",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSIgnoreMisspelledWords for OSAScriptView {}
 
-#[cfg(feature = "OSAKit_OSAScriptView")]
+#[cfg(all(
+    feature = "AppKit_NSMenu",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSText",
+    feature = "AppKit_NSTextView",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSMenuItemValidation for OSAScriptView {}
 
-#[cfg(feature = "OSAKit_OSAScriptView")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSText",
+    feature = "AppKit_NSTextView",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSObjectProtocol for OSAScriptView {}
 
-#[cfg(feature = "OSAKit_OSAScriptView")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSText",
+    feature = "AppKit_NSTextView",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSStandardKeyBindingResponding for OSAScriptView {}
 
-#[cfg(feature = "OSAKit_OSAScriptView")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSText",
+    feature = "AppKit_NSTextContent",
+    feature = "AppKit_NSTextView",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSTextContent for OSAScriptView {}
 
-#[cfg(feature = "OSAKit_OSAScriptView")]
+#[cfg(all(
+    feature = "AppKit_NSInputManager",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSText",
+    feature = "AppKit_NSTextView",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSTextInput for OSAScriptView {}
 
-#[cfg(feature = "OSAKit_OSAScriptView")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSText",
+    feature = "AppKit_NSTextInputClient",
+    feature = "AppKit_NSTextView",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSTextInputClient for OSAScriptView {}
 
-#[cfg(feature = "OSAKit_OSAScriptView")]
+#[cfg(all(
+    feature = "AppKit_NSLayoutManager",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSText",
+    feature = "AppKit_NSTextView",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSTextLayoutOrientationProvider for OSAScriptView {}
 
-#[cfg(feature = "OSAKit_OSAScriptView")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSText",
+    feature = "AppKit_NSTextView",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSUserInterfaceItemIdentification for OSAScriptView {}
 
-#[cfg(feature = "OSAKit_OSAScriptView")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSText",
+    feature = "AppKit_NSTextView",
+    feature = "AppKit_NSUserInterfaceValidation",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSUserInterfaceValidations for OSAScriptView {}
 
 extern_methods!(
-    #[cfg(feature = "OSAKit_OSAScriptView")]
+    #[cfg(all(
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSText",
+        feature = "AppKit_NSTextView",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl OSAScriptView {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other source)]
@@ -132,9 +271,14 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSTextView`
-    #[cfg(feature = "OSAKit_OSAScriptView")]
+    #[cfg(all(
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSText",
+        feature = "AppKit_NSTextView",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl OSAScriptView {
-        #[cfg(feature = "AppKit_NSTextContainer")]
+        #[cfg(all(feature = "AppKit_NSTextContainer", feature = "Foundation_NSGeometry"))]
         #[method_id(@__retain_semantics Init initWithFrame:textContainer:)]
         pub unsafe fn initWithFrame_textContainer(
             this: Allocated<Self>,
@@ -146,6 +290,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Id<Self>>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
 
@@ -165,7 +310,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "OSAKit_OSAScriptView")]
+    #[cfg(all(
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSText",
+        feature = "AppKit_NSTextView",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl OSAScriptView {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -174,7 +324,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "OSAKit_OSAScriptView")]
+    #[cfg(all(
+        feature = "AppKit_NSResponder",
+        feature = "AppKit_NSText",
+        feature = "AppKit_NSTextView",
+        feature = "AppKit_NSView"
+    ))]
     unsafe impl OSAScriptView {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

@@ -6,6 +6,7 @@ use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
 extern_protocol!(
+    #[cfg(feature = "Foundation_NSObject")]
     pub unsafe trait ASAuthorizationPublicKeyCredentialRegistrationRequest:
         NSCopying + NSObjectProtocol + NSSecureCoding
     {
@@ -45,26 +46,38 @@ extern_protocol!(
         #[method(setChallenge:)]
         unsafe fn setChallenge(&self, challenge: &NSData);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialConstants",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other userVerificationPreference)]
         unsafe fn userVerificationPreference(
             &self,
         ) -> Id<ASAuthorizationPublicKeyCredentialUserVerificationPreference>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialConstants",
+            feature = "Foundation_NSString"
+        ))]
         #[method(setUserVerificationPreference:)]
         unsafe fn setUserVerificationPreference(
             &self,
             user_verification_preference: &ASAuthorizationPublicKeyCredentialUserVerificationPreference,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialConstants",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Other attestationPreference)]
         unsafe fn attestationPreference(
             &self,
         ) -> Id<ASAuthorizationPublicKeyCredentialAttestationKind>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(
+            feature = "AuthenticationServices_ASAuthorizationPublicKeyCredentialConstants",
+            feature = "Foundation_NSString"
+        ))]
         #[method(setAttestationPreference:)]
         unsafe fn setAttestationPreference(
             &self,
@@ -72,5 +85,6 @@ extern_protocol!(
         );
     }
 
+    #[cfg(feature = "Foundation_NSObject")]
     unsafe impl ProtocolType for dyn ASAuthorizationPublicKeyCredentialRegistrationRequest {}
 );

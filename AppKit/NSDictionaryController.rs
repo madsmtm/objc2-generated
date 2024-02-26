@@ -7,21 +7,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSDictionaryControllerKeyValuePair")]
     pub struct NSDictionaryControllerKeyValuePair;
 
-    #[cfg(feature = "AppKit_NSDictionaryControllerKeyValuePair")]
     unsafe impl ClassType for NSDictionaryControllerKeyValuePair {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSDictionaryControllerKeyValuePair")]
 unsafe impl NSObjectProtocol for NSDictionaryControllerKeyValuePair {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSDictionaryControllerKeyValuePair")]
     unsafe impl NSDictionaryControllerKeyValuePair {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -55,7 +51,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSDictionaryControllerKeyValuePair")]
     unsafe impl NSDictionaryControllerKeyValuePair {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -64,10 +59,18 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSDictionaryController")]
+    #[cfg(all(
+        feature = "AppKit_NSArrayController",
+        feature = "AppKit_NSController",
+        feature = "AppKit_NSObjectController"
+    ))]
     pub struct NSDictionaryController;
 
-    #[cfg(feature = "AppKit_NSDictionaryController")]
+    #[cfg(all(
+        feature = "AppKit_NSArrayController",
+        feature = "AppKit_NSController",
+        feature = "AppKit_NSObjectController"
+    ))]
     unsafe impl ClassType for NSDictionaryController {
         #[inherits(NSObjectController, NSController, NSObject)]
         type Super = NSArrayController;
@@ -75,22 +78,44 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSDictionaryController")]
+#[cfg(all(
+    feature = "AppKit_NSArrayController",
+    feature = "AppKit_NSController",
+    feature = "AppKit_NSObjectController",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSDictionaryController {}
 
-#[cfg(feature = "AppKit_NSDictionaryController")]
+#[cfg(all(
+    feature = "AppKit_NSArrayController",
+    feature = "AppKit_NSController",
+    feature = "AppKit_NSKeyValueBinding",
+    feature = "AppKit_NSObjectController"
+))]
 unsafe impl NSEditor for NSDictionaryController {}
 
-#[cfg(feature = "AppKit_NSDictionaryController")]
+#[cfg(all(
+    feature = "AppKit_NSArrayController",
+    feature = "AppKit_NSController",
+    feature = "AppKit_NSKeyValueBinding",
+    feature = "AppKit_NSObjectController"
+))]
 unsafe impl NSEditorRegistration for NSDictionaryController {}
 
-#[cfg(feature = "AppKit_NSDictionaryController")]
+#[cfg(all(
+    feature = "AppKit_NSArrayController",
+    feature = "AppKit_NSController",
+    feature = "AppKit_NSObjectController"
+))]
 unsafe impl NSObjectProtocol for NSDictionaryController {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSDictionaryController")]
+    #[cfg(all(
+        feature = "AppKit_NSArrayController",
+        feature = "AppKit_NSController",
+        feature = "AppKit_NSObjectController"
+    ))]
     unsafe impl NSDictionaryController {
-        #[cfg(feature = "AppKit_NSDictionaryControllerKeyValuePair")]
         #[method_id(@__retain_semantics New newObject)]
         pub unsafe fn newObject(&self) -> Id<NSDictionaryControllerKeyValuePair>;
 
@@ -147,7 +172,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObjectController`
-    #[cfg(feature = "AppKit_NSDictionaryController")]
+    #[cfg(all(
+        feature = "AppKit_NSArrayController",
+        feature = "AppKit_NSController",
+        feature = "AppKit_NSObjectController"
+    ))]
     unsafe impl NSDictionaryController {
         #[method_id(@__retain_semantics Init initWithContent:)]
         pub unsafe fn initWithContent(
@@ -163,7 +192,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSController`
-    #[cfg(feature = "AppKit_NSDictionaryController")]
+    #[cfg(all(
+        feature = "AppKit_NSArrayController",
+        feature = "AppKit_NSController",
+        feature = "AppKit_NSObjectController"
+    ))]
     unsafe impl NSDictionaryController {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -172,7 +205,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSDictionaryController")]
+    #[cfg(all(
+        feature = "AppKit_NSArrayController",
+        feature = "AppKit_NSController",
+        feature = "AppKit_NSObjectController"
+    ))]
     unsafe impl NSDictionaryController {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

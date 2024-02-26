@@ -7,21 +7,17 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationWebBrowserPlatformPublicKeyCredential")]
     pub struct ASAuthorizationWebBrowserPlatformPublicKeyCredential;
 
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationWebBrowserPlatformPublicKeyCredential")]
     unsafe impl ClassType for ASAuthorizationWebBrowserPlatformPublicKeyCredential {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASAuthorizationWebBrowserPlatformPublicKeyCredential")]
 unsafe impl NSObjectProtocol for ASAuthorizationWebBrowserPlatformPublicKeyCredential {}
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASAuthorizationWebBrowserPlatformPublicKeyCredential")]
     unsafe impl ASAuthorizationWebBrowserPlatformPublicKeyCredential {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

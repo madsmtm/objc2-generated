@@ -6,30 +6,26 @@ use crate::QuartzCore::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "QuartzCore_CAEmitterCell")]
     pub struct CAEmitterCell;
 
-    #[cfg(feature = "QuartzCore_CAEmitterCell")]
     unsafe impl ClassType for CAEmitterCell {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "QuartzCore_CAEmitterCell")]
+#[cfg(feature = "QuartzCore_CAMediaTiming")]
 unsafe impl CAMediaTiming for CAEmitterCell {}
 
-#[cfg(feature = "QuartzCore_CAEmitterCell")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CAEmitterCell {}
 
-#[cfg(feature = "QuartzCore_CAEmitterCell")]
 unsafe impl NSObjectProtocol for CAEmitterCell {}
 
-#[cfg(feature = "QuartzCore_CAEmitterCell")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CAEmitterCell {}
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CAEmitterCell")]
     unsafe impl CAEmitterCell {
         #[method_id(@__retain_semantics Other emitterCell)]
         pub unsafe fn emitterCell() -> Id<Self>;
@@ -74,81 +70,107 @@ extern_methods!(
         #[method(setLifetimeRange:)]
         pub unsafe fn setLifetimeRange(&self, lifetime_range: c_float);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(emissionLatitude)]
         pub unsafe fn emissionLatitude(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setEmissionLatitude:)]
         pub unsafe fn setEmissionLatitude(&self, emission_latitude: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(emissionLongitude)]
         pub unsafe fn emissionLongitude(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setEmissionLongitude:)]
         pub unsafe fn setEmissionLongitude(&self, emission_longitude: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(emissionRange)]
         pub unsafe fn emissionRange(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setEmissionRange:)]
         pub unsafe fn setEmissionRange(&self, emission_range: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(velocity)]
         pub unsafe fn velocity(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setVelocity:)]
         pub unsafe fn setVelocity(&self, velocity: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(velocityRange)]
         pub unsafe fn velocityRange(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setVelocityRange:)]
         pub unsafe fn setVelocityRange(&self, velocity_range: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(xAcceleration)]
         pub unsafe fn xAcceleration(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setXAcceleration:)]
         pub unsafe fn setXAcceleration(&self, x_acceleration: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(yAcceleration)]
         pub unsafe fn yAcceleration(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setYAcceleration:)]
         pub unsafe fn setYAcceleration(&self, y_acceleration: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(zAcceleration)]
         pub unsafe fn zAcceleration(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setZAcceleration:)]
         pub unsafe fn setZAcceleration(&self, z_acceleration: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(scale)]
         pub unsafe fn scale(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setScale:)]
         pub unsafe fn setScale(&self, scale: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(scaleRange)]
         pub unsafe fn scaleRange(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setScaleRange:)]
         pub unsafe fn setScaleRange(&self, scale_range: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(scaleSpeed)]
         pub unsafe fn scaleSpeed(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setScaleSpeed:)]
         pub unsafe fn setScaleSpeed(&self, scale_speed: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(spin)]
         pub unsafe fn spin(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setSpin:)]
         pub unsafe fn setSpin(&self, spin: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(spinRange)]
         pub unsafe fn spinRange(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setSpinRange:)]
         pub unsafe fn setSpinRange(&self, spin_range: CGFloat);
 
@@ -206,15 +228,19 @@ extern_methods!(
         #[method(setContents:)]
         pub unsafe fn setContents(&self, contents: Option<&AnyObject>);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(contentsRect)]
         pub unsafe fn contentsRect(&self) -> CGRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setContentsRect:)]
         pub unsafe fn setContentsRect(&self, contents_rect: CGRect);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(contentsScale)]
         pub unsafe fn contentsScale(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setContentsScale:)]
         pub unsafe fn setContentsScale(&self, contents_scale: CGFloat);
 
@@ -260,7 +286,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "QuartzCore_CAEmitterCell")]
     unsafe impl CAEmitterCell {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

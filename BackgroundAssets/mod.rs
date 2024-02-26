@@ -17,20 +17,28 @@
 #[link(name = "BackgroundAssets", kind = "framework")]
 extern "C" {}
 
+#[cfg(feature = "BackgroundAssets_BAAppExtensionInfo")]
 #[path = "BAAppExtensionInfo.rs"]
 mod __BAAppExtensionInfo;
+#[cfg(feature = "BackgroundAssets_BABase")]
 #[path = "BABase.rs"]
 mod __BABase;
+#[cfg(feature = "BackgroundAssets_BADownload")]
 #[path = "BADownload.rs"]
 mod __BADownload;
+#[cfg(feature = "BackgroundAssets_BADownloadManager")]
 #[path = "BADownloadManager.rs"]
 mod __BADownloadManager;
+#[cfg(feature = "BackgroundAssets_BADownloaderExtension")]
 #[path = "BADownloaderExtension.rs"]
 mod __BADownloaderExtension;
+#[cfg(feature = "BackgroundAssets_BAError")]
 #[path = "BAError.rs"]
 mod __BAError;
+#[cfg(feature = "BackgroundAssets_BATypes")]
 #[path = "BATypes.rs"]
 mod __BATypes;
+#[cfg(feature = "BackgroundAssets_BAURLDownload")]
 #[path = "BAURLDownload.rs"]
 mod __BAURLDownload;
 
@@ -38,18 +46,30 @@ mod __BAURLDownload;
 pub use self::__BAAppExtensionInfo::BAAppExtensionInfo;
 #[cfg(feature = "BackgroundAssets_BADownload")]
 pub use self::__BADownload::BADownload;
+#[cfg(feature = "BackgroundAssets_BADownload")]
 pub use self::__BADownload::BADownloadState;
+#[cfg(feature = "BackgroundAssets_BADownload")]
 pub use self::__BADownload::BADownloaderPriority;
+#[cfg(feature = "BackgroundAssets_BADownload")]
 pub use self::__BADownload::BADownloaderPriorityDefault;
+#[cfg(feature = "BackgroundAssets_BADownload")]
 pub use self::__BADownload::BADownloaderPriorityMax;
+#[cfg(feature = "BackgroundAssets_BADownload")]
 pub use self::__BADownload::BADownloaderPriorityMin;
 #[cfg(feature = "BackgroundAssets_BADownloadManager")]
 pub use self::__BADownloadManager::BADownloadManager;
+#[cfg(feature = "BackgroundAssets_BADownloadManager")]
 pub use self::__BADownloadManager::BADownloadManagerDelegate;
+#[cfg(feature = "BackgroundAssets_BADownloaderExtension")]
 pub use self::__BADownloaderExtension::BADownloaderExtension;
+#[cfg(feature = "BackgroundAssets_BAError")]
 pub use self::__BAError::BAErrorCode;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "BackgroundAssets_BAError", feature = "Foundation_NSString"))]
 pub use self::__BAError::BAErrorDomain;
+#[cfg(feature = "BackgroundAssets_BATypes")]
 pub use self::__BATypes::BAContentRequest;
-#[cfg(feature = "BackgroundAssets_BAURLDownload")]
+#[cfg(all(
+    feature = "BackgroundAssets_BADownload",
+    feature = "BackgroundAssets_BAURLDownload"
+))]
 pub use self::__BAURLDownload::BAURLDownload;

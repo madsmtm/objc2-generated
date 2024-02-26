@@ -15,26 +15,22 @@ ns_options!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSWorkspace")]
     pub struct NSWorkspace;
 
-    #[cfg(feature = "AppKit_NSWorkspace")]
     unsafe impl ClassType for NSWorkspace {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSWorkspace")]
 unsafe impl NSObjectProtocol for NSWorkspace {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSWorkspace")]
     unsafe impl NSWorkspace {
         #[method_id(@__retain_semantics Other sharedWorkspace)]
         pub unsafe fn sharedWorkspace() -> Id<NSWorkspace>;
 
-        #[cfg(feature = "Foundation_NSNotificationCenter")]
+        #[cfg(feature = "Foundation_NSNotification")]
         #[method_id(@__retain_semantics Other notificationCenter)]
         pub unsafe fn notificationCenter(&self) -> Id<NSNotificationCenter>;
 
@@ -44,7 +40,6 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSRunningApplication",
-            feature = "AppKit_NSWorkspaceOpenConfiguration",
             feature = "Foundation_NSError",
             feature = "Foundation_NSURL"
         ))]
@@ -58,7 +53,6 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSRunningApplication",
-            feature = "AppKit_NSWorkspaceOpenConfiguration",
             feature = "Foundation_NSArray",
             feature = "Foundation_NSError",
             feature = "Foundation_NSURL"
@@ -74,7 +68,6 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSRunningApplication",
-            feature = "AppKit_NSWorkspaceOpenConfiguration",
             feature = "Foundation_NSError",
             feature = "Foundation_NSURL"
         ))]
@@ -263,7 +256,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSWorkspace")]
     unsafe impl NSWorkspace {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -275,24 +267,20 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSWorkspaceOpenConfiguration")]
     pub struct NSWorkspaceOpenConfiguration;
 
-    #[cfg(feature = "AppKit_NSWorkspaceOpenConfiguration")]
     unsafe impl ClassType for NSWorkspaceOpenConfiguration {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSWorkspaceOpenConfiguration")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSWorkspaceOpenConfiguration {}
 
-#[cfg(feature = "AppKit_NSWorkspaceOpenConfiguration")]
 unsafe impl NSObjectProtocol for NSWorkspaceOpenConfiguration {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSWorkspaceOpenConfiguration")]
     unsafe impl NSWorkspaceOpenConfiguration {
         #[method_id(@__retain_semantics Other configuration)]
         pub unsafe fn configuration() -> Id<Self>;
@@ -385,7 +373,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSWorkspaceOpenConfiguration")]
     unsafe impl NSWorkspaceOpenConfiguration {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -411,7 +398,6 @@ extern_static!(NSWorkspaceDesktopImageFillColorKey: &'static NSWorkspaceDesktopI
 
 extern_methods!(
     /// NSDesktopImages
-    #[cfg(feature = "AppKit_NSWorkspace")]
     unsafe impl NSWorkspace {
         #[cfg(all(
             feature = "AppKit_NSScreen",
@@ -459,27 +445,22 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSWorkspaceAuthorization")]
     pub struct NSWorkspaceAuthorization;
 
-    #[cfg(feature = "AppKit_NSWorkspaceAuthorization")]
     unsafe impl ClassType for NSWorkspaceAuthorization {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSWorkspaceAuthorization")]
 unsafe impl NSObjectProtocol for NSWorkspaceAuthorization {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSWorkspaceAuthorization")]
     unsafe impl NSWorkspaceAuthorization {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSWorkspaceAuthorization")]
     unsafe impl NSWorkspaceAuthorization {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -491,12 +472,8 @@ extern_methods!(
 
 extern_methods!(
     /// NSWorkspaceAuthorization
-    #[cfg(feature = "AppKit_NSWorkspace")]
     unsafe impl NSWorkspace {
-        #[cfg(all(
-            feature = "AppKit_NSWorkspaceAuthorization",
-            feature = "Foundation_NSError"
-        ))]
+        #[cfg(feature = "Foundation_NSError")]
         #[method(requestAuthorizationOfType:completionHandler:)]
         pub unsafe fn requestAuthorizationOfType_completionHandler(
             &self,
@@ -510,7 +487,7 @@ extern_category!(
     /// Category "NSWorkspaceAuthorization" on [`NSFileManager`].
     #[doc(alias = "NSWorkspaceAuthorization")]
     pub unsafe trait NSFileManagerNSWorkspaceAuthorization {
-        #[cfg(feature = "AppKit_NSWorkspaceAuthorization")]
+        #[cfg(feature = "AppKit_NSWorkspace")]
         #[method_id(@__retain_semantics Other fileManagerWithAuthorization:)]
         unsafe fn fileManagerWithAuthorization(
             authorization: &NSWorkspaceAuthorization,
@@ -524,25 +501,25 @@ extern_category!(
 #[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceApplicationKey: &'static NSString);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSWorkspaceWillLaunchApplicationNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSWorkspaceDidLaunchApplicationNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSWorkspaceDidTerminateApplicationNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSWorkspaceDidHideApplicationNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSWorkspaceDidUnhideApplicationNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSWorkspaceDidActivateApplicationNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSWorkspaceDidDeactivateApplicationNotification: &'static NSNotificationName);
 
 #[cfg(feature = "Foundation_NSString")]
@@ -557,43 +534,43 @@ extern_static!(NSWorkspaceVolumeOldLocalizedNameKey: &'static NSString);
 #[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceVolumeOldURLKey: &'static NSString);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSWorkspaceDidMountNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSWorkspaceDidUnmountNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSWorkspaceWillUnmountNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSWorkspaceDidRenameVolumeNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSWorkspaceWillPowerOffNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSWorkspaceWillSleepNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSWorkspaceDidWakeNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSWorkspaceScreensDidSleepNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSWorkspaceScreensDidWakeNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSWorkspaceSessionDidBecomeActiveNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSWorkspaceSessionDidResignActiveNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSWorkspaceDidChangeFileLabelsNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSWorkspaceActiveSpaceDidChangeNotification: &'static NSNotificationName);
 
 #[cfg(feature = "Foundation_NSString")]
@@ -650,7 +627,6 @@ extern_static!(NSWorkspaceLaunchConfigurationArchitecture: &'static NSWorkspaceL
 
 extern_methods!(
     /// NSDeprecated
-    #[cfg(feature = "AppKit_NSWorkspace")]
     unsafe impl NSWorkspace {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use -[NSWorkspace openURL:] instead."]
@@ -756,8 +732,8 @@ extern_methods!(
 
         #[cfg(all(
             feature = "Foundation_NSAppleEventDescriptor",
-            feature = "Foundation_NSNumber",
-            feature = "Foundation_NSString"
+            feature = "Foundation_NSString",
+            feature = "Foundation_NSValue"
         ))]
         #[deprecated = "Use -[NSWorkspace openApplicationAtURL:configuration:completionHandler:] instead."]
         #[method(launchAppWithBundleIdentifier:options:additionalEventParamDescriptor:launchIdentifier:)]
@@ -772,9 +748,9 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSAppleEventDescriptor",
             feature = "Foundation_NSArray",
-            feature = "Foundation_NSNumber",
             feature = "Foundation_NSString",
-            feature = "Foundation_NSURL"
+            feature = "Foundation_NSURL",
+            feature = "Foundation_NSValue"
         ))]
         #[deprecated = "Use -[NSWorkspace openURLs:withApplicationAtURL:configuration:completionHandler:] instead."]
         #[method(openURLs:withAppBundleIdentifier:options:additionalEventParamDescriptor:launchIdentifiers:)]
@@ -800,7 +776,7 @@ extern_methods!(
         #[method(noteUserDefaultsChanged)]
         pub unsafe fn noteUserDefaultsChanged(&self);
 
-        #[cfg(feature = "AppKit_NSImage")]
+        #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSGeometry"))]
         #[deprecated]
         #[method(slideImage:from:to:)]
         pub unsafe fn slideImage_from_to(
@@ -853,7 +829,9 @@ extern_methods!(
 
         #[cfg(all(
             feature = "AppKit_NSImage",
+            feature = "AppKit_NSResponder",
             feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry",
             feature = "Foundation_NSString"
         ))]
         #[deprecated = "Use -[NSWorkspace openURL:] instead."]
@@ -967,7 +945,7 @@ extern_static!(NSWorkspaceRecycleOperation: &'static NSWorkspaceFileOperationNam
 #[cfg(feature = "Foundation_NSString")]
 extern_static!(NSWorkspaceDuplicateOperation: &'static NSWorkspaceFileOperationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSWorkspaceDidPerformFileOperationNotification: &'static NSNotificationName);
 
 #[cfg(feature = "Foundation_NSString")]

@@ -20,10 +20,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSPathCell")]
+    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
     pub struct NSPathCell;
 
-    #[cfg(feature = "AppKit_NSPathCell")]
+    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
     unsafe impl ClassType for NSPathCell {
         #[inherits(NSCell, NSObject)]
         type Super = NSActionCell;
@@ -31,32 +31,60 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSPathCell")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell"
+))]
 unsafe impl NSAccessibility for NSPathCell {}
 
-#[cfg(feature = "AppKit_NSPathCell")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell"
+))]
 unsafe impl NSAccessibilityElementProtocol for NSPathCell {}
 
-#[cfg(feature = "AppKit_NSPathCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSPathCell {}
 
-#[cfg(feature = "AppKit_NSPathCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCopying for NSPathCell {}
 
-#[cfg(feature = "AppKit_NSPathCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSMenu"
+))]
 unsafe impl NSMenuItemValidation for NSPathCell {}
 
-#[cfg(feature = "AppKit_NSPathCell")]
+#[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
 unsafe impl NSObjectProtocol for NSPathCell {}
 
-#[cfg(feature = "AppKit_NSPathCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSSavePanel"
+))]
 unsafe impl NSOpenSavePanelDelegate for NSPathCell {}
 
-#[cfg(feature = "AppKit_NSPathCell")]
+#[cfg(all(
+    feature = "AppKit_NSActionCell",
+    feature = "AppKit_NSCell",
+    feature = "AppKit_NSUserInterfaceItemIdentification"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSPathCell {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSPathCell")]
+    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
     unsafe impl NSPathCell {
         #[method(pathStyle)]
         pub unsafe fn pathStyle(&self) -> NSPathStyle;
@@ -72,6 +100,7 @@ extern_methods!(
         #[method(setURL:)]
         pub unsafe fn setURL(&self, url: Option<&NSURL>);
 
+        #[cfg(feature = "Foundation_NSObject")]
         #[method(setObjectValue:)]
         pub unsafe fn setObjectValue(&self, obj: Option<&ProtocolObject<dyn NSCopying>>);
 
@@ -92,18 +121,32 @@ extern_methods!(
         #[method(pathComponentCellClass)]
         pub unsafe fn pathComponentCellClass(mtm: MainThreadMarker) -> &'static AnyClass;
 
-        #[cfg(all(feature = "AppKit_NSPathComponentCell", feature = "Foundation_NSArray"))]
+        #[cfg(all(
+            feature = "AppKit_NSPathComponentCell",
+            feature = "AppKit_NSTextFieldCell",
+            feature = "Foundation_NSArray"
+        ))]
         #[method_id(@__retain_semantics Other pathComponentCells)]
         pub unsafe fn pathComponentCells(&self) -> Id<NSArray<NSPathComponentCell>>;
 
-        #[cfg(all(feature = "AppKit_NSPathComponentCell", feature = "Foundation_NSArray"))]
+        #[cfg(all(
+            feature = "AppKit_NSPathComponentCell",
+            feature = "AppKit_NSTextFieldCell",
+            feature = "Foundation_NSArray"
+        ))]
         #[method(setPathComponentCells:)]
         pub unsafe fn setPathComponentCells(
             &self,
             path_component_cells: &NSArray<NSPathComponentCell>,
         );
 
-        #[cfg(all(feature = "AppKit_NSPathComponentCell", feature = "AppKit_NSView"))]
+        #[cfg(all(
+            feature = "AppKit_NSPathComponentCell",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSTextFieldCell",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[method(rectOfPathComponentCell:withFrame:inView:)]
         pub unsafe fn rectOfPathComponentCell_withFrame_inView(
             &self,
@@ -112,7 +155,13 @@ extern_methods!(
             view: &NSView,
         ) -> NSRect;
 
-        #[cfg(all(feature = "AppKit_NSPathComponentCell", feature = "AppKit_NSView"))]
+        #[cfg(all(
+            feature = "AppKit_NSPathComponentCell",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSTextFieldCell",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[method_id(@__retain_semantics Other pathComponentCellAtPoint:withFrame:inView:)]
         pub unsafe fn pathComponentCellAtPoint_withFrame_inView(
             &self,
@@ -121,11 +170,19 @@ extern_methods!(
             view: &NSView,
         ) -> Option<Id<NSPathComponentCell>>;
 
-        #[cfg(feature = "AppKit_NSPathComponentCell")]
+        #[cfg(all(
+            feature = "AppKit_NSPathComponentCell",
+            feature = "AppKit_NSTextFieldCell"
+        ))]
         #[method_id(@__retain_semantics Other clickedPathComponentCell)]
         pub unsafe fn clickedPathComponentCell(&self) -> Option<Id<NSPathComponentCell>>;
 
-        #[cfg(all(feature = "AppKit_NSEvent", feature = "AppKit_NSView"))]
+        #[cfg(all(
+            feature = "AppKit_NSEvent",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[method(mouseEntered:withFrame:inView:)]
         pub unsafe fn mouseEntered_withFrame_inView(
             &self,
@@ -134,7 +191,12 @@ extern_methods!(
             view: &NSView,
         );
 
-        #[cfg(all(feature = "AppKit_NSEvent", feature = "AppKit_NSView"))]
+        #[cfg(all(
+            feature = "AppKit_NSEvent",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[method(mouseExited:withFrame:inView:)]
         pub unsafe fn mouseExited_withFrame_inView(
             &self,
@@ -180,7 +242,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSCell`
-    #[cfg(feature = "AppKit_NSPathCell")]
+    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
     unsafe impl NSPathCell {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -201,7 +263,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSPathCell")]
+    #[cfg(all(feature = "AppKit_NSActionCell", feature = "AppKit_NSCell"))]
     unsafe impl NSPathCell {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -210,7 +272,15 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait NSPathCellDelegate: NSObjectProtocol + IsMainThreadOnly {
-        #[cfg(all(feature = "AppKit_NSOpenPanel", feature = "AppKit_NSPathCell"))]
+        #[cfg(all(
+            feature = "AppKit_NSActionCell",
+            feature = "AppKit_NSCell",
+            feature = "AppKit_NSOpenPanel",
+            feature = "AppKit_NSPanel",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSSavePanel",
+            feature = "AppKit_NSWindow"
+        ))]
         #[optional]
         #[method(pathCell:willDisplayOpenPanel:)]
         unsafe fn pathCell_willDisplayOpenPanel(
@@ -219,7 +289,11 @@ extern_protocol!(
             open_panel: &NSOpenPanel,
         );
 
-        #[cfg(all(feature = "AppKit_NSMenu", feature = "AppKit_NSPathCell"))]
+        #[cfg(all(
+            feature = "AppKit_NSActionCell",
+            feature = "AppKit_NSCell",
+            feature = "AppKit_NSMenu"
+        ))]
         #[optional]
         #[method(pathCell:willPopUpMenu:)]
         unsafe fn pathCell_willPopUpMenu(&self, path_cell: &NSPathCell, menu: &NSMenu);

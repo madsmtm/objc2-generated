@@ -4,7 +4,7 @@ use crate::common::*;
 use crate::Foundation::*;
 use crate::MetricKit::*;
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
 extern_static!(MXErrorDomain: Option<&'static NSErrorDomain>);
 
 ns_error_enum!(

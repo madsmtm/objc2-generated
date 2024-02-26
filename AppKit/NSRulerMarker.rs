@@ -7,29 +7,31 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSRulerMarker")]
     pub struct NSRulerMarker;
 
-    #[cfg(feature = "AppKit_NSRulerMarker")]
     unsafe impl ClassType for NSRulerMarker {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AppKit_NSRulerMarker")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSRulerMarker {}
 
-#[cfg(feature = "AppKit_NSRulerMarker")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSRulerMarker {}
 
-#[cfg(feature = "AppKit_NSRulerMarker")]
 unsafe impl NSObjectProtocol for NSRulerMarker {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSRulerMarker")]
     unsafe impl NSRulerMarker {
-        #[cfg(all(feature = "AppKit_NSImage", feature = "AppKit_NSRulerView"))]
+        #[cfg(all(
+            feature = "AppKit_NSImage",
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSRulerView",
+            feature = "AppKit_NSView",
+            feature = "Foundation_NSGeometry"
+        ))]
         #[method_id(@__retain_semantics Init initWithRulerView:markerLocation:image:imageOrigin:)]
         pub unsafe fn initWithRulerView_markerLocation_image_imageOrigin(
             this: Allocated<Self>,
@@ -46,13 +48,19 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(feature = "AppKit_NSRulerView")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSRulerView",
+            feature = "AppKit_NSView"
+        ))]
         #[method_id(@__retain_semantics Other ruler)]
         pub unsafe fn ruler(&self, mtm: MainThreadMarker) -> Option<Id<NSRulerView>>;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(markerLocation)]
         pub unsafe fn markerLocation(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setMarkerLocation:)]
         pub unsafe fn setMarkerLocation(&self, marker_location: CGFloat);
 
@@ -64,9 +72,11 @@ extern_methods!(
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: &NSImage);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(imageOrigin)]
         pub unsafe fn imageOrigin(&self) -> NSPoint;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setImageOrigin:)]
         pub unsafe fn setImageOrigin(&self, image_origin: NSPoint);
 
@@ -85,21 +95,26 @@ extern_methods!(
         #[method(isDragging)]
         pub unsafe fn isDragging(&self) -> bool;
 
+        #[cfg(feature = "Foundation_NSObject")]
         #[method_id(@__retain_semantics Other representedObject)]
         pub unsafe fn representedObject(&self) -> Option<Id<ProtocolObject<dyn NSCopying>>>;
 
+        #[cfg(feature = "Foundation_NSObject")]
         #[method(setRepresentedObject:)]
         pub unsafe fn setRepresentedObject(
             &self,
             represented_object: Option<&ProtocolObject<dyn NSCopying>>,
         );
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(imageRectInRuler)]
         pub unsafe fn imageRectInRuler(&self) -> NSRect;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(thicknessRequiredInRuler)]
         pub unsafe fn thicknessRequiredInRuler(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(drawRect:)]
         pub unsafe fn drawRect(&self, rect: NSRect);
 
@@ -112,7 +127,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSRulerMarker")]
     unsafe impl NSRulerMarker {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

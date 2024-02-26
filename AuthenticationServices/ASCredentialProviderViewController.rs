@@ -5,25 +5,44 @@ use crate::AppKit::*;
 use crate::AuthenticationServices::*;
 use crate::Foundation::*;
 
-#[cfg(feature = "AuthenticationServices_ASCredentialProviderViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for ASCredentialProviderViewController {}
 
-#[cfg(feature = "AuthenticationServices_ASCredentialProviderViewController")]
+#[cfg(all(
+    feature = "AppKit_NSKeyValueBinding",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSEditor for ASCredentialProviderViewController {}
 
-#[cfg(feature = "AuthenticationServices_ASCredentialProviderViewController")]
+#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
 unsafe impl NSObjectProtocol for ASCredentialProviderViewController {}
 
-#[cfg(feature = "AuthenticationServices_ASCredentialProviderViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSStoryboardSegue",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSSeguePerforming for ASCredentialProviderViewController {}
 
-#[cfg(feature = "AuthenticationServices_ASCredentialProviderViewController")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSViewController"
+))]
 unsafe impl NSUserInterfaceItemIdentification for ASCredentialProviderViewController {}
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASCredentialProviderViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl ASCredentialProviderViewController {
-        #[cfg(feature = "AuthenticationServices_ASCredentialProviderExtensionContext")]
+        #[cfg(all(
+            feature = "AuthenticationServices_ASCredentialProviderExtensionContext",
+            feature = "Foundation_NSExtensionContext"
+        ))]
         #[method_id(@__retain_semantics Other extensionContext)]
         pub unsafe fn extensionContext(&self) -> Id<ASCredentialProviderExtensionContext>;
 
@@ -57,6 +76,10 @@ extern_methods!(
             credential_identity: &ASPasswordCredentialIdentity,
         );
 
+        #[cfg(all(
+            feature = "AuthenticationServices_ASCredentialRequest",
+            feature = "Foundation_NSObject"
+        ))]
         #[method(provideCredentialWithoutUserInteractionForRequest:)]
         pub unsafe fn provideCredentialWithoutUserInteractionForRequest(
             &self,
@@ -71,6 +94,10 @@ extern_methods!(
             credential_identity: &ASPasswordCredentialIdentity,
         );
 
+        #[cfg(all(
+            feature = "AuthenticationServices_ASCredentialRequest",
+            feature = "Foundation_NSObject"
+        ))]
         #[method(prepareInterfaceToProvideCredentialForRequest:)]
         pub unsafe fn prepareInterfaceToProvideCredentialForRequest(
             &self,
@@ -80,6 +107,10 @@ extern_methods!(
         #[method(prepareInterfaceForExtensionConfiguration)]
         pub unsafe fn prepareInterfaceForExtensionConfiguration(&self);
 
+        #[cfg(all(
+            feature = "AuthenticationServices_ASCredentialRequest",
+            feature = "Foundation_NSObject"
+        ))]
         #[method(prepareInterfaceForPasskeyRegistration:)]
         pub unsafe fn prepareInterfaceForPasskeyRegistration(
             &self,
@@ -90,9 +121,13 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSViewController`
-    #[cfg(feature = "AuthenticationServices_ASCredentialProviderViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl ASCredentialProviderViewController {
-        #[cfg(all(feature = "Foundation_NSBundle", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "AppKit_NSNib",
+            feature = "Foundation_NSBundle",
+            feature = "Foundation_NSString"
+        ))]
         #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -108,7 +143,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "AuthenticationServices_ASCredentialProviderViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl ASCredentialProviderViewController {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -117,7 +152,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AuthenticationServices_ASCredentialProviderViewController")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSViewController"))]
     unsafe impl ASCredentialProviderViewController {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

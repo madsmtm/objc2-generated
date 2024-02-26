@@ -11,27 +11,23 @@ typed_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "QuartzCore_CAMediaTimingFunction")]
     pub struct CAMediaTimingFunction;
 
-    #[cfg(feature = "QuartzCore_CAMediaTimingFunction")]
     unsafe impl ClassType for CAMediaTimingFunction {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "QuartzCore_CAMediaTimingFunction")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CAMediaTimingFunction {}
 
-#[cfg(feature = "QuartzCore_CAMediaTimingFunction")]
 unsafe impl NSObjectProtocol for CAMediaTimingFunction {}
 
-#[cfg(feature = "QuartzCore_CAMediaTimingFunction")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CAMediaTimingFunction {}
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CAMediaTimingFunction")]
     unsafe impl CAMediaTimingFunction {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other functionWithName:)]
@@ -58,7 +54,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "QuartzCore_CAMediaTimingFunction")]
     unsafe impl CAMediaTimingFunction {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

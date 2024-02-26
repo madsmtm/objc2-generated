@@ -78,10 +78,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSVisualEffectView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     pub struct NSVisualEffectView;
 
-    #[cfg(feature = "AppKit_NSVisualEffectView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl ClassType for NSVisualEffectView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
@@ -89,32 +89,60 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSVisualEffectView")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibility for NSVisualEffectView {}
 
-#[cfg(feature = "AppKit_NSVisualEffectView")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibilityElementProtocol for NSVisualEffectView {}
 
-#[cfg(feature = "AppKit_NSVisualEffectView")]
+#[cfg(all(
+    feature = "AppKit_NSAnimation",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAnimatablePropertyContainer for NSVisualEffectView {}
 
-#[cfg(feature = "AppKit_NSVisualEffectView")]
+#[cfg(all(
+    feature = "AppKit_NSAppearance",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAppearanceCustomization for NSVisualEffectView {}
 
-#[cfg(feature = "AppKit_NSVisualEffectView")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSVisualEffectView {}
 
-#[cfg(feature = "AppKit_NSVisualEffectView")]
+#[cfg(all(
+    feature = "AppKit_NSDragging",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSDraggingDestination for NSVisualEffectView {}
 
-#[cfg(feature = "AppKit_NSVisualEffectView")]
+#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
 unsafe impl NSObjectProtocol for NSVisualEffectView {}
 
-#[cfg(feature = "AppKit_NSVisualEffectView")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSVisualEffectView {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSVisualEffectView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSVisualEffectView {
         #[method(material)]
         pub unsafe fn material(&self) -> NSVisualEffectMaterial;
@@ -122,6 +150,7 @@ extern_methods!(
         #[method(setMaterial:)]
         pub unsafe fn setMaterial(&self, material: NSVisualEffectMaterial);
 
+        #[cfg(feature = "AppKit_NSCell")]
         #[method(interiorBackgroundStyle)]
         pub unsafe fn interiorBackgroundStyle(&self) -> NSBackgroundStyle;
 
@@ -162,8 +191,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSView`
-    #[cfg(feature = "AppKit_NSVisualEffectView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSVisualEffectView {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
 
@@ -175,7 +205,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "AppKit_NSVisualEffectView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSVisualEffectView {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -184,7 +214,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSVisualEffectView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSVisualEffectView {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;

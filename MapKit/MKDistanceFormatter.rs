@@ -35,10 +35,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MapKit_MKDistanceFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     pub struct MKDistanceFormatter;
 
-    #[cfg(feature = "MapKit_MKDistanceFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl ClassType for MKDistanceFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;
@@ -46,23 +46,23 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "MapKit_MKDistanceFormatter")]
+#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for MKDistanceFormatter {}
 
-#[cfg(feature = "MapKit_MKDistanceFormatter")]
+#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
 unsafe impl NSCopying for MKDistanceFormatter {}
 
-#[cfg(feature = "MapKit_MKDistanceFormatter")]
+#[cfg(feature = "Foundation_NSFormatter")]
 unsafe impl NSObjectProtocol for MKDistanceFormatter {}
 
 extern_methods!(
-    #[cfg(feature = "MapKit_MKDistanceFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl MKDistanceFormatter {
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "CoreLocation_CLLocation", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other stringFromDistance:)]
         pub unsafe fn stringFromDistance(&self, distance: CLLocationDistance) -> Id<NSString>;
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "CoreLocation_CLLocation", feature = "Foundation_NSString"))]
         #[method(distanceFromString:)]
         pub unsafe fn distanceFromString(&self, distance: &NSString) -> CLLocationDistance;
 
@@ -90,7 +90,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MapKit_MKDistanceFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl MKDistanceFormatter {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

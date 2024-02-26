@@ -14,10 +14,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSCompoundPredicate")]
+    #[cfg(feature = "Foundation_NSPredicate")]
     pub struct NSCompoundPredicate;
 
-    #[cfg(feature = "Foundation_NSCompoundPredicate")]
+    #[cfg(feature = "Foundation_NSPredicate")]
     unsafe impl ClassType for NSCompoundPredicate {
         #[inherits(NSObject)]
         type Super = NSPredicate;
@@ -25,20 +25,20 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSCompoundPredicate")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "Foundation_NSPredicate"))]
 unsafe impl NSCoding for NSCompoundPredicate {}
 
-#[cfg(feature = "Foundation_NSCompoundPredicate")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "Foundation_NSPredicate"))]
 unsafe impl NSCopying for NSCompoundPredicate {}
 
-#[cfg(feature = "Foundation_NSCompoundPredicate")]
+#[cfg(feature = "Foundation_NSPredicate")]
 unsafe impl NSObjectProtocol for NSCompoundPredicate {}
 
-#[cfg(feature = "Foundation_NSCompoundPredicate")]
+#[cfg(all(feature = "Foundation_NSObject", feature = "Foundation_NSPredicate"))]
 unsafe impl NSSecureCoding for NSCompoundPredicate {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSCompoundPredicate")]
+    #[cfg(feature = "Foundation_NSPredicate")]
     unsafe impl NSCompoundPredicate {
         #[cfg(feature = "Foundation_NSArray")]
         #[method_id(@__retain_semantics Init initWithType:subpredicates:)]
@@ -80,7 +80,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSCompoundPredicate")]
+    #[cfg(feature = "Foundation_NSPredicate")]
     unsafe impl NSCompoundPredicate {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

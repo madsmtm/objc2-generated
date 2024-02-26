@@ -21,27 +21,23 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreLocation_CLMonitoringEvent")]
     pub struct CLMonitoringEvent;
 
-    #[cfg(feature = "CoreLocation_CLMonitoringEvent")]
     unsafe impl ClassType for CLMonitoringEvent {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreLocation_CLMonitoringEvent")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for CLMonitoringEvent {}
 
-#[cfg(feature = "CoreLocation_CLMonitoringEvent")]
 unsafe impl NSObjectProtocol for CLMonitoringEvent {}
 
-#[cfg(feature = "CoreLocation_CLMonitoringEvent")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for CLMonitoringEvent {}
 
 extern_methods!(
-    #[cfg(feature = "CoreLocation_CLMonitoringEvent")]
     unsafe impl CLMonitoringEvent {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other identifier)]

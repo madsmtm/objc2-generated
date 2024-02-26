@@ -17,103 +17,159 @@
 #[link(name = "EventKit", kind = "framework")]
 extern "C" {}
 
+#[cfg(feature = "EventKit_EKAlarm")]
 #[path = "EKAlarm.rs"]
 mod __EKAlarm;
+#[cfg(feature = "EventKit_EKCalendar")]
 #[path = "EKCalendar.rs"]
 mod __EKCalendar;
+#[cfg(feature = "EventKit_EKCalendarItem")]
 #[path = "EKCalendarItem.rs"]
 mod __EKCalendarItem;
+#[cfg(feature = "EventKit_EKError")]
 #[path = "EKError.rs"]
 mod __EKError;
+#[cfg(feature = "EventKit_EKEvent")]
 #[path = "EKEvent.rs"]
 mod __EKEvent;
+#[cfg(feature = "EventKit_EKEventStore")]
 #[path = "EKEventStore.rs"]
 mod __EKEventStore;
+#[cfg(feature = "EventKit_EKObject")]
 #[path = "EKObject.rs"]
 mod __EKObject;
+#[cfg(feature = "EventKit_EKParticipant")]
 #[path = "EKParticipant.rs"]
 mod __EKParticipant;
+#[cfg(feature = "EventKit_EKRecurrenceDayOfWeek")]
 #[path = "EKRecurrenceDayOfWeek.rs"]
 mod __EKRecurrenceDayOfWeek;
+#[cfg(feature = "EventKit_EKRecurrenceEnd")]
 #[path = "EKRecurrenceEnd.rs"]
 mod __EKRecurrenceEnd;
+#[cfg(feature = "EventKit_EKRecurrenceRule")]
 #[path = "EKRecurrenceRule.rs"]
 mod __EKRecurrenceRule;
+#[cfg(feature = "EventKit_EKReminder")]
 #[path = "EKReminder.rs"]
 mod __EKReminder;
+#[cfg(feature = "EventKit_EKSource")]
 #[path = "EKSource.rs"]
 mod __EKSource;
+#[cfg(feature = "EventKit_EKStructuredLocation")]
 #[path = "EKStructuredLocation.rs"]
 mod __EKStructuredLocation;
+#[cfg(feature = "EventKit_EKTypes")]
 #[path = "EKTypes.rs"]
 mod __EKTypes;
+#[cfg(feature = "EventKit_EKVirtualConferenceDescriptor")]
 #[path = "EKVirtualConferenceDescriptor.rs"]
 mod __EKVirtualConferenceDescriptor;
+#[cfg(feature = "EventKit_EKVirtualConferenceProvider")]
 #[path = "EKVirtualConferenceProvider.rs"]
 mod __EKVirtualConferenceProvider;
+#[cfg(feature = "EventKit_EventKitDefines")]
 #[path = "EventKitDefines.rs"]
 mod __EventKitDefines;
 
-#[cfg(feature = "EventKit_EKAlarm")]
+#[cfg(all(feature = "EventKit_EKAlarm", feature = "EventKit_EKObject"))]
 pub use self::__EKAlarm::EKAlarm;
-#[cfg(feature = "EventKit_EKCalendar")]
+#[cfg(all(feature = "EventKit_EKCalendar", feature = "EventKit_EKObject"))]
 pub use self::__EKCalendar::EKCalendar;
-#[cfg(feature = "EventKit_EKCalendarItem")]
+#[cfg(all(feature = "EventKit_EKCalendarItem", feature = "EventKit_EKObject"))]
 pub use self::__EKCalendarItem::EKCalendarItem;
+#[cfg(feature = "EventKit_EKError")]
 pub use self::__EKError::EKErrorCode;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "EventKit_EKError", feature = "Foundation_NSString"))]
 pub use self::__EKError::EKErrorDomain;
-#[cfg(feature = "EventKit_EKEvent")]
+#[cfg(all(
+    feature = "EventKit_EKCalendarItem",
+    feature = "EventKit_EKEvent",
+    feature = "EventKit_EKObject"
+))]
 pub use self::__EKEvent::EKEvent;
-pub use self::__EKEvent::EKEventAvailability;
-pub use self::__EKEvent::EKEventStatus;
 #[cfg(feature = "EventKit_EKEvent")]
+pub use self::__EKEvent::EKEventAvailability;
+#[cfg(feature = "EventKit_EKEvent")]
+pub use self::__EKEvent::EKEventStatus;
+#[cfg(all(
+    feature = "EventKit_EKCalendarItem",
+    feature = "EventKit_EKEvent",
+    feature = "EventKit_EKEventStore",
+    feature = "EventKit_EKObject"
+))]
 pub use self::__EKEventStore::EKEventSearchCallback;
 #[cfg(feature = "EventKit_EKEventStore")]
 pub use self::__EKEventStore::EKEventStore;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "EventKit_EKEventStore", feature = "Foundation_NSString"))]
 pub use self::__EKEventStore::EKEventStoreChangedNotification;
-#[cfg(feature = "Foundation_NSError")]
+#[cfg(all(feature = "EventKit_EKEventStore", feature = "Foundation_NSError"))]
 pub use self::__EKEventStore::EKEventStoreRequestAccessCompletionHandler;
+#[cfg(feature = "EventKit_EKEventStore")]
 pub use self::__EKEventStore::EKSpan;
 #[cfg(feature = "EventKit_EKObject")]
 pub use self::__EKObject::EKObject;
-#[cfg(feature = "EventKit_EKParticipant")]
+#[cfg(all(feature = "EventKit_EKObject", feature = "EventKit_EKParticipant"))]
 pub use self::__EKParticipant::EKParticipant;
 #[cfg(feature = "EventKit_EKRecurrenceDayOfWeek")]
 pub use self::__EKRecurrenceDayOfWeek::EKRecurrenceDayOfWeek;
 #[cfg(feature = "EventKit_EKRecurrenceEnd")]
 pub use self::__EKRecurrenceEnd::EKRecurrenceEnd;
-#[cfg(feature = "EventKit_EKRecurrenceRule")]
+#[cfg(all(feature = "EventKit_EKObject", feature = "EventKit_EKRecurrenceRule"))]
 pub use self::__EKRecurrenceRule::EKRecurrenceRule;
-#[cfg(feature = "EventKit_EKReminder")]
+#[cfg(all(
+    feature = "EventKit_EKCalendarItem",
+    feature = "EventKit_EKObject",
+    feature = "EventKit_EKReminder"
+))]
 pub use self::__EKReminder::EKReminder;
-#[cfg(feature = "EventKit_EKSource")]
+#[cfg(all(feature = "EventKit_EKObject", feature = "EventKit_EKSource"))]
 pub use self::__EKSource::EKSource;
-#[cfg(feature = "EventKit_EKStructuredLocation")]
+#[cfg(all(
+    feature = "EventKit_EKObject",
+    feature = "EventKit_EKStructuredLocation"
+))]
 pub use self::__EKStructuredLocation::EKStructuredLocation;
+#[cfg(feature = "EventKit_EKTypes")]
 pub use self::__EKTypes::EKAlarmProximity;
+#[cfg(feature = "EventKit_EKTypes")]
 pub use self::__EKTypes::EKAlarmType;
+#[cfg(feature = "EventKit_EKTypes")]
 pub use self::__EKTypes::EKAuthorizationStatus;
+#[cfg(feature = "EventKit_EKTypes")]
 pub use self::__EKTypes::EKCalendarEventAvailabilityMask;
+#[cfg(feature = "EventKit_EKTypes")]
 pub use self::__EKTypes::EKCalendarType;
+#[cfg(feature = "EventKit_EKTypes")]
 pub use self::__EKTypes::EKEntityMask;
+#[cfg(feature = "EventKit_EKTypes")]
 pub use self::__EKTypes::EKEntityType;
+#[cfg(feature = "EventKit_EKTypes")]
 pub use self::__EKTypes::EKParticipantRole;
+#[cfg(feature = "EventKit_EKTypes")]
 pub use self::__EKTypes::EKParticipantScheduleStatus;
+#[cfg(feature = "EventKit_EKTypes")]
 pub use self::__EKTypes::EKParticipantStatus;
+#[cfg(feature = "EventKit_EKTypes")]
 pub use self::__EKTypes::EKParticipantType;
+#[cfg(feature = "EventKit_EKTypes")]
 pub use self::__EKTypes::EKRecurrenceFrequency;
+#[cfg(feature = "EventKit_EKTypes")]
 pub use self::__EKTypes::EKReminderPriority;
+#[cfg(feature = "EventKit_EKTypes")]
 pub use self::__EKTypes::EKSourceType;
+#[cfg(feature = "EventKit_EKTypes")]
 pub use self::__EKTypes::EKWeekday;
 #[cfg(feature = "EventKit_EKVirtualConferenceDescriptor")]
 pub use self::__EKVirtualConferenceDescriptor::EKVirtualConferenceDescriptor;
-#[cfg(feature = "EventKit_EKVirtualConferenceRoomTypeDescriptor")]
+#[cfg(feature = "EventKit_EKVirtualConferenceDescriptor")]
 pub use self::__EKVirtualConferenceDescriptor::EKVirtualConferenceRoomTypeDescriptor;
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(
+    feature = "EventKit_EKVirtualConferenceDescriptor",
+    feature = "Foundation_NSString"
+))]
 pub use self::__EKVirtualConferenceDescriptor::EKVirtualConferenceRoomTypeIdentifier;
-#[cfg(feature = "EventKit_EKVirtualConferenceURLDescriptor")]
+#[cfg(feature = "EventKit_EKVirtualConferenceDescriptor")]
 pub use self::__EKVirtualConferenceDescriptor::EKVirtualConferenceURLDescriptor;
 #[cfg(feature = "EventKit_EKVirtualConferenceProvider")]
 pub use self::__EKVirtualConferenceProvider::EKVirtualConferenceProvider;

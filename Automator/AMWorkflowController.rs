@@ -8,10 +8,10 @@ use crate::OSAKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Automator_AMWorkflowController")]
+    #[cfg(feature = "AppKit_NSController")]
     pub struct AMWorkflowController;
 
-    #[cfg(feature = "Automator_AMWorkflowController")]
+    #[cfg(feature = "AppKit_NSController")]
     unsafe impl ClassType for AMWorkflowController {
         #[inherits(NSObject)]
         type Super = NSController;
@@ -19,20 +19,20 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Automator_AMWorkflowController")]
+#[cfg(all(feature = "AppKit_NSController", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for AMWorkflowController {}
 
-#[cfg(feature = "Automator_AMWorkflowController")]
+#[cfg(all(feature = "AppKit_NSController", feature = "AppKit_NSKeyValueBinding"))]
 unsafe impl NSEditor for AMWorkflowController {}
 
-#[cfg(feature = "Automator_AMWorkflowController")]
+#[cfg(all(feature = "AppKit_NSController", feature = "AppKit_NSKeyValueBinding"))]
 unsafe impl NSEditorRegistration for AMWorkflowController {}
 
-#[cfg(feature = "Automator_AMWorkflowController")]
+#[cfg(feature = "AppKit_NSController")]
 unsafe impl NSObjectProtocol for AMWorkflowController {}
 
 extern_methods!(
-    #[cfg(feature = "Automator_AMWorkflowController")]
+    #[cfg(feature = "AppKit_NSController")]
     unsafe impl AMWorkflowController {
         #[cfg(feature = "Automator_AMWorkflow")]
         #[method_id(@__retain_semantics Other workflow)]
@@ -42,11 +42,19 @@ extern_methods!(
         #[method(setWorkflow:)]
         pub unsafe fn setWorkflow(&self, workflow: Option<&AMWorkflow>);
 
-        #[cfg(feature = "Automator_AMWorkflowView")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Automator_AMWorkflowView"
+        ))]
         #[method_id(@__retain_semantics Other workflowView)]
         pub unsafe fn workflowView(&self) -> Option<Id<AMWorkflowView>>;
 
-        #[cfg(feature = "Automator_AMWorkflowView")]
+        #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSView",
+            feature = "Automator_AMWorkflowView"
+        ))]
         #[method(setWorkflowView:)]
         pub unsafe fn setWorkflowView(&self, workflow_view: Option<&AMWorkflowView>);
 
@@ -89,7 +97,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSController`
-    #[cfg(feature = "Automator_AMWorkflowController")]
+    #[cfg(feature = "AppKit_NSController")]
     unsafe impl AMWorkflowController {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -102,7 +110,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Automator_AMWorkflowController")]
+    #[cfg(feature = "AppKit_NSController")]
     unsafe impl AMWorkflowController {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -111,30 +119,27 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait AMWorkflowControllerDelegate: NSObjectProtocol {
-        #[cfg(feature = "Automator_AMWorkflowController")]
+        #[cfg(feature = "AppKit_NSController")]
         #[optional]
         #[method(workflowControllerWillRun:)]
         unsafe fn workflowControllerWillRun(&self, controller: &AMWorkflowController);
 
-        #[cfg(feature = "Automator_AMWorkflowController")]
+        #[cfg(feature = "AppKit_NSController")]
         #[optional]
         #[method(workflowControllerWillStop:)]
         unsafe fn workflowControllerWillStop(&self, controller: &AMWorkflowController);
 
-        #[cfg(feature = "Automator_AMWorkflowController")]
+        #[cfg(feature = "AppKit_NSController")]
         #[optional]
         #[method(workflowControllerDidRun:)]
         unsafe fn workflowControllerDidRun(&self, controller: &AMWorkflowController);
 
-        #[cfg(feature = "Automator_AMWorkflowController")]
+        #[cfg(feature = "AppKit_NSController")]
         #[optional]
         #[method(workflowControllerDidStop:)]
         unsafe fn workflowControllerDidStop(&self, controller: &AMWorkflowController);
 
-        #[cfg(all(
-            feature = "Automator_AMAction",
-            feature = "Automator_AMWorkflowController"
-        ))]
+        #[cfg(all(feature = "AppKit_NSController", feature = "Automator_AMAction"))]
         #[optional]
         #[method(workflowController:willRunAction:)]
         unsafe fn workflowController_willRunAction(
@@ -143,10 +148,7 @@ extern_protocol!(
             action: &AMAction,
         );
 
-        #[cfg(all(
-            feature = "Automator_AMAction",
-            feature = "Automator_AMWorkflowController"
-        ))]
+        #[cfg(all(feature = "AppKit_NSController", feature = "Automator_AMAction"))]
         #[optional]
         #[method(workflowController:didRunAction:)]
         unsafe fn workflowController_didRunAction(
@@ -155,10 +157,7 @@ extern_protocol!(
             action: &AMAction,
         );
 
-        #[cfg(all(
-            feature = "Automator_AMWorkflowController",
-            feature = "Foundation_NSError"
-        ))]
+        #[cfg(all(feature = "AppKit_NSController", feature = "Foundation_NSError"))]
         #[optional]
         #[method(workflowController:didError:)]
         unsafe fn workflowController_didError(

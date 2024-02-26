@@ -6,21 +6,17 @@ use crate::QuartzCore::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "QuartzCore_CAMetalDisplayLinkUpdate")]
     pub struct CAMetalDisplayLinkUpdate;
 
-    #[cfg(feature = "QuartzCore_CAMetalDisplayLinkUpdate")]
     unsafe impl ClassType for CAMetalDisplayLinkUpdate {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "QuartzCore_CAMetalDisplayLinkUpdate")]
 unsafe impl NSObjectProtocol for CAMetalDisplayLinkUpdate {}
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CAMetalDisplayLinkUpdate")]
     unsafe impl CAMetalDisplayLinkUpdate {
         #[method(targetTimestamp)]
         pub unsafe fn targetTimestamp(&self) -> CFTimeInterval;
@@ -32,7 +28,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "QuartzCore_CAMetalDisplayLinkUpdate")]
     unsafe impl CAMetalDisplayLinkUpdate {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -44,10 +39,6 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait CAMetalDisplayLinkDelegate {
-        #[cfg(all(
-            feature = "QuartzCore_CAMetalDisplayLink",
-            feature = "QuartzCore_CAMetalDisplayLinkUpdate"
-        ))]
         #[method(metalDisplayLink:needsUpdate:)]
         unsafe fn metalDisplayLink_needsUpdate(
             &self,
@@ -61,31 +52,31 @@ extern_protocol!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "QuartzCore_CAMetalDisplayLink")]
     pub struct CAMetalDisplayLink;
 
-    #[cfg(feature = "QuartzCore_CAMetalDisplayLink")]
     unsafe impl ClassType for CAMetalDisplayLink {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "QuartzCore_CAMetalDisplayLink")]
 unsafe impl NSObjectProtocol for CAMetalDisplayLink {}
 
 extern_methods!(
-    #[cfg(feature = "QuartzCore_CAMetalDisplayLink")]
     unsafe impl CAMetalDisplayLink {
-        #[cfg(feature = "QuartzCore_CAMetalLayer")]
-        #[method_id(@__retain_semantics Init initWithMetalLayer:)]
-        pub unsafe fn initWithMetalLayer(this: Allocated<Self>, layer: &CAMetalLayer) -> Id<Self>;
-
-        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSObjCRuntime",
+            feature = "Foundation_NSRunLoop",
+            feature = "Foundation_NSString"
+        ))]
         #[method(addToRunLoop:forMode:)]
         pub unsafe fn addToRunLoop_forMode(&self, runloop: &NSRunLoop, mode: &NSRunLoopMode);
 
-        #[cfg(all(feature = "Foundation_NSRunLoop", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "Foundation_NSObjCRuntime",
+            feature = "Foundation_NSRunLoop",
+            feature = "Foundation_NSString"
+        ))]
         #[method(removeFromRunLoop:forMode:)]
         pub unsafe fn removeFromRunLoop_forMode(&self, runloop: &NSRunLoop, mode: &NSRunLoopMode);
 
@@ -108,9 +99,11 @@ extern_methods!(
         #[method(setPreferredFrameLatency:)]
         pub unsafe fn setPreferredFrameLatency(&self, preferred_frame_latency: c_float);
 
+        #[cfg(feature = "QuartzCore_CAFrameRateRange")]
         #[method(preferredFrameRateRange)]
         pub unsafe fn preferredFrameRateRange(&self) -> CAFrameRateRange;
 
+        #[cfg(feature = "QuartzCore_CAFrameRateRange")]
         #[method(setPreferredFrameRateRange:)]
         pub unsafe fn setPreferredFrameRateRange(
             &self,
@@ -127,7 +120,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "QuartzCore_CAMetalDisplayLink")]
     unsafe impl CAMetalDisplayLink {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

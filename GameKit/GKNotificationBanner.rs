@@ -7,22 +7,18 @@ use crate::GameKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GameKit_GKNotificationBanner")]
     #[deprecated = "Use UNNotificationRequest or provide custom UI instead. This method will become a no-op in a future version of GameKit."]
     pub struct GKNotificationBanner;
 
-    #[cfg(feature = "GameKit_GKNotificationBanner")]
     unsafe impl ClassType for GKNotificationBanner {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "GameKit_GKNotificationBanner")]
 unsafe impl NSObjectProtocol for GKNotificationBanner {}
 
 extern_methods!(
-    #[cfg(feature = "GameKit_GKNotificationBanner")]
     unsafe impl GKNotificationBanner {
         #[cfg(feature = "Foundation_NSString")]
         #[deprecated = "Use UNNotificationRequest or provide custom UI instead. This method will become a no-op in a future version of GameKit."]
@@ -33,7 +29,7 @@ extern_methods!(
             completion_handler: Option<&Block<dyn Fn()>>,
         );
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSDate", feature = "Foundation_NSString"))]
         #[deprecated = "Use UNNotificationRequest or provide custom UI instead. This method will become a no-op in a future version of GameKit."]
         #[method(showBannerWithTitle:message:duration:completionHandler:)]
         pub unsafe fn showBannerWithTitle_message_duration_completionHandler(
@@ -47,7 +43,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GameKit_GKNotificationBanner")]
     unsafe impl GKNotificationBanner {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

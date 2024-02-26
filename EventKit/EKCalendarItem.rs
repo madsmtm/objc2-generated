@@ -9,10 +9,10 @@ use crate::MapKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "EventKit_EKCalendarItem")]
+    #[cfg(feature = "EventKit_EKObject")]
     pub struct EKCalendarItem;
 
-    #[cfg(feature = "EventKit_EKCalendarItem")]
+    #[cfg(feature = "EventKit_EKObject")]
     unsafe impl ClassType for EKCalendarItem {
         #[inherits(NSObject)]
         type Super = EKObject;
@@ -20,11 +20,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "EventKit_EKCalendarItem")]
+#[cfg(feature = "EventKit_EKObject")]
 unsafe impl NSObjectProtocol for EKCalendarItem {}
 
 extern_methods!(
-    #[cfg(feature = "EventKit_EKCalendarItem")]
+    #[cfg(feature = "EventKit_EKObject")]
     unsafe impl EKCalendarItem {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other UUID)]
@@ -149,7 +149,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "EventKit_EKCalendarItem")]
+    #[cfg(feature = "EventKit_EKObject")]
     unsafe impl EKCalendarItem {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

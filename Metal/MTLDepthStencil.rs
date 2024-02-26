@@ -50,24 +50,20 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLStencilDescriptor")]
     pub struct MTLStencilDescriptor;
 
-    #[cfg(feature = "Metal_MTLStencilDescriptor")]
     unsafe impl ClassType for MTLStencilDescriptor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLStencilDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLStencilDescriptor {}
 
-#[cfg(feature = "Metal_MTLStencilDescriptor")]
 unsafe impl NSObjectProtocol for MTLStencilDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLStencilDescriptor")]
     unsafe impl MTLStencilDescriptor {
         #[method(stencilCompareFunction)]
         pub fn stencilCompareFunction(&self) -> MTLCompareFunction;
@@ -112,7 +108,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLStencilDescriptor")]
     unsafe impl MTLStencilDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -124,24 +119,20 @@ extern_methods!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Metal_MTLDepthStencilDescriptor")]
     pub struct MTLDepthStencilDescriptor;
 
-    #[cfg(feature = "Metal_MTLDepthStencilDescriptor")]
     unsafe impl ClassType for MTLDepthStencilDescriptor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Metal_MTLDepthStencilDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLDepthStencilDescriptor {}
 
-#[cfg(feature = "Metal_MTLDepthStencilDescriptor")]
 unsafe impl NSObjectProtocol for MTLDepthStencilDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "Metal_MTLDepthStencilDescriptor")]
     unsafe impl MTLDepthStencilDescriptor {
         #[method(depthCompareFunction)]
         pub fn depthCompareFunction(&self) -> MTLCompareFunction;
@@ -155,19 +146,15 @@ extern_methods!(
         #[method(setDepthWriteEnabled:)]
         pub fn setDepthWriteEnabled(&self, depth_write_enabled: bool);
 
-        #[cfg(feature = "Metal_MTLStencilDescriptor")]
         #[method_id(@__retain_semantics Other frontFaceStencil)]
         pub fn frontFaceStencil(&self) -> Id<MTLStencilDescriptor>;
 
-        #[cfg(feature = "Metal_MTLStencilDescriptor")]
         #[method(setFrontFaceStencil:)]
         pub fn setFrontFaceStencil(&self, front_face_stencil: Option<&MTLStencilDescriptor>);
 
-        #[cfg(feature = "Metal_MTLStencilDescriptor")]
         #[method_id(@__retain_semantics Other backFaceStencil)]
         pub fn backFaceStencil(&self) -> Id<MTLStencilDescriptor>;
 
-        #[cfg(feature = "Metal_MTLStencilDescriptor")]
         #[method(setBackFaceStencil:)]
         pub fn setBackFaceStencil(&self, back_face_stencil: Option<&MTLStencilDescriptor>);
 
@@ -183,7 +170,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Metal_MTLDepthStencilDescriptor")]
     unsafe impl MTLDepthStencilDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -199,6 +185,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other label)]
         fn label(&self) -> Option<Id<NSString>>;
 
+        #[cfg(feature = "Metal_MTLDevice")]
         #[method_id(@__retain_semantics Other device)]
         fn device(&self) -> Id<ProtocolObject<dyn MTLDevice>>;
     }

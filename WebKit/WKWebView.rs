@@ -47,10 +47,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_WKWebView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     pub struct WKWebView;
 
-    #[cfg(feature = "WebKit_WKWebView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl ClassType for WKWebView {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
@@ -58,51 +58,83 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "WebKit_WKWebView")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibility for WKWebView {}
 
-#[cfg(feature = "WebKit_WKWebView")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibilityElementProtocol for WKWebView {}
 
-#[cfg(feature = "WebKit_WKWebView")]
+#[cfg(all(
+    feature = "AppKit_NSAnimation",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAnimatablePropertyContainer for WKWebView {}
 
-#[cfg(feature = "WebKit_WKWebView")]
+#[cfg(all(
+    feature = "AppKit_NSAppearance",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAppearanceCustomization for WKWebView {}
 
-#[cfg(feature = "WebKit_WKWebView")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for WKWebView {}
 
-#[cfg(feature = "WebKit_WKWebView")]
+#[cfg(all(
+    feature = "AppKit_NSDragging",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSDraggingDestination for WKWebView {}
 
-#[cfg(feature = "WebKit_WKWebView")]
+#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
 unsafe impl NSObjectProtocol for WKWebView {}
 
-#[cfg(feature = "WebKit_WKWebView")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSUserInterfaceItemIdentification for WKWebView {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_WKWebView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl WKWebView {
         #[cfg(feature = "WebKit_WKWebViewConfiguration")]
         #[method_id(@__retain_semantics Other configuration)]
         pub unsafe fn configuration(&self) -> Id<WKWebViewConfiguration>;
 
+        #[cfg(feature = "WebKit_WKNavigationDelegate")]
         #[method_id(@__retain_semantics Other navigationDelegate)]
         pub unsafe fn navigationDelegate(
             &self,
         ) -> Option<Id<ProtocolObject<dyn WKNavigationDelegate>>>;
 
+        #[cfg(feature = "WebKit_WKNavigationDelegate")]
         #[method(setNavigationDelegate:)]
         pub unsafe fn setNavigationDelegate(
             &self,
             navigation_delegate: Option<&ProtocolObject<dyn WKNavigationDelegate>>,
         );
 
+        #[cfg(feature = "WebKit_WKUIDelegate")]
         #[method_id(@__retain_semantics Other UIDelegate)]
         pub unsafe fn UIDelegate(&self) -> Option<Id<ProtocolObject<dyn WKUIDelegate>>>;
 
+        #[cfg(feature = "WebKit_WKUIDelegate")]
         #[method(setUIDelegate:)]
         pub unsafe fn setUIDelegate(&self, ui_delegate: Option<&ProtocolObject<dyn WKUIDelegate>>);
 
@@ -110,7 +142,10 @@ extern_methods!(
         #[method_id(@__retain_semantics Other backForwardList)]
         pub unsafe fn backForwardList(&self) -> Id<WKBackForwardList>;
 
-        #[cfg(feature = "WebKit_WKWebViewConfiguration")]
+        #[cfg(all(
+            feature = "Foundation_NSGeometry",
+            feature = "WebKit_WKWebViewConfiguration"
+        ))]
         #[method_id(@__retain_semantics Init initWithFrame:configuration:)]
         pub unsafe fn initWithFrame_configuration(
             this: Allocated<Self>,
@@ -381,12 +416,15 @@ extern_methods!(
         #[method(setAllowsMagnification:)]
         pub unsafe fn setAllowsMagnification(&self, allows_magnification: bool);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(magnification)]
         pub unsafe fn magnification(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setMagnification:)]
         pub unsafe fn setMagnification(&self, magnification: CGFloat);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setMagnification:centeredAtPoint:)]
         pub unsafe fn setMagnification_centeredAtPoint(
             &self,
@@ -394,9 +432,11 @@ extern_methods!(
             point: CGPoint,
         );
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(pageZoom)]
         pub unsafe fn pageZoom(&self) -> CGFloat;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setPageZoom:)]
         pub unsafe fn setPageZoom(&self, page_zoom: CGFloat);
 
@@ -538,12 +578,15 @@ extern_methods!(
         #[method(fullscreenState)]
         pub unsafe fn fullscreenState(&self) -> WKFullscreenState;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(minimumViewportInset)]
         pub unsafe fn minimumViewportInset(&self) -> NSEdgeInsets;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(maximumViewportInset)]
         pub unsafe fn maximumViewportInset(&self) -> NSEdgeInsets;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setMinimumViewportInset:maximumViewportInset:)]
         pub unsafe fn setMinimumViewportInset_maximumViewportInset(
             &self,
@@ -561,8 +604,9 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSView`
-    #[cfg(feature = "WebKit_WKWebView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl WKWebView {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
     }
@@ -570,7 +614,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "WebKit_WKWebView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl WKWebView {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -579,7 +623,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_WKWebView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl WKWebView {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -588,7 +632,7 @@ extern_methods!(
 
 extern_methods!(
     /// WKIBActions
-    #[cfg(feature = "WebKit_WKWebView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl WKWebView {
         #[method(goBack:)]
         pub unsafe fn goBack_(&self, sender: Option<&AnyObject>);
@@ -607,21 +651,29 @@ extern_methods!(
     }
 );
 
-#[cfg(feature = "WebKit_WKWebView")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceValidation",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSUserInterfaceValidations for WKWebView {}
 
 extern_methods!(
     /// WKNSTextFinderClient
-    #[cfg(feature = "WebKit_WKWebView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl WKWebView {}
 );
 
-#[cfg(feature = "WebKit_WKWebView")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSTextFinder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSTextFinderClient for WKWebView {}
 
 extern_methods!(
     /// WKDeprecated
-    #[cfg(feature = "WebKit_WKWebView")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl WKWebView {
         #[cfg(feature = "Foundation_NSArray")]
         #[deprecated]

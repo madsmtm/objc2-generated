@@ -8,10 +8,10 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKQuantitySeriesSampleQuery")]
+    #[cfg(feature = "HealthKit_HKQuery")]
     pub struct HKQuantitySeriesSampleQuery;
 
-    #[cfg(feature = "HealthKit_HKQuantitySeriesSampleQuery")]
+    #[cfg(feature = "HealthKit_HKQuery")]
     unsafe impl ClassType for HKQuantitySeriesSampleQuery {
         #[inherits(NSObject)]
         type Super = HKQuery;
@@ -19,11 +19,11 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "HealthKit_HKQuantitySeriesSampleQuery")]
+#[cfg(feature = "HealthKit_HKQuery")]
 unsafe impl NSObjectProtocol for HKQuantitySeriesSampleQuery {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKQuantitySeriesSampleQuery")]
+    #[cfg(feature = "HealthKit_HKQuery")]
     unsafe impl HKQuantitySeriesSampleQuery {
         #[method(includeSample)]
         pub unsafe fn includeSample(&self) -> bool;
@@ -44,9 +44,11 @@ extern_methods!(
             feature = "Foundation_NSDateInterval",
             feature = "Foundation_NSError",
             feature = "Foundation_NSPredicate",
+            feature = "HealthKit_HKObject",
+            feature = "HealthKit_HKObjectType",
             feature = "HealthKit_HKQuantity",
             feature = "HealthKit_HKQuantitySample",
-            feature = "HealthKit_HKQuantityType"
+            feature = "HealthKit_HKSample"
         ))]
         #[method_id(@__retain_semantics Init initWithQuantityType:predicate:quantityHandler:)]
         pub unsafe fn initWithQuantityType_predicate_quantityHandler(
@@ -68,8 +70,10 @@ extern_methods!(
         #[cfg(all(
             feature = "Foundation_NSDate",
             feature = "Foundation_NSError",
+            feature = "HealthKit_HKObject",
             feature = "HealthKit_HKQuantity",
-            feature = "HealthKit_HKQuantitySample"
+            feature = "HealthKit_HKQuantitySample",
+            feature = "HealthKit_HKSample"
         ))]
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithSample:quantityHandler:)]
@@ -91,7 +95,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `HKQuery`
-    #[cfg(feature = "HealthKit_HKQuantitySeriesSampleQuery")]
+    #[cfg(feature = "HealthKit_HKQuery")]
     unsafe impl HKQuantitySeriesSampleQuery {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -100,7 +104,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKQuantitySeriesSampleQuery")]
+    #[cfg(feature = "HealthKit_HKQuery")]
     unsafe impl HKQuantitySeriesSampleQuery {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;

@@ -14,11 +14,19 @@ pub const DOM_REMOVAL: c_uint = 3;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "WebKit_DOMMutationEvent")]
+    #[cfg(all(
+        feature = "WebKit_DOMEvent",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     #[deprecated]
     pub struct DOMMutationEvent;
 
-    #[cfg(feature = "WebKit_DOMMutationEvent")]
+    #[cfg(all(
+        feature = "WebKit_DOMEvent",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl ClassType for DOMMutationEvent {
         #[inherits(DOMObject, WebScriptObject, NSObject)]
         type Super = DOMEvent;
@@ -26,14 +34,27 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "WebKit_DOMMutationEvent")]
+#[cfg(all(
+    feature = "Foundation_NSObject",
+    feature = "WebKit_DOMEvent",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSCopying for DOMMutationEvent {}
 
-#[cfg(feature = "WebKit_DOMMutationEvent")]
+#[cfg(all(
+    feature = "WebKit_DOMEvent",
+    feature = "WebKit_DOMObject",
+    feature = "WebKit_WebScriptObject"
+))]
 unsafe impl NSObjectProtocol for DOMMutationEvent {}
 
 extern_methods!(
-    #[cfg(feature = "WebKit_DOMMutationEvent")]
+    #[cfg(all(
+        feature = "WebKit_DOMEvent",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMMutationEvent {
         #[cfg(feature = "WebKit_DOMNode")]
         #[deprecated]
@@ -72,7 +93,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `DOMObject`
-    #[cfg(feature = "WebKit_DOMMutationEvent")]
+    #[cfg(all(
+        feature = "WebKit_DOMEvent",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMMutationEvent {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
@@ -82,7 +107,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebKit_DOMMutationEvent")]
+    #[cfg(all(
+        feature = "WebKit_DOMEvent",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMMutationEvent {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -91,7 +120,11 @@ extern_methods!(
 
 extern_methods!(
     /// DOMMutationEventDeprecated
-    #[cfg(feature = "WebKit_DOMMutationEvent")]
+    #[cfg(all(
+        feature = "WebKit_DOMEvent",
+        feature = "WebKit_DOMObject",
+        feature = "WebKit_WebScriptObject"
+    ))]
     unsafe impl DOMMutationEvent {
         #[cfg(all(feature = "Foundation_NSString", feature = "WebKit_DOMNode"))]
         #[deprecated]

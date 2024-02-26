@@ -7,27 +7,21 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "CoreLocation_CLMonitor")]
     pub struct CLMonitor;
 
-    #[cfg(feature = "CoreLocation_CLMonitor")]
     unsafe impl ClassType for CLMonitor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "CoreLocation_CLMonitor")]
 unsafe impl Send for CLMonitor {}
 
-#[cfg(feature = "CoreLocation_CLMonitor")]
 unsafe impl Sync for CLMonitor {}
 
-#[cfg(feature = "CoreLocation_CLMonitor")]
 unsafe impl NSObjectProtocol for CLMonitor {}
 
 extern_methods!(
-    #[cfg(feature = "CoreLocation_CLMonitor")]
     unsafe impl CLMonitor {
         #[cfg(feature = "CoreLocation_CLMonitorConfiguration")]
         #[method(requestMonitorWithConfiguration:completion:)]
@@ -52,7 +46,11 @@ extern_methods!(
             identifier: &NSString,
         );
 
-        #[cfg(all(feature = "CoreLocation_CLCondition", feature = "Foundation_NSString"))]
+        #[cfg(all(
+            feature = "CoreLocation_CLCondition",
+            feature = "CoreLocation_CLMonitoringEvent",
+            feature = "Foundation_NSString"
+        ))]
         #[method(addConditionForMonitoring:identifier:assumedState:)]
         pub unsafe fn addConditionForMonitoring_identifier_assumedState(
             &self,

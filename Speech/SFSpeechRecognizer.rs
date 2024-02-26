@@ -20,21 +20,17 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Speech_SFSpeechRecognizer")]
     pub struct SFSpeechRecognizer;
 
-    #[cfg(feature = "Speech_SFSpeechRecognizer")]
     unsafe impl ClassType for SFSpeechRecognizer {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Speech_SFSpeechRecognizer")]
 unsafe impl NSObjectProtocol for SFSpeechRecognizer {}
 
 extern_methods!(
-    #[cfg(feature = "Speech_SFSpeechRecognizer")]
     unsafe impl SFSpeechRecognizer {
         #[cfg(all(feature = "Foundation_NSLocale", feature = "Foundation_NSSet"))]
         #[method_id(@__retain_semantics Other supportedLocales)]
@@ -78,9 +74,11 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn SFSpeechRecognizerDelegate>>,
         );
 
+        #[cfg(feature = "Speech_SFSpeechRecognitionTaskHint")]
         #[method(defaultTaskHint)]
         pub unsafe fn defaultTaskHint(&self) -> SFSpeechRecognitionTaskHint;
 
+        #[cfg(feature = "Speech_SFSpeechRecognitionTaskHint")]
         #[method(setDefaultTaskHint:)]
         pub unsafe fn setDefaultTaskHint(&self, default_task_hint: SFSpeechRecognitionTaskHint);
 
@@ -108,11 +106,11 @@ extern_methods!(
             delegate: &ProtocolObject<dyn SFSpeechRecognitionTaskDelegate>,
         ) -> Id<SFSpeechRecognitionTask>;
 
-        #[cfg(feature = "Foundation_NSOperationQueue")]
+        #[cfg(feature = "Foundation_NSOperation")]
         #[method_id(@__retain_semantics Other queue)]
         pub unsafe fn queue(&self) -> Id<NSOperationQueue>;
 
-        #[cfg(feature = "Foundation_NSOperationQueue")]
+        #[cfg(feature = "Foundation_NSOperation")]
         #[method(setQueue:)]
         pub unsafe fn setQueue(&self, queue: &NSOperationQueue);
     }
@@ -120,7 +118,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Speech_SFSpeechRecognizer")]
     unsafe impl SFSpeechRecognizer {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
@@ -129,7 +126,6 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait SFSpeechRecognizerDelegate: NSObjectProtocol {
-        #[cfg(feature = "Speech_SFSpeechRecognizer")]
         #[optional]
         #[method(speechRecognizer:availabilityDidChange:)]
         unsafe fn speechRecognizer_availabilityDidChange(

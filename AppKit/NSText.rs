@@ -19,10 +19,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AppKit_NSText")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     pub struct NSText;
 
-    #[cfg(feature = "AppKit_NSText")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl ClassType for NSText {
         #[inherits(NSResponder, NSObject)]
         type Super = NSView;
@@ -30,39 +30,76 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibility for NSText {}
 
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(all(
+    feature = "AppKit_NSAccessibilityProtocols",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAccessibilityElementProtocol for NSText {}
 
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(all(
+    feature = "AppKit_NSAnimation",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAnimatablePropertyContainer for NSText {}
 
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(all(
+    feature = "AppKit_NSAppearance",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSAppearanceCustomization for NSText {}
 
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSSpellProtocol",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSChangeSpelling for NSText {}
 
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView",
+    feature = "Foundation_NSObject"
+))]
 unsafe impl NSCoding for NSText {}
 
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(all(
+    feature = "AppKit_NSDragging",
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSDraggingDestination for NSText {}
 
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSSpellProtocol",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSIgnoreMisspelledWords for NSText {}
 
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
 unsafe impl NSObjectProtocol for NSText {}
 
-#[cfg(feature = "AppKit_NSText")]
+#[cfg(all(
+    feature = "AppKit_NSResponder",
+    feature = "AppKit_NSUserInterfaceItemIdentification",
+    feature = "AppKit_NSView"
+))]
 unsafe impl NSUserInterfaceItemIdentification for NSText {}
 
 extern_methods!(
-    #[cfg(feature = "AppKit_NSText")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSText {
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Id<Self>;
 
@@ -78,23 +115,23 @@ extern_methods!(
         #[method(setString:)]
         pub unsafe fn setString(&self, string: &NSString);
 
-        #[cfg(feature = "Foundation_NSString")]
+        #[cfg(all(feature = "Foundation_NSRange", feature = "Foundation_NSString"))]
         #[method(replaceCharactersInRange:withString:)]
         pub unsafe fn replaceCharactersInRange_withString(&self, range: NSRange, string: &NSString);
 
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSRange"))]
         #[method(replaceCharactersInRange:withRTF:)]
         pub unsafe fn replaceCharactersInRange_withRTF(&self, range: NSRange, rtf_data: &NSData);
 
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSRange"))]
         #[method(replaceCharactersInRange:withRTFD:)]
         pub unsafe fn replaceCharactersInRange_withRTFD(&self, range: NSRange, rtfd_data: &NSData);
 
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSRange"))]
         #[method_id(@__retain_semantics Other RTFFromRange:)]
         pub unsafe fn RTFFromRange(&self, range: NSRange) -> Option<Id<NSData>>;
 
-        #[cfg(feature = "Foundation_NSData")]
+        #[cfg(all(feature = "Foundation_NSData", feature = "Foundation_NSRange"))]
         #[method_id(@__retain_semantics Other RTFDFromRange:)]
         pub unsafe fn RTFDFromRange(&self, range: NSRange) -> Option<Id<NSData>>;
 
@@ -165,12 +202,15 @@ extern_methods!(
         #[method(isRulerVisible)]
         pub unsafe fn isRulerVisible(&self) -> bool;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(selectedRange)]
         pub unsafe fn selectedRange(&self) -> NSRange;
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(setSelectedRange:)]
         pub unsafe fn setSelectedRange(&self, selected_range: NSRange);
 
+        #[cfg(feature = "Foundation_NSRange")]
         #[method(scrollRangeToVisible:)]
         pub unsafe fn scrollRangeToVisible(&self, range: NSRange);
 
@@ -202,23 +242,27 @@ extern_methods!(
         #[method(setBaseWritingDirection:)]
         pub unsafe fn setBaseWritingDirection(&self, base_writing_direction: NSWritingDirection);
 
-        #[cfg(feature = "AppKit_NSColor")]
+        #[cfg(all(feature = "AppKit_NSColor", feature = "Foundation_NSRange"))]
         #[method(setTextColor:range:)]
         pub unsafe fn setTextColor_range(&self, color: Option<&NSColor>, range: NSRange);
 
-        #[cfg(feature = "AppKit_NSFont")]
+        #[cfg(all(feature = "AppKit_NSFont", feature = "Foundation_NSRange"))]
         #[method(setFont:range:)]
         pub unsafe fn setFont_range(&self, font: &NSFont, range: NSRange);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(maxSize)]
         pub unsafe fn maxSize(&self) -> NSSize;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setMaxSize:)]
         pub unsafe fn setMaxSize(&self, max_size: NSSize);
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(minSize)]
         pub unsafe fn minSize(&self) -> NSSize;
 
+        #[cfg(feature = "Foundation_NSGeometry")]
         #[method(setMinSize:)]
         pub unsafe fn setMinSize(&self, min_size: NSSize);
 
@@ -301,7 +345,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "AppKit_NSText")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSText {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -310,7 +354,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AppKit_NSText")]
+    #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
     unsafe impl NSText {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Id<Self>;
@@ -352,13 +396,13 @@ ns_enum!(
     }
 );
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSTextDidBeginEditingNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSTextDidEndEditingNotification: &'static NSNotificationName);
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSNotification", feature = "Foundation_NSString"))]
 extern_static!(NSTextDidChangeNotification: &'static NSNotificationName);
 
 #[cfg(feature = "Foundation_NSString")]
@@ -377,12 +421,12 @@ pub const NSOtherTextMovement: c_uint = 0;
 
 extern_protocol!(
     pub unsafe trait NSTextDelegate: NSObjectProtocol + IsMainThreadOnly {
-        #[cfg(feature = "AppKit_NSText")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[optional]
         #[method(textShouldBeginEditing:)]
         unsafe fn textShouldBeginEditing(&self, text_object: &NSText) -> bool;
 
-        #[cfg(feature = "AppKit_NSText")]
+        #[cfg(all(feature = "AppKit_NSResponder", feature = "AppKit_NSView"))]
         #[optional]
         #[method(textShouldEndEditing:)]
         unsafe fn textShouldEndEditing(&self, text_object: &NSText) -> bool;

@@ -18,25 +18,26 @@ extern_static!(ASAuthorizationScopeEmail: &'static ASAuthorizationScope);
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "AuthenticationServices_ASAuthorization")]
     pub struct ASAuthorization;
 
-    #[cfg(feature = "AuthenticationServices_ASAuthorization")]
     unsafe impl ClassType for ASAuthorization {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "AuthenticationServices_ASAuthorization")]
 unsafe impl NSObjectProtocol for ASAuthorization {}
 
 extern_methods!(
-    #[cfg(feature = "AuthenticationServices_ASAuthorization")]
     unsafe impl ASAuthorization {
+        #[cfg(feature = "AuthenticationServices_ASAuthorizationProvider")]
         #[method_id(@__retain_semantics Other provider)]
         pub unsafe fn provider(&self) -> Id<ProtocolObject<dyn ASAuthorizationProvider>>;
 
+        #[cfg(all(
+            feature = "AuthenticationServices_ASAuthorizationCredential",
+            feature = "Foundation_NSObject"
+        ))]
         #[method_id(@__retain_semantics Other credential)]
         pub unsafe fn credential(&self) -> Id<ProtocolObject<dyn ASAuthorizationCredential>>;
 

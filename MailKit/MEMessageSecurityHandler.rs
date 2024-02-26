@@ -5,7 +5,7 @@ use crate::AppKit::*;
 use crate::Foundation::*;
 use crate::MailKit::*;
 
-#[cfg(feature = "Foundation_NSString")]
+#[cfg(all(feature = "Foundation_NSError", feature = "Foundation_NSString"))]
 extern_static!(MEMessageSecurityErrorDomain: &'static NSErrorDomain);
 
 ns_error_enum!(
@@ -17,8 +17,14 @@ ns_error_enum!(
 );
 
 extern_protocol!(
+    #[cfg(all(
+        feature = "MailKit_MEMessageDecoder",
+        feature = "MailKit_MEMessageEncoder"
+    ))]
     pub unsafe trait MEMessageSecurityHandler: MEMessageDecoder + MEMessageEncoder {
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSViewController",
             feature = "Foundation_NSArray",
             feature = "MailKit_MEExtensionViewController",
             feature = "MailKit_MEMessageSigner"
@@ -31,6 +37,8 @@ extern_protocol!(
         ) -> Option<Id<MEExtensionViewController>>;
 
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSViewController",
             feature = "Foundation_NSData",
             feature = "MailKit_MEExtensionViewController"
         ))]
@@ -42,6 +50,8 @@ extern_protocol!(
         ) -> Option<Id<MEExtensionViewController>>;
 
         #[cfg(all(
+            feature = "AppKit_NSResponder",
+            feature = "AppKit_NSViewController",
             feature = "Foundation_NSData",
             feature = "MailKit_MEExtensionViewController"
         ))]
@@ -53,5 +63,9 @@ extern_protocol!(
         );
     }
 
+    #[cfg(all(
+        feature = "MailKit_MEMessageDecoder",
+        feature = "MailKit_MEMessageEncoder"
+    ))]
     unsafe impl ProtocolType for dyn MEMessageSecurityHandler {}
 );

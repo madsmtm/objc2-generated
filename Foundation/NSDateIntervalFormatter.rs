@@ -16,10 +16,10 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSDateIntervalFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     pub struct NSDateIntervalFormatter;
 
-    #[cfg(feature = "Foundation_NSDateIntervalFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl ClassType for NSDateIntervalFormatter {
         #[inherits(NSObject)]
         type Super = NSFormatter;
@@ -27,23 +27,23 @@ extern_class!(
     }
 );
 
-#[cfg(feature = "Foundation_NSDateIntervalFormatter")]
+#[cfg(feature = "Foundation_NSFormatter")]
 unsafe impl Send for NSDateIntervalFormatter {}
 
-#[cfg(feature = "Foundation_NSDateIntervalFormatter")]
+#[cfg(feature = "Foundation_NSFormatter")]
 unsafe impl Sync for NSDateIntervalFormatter {}
 
-#[cfg(feature = "Foundation_NSDateIntervalFormatter")]
+#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
 unsafe impl NSCoding for NSDateIntervalFormatter {}
 
-#[cfg(feature = "Foundation_NSDateIntervalFormatter")]
+#[cfg(all(feature = "Foundation_NSFormatter", feature = "Foundation_NSObject"))]
 unsafe impl NSCopying for NSDateIntervalFormatter {}
 
-#[cfg(feature = "Foundation_NSDateIntervalFormatter")]
+#[cfg(feature = "Foundation_NSFormatter")]
 unsafe impl NSObjectProtocol for NSDateIntervalFormatter {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSDateIntervalFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl NSDateIntervalFormatter {
         #[cfg(feature = "Foundation_NSLocale")]
         #[method_id(@__retain_semantics Other locale)]
@@ -108,7 +108,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSDateIntervalFormatter")]
+    #[cfg(feature = "Foundation_NSFormatter")]
     unsafe impl NSDateIntervalFormatter {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

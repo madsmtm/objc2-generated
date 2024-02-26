@@ -19,34 +19,34 @@ ns_enum!(
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MetalFX_MTLFXSpatialScalerDescriptor")]
     pub struct MTLFXSpatialScalerDescriptor;
 
-    #[cfg(feature = "MetalFX_MTLFXSpatialScalerDescriptor")]
     unsafe impl ClassType for MTLFXSpatialScalerDescriptor {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "MetalFX_MTLFXSpatialScalerDescriptor")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for MTLFXSpatialScalerDescriptor {}
 
-#[cfg(feature = "MetalFX_MTLFXSpatialScalerDescriptor")]
 unsafe impl NSObjectProtocol for MTLFXSpatialScalerDescriptor {}
 
 extern_methods!(
-    #[cfg(feature = "MetalFX_MTLFXSpatialScalerDescriptor")]
     unsafe impl MTLFXSpatialScalerDescriptor {
+        #[cfg(feature = "Metal_MTLPixelFormat")]
         #[method(colorTextureFormat)]
         pub unsafe fn colorTextureFormat(&self) -> MTLPixelFormat;
 
+        #[cfg(feature = "Metal_MTLPixelFormat")]
         #[method(setColorTextureFormat:)]
         pub unsafe fn setColorTextureFormat(&self, color_texture_format: MTLPixelFormat);
 
+        #[cfg(feature = "Metal_MTLPixelFormat")]
         #[method(outputTextureFormat)]
         pub unsafe fn outputTextureFormat(&self) -> MTLPixelFormat;
 
+        #[cfg(feature = "Metal_MTLPixelFormat")]
         #[method(setOutputTextureFormat:)]
         pub unsafe fn setOutputTextureFormat(&self, output_texture_format: MTLPixelFormat);
 
@@ -83,12 +83,14 @@ extern_methods!(
             color_processing_mode: MTLFXSpatialScalerColorProcessingMode,
         );
 
+        #[cfg(feature = "Metal_MTLDevice")]
         #[method_id(@__retain_semantics New newSpatialScalerWithDevice:)]
         pub unsafe fn newSpatialScalerWithDevice(
             &self,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Id<ProtocolObject<dyn MTLFXSpatialScaler>>>;
 
+        #[cfg(feature = "Metal_MTLDevice")]
         #[method(supportsDevice:)]
         pub unsafe fn supportsDevice(device: &ProtocolObject<dyn MTLDevice>) -> bool;
     }
@@ -96,7 +98,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MetalFX_MTLFXSpatialScalerDescriptor")]
     unsafe impl MTLFXSpatialScalerDescriptor {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
@@ -108,9 +109,11 @@ extern_methods!(
 
 extern_protocol!(
     pub unsafe trait MTLFXSpatialScaler: NSObjectProtocol {
+        #[cfg(feature = "Metal_MTLTexture")]
         #[method(colorTextureUsage)]
         unsafe fn colorTextureUsage(&self) -> MTLTextureUsage;
 
+        #[cfg(feature = "Metal_MTLTexture")]
         #[method(outputTextureUsage)]
         unsafe fn outputTextureUsage(&self) -> MTLTextureUsage;
 
@@ -126,21 +129,27 @@ extern_protocol!(
         #[method(setInputContentHeight:)]
         unsafe fn setInputContentHeight(&self, input_content_height: NSUInteger);
 
+        #[cfg(all(feature = "Metal_MTLResource", feature = "Metal_MTLTexture"))]
         #[method_id(@__retain_semantics Other colorTexture)]
         unsafe fn colorTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
 
+        #[cfg(all(feature = "Metal_MTLResource", feature = "Metal_MTLTexture"))]
         #[method(setColorTexture:)]
         unsafe fn setColorTexture(&self, color_texture: Option<&ProtocolObject<dyn MTLTexture>>);
 
+        #[cfg(all(feature = "Metal_MTLResource", feature = "Metal_MTLTexture"))]
         #[method_id(@__retain_semantics Other outputTexture)]
         unsafe fn outputTexture(&self) -> Option<Id<ProtocolObject<dyn MTLTexture>>>;
 
+        #[cfg(all(feature = "Metal_MTLResource", feature = "Metal_MTLTexture"))]
         #[method(setOutputTexture:)]
         unsafe fn setOutputTexture(&self, output_texture: Option<&ProtocolObject<dyn MTLTexture>>);
 
+        #[cfg(feature = "Metal_MTLPixelFormat")]
         #[method(colorTextureFormat)]
         unsafe fn colorTextureFormat(&self) -> MTLPixelFormat;
 
+        #[cfg(feature = "Metal_MTLPixelFormat")]
         #[method(outputTextureFormat)]
         unsafe fn outputTextureFormat(&self) -> MTLPixelFormat;
 
@@ -159,12 +168,15 @@ extern_protocol!(
         #[method(colorProcessingMode)]
         unsafe fn colorProcessingMode(&self) -> MTLFXSpatialScalerColorProcessingMode;
 
+        #[cfg(feature = "Metal_MTLFence")]
         #[method_id(@__retain_semantics Other fence)]
         unsafe fn fence(&self) -> Option<Id<ProtocolObject<dyn MTLFence>>>;
 
+        #[cfg(feature = "Metal_MTLFence")]
         #[method(setFence:)]
         unsafe fn setFence(&self, fence: Option<&ProtocolObject<dyn MTLFence>>);
 
+        #[cfg(feature = "Metal_MTLCommandBuffer")]
         #[method(encodeToCommandBuffer:)]
         unsafe fn encodeToCommandBuffer(
             &self,

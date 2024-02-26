@@ -5,30 +5,26 @@ use crate::Foundation::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "Foundation_NSPersonNameComponents")]
     pub struct NSPersonNameComponents;
 
-    #[cfg(feature = "Foundation_NSPersonNameComponents")]
     unsafe impl ClassType for NSPersonNameComponents {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "Foundation_NSPersonNameComponents")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCoding for NSPersonNameComponents {}
 
-#[cfg(feature = "Foundation_NSPersonNameComponents")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSCopying for NSPersonNameComponents {}
 
-#[cfg(feature = "Foundation_NSPersonNameComponents")]
 unsafe impl NSObjectProtocol for NSPersonNameComponents {}
 
-#[cfg(feature = "Foundation_NSPersonNameComponents")]
+#[cfg(feature = "Foundation_NSObject")]
 unsafe impl NSSecureCoding for NSPersonNameComponents {}
 
 extern_methods!(
-    #[cfg(feature = "Foundation_NSPersonNameComponents")]
     unsafe impl NSPersonNameComponents {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other namePrefix)]
@@ -91,7 +87,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "Foundation_NSPersonNameComponents")]
     unsafe impl NSPersonNameComponents {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

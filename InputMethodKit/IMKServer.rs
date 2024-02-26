@@ -7,21 +7,17 @@ use crate::InputMethodKit::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "InputMethodKit_IMKServer")]
     pub struct IMKServer;
 
-    #[cfg(feature = "InputMethodKit_IMKServer")]
     unsafe impl ClassType for IMKServer {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "InputMethodKit_IMKServer")]
 unsafe impl NSObjectProtocol for IMKServer {}
 
 extern_methods!(
-    #[cfg(feature = "InputMethodKit_IMKServer")]
     unsafe impl IMKServer {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Init initWithName:bundleIdentifier:)]
@@ -54,7 +50,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "InputMethodKit_IMKServer")]
     unsafe impl IMKServer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;

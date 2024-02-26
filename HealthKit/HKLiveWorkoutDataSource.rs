@@ -8,26 +8,22 @@ use crate::UniformTypeIdentifiers::*;
 
 extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "HealthKit_HKLiveWorkoutDataSource")]
     pub struct HKLiveWorkoutDataSource;
 
-    #[cfg(feature = "HealthKit_HKLiveWorkoutDataSource")]
     unsafe impl ClassType for HKLiveWorkoutDataSource {
         type Super = NSObject;
         type Mutability = InteriorMutable;
     }
 );
 
-#[cfg(feature = "HealthKit_HKLiveWorkoutDataSource")]
 unsafe impl NSObjectProtocol for HKLiveWorkoutDataSource {}
 
 extern_methods!(
-    #[cfg(feature = "HealthKit_HKLiveWorkoutDataSource")]
     unsafe impl HKLiveWorkoutDataSource {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Id<Self>;
 
-        #[cfg(all(feature = "Foundation_NSSet", feature = "HealthKit_HKQuantityType"))]
+        #[cfg(all(feature = "Foundation_NSSet", feature = "HealthKit_HKObjectType"))]
         #[method_id(@__retain_semantics Other typesToCollect)]
         pub unsafe fn typesToCollect(&self) -> Id<NSSet<HKQuantityType>>;
 
@@ -42,10 +38,7 @@ extern_methods!(
             configuration: Option<&HKWorkoutConfiguration>,
         ) -> Id<Self>;
 
-        #[cfg(all(
-            feature = "Foundation_NSPredicate",
-            feature = "HealthKit_HKQuantityType"
-        ))]
+        #[cfg(all(feature = "Foundation_NSPredicate", feature = "HealthKit_HKObjectType"))]
         #[method(enableCollectionForType:predicate:)]
         pub unsafe fn enableCollectionForType_predicate(
             &self,
@@ -53,7 +46,7 @@ extern_methods!(
             predicate: Option<&NSPredicate>,
         );
 
-        #[cfg(feature = "HealthKit_HKQuantityType")]
+        #[cfg(feature = "HealthKit_HKObjectType")]
         #[method(disableCollectionForType:)]
         pub unsafe fn disableCollectionForType(&self, quantity_type: &HKQuantityType);
     }
@@ -61,7 +54,6 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HealthKit_HKLiveWorkoutDataSource")]
     unsafe impl HKLiveWorkoutDataSource {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Id<Self>;
