@@ -9,7 +9,6 @@ use crate::LocalAuthenticationEmbeddedUI::*;
 extern_category!(
     /// Category "UI" on [`LARight`].
     #[doc(alias = "UI")]
-    #[cfg(feature = "LocalAuthentication_LARight")]
     pub unsafe trait LARightUI {
         #[cfg(all(
             feature = "AppKit_NSWindow",

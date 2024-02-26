@@ -8,9 +8,8 @@ use crate::UserNotifications::*;
 extern_category!(
     /// Category "UNUserNotificationCenterSupport" on [`NSString`].
     #[doc(alias = "UNUserNotificationCenterSupport")]
-    #[cfg(feature = "Foundation_NSString")]
     pub unsafe trait NSStringUNUserNotificationCenterSupport {
-        #[cfg(feature = "Foundation_NSArray")]
+        #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other localizedUserNotificationStringForKey:arguments:)]
         unsafe fn localizedUserNotificationStringForKey_arguments(
             key: &NSString,

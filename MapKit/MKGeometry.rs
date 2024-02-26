@@ -262,11 +262,12 @@ extern_fn!(
 
 extern_category!(
     /// Category on [`NSValue`].
-    #[cfg(feature = "Foundation_NSValue")]
     pub unsafe trait NSValueMapKitGeometryExtensions {
+        #[cfg(feature = "Foundation_NSValue")]
         #[method_id(@__retain_semantics Other valueWithMKCoordinate:)]
         unsafe fn valueWithMKCoordinate(coordinate: CLLocationCoordinate2D) -> Id<NSValue>;
 
+        #[cfg(feature = "Foundation_NSValue")]
         #[method_id(@__retain_semantics Other valueWithMKCoordinateSpan:)]
         unsafe fn valueWithMKCoordinateSpan(span: MKCoordinateSpan) -> Id<NSValue>;
 

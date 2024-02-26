@@ -693,7 +693,6 @@ extern_methods!(
 extern_category!(
     /// Category "NSAppKitAdditions" on [`CIColor`].
     #[doc(alias = "NSAppKitAdditions")]
-    #[cfg(feature = "CoreImage_CIColor")]
     pub unsafe trait CIColorNSAppKitAdditions {
         #[cfg(feature = "AppKit_NSColor")]
         #[method_id(@__retain_semantics Init initWithColor:)]

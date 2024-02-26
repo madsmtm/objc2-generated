@@ -219,9 +219,11 @@ extern_methods!(
 
 extern_category!(
     /// Category on [`NSAttributedString`].
-    #[cfg(feature = "Foundation_NSAttributedString")]
     pub unsafe trait NSAttributedStringAttachmentConveniences {
-        #[cfg(feature = "AppKit_NSTextAttachment")]
+        #[cfg(all(
+            feature = "AppKit_NSTextAttachment",
+            feature = "Foundation_NSAttributedString"
+        ))]
         #[method_id(@__retain_semantics Other attributedStringWithAttachment:)]
         unsafe fn attributedStringWithAttachment(
             attachment: &NSTextAttachment,
@@ -320,7 +322,6 @@ extern_methods!(
 
 extern_category!(
     /// Category on [`NSMutableAttributedString`].
-    #[cfg(feature = "Foundation_NSMutableAttributedString")]
     pub unsafe trait NSMutableAttributedStringAttachmentConveniences {
         #[cfg(feature = "Foundation_NSString")]
         #[method(updateAttachmentsFromPath:)]

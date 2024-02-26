@@ -48,7 +48,6 @@ ns_error_enum!(
 extern_category!(
     /// Category "NSFileProviderError" on [`NSError`].
     #[doc(alias = "NSFileProviderError")]
-    #[cfg(feature = "Foundation_NSError")]
     pub unsafe trait NSErrorNSFileProviderError {
         #[method_id(@__retain_semantics Other fileProviderErrorForCollisionWithItem:)]
         unsafe fn fileProviderErrorForCollisionWithItem(

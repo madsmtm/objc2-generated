@@ -8,7 +8,6 @@ use crate::MediaPlayer::*;
 extern_category!(
     /// Category "MPNowPlayingInfoLanguageOptionAdditions" on [`AVMediaSelectionOption`].
     #[doc(alias = "MPNowPlayingInfoLanguageOptionAdditions")]
-    #[cfg(feature = "AVFoundation_AVMediaSelectionOption")]
     pub unsafe trait AVMediaSelectionOptionMPNowPlayingInfoLanguageOptionAdditions {
         #[cfg(feature = "MediaPlayer_MPNowPlayingInfoLanguageOption")]
         #[method_id(@__retain_semantics Other makeNowPlayingInfoLanguageOption)]
@@ -27,7 +26,6 @@ extern_category!(
 extern_category!(
     /// Category "MPNowPlayingInfoLanguageOptionAdditions" on [`AVMediaSelectionGroup`].
     #[doc(alias = "MPNowPlayingInfoLanguageOptionAdditions")]
-    #[cfg(feature = "AVFoundation_AVMediaSelectionGroup")]
     pub unsafe trait AVMediaSelectionGroupMPNowPlayingInfoLanguageOptionAdditions {
         #[cfg(feature = "MediaPlayer_MPNowPlayingInfoLanguageOptionGroup")]
         #[method_id(@__retain_semantics Other makeNowPlayingInfoLanguageOptionGroup)]

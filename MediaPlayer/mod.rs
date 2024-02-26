@@ -84,11 +84,8 @@ mod __MediaPlayerDefines;
 #[path = "NSUserActivity_MediaPlayerAdditions.rs"]
 mod __NSUserActivity_MediaPlayerAdditions;
 
-#[cfg(feature = "AVFoundation_AVMediaSelectionGroup")]
 pub use self::__AVFoundation_MPNowPlayingInfoLanguageOptionAdditions::AVMediaSelectionGroupMPNowPlayingInfoLanguageOptionAdditions;
-#[cfg(feature = "AVFoundation_AVMediaSelectionOption")]
 pub use self::__AVFoundation_MPNowPlayingInfoLanguageOptionAdditions::AVMediaSelectionOptionMPNowPlayingInfoLanguageOptionAdditions;
-#[cfg(feature = "AVFoundation_AVPlayerItem")]
 pub use self::__AVPlayerItem_MediaPlayerAdditions::AVPlayerItemMPAdditions;
 #[cfg(feature = "MediaPlayer_MPContentItem")]
 pub use self::__MPContentItem::MPContentItem;
@@ -378,5 +375,4 @@ pub use self::__MPRemoteControlTypes::MPShuffleType;
 pub use self::__MPVolumeSettings::MPVolumeSettingsAlertHide;
 pub use self::__MPVolumeSettings::MPVolumeSettingsAlertIsVisible;
 pub use self::__MPVolumeSettings::MPVolumeSettingsAlertShow;
-#[cfg(feature = "Foundation_NSUserActivity")]
 pub use self::__NSUserActivity_MediaPlayerAdditions::NSUserActivityMediaPlayerAdditions;

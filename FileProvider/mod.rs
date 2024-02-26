@@ -70,7 +70,6 @@ pub use self::__NSFileProviderEnumerating::NSFileProviderInitialPageSortedByName
 pub use self::__NSFileProviderEnumerating::NSFileProviderPage;
 #[cfg(feature = "Foundation_NSData")]
 pub use self::__NSFileProviderEnumerating::NSFileProviderSyncAnchor;
-#[cfg(feature = "Foundation_NSError")]
 pub use self::__NSFileProviderError::NSErrorNSFileProviderError;
 pub use self::__NSFileProviderError::NSFileProviderErrorCode;
 #[cfg(feature = "Foundation_NSString")]

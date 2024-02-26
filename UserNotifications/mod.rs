@@ -48,7 +48,6 @@ mod __UNNotificationTrigger;
 #[path = "UNUserNotificationCenter.rs"]
 mod __UNUserNotificationCenter;
 
-#[cfg(feature = "Foundation_NSString")]
 pub use self::__NSString_UserNotifications::NSStringUNUserNotificationCenterSupport;
 pub use self::__UNError::UNErrorCode;
 #[cfg(feature = "Foundation_NSString")]

@@ -8,7 +8,6 @@ use crate::Foundation::*;
 extern_category!(
     /// Category "NSAppKitAdditions" on [`NSAffineTransform`].
     #[doc(alias = "NSAppKitAdditions")]
-    #[cfg(feature = "Foundation_NSAffineTransform")]
     pub unsafe trait NSAffineTransformNSAppKitAdditions {
         #[cfg(feature = "AppKit_NSBezierPath")]
         #[method_id(@__retain_semantics Other transformBezierPath:)]

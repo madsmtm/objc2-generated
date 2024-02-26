@@ -8,7 +8,6 @@ use crate::Foundation::*;
 extern_category!(
     /// Category "NSAppKitAdditions" on [`CIImage`].
     #[doc(alias = "NSAppKitAdditions")]
-    #[cfg(feature = "CoreImage_CIImage")]
     pub unsafe trait CIImageNSAppKitAdditions {
         #[cfg(feature = "AppKit_NSBitmapImageRep")]
         #[method_id(@__retain_semantics Init initWithBitmapImageRep:)]

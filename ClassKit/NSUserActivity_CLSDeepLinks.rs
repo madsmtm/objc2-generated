@@ -7,7 +7,6 @@ use crate::Foundation::*;
 extern_category!(
     /// Category "CLSDeepLinks" on [`NSUserActivity`].
     #[doc(alias = "CLSDeepLinks")]
-    #[cfg(feature = "Foundation_NSUserActivity")]
     pub unsafe trait NSUserActivityCLSDeepLinks {
         #[method(isClassKitDeepLink)]
         unsafe fn isClassKitDeepLink(&self) -> bool;

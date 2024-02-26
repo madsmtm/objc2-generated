@@ -10,7 +10,6 @@ use crate::MapKit::*;
 extern_category!(
     /// Category "MKMapItem" on [`NSUserActivity`].
     #[doc(alias = "MKMapItem")]
-    #[cfg(feature = "Foundation_NSUserActivity")]
     pub unsafe trait NSUserActivityMKMapItem {
         #[cfg(feature = "MapKit_MKMapItem")]
         #[method_id(@__retain_semantics Other mapItem)]

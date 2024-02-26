@@ -8,7 +8,6 @@ use crate::MediaPlayer::*;
 extern_category!(
     /// Category "MPAdditions" on [`AVPlayerItem`].
     #[doc(alias = "MPAdditions")]
-    #[cfg(feature = "AVFoundation_AVPlayerItem")]
     pub unsafe trait AVPlayerItemMPAdditions {
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other nowPlayingInfo)]

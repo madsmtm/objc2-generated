@@ -8,7 +8,6 @@ use crate::MediaPlayer::*;
 extern_category!(
     /// Category "MediaPlayerAdditions" on [`NSUserActivity`].
     #[doc(alias = "MediaPlayerAdditions")]
-    #[cfg(feature = "Foundation_NSUserActivity")]
     pub unsafe trait NSUserActivityMediaPlayerAdditions {
         #[cfg(feature = "Foundation_NSString")]
         #[method_id(@__retain_semantics Other externalMediaContentIdentifier)]

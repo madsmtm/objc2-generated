@@ -7,7 +7,6 @@ use crate::UniformTypeIdentifiers::*;
 extern_category!(
     /// Category "UTType" on [`NSItemProvider`].
     #[doc(alias = "UTType")]
-    #[cfg(feature = "Foundation_NSItemProvider")]
     pub unsafe trait NSItemProviderUTType {
         #[cfg(all(
             feature = "Foundation_NSURL",

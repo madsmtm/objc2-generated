@@ -7,9 +7,11 @@ use crate::UniformTypeIdentifiers::*;
 extern_category!(
     /// Category "UTAdditions" on [`NSString`].
     #[doc(alias = "UTAdditions")]
-    #[cfg(feature = "Foundation_NSString")]
     pub unsafe trait NSStringUTAdditions {
-        #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "UniformTypeIdentifiers_UTType"
+        ))]
         #[method_id(@__retain_semantics Other stringByAppendingPathComponent:conformingToType:)]
         unsafe fn stringByAppendingPathComponent_conformingToType(
             &self,
@@ -17,7 +19,10 @@ extern_category!(
             content_type: &UTType,
         ) -> Id<NSString>;
 
-        #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+        #[cfg(all(
+            feature = "Foundation_NSString",
+            feature = "UniformTypeIdentifiers_UTType"
+        ))]
         #[method_id(@__retain_semantics Other stringByAppendingPathExtensionForType:)]
         unsafe fn stringByAppendingPathExtensionForType(
             &self,
@@ -32,10 +37,10 @@ extern_category!(
 extern_category!(
     /// Category "UTAdditions" on [`NSURL`].
     #[doc(alias = "UTAdditions")]
-    #[cfg(feature = "Foundation_NSURL")]
     pub unsafe trait NSURLUTAdditions {
         #[cfg(all(
             feature = "Foundation_NSString",
+            feature = "Foundation_NSURL",
             feature = "UniformTypeIdentifiers_UTType"
         ))]
         #[method_id(@__retain_semantics Other URLByAppendingPathComponent:conformingToType:)]
@@ -45,7 +50,10 @@ extern_category!(
             content_type: &UTType,
         ) -> Id<NSURL>;
 
-        #[cfg(feature = "UniformTypeIdentifiers_UTType")]
+        #[cfg(all(
+            feature = "Foundation_NSURL",
+            feature = "UniformTypeIdentifiers_UTType"
+        ))]
         #[method_id(@__retain_semantics Other URLByAppendingPathExtensionForType:)]
         unsafe fn URLByAppendingPathExtensionForType(&self, content_type: &UTType) -> Id<NSURL>;
     }

@@ -28,5 +28,4 @@ mod __LARight_UI;
 pub use self::__LAAuthenticationView::LAAuthenticationView;
 #[cfg(feature = "AppKit_NSWindow")]
 pub use self::__LAPresentationContext::LAPresentationContext;
-#[cfg(feature = "LocalAuthentication_LARight")]
 pub use self::__LARight_UI::LARightUI;

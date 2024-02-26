@@ -486,7 +486,6 @@ extern_protocol!(
 
 extern_category!(
     /// Category on [`NSBundle`].
-    #[cfg(feature = "Foundation_NSBundle")]
     pub unsafe trait NSBundleImageExtension {
         #[cfg(all(feature = "AppKit_NSImage", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other imageForResource:)]

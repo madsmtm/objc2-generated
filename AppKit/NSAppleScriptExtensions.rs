@@ -8,7 +8,6 @@ use crate::Foundation::*;
 extern_category!(
     /// Category "NSExtensions" on [`NSAppleScript`].
     #[doc(alias = "NSExtensions")]
-    #[cfg(feature = "Foundation_NSAppleScript")]
     pub unsafe trait NSAppleScriptNSExtensions {
         #[cfg(feature = "Foundation_NSAttributedString")]
         #[method_id(@__retain_semantics Other richTextSource)]

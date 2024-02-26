@@ -778,7 +778,6 @@ pub use self::__DOMXPathResult::DOM_UNORDERED_NODE_SNAPSHOT_TYPE;
     feature = "Foundation_NSString"
 ))]
 pub use self::__NSAttributedString::NSAttributedStringCompletionHandler;
-#[cfg(feature = "Foundation_NSAttributedString")]
 pub use self::__NSAttributedString::NSAttributedStringWebKitAdditions;
 #[cfg(feature = "Foundation_NSString")]
 pub use self::__NSAttributedString::NSReadAccessURLDocumentOption;

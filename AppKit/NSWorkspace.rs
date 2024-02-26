@@ -509,7 +509,6 @@ extern_methods!(
 extern_category!(
     /// Category "NSWorkspaceAuthorization" on [`NSFileManager`].
     #[doc(alias = "NSWorkspaceAuthorization")]
-    #[cfg(feature = "Foundation_NSFileManager")]
     pub unsafe trait NSFileManagerNSWorkspaceAuthorization {
         #[cfg(feature = "AppKit_NSWorkspaceAuthorization")]
         #[method_id(@__retain_semantics Other fileManagerWithAuthorization:)]

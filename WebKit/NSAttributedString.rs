@@ -24,9 +24,9 @@ pub type NSAttributedStringCompletionHandler = *mut Block<
 
 extern_category!(
     /// Category on [`NSAttributedString`].
-    #[cfg(feature = "Foundation_NSAttributedString")]
     pub unsafe trait NSAttributedStringWebKitAdditions {
         #[cfg(all(
+            feature = "Foundation_NSAttributedString",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
             feature = "Foundation_NSString",
@@ -40,6 +40,7 @@ extern_category!(
         );
 
         #[cfg(all(
+            feature = "Foundation_NSAttributedString",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
             feature = "Foundation_NSString",
@@ -53,6 +54,7 @@ extern_category!(
         );
 
         #[cfg(all(
+            feature = "Foundation_NSAttributedString",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",
             feature = "Foundation_NSString"
@@ -65,6 +67,7 @@ extern_category!(
         );
 
         #[cfg(all(
+            feature = "Foundation_NSAttributedString",
             feature = "Foundation_NSData",
             feature = "Foundation_NSDictionary",
             feature = "Foundation_NSError",

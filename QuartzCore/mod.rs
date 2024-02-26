@@ -384,7 +384,6 @@ pub use self::__CATransform3D::CATransform3DMakeTranslation;
 pub use self::__CATransform3D::CATransform3DRotate;
 pub use self::__CATransform3D::CATransform3DScale;
 pub use self::__CATransform3D::CATransform3DTranslate;
-#[cfg(feature = "Foundation_NSValue")]
 pub use self::__CATransform3D::NSValueCATransform3DAdditions;
 #[cfg(feature = "QuartzCore_CATransformLayer")]
 pub use self::__CATransformLayer::CATransformLayer;

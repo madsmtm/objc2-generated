@@ -8,7 +8,6 @@ use crate::Foundation::*;
 extern_category!(
     /// Category "NSItemSourceInfo" on [`NSItemProvider`].
     #[doc(alias = "NSItemSourceInfo")]
-    #[cfg(feature = "Foundation_NSItemProvider")]
     pub unsafe trait NSItemProviderNSItemSourceInfo {
         #[method(sourceFrame)]
         unsafe fn sourceFrame(&self) -> NSRect;

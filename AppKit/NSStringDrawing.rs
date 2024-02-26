@@ -51,16 +51,15 @@ extern_methods!(
 
 extern_category!(
     /// Category on [`NSString`].
-    #[cfg(feature = "Foundation_NSString")]
     pub unsafe trait NSStringDrawing {
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(sizeWithAttributes:)]
         unsafe fn sizeWithAttributes(
             &self,
             attrs: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
         ) -> NSSize;
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(drawAtPoint:withAttributes:)]
         unsafe fn drawAtPoint_withAttributes(
             &self,
@@ -68,7 +67,7 @@ extern_category!(
             attrs: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
         );
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(drawInRect:withAttributes:)]
         unsafe fn drawInRect_withAttributes(
             &self,
@@ -84,7 +83,6 @@ extern_category!(
 extern_category!(
     /// Category "NSStringDrawing" on [`NSAttributedString`].
     #[doc(alias = "NSStringDrawing")]
-    #[cfg(feature = "Foundation_NSAttributedString")]
     pub unsafe trait NSAttributedStringNSStringDrawing {
         #[method(size)]
         unsafe fn size(&self) -> NSSize;
@@ -117,11 +115,11 @@ ns_options!(
 extern_category!(
     /// Category "NSExtendedStringDrawing" on [`NSString`].
     #[doc(alias = "NSExtendedStringDrawing")]
-    #[cfg(feature = "Foundation_NSString")]
     pub unsafe trait NSStringNSExtendedStringDrawing {
         #[cfg(all(
             feature = "AppKit_NSStringDrawingContext",
-            feature = "Foundation_NSDictionary"
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
         ))]
         #[method(drawWithRect:options:attributes:context:)]
         unsafe fn drawWithRect_options_attributes_context(
@@ -134,7 +132,8 @@ extern_category!(
 
         #[cfg(all(
             feature = "AppKit_NSStringDrawingContext",
-            feature = "Foundation_NSDictionary"
+            feature = "Foundation_NSDictionary",
+            feature = "Foundation_NSString"
         ))]
         #[method(boundingRectWithSize:options:attributes:context:)]
         unsafe fn boundingRectWithSize_options_attributes_context(
@@ -153,7 +152,6 @@ extern_category!(
 extern_category!(
     /// Category "NSExtendedStringDrawing" on [`NSAttributedString`].
     #[doc(alias = "NSExtendedStringDrawing")]
-    #[cfg(feature = "Foundation_NSAttributedString")]
     pub unsafe trait NSAttributedStringNSExtendedStringDrawing {
         #[cfg(feature = "AppKit_NSStringDrawingContext")]
         #[method(drawWithRect:options:context:)]
@@ -180,9 +178,8 @@ extern_category!(
 
 extern_category!(
     /// Category on [`NSString`].
-    #[cfg(feature = "Foundation_NSString")]
     pub unsafe trait NSStringDrawingDeprecated {
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(drawWithRect:options:attributes:)]
         unsafe fn drawWithRect_options_attributes(
             &self,
@@ -191,7 +188,7 @@ extern_category!(
             attributes: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
         );
 
-        #[cfg(feature = "Foundation_NSDictionary")]
+        #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method(boundingRectWithSize:options:attributes:)]
         unsafe fn boundingRectWithSize_options_attributes(
             &self,
@@ -208,7 +205,6 @@ extern_category!(
 extern_category!(
     /// Category "NSStringDrawingDeprecated" on [`NSAttributedString`].
     #[doc(alias = "NSStringDrawingDeprecated")]
-    #[cfg(feature = "Foundation_NSAttributedString")]
     pub unsafe trait NSAttributedStringNSStringDrawingDeprecated {
         #[method(drawWithRect:options:)]
         unsafe fn drawWithRect_options(&self, rect: NSRect, options: NSStringDrawingOptions);

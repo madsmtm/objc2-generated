@@ -1184,8 +1184,8 @@ extern_protocol!(
 extern_category!(
     /// Category "NSCollectionViewAdditions" on [`NSIndexPath`].
     #[doc(alias = "NSCollectionViewAdditions")]
-    #[cfg(feature = "Foundation_NSIndexPath")]
     pub unsafe trait NSIndexPathNSCollectionViewAdditions {
+        #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other indexPathForItem:inSection:)]
         unsafe fn indexPathForItem_inSection(
             item: NSInteger,
@@ -1206,7 +1206,6 @@ extern_category!(
 extern_category!(
     /// Category "NSCollectionViewAdditions" on [`NSSet`].
     #[doc(alias = "NSCollectionViewAdditions")]
-    #[cfg(feature = "Foundation_NSSet")]
     pub unsafe trait NSSetNSCollectionViewAdditions {
         #[cfg(feature = "Foundation_NSIndexPath")]
         #[method_id(@__retain_semantics Other setWithCollectionViewIndexPath:)]

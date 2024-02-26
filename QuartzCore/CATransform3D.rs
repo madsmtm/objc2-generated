@@ -95,8 +95,8 @@ extern_fn!(
 extern_category!(
     /// Category "CATransform3DAdditions" on [`NSValue`].
     #[doc(alias = "CATransform3DAdditions")]
-    #[cfg(feature = "Foundation_NSValue")]
     pub unsafe trait NSValueCATransform3DAdditions {
+        #[cfg(feature = "Foundation_NSValue")]
         #[method_id(@__retain_semantics Other valueWithCATransform3D:)]
         unsafe fn valueWithCATransform3D(t: CATransform3D) -> Id<NSValue>;
 

@@ -381,5 +381,4 @@ pub use self::__CKUserIdentityLookupInfo::CKUserIdentityLookupInfo;
 pub use self::__NSItemProvider_CKSharingSupport::CKSharePreparationCompletionHandler;
 #[cfg(all(feature = "CloudKit_CKShare", feature = "Foundation_NSError"))]
 pub use self::__NSItemProvider_CKSharingSupport::CKSharePreparationHandler;
-#[cfg(feature = "Foundation_NSItemProvider")]
 pub use self::__NSItemProvider_CKSharingSupport::NSItemProviderCKSharingSupport;

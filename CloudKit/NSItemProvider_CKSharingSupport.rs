@@ -14,7 +14,6 @@ pub type CKSharePreparationHandler = *mut Block<dyn Fn(CKSharePreparationComplet
 extern_category!(
     /// Category "CKSharingSupport" on [`NSItemProvider`].
     #[doc(alias = "CKSharingSupport")]
-    #[cfg(feature = "Foundation_NSItemProvider")]
     pub unsafe trait NSItemProviderCKSharingSupport {
         #[cfg(all(
             feature = "CloudKit_CKAllowedSharingOptions",

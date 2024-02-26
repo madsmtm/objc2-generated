@@ -1336,7 +1336,6 @@ pub use self::__NSAccessibilityProtocols::NSAccessibilitySwitch;
 pub use self::__NSAccessibilityProtocols::NSAccessibilityTable;
 #[cfg(feature = "AppKit_NSActionCell")]
 pub use self::__NSActionCell::NSActionCell;
-#[cfg(feature = "Foundation_NSAffineTransform")]
 pub use self::__NSAffineTransform::NSAffineTransformNSAppKitAdditions;
 #[cfg(feature = "AppKit_NSAlert")]
 pub use self::__NSAlert::NSAlert;
@@ -1411,7 +1410,6 @@ pub use self::__NSAppearance::NSAppearanceNameLightContent;
 pub use self::__NSAppearance::NSAppearanceNameVibrantDark;
 #[cfg(feature = "Foundation_NSString")]
 pub use self::__NSAppearance::NSAppearanceNameVibrantLight;
-#[cfg(feature = "Foundation_NSAppleScript")]
 pub use self::__NSAppleScriptExtensions::NSAppleScriptNSExtensions;
 #[cfg(feature = "Foundation_NSString")]
 pub use self::__NSApplication::NSAboutPanelOptionApplicationIcon;
@@ -1589,21 +1587,16 @@ pub use self::__NSArrayController::NSArrayController;
 pub use self::__NSAttributedString::NSAppearanceDocumentAttribute;
 #[cfg(feature = "Foundation_NSString")]
 pub use self::__NSAttributedString::NSAttachmentAttributeName;
-#[cfg(feature = "Foundation_NSMutableAttributedString")]
 pub use self::__NSAttributedString::NSAttributedStringAttributeFixing;
 #[cfg(feature = "Foundation_NSString")]
 pub use self::__NSAttributedString::NSAttributedStringDocumentAttributeKey;
-#[cfg(feature = "Foundation_NSAttributedString")]
 pub use self::__NSAttributedString::NSAttributedStringDocumentFormats;
 #[cfg(feature = "Foundation_NSString")]
 pub use self::__NSAttributedString::NSAttributedStringDocumentReadingOptionKey;
 #[cfg(feature = "Foundation_NSString")]
 pub use self::__NSAttributedString::NSAttributedStringDocumentType;
-#[cfg(feature = "Foundation_NSAttributedString")]
 pub use self::__NSAttributedString::NSAttributedStringKitAdditions;
-#[cfg(feature = "Foundation_NSAttributedString")]
 pub use self::__NSAttributedString::NSAttributedStringNSDeprecatedKitAdditions;
-#[cfg(feature = "Foundation_NSAttributedString")]
 pub use self::__NSAttributedString::NSAttributedStringPasteboardAdditions;
 #[cfg(feature = "Foundation_NSString")]
 pub use self::__NSAttributedString::NSAuthorDocumentAttribute;
@@ -1691,9 +1684,7 @@ pub use self::__NSAttributedString::NSManagerDocumentAttribute;
 pub use self::__NSAttributedString::NSMarkedClauseSegmentAttributeName;
 #[cfg(feature = "Foundation_NSString")]
 pub use self::__NSAttributedString::NSModificationTimeDocumentAttribute;
-#[cfg(feature = "Foundation_NSMutableAttributedString")]
 pub use self::__NSAttributedString::NSMutableAttributedStringDocumentFormats;
-#[cfg(feature = "Foundation_NSMutableAttributedString")]
 pub use self::__NSAttributedString::NSMutableAttributedStringKitAdditions;
 pub use self::__NSAttributedString::NSNoUnderlineStyle;
 #[cfg(feature = "Foundation_NSString")]
@@ -1936,7 +1927,6 @@ pub use self::__NSButtonCell::NSThickerSquareBezelStyle;
 pub use self::__NSButtonCell::NSToggleButton;
 #[cfg(feature = "AppKit_NSButtonTouchBarItem")]
 pub use self::__NSButtonTouchBarItem::NSButtonTouchBarItem;
-#[cfg(feature = "CoreImage_CIImage")]
 pub use self::__NSCIImageRep::CIImageNSAppKitAdditions;
 #[cfg(feature = "AppKit_NSCachedImageRep")]
 pub use self::__NSCachedImageRep::NSCachedImageRep;
@@ -2000,9 +1990,7 @@ pub use self::__NSCollectionView::NSCollectionViewScrollPosition;
 pub use self::__NSCollectionView::NSCollectionViewSectionHeaderView;
 #[cfg(feature = "Foundation_NSString")]
 pub use self::__NSCollectionView::NSCollectionViewSupplementaryElementKind;
-#[cfg(feature = "Foundation_NSIndexPath")]
 pub use self::__NSCollectionView::NSIndexPathNSCollectionViewAdditions;
-#[cfg(feature = "Foundation_NSSet")]
 pub use self::__NSCollectionView::NSSetNSCollectionViewAdditions;
 #[cfg(feature = "AppKit_NSCollectionLayoutAnchor")]
 pub use self::__NSCollectionViewCompositionalLayout::NSCollectionLayoutAnchor;
@@ -2079,7 +2067,6 @@ pub use self::__NSCollectionViewLayout::NSCollectionViewUpdateItem;
 pub use self::__NSCollectionViewTransitionLayout::NSCollectionViewTransitionLayout;
 #[cfg(feature = "Foundation_NSString")]
 pub use self::__NSCollectionViewTransitionLayout::NSCollectionViewTransitionLayoutAnimatedKey;
-#[cfg(feature = "CoreImage_CIColor")]
 pub use self::__NSColor::CIColorNSAppKitAdditions;
 pub use self::__NSColor::NSAppKitVersionNumberWithPatternColorLeakFix;
 #[cfg(feature = "AppKit_NSColor")]
@@ -2489,7 +2476,6 @@ pub use self::__NSFilePromiseProvider::NSFilePromiseProvider;
 pub use self::__NSFilePromiseProvider::NSFilePromiseProviderDelegate;
 #[cfg(feature = "AppKit_NSFilePromiseReceiver")]
 pub use self::__NSFilePromiseReceiver::NSFilePromiseReceiver;
-#[cfg(feature = "Foundation_NSFileWrapper")]
 pub use self::__NSFileWrapperExtensions::NSFileWrapperNSExtensions;
 #[cfg(feature = "Foundation_NSString")]
 pub use self::__NSFont::NSAntialiasThresholdChangedNotification;
@@ -2890,7 +2876,6 @@ pub use self::__NSHapticFeedback::NSHapticFeedbackManager;
 pub use self::__NSHapticFeedback::NSHapticFeedbackPattern;
 pub use self::__NSHapticFeedback::NSHapticFeedbackPerformanceTime;
 pub use self::__NSHapticFeedback::NSHapticFeedbackPerformer;
-#[cfg(feature = "Foundation_NSBundle")]
 pub use self::__NSHelpManager::NSBundleHelpExtension;
 #[cfg(feature = "Foundation_NSString")]
 pub use self::__NSHelpManager::NSContextHelpModeDidActivateNotification;
@@ -2904,7 +2889,6 @@ pub use self::__NSHelpManager::NSHelpBookName;
 pub use self::__NSHelpManager::NSHelpManager;
 #[cfg(feature = "Foundation_NSString")]
 pub use self::__NSHelpManager::NSHelpManagerContextHelpKey;
-#[cfg(feature = "Foundation_NSBundle")]
 pub use self::__NSImage::NSBundleImageExtension;
 #[cfg(feature = "AppKit_NSImage")]
 pub use self::__NSImage::NSImage;
@@ -3231,7 +3215,6 @@ pub use self::__NSInterfaceStyle::NSMacintoshInterfaceStyle;
 pub use self::__NSInterfaceStyle::NSNextStepInterfaceStyle;
 pub use self::__NSInterfaceStyle::NSNoInterfaceStyle;
 pub use self::__NSInterfaceStyle::NSWindows95InterfaceStyle;
-#[cfg(feature = "Foundation_NSItemProvider")]
 pub use self::__NSItemProvider::NSItemProviderNSItemSourceInfo;
 #[cfg(feature = "Foundation_NSString")]
 pub use self::__NSItemProvider::NSTypeIdentifierAddressText;
@@ -3816,7 +3799,6 @@ pub use self::__NSPasteboard::NSStringPboardType;
 pub use self::__NSPasteboard::NSTIFFPboardType;
 #[cfg(feature = "Foundation_NSString")]
 pub use self::__NSPasteboard::NSTabularTextPboardType;
-#[cfg(feature = "Foundation_NSURL")]
 pub use self::__NSPasteboard::NSURLNSPasteboardSupport;
 #[cfg(feature = "Foundation_NSString")]
 pub use self::__NSPasteboard::NSURLPboardType;
@@ -4226,7 +4208,6 @@ pub use self::__NSSliderTouchBarItem::NSSliderAccessoryWidthDefault;
 pub use self::__NSSliderTouchBarItem::NSSliderAccessoryWidthWide;
 #[cfg(feature = "AppKit_NSSliderTouchBarItem")]
 pub use self::__NSSliderTouchBarItem::NSSliderTouchBarItem;
-#[cfg(feature = "Foundation_NSBundle")]
 pub use self::__NSSound::NSBundleSoundExtensions;
 #[cfg(feature = "AppKit_NSSound")]
 pub use self::__NSSound::NSSound;
@@ -4484,20 +4465,14 @@ pub use self::__NSStoryboardSegue::NSSeguePerforming;
 pub use self::__NSStoryboardSegue::NSStoryboardSegue;
 #[cfg(feature = "Foundation_NSString")]
 pub use self::__NSStoryboardSegue::NSStoryboardSegueIdentifier;
-#[cfg(feature = "Foundation_NSAttributedString")]
 pub use self::__NSStringDrawing::NSAttributedStringNSExtendedStringDrawing;
-#[cfg(feature = "Foundation_NSAttributedString")]
 pub use self::__NSStringDrawing::NSAttributedStringNSStringDrawing;
-#[cfg(feature = "Foundation_NSAttributedString")]
 pub use self::__NSStringDrawing::NSAttributedStringNSStringDrawingDeprecated;
-#[cfg(feature = "Foundation_NSString")]
 pub use self::__NSStringDrawing::NSStringDrawing;
 #[cfg(feature = "AppKit_NSStringDrawingContext")]
 pub use self::__NSStringDrawing::NSStringDrawingContext;
-#[cfg(feature = "Foundation_NSString")]
 pub use self::__NSStringDrawing::NSStringDrawingDeprecated;
 pub use self::__NSStringDrawing::NSStringDrawingOptions;
-#[cfg(feature = "Foundation_NSString")]
 pub use self::__NSStringDrawing::NSStringNSExtendedStringDrawing;
 #[cfg(feature = "AppKit_NSSwitch")]
 pub use self::__NSSwitch::NSSwitch;
@@ -4610,9 +4585,7 @@ pub use self::__NSTextAlternatives::NSTextAlternatives;
 #[cfg(feature = "Foundation_NSString")]
 pub use self::__NSTextAlternatives::NSTextAlternativesSelectedAlternativeStringNotification;
 pub use self::__NSTextAttachment::NSAttachmentCharacter;
-#[cfg(feature = "Foundation_NSAttributedString")]
 pub use self::__NSTextAttachment::NSAttributedStringAttachmentConveniences;
-#[cfg(feature = "Foundation_NSMutableAttributedString")]
 pub use self::__NSTextAttachment::NSMutableAttributedStringAttachmentConveniences;
 #[cfg(feature = "AppKit_NSTextAttachment")]
 pub use self::__NSTextAttachment::NSTextAttachment;
@@ -5196,7 +5169,6 @@ pub use self::__NSWindowTabGroup::NSWindowTabGroup;
 pub use self::__NSWorkspace::NSApplicationFileType;
 #[cfg(feature = "Foundation_NSString")]
 pub use self::__NSWorkspace::NSDirectoryFileType;
-#[cfg(feature = "Foundation_NSFileManager")]
 pub use self::__NSWorkspace::NSFileManagerNSWorkspaceAuthorization;
 #[cfg(feature = "Foundation_NSString")]
 pub use self::__NSWorkspace::NSFilesystemFileType;

@@ -8,7 +8,6 @@ use crate::Foundation::*;
 extern_category!(
     /// Category "NSExtensions" on [`NSFileWrapper`].
     #[doc(alias = "NSExtensions")]
-    #[cfg(feature = "Foundation_NSFileWrapper")]
     pub unsafe trait NSFileWrapperNSExtensions {
         #[cfg(feature = "AppKit_NSImage")]
         #[method_id(@__retain_semantics Other icon)]

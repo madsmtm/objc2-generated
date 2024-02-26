@@ -398,9 +398,8 @@ extern_protocol!(
 extern_category!(
     /// Category "NSPasteboardSupport" on [`NSURL`].
     #[doc(alias = "NSPasteboardSupport")]
-    #[cfg(feature = "Foundation_NSURL")]
     pub unsafe trait NSURLNSPasteboardSupport {
-        #[cfg(feature = "AppKit_NSPasteboard")]
+        #[cfg(all(feature = "AppKit_NSPasteboard", feature = "Foundation_NSURL"))]
         #[method_id(@__retain_semantics Other URLFromPasteboard:)]
         unsafe fn URLFromPasteboard(paste_board: &NSPasteboard) -> Option<Id<NSURL>>;
 

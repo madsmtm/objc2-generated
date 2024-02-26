@@ -137,7 +137,6 @@ ns_enum!(
 
 extern_category!(
     /// Category on [`NSMutableAttributedString`].
-    #[cfg(feature = "Foundation_NSMutableAttributedString")]
     pub unsafe trait NSAttributedStringAttributeFixing {
         #[method(fixAttributesInRange:)]
         unsafe fn fixAttributesInRange(&self, range: NSRange);
@@ -372,7 +371,6 @@ extern_static!(NSSourceTextScalingDocumentOption: &'static NSAttributedStringDoc
 
 extern_category!(
     /// Category on [`NSAttributedString`].
-    #[cfg(feature = "Foundation_NSAttributedString")]
     pub unsafe trait NSAttributedStringDocumentFormats {
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -588,7 +586,6 @@ extern_category!(
 
 extern_category!(
     /// Category on [`NSMutableAttributedString`].
-    #[cfg(feature = "Foundation_NSMutableAttributedString")]
     pub unsafe trait NSMutableAttributedStringDocumentFormats {
         #[cfg(all(
             feature = "Foundation_NSDictionary",
@@ -629,7 +626,6 @@ extern_category!(
 
 extern_category!(
     /// Category on [`NSAttributedString`].
-    #[cfg(feature = "Foundation_NSAttributedString")]
     pub unsafe trait NSAttributedStringKitAdditions {
         #[cfg(all(feature = "Foundation_NSDictionary", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other fontAttributesInRange:)]
@@ -711,7 +707,6 @@ extern_category!(
 
 extern_category!(
     /// Category on [`NSAttributedString`].
-    #[cfg(feature = "Foundation_NSAttributedString")]
     pub unsafe trait NSAttributedStringPasteboardAdditions {
         #[cfg(all(feature = "Foundation_NSArray", feature = "Foundation_NSString"))]
         #[method_id(@__retain_semantics Other textTypes)]
@@ -734,7 +729,6 @@ unsafe impl NSPasteboardWriting for NSAttributedString {}
 
 extern_category!(
     /// Category on [`NSMutableAttributedString`].
-    #[cfg(feature = "Foundation_NSMutableAttributedString")]
     pub unsafe trait NSMutableAttributedStringKitAdditions {
         #[method(superscriptRange:)]
         unsafe fn superscriptRange(&self, range: NSRange);
@@ -802,7 +796,6 @@ extern_static!(NSUnderlineByWordMask: NSUInteger);
 extern_category!(
     /// Category "NSDeprecatedKitAdditions" on [`NSAttributedString`].
     #[doc(alias = "NSDeprecatedKitAdditions")]
-    #[cfg(feature = "Foundation_NSAttributedString")]
     pub unsafe trait NSAttributedStringNSDeprecatedKitAdditions {
         #[method(containsAttachments)]
         unsafe fn containsAttachments(&self) -> bool;

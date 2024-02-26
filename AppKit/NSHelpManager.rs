@@ -107,7 +107,6 @@ extern_static!(NSContextHelpModeDidDeactivateNotification: &'static NSNotificati
 
 extern_category!(
     /// Category on [`NSBundle`].
-    #[cfg(feature = "Foundation_NSBundle")]
     pub unsafe trait NSBundleHelpExtension {
         #[cfg(all(
             feature = "Foundation_NSAttributedString",
